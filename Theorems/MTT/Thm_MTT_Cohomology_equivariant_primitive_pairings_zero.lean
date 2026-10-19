@@ -27,7 +27,7 @@ Theorem statement: `MTT.Cohomology.equivariant_primitive_pairings_zero`
 Proof: submission `6590480a-8223-46c6-a866-2acb4f6a9cfc`, by davidloeffler, 2026-09-08 (ACCEPTED);
 locally adapted.
 
-Let $N>0$, $k\ge2$, $n=k-2$, and $g,v\in S_k(\Gamma_1(N))$. Suppose the mixed differential
+Let $N>0$, $k\ge2$, $n=k - 2$, and $g,v\in S_k(\Gamma_1(N))$. Suppose the mixed differential
 $$g(z)(zX+Y)^n\,dz-\overline{v(z)}(\bar zX+Y)^n\,d\bar z$$
 admits a $\Gamma_1(N)$-equivariant primitive with at most polynomial coefficient growth in every
 cusp chart (the predicate `IsMixedPeriodPrimitive`). Then for every $q\in S_k(\Gamma_1(N))$,

@@ -59,10 +59,12 @@ namespace P2MW.S_ModularCurve_CuspSpace_exists_normalForm
 
 open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
-p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_exists_normalForm.ModularCurve ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_exists_normalForm.ModularCurve.CuspSpace"
+p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_exists_normalForm.ModularCurve \
+  ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_exists_normalForm.ModularCurve.CuspSpace"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "ratPoint exists_ratPoint_eq mapGL_smul_ratPoint isCoprime_smul_pair CuspSpace CuspSpace.mk CuspSpace.cuspDenom"
+p2m_export "ModularCurve" "ratPoint exists_ratPoint_eq mapGL_smul_ratPoint isCoprime_smul_pair \
+  CuspSpace CuspSpace.mk CuspSpace.cuspDenom"
 namespace CuspSpace
 p2m_export "ModularCurve.CuspSpace" "mk mk_surjective mk_smul cuspDenom cuspDenom_mk_ratPoint"
 p2m_open "ModularCurve.CuspSpace ModularCurve"
@@ -167,8 +169,10 @@ public section publicSection
 
 
 open OnePoint
-theorem ModularCurve.CuspSpace.exists_normalForm {N : ℕ} (hN : N ≠ 0) (x : ModularCurve.CuspSpace N) :
+theorem ModularCurve.CuspSpace.exists_normalForm {N : ℕ} (hN : N ≠ 0) (x : ModularCurve.CuspSpace N)
+    :
     ∃ a : ℤ, IsCoprime a (ModularCurve.CuspSpace.cuspDenom N x : ℤ) ∧
-      x = ModularCurve.CuspSpace.mk N (ModularCurve.ratPoint a (ModularCurve.CuspSpace.cuspDenom N x)) := _root_.P2MW.S_ModularCurve_CuspSpace_exists_normalForm.solution hN x
+      x = ModularCurve.CuspSpace.mk N (ModularCurve.ratPoint a (ModularCurve.CuspSpace.cuspDenom N x)) :=
+  solution hN x
 
 end publicSection

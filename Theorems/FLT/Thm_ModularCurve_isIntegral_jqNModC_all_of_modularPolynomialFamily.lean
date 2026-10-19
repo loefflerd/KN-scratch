@@ -67,7 +67,8 @@ noncomputable section
 open IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC jqNModC qExpand_one_apply ModularPolynomialData ModularPolynomialFamily isIntegral_jqNModC_mul"
+p2m_export "ModularCurve" "jqModC jqNModC qExpand_one_apply ModularPolynomialData \
+  ModularPolynomialFamily isIntegral_jqNModC_mul"
 p2m_open "ModularCurve"
 namespace AllLevels
 
@@ -82,7 +83,8 @@ theorem step {ℓ : ℕ} [NeZero ℓ] (data : ModularPolynomialData ℓ) (d : �
   have : FiniteDimensional F₀ E := IntermediateField.adjoin.finiteDimensional hd
   have hmem : jqNModC K d ∈ E.restrictScalars K := by
     rw [IntermediateField.mem_restrictScalars]; exact IntermediateField.mem_adjoin_simple_self _ _
-  have h1 : IsIntegral (E.restrictScalars K) (jqNModC K (d * ℓ)) := isIntegral_jqNModC_mul _ data d hmem
+  have h1 : IsIntegral (E.restrictScalars K) (jqNModC K (d * ℓ)) :=
+    isIntegral_jqNModC_mul _ data d hmem
   have h2 : IsIntegral E (jqNModC K (d * ℓ)) := h1
   have : Algebra.IsIntegral F₀ E := Algebra.IsIntegral.of_finite F₀ E
   exact isIntegral_trans _ h2
@@ -124,7 +126,8 @@ end AllLevels
 
 end ModularCurve
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_isIntegral_jqNModC_all_of_modularPolynomialFamily.ModularCurve"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_isIntegral_jqNModC_all_of_modularPolynomialFamily.ModularCurve"
 
 theorem solution (K : Type*) [Field K] (hΦ : ModularPolynomialFamily)
     (N : ℕ) [NeZero N] :
@@ -143,8 +146,10 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.isIntegral_jqNModC_all_of_modularPolynomialFamily (K : Type*) [Field K] (hΦ : ModularPolynomialFamily)
+theorem ModularCurve.isIntegral_jqNModC_all_of_modularPolynomialFamily (K : Type*) [Field K]
+    (hΦ : ModularPolynomialFamily)
     (N : ℕ) [NeZero N] :
-    IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) := _root_.P2MW.S_ModularCurve_isIntegral_jqNModC_all_of_modularPolynomialFamily.solution K hΦ N
+    IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) :=
+  solution K hΦ N
 
 end publicSection

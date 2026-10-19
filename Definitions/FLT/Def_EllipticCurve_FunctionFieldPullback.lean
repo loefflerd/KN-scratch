@@ -143,7 +143,8 @@ theorem algebraMap_quot_eq_comp_eval {P : Ideal W.CoordinateRing} {a : K}
     simp only [RingHom.coe_comp, Function.comp_apply, coe_evalRingHom, eval_C]
     rfl
   · simp only [RingHom.coe_comp, Function.comp_apply, coe_evalRingHom, eval_X]
-    rw [algebraMap_quot_apply, IsScalarTower.algebraMap_apply K[X] W.CoordinateRing (W.CoordinateRing ⧸ P),
+    rw [algebraMap_quot_apply, IsScalarTower.algebraMap_apply K[X] W.CoordinateRing
+      (W.CoordinateRing ⧸ P),
       Ideal.Quotient.algebraMap_eq, eq_comm, Ideal.Quotient.mk_eq_mk_iff_sub_mem]
     have : mk W (C (C a)) - algebraMap K[X] W.CoordinateRing X = -XClass W a := by
       simp only [algebraMap_eq_mk_C, XClass, map_sub]; abel
@@ -162,7 +163,8 @@ theorem exists_eq_XYIdeal [IsAlgClosed K] {P : Ideal W.CoordinateRing} (hP : P �
     refine ⟨m.map (evalRingHom a), hm.map _, ?_⟩
     rw [eval₂_map, ← hθ]
     exact hm0⟩
-  obtain ⟨b, hb⟩ := (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := K) (K := L)).2 (π (mk W Y))
+  obtain ⟨b, hb⟩ :=
+    (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := K) (K := L)).2 (π (mk W Y))
   have hYmem : YClass W (C b) ∈ P := by
     rw [YClass, map_sub, ← Ideal.Quotient.mk_eq_mk_iff_sub_mem]
     exact hb.symm
@@ -428,7 +430,8 @@ theorem pointPull_comp_pointHom (Q : (W⁄(W⁄K).FunctionField).Point) (hQ : Q 
   · rw [AlgHom.comp_apply, pointHom_mk_C_X, pointHom_mk_C_X, Point.xc_map]
   · rw [AlgHom.comp_apply, pointHom_mk_Y, pointHom_mk_Y, Point.yc_map]
 
-theorem pointHom_congr {Q Q' : (W⁄(W⁄K).FunctionField).Point} (h : Q = Q') (hQ : Q ≠ 0) (hQ' : Q' ≠ 0) :
+theorem pointHom_congr {Q Q' : (W⁄(W⁄K).FunctionField).Point} (h : Q = Q') (hQ : Q ≠ 0)
+    (hQ' : Q' ≠ 0) :
     pointHom Q hQ = pointHom Q' hQ' := by subst h; rfl
 
 theorem pointPull_comp_algebraMap (Q : (W⁄(W⁄K).FunctionField).Point) (hQ : Q ≠ 0)
@@ -452,7 +455,8 @@ theorem exists_eq_baseChange_of_isIntegral_xc [DecidableEq K] [IsAlgClosed K] [W
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
   have hdx : (minpoly K Q.xc).degree = 1 :=
     IsAlgClosed.degree_eq_one_of_irreducible K (minpoly.irreducible hx)
-  obtain ⟨a, ha⟩ : Q.xc ∈ (algebraMap K (W⁄K).FunctionField).range := minpoly.mem_range_of_degree_eq_one K _ hdx
+  obtain ⟨a, ha⟩ : Q.xc ∈ (algebraMap K (W⁄K).FunctionField).range :=
+    minpoly.mem_range_of_degree_eq_one K _ hdx
   have heq := (Point.nonsingular_xc_yc hQ).left
   rw [equation_iff] at heq
   have hy : _root_.IsIntegral K Q.yc := by
@@ -467,7 +471,8 @@ theorem exists_eq_baseChange_of_isIntegral_xc [DecidableEq K] [IsAlgClosed K] [W
         · exact WithBot.coe_lt_coe.mpr (by norm_num)
       rw [add_sub_assoc]
       exact (monic_X_pow 2).add_of_left hlt
-    · simp only [eval₂_add, eval₂_sub, eval₂_pow, eval₂_X, eval₂_mul, eval₂_C, map_add, map_mul, map_pow]
+    · simp only [eval₂_add, eval₂_sub, eval₂_pow, eval₂_X, eval₂_mul, eval₂_C, map_add, map_mul,
+        map_pow]
       rw [ha]
       have e1 : (algebraMap K (W⁄K).FunctionField) (W⁄K).a₁ = (W⁄(W⁄K).FunctionField).a₁ :=
         (IsScalarTower.algebraMap_apply R K (W⁄K).FunctionField W.a₁).symm
@@ -483,7 +488,8 @@ theorem exists_eq_baseChange_of_isIntegral_xc [DecidableEq K] [IsAlgClosed K] [W
       linear_combination heq
   have hdy : (minpoly K Q.yc).degree = 1 :=
     IsAlgClosed.degree_eq_one_of_irreducible K (minpoly.irreducible hy)
-  obtain ⟨b, hb⟩ : Q.yc ∈ (algebraMap K (W⁄K).FunctionField).range := minpoly.mem_range_of_degree_eq_one K _ hdy
+  obtain ⟨b, hb⟩ : Q.yc ∈ (algebraMap K (W⁄K).FunctionField).range :=
+    minpoly.mem_range_of_degree_eq_one K _ hdy
   have hab : (W⁄K).Equation a b := by
     rw [← baseChange_equation W (Algebra.ofId K (W⁄K).FunctionField).injective a b]
     change (W⁄(W⁄K).FunctionField).Equation (algebraMap K _ a) (algebraMap K _ b)
@@ -508,7 +514,6 @@ variable {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [A
   [DecidableEq K] [IsAlgClosed K] [W.IsElliptic]
 
 omit [IsAlgClosed K] in
-
 theorem genericPoint_ne_baseChange (P : (W⁄K).Point) :
     genericPoint W K ≠ Point.baseChange K (W⁄K).FunctionField P := by
   intro h
@@ -528,7 +533,6 @@ theorem genericPoint_ne_baseChange (P : (W⁄K).Point) :
     rfl
 
 omit [IsAlgClosed K] in
-
 theorem genericPoint_add_baseChange_ne_zero (S : (W⁄K).Point) :
     genericPoint W K + Point.baseChange K _ S ≠ 0 := by
   intro h
@@ -537,7 +541,6 @@ theorem genericPoint_add_baseChange_ne_zero (S : (W⁄K).Point) :
   exact eq_neg_of_add_eq_zero_left h
 
 omit [IsAlgClosed K] in
-
 theorem genericPoint_add_baseChange_ne_baseChange (S P : (W⁄K).Point) :
     genericPoint W K + Point.baseChange K _ S ≠ Point.baseChange K _ P := by
   intro h
@@ -646,7 +649,8 @@ theorem transEquiv_injective : Function.Injective (transEquiv W K) := by
   have hy := transEquiv_genericY W K S
   rw [h, transEquiv_genericX] at hx
   rw [h, transEquiv_genericY] at hy
-  have hpt : genericPoint W K + Point.baseChange K _ T = genericPoint W K + Point.baseChange K _ S := by
+  have hpt : genericPoint W K + Point.baseChange K _ T = genericPoint W K + Point.baseChange K _ S :=
+    by
     rw [Point.eq_some_xc_yc (genericPoint_add_baseChange_ne_zero W K T),
       Point.eq_some_xc_yc (genericPoint_add_baseChange_ne_zero W K S)]
     congr 1
@@ -659,32 +663,51 @@ theorem neg_genericPoint_ne_baseChange (P : (W⁄K).Point) :
   apply genericPoint_ne_baseChange W K (-P)
   rw [map_neg, ← h, neg_neg]
 
+omit [DecidableEq K] in
 theorem negHom_injective :
-    Function.Injective (pointHom (-genericPoint W K) (neg_ne_zero.mpr (Point.some_ne_zero _))) :=
-  pointHom_injective_of_ne_baseChange _ _ (neg_genericPoint_ne_baseChange W K)
+    Function.Injective (pointHom (-genericPoint W K) (neg_ne_zero.mpr (Point.some_ne_zero _))) := by
+  classical
+  exact
+    pointHom_injective_of_ne_baseChange _ _ (neg_genericPoint_ne_baseChange W K)
 
 noncomputable def negPull : (W⁄K).FunctionField →ₐ[K] (W⁄K).FunctionField :=
   pointPull _ (neg_ne_zero.mpr (Point.some_ne_zero _)) (negHom_injective W K)
 
+omit [DecidableEq K] in
 theorem map_negPull_genericPoint : Point.map (negPull W K) (genericPoint W K) = -genericPoint W K :=
-  map_pointPull_genericPoint _ _ _
+    by
+  classical
+  exact
+    map_pointPull_genericPoint _ _ _
 
+omit [DecidableEq K] in
 theorem negPull_algebraMap (g : (W⁄K).CoordinateRing) :
-    negPull W K (algebraMap _ _ g) = pointHom (-genericPoint W K) (neg_ne_zero.mpr (Point.some_ne_zero _)) g :=
-  pointPull_algebraMap _ _ _ g
+    negPull W K (algebraMap _ _ g) = pointHom (-genericPoint W K) (neg_ne_zero.mpr
+        (Point.some_ne_zero _)) g := by
+  classical
+  exact
+    pointPull_algebraMap _ _ _ g
 
+omit [DecidableEq K] in
 theorem negPull_comp_algebraMap :
     (negPull W K : (W⁄K).FunctionField →+* (W⁄K).FunctionField).comp
       (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField) =
-      pointHom (-genericPoint W K) (neg_ne_zero.mpr (Point.some_ne_zero _)) :=
-  pointPull_comp_algebraMap _ _ _
+      pointHom (-genericPoint W K) (neg_ne_zero.mpr (Point.some_ne_zero _)) := by
+  classical
+  exact
+    pointPull_comp_algebraMap _ _ _
 
+omit [DecidableEq K] in
 theorem negPull_comp_pointHom (P : (W⁄(W⁄K).FunctionField).Point) (hP : P ≠ 0)
     (hP' : Point.map (negPull W K) P ≠ 0) :
-    (negPull W K).comp (pointHom P hP) = pointHom (Point.map (negPull W K) P) hP' :=
-  pointPull_comp_pointHom _ _ _ P hP hP'
+    (negPull W K).comp (pointHom P hP) = pointHom (Point.map (negPull W K) P) hP' := by
+  classical
+  exact
+    pointPull_comp_pointHom _ _ _ P hP hP'
 
+omit [DecidableEq K] in
 theorem negPull_comp_negPull : (negPull W K).comp (negPull W K) = AlgHom.id K _ := by
+  classical
   apply FunctionField.algHom_ext
   have hP' : Point.map (negPull W K) (-genericPoint W K) = genericPoint W K := by
     rw [map_neg, map_negPull_genericPoint, neg_neg]
@@ -696,27 +719,46 @@ theorem negPull_comp_negPull : (negPull W K).comp (negPull W K) = AlgHom.id K _ 
 noncomputable def negEquiv : (W⁄K).FunctionField ≃ₐ[K] (W⁄K).FunctionField :=
   AlgEquiv.ofAlgHom (negPull W K) (negPull W K) (negPull_comp_negPull W K) (negPull_comp_negPull W K)
 
-theorem coe_negEquiv : (negEquiv W K : (W⁄K).FunctionField →ₐ[K] (W⁄K).FunctionField) = negPull W K := rfl
+omit [DecidableEq K] in
+theorem coe_negEquiv :
+    (negEquiv W K : (W⁄K).FunctionField →ₐ[K] (W⁄K).FunctionField) = negPull W K := by
+  classical
+  exact
+    rfl
 
-theorem negEquiv_apply (h : (W⁄K).FunctionField) : negEquiv W K h = negPull W K h := rfl
+omit [DecidableEq K] in
+theorem negEquiv_apply (h : (W⁄K).FunctionField) : negEquiv W K h = negPull W K h := by
+  classical
+  exact
+    rfl
 
+omit [DecidableEq K] in
 theorem map_negEquiv_genericPoint :
     Point.map (negEquiv W K : (W⁄K).FunctionField →ₐ[K] (W⁄K).FunctionField) (genericPoint W K) =
       -genericPoint W K := by
+  classical
   rw [coe_negEquiv, map_negPull_genericPoint]
 
+omit [DecidableEq K] in
 theorem negEquiv_genericX : negEquiv W K (genericX W K) = genericX W K := by
+  classical
   rw [negEquiv_apply, genericX, negPull_algebraMap, pointHom_mk_C_X]
   simp only [genericPoint, Point.neg_some, Point.xc_some]
   rfl
 
+omit [DecidableEq K] in
 theorem negEquiv_genericY :
     negEquiv W K (genericY W K) = (W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) := by
+  classical
   rw [negEquiv_apply, genericY, negPull_algebraMap, pointHom_mk_Y]
   simp only [genericPoint, Point.neg_some, Point.yc_some]
   rfl
 
-theorem negEquiv_symm : (negEquiv W K).symm = negEquiv W K := rfl
+omit [DecidableEq K] in
+theorem negEquiv_symm : (negEquiv W K).symm = negEquiv W K := by
+  classical
+  exact
+    rfl
 
 def MulGood (n : ℤ) : Prop :=
   n • genericPoint W K ≠ 0 ∧
@@ -727,7 +769,6 @@ theorem mulHom_injective {n : ℤ} (h : MulGood W K n) :
   pointHom_injective_of_ne_baseChange _ _ h.2
 
 open Classical in
-
 noncomputable def mulPull (n : ℤ) : (W⁄K).FunctionField →ₐ[K] (W⁄K).FunctionField :=
   if h : MulGood W K n then pointPull (n • genericPoint W K) h.1 (mulHom_injective W K h)
   else AlgHom.id K _
@@ -762,7 +803,8 @@ theorem mulPull_comp_pointHom {n : ℤ} (h : MulGood W K n) (P : (W⁄(W⁄K).Fu
     (mulPull W K n).comp (pointHom P hP) = pointHom (Point.map (mulPull W K n) P) hP' := by
   have hP'' : Point.map (pointPull (n • genericPoint W K) h.1 (mulHom_injective W K h)) P ≠ 0 := by
     rw [← mulPull_eq W K h]; exact hP'
-  rw [pointHom_congr (congrArg (fun φ => Point.map φ P) (mulPull_eq W K h)) hP' hP'', mulPull_eq W K h]
+  rw [pointHom_congr (congrArg (fun φ => Point.map φ P) (mulPull_eq W K h)) hP' hP'', mulPull_eq W K
+    h]
   exact pointPull_comp_pointHom _ _ _ P hP hP''
 
 theorem transEquiv_mulPull' {n : ℤ} (h : MulGood W K n) {S : (W⁄K).Point} (hS : n • S = 0)
@@ -776,7 +818,8 @@ theorem transEquiv_mulPull' {n : ℤ} (h : MulGood W K n) {S : (W⁄K).Point} (h
     transPull_comp_pointHom W K S _ _ (by rw [hP']; exact h.1)]
   exact congrArg _ (pointHom_congr hP' _ _)
 
-theorem mulPull_comp' {m n : ℤ} (hm : MulGood W K m) (hn : MulGood W K n) (hnm : MulGood W K (n * m)) :
+theorem mulPull_comp' {m n : ℤ} (hm : MulGood W K m) (hn : MulGood W K n)
+    (hnm : MulGood W K (n * m)) :
     (mulPull W K m).comp (mulPull W K n) = mulPull W K (n * m) := by
   apply FunctionField.algHom_ext
   have hP' : Point.map (mulPull W K m) (n • genericPoint W K) = (n * m) • genericPoint W K := by
@@ -787,7 +830,6 @@ theorem mulPull_comp' {m n : ℤ} (hm : MulGood W K m) (hn : MulGood W K n) (hnm
   exact congrArg _ (pointHom_congr hP' _ _)
 
 omit [DecidableEq K] in
-
 theorem exists_point_xc_eq (x : K) : ∃ P : (W⁄K).Point, P ≠ 0 ∧ P.xc = x := by
   have : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
@@ -817,15 +859,18 @@ theorem infinite_point : Infinite (W⁄K).Point := by
   choose f hf0 hfx using exists_point_xc_eq W K
   exact Infinite.of_injective f fun x y h => by rw [← hfx x, ← hfx y, h]
 
+omit [DecidableEq K] in
 theorem map_negEquiv_zsmul_genericPoint (n : ℤ) :
     Point.map (negEquiv W K : (W⁄K).FunctionField →ₐ[K] (W⁄K).FunctionField) (n • genericPoint W K) =
       -(n • genericPoint W K) := by
+  classical
   rw [map_zsmul, map_negEquiv_genericPoint, smul_neg]
 
 theorem negEquiv_mulPull_genericX' {n : ℤ} (h : MulGood W K n) :
     negEquiv W K (mulPull W K n (genericX W K)) = (n • genericPoint W K).xc := by
   rw [mulPull_genericX' W K h, ← AlgEquiv.coe_toAlgHom, ← Point.xc_map (W := W) (K := K),
-    map_negEquiv_zsmul_genericPoint, Point.eq_some_xc_yc h.1, Point.neg_some, Point.xc_some, Point.xc_some]
+    map_negEquiv_zsmul_genericPoint, Point.eq_some_xc_yc h.1, Point.neg_some, Point.xc_some,
+    Point.xc_some]
 
 theorem negEquiv_mulPull_genericY' {n : ℤ} (h : MulGood W K n) :
     negEquiv W K (mulPull W K n (genericY W K)) =
@@ -857,7 +902,6 @@ omit [DecidableEq K] in
     (placeOf W K P hP).asIdeal = CoordinateRing.XYIdeal (W⁄K) P.xc (C P.yc) := rfl
 
 omit [DecidableEq K] in
-
 theorem placeOf_surjective [IsAlgClosed K] [W.IsElliptic]
     (v : IsDedekindDomain.HeightOneSpectrum (W⁄K).CoordinateRing) :
     ∃ (P : (W⁄K).Point) (hP : P ≠ 0), placeOf W K P hP = v := by
@@ -868,7 +912,8 @@ theorem placeOf_surjective [IsAlgClosed K] [W.IsElliptic]
   refine ⟨.some a b ((equation_iff_nonsingular (W := W⁄K)).mp hab), Point.some_ne_zero _, ?_⟩
   exact IsDedekindDomain.HeightOneSpectrum.ext hv.symm
 
-noncomputable def CoordinateRing.evalAt {a b : K} (h : (W⁄K).Equation a b) : (W⁄K).CoordinateRing →+* K :=
+noncomputable def CoordinateRing.evalAt {a b : K} (h : (W⁄K).Equation a b) :
+    (W⁄K).CoordinateRing →+* K :=
   AdjoinRoot.evalEval h
 
 omit [DecidableEq K] in
@@ -903,7 +948,8 @@ theorem placeOf_injective {P Q : (W⁄K).Point} (hP : P ≠ 0) (hQ : Q ≠ 0)
     exact this
   have hy : P.yc = Q.yc := by
     have := hev _ (Ideal.subset_span (Set.mem_insert_of_mem _ rfl))
-    rw [CoordinateRing.YClass, CoordinateRing.evalAt_mk, evalEval_sub, evalEval_X, evalEval_C, eval_C,
+    rw [CoordinateRing.YClass, CoordinateRing.evalAt_mk, evalEval_sub, evalEval_X, evalEval_C,
+      eval_C,
       sub_eq_zero] at this
     exact this
   rw [Point.eq_some_xc_yc hP, Point.eq_some_xc_yc hQ]
@@ -917,7 +963,8 @@ open Polynomial
 
 namespace Valuation
 
-variable {L : Type*} [CommRing L] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] (v : Valuation L Γ₀)
+variable {L : Type*} [CommRing L] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
+    (v : Valuation L Γ₀)
 
 def Cong (a b : L) : Prop := v (a - b) < 1
 
@@ -937,7 +984,8 @@ theorem Cong.trans {a b c : L} (h₁ : v.Cong a b) (h₂ : v.Cong b c) : v.Cong 
   rw [Cong, this]
   exact (v.map_add _ _).trans_lt (max_lt h₁ h₂)
 
-theorem Cong.add {a b a' b' : L} (h₁ : v.Cong a a') (h₂ : v.Cong b b') : v.Cong (a + b) (a' + b') := by
+theorem Cong.add {a b a' b' : L} (h₁ : v.Cong a a') (h₂ : v.Cong b b') :
+    v.Cong (a + b) (a' + b') := by
   have : a + b - (a' + b') = (a - a') + (b - b') := by ring
   rw [Cong, this]
   exact (v.map_add _ _).trans_lt (max_lt h₁ h₂)
@@ -946,7 +994,8 @@ theorem Cong.neg {a a' : L} (h : v.Cong a a') : v.Cong (-a) (-a') := by
   have : -a - -a' = -(a - a') := by ring
   rw [Cong, this, Valuation.map_neg]; exact h
 
-theorem Cong.sub {a b a' b' : L} (h₁ : v.Cong a a') (h₂ : v.Cong b b') : v.Cong (a - b) (a' - b') := by
+theorem Cong.sub {a b a' b' : L} (h₁ : v.Cong a a') (h₂ : v.Cong b b') :
+    v.Cong (a - b) (a' - b') := by
   rw [sub_eq_add_neg, sub_eq_add_neg]; exact h₁.add h₂.neg
 
 theorem Cong.le_one {a a' : L} (h : v.Cong a a') (ha' : v a' ≤ 1) : v a ≤ 1 := by
@@ -967,7 +1016,8 @@ theorem Cong.mul {a b a' b' : L} (h₁ : v.Cong a a') (h₂ : v.Cong b b') (ha' 
     calc v (a - a') * v b' ≤ v (a - a') * 1 := mul_le_mul' le_rfl hb'
       _ < 1 := by rw [mul_one]; exact h₁
 
-theorem Cong.pow {a a' : L} (h : v.Cong a a') (ha' : v a' ≤ 1) (n : ℕ) : v.Cong (a ^ n) (a' ^ n) := by
+theorem Cong.pow {a a' : L} (h : v.Cong a a') (ha' : v a' ≤ 1) (n : ℕ) :
+    v.Cong (a ^ n) (a' ^ n) := by
   induction n with
   | zero => simp only [pow_zero]; exact Cong.rfl
   | succ n ih =>
@@ -1004,7 +1054,8 @@ theorem Cong.inv {d d' : F} (h : w.Cong d d') (hd' : w d' = 1) : w.Cong d⁻¹ d
   have : d⁻¹ - d'⁻¹ = -(d - d') * (d⁻¹ * d'⁻¹) := by
     field_simp
     ring
-  rw [Cong, this, Valuation.map_mul, Valuation.map_neg, Valuation.map_mul, map_inv₀, map_inv₀, hd, hd',
+  rw [Cong, this, Valuation.map_mul, Valuation.map_neg, Valuation.map_mul, map_inv₀, map_inv₀, hd,
+    hd',
     inv_one, mul_one, mul_one]
   exact h
 
@@ -1019,7 +1070,8 @@ section Eval
 
 variable {K : Type*} [CommRing K] (f : K →+* L)
 
-theorem Cong.eval₂ (hf : ∀ c, v (f c) ≤ 1) {a a' : L} (h : v.Cong a a') (ha' : v a' ≤ 1) (p : K[X]) :
+theorem Cong.eval₂ (hf : ∀ c, v (f c) ≤ 1) {a a' : L} (h : v.Cong a a') (ha' : v a' ≤ 1) (p : K[X])
+    :
     v.Cong (p.eval₂ f a) (p.eval₂ f a') ∧ v (p.eval₂ f a') ≤ 1 := by
   induction p using Polynomial.induction_on' with
   | add p q hp hq =>
@@ -1058,7 +1110,6 @@ variable {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Al
   [Algebra R' K'] [IsFractionRing R' K']
 
 omit [IsDedekindDomain R] [IsFractionRing R K] in
-
 theorem valuation_map_le_exp_neg_of_mem_pow (ψ : K →+* K') (w : HeightOneSpectrum R)
     (v : HeightOneSpectrum R')
     (h0 : ∀ b : R, v.valuation K' (ψ (algebraMap R K b)) ≤ 1)
@@ -1122,14 +1173,12 @@ theorem _root_.WithZero.lt_one_iff_le_exp_neg_one {y : ℤᵐ⁰} : y < 1 ↔ y 
   · rw [← exp_log hy, ← exp_zero, exp_lt_exp, exp_le_exp]; omega
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
-
 theorem valuation_algebraMap_le_one (P : (W⁄K).Point) (hP : P ≠ 0) (c : K) :
     (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap K (W⁄K).FunctionField c) ≤ 1 := by
   rw [IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField]
   exact valuation_le_one _ _
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
-
 theorem valuation_algebraMap_eq_one (P : (W⁄K).Point) (hP : P ≠ 0) {c : K} (hc : c ≠ 0) :
     (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap K (W⁄K).FunctionField c) = 1 := by
   apply le_antisymm (valuation_algebraMap_le_one W K P hP c)
@@ -1140,7 +1189,6 @@ theorem valuation_algebraMap_eq_one (P : (W⁄K).Point) (hP : P ≠ 0) {c : K} (
     exact (_root_.map_ne_zero _).mpr hc
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
-
 theorem mem_placeOf_iff (P : (W⁄K).Point) (hP : P ≠ 0) (b : (W⁄K).CoordinateRing) :
     b ∈ (placeOf W K P hP).asIdeal ↔ CoordinateRing.evalAt W K (Point.nonsingular_xc_yc hP).left b = 0 := by
   constructor
@@ -1159,7 +1207,8 @@ omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
 theorem cong_genericX (P : (W⁄K).Point) (hP : P ≠ 0) :
     ((placeOf W K P hP).valuation (W⁄K).FunctionField).Cong (genericX W K)
       (algebraMap K (W⁄K).FunctionField P.xc) := by
-  rw [Valuation.cong_iff, IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField, genericX,
+  rw [Valuation.cong_iff, IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField,
+    genericX,
     ← map_sub]
   apply (valuation_lt_one_iff_mem _ _).mpr
   rw [placeOf_asIdeal]
@@ -1173,7 +1222,8 @@ omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
 theorem cong_genericY (P : (W⁄K).Point) (hP : P ≠ 0) :
     ((placeOf W K P hP).valuation (W⁄K).FunctionField).Cong (genericY W K)
       (algebraMap K (W⁄K).FunctionField P.yc) := by
-  rw [Valuation.cong_iff, IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField, genericY,
+  rw [Valuation.cong_iff, IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField,
+    genericY,
     ← map_sub]
   apply (valuation_lt_one_iff_mem _ _).mpr
   rw [placeOf_asIdeal]
@@ -1184,7 +1234,6 @@ theorem cong_genericY (P : (W⁄K).Point) (hP : P ≠ 0) :
   exact Ideal.subset_span (Set.mem_insert_of_mem _ rfl)
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
-
 theorem algebraMap_evalEval (g : K[X][Y]) (a b : K) :
     algebraMap K (W⁄K).FunctionField (g.evalEval a b) =
       g.eval₂ (eval₂RingHom (algebraMap K (W⁄K).FunctionField) (algebraMap K _ a)) (algebraMap K _ b) := by
@@ -1194,7 +1243,8 @@ theorem algebraMap_evalEval (g : K[X][Y]) (a b : K) :
     · intro q
       simp only [RingHom.coe_comp, Function.comp_apply, coe_evalRingHom, eval_C, coe_eval₂RingHom,
         eval₂_C, eval₂_at_apply]
-    · simp only [RingHom.coe_comp, Function.comp_apply, coe_evalRingHom, eval_X, eval_C, coe_eval₂RingHom,
+    · simp only [RingHom.coe_comp, Function.comp_apply, coe_evalRingHom, eval_X, eval_C,
+        coe_eval₂RingHom,
         eval₂_X]
   exact RingHom.congr_fun hφ g
 
@@ -1206,7 +1256,6 @@ theorem pointHom_mk_eq_eval₂ (Q : (W⁄(W⁄K).FunctionField).Point) (hQ : Q �
   congr 1
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
-
 theorem valuation_pointPull_le (Q : (W⁄(W⁄K).FunctionField).Point) (hQ : Q ≠ 0)
     (hinj : Function.Injective (pointHom Q hQ)) {P : (W⁄K).Point} (hP : P ≠ 0) {P' : (W⁄K).Point}
     (hP' : P' ≠ 0)
@@ -1250,7 +1299,8 @@ theorem valuation_mulPull_le {n : ℤ} (hgood : MulGood W K n) (Φ Ψ : K[X]) (�
         ψ.eval₂ (eval₂RingHom (algebraMap K (W⁄K).FunctionField) (genericX W K)) (genericY W K) ^ 3)
     {P : (W⁄K).Point} (hP : P ≠ 0) (hnP : n • P ≠ 0)
     (hxP : (n • P).xc = Φ.eval P.xc / Ψ.eval P.xc) (hΨ : Ψ.eval P.xc ≠ 0)
-    (hyP : (n • P).yc = ω.evalEval P.xc P.yc / ψ.evalEval P.xc P.yc ^ 3) (hψ : ψ.evalEval P.xc P.yc ≠ 0)
+    (hyP : (n • P).yc = ω.evalEval P.xc P.yc / ψ.evalEval P.xc P.yc ^ 3)
+    (hψ : ψ.evalEval P.xc P.yc ≠ 0)
     (h : (W⁄K).FunctionField) (k : ℕ)
     (hh : (placeOf W K (n • P) hnP).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) :
     (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ exp (-(k : ℤ)) := by

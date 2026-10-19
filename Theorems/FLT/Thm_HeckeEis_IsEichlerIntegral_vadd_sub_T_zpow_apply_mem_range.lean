@@ -71,11 +71,14 @@ open scoped Manifold MatrixGroups
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binarySubst binaryFormRepSL binaryFormRepSL_apply_coe linePow coe_linePow IsEichlerIntegral coeff_single_one_eq_eval_of_mem_binaryForm mem_range_binaryFormRepSL_T_zpow_sub_one"
+p2m_export "HeckeEis" "BinaryForm binarySubst binaryFormRepSL binaryFormRepSL_apply_coe linePow \
+  coe_linePow IsEichlerIntegral coeff_single_one_eq_eval_of_mem_binaryForm \
+  mem_range_binaryFormRepSL_T_zpow_sub_one"
 namespace CuspInftySol
 p2m_open "HeckeEis"
 
-p2m_open "UpperHalfPlane MvPolynomial HeckeEis P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis"
+p2m_open "UpperHalfPlane MvPolynomial HeckeEis \
+  P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis"
 open scoped Manifold MatrixGroups
 
 theorem eval_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) ℂ) :
@@ -92,7 +95,8 @@ theorem coeff_single_one_binaryFormRepSL_T_zpow (n : ℕ) (h : ℤ) (P : ↥(Bin
     AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n (ModularGroup.T ^ h) P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n)
       = AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) := by
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (binaryFormRepSL ℂ n _ P).2,
-    coeff_single_one_eq_eval_of_mem_binaryForm P.2, binaryFormRepSL_apply_coe, eval_binarySubst_T_zpow]
+    coeff_single_one_eq_eval_of_mem_binaryForm P.2, binaryFormRepSL_apply_coe,
+    eval_binarySubst_T_zpow]
 
 theorem coeff_single_one_linePow (n : ℕ) (z : ℂ) :
     AddMonoidAlgebra.coeff ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) = 1 := by
@@ -103,9 +107,11 @@ end HeckeEis.CuspInftySol
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis HeckeEis.CuspInftySol UpperHalfPlane MvPolynomial in
 theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
-    {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
+    {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    (hG : HeckeEis.IsEichlerIntegral n g G)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))
-    (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g) (τ : UpperHalfPlane) :
+    (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g)
+    (τ : UpperHalfPlane) :
     G ((h : ℝ) +ᵥ τ) - HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) (G τ)
       ∈ LinearMap.range (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) - 1) := by
   apply mem_range_binaryFormRepSL_T_zpow_sub_one n hh
@@ -123,7 +129,8 @@ theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
   · have hper' : Function.Periodic (g ∘ ofComplex) (((-h : ℤ) : ℝ) : ℂ) := by
       push_cast
       exact hper.neg
-    have key := UpperHalfPlane.apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty (h := ((-h : ℤ) : ℝ))
+    have key :=
+      UpperHalfPlane.apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty (h := ((-h : ℤ) : ℝ))
       (by exact_mod_cast (neg_pos.mpr hneg)) hper' hhol hzero hφ ((h : ℝ) +ᵥ τ)
     rw [coe_vadd] at key
     push_cast at key ⊢
@@ -131,7 +138,8 @@ theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
     rw [e] at key
     rw [add_comm]
     exact key.symm
-  · have key := UpperHalfPlane.apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty (h := ((h : ℤ) : ℝ))
+  · have key :=
+      UpperHalfPlane.apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty (h := ((h : ℤ) : ℝ))
       (by exact_mod_cast hpos) hper hhol hzero hφ τ
     push_cast at key ⊢
     exact key
@@ -149,10 +157,13 @@ public section publicSection
 
 open scoped Manifold MatrixGroups
 theorem HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range {n : ℕ} {h : ℤ} (hh : h ≠ 0)
-    {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
+    {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    (hG : HeckeEis.IsEichlerIntegral n g G)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))
-    (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g) (τ : UpperHalfPlane) :
+    (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g)
+    (τ : UpperHalfPlane) :
     G ((h : ℝ) +ᵥ τ) - HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) (G τ)
-      ∈ LinearMap.range (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) - 1) := _root_.P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.solution hh hG hper hhol hzero τ
+      ∈ LinearMap.range (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) - 1) :=
+  solution hh hG hper hhol hzero τ
 
 end publicSection

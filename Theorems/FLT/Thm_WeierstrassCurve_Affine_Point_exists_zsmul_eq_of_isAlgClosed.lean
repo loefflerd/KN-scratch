@@ -99,8 +99,10 @@ theorem ΨSq_eval_eq_zero_of_preΨ {m : ℕ} {x₀ : K}
 
 variable [IsAlgClosed K] [DecidableEq K]
 
+omit [DecidableEq K] in
 theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     IsCoprime ((W.baseChange K).ΨSq n) ((W.baseChange K).ΨSq (n + 1)) := by
+  classical
   rw [Polynomial.isCoprime_iff_aeval_ne_zero_of_isAlgClosed (k := K) (K := K)]
   intro x₀
   by_contra hcon
@@ -185,7 +187,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
         _ = _ := by
             rw [hQeq, Jacobian.Point.toAffineAddEquiv_apply]
             exact Jacobian.Point.toAffineLift_of_Z_ne_zero hVz
-    · show ((W.baseChange K).φ (n : ℤ)).evalEval x₀ y₀ /
+    · change ((W.baseChange K).φ (n : ℤ)).evalEval x₀ y₀ /
           ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ ^ 2 *
           ((W.baseChange K).ΨSq (n : ℤ)).eval x₀ =
           ((W.baseChange K).Φ (n : ℤ)).eval x₀
@@ -222,7 +224,6 @@ theorem smul_x_eq [W.IsElliptic] {n : ℕ} (hn : 0 < n) {x₀ y₀ : K}
   (smul_formula_or_zero W hn h).1 hns
 
 omit [DecidableEq K] in
-
 private lemma eval_ne_of_isCoprime {f g : Polynomial K} (h : IsCoprime f g) {x₀ : K}
     (hf : f.eval x₀ = 0) (hg : g.eval x₀ = 0) : False := by
   obtain ⟨a, b, hab⟩ := h
@@ -230,8 +231,10 @@ private lemma eval_ne_of_isCoprime {f g : Polynomial K} (h : IsCoprime f g) {x�
   simp only [eval_add, eval_mul, hf, hg, mul_zero, add_zero, eval_one] at h1
   exact zero_ne_one h1
 
+omit [DecidableEq K] in
 theorem isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n) :
     IsCoprime ((W.baseChange K).Φ n) ((W.baseChange K).ΨSq n) := by
+  classical
   rw [Polynomial.isCoprime_iff_aeval_ne_zero_of_isAlgClosed (k := K) (K := K)]
   intro x₀
   by_contra hcon
@@ -282,7 +285,6 @@ theorem smul_eq_zero_of_ΨSq_eval_eq_zero [W.IsElliptic] {n : ℕ} (hn : 0 < n)
   (smul_formula_or_zero W hn h).2 hz
 
 omit [DecidableEq K] in
-
 theorem ΨSq_odd_eq_sq {n : ℕ} (hodd : Odd n) :
     (W.baseChange K).ΨSq n = ((W.baseChange K).preΨ' n) ^ 2 := by
   rw [ΨSq_ofNat, ite_eq_right (Nat.not_even_iff_odd.mpr hodd), mul_one]
@@ -327,7 +329,7 @@ theorem nsmul_surjective_charfree [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hpos
   intro Q
   rcases Q with _ | ⟨xQ, yQ, hQ⟩
   · refine ⟨0, ?_⟩
-    show n • (0 : W.toAffine⟮K⟯) = Point.zero
+    change n • (0 : W.toAffine⟮K⟯) = Point.zero
     rw [nsmul_zero]
     exact Point.zero_def
   set F' := (W.baseChange K).Φ n with hFdef
@@ -396,7 +398,7 @@ theorem nsmul_surjective_charfree [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hpos
         -(n • (Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯)) :=
       neg_nsmul (Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) n
     refine ⟨-(Point.some x₀ y₀ h₀), ?_⟩
-    show n • -(Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) = Point.some x' yQ hQ
+    change n • -(Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) = Point.some x' yQ hQ
     rw [hsn, hprev, neg_neg]
 
 theorem exists_zsmul_eq [IsAlgClosed K] [W.IsElliptic] {n : ℤ} (hn : n ≠ 0)
@@ -416,7 +418,9 @@ theorem PortCard.exists_zsmul_eq_of_isAlgClosed {K : Type*} [Field K] [IsAlgClos
 
 end PortCardSurj
 
-theorem solution {K : Type*} [Field K] [IsAlgClosed K] [DecidableEq K] (E : WeierstrassCurve K) [E.IsElliptic] {n : ℤ} (hn : n ≠ 0) (P : E.toAffine.Point) : ∃ Q : E.toAffine.Point, n • Q = P :=
+theorem solution {K : Type*} [Field K] [IsAlgClosed K] [DecidableEq K] (E : WeierstrassCurve K)
+    [E.IsElliptic] {n : ℤ} (hn : n ≠ 0) (P : E.toAffine.Point) :
+    ∃ Q : E.toAffine.Point, n • Q = P :=
   PortCard.exists_zsmul_eq_of_isAlgClosed E hn P
 
 end S_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed
@@ -427,6 +431,10 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.Point.exists_zsmul_eq_of_isAlgClosed {K : Type*} [Field K] [IsAlgClosed K] [DecidableEq K] (E : WeierstrassCurve K) [E.IsElliptic] {n : ℤ} (hn : n ≠ 0) (P : E.toAffine.Point) : ∃ Q : E.toAffine.Point, n • Q = P := _root_.P2MW.S_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed.solution E hn P
+theorem WeierstrassCurve.Affine.Point.exists_zsmul_eq_of_isAlgClosed {K : Type*} [Field K]
+    [IsAlgClosed K] [DecidableEq K] (E : WeierstrassCurve K) [E.IsElliptic] {n : ℤ} (hn : n ≠ 0)
+    (P : E.toAffine.Point) :
+    ∃ Q : E.toAffine.Point, n • Q = P :=
+  solution E hn P
 
 end publicSection

@@ -112,6 +112,7 @@ theorem ModularCurve.exists_elliptic_cycSub_orbitMap (N : ℕ) [NeZero N]
             0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)},
           ((w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)).ord
               (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat =
-            Nat.card {H : CycSub E₀ N // f H = w} := _root_.P2MW.S_ModularCurve_exists_elliptic_cycSub_orbitMap.solution N j₀
+            Nat.card {H : CycSub E₀ N // f H = w} :=
+  solution N j₀
 
 end publicSection

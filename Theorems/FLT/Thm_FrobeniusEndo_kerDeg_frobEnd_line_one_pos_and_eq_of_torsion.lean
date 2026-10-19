@@ -67,7 +67,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_torsion
 
-p2m_open "Polynomial WeierstrassCurve~evalEval_ψ_sq~evalEval_φ WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo"
+p2m_open "Polynomial WeierstrassCurve~evalEval_ψ_sq~evalEval_φ WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.Point FrobeniusEndo"
 
 open scoped Polynomial.Bivariate
 
@@ -90,7 +91,6 @@ theorem wronskian_ne_zero_of_natDegree_eq_succ {u v : k[X]} (hv : v ≠ 0)
       have := natDegree_derivative_le u
       omega
     rw [coeff_mul_add_eq_of_natDegree_le hdu le_rfl, coeff_derivative]
-
   have h2 : (u * derivative v).coeff (e + e) = u.coeff (e + 1) * (v.coeff e * e) := by
     rcases Nat.eq_zero_or_pos e with he0 | hepos
     · have h00 : v.natDegree = 0 := by rw [← he]; exact he0
@@ -176,7 +176,6 @@ theorem solver (d : ℤ → ℤ) (q a : ℤ) (good : ℤ → Prop) (h0 : d 0 = q
     (R1 : ∀ n : ℤ, good n → d (n + 1) + d (n - 1) = 2 * d n + 2)
     (R2 : ∀ n : ℤ, good n → d (n + 2) + d (n - 2) = 2 * d n + 8) :
     ∀ n : ℕ, d n = (n : ℤ) ^ 2 - a * n + q := by
-
   have hm1 : d (-1) = 1 + a + q := by
     have h := R1 0 hg0
     norm_num at h
@@ -398,7 +397,8 @@ structure IsMember (n : ℤ) (u v : k[X]) : Prop where
         x' * v.eval x = u.eval x
 
 lemma IsMember.u_ne {n : ℤ} {u v : k[X]} (hmem : IsMember W σ n u v)
-    (hgood : (n : k) ≠ 0 ∨ n = 0) (hq : 2 ≤ Fintype.card F) : u ≠ 0 ∧ v.natDegree ≤ u.natDegree := by
+    (hgood : (n : k) ≠ 0 ∨ n = 0) (hq : 2 ≤ Fintype.card F)
+    : u ≠ 0 ∧ v.natDegree ≤ u.natDegree := by
   rcases hgood with hg | hg
   · have h := hmem.deg hg
     refine ⟨fun h0 => ?_, by omega⟩
@@ -430,8 +430,8 @@ theorem exists_isMember (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fint
     have hΨn : (W⁄k).ΨSq n ≠ 0 := ΨSq_ne_zero_of_isCoprime (W⁄k) hn (hcop n)
     have hCn : (W⁄k).Φ n - X ^ Fintype.card F * (W⁄k).ΨSq n ≠ 0 :=
       collision_ne_zero (W⁄k) hF n (hcop n)
-
-    have hfin : {x : k | ∃ (y : k) (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0}.Finite := by
+    have hfin : {x : k | ∃ (y : k) (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0}.Finite :=
+      by
       refine (finite_setOf_eval_eq_zero hΨn).subset ?_
       rintro x ⟨y, h, h0⟩
       exact htor n h h0
@@ -451,7 +451,6 @@ theorem exists_isMember (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fint
       rw [not_mem_bad_iff] at hx
       obtain ⟨hΨ₂x, hx2⟩ := hx
       obtain ⟨hΨx, hCx⟩ := hx2 hn
-
       have hnP : n • (Point.some x y h : (W⁄k).Point) ≠ 0 := fun h0 => hΨx (htor n h h0)
       rcases hnP_eq : n • (Point.some x y h : (W⁄k).Point) with _ | ⟨x₁, y₁, h₁⟩
       · exact absurd hnP_eq hnP
@@ -482,7 +481,6 @@ theorem step (hF : (Fintype.card F).Prime)
     have h2 : 1 ≤ j.natAbs ^ 2 := Nat.one_le_pow _ _ (Int.natAbs_pos.mpr hj)
     rw [WeierstrassCurve.natDegree_Φ]
     omega
-
   set S : Set k := ((bad (W⁄k) (Fintype.card F) n ∪ bad (W⁄k) (Fintype.card F) (n + j)) ∪
       bad (W⁄k) (Fintype.card F) (n - j)) ∪ {x | ((W⁄k).ΨSq j).eval x = 0} with hS
   have hSfin : S.Finite :=
@@ -495,12 +493,10 @@ theorem step (hF : (Fintype.card F).Prime)
       obtain ⟨⟨⟨hxn, hxp⟩, hxm⟩, hΨjx⟩ := hxS
       obtain ⟨y, h⟩ := exists_nonsingular (W := W⁄k) x
       obtain ⟨xa, ya, ha, hAeq, hAid⟩ := (hmem n).ident h hxn
-
       have hjP : j • (Point.some x y h : (W⁄k).Point) ≠ 0 := fun h0 => hΨjx (htor j h h0)
       rcases hB : j • (Point.some x y h : (W⁄k).Point) with _ | ⟨xb, yb, hb⟩
       · exact absurd hB hjP
       have hBid : xb * ((W⁄k).ΨSq j).eval x = ((W⁄k).Φ j).eval x := zsmul_x_mul_ΨSq j h hb hB
-
       obtain ⟨xp, yp, hp, hPeq, hPid⟩ := (hmem (n + j)).ident h hxp
       obtain ⟨xm, ym, hm, hMeq, hMid⟩ := (hmem (n - j)).ident h hxm
       refine ⟨xa, ya, xb, yb, xp, yp, xm, ym, ha, hb, hp, hm, ?_, ?_, hAid, hBid, hPid, hMid⟩
@@ -514,7 +510,6 @@ theorem card_ker_eq (hF : (Fintype.card F).Prime)
     {m : ℤ} (hmk : (m : k) ≠ 0) {u v : k[X]} (hmem : IsMember W σ m u v) :
     Nat.card (linePencil (frobEnd W σ) m 1).ker = u.natDegree := by
   have hdeg := hmem.deg hmk
-
   set B : Set (W⁄k).Point := {P | ∃ x ∈ bad (W⁄k) (Fintype.card F) m, ∃ y : k,
     ∃ h : (W⁄k).Nonsingular x y, P = Point.some x y h} with hB
   have hBfin : B.Finite := finite_setOf_X_mem (W := W⁄k) (bad_finite (W⁄k) _ hF hcop m)
@@ -546,7 +541,6 @@ theorem main (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F)
           + Fintype.card F := by
   have _hm := hm
   choose u v hmem using exists_isMember W σ hσ hF htor hcop
-
   set d : ℤ → ℤ := fun n => ((u n).natDegree : ℤ) with hd
   set good : ℤ → Prop := fun n => (n : k) ≠ 0 ∨ n = 0 with hgood_def
   have hgood : ∀ n : ℤ, good n ∨ good (n - 1) := by
@@ -581,7 +575,6 @@ theorem main (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F)
     simp only [hd, hE1]
     ring
   have hsol := solver d (Fintype.card F) _ good h0 h1 (Or.inr rfl) (Or.inl (by simp)) hgood R1 R2 m
-
   have hmk' : ((m : ℤ) : k) ≠ 0 := by rwa [Int.cast_natCast]
   have hEm : kerDeg (frobEnd W σ) m 1 = (u m).natDegree := by
     rw [kerDeg_def]
@@ -596,7 +589,8 @@ end Frobenius
 
 end M4cP4H4
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) : 0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
+    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
   M4cP4H4.main W σ hσ hF htor hcop m hm hmk
 
 end S_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_torsion
@@ -610,6 +604,8 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq_of_torsion {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) : 0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F := _root_.P2MW.S_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_torsion.solution W σ hσ hF htor hcop m hm hmk
+theorem FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq_of_torsion {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
+    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
+  solution W σ hσ hF htor hcop m hm hmk
 
 end publicSection

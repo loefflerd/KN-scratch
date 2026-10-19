@@ -64,7 +64,8 @@ p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "coe_algebraMap adicValuation adicValuation_coe_eq_one_iff ord ord_zero toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "coe_algebraMap adicValuation adicValuation_coe_eq_one_iff ord \
+  ord_zero toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -106,7 +107,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.ord_algebraMap {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (c : K) :
-    v.ord (algebraMap K F c) = 0 := _root_.P2MW.S_AlgebraicCurve_Place_ord_algebraMap.solution v c
+theorem AlgebraicCurve.Place.ord_algebraMap {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : Place K F) (c : K) :
+    v.ord (algebraMap K F c) = 0 :=
+  solution v c
 
 end publicSection

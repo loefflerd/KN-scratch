@@ -65,10 +65,12 @@ namespace P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
 noncomputable section
 
 open Matrix.SpecialLinearGroup UpperHalfPlane
-p2m_open_scoped "MatrixGroups ModularForm P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0.ModularForm OnePoint"
+p2m_open_scoped "MatrixGroups ModularForm \
+  P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0.ModularForm OnePoint"
 
 namespace ModularForm
-p2m_export "ModularForm" "rec ext heckeMatrix heckeDiagMatrix heckeU heckeT heckeU_def heckeT_eq_heckeU_add"
+p2m_export "ModularForm" "rec ext heckeMatrix heckeDiagMatrix heckeU heckeT heckeU_def \
+  heckeT_eq_heckeU_add"
 p2m_open "ModularForm"
 
 namespace HeckeSlashInvariance
@@ -258,7 +260,6 @@ theorem heckeT_eq_sum_onePoint [NeZero p] (k : ℤ) (f : ℍ → ℂ) :
 variable [Fact p.Prime]
 
 variable (p) in
-
 def redMatrix (g : SL(2, ℤ)) : GL (Fin 2) (ZMod p) :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero
     !![((g 1 1 : ℤ) : ZMod p), ((g 0 1 : ℤ) : ZMod p); ((g 1 0 : ℤ) : ZMod p), ((g 0 0 : ℤ) : ZMod p)]
@@ -394,7 +395,8 @@ theorem heckeU_slash_eq_self_of_mem_Gamma0' {N : ℕ} (k : ℤ) {p : ℕ} (hpN :
 
 end ModularForm
 
-theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) : SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f :=
+theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
+    SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f :=
   ModularForm.heckeU_slash_eq_self_of_mem_Gamma0' k hpN hf γ hγ
 
 end
@@ -406,6 +408,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularForm.heckeU_slash_eq_self_of_mem_Gamma0 {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) : SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f := _root_.P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0.solution k hpN hf γ hγ
+theorem ModularForm.heckeU_slash_eq_self_of_mem_Gamma0 {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
+    SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f :=
+  solution k hpN hf γ hγ
 
 end publicSection

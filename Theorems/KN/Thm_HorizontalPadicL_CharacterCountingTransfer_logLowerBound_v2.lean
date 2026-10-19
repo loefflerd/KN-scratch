@@ -166,7 +166,8 @@ theorem solution
   have hcmp := log_rpow_le s X (1 - α) hs hX2 hX3
   -- c' X / L^β ≤ c (X/s) / (M L_Y^β) ≤ count_S(X/s) / M ≤ count_T X
   have hcmp' : Real.log (X / s) ^ (1 - α) ≤ K * Real.log X ^ (1 - α) := hcmp
-  have key : c / (M * s * K) * X / Real.log X ^ (1 - α) ≤ c * (X / s) / Real.log (X / s) ^ (1 - α) / M := by
+  have key : c / (M * s * K) * X / Real.log X ^ (1 - α) ≤ c * (X / s) / Real.log (X / s) ^ (1 - α) / M :=
+    by
     have e1 : c / (M * s * K) * X / Real.log X ^ (1 - α) =
         (c * X / (s * M)) * (1 / (K * Real.log X ^ (1 - α))) := by
       field_simp

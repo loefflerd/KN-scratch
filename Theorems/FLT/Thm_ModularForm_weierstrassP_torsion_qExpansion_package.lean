@@ -265,7 +265,8 @@ end R1_glue
 
 section RatGen
 p2m_open "UpperHalfPlane~I"
-p2m_open "ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm \
+  EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 def RatQExp {k : ℤ} (f : ModularForm 𝒮ℒ k) : Prop :=
@@ -741,13 +742,13 @@ lemma wpQCoeff_eq_tsum_wpFib (N a₁ a₂ n : ℕ) :
 lemma summable_wpFib_all {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ n : ℕ) :
     Summable (wpFib N a₁ a₂ n) := by
   apply summable_of_hasFiniteSupport
-  show (Function.support (wpFib N a₁ a₂ n)).Finite
+  change (Function.support (wpFib N a₁ a₂ n)).Finite
   apply (finite_wpMonExp_fiber ha₁ n).subset
   intro i hi
   rw [Set.mem_preimage, Set.mem_singleton_iff]
   by_contra h'
   apply hi
-  show (if wpMonExp N a₁ i = n then wpMonCoeff N a₁ a₂ i else 0) = 0
+  change (if wpMonExp N a₁ i = n then wpMonCoeff N a₁ a₂ i else 0) = 0
   rw [ite_eq_right h']
 
 lemma summable_wpFib {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ n : ℕ) {ι : Type} (e : ι → WpIdx)
@@ -1073,7 +1074,8 @@ lemma pow_mul_eq_pow_mod_mul {M : Type*} [Monoid M] {x : M} {N : ℕ} (hx : x ^ 
     (k m : ℕ) : x ^ (k * m) = x ^ (k % N * m) := by
   rw [pow_eq_pow_mod (k * m) hx, pow_eq_pow_mod (k % N * m) hx, Nat.mod_mul_mod]
 
-def wpMonCoeffK (N a₁ a₂ : ℕ) (i : WpIdx) : kN N := ⟨wpMonCoeff N a₁ a₂ i, wpMonCoeff_mem_kN N a₁ a₂ i⟩
+def wpMonCoeffK (N a₁ a₂ : ℕ) (i : WpIdx) :
+    kN N := ⟨wpMonCoeff N a₁ a₂ i, wpMonCoeff_mem_kN N a₁ a₂ i⟩
 
 def wpQCoeffK {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ n : ℕ) : kN N :=
   ⟨wpQCoeff N a₁ a₂ n, wpQCoeff_mem_kN ha₁ a₂ n⟩
@@ -1097,7 +1099,7 @@ lemma ringHom_wpMonCoeffK {N : ℕ} (hN : N ≠ 0) (φ : kN N →+* ℂ) {s : �
   have htw : φ ⟨1 / 12, one_div_twelve_mem_kN N⟩ = 1 / 12 := by
     have h12 : (⟨1 / 12, one_div_twelve_mem_kN N⟩ : kN N) *
         ⟨((12 : ℕ) : ℂ), natCast_mem_kN N 12⟩ = 1 :=
-      Subtype.ext (by show (1 / 12 : ℂ) * ((12 : ℕ) : ℂ) = 1; norm_num)
+      Subtype.ext (by change (1 / 12 : ℂ) * ((12 : ℕ) : ℂ) = 1; norm_num)
     have := congrArg φ h12
     rw [map_mul, map_one, hnat] at this
     rw [eq_one_div_of_mul_eq_one_left this]
@@ -1150,7 +1152,7 @@ lemma ringHom_wpMonCoeffK {N : ℕ} (hN : N ≠ 0) (φ : kN N →+* ℂ) {s : �
     · have e : wpMonCoeffK N a₁ a₂ (Sum.inr (Sum.inr (p, 2))) =
           -⟨((2 : ℕ) : ℂ), natCast_mem_kN N 2⟩ * ⟨((p.2 : ℕ) : ℂ), natCast_mem_kN N _⟩ :=
         Subtype.ext (by
-          show wpMonCoeff N a₁ a₂ (Sum.inr (Sum.inr (p, 2))) = -((2 : ℕ) : ℂ) * ((p.2 : ℕ) : ℂ)
+          change wpMonCoeff N a₁ a₂ (Sum.inr (Sum.inr (p, 2))) = -((2 : ℕ) : ℂ) * ((p.2 : ℕ) : ℂ)
           simp [wpMonCoeff])
       simp only [Fin.reduceFinMk, Fin.isValue]
       rw [e, map_mul, map_neg, hnat, hnat]
@@ -1391,6 +1393,7 @@ theorem ModularForm.weierstrassP_torsion_qExpansion_package
     ∧ (∀ n, ∃ q : ℚ, (qExpansion 1 (⇑ModularForm.E₄ : ℍ → ℂ)).coeff n = (q : ℂ))
     ∧ (∀ n, ∃ q : ℚ, (qExpansion 1 (⇑ModularForm.E₆ : ℍ → ℂ)).coeff n = (q : ℂ))
     ∧ (∀ n, ∃ q : ℚ,
-        (qExpansion 1 (ModularForm.discriminant : ℍ → ℂ)).coeff n = (q : ℂ)) := _root_.P2MW.S_ModularForm_weierstrassP_torsion_qExpansion_package.solution N hN L hL
+        (qExpansion 1 (ModularForm.discriminant : ℍ → ℂ)).coeff n = (q : ℂ)) :=
+  solution N hN L hL
 
 end publicSection

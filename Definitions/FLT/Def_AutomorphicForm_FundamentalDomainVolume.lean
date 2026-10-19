@@ -194,7 +194,7 @@ private lemma fdoWitness_mem_fdo : fdoWitness ∈ 𝒟ᵒ := by
   constructor
   · show 1 < Complex.normSq (fdoWitness : ℂ)
     norm_num [fdoWitness, Complex.normSq_apply, UpperHalfPlane.coe_mk]
-  · show |fdoWitness.re| < 1 / 2
+  · change |fdoWitness.re| < 1 / 2
     norm_num [fdoWitness, UpperHalfPlane.mk_re]
 
 theorem volume_fd_pos : 0 < volume 𝒟 :=

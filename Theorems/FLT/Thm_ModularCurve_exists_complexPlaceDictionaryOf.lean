@@ -82,7 +82,11 @@ open UpperHalfPlane Filter
 open scoped MatrixGroups Topology Manifold
 
 namespace ModularCurve
-p2m_export "ModularCurve" "realizeOf ComplexPlaceDictionaryOf coeffEmb coeffEmb_coeff laurentBaseChange coeffEmb_mem_laurentBaseChange coeff_jq_neg_one qExpFunctionFieldC intFormRatiosC_subset jqModC jqModC_rat exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem realizeOf_eq_div jqModC_mem_intFormRatiosC"
+p2m_export "ModularCurve" "realizeOf ComplexPlaceDictionaryOf coeffEmb coeffEmb_coeff \
+  laurentBaseChange coeffEmb_mem_laurentBaseChange coeff_jq_neg_one qExpFunctionFieldC \
+  intFormRatiosC_subset jqModC jqModC_rat \
+  exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem \
+  realizeOf_eq_div jqModC_mem_intFormRatiosC"
 namespace ComplexPlaceDictionaryOfExistence
 p2m_open "ModularCurve"
 
@@ -257,7 +261,8 @@ theorem algebraMap_laurentSeries_eq_C (c : ℂ) :
     algebraMap ℂ (LaurentSeries ℂ) c = HahnSeries.C c := by
   rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
 
-abbrev Pres.const (Γ : Subgroup SL(2, ℤ)) [Fact (ModularGroup.T ∈ Γ)] (c : ℂ) : Pres Γ (algebraMap ℂ (LaurentSeries ℂ) c) where
+abbrev Pres.const (Γ : Subgroup SL(2, ℤ)) [Fact (ModularGroup.T ∈ Γ)] (c : ℂ) :
+    Pres Γ (algebraMap ℂ (LaurentSeries ℂ) c) where
   k := 0
   g := c • (1 : ModularForm Γ 0)
   h := 1
@@ -317,7 +322,8 @@ abbrev CF (Γ : Subgroup SL(2, ℤ)) : Type :=
   ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ Γ))
 
 def pres (x : CF Γ) : Pres Γ (x : LaurentSeries ℂ) :=
-  let E := ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem Γ hT.out
+  let E :=
+    ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem Γ hT.out
     (x : LaurentSeries ℂ) x.2
   ⟨E.choose, E.choose_spec.choose, E.choose_spec.choose_spec.choose,
     E.choose_spec.choose_spec.choose_spec.1, E.choose_spec.choose_spec.choose_spec.2⟩
@@ -330,21 +336,22 @@ theorem meromorphicAt_realize' (x : CF Γ) (τ : ℍ) :
   meromorphicAt_realize (pres x) τ
 
 theorem mu_mul (τ : ℍ) (x y : CF Γ) : mu τ (x * y) = mu τ x + mu τ y := by
-  show meromorphicOrderAt
+  change meromorphicOrderAt
       (fun z : ℂ => realizeOf Γ ((x : LaurentSeries ℂ) * (y : LaurentSeries ℂ)) (ofComplex z)) (τ : ℂ) = _
   rw [meromorphicOrderAt_congr (realize_mul_eventuallyEq (pres x) (pres y) τ),
     meromorphicOrderAt_mul (meromorphicAt_realize' x τ) (meromorphicAt_realize' y τ)]
   rfl
 
 theorem mu_add (τ : ℍ) (x y : CF Γ) : min (mu τ x) (mu τ y) ≤ mu τ (x + y) := by
-  show _ ≤ meromorphicOrderAt
-      (fun z : ℂ => realizeOf Γ ((x : LaurentSeries ℂ) + (y : LaurentSeries ℂ)) (ofComplex z)) (τ : ℂ)
+  change _ ≤ meromorphicOrderAt
+      (fun z : ℂ => realizeOf Γ ((x : LaurentSeries ℂ) + (y : LaurentSeries ℂ)) (ofComplex z))
+      (τ : ℂ)
   rw [meromorphicOrderAt_congr (realize_add_eventuallyEq (pres x) (pres y) τ)]
   exact meromorphicOrderAt_add (meromorphicAt_realize' x τ) (meromorphicAt_realize' y τ)
 
 theorem mu_algebraMap (τ : ℍ) (c : ℂ) (hc : c ≠ 0) : mu τ (algebraMap ℂ (CF Γ) c) = 0 := by
   classical
-  show meromorphicOrderAt
+  change meromorphicOrderAt
       (fun z : ℂ => realizeOf Γ (algebraMap ℂ (LaurentSeries ℂ) c) (ofComplex z)) (τ : ℂ) = 0
   rw [meromorphicOrderAt_congr (realize_const_eventuallyEq c τ), meromorphicOrderAt_const,
     ite_eq_right hc]
@@ -461,7 +468,8 @@ theorem mu_nonneg_iff (τ : ℍ) (x : CF Γ) :
         (fun z : ℂ => realizeOf Γ (x : LaurentSeries ℂ) (ofComplex z)) (τ : ℂ) < 0 := by
       rw [tendsto_nhds_iff_meromorphicOrderAt_nonneg (meromorphicAt_realize' x τ), not_le] at hno
       exact hno
-    have hcob := (tendsto_cobounded_iff_meromorphicOrderAt_neg (meromorphicAt_realize' x τ)).mpr hneg
+    have hcob :=
+      (tendsto_cobounded_iff_meromorphicOrderAt_neg (meromorphicAt_realize' x τ)).mpr hneg
     rw [← tendsto_norm_atTop_iff_cobounded] at hcob
     exact Filter.not_isBoundedUnder_of_tendsto_atTop hcob hb
 
@@ -514,6 +522,7 @@ open scoped MatrixGroups
 theorem ModularCurve.exists_complexPlaceDictionaryOf
     (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ) :
-    Nonempty (ModularCurve.ComplexPlaceDictionaryOf Γ F₀) := _root_.P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.solution Γ hT F₀ hF
+    Nonempty (ModularCurve.ComplexPlaceDictionaryOf Γ F₀) :=
+  solution Γ hT F₀ hF
 
 end publicSection

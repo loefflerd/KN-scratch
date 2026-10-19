@@ -95,7 +95,7 @@ noncomputable def negSqrtTwo : IrrationalPt := ⟨-Real.sqrt 2, irrational_sqrt_
 
 theorem negSqrtTwo_neg : ((negSqrtTwo : ℝ)) < 0 := by
   have : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.mpr (by norm_num)
-  show -Real.sqrt 2 < 0
+  change -Real.sqrt 2 < 0
   linarith
 
 end IrrationalPt
@@ -247,12 +247,12 @@ theorem neg_one_smul_eq (x : IrrationalPt) : ((-1 : SL(2, ℤ)) • x) = x := by
     show ((-1 : SL(2, ℤ)) 1 1 : ℤ) = -1 from rfl]
 
 theorem S_smul_neg_mem_pos {x : IrrationalPt} (hx : x ∈ Neg) : S • x ∈ Pos := by
-  show (0 : ℝ) < ((S • x : IrrationalPt) : ℝ)
+  change (0 : ℝ) < ((S • x : IrrationalPt) : ℝ)
   rw [S_smul_coe]
   exact div_pos_of_neg_of_neg (by norm_num) hx
 
 theorem ST_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) : (S * T) • x ∈ Neg := by
-  show (((S * T) • x : IrrationalPt) : ℝ) < 0
+  change (((S * T) • x : IrrationalPt) : ℝ) < 0
   rw [ST_smul_coe]
   apply div_neg_of_neg_of_pos (by norm_num)
   have : (0 : ℝ) < (x : ℝ) := hx
@@ -260,7 +260,7 @@ theorem ST_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) : (S * T) • x 
 
 theorem ST_sq_smul_pos_mem_neg {x : IrrationalPt} (hx : x ∈ Pos) :
     ((S * T) * (S * T)) • x ∈ Neg := by
-  show ((((S * T) * (S * T)) • x : IrrationalPt) : ℝ) < 0
+  change ((((S * T) * (S * T)) • x : IrrationalPt) : ℝ) < 0
   rw [ST_sq_smul_coe]
   have : (0 : ℝ) < (x : ℝ) := hx
   apply div_neg_of_neg_of_pos (by linarith) this
@@ -351,7 +351,7 @@ noncomputable def incl (i : Fin 2) : G23 i →* Equiv.Perm IrrationalPt where
     rw [toAdd_mul, ZMod.val_add, ← pow_eq_pow_mod _ (gen_pow_eq_one i), pow_add]
 
 theorem incl_ofAdd_one (i : Fin 2) : incl i (Multiplicative.ofAdd 1) = gen i := by
-  show gen i ^ (Multiplicative.toAdd (Multiplicative.ofAdd (1 : ZMod (i.val + 2)))).val = gen i
+  change gen i ^ (Multiplicative.toAdd (Multiplicative.ofAdd (1 : ZMod (i.val + 2)))).val = gen i
   rw [toAdd_ofAdd, ZMod.val_one, pow_one]
 
 theorem incl_zero_eq (h : G23 0) (hne : h ≠ 1) : incl 0 h = permS := by
@@ -380,11 +380,11 @@ theorem pingPong : Pairwise fun i j => ∀ h : G23 i, h ≠ 1 →
   fin_cases i <;> fin_cases j
   · exact absurd rfl hij
   · rintro _ ⟨y, hy, rfl⟩
-    show incl 0 h • y ∈ Pos
+    change incl 0 h • y ∈ Pos
     rw [incl_zero_eq h hne]
     exact S_smul_neg_mem_pos hy
   · rintro _ ⟨y, hy, rfl⟩
-    show incl 1 h • y ∈ Neg
+    change incl 1 h • y ∈ Neg
     rcases incl_one_eq h hne with h1 | h2
     · rw [h1]
       exact ST_smul_pos_mem_neg hy
@@ -418,7 +418,7 @@ theorem range_lift_eq : (Monoid.CoprodI.lift incl).range = toPerm.range := by
     apply iSup_le
     intro i
     rintro _ ⟨x, rfl⟩
-    show gen i ^ (Multiplicative.toAdd x).val ∈ toPerm.range
+    change gen i ^ (Multiplicative.toAdd x).val ∈ toPerm.range
     refine Subgroup.pow_mem _ ?_ _
     fin_cases i
     · exact ⟨S, rfl⟩
@@ -544,7 +544,8 @@ theorem mulEquiv_apply_of_eq (i : Fin 2) (x : G23 i) (g : SL(2, ℤ)) (hg : toPe
     apply Subtype.ext
     rw [equivRange_apply_coe, Monoid.CoprodI.lift_of]
     exact hg.symm
-  have h2 : (QuotientGroup.quotientKerEquivRange toPerm) (QuotientGroup.mk g) = ⟨toPerm g, g, rfl⟩ := rfl
+  have h2 : (QuotientGroup.quotientKerEquivRange toPerm) (QuotientGroup.mk g) = ⟨toPerm g, g, rfl⟩ :=
+    rfl
   rw [h1, ← h2, MulEquiv.symm_apply_apply]
   rfl
 
@@ -584,6 +585,7 @@ theorem ModularGroup.exists_mulEquiv_freeProduct_quotient_center :
       e (Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 0)
           (Multiplicative.ofAdd 1)) = QuotientGroup.mk ModularGroup.S ∧
       e (Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 1)
-          (Multiplicative.ofAdd 1)) = QuotientGroup.mk (ModularGroup.S * ModularGroup.T) := _root_.P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.solution
+          (Multiplicative.ofAdd 1)) = QuotientGroup.mk (ModularGroup.S * ModularGroup.T) :=
+  solution
 
 end publicSection

@@ -82,7 +82,8 @@ theorem coordsOrZero_neg {R : Type*} [CommRing R] {W : WeierstrassCurve R} (P : 
   · exact absurd rfl hP
   · rfl
 
-theorem eq_of_coordsOrZero_eq {R : Type*} [CommRing R] {W : WeierstrassCurve R} {P P' : W.toAffine.Point}
+theorem eq_of_coordsOrZero_eq {R : Type*} [CommRing R] {W : WeierstrassCurve R}
+    {P P' : W.toAffine.Point}
     (hP : P ≠ 0) (hP' : P' ≠ 0) (h : P.coordsOrZero = P'.coordsOrZero) : P = P' := by
   rcases P with _ | ⟨x, y, hx⟩
   · exact absurd rfl hP
@@ -124,7 +125,8 @@ theorem oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : We
     · refine ⟨2 * n + 1 - k, by omega, by omega, ?_⟩
       rw [hrefl k hk1 (by omega), coordsOrZero_neg _ (hne k hk1 (by omega))]
 
-theorem disjoint_oddOrderSummingSet_image_neg {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
+theorem disjoint_oddOrderSummingSet_image_neg {F : Type*} [Field F] [DecidableEq F]
+    (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     Disjoint (W.oddOrderSummingSet Q n)
       ((W.oddOrderSummingSet Q n).image (fun P => (P.1, W.toAffine.negY P.1 P.2))) := by
@@ -137,20 +139,24 @@ theorem disjoint_oddOrderSummingSet_image_neg {F : Type*} [Field F] [DecidableEq
   obtain ⟨k, hk1, hk2, rfl⟩ := hP
   obtain ⟨P', ⟨l, hl1, hl2, rfl⟩, h⟩ := hP'
   rw [← coordsOrZero_neg _ (hne l hl1 hl2)] at h
-  have hkl : -(l • Q) = k • Q := eq_of_coordsOrZero_eq (neg_ne_zero.mpr (hne l hl1 hl2)) (hne k hk1 hk2) h
+  have hkl : -(l • Q) = k • Q :=
+    eq_of_coordsOrZero_eq (neg_ne_zero.mpr (hne l hl1 hl2)) (hne k hk1 hk2) h
   have h0 : (k + l) • Q = 0 := by rw [add_nsmul, ← hkl, neg_add_cancel]
   have hdvd : addOrderOf Q ∣ k + l := addOrderOf_dvd_iff_nsmul_eq_zero.mpr h0
   rw [hQ] at hdvd
   exact absurd (Nat.le_of_dvd (by omega) hdvd) (by omega)
 
-theorem sum_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
+theorem sum_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F]
+    (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) (f : F × F → F) :
     ∑ P ∈ W.oddOrderSummingSet Q (2 * n), f P =
       ∑ P ∈ W.oddOrderSummingSet Q n, (f P + f (P.1, W.toAffine.negY P.1 P.2)) := by
-  rw [oddOrderSummingSet_two_mul W Q n hQ, Finset.sum_union (disjoint_oddOrderSummingSet_image_neg W Q n hQ),
+  rw [oddOrderSummingSet_two_mul W Q n hQ, Finset.sum_union (disjoint_oddOrderSummingSet_image_neg W
+    Q n hQ),
     Finset.sum_image (fun P _ P' _ h => negPair_injective W h), Finset.sum_add_distrib]
 
-theorem sum_veluGx_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
+theorem sum_veluGx_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F]
+    (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     ∑ P ∈ W.oddOrderSummingSet Q (2 * n), W.veluGx P.1 P.2 = W.veluTSum (W.oddOrderSummingSet Q n) := by
   rw [sum_oddOrderSummingSet_two_mul W Q n hQ (fun P => W.veluGx P.1 P.2), veluTSum]
@@ -160,7 +166,8 @@ theorem sum_asymWeight_oddOrderSummingSet_two_mul {F : Type*} [Field F] [Decidab
     (W : WeierstrassCurve F) (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     ∑ P ∈ W.oddOrderSummingSet Q (2 * n), (P.1 * W.veluGx P.1 P.2 - P.2 * W.veluGy P.1 P.2) =
       W.veluWSum (W.oddOrderSummingSet Q n) := by
-  rw [sum_oddOrderSummingSet_two_mul W Q n hQ (fun P => P.1 * W.veluGx P.1 P.2 - P.2 * W.veluGy P.1 P.2),
+  rw [sum_oddOrderSummingSet_two_mul W Q n hQ (fun P => P.1 * W.veluGx P.1 P.2 - P.2 * W.veluGy P.1
+    P.2),
     veluWSum]
   exact Finset.sum_congr rfl fun P _ => asymWeight_add_asymWeight_negY W P.1 P.2
 
@@ -178,7 +185,8 @@ theorem fullKernelQuotient_one {F : Type*} [Field F] [DecidableEq F] (W : Weiers
   rw [fullKernelQuotient, h, Finset.sum_empty, Finset.sum_empty]
   ext <;> simp [veluQuotientOfSums]
 
-theorem fullKernelQuotient_two {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) {x y : F}
+theorem fullKernelQuotient_two {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
+    {x y : F}
     (h : W.toAffine.Nonsingular x y) (hgy : W.veluGy x y = 0) :
     W.fullKernelQuotient (.some x y h) 2 = W.veluQuotient2 x y := by
   have hS : W.oddOrderSummingSet (.some x y h) (2 - 1) = {(x, y)} := by

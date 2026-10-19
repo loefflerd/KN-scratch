@@ -83,7 +83,11 @@ open scoped IntermediateField
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ord_inv HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver Place.exists_comap_algebraMap_eq_of_constantFieldExtension linearIndependent_of_constantFieldExtension Place.exists_toValuationSubring_eq_comap_ringHom Place.mem_iff_ord_nonneg"
+p2m_export "AlgebraicCurve" "Place Place.ord_inv HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor IsCurveOver \
+  Place.exists_comap_algebraMap_eq_of_constantFieldExtension \
+  linearIndependent_of_constantFieldExtension Place.exists_toValuationSubring_eq_comap_ringHom \
+  Place.mem_iff_ord_nonneg"
 namespace ConstantFieldAdjoin
 p2m_open "AlgebraicCurve"
 
@@ -250,7 +254,8 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
       rw [hv, ValuationSubring.mem_comap]
     have h2 : (algebraMap F E u)⁻¹ ∈ P.toValuationSubring ↔ u⁻¹ ∈ v.toValuationSubring := by
       rw [hv, ValuationSubring.mem_comap, map_inv₀]
-    rw [AlgebraicCurve.Place.mem_iff_ord_nonneg P hu', AlgebraicCurve.Place.mem_iff_ord_nonneg v hu] at h1
+    rw [AlgebraicCurve.Place.mem_iff_ord_nonneg P hu', AlgebraicCurve.Place.mem_iff_ord_nonneg v
+      hu] at h1
     rw [AlgebraicCurve.Place.mem_iff_ord_nonneg P (inv_ne_zero hu'),
       AlgebraicCurve.Place.mem_iff_ord_nonneg v (inv_ne_zero hu),
       AlgebraicCurve.Place.ord_inv, AlgebraicCurve.Place.ord_inv] at h2
@@ -263,7 +268,8 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
     intro P v hv
     have h1 : algebraMap F E u ∈ P.toValuationSubring ↔ u ∈ v.toValuationSubring := by
       rw [hv, ValuationSubring.mem_comap]
-    rw [AlgebraicCurve.Place.mem_iff_ord_nonneg P hu', AlgebraicCurve.Place.mem_iff_ord_nonneg v hu] at h1
+    rw [AlgebraicCurve.Place.mem_iff_ord_nonneg P hu', AlgebraicCurve.Place.mem_iff_ord_nonneg v
+      hu] at h1
     constructor
     · intro h; by_contra h'; have := h1.mpr (by omega); omega
     · intro h; by_contra h'; have := h1.mp (by omega); omega
@@ -303,7 +309,6 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
           exact (hcomap P₂.1 P₂.2.ne).choose_spec.symm)
 
 omit [IsAlgClosed k] [CharZero k] in
-
 theorem finiteDimensional_adjoin_of_coe_eq [FiniteDimensional K'⟮t⟯ E] (x : E) (hx : (x : L) = t) :
     FiniteDimensional K'⟮x⟯ E := by
   let f : E →ₐ[K'] L := E.val.restrictScalars K'
@@ -312,7 +317,8 @@ theorem finiteDimensional_adjoin_of_coe_eq [FiniteDimensional K'⟮t⟯ E] (x : 
     congr 1
     rw [Set.singleton_eq_singleton_iff]
     exact hx
-  let e : K'⟮x⟯ ≃ₐ[K'] K'⟮t⟯ := (IntermediateField.equivMap K'⟮x⟯ f).trans (IntermediateField.equivOfEq hmap)
+  let e : K'⟮x⟯ ≃ₐ[K'] K'⟮t⟯ :=
+    (IntermediateField.equivMap K'⟮x⟯ f).trans (IntermediateField.equivOfEq hmap)
   have he : ∀ z : K'⟮x⟯, ((e z : K'⟮t⟯) : L) = ((z : E) : L) := fun z => rfl
   refine Module.Finite.of_equiv_equiv (A₁ := K'⟮t⟯) (B₁ := E) (A₂ := K'⟮x⟯) (B₂ := E)
     e.symm.toRingEquiv (RingEquiv.refl E) ?_
@@ -321,7 +327,8 @@ theorem finiteDimensional_adjoin_of_coe_eq [FiniteDimensional K'⟮t⟯ E] (x : 
   rw [← he (e.symm l), AlgEquiv.apply_symm_apply]
   rfl
 
-theorem adjoin_adjoin_subset {K' : Type*} [Field K'] {L : Type*} [Field L] [Algebra K' L] (S : Set L) (t : L)
+theorem adjoin_adjoin_subset {K' : Type*} [Field K'] {L : Type*} [Field L] [Algebra K' L]
+    (S : Set L) (t : L)
     (ht : t ∈ IntermediateField.adjoin K' S) :
     ((IntermediateField.adjoin K'⟮t⟯ S : IntermediateField K'⟮t⟯ L) : Set L) ⊆
       ((IntermediateField.adjoin K' S : IntermediateField K' L) : Set L) := by
@@ -337,7 +344,6 @@ theorem adjoin_adjoin_subset {K' : Type*} [Field K'] {L : Type*} [Field L] [Alge
   exact SetLike.coe_subset_coe.mpr hle
 
 omit [IsAlgClosed k] [CharZero k] in
-
 theorem adjoin_range_eq_top
     (hEle : (E : Set L) ⊆
       ((IntermediateField.adjoin K' (Set.range fun u : F => (algebraMap F E u : L)) :
@@ -345,7 +351,8 @@ theorem adjoin_range_eq_top
     IntermediateField.adjoin K' (Set.range (algebraMap F E)) = ⊤ := by
   let f : E →ₐ[K'] L := E.val.restrictScalars K'
   set A := IntermediateField.adjoin K' (Set.range (algebraMap F E)) with hA
-  have hmapA : A.map f = IntermediateField.adjoin K' (Set.range fun u : F => (algebraMap F E u : L)) := by
+  have hmapA : A.map f = IntermediateField.adjoin K' (Set.range fun u : F => (algebraMap F E u : L)) :=
+    by
     rw [hA, IntermediateField.adjoin_map, ← Set.range_comp]
     rfl
   rw [eq_top_iff]
@@ -426,6 +433,7 @@ theorem AlgebraicCurve.finrank_le_and_natCard_places_le_of_constantFieldExtensio
             Nat.card {P : AlgebraicCurve.Place k F // 0 < P.ord u}) ∧
         (Finite {P : AlgebraicCurve.Place K' E // P.ord (algebraMap F E u) < 0} ∧
           Nat.card {P : AlgebraicCurve.Place K' E // P.ord (algebraMap F E u) < 0} ≤
-            Nat.card {P : AlgebraicCurve.Place k F // P.ord u < 0}) := _root_.P2MW.S_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin.solution y hy t ht E hyt hgen
+            Nat.card {P : AlgebraicCurve.Place k F // P.ord u < 0}) :=
+  solution y hy t ht E hyt hgen
 
 end publicSection

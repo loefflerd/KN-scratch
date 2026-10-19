@@ -80,9 +80,11 @@ namespace Ws13B
 theorem charZero_hahn : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
   (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
 
-theorem normFormulaAlong_of_elliptic {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+theorem normFormulaAlong_of_elliptic {F : Type*} [Field F] [IsAlgClosed F]
+    [CharZero F]
     {V W : Affine F} [V.IsElliptic] [W.IsElliptic] (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
@@ -90,7 +92,7 @@ theorem normFormulaAlong_of_elliptic {F : Type*} [Field F] [DecidableEq F] [IsAl
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -122,7 +124,8 @@ theorem solution
   have hNs : ∀ D : IsogenyEndDatum W.toAffine,
       NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ)) D.ι D.hfin :=
     fun D => Ws13B.normFormulaAlong_of_elliptic D.ι D.hfin
-  have ht' : @Transcendental ℚ (HahnSeries ℚ (AlgebraicClosure ℚ)) _ _ DivisionRing.toRatAlgebra W.j := by
+  have ht' : @Transcendental ℚ (HahnSeries ℚ (AlgebraicClosure ℚ)) _ _ DivisionRing.toRatAlgebra W.j :=
+    by
     convert ht using 2 ; exact Subsingleton.elim _ _
   exact zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int W hNs
     (fun D => IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j W hNs ht' D)
@@ -148,6 +151,7 @@ theorem WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental
     (hj : haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
       haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
       (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q' n)).j) :
-    AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' := _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_transcendental.solution W ht n Q Q' hQ hQ' hΔ hΔ' hj
+    AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' :=
+  solution W ht n Q Q' hQ hQ' hΔ hΔ' hj
 
 end publicSection

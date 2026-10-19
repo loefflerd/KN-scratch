@@ -122,6 +122,7 @@ theorem WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_e
       (hι : ι.toRingHom.IsIntegral) (hfin : AlgebraicCurve.FiniteAlong F ι),
       ∀ hN : AlgebraicCurve.NormFormulaAlong F ι hfin,
         (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
-          = AddSubgroup.zmultiples Q := _root_.P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder.solution hord hΔ'
+          = AddSubgroup.zmultiples Q :=
+  solution hord hΔ'
 
 end publicSection

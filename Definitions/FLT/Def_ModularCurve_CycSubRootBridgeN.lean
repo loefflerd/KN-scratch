@@ -96,13 +96,16 @@ abbrev FullKernelDiscAt (N : ℕ) [NeZero N] : Prop :=
 
 attribute [local instance] isAlgClosed_H charZero_H
 
-theorem isElliptic_fullKernelQuotient_cycSubGen (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
+theorem isElliptic_fullKernelQuotient_cycSubGen (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ}
+    [NeZero N]
     (hW3 : FullKernelDiscAt N) (G : CycSubH E N) :
     (E.fullKernelQuotient (cycSubGen E G) N).IsElliptic :=
   ⟨isUnit_iff_ne_zero.mpr (hW3 two_ne_zero E (cycSubGen E G) (addOrderOf_cycSubGen E G))⟩
 
-def cycSubRootN (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N] (hW1 : FullKernelIsRootAt N)
-    (hW3 : FullKernelDiscAt N) (data : ModularPolynomialData N) (G : CycSubH E N) : RootsAt data E.j :=
+def cycSubRootN (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
+    (hW1 : FullKernelIsRootAt N)
+    (hW3 : FullKernelDiscAt N) (data : ModularPolynomialData N) (G : CycSubH E N)
+    : RootsAt data E.j :=
   ⟨@WeierstrassCurve.j H _ (E.fullKernelQuotient (cycSubGen E G) N)
       (isElliptic_fullKernelQuotient_cycSubGen E hW3 G),
     hW1 E (cycSubGen E G) (addOrderOf_cycSubGen E G)
@@ -140,7 +143,8 @@ theorem cycSubRootN_bijective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} 
 
 def rootsEquivCycSubHN (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
     (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N)
-    (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) : RootsAt data E.j ≃ CycSubH E N :=
+    (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j)
+    : RootsAt data E.j ≃ CycSubH E N :=
   (Equiv.ofBijective (cycSubRootN E hW1 hW3 data) (cycSubRootN_bijective E hW1 hW2 hW3 data hj)).symm
 
 theorem rootsEquivCycSubHN_symm_apply (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
@@ -155,7 +159,8 @@ theorem rootsEquivCycSubHN_apply_eq_iff (E : WeierstrassCurve H) [E.IsElliptic] 
     rootsEquivCycSubHN E hW1 hW2 hW3 data hj r = G ↔ r = cycSubRootN E hW1 hW3 data G := by
   rw [← rootsEquivCycSubHN_symm_apply E hW1 hW2 hW3 data hj G, Equiv.eq_symm_apply]
 
-def dictN (N : ℕ) [NeZero N] (data : ModularPolynomialData N) (j₀ : Qbar) (hW1 : FullKernelIsRootAt N)
+def dictN (N : ℕ) [NeZero N] (data : ModularPolynomialData N) (j₀ : Qbar)
+    (hW1 : FullKernelIsRootAt N)
     (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N) :
     RootsAt data (nearCurve j₀).j ≃ CycSubH (nearCurve j₀) N :=
   rootsEquivCycSubHN (nearCurve j₀) hW1 hW2 hW3 data (nearCurve_j_transcendental j₀)
@@ -220,7 +225,8 @@ example (N : ℕ) [NeZero N] (h : ∀ {L : Type} [Field L] [DecidableEq L] [IsAl
       addOrderOf Q = N → (W.fullKernelQuotient Q N).Δ ≠ 0) : ModularCurve.TatePoint.FullKernelDiscAt N := h
 example (N : ℕ) [NeZero N] (h : ModularCurve.TatePoint.FullKernelDiscAt N)
     {L : Type} [Field L] [DecidableEq L] [IsAlgClosed L]
-    (h2 : (2 : L) ≠ 0) (W : WeierstrassCurve L) [W.IsElliptic] (Q : W.toAffine.Point) (hQ : addOrderOf Q = N) :
+    (h2 : (2 : L) ≠ 0) (W : WeierstrassCurve L) [W.IsElliptic] (Q : W.toAffine.Point)
+    (hQ : addOrderOf Q = N) :
     (W.fullKernelQuotient Q N).Δ ≠ 0 := h h2 W Q hQ
 
 end publicSection

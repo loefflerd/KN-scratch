@@ -82,9 +82,11 @@ public section publicSection
 open IntermediateField Algebra
 
 namespace AlgebraicCurve
-theorem isCurveOver_iff_exists_transcendental_finiteDimensional {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
+theorem isCurveOver_iff_exists_transcendental_finiteDimensional {K : Type*} {F : Type*} [Field K]
+    [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] :
-    IsCurveOver K F ↔ ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F := _root_.P2MW.S_AlgebraicCurve_isCurveOver_iff_exists_transcendental_finiteDimensional.solution
+    IsCurveOver K F ↔ ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F :=
+  solution
 end AlgebraicCurve
 
 end publicSection

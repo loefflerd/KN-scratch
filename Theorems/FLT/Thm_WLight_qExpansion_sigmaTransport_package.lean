@@ -89,7 +89,8 @@ section CuspCriterion
 
 variable {N : ℕ}
 
-private lemma isBoundedAtImInfty_discriminant : IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
+private lemma isBoundedAtImInfty_discriminant :
+    IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
   (CuspFormClass.zero_at_infty CuspForm.discriminant).boundedAtFilter
 
 private lemma isBoundedAtImInfty_discPow (n : ℕ) :
@@ -119,7 +120,8 @@ private lemma discPowForm_coe (m : ℕ) : ⇑(discPowForm m) = ⇑CuspForm.discr
   simp [discPowForm, ModularForm.coe_mcast, ModularForm.coe_pow,
     CuspForm.toModularFormₗ_apply]
 
-private lemma periodic_one_fn (c : ℝ) : Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
+private lemma periodic_one_fn (c : ℝ) :
+    Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
 
 private lemma periodic_discPow_comp_ofComplex (k : ℕ) (N : ℕ) :
     Function.Periodic ((⇑CuspForm.discriminant ^ k : ℍ → ℂ) ∘ ofComplex) N := by
@@ -208,7 +210,8 @@ end CuspCriterion
 
 section RatCoeff
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 private lemma ratCoeff_mul {p q : PowerSeries ℂ}
@@ -299,7 +302,8 @@ open ModularForm
 
 variable {N : ℕ}
 
-private lemma mem_of_rat (K : IntermediateField ℚ ℂ) {x : ℂ} (h : ∃ q : ℚ, x = (q : ℂ)) : x ∈ K := by
+private lemma mem_of_rat (K : IntermediateField ℚ ℂ) {x : ℂ} (h : ∃ q : ℚ, x = (q : ℂ)) :
+    x ∈ K := by
   obtain ⟨q, rfl⟩ := h
   exact SubfieldClass.ratCast_mem K q
 
@@ -881,6 +885,7 @@ theorem WLight.qExpansion_sigmaTransport_package (N : ℕ) [NeZero N]
         T (MvPolynomial.aeval g (MvPolynomial.map (algebraMap ↥K ℂ) R))
           (MvPolynomial.aeval g' (MvPolynomial.map φ R))) ∧
     (∀ g g' : ℍ → ℂ, T g g' → (g = 0 ↔ g' = 0)) ∧
-    ∀ jf : ℍ → ℂ, (∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) → T jf jf := _root_.P2MW.S_WLight_qExpansion_sigmaTransport_package.solution N K φ hφK T hT
+    ∀ jf : ℍ → ℂ, (∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) → T jf jf :=
+  solution N K φ hφK T hT
 
 end publicSection

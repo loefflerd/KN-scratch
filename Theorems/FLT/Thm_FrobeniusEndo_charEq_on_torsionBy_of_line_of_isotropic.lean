@@ -65,7 +65,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_FrobeniusEndo_charEq_on_torsionBy_of_line_of_isotropic
 
-p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo P2MW.S_FrobeniusEndo_charEq_on_torsionBy_of_line_of_isotropic.FrobeniusEndo"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo \
+  P2MW.S_FrobeniusEndo_charEq_on_torsionBy_of_line_of_isotropic.FrobeniusEndo"
 
 namespace FrobeniusEndo
 p2m_export "FrobeniusEndo" "kerDeg frobEnd trace_det_frob_of_line_of_isotropic"
@@ -105,7 +106,8 @@ section RankTwo
 variable {p : ℕ} [Fact p.Prime] {V : Type*} [AddCommGroup V] [Module (ZMod p) V]
 
 theorem finrank_eq_two_of_natCard (hV : Nat.card V = p ^ 2) : Module.finrank (ZMod p) V = 2 := by
-  have : Finite V := Nat.finite_of_card_ne_zero (by rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
+  have : Finite V :=
+    Nat.finite_of_card_ne_zero (by rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
   have h := Module.natCard_eq_pow_finrank (K := ZMod p) (V := V)
   rw [hV, Nat.card_zmod] at h
   exact (Nat.pow_right_injective (Fact.out : p.Prime).two_le h).symm
@@ -135,7 +137,8 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
   (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime]
 
 theorem charEq_on_torsionBy_of_isotropic
-    (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) {a : ℤ} {q : ℕ}
+    (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) {a : ℤ}
+    {q : ℕ}
     (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 →
       ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q)
     (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0)
@@ -145,7 +148,6 @@ theorem charEq_on_torsionBy_of_isotropic
   classical
   obtain ⟨htr, hdet⟩ := trace_det_frob_of_line_of_isotropic W σ p hfull hpK a q hline hpos hiso
   rw [galoisTrace_def] at htr
-
   have hEnd := linearMap_mul_sub_trace_smul_add_det_smul_of_basis_fin_two (basisOfNatCard hfull)
     (galoisRepModuleEnd S W p σ)
   rw [htr, hdet] at hEnd
@@ -163,7 +165,8 @@ end Endgame
 
 end FrobeniusEndo
 
-theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) (P : (W⁄K).Point) (hP : (p : ℤ) • P = 0) : σ • (σ • P) - a • (σ • P) + (q : ℤ) • P = 0 :=
+theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) (P : (W⁄K).Point) (hP : (p : ℤ) • P = 0) :
+    σ • (σ • P) - a • (σ • P) + (q : ℤ) • P = 0 :=
   FrobeniusEndo.charEq_on_torsionBy_of_isotropic W σ p hfull hpK hline hpos hiso P hP
 
 end S_FrobeniusEndo_charEq_on_torsionBy_of_line_of_isotropic
@@ -177,6 +180,8 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.charEq_on_torsionBy_of_line_of_isotropic {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) (P : (W⁄K).Point) (hP : (p : ℤ) • P = 0) : σ • (σ • P) - a • (σ • P) + (q : ℤ) • P = 0 := _root_.P2MW.S_FrobeniusEndo_charEq_on_torsionBy_of_line_of_isotropic.solution W σ p hfull hpK a q hline hpos hiso P hP
+theorem FrobeniusEndo.charEq_on_torsionBy_of_line_of_isotropic {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) (P : (W⁄K).Point) (hP : (p : ℤ) • P = 0) :
+    σ • (σ • P) - a • (σ • P) + (q : ℤ) • P = 0 :=
+  solution W σ p hfull hpK a q hline hpos hiso P hP
 
 end publicSection

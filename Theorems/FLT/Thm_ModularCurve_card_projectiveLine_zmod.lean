@@ -64,7 +64,9 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_card_projectiveLine_zmod
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsUnimodularRow isUnimodularRow_one_left isUnimodularRow_one_right ProjectiveLine ProjectiveLine.map dedekindPsi dedekindPsi_one dedekindPsi_prime_pow dedekindPsi_mul_of_coprime"
+p2m_export "ModularCurve" "IsUnimodularRow isUnimodularRow_one_left isUnimodularRow_one_right \
+  ProjectiveLine ProjectiveLine.map dedekindPsi dedekindPsi_one dedekindPsi_prime_pow \
+  dedekindPsi_mul_of_coprime"
 p2m_open "ModularCurve"
 
 section PrimePower
@@ -95,8 +97,8 @@ p2m_export "ModularCurve.IsUnimodularRow" "map"
 end IsUnimodularRow
 namespace IsUnimodularRow
 p2m_open_scoped "ModularCurve.IsUnimodularRow" in
-
-private theorem _root_.ModularCurve.IsUnimodularRow.isUnit_or_isUnit {p k : ℕ} (hp : p.Prime) (hk : k ≠ 0)
+private theorem _root_.ModularCurve.IsUnimodularRow.isUnit_or_isUnit {p k : ℕ} (hp : p.Prime)
+    (hk : k ≠ 0)
     {a c : ZMod (p ^ k)} (h : IsUnimodularRow a c) : IsUnit a ∨ IsUnit c := by
   have : Fact p.Prime := ⟨hp⟩
   by_contra hcon
@@ -174,9 +176,9 @@ private theorem card_projectiveLine_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k
       obtain ⟨v, rfl⟩ := Quotient.exists_rep q
       by_cases ha : IsUnit v.1.1
       · refine ⟨Sum.inl ((ha.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.2), Quotient.sound ⟨ha.unit, ?_, ?_⟩⟩
-        · show (ha.unit : ZMod (p ^ k)) * 1 = v.1.1
+        · change (ha.unit : ZMod (p ^ k)) * 1 = v.1.1
           rw [mul_one, ha.unit_spec]
-        · show (ha.unit : ZMod (p ^ k)) * ((ha.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.2) = v.1.2
+        · change (ha.unit : ZMod (p ^ k)) * ((ha.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.2) = v.1.2
           rw [Units.mul_inv_cancel_left]
       · have hc : IsUnit v.1.2 := (v.2.isUnit_or_isUnit hp hk).resolve_left ha
         have hm : ¬IsUnit ((hc.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.1) := fun hcon => by
@@ -186,9 +188,9 @@ private theorem card_projectiveLine_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k
           exact ha this
         refine ⟨Sum.inr ⟨(hc.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.1, hm⟩,
           Quotient.sound ⟨hc.unit, ?_, ?_⟩⟩
-        · show (hc.unit : ZMod (p ^ k)) * ((hc.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.1) = v.1.1
+        · change (hc.unit : ZMod (p ^ k)) * ((hc.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.1) = v.1.1
           rw [Units.mul_inv_cancel_left]
-        · show (hc.unit : ZMod (p ^ k)) * 1 = v.1.2
+        · change (hc.unit : ZMod (p ^ k)) * 1 = v.1.2
           rw [mul_one, hc.unit_spec]
   rw [← Nat.card_eq_of_bijective f hbij, Nat.card_sum, Nat.card_eq_fintype_card, ZMod.card,
     card_not_isUnit_zmod_prime_pow hp hk]
@@ -267,13 +269,13 @@ private theorem card_projectiveLine_mul (M N : ℕ) [NeZero M] [NeZero N] (h : M
       have e4 : crtSnd M N h (e.symm (a.1.2, b.1.2)) = b.1.2 := by
         rw [crtSnd_apply, RingEquiv.apply_symm_apply]
       refine congrArg₂ Prod.mk (Quotient.sound ⟨1, ?_, ?_⟩) (Quotient.sound ⟨1, ?_, ?_⟩)
-      · show (1 : ZMod M) * crtFst M N h (e.symm (a.1.1, b.1.1)) = a.1.1
+      · change (1 : ZMod M) * crtFst M N h (e.symm (a.1.1, b.1.1)) = a.1.1
         rw [one_mul, e1]
-      · show (1 : ZMod M) * crtFst M N h (e.symm (a.1.2, b.1.2)) = a.1.2
+      · change (1 : ZMod M) * crtFst M N h (e.symm (a.1.2, b.1.2)) = a.1.2
         rw [one_mul, e2]
-      · show (1 : ZMod N) * crtSnd M N h (e.symm (a.1.1, b.1.1)) = b.1.1
+      · change (1 : ZMod N) * crtSnd M N h (e.symm (a.1.1, b.1.1)) = b.1.1
         rw [one_mul, e3]
-      · show (1 : ZMod N) * crtSnd M N h (e.symm (a.1.2, b.1.2)) = b.1.2
+      · change (1 : ZMod N) * crtSnd M N h (e.symm (a.1.2, b.1.2)) = b.1.2
         rw [one_mul, e4]
   rw [Nat.card_eq_of_bijective F hbij, Nat.card_prod]
 
@@ -315,6 +317,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.card_projectiveLine_zmod (N : ℕ) (hN : N ≠ 0) : Nat.card (ProjectiveLine (ZMod N)) = dedekindPsi N := _root_.P2MW.S_ModularCurve_card_projectiveLine_zmod.solution N hN
+theorem ModularCurve.card_projectiveLine_zmod (N : ℕ) (hN : N ≠ 0) :
+    Nat.card (ProjectiveLine (ZMod N)) = dedekindPsi N :=
+  solution N hN
 
 end publicSection

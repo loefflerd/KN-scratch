@@ -211,11 +211,13 @@ theorem es1a6_add_equation (φ : W.FunctionField →ₐ[F] W.FunctionField) :
       (φ (polyToFunctionField W X)) (φ (yGen W)) := by
   have h := equation_map_polyToFunctionField_yGen (W := W)
   rw [equation_iff'] at h
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆] at h
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆] at h
   have h2 := congrArg φ h
   simp only [map_add, map_sub, map_mul, map_pow, _root_.map_zero, AlgHom.commutes] at h2
   rw [equation_iff']
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆]
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆]
   linear_combination h2
 
 theorem es1a6_add_map_Δ_ne_zero (hΔ : W.Δ ≠ 0) :
@@ -388,7 +390,7 @@ theorem es1a10_ncPole_vanishesAt_add {f g : F} (hf : es1a10_ncPole_vanishesAt v 
 theorem es1a10_ncPole_vanishesAt_neg {f : F} (hf : es1a10_ncPole_vanishesAt v f) :
     es1a10_ncPole_vanishesAt v (-f) := by
   have hf' : f = 0 ∨ 0 < v.ord f := hf
-  show -f = 0 ∨ 0 < v.ord (-f)
+  change -f = 0 ∨ 0 < v.ord (-f)
   rcases hf' with rfl | hf0
   · exact Or.inl _root_.neg_zero
   · refine Or.inr ?_
@@ -403,7 +405,7 @@ theorem es1a10_ncPole_vanishesAt_sub {f g : F} (hf : es1a10_ncPole_vanishesAt v 
 theorem es1a10_ncPole_vanishesAt_mul_mem {f g : F} (hf : es1a10_ncPole_vanishesAt v f)
     (hg : g ∈ v.toValuationSubring) : es1a10_ncPole_vanishesAt v (f * g) := by
   have hf' : f = 0 ∨ 0 < v.ord f := hf
-  show f * g = 0 ∨ 0 < v.ord (f * g)
+  change f * g = 0 ∨ 0 < v.ord (f * g)
   rcases hf' with rfl | hf0
   · exact Or.inl (zero_mul g)
   rcases eq_or_ne g 0 with rfl | hg0
@@ -442,7 +444,7 @@ theorem es1a10_ncPole_reducesTo_of_ord_pos {f : F} {c : K}
 
 theorem es1a10_ncPole_reducesTo_zero {f : F} (hf : es1a10_ncPole_vanishesAt v f) :
     es1a10_ncPole_reducesTo v f 0 := by
-  show es1a10_ncPole_vanishesAt v (f - algebraMap K F 0)
+  change es1a10_ncPole_vanishesAt v (f - algebraMap K F 0)
   rwa [_root_.map_zero, sub_zero]
 
 theorem es1a10_ncPole_vanishesAt_of_reducesTo_zero {f : F}
@@ -453,7 +455,7 @@ theorem es1a10_ncPole_vanishesAt_of_reducesTo_zero {f : F}
 theorem es1a10_ncPole_reducesTo_add {f g : F} {c d : K}
     (hf : es1a10_ncPole_reducesTo v f c) (hg : es1a10_ncPole_reducesTo v g d) :
     es1a10_ncPole_reducesTo v (f + g) (c + d) := by
-  show es1a10_ncPole_vanishesAt v (f + g - algebraMap K F (c + d))
+  change es1a10_ncPole_vanishesAt v (f + g - algebraMap K F (c + d))
   rw [show f + g - algebraMap K F (c + d)
       = (f - algebraMap K F c) + (g - algebraMap K F d) by rw [map_add]; ring]
   exact es1a10_ncPole_vanishesAt_add v hf hg
@@ -461,14 +463,14 @@ theorem es1a10_ncPole_reducesTo_add {f g : F} {c d : K}
 theorem es1a10_ncPole_reducesTo_neg {f : F} {c : K}
     (hf : es1a10_ncPole_reducesTo v f c) :
     es1a10_ncPole_reducesTo v (-f) (-c) := by
-  show es1a10_ncPole_vanishesAt v (-f - algebraMap K F (-c))
+  change es1a10_ncPole_vanishesAt v (-f - algebraMap K F (-c))
   rw [show -f - algebraMap K F (-c) = -(f - algebraMap K F c) by rw [_root_.map_neg]; ring]
   exact es1a10_ncPole_vanishesAt_neg v hf
 
 theorem es1a10_ncPole_reducesTo_sub {f g : F} {c d : K}
     (hf : es1a10_ncPole_reducesTo v f c) (hg : es1a10_ncPole_reducesTo v g d) :
     es1a10_ncPole_reducesTo v (f - g) (c - d) := by
-  show es1a10_ncPole_vanishesAt v (f - g - algebraMap K F (c - d))
+  change es1a10_ncPole_vanishesAt v (f - g - algebraMap K F (c - d))
   rw [show f - g - algebraMap K F (c - d)
       = (f - algebraMap K F c) - (g - algebraMap K F d) by rw [map_sub]; ring]
   exact es1a10_ncPole_vanishesAt_sub v hf hg
@@ -483,7 +485,7 @@ theorem es1a10_ncPole_mem_of_reducesTo {g : F} {d : K}
 theorem es1a10_ncPole_reducesTo_mul {f g : F} {c d : K}
     (hf : es1a10_ncPole_reducesTo v f c) (hg : es1a10_ncPole_reducesTo v g d) :
     es1a10_ncPole_reducesTo v (f * g) (c * d) := by
-  show es1a10_ncPole_vanishesAt v (f * g - algebraMap K F (c * d))
+  change es1a10_ncPole_vanishesAt v (f * g - algebraMap K F (c * d))
   rw [show f * g - algebraMap K F (c * d)
       = (f - algebraMap K F c) * g
         + algebraMap K F c * (g - algebraMap K F d) by rw [map_mul]; ring]
@@ -531,7 +533,7 @@ theorem es1a10_ncPole_reducesTo_inv {f : F} {c : K}
     refine v.mem_of_ord_nonneg (inv_ne_zero hf0) ?_
     rw [v.ord_inv, hford]
     omega
-  show es1a10_ncPole_vanishesAt v (f⁻¹ - algebraMap K F c⁻¹)
+  change es1a10_ncPole_vanishesAt v (f⁻¹ - algebraMap K F c⁻¹)
   rw [map_inv₀, inv_sub_inv hf0 hmap0, div_eq_mul_inv, mul_inv]
   exact es1a10_ncPole_vanishesAt_mul_mem v hvan
     (mul_mem hinv_mem (by rw [← map_inv₀]; exact v.algebraMap_mem' c⁻¹))
@@ -570,7 +572,7 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
   have hu₁red : es1a10_ncPole_reducesTo v
       (1 + algebraMap K F a₂ * ξp⁻¹ + algebraMap K F a₄ * ξp⁻¹ ^ 2
         + algebraMap K F a₆ * ξp⁻¹ ^ 3) 1 := by
-    show es1a10_ncPole_vanishesAt v _
+    change es1a10_ncPole_vanishesAt v _
     rw [show 1 + algebraMap K F a₂ * ξp⁻¹ + algebraMap K F a₄ * ξp⁻¹ ^ 2
           + algebraMap K F a₆ * ξp⁻¹ ^ 3 - algebraMap K F 1
         = algebraMap K F a₂ * ξp⁻¹ + (algebraMap K F a₄ * ξp⁻¹) * ξp⁻¹
@@ -769,7 +771,7 @@ theorem es1a10_ncPole_addX_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
     have h := v.algebraMap_mem' (3 : K)
     rwa [map_ofNat] at h
   have hu₂red : es1a10_ncPole_reducesTo v (1 - ξf * ξp⁻¹) 1 := by
-    show es1a10_ncPole_vanishesAt v _
+    change es1a10_ncPole_vanishesAt v _
     rw [show (1 : F) - ξf * ξp⁻¹ - algebraMap K F 1 = -(ξf * ξp⁻¹) by
       rw [map_one]; ring]
     exact es1a10_ncPole_vanishesAt_neg v
@@ -847,7 +849,7 @@ theorem es1a10_ncPole_addY_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
     have h := v.algebraMap_mem' (3 : K)
     rwa [map_ofNat] at h
   have hu₂red : es1a10_ncPole_reducesTo v (1 - ξf * ξp⁻¹) 1 := by
-    show es1a10_ncPole_vanishesAt v _
+    change es1a10_ncPole_vanishesAt v _
     rw [show (1 : F) - ξf * ξp⁻¹ - algebraMap K F 1 = -(ξf * ξp⁻¹) by
       rw [map_one]; ring]
     exact es1a10_ncPole_vanishesAt_neg v
@@ -979,7 +981,8 @@ theorem es1a10_ncPole_phi_equation (φ : W.FunctionField →ₐ[F] W.FunctionFie
       + algebraMap F W.FunctionField W.a₆ := by
   have h := es1a6_add_equation W φ
   rw [equation_iff] at h
-  simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+  simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] using h
 
 variable [IsAlgClosed F]
@@ -991,7 +994,8 @@ theorem es1a10_ncPole_addSumY_ne_const
   intro d hd
   have heq := es1a6_addSum_equation W φ₁ φ₂ hcol
   rw [equation_iff'] at heq
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] at heq
   rw [hd] at heq
   have hq0 : (X ^ 3 + C W.a₂ * X ^ 2 + C (W.a₄ - W.a₁ * d) * X
@@ -1009,7 +1013,7 @@ theorem es1a10_ncPole_addSumY_ne_const
     linear_combination -heq
   exact es1a6_add_sumX_transcendental_of_forall_ne W φ₁ φ₂ hnc halgX
 
-theorem es1a10_ncPole_mixedOne_seamData [DecidableEq F]
+theorem es1a10_ncPole_mixedOne_seamData
     (v : AlgebraicCurve.Place F W.FunctionField)
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
     (hnc : ∀ c : F, es1a6_addSumX W φ₁ φ₂ ≠ algebraMap F W.FunctionField c)
@@ -1018,6 +1022,7 @@ theorem es1a10_ncPole_mixedOne_seamData [DecidableEq F]
     (hx₂ : 0 < v.ord (φ₂ (polyToFunctionField W X) - algebraMap F W.FunctionField c))
     (hy₂ : 0 < v.ord (φ₂ (yGen W) - algebraMap F W.FunctionField d)) :
     es1a6_addSumSeamDataAt φ₁ φ₂ v (Point.some c d h) := by
+  classical
   have heqp := es1a10_ncPole_phi_equation (W := W) φ₁
   have heqf := es1a10_ncPole_phi_equation (W := W) φ₂
   have hrx₂ : es1a10_ncPole_reducesTo v (φ₂ (polyToFunctionField W X)) c :=
@@ -1048,7 +1053,7 @@ theorem es1a10_ncPole_mixedOne_seamData [DecidableEq F]
   have hXcore := es1a10_ncPole_addX_core v heqp heqf hpole hxf hyf hΛ
   have hYcore := es1a10_ncPole_addY_core v heqp heqf hpole hxf hyf hΛ
   have hXred : es1a10_ncPole_reducesTo v (es1a6_addSumX W φ₁ φ₂) c := by
-    show es1a10_ncPole_vanishesAt v
+    change es1a10_ncPole_vanishesAt v
       (es1a6_addSumX W φ₁ φ₂ - algebraMap F W.FunctionField c)
     have hid : es1a6_addSumX W φ₁ φ₂ - algebraMap F W.FunctionField c
         = ((W.map (algebraMap F W.FunctionField)).toAffine.slope
@@ -1073,7 +1078,7 @@ theorem es1a10_ncPole_mixedOne_seamData [DecidableEq F]
     rw [hid]
     exact es1a10_ncPole_vanishesAt_add v hXcore hrx₂
   have hYred : es1a10_ncPole_reducesTo v (es1a6_addSumY W φ₁ φ₂) d := by
-    show es1a10_ncPole_vanishesAt v
+    change es1a10_ncPole_vanishesAt v
       (es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField d)
     have hid : es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField d
         = -((W.map (algebraMap F W.FunctionField)).toAffine.slope
@@ -1160,7 +1165,7 @@ theorem es1a10_ncPole_mixedTwo_seamData (v : AlgebraicCurve.Place F W.FunctionFi
   have hXcore := es1a10_ncPole_addX_core v heqp heqf hpole hxf hyf hΛ
   have hYcore := es1a10_ncPole_addY_core v heqp heqf hpole hxf hyf hΛ
   have hXred : es1a10_ncPole_reducesTo v (es1a6_addSumX W φ₁ φ₂) c := by
-    show es1a10_ncPole_vanishesAt v
+    change es1a10_ncPole_vanishesAt v
       (es1a6_addSumX W φ₁ φ₂ - algebraMap F W.FunctionField c)
     have hid : es1a6_addSumX W φ₁ φ₂ - algebraMap F W.FunctionField c
         = ((W.map (algebraMap F W.FunctionField)).toAffine.slope
@@ -1185,7 +1190,7 @@ theorem es1a10_ncPole_mixedTwo_seamData (v : AlgebraicCurve.Place F W.FunctionFi
     rw [hid]
     exact es1a10_ncPole_vanishesAt_add v hXcore hrx₁
   have hYred : es1a10_ncPole_reducesTo v (es1a6_addSumY W φ₁ φ₂) d := by
-    show es1a10_ncPole_vanishesAt v
+    change es1a10_ncPole_vanishesAt v
       (es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField d)
     have hid : es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField d
         = -((W.map (algebraMap F W.FunctionField)).toAffine.slope
@@ -1244,7 +1249,8 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
   intro hmem
   have heq₃ := es1a6_addSum_equation W φ₁ φ₂ hcol
   rw [equation_iff] at heq₃
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] at heq₃
   have hy₃mem : es1a6_addSumY W φ₁ φ₂ ∈ v.toValuationSubring := by
     by_contra hy
@@ -1347,7 +1353,8 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
         + algebraMap F W.FunctionField W.a₆ := by
     have h := es1a6_addSum_equation W φ₁ φ₂ hcol
     rw [equation_iff] at h
-    simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+    simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+      WeierstrassCurve.map_a₄,
       WeierstrassCurve.map_a₆] using h
   have hsl₃ : (W.map (algebraMap F W.FunctionField)).toAffine.slope
       (es1a6_addSumX W φ₁ φ₂) (φ₁ (polyToFunctionField W X))
@@ -1463,7 +1470,7 @@ theorem es1a10_ncVertical_vanishesAt_neg {f : F}
     (hf : es1a10_ncVertical_vanishesAt v f) :
     es1a10_ncVertical_vanishesAt v (-f) := by
   have hf' : f = 0 ∨ 0 < v.ord f := hf
-  show -f = 0 ∨ 0 < v.ord (-f)
+  change -f = 0 ∨ 0 < v.ord (-f)
   rcases hf' with rfl | hf0
   · exact Or.inl _root_.neg_zero
   · refine Or.inr ?_
@@ -1480,7 +1487,7 @@ theorem es1a10_ncVertical_vanishesAt_mul_mem {f g : F}
     (hf : es1a10_ncVertical_vanishesAt v f) (hg : g ∈ v.toValuationSubring) :
     es1a10_ncVertical_vanishesAt v (f * g) := by
   have hf' : f = 0 ∨ 0 < v.ord f := hf
-  show f * g = 0 ∨ 0 < v.ord (f * g)
+  change f * g = 0 ∨ 0 < v.ord (f * g)
   rcases hf' with rfl | hf0
   · exact Or.inl (zero_mul g)
   rcases eq_or_ne g 0 with rfl | hg0
@@ -1520,13 +1527,13 @@ theorem es1a10_ncVertical_reducesTo_of_ord_pos {f : F} {c : K}
 
 theorem es1a10_ncVertical_reducesTo_algebraMap (c : K) :
     es1a10_ncVertical_reducesTo v (algebraMap K F c) c := by
-  show es1a10_ncVertical_vanishesAt v (algebraMap K F c - algebraMap K F c)
+  change es1a10_ncVertical_vanishesAt v (algebraMap K F c - algebraMap K F c)
   rw [sub_self]
   exact es1a10_ncVertical_vanishesAt_zero v
 
 theorem es1a10_ncVertical_reducesTo_ofNat (n : ℕ) [Nat.AtLeastTwo n] :
     es1a10_ncVertical_reducesTo v (OfNat.ofNat n : F) (OfNat.ofNat n : K) := by
-  show es1a10_ncVertical_vanishesAt v
+  change es1a10_ncVertical_vanishesAt v
     ((OfNat.ofNat n : F) - algebraMap K F (OfNat.ofNat n : K))
   rw [map_ofNat, sub_self]
   exact es1a10_ncVertical_vanishesAt_zero v
@@ -1534,7 +1541,7 @@ theorem es1a10_ncVertical_reducesTo_ofNat (n : ℕ) [Nat.AtLeastTwo n] :
 theorem es1a10_ncVertical_reducesTo_add {f g : F} {c d : K}
     (hf : es1a10_ncVertical_reducesTo v f c) (hg : es1a10_ncVertical_reducesTo v g d) :
     es1a10_ncVertical_reducesTo v (f + g) (c + d) := by
-  show es1a10_ncVertical_vanishesAt v (f + g - algebraMap K F (c + d))
+  change es1a10_ncVertical_vanishesAt v (f + g - algebraMap K F (c + d))
   rw [show f + g - algebraMap K F (c + d)
       = (f - algebraMap K F c) + (g - algebraMap K F d) by rw [map_add]; ring]
   exact es1a10_ncVertical_vanishesAt_add v hf hg
@@ -1542,14 +1549,14 @@ theorem es1a10_ncVertical_reducesTo_add {f g : F} {c d : K}
 theorem es1a10_ncVertical_reducesTo_neg {f : F} {c : K}
     (hf : es1a10_ncVertical_reducesTo v f c) :
     es1a10_ncVertical_reducesTo v (-f) (-c) := by
-  show es1a10_ncVertical_vanishesAt v (-f - algebraMap K F (-c))
+  change es1a10_ncVertical_vanishesAt v (-f - algebraMap K F (-c))
   rw [show -f - algebraMap K F (-c) = -(f - algebraMap K F c) by rw [_root_.map_neg]; ring]
   exact es1a10_ncVertical_vanishesAt_neg v hf
 
 theorem es1a10_ncVertical_reducesTo_sub {f g : F} {c d : K}
     (hf : es1a10_ncVertical_reducesTo v f c) (hg : es1a10_ncVertical_reducesTo v g d) :
     es1a10_ncVertical_reducesTo v (f - g) (c - d) := by
-  show es1a10_ncVertical_vanishesAt v (f - g - algebraMap K F (c - d))
+  change es1a10_ncVertical_vanishesAt v (f - g - algebraMap K F (c - d))
   rw [show f - g - algebraMap K F (c - d)
       = (f - algebraMap K F c) - (g - algebraMap K F d) by rw [map_sub]; ring]
   exact es1a10_ncVertical_vanishesAt_sub v hf hg
@@ -1564,7 +1571,7 @@ theorem es1a10_ncVertical_mem_of_reducesTo {g : F} {d : K}
 theorem es1a10_ncVertical_reducesTo_mul {f g : F} {c d : K}
     (hf : es1a10_ncVertical_reducesTo v f c) (hg : es1a10_ncVertical_reducesTo v g d) :
     es1a10_ncVertical_reducesTo v (f * g) (c * d) := by
-  show es1a10_ncVertical_vanishesAt v (f * g - algebraMap K F (c * d))
+  change es1a10_ncVertical_vanishesAt v (f * g - algebraMap K F (c * d))
   rw [show f * g - algebraMap K F (c * d)
       = (f - algebraMap K F c) * g
         + algebraMap K F c * (g - algebraMap K F d) by rw [map_mul]; ring]
@@ -1786,7 +1793,8 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
     · have heq₁ := es1a6_add_equation W φ₁
       have heq₂ := es1a6_add_equation W φ₂
       rw [equation_iff'] at heq₁ heq₂
-      simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+      simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+        WeierstrassCurve.map_a₄,
         WeierstrassCurve.map_a₆] at heq₁ heq₂
       have h2tor : d₂ = W.negY c d₂ := by
         have h' := hopp
@@ -2034,7 +2042,7 @@ theorem es1a9_vanishesAt_add_nc {f g : F} (hf : es1a9_vanishesAt_nc v f)
 theorem es1a9_vanishesAt_neg_nc {f : F} (hf : es1a9_vanishesAt_nc v f) :
     es1a9_vanishesAt_nc v (-f) := by
   have hf' : f = 0 ∨ 0 < v.ord f := hf
-  show -f = 0 ∨ 0 < v.ord (-f)
+  change -f = 0 ∨ 0 < v.ord (-f)
   rcases hf' with rfl | hf0
   · exact Or.inl _root_.neg_zero
   · refine Or.inr ?_
@@ -2049,7 +2057,7 @@ theorem es1a9_vanishesAt_sub_nc {f g : F} (hf : es1a9_vanishesAt_nc v f)
 theorem es1a9_vanishesAt_mul_mem_nc {f g : F} (hf : es1a9_vanishesAt_nc v f)
     (hg : g ∈ v.toValuationSubring) : es1a9_vanishesAt_nc v (f * g) := by
   have hf' : f = 0 ∨ 0 < v.ord f := hf
-  show f * g = 0 ∨ 0 < v.ord (f * g)
+  change f * g = 0 ∨ 0 < v.ord (f * g)
   rcases hf' with rfl | hf0
   · exact Or.inl (zero_mul g)
   rcases eq_or_ne g 0 with rfl | hg0
@@ -2088,34 +2096,34 @@ theorem es1a9_reducesTo_of_ord_pos_nc {f : F} {c : K}
 
 theorem es1a9_reducesTo_algebraMap_nc (c : K) :
     es1a9_reducesTo_nc v (algebraMap K F c) c := by
-  show es1a9_vanishesAt_nc v (algebraMap K F c - algebraMap K F c)
+  change es1a9_vanishesAt_nc v (algebraMap K F c - algebraMap K F c)
   rw [sub_self]
   exact es1a9_vanishesAt_zero_nc v
 
 theorem es1a9_reducesTo_ofNat_nc (n : ℕ) [Nat.AtLeastTwo n] :
     es1a9_reducesTo_nc v (OfNat.ofNat n : F) (OfNat.ofNat n : K) := by
-  show es1a9_vanishesAt_nc v ((OfNat.ofNat n : F) - algebraMap K F (OfNat.ofNat n : K))
+  change es1a9_vanishesAt_nc v ((OfNat.ofNat n : F) - algebraMap K F (OfNat.ofNat n : K))
   rw [map_ofNat, sub_self]
   exact es1a9_vanishesAt_zero_nc v
 
 theorem es1a9_reducesTo_add_nc {f g : F} {c d : K}
     (hf : es1a9_reducesTo_nc v f c) (hg : es1a9_reducesTo_nc v g d) :
     es1a9_reducesTo_nc v (f + g) (c + d) := by
-  show es1a9_vanishesAt_nc v (f + g - algebraMap K F (c + d))
+  change es1a9_vanishesAt_nc v (f + g - algebraMap K F (c + d))
   rw [show f + g - algebraMap K F (c + d)
       = (f - algebraMap K F c) + (g - algebraMap K F d) by rw [map_add]; ring]
   exact es1a9_vanishesAt_add_nc v hf hg
 
 theorem es1a9_reducesTo_neg_nc {f : F} {c : K} (hf : es1a9_reducesTo_nc v f c) :
     es1a9_reducesTo_nc v (-f) (-c) := by
-  show es1a9_vanishesAt_nc v (-f - algebraMap K F (-c))
+  change es1a9_vanishesAt_nc v (-f - algebraMap K F (-c))
   rw [show -f - algebraMap K F (-c) = -(f - algebraMap K F c) by rw [_root_.map_neg]; ring]
   exact es1a9_vanishesAt_neg_nc v hf
 
 theorem es1a9_reducesTo_sub_nc {f g : F} {c d : K}
     (hf : es1a9_reducesTo_nc v f c) (hg : es1a9_reducesTo_nc v g d) :
     es1a9_reducesTo_nc v (f - g) (c - d) := by
-  show es1a9_vanishesAt_nc v (f - g - algebraMap K F (c - d))
+  change es1a9_vanishesAt_nc v (f - g - algebraMap K F (c - d))
   rw [show f - g - algebraMap K F (c - d)
       = (f - algebraMap K F c) - (g - algebraMap K F d) by rw [map_sub]; ring]
   exact es1a9_vanishesAt_sub_nc v hf hg
@@ -2130,7 +2138,7 @@ theorem es1a9_mem_of_reducesTo_nc {g : F} {d : K} (hg : es1a9_reducesTo_nc v g d
 theorem es1a9_reducesTo_mul_nc {f g : F} {c d : K}
     (hf : es1a9_reducesTo_nc v f c) (hg : es1a9_reducesTo_nc v g d) :
     es1a9_reducesTo_nc v (f * g) (c * d) := by
-  show es1a9_vanishesAt_nc v (f * g - algebraMap K F (c * d))
+  change es1a9_vanishesAt_nc v (f * g - algebraMap K F (c * d))
   rw [show f * g - algebraMap K F (c * d)
       = (f - algebraMap K F c) * g
         + algebraMap K F c * (g - algebraMap K F d) by rw [map_mul]; ring]
@@ -2183,7 +2191,7 @@ theorem es1a9_reducesTo_inv_nc {f : F} {c : K}
     refine v.mem_of_ord_nonneg (inv_ne_zero hf0) ?_
     rw [v.ord_inv, hford]
     omega
-  show es1a9_vanishesAt_nc v (f⁻¹ - algebraMap K F c⁻¹)
+  change es1a9_vanishesAt_nc v (f⁻¹ - algebraMap K F c⁻¹)
   rw [map_inv₀, inv_sub_inv hf0 hmap0, div_eq_mul_inv, mul_inv]
   exact es1a9_vanishesAt_mul_mem_nc v hvan
     (mul_mem hinv_mem (by rw [← map_inv₀]; exact v.algebraMap_mem' c⁻¹))
@@ -2306,7 +2314,8 @@ theorem es1a9_addSumY_ne_const_nc
   intro d hd
   have heq := es1a6_addSum_equation W φ₁ φ₂ hcol
   rw [equation_iff'] at heq
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] at heq
   rw [hd] at heq
   have hq0 : (X ^ 3 + C W.a₂ * X ^ 2 + C (W.a₄ - W.a₁ * d) * X
@@ -2423,7 +2432,8 @@ theorem es1a9_tangentCase_seamData_nc
     · have heq₁ := es1a6_add_equation W φ₁
       have heq₂ := es1a6_add_equation W φ₂
       rw [equation_iff'] at heq₁ heq₂
-      simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+      simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+        WeierstrassCurve.map_a₄,
         WeierstrassCurve.map_a₆] at heq₁ heq₂
       have hDred : es1a9_reducesTo_nc v
           (φ₁ (yGen W) + φ₂ (yGen W)

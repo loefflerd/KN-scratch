@@ -62,7 +62,8 @@ open ModularCurve IntermediateField
 
 noncomputable section
 
-theorem solution (N : ℕ) [NeZero N] : FunctionFieldGeneration N ↔ modularFunctionFieldFull N = modularFunctionField N :=by
+theorem solution (N : ℕ) [NeZero N] :
+    FunctionFieldGeneration N ↔ modularFunctionFieldFull N = modularFunctionField N :=by
   constructor
   · intro hgen
     refine le_antisymm ?_ (modularFunctionField_le_full N)
@@ -71,7 +72,7 @@ theorem solution (N : ℕ) [NeZero N] : FunctionFieldGeneration N ↔ modularFun
     exact hgen d hdvd hne
   · intro heq d hdvd hne
     have := hne
-    show qExpand ℚ d jq ∈ modularFunctionField N
+    change qExpand ℚ d jq ∈ modularFunctionField N
     rw [← heq]
     exact jqd_mem_full N hdvd
 
@@ -87,6 +88,8 @@ public section publicSection
 
 
 open ModularCurve IntermediateField
-theorem ModularCurve.functionFieldGeneration_iff_full_eq (N : ℕ) [NeZero N] : FunctionFieldGeneration N ↔ modularFunctionFieldFull N = modularFunctionField N := _root_.P2MW.S_ModularCurve_functionFieldGeneration_iff_full_eq.solution N
+theorem ModularCurve.functionFieldGeneration_iff_full_eq (N : ℕ) [NeZero N] :
+    FunctionFieldGeneration N ↔ modularFunctionFieldFull N = modularFunctionField N :=
+  solution N
 
 end publicSection

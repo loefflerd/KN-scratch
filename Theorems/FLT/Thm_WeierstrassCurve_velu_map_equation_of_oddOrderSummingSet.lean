@@ -524,7 +524,7 @@ theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x : F'} (h
       ring
   · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
-    show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
+    change 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
       rw [toValuationSubring_eq_of_restrict_eq hw,
         HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
@@ -858,7 +858,7 @@ theorem splits_weierstrassQuadratic_map :
       (algebraMap (RatFunc F) W.FunctionField)).Splits := by
   have hroot : ((weierstrassQuadratic W).map
       (algebraMap (RatFunc F) W.FunctionField)).IsRoot (yCoord W) := by
-    show ((weierstrassQuadratic W).map
+    change ((weierstrassQuadratic W).map
       (algebraMap (RatFunc F) W.FunctionField)).eval (yCoord W) = 0
     rw [Polynomial.eval_map, ← Polynomial.aeval_def]
     exact aeval_yCoord_weierstrassQuadratic

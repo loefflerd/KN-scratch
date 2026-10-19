@@ -123,7 +123,7 @@ theorem solution
       rw [← IntermediateField.restrictScalars_eq_top_iff (K := K'), eq_top_iff, ← hgen]
       refine IntermediateField.adjoin_le_iff.mpr ?_
       rintro _ ⟨f, rfl⟩
-      show algebraMap F F' f ∈ (adjoin Kt' S).restrictScalars K'
+      change algebraMap F F' f ∈ (adjoin Kt' S).restrictScalars K'
       have hrepr : algebraMap F F' f =
           ∑ i, algebraMap Kt' F' (σ (Bt.repr f i)) * algebraMap F F' (Bt i : F) := by
         conv_lhs => rw [← Bt.sum_repr f, map_sum]
@@ -157,6 +157,7 @@ theorem AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFi
       FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤) :
     ∃ t' : F', FiniteDimensional (IntermediateField.adjoin K' ({t'} : Set F')) F' ∧
-      Algebra.IsSeparable (IntermediateField.adjoin K' ({t'} : Set F')) F' := _root_.P2MW.S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hgen
+      Algebra.IsSeparable (IntermediateField.adjoin K' ({t'} : Set F')) F' :=
+  solution K F K' F' hfg hgen
 
 end publicSection

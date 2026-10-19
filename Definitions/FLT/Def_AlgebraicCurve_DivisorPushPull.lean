@@ -141,7 +141,6 @@ theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
   exact hy ▸ y.2
 
 variable {w} in
-
 theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
     f ∈ w.toValuationSubring.comap (algebraMap F F') ↔
       0 ≤ w.ord (algebraMap F F' f) := by
@@ -149,7 +148,6 @@ theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
   exact w.mem_iff_ord_nonneg (algebraMap_ne_zero hf)
 
 variable {w} in
-
 theorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
     (hmem : f ∈ w.toValuationSubring.comap (algebraMap F F')) :
     IsUnit (⟨f, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) ↔
@@ -322,7 +320,6 @@ section RestrictDef
 variable [Algebra K F] [IsScalarTower K F F']
 
 variable (F) in
-
 def restrict : Place K F where
   toValuationSubring := w.toValuationSubring.comap (algebraMap F F')
   algebraMap_mem' a := by
@@ -410,7 +407,6 @@ namespace Place
 variable (w : Place K F')
 
 variable (F) in
-
 def restrictInclusion : (w.restrict F).toValuationSubring →+* w.toValuationSubring where
   toFun a := ⟨algebraMap F F' (a : F), ValuationSubring.mem_comap.mp a.2⟩
   map_one' := Subtype.ext (map_one (algebraMap F F'))
@@ -436,7 +432,6 @@ instance instIsLocalHomRestrictInclusion : IsLocalHom (restrictInclusion F w) wh
     exact (isUnit_mk_comap_iff ha0 a.2).mpr hord
 
 variable (F) in
-
 def restrictResidueMap : (w.restrict F).ResidueField →+* w.ResidueField :=
   IsLocalRing.ResidueField.map (restrictInclusion F w)
 
@@ -456,16 +451,15 @@ theorem algebraMap_residueField_eq :
 instance instIsScalarTowerResidueFieldRestrictPushforward :
     IsScalarTower K (w.restrict F).ResidueField w.ResidueField := by
   refine IsScalarTower.of_algebraMap_eq fun a => ?_
-  show IsLocalRing.residue _ (algebraMap K w.toValuationSubring a) =
+  change IsLocalRing.residue _ (algebraMap K w.toValuationSubring a) =
     restrictResidueMap F w
       (IsLocalRing.residue _ (algebraMap K (w.restrict F).toValuationSubring a))
   rw [restrictResidueMap_residue]
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap K F' a = algebraMap F F' (algebraMap K F a)
+  change algebraMap K F' a = algebraMap F F' (algebraMap K F a)
   rw [← IsScalarTower.algebraMap_apply]
 
 variable (F) in
-
 def inertiaDeg : ℕ := Module.finrank (w.restrict F).ResidueField w.ResidueField
 
 theorem deg_restrict_mul_inertiaDeg : (w.restrict F).deg * w.inertiaDeg F = w.deg :=
@@ -476,7 +470,6 @@ end Place
 namespace Divisor
 
 variable (F) in
-
 def mapRestrict : Divisor K F' →+ Divisor K F :=
   Finsupp.liftAddHom fun w => Finsupp.singleAddHom (w.restrict F)
 
@@ -486,7 +479,6 @@ theorem mapRestrict_single (w : Place K F') (n : ℤ) :
   simp [mapRestrict]
 
 variable (F) in
-
 def pushforward : Divisor K F' →+ Divisor K F :=
   Finsupp.liftAddHom fun w =>
     (Finsupp.singleAddHom (w.restrict F)).comp (AddMonoidHom.mulRight (w.inertiaDeg F : ℤ))
@@ -521,7 +513,6 @@ theorem pushforward_apply [DecidableEq (Place K F)] (D : Divisor K F') (v : Plac
   simp [Finsupp.single_apply]
 
 variable (K F F') in
-
 def PushforwardNormFormula [Module.Finite F F'] : Prop :=
   ∀ (f : F'), f ≠ 0 → ∀ D : Divisor K F', (∀ w, D w = w.ord f) →
     ∀ v : Place K F, pushforward F D v = v.ord (Algebra.norm F f)
@@ -554,7 +545,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
 namespace Place
 
 variable (F') in
-
 def fiber (v : Place K F) : Finset (Place K F') :=
   (restrict_fiber_finite v).toFinset
 
@@ -571,7 +561,6 @@ end Place
 namespace Divisor
 
 variable (F') in
-
 def pullbackSingleHom (v : Place K F) : ℤ →+ Divisor K F' where
   toFun n := ∑ w ∈ v.fiber F', Finsupp.single w (n * w.ramificationIndex F)
   map_zero' := by simp
@@ -585,7 +574,6 @@ theorem pullbackSingleHom_apply (v : Place K F) (n : ℤ) :
   rfl
 
 variable (F') in
-
 def pullback : Divisor K F →+ Divisor K F' :=
   Finsupp.liftAddHom (pullbackSingleHom F')
 
@@ -647,7 +635,6 @@ theorem pullback_mem_principal {D : Divisor K F} (hD : D ∈ principal (K := K) 
 end Divisor
 
 variable (K F F') in
-
 class FundamentalIdentity : Prop where
   sum_ramificationIndex_mul_deg : ∀ v : Place K F,
     ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.deg : ℤ)
@@ -690,7 +677,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra.IsIntegral F F'] [HasPrincipalDivisors K F']
 
 variable (K F F') in
-
 class SumRamificationInertia : Prop where
   sum_ramificationIndex_mul_inertiaDeg : ∀ v : Place K F,
     ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)
@@ -719,7 +705,6 @@ instance (priority := 100) instFundamentalIdentityOfSumRamificationInertia
 namespace Pic0
 
 variable (F') in
-
 def pullbackDegZeroHom [FundamentalIdentity K F F'] :
     Divisor.degZero (K := K) (F := F) →+ Divisor.degZero (K := K) (F := F') :=
   ((Divisor.pullback F').domRestrict (Divisor.degZero (K := K) (F := F))).codRestrict _
@@ -731,7 +716,6 @@ theorem coe_pullbackDegZeroHom [FundamentalIdentity K F F']
     (pullbackDegZeroHom F' D : Divisor K F') = Divisor.pullback F' (D : Divisor K F) := rfl
 
 variable (F') in
-
 def pullbackHom [FundamentalIdentity K F F'] : Pic0 K F →+ Pic0 K F' :=
   QuotientAddGroup.map _ _ (pullbackDegZeroHom F') (by
     rintro ⟨D, hD0⟩ hD
@@ -743,7 +727,6 @@ theorem pullbackHom_mk [FundamentalIdentity K F F']
     pullbackHom F' (mk D) = mk (pullbackDegZeroHom F' D) := rfl
 
 variable (F) in
-
 def pushforwardDegZeroHom :
     Divisor.degZero (K := K) (F := F') →+ Divisor.degZero (K := K) (F := F) :=
   ((Divisor.pushforward F).domRestrict (Divisor.degZero (K := K) (F := F'))).codRestrict _
@@ -755,7 +738,6 @@ theorem coe_pushforwardDegZeroHom (D : Divisor.degZero (K := K) (F := F')) :
     (pushforwardDegZeroHom F D : Divisor K F) = Divisor.pushforward F (D : Divisor K F') := rfl
 
 variable (K F F') in
-
 def pushforwardHom [Module.Finite F F'] (H : Divisor.PushforwardNormFormula K F F') :
     Pic0 K F' →+ Pic0 K F :=
   QuotientAddGroup.map _ _ (pushforwardDegZeroHom F) (by

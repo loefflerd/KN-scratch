@@ -41,9 +41,11 @@ This is the residue-degree half of the fundamental inequality for places in a fi
 fields: the residue field of $w$ is finite over that of its restriction, so the inertia degree is
 not the junk value $0$. Together with the tower formula relating the degree of $w$ to $f(w/w|_F)$
 and the degree of $w|_F$, it is used in the divisor theory of curves over $K$, for instance by
-[`AlgebraicCurve.Place.deg_ne_zero_of_finiteDimensional_adjoin`](thm.html#AlgebraicCurve.Place.deg_ne_zero_of_finiteDimensional_adjoin)
+[`AlgebraicCurve.Place.deg_ne_zero_of_finiteDimensional_adjoin`]
+(thm.html#AlgebraicCurve.Place.deg_ne_zero_of_finiteDimensional_adjoin)
 and
-[`AlgebraicCurve.Place.eq_of_finrank_lt_two_mul_ramificationIndex`](thm.html#AlgebraicCurve.Place.eq_of_finrank_lt_two_mul_ramificationIndex).
+[`AlgebraicCurve.Place.eq_of_finrank_lt_two_mul_ramificationIndex`]
+(thm.html#AlgebraicCurve.Place.eq_of_finrank_lt_two_mul_ramificationIndex).
 
 ## Explanation of the source proof
 
@@ -66,13 +68,13 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
   [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F']
 
 open IsLocalRing in
-
-theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Fintype ι]
+theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Finite ι]
     (x : ι → w.toValuationSubring)
     (hx : LinearIndependent (w.restrict F).ResidueField
       fun i => (residue w.toValuationSubring (x i) : w.ResidueField)) :
     LinearIndependent F fun i => ((x i : w.toValuationSubring) : F') := by
   classical
+  let := Fintype.ofFinite ι
   rw [Fintype.linearIndependent_iff]
   intro g hg
   by_contra hne
@@ -120,7 +122,6 @@ theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Fintype ι]
   exact one_ne_zero hk1
 
 open IsLocalRing in
-
 theorem finite_residueField (w : Place K F') :
     Module.Finite (w.restrict F).ResidueField w.ResidueField := by
   classical
@@ -136,7 +137,9 @@ theorem finite_residueField (w : Place K F') :
 
 end S09G2
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] (w : Place K F') : 0 < w.inertiaDeg F := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] (w : Place K F') :
+    0 < w.inertiaDeg F := by
   have := S09G2.finite_residueField (F := F) w
   exact Module.finrank_pos
 
@@ -150,6 +153,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.inertiaDeg_pos_of_finiteDimensional {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] (w : Place K F') : 0 < w.inertiaDeg F := _root_.P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos_of_finiteDimensional.solution w
+theorem AlgebraicCurve.Place.inertiaDeg_pos_of_finiteDimensional {K F F' : Type*} [Field K]
+    [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
+    [FiniteDimensional F F'] (w : Place K F') :
+    0 < w.inertiaDeg F :=
+  solution w
 
 end publicSection

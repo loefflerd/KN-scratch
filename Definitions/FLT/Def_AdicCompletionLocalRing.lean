@@ -209,7 +209,8 @@ end Local
 section Transport
 
 variable [IsLocalRing A] [IsNoetherianRing A]
-variable {k : Type*} [CommRing k] [Algebra k A] {B : Type*} [CommRing B] [IsLocalRing B] [Algebra k B]
+variable {k : Type*} [CommRing k] [Algebra k A] {B : Type*} [CommRing B] [IsLocalRing B]
+    [Algebra k B]
 variable (Φ : AdicCompletion (maximalIdeal A) A ≃ₐ[k] B)
 
 omit [IsNoetherianRing A] [IsLocalRing B] in
@@ -220,7 +221,7 @@ theorem comap_maximalIdeal_algEquiv :
     (maximalIdeal B).comap (Φ : AdicCompletion (maximalIdeal A) A →+* B)
       = maximalIdeal (AdicCompletion (maximalIdeal A) A) := by
   ext x
-  show Φ x ∈ maximalIdeal B ↔ x ∈ maximalIdeal _
+  change Φ x ∈ maximalIdeal B ↔ x ∈ maximalIdeal _
   rw [mem_maximalIdeal, mem_maximalIdeal, mem_nonunits_iff, mem_nonunits_iff, isUnit_algEquiv_iff]
 
 theorem map_maximalIdeal_algEquiv :

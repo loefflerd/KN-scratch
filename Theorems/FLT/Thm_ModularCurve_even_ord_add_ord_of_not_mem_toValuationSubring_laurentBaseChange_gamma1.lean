@@ -105,7 +105,8 @@ theorem thetaL_jqModC_mul_discriminant :
   rw [jqModC_complex_eq, thetaL_coeffEmb_jq]
   exact omegaRow_T2
 
-theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0) (V : LaurentSeries ℂ)
+theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0)
+    (V : LaurentSeries ℂ)
     (hv : V * thetaL ℂ (jqModC ℂ) = ofPowerSeries ℤ ℂ (qExpansion 1 w) ^ 2) :
     ∃ (Gv Hh : ModularForm (Gamma1 M) 14), Hh ≠ 0 ∧
       ((Hh : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∧
@@ -113,8 +114,10 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
       V * ((qExpansion 1 (Hh : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
         ((qExpansion 1 (Gv : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
   have h1 := one_mem_strictPeriods_gamma1 M
-  obtain ⟨E4N, hE4⟩ := ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₄
-  obtain ⟨E6N, hE6⟩ := ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₆
+  obtain ⟨E4N, hE4⟩ :=
+    ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₄
+  obtain ⟨E6N, hE6⟩ :=
+    ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₆
   obtain ⟨DN, hD⟩ := ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M)
     (ModularFormClass.modularForm (CuspForm.discriminant))
   have hDcoe : (DN : ℍ → ℂ) = ModularForm.discriminant := by
@@ -122,13 +125,17 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
     funext z
     rw [← CuspForm.toModularFormₗ_eq_coe, CuspForm.toModularFormₗ_apply]
     rfl
-  obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E6N) := ⟨_, rfl⟩
-  obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by norm_num) (-((w.mul w).mul DN)) := ⟨_, rfl⟩
+  obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E6N) :=
+    ⟨_, rfl⟩
+  obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by norm_num) (-((w.mul w).mul DN)) :=
+    ⟨_, rfl⟩
   have hHhcoe : (Hh : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 2 * ModularForm.E₆ z := by
-    funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4, hE6]; ring
+    funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4,
+      hE6]; ring
   have hGvcoe : (Gv : ℍ → ℂ) = fun z => -(w z ^ 2 * ModularForm.discriminant z) := by
     funext z
-    simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply, Pi.mul_apply, hDcoe]
+    simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply,
+      Pi.mul_apply, hDcoe]
     ring
   have hqE4 : qExpansion 1 (E4N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) := by rw [hE4]
   have hqE6 : qExpansion 1 (E6N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by rw [hE6]
@@ -137,8 +144,10 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
       qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 2 * qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by
     rw [hHhdef, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos h1,
       ModularForm.qExpansion_mul one_pos h1, hqE4, hqE6]; ring
-  have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) := by
-    rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos h1,
+  have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) :=
+    by
+    rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos
+      h1,
       ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, hqD]; ring
   have hT2 := thetaL_jqModC_mul_discriminant
   have hDN0 : DN ≠ 0 := by
@@ -155,13 +164,15 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
   have hW0 : ofPowerSeries ℤ ℂ (qExpansion 1 (w : ℍ → ℂ)) ≠ 0 := by
     intro h0
     apply hw
-    have h0' : qExpansion 1 (w : ℍ → ℂ) = 0 := HahnSeries.ofPowerSeries_injective (by rw [h0, map_zero])
+    have h0' : qExpansion 1 (w : ℍ → ℂ) = 0 :=
+      HahnSeries.ofPowerSeries_injective (by rw [h0, map_zero])
     exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 w).mp h0'
   have hHh0 : Hh ≠ 0 := by
     intro h0
     have hq0 : ofPowerSeries ℤ ℂ (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) ^ 2 *
         ofPowerSeries ℤ ℂ (qExpansion 1 (ModularForm.E₆ : ℍ → ℂ)) = 0 := by
-      have : qExpansion 1 (Hh : ℍ → ℂ) = 0 := (ModularForm.qExpansion_eq_zero_iff one_pos h1 Hh).mpr h0
+      have : qExpansion 1 (Hh : ℍ → ℂ) = 0 :=
+        (ModularForm.qExpansion_eq_zero_iff one_pos h1 Hh).mpr h0
       rw [hqHh] at this
       have := congrArg (ofPowerSeries ℤ ℂ) this
       rwa [map_mul, map_pow, map_zero] at this
@@ -174,7 +185,8 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
     rw [hT0, mul_zero] at this
     exact pow_eq_zero_iff two_ne_zero |>.mp this.symm
   refine ⟨Gv, Hh, hHh0, hHhcoe, hGvcoe, ?_⟩
-  rw [hqHh, hqGv, PowerSeries.coe_neg, PowerSeries.coe_mul, PowerSeries.coe_mul, PowerSeries.coe_pow, PowerSeries.coe_pow]
+  rw [hqHh, hqGv, PowerSeries.coe_neg, PowerSeries.coe_mul, PowerSeries.coe_mul,
+    PowerSeries.coe_pow, PowerSeries.coe_pow]
   linear_combination V * hT2 - ofPowerSeries ℤ ℂ (qExpansion 1 ModularForm.discriminant) * hv
 
 theorem realizeOf_eq (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0) (V : LaurentSeries ℂ)
@@ -252,7 +264,8 @@ theorem conj_T_zpow_mem_Gamma1 (M : ℕ) (hM : ¬ M ∣ 4)
 
 theorem qParam_pow_self (h : ℕ) (hh : 0 < h) (z : ℂ) :
     Function.Periodic.qParam (h : ℝ) z ^ h = Function.Periodic.qParam 1 z := by
-  simp only [Function.Periodic.qParam, ← Complex.exp_nat_mul, Complex.ofReal_natCast, Complex.ofReal_one, div_one]
+  simp only [Function.Periodic.qParam, ← Complex.exp_nat_mul, Complex.ofReal_natCast,
+    Complex.ofReal_one, div_one]
   congr 1
   have : (h : ℂ) ≠ 0 := by exact_mod_cast hh.ne'
   field_simp
@@ -264,8 +277,10 @@ theorem tendsto_atImInfty_levelOne {k : ℤ} (F : ModularForm 𝒮ℒ k) :
     exact AddSubgroup.mem_zmultiples 1
   have hper := SlashInvariantFormClass.periodic_comp_ofComplex F h1
   have han := ModularFormClass.analyticAt_cuspFunction_zero F one_pos h1
-  rw [UpperHalfPlane.qExpansion_coeff_zero one_pos han hper, ← UpperHalfPlane.cuspFunction_apply_zero one_pos han hper]
-  have : (fun τ : ℍ => F τ) = (cuspFunction 1 F ∘ fun τ : ℍ => Function.Periodic.qParam 1 (τ : ℂ)) := by
+  rw [UpperHalfPlane.qExpansion_coeff_zero one_pos han hper, ←
+    UpperHalfPlane.cuspFunction_apply_zero one_pos han hper]
+  have : (fun τ : ℍ => F τ) = (cuspFunction 1 F ∘ fun τ : ℍ => Function.Periodic.qParam 1 (τ : ℂ)) :=
+    by
     funext τ; simp [UpperHalfPlane.eq_cuspFunction τ one_ne_zero hper]
   rw [this]
   exact han.continuousAt.tendsto.comp (UpperHalfPlane.qParam_tendsto_atImInfty one_pos)
@@ -291,15 +306,18 @@ theorem tendsto_qParam_pow_atImInfty {h : ℝ} (hh : 0 < h) {m : ℕ} (hm : m �
   simpa [zero_pow hm] using (UpperHalfPlane.qParam_tendsto_atImInfty hh).pow m
 
 theorem zpow_readout_unique {h : ℝ} (hh : 0 < h) (g : ℍ → ℂ) {a b : ℤ} {L L' : ℂ}
-    (ha : Tendsto (fun τ : ℍ => g τ / Function.Periodic.qParam h (τ : ℂ) ^ a) atImInfty (𝓝 L)) (hL : L ≠ 0)
-    (hb : Tendsto (fun τ : ℍ => g τ / Function.Periodic.qParam h (τ : ℂ) ^ b) atImInfty (𝓝 L')) (hL' : L' ≠ 0) :
+    (ha : Tendsto (fun τ : ℍ => g τ / Function.Periodic.qParam h (τ : ℂ) ^ a) atImInfty (𝓝 L))
+    (hL : L ≠ 0)
+    (hb : Tendsto (fun τ : ℍ => g τ / Function.Periodic.qParam h (τ : ℂ) ^ b) atImInfty (𝓝 L'))
+    (hL' : L' ≠ 0) :
     a = b := by
   have hq : ∀ τ : ℍ, Function.Periodic.qParam h (τ : ℂ) ≠ 0 := fun τ => Complex.exp_ne_zero _
   have hev : ∀ᶠ τ : ℍ in atImInfty, g τ ≠ 0 := by
     have := ha.eventually_ne hL
     filter_upwards [this] with τ hτ
     intro h0; apply hτ; simp [h0]
-  have hquot : Tendsto (fun τ : ℍ => Function.Periodic.qParam h (τ : ℂ) ^ (a - b)) atImInfty (𝓝 (L' / L)) := by
+  have hquot : Tendsto (fun τ : ℍ => Function.Periodic.qParam h (τ : ℂ) ^ (a - b)) atImInfty (𝓝 (L' / L)) :=
+    by
     refine (hb.div ha hL).congr' ?_
     filter_upwards [hev] with τ hτ
     simp only [Pi.div_apply]
@@ -307,10 +325,12 @@ theorem zpow_readout_unique {h : ℝ} (hh : 0 < h) (g : ℍ → ℂ) {a b : ℤ}
     field_simp
   rcases lt_trichotomy (a - b) 0 with hlt | heq | hgt
   · exfalso
-    obtain ⟨m, hm⟩ : ∃ m : ℕ, (b - a : ℤ) = m := ⟨(b - a).toNat, (Int.toNat_of_nonneg (by omega)).symm⟩
+    obtain ⟨m, hm⟩ : ∃ m : ℕ, (b - a : ℤ) = m :=
+      ⟨(b - a).toNat, (Int.toNat_of_nonneg (by omega)).symm⟩
     have hm0 : m ≠ 0 := by intro h0; rw [h0] at hm; omega
     have h0 := tendsto_qParam_pow_atImInfty hh hm0
-    have hinv : Tendsto (fun τ : ℍ => (Function.Periodic.qParam h (τ : ℂ) ^ (a - b))⁻¹) atImInfty (𝓝 0) := by
+    have hinv : Tendsto (fun τ : ℍ => (Function.Periodic.qParam h (τ : ℂ) ^ (a - b))⁻¹) atImInfty (𝓝 0) :=
+      by
       refine h0.congr fun τ => ?_
       rw [← zpow_natCast, ← hm, ← zpow_neg, neg_sub]
     have := tendsto_nhds_unique (hquot.inv₀ (div_ne_zero hL' hL)) hinv
@@ -320,13 +340,15 @@ theorem zpow_readout_unique {h : ℝ} (hh : 0 < h) (g : ℍ → ℂ) {a b : ℤ}
     obtain ⟨m, hm⟩ : ∃ m : ℕ, (a - b : ℤ) = m := ⟨(a - b).toNat, (Int.toNat_of_nonneg hgt.le).symm⟩
     have hm0 : m ≠ 0 := by intro h0; rw [h0] at hm; omega
     have h0 := tendsto_qParam_pow_atImInfty hh hm0
-    have h0' : Tendsto (fun τ : ℍ => Function.Periodic.qParam h (τ : ℂ) ^ (a - b)) atImInfty (𝓝 0) := by
+    have h0' : Tendsto (fun τ : ℍ => Function.Periodic.qParam h (τ : ℂ) ^ (a - b)) atImInfty (𝓝 0) :=
+      by
       refine h0.congr fun τ => ?_
       rw [← zpow_natCast, ← hm]
     have := tendsto_nhds_unique hquot h0'
     exact (div_ne_zero hL' hL) this
 
-theorem levelOne_smul {k : ℤ} {FF : Type*} [FunLike FF ℍ ℂ] [SlashInvariantFormClass FF 𝒮ℒ k] (F : FF)
+theorem levelOne_smul {k : ℤ} {FF : Type*} [FunLike FF ℍ ℂ] [SlashInvariantFormClass FF 𝒮ℒ k]
+    (F : FF)
     (σ : SL(2, ℤ)) (τ : ℍ) :
     F (σ • τ) = denom (σ : GL (Fin 2) ℝ) τ ^ k * F τ := by
   have hmem : (σ : GL (Fin 2) ℝ) ∈ (𝒮ℒ : Subgroup (GL (Fin 2) ℝ)) := ⟨σ, rfl⟩
@@ -343,7 +365,6 @@ theorem cexp_readout_eq (h : ℕ) (a : ℤ) (τ : ℍ) :
 end L2Asm
 
 open L2Asm in
-
 theorem solution
     (M : ℕ) [NeZero M] (hM : 5 ≤ M)
     (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
@@ -408,14 +429,16 @@ theorem solution
       have hE6 := levelOne_smul ModularForm.E₆ σ τ
       have hD : ModularForm.discriminant (σ • τ) = denom (σ : GL (Fin 2) ℝ) τ ^ (12 : ℤ) * ModularForm.discriminant τ :=
         levelOne_smul CuspForm.discriminant σ τ
-      have hw' : (w : ℍ → ℂ) (σ • τ) = ((w : ℍ → ℂ) ∣[(1 : ℤ)] (σ : GL (Fin 2) ℝ)) τ * denom (σ : GL (Fin 2) ℝ) τ := by
+      have hw' : (w : ℍ → ℂ) (σ • τ) = ((w : ℍ → ℂ) ∣[(1 : ℤ)] (σ : GL (Fin 2) ℝ)) τ * denom (σ : GL (Fin 2) ℝ) τ :=
+        by
         rw [← ModularForm.SL_slash, ModularForm.SL_slash_apply]
         field_simp
       have hz : ModularForm.E₄ (σ • τ) ^ 2 * ModularForm.E₆ (σ • τ) ≠ 0 := by
         rw [hE4, hE6]
         exact mul_ne_zero (pow_ne_zero _ (mul_ne_zero (zpow_ne_zero _ hd) h4)) (mul_ne_zero (zpow_ne_zero _ hd) h6)
       rw [PresVAux.realizeOf_eq M w hw (v : LaurentSeries ℂ) hv (σ • τ) hz, hE4, hE6, hD, hw',
-        show (((2 * n + h : ℕ)) : ℤ) = ((2 * n + h : ℕ) : ℤ) from rfl, zpow_natCast, _root_.pow_add, _root_.pow_mul,
+        show (((2 * n + h : ℕ)) : ℤ) = ((2 * n + h : ℕ) : ℤ) from rfl, zpow_natCast, _root_.pow_add,
+        _root_.pow_mul,
         ← qParam_pow_self h hh (τ : ℂ)]
       field_simp
       ring
@@ -458,6 +481,7 @@ theorem ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseC
     (P : AlgebraicCurve.Place ℂ
         ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
     (hP : y ∉ P.toValuationSubring) :
-    Even (P.ord v + P.ord y) := _root_.P2MW.S_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1.solution M hM y hy w hw v hv P hP
+    Even (P.ord v + P.ord y) :=
+  solution M hM y hy w hw v hv P hP
 
 end publicSection

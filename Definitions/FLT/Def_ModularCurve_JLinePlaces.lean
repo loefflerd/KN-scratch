@@ -79,7 +79,8 @@ instance instIsScalarTowerJAdjoin :
       Algebra.toSMul Algebra.toSMul Algebra.toSMul :=
   IsScalarTower.of_algebraMap_eq' (by apply RingHom.ext_rat)
 
-theorem algebraMap_jGen_val : (algebraMap ℚ⟮jq⟯ (modularFunctionField N) jGen : LaurentSeries ℚ) = jq :=
+theorem algebraMap_jGen_val :
+    (algebraMap ℚ⟮jq⟯ (modularFunctionField N) jGen : LaurentSeries ℚ) = jq :=
   rfl
 
 end Tower

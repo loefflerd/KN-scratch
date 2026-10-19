@@ -72,7 +72,6 @@ noncomputable def e1Chi3In (R : Type*) [CommRing R] : PowerSeries R :=
   PowerSeries.map (Int.castRingHom R) e1Chi3
 
 open CongruenceSubgroup in
-
 def E1Chi3IsModular : Prop :=
   ∃ f : ModularForm (Gamma1 3) 1, ∀ z : UpperHalfPlane,
     f z = ∑' n : ℕ,

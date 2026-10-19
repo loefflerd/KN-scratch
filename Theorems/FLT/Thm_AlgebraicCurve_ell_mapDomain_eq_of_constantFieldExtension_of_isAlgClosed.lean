@@ -223,6 +223,7 @@ theorem AlgebraicCurve.ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed
     (hlift_new : ∀ v' : Place K' F', (∀ v, lift v ≠ v') →
       ∀ v : Place K F, v'.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring)
     (D : Divisor K F) [FiniteDimensional K ↥(riemannRochSpace D)] :
-    ell (K := K') (D.mapDomain lift) = ell (K := K) D := _root_.P2MW.S_AlgebraicCurve_ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj hlift_new D
+    ell (K := K') (D.mapDomain lift) = ell (K := K) D :=
+  solution K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj hlift_new D
 
 end publicSection

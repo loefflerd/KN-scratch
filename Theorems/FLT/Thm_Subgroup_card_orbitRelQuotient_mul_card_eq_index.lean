@@ -88,9 +88,9 @@ theorem mk''_mk_inv_eq {g g' : M} (η : M) (hη : η ∈ H) (hk : g'⁻¹ * η�
     (Quotient.mk'' ((g⁻¹ : M) : M ⧸ H) : orbitRel.Quotient K (M ⧸ H)) =
       Quotient.mk'' ((g'⁻¹ : M) : M ⧸ H) := by
   refine Quotient.sound' (mem_orbit_iff.mpr ⟨(⟨g'⁻¹ * η⁻¹ * g, hk⟩ : K)⁻¹, ?_⟩)
-  show (((⟨g'⁻¹ * η⁻¹ * g, hk⟩ : K)⁻¹ : K) : M) • ((g'⁻¹ : M) : M ⧸ H) = ((g⁻¹ : M) : M ⧸ H)
+  change (((⟨g'⁻¹ * η⁻¹ * g, hk⟩ : K)⁻¹ : K) : M) • ((g'⁻¹ : M) : M ⧸ H) = ((g⁻¹ : M) : M ⧸ H)
   rw [MulAction.Quotient.smul_coe, smul_eq_mul, QuotientGroup.eq]
-  show ((((g'⁻¹ * η⁻¹ * g)⁻¹ : M) : M) * g'⁻¹)⁻¹ * g⁻¹ ∈ H
+  change ((((g'⁻¹ * η⁻¹ * g)⁻¹ : M) : M) * g'⁻¹)⁻¹ * g⁻¹ ∈ H
   have key : (((g'⁻¹ * η⁻¹ * g)⁻¹ : M) * g'⁻¹)⁻¹ * g⁻¹ = η⁻¹ := by group
   rw [key]
   exact H.inv_mem hη
@@ -112,7 +112,7 @@ theorem toOrbitAux_eq_of_mem_orbit {x y : M ⧸ K} (hxy : x ∈ orbit H y) :
   induction y using QuotientGroup.induction_on with
   | H g' =>
   rw [← hη]
-  show toOrbitAux H K (((η : M) * g' : M) : M ⧸ K) = toOrbitAux H K ((g' : M) : M ⧸ K)
+  change toOrbitAux H K (((η : M) * g' : M) : M ⧸ K) = toOrbitAux H K ((g' : M) : M ⧸ K)
   rw [toOrbitAux_mk, toOrbitAux_mk]
   refine mk''_mk_inv_eq H K (η : M) η.2 ?_
   have : g'⁻¹ * (η : M)⁻¹ * ((η : M) * g') = 1 := by group
@@ -128,14 +128,14 @@ def orbitQuotientEquiv :
     | h x =>
       induction x using QuotientGroup.induction_on with
       | H g =>
-        show Quotient.mk'' ((g⁻¹⁻¹ : M) : M ⧸ K) = Quotient.mk'' ((g : M) : M ⧸ K)
+        change Quotient.mk'' ((g⁻¹⁻¹ : M) : M ⧸ K) = Quotient.mk'' ((g : M) : M ⧸ K)
         rw [inv_inv]
   right_inv q := by
     induction q using Quotient.inductionOn' with
     | h x =>
       induction x using QuotientGroup.induction_on with
       | H g =>
-        show Quotient.mk'' ((g⁻¹⁻¹ : M) : M ⧸ H) = Quotient.mk'' ((g : M) : M ⧸ H)
+        change Quotient.mk'' ((g⁻¹⁻¹ : M) : M ⧸ H) = Quotient.mk'' ((g : M) : M ⧸ H)
         rw [inv_inv]
 
 theorem card_orbitRel_quotient_eq :
@@ -181,6 +181,7 @@ public section publicSection
 
 theorem Subgroup.card_orbitRelQuotient_mul_card_eq_index {M : Type*} [Group M] (H K : Subgroup M)
     (hKH : ∀ g x : M, x ∈ K → g⁻¹ * x * g ∈ H → x = 1) :
-    Nat.card (MulAction.orbitRel.Quotient H (M ⧸ K)) * Nat.card K = H.index := _root_.P2MW.S_Subgroup_card_orbitRelQuotient_mul_card_eq_index.solution H K hKH
+    Nat.card (MulAction.orbitRel.Quotient H (M ⧸ K)) * Nat.card K = H.index :=
+  solution H K hKH
 
 end publicSection

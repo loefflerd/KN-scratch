@@ -105,7 +105,18 @@ open scoped MatrixGroups
 local notation "𝕢" => Function.Periodic.qParam
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq jqN modularFunctionField jq_mem jqN_mem modularFunctionFieldFull jqd_mem_full modularFunctionField_le_full qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand PhiGen.conj PhiGen.conj_zero PhiGen.conj_succ coeffMap coeffMap_coeff coeffEmb coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand coeffEmb_qExpand PhiGen.exists_galoisPerm PhiGen.mem_range_coeffEmb_of_forall_coeffMap_eq PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter PhiGen.conj_injective mem_range_qExpand_of_qTwist_eq hasSum_jq_qParam E4_cube_div_discriminant_smul hasSum_qParam_mul_laurent hasSum_qParam_heckeMatrix_smul hasSum_qParam_heckeDiagMatrix_smul mem_adjoin_jq_of_hasSum_of_slash_invariant exists_perm_gamma0_cosetReps exists_sl2_heckeDiagMatrix_smul_eq laurent_qParam_coeff_unique IsFrickeAutFull frickeInvolutionFull jq_mem_full isFrickeAutFull_frickeInvolutionFull_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_qExpand jq jqN modularFunctionField jq_mem jqN_mem \
+  modularFunctionFieldFull jqd_mem_full modularFunctionField_le_full qTwist qTwist_coeff \
+  qTwist_one_apply qTwist_qTwist qTwist_qExpand PhiGen.conj PhiGen.conj_zero PhiGen.conj_succ \
+  coeffMap coeffMap_coeff coeffEmb coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand \
+  coeffEmb_qExpand PhiGen.exists_galoisPerm PhiGen.mem_range_coeffEmb_of_forall_coeffMap_eq \
+  PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter PhiGen.conj_injective \
+  mem_range_qExpand_of_qTwist_eq hasSum_jq_qParam E4_cube_div_discriminant_smul \
+  hasSum_qParam_mul_laurent hasSum_qParam_heckeMatrix_smul hasSum_qParam_heckeDiagMatrix_smul \
+  mem_adjoin_jq_of_hasSum_of_slash_invariant exists_perm_gamma0_cosetReps \
+  exists_sl2_heckeDiagMatrix_smul_eq laurent_qParam_coeff_unique IsFrickeAutFull \
+  frickeInvolutionFull jq_mem_full isFrickeAutFull_frickeInvolutionFull_prime"
 p2m_open "ModularCurve"
 
 namespace QExpN
@@ -127,7 +138,8 @@ lemma prod_erase_perm (e : Equiv.Perm (Fin n)) (G : Fin n → L[X]) (i : Fin n) 
 
 lemma interpPoly_map (φ : L →+* L') (H Y : Fin n → L) :
     (interpPoly H Y).map φ = interpPoly (φ ∘ H) (φ ∘ Y) := by
-  simp only [interpPoly, Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_C, Polynomial.map_prod,
+  simp only [interpPoly, Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_C,
+    Polynomial.map_prod,
     Polynomial.map_sub, Polynomial.map_X, Function.comp_apply]
 
 lemma conjPoly_map (φ : L →+* L') (H : Fin n → L) : (conjPoly H).map φ = conjPoly (φ ∘ H) := by
@@ -150,7 +162,6 @@ lemma conjPoly_perm (e : Equiv.Perm (Fin n)) (H : Fin n → L) : conjPoly (H ∘
   exact Equiv.prod_comp e (fun j => X - C (H j))
 
 omit [CommRing L'] in
-
 lemma interpPoly_eval (H Y : Fin n → L) (i₀ : Fin n) :
     (interpPoly H Y).eval (Y i₀) = H i₀ * ∏ m ∈ Finset.univ.erase i₀, (Y i₀ - Y m) := by
   unfold interpPoly
@@ -173,7 +184,8 @@ lemma conjPoly_monic [Nontrivial L] (H : Fin n → L) : (conjPoly H).Monic :=
   Polynomial.monic_prod_of_monic _ _ fun i _ => Polynomial.monic_X_sub_C (H i)
 
 omit [CommRing L'] in
-lemma conjPoly_natDegree [Nontrivial L] [NoZeroDivisors L] (H : Fin n → L) : (conjPoly H).natDegree = n := by
+lemma conjPoly_natDegree [Nontrivial L] [NoZeroDivisors L] (H : Fin n → L) :
+    (conjPoly H).natDegree = n := by
   unfold conjPoly
   rw [Polynomial.natDegree_prod _ _ fun i _ => Polynomial.X_sub_C_ne_zero (H i)]
   simp
@@ -192,24 +204,28 @@ variable {K : Type} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prim
 def slotH (f g : LaurentSeries ℚ) : Fin (ℓ + 1) → LaurentSeries K :=
   Fin.cases (coeffEmb K (qExpand ℚ ℓ f)) (fun b : Fin ℓ => qTwist (ζ ^ (b : ℕ)) (coeffEmb K g))
 
-@[scoped simp] lemma slotH_zero (f g : LaurentSeries ℚ) : slotH ℓ ζ f g 0 = coeffEmb K (qExpand ℚ ℓ f) := by
+@[scoped simp] lemma slotH_zero (f g : LaurentSeries ℚ) :
+    slotH ℓ ζ f g 0 = coeffEmb K (qExpand ℚ ℓ f) := by
   simp [slotH]
 
 @[scoped simp] lemma slotH_succ (f g : LaurentSeries ℚ) (b : Fin ℓ) :
     slotH ℓ ζ f g b.succ = qTwist (ζ ^ (b : ℕ)) (coeffEmb K g) := by
   simp [slotH]
 
-def liftPerm (e : Equiv.Perm (Fin ℓ)) : Equiv.Perm (Fin (ℓ + 1)) := Equiv.Perm.decomposeFin.symm (0, e)
+def liftPerm (e : Equiv.Perm (Fin ℓ)) :
+    Equiv.Perm (Fin (ℓ + 1)) := Equiv.Perm.decomposeFin.symm (0, e)
 
 omit hℓ in
 @[scoped simp] lemma liftPerm_zero (e : Equiv.Perm (Fin ℓ)) : liftPerm ℓ e 0 = 0 :=
   Equiv.Perm.decomposeFin_symm_apply_zero 0 e
 
 omit hℓ in
-@[scoped simp] lemma liftPerm_succ (e : Equiv.Perm (Fin ℓ)) (b : Fin ℓ) : liftPerm ℓ e b.succ = (e b).succ := by
+@[scoped simp] lemma liftPerm_succ (e : Equiv.Perm (Fin ℓ)) (b : Fin ℓ) :
+    liftPerm ℓ e b.succ = (e b).succ := by
   rw [liftPerm, Equiv.Perm.decomposeFin_symm_apply_succ, Equiv.swap_self, Equiv.refl_apply]
 
-lemma coeffMap_qTwist {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (u : Rˣ) (x : LaurentSeries R) :
+lemma coeffMap_qTwist {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (u : Rˣ)
+    (x : LaurentSeries R) :
     coeffMap φ (qTwist u x) = qTwist (Units.map (φ : R →* S) u) (coeffMap φ x) := by
   ext k
   simp only [coeffMap_coeff, qTwist_coeff, map_mul]
@@ -248,21 +264,22 @@ lemma zeta_pow_ell : ζ ^ ℓ = 1 := by
 
 include hζ in
 omit [Algebra ℚ K] in
-
 lemma zeta_mul_zeta_pow (b : Fin ℓ) : ζ * ζ ^ (b : ℕ) = ζ ^ (((b + 1 : Fin ℓ)) : ℕ) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   rw [← pow_succ', Fin.val_add, Fin.val_one', Nat.add_mod_mod]
-  conv_lhs => rw [← Nat.div_add_mod ((b : ℕ) + 1) ℓ, pow_add, pow_mul, zeta_pow_ell ℓ ζ hζ, one_pow, one_mul]
+  conv_lhs => rw [← Nat.div_add_mod ((b : ℕ) + 1) ℓ, pow_add, pow_mul, zeta_pow_ell ℓ ζ hζ, one_pow,
+    one_mul]
 
 include hζ in
-
 lemma qTwist_slotH (f g : LaurentSeries ℚ) (i : Fin (ℓ + 1)) :
     qTwist ζ (slotH ℓ ζ f g i) = slotH ℓ ζ f g (liftPerm ℓ (Equiv.addRight (1 : Fin ℓ)) i) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   refine Fin.cases ?_ (fun b => ?_) i
-  · rw [liftPerm_zero, slotH_zero, coeffEmb_qExpand, qTwist_qExpand, zpow_natCast, zeta_pow_ell ℓ ζ hζ,
+  · rw [liftPerm_zero, slotH_zero, coeffEmb_qExpand, qTwist_qExpand, zpow_natCast, zeta_pow_ell ℓ ζ
+      hζ,
       qTwist_one_apply]
-  · rw [liftPerm_succ, slotH_succ, slotH_succ, qTwist_qTwist, Equiv.coe_addRight, zeta_mul_zeta_pow ℓ ζ hζ]
+  · rw [liftPerm_succ, slotH_succ, slotH_succ, qTwist_qTwist, Equiv.coe_addRight, zeta_mul_zeta_pow
+      ℓ ζ hζ]
 
 include hζ in
 lemma qTwist_conj (i : Fin (ℓ + 1)) :
@@ -271,19 +288,20 @@ lemma qTwist_conj (i : Fin (ℓ + 1)) :
   refine Fin.cases ?_ (fun b => ?_) i
   · rw [liftPerm_zero, PhiGen.conj_zero, qTwist_qExpand]
     congr 1
-    rw [show ((ℓ * ℓ : ℕ) : ℤ) = ((ℓ * ℓ : ℕ) : ℤ) from rfl, zpow_natCast, pow_mul, zeta_pow_ell ℓ ζ hζ, one_pow,
+    rw [show ((ℓ * ℓ : ℕ) : ℤ) = ((ℓ * ℓ : ℕ) : ℤ) from rfl, zpow_natCast, pow_mul, zeta_pow_ell ℓ ζ
+      hζ, one_pow,
       qTwist_one_apply]
   · rw [liftPerm_succ, PhiGen.conj_succ, PhiGen.conj_succ, qTwist_qTwist, Equiv.coe_addRight,
       zeta_mul_zeta_pow ℓ ζ hζ]
 
-def interpK (f g : LaurentSeries ℚ) : (LaurentSeries K)[X] := interpPoly (slotH ℓ ζ f g) (PhiGen.conj ℓ ζ)
+def interpK (f g : LaurentSeries ℚ) :
+    (LaurentSeries K)[X] := interpPoly (slotH ℓ ζ f g) (PhiGen.conj ℓ ζ)
 
 def conjK (f g : LaurentSeries ℚ) : (LaurentSeries K)[X] := conjPoly (slotH ℓ ζ f g)
 
 variable [IsGalois ℚ K] [FiniteDimensional ℚ K]
 
 include hζ in
-
 theorem exists_interpK_coeff_eq (f g : LaurentSeries ℚ) (k : ℕ) :
     ∃ ξ : LaurentSeries ℚ, (interpK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ ξ) := by
   refine PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter ?_ ?_
@@ -305,7 +323,6 @@ theorem exists_interpK_coeff_eq (f g : LaurentSeries ℚ) (k : ℕ) :
     rw [h1, h2, interpPoly_perm]
 
 include hζ in
-
 theorem exists_conjK_coeff_eq (f g : LaurentSeries ℚ) (k : ℕ) :
     ∃ π : LaurentSeries ℚ, (conjK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ π) := by
   refine PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter ?_ ?_
@@ -358,7 +375,8 @@ lemma one (h : ℝ) : RealL h 1 1 := by
 
 lemma zero (h : ℝ) : RealL h 0 0 := fun τ => by simp [hasSum_zero]
 
-lemma congr {A' : LaurentSeries ℂ} {F' : ℍ → ℂ} (hA : RealL h A F) (h1 : A = A') (h2 : ∀ τ, F τ = F' τ) :
+lemma congr {A' : LaurentSeries ℂ} {F' : ℍ → ℂ} (hA : RealL h A F) (h1 : A = A')
+    (h2 : ∀ τ, F τ = F' τ) :
     RealL h A' F' := fun τ => by rw [← h1, ← h2]; exact hA τ
 
 lemma sum {ι : Type} (s : Finset ι) {A : ι → LaurentSeries ℂ} {F : ι → ℍ → ℂ}
@@ -367,7 +385,8 @@ lemma sum {ι : Type} (s : Finset ι) {A : ι → LaurentSeries ℂ} {F : ι →
   induction s using Finset.induction_on with
   | empty => simpa [Pi.zero_def] using zero h
   | insert a s ha ih =>
-    have h1 := (hAF a (Finset.mem_insert_self a s)).add (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
+    have h1 :=
+      (hAF a (Finset.mem_insert_self a s)).add (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
     refine h1.congr (Finset.sum_insert ha).symm fun τ => ?_
     simp [Finset.sum_insert ha]
 
@@ -377,7 +396,8 @@ lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries �
   induction s using Finset.induction_on with
   | empty => simpa [Pi.one_def] using one h
   | insert a s ha ih =>
-    have h1 := (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
+    have h1 :=
+      (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
     refine h1.congr (Finset.prod_insert ha).symm fun τ => ?_
     simp [Finset.prod_insert ha]
 
@@ -407,7 +427,8 @@ lemma coeff_prod_X_sub_C (hh : 0 < h) {ι : Type} (s : Finset ι) {a : ι → La
       · rw [hA, Polynomial.mul_coeff_zero, Polynomial.coeff_sub, Polynomial.coeff_X_zero,
           Polynomial.coeff_C_zero, zero_sub]
         exact (mul_neg (α := LaurentSeries ℂ) _ _).symm
-      · simp only [hfun τ, Polynomial.mul_coeff_zero, Pi.neg_apply, Pi.mul_apply, Polynomial.coeff_sub,
+      · simp only [hfun τ, Polynomial.mul_coeff_zero, Pi.neg_apply, Pi.mul_apply,
+          Polynomial.coeff_sub,
           Polynomial.coeff_X_zero, Polynomial.coeff_C_zero, zero_sub, mul_neg]
     | succ k =>
       refine ((ih' k).sub ((ih' (k + 1)).mul hh hb')).congr ?_ fun τ => ?_
@@ -443,7 +464,8 @@ section Periods
 
 variable (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)]
 
-lemma realL_one_of_realL_qExpand (x : LaurentSeries ℂ) (F : ℍ → ℂ) (hx : RealL ℓ (qExpand ℂ ℓ x) F) :
+lemma realL_one_of_realL_qExpand (x : LaurentSeries ℂ) (F : ℍ → ℂ) (hx : RealL ℓ (qExpand ℂ ℓ x) F)
+    :
     RealL 1 x F := by
   intro τ
   have hinj : Function.Injective (fun n : ℤ => (ℓ : ℤ) * n) :=
@@ -493,7 +515,6 @@ lemma expRoot_pow_zpow (b : ℕ) (m : ℤ) :
   ring
 
 omit hℓ in
-
 lemma qParam_T_pow_smul (b : ℕ) (τ : ℍ) :
     𝕢 ℓ (((ModularGroup.T ^ b • τ : ℍ)) : ℂ) = expRoot ℓ ^ b * 𝕢 ℓ (τ : ℂ) := by
   have h := modular_T_zpow_smul τ (b : ℤ)
@@ -505,7 +526,6 @@ lemma qParam_T_pow_smul (b : ℕ) (τ : ℍ) :
   ring
 
 omit hℓ in
-
 lemma realL_twist (A : LaurentSeries ℂ) (G : ℍ → ℂ) (hA : RealL ℓ A G) (b : ℕ) (B : LaurentSeries ℂ)
     (hB : ∀ m : ℤ, B.coeff m = (expRoot ℓ ^ b) ^ m * A.coeff m) :
     RealL ℓ B (fun τ => G (ModularGroup.T ^ b • τ)) := by
@@ -529,8 +549,8 @@ def jtN (τ : ℍ) : ℂ := jt (ModularForm.heckeDiagMatrix ℓ • τ)
 abbrev castC : ℚ →+* ℂ := Rat.castHom ℂ
 
 omit hℓ in
-
-lemma coeffMap_sigma_coeffEmb (x : LaurentSeries ℚ) : coeffMap σ (coeffEmb K x) = coeffMap castC x := by
+lemma coeffMap_sigma_coeffEmb (x : LaurentSeries ℚ) :
+    coeffMap σ (coeffEmb K x) = coeffMap castC x := by
   ext m
   rw [coeffMap_coeff, coeffEmb_coeff, coeffMap_coeff, eq_ratCast, map_ratCast]
   rfl
@@ -541,7 +561,8 @@ def cosetRep (i : Fin (ℓ + 1)) : SL(2, ℤ) :=
 omit hℓ in
 @[scoped simp] lemma cosetRep_zero : cosetRep ℓ 0 = 1 := by simp [cosetRep]
 omit hℓ in
-@[scoped simp] lemma cosetRep_succ (b : Fin ℓ) : cosetRep ℓ b.succ = ModularGroup.S * ModularGroup.T ^ (b : ℕ) := by
+@[scoped simp] lemma cosetRep_succ (b : Fin ℓ) :
+    cosetRep ℓ b.succ = ModularGroup.S * ModularGroup.T ^ (b : ℕ) := by
   simp [cosetRep]
 
 def slotF (F : ℍ → ℂ) (i : Fin (ℓ + 1)) (τ : ℍ) : ℂ := F (cosetRep ℓ i • τ)
@@ -561,7 +582,6 @@ omit hℓ in
 lemma realL_gC : RealL ℓ (coeffMap castC g) (fun τ => F (ModularGroup.S • τ)) := fun τ => hG τ
 
 include hF hG hσ in
-
 lemma realL_slotH (i : Fin (ℓ + 1)) :
     RealL ℓ (coeffMap σ (slotH ℓ ζ f g i)) (slotF ℓ F i) := by
   refine Fin.cases ?_ (fun b => ?_) i
@@ -569,25 +589,28 @@ lemma realL_slotH (i : Fin (ℓ + 1)) :
     refine h.congr ?_ fun τ => ?_
     · rw [slotH_zero, coeffMap_sigma_coeffEmb, coeffMap_qExpand]
     · simp [slotF]
-  · have h := realL_twist ℓ _ _ (realL_gC ℓ g F hG) (b : ℕ) (coeffMap σ (slotH ℓ ζ f g b.succ)) fun m => by
+  · have h :=
+      realL_twist ℓ _ _ (realL_gC ℓ g F hG) (b : ℕ) (coeffMap σ (slotH ℓ ζ f g b.succ)) fun m => by
       rw [slotH_succ, coeffMap_coeff, qTwist_coeff, map_mul, Units.val_zpow_eq_zpow_val, map_zpow₀,
-        Units.val_pow_eq_pow_val, map_pow, hσ, coeffEmb_coeff, eq_ratCast, map_ratCast, coeffMap_coeff]
+        Units.val_pow_eq_pow_val, map_pow, hσ, coeffEmb_coeff, eq_ratCast, map_ratCast,
+        coeffMap_coeff]
       rfl
     refine h.congr rfl fun τ => ?_
     simp only [slotF, cosetRep_succ, mul_smul]
 
-lemma coeffMap_conj_zero_eq : coeffMap σ (PhiGen.conj ℓ ζ 0) = qExpand ℂ (ℓ * ℓ) (coeffMap castC jq) := by
+lemma coeffMap_conj_zero_eq :
+    coeffMap σ (PhiGen.conj ℓ ζ 0) = qExpand ℂ (ℓ * ℓ) (coeffMap castC jq) := by
   rw [PhiGen.conj_zero, coeffMap_qExpand, coeffMap_sigma_coeffEmb]
 
 omit hℓ in
 lemma realL_jqC : RealL 1 (coeffMap castC jq) jt := fun τ => hasSum_jq_qParam τ
 
 omit hℓ in
-
 lemma heckeDiag_smul_S_T_pow_smul [NeZero ℓ] (b : ℕ) (τ : ℍ) :
     ModularForm.heckeDiagMatrix ℓ • (ModularGroup.S * ModularGroup.T ^ b) • τ =
       ModularGroup.S • ModularForm.heckeMatrix ℓ b • τ := by
-  have hT : ((ModularGroup.T ^ b : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, (b : ℤ); 0, 1] := by
+  have hT : ((ModularGroup.T ^ b : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, (b : ℤ); 0, 1] :=
+    by
     have := ModularGroup.coe_T_zpow (b : ℤ)
     rwa [zpow_natCast] at this
   set g : SL(2, ℤ) := ModularGroup.S * ModularGroup.T ^ b with hg
@@ -615,7 +638,6 @@ lemma heckeDiag_smul_S_T_pow_smul [NeZero ℓ] (b : ℕ) (τ : ℍ) :
   rw [h1, h2, hmat]
 
 include hσ in
-
 lemma realL_conj (i : Fin (ℓ + 1)) : RealL ℓ (coeffMap σ (PhiGen.conj ℓ ζ i)) (slotJ ℓ i) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   refine Fin.cases ?_ (fun b => ?_) i
@@ -631,19 +653,21 @@ lemma realL_conj (i : Fin (ℓ + 1)) : RealL ℓ (coeffMap σ (PhiGen.conj ℓ �
     rw [hval]
     refine h.congr_fun fun m => ?_
     congr 1
-    rw [PhiGen.conj_succ, coeffMap_coeff, qTwist_coeff, map_mul, Units.val_zpow_eq_zpow_val, map_zpow₀,
-      Units.val_pow_eq_pow_val, map_pow, hσ, expRoot_pow_zpow, coeffEmb_coeff, eq_ratCast, map_ratCast,
+    rw [PhiGen.conj_succ, coeffMap_coeff, qTwist_coeff, map_mul, Units.val_zpow_eq_zpow_val,
+      map_zpow₀,
+      Units.val_pow_eq_pow_val, map_pow, hσ, expRoot_pow_zpow, coeffEmb_coeff, eq_ratCast,
+      map_ratCast,
       coeffMap_coeff]
     rfl
 
-def interpFun (k : ℕ) (τ : ℍ) : ℂ := (interpPoly (fun i => slotF ℓ F i τ) (fun i => slotJ ℓ i τ)).coeff k
+def interpFun (k : ℕ) (τ : ℍ) :
+    ℂ := (interpPoly (fun i => slotF ℓ F i τ) (fun i => slotJ ℓ i τ)).coeff k
 
 def conjFun (k : ℕ) (τ : ℍ) : ℂ := (conjPoly fun i => slotF ℓ F i τ).coeff k
 
 variable (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : ℍ, F (γ • τ) = F τ)
 
 omit hℓ in
-
 lemma jtN_smul [NeZero ℓ] (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 ℓ) (τ : ℍ) :
     jtN ℓ (γ • τ) = jtN ℓ τ := by
   obtain ⟨γ', hγ', -⟩ := exists_sl2_heckeDiagMatrix_smul_eq ℓ γ hγ
@@ -651,7 +675,6 @@ lemma jtN_smul [NeZero ℓ] (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.G
   exact E4_cube_div_discriminant_smul γ' _
 
 include hinv in
-
 lemma slots_smul (γ : SL(2, ℤ)) : ∃ e : Equiv.Perm (Fin (ℓ + 1)),
     (∀ i τ, slotF ℓ F i (γ • τ) = slotF ℓ F (e i) τ) ∧ (∀ i τ, slotJ ℓ i (γ • τ) = slotJ ℓ (e i) τ) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
@@ -666,7 +689,8 @@ lemma slots_smul (γ : SL(2, ℤ)) : ∃ e : Equiv.Perm (Fin (ℓ + 1)),
   · rw [slotJ, slotJ, key, jtN_smul ℓ _ (he' i)]
 
 include hinv in
-lemma interpFun_smul (k : ℕ) (γ : SL(2, ℤ)) (τ : ℍ) : interpFun ℓ F k (γ • τ) = interpFun ℓ F k τ := by
+lemma interpFun_smul (k : ℕ) (γ : SL(2, ℤ)) (τ : ℍ) :
+    interpFun ℓ F k (γ • τ) = interpFun ℓ F k τ := by
   obtain ⟨e, h1, h2⟩ := slots_smul ℓ F hinv γ
   unfold interpFun
   have hH : (fun i => slotF ℓ F i (γ • τ)) = (fun i => slotF ℓ F i τ) ∘ e := funext fun i => h1 i τ
@@ -681,7 +705,6 @@ lemma conjFun_smul (k : ℕ) (γ : SL(2, ℤ)) (τ : ℍ) : conjFun ℓ F k (γ 
   rw [hH, conjPoly_perm]
 
 include hF hG hσ hinv in
-
 lemma mem_adjoin_of_interpK_coeff_eq (k : ℕ) (ξ : LaurentSeries ℚ)
     (hξ : (interpK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ ξ)) : ξ ∈ Algebra.adjoin ℚ {jq} := by
   have h1 : RealL ℓ (coeffMap σ ((interpK ℓ ζ f g).coeff k)) (interpFun ℓ F k) := by
@@ -727,7 +750,8 @@ omit [IsGalois ℚ K] [FiniteDimensional ℚ K] in
 lemma iota_apply (x : LaurentSeries ℚ) : iota (K := K) ℓ x = coeffEmb K (qExpand ℚ ℓ x) := rfl
 
 omit [IsGalois ℚ K] [FiniteDimensional ℚ K] in
-lemma coeffEmb_injective' : Function.Injective (coeffEmb K : LaurentSeries ℚ → LaurentSeries K) := by
+lemma coeffEmb_injective' :
+    Function.Injective (coeffEmb K : LaurentSeries ℚ → LaurentSeries K) := by
   intro x y h
   ext m
   have hm := congrArg (fun z : LaurentSeries K => z.coeff m) h
@@ -747,7 +771,8 @@ lemma iota_jqN : iota (K := K) ℓ (jqN ℓ) = PhiGen.conj ℓ ζ 0 := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   rw [iota_apply, jqN, qExpand_qExpand, PhiGen.conj_zero, coeffEmb_qExpand]
 
-def dHat : LaurentSeries K := ∏ m ∈ Finset.univ.erase (0 : Fin (ℓ + 1)), (PhiGen.conj ℓ ζ 0 - PhiGen.conj ℓ ζ m)
+def dHat :
+    LaurentSeries K := ∏ m ∈ Finset.univ.erase (0 : Fin (ℓ + 1)), (PhiGen.conj ℓ ζ 0 - PhiGen.conj ℓ ζ m)
 
 include hζ in
 omit [IsGalois ℚ K] [FiniteDimensional ℚ K] in
@@ -757,7 +782,6 @@ lemma dHat_ne_zero : dHat ℓ ζ ≠ 0 := by
   exact (Finset.ne_of_mem_erase hm) ((PhiGen.conj_injective ℓ ζ hζ (sub_eq_zero.mp h0)).symm)
 
 include hζ in
-
 lemma exists_sum_eq_mul_dHat (hmem : ∀ (k : ℕ) (ξ : LaurentSeries ℚ),
       (interpK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ ξ) → ξ ∈ Algebra.adjoin ℚ {jq}) :
     ∃ x : LaurentSeries ℚ, x ∈ modularFunctionField ℓ ∧ iota ℓ x = iota ℓ f * dHat ℓ ζ := by
@@ -773,7 +797,6 @@ lemma exists_sum_eq_mul_dHat (hmem : ∀ (k : ℕ) (ξ : LaurentSeries ℚ),
     rw [← Polynomial.eval_eq_sum_range, interpK, interpPoly_eval, ← slotH_zero ℓ ζ f g, dHat]
 
 include hζ hσ hF hG hinv in
-
 theorem mem_modularFunctionField_of_data : f ∈ modularFunctionField ℓ := by
   classical
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
@@ -803,7 +826,6 @@ theorem mem_modularFunctionField_of_data : f ∈ modularFunctionField ℓ := by
   exact mul_mem hx (inv_mem hd)
 
 include hζ hσ hF hG hinv in
-
 theorem isIntegral_of_data : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
   classical
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
@@ -815,15 +837,19 @@ theorem isIntegral_of_data : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
   let p : Polynomial (Algebra.adjoin ℚ {jq}) :=
     ∑ k ∈ Finset.range (ℓ + 2),
       Polynomial.C (⟨π k, hπmem k⟩ : Algebra.adjoin ℚ {jq}) * (Polynomial.X : Polynomial (Algebra.adjoin ℚ {jq})) ^ k
-  have hcoeffp : ∀ n, p.coeff n = if n < ℓ + 2 then (⟨π n, hπmem n⟩ : Algebra.adjoin ℚ {jq}) else 0 := by
+  have hcoeffp : ∀ n, p.coeff n = if n < ℓ + 2 then (⟨π n, hπmem n⟩ : Algebra.adjoin ℚ {jq}) else 0 :=
+    by
     intro n
-    simp only [p, Polynomial.finsetSum_coeff, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, mul_ite, mul_one,
+    simp only [p, Polynomial.finsetSum_coeff, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
+      mul_ite, mul_one,
       mul_zero]
     rw [Finset.sum_ite_eq]
     simp only [Finset.mem_range]
-  have hmapmap : (p.map (algebraMap (Algebra.adjoin ℚ {jq}) (LaurentSeries ℚ))).map (iota ℓ) = conjK ℓ ζ f g := by
+  have hmapmap : (p.map (algebraMap (Algebra.adjoin ℚ {jq}) (LaurentSeries ℚ))).map (iota ℓ) = conjK ℓ ζ f g :=
+    by
     rw [Polynomial.map_map]
-    simp only [p, Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_pow, Polynomial.map_C, Polynomial.map_X,
+    simp only [p, Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_pow, Polynomial.map_C,
+      Polynomial.map_X,
       RingHom.comp_apply]
     have hk : ∀ k, (iota (K := K) ℓ) ((algebraMap (Algebra.adjoin ℚ {jq}) (LaurentSeries ℚ)) ⟨π k, hπmem k⟩) =
         (conjK ℓ ζ f g).coeff k :=
@@ -844,7 +870,8 @@ theorem isIntegral_of_data : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
     rw [map_zero]
     change (iota ℓ) (Polynomial.eval₂ (RingHom.id _) f
       ((p.map (algebraMap (Algebra.adjoin ℚ {jq}) (LaurentSeries ℚ))))) = 0
-    rw [Polynomial.hom_eval₂, Polynomial.eval₂_eq_eval_map, ← Polynomial.map_map, Polynomial.map_id, hmapmap,
+    rw [Polynomial.hom_eval₂, Polynomial.eval₂_eq_eval_map, ← Polynomial.map_map, Polynomial.map_id,
+      hmapmap,
       iota_eq_slotH_zero ℓ ζ f g, conjK]
     exact conjPoly_eval _ 0
 
@@ -868,7 +895,8 @@ lemma sigma_zeta (ζ : (CyclotomicField ℓ ℚ)ˣ) (hζ : IsPrimitiveRoot (ζ :
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   have := CyclotomicField.isCyclotomicExtension ℓ ℚ
   let e := hζ.embeddingsEquivPrimitiveRoots ℂ (Polynomial.cyclotomic.irreducible_rat hℓ.out.pos)
-  let r : primitiveRoots ℓ ℂ := ⟨expRoot ℓ, (mem_primitiveRoots hℓ.out.pos).mpr (isPrimitiveRoot_expRoot ℓ)⟩
+  let r : primitiveRoots ℓ ℂ :=
+    ⟨expRoot ℓ, (mem_primitiveRoots hℓ.out.pos).mpr (isPrimitiveRoot_expRoot ℓ)⟩
   have h := IsPrimitiveRoot.embeddingsEquivPrimitiveRoots_apply_coe hζ ℂ
     (Polynomial.cyclotomic.irreducible_rat hℓ.out.pos) (e.symm r)
   rw [Equiv.apply_symm_apply] at h
@@ -880,7 +908,6 @@ variable (f g : LaurentSeries ℚ) (F : ℍ → ℂ)
   (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : ℍ, F (γ • τ) = F τ)
 
 include hF hG hinv in
-
 theorem mem_modularFunctionField : f ∈ modularFunctionField ℓ := by
   have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
   have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
@@ -898,7 +925,6 @@ theorem mem_modularFunctionField : f ∈ modularFunctionField ℓ := by
     f g F hF hG hinv
 
 include hF hG hinv in
-
 theorem isIntegral_adjoin_jq : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
   have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
   have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
@@ -937,7 +963,8 @@ variable {K : Type} [Field K] [Algebra ℚ K] [IsGalois ℚ K] [FiniteDimensiona
 lemma realL_jtN_S : RealL ℓ (coeffMap castC jq) (fun τ => jtN ℓ (ModularGroup.S • τ)) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   intro τ
-  have hpt : ModularForm.heckeDiagMatrix ℓ • ModularGroup.S • τ = ModularGroup.S • ModularForm.heckeMatrix ℓ 0 • τ := by
+  have hpt : ModularForm.heckeDiagMatrix ℓ • ModularGroup.S • τ = ModularGroup.S • ModularForm.heckeMatrix ℓ 0 • τ :=
+    by
     have h := heckeDiag_smul_S_T_pow_smul ℓ 0 τ
     rwa [pow_zero, mul_one] at h
   have h := hasSum_qParam_heckeMatrix_smul ℓ 0 (coeffMap castC jq) jt realL_jqC τ
@@ -951,7 +978,8 @@ lemma realL_jtN_S : RealL ℓ (coeffMap castC jq) (fun τ => jtN ℓ (ModularGro
   simp
 
 lemma realL_sum_qExpand_mul_jq_pow (n : ℕ) (ξ : ℕ → LaurentSeries ℚ) (Ξ : ℕ → ℍ → ℂ)
-    (hξ : ∀ k, RealL 1 (coeffMap castC (ξ k)) (Ξ k)) (hΞ : ∀ k (γ : SL(2, ℤ)) τ, Ξ k (γ • τ) = Ξ k τ) :
+    (hξ : ∀ k, RealL 1 (coeffMap castC (ξ k)) (Ξ k))
+    (hΞ : ∀ k (γ : SL(2, ℤ)) τ, Ξ k (γ • τ) = Ξ k τ) :
     RealL ℓ (coeffMap castC (∑ k ∈ Finset.range n, qExpand ℚ ℓ (ξ k) * jq ^ k))
       (fun τ => ∑ k ∈ Finset.range n, Ξ k (ModularGroup.S • τ) * jtN ℓ (ModularGroup.S • τ) ^ k) := by
   have hℓpos : (0 : ℝ) < ℓ := by exact_mod_cast hℓ.out.pos
@@ -969,7 +997,8 @@ lemma realL_sum_qExpand_mul_jq_pow (n : ℕ) (ξ : ℕ → LaurentSeries ℚ) (�
     exact (h1.mul hℓpos h2).congr (map_mul _ _ _).symm fun τ => rfl
   exact (RealL.sum (Finset.range n) hk).congr (map_sum _ _ _).symm fun τ => rfl
 
-lemma coeffMap_castC_injective : Function.Injective (coeffMap castC : LaurentSeries ℚ → LaurentSeries ℂ) := by
+lemma coeffMap_castC_injective :
+    Function.Injective (coeffMap castC : LaurentSeries ℚ → LaurentSeries ℂ) := by
   intro x y h
   ext m
   have hm := congrArg (fun z : LaurentSeries ℂ => z.coeff m) h
@@ -981,7 +1010,8 @@ def embW (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull 
   (algebraMap (modularFunctionFieldFull ℓ) (LaurentSeries ℚ)).comp (w : modularFunctionFieldFull ℓ →+* modularFunctionFieldFull ℓ)
 
 omit hℓ in
-lemma embW_apply (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ) (x : modularFunctionFieldFull ℓ) :
+lemma embW_apply (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ)
+    (x : modularFunctionFieldFull ℓ) :
     embW ℓ w x = ((w x : modularFunctionFieldFull ℓ) : LaurentSeries ℚ) := rfl
 
 lemma embW_of_mem_adjoin (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ)
@@ -1016,23 +1046,26 @@ lemma embW_of_mem_adjoin (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     rw [hR, he, embW_apply, AlgEquiv.commutes, hval]
   | add x y hx hy ihx ihy =>
     intro hξ'
-    have hx' : x ∈ modularFunctionFieldFull ℓ := (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
+    have hx' : x ∈ modularFunctionFieldFull ℓ :=
+      (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
       (Set.singleton_subset_iff.mpr (jq_mem_full ℓ))) hx
-    have hy' : y ∈ modularFunctionFieldFull ℓ := (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
+    have hy' : y ∈ modularFunctionFieldFull ℓ :=
+      (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
       (Set.singleton_subset_iff.mpr (jq_mem_full ℓ))) hy
     have : (⟨x + y, hξ'⟩ : modularFunctionFieldFull ℓ) = ⟨x, hx'⟩ + ⟨y, hy'⟩ := rfl
     rw [this, map_add, map_add, ihx hx', ihy hy']
   | mul x y hx hy ihx ihy =>
     intro hξ'
-    have hx' : x ∈ modularFunctionFieldFull ℓ := (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
+    have hx' : x ∈ modularFunctionFieldFull ℓ :=
+      (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
       (Set.singleton_subset_iff.mpr (jq_mem_full ℓ))) hx
-    have hy' : y ∈ modularFunctionFieldFull ℓ := (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
+    have hy' : y ∈ modularFunctionFieldFull ℓ :=
+      (Algebra.adjoin_le (S := (modularFunctionFieldFull ℓ).toSubalgebra)
       (Set.singleton_subset_iff.mpr (jq_mem_full ℓ))) hy
     have : (⟨x * y, hξ'⟩ : modularFunctionFieldFull ℓ) = ⟨x, hx'⟩ * ⟨y, hy'⟩ := rfl
     rw [this, map_mul, map_mul, ihx hx', ihy hy']
 
 include hζ hσ hF hG hinv in
-
 theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ)
     (hw : IsFrickeAutFull ℓ w) (hf : f ∈ modularFunctionFieldFull ℓ) :
     ((w ⟨f, hf⟩ : modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g := by
@@ -1069,7 +1102,8 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     intro k
     have h := RealL.interpPoly_coeff (h := (ℓ : ℝ)) hℓpos
       (fun i => realL_slotH ℓ ζ σ hσ 1 1 (fun _ => (1 : ℂ)) h1F h1G i) (fun i => realL_conj ℓ ζ σ hσ i) k
-    have h' : RealL ℓ (coeffMap σ ((interpK ℓ ζ (1 : LaurentSeries ℚ) 1).coeff k)) (interpFun ℓ (fun _ => (1 : ℂ)) k) := by
+    have h' : RealL ℓ (coeffMap σ ((interpK ℓ ζ (1 : LaurentSeries ℚ) 1).coeff k)) (interpFun ℓ (fun _ => (1 : ℂ)) k) :=
+      by
       refine h.congr ?_ fun τ => rfl
       rw [← Polynomial.coeff_map, interpK, interpPoly_map]; rfl
     rw [hξ1 k, coeffMap_sigma_coeffEmb, coeffMap_qExpand] at h'
@@ -1088,10 +1122,12 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     simp only [map_mul, map_pow, iota_jqN ℓ ζ, iota_apply, ← hξ]
     rw [← Polynomial.eval_eq_sum_range' hdeg, interpK, interpPoly_eval, ← slotH_zero ℓ ζ f g, dHat]
   have hιd : iota (K := K) ℓ d = dHat ℓ ζ := by
-    have hdeg : (interpK ℓ ζ (1 : LaurentSeries ℚ) 1).natDegree < ℓ + 1 := natDegree_interpPoly_lt _ _
+    have hdeg : (interpK ℓ ζ (1 : LaurentSeries ℚ) 1).natDegree < ℓ + 1 :=
+      natDegree_interpPoly_lt _ _
     rw [hd, map_sum]
     simp only [map_mul, map_pow, iota_jqN ℓ ζ, iota_apply, ← hξ1]
-    rw [← Polynomial.eval_eq_sum_range' hdeg, interpK, interpPoly_eval, dHat, slotH_zero, map_one, map_one, one_mul]
+    rw [← Polynomial.eval_eq_sum_range' hdeg, interpK, interpPoly_eval, dHat, slotH_zero, map_one,
+      map_one, one_mul]
   have hd0 : d ≠ 0 := by
     intro h0; exact dHat_ne_zero ℓ ζ hζ (by rw [h0, map_zero] at hιd; exact hιd.symm)
   have hfd : f * d = x := iota_injective (K := K) ℓ (by rw [map_mul, hιd, hιx])
@@ -1149,7 +1185,8 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     exact h.congr rfl fun τ => hXpt F (ModularGroup.S • τ)
   have hrd' : RealL ℓ (coeffMap castC d') (fun τ =>
       ∏ m ∈ Finset.univ.erase (0 : Fin (ℓ + 1)), (slotJ ℓ 0 (ModularGroup.S • τ) - slotJ ℓ m (ModularGroup.S • τ))) := by
-    have h := realL_sum_qExpand_mul_jq_pow ℓ (ℓ + 1) ξ1 (fun k => interpFun ℓ (fun _ => (1 : ℂ)) k) hreal1
+    have h :=
+      realL_sum_qExpand_mul_jq_pow ℓ (ℓ + 1) ξ1 (fun k => interpFun ℓ (fun _ => (1 : ℂ)) k) hreal1
       (fun k γ τ => interpFun_smul ℓ (fun _ => (1 : ℂ)) h1inv k γ τ)
     refine h.congr rfl fun τ => ?_
     rw [hXpt (fun _ => (1 : ℂ)) (ModularGroup.S • τ), one_mul]
@@ -1177,7 +1214,8 @@ end QExpN
 end ModularCurve
 end
 
-theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (f g : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hG : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((g.coeff m : ℚ) : ℂ) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularGroup.S • τ))) (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : UpperHalfPlane, F (γ • τ) = F τ) (hf : f ∈ ModularCurve.modularFunctionFieldFull ℓ) : ((ModularCurve.frickeInvolutionFull ℓ ⟨f, hf⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g := by
+theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (f g : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hG : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((g.coeff m : ℚ) : ℂ) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularGroup.S • τ))) (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : UpperHalfPlane, F (γ • τ) = F τ) (hf : f ∈ ModularCurve.modularFunctionFieldFull ℓ) :
+    ((ModularCurve.frickeInvolutionFull ℓ ⟨f, hf⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g := by
   have hℓ : Fact (Nat.Prime ℓ) := inferInstance
   have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
   have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
@@ -1203,6 +1241,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (f g : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hG : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((g.coeff m : ℚ) : ℂ) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularGroup.S • τ))) (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : UpperHalfPlane, F (γ • τ) = F τ) (hf : f ∈ ModularCurve.modularFunctionFieldFull ℓ) : ((ModularCurve.frickeInvolutionFull ℓ ⟨f, hf⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g := _root_.P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.solution ℓ f g F hF hG hinv hf
+theorem ModularCurve.coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (f g : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hG : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((g.coeff m : ℚ) : ℂ) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularGroup.S • τ))) (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : UpperHalfPlane, F (γ • τ) = F τ) (hf : f ∈ ModularCurve.modularFunctionFieldFull ℓ) :
+    ((ModularCurve.frickeInvolutionFull ℓ ⟨f, hf⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g :=
+  solution ℓ f g F hF hG hinv hf
 
 end publicSection

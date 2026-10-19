@@ -81,7 +81,8 @@ theorem mem_iff_le_one {f : FF} : f ∈ w.toValuationSubring ↔ w.adicValuation
   Place.mem_iff_adicValuation_le_one w
 
 theorem ord_nonneg_iff {f : FF} (hf : f ≠ 0) : 0 ≤ w.ord f ↔ w.adicValuation f ≤ 1 := by
-  rw [Place.ord, neg_nonneg, WithZero.log_le_iff_le_exp (w.adicValuation_ne_zero hf), WithZero.exp_zero]
+  rw [Place.ord, neg_nonneg, WithZero.log_le_iff_le_exp (w.adicValuation_ne_zero hf),
+    WithZero.exp_zero]
 
 theorem ord_pos_iff {f : FF} (hf : f ≠ 0) : 0 < w.ord f ↔ w.adicValuation f < 1 := by
   rw [Place.ord, neg_pos, ← WithZero.log_one,
@@ -104,7 +105,8 @@ theorem mem_of_ord_nonneg {f : FF} (h : 0 ≤ w.ord f) : f ∈ w.toValuationSubr
 theorem ord_pow (f : FF) (n : ℕ) : w.ord (f ^ n) = n * w.ord f := by
   rw [← zpow_natCast, Place.ord_zpow]
 
-theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) : w.adicValuation (algebraMap K FF c) = 1 := by
+theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) :
+    w.adicValuation (algebraMap K FF c) = 1 := by
   apply le_antisymm (w.adicValuation_algebraMap_le_one c)
   have h1 : w.adicValuation (algebraMap K FF c) * w.adicValuation (algebraMap K FF c⁻¹) = 1 := by
     rw [← map_mul, ← map_mul, mul_inv_cancel₀ hc, map_one, map_one]
@@ -119,11 +121,13 @@ theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) : w.adicValuation (algeb
 theorem ord_algebraMap {c : K} (hc : c ≠ 0) : w.ord (algebraMap K FF c) = 0 := by
   rw [Place.ord, adicValuation_algebraMap w hc, WithZero.log_one, neg_zero]
 
-theorem ord_sub_algebraMap_eq_zero_of_ord_pos {t : FF} (ht : t ≠ 0) {c : K} (hc : c ≠ 0) (h : 0 < w.ord t) :
+theorem ord_sub_algebraMap_eq_zero_of_ord_pos {t : FF} (ht : t ≠ 0) {c : K} (hc : c ≠ 0)
+    (h : 0 < w.ord t) :
     w.ord (t - algebraMap K FF c) = 0 := by
   have hv : w.adicValuation t < w.adicValuation (algebraMap K FF c) := by
     rw [adicValuation_algebraMap w hc]; exact (ord_pos_iff w ht).1 h
-  rw [Place.ord, Valuation.map_sub_swap, Valuation.map_sub_eq_of_lt_left _ hv, adicValuation_algebraMap w hc,
+  rw [Place.ord, Valuation.map_sub_swap, Valuation.map_sub_eq_of_lt_left _ hv,
+    adicValuation_algebraMap w hc,
     WithZero.log_one, neg_zero]
 
 theorem ord_sub_algebraMap_eq_of_ord_neg {t : FF} (ht : t ≠ 0) (c : K) (h : w.ord t < 0) :
@@ -132,16 +136,19 @@ theorem ord_sub_algebraMap_eq_of_ord_neg {t : FF} (ht : t ≠ 0) (c : K) (h : w.
     lt_of_le_of_lt (w.adicValuation_algebraMap_le_one c) ((ord_neg_iff w ht).1 h)
   rw [Place.ord, Place.ord, Valuation.map_sub_eq_of_lt_left _ hv]
 
-theorem ord_eq_zero_of_ord_sub_algebraMap_pos {t : FF} {c : K} (hc : c ≠ 0) (htc : t - algebraMap K FF c ≠ 0)
+theorem ord_eq_zero_of_ord_sub_algebraMap_pos {t : FF} {c : K} (hc : c ≠ 0)
+    (htc : t - algebraMap K FF c ≠ 0)
     (h : 0 < w.ord (t - algebraMap K FF c)) : w.ord t = 0 := by
   have hv : w.adicValuation (t - algebraMap K FF c) < w.adicValuation (algebraMap K FF c) := by
     rw [adicValuation_algebraMap w hc]; exact (ord_pos_iff w htc).1 h
   have : t = (t - algebraMap K FF c) + algebraMap K FF c := by ring
-  rw [Place.ord, this, Valuation.map_add_eq_of_lt_right _ hv, adicValuation_algebraMap w hc, WithZero.log_one, neg_zero]
+  rw [Place.ord, this, Valuation.map_add_eq_of_lt_right _ hv, adicValuation_algebraMap w hc,
+    WithZero.log_one, neg_zero]
 
 end Ord
 
-theorem isIntegral_adjoin_coe {K : Type*} {L : Type*} [Field K] [Field L] [Algebra K L] {E : IntermediateField K L}
+theorem isIntegral_adjoin_coe {K : Type*} {L : Type*} [Field K] [Field L] [Algebra K L]
+    {E : IntermediateField K L}
     (t z : ↥E) (hz : IsIntegral (Algebra.adjoin K ({t} : Set ↥E)) z) :
     IsIntegral (Algebra.adjoin K ({(t : L)} : Set L)) (z : L) := by
   classical
@@ -158,9 +165,11 @@ theorem isIntegral_adjoin_coe {K : Type*} {L : Type*} [Field K] [Field L] [Algeb
     rw [hPm.as_sum, Polynomial.eval₂_add, Polynomial.eval₂_X_pow, Polynomial.eval₂_finsetSum] at h
     simp only [Polynomial.eval₂_mul, Polynomial.eval₂_C, Polynomial.eval₂_X_pow] at h
     exact h
-  have hmemL : ∀ i, Polynomial.aeval (t : L) (c i) ∈ Algebra.adjoin K ({(t : L)} : Set L) := fun i => by
+  have hmemL : ∀ i, Polynomial.aeval (t : L) (c i) ∈ Algebra.adjoin K ({(t : L)} : Set L) :=
+    fun i => by
     rw [Algebra.adjoin_singleton_eq_range_aeval]; exact ⟨c i, rfl⟩
-  have hrelL : (z : L) ^ n + ∑ i ∈ Finset.range n, Polynomial.aeval (t : L) (c i) * (z : L) ^ i = 0 := by
+  have hrelL : (z : L) ^ n + ∑ i ∈ Finset.range n, Polynomial.aeval (t : L) (c i) * (z : L) ^ i = 0 :=
+    by
     have h := congrArg (fun x : ↥E => (x : L)) hrelE
     push_cast at h
     rw [← h]
@@ -180,7 +189,8 @@ theorem isIntegral_adjoin_coe {K : Type*} {L : Type*} [Field K] [Field L] [Algeb
     refine lt_of_le_of_lt (Polynomial.degree_C_mul_X_pow_le i _) ?_
     exact WithBot.coe_lt_coe.2 (Finset.mem_range.1 hi)
   refine ⟨Q, hQm, ?_⟩
-  simp only [Q, Polynomial.eval₂_add, Polynomial.eval₂_X_pow, Polynomial.eval₂_finsetSum, Polynomial.eval₂_mul,
+  simp only [Q, Polynomial.eval₂_add, Polynomial.eval₂_X_pow, Polynomial.eval₂_finsetSum,
+    Polynomial.eval₂_mul,
     Polynomial.eval₂_C]
   exact hrelL
 
@@ -251,13 +261,15 @@ theorem solution
       by_cases h0 : 0 < w.ord j <;> by_cases h1 : 0 < w.ord (j - algebraMap K _ 1728)
       · rw [ite_eq_left h0, ite_eq_left h1] at hDw
         have e1 := Int.ediv_mul_le (2 * (m : ℤ) * w.ord j) (by norm_num : (3 : ℤ) ≠ 0)
-        have e2 := Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
+        have e2 :=
+          Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
         push_cast; nlinarith
       · rw [ite_eq_left h0, ite_eq_right h1, add_zero] at hDw
         have e1 := Int.ediv_mul_le (2 * (m : ℤ) * w.ord j) (by norm_num : (3 : ℤ) ≠ 0)
         push_cast; nlinarith
       · rw [ite_eq_right h0, ite_eq_left h1, zero_add] at hDw
-        have e2 := Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
+        have e2 :=
+          Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
         have : w.ord j = 0 := le_antisymm (not_lt.1 h0) hj
         rw [this]; push_cast; nlinarith
       · rw [ite_eq_right h0, ite_eq_right h1, add_zero] at hDw
@@ -265,7 +277,8 @@ theorem solution
         rw [this]; push_cast; nlinarith
     · intro hj
       rcases lt_or_eq_of_le hj with hneg | hzero
-      · have hc : w.ord (j - algebraMap K _ 1728) = w.ord j := ord_sub_algebraMap_eq_of_ord_neg w hj0 1728 hneg
+      · have hc : w.ord (j - algebraMap K _ 1728) = w.ord j :=
+          ord_sub_algebraMap_eq_of_ord_neg w hj0 1728 hneg
         rw [ite_eq_right (show ¬ 0 < w.ord j from by omega), ite_eq_right (show ¬ 0 < w.ord (j - algebraMap K _ 1728) from by omega),
           ite_eq_left hneg, zero_add, zero_add] at hDw
         rw [hc]; nlinarith
@@ -274,7 +287,8 @@ theorem solution
         rw [ite_eq_right (show ¬ 0 < w.ord j from by omega), ite_eq_right (show ¬ w.ord j < 0 from by omega), zero_add, add_zero] at hDw
         by_cases h1 : 0 < w.ord (j - algebraMap K _ 1728)
         · rw [ite_eq_left h1] at hDw
-          have e2 := Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
+          have e2 :=
+            Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
           rw [hzero]; nlinarith
         · rw [ite_eq_right h1] at hDw
           rw [hzero]; nlinarith
@@ -335,6 +349,7 @@ theorem ModularCurve.isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFlo
           (ModularCurve.jqModC K - algebraMap K (LaurentSeries K) 1728) ^ (3 * m)) ∧
       IsIntegral ↥(Algebra.adjoin K ({(ModularCurve.jqModC K)⁻¹} : Set (LaurentSeries K)))
         ((G : LaurentSeries K) ^ 2 * ModularCurve.jqModC K ^ m *
-          (ModularCurve.jqModC K - algebraMap K (LaurentSeries K) 1728) ^ m) := _root_.P2MW.S_ModularCurve_isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor.solution K F y hy m D hD G hG
+          (ModularCurve.jqModC K - algebraMap K (LaurentSeries K) 1728) ^ m) :=
+  solution K F y hy m D hD G hG
 
 end publicSection

@@ -72,6 +72,8 @@ end privateSection
 public section publicSection
 
 theorem IsAddCyclic.of_squarefree_natCard
-    {A : Type*} [AddCommGroup A] (hA : Squarefree (Nat.card A)) : IsAddCyclic A := _root_.P2MW.S_IsAddCyclic_of_squarefree_natCard.solution hA
+    {A : Type*} [AddCommGroup A] (hA : Squarefree (Nat.card A))
+    : IsAddCyclic A :=
+  solution hA
 
 end publicSection

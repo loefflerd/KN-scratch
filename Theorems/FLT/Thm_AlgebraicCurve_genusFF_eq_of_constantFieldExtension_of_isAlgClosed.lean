@@ -97,6 +97,7 @@ theorem AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed (K F 
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤) :
-    genusFF K' F' = genusFF K F := _root_.P2MW.S_AlgebraicCurve_genusFF_eq_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hfg' hgen
+    genusFF K' F' = genusFF K F :=
+  solution K F K' F' hfg hfg' hgen
 
 end publicSection

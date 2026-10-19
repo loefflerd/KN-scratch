@@ -67,7 +67,9 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jNum jNumQ jq ofPowerSeries_coeff_of_neg jq_pow qTwist qTwist_coeff PhiGen.PhiGenDescends coeffEmb coeffEmb_coeff"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jNum jNumQ jq \
+  ofPowerSeries_coeff_of_neg jq_pow qTwist qTwist_coeff PhiGen.PhiGenDescends coeffEmb \
+  coeffEmb_coeff"
 p2m_open "ModularCurve"
 
 namespace PhiGen
@@ -85,7 +87,7 @@ private theorem intCoeffs_jq_pow (n : ℕ) : IntCoeffs (jq ^ n) := by
     have hcast : (m - -(n : ℤ)) = (((m - -(n : ℤ)).toNat : ℕ) : ℤ) :=
       (Int.toNat_of_nonneg (not_lt.mp hneg)).symm
     rw [hcast, HahnSeries.ofPowerSeries_apply_coeff]
-    show PowerSeries.coeff _ (jNumQ ^ n) = _
+    change PowerSeries.coeff _ (jNumQ ^ n) = _
     rw [jNumQ, ← map_pow, PowerSeries.coeff_map]
     rfl
 
@@ -284,8 +286,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) : IntCoeffs (c k) :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
+    {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) :
+    IntCoeffs (c k) :=
   ModularCurve.PhiGen.PhiGenDescends.intCoeffs hc hζ1 k
 
 end S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs
@@ -298,6 +301,10 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.PhiGenDescends.intCoeffs {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) : IntCoeffs (c k) := _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.solution hc hζ1 k
+theorem ModularCurve.PhiGen.PhiGenDescends.intCoeffs {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ}
+    [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c)
+    (hζ1 : ζ ^ ℓ = 1) (k : ℕ) :
+    IntCoeffs (c k) :=
+  solution hc hζ1 k
 
 end publicSection

@@ -79,7 +79,8 @@ namespace P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.ModularCurve IsDedekindDomain WithZero"
+p2m_open "AlgebraicCurve ModularCurve \
+  P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.ModularCurve IsDedekindDomain WithZero"
 
 namespace B2Peo3
 
@@ -124,7 +125,8 @@ theorem ord_eq_one_of_valuation_eq (w : Place K F) {v' : Valuation F ℤᵐ⁰}
     rw [← hϖ]
     exact (hE ϖ x).mp hϖle
   have hle' : log (w.adicValuation x) ≤ -1 := by
-    have hlog : log (w.adicValuation x) < 0 := (log_lt_iff_lt_exp hu0).mpr (by rw [exp_zero]; exact hlt)
+    have hlog : log (w.adicValuation x) < 0 :=
+      (log_lt_iff_lt_exp hu0).mpr (by rw [exp_zero]; exact hlt)
     omega
   have hge' : -1 ≤ log (w.adicValuation x) := (le_log_iff_exp_le hu0).mpr hge
   simp only [Place.ord]
@@ -173,7 +175,6 @@ theorem polyEquiv_X_sub_C (c : K) :
   simp [polyEquiv, Subalgebra.equivOfEq_apply, AlgEquiv.ofInjective_apply]
 
 include htr in
-
 theorem prime_linGen (c : K) : Prime (linGen t c) := by
   rw [← polyEquiv_X_sub_C t htr c, MulEquiv.prime_iff]
   exact Polynomial.prime_X_sub_C c
@@ -211,7 +212,7 @@ theorem forall_algebraMap_mem (v : Place K (IntermediateField.adjoin K ({t} : Se
     algebraMap (Algebra.adjoin K ({t} : Set F)) (IntermediateField.adjoin K ({t} : Set F)) r ∈
       v.toValuationSubring := by
   obtain ⟨x, hx⟩ := r
-  show (⟨x, IntermediateField.algebra_adjoin_le_adjoin K _ hx⟩ :
+  change (⟨x, IntermediateField.algebra_adjoin_le_adjoin K _ hx⟩ :
       IntermediateField.adjoin K ({t} : Set F)) ∈ v.toValuationSubring
   induction hx using Algebra.adjoin_induction with
   | mem y hy =>
@@ -223,7 +224,6 @@ theorem forall_algebraMap_mem (v : Place K (IntermediateField.adjoin K ({t} : Se
   | mul y z hy hz ihy ihz => exact mul_mem ihy ihz
 
 include htr in
-
 theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : Set F))) (c : K)
     (hv : 0 < v.ord (IntermediateField.AdjoinSimple.gen K t - algebraMap K _ c)) :
     v = basePlace t htr c := by
@@ -259,7 +259,6 @@ theorem algebraMap_gen_sub (c : K) :
     ← IsScalarTower.algebraMap_apply]
 
 omit [CharZero K] in
-
 theorem ord_sub_eq_mul (w : Place K F) (c : K) :
     w.ord (t - algebraMap K F c) =
       w.ramificationIndex (IntermediateField.adjoin K ({t} : Set F)) *
@@ -269,7 +268,6 @@ theorem ord_sub_eq_mul (w : Place K F) (c : K) :
 
 omit [CharZero K] in
 include htr in
-
 theorem restrict_eq_basePlace_iff (w : Place K F) (c : K) :
     w.restrict (IntermediateField.adjoin K ({t} : Set F)) = basePlace t htr c ↔
       0 < w.ord (t - algebraMap K F c) := by
@@ -285,14 +283,12 @@ theorem restrict_eq_basePlace_iff (w : Place K F) (c : K) :
 
 omit [CharZero K] in
 include htr in
-
 theorem ramificationIndex_eq_ord (w : Place K F) (c : K) (h : 0 < w.ord (t - algebraMap K F c)) :
     (w.ramificationIndex (IntermediateField.adjoin K ({t} : Set F)) : ℤ) =
       w.ord (t - algebraMap K F c) := by
   rw [ord_sub_eq_mul t w c, (restrict_eq_basePlace_iff t htr w c).mpr h, ord_basePlace, mul_one]
 
 omit [CharZero K] in
-
 theorem inertiaDeg_eq_one (w : Place K F) (hw : w.deg = 1) :
     w.inertiaDeg (IntermediateField.adjoin K ({t} : Set F)) = 1 := by
   have h := w.deg_restrict_mul_inertiaDeg (F := IntermediateField.adjoin K ({t} : Set F))
@@ -300,7 +296,6 @@ theorem inertiaDeg_eq_one (w : Place K F) (hw : w.deg = 1) :
   exact Nat.eq_one_of_mul_eq_one_left h
 
 include htr in
-
 theorem sum_ord_sub_eq_finrank (hdeg : ∀ w : Place K F, w.deg = 1) (c : K)
     (S : Finset (Place K F)) (hS : ∀ w, w ∈ S ↔ 0 < w.ord (t - algebraMap K F c)) :
     ∑ w ∈ S, w.ord (t - algebraMap K F c) =
@@ -316,7 +311,6 @@ theorem sum_ord_sub_eq_finrank (hdeg : ∀ w : Place K F, w.deg = 1) (c : K)
     ramificationIndex_eq_ord t htr w c ((hS w).mp hw)]
 
 include htr in
-
 theorem exists_finset_ord_sub_pos (c : K) :
     ∃ S : Finset (Place K F), ∀ w, w ∈ S ↔ 0 < w.ord (t - algebraMap K F c) :=
   ⟨(basePlace t htr c).fiberOver F, fun w => by
@@ -368,12 +362,14 @@ scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
 end B2Peo3
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq"
+p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi \
+  relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi \
+  dedekindPsi_pos transcendental_coeffEmb_jq"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open B2Peo3 in
-
-private theorem ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
+private theorem ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi (N : ℕ) [NeZero N]
+    (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1)
     (S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)))
     (hS : ∀ v, v ∈ S ↔
@@ -386,8 +382,8 @@ private theorem ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi (N : ℕ) [NeZero N
 
 p2m_open_scoped "ModularCurve" in
 open B2Peo3 in
-
-private theorem ModularCurve.exists_finset_ord_jBar_sub_pos (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ) :
+private theorem ModularCurve.exists_finset_ord_jBar_sub_pos (N : ℕ) [NeZero N]
+    (j₀ : AlgebraicClosure ℚ) :
     ∃ S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)), ∀ v, v ∈ S ↔
       0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) :=
   exists_finset_ord_sub_pos (jBar N : modularFunctionFieldBar N)
@@ -396,7 +392,6 @@ private theorem ModularCurve.exists_finset_ord_jBar_sub_pos (N : ℕ) [NeZero N]
 end
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.ModularCurve in
-
 theorem solution (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1)
     (S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)))
@@ -422,6 +417,7 @@ theorem ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi (N : ℕ) [NeZero N] (j₀ 
     (hS : ∀ v, v ∈ S ↔
       0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)) :
     ∑ v ∈ S, v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) =
-      dedekindPsi N := _root_.P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.solution N j₀ hdeg S hS
+      dedekindPsi N :=
+  solution N j₀ hdeg S hS
 
 end publicSection

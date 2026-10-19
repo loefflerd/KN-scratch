@@ -66,10 +66,11 @@ namespace P2MW.S_AlgebraicCurve_constantsAreBase_of_isAlgClosed
 open AlgebraicCurve
 
 theorem solution (K F : Type*) [Field K] [Field F] [Algebra K F]
-    [DecidableEq (RatFunc K)] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
+    [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
     [IsAlgClosed K] [AlgebraicCurve.IsCurveOver K F] :
     AlgebraicCurve.ConstantsAreBase K F := by
+  classical
   obtain ⟨v⟩ := AlgebraicCurve.RationalFunctionField.nonempty_place_of_ratFunc_tower K F
   have hrat : v.IsRational := AlgebraicCurve.Place.isRational_of_isAlgClosed v
   exact AlgebraicCurve.constantsAreBase_of_exists_isRational v hrat
@@ -83,10 +84,14 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.constantsAreBase_of_isAlgClosed (K F : Type*) [Field K] [Field F] [Algebra K F]
-    [DecidableEq (RatFunc K)] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
+theorem AlgebraicCurve.constantsAreBase_of_isAlgClosed (K F : Type*) [Field K] [Field F]
+    [Algebra K F]
+    [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
     [IsAlgClosed K] [AlgebraicCurve.IsCurveOver K F] :
-    AlgebraicCurve.ConstantsAreBase K F := _root_.P2MW.S_AlgebraicCurve_constantsAreBase_of_isAlgClosed.solution K F
+    AlgebraicCurve.ConstantsAreBase K F := by
+  classical
+  exact
+    solution K F
 
 end publicSection

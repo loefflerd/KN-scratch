@@ -102,7 +102,6 @@ theorem laurentBaseChange_full_eq_adjoin (L : Type*) [Field L] [Algebra ℚ L] (
     exact coeffEmb_mem_laurentBaseChange L (IntermediateField.subset_adjoin ℚ _ hy)
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
     (hjq : jq ∈ modularFunctionFieldFull N) :
     FiniteDimensional
@@ -145,12 +144,12 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
         (coeffEmb L).comp evalAtJ := by
       refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
       rw [RingHom.comp_apply, RingHom.comp_apply, RingHom.comp_apply, evalAtJ_X]
-      show (algebraMap _ (LaurentSeries L)) (algebraMap _ _ (Polynomial.eval₂ (Int.castRingHom _) J' X)) =
+      change (algebraMap _ (LaurentSeries L)) (algebraMap _ _ (Polynomial.eval₂ (Int.castRingHom _) J' X)) =
         coeffEmb L jq
       rw [Polynomial.eval₂_X]
       rfl
     rw [map_zero, Polynomial.hom_eval₂, Polynomial.eval₂_map, hcomp]
-    show Polynomial.eval₂ ((coeffEmb L).comp evalAtJ) (coeffEmb L (qExpand ℚ d jq)) data.Φ = 0
+    change Polynomial.eval₂ ((coeffEmb L).comp evalAtJ) (coeffEmb L (qExpand ℚ d jq)) data.Φ = 0
     rw [← Polynomial.hom_eval₂]
     have h0 : Polynomial.eval₂ evalAtJ (qExpand ℚ d jq) data.Φ = 0 := data.eval_eq_zero
     rw [h0, map_zero]
@@ -216,6 +215,7 @@ theorem ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_of_neZero (M : ℕ) [N
         ({⟨coeffEmb (AlgebraicClosure ℚ) jq,
             coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full M)⟩}
           : Set (modularFunctionFieldBar M)))
-      (modularFunctionFieldBar M) := _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_of_neZero.solution M
+      (modularFunctionFieldBar M) :=
+  solution M
 
 end publicSection

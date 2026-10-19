@@ -63,7 +63,9 @@ open scoped MatrixGroups
 open UpperHalfPlane
 
 namespace ModularCurve
-p2m_export "ModularCurve" "intervalIntegrable_periodIntegrandOf periodAlongOf periodAlongOf_apply periodOf HasEquivariantPrimitiveOf clamp01_of_mem segmentPoint continuous_segmentPoint segmentPath coe_segmentPath period"
+p2m_export "ModularCurve" "intervalIntegrable_periodIntegrandOf periodAlongOf periodAlongOf_apply \
+  periodOf HasEquivariantPrimitiveOf clamp01_of_mem segmentPoint continuous_segmentPoint \
+  segmentPath coe_segmentPath period"
 namespace PeriodFTCOf
 p2m_open "ModularCurve"
 
@@ -155,6 +157,7 @@ theorem ModularCurve.periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf (Γ : Su
     (f : CuspForm Γ 2) {F : UpperHalfPlane → ℂ}
     (hF : ModularCurve.HasEquivariantPrimitiveOf Γ f F) (γ : Γ) :
     ModularCurve.periodOf Γ γ f =
-      F ((γ : SL(2, ℤ)) • UpperHalfPlane.I) - F UpperHalfPlane.I := _root_.P2MW.S_ModularCurve_periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf.solution Γ f hF γ
+      F ((γ : SL(2, ℤ)) • UpperHalfPlane.I) - F UpperHalfPlane.I :=
+  solution Γ f hF γ
 
 end publicSection

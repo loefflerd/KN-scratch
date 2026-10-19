@@ -70,12 +70,27 @@ namespace P2MW.S_AlgebraicCurve_residueTraceCompletionCommute
 
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 end AlgebraicCurve
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end AlgebraicCurve.Place
 namespace IntermediateField
 p2m_export "IntermediateField" "toAlgebra val isIntegral_iff ext comap mem_top"
@@ -95,17 +110,21 @@ namespace LinearMap
 p2m_export "LinearMap" "codRestrict inr ext isIntegral"
 end LinearMap
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 namespace KwF4R1V391a
 p2m_export "ModularCurve.KwF4R1V391a" "KwF4R1V391aResidueTraceCompletionCommute"
 end ModularCurve.KwF4R1V391a
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
+p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement \
+  KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
 end ModularCurve.KwF4gRRTate
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 end ModularCurve
 namespace MonoidWithZeroHom
 p2m_export "MonoidWithZeroHom" "ext inr"
@@ -129,14 +148,17 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "LinearMap P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.LinearMap Submodule P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Submodule"
+p2m_open "LinearMap P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Submodule"
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
+p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement \
+  KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
 end ModularCurve.KwF4gRRTate
 
 end
@@ -147,24 +169,46 @@ end
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain \
+  WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero IsLocalRing \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 p2m_open "AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end Place
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end Place
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end Place
 
 end AlgebraicCurve
@@ -175,14 +219,26 @@ end
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain \
+  WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero IsLocalRing \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place"
 
 section SinglePlace
@@ -227,7 +283,12 @@ end
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 p2m_open "AlgebraicCurve"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
@@ -235,7 +296,12 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra.IsIntegral F F'] [HasPrincipalDivisors K F']
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end Place
 
 end AlgebraicCurve
@@ -248,12 +314,27 @@ section
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero MonoidWithZeroHom P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.MonoidWithZeroHom"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain.HeightOneSpectrum \
+  IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing WithZero \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero MonoidWithZeroHom \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.MonoidWithZeroHom"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end AlgebraicCurve.Place
 
 end
@@ -265,12 +346,24 @@ section
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain"
+p2m_open "Polynomial P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Polynomial IsLocalRing \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing IsDedekindDomain \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end AlgebraicCurve.Place
 
 end
@@ -282,14 +375,29 @@ section
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain.HeightOneSpectrum \
+  IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing WithZero \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
 
-p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valued WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
+p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valued WithZero \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end AlgebraicCurve.Place
 
 end
@@ -299,30 +407,48 @@ end
 
 noncomputable section
 
-p2m_open "KaehlerDifferential P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.KaehlerDifferential"
+p2m_open "KaehlerDifferential \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.KaehlerDifferential"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 p2m_open "AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
+p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
+  ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring \
+  dCoord DCoordGenerates differentialCoeff uniformizer localResidue \
+  localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos \
+  exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion \
+  adicCompletionIntegers"
 end Place
 
 end AlgebraicCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 end ModularCurve
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 end AlgebraicCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 end ModularCurve
 
 end
@@ -331,10 +457,16 @@ end
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain \
+  WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 end AlgebraicCurve
 
 end
@@ -348,14 +480,23 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero Module P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Module IsLocalRing P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing Module.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain \
+  WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero Module \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Module IsLocalRing \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsLocalRing Module.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 end AlgebraicCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 end ModularCurve
 
 end
@@ -367,12 +508,20 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.GF24a9RRDx AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.GF24a9RRDx AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place IsDedekindDomain \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IsDedekindDomain"
 
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
+  HasCanonicalLocalResidueKStar kaehlerResidueTerm \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
+  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  tateChainRule"
 p2m_open "AlgebraicCurve"
 
 section LocalResidueCompletion
@@ -417,15 +566,21 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.LinearMap Submodule P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Submodule"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.KwF4gRRTate"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve \
+  AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place \
+  LinearMap P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Submodule"
+p2m_open "ModularCurve.KwF4gRRTate \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.KwF4gRRTate"
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
+p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement \
+  KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
 end ModularCurve.KwF4gRRTate
 
 end
@@ -437,15 +592,22 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.GF24a9RRDx"
-p2m_open "ModularCurve.KwF4R1V391a P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.KwF4R1V391a ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.KwF4gRRTate"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve \
+  AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.GF24a9RRDx"
+p2m_open "ModularCurve.KwF4R1V391a \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.KwF4R1V391a \
+  ModularCurve.KwF4gRRTate \
+  P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.KwF4gRRTate"
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
+p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite \
+  KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
+p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement \
+  KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section Wire
@@ -523,6 +685,7 @@ theorem AlgebraicCurve.residueTraceCompletionCommute
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.IsCurveOver K E] [PerfectField K]
     [Nontrivial Ω[F⁄K]] [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
     [Algebra.IsSeparable E F] :
-    ModularCurve.KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute K F E := _root_.P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.solution
+    ModularCurve.KwF4R1V391a.KwF4R1V391aResidueTraceCompletionCommute K F E :=
+  solution
 
 end publicSection

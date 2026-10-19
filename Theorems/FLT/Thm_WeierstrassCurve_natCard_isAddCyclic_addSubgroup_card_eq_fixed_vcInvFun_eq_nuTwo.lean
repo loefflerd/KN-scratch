@@ -118,17 +118,21 @@ noncomputable def vcHom (γ : VariableChange L) (W : WeierstrassCurve L) (hW : �
       map_zero' := Point.vcInvFun_zero
       map_add' := Point.vcInvFun_add γ W.toAffine }
 
-theorem vcHom_apply (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W) (P : W.toAffine.Point) :
+theorem vcHom_apply (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W)
+    (P : W.toAffine.Point) :
     vcHom γ W hW P = castPt hW (Point.vcInvFun γ W.toAffine P) := rfl
 
-theorem heq_vcHom (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W) (P : W.toAffine.Point) :
+theorem heq_vcHom (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W)
+    (P : W.toAffine.Point) :
     HEq (Point.vcInvFun γ W.toAffine P) (vcHom γ W hW P) := heq_castPt hW _
 
-theorem xy_vcHom (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W) (P : W.toAffine.Point) :
+theorem xy_vcHom (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W)
+    (P : W.toAffine.Point) :
     xy (vcHom γ W hW P) = (xy P).map (fun q => (vcXInv γ q.1, vcYInv γ q.1 q.2)) := by
   rw [vcHom_apply, xy_castPt, xy_vcInvFun]
 
-theorem forall_exists_heq_iff_map_eq (γ : VariableChange L) (W : WeierstrassCurve L) (hW : γ • W = W)
+theorem forall_exists_heq_iff_map_eq (γ : VariableChange L) (W : WeierstrassCurve L)
+    (hW : γ • W = W)
     (hinj : Function.Injective (vcHom γ W hW)) (H : AddSubgroup W.toAffine.Point) [Finite H] :
     (∀ T ∈ H, ∃ T' ∈ H, HEq (Point.vcInvFun γ W.toAffine T) T') ↔ H.map (vcHom γ W hW) = H := by
   constructor
@@ -161,7 +165,8 @@ theorem solution
   set W : WeierstrassCurve L := ⟨0, 0, 0, A, 0⟩ with hWdef
   set γ : VariableChange L := ⟨u, 0, 0, 0⟩ with hγdef
   have hΔ : W.Δ = -64 * A ^ 3 := by
-    simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
+    simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄,
+      WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
   have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hA])⟩
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one u hu A
@@ -174,13 +179,15 @@ theorem solution
     rw [xy_vcHom, xy_vcHom, xy_neg]
     rcases xy P with _ | ⟨x, y⟩
     · rfl
-    · simp only [Option.map_some, hγdef, hWdef, vcXInv, vcYInv, Affine.negY, sub_zero, zero_mul,         Option.some.injEq, Prod.mk.injEq]
+    · simp only [Option.map_some, hγdef, hWdef, vcXInv, vcYInv, Affine.negY, sub_zero, zero_mul,
+        Option.some.injEq, Prod.mk.injEq]
       constructor
       · linear_combination (((u⁻¹ : Lˣ) : L) ^ 2 * x - x) * hi2
       · linear_combination (((u⁻¹ : Lˣ) : L) ^ 4 * y - ((u⁻¹ : Lˣ) : L) ^ 2 * y + y) * hi2
   have σinj : Function.Injective σ := fun a b h => by
     have h2 := congrArg σ h; rwa [hσ, hσ, neg_inj] at h2
-  have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a := by
+  have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a :=
+    by
     intro p hp _
     obtain ⟨T, hT, hk⟩ :=
       WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg_one A hA u hu p hp
@@ -190,7 +197,7 @@ theorem solution
   obtain ⟨e⟩ : Nonempty (ZMod N × ZMod N ≃+ Submodule.torsionBy ℤ W.toAffine.Point N) := by
     have h := W.nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed (K := L) hNL
     have hb : (W⁄L) = W.toAffine := by
-      show (W.baseChange L).toAffine = W.toAffine
+      change (W.baseChange L).toAffine = W.toAffine
       rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
     rw [hb] at h
     exact h
@@ -219,6 +226,7 @@ theorem WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_
         IsAddCyclic H ∧ Nat.card H = N ∧
         ∀ T ∈ H, ∃ T' ∈ H, HEq (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L)
           (⟨0, 0, 0, A, 0⟩ : WeierstrassCurve L).toAffine T) T'}
-      = nuTwo N := _root_.P2MW.S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo.solution A hA u hu N hN
+      = nuTwo N :=
+  solution A hA u hu N hN
 
 end publicSection

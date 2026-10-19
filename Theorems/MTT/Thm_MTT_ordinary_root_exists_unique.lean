@@ -66,8 +66,8 @@ noncomputable section
 
 private lemma unit_root {K : Type*} [NormedField K] [IsAlgClosed K]
     [IsUltrametricDist K] [CharZero K] (a b : K) (ha : ‖a‖ = 1) (hb : ‖b‖ < 1) :
-    ∃! x : K, ‖x‖ = 1 ∧ x^2 - a*x + b = 0 := by
-  obtain ⟨d, hd⟩ := IsAlgClosed.exists_pow_nat_eq (a^2 - 4*b) (by decide : 0 < 2)
+    ∃! x : K, ‖x‖ = 1 ∧ x ^ 2 - a*x + b = 0 := by
+  obtain ⟨d, hd⟩ := IsAlgClosed.exists_pow_nat_eq (a ^ 2 - 4*b) (by decide : 0 < 2)
   let x := (a+d)/2
   let y := (a-d)/2
   have hs : x+y=a := by dsimp [x,y]; ring
@@ -76,7 +76,7 @@ private lemma unit_root {K : Type*} [NormedField K] [IsAlgClosed K]
   have hmax : 1 ≤ max ‖x‖ ‖y‖ := by
     rw [← ha, ← hs]; exact IsUltrametricDist.norm_add_le_max x y
   have choose_root : ∀ u v : K, u+v=a → u*v=b → ‖u‖ < 1 →
-      ∃! z : K, ‖z‖ = 1 ∧ z^2-a*z+b=0 := by
+      ∃! z : K, ‖z‖ = 1 ∧ z ^ 2-a*z+b=0 := by
     intro u v huv huv' hu
     have hvle : ‖v‖ ≤ 1 := by
       have h := IsUltrametricDist.norm_add_le_max a (-u)
@@ -96,7 +96,7 @@ private lemma unit_root {K : Type*} [NormedField K] [IsAlgClosed K]
     · intro z hz
       have hf : (z-u)*(z-v)=0 := by
         calc
-          (z-u)*(z-v) = z^2-(u+v)*z+u*v := by ring
+          (z-u)*(z-v) = z ^ 2-(u+v)*z+u*v := by ring
           _ = 0 := by rw [huv, huv']; exact hz.2
       rcases mul_eq_zero.mp hf with h | h
       · have he := sub_eq_zero.mp h
@@ -124,9 +124,9 @@ theorem solution
     simp only [map_natCast] at h
     rw [h]
     exact Padic.norm_p_lt_one
-  have hb : ‖ιp (f.epsilon p) * (p : ℂ_[p])^(k-1)‖ < 1 := by
+  have hb : ‖ιp (f.epsilon p) * (p : ℂ_[p]) ^ (k-1)‖ < 1 := by
     rw [norm_mul, norm_pow]
-    have ht : ‖(p : ℂ_[p])‖^(k-1) < 1 := pow_lt_one₀ (norm_nonneg _) hp (by omega)
+    have ht : ‖(p : ℂ_[p])‖ ^ (k-1) < 1 := pow_lt_one₀ (norm_nonneg _) hp (by omega)
     exact lt_of_le_of_lt (mul_le_of_le_one_left (pow_nonneg (norm_nonneg _) _) he) ht
   exact unit_root _ _ hord hb
 end

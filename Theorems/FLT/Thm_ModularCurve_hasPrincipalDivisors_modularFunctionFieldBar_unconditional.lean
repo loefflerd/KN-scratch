@@ -79,6 +79,7 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.hasPrincipalDivisors_modularFunctionFieldBar_unconditional (M : ℕ) [NeZero M] :
-    HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar M) := _root_.P2MW.S_ModularCurve_hasPrincipalDivisors_modularFunctionFieldBar_unconditional.solution M
+    HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar M) :=
+  solution M
 
 end publicSection

@@ -69,7 +69,8 @@ namespace P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq
 
 
 namespace HahnSeries
-p2m_export "HahnSeries" "support orderTop support_eq_empty_iff isPWO_support order mem_support coeff_mul coeff coeff_one coeff_zero map orderTop_of_ne_zero coeff_add isPWO_support' HasRamBound"
+p2m_export "HahnSeries" "support orderTop support_eq_empty_iff isPWO_support order mem_support \
+  coeff_mul coeff coeff_one coeff_zero map orderTop_of_ne_zero coeff_add isPWO_support' HasRamBound"
 namespace PuiseuxTwist
 p2m_open "HahnSeries"
 
@@ -159,7 +160,8 @@ noncomputable def rootSeq : ℕ → Kˣ
     Units.mk0 (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq m : Kˣ) : K) m.succ_pos))
       (by
         intro h0
-        have h := Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq m : Kˣ) : K) m.succ_pos)
+        have h :=
+          Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq m : Kˣ) : K) m.succ_pos)
         rw [h0, zero_pow (Nat.succ_ne_zero m)] at h
         exact (rootSeq m).ne_zero h.symm)
 
@@ -168,7 +170,7 @@ theorem rootSeq_zero : rootSeq ζ 0 = ζ := rfl
 theorem rootSeq_succ_pow (m : ℕ) : (rootSeq ζ (m + 1)) ^ (m + 1) = rootSeq ζ m := by
   apply Units.ext
   rw [Units.val_pow_eq_pow_val]
-  show (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
+  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
   exact Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)
 
 theorem rootSeq_add_pow (m j : ℕ) :
@@ -176,7 +178,8 @@ theorem rootSeq_add_pow (m j : ℕ) :
   induction j with
   | zero => simp [Nat.div_self (Nat.factorial_pos m)]
   | succ j ih =>
-    rw [← add_assoc, Nat.factorial_succ, Nat.mul_div_assoc _ (Nat.factorial_dvd_factorial (Nat.le_add_right m j)),
+    rw [← add_assoc, Nat.factorial_succ, Nat.mul_div_assoc _ (Nat.factorial_dvd_factorial
+      (Nat.le_add_right m j)),
       pow_mul, rootSeq_succ_pow, ih]
 
 theorem rootSeq_pow_of_le {m M : ℕ} (h : m ≤ M) :
@@ -205,7 +208,8 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_right x.den m))
   have e2 : (((b * x.den.factorial) / x.den : ℕ) : ℤ) * (x.den : ℤ) = b * x.den.factorial := by
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
-  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) := by
+  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) :=
+    by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
     have hq : (k : ℚ) * x.den = x.num * (b * m.factorial : ℕ) := by
@@ -237,10 +241,10 @@ variable (b)
 noncomputable def char : Multiplicative ℚ →* Kˣ where
   toFun q := charFun ζ b (Multiplicative.toAdd q)
   map_one' := by
-    show charFun ζ b 0 = 1
+    change charFun ζ b 0 = 1
     rw [charFun_eq ζ 0 0 0 (by simp), zpow_zero]
   map_mul' x y := by
-    show charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
+    change charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
       = charFun ζ b (Multiplicative.toAdd x) * charFun ζ b (Multiplicative.toAdd y)
     have hm0 : 0 < (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den :=
       Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd y).den_nz)
@@ -311,7 +315,8 @@ theorem orderTop_twist (χ : Multiplicative ℚ →* Kˣ) (z : HahnSeries ℚ K)
       rw [← HahnSeries.support_eq_empty_iff] at h ⊢
       rwa [support_twist] at h
     first
-      | rw [HahnSeries.orderTop_of_ne_zero hz, HahnSeries.orderTop_of_ne_zero hz', WithTop.coe_eq_coe]
+      | rw [HahnSeries.orderTop_of_ne_zero hz, HahnSeries.orderTop_of_ne_zero hz',
+        WithTop.coe_eq_coe]
     apply le_antisymm
     · exact Set.IsWF.min_le _ _ (by rw [support_twist]; exact Set.IsWF.min_mem _ _)
     · exact Set.IsWF.min_le _ _ (by rw [← support_twist χ z]; exact Set.IsWF.min_mem _ _)
@@ -374,6 +379,7 @@ theorem HahnSeries.hasRamBound_one_of_forall_ringEquiv_apply_eq
     (hx : ∀ σ : HahnSeries ℚ K ≃+* HahnSeries ℚ K,
       (∀ z : HahnSeries ℚ K, (σ z).orderTop = z.orderTop) →
       (∀ z : HahnSeries ℚ K, HahnSeries.HasRamBound 1 z → σ z = z) → σ x = x) :
-    HahnSeries.HasRamBound 1 x := _root_.P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq.solution hx
+    HahnSeries.HasRamBound 1 x :=
+  solution hx
 
 end publicSection

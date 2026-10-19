@@ -110,7 +110,7 @@ private lemma normalizedDerivOfComplex_eq_qParam_mul_deriv
       (deriv (UpperHalfPlane.cuspFunction 1 F) (Function.Periodic.qParam 1 (τ : ℂ)) *
         (2 * Real.pi * Complex.I * Function.Periodic.qParam 1 (τ : ℂ))) (τ : ℂ) :=
     hg.hasDerivAt.comp (τ : ℂ) (hasDerivAt_qParam_one (τ : ℂ))
-  show (2 * (Real.pi : ℂ) * Complex.I)⁻¹ * deriv (F ∘ UpperHalfPlane.ofComplex) (τ : ℂ) = _
+  change (2 * (Real.pi : ℂ) * Complex.I)⁻¹ * deriv (F ∘ UpperHalfPlane.ofComplex) (τ : ℂ) = _
   rw [Filter.EventuallyEq.deriv_eq heq, hcomp.deriv]
   have h2πI : (2 * (Real.pi : ℂ) * Complex.I) ≠ 0 := Complex.two_pi_I_ne_zero
   field_simp
@@ -288,9 +288,9 @@ private theorem coe_qExpansion_normalizedDerivOfComplex
 
 end ModularCurve
 
-p2m_open "UpperHalfPlane Complex Function.Complex Function ModularCurve P2MW.S_ModularCurve_coe_qExpansion_normalizedDerivOfComplex.ModularCurve"
+p2m_open "UpperHalfPlane Complex Function.Complex Function ModularCurve \
+  P2MW.S_ModularCurve_coe_qExpansion_normalizedDerivOfComplex.ModularCurve"
 open scoped Real Manifold in
-
 theorem solution (F : ℍ → ℂ) (hper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) 1)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F) (hbdd : UpperHalfPlane.IsBoundedAtImInfty F) :
     ((UpperHalfPlane.qExpansion 1 (Derivative.normalizedDerivOfComplex F) : PowerSeries ℂ) :
@@ -310,11 +310,13 @@ public section publicSection
 
 open UpperHalfPlane Complex Function ModularCurve
 open scoped Real Manifold
-theorem ModularCurve.coe_qExpansion_normalizedDerivOfComplex (F : ℍ → ℂ) (hper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) 1)
+theorem ModularCurve.coe_qExpansion_normalizedDerivOfComplex (F : ℍ → ℂ)
+    (hper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) 1)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F) (hbdd : UpperHalfPlane.IsBoundedAtImInfty F) :
     ((UpperHalfPlane.qExpansion 1 (Derivative.normalizedDerivOfComplex F) : PowerSeries ℂ) :
         LaurentSeries ℂ) =
       ModularCurve.thetaL ℂ
-        ((UpperHalfPlane.qExpansion 1 F : PowerSeries ℂ) : LaurentSeries ℂ) := _root_.P2MW.S_ModularCurve_coe_qExpansion_normalizedDerivOfComplex.solution F hper hhol hbdd
+        ((UpperHalfPlane.qExpansion 1 F : PowerSeries ℂ) : LaurentSeries ℂ) :=
+  solution F hper hhol hbdd
 
 end publicSection

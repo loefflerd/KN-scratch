@@ -97,7 +97,6 @@ theorem exists_isCoprime_add_mul (a c : ℤ) {q : ℕ} (hq : q ≠ 0) (hac : IsC
     exact hpa this
 
 open Matrix.SpecialLinearGroup in
-
 theorem T_zpow_mul_mul_T_zpow_apply (j j' : ℤ) (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) :
     ((ModularGroup.T ^ j * γ * ModularGroup.T ^ j' :
         Matrix.SpecialLinearGroup (Fin 2) ℤ) : Matrix (Fin 2) (Fin 2) ℤ) 1 0
@@ -158,6 +157,7 @@ public section publicSection
 theorem CongruenceSubgroup.Gamma0_le_closure_T_union_setOf_dvd (M : ℕ) {q : ℕ} (hq : q ≠ 0) :
     CongruenceSubgroup.Gamma0 M ≤ Subgroup.closure
       ({ModularGroup.T} ∪ {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ |
-        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1}) := _root_.P2MW.S_CongruenceSubgroup_Gamma0_le_closure_T_union_setOf_dvd.solution M hq
+        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1}) :=
+  solution M hq
 
 end publicSection

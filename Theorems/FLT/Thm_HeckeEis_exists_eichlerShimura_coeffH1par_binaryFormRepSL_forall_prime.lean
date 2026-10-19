@@ -119,12 +119,16 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
             T (ESbar f) = ESbar (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f))) := by
   classical
   obtain ⟨ES, hES⟩ := HeckeEis.existsEichlerShimuraMapLinear n N
-  obtain ⟨Φ, hΦ, hΦΦ⟩ := HeckeEis.exists_coeffH1par_semilinearMap_starRingEnd n (CongruenceSubgroup.Gamma0 N)
-  let ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) := Φ.comp ES
-  have hESbar : ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ESbar f = Φ (ES f) := fun f => rfl
+  obtain ⟨Φ, hΦ, hΦΦ⟩ :=
+    HeckeEis.exists_coeffH1par_semilinearMap_starRingEnd n (CongruenceSubgroup.Gamma0 N)
+  let ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) :=
+    Φ.comp ES
+  have hESbar : ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ESbar f = Φ (ES f) :=
+    fun f => rfl
   have hinj : Function.Injective ES := by
     intro a b h
-    have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b := by rw [← hES, ← hES, h]
+    have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b :=
+      by rw [← hES, ← hES, h]
     exact HeckeEis.eichlerShimuraMap_injective N n h'
   have hΦinj : Function.Injective Φ := fun x y h => by rw [← hΦΦ x, ← hΦΦ y, h]
   have hcomm : ∀ (ℓ : ℕ) [NeZero ℓ]
@@ -146,13 +150,15 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     refine ⟨fun f => ?_, fun f => ?_⟩
     · rw [hES, hES]
       exact HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T hT f
-    · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T hT f]
+    · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T
+        hT f]
   · intro ℓ hℓ hℓN T hT
     have : NeZero ℓ := ⟨hℓ.ne_zero⟩
     refine ⟨fun f => ?_, fun f => ?_⟩
     · rw [hES, hES]
       exact HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f
-    · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f]
+    · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T
+        hT f]
 
 end S_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
 end P2MW
@@ -164,7 +170,8 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime (N : ℕ) [NeZero N] (n : ℕ) :
+theorem HeckeEis.exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime (N : ℕ) [NeZero N]
+    (n : ℕ) :
     ∃ (ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ]
           HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
       (ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ]
@@ -194,6 +201,7 @@ theorem HeckeEis.exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime (
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ES f) = ES (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f)) ∧
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
-            T (ESbar f) = ESbar (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f))) := _root_.P2MW.S_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime.solution N n
+            T (ESbar f) = ESbar (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f))) :=
+  solution N n
 
 end publicSection

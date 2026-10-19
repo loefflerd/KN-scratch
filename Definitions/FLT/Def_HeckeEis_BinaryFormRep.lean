@@ -64,7 +64,8 @@ namespace HeckeEis
 open MvPolynomial ModularCurve
 open scoped MatrixGroups
 
-theorem eval_smul_of_isHomogeneous {σ : Type*} {R : Type*} [CommRing R] {φ : MvPolynomial σ R} {n : ℕ}
+theorem eval_smul_of_isHomogeneous {σ : Type*} {R : Type*} [CommRing R] {φ : MvPolynomial σ R}
+    {n : ℕ}
     (hφ : φ.IsHomogeneous n) (c : R) (x : σ → R) :
     MvPolynomial.eval (c • x) φ = c ^ n * MvPolynomial.eval x φ := by
   classical
@@ -72,8 +73,10 @@ theorem eval_smul_of_isHomogeneous {σ : Type*} {R : Type*} [CommRing R] {φ : M
   refine Finset.sum_congr rfl fun d hd => ?_
   have hdeg : ∑ i ∈ d.support, d i = n := by
     have h := hφ (MvPolynomial.mem_support_iff.mp hd)
-    simpa [Finsupp.degree, Finsupp.weight, Finsupp.sum, Finsupp.linearCombination, Finsupp.lsum] using h
-  simp only [Pi.smul_apply, smul_eq_mul, mul_pow, Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum, hdeg]
+    simpa [Finsupp.degree, Finsupp.weight, Finsupp.sum, Finsupp.linearCombination,
+      Finsupp.lsum] using h
+  simp only [Pi.smul_apply, smul_eq_mul, mul_pow, Finset.prod_mul_distrib,
+    Finset.prod_pow_eq_pow_sum, hdeg]
   ring
 
 section BinaryForms
@@ -167,7 +170,8 @@ theorem evalRow_eq_of_unit_mul {F : MvPolynomial (Fin 2) K} (hF : F ∈ BinaryFo
     funext i
     fin_cases i <;> simp [← h1, ← h2, map_mul]
   unfold evalRow
-  rw [hvec, eval_smul_of_isHomogeneous ((MvPolynomial.mem_homogeneousSubmodule _ _).mp hF), hu, one_mul]
+  rw [hvec, eval_smul_of_isHomogeneous ((MvPolynomial.mem_homogeneousSubmodule _ _).mp hF), hu,
+    one_mul]
 
 noncomputable def binaryFormEval : BinaryForm K (p - 1) →ₗ[K] (ProjectiveLine (ZMod p) → K) where
   toFun F := Quotient.lift (evalRow p K (F : MvPolynomial (Fin 2) K)) fun v w hvw => by

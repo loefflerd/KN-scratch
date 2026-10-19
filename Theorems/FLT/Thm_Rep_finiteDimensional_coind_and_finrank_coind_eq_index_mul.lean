@@ -79,10 +79,10 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
   have rep_spec : ∀ g : G, g * (rep g)⁻¹ ∈ S := fun g =>
     QuotientGroup.rightRel_apply.1 (Quotient.mk_out (s := QuotientGroup.rightRel S) g)
   have rep_mul : ∀ (s : S) (g : G), rep ((s : G) * g) = rep g := fun s g => by
-    show (Quotient.mk _ ((s : G) * g)).out = (Quotient.mk _ g).out
+    change (Quotient.mk _ ((s : G) * g)).out = (Quotient.mk _ g).out
     congr 1
     apply Quotient.sound
-    show @Setoid.r _ (QuotientGroup.rightRel S) ((s : G) * g) g
+    change @Setoid.r _ (QuotientGroup.rightRel S) ((s : G) * g) g
     rw [QuotientGroup.rightRel_apply]
     simp
   have key : ∀ (a : G) (ha : a ∈ S) (v : N), a = 1 → N.ρ ⟨a, ha⟩ v = v := by
@@ -96,32 +96,35 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
         simp only [Subgroup.coe_subtype]
         have hq : (Quotient.mk (QuotientGroup.rightRel S) ((s : G) * h)) = Quotient.mk _ h :=
           Quotient.sound (by
-            show @Setoid.r _ (QuotientGroup.rightRel S) ((s : G) * h) h
+            change @Setoid.r _ (QuotientGroup.rightRel S) ((s : G) * h) h
             rw [QuotientGroup.rightRel_apply]; simp)
         rw [← Module.End.mul_apply, ← map_mul]
         have hmem : (s : G) * h * (rep ((s : G) * h))⁻¹ ∈ S := rep_spec _
-        have : (⟨(s : G) * h * (rep ((s : G) * h))⁻¹, hmem⟩ : S) = s * ⟨h * (rep h)⁻¹, rep_spec h⟩ := by
+        have : (⟨(s : G) * h * (rep ((s : G) * h))⁻¹, hmem⟩ : S) = s * ⟨h * (rep h)⁻¹, rep_spec h⟩ :=
+          by
           apply Subtype.ext
           simp only [Subgroup.coe_mul, rep_mul, mul_assoc]
-        rw [show (⟨(s : G) * h * (rep ((s : G) * h))⁻¹, rep_spec _⟩ : S) = s * ⟨h * (rep h)⁻¹, rep_spec h⟩ from this,
+        rw [show (⟨(s : G) * h * (rep ((s : G) * h))⁻¹, rep_spec _⟩ : S) = s * ⟨h * (rep h)⁻¹,
+          rep_spec h⟩ from this,
           hq]⟩
       left_inv := fun f => by
         apply Subtype.ext
         funext g
-        show N.ρ ⟨g * (rep g)⁻¹, rep_spec g⟩ ((f : G → N) (Quotient.mk (QuotientGroup.rightRel S) g).out) = (f : G → N) g
+        change N.ρ ⟨g * (rep g)⁻¹, rep_spec g⟩ ((f : G → N) (Quotient.mk (QuotientGroup.rightRel S) g).out) = (f : G → N) g
         have := f.2 ⟨g * (rep g)⁻¹, rep_spec g⟩ (rep g)
         rw [← this]
-        show (f : G → N) (g * (rep g)⁻¹ * rep g) = (f : G → N) g
+        change (f : G → N) (g * (rep g)⁻¹ * rep g) = (f : G → N) g
         rw [inv_mul_cancel_right]
       right_inv := fun F => by
         funext q
-        show N.ρ ⟨q.out * (rep q.out)⁻¹, rep_spec q.out⟩ (F (Quotient.mk _ q.out)) = F q
+        change N.ρ ⟨q.out * (rep q.out)⁻¹, rep_spec q.out⟩ (F (Quotient.mk _ q.out)) = F q
         have hout : Quotient.mk (QuotientGroup.rightRel S) q.out = q := Quotient.out_eq q
         rw [hout]
-        exact key _ _ _ (by show q.out * ((Quotient.mk (QuotientGroup.rightRel S) q.out).out)⁻¹ = 1; rw [hout, mul_inv_cancel]) }
+        exact key _ _ _ (by change q.out * ((Quotient.mk (QuotientGroup.rightRel S) q.out).out)⁻¹ = 1; rw [hout, mul_inv_cancel]) }
   have : FiniteDimensional k (Rep.coind S.subtype N) := LinearEquiv.finiteDimensional e.symm
   refine ⟨inferInstance, ?_⟩
-  rw [LinearEquiv.finrank_eq e, Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, smul_eq_mul,
+  rw [LinearEquiv.finrank_eq e, Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ,
+    smul_eq_mul,
     Subgroup.index, ← Nat.card_eq_fintype_card,
     Nat.card_congr (QuotientGroup.quotientRightRelEquivQuotientLeftRel S)]
 
@@ -137,9 +140,11 @@ public section publicSection
 universe u
 
 open CategoryTheory
-theorem Rep.finiteDimensional_coind_and_finrank_coind_eq_index_mul {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIndex]
+theorem Rep.finiteDimensional_coind_and_finrank_coind_eq_index_mul {k G : Type u} [Field k]
+    [Group G] (S : Subgroup G) [S.FiniteIndex]
     (N : Rep.{u} k S) [FiniteDimensional k N] :
     FiniteDimensional k (Rep.coind S.subtype N) ∧
-      Module.finrank k (Rep.coind S.subtype N) = S.index * Module.finrank k N := _root_.P2MW.S_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_mul.solution S N
+      Module.finrank k (Rep.coind S.subtype N) = S.index * Module.finrank k N :=
+  solution S N
 
 end publicSection

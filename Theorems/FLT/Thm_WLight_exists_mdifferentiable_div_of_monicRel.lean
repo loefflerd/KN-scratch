@@ -155,7 +155,6 @@ theorem meromorphicOrderAt_le_of_monicRel {𝕜 : Type*} [NontriviallyNormedFiel
   exact WithTop.coe_ne_top htop
 
 open WithTop.LinearOrderedAddCommGroup in
-
 theorem meromorphicOrderAt_div_nonneg_of_monicRel {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {F G : 𝕜 → 𝕜} {c : ℕ → 𝕜 → 𝕜} {n : ℕ} {τ : 𝕜}
     (hF : AnalyticAt 𝕜 F τ) (hG : AnalyticAt 𝕜 G τ)
@@ -198,7 +197,6 @@ end HBridge
 end WLight
 
 open _root_.WLight _root_.P2MW.S_WLight_exists_mdifferentiable_div_of_monicRel.WLight in
-
 theorem solution {a b : ℍ → ℂ} {c : ℕ → ℍ → ℂ} {d : ℕ}
     (hahol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) a) (hbhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b)
     (hb0 : b ≠ 0) (hc : ∀ k < d, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (c k))
@@ -233,7 +231,7 @@ theorem solution {a b : ℍ → ℂ} {c : ℕ → ℍ → ℂ} {d : ℕ}
   funext τ
   have heq := hH'eq τ.im_pos
   simp only [Pi.mul_apply, Function.comp_apply, ofComplex_apply] at heq
-  show H' ↑τ * b τ = a τ
+  change H' ↑τ * b τ = a τ
   rw [mul_comm]
   exact heq.symm
 
@@ -253,6 +251,7 @@ theorem WLight.exists_mdifferentiable_div_of_monicRel {a b : ℍ → ℂ} {c : �
     (hahol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) a) (hbhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b)
     (hb0 : b ≠ 0) (hc : ∀ k < d, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (c k))
     (hrel : a ^ d + ∑ k ∈ Finset.range d, c k * b ^ (d - k) * a ^ k = 0) :
-    ∃ F : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F ∧ F * b = a := _root_.P2MW.S_WLight_exists_mdifferentiable_div_of_monicRel.solution hahol hbhol hb0 hc hrel
+    ∃ F : ℍ → ℂ, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F ∧ F * b = a :=
+  solution hahol hbhol hb0 hc hrel
 
 end publicSection

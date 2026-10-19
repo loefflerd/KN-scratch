@@ -66,7 +66,9 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HeckeEis_coeffH1par_map_heckeT_comm
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffHeckeFun coeffHeckeFun_apply BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe"
+p2m_export "HeckeEis" "coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective \
+  coeffHeckeFun coeffHeckeFun_apply BinaryForm binarySubst binarySubst_X binarySubst_C \
+  binaryFormRepSL binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe"
 p2m_open "HeckeEis"
 
 open MvPolynomial CongruenceSubgroup
@@ -112,7 +114,6 @@ theorem map_coeffHeckeFun (n N ℓ : ℕ) [NeZero ℓ]
 end CoeffChangeAux
 
 open CoeffChangeAux in
-
 theorem SolMain.C1 {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n N ℓ : ℕ) [NeZero ℓ]
     (Φ : coeffH1par ((binaryFormRepSL R n).comp (Gamma0 N).subtype) →+ coeffH1par ((binaryFormRepSL R' n).comp (Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp (Gamma0 N).subtype)),
@@ -178,7 +179,8 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.coeffH1par_map_heckeT_comm {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n N ℓ : ℕ) [NeZero ℓ]
+theorem HeckeEis.coeffH1par_map_heckeT_comm {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R')
+    (n N ℓ : ℕ) [NeZero ℓ]
     (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL R n).comp (CongruenceSubgroup.Gamma0 N).subtype) →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL R' n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL R n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
       ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL R' n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
@@ -196,6 +198,7 @@ theorem HeckeEis.coeffH1par_map_heckeT_comm {R R' : Type*} [CommRing R] [CommRin
         (w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm R' n)) = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL R' n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj R' n ℓ) z ∧
         T' (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
     (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL R n).comp (CongruenceSubgroup.Gamma0 N).subtype)) :
-    T' (Φ x) = Φ (T x) := _root_.P2MW.S_HeckeEis_coeffH1par_map_heckeT_comm.solution φ n N ℓ Φ hΦ T hT T' hT' x
+    T' (Φ x) = Φ (T x) :=
+  solution φ n N ℓ Φ hΦ T hT T' hT' x
 
 end publicSection

@@ -62,7 +62,7 @@ inductive IsChebotarevPrimeClass (A : Set ℕ) : Prop
       IsChebotarevPrimeClass A
 
 /-- A finite residual representation attached to an eigenform, together with
-the rational primes whose Frobenius maps to the identity.  The constructor
+the rational primes whose Frobenius maps to the identity. The constructor
 records that this is an actual representation of a finite Galois group, that
 the identity locus is a Chebotarev class, and that trace compatibility makes
 the Hecke coefficient congruent to `2` there. -/

@@ -68,7 +68,8 @@ noncomputable section
 open KaehlerDifferential
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.diffCoeff Place.diffCoeff_smul_D Place.ordDiff_def Place isAlgebraic_adjoin_of_transcendental"
+p2m_export "AlgebraicCurve" "Place.diffCoeff Place.diffCoeff_smul_D Place.ordDiff_def Place \
+  isAlgebraic_adjoin_of_transcendental"
 namespace FF2R3
 p2m_open "AlgebraicCurve"
 
@@ -76,7 +77,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
   [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
 
 include x in
-
 private theorem isSeparable_adjoin (v : Place K F) {t : F} (ht : v.ord t ≠ 0) :
     Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := by
   have : Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
@@ -100,7 +100,8 @@ end AlgebraicCurve.FF2R3
 end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (g : F) :
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (g : F) :
     AlgebraicCurve.Place.diffCoeff t (g • KaehlerDifferential.D K F t) = g :=
   AlgebraicCurve.FF2R3.diffCoeff_smul_of_ord_ne_zero x v ht g
 
@@ -112,8 +113,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.diffCoeff_smul_D_eq {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (g : F) :
-    AlgebraicCurve.Place.diffCoeff t (g • KaehlerDifferential.D K F t) = g := _root_.P2MW.S_AlgebraicCurve_Place_diffCoeff_smul_D_eq.solution x v ht g
+theorem AlgebraicCurve.Place.diffCoeff_smul_D_eq {K F : Type*} [Field K] [Field F] [Algebra K F]
+    [CharZero K] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (g : F) :
+    AlgebraicCurve.Place.diffCoeff t (g • KaehlerDifferential.D K F t) = g :=
+  solution x v ht g
 
 end publicSection

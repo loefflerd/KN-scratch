@@ -70,7 +70,8 @@ theorem ord_natCast (v : Place K F) (n : ℕ) : v.ord (n : F) = 0 := by
 
 end AlgebraicCurve.FF2S
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) (n : ℕ) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F)
+    (n : ℕ) :
     v.ord (n : F) = 0 :=
   AlgebraicCurve.FF2S.ord_natCast v n
 
@@ -82,7 +83,9 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ord_natCast {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) (n : ℕ) :
-    v.ord (n : F) = 0 := _root_.P2MW.S_AlgebraicCurve_Place_ord_natCast.solution v n
+theorem AlgebraicCurve.Place.ord_natCast {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : AlgebraicCurve.Place K F) (n : ℕ) :
+    v.ord (n : F) = 0 :=
+  solution v n
 
 end publicSection

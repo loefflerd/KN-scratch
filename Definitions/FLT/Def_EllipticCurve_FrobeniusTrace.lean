@@ -81,7 +81,6 @@ instance instSMulCommClassAlgEquivZModTorsionBy (n : ℕ) :
     ZMod.map_smul (DistribSMul.toAddMonoidHom (Submodule.torsionBy ℤ (W'⁄K).Point n) σ) c x
 
 variable (S) in
-
 def galoisRepModuleEnd (W' : Affine R) (n : ℕ) :
     (K ≃ₐ[S] K) →* Module.End (ZMod n) (Submodule.torsionBy ℤ (W'⁄K).Point n) :=
   DistribMulAction.toModuleEnd (ZMod n) (Submodule.torsionBy ℤ (W'⁄K).Point n)
@@ -92,7 +91,6 @@ def galoisRepModuleEnd (W' : Affine R) (n : ℕ) :
   rfl
 
 variable (S) in
-
 def galoisTrace (W' : Affine R) (n : ℕ) (σ : K ≃ₐ[S] K) : ZMod n :=
   LinearMap.trace (ZMod n) (Submodule.torsionBy ℤ (W'⁄K).Point n) (galoisRepModuleEnd S W' n σ)
 

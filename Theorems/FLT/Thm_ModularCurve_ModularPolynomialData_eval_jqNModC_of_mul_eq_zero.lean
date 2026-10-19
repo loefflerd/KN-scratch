@@ -66,7 +66,8 @@ namespace P2MW.S_ModularCurve_ModularPolynomialData_eval_jqNModC_of_mul_eq_zero
 
 open ModularCurve IntermediateField Polynomial
 
-private theorem coeffMap_jqNModC {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ) [NeZero n] :
+private theorem coeffMap_jqNModC {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ)
+    [NeZero n] :
     coeffMap f (jqNModC R n) = jqNModC S n := by
   unfold jqNModC
   rw [coeffMap_qExpand]
@@ -81,7 +82,8 @@ private theorem coeffMap_eval₂_jqNModC {R S : Type*} [CommRing R] [CommRing S]
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp [coeffMap_jqNModC]
 
-private theorem eval₂_rat_of_data {ℓ : ℕ} [NeZero ℓ] (data : ModularPolynomialData ℓ) (d : ℕ) [NeZero d] :
+private theorem eval₂_rat_of_data {ℓ : ℕ} [NeZero ℓ] (data : ModularPolynomialData ℓ) (d : ℕ)
+    [NeZero d] :
     data.Φ.eval₂ (aeval (R := ℤ) (jqNModC ℚ d)).toRingHom (jqNModC ℚ (d * ℓ)) = 0 := by
   have hcomp : (qExpand ℚ d).comp evalAtJ = (aeval (R := ℤ) (jqNModC ℚ d)).toRingHom := by
     refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
@@ -91,7 +93,9 @@ private theorem eval₂_rat_of_data {ℓ : ℕ} [NeZero ℓ] (data : ModularPoly
   rw [map_zero, Polynomial.hom_eval₂, hcomp, jqN, qExpand_qExpand] at this
   exact this
 
-theorem solution {ℓ : ℕ} [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ) (hsymm : ModularCurve.EvalSymm data.Φ) (K : Type*) [CommRing K] (d : ℕ) [NeZero d] : data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K (d * ℓ))).toRingHom (ModularCurve.jqNModC K d) = 0 := by
+theorem solution {ℓ : ℕ} [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ)
+    (hsymm : ModularCurve.EvalSymm data.Φ) (K : Type*) [CommRing K] (d : ℕ) [NeZero d] :
+    data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K (d * ℓ))).toRingHom (ModularCurve.jqNModC K d) = 0 := by
   have hQ : data.Φ.eval₂ (aeval (R := ℤ) (jqNModC ℚ (d * ℓ))).toRingHom (jqNModC ℚ d) = 0 := by
     rw [hsymm]
     exact eval₂_rat_of_data data d
@@ -110,6 +114,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.ModularPolynomialData.eval_jqNModC_of_mul_eq_zero {ℓ : ℕ} [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ) (hsymm : ModularCurve.EvalSymm data.Φ) (K : Type*) [CommRing K] (d : ℕ) [NeZero d] : data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K (d * ℓ))).toRingHom (ModularCurve.jqNModC K d) = 0 := _root_.P2MW.S_ModularCurve_ModularPolynomialData_eval_jqNModC_of_mul_eq_zero.solution data hsymm K d
+theorem ModularCurve.ModularPolynomialData.eval_jqNModC_of_mul_eq_zero {ℓ : ℕ} [NeZero ℓ]
+    (data : ModularCurve.ModularPolynomialData ℓ) (hsymm : ModularCurve.EvalSymm data.Φ) (K : Type*)
+    [CommRing K] (d : ℕ) [NeZero d] :
+    data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K (d * ℓ))).toRingHom (ModularCurve.jqNModC K d) = 0 :=
+  solution data hsymm K d
 
 end publicSection

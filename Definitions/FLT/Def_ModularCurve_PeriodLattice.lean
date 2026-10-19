@@ -154,7 +154,8 @@ def period (γ : CongruenceSubgroup.Gamma0 N) :
     Module.Dual ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) :=
   periodAlong N UpperHalfPlane.I ((γ : SL(2, ℤ)) • UpperHalfPlane.I)
 
-theorem period_apply (γ : CongruenceSubgroup.Gamma0 N) (f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) :
+theorem period_apply (γ : CongruenceSubgroup.Gamma0 N)
+    (f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) :
     period N γ f =
       ∫ t in (0 : ℝ)..1, f (segmentPath UpperHalfPlane.I ((γ : SL(2, ℤ)) • UpperHalfPlane.I) t) *
         ((((γ : SL(2, ℤ)) • UpperHalfPlane.I : ℍ) : ℂ) - (UpperHalfPlane.I : ℂ)) :=
@@ -238,7 +239,8 @@ theorem cuspHeckeRep_heckeGen (ℓ : Nat.Primes) :
     cuspHeckeRep N (heckeGen ℓ) = (cuspHeckeGen N ℓ : Module.End ℂ _) := by
   rw [cuspHeckeRep_apply, cuspHeckeAeval_heckeGen]
 
-theorem cuspHeckeRep_mem (t : HeckeAlg) : cuspHeckeRep N t ∈ CuspForm.heckeAlgebra N 2 (∅ : Set ℕ) :=
+theorem cuspHeckeRep_mem (t : HeckeAlg) :
+    cuspHeckeRep N t ∈ CuspForm.heckeAlgebra N 2 (∅ : Set ℕ) :=
   (cuspHeckeAeval N t).2
 
 theorem range_cuspHeckeRep :
@@ -256,7 +258,8 @@ theorem cuspHeckeRep_comm (s t : HeckeAlg) :
     cuspHeckeRep N s * cuspHeckeRep N t = cuspHeckeRep N t * cuspHeckeRep N s := by
   rw [← map_mul, ← map_mul, mul_comm]
 
-def dualHeckeRep : HeckeAlg →+* Module.End ℂ (Module.Dual ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2)) where
+def dualHeckeRep :
+    HeckeAlg →+* Module.End ℂ (Module.Dual ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2)) where
   toFun t := (cuspHeckeRep N t).dualMap
   map_one' := by rw [map_one]; exact LinearMap.dualMap_id
   map_mul' s t := by
@@ -292,7 +295,8 @@ theorem periodLattice_stable_of (h : PeriodLatticeHeckeStable N) (t : HeckeAlg)
     dualHeckeRep N t x ∈ periodLattice N := by
   induction t using MvPolynomial.induction_on generalizing x with
   | C a => rw [dualHeckeRep_C]; exact Submodule.smul_mem _ a hx
-  | add p q hp hq => rw [map_add, LinearMap.add_apply]; exact Submodule.add_mem _ (hp x hx) (hq x hx)
+  | add p q hp hq => rw [map_add,
+    LinearMap.add_apply]; exact Submodule.add_mem _ (hp x hx) (hq x hx)
   | mul_X p ℓ hp =>
     rw [map_mul, Module.End.mul_apply]
     exact hp _ (h ℓ x hx)
@@ -318,7 +322,6 @@ def periodLatticeRestrictHom (h : PeriodLatticeHeckeStable N) :
   map_add' s t := LinearMap.ext fun x => Subtype.ext (by simp)
 
 open Classical in
-
 def periodLatticeHeckeEnd : HeckeAlg →+* Module.End ℤ (periodLattice N) :=
   if h : PeriodLatticeHeckeStable N then periodLatticeRestrictHom N h
   else (Int.castRingHom (Module.End ℤ (periodLattice N))).comp

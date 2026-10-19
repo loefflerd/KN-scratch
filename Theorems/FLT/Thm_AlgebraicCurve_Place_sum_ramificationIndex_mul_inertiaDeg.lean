@@ -68,7 +68,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 
 noncomputable section
@@ -76,11 +77,17 @@ noncomputable section
 open IsDedekindDomain Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.restrict_fiber_finite Place.mem_fiber FundamentalIdentity SumRamificationInertia Place Place.ext HasPrincipalDivisors Pic"
+p2m_export "AlgebraicCurve" "Place.restrict_fiber_finite Place.mem_fiber FundamentalIdentity \
+  SumRamificationInertia Place Place.ext HasPrincipalDivisors Pic"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ramificationIndex ramificationIndex_pos restrict restrict_toValuationSubring ord_restrict restrict_fiber_finite restrictInclusion restrictResidueMap inertiaDeg fiber mem_fiber ext ResidueField deg adicValuation_coe_eq_one_iff ord ord_mul ord_inv ord_coe_irreducible ord_zpow isPrincipalIdealRing_valuationSubring ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ord_nonneg_of_mem mem_of_ord_nonneg mem_iff_ord_nonneg exists_ord_pos ord_eq_zero_iff_adicValuation_eq_one"
+p2m_export "AlgebraicCurve.Place" "ramificationIndex ramificationIndex_pos restrict \
+  restrict_toValuationSubring ord_restrict restrict_fiber_finite restrictInclusion \
+  restrictResidueMap inertiaDeg fiber mem_fiber ext ResidueField deg adicValuation_coe_eq_one_iff \
+  ord ord_mul ord_inv ord_coe_irreducible ord_zpow isPrincipalIdealRing_valuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ord_nonneg_of_mem mem_of_ord_nonneg \
+  mem_iff_ord_nonneg exists_ord_pos ord_eq_zero_iff_adicValuation_eq_one"
 p2m_open "AlgebraicCurve.Place"
 
 section IntegrallyClosed
@@ -92,7 +99,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_neg (f : F) : w.ord (-f) = w.ord
 
 p2m_export "AlgebraicCurve.Place" "ord_neg"
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_eval_monic_eq_zero {P : Polynomial F} (hP : P.Monic)
+private theorem _root_.AlgebraicCurve.Place.mem_of_eval_monic_eq_zero {P : Polynomial F}
+    (hP : P.Monic)
     (hcoeff : ∀ i, P.coeff i ∈ w.toValuationSubring) {x : F} (hx : P.eval x = 0) :
     x ∈ w.toValuationSubring := by
   have hlift : P ∈ lifts (algebraMap w.toValuationSubring F) := by
@@ -129,7 +137,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F'] [Algebra
 variable (w : Place K F')
 
 omit [FiniteDimensional F F'] in
-
 private theorem _root_.AlgebraicCurve.Place.aeval_mem {Q : Polynomial F} {x : F'}
     (hcoeff : ∀ i, algebraMap F F' (Q.coeff i) ∈ w.toValuationSubring)
     (hx : x ∈ w.toValuationSubring) :
@@ -199,7 +206,6 @@ private theorem coe_chartHom (hw : ∀ r : R, algebraMap R F r ∈ w.toValuation
     (chartHom w hw r : F) = algebraMap R F r := rfl
 
 variable (R) in
-
 def center (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) : Ideal R :=
   (IsLocalRing.maximalIdeal w.toValuationSubring).comap (chartHom w hw)
 
@@ -222,7 +228,6 @@ theorem mem_center_iff_ord_pos (hw : ∀ r : R, algebraMap R F r ∈ w.toValuati
   rw [mem_center_iff, w.mem_maximalIdeal_iff_ord_pos hr']
 
 omit [IsDedekindDomain R] [IsFractionRing R F] in
-
 private theorem inv_algebraMap_mem (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring)
     {s : R} (hs : IsUnit (chartHom w hw s)) :
     (algebraMap R F s)⁻¹ ∈ w.toValuationSubring := by
@@ -253,7 +258,6 @@ theorem center_ne_bot (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring
   exact mul_mem (hw a) (inv_algebraMap_mem w hw (hunit b (nonZeroDivisors.ne_zero hb)))
 
 variable (R) in
-
 def centerHeightOneSpectrum (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
     HeightOneSpectrum R :=
   ⟨center R w hw, inferInstance, center_ne_bot w hw⟩
@@ -359,11 +363,17 @@ section
 open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.restrict_fiber_finite Place.mem_fiber FundamentalIdentity SumRamificationInertia Place Place.ext HasPrincipalDivisors Pic"
+p2m_export "AlgebraicCurve" "Place.restrict_fiber_finite Place.mem_fiber FundamentalIdentity \
+  SumRamificationInertia Place Place.ext HasPrincipalDivisors Pic"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ramificationIndex ramificationIndex_pos restrict restrict_toValuationSubring ord_restrict restrict_fiber_finite restrictInclusion restrictResidueMap inertiaDeg fiber mem_fiber ext ResidueField deg adicValuation_coe_eq_one_iff ord ord_mul ord_inv ord_coe_irreducible ord_zpow isPrincipalIdealRing_valuationSubring ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ord_nonneg_of_mem mem_of_ord_nonneg mem_iff_ord_nonneg exists_ord_pos ord_eq_zero_iff_adicValuation_eq_one"
+p2m_export "AlgebraicCurve.Place" "ramificationIndex ramificationIndex_pos restrict \
+  restrict_toValuationSubring ord_restrict restrict_fiber_finite restrictInclusion \
+  restrictResidueMap inertiaDeg fiber mem_fiber ext ResidueField deg adicValuation_coe_eq_one_iff \
+  ord ord_mul ord_inv ord_coe_irreducible ord_zpow isPrincipalIdealRing_valuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ord_nonneg_of_mem mem_of_ord_nonneg \
+  mem_iff_ord_nonneg exists_ord_pos ord_eq_zero_iff_adicValuation_eq_one"
 p2m_open "AlgebraicCurve.Place"
 
 section Uniqueness
@@ -442,7 +452,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [FiniteDimensional F F'] [Algebra.IsSeparable F F']
 
 variable (F') in
-
 @[reducible] def valuationSubringAlgebra (v : Place K F) : Algebra v.toValuationSubring F' :=
   ((algebraMap F F').comp (algebraMap v.toValuationSubring F)).toAlgebra
 
@@ -456,7 +465,6 @@ scoped instance (priority := 100) : IsScalarTower v.toValuationSubring F F' :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
 variable (F') in
-
 abbrev integralClosureAt : Type _ := integralClosure v.toValuationSubring F'
 
 scoped instance : IsDedekindDomain (integralClosureAt F' v) :=
@@ -470,7 +478,6 @@ scoped instance : Module.Finite v.toValuationSubring (integralClosureAt F' v) :=
 
 omit [Algebra K F'] [IsScalarTower K F F'] [FiniteDimensional F F']
   [Algebra.IsSeparable F F'] in
-
 theorem algebraMap_integralClosureAt_injective :
     Function.Injective
       (algebraMap v.toValuationSubring (integralClosureAt F' v)) := by
@@ -504,7 +511,6 @@ section Center
 variable {v : Place K F} {w : Place K F'}
 
 omit [FiniteDimensional F F'] in
-
 theorem forall_mem_of_restrict_eq (hw : w.restrict F = v) (c : integralClosureAt F' v) :
     algebraMap (integralClosureAt F' v) F' c ∈ w.toValuationSubring := by
   obtain ⟨Q, hQmonic, hQeval⟩ := c.2
@@ -520,7 +526,6 @@ theorem forall_mem_of_restrict_eq (hw : w.restrict F = v) (c : integralClosureAt
   exact hOv _ (Q.coeff i).2
 
 variable (F' v) in
-
 def fiberCenter (hw : w.restrict F = v) : HeightOneSpectrum (integralClosureAt F' v) :=
   centerHeightOneSpectrum (integralClosureAt F' v) w (forall_mem_of_restrict_eq hw)
 
@@ -545,13 +550,11 @@ theorem mem_maximalIdeal_iff_ord_pos' {r : v.toValuationSubring} (hr : r ≠ 0) 
 
 omit [Algebra K F'] [IsScalarTower K F F'] [FiniteDimensional F F']
   [Algebra.IsSeparable F F'] in
-
 theorem algebraMap_integralClosureAt_ne_zero {r : v.toValuationSubring} (hr : r ≠ 0) :
     algebraMap v.toValuationSubring (integralClosureAt F' v) r ≠ 0 := fun h =>
   hr (algebraMap_integralClosureAt_injective v (by rw [h, map_zero]))
 
 omit [FiniteDimensional F F'] in
-
 theorem ord_algebraMap_integralClosureAt (hw : w.restrict F = v) (r : v.toValuationSubring) :
     w.ord (algebraMap (integralClosureAt F' v) F'
         (algebraMap v.toValuationSubring (integralClosureAt F' v) r))
@@ -605,7 +608,7 @@ theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x : F'} (h
       ring
   · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
-    show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
+    change 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
       rw [toValuationSubring_eq_of_restrict_eq hw,
         HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
@@ -776,7 +779,7 @@ def residueFieldEquivQuotientCenter (hw : w.restrict F = v) :
 theorem residueFieldEquivQuotientCenter_mk (hw : w.restrict F = v)
     (c : integralClosureAt F' v) :
     residueFieldEquivQuotientCenter hw (Ideal.Quotient.mk _ c) = residueOfCenter hw c := by
-  show ((residueOfCenter hw).quotientKerEquivOfSurjective (surjective_residueOfCenter hw))
+  change ((residueOfCenter hw).quotientKerEquivOfSurjective (surjective_residueOfCenter hw))
     ((Ideal.quotEquivOfEq (ker_residueOfCenter hw).symm) (Ideal.Quotient.mk _ c))
       = residueOfCenter hw c
   rw [Ideal.quotEquivOfEq_mk]
@@ -813,7 +816,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
     (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
+  change Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
   ext a
@@ -822,12 +825,12 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     RingHom.coe_coe]
   apply (residueFieldEquivQuotientCenter hw).injective
   rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
+  change IsLocalRing.residue w.toValuationSubring
       (toValuationSubringOfRestrictEq hw
         (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
     = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
+  change algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
     = algebraMap F F' (a : F)
   rw [← IsScalarTower.algebraMap_apply,
@@ -989,7 +992,10 @@ scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] 
 
 end AlgebraicCurve
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [HasPrincipalDivisors K F'] (v : Place K F) : ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
+    [HasPrincipalDivisors K F'] (v : Place K F) :
+    ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
   AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg_infra v
 
 end
@@ -1004,6 +1010,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [HasPrincipalDivisors K F'] (v : Place K F) : ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) := _root_.P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.solution v
+theorem AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg {K F F' : Type*} [Field K]
+    [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
+    [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [HasPrincipalDivisors K F'] (v : Place K F)
+    :
+    ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
+  solution v
 
 end publicSection

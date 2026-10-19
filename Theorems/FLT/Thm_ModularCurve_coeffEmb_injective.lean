@@ -57,7 +57,8 @@ namespace P2MW.S_ModularCurve_coeffEmb_injective
 
 open ModularCurve IntermediateField HahnSeries
 
-theorem solution (L : Type*) [Field L] [Algebra ℚ L] : Function.Injective (ModularCurve.coeffEmb L) :=
+theorem solution (L : Type*) [Field L] [Algebra ℚ L] :
+    Function.Injective (ModularCurve.coeffEmb L) :=
   coeffMap_injective (FaithfulSMul.algebraMap_injective ℚ L)
 
 end S_ModularCurve_coeffEmb_injective
@@ -68,6 +69,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.coeffEmb_injective (L : Type*) [Field L] [Algebra ℚ L] : Function.Injective (ModularCurve.coeffEmb L) := _root_.P2MW.S_ModularCurve_coeffEmb_injective.solution L
+theorem ModularCurve.coeffEmb_injective (L : Type*) [Field L] [Algebra ℚ L] :
+    Function.Injective (ModularCurve.coeffEmb L) :=
+  solution L
 
 end publicSection

@@ -83,9 +83,12 @@ open scoped MatrixGroups IntermediateField
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.ring LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin LevelN.exists_place_ord_sub_pos_forall_smul_eq LevelN.exists_place_ord_neg_forall_smul_eq"
+p2m_export "ModularCurve" "LevelN.ring LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin \
+  LevelN.exists_place_ord_sub_pos_forall_smul_eq LevelN.exists_place_ord_neg_forall_smul_eq"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen exists_monoidHom_algEquiv_fixedField_eq_adjoin exists_place_ord_sub_pos_forall_smul_eq exists_place_ord_neg_forall_smul_eq"
+p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen \
+  exists_monoidHom_algEquiv_fixedField_eq_adjoin exists_place_ord_sub_pos_forall_smul_eq \
+  exists_place_ord_neg_forall_smul_eq"
 namespace GenusBound
 p2m_open "ModularCurve.LevelN ModularCurve~jGen"
 
@@ -316,7 +319,8 @@ def toSemi (E : IntermediateField ℂ L) : (L ≃ₐ[E] L) →* AlgebraicCurve.S
     congr 1
 
 @[scoped simp]
-theorem toSemi_smul (E : IntermediateField ℂ L) (g : L ≃ₐ[E] L) (x : L) : toSemi E g • x = g x := rfl
+theorem toSemi_smul (E : IntermediateField ℂ L) (g : L ≃ₐ[E] L) (x : L) :
+    toSemi E g • x = g x := rfl
 
 theorem toSemi_apply (E : IntermediateField ℂ L) (g : L ≃ₐ[E] L) :
     toSemi E g = AlgebraicCurve.SemilinearAut.ofAlgAut (g.restrictScalars ℂ) := rfl
@@ -331,7 +335,8 @@ theorem orbit_package (t : L) [FiniteDimensional ℂ⟮t⟯ L] [IsGalois ℂ⟮t
         T.card * e = Module.finrank ℂ⟮t⟯ L := by
   classical
   let : MulAction (L ≃ₐ[ℂ⟮t⟯] L) (AlgebraicCurve.Place ℂ L) := MulAction.compHom _ (toSemi ℂ⟮t⟯)
-  have hsmul : ∀ (g' : (L ≃ₐ[ℂ⟮t⟯] L)) (P : AlgebraicCurve.Place ℂ L), g' • P = toSemi ℂ⟮t⟯ g' • P := fun _ _ => rfl
+  have hsmul : ∀ (g' : (L ≃ₐ[ℂ⟮t⟯] L)) (P : AlgebraicCurve.Place ℂ L), g' • P = toSemi ℂ⟮t⟯ g' • P :=
+    fun _ _ => rfl
   have hDH := (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ t t c
     (AlgHom.id ℂ L) rfl inferInstance inferInstance hint W hW).1
   set D := MulAction.stabilizer (L ≃ₐ[ℂ⟮t⟯] L) W with hD
@@ -358,7 +363,8 @@ theorem orbit_package (t : L) [FiniteDimensional ℂ⟮t⟯ L] [IsGalois ℂ⟮t
       rw [hD, MulAction.mem_stabilizer_iff, hsmul, toSemi_apply]
       exact hg
     exact (hm (orderOf g) (pow_orderOf_eq_one g)).trans (Subgroup.orderOf_dvd_natCard D hgD)
-  · rw [← Set.ncard_eq_toFinset_card (MulAction.orbit (L ≃ₐ[ℂ⟮t⟯] L) W) hfin, ← MulAction.index_stabilizer,
+  · rw [← Set.ncard_eq_toFinset_card (MulAction.orbit (L ≃ₐ[ℂ⟮t⟯] L) W) hfin, ←
+      MulAction.index_stabilizer,
       Subgroup.index_mul_card, IsGalois.card_aut_eq_finrank]
 
 theorem apply_eq_self_of_mem_adjoin (ψ : L →ₐ[ℂ] L) (t : L) (hψ : ψ t = t) {x : L}
@@ -420,7 +426,8 @@ def liftE (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈
 theorem liftE_apply (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈ E', φ x = x) (x : L) :
     liftE E' φ hφ x = φ x := rfl
 
-theorem restrictScalars_liftE (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈ E', φ x = x) :
+theorem restrictScalars_liftE (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈ E', φ x = x)
+    :
     (liftE E' φ hφ).restrictScalars ℂ = φ :=
   AlgEquiv.ext fun _ => rfl
 
@@ -647,6 +654,7 @@ theorem ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF (N : ℕ) [NeZer
     [IsFractionRing (ModularCurve.LevelN.ring N) K] :
     12 * N + N * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index ≤
       12 * N * AlgebraicCurve.genusFF ℂ K +
-        6 * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := _root_.P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.solution N hN K
+        6 * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
+  solution N hN K
 
 end publicSection

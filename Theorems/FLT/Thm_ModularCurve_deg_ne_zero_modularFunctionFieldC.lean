@@ -106,7 +106,7 @@ noncomputable def ratFuncEquiv : RatFunc K ≃+* Fj K :=
       rintro ⟨x, hx⟩
       obtain ⟨r, s, rfl⟩ := (mem_adjoin_simple_iff K _).mp hx
       refine ⟨algebraMap _ _ r / algebraMap _ _ s, Subtype.ext ?_⟩
-      show psi K (algebraMap _ _ r / algebraMap _ _ s) = _
+      change psi K (algebraMap _ _ r / algebraMap _ _ s) = _
       rw [psi, RatFunc.liftAlgHom_apply_div]⟩
 
 theorem ratFuncEquiv_algebraMap (a : K) :
@@ -125,7 +125,7 @@ abbrev FjN : IntermediateField (Fj K) (LaurentSeries K) :=
 
 theorem modularFunctionFieldC_eq_restrictScalars :
     modularFunctionFieldC K N = (FjN K N).restrictScalars K := by
-  show modularFunctionFieldC K N =
+  change modularFunctionFieldC K N =
     (adjoin (adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))).restrictScalars K
   erw [adjoin_adjoin_left]
   rw [Set.singleton_union]
@@ -149,7 +149,9 @@ end S09T3
 end
 
 open S09T3 in
-theorem solution (K : Type*) [Field K] (N : ℕ) [NeZero N] (w : Place K (modularFunctionFieldC K N)) : w.deg ≠ 0 := by
+theorem solution (K : Type*) [Field K] (N : ℕ) [NeZero N] (w : Place K (modularFunctionFieldC K N))
+    :
+    w.deg ≠ 0 := by
   obtain ⟨data⟩ := nonempty_modularPolynomialData N
   have : FiniteDimensional (Fj K) (FjN K N) := finiteDimensional_adjoin_jqNModC K data
   rw [← Place.deg_congrRingEquiv (toFjN K N) (toFjN_algebraMap K N) w]
@@ -165,6 +167,9 @@ public section publicSection
 
 
 open AlgebraicCurve ModularCurve
-theorem ModularCurve.deg_ne_zero_modularFunctionFieldC (K : Type*) [Field K] (N : ℕ) [NeZero N] (w : Place K (modularFunctionFieldC K N)) : w.deg ≠ 0 := _root_.P2MW.S_ModularCurve_deg_ne_zero_modularFunctionFieldC.solution K N w
+theorem ModularCurve.deg_ne_zero_modularFunctionFieldC (K : Type*) [Field K] (N : ℕ) [NeZero N]
+    (w : Place K (modularFunctionFieldC K N)) :
+    w.deg ≠ 0 :=
+  solution K N w
 
 end publicSection

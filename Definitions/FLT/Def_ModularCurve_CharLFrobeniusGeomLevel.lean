@@ -90,7 +90,7 @@ variable (K : Type*) [Field K] (N : ℕ) [NeZero N]
 def qExpandAlgC : LaurentSeries K →ₐ[K] LaurentSeries K where
   __ := qExpand K N
   commutes' r := by
-    show qExpand K N (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
+    change qExpand K N (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
     rw [algebraMap_laurentSeries_apply_eq_single, qExpand_single, mul_zero]
 
 @[simp]
@@ -136,13 +136,13 @@ theorem qExpand_jqNModC_eq_pow : qExpand K ℓ (jqNModC K N) = (jqNModC K N) ^ �
 include data hKr in
 theorem frobeniusGeomLevel_map_le :
     (modularFunctionFieldC K N).map (qExpandAlgC K ℓ) ≤ modularFunctionFieldC K N := by
-  show (IntermediateField.adjoin K {jqModC K, jqNModC K N}).map (qExpandAlgC K ℓ) ≤ _
+  change (IntermediateField.adjoin K {jqModC K, jqNModC K N}).map (qExpandAlgC K ℓ) ≤ _
   rw [IntermediateField.adjoin_map, Set.image_pair, IntermediateField.adjoin_le_iff]
   rintro x (rfl | rfl)
-  · show qExpandAlgC K ℓ (jqModC K) ∈ modularFunctionFieldC K N
+  · change qExpandAlgC K ℓ (jqModC K) ∈ modularFunctionFieldC K N
     rw [qExpandAlgC_apply, qExpand_jqModC_eq_pow K data hKr]
     exact pow_mem (jqModC_mem K N) ℓ
-  · show qExpandAlgC K ℓ (jqNModC K N) ∈ modularFunctionFieldC K N
+  · change qExpandAlgC K ℓ (jqNModC K N) ∈ modularFunctionFieldC K N
     rw [qExpandAlgC_apply, qExpand_jqNModC_eq_pow K N data hKr]
     exact pow_mem (jqNModC_mem K N) ℓ
 
@@ -248,7 +248,7 @@ theorem pow_mem_frobeniusGeomLevelImage
 theorem exists_frobeniusGeomLevel_eq_pow (x : modularFunctionFieldC K N) :
     ∃ y, frobeniusGeomLevel K N data hKr y = x ^ ℓ := by
   rw [exists_frobeniusGeomLevel_eq_iff]
-  show (x : LaurentSeries K) ^ ℓ ∈ frobeniusGeomLevelImage K N (ℓ := ℓ)
+  change (x : LaurentSeries K) ^ ℓ ∈ frobeniusGeomLevelImage K N (ℓ := ℓ)
   exact pow_mem_frobeniusGeomLevelImage K N data hKr x.2
 
 theorem _root_.ValuationSubring.mem_of_pow_mem' {F : Type*} [Field F]
@@ -696,7 +696,6 @@ theorem frobNorm_algebraMap (h : IsFrobeniusEndo ℓ φ) (c : K) :
 variable [Fact ℓ.Prime] [CharP F ℓ]
 
 omit [CharP F ℓ] in
-
 theorem frobNorm_zero (h : IsFrobeniusEndo ℓ φ) : h.frobNorm 0 = 0 :=
   h.frobNorm_eq_of_map_eq_pow
     (by rw [map_zero, zero_pow (Fact.out : ℓ.Prime).pos.ne'])
@@ -792,7 +791,6 @@ variable {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
 variable (data : ModularPolynomialData ℓ) (hKr : KroneckerCongruence ℓ data)
 
 omit [Fact ℓ.Prime] in
-
 theorem charP_modularFunctionFieldC : CharP (modularFunctionFieldC K N) ℓ :=
   charP_of_injective_algebraMap
     (algebraMap K (modularFunctionFieldC K N)).injective ℓ

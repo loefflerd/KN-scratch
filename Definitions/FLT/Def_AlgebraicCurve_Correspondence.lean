@@ -85,7 +85,6 @@ theorem isIntegral_along (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) :
   ⟨hφ⟩
 
 variable (K) in
-
 def FundamentalIdentityAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     [HasPrincipalDivisors K F'] : Prop :=
   letI := algebraAlong φ
@@ -94,13 +93,11 @@ def FundamentalIdentityAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegra
   FundamentalIdentity K F F'
 
 variable (K) in
-
 def FiniteAlong (φ : F →ₐ[K] F') : Prop :=
   letI := algebraAlong φ
   Module.Finite F F'
 
 variable (K) in
-
 def NormFormulaAlong (φ : F →ₐ[K] F') (hfin : FiniteAlong K φ) : Prop :=
   letI := algebraAlong φ
   haveI := isScalarTower_along φ
@@ -108,7 +105,6 @@ def NormFormulaAlong (φ : F →ₐ[K] F') (hfin : FiniteAlong K φ) : Prop :=
   Divisor.PushforwardNormFormula K F F'
 
 variable (K) in
-
 def finrankAlong (φ : F →ₐ[K] F') : ℕ :=
   letI := algebraAlong φ
   Module.finrank F F'
@@ -365,7 +361,6 @@ section AlongTransport
 variable {K F F₁ : Type*} [Field K] [Field F] [Field F₁] [Algebra K F] [Algebra K F₁]
 
 variable (K) in
-
 def SeparableAlong (φ : F →ₐ[K] F₁) : Prop :=
   letI := algebraAlong φ
   Algebra.IsSeparable F F₁

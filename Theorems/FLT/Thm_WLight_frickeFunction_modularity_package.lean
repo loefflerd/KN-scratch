@@ -704,7 +704,8 @@ lemma qExpansion_frickeH_conj {N : ℕ} [NeZero N] {s : ℕ} (hs : s.Coprime N)
   have hHa' : qExpansion N (frickeH N a₁ (s * a₂ % N)) =
       ((PowerSeries.mk fun m => (((hESm m).choose : ℚ) : ↑(kN N))) * S a₁ a₂).map φ := by
     rw [frickeH, qExpansion_mul hE hWa', map_mul, hESφ, hSconj s hs φ hφ a₁ a₂ h1 h2 h0]
-  have hz2 : z = ((PowerSeries.mk fun m => (((hESm m).choose : ℚ) : ↑(kN N))) * S a₁ a₂).coeff n := by
+  have hz2 : z = ((PowerSeries.mk fun m => (((hESm m).choose : ℚ) : ↑(kN N))) * S a₁ a₂).coeff n :=
+    by
     have hinj : Function.Injective (algebraMap ↑(kN N) ℂ) := (algebraMap ↑(kN N) ℂ).injective
     apply hinj
     rw [← PowerSeries.coeff_map, ← hHa]
@@ -796,7 +797,7 @@ theorem solution (N : ℕ) [NeZero N]
       ((hL τ).2.trans (periodPairOfTau_ω₂ τ).symm)
   have hfeq : ∀ (a : Fin 2 → ZMod N) (τ : ℍ), f a τ = frickeF N a τ := by
     intro a τ
-    show -(ModularForm.E₄ τ * ModularForm.E₆ τ / ModularForm.discriminant τ) / 2592 *
+    change -(ModularForm.E₄ τ * ModularForm.E₆ τ / ModularForm.discriminant τ) / 2592 *
       (((2 * ↑Real.pi * Complex.I) ^ 2)⁻¹ *
         PeriodPair.weierstrassP (L τ) _) = _
     rw [hLpp τ]
@@ -906,7 +907,7 @@ theorem solution (N : ℕ) [NeZero N]
     have hzrel : z = ((-(1/2592) : ℚ) : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)})) *
         ⟨_, hmem⟩ := by
       apply Subtype.coe_injective
-      show (z : ℂ) = ((-(1/2592) : ℚ) : ℂ) *
+      change (z : ℂ) = ((-(1/2592) : ℚ) : ℂ) *
         (qExpansion N (frickeH N (a 0).val (a 1).val)).coeff n
       rw [hz]
       push_cast

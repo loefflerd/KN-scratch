@@ -66,12 +66,10 @@ variable (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
   {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 
 open Classical in
-
 def reduceCoord (x : K) : ResidueField R :=
   if h : ∃ r : R, algebraMap R K r = x then residue R h.choose else 0
 
 open Classical in
-
 def reducePoint_alt (W : WeierstrassCurve K) [W.IsMinimal R] :
     W.toAffine.Point → (W.reduction R).toAffine.Point
   | .zero => .zero

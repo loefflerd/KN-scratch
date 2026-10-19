@@ -102,13 +102,40 @@ set_option linter.unusedSimpArgs false
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial IsDedekindDomain P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.Bivariate"
+p2m_open "Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial \
+  IsDedekindDomain \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.IsDedekindD\
+  omain WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine.CoordinateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.\
+  Bivariate"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -122,7 +149,9 @@ theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDo
   exact congrArg AlgebraicCurve.Place.toValuationSubring h
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal quotientXYIdealEquiv YClass mk map exists_smul_basis_eq XClass smul_basis_mul_Y isDedekindDomain exists_eq_XYIdeal XYIdeal_isMaximal XYIdeal_ne_bot"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal \
+  quotientXYIdealEquiv YClass mk map exists_smul_basis_eq XClass smul_basis_mul_Y isDedekindDomain \
+  exists_eq_XYIdeal XYIdeal_isMaximal XYIdeal_ne_bot"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt"
 
 theorem algebraMap_eq_mk_C_C (a : F) :
@@ -190,7 +219,9 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 
 end CoordinateRing
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine.CoordinateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
   ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring
@@ -303,7 +334,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
       rw [ValuationSubring.ofPrime_top] at h3
       have hAv : A = v.toValuationSubring := h3.symm.trans hSP
       refine (AlgebraicCurve.Place.ext ?_).symm
-      show (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
+      change (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
       rw [AlgebraicCurve.Place.ofHeightOneSpectrum_toValuationSubring,
         ← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
       exact hAv
@@ -318,27 +349,40 @@ section CentredGate
 
 variable [DecidableEq F] [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
+omit [DecidableEq F] in
 @[scoped simp]
 theorem placeOfPoint_some {x y : F} (h : W.Nonsingular x y) :
-    placeOfPoint (.some x y h) = placeOfEquation h.left :=
-  placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
+    placeOfPoint (.some x y h) = placeOfEquation h.left := by
+  classical
+  exact
+    placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
 
 namespace InfinitePlace
 
 def place : AlgebraicCurve.Place F W.FunctionField := placeOfPoint (0 : W.Point)
 
-private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one : (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 :=
-  deg_placeOfPoint (W := W) 0
+omit [DecidableEq F] in
+private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one :
+    (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 := by
+  classical
+  exact
+    deg_placeOfPoint (W := W) 0
 
 p2m_export "WeierstrassCurve.Affine.InfinitePlace" "deg_eq_one"
 
+omit [DecidableEq F] in
 theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
-    ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := fun h =>
-  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
+    ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := by
+  classical
+  exact
+    fun h =>
+     algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
 
+omit [DecidableEq F] in
 theorem eq_of_not_isFinitePlace
     (v : AlgebraicCurve.Place F W.FunctionField) (hv : ¬ IsFinitePlace v) :
     v = place := by
+  classical
   obtain ⟨P, rfl⟩ : ∃ P : W.Point, placeOfPoint P = v :=
     ⟨(pointEquivPlace (W := W)).symm v, (pointEquivPlace (W := W)).apply_symm_apply v⟩
   cases P with
@@ -348,31 +392,66 @@ theorem eq_of_not_isFinitePlace
 
 end InfinitePlace
 
+omit [DecidableEq F] in
 @[scoped simp]
-theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := rfl
+theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := by
+  classical
+  exact
+    rfl
 
-theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := rfl
+omit [DecidableEq F] in
+theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := by
+  classical
+  exact
+    rfl
 
-theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).injective
+omit [DecidableEq F] in
+theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).injective
 
-theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) : Function.Surjective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).surjective
+omit [DecidableEq F] in
+theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) : Function.Surjective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).surjective
 
-theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).surjective
+omit [DecidableEq F] in
+theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).surjective
 
 end CentredGate
 end Affine
 end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
     {W : Affine F} : HasPrincipalDivisors F W.FunctionField :=
@@ -382,8 +461,10 @@ section AutoNorm
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
+omit [DecidableEq F] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
@@ -391,25 +472,28 @@ theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionF
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
 end AutoNorm
 
 namespace IsogenyEndDatum
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam hfin hι mk ι"
+p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam \
+  hfin hι mk ι"
 p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) : NormFormulaAlong F D.ι D.hfin :=
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+    NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "normFormulaAlong_auto"
 
-private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) : AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
+private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) :
+    AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd'"
 theorem pointEnd_eq_pointEnd' (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
@@ -430,9 +514,25 @@ end Affine
 end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 end Affine
 end WeierstrassCurve
 p2m_open_scoped "WeierstrassCurve WeierstrassCurve.Affine" in
@@ -443,24 +543,51 @@ scoped instance WeierstrassCurve.Affine.instHasPrincipalDivisorsFunctionField_s1
 
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong \
+  Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext \
+  Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor \
+  Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective \
+  Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong \
+  ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow \
+  ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' \
+  toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr \
+  ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
 end Place
 end AlgebraicCurve
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong \
+  Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext \
+  Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor \
+  Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective \
+  Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong \
+  ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow \
+  ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' \
+  toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr \
+  ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
 p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg"
 
 section MoreSinglePlace
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg = 1) : v.IsRational := by
+private theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg = 1) :
+    v.IsRational := by
   intro x
   have hbot : (⊥ : Subalgebra K v.ResidueField) = ⊤ :=
     Subalgebra.bot_eq_top_iff_finrank_eq_one.mpr h
@@ -471,17 +598,20 @@ private theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg 
 
 p2m_export "AlgebraicCurve.Place" "isRational_of_deg_eq_one"
 
-private theorem _root_.AlgebraicCurve.Place.evalAt_div (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
+private theorem _root_.AlgebraicCurve.Place.evalAt_div (hv : v.IsRational) {f g : F}
+    (hf : f ∈ v.toValuationSubring)
     (hg : g ≠ 0) (hg0 : v.ord g = 0) :
     v.evalAt (f / g) = v.evalAt f / v.evalAt g := by
   have hginv : g⁻¹ ∈ v.toValuationSubring :=
-    AlgebraicCurve.Place.mem_of_ord_nonneg v (inv_ne_zero hg) (by rw [v.ord_inv, hg0]; exact neg_nonneg.mpr le_rfl)
+    AlgebraicCurve.Place.mem_of_ord_nonneg v (inv_ne_zero hg) (by
+      rw [v.ord_inv, hg0]; exact neg_nonneg.mpr le_rfl)
   rw [div_eq_mul_inv, v.evalAt_mul hv hf hginv, v.evalAt_inv hv hg hg0, div_eq_mul_inv]
 
 p2m_export "AlgebraicCurve.Place" "evalAt_div"
 end MoreSinglePlace
 
-theorem mem_restrictAlong_iff {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+theorem mem_restrictAlong_iff {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F]
+    [Algebra K F']
     (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') (f : F) :
     f ∈ (w.restrictAlong φ hφ).toValuationSubring ↔ φ f ∈ w.toValuationSubring :=
@@ -491,12 +621,36 @@ end Place
 end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.Bivariate"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine.CoordinateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.\
+  Bivariate"
 
 section FinitePlaceOfMem
 variable {F : Type*} [Field F] {W : Affine F}
@@ -558,7 +712,10 @@ section RationalPlaceOfEquation
 variable {F : Type*} [Field F] [DecidableEq F] {W : Affine F} [W.IsElliptic]
   [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [IsDedekindDomain W.CoordinateRing]
 
-theorem isRational_placeOfEquation {r s : F} (hrs : W.Equation r s) : (placeOfEquation hrs).IsRational := by
+omit [DecidableEq F] in
+theorem isRational_placeOfEquation {r s : F} (hrs : W.Equation r s) :
+    (placeOfEquation hrs).IsRational := by
+  classical
   apply (placeOfEquation hrs).isRational_of_deg_eq_one
   rw [← placeOfPoint_some (equation_iff_nonsingular.mp hrs)]
   exact GenusOnePlaceGate.deg_eq_one _
@@ -568,7 +725,9 @@ end Affine
 end WeierstrassCurve
 
 namespace ModularCurve
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg" in open _root_.WeierstrassCurve _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve in
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
+  " in
+open _root_.WeierstrassCurve _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve in
 theorem kw_fdn2_qephod_hend7_pmopKerCard_proved
     (K : Type*) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic]
@@ -585,21 +744,30 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 section
-p2m_open "Complex Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter Set"
+p2m_open "Complex Filter \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter Set"
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice \
+  weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ \
+  deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ \
+  equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem \
+  IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-private theorem _root_.PeriodPair.kw_discriminantNeZero : L.DiscriminantNeZero := L.discriminant_ne_zero
+private theorem _root_.PeriodPair.kw_discriminantNeZero :
+    L.DiscriminantNeZero := L.discriminant_ne_zero
 
 p2m_export "PeriodPair" "kw_discriminantNeZero"
 
-private theorem _root_.PeriodPair.kw_isUniformization : L.IsUniformization L.kw_discriminantNeZero :=
+private theorem _root_.PeriodPair.kw_isUniformization :
+    L.IsUniformization L.kw_discriminantNeZero :=
   L.isUniformization_toPoint _
 
 p2m_export "PeriodPair" "kw_isUniformization"
@@ -622,7 +790,8 @@ scoped instance kw_instIsElliptic : L.weierstrassCurve.IsElliptic :=
 
 section Liouville
 
-private theorem _root_.PeriodPair.sub_fract_mem_lattice (z : ℂ) : z - ZSpan.fract L.basis z ∈ L.lattice := by
+private theorem _root_.PeriodPair.sub_fract_mem_lattice (z : ℂ) :
+    z - ZSpan.fract L.basis z ∈ L.lattice := by
   rw [L.lattice_eq_span_range_basis]
   have h := (ZSpan.fract_eq_fract L.basis (ZSpan.fract L.basis z) z).mp
     (by rw [ZSpan.fract_eq_self.mpr (ZSpan.fract_mem_fundamentalDomain L.basis z)])
@@ -679,7 +848,8 @@ end ToPointLemmas
 
 section Isogeny
 
-private theorem _root_.PeriodPair.apply_eq_apply_of_continuous_of_mapsTo_lattice {f : ℂ → ℂ} (hf : Continuous f)
+private theorem _root_.PeriodPair.apply_eq_apply_of_continuous_of_mapsTo_lattice {f : ℂ → ℂ}
+    (hf : Continuous f)
     (hmem : ∀ z, f z ∈ L.lattice) (z w : ℂ) : f z = f w := by
   refine IsPreconnected.constant_of_mapsTo (isPreconnected_univ) ?_
     hf.continuousOn (fun u _ => hmem u) (mem_univ z) (mem_univ w)
@@ -762,7 +932,8 @@ private def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictSca
 
 @[scoped simp] private theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
+private theorem _root_.PeriodPair.scale_lattice :
+    (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
   congr 1
@@ -892,7 +1063,8 @@ private theorem _root_.PeriodPair.kw_ker_toPointHom :
 
 p2m_export "PeriodPair" "kw_ker_toPointHom"
 
-private def _root_.PeriodPair.kw_toPointAddEquiv : (ℂ ⧸ L.lattice.toAddSubgroup) ≃+ (L.weierstrassCurve.toAffine).Point :=
+private def _root_.PeriodPair.kw_toPointAddEquiv :
+    (ℂ ⧸ L.lattice.toAddSubgroup) ≃+ (L.weierstrassCurve.toAffine).Point :=
   QuotientAddGroup.liftEquiv L.lattice.toAddSubgroup (φ := L.kw_toPointHom)
     (L.kw_isUniformization).2.1 L.kw_ker_toPointHom.symm
 
@@ -919,11 +1091,24 @@ end PeriodPair
 end
 
 namespace ModularCurve
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
 
 def KwD5BetweenCurvesHoloLift : Prop :=
   ∀ (L L' : PeriodPair)
-    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
+    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
     (ι'' : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ]
       L.weierstrassCurve.toAffine.FunctionField)
     (hι'' : ι''.toRingHom.IsIntegral) (hfin'' : FiniteAlong ℂ ι''),
@@ -936,49 +1121,118 @@ end ModularCurve
 
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong \
+  Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext \
+  Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor \
+  Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective \
+  Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
 end AlgebraicCurve
 namespace Filter
-p2m_export "Filter" "mem_bot ker mk mem_comap inter_mem IsBounded cocountable mem_ker eventually_of_mem mem_map mem_top comap map cofinite"
+p2m_export "Filter" "mem_bot ker mk mem_comap inter_mem IsBounded cocountable mem_ker \
+  eventually_of_mem mem_map mem_top comap map cofinite"
 end Filter
 namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "HeightOneSpectrum.valuationSubringAtPrime HeightOneSpectrum.asIdeal HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk HeightOneSpectrum"
+p2m_export "IsDedekindDomain" "HeightOneSpectrum.valuationSubringAtPrime HeightOneSpectrum.asIdeal \
+  HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring \
+  HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk HeightOneSpectrum"
 end IsDedekindDomain
 namespace IsLocalRing
-p2m_export "IsLocalRing" "eq_maximalIdeal ResidueField maximalIdeal mem_maximalIdeal ResidueField.algebraMap_eq residue"
+p2m_export "IsLocalRing" "eq_maximalIdeal ResidueField maximalIdeal mem_maximalIdeal \
+  ResidueField.algebraMap_eq residue"
 end IsLocalRing
 namespace PeriodPair
-p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice \
+  weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ \
+  deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ \
+  equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem \
+  IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
 end PeriodPair
 namespace Polynomial
-p2m_export "Polynomial" "C X eval_mul support coeff_add algebraMap_eq monomial ext_iff degree monic_X_pow_add degree_linear_le coeff_sub X_sub_C_ne_zero map comp roots coeff_C eval_pow sum infinite reverse eval_X eval_C nontrivial flt X_ne_zero eval_sub pow mem_support_iff C_mul_X_pow_eq_monomial derivative mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero algebraMap_apply div C_neg coeff_C_mul eval_add evalEval ext coeff_X_pow funext ring lifts restriction eval"
+p2m_export "Polynomial" "C X eval_mul support coeff_add algebraMap_eq monomial ext_iff degree \
+  monic_X_pow_add degree_linear_le coeff_sub X_sub_C_ne_zero map comp roots coeff_C eval_pow sum \
+  infinite reverse eval_X eval_C nontrivial flt X_ne_zero eval_sub pow mem_support_iff \
+  C_mul_X_pow_eq_monomial derivative mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero \
+  algebraMap_apply div C_neg coeff_C_mul eval_add evalEval ext coeff_X_pow funext ring lifts \
+  restriction eval"
 end Polynomial
 namespace Polynomial
-p2m_export "Polynomial" "C X eval_mul support coeff_add algebraMap_eq monomial ext_iff degree monic_X_pow_add degree_linear_le coeff_sub X_sub_C_ne_zero map comp roots coeff_C eval_pow sum infinite reverse eval_X eval_C nontrivial flt X_ne_zero eval_sub pow mem_support_iff C_mul_X_pow_eq_monomial derivative mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero algebraMap_apply div C_neg coeff_C_mul eval_add evalEval ext coeff_X_pow funext ring lifts restriction eval"
+p2m_export "Polynomial" "C X eval_mul support coeff_add algebraMap_eq monomial ext_iff degree \
+  monic_X_pow_add degree_linear_le coeff_sub X_sub_C_ne_zero map comp roots coeff_C eval_pow sum \
+  infinite reverse eval_X eval_C nontrivial flt X_ne_zero eval_sub pow mem_support_iff \
+  C_mul_X_pow_eq_monomial derivative mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero \
+  algebraMap_apply div C_neg coeff_C_mul eval_add evalEval ext coeff_X_pow funext ring lifts \
+  restriction eval"
 end Polynomial
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 end Affine
 end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal quotientXYIdealEquiv YClass mk map exists_smul_basis_eq XClass smul_basis_mul_Y isDedekindDomain exists_eq_XYIdeal XYIdeal_isMaximal XYIdeal_ne_bot"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal \
+  quotientXYIdealEquiv YClass mk map exists_smul_basis_eq XClass smul_basis_mul_Y isDedekindDomain \
+  exists_eq_XYIdeal XYIdeal_isMaximal XYIdeal_ne_bot"
 end CoordinateRing
 end Affine
 end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 end WeierstrassCurve
 
 
@@ -986,15 +1240,29 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice \
+  weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ \
+  deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ \
+  equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem \
+  IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-private theorem _root_.PeriodPair.kw_isDiscrete_lattice : IsDiscrete (L.lattice.toAddSubgroup : Set ℂ) := by
+private theorem _root_.PeriodPair.kw_isDiscrete_lattice :
+    IsDiscrete (L.lattice.toAddSubgroup : Set ℂ) := by
   rw [Submodule.coe_toAddSubgroup, isDiscrete_iff_discreteTopology]
   exact inferInstanceAs (DiscreteTopology L.lattice)
 
@@ -1044,18 +1312,37 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial IsDedekindDomain P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.IsDedekindDomain"
+p2m_open "Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial \
+  IsDedekindDomain \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.IsDedekindD\
+  omain"
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.\
+  Bivariate"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong \
+  Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext \
+  Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor \
+  Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective \
+  Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong \
+  ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow \
+  ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' \
+  toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr \
+  ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
 end Place
 p2m_open_scoped "AlgebraicCurve.Place" in
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
@@ -1067,7 +1354,8 @@ theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingH
 
 namespace Place
 p2m_open_scoped "AlgebraicCurve.Place" in
-private theorem _root_.AlgebraicCurve.Place.ord_div (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
+private theorem _root_.AlgebraicCurve.Place.ord_div (v : Place K F) {f g : F} (hf : f ≠ 0)
+    (hg : g ≠ 0) :
     v.ord (f / g) = v.ord f - v.ord g := by
   rw [div_eq_mul_inv, v.ord_mul hf (inv_ne_zero hg), v.ord_inv]
   ring
@@ -1077,12 +1365,33 @@ p2m_export "AlgebraicCurve" "Place.ord_div"
 end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine.CoordinateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -1135,12 +1444,33 @@ end Affine
 end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine.CoordinateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 variable {F : Type*} [Field F] (W : Affine F)
 
@@ -1153,9 +1483,25 @@ end Affine
 end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 end Affine
 end WeierstrassCurve
 end
@@ -1163,19 +1509,34 @@ end
 
 section
 
-p2m_open "IsLocalRing P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.IsLocalRing"
+p2m_open "IsLocalRing \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong \
+  Place.ord_restrictAlong SeparableAlong Place.restrict_fiber_finite Place Place.ext \
+  Place.coe_algebraMap HasPrincipalDivisors Pic0 Pic0.mk Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor \
+  Place.toValuationSubring Place.evalAt Place.ofHeightOneSpectrum_injective \
+  Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong \
+  ramificationIndex_pos restrict_fiber_finite ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow \
+  ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' \
+  toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt algebraMap_evalAt \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff evalAt_ne_zero evalAt_congr \
+  ord_algebraMap evalAt_algebraMap evalAt_mul evalAt_inv"
 p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring)
+private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRational) {f : F}
+    (hf : f ∈ v.toValuationSubring)
     (hne : f - algebraMap K F (v.evalAt f) ≠ 0) :
     0 < v.ord (f - algebraMap K F (v.evalAt f)) := by
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
@@ -1189,7 +1550,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
       have hcoe : (⟨f - algebraMap K F (v.evalAt f), hmem⟩ : v.toValuationSubring)
           = ⟨f, hf⟩ - algebraMap K v.toValuationSubring (v.evalAt f) := by
         refine Subtype.ext ?_
-        show f - algebraMap K F (v.evalAt f)
+        change f - algebraMap K F (v.evalAt f)
           = f - (algebraMap K v.toValuationSubring (v.evalAt f) : F)
         rw [Place.coe_algebraMap]
       rw [hcoe, map_sub, sub_eq_zero, ← v.algebraMap_evalAt hrat hf,
@@ -1209,18 +1570,41 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 theorem Δ_ne_zero_of_isElliptic : W.Δ ≠ 0 := W.isUnit_Δ.ne_zero
 
@@ -1233,7 +1617,8 @@ theorem placeOfPoint_placeOfPointEquiv_symm (w : AlgebraicCurve.Place F W.Functi
   (placeOfPointEquiv W).apply_symm_apply w
 
 namespace IsogenyEndDatum
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam hfin hι mk ι"
+p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam \
+  hfin hι mk ι"
 end IsogenyEndDatum
 end Affine
 end WeierstrassCurve
@@ -1242,15 +1627,29 @@ end
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice \
+  weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ \
+  deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ \
+  equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem \
+  IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-private theorem _root_.PeriodPair.kw_surjective_toPointHom : Function.Surjective L.kw_toPointHom := by
+private theorem _root_.PeriodPair.kw_surjective_toPointHom :
+    Function.Surjective L.kw_toPointHom := by
   intro P
   obtain ⟨z, hz⟩ := QuotientAddGroup.mk_surjective (L.kw_toPointAddEquiv.symm P)
   exact ⟨z, by rw [L.kw_toPointHom_eq_toPointAddEquiv_mk, hz, AddEquiv.apply_symm_apply]⟩
@@ -1264,13 +1663,27 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
 
 namespace ModularCurve
 
 def KwD5BetweenCurvesLocallyHoloLift : Prop :=
   ∀ (L L' : PeriodPair)
-    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
+    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
     (ι'' : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ]
       L.weierstrassCurve.toAffine.FunctionField)
     (hι'' : ι''.toRingHom.IsIntegral) (hfin'' : FiniteAlong ℂ ι'') (z₀ : ℂ),
@@ -1291,7 +1704,7 @@ theorem kw_surgehgf4_hH2_betweenCurvesHoloLift_of_locallyHolo
       ∀ z ∈ U, g z = QuotientAddGroup.mk (G z) := fun z₀ => by
     obtain ⟨U, hU, G, hGd, hGint⟩ := hH2c L L' ι'' hι'' hfin'' z₀
     exact ⟨U, hU, G, hGd, fun z hz => by
-      show L'.kw_toPointAddEquiv.symm (ψ (L.kw_toPointHom z)) = _
+      change L'.kw_toPointAddEquiv.symm (ψ (L.kw_toPointHom z)) = _
       rw [hψdef, ← hGint z hz, L'.kw_toPointHom_eq_toPointAddEquiv_mk,
         AddEquiv.symm_apply_apply]⟩
   have hmkc : Continuous (QuotientAddGroup.mk (s := L'.lattice.toAddSubgroup)) :=
@@ -1322,26 +1735,75 @@ end
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Topology P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve Filter \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter \
+  Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Topology \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 namespace IsogenyEndDatum
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam hfin hι mk ι"
+p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam \
+  hfin hι mk ι"
 end IsogenyEndDatum
 end Affine
 end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine.CoordinateRing"
 
 variable {F : Type*} [Field F] {W : Affine F} [IsDedekindDomain W.CoordinateRing]
 
@@ -1371,7 +1833,12 @@ end Affine
 end WeierstrassCurve
 
 namespace PeriodPair
-p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice \
+  weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ \
+  deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ \
+  equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem \
+  IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -1409,9 +1876,19 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine"
+p2m_open "Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine"
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.\
+  Bivariate"
 
 namespace ModularCurve
 namespace Mmr73
@@ -1467,7 +1944,16 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Mod\
+  ularCurve WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 namespace ModularCurve
 
@@ -1478,7 +1964,11 @@ attribute [local instance] Classical.propDecidable
 section GeomMorphBC
 
 variable {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.FunctionField →ₐ[K] E.FunctionField)
 variable (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
 
@@ -1507,7 +1997,7 @@ theorem kw_fdn2_qephod_hend7_pushforwardHom_pointClass_eq_sub (P : E.Point) :
     Pic0.pushforwardAlongHom ι hι hfin (normFormulaAlong_of_elliptic ι hfin)
         (pointClass P)
       = pointClass (gBC P) - pointClass (gBC 0) := by
-  show Pic0.pushforwardAlongHom ι hι hfin _ (Pic0.mk (pointDivisor P))
+  change Pic0.pushforwardAlongHom ι hι hfin _ (Pic0.mk (pointDivisor P))
       = Pic0.mk (pointDivisor (gBC P)) - Pic0.mk (pointDivisor (gBC 0))
   rw [Pic0.pushforwardAlongHom_mk,
     kw_fdn2_qephod_hend7_pushforwardDegZero_pointDivisor_geomMorphBC ι hι P]
@@ -1530,21 +2020,55 @@ end
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter"
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Topology P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve Filter \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Topology \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ Affine.negY a₃ a₁ map Affine.CoordinateRing mk a₄ \
+  a₂ a₆ Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ \
+  Affine.equation_iff Affine.Point.neg_some j Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq_zero \
+  slope_of_X_ne slope CoordinateRing map Point.some Point.some.injEq Point.X_eq_iff Nonsingular \
+  negAddY Point.zero_def FunctionField Point CoordinateRing.mk addX nonsingular_neg \
+  equation_iff_nonsingular Point.some_ne_zero addY Point.add_of_X_ne equation_iff polynomial \
+  Point.neg_some pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply \
+  IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint \
+  deg_eq_one deg_placeOfPoint pointDivisor coe_pointDivisor pointClass AbelTheorem \
+  pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply GenusOnePlaceGate.deg_eq_one \
+  GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum \
+  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
+  CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
+  hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  polyToFunctionField polyToFunctionField_apply polyToFunctionField_C polyToFunctionField_ne_zero \
+  algebraMap_smul_basis"
 namespace IsogenyEndDatum
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam hfin hι mk ι"
+p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam \
+  hfin hι mk ι"
 end IsogenyEndDatum
 end Affine
 end WeierstrassCurve
 
 namespace PeriodPair
-p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "isClosed_lattice derivWeierstrassP_neg weierstrassP_neg lattice \
+  weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk analyticOnNhd_derivWeierstrassP g₃ \
+  deriv_weierstrassP ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ \
+  equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem \
+  IsUniformization jLattice scale_indep scale discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -1580,13 +2104,27 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
 
 namespace ModularCurve
 
 def KwD5BetweenCurvesCocountableHoloLift : Prop :=
   ∀ (L L' : PeriodPair)
-    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
+    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
     (ι'' : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ]
       L.weierstrassCurve.toAffine.FunctionField)
     (hι'' : ι''.toRingHom.IsIntegral) (hfin'' : FiniteAlong ℂ ι''),
@@ -1635,7 +2173,16 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve"
+p2m_open "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Mod\
+  ularCurve WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve"
 
 namespace ModularCurve
 
@@ -1647,7 +2194,11 @@ attribute [local instance] Classical.propDecidable
 section Fintype
 
 variable {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.FunctionField →ₐ[K] E.FunctionField)
 variable (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
 
@@ -1670,7 +2221,11 @@ end Fintype
 section Squeeze
 
 variable {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.FunctionField →ₐ[K] E.FunctionField)
 variable (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
 
@@ -1687,14 +2242,33 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter"
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Topology P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Filter \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Topology \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
 
 namespace ModularCurve
 
 def KwD5BetweenCurvesCocountableAffineHoloCoords : Prop :=
   ∀ (L L' : PeriodPair)
-    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
+    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
     (ι'' : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ]
       L.weierstrassCurve.toAffine.FunctionField)
     (hι'' : ι''.toRingHom.IsIntegral) (hfin'' : FiniteAlong ℂ ι''),
@@ -1755,7 +2329,7 @@ theorem kw_surgehgf4_hH2d_betweenCurvesCocountableHoloLift_of_affineHoloCoords
     have hcont : ContinuousAt (fun z => ℘'[L'] (G z) / 2 + Y z) z₀ :=
       ((hP'cont.comp hGcont).div_const 2).add (hYd.differentiableAt hU).continuousAt
     refine hcont.eventually (isOpen_ne.mem_nhds ?_)
-    show ℘'[L'] (G z₀) / 2 + Y z₀ ≠ 0
+    change ℘'[L'] (G z₀) / 2 + Y z₀ ≠ 0
     rw [hGz₀, hPw₀.2, ← two_mul]; exact mul_ne_zero two_ne_zero hYz₀
   obtain ⟨V, hVmem, hVopen, hVz₀⟩ := eventually_nhds_iff.mp
     (((((hevΛ.and hevR).and hevψd).and hevXd).and hevU).and hevSgn)
@@ -1794,14 +2368,33 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter"
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Topology P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Filter \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Topology \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology"
 
 namespace ModularCurve
 
 def KwD5BetweenCurvesCocountableAffineHoloCoordsWeak : Prop :=
   ∀ (L L' : PeriodPair)
-    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve] [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
+    [L.weierstrassCurve.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate L.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L.weierstrassCurve] [L'.weierstrassCurve.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred L'.weierstrassCurve]
+    [WeierstrassCurve.Affine.AbelTheorem L'.weierstrassCurve]
     (ι'' : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ]
       L.weierstrassCurve.toAffine.FunctionField)
     (hι'' : ι''.toRingHom.IsIntegral) (hfin'' : FiniteAlong ℂ ι''),
@@ -1840,7 +2433,7 @@ theorem kw_surgehgf4_hH2e_betweenCurvesCocountableAffineHoloCoords_of_weak
   have hYz₀ : Y z₀ ≠ 0 := by
     intro hY0
     apply hz₀S'
-    show (pointMapOfPushforward ι'' hι'' hfin'' (normFormulaAlong_of_elliptic ι'' hfin''))
+    change (pointMapOfPushforward ι'' hι'' hfin'' (normFormulaAlong_of_elliptic ι'' hfin''))
       (L.kw_toPointHom (2 * z₀)) = 0
     rw [two_mul, map_add, map_add, hcoord₀, add_eq_zero_iff_eq_neg, Point.neg_some,
       Point.some.injEq]
@@ -1871,9 +2464,28 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Weierstrass\
+  Curve.Affine \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurv\
+  e AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCu\
+  rve PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Filter \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter \
+  Polynomial \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Topology P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology Polynomial.Bivariate P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.Bivariate"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair \
+  Topology \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Topology \
+  Polynomial.Bivariate \
+  P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial.\
+  Bivariate"
 
 namespace ModularCurve
 
@@ -1882,7 +2494,11 @@ section GeomMorphBCAtoms
 universe u
 
 variable {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable {E E' : Affine K} [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.FunctionField →ₐ[K] E.FunctionField)
 variable (hι : ι.toRingHom.IsIntegral)
 
@@ -1988,7 +2604,9 @@ theorem kw_surgehgf4_hH2f_finite_geomMorphBC_preimage (t : E'.Point) :
 
 end GeomMorphBCAtoms
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt" in open _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing in
+p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt\
+  " in
+open _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing in
 theorem kw_surgehgf4_hH2f_betweenCurvesCocountableAffineHoloCoordsWeak :
     KwD5BetweenCurvesCocountableAffineHoloCoordsWeak := by
   intro L L' _ _ _ _ _ _ _ _ ι'' hι'' hfin''
@@ -2199,13 +2817,17 @@ theorem kw_surgehgf4_hH2f_betweenCurvesHoloLift :
 end ModularCurve
 end
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg" in open _root_.WeierstrassCurve _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve in
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
+  " in
+open _root_.WeierstrassCurve _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve in
 theorem solution
     (L L' : PeriodPair) (hL : L.DiscriminantNeZero) (hL' : L'.DiscriminantNeZero)
     [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic]
-    [GenusOnePlaceGate L.weierstrassCurve.toAffine] [GenusOnePlaceGate.IsCentred L.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate L.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate.IsCentred L.weierstrassCurve.toAffine]
     [AbelTheorem L.weierstrassCurve.toAffine]
-    [GenusOnePlaceGate L'.weierstrassCurve.toAffine] [GenusOnePlaceGate.IsCentred L'.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate L'.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate.IsCentred L'.weierstrassCurve.toAffine]
     [AbelTheorem L'.weierstrassCurve.toAffine]
     (ι : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ] L.weierstrassCurve.toAffine.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong ℂ ι) (hN : NormFormulaAlong ℂ ι hfin) :
@@ -2231,13 +2853,16 @@ open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 theorem PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint
     (L L' : PeriodPair) (hL : L.DiscriminantNeZero) (hL' : L'.DiscriminantNeZero)
     [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic]
-    [GenusOnePlaceGate L.weierstrassCurve.toAffine] [GenusOnePlaceGate.IsCentred L.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate L.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate.IsCentred L.weierstrassCurve.toAffine]
     [AbelTheorem L.weierstrassCurve.toAffine]
-    [GenusOnePlaceGate L'.weierstrassCurve.toAffine] [GenusOnePlaceGate.IsCentred L'.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate L'.weierstrassCurve.toAffine]
+    [GenusOnePlaceGate.IsCentred L'.weierstrassCurve.toAffine]
     [AbelTheorem L'.weierstrassCurve.toAffine]
     (ι : L'.weierstrassCurve.toAffine.FunctionField →ₐ[ℂ] L.weierstrassCurve.toAffine.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong ℂ ι) (hN : NormFormulaAlong ℂ ι hfin) :
     ∃ F : ℂ → ℂ, Differentiable ℂ F ∧ F 0 ∈ L'.lattice ∧
-      ∀ z : ℂ, L'.toPoint hL' (F z) = pointMapOfPushforward ι hι hfin hN (L.toPoint hL z) := _root_.P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.solution L L' hL hL' ι hι hfin hN
+      ∀ z : ℂ, L'.toPoint hL' (F z) = pointMapOfPushforward ι hι hfin hN (L.toPoint hL z) :=
+  solution L L' hL hL' ι hι hfin hN
 
 end publicSection

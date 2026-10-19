@@ -79,7 +79,8 @@ def AZ : Subalgebra ℤ ℂ := Algebra.adjoin ℤ {zeta N}
 omit [NeZero N] in
 theorem zeta_mem : zeta N ∈ AZ N := Algebra.subset_adjoin (Set.mem_singleton _)
 
-theorem isPrimitiveRoot_zeta : IsPrimitiveRoot (zeta N) N := Complex.isPrimitiveRoot_exp N (NeZero.ne N)
+theorem isPrimitiveRoot_zeta :
+    IsPrimitiveRoot (zeta N) N := Complex.isPrimitiveRoot_exp N (NeZero.ne N)
 
 theorem zeta_pow_N : zeta N ^ N = 1 := (isPrimitiveRoot_zeta N).pow_eq_one
 
@@ -149,12 +150,12 @@ theorem norm_coef_le (i : Idx) : ‖coef N a₂ i‖ ≤ 2 * (i.1.2 : ℕ) := by
   · change ‖((p.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (p.2 : ℕ))‖ ≤ 2 * (p.2 : ℕ)
     rw [norm_mul, norm_pow, norm_zeta, one_pow, mul_one, Complex.norm_natCast]; linarith
   · change ‖((p.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ))‖ ≤ 2 * (p.2 : ℕ)
-    rw [norm_mul, norm_pow, norm_inv, norm_zeta, inv_one, one_pow, mul_one, Complex.norm_natCast]; linarith
+    rw [norm_mul, norm_pow, norm_inv, norm_zeta, inv_one, one_pow, mul_one,
+      Complex.norm_natCast]; linarith
   · change ‖-2 * ((p.2 : ℕ) : ℂ)‖ ≤ 2 * (p.2 : ℕ)
     rw [norm_mul, norm_neg, Complex.norm_natCast]; norm_num
 
 variable {N a₁} in
-
 theorem mul_le_expo (ha : a₁ < N) (i : Idx) : (i.1.1 : ℕ) * (i.1.2 : ℕ) ≤ expo N a₁ i := by
   rcases i with ⟨⟨c, k⟩, j⟩
   have hc : 1 ≤ (c : ℕ) := c.2
@@ -183,7 +184,8 @@ theorem snd_le_expo (ha : a₁ < N) (i : Idx) : (i.1.2 : ℕ) ≤ expo N a₁ i 
 
 variable [Fact (a₁ < N)]
 
-def fibreMap (n : ℕ) : {i : Idx // expo N a₁ i = n} → (Fin (n + 1) × Fin (n + 1)) × Fin 3 := fun i =>
+def fibreMap (n : ℕ) :
+    {i : Idx // expo N a₁ i = n} → (Fin (n + 1) × Fin (n + 1)) × Fin 3 := fun i =>
   ((⟨(i.1.1.1 : ℕ), Nat.lt_succ_of_le (le_trans (fst_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩,
     ⟨(i.1.1.2 : ℕ), Nat.lt_succ_of_le (le_trans (snd_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩), i.1.2)
 
@@ -205,7 +207,8 @@ def cT (n : ℕ) : ℂ :=
 theorem cT_mem (n : ℕ) : cT N a₁ a₂ n ∈ AZ N :=
   sum_mem fun i _ => coef_mem N a₂ i.1
 
-theorem card_fibre_le (n : ℕ) : Fintype.card {i : Idx // expo N a₁ i = n} ≤ (n + 1) * (n + 1) * 3 := by
+theorem card_fibre_le (n : ℕ) :
+    Fintype.card {i : Idx // expo N a₁ i = n} ≤ (n + 1) * (n + 1) * 3 := by
   have := Fintype.card_le_of_injective _ (fibreMap_injective N a₁ n)
   simpa [Fintype.card_prod, Fintype.card_fin] using this
 
@@ -219,7 +222,8 @@ theorem norm_cT_le (n : ℕ) : ‖cT N a₁ a₂ n‖ ≤ (n + 1) * (n + 1) * 3 
         rw [i.2] at h1
         have h2 : ((i.1.1.2 : ℕ) : ℝ) ≤ n := by exact_mod_cast h1
         linarith
-    _ = Fintype.card {i : Idx // expo N a₁ i = n} * (2 * n : ℝ) := by rw [Finset.sum_const, nsmul_eq_mul]; rfl
+    _ = Fintype.card {i : Idx // expo N a₁ i = n} * (2 * n : ℝ) := by
+      rw [Finset.sum_const, nsmul_eq_mul]; rfl
     _ ≤ (n + 1) * (n + 1) * 3 * (2 * n) := by
         have h1 : (Fintype.card {i : Idx // expo N a₁ i = n} : ℝ) ≤ (n + 1) * (n + 1) * 3 := by
           exact_mod_cast card_fibre_le N a₁ n
@@ -327,9 +331,11 @@ def Gt (τ : ℍ) (i : Idx) : ℂ := coef N a₂ i * qq N τ ^ expo N a₁ i
 def Ft (τ : ℍ) (p : ℕ+ × ℕ+) : ℂ := ∑ j : Fin 3, Gt N a₁ a₂ τ (p, j)
 
 omit [NeZero N] in
-theorem coef_zero (p : ℕ+ × ℕ+) : coef N a₂ (p, 0) = ((p.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (p.2 : ℕ)) := rfl
+theorem coef_zero (p : ℕ+ × ℕ+) :
+    coef N a₂ (p, 0) = ((p.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (p.2 : ℕ)) := rfl
 omit [NeZero N] in
-theorem coef_one (p : ℕ+ × ℕ+) : coef N a₂ (p, 1) = ((p.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) := rfl
+theorem coef_one (p : ℕ+ × ℕ+) :
+    coef N a₂ (p, 1) = ((p.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) := rfl
 omit [NeZero N] in
 theorem coef_two (p : ℕ+ × ℕ+) : coef N a₂ (p, 2) = -2 * ((p.2 : ℕ) : ℂ) := rfl
 omit [NeZero N] in
@@ -344,7 +350,8 @@ theorem Ft_eq (τ : ℍ) (p : ℕ+ × ℕ+) : Ft N a₁ a₂ τ p =
     ((p.2 : ℕ) : ℂ) * (zeta N ^ (a₂ * (p.2 : ℕ)) * qq N τ ^ (((p.1 : ℕ) * N + a₁) * (p.2 : ℕ)) +
       (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) * qq N τ ^ (((p.1 : ℕ) * N - a₁) * (p.2 : ℕ)) -
       2 * qq N τ ^ ((p.1 : ℕ) * N * (p.2 : ℕ))) := by
-  rw [Ft, Fin.sum_univ_three, Gt, Gt, Gt, coef_zero, coef_one, coef_two, expo_zero, expo_one, expo_two]
+  rw [Ft, Fin.sum_univ_three, Gt, Gt, Gt, coef_zero, coef_one, coef_two, expo_zero, expo_one,
+    expo_two]
   ring
 
 theorem summable_majorant {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
@@ -376,11 +383,13 @@ theorem norm_Gt_le (ha : a₁ < N) (τ : ℍ) (i : Idx) :
   have hk : 1 ≤ (i.1.2 : ℕ) := i.1.2.2
   have hexp : (i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1) ≤ expo N a₁ i := by
     refine le_trans ?_ (mul_le_expo ha i)
-    have : ((i.1.1 : ℕ) - 1) * ((i.1.2 : ℕ) - 1) + ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) = (i.1.1 : ℕ) * (i.1.2 : ℕ) := by
+    have : ((i.1.1 : ℕ) - 1) * ((i.1.2 : ℕ) - 1) + ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) = (i.1.1 : ℕ) * (i.1.2 : ℕ) :=
+      by
       zify [hc, hk]; ring
     omega
   rw [Gt, norm_mul, norm_pow, ← hr]
-  have hpow : r ^ expo N a₁ i ≤ r ^ ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) := pow_le_pow_of_le_one hr0 hr1 hexp
+  have hpow : r ^ expo N a₁ i ≤ r ^ ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) :=
+    pow_le_pow_of_le_one hr0 hr1 hexp
   calc ‖coef N a₂ i‖ * r ^ expo N a₁ i ≤ (2 * (i.1.2 : ℕ)) * r ^ ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) :=
         mul_le_mul (norm_coef_le N a₂ i) hpow (pow_nonneg hr0 _) (by positivity)
     _ = 2 * (r ^ ((i.1.1 : ℕ) - 1) * (((i.1.2 : ℕ) : ℝ) * r ^ (i.1.2 : ℕ))) := by rw [pow_add]; ring
@@ -399,7 +408,8 @@ theorem summable_norm_Gt (ha : a₁ < N) (τ : ℍ) : Summable (fun i : Idx => �
   refine Summable.of_nonneg_of_le (fun i => norm_nonneg _) (fun i => ?_) hMaj
   exact norm_Gt_le N a₁ a₂ ha τ i
 
-theorem summable_Gt (ha : a₁ < N) (τ : ℍ) : Summable (Gt N a₁ a₂ τ) := (summable_norm_Gt N a₁ a₂ ha τ).of_norm
+theorem summable_Gt (ha : a₁ < N) (τ : ℍ) :
+    Summable (Gt N a₁ a₂ τ) := (summable_norm_Gt N a₁ a₂ ha τ).of_norm
 
 theorem hasSum_Ft (ha : a₁ < N) (τ : ℍ) : HasSum (Ft N a₁ a₂ τ) (∑' i, Gt N a₁ a₂ τ i) := by
   apply (summable_Gt N a₁ a₂ ha τ).hasSum.prod_fiberwise
@@ -419,7 +429,8 @@ theorem hasSum_cT (τ : ℍ) : HasSum (fun n => cT N a₁ a₂ n * qq N τ ^ n) 
     simp only [comp_apply, Equiv.sigmaFiberEquiv, Equiv.coe_fn_mk, Gt]
     rw [c.2]
   rw [h2]
-  have h3 : cT N a₁ a₂ n * qq N τ ^ n = ∑ c : {i : Idx // expo N a₁ i = n}, coef N a₂ c.1 * qq N τ ^ n := by
+  have h3 : cT N a₁ a₂ n * qq N τ ^ n = ∑ c : {i : Idx // expo N a₁ i = n}, coef N a₂ c.1 * qq N τ ^ n :=
+    by
     rw [cT, Finset.sum_mul]
   rw [h3]
   exact hasSum_fintype _
@@ -441,7 +452,8 @@ theorem hasSum_cA (τ : ℍ) (ha0 : a₁ ≠ 0) :
   refine (hinj.hasSum_iff hsupp).1 ?_
   convert h1 using 1
   funext k
-  simp only [comp_apply, cA, ha0, ↓reduceIte, dvd_mul_right, Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero ha0), hx]
+  simp only [comp_apply, cA, ha0, ↓reduceIte, dvd_mul_right, Nat.mul_div_cancel_left _
+    (Nat.pos_of_ne_zero ha0), hx]
   rw [mul_pow, ← pow_mul, ← pow_mul]
   ring
 
@@ -451,7 +463,8 @@ theorem hasSum_cW (X : ℍ → ℂ) (τ : ℍ)
     HasSum (fun n => cW N a₁ a₂ n * qq N τ ^ n) (X τ) := by
   have ha : a₁ < N := Fact.out
   have hT := hasSum_cT N a₁ a₂ τ
-  have htsum : ∑' p : ℕ+ × ℕ+, Ft N a₁ a₂ τ p = ∑' i, Gt N a₁ a₂ τ i := (hasSum_Ft N a₁ a₂ ha τ).tsum_eq
+  have htsum : ∑' p : ℕ+ × ℕ+, Ft N a₁ a₂ τ p = ∑' i, Gt N a₁ a₂ τ i :=
+    (hasSum_Ft N a₁ a₂ ha τ).tsum_eq
   have h0 : HasSum (fun n => (if n = 0 then c0 N a₁ a₂ else 0) * qq N τ ^ n) (c0 N a₁ a₂) := by
     have := hasSum_single (f := fun n => (if n = 0 then c0 N a₁ a₂ else 0) * qq N τ ^ n) 0
       (fun n hn => by simp [hn])
@@ -496,7 +509,8 @@ omit [NeZero N] [Fact (a₁ < N)] in
 theorem summable_bound {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     Summable (fun n : ℕ => (‖c0 N a₁ a₂‖ + 8 * ((n : ℝ) + 1) ^ 3) * r ^ n) := by
   have hnr : ‖r‖ < 1 := by rw [Real.norm_eq_abs, abs_of_nonneg hr0]; exact hr1
-  have h1 : Summable (fun n : ℕ => ‖c0 N a₁ a₂‖ * r ^ n) := (summable_geometric_of_lt_one hr0 hr1).mul_left _
+  have h1 : Summable (fun n : ℕ => ‖c0 N a₁ a₂‖ * r ^ n) :=
+    (summable_geometric_of_lt_one hr0 hr1).mul_left _
   have h2 : Summable (fun n : ℕ => ((n : ℝ) + 1) ^ 3 * r ^ n) := by
     have h3 := (summable_pow_mul_geometric_of_norm_lt_one 3 hnr).comp_injective Nat.succ_injective
     have h4 : Summable (fun n : ℕ => (((n + 1 : ℕ) : ℝ) ^ 3 * r ^ (n + 1)) * r⁻¹) := h3.mul_right _
@@ -800,6 +814,7 @@ theorem ModularCurve.exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoi
     (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
     ∃ D : ℕ, D ≠ 0 ∧ ∀ n : ℕ,
       (D : ℂ) * (UpperHalfPlane.qExpansion N (fricke v * ModularForm.discriminant)).coeff n ∈
-        Algebra.adjoin ℤ ({Complex.exp (2 * (Real.pi : ℂ) * Complex.I / (N : ℂ))} : Set ℂ) := _root_.P2MW.S_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin.solution N L hL W hW fricke hfricke v hv
+        Algebra.adjoin ℤ ({Complex.exp (2 * (Real.pi : ℂ) * Complex.I / (N : ℂ))} : Set ℂ) :=
+  solution N L hL W hW fricke hfricke v hv
 
 end publicSection

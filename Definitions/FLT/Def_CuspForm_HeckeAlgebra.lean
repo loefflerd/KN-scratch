@@ -117,7 +117,6 @@ instance heckeAlgebra.instIsMulCommutative : IsMulCommutative (heckeAlgebra N k 
   Algebra.isMulCommutative_adjoin ℤ fun _ hT _ hT' _ => commute_of_mem_heckeGenerators hT hT'
 
 open scoped IsMulCommutative in
-
 instance heckeAlgebra.instCommRing : CommRing (heckeAlgebra N k S) := inferInstance
 
 instance heckeAlgebra.instIsAddTorsionFree : IsAddTorsionFree (heckeAlgebra N k S) where

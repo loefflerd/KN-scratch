@@ -78,7 +78,6 @@ theorem jqNModC_one : jqNModC K 1 = jqModC K := qExpand_one_apply _
 theorem jqModC_rat : jqModC ℚ = jq := rfl
 
 variable {K} in
-
 theorem map_jqModC {K' : Type*} [CommRing K'] (f : K →+* K') :
     (jqModC K).map f = jqModC K' := by
   have hmul : ∀ x y : LaurentSeries K, (x * y).map f = x.map f * y.map f :=

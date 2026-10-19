@@ -62,12 +62,14 @@ namespace P2MW.S_ModularCurve_CuspSpace_normalFormCriterion
 
 open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
-p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_normalFormCriterion.ModularCurve ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_normalFormCriterion.ModularCurve.CuspSpace"
+p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_normalFormCriterion.ModularCurve \
+  ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_normalFormCriterion.ModularCurve.CuspSpace"
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "ratPoint mapGL_smul_ratPoint isCoprime_smul_pair CuspSpace CuspSpace.NormalFormCriterion ratPoint_eq_ratPoint_iff_of_isCoprime"
+p2m_export "ModularCurve" "ratPoint mapGL_smul_ratPoint isCoprime_smul_pair CuspSpace \
+  CuspSpace.NormalFormCriterion ratPoint_eq_ratPoint_iff_of_isCoprime"
 namespace CuspSpace
 p2m_export "ModularCurve.CuspSpace" "mk mk_eq_mk_iff mk_smul NormalFormCriterion"
 p2m_open "ModularCurve.CuspSpace ModularCurve"
@@ -175,6 +177,7 @@ public section publicSection
 
 open OnePoint
 theorem ModularCurve.CuspSpace.normalFormCriterion {N : ℕ} (hN : N ≠ 0) :
-    ModularCurve.CuspSpace.NormalFormCriterion N := _root_.P2MW.S_ModularCurve_CuspSpace_normalFormCriterion.solution hN
+    ModularCurve.CuspSpace.NormalFormCriterion N :=
+  solution hN
 
 end publicSection

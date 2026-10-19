@@ -286,6 +286,7 @@ theorem EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add (N : ℕ) 
             EisensteinSeries.eisensteinG1 N (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) τ) ∧
     (∀ v w : Fin 2 → ℤ, (¬ ∀ i, (N : ℤ) ∣ v i) →
         EisensteinSeries.eisensteinG1 N (v + (N : ℤ) • w) τ =
-          EisensteinSeries.eisensteinG1 N v τ) := _root_.P2MW.S_EisensteinSeries_eisensteinG1_apply_smul_and_eisensteinG1_add.solution N τ
+          EisensteinSeries.eisensteinG1 N v τ) :=
+  solution N τ
 
 end publicSection

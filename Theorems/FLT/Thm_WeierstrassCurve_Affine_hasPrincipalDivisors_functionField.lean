@@ -82,9 +82,13 @@ open Module Polynomial
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -92,7 +96,9 @@ universe u
 variable {F : Type u} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq \
+  quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map \
+  degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 scoped instance : Algebra.FiniteType F W.CoordinateRing :=
@@ -163,7 +169,8 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
 end CoordinateRing
 
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add toClass some neg_zero map_zero map toClass_injective zero mk neg"
+p2m_export "WeierstrassCurve.Affine.Point" "add toClass some neg_zero map_zero map \
+  toClass_injective zero mk neg"
 end Point
 end Affine
 end WeierstrassCurve
@@ -174,11 +181,25 @@ noncomputable section
 open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor \
+  Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 \
+  Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' \
+  Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite \
+  Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
+  lace.ord_algebraMap"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow \
+  exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos \
+  ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq \
+  restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff \
+  ord_eq_neg_log_of_valuationSubring_eq"
 end Place
 end AlgebraicCurve
 end
@@ -189,8 +210,15 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor \
+  Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 \
+  Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' \
+  Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite \
+  Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
+  lace.ord_algebraMap"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
@@ -201,7 +229,14 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
     omega
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow \
+  exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos \
+  ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq \
+  restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff \
+  ord_eq_neg_log_of_valuationSubring_eq"
 end Place
 
 namespace RationalFunctionField
@@ -217,11 +252,17 @@ open Module Polynomial
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq \
+  quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map \
+  degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -239,7 +280,7 @@ private lemma two_nsmul_le_coe_iff {d : WithBot ℕ} {n : ℕ} :
   induction d using WithBot.recBotCoe with
   | bot => exact iff_of_true (by simp) (WithBot.bot_lt_coe _)
   | coe k =>
-    show 2 • ((k : ℕ) : WithBot ℕ) ≤ (n : WithBot ℕ) ↔
+    change 2 • ((k : ℕ) : WithBot ℕ) ≤ (n : WithBot ℕ) ↔
       ((k : ℕ) : WithBot ℕ) < ((n / 2 + 1 : ℕ) : WithBot ℕ)
     rw [two_nsmul, ← Nat.cast_add]
     exact_mod_cast (by omega : k + k ≤ n ↔ k < n / 2 + 1)
@@ -249,7 +290,7 @@ private lemma two_nsmul_add_three_le_coe_iff {d : WithBot ℕ} {n : ℕ} :
   induction d using WithBot.recBotCoe with
   | bot => exact iff_of_true (by simp) (WithBot.bot_lt_coe _)
   | coe k =>
-    show 2 • ((k : ℕ) : WithBot ℕ) + 3 ≤ (n : WithBot ℕ) ↔
+    change 2 • ((k : ℕ) : WithBot ℕ) + 3 ≤ (n : WithBot ℕ) ↔
       ((k : ℕ) : WithBot ℕ) < (((n - 1) / 2 : ℕ) : WithBot ℕ)
     rw [two_nsmul, ← Nat.cast_add, show (3 : WithBot ℕ) = ((3 : ℕ) : WithBot ℕ) by norm_cast,
       ← Nat.cast_add]
@@ -259,7 +300,6 @@ private lemma xCount_add_yCount (n : ℕ) (hn : 1 ≤ n) : n / 2 + 1 + (n - 1) /
   omega
 
 variable (W) in
-
 noncomputable def rrParam (n : ℕ) :
     (degreeLT F (n / 2 + 1) × degreeLT F ((n - 1) / 2)) →ₗ[F] W.CoordinateRing :=
   LinearMap.coprod
@@ -281,7 +321,6 @@ lemma rrParam_injective (n : ℕ) : Function.Injective (rrParam W n) := by
   exact Prod.ext (Subtype.ext hp) (Subtype.ext hq)
 
 variable (W) in
-
 noncomputable def RRSpace (n : ℕ) : Submodule F W.CoordinateRing :=
   LinearMap.range (rrParam W n)
 
@@ -337,7 +376,6 @@ lemma one_le_RRSpace (n : ℕ) : (1 : Submodule F W.CoordinateRing) ≤ RRSpace 
 namespace RRSpace
 
 variable (W) in
-
 noncomputable def basisAux (n : ℕ) :
     Basis (Fin (n / 2 + 1 + (n - 1) / 2)) F (RRSpace W n) :=
   (degreeLT.basisProd F (n / 2 + 1) ((n - 1) / 2)).map
@@ -348,7 +386,6 @@ theorem finrank_eq (n : ℕ) (hn : 1 ≤ n) : finrank F (RRSpace W n) = n := by
   exact xCount_add_yCount n hn
 
 variable (W) in
-
 noncomputable def finBasis (n : ℕ) (hn : 1 ≤ n) : Basis (Fin n) F (RRSpace W n) :=
   (basisAux W n).reindex (finCongr (xCount_add_yCount n hn))
 
@@ -376,12 +413,17 @@ section
 
 section
 
-p2m_open "FractionalIdeal P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.FractionalIdeal Polynomial"
+p2m_open "FractionalIdeal \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.FractionalIdeal Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff count_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
+p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count \
+  zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map \
+  isPrincipal_iff count_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton \
+  le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top \
+  finprod_heightOneSpectrum_factorization"
 p2m_open "FractionalIdeal"
 
 variable {R : Type*} (K : Type*) [CommRing R] [IsDomain R] [Field K] [Algebra R K]
@@ -448,9 +490,13 @@ theorem isDedekindDomain_of_forall_isMaximal_isUnit {R : Type*} (K : Type*) [Com
     (mul_inv_cancel_iff_isUnit K).mpr (isUnit_of_forall_isMaximal K hmax I hI)
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -458,7 +504,9 @@ universe u
 variable {F : Type u} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq \
+  quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map \
+  degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 theorem isUnit_coeIdeal_of_isMaximal [IsAlgClosed F] (hΔ : W.Δ ≠ 0)
@@ -479,7 +527,8 @@ scoped instance [IsAlgClosed F] [W.IsElliptic] : IsDedekindDomain W.CoordinateRi
 end CoordinateRing
 
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add toClass some neg_zero map_zero map toClass_injective zero mk neg"
+p2m_export "WeierstrassCurve.Affine.Point" "add toClass some neg_zero map_zero map \
+  toClass_injective zero mk neg"
 end Point
 end Affine
 end WeierstrassCurve
@@ -492,10 +541,26 @@ open IsDedekindDomain Polynomial
 open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor \
+  Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 \
+  Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' \
+  Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite \
+  Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMap~comap_algebraMap_ne_top AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow \
+  exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos \
+  ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq \
+  restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff \
+  ord_eq_neg_log_of_valuationSubring_eq"
+p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMa\
+  p~comap_algebraMap_ne_top \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
+  _algebraMap"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
@@ -503,7 +568,7 @@ theorem deg_eq_one_of_surjective (v : Place K F)
     (h : Function.Surjective (algebraMap K v.ResidueField)) : v.deg = 1 := by
   have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
     ⟨(algebraMap K v.ResidueField).injective, h⟩
-  show Module.finrank K v.ResidueField = 1
+  change Module.finrank K v.ResidueField = 1
   rw [← Module.finrank_self K]
   exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
 
@@ -525,7 +590,7 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
       intro hn
       refine d.2 ?_
       replace hn : n ∈ w.asIdeal := hn
-      show (d : R) ∈ w.asIdeal
+      change (d : R) ∈ w.asIdeal
       rw [← w.valuation_lt_one_iff_mem (K := F)] at hn ⊢
       calc w.valuation F (algebraMap R F (d : R))
           = w.valuation F (a : F) * w.valuation F (algebraMap R F n) := by
@@ -568,7 +633,7 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
     field_simp
     linear_combination (-(algebraMap K F cd)) * hnd
   refine (Valuation.mem_maximalIdeal_iff (v := w.valuation F)).mpr ?_
-  show w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F)) < 1
+  change w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F)) < 1
   calc w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F))
       = w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F))
         * (w.valuation F (algebraMap K F cd) * w.valuation F (algebraMap R F d)) := by
@@ -583,15 +648,21 @@ end Place
 end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq \
+  quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map \
+  degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 theorem algebraMap_eq_mk_C_C (a : F) :
@@ -671,7 +742,9 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 
 end CoordinateRing
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  ateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
   ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring
@@ -781,7 +854,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
       rw [ValuationSubring.ofPrime_top] at h3
       have hAv : A = v.toValuationSubring := h3.symm.trans hSP
       refine (AlgebraicCurve.Place.ext ?_).symm
-      show (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
+      change (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
       rw [AlgebraicCurve.Place.ofHeightOneSpectrum_toValuationSubring,
         ← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
       exact hAv
@@ -789,7 +862,6 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     exact isFinitePlace_placeOfEquation h
 
 variable (W) in
-
 class InfinitePlace : Type _ where
   place : AlgebraicCurve.Place F W.FunctionField
   not_isFinitePlace : ¬ IsFinitePlace place
@@ -854,12 +926,18 @@ section
 
 noncomputable section
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
+  lace.ord_algebraMap \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -868,7 +946,6 @@ variable {F : Type u} [Field F] [DecidableEq F] {W : Affine F}
 variable [IsAlgClosed F] [W.IsElliptic] [InfinitePlace W]
 
 omit [DecidableEq F] [IsAlgClosed F] [InfinitePlace W] in
-
 theorem isElliptic_Δ_ne_zero : W.Δ ≠ 0 := W.coe_Δ' ▸ W.Δ'.ne_zero
 
 def geomPointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
@@ -894,7 +971,6 @@ theorem geomDivisorSum_single (v : AlgebraicCurve.Place F W.FunctionField) (n : 
   Finsupp.liftAddHom_apply_single _ v n
 
 variable (W) in
-
 class GeomAbelTheorem : Prop where
   isPrincipal_iff_geomDivisorSum_eq_zero :
     ∀ D : AlgebraicCurve.Divisor F W.FunctionField, Divisor.degree D = 0 →
@@ -911,14 +987,31 @@ open Polynomial IsDedekindDomain
 open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor \
+  Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 \
+  Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' \
+  Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite \
+  Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMap~comap_algebraMap_ne_top AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow \
+  exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos \
+  ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq \
+  restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff \
+  ord_eq_neg_log_of_valuationSubring_eq"
+p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMa\
+  p~comap_algebraMap_ne_top \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
+  _algebraMap"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
+private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
+    (h : v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
     intro hcon
@@ -959,12 +1052,14 @@ private theorem ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
   rw [v.ord_inv] at h2
   omega
 
-private theorem _root_.AlgebraicCurve.Place.ord_pow (f : F) (n : ℕ) : v.ord (f ^ n) = n * v.ord f := by
+private theorem _root_.AlgebraicCurve.Place.ord_pow (f : F) (n : ℕ) :
+    v.ord (f ^ n) = n * v.ord f := by
   rw [← zpow_natCast, v.ord_zpow]
 
 p2m_export "AlgebraicCurve.Place" "ord_pow"
 
-private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K[X] →+* F} (hφinj : Function.Injective φ)
+private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K[X] →+* F}
+    (hφinj : Function.Injective φ)
     (hφC : ∀ c : K, φ (C c) = algebraMap K F c) (hz : v.ord (φ X) < 0) :
     ∀ {p : K[X]}, p ≠ 0 → v.ord (φ p) = p.natDegree * v.ord (φ X) := by
   have hX0 : φ X ≠ 0 := fun h => by simp [Place.ord, h] at hz
@@ -973,7 +1068,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
     have hc0 : φ (C c) ≠ 0 := by
       rw [hφC]
       simpa using hc
-    rw [map_mul, map_pow, v.ord_mul hc0 (pow_ne_zero n hX0), hφC, AlgebraicCurve.Place.ord_algebraMap v,
+    rw [map_mul, map_pow, v.ord_mul hc0 (pow_ne_zero n hX0), hφC,
+      AlgebraicCurve.Place.ord_algebraMap v,
       v.ord_pow, zero_add]
   intro p
   induction hd : p.natDegree using Nat.strong_induction_on generalizing p with
@@ -1007,7 +1103,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
 
 p2m_export "AlgebraicCurve.Place" "ord_ringHom_eq_natDegree_mul"
 
-private theorem _root_.AlgebraicCurve.Place.le_ord_ringHom_of_natDegree_le {φ : K[X] →+* F} (hφinj : Function.Injective φ)
+private theorem _root_.AlgebraicCurve.Place.le_ord_ringHom_of_natDegree_le {φ : K[X] →+* F}
+    (hφinj : Function.Injective φ)
     (hφC : ∀ c : K, φ (C c) = algebraMap K F c) (hz : v.ord (φ X) < 0)
     {p : K[X]} {d : ℕ} (hd : p.natDegree ≤ d) :
     (d : ℤ) * v.ord (φ X) ≤ v.ord (φ p) := by
@@ -1023,12 +1120,20 @@ end Place
 end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  ateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
+  _algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -1275,7 +1380,8 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   by_cases hq : q = 0
   · subst hq
     have hp : p ≠ 0 := fun h => hf (by rw [h, zero_smul, zero_smul, add_zero])
-    rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul, add_zero,
+    rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul,
+      add_zero,
       v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp]
     ring
   · by_cases hp : p = 0
@@ -1317,7 +1423,8 @@ theorem mem_iff_natDegree_norm_le (hv : ¬ IsFinitePlace v) {a b : W.CoordinateR
     (map_ne_zero_iff _ (IsFractionRing.injective W.CoordinateRing W.FunctionField)).mpr hb
   have hdiv : algebraMap W.CoordinateRing W.FunctionField a
       / algebraMap W.CoordinateRing W.FunctionField b ≠ 0 := div_ne_zero ha' hb'
-  rw [AlgebraicCurve.Place.mem_iff_ord_nonneg v hdiv, div_eq_mul_inv, v.ord_mul ha' (inv_ne_zero hb'), v.ord_inv]
+  rw [AlgebraicCurve.Place.mem_iff_ord_nonneg v hdiv, div_eq_mul_inv, v.ord_mul ha' (inv_ne_zero
+    hb'), v.ord_inv]
   have h1 := two_mul_ord_eq_of_not_isFinitePlace v hv ha
   have h2 := two_mul_ord_eq_of_not_isFinitePlace v hv hb
   constructor
@@ -1555,7 +1662,6 @@ theorem exists_not_isFinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateR
   omega
 
 variable (W) in
-
 scoped instance instInfinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateRing]
     [AlgebraicCurve.HasPrincipalDivisors F W.FunctionField] : InfinitePlace W where
   place := (exists_not_isFinitePlace (W := W)).choose
@@ -1573,12 +1679,21 @@ section
 
 noncomputable section
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve IsDedekindDomain FractionalIdeal P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.FractionalIdeal WithZero Polynomial"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
+  lace.ord_algebraMap \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve \
+  IsDedekindDomain FractionalIdeal \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.FractionalIdeal WithZero \
+  Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff count_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
+p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count \
+  zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map \
+  isPrincipal_iff count_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton \
+  le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top \
+  finprod_heightOneSpectrum_factorization"
 p2m_open "FractionalIdeal"
 
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
@@ -1622,10 +1737,26 @@ theorem eq_of_count_eq {I J : FractionalIdeal R⁰ L} (hI : I ≠ 0) (hJ : J ≠
 end FractionalIdeal
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor \
+  Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 \
+  Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' \
+  Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite \
+  Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  Place.ord_eq_neg_log_of_valuationSubring_eq hasPrincipalDivisors_of_finiteDimensional_ratFunc"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMap~comap_algebraMap_ne_top AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow \
+  exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' \
+  algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos \
+  ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq \
+  restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff \
+  ord_eq_neg_log_of_valuationSubring_eq"
+p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMa\
+  p~comap_algebraMap_ne_top \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
+  _algebraMap"
 
 variable {K : Type*} [Field K]
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
@@ -1650,9 +1781,13 @@ end Place
 end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -1660,17 +1795,19 @@ universe u
 variable {F : Type u} [Field F] [DecidableEq F] {W : Affine F}
 variable [IsAlgClosed F] [W.IsElliptic] [InfinitePlace W]
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  ateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
+  _algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
 
 omit [DecidableEq F] [InfinitePlace W] in
-
 theorem isFinitePlace_ofHeightOneSpectrum (w : HeightOneSpectrum W.CoordinateRing) :
     IsFinitePlace (W := W)
       (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w) := fun r =>
   w.valuation_le_one r
 
 omit [DecidableEq F] in
-
 theorem infinitePlace_ne_ofHeightOneSpectrum (w : HeightOneSpectrum W.CoordinateRing) :
     (InfinitePlace.place : AlgebraicCurve.Place F W.FunctionField)
       ≠ AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) w := fun h =>
@@ -1690,7 +1827,6 @@ theorem unitIdealOfPoint_some {x y : F} (h : W.Nonsingular x y) :
     unitIdealOfPoint (.some x y h) = CoordinateRing.XYIdeal' h := rfl
 
 omit [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
-
 theorem classGroup_mk_unitIdealOfPoint (P : W.Point) :
     ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) := by
   cases P with
@@ -1729,7 +1865,6 @@ theorem classGroup_mk_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.Functio
         map_zsmul, toMul_zsmul]
 
 omit [DecidableEq F] in
-
 theorem count_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField)
     (w : HeightOneSpectrum W.CoordinateRing) :
     FractionalIdeal.count W.FunctionField w (unitIdealOfDivisor D : _) =
@@ -1836,12 +1971,20 @@ open Polynomial
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
+p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
+  mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ'"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal \
+  CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map Nonsingular \
+  CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective \
+  equation_iff polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  ateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
+  _algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -1855,7 +1998,6 @@ theorem algebraMap_polynomial_injective :
   exact polyToFunctionField_injective
 
 variable (W) in
-
 def ratFuncToFunctionField : RatFunc F →+* W.FunctionField :=
   IsFractionRing.lift algebraMap_polynomial_injective
 
@@ -1879,12 +2021,10 @@ scoped instance : IsScalarTower F (RatFunc F) W.FunctionField := by
   exact (polyToFunctionField_C c).symm
 
 variable (W) in
-
 def yCoord : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
 variable (W) in
-
 def weierstrassQuadratic : Polynomial (RatFunc F) :=
   X ^ 2 + (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
     - C (algebraMap F[X] (RatFunc F) (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)))
@@ -1981,6 +2121,7 @@ public section publicSection
 
 theorem WeierstrassCurve.Affine.hasPrincipalDivisors_functionField
     {F : Type*} [Field F] [CharZero F] (W : WeierstrassCurve.Affine F) :
-    AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := _root_.P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.solution W
+    AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
+  solution W
 
 end publicSection

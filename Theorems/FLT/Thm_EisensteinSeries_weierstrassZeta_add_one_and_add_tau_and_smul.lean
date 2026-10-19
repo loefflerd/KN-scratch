@@ -359,6 +359,7 @@ theorem EisensteinSeries.weierstrassZeta_add_one_and_add_tau_and_smul (τ : Uppe
             ((τ : ℂ) * EisensteinSeries.G2 τ - 2 * π * Complex.I)) ∧
     (∀ (γ : SL(2, ℤ)) (z : ℂ),
         EisensteinSeries.weierstrassZeta (γ • τ) (z / UpperHalfPlane.denom γ τ) =
-          UpperHalfPlane.denom γ τ * EisensteinSeries.weierstrassZeta τ z) := _root_.P2MW.S_EisensteinSeries_weierstrassZeta_add_one_and_add_tau_and_smul.solution τ
+          UpperHalfPlane.denom γ τ * EisensteinSeries.weierstrassZeta τ z) :=
+  solution τ
 
 end publicSection

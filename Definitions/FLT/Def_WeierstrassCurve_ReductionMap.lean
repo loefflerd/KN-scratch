@@ -198,7 +198,6 @@ theorem Affine.nonsingular_residue (hΔ : (W.map (residue A)).Δ ≠ 0) {x y : A
 variable {W}
 
 open Classical in
-
 noncomputable def reducePoint (hΔ : (W.map (residue A)).Δ ≠ 0) :
     (W.map A.subtype).toAffine.Point → (W.map (residue A)).toAffine.Point
   | .zero => .zero
@@ -239,7 +238,7 @@ theorem reducePoint_neg (P : (W.map A.subtype).toAffine.Point) :
       rw [reducePoint_some_of_mem _ _ hx, reducePoint_some_of_mem _ _ hx,
         Affine.Point.neg_some]
       refine some_congr rfl ?_ _ _
-      show residue A (W.toAffine.negY ⟨x, hx⟩ ⟨y, hy⟩) = _
+      change residue A (W.toAffine.negY ⟨x, hx⟩ ⟨y, hy⟩) = _
       exact (Affine.map_negY (residue A) (⟨x, hx⟩ : A) (⟨y, hy⟩ : A)).symm
     · rw [reducePoint_some_of_notMem _ _ hx, reducePoint_some_of_notMem _ _ hx]
       rfl

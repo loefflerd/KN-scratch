@@ -94,7 +94,9 @@ theorem PortCard.Ψ₂Sq_ne_zero_of_isElliptic {F : Type*} [Field F] (W : Weiers
       (-4 * W.b₄ ^ 3) * h2
   exact W.isUnit_Δ.ne_zero hΔ
 
-theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) {x y : F} (h : W.toAffine.Nonsingular x y) : 2 • WeierstrassCurve.Affine.Point.some x y h = 0 ↔ W.Ψ₂Sq.eval x = 0 :=
+theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) {x y : F}
+    (h : W.toAffine.Nonsingular x y) :
+    2 • WeierstrassCurve.Affine.Point.some x y h = 0 ↔ W.Ψ₂Sq.eval x = 0 :=
   PortCard.two_smul_some_eq_zero_iff W h
 
 end S_WeierstrassCurve_Affine_Point_two_smul_some_eq_zero_iff
@@ -105,6 +107,9 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.Point.two_smul_some_eq_zero_iff {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) {x y : F} (h : W.toAffine.Nonsingular x y) : 2 • WeierstrassCurve.Affine.Point.some x y h = 0 ↔ W.Ψ₂Sq.eval x = 0 := _root_.P2MW.S_WeierstrassCurve_Affine_Point_two_smul_some_eq_zero_iff.solution W h
+theorem WeierstrassCurve.Affine.Point.two_smul_some_eq_zero_iff {F : Type*} [Field F]
+    [DecidableEq F] (W : WeierstrassCurve F) {x y : F} (h : W.toAffine.Nonsingular x y) :
+    2 • WeierstrassCurve.Affine.Point.some x y h = 0 ↔ W.Ψ₂Sq.eval x = 0 :=
+  solution W h
 
 end publicSection

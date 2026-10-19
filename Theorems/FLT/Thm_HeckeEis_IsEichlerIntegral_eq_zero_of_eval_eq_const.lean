@@ -70,7 +70,8 @@ def rung (G : ℍ → ↥(BinaryForm ℂ n)) (j : ℕ) (τ : ℍ) : ℂ :=
   MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
 
 theorem rung_succ_n (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : rung G (n + 1) τ = 0 := by
-  rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n _).mp (G τ).2) 1
+  rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n
+    _).mp (G τ).2) 1
     (Nat.lt_succ_self n), map_zero]
 
 theorem hasDerivAt_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) (τ : ℍ) :
@@ -82,7 +83,8 @@ theorem hasDerivAt_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) 
   simp only [Function.comp_apply, rung]
   rw [ofComplex_apply_of_im_pos hz]
 
-theorem eq_zero_of_rung_zero_const (hG : IsEichlerIntegral n g G) {c : ℂ} (hc : ∀ τ : ℍ, rung G 0 τ = c) :
+theorem eq_zero_of_rung_zero_const (hG : IsEichlerIntegral n g G) {c : ℂ}
+    (hc : ∀ τ : ℍ, rung G 0 τ = c) :
     ∀ τ : ℍ, g τ = 0 := by
   have hstep : ∀ j : ℕ, j ≤ n → (∃ c : ℂ, ∀ τ : ℍ, rung G j τ = c) →
       ∀ τ : ℍ, (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j + 1) τ = 0 := by
@@ -115,9 +117,9 @@ end HeckeEis.LadderAux
 end
 
 open scoped MatrixGroups in
-
 theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
-    {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {c : ℂ}
+    {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
+    {c : ℂ}
     (hc : ∀ τ : UpperHalfPlane,
       MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = c) :
     g = 0 :=
@@ -128,7 +130,8 @@ end privateSection
 public section publicSection
 
 theorem HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const {n : ℕ} {g : UpperHalfPlane → ℂ}
-    {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {c : ℂ}
+    {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
+    {c : ℂ}
     (hc : ∀ τ : UpperHalfPlane,
       MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = c) :
     g = 0 := _root_.solution hG hc

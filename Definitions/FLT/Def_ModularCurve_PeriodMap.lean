@@ -119,16 +119,17 @@ def parabolicHoms : Submodule R (Additive Γ →+ A) where
   zero_mem' := fun _ _ => rfl
   add_mem' := by
     intro φ ψ hφ hψ γ hγ
-    show φ (Additive.ofMul γ) + ψ (Additive.ofMul γ) = 0
+    change φ (Additive.ofMul γ) + ψ (Additive.ofMul γ) = 0
     rw [hφ γ hγ, hψ γ hγ, add_zero]
   smul_mem' := by
     intro c φ hφ γ hγ
-    show c • φ (Additive.ofMul γ) = 0
+    change c • φ (Additive.ofMul γ) = 0
     rw [hφ γ hγ, smul_zero]
 
 variable {R Γ A}
 
-theorem mem_parabolicHoms_iff {φ : Additive Γ →+ A} : φ ∈ parabolicHoms R Γ A ↔ IsParabolicHom Γ φ :=
+theorem mem_parabolicHoms_iff {φ : Additive Γ →+ A} :
+    φ ∈ parabolicHoms R Γ A ↔ IsParabolicHom Γ φ :=
   Iff.rfl
 
 end ParabolicHoms

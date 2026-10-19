@@ -63,7 +63,8 @@ namespace P2MW.S_ModularCurve_isIntegral_jqNModC_mul
 
 open ModularCurve IntermediateField Polynomial
 
-private theorem isIntegral_of_eval₂_eq_zero {L : Type*} [Field L] (F : IntermediateField L (LaurentSeries L))
+private theorem isIntegral_of_eval₂_eq_zero {L : Type*} [Field L]
+    (F : IntermediateField L (LaurentSeries L))
     {Φ : Polynomial (Polynomial ℤ)} (hΦ : Φ.Monic) {a b : LaurentSeries L} (ha : a ∈ F)
     (h : Φ.eval₂ (aeval (R := ℤ) a).toRingHom b = 0) : IsIntegral F b := by
   set ev : Polynomial ℤ →+* F := (aeval (R := ℤ) (⟨a, ha⟩ : F)).toRingHom with hev
@@ -74,7 +75,10 @@ private theorem isIntegral_of_eval₂_eq_zero {L : Type*} [Field L] (F : Interme
   rw [Polynomial.eval₂_map, hcomp]
   exact h
 
-theorem solution {K : Type*} [Field K] (F : IntermediateField K (LaurentSeries K)) {ℓ : ℕ} [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ) (d : ℕ) [NeZero d] (hd : ModularCurve.jqNModC K d ∈ F) : IsIntegral F (ModularCurve.jqNModC K (d * ℓ)) :=
+theorem solution {K : Type*} [Field K] (F : IntermediateField K (LaurentSeries K)) {ℓ : ℕ}
+    [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ) (d : ℕ) [NeZero d]
+    (hd : ModularCurve.jqNModC K d ∈ F) :
+    IsIntegral F (ModularCurve.jqNModC K (d * ℓ)) :=
   isIntegral_of_eval₂_eq_zero F data.monic hd (data.eval_jqNModC_mul_eq_zero K d)
 
 end S_ModularCurve_isIntegral_jqNModC_mul
@@ -85,6 +89,11 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.isIntegral_jqNModC_mul {K : Type*} [Field K] (F : IntermediateField K (LaurentSeries K)) {ℓ : ℕ} [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ) (d : ℕ) [NeZero d] (hd : ModularCurve.jqNModC K d ∈ F) : IsIntegral F (ModularCurve.jqNModC K (d * ℓ)) := _root_.P2MW.S_ModularCurve_isIntegral_jqNModC_mul.solution F data d hd
+theorem ModularCurve.isIntegral_jqNModC_mul {K : Type*} [Field K]
+    (F : IntermediateField K (LaurentSeries K)) {ℓ : ℕ} [NeZero ℓ]
+    (data : ModularCurve.ModularPolynomialData ℓ) (d : ℕ) [NeZero d]
+    (hd : ModularCurve.jqNModC K d ∈ F) :
+    IsIntegral F (ModularCurve.jqNModC K (d * ℓ)) :=
+  solution F data d hd
 
 end publicSection

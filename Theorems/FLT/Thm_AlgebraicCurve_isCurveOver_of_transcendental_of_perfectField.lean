@@ -79,6 +79,7 @@ theorem AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField
     {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K]
     {x : F} (htr : Transcendental K x)
     (hfd : FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F) :
-    AlgebraicCurve.IsCurveOver K F := _root_.P2MW.S_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField.solution htr hfd
+    AlgebraicCurve.IsCurveOver K F :=
+  solution htr hfd
 
 end publicSection

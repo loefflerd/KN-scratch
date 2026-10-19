@@ -74,11 +74,17 @@ set_option linter.unusedVariables false
 
 open IsDedekindDomain
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section Transport
@@ -114,11 +120,17 @@ end AlgebraicCurve
 
 open IsDedekindDomain Polynomial
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section CotangentEngine
@@ -129,7 +141,8 @@ private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring'' : v.t
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
 p2m_export "AlgebraicCurve.Place" "uniformizerSubring''"
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.polynomialAlgebra : Algebra K[X] v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.polynomialAlgebra :
+    Algebra K[X] v.toValuationSubring :=
   (Polynomial.aeval (R := K) v.uniformizerSubring'').toRingHom.toAlgebra
 
 p2m_export "AlgebraicCurve.Place" "polynomialAlgebra"
@@ -144,7 +157,7 @@ private lemma _root_.AlgebraicCurve.Place.polynomialIsScalarTower :
     IsScalarTower K K[X] v.toValuationSubring := by
   let := v.polynomialAlgebra
   refine IsScalarTower.of_algebraMap_eq fun a => ?_
-  show _ = aeval v.uniformizerSubring'' (algebraMap K K[X] a)
+  change _ = aeval v.uniformizerSubring'' (algebraMap K K[X] a)
   simp [Polynomial.algebraMap_eq, aeval_C]
 
 p2m_export "AlgebraicCurve.Place" "polynomialIsScalarTower"
@@ -218,22 +231,30 @@ open IsDedekindDomain Polynomial IsLocalRing
 open scoped TensorProduct
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section ResidueEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring''' : v.toValuationSubring :=
+private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring''' :
+    v.toValuationSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
 p2m_export "AlgebraicCurve.Place" "uniformizerSubring'''"
-private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring''' : Irreducible v.uniformizerSubring''' :=
+private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring''' :
+    Irreducible v.uniformizerSubring''' :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
 
 p2m_export "AlgebraicCurve.Place" "irreducible_uniformizerSubring'''"
@@ -355,11 +376,17 @@ end AlgebraicCurve
 
 open IsDedekindDomain Polynomial IsLocalRing
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section EftEngine
@@ -423,7 +450,9 @@ end AlgebraicCurve
 
 open IsDedekindDomain Polynomial IsLocalRing
 namespace ValuationSubring
-p2m_export "ValuationSubring" "comap idealOfLE mem_comap prime_idealOfLE toSubring ext zero_mem ofPrime_top mem_nonunits_iff ofPrime mem_or_inv_mem' mem_top toSubring_injective mul_mem mem_or_inv_mem add_mem eq_top_iff valuation inclusion ofPrime_idealOfLE ofPrime_bot"
+p2m_export "ValuationSubring" "comap idealOfLE mem_comap prime_idealOfLE toSubring ext zero_mem \
+  ofPrime_top mem_nonunits_iff ofPrime mem_or_inv_mem' mem_top toSubring_injective mul_mem \
+  mem_or_inv_mem add_mem eq_top_iff valuation inclusion ofPrime_idealOfLE ofPrime_bot"
 p2m_open "ValuationSubring"
 
 variable {F : Type*} [Field F]
@@ -453,11 +482,17 @@ theorem eq_of_isDiscreteValuationRing_of_le_s12 {R S : ValuationSubring F}
 end ValuationSubring
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section CenterIdeal
@@ -466,14 +501,16 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
 variable (A : Subalgebra K F) (hA : (A : Set F) ⊆ (v.toValuationSubring : Set F))
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelInclusion : A →+* v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelInclusion :
+    A →+* v.toValuationSubring :=
   (Subring.inclusion (show A.toSubring ≤ v.toValuationSubring.toSubring from hA))
 
 p2m_export "AlgebraicCurve.Place" "modelInclusion"
 @[scoped simp] theorem coe_modelInclusion (a : A) :
     ((v.modelInclusion A hA a : v.toValuationSubring) : F) = (a : F) := rfl
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelAlgebra : Algebra A v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelAlgebra :
+    Algebra A v.toValuationSubring :=
   (v.modelInclusion A hA).toAlgebra
 
 p2m_export "AlgebraicCurve.Place" "modelAlgebra"
@@ -553,11 +590,17 @@ end AlgebraicCurve
 open IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section CenterNonzero
@@ -663,12 +706,14 @@ scoped instance centerLocalizationValuationSubring_isDiscreteValuationRing
     IsDiscreteValuationRing (v.centerLocalizationValuationSubring A hA) :=
   v.centerLocalizationSubalgebra_isDiscreteValuationRing A hA
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_le [IsDedekindDomain A] [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_le
+    [IsDedekindDomain A] [IsFractionRing A F] :
     v.centerLocalizationValuationSubring A hA ≤ v.toValuationSubring :=
   v.centerLocalizationSubalgebra_subset A hA
 
 p2m_export "AlgebraicCurve.Place" "centerLocalizationValuationSubring_le"
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_eq [IsDedekindDomain A] [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_eq
+    [IsDedekindDomain A] [IsFractionRing A F] :
     v.centerLocalizationValuationSubring A hA = v.toValuationSubring :=
   ValuationSubring.eq_of_isDiscreteValuationRing_of_le_s12
     (v.centerLocalizationValuationSubring_le A hA) v.ne_top'
@@ -680,7 +725,8 @@ theorem coe_centerLocalizationSubalgebra_eq [IsDedekindDomain A] [IsFractionRing
   rw [← coe_centerLocalizationValuationSubring]
   exact congrArg (SetLike.coe) (v.centerLocalizationValuationSubring_eq A hA)
 
-private theorem _root_.AlgebraicCurve.Place.mem_centerLocalizationSubalgebra_of_mem [IsDedekindDomain A] [IsFractionRing A F]
+private theorem _root_.AlgebraicCurve.Place.mem_centerLocalizationSubalgebra_of_mem
+    [IsDedekindDomain A] [IsFractionRing A F]
     (x : F) (hx : x ∈ v.toValuationSubring) :
     x ∈ (v.centerLocalizationSubalgebra A hA : Subalgebra A F) := by
   rw [← SetLike.mem_coe, coe_centerLocalizationSubalgebra_eq]; exact hx
@@ -698,7 +744,7 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
       v.mem_centerLocalizationSubalgebra_of_mem A hA (x : F) x.2
     obtain ⟨a, s, hs, hxeq⟩ := hxP
     refine ⟨⟨a, ⟨s, hs⟩⟩, Subtype.ext ?_⟩
-    show (x : F) * ((s : A) : F) = ((a : A) : F)
+    change (x : F) * ((s : A) : F) = ((a : A) : F)
     have halg_s : algebraMap A F s = ((s : A) : F) := rfl
     have halg_a : algebraMap A F a = ((a : A) : F) := rfl
     have hs0 : algebraMap A F s ≠ 0 := by
@@ -735,11 +781,17 @@ end AlgebraicCurve
 open IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 section IntegrallyClosed
@@ -819,7 +871,9 @@ end TwoCharts
 end AlgebraicCurve
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 section Gates
@@ -827,11 +881,16 @@ section Gates
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 end Place
 namespace Place
 p2m_open_scoped "AlgebraicCurve.Place" in
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) : Subalgebra K F where
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) :
+    Subalgebra K F where
   __ := v.toValuationSubring.toSubring
   algebraMap_mem' c := v.algebraMap_mem' c
 
@@ -854,33 +913,41 @@ theorem gate_adjoin_subset_valuationSubring_of_mem (v : Place K F) {t : F}
 end Gates
 end AlgebraicCurve
 
-p2m_open "IsLocalRing IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField IntermediateField.algebraAdjoinAdjoin"
+p2m_open "IsLocalRing IntermediateField \
+  P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField \
+  IntermediateField.algebraAdjoinAdjoin"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 section AdjoinRingProperties
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin_s12 {t : F}
+    (ht : Transcendental K t) :
     IsPrincipalIdealRing ↥(Algebra.adjoin K ({t} : Set F)) :=
   IsPrincipalIdealRing.of_surjective
     (Polynomial.algEquivOfTranscendental K t ht).toRingHom
     (Polynomial.algEquivOfTranscendental K t ht).surjective
 
-private theorem _root_.Transcendental.isDedekindDomain_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isDedekindDomain_adjoin_s12 {t : F} (ht : Transcendental K t)
+    :
     IsDedekindDomain ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isPrincipalIdealRing_adjoin_s12
   inferInstance
 
-private theorem _root_.Transcendental.isIntegrallyClosed_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isIntegrallyClosed_adjoin_s12 {t : F}
+    (ht : Transcendental K t) :
     IsIntegrallyClosed ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isDedekindDomain_adjoin_s12
   inferInstance
 
-private theorem _root_.Transcendental.isNoetherianRing_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isNoetherianRing_adjoin_s12 {t : F} (ht : Transcendental K t)
+    :
     IsNoetherianRing ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isPrincipalIdealRing_adjoin_s12
   inferInstance
@@ -1019,10 +1086,13 @@ theorem valSubringDedekindModel_of_hasSeparatingTranscendental
 end SeparatingTranscendental
 end AlgebraicCurve
 
-p2m_open "IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField"
+p2m_open "IntermediateField \
+  P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField"
 
 namespace IntermediateField
-p2m_export "IntermediateField" "toAlgebra inclusion_injective val inclusion ext adjoin_simple_le_iff equivOfEq smul_def adjoin comap mem_top restrictScalars mem_bot mem_adjoin_simple_self smul_mem map"
+p2m_export "IntermediateField" "toAlgebra inclusion_injective val inclusion ext \
+  adjoin_simple_le_iff equivOfEq smul_def adjoin comap mem_top restrictScalars mem_bot \
+  mem_adjoin_simple_self smul_mem map"
 p2m_open "IntermediateField"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -1059,10 +1129,13 @@ theorem isSeparable_adjoin_inv_s12 (t : F) [Algebra.IsSeparable K⟮t⟯ F] :
 
 end IntermediateField
 
-p2m_open "IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField"
+p2m_open "IntermediateField \
+  P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 section AbstractEngine
@@ -1099,7 +1172,9 @@ noncomputable section
 set_option linter.unusedSectionVars false
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 section PerPlaceSupply
@@ -1168,7 +1243,9 @@ end AlgebraicCurve
 section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 section S12ChainWires
@@ -1215,7 +1292,9 @@ end
 section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
 section S12WellDefined
@@ -1235,12 +1314,18 @@ theorem valSubringKaehlerSpanTop_of_isCurveOver_of_perfectField_s12
           (hasSeparatingTranscendental_of_isCurveOver_of_perfectField (K := K) (F := F)))))
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul \
+  ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' \
+  FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero \
+  differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential \
+  ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
 p2m_open "AlgebraicCurve.Place"
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem_s12 {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem_s12 {f : F}
+    (hf : f ∈ v.toValuationSubring) :
+    0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -1256,7 +1341,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem_s12 {f : F} (hf : 
   exact Int.natCast_nonneg n
 
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem_s12"
-private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg_s12 {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg_s12 {f : F} (hf : f ≠ 0)
+    (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -1265,7 +1351,8 @@ private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg_s12 {f : F} (hf : 
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
 p2m_export "AlgebraicCurve.Place" "mem_of_ord_nonneg_s12"
-private theorem _root_.AlgebraicCurve.Place.ord_uniformizerSubring'_s12 : v.ord (uniformizerSubring' v : F) = 1 :=
+private theorem _root_.AlgebraicCurve.Place.ord_uniformizerSubring'_s12 :
+    v.ord (uniformizerSubring' v : F) = 1 :=
   v.ord_coe_irreducible (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
 
 p2m_export "AlgebraicCurve.Place" "ord_uniformizerSubring'_s12"
@@ -1284,7 +1371,8 @@ private theorem _root_.AlgebraicCurve.Place.exists_mem_D_eq_smul_dCoord_s12 (hsp
   obtain ⟨c, hc⟩ := Submodule.mem_span_singleton.mp hmem
   refine ⟨(c : F), c.2, ?_⟩
   have h := congrArg (KaehlerDifferential.map K K v.toValuationSubring F) hc
-  rw [LinearMap.map_smul_of_tower, v.kaehlerMap_subring_D_uniformizer, KaehlerDifferential.map_D] at h
+  rw [LinearMap.map_smul_of_tower, v.kaehlerMap_subring_D_uniformizer,
+    KaehlerDifferential.map_D] at h
   calc KaehlerDifferential.D K F x
       = KaehlerDifferential.D K F (algebraMap v.toValuationSubring F ⟨x, hx⟩) := rfl
     _ = c • v.dCoord := h.symm
@@ -1296,7 +1384,8 @@ private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hs
     [Nontrivial Ω[F⁄K]] [v.DCoordGenerates] {ϖ : F} (hϖ : v.ord ϖ = 1) :
     ∃ w : F, w ≠ 0 ∧ v.ord w = 0 ∧ KaehlerDifferential.D K F ϖ = w • v.dCoord := by
   have hϖ0 : ϖ ≠ 0 := fun h => by rw [h, v.ord_zero] at hϖ; exact zero_ne_one hϖ
-  have hϖmem : ϖ ∈ v.toValuationSubring := v.mem_of_ord_nonneg_s12 hϖ0 (by rw [hϖ]; exact zero_le_one)
+  have hϖmem : ϖ ∈ v.toValuationSubring :=
+    v.mem_of_ord_nonneg_s12 hϖ0 (by rw [hϖ]; exact zero_le_one)
   obtain ⟨c, hc, hDϖ⟩ := v.exists_mem_D_eq_smul_dCoord_s12 hspan hϖmem
   set π₀ : F := (uniformizerSubring' v : F) with hπ₀
   have hπ₀ord : v.ord π₀ = 1 := v.ord_uniformizerSubring'_s12
@@ -1309,7 +1398,8 @@ private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hs
   obtain ⟨d, hd, hDa⟩ := v.exists_mem_D_eq_smul_dCoord_s12 hspan hamem
   have hπ₀eq : π₀ = a * ϖ := by rw [ha, div_mul_cancel₀ _ hϖ0]
   have hD : v.dCoord = (a * c + ϖ * d) • v.dCoord := by
-    conv_lhs => rw [v.dCoord_eq_D_uniformizerSubring'_s12, ← hπ₀, hπ₀eq, Derivation.leibniz, hDϖ, hDa]
+    conv_lhs => rw [v.dCoord_eq_D_uniformizerSubring'_s12, ← hπ₀, hπ₀eq, Derivation.leibniz, hDϖ,
+      hDa]
     rw [smul_smul, smul_smul, ← add_smul, mul_comm ϖ d]
   have hone : a * c + ϖ * d = 1 := by
     have h1 : (1 - (a * c + ϖ * d)) • v.dCoord = 0 := by rw [sub_smul, one_smul, ← hD, sub_self]
@@ -1326,7 +1416,7 @@ private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hs
     have h1 : (1 : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring := by
       have : (1 : v.toValuationSubring)
           = ⟨a * c, hacmem⟩ + ⟨ϖ, hϖmem⟩ * ⟨d, hd⟩ := Subtype.ext (by
-            show (1 : F) = a * c + ϖ * d
+            change (1 : F) = a * c + ϖ * d
             exact hone.symm)
       rw [this]
       exact add_mem hmax (Ideal.mul_mem_right _ _ hϖmax)
@@ -1391,10 +1481,14 @@ end
 section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor \
+  IsCurveOver.exists_separating_transcendental"
 p2m_open "AlgebraicCurve"
 
-p2m_open "KaehlerDifferential IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField IntermediateField.algebraAdjoinAdjoin Polynomial"
+p2m_open "KaehlerDifferential IntermediateField \
+  P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField \
+  IntermediateField.algebraAdjoinAdjoin Polynomial"
 
 section S12HCD
 
@@ -1438,14 +1532,16 @@ private theorem _root_.AlgebraicCurve.Place.ordDifferential_D_eq_zero_of_span_eq
   obtain ⟨c', hc'⟩ := Submodule.mem_span_singleton.mp h2mem
   have h1 : KaehlerDifferential.D K F (s : F) = (c : F) • v.dCoord := by
     have h := congrArg (KaehlerDifferential.map K K v.toValuationSubring F) hc
-    rw [LinearMap.map_smul_of_tower, v.kaehlerMap_subring_D_uniformizer, KaehlerDifferential.map_D] at h
+    rw [LinearMap.map_smul_of_tower, v.kaehlerMap_subring_D_uniformizer,
+      KaehlerDifferential.map_D] at h
     calc KaehlerDifferential.D K F (s : F)
         = KaehlerDifferential.D K F (algebraMap v.toValuationSubring F s) := rfl
       _ = c • v.dCoord := h.symm
       _ = (c : F) • v.dCoord := (algebraMap_smul F c v.dCoord).symm
   have h2 : v.dCoord = (c' : F) • KaehlerDifferential.D K F (s : F) := by
     have h := congrArg (KaehlerDifferential.map K K v.toValuationSubring F) hc'
-    rw [LinearMap.map_smul_of_tower, KaehlerDifferential.map_D, v.kaehlerMap_subring_D_uniformizer] at h
+    rw [LinearMap.map_smul_of_tower, KaehlerDifferential.map_D,
+      v.kaehlerMap_subring_D_uniformizer] at h
     calc v.dCoord = c' • KaehlerDifferential.D K F (algebraMap v.toValuationSubring F s) := h.symm
       _ = (c' : F) • KaehlerDifferential.D K F (s : F) := (algebraMap_smul F c' _).symm
   have hcc : (c' : F) * c = 1 := by
@@ -1463,7 +1559,7 @@ private theorem _root_.AlgebraicCurve.Place.ordDifferential_D_eq_zero_of_span_eq
     omega
   have hcoeff : v.differentialCoeff (KaehlerDifferential.D K F (s : F)) = c :=
     v.differentialCoeff_unique h1
-  show v.ord (v.differentialCoeff _) = 0
+  change v.ord (v.differentialCoeff _) = 0
   rw [hcoeff]; exact hcord
 
 end Place
@@ -1481,9 +1577,10 @@ theorem mem_span_D_adjoin_s12 (t : F) (ω : Ω[↥(Algebra.adjoin K ({t} : Set F
   have hr : (r : F) ∈ (Polynomial.aeval (R := K) t).range := by
     rw [← Algebra.adjoin_singleton_eq_range_aeval]; exact r.2
   obtain ⟨Q, hQ⟩ := hr
-  have hr' : r = Polynomial.aeval (⟨t, Algebra.self_mem_adjoin_singleton K t⟩ : Algebra.adjoin K ({t} : Set F)) Q := by
+  have hr' : r = Polynomial.aeval (⟨t, Algebra.self_mem_adjoin_singleton K t⟩ : Algebra.adjoin K ({t} : Set F)) Q :=
+    by
     apply Subtype.ext
-    show (r : F) = (Algebra.adjoin K ({t} : Set F)).val (Polynomial.aeval _ Q)
+    change (r : F) = (Algebra.adjoin K ({t} : Set F)).val (Polynomial.aeval _ Q)
     rw [← Polynomial.aeval_algHom_apply]
     exact hQ.symm
   rw [hr', Derivation.map_aeval]
@@ -1491,7 +1588,8 @@ theorem mem_span_D_adjoin_s12 (t : F) (ω : Ω[↥(Algebra.adjoin K ({t} : Set F
 
 namespace Place
 p2m_open_scoped "AlgebraicCurve.Place" in
-private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 (v : Place K F) (T : Subalgebra K F)
+private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 (v : Place K F)
+    (T : Subalgebra K F)
     (hT : (T : Set F) ⊆ (v.toValuationSubring : Set F))
     {t : F} (hRT : Algebra.adjoin K ({t} : Set F) ≤ T)
     [IsDedekindDomain T] [IsFractionRing T F]
@@ -1500,7 +1598,8 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
     Submodule.span v.toValuationSubring
       ({(KaehlerDifferential.D K v.toValuationSubring
         ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K]) = ⊤ := by
-  let iRT : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T := (Subalgebra.inclusion hRT).toRingHom.toAlgebra
+  let iRT : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T :=
+    (Subalgebra.inclusion hRT).toRingHom.toAlgebra
   let iTO : Algebra T v.toValuationSubring := v.modelAlgebra T hT
   let iRO : Algebra ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring :=
     ((algebraMap T v.toValuationSubring).comp (algebraMap ↥(Algebra.adjoin K ({t} : Set F)) T)).toAlgebra
@@ -1544,7 +1643,8 @@ end Place
 p2m_export "AlgebraicCurve" "Place.span_D_eq_top_of_isUnramifiedAt_s12"
 
 p2m_open_scoped "AlgebraicCurve.Place" in
-theorem Place.eq_of_centerIdeal_eq_s12 (T : Subalgebra K F) [IsDedekindDomain T] [IsFractionRing T F]
+theorem Place.eq_of_centerIdeal_eq_s12 (T : Subalgebra K F) [IsDedekindDomain T]
+    [IsFractionRing T F]
     {v₁ v₂ : Place K F} (h₁ : (T : Set F) ⊆ (v₁.toValuationSubring : Set F))
     (h₂ : (T : Set F) ⊆ (v₂.toValuationSubring : Set F))
     (hP : v₁.centerIdeal T h₁ = v₂.centerIdeal T h₂) : v₁ = v₂ := by
@@ -1562,7 +1662,7 @@ theorem Place.eq_of_centerIdeal_eq_s12 (T : Subalgebra K F) [IsDedekindDomain T]
 theorem adjoin_le_transcendentalChart_s12 (t : F) :
     Algebra.adjoin K ({t} : Set F) ≤ transcendentalChart K t := by
   intro x hx
-  show x ∈ integralClosure ↥(Algebra.adjoin K ({t} : Set F)) F
+  change x ∈ integralClosure ↥(Algebra.adjoin K ({t} : Set F)) F
   rw [mem_integralClosure_iff]
   exact isIntegral_algebraMap (R := ↥(Algebra.adjoin K ({t} : Set F))) (A := F) (x := ⟨x, hx⟩)
 
@@ -1574,7 +1674,8 @@ theorem finite_ordDifferential_D_ne_zero_s12 (hspan : ValSubringKaehlerSpanTop K
     {v : Place K F | v.ordDifferential (KaehlerDifferential.D K F t) ≠ 0}.Finite := by
   classical
   have ht0 : t ≠ 0 := fun h => htr (h ▸ isAlgebraic_zero)
-  have hRT : Algebra.adjoin K ({t} : Set F) ≤ transcendentalChart K t := adjoin_le_transcendentalChart_s12 t
+  have hRT : Algebra.adjoin K ({t} : Set F) ≤ transcendentalChart K t :=
+    adjoin_le_transcendentalChart_s12 t
   obtain ⟨hft, hded, hfrac⟩ := isAffineChart_transcendentalChart (K := K) htr
   have : IsDedekindDomain ↥(transcendentalChart K t) := hded
   have : IsFractionRing ↥(transcendentalChart K t) F := hfrac
@@ -1582,7 +1683,8 @@ theorem finite_ordDifferential_D_ne_zero_s12 (hspan : ValSubringKaehlerSpanTop K
     (Subalgebra.inclusion hRT).toRingHom.toAlgebra
   have : IsScalarTower ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t) F :=
     IsScalarTower.of_algebraMap_eq fun _ => rfl
-  have : IsPrincipalIdealRing ↥(Algebra.adjoin K ({t} : Set F)) := htr.isPrincipalIdealRing_adjoin_s12
+  have : IsPrincipalIdealRing ↥(Algebra.adjoin K ({t} : Set F)) :=
+    htr.isPrincipalIdealRing_adjoin_s12
   have : IsDedekindDomain ↥(Algebra.adjoin K ({t} : Set F)) := htr.isDedekindDomain_adjoin_s12
   have hinj : Function.Injective (algebraMap ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)) :=
     Subalgebra.inclusion_injective hRT
@@ -1697,6 +1799,7 @@ open AlgebraicCurve
 theorem AlgebraicCurve.hasCanonicalDivisor_of_isCurveOver
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F] :
-    AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F) := _root_.P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.solution
+    AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F) :=
+  solution
 
 end publicSection

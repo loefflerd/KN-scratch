@@ -149,6 +149,7 @@ public section publicSection
 
 theorem ModularCurve.jqModC_mem_intFormRatiosC (K : Type*) [Field K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
-    ModularCurve.jqModC K ∈ ModularCurve.intFormRatiosC K Γ := _root_.P2MW.S_ModularCurve_jqModC_mem_intFormRatiosC.solution K Γ
+    ModularCurve.jqModC K ∈ ModularCurve.intFormRatiosC K Γ :=
+  solution K Γ
 
 end publicSection

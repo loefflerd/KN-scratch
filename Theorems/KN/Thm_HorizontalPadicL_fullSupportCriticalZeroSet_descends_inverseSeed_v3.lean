@@ -621,7 +621,8 @@ private theorem descent_of_full_support
   have hpull := character_of_same_realization R χ ψ hsub hψ
   obtain ⟨u, hu⟩ := theta_projection_unit_multiple Θ hnorm hunit ψ.support χ.support hsub
   let ev := horizontalCharacterEvalRingHom Θ.coefficientRing ψ
-  have heval : Θ.eval χ = ev (u : HorizontalGroupAlgebra Θ.coefficientRing p L.exponent ψ.support) * Θ.eval ψ := by
+  have heval : Θ.eval χ = ev (u : HorizontalGroupAlgebra Θ.coefficientRing p L.exponent ψ.support) * Θ.eval ψ :=
+    by
     change (Θ.theta χ.support).coeff.sum _ = _
     rw [← horizontalCharacterEvalRingHom_apply]
     rw [evaluation_projection Θ.coefficientRing χ ψ hsub hpull, hu, map_mul]
@@ -664,7 +665,7 @@ noncomputable section
 namespace HorizontalPadicL
 
 /-- Full-conductor Birch--Mellin interpolation descends through redundant
-support.  The norm relations compare the two theta evaluations, and unit Euler
+support. The norm relations compare the two theta evaluations, and unit Euler
 factors ensure that the comparison factor is nonzero. -/
 theorem fullSupportCriticalZeroSet_descends_inverseSeed_v3
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]

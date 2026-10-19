@@ -67,7 +67,8 @@ namespace P2MW.S_HeckeEis_IsEichlerIntegral_slash
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binarySubst binaryFormRepSL binaryFormRepSL_apply_coe linePow jFactor jFactor_eq_denom jFactor_ne_zero binaryFormRepSL_linePow IsEichlerIntegral"
+p2m_export "HeckeEis" "BinaryForm binarySubst binaryFormRepSL binaryFormRepSL_apply_coe linePow \
+  jFactor jFactor_eq_denom jFactor_ne_zero binaryFormRepSL_linePow IsEichlerIntegral"
 p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial ModularForm CongruenceSubgroup
@@ -80,7 +81,6 @@ section Expansion
 variable {K : Type*} [CommRing K] {n : ℕ}
 
 variable (n) in
-
 def degExps : Finset (Fin 2 →₀ ℕ) :=
   (Finset.range (n + 1)).image fun k => Finsupp.single 0 k + Finsupp.single 1 (n - k)
 
@@ -107,7 +107,8 @@ theorem eq_sum_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n) 
   rw [coeff_sum]
   simp only [coeff_monomial]
   by_cases hd : d ∈ degExps n
-  · rw [Finset.sum_eq_single d (fun e _ hne => ite_eq_right hne) (fun h => (h hd).elim), ite_eq_left rfl]
+  · rw [Finset.sum_eq_single d (fun e _ hne => ite_eq_right hne) (fun h => (h hd).elim), ite_eq_left
+      rfl]
   · rw [Finset.sum_eq_zero (fun e he => ite_eq_right (fun h : e = d => hd (h ▸ he))),
       coeff_eq_zero_of_not_mem_degExps hp hd]
 
@@ -178,7 +179,8 @@ section RepDeriv
 
 variable {n : ℕ}
 
-theorem hasDerivAt_coeff_binaryFormRepSL {H : ℂ → ↥(BinaryForm ℂ n)} {w : ↥(BinaryForm ℂ n)} {z₀ : ℂ}
+theorem hasDerivAt_coeff_binaryFormRepSL {H : ℂ → ↥(BinaryForm ℂ n)} {w : ↥(BinaryForm ℂ n)}
+    {z₀ : ℂ}
     (hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
       (AddMonoidAlgebra.coeff ((w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e) z₀)
     (g : SL(2, ℤ)) (d : Fin 2 →₀ ℕ) :
@@ -199,7 +201,6 @@ end RepDeriv
 end EichlerIntegralAux
 
 open EichlerIntegralAux in
-
 theorem SolMain.slash {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)}
     (hF : IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
     IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) := by
@@ -222,12 +223,14 @@ theorem SolMain.slash {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm �
   have hinv : binaryFormRepSL ℂ n δ⁻¹ (linePow n ((δ • τ : ℍ) : ℂ))
       = (jFactor δ τ ^ n)⁻¹ • linePow n (τ : ℂ) := by
     have h := congrArg (binaryFormRepSL ℂ n δ⁻¹) (binaryFormRepSL_linePow n δ τ)
-    rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply, map_smul] at h
+    rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply,
+      map_smul] at h
     rw [h, smul_smul, inv_mul_cancel₀ (pow_ne_zero _ (jFactor_ne_zero δ τ)), one_smul]
   have hslash : (f ∣[((n : ℤ) + 2)] δ) τ
       = f (δ • τ) * denom (Matrix.SpecialLinearGroup.mapGL ℝ δ) (τ : ℂ) ^ (-((n : ℤ) + 2)) :=
     SL_slash_apply _ _ _
-  rw [map_smul, hinv, smul_smul, Submodule.coe_smul, coeff_smul, smul_eq_mul, hslash, jFactor_eq_denom, hc]
+  rw [map_smul, hinv, smul_smul, Submodule.coe_smul, coeff_smul, smul_eq_mul, hslash,
+    jFactor_eq_denom, hc]
   congr 1
   rw [← zpow_natCast, ← zpow_neg, mul_assoc, ← zpow_add₀ hJ]
   congr 2
@@ -253,8 +256,10 @@ public section publicSection
 
 
 open scoped MatrixGroups ModularForm
-theorem HeckeEis.IsEichlerIntegral.slash {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+theorem HeckeEis.IsEichlerIntegral.slash {n : ℕ} {f : UpperHalfPlane → ℂ}
+    {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
-    HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) := _root_.P2MW.S_HeckeEis_IsEichlerIntegral_slash.solution hF δ
+    HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) :=
+  solution hF δ
 
 end publicSection

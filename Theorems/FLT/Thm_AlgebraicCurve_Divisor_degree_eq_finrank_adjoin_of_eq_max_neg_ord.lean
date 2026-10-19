@@ -88,6 +88,7 @@ theorem AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (-v.ord x)) :
-    Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_neg_ord.solution x hx D hD
+    Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) :=
+  solution x hx D hD
 
 end publicSection

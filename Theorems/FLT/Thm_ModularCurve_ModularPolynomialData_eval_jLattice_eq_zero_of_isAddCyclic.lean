@@ -88,6 +88,7 @@ theorem ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic
     (N : ℕ) [NeZero N] (data : ModularCurve.ModularPolynomialData N) (L L' : PeriodPair)
     (hsub : (L'.lattice : Set ℂ) ⊆ L.lattice) (hidx : PeriodPair.sublatticeIndex L L' = N)
     (hcyc : IsAddCyclic (PeriodPair.sublatticeQuotient L L')) :
-    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ) L.jLattice)).eval L'.jLattice = 0 := _root_.P2MW.S_ModularCurve_ModularPolynomialData_eval_jLattice_eq_zero_of_isAddCyclic.solution N data L L' hsub hidx hcyc
+    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ) L.jLattice)).eval L'.jLattice = 0 :=
+  solution N data L L' hsub hidx hcyc
 
 end publicSection

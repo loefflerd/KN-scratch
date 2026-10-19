@@ -128,7 +128,6 @@ theorem algebraMap_laurentSeries_eq_single (c : L) :
   rfl
 
 variable {L} in
-
 theorem coeffMap_algebraMap (φ : L →+* L) (c : L) :
     coeffMap φ (algebraMap L (LaurentSeries L) c) = algebraMap L (LaurentSeries L) (φ c) := by
   rw [algebraMap_laurentSeries_eq_single, algebraMap_laurentSeries_eq_single, coeffMap_single]
@@ -144,7 +143,6 @@ theorem coeffEmb_coeff (x : LaurentSeries ℚ) (k : ℤ) :
   rfl
 
 variable {L} in
-
 theorem coeffMap_coeffEmb (σ : L ≃ₐ[ℚ] L) (x : LaurentSeries ℚ) :
     coeffMap (σ : L →+* L) (coeffEmb L x) = coeffEmb L x := by
   rw [coeffEmb, coeffMap_coeffMap]
@@ -161,13 +159,11 @@ def laurentBaseChange : IntermediateField L (LaurentSeries L) :=
   IntermediateField.adjoin L (⇑(coeffEmb L) '' (F₀ : Set (LaurentSeries ℚ)))
 
 variable {F₀} in
-
 theorem coeffEmb_mem_laurentBaseChange {x : LaurentSeries ℚ} (hx : x ∈ F₀) :
     coeffEmb L x ∈ laurentBaseChange L F₀ :=
   IntermediateField.subset_adjoin L _ ⟨x, hx, rfl⟩
 
 variable {L F₀} in
-
 theorem mem_laurentBaseChange_iff {x : LaurentSeries L} :
     x ∈ laurentBaseChange L F₀ ↔
       x ∈ Subfield.closure
@@ -176,7 +172,6 @@ theorem mem_laurentBaseChange_iff {x : LaurentSeries L} :
   Iff.rfl
 
 variable {L F₀} in
-
 theorem coeffMap_mem_laurentBaseChange (σ : L ≃ₐ[ℚ] L) {x : LaurentSeries L}
     (hx : x ∈ laurentBaseChange L F₀) :
     coeffMap (σ : L →+* L) x ∈ laurentBaseChange L F₀ := by

@@ -57,7 +57,10 @@ namespace P2MW.S_AlgebraicCurve_finiteAlong_comp
 
 open AlgebraicCurve
 
-theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : FiniteAlong K φ) (hχ : FiniteAlong K χ) : FiniteAlong K (χ.comp φ) := by
+theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F]
+    [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : FiniteAlong K φ)
+    (hχ : FiniteAlong K χ) :
+    FiniteAlong K (χ.comp φ) := by
   let := algebraAlong φ
   let := algebraAlong χ
   let := algebraAlong (χ.comp φ)
@@ -76,6 +79,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.finiteAlong_comp {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : FiniteAlong K φ) (hχ : FiniteAlong K χ) : FiniteAlong K (χ.comp φ) := _root_.P2MW.S_AlgebraicCurve_finiteAlong_comp.solution φ χ hφ hχ
+theorem AlgebraicCurve.finiteAlong_comp {K F F' F'' : Type*} [Field K] [Field F] [Field F']
+    [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'')
+    (hφ : FiniteAlong K φ) (hχ : FiniteAlong K χ) :
+    FiniteAlong K (χ.comp φ) :=
+  solution φ χ hφ hχ
 
 end publicSection

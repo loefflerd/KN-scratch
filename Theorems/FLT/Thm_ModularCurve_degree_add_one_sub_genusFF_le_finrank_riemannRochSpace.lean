@@ -74,7 +74,8 @@ theorem solution (N : ℕ) [NeZero N]
     D.degree + 1 - (genusFF (AlgebraicClosure ℚ) (modularFunctionFieldBar N) : ℤ)
       ≤ (Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) : ℤ) := by
   classical
-  have : IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
+  have : IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+    isCurveOver_modularFunctionFieldBar N
   have : HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) :=
     hasCanonicalDivisor_modularFunctionFieldBar N
   have : Algebra.EssFiniteType (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
@@ -90,7 +91,7 @@ theorem solution (N : ℕ) [NeZero N]
       = genusFF (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := by
     exact_mod_cast genus_eq_genusFF_modularFunctionFieldBar N
   have h0 : (0 : ℤ) ≤ ell (canonicalDivisorOf hω - D) := Nat.cast_nonneg _
-  show _ ≤ ((ell D : ℕ) : ℤ)
+  change _ ≤ ((ell D : ℕ) : ℤ)
   rw [← hg]
   linarith
 
@@ -107,6 +108,7 @@ open AlgebraicCurve ModularCurve
 theorem ModularCurve.degree_add_one_sub_genusFF_le_finrank_riemannRochSpace (N : ℕ) [NeZero N]
     (D : Divisor (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) :
     D.degree + 1 - (genusFF (AlgebraicClosure ℚ) (modularFunctionFieldBar N) : ℤ)
-      ≤ (Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) : ℤ) := _root_.P2MW.S_ModularCurve_degree_add_one_sub_genusFF_le_finrank_riemannRochSpace.solution N D
+      ≤ (Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) : ℤ) :=
+  solution N D
 
 end publicSection

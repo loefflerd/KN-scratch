@@ -171,6 +171,8 @@ public section publicSection
 
 
 open UpperHalfPlane
-theorem ModularCurve.jqModC_eq_qExpansion_E4_cube_div_discriminant : ModularCurve.jqModC ℂ = (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) := _root_.P2MW.S_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant.solution
+theorem ModularCurve.jqModC_eq_qExpansion_E4_cube_div_discriminant :
+    ModularCurve.jqModC ℂ = (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) :=
+  solution
 
 end publicSection

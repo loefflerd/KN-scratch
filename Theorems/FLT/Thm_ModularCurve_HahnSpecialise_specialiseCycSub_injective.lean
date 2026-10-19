@@ -122,8 +122,10 @@ public section publicSection
 open ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise
 open ModularCurve.TatePoint (Qbar H CycSubH)
 open scoped Classical
-theorem ModularCurve.HahnSpecialise.specialiseCycSub_injective (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
+theorem ModularCurve.HahnSpecialise.specialiseCycSub_injective (E : WeierstrassCurve H)
+    (hE : IntegralCoeffs E)
     (hΔ : (specialFibre E).Δ ≠ 0) (N : ℕ) [NeZero N] :
-    Function.Injective (specialiseCycSub E hE hΔ N) := _root_.P2MW.S_ModularCurve_HahnSpecialise_specialiseCycSub_injective.solution E hE hΔ N
+    Function.Injective (specialiseCycSub E hE hΔ N) :=
+  solution E hE hΔ N
 
 end publicSection

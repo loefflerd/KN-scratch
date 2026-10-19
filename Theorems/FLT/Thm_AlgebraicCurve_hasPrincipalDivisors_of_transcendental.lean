@@ -73,11 +73,23 @@ noncomputable section
 open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.finite_setOf_restrict_eq Place.mem_fiberOver Divisor.pushforward Divisor.degree_pushforward Divisor.pushforward_apply Divisor.PushforwardNormFormula Place Divisor Divisor.degree HasPrincipalDivisors RationalFunctionField.finite_setOf_ord_ne_zero RationalFunctionField.degree_eq_zero_of_forall_eq_ord"
+p2m_export "AlgebraicCurve" "Place.finite_setOf_restrict_eq Place.mem_fiberOver \
+  Divisor.pushforward Divisor.degree_pushforward Divisor.pushforward_apply \
+  Divisor.PushforwardNormFormula Place Divisor Divisor.degree HasPrincipalDivisors \
+  RationalFunctionField.finite_setOf_ord_ne_zero \
+  RationalFunctionField.degree_eq_zero_of_forall_eq_ord"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime fiberCenter_placeOfPrime eq_of_fiberCenter_eq finite_setOf_restrict_eq fiberOver mem_fiberOver ramificationIndex ramificationIndex_pos restrict ord_restrict restrictInclusion restrictResidueMap inertiaDeg fiber ext ResidueField ord ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow toValuationSubring mk mem_iff_ord_nonneg ord_nonneg_of_mem mem_of_ord_nonneg"
+p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos \
+  toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero \
+  ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime \
+  fiberCenter_placeOfPrime eq_of_fiberCenter_eq finite_setOf_restrict_eq fiberOver mem_fiberOver \
+  ramificationIndex ramificationIndex_pos restrict ord_restrict restrictInclusion \
+  restrictResidueMap inertiaDeg fiber ext ResidueField ord ord_mul ord_inv ord_coe_irreducible \
+  ord_zpow ord_unit_smul_zpow toValuationSubring mk mem_iff_ord_nonneg ord_nonneg_of_mem \
+  mem_of_ord_nonneg"
 p2m_open "AlgebraicCurve.Place"
 
 section Uniqueness
@@ -181,7 +193,7 @@ private theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x 
       ring
   · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
-    show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
+    change 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
       rw [toValuationSubring_eq_of_restrict_eq hw,
         HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
@@ -352,7 +364,7 @@ private def residueFieldEquivQuotientCenter (hw : w.restrict F = v) :
 private theorem residueFieldEquivQuotientCenter_mk (hw : w.restrict F = v)
     (c : integralClosureAt F' v) :
     residueFieldEquivQuotientCenter hw (Ideal.Quotient.mk _ c) = residueOfCenter hw c := by
-  show ((residueOfCenter hw).quotientKerEquivOfSurjective (surjective_residueOfCenter hw))
+  change ((residueOfCenter hw).quotientKerEquivOfSurjective (surjective_residueOfCenter hw))
     ((Ideal.quotEquivOfEq (ker_residueOfCenter hw).symm) (Ideal.Quotient.mk _ c))
       = residueOfCenter hw c
   rw [Ideal.quotEquivOfEq_mk]
@@ -389,7 +401,7 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
     (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
+  change Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
   ext a
@@ -398,12 +410,12 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     RingHom.coe_coe]
   apply (residueFieldEquivQuotientCenter hw).injective
   rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
+  change IsLocalRing.residue w.toValuationSubring
       (toValuationSubringOfRestrictEq hw
         (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
     = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
+  change algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
     = algebraMap F F' (a : F)
   rw [← IsScalarTower.algebraMap_apply,
@@ -424,7 +436,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F'] [Algebra
 variable (w : Place K F')
 
 omit [FiniteDimensional F F'] in
-
 private theorem _root_.AlgebraicCurve.Place.aeval_mem {Q : Polynomial F} {x : F'}
     (hcoeff : ∀ i, algebraMap F F' (Q.coeff i) ∈ w.toValuationSubring)
     (hx : x ∈ w.toValuationSubring) :
@@ -434,7 +445,8 @@ private theorem _root_.AlgebraicCurve.Place.aeval_mem {Q : Polynomial F} {x : F'
 
 p2m_export "AlgebraicCurve.Place" "aeval_mem"
 
-private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (hf : f ≠ 0) (hford : w.ord f ≠ 0) :
+private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (hf : f ≠ 0)
+    (hford : w.ord f ≠ 0) :
     ∃ i < (minpoly F f).natDegree, (minpoly F f).coeff i ≠ 0 ∧
       w.ord (algebraMap F F' ((minpoly F f).coeff i)) ≠ 0 := by
   by_contra hcon
@@ -488,11 +500,23 @@ noncomputable section
 open IsDedekindDomain WithZero IsLocalRing UniqueFactorizationMonoid
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.finite_setOf_restrict_eq Place.mem_fiberOver Divisor.pushforward Divisor.degree_pushforward Divisor.pushforward_apply Divisor.PushforwardNormFormula Place Divisor Divisor.degree HasPrincipalDivisors RationalFunctionField.finite_setOf_ord_ne_zero RationalFunctionField.degree_eq_zero_of_forall_eq_ord"
+p2m_export "AlgebraicCurve" "Place.finite_setOf_restrict_eq Place.mem_fiberOver \
+  Divisor.pushforward Divisor.degree_pushforward Divisor.pushforward_apply \
+  Divisor.PushforwardNormFormula Place Divisor Divisor.degree HasPrincipalDivisors \
+  RationalFunctionField.finite_setOf_ord_ne_zero \
+  RationalFunctionField.degree_eq_zero_of_forall_eq_ord"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime fiberCenter_placeOfPrime eq_of_fiberCenter_eq finite_setOf_restrict_eq fiberOver mem_fiberOver ramificationIndex ramificationIndex_pos restrict ord_restrict restrictInclusion restrictResidueMap inertiaDeg fiber ext ResidueField ord ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow toValuationSubring mk mem_iff_ord_nonneg ord_nonneg_of_mem mem_of_ord_nonneg"
+p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos \
+  toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero \
+  ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime \
+  fiberCenter_placeOfPrime eq_of_fiberCenter_eq finite_setOf_restrict_eq fiberOver mem_fiberOver \
+  ramificationIndex ramificationIndex_pos restrict ord_restrict restrictInclusion \
+  restrictResidueMap inertiaDeg fiber ext ResidueField ord ord_mul ord_inv ord_coe_irreducible \
+  ord_zpow ord_unit_smul_zpow toValuationSubring mk mem_iff_ord_nonneg ord_nonneg_of_mem \
+  mem_of_ord_nonneg"
 p2m_open "AlgebraicCurve.Place"
 
 section DVR
@@ -523,7 +547,15 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [CharZero F]
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime fiberCenter_placeOfPrime eq_of_fiberCenter_eq finite_setOf_restrict_eq fiberOver mem_fiberOver ramificationIndex ramificationIndex_pos restrict ord_restrict restrictInclusion restrictResidueMap inertiaDeg fiber ext ResidueField ord ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow toValuationSubring mk mem_iff_ord_nonneg ord_nonneg_of_mem mem_of_ord_nonneg"
+p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos \
+  center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos \
+  toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero \
+  ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime \
+  fiberCenter_placeOfPrime eq_of_fiberCenter_eq finite_setOf_restrict_eq fiberOver mem_fiberOver \
+  ramificationIndex ramificationIndex_pos restrict ord_restrict restrictInclusion \
+  restrictResidueMap inertiaDeg fiber ext ResidueField ord ord_mul ord_inv ord_coe_irreducible \
+  ord_zpow ord_unit_smul_zpow toValuationSubring mk mem_iff_ord_nonneg ord_nonneg_of_mem \
+  mem_of_ord_nonneg"
 p2m_open "AlgebraicCurve.Place"
 
 private scoped instance (v : Place K F) : CharZero v.toValuationSubring :=
@@ -545,7 +577,6 @@ private theorem relNorm_fiberCenter (hw : w.restrict F = v) :
     (IsLocalRing.maximalIdeal v.toValuationSubring), inertiaDeg_eq_inertiaDeg_fiberCenter hw]
 
 omit [CharZero F] in
-
 private theorem count_normalizedFactors_span_singleton
     (hw : w.restrict F = v) {c : integralClosureAt F' v} (hc : c ≠ 0) :
     (normalizedFactors (Ideal.span {c})).count (fiberCenter F' v hw).asIdeal
@@ -690,7 +721,8 @@ end ElementNorm
 end Place
 
 namespace Divisor
-p2m_export "AlgebraicCurve.Divisor" "pushforward degree_pushforward pushforward_apply PushforwardNormFormula degree principal"
+p2m_export "AlgebraicCurve.Divisor" "pushforward degree_pushforward pushforward_apply \
+  PushforwardNormFormula degree principal"
 p2m_open "AlgebraicCurve.Divisor"
 
 private theorem pushforwardNormFormula_of_finiteDimensional :
@@ -739,8 +771,10 @@ private theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f �
 
 end T029
 
-private theorem hasPrincipalDivisors_of_finiteDimensional_ratFunc (K : Type*) [Field K] [CharZero K] (F' : Type*)
-    [Field F'] [Algebra K F'] [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F'] [FiniteDimensional (RatFunc K) F'] :
+private theorem hasPrincipalDivisors_of_finiteDimensional_ratFunc (K : Type*) [Field K] [CharZero K]
+    (F' : Type*)
+    [Field F'] [Algebra K F'] [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F']
+    [FiniteDimensional (RatFunc K) F'] :
     HasPrincipalDivisors K F' := by
   have : CharZero (RatFunc K) :=
     charZero_of_injective_algebraMap (algebraMap K (RatFunc K)).injective
@@ -762,7 +796,8 @@ private theorem hasPrincipalDivisors_of_finiteDimensional_ratFunc (K : Type*) [F
 
 end AlgebraicCurve
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
 
 theorem solution (K : Type*) [Field K] [CharZero K] {F : Type*} [Field F]
     [Algebra K F] (x : F) (hx : Transcendental K x)
@@ -777,12 +812,13 @@ theorem solution (K : Type*) [Field K] [CharZero K] {F : Type*} [Field F]
   have : IsScalarTower (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F))) F :=
     IsScalarTower.of_algebraMap_eq fun q => rfl
   have : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq fun r => by
-    show algebraMap K F r = algebraMap (↥(IntermediateField.adjoin K ({x} : Set F))) F (e (algebraMap K (RatFunc K) r))
+    change algebraMap K F r = algebraMap (↥(IntermediateField.adjoin K ({x} : Set F))) F (e (algebraMap K (RatFunc K) r))
     rw [AlgEquiv.commutes]
     exact IsScalarTower.algebraMap_apply K (↥(IntermediateField.adjoin K ({x} : Set F))) F r
   have : Module.Finite (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F))) :=
     Module.Finite.of_surjective (Algebra.linearMap (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F)))) e.surjective
-  have : FiniteDimensional (RatFunc K) F := Module.Finite.trans (↥(IntermediateField.adjoin K ({x} : Set F))) F
+  have : FiniteDimensional (RatFunc K) F :=
+    Module.Finite.trans (↥(IntermediateField.adjoin K ({x} : Set F))) F
   exact hasPrincipalDivisors_of_finiteDimensional_ratFunc K F
 
 end
@@ -796,8 +832,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.hasPrincipalDivisors_of_transcendental (K : Type*) [Field K] [CharZero K] {F : Type*} [Field F]
+theorem AlgebraicCurve.hasPrincipalDivisors_of_transcendental (K : Type*) [Field K] [CharZero K]
+    {F : Type*} [Field F]
     [Algebra K F] (x : F) (hx : Transcendental K x)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] : HasPrincipalDivisors K F := _root_.P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.solution K x hx
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] : HasPrincipalDivisors K F :=
+  solution K x hx
 
 end publicSection

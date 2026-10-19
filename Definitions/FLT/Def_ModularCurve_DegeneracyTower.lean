@@ -108,7 +108,6 @@ theorem towerInclBar_self (h : N ∣ N) (x : laurentBaseChange L (modularFunctio
   Subtype.ext (coe_towerInclBar L h x)
 
 variable (N) in
-
 def towerSubstBar (ℓ : ℕ) [NeZero ℓ] (h : N * ℓ ∣ M) :
     laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L]
       laurentBaseChange L (modularFunctionFieldFull M) :=

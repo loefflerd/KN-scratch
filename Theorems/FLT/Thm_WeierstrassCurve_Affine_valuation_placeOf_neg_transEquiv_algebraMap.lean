@@ -68,7 +68,8 @@ open scoped WithZero Polynomial.Bivariate
 p2m_open "Polynomial Polynomial.Bivariate.Polynomial IsDedekindDomain"
 
 namespace Valuation
-p2m_export "Valuation" "map_add_eq_of_lt_left valuationSubring ext mem_valuationSubring_iff map_sub map map_sub_le ne_zero_iff congr comap mk IsEquiv isEquiv_iff_valuationSubring norm"
+p2m_export "Valuation" "map_add_eq_of_lt_left valuationSubring ext mem_valuationSubring_iff \
+  map_sub map map_sub_le ne_zero_iff congr comap mk IsEquiv isEquiv_iff_valuationSubring norm"
 p2m_open "Valuation"
 
 variable {L : Type*} [Field L]
@@ -114,13 +115,23 @@ theorem eq_of_valuationSubring_eq_aux' (v w : Valuation L ℤᵐ⁰)
 end Valuation
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ map mk a₄ a₂ a₆ Affine.FunctionField Affine.Point baseChange Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm Affine.FunctionField.eq_valuationSubring_of_X_not_mem"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ map mk a₄ a₂ a₆ Affine.FunctionField Affine.Point \
+  baseChange Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm \
+  Affine.FunctionField.eq_valuationSubring_of_X_not_mem"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "negY slope_of_X_ne CoordinateRing.XYIdeal CoordinateRing.XClass_ne_zero CoordinateRing Point.baseChange CoordinateRing.smul map baseChange CoordinateRing.YClass Point.some nonsingular_iff' Nonsingular FunctionField Point CoordinateRing.mk addX CoordinateRing.XClass CoordinateRing.basis Point.add_of_X_ne equation_iff Point.map_some CoordinateRing.YClass_ne_zero Point.xc_some genericX genericY genericPoint transEquiv transEquiv_genericX placeOf valuation_algebraMap_le_one FunctionField.exists_valuation_eq_exp_natDegree_norm FunctionField.eq_valuationSubring_of_X_not_mem"
+p2m_export "WeierstrassCurve.Affine" "negY slope_of_X_ne CoordinateRing.XYIdeal \
+  CoordinateRing.XClass_ne_zero CoordinateRing Point.baseChange CoordinateRing.smul map baseChange \
+  CoordinateRing.YClass Point.some nonsingular_iff' Nonsingular FunctionField Point \
+  CoordinateRing.mk addX CoordinateRing.XClass CoordinateRing.basis Point.add_of_X_ne equation_iff \
+  Point.map_some CoordinateRing.YClass_ne_zero Point.xc_some genericX genericY genericPoint \
+  transEquiv transEquiv_genericX placeOf valuation_algebraMap_le_one \
+  FunctionField.exists_valuation_eq_exp_natDegree_norm \
+  FunctionField.eq_valuationSubring_of_X_not_mem"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "XYIdeal XClass_ne_zero smul YClass mk map degree_norm_smul_basis XClass YClass_ne_zero"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "XYIdeal XClass_ne_zero smul YClass mk map \
+  degree_norm_smul_basis XClass YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 variable {K : Type*} [Field K] (W : Affine K)
@@ -179,7 +190,7 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F) (K : Type*) [Field K] [A
   [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
 
 omit [IsAlgClosed K] [W.IsElliptic] in
-
+omit [DecidableEq K] in
 theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsingular x_S y_S)
     (hS' : -(Point.some x_S y_S hxy) ≠ 0) :
     (placeOf W K (-(Point.some x_S y_S hxy)) hS').valuation (W⁄K).FunctionField
@@ -187,6 +198,7 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
       (placeOf W K (-(Point.some x_S y_S hxy)) hS').valuation (W⁄K).FunctionField
         (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField
           (CoordinateRing.YClass (W⁄K) (C y_S))) := by
+  classical
   set v := (placeOf W K (-(Point.some x_S y_S hxy)) hS').valuation (W⁄K).FunctionField with hv
   set ι := algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField with hι
   set 𝔪 := (placeOf W K (-(Point.some x_S y_S hxy)) hS').asIdeal with h𝔪def
@@ -241,7 +253,6 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
       simp only [map_sub]
       linear_combination hγ - hS - (CoordinateRing.mk (W⁄K) Y -
         CoordinateRing.mk (W⁄K) (C (C y_S))) * he2'
-
     have hq : v (ι (u₀ ^ 2 + CoordinateRing.mk (W⁄K) (C (C (3 * x_S + (W⁄K).a₂))) * u₀ +
         CoordinateRing.mk (W⁄K) (C (C (3 * x_S ^ 2 + 2 * (W⁄K).a₂ * x_S + (W⁄K).a₄ -
           (W⁄K).a₁ * y_S))))) = 1 := by
@@ -337,10 +348,8 @@ theorem valuation_placeOf_neg_transEquiv_algebraMap_aux (S : (W⁄K).Point) (hS 
   · exact absurd rfl hS
   set v := (placeOf W K (-(Point.some x_S y_S hxy)) hS').valuation (W⁄K).FunctionField with hv
   set ι := algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField with hι
-
   obtain ⟨vinf, hvinf⟩ :=
     WeierstrassCurve.Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm (W.baseChange K)
-
   set τ : (W⁄K).FunctionField →+* (W⁄K).FunctionField :=
     (transEquiv W K (Point.some x_S y_S hxy)).toAlgHom.toRingHom with hτ
   have hτapp : ∀ h, v.comap τ h = v (transEquiv W K (Point.some x_S y_S hxy) h) := fun _ => rfl
@@ -351,7 +360,6 @@ theorem valuation_placeOf_neg_transEquiv_algebraMap_aux (S : (W⁄K).Point) (hS 
       exact valuation_algebraMap_le_one W K _ hS' c
     · rw [Valuation.mem_valuationSubring_iff, hτapp, not_le]
       exact one_lt_valuation_transEquiv_genericX W K hxy hS'
-
   have hsτ : Function.Surjective (v.comap τ) := fun γ => by
     obtain ⟨h, hh⟩ := HeightOneSpectrum.valuation_surjective
       (placeOf W K (-(Point.some x_S y_S hxy)) hS') (K := (W⁄K).FunctionField) γ
@@ -381,9 +389,16 @@ end PlaceNegS
 
 end WeierstrassCurve.Affine
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap.WeierstrassCurve.Affine"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap.WeierstrassCurve.Affin\
+  e"
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] (S : (W⁄K).Point) (hS : S ≠ 0) {a : (W⁄K).CoordinateRing} (ha : a ≠ 0) : (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm (Polynomial K) a).natDegree : ℤ) :=
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+    (S : (W⁄K).Point) (hS : S ≠ 0) {a : (W⁄K).CoordinateRing} (ha : a ≠ 0) :
+    (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm (Polynomial K) a).natDegree : ℤ) :=
   WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap_aux W K S hS (neg_ne_zero.mpr hS) ha
 
 end S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap
@@ -397,6 +412,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine
 
-theorem WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] (S : (W⁄K).Point) (hS : S ≠ 0) {a : (W⁄K).CoordinateRing} (ha : a ≠ 0) : (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm (Polynomial K) a).natDegree : ℤ) := _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap.solution W S hS ha
+theorem WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap {F K : Type*} [Field F]
+    [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] (S : (W⁄K).Point) (hS : S ≠ 0)
+    {a : (W⁄K).CoordinateRing} (ha : a ≠ 0) :
+    (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm (Polynomial K) a).natDegree : ℤ) :=
+  solution W S hS ha
 
 end publicSection

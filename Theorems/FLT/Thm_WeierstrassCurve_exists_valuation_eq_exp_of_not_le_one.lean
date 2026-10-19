@@ -63,7 +63,8 @@ open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.Heigh
 namespace PoleDichotomy
 
 theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
-    {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (W : WeierstrassCurve K) [W.IsIntegral R] {x y : K} (h : W.toAffine.Equation x y)
+    {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (W : WeierstrassCurve K)
+    [W.IsIntegral R] {x y : K} (h : W.toAffine.Equation x y)
     (hx : ¬ valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1) :
     ∃ s : ℕ, 0 < s ∧
       valuation K (IsDiscreteValuationRing.maximalIdeal R) x
@@ -71,7 +72,6 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
       valuation K (IsDiscreteValuationRing.maximalIdeal R) y
         = WithZero.exp (3 * (s : ℤ)) := by
   set v := valuation K (IsDiscreteValuationRing.maximalIdeal R) with hv
-
   have key : ∀ z : K, (∃ r : R, algebraMap R K r = z) → v z ≤ 1 := by
     rintro z ⟨r, rfl⟩; exact valuation_le_one (IsDiscreteValuationRing.maximalIdeal R) r
   have ha1 : v W.toAffine.a₁ ≤ 1 := key _ ⟨_, integralModel_a₁_eq R W⟩
@@ -82,7 +82,6 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
   have hpow : ∀ (n : ℕ) (c : ℤ), WithZero.exp c ^ n = WithZero.exp ((n : ℤ) * c) := by
     intro n c
     rw [← WithZero.exp_nsmul, nsmul_eq_mul]
-
   have hvx1 : 1 < v x := not_le.mp hx
   have hvx0 : v x ≠ 0 := (zero_lt_one.trans hvx1).ne'
   obtain ⟨a, hax⟩ : ∃ a : ℤ, v x = WithZero.exp a := ⟨_, (WithZero.exp_log hvx0).symm⟩
@@ -115,7 +114,6 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
     refine v.map_add_eq_of_lt_left (h2 ▸ lt_of_le_of_lt ha6 ?_)
     rw [← WithZero.exp_zero]
     exact WithZero.exp_lt_exp.mpr (by omega)
-
   rw [Affine.equation_iff] at h
   have hLHS : v (y ^ 2 + W.toAffine.a₁ * x * y + W.toAffine.a₃ * y) = WithZero.exp (3 * a) := by
     rw [h]; exact hRHS
@@ -187,6 +185,7 @@ theorem WeierstrassCurve.exists_valuation_eq_exp_of_not_le_one
     (hx : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1) :
     ∃ s : ℕ, 0 < s ∧
       IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x = WithZero.exp (2 * (s : ℤ)) ∧
-      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y = WithZero.exp (3 * (s : ℤ)) := _root_.P2MW.S_WeierstrassCurve_exists_valuation_eq_exp_of_not_le_one.solution R W h hx
+      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y = WithZero.exp (3 * (s : ℤ)) :=
+  solution R W h hx
 
 end publicSection

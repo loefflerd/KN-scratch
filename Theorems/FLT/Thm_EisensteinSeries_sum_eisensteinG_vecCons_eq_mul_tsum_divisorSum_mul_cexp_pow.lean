@@ -106,7 +106,7 @@ private theorem sum_eisensteinG_eq_tsum_indicator
     rw [ite_eq_right]
     intro h
     apply hv
-    show ((v 0 : ℤ) : ZMod N) = a
+    change ((v 0 : ℤ) : ZMod N) = a
     have := congrFun h 0
     simpa using this
 
@@ -263,7 +263,8 @@ theorem solution
     intro m
     simpa only [hC, row, f, eisSummand_row_sum]
       using eisSummand_row_sum_eq_qExpansion hk1 hkk z m
-  let gP : ℕ+ × ℕ+ → ℂ := fun c => w c.1 * ((((c.2 : ℕ) : ℂ) ^ (k - 1)) * q ^ ((c.1 : ℕ) * (c.2 : ℕ)))
+  let gP : ℕ+ × ℕ+ → ℂ :=
+    fun c => w c.1 * ((((c.2 : ℕ) : ℂ) ^ (k - 1)) * q ^ ((c.1 : ℕ) * (c.2 : ℕ)))
   have hgP : Summable gP := by
     refine Summable.of_norm_bounded ((summable_prod_mul_pow (𝕜 := ℂ) (k - 1) hqn).norm.mul_left 2)
       fun c => ?_
@@ -324,9 +325,10 @@ theorem solution
       (by simp) ?_).trans ?_
   · have := (Equiv.pnatEquivNat.symm.summable_iff).mpr hfin
     refine this.congr fun n => ?_
-    simp only [Function.comp_apply, Equiv.pnatEquivNat_symm_apply, Nat.succPNat_coe, Nat.succ_eq_add_one]
+    simp only [Function.comp_apply, Equiv.pnatEquivNat_symm_apply, Nat.succPNat_coe,
+      Nat.succ_eq_add_one]
     congr 1
-    exact Finset.sum_congr rfl fun i _ =>  by grind
+    exact Finset.sum_congr rfl fun i _ => by grind
   · refine tsum_congr fun n => ?_
     congr 1
     refine Finset.sum_congr rfl fun i _ => ?_

@@ -130,7 +130,8 @@ theorem isRoot_map_j_veluQuotient_j_of_eq {N : ℕ} [NeZero N] (n : ℕ) (hN : 2
   subst hN
   exact ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq E n Q hQ hΔ data
 
-def cycSubRoot (hp2 : p ≠ 2) (data : ModularPolynomialData p) (G : CycSubH E p) : RootsAt data E.j :=
+def cycSubRoot (hp2 : p ≠ 2) (data : ModularPolynomialData p) (G : CycSubH E p) :
+    RootsAt data E.j :=
   ⟨@WeierstrassCurve.j H _ (E.veluQuotient (cycSubSummingSet E G))
       (isElliptic_veluQuotient_cycSubSummingSet E hp2 G),
     isRoot_map_j_veluQuotient_j_of_eq E ((p - 1) / 2) (two_mul_pred_div_two_add_one hp2) data

@@ -473,7 +473,7 @@ noncomputable section
 namespace HorizontalPadicL
 
 /-- A finite theta system whose one-coordinate transition factors are units
-can be normalized along a cofinal chain of finite subsets.  The resulting
+can be normalized along a cofinal chain of finite subsets. The resulting
 compatible horizontal measure differs at every finite-order character from
 the corresponding theta evaluation by a unit, and hence has the same zeroes. -/
 theorem unitNormRelationThetaSystem_to_normalizedMeasure_inverseSeed_v2

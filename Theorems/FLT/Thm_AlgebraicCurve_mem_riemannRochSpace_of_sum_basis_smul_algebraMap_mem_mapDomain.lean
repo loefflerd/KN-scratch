@@ -113,6 +113,7 @@ theorem AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_map
     (g : ι →₀ F)
     (hmem : (∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j))
       ∈ LSpace (K := K') (Finsupp.mapDomain lift D)) :
-    ∀ j, g j ∈ LSpace (K := K) D := _root_.P2MW.S_AlgebraicCurve_mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain.solution K F K' F' lift hlift_ord hlift_inj D B hB g hmem
+    ∀ j, g j ∈ LSpace (K := K) D :=
+  solution K F K' F' lift hlift_ord hlift_inj D B hB g hmem
 
 end publicSection

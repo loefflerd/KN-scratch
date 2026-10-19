@@ -111,7 +111,8 @@ theorem solution
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) Γ hT y hy
   have := hfin
-  have hle := ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le M Γ hΓ y hy
+  have hle :=
+    ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le M Γ hΓ y hy
   refine le_antisymm hle ?_
   obtain ⟨S0, hS0mem, hS0sum⟩ :=
     AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (AlgebraicClosure ℚ) y htr hfin 0
@@ -150,7 +151,8 @@ theorem solution
     rw [Finset.disjoint_left]
     intro P hP0 hP1
     have hy0 : 0 < P.ord y := (hS0mem P).mp hP0
-    have hy1 : 0 < P.ord (y - algebraMap (AlgebraicClosure ℚ) _ (1728 : AlgebraicClosure ℚ)) := (hS1mem P).mp hP1
+    have hy1 : 0 < P.ord (y - algebraMap (AlgebraicClosure ℚ) _ (1728 : AlgebraicClosure ℚ)) :=
+      (hS1mem P).mp hP1
     have hc : P.ord (algebraMap (AlgebraicClosure ℚ)
         ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))
           (1728 : AlgebraicClosure ℚ)) = 0 := AlgebraicCurve.Place.ord_algebraMap P _
@@ -176,7 +178,8 @@ theorem solution
         ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))))
       ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
-  have hst := AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable (AlgebraicClosure ℚ) y htr hfin hsep
+  have hst :=
+    AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable (AlgebraicClosure ℚ) y htr hfin hsep
     (S0 ∪ S1) (fun P => if P ∈ S0 then 0 else 1728)
     (by
       intro P hP
@@ -237,6 +240,7 @@ theorem ModularCurve.two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma
             ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
           (ModularCurve.qExpFunctionFieldC ℚ Γ))))
           ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
-          (ModularCurve.qExpFunctionFieldC ℚ Γ)) + 2 := _root_.P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le.solution M Γ hΓ y hy
+          (ModularCurve.qExpFunctionFieldC ℚ Γ)) + 2 :=
+  solution M Γ hΓ y hy
 
 end publicSection

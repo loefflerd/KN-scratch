@@ -117,19 +117,17 @@ structure IntegralBasisInLSpace [Algebra.IsSeparable E F] [HasPrincipalDivisors 
   hu_mem : ∀ i, u i ∈ LSpace (c • T.poleDivisor)
 
 variable (K E F) in
-
 def HasIntegralBasisInLSpace [Algebra.IsSeparable E F] [HasPrincipalDivisors K F]
     (T : TranscendenceTower K E F) : Prop :=
   Nonempty (IntegralBasisInLSpace T)
 
 variable (K E F) in
-
-def HasIntegralBasisRegularOutside [Algebra.IsSeparable E F] (T : TranscendenceTower K E F) : Prop :=
+def HasIntegralBasisRegularOutside [Algebra.IsSeparable E F] (T : TranscendenceTower K E F) :
+    Prop :=
   ∃ u : Fin (Module.finrank E F) → F, LinearIndependent E u ∧
     ∀ i, ∀ w : Place K F, w.restrict E ≠ T.v → 0 ≤ w.ord (u i)
 
 variable (K E F) in
-
 def HasRegularFractionSubring (T : TranscendenceTower K E F) : Prop :=
   ∃ (A : Subalgebra K E), IsFractionRing A E ∧
     ∀ u : Place K E, u ≠ T.v → ∀ a ∈ A, a ∈ u.toValuationSubring

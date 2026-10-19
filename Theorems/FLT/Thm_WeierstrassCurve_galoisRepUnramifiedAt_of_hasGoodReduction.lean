@@ -123,19 +123,16 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     {q n : ℕ} (hq : q.Prime) (hqR : Irreducible (q : R)) (hqn : ¬ q ∣ n) :
     WeierstrassCurve.Affine.Point.GaloisRepUnramifiedAt (K := Qb) ℚ E n q := by
   classical
-
   have : Algebra.IsAlgebraic ℚ Qb := AlgebraicClosure.isAlgebraic ℚ
   have : IsAlgClosure ℚ Qb := ⟨inferInstance, inferInstance⟩
   have : Normal ℚ Qb := IsAlgClosure.normal ℚ Qb
   intro A hA σ₀ hσ₀ P
-
   obtain ⟨σ, hσI, rfl⟩ := Subgroup.mem_map.mp hσ₀
   have hAval : A.valuation ((q : ℕ) : Qb) < 1 := hA
   apply Subtype.ext
-  show (σ : Qb ≃ₐ[ℚ] Qb) • (P : (E⁄Qb).Point) = P
+  change (σ : Qb ≃ₐ[ℚ] Qb) • (P : (E⁄Qb).Point) = P
   rw [WeierstrassCurve.Affine.Point.algEquiv_smul_def]
   set σ₁ : Qb ≃ₐ[ℚ] Qb := ((A.decompositionSubgroup ℚ).subtype σ) with hσ₁def
-
   obtain ⟨Pv, hPn⟩ := P
   simp only
   cases Pv with
@@ -154,12 +151,11 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
   have : Normal ℚ L := by rw [hLdef]; exact normalClosure.normal ℚ (↥L₀) Qb
   have hx : x ∈ L := L₀.le_normalClosure hx0
   have hy : y ∈ L := L₀.le_normalClosure hy0
-
   set S : ValuationSubring L := A.comap (algebraMap L Qb) with hSdef
   have hSdvr : IsDiscreteValuationRing S :=
     ValuationSubring.isDiscreteValuationRing_comap_of_liesOverPrime L A hq hA
   have hqmem : ((q : ℕ) : L) ∈ S := by
-    show algebraMap L Qb ((q : ℕ) : L) ∈ A
+    change algebraMap L Qb ((q : ℕ) : L) ∈ A
     rw [map_natCast]
     exact natCast_mem A q
   set ι : S →+* A :=
@@ -170,7 +166,7 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     have hu' : IsUnit (ι ⟨((q : ℕ) : L), hqmem⟩) := hu.map ι
     have h1 := (A.valuation_eq_one_iff _).mp hu'
     have h2 : ((ι ⟨((q : ℕ) : L), hqmem⟩ : A) : Qb) = ((q : ℕ) : Qb) := by
-      show algebraMap L Qb ((q : ℕ) : L) = _
+      change algebraMap L Qb ((q : ℕ) : L) = _
       rw [map_natCast]
     rw [h2] at h1
     exact hAval.ne h1
@@ -187,7 +183,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     intro z
     rw [hτ']
     exact AlgEquiv.restrictNormal_commutes σ₁ L z
-
   obtain ⟨h', hmap⟩ := point_descend_of_mem E L x y hx hy h
   set PL : (E.baseChange L).toAffine.Point :=
     WeierstrassCurve.Affine.Point.some ⟨x, hx⟩ ⟨y, hy⟩ h' with hPLdef
@@ -200,7 +195,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
   have hnPL' : n • PL = 0 := by
     have := hnPL; rwa [natCast_zsmul] at this
   set τL : L ≃ₐ[ℚ] L := ((τ : S.decompositionSubgroup ℚ) : L ≃ₐ[ℚ] L) with hτLdef
-
   have hstab : ∀ z : L, z ∈ S → τL z ∈ S := fun z hz =>
     (((τ : S.decompositionSubgroup ℚ)) • (⟨z, hz⟩ : S)).2
   have hstab' : ∀ z : L, τL z ∈ S → z ∈ S := by
@@ -208,7 +202,7 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     have h2 := ((((τ : S.decompositionSubgroup ℚ))⁻¹) • (⟨τL z, hz⟩ : S)).2
     have h3 : (((((τ : S.decompositionSubgroup ℚ))⁻¹ :
         S.decompositionSubgroup ℚ) : L ≃ₐ[ℚ] L)) (τL z) = z := by
-      show ((τL)⁻¹) (τL z) = z
+      change ((τL)⁻¹) (τL z) = z
       rw [AlgEquiv.aut_inv]
       exact AlgEquiv.symm_apply_apply _ _
     rwa [show ((((τ : S.decompositionSubgroup ℚ))⁻¹ • (⟨τL z, hz⟩ : S) : S) : L)
@@ -245,12 +239,11 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     have h1 := reduceCoord_map S σR τL.toRingEquiv (fun s => rfl) σk hres z
     rw [hσk1] at h1
     exact h1
-
   have hzero : ∀ (a b : L) (hab : (E.baseChange L).toAffine.Nonsingular a b),
       ¬ (valuation L (maximalIdeal S) a ≤ 1 ∧ valuation L (maximalIdeal S) b ≤ 1) →
       reducePoint_alt S (E.baseChange L) (.some a b hab) = 0 := by
     intro a b hab hguard
-    show (if _ : valuation L (maximalIdeal S) a ≤ 1 ∧ valuation L (maximalIdeal S) b ≤ 1
+    change (if _ : valuation L (maximalIdeal S) a ≤ 1 ∧ valuation L (maximalIdeal S) b ≤ 1
         then _ else WeierstrassCurve.Affine.Point.zero) = _
     rw [dite_eq_right hguard]
     rfl
@@ -280,7 +273,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
       · rw [(WeierstrassCurve.reducePoint_some_eq_zero_iff S (E.baseChange L) hQ).mpr hva,
           (WeierstrassCurve.reducePoint_some_eq_zero_iff S (E.baseChange L) _).mpr
             (fun hc => hva ((hvτ a).mp hc))]
-
   have hn0 : ((n : ℕ) : ResidueField S) ≠ 0 := by
     intro h0
     have hmemn : ((n : ℕ) : S) ∈ IsLocalRing.maximalIdeal S := by
@@ -327,13 +319,12 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     have := WeierstrassCurve.eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero S (E.baseChange L)
       hn0 _ hnD hred0
     exact sub_eq_zero.mp this
-
   have hcoe2 : ∀ z : L, τL.toAlgHom z = τL z := fun z => rfl
   have hD' := hD
   rw [hPLdef, WeierstrassCurve.Affine.Point.map_some] at hD'
   simp only [hcoe2, WeierstrassCurve.Affine.Point.some.injEq] at hD'
   obtain ⟨hDx, hDy⟩ := hD'
-  show WeierstrassCurve.Affine.Point.map σ₁.toAlgHom
+  change WeierstrassCurve.Affine.Point.map σ₁.toAlgHom
       (WeierstrassCurve.Affine.Point.some x y h) = WeierstrassCurve.Affine.Point.some x y h
   rw [WeierstrassCurve.Affine.Point.map_some]
   simp only [WeierstrassCurve.Affine.Point.some.injEq]
@@ -348,7 +339,8 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
       _ = y := rfl
 
 theorem solution
-    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ] [IsFractionRing R ℚ]
+    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ]
+    [IsFractionRing R ℚ]
     (E : WeierstrassCurve ℚ) [E.HasGoodReduction R]
     {q n : ℕ} (hq : q.Prime) (hqR : Irreducible (q : R)) (hqn : ¬ q ∣ n) :
     WeierstrassCurve.Affine.Point.GaloisRepUnramifiedAt (K := AlgebraicClosure ℚ) ℚ E n q :=
@@ -365,9 +357,11 @@ end privateSection
 public section publicSection
 
 theorem WeierstrassCurve.galoisRepUnramifiedAt_of_hasGoodReduction
-    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ] [IsFractionRing R ℚ]
+    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ]
+    [IsFractionRing R ℚ]
     (E : WeierstrassCurve ℚ) [E.HasGoodReduction R]
     {q n : ℕ} (hq : q.Prime) (hqR : Irreducible (q : R)) (hqn : ¬ q ∣ n) :
-    WeierstrassCurve.Affine.Point.GaloisRepUnramifiedAt (K := AlgebraicClosure ℚ) ℚ E n q := _root_.P2MW.S_WeierstrassCurve_galoisRepUnramifiedAt_of_hasGoodReduction.solution R E hq hqR hqn
+    WeierstrassCurve.Affine.Point.GaloisRepUnramifiedAt (K := AlgebraicClosure ℚ) ℚ E n q :=
+  solution R E hq hqR hqn
 
 end publicSection

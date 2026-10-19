@@ -106,8 +106,9 @@ end ModularCurve
 end
 
 open ModularCurve.QexpN in
-
-theorem solution (N : ℕ) [NeZero N] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) : ∃ γ' : Matrix.SpecialLinearGroup (Fin 2) ℤ, (∀ τ : UpperHalfPlane, ModularForm.heckeDiagMatrix N • γ • τ = γ' • ModularForm.heckeDiagMatrix N • τ) ∧ ∀ τ : UpperHalfPlane, UpperHalfPlane.denom (γ' : Matrix.GeneralLinearGroup (Fin 2) ℝ) (((ModularForm.heckeDiagMatrix N • τ : UpperHalfPlane)) : ℂ) = UpperHalfPlane.denom (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (τ : ℂ) := by
+theorem solution (N : ℕ) [NeZero N] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ)
+    (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) :
+    ∃ γ' : Matrix.SpecialLinearGroup (Fin 2) ℤ, (∀ τ : UpperHalfPlane, ModularForm.heckeDiagMatrix N • γ • τ = γ' • ModularForm.heckeDiagMatrix N • τ) ∧ ∀ τ : UpperHalfPlane, UpperHalfPlane.denom (γ' : Matrix.GeneralLinearGroup (Fin 2) ℝ) (((ModularForm.heckeDiagMatrix N • τ : UpperHalfPlane)) : ℂ) = UpperHalfPlane.denom (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (τ : ℂ) := by
   have hN : N ≠ 0 := NeZero.ne N
   obtain ⟨e, he⟩ : (N : ℤ) ∣ γ 1 0 :=
     (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp (CongruenceSubgroup.Gamma0_mem.mp hγ)
@@ -131,6 +132,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.exists_sl2_heckeDiagMatrix_smul_eq (N : ℕ) [NeZero N] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) : ∃ γ' : Matrix.SpecialLinearGroup (Fin 2) ℤ, (∀ τ : UpperHalfPlane, ModularForm.heckeDiagMatrix N • γ • τ = γ' • ModularForm.heckeDiagMatrix N • τ) ∧ ∀ τ : UpperHalfPlane, UpperHalfPlane.denom (γ' : Matrix.GeneralLinearGroup (Fin 2) ℝ) (((ModularForm.heckeDiagMatrix N • τ : UpperHalfPlane)) : ℂ) = UpperHalfPlane.denom (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (τ : ℂ) := _root_.P2MW.S_ModularCurve_exists_sl2_heckeDiagMatrix_smul_eq.solution N γ hγ
+theorem ModularCurve.exists_sl2_heckeDiagMatrix_smul_eq (N : ℕ) [NeZero N]
+    (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) :
+    ∃ γ' : Matrix.SpecialLinearGroup (Fin 2) ℤ, (∀ τ : UpperHalfPlane, ModularForm.heckeDiagMatrix N • γ • τ = γ' • ModularForm.heckeDiagMatrix N • τ) ∧ ∀ τ : UpperHalfPlane, UpperHalfPlane.denom (γ' : Matrix.GeneralLinearGroup (Fin 2) ℝ) (((ModularForm.heckeDiagMatrix N • τ : UpperHalfPlane)) : ℂ) = UpperHalfPlane.denom (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (τ : ℂ) :=
+  solution N γ hγ
 
 end publicSection

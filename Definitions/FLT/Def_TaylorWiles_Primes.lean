@@ -114,12 +114,10 @@ instance isMaximal_ratPrimeIdeal (ℓ : ℕ) [Fact ℓ.Prime] : (ratPrimeIdeal �
 variable {L}
 
 omit [IsGalois ℚ L] in
-
 theorem finite_quotient_of_ne_bot {Q : Ideal (𝓞 L)} (hQ : Q ≠ ⊥) : Finite (𝓞 L ⧸ Q) :=
   Ring.HasFiniteQuotients.finiteQuotient hQ
 
 omit [IsGalois ℚ L] in
-
 theorem ne_bot_of_liesOver_ratPrimeIdeal {ℓ : ℕ} (hℓ : ℓ.Prime) {Q : Ideal (𝓞 L)}
     [Q.IsPrime] [Q.LiesOver (ratPrimeIdeal ℓ)] : Q ≠ ⊥ :=
   Ideal.ne_bot_of_liesOver_of_ne_bot (ratPrimeIdeal_ne_bot hℓ) Q
@@ -144,7 +142,6 @@ variable {L : Type*} [Field L] [NumberField L] [IsGalois ℚ L]
 variable {𝕜 : Type*} [Field 𝕜]
 
 variable (L) in
-
 abbrev ResidualRep (𝕜 : Type*) [Field 𝕜] := (L ≃ₐ[ℚ] L) →* Matrix (Fin 2) (Fin 2) 𝕜
 
 variable (ρ : ResidualRep L 𝕜) (p n : ℕ)

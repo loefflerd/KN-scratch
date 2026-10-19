@@ -69,7 +69,6 @@ namespace Place
 variable (v : Place K F)
 
 open Classical in
-
 def uniformizer_alt : F :=
   if h : ∃ t : F, v.ord t = 1 then h.choose else 0
 
@@ -78,7 +77,6 @@ theorem ord_uniformizer_alt (h : ∃ t : F, v.ord t = 1) : v.ord v.uniformizer_a
   exact h.choose_spec
 
 open Classical in
-
 def diffCoeff (t : F) (ω : Ω[F⁄K]) : F :=
   if h : ∃ g : F, ω = g • D K F t then h.choose else 0
 
@@ -99,7 +97,6 @@ theorem ordDiff_def (ω : Ω[F⁄K]) : v.ordDiff ω = v.ord (diffCoeff v.uniform
 end Place
 
 variable (K F) in
-
 def IsRegularDiff (ω : Ω[F⁄K]) : Prop :=
   ∀ v : Place K F, 0 ≤ v.ordDiff ω
 
@@ -107,7 +104,6 @@ theorem isRegularDiff_iff (ω : Ω[F⁄K]) :
     IsRegularDiff K F ω ↔ ∀ v : Place K F, 0 ≤ v.ordDiff ω := Iff.rfl
 
 variable (K F) in
-
 def regularDiffs : Submodule K Ω[F⁄K] :=
   Submodule.span K {ω : Ω[F⁄K] | IsRegularDiff K F ω}
 

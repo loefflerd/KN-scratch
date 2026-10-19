@@ -81,11 +81,12 @@ theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) 
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn0)
   let φ : (W.toAffine⁄k).Point →+ (W.toAffine⁄K).Point := Point.baseChange k K
   have hφ : Function.Injective φ := Point.map_injective _
-  have hmem : ∀ P : Submodule.torsionBy ℤ W.toAffine.Point n, φ P.1 ∈ Submodule.torsionBy ℤ (W⁄K).Point n := by
+  have hmem : ∀ P : Submodule.torsionBy ℤ W.toAffine.Point n, φ P.1 ∈ Submodule.torsionBy ℤ (W⁄K).Point n :=
+    by
     intro P
     have hP := P.2
     rw [Submodule.mem_torsionBy_iff] at hP ⊢
-    show (n : ℤ) • φ P.1 = 0
+    change (n : ℤ) • φ P.1 = 0
     rw [← map_zsmul φ]
     exact (congrArg φ hP).trans (map_zero φ)
   refine Finite.of_injective (fun P => (⟨φ P.1, hmem P⟩ : Submodule.torsionBy ℤ (W⁄K).Point n)) ?_
@@ -100,8 +101,10 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.finite_torsionBy_of_natCast_ne_zero (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) [W.IsElliptic]
+theorem WeierstrassCurve.finite_torsionBy_of_natCast_ne_zero (k : Type*) [Field k] [DecidableEq k]
+    (W : WeierstrassCurve k) [W.IsElliptic]
     (n : ℕ) (hn : (n : k) ≠ 0) :
-    Finite (Submodule.torsionBy ℤ W.toAffine.Point n) := _root_.P2MW.S_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero.solution k W n hn
+    Finite (Submodule.torsionBy ℤ W.toAffine.Point n) :=
+  solution k W n hn
 
 end publicSection

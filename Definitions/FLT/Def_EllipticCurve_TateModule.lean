@@ -109,7 +109,7 @@ theorem compat_pow (x : TateModule p M) (n k : ℕ) :
   | zero => rw [pow_zero, Nat.cast_one, one_smul, Nat.add_zero]
   | succ k ih =>
     rw [pow_succ, Nat.cast_mul, mul_smul]
-    show ((p ^ k : ℕ) : ℤ) • (((p : ℕ) : ℤ) • (x : ℕ → M) ((n + k) + 1)) = _
+    change ((p ^ k : ℕ) : ℤ) • (((p : ℕ) : ℤ) • (x : ℕ → M) ((n + k) + 1)) = _
     rw [compat, ih]
 
 @[simp] theorem coe_add (x y : TateModule p M) : ((x + y : TateModule p M) : ℕ → M) = x + y := rfl
@@ -128,16 +128,19 @@ theorem natCast_smul_eq_mod {n c : ℕ} {m : M} (hm : ((p ^ n : ℕ) : ℤ) • 
 
 theorem natCast_smul_eq_of_zmod_eq {n c d : ℕ} {m : M} (hm : ((p ^ n : ℕ) : ℤ) • m = 0)
     (h : (c : ZMod (p ^ n)) = d) : (c : ℤ) • m = (d : ℤ) • m := by
-  rw [natCast_smul_eq_mod hm, natCast_smul_eq_mod (c := d) hm, (ZMod.natCast_eq_natCast_iff' c d _).1 h]
+  rw [natCast_smul_eq_mod hm, natCast_smul_eq_mod (c := d) hm, (ZMod.natCast_eq_natCast_iff' c d
+    _).1 h]
 
 variable [Fact p.Prime]
 
-theorem toZModPow_eq_appr (n : ℕ) (a : ℤ_[p]) : PadicInt.toZModPow n a = (a.appr n : ZMod (p ^ n)) := rfl
+theorem toZModPow_eq_appr (n : ℕ) (a : ℤ_[p]) :
+    PadicInt.toZModPow n a = (a.appr n : ZMod (p ^ n)) := rfl
 
 theorem appr_succ_smul_eq (a : ℤ_[p]) (x : TateModule p M) (n : ℕ) :
     ((a.appr (n + 1) : ℕ) : ℤ) • (x : ℕ → M) n = ((a.appr n : ℕ) : ℤ) • (x : ℕ → M) n := by
   refine natCast_smul_eq_of_zmod_eq (torsion x n) ?_
-  rw [← toZModPow_eq_appr, ← PadicInt.zmod_cast_comp_toZModPow n (n + 1) n.le_succ, RingHom.comp_apply,
+  rw [← toZModPow_eq_appr, ← PadicInt.zmod_cast_comp_toZModPow n (n + 1) n.le_succ,
+    RingHom.comp_apply,
     toZModPow_eq_appr, ZMod.castHom_apply, ZMod.cast_natCast (pow_dvd_pow p n.le_succ)]
 
 noncomputable instance instSMul : SMul ℤ_[p] (TateModule p M) :=
@@ -159,7 +162,8 @@ noncomputable instance instModule : Module ℤ_[p] (TateModule p M) where
     rw [smul_apply, smul_apply, smul_apply, smul_smul, ← Nat.cast_mul]
     refine natCast_smul_eq_of_zmod_eq (torsion x n) ?_
     rw [← toZModPow_eq_appr, map_mul, toZModPow_eq_appr, toZModPow_eq_appr, Nat.cast_mul]
-  smul_zero a := Subtype.ext (funext fun n => by rw [smul_apply, coe_zero, Pi.zero_apply, smul_zero])
+  smul_zero a := Subtype.ext (funext fun n => by rw [smul_apply, coe_zero, Pi.zero_apply,
+    smul_zero])
   smul_add a x y := Subtype.ext (funext fun n => by
     rw [smul_apply, coe_add, Pi.add_apply, smul_add, coe_add, Pi.add_apply, smul_apply, smul_apply])
   add_smul a b x := by
@@ -190,7 +194,6 @@ theorem smul_apply_eq_zero_of_mem_span {n : ℕ} {a : ℤ_[p]}
   rw [natCast_smul_eq_of_zmod_eq (torsion x n) h, Nat.cast_zero, zero_smul]
 
 variable (p M) in
-
 def proj (n : ℕ) : TateModule p M →+ M where
   toFun x := (x : ℕ → M) n
   map_zero' := rfl
@@ -211,10 +214,10 @@ theorem proj_mem_torsionBy (n : ℕ) (x : TateModule p M) :
 def shiftOfProjEqZero (n : ℕ) (x : TateModule p M) (hx : proj p M n x = 0) : TateModule p M :=
   ⟨fun m => (x : ℕ → M) (m + n), fun m =>
     ⟨by
-      show ((p ^ m : ℕ) : ℤ) • (x : ℕ → M) (m + n) = 0
+      change ((p ^ m : ℕ) : ℤ) • (x : ℕ → M) (m + n) = 0
       rw [Nat.add_comm, compat_pow x n m]; exact hx,
      by
-      show ((p : ℕ) : ℤ) • (x : ℕ → M) (m + 1 + n) = (x : ℕ → M) (m + n)
+      change ((p : ℕ) : ℤ) • (x : ℕ → M) (m + 1 + n) = (x : ℕ → M) (m + n)
       rw [Nat.add_right_comm]; exact compat x (m + n)⟩⟩
 
 theorem pow_smul_shiftOfProjEqZero (n : ℕ) (x : TateModule p M) (hx : proj p M n x = 0) :
@@ -242,21 +245,20 @@ section action
 variable {G : Type} [Monoid G] [DistribMulAction G M]
 
 variable (p M G) in
-
 noncomputable def rep : G →* Module.End ℤ_[p] (TateModule p M) where
   toFun g :=
     { toFun := fun x => ⟨fun n => g • (x : ℕ → M) n, fun n =>
         ⟨by
-          show ((p ^ n : ℕ) : ℤ) • DistribSMul.toAddMonoidHom M g ((x : ℕ → M) n) = 0
+          change ((p ^ n : ℕ) : ℤ) • DistribSMul.toAddMonoidHom M g ((x : ℕ → M) n) = 0
           rw [← map_zsmul, torsion, map_zero],
          by
-          show ((p : ℕ) : ℤ) • DistribSMul.toAddMonoidHom M g ((x : ℕ → M) (n + 1)) = _
+          change ((p : ℕ) : ℤ) • DistribSMul.toAddMonoidHom M g ((x : ℕ → M) (n + 1)) = _
           rw [← map_zsmul, compat]; rfl⟩⟩
       map_add' := fun x y => Subtype.ext (funext fun n => by
-        show g • ((x + y : TateModule p M) : ℕ → M) n = g • (x : ℕ → M) n + g • (y : ℕ → M) n
+        change g • ((x + y : TateModule p M) : ℕ → M) n = g • (x : ℕ → M) n + g • (y : ℕ → M) n
         rw [coe_add, Pi.add_apply, smul_add])
       map_smul' := fun a x => Subtype.ext (funext fun n => by
-        show g • (((a.appr n : ℕ) : ℤ) • (x : ℕ → M) n) = ((a.appr n : ℕ) : ℤ) • (g • (x : ℕ → M) n)
+        change g • (((a.appr n : ℕ) : ℤ) • (x : ℕ → M) n) = ((a.appr n : ℕ) : ℤ) • (g • (x : ℕ → M) n)
         exact map_zsmul (DistribSMul.toAddMonoidHom M g) _ _) }
   map_one' := LinearMap.ext fun x => Subtype.ext (funext fun n => one_smul G ((x : ℕ → M) n))
   map_mul' g h := LinearMap.ext fun x => Subtype.ext (funext fun n => mul_smul g h ((x : ℕ → M) n))
@@ -317,7 +319,8 @@ variable (𝒪 : Type) [CommRing 𝒪] [IsLocalRing 𝒪] (p : ℕ) [Fact p.Prim
 omit [Fact p.Prime] in
 theorem ringChar_quotient_dvd (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (n : ℕ) :
     ringChar (𝒪 ⧸ maximalIdeal 𝒪 ^ n) ∣ p ^ n := by
-  rw [← ringChar.spec, Nat.cast_pow, ← map_natCast (Ideal.Quotient.mk (maximalIdeal 𝒪 ^ n)), ← map_pow,
+  rw [← ringChar.spec, Nat.cast_pow, ← map_natCast (Ideal.Quotient.mk (maximalIdeal 𝒪 ^ n)), ←
+    map_pow,
     Ideal.Quotient.eq_zero_iff_mem]
   exact Ideal.pow_mem_pow hp n
 
@@ -362,12 +365,14 @@ theorem mem_torsionBy_add {n : ℕ} {m : M} (hm : m ∈ torsionBy ℤ M ((p ^ n 
   rw [mem_torsionBy_iff] at hm ⊢
   rw [pow_add, Nat.cast_mul, mul_comm, mul_smul, hm, smul_zero]
 
-theorem smul_mem_torsionBy_of_mem_succ {n : ℕ} {m : M} (hm : m ∈ torsionBy ℤ M ((p ^ (n + 1) : ℕ) : ℤ)) :
+theorem smul_mem_torsionBy_of_mem_succ {n : ℕ} {m : M}
+    (hm : m ∈ torsionBy ℤ M ((p ^ (n + 1) : ℕ) : ℤ)) :
     ((p : ℕ) : ℤ) • m ∈ torsionBy ℤ M ((p ^ n : ℕ) : ℤ) := by
   rw [mem_torsionBy_iff] at hm ⊢
   rw [smul_smul, ← Nat.cast_mul, ← pow_succ, hm]
 
-theorem pow_smul_mem_torsionBy {n k : ℕ} {m : M} (hk : k ≤ n) (hm : m ∈ torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) :
+theorem pow_smul_mem_torsionBy {n k : ℕ} {m : M} (hk : k ≤ n)
+    (hm : m ∈ torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) :
     ((p ^ (n - k) : ℕ) : ℤ) • m ∈ torsionBy ℤ M ((p ^ k : ℕ) : ℤ) := by
   rw [mem_torsionBy_iff] at hm ⊢
   rw [smul_smul, ← Nat.cast_mul, ← pow_add, Nat.add_sub_cancel' hk, hm]
@@ -384,13 +389,13 @@ section Counting
 
 variable [Fact p.Prime]
 
-theorem finite_torsionBy (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) (n : ℕ) :
+theorem finite_torsionBy (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
+    (n : ℕ) :
     Finite (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) :=
   Nat.finite_of_card_ne_zero (by
     rw [hcard n]; exact pow_ne_zero _ (pow_ne_zero _ (Fact.out : p.Prime).ne_zero))
 
 variable (p M) in
-
 def mulP (n : ℕ) : torsionBy ℤ M ((p ^ (n + 1) : ℕ) : ℤ) →+ torsionBy ℤ M ((p ^ n : ℕ) : ℤ) where
   toFun m := ⟨((p : ℕ) : ℤ) • (m : M), smul_mem_torsionBy_of_mem_succ m.2⟩
   map_zero' := Subtype.ext (smul_zero _)
@@ -401,25 +406,27 @@ omit [Fact p.Prime] in
     (mulP p M n m : M) = ((p : ℕ) : ℤ) • (m : M) := rfl
 
 variable (p M) in
-
 def kerMulPEquiv (n : ℕ) : (mulP p M n).ker ≃ torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ) where
   toFun m := ⟨(m.1 : M), mem_torsionBy_one_of_smul_eq_zero (by
     have h := m.2; rw [AddMonoidHom.mem_ker] at h; exact congrArg Subtype.val h)⟩
   invFun m := ⟨⟨(m : M), by
-      rw [mem_torsionBy_iff, pow_succ, Nat.cast_mul, mul_smul, smul_eq_zero_of_mem_torsionBy_one m.2,
+      rw [mem_torsionBy_iff, pow_succ, Nat.cast_mul, mul_smul, smul_eq_zero_of_mem_torsionBy_one
+        m.2,
         smul_zero]⟩,
     by rw [AddMonoidHom.mem_ker]; exact Subtype.ext (smul_eq_zero_of_mem_torsionBy_one m.2)⟩
   left_inv m := rfl
   right_inv m := rfl
 
-theorem mulP_surjective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) (n : ℕ) :
+theorem mulP_surjective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
+    (n : ℕ) :
     Function.Surjective (mulP p M n) := by
   have := finite_torsionBy hcard (n + 1)
   have := finite_torsionBy hcard n
   have hker : Nat.card (mulP p M n).ker = p ^ 2 := by
     rw [Nat.card_congr (kerMulPEquiv p M n), hcard 1, pow_one]
   have h := AddSubgroup.card_eq_card_quotient_mul_card_addSubgroup (mulP p M n).ker
-  rw [hcard (n + 1), Nat.card_congr (QuotientAddGroup.quotientKerEquivRange (mulP p M n)).toEquiv, hker] at h
+  rw [hcard (n + 1), Nat.card_congr (QuotientAddGroup.quotientKerEquivRange (mulP p M n)).toEquiv,
+    hker] at h
   have hrange : Nat.card (mulP p M n).range = Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) := by
     rw [hcard n]
     refine Nat.eq_of_mul_eq_mul_right (pow_pos (Fact.out : p.Prime).pos 2) ?_
@@ -454,7 +461,8 @@ theorem liftFun_of_lt {next} {n : ℕ} {m : torsionBy ℤ M ((p ^ n : ℕ) : ℤ
     liftFun next n m k = ((p ^ (n - k) : ℕ) : ℤ) • (m : M) := ite_eq_right (not_le.mpr hk)
 
 omit [Fact p.Prime] in
-theorem coe_liftAux_congr {next} {n : ℕ} {m : torsionBy ℤ M ((p ^ n : ℕ) : ℤ)} {j j' : ℕ} (h : j = j') :
+theorem coe_liftAux_congr {next} {n : ℕ} {m : torsionBy ℤ M ((p ^ n : ℕ) : ℤ)} {j j' : ℕ}
+    (h : j = j') :
     (liftAux next n m j : M) = (liftAux next n m j' : M) := by subst h; rfl
 
 omit [Fact p.Prime] in
@@ -463,7 +471,6 @@ theorem pow_smul_coe_liftAux {next} {n : ℕ} {m : torsionBy ℤ M ((p ^ n : ℕ
   subst he; exact (mem_torsionBy_iff _ _).mp (liftAux next n m j).2
 
 omit [Fact p.Prime] in
-
 theorem liftFun_mem
     {next : (k : ℕ) → torsionBy ℤ M ((p ^ k : ℕ) : ℤ) → torsionBy ℤ M ((p ^ (k + 1) : ℕ) : ℤ)}
     (hnext : ∀ k (m : torsionBy ℤ M ((p ^ k : ℕ) : ℤ)), ((p : ℕ) : ℤ) • (next k m : M) = m)
@@ -488,7 +495,8 @@ theorem liftFun_mem
       · rw [liftFun_of_lt (not_le.mp hk'), liftFun_of_lt (not_le.mp hk), smul_smul, ← Nat.cast_mul,
           ← pow_succ', show n - (k + 1) + 1 = n - k by omega]
 
-theorem proj_surjective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) (n : ℕ) :
+theorem proj_surjective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
+    (n : ℕ) :
     ∀ m ∈ torsionBy ℤ M ((p ^ n : ℕ) : ℤ), ∃ x : TateModule p M, proj p M n x = m := by
   intro m hm
   choose next hnext using fun k (m : torsionBy ℤ M ((p ^ k : ℕ) : ℤ)) => mulP_surjective hcard k m
@@ -498,7 +506,8 @@ theorem proj_surjective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n 
   rw [liftFun_of_le le_rfl, coe_liftAux_congr (Nat.sub_self n)]
   rfl
 
-theorem range_proj (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) (n : ℕ) :
+theorem range_proj (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
+    (n : ℕ) :
     Set.range (proj p M n) = torsionBy ℤ M ((p ^ n : ℕ) : ℤ) := by
   ext m
   exact ⟨fun ⟨x, hx⟩ => hx ▸ proj_mem_torsionBy n x, fun hm => proj_surjective hcard n m hm⟩
@@ -541,7 +550,6 @@ theorem exists_indep_pair_torsionBy_one
   exact hab
 
 omit [Fact p.Prime] in
-
 theorem dvd_of_rel_apply {x y : TateModule p M}
     (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) :
     ∀ (n : ℕ) (a b : ℤ), a • (x : ℕ → M) n + b • (y : ℕ → M) n = 0 →
@@ -553,7 +561,8 @@ theorem dvd_of_rel_apply {x y : TateModule p M}
     intro a b hab
     have hab1 : a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 := by
       have := congrArg (((p ^ n : ℕ) : ℤ) • ·) hab
-      simpa only [smul_add, smul_zero, smul_comm _ a, smul_comm _ b, Nat.add_comm n 1 ▸ compat_pow x 1 n,
+      simpa only [smul_add, smul_zero, smul_comm _ a, smul_comm _ b, Nat.add_comm n 1 ▸ compat_pow x
+        1 n,
         Nat.add_comm n 1 ▸ compat_pow y 1 n] using this
     obtain ⟨⟨a', rfl⟩, ⟨b', rfl⟩⟩ := h1 a b hab1
     have hab' : a' • (x : ℕ → M) n + b' • (y : ℕ → M) n = 0 := by
@@ -566,28 +575,34 @@ theorem dvd_of_rel_apply {x y : TateModule p M}
 noncomputable def levelMap (x y : TateModule p M) (n : ℕ) (c : ZMod (p ^ n) × ZMod (p ^ n)) :
     torsionBy ℤ M ((p ^ n : ℕ) : ℤ) :=
   ⟨(c.1.val : ℤ) • (x : ℕ → M) n + (c.2.val : ℤ) • (y : ℕ → M) n, by
-    rw [mem_torsionBy_iff, smul_add, smul_comm _ (c.1.val : ℤ), torsion, smul_comm _ (c.2.val : ℤ), torsion,
+    rw [mem_torsionBy_iff, smul_add, smul_comm _ (c.1.val : ℤ), torsion, smul_comm _ (c.2.val : ℤ),
+      torsion,
       smul_zero, smul_zero, add_zero]⟩
 
 theorem levelMap_injective {x y : TateModule p M}
-    (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) (n : ℕ) :
+    (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) (n : ℕ)
+    :
     Function.Injective (levelMap x y n) := by
   have : NeZero (p ^ n) := ⟨pow_ne_zero _ (Fact.out : p.Prime).ne_zero⟩
   rintro ⟨a, b⟩ ⟨a', b'⟩ h
-  have h' : ((a.val : ℤ) - a'.val) • (x : ℕ → M) n + ((b.val : ℤ) - b'.val) • (y : ℕ → M) n = 0 := by
+  have h' : ((a.val : ℤ) - a'.val) • (x : ℕ → M) n + ((b.val : ℤ) - b'.val) • (y : ℕ → M) n = 0 :=
+    by
     have := sub_eq_zero.mpr (congrArg Subtype.val h)
     simp only [levelMap] at this
     rw [← this, sub_smul, sub_smul]
     abel
   obtain ⟨ha, hb⟩ := dvd_of_rel_apply h1 n _ _ h'
-  have key : ∀ {u v : ZMod (p ^ n)}, ((p ^ n : ℕ) : ℤ) ∣ (u.val : ℤ) - v.val → u = v := fun {u v} huv => by
+  have key : ∀ {u v : ZMod (p ^ n)}, ((p ^ n : ℕ) : ℤ) ∣ (u.val : ℤ) - v.val → u = v :=
+    fun {u v} huv => by
     have := (ZMod.intCast_eq_intCast_iff_dvd_sub (v.val : ℤ) (u.val : ℤ) (p ^ n)).mpr huv
-    rwa [Int.cast_natCast, Int.cast_natCast, ZMod.natCast_zmod_val, ZMod.natCast_zmod_val, eq_comm] at this
+    rwa [Int.cast_natCast, Int.cast_natCast, ZMod.natCast_zmod_val, ZMod.natCast_zmod_val,
+      eq_comm] at this
   exact Prod.ext (key ha) (key hb)
 
 theorem levelMap_bijective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
     {x y : TateModule p M}
-    (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) (n : ℕ) :
+    (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) (n : ℕ)
+    :
     Function.Bijective (levelMap x y n) := by
   have := finite_torsionBy hcard n
   refine (levelMap_injective h1 n).bijective_of_nat_card_le ?_
@@ -606,7 +621,8 @@ theorem linearIndependent_pair {x y : TateModule p M}
     LinearIndependent ℤ_[p] ![x, y] := by
   rw [LinearIndependent.pair_iff]
   intro s t hst
-  have hlev : ∀ n, ((p ^ n : ℕ) : ℤ) ∣ (s.appr n : ℤ) ∧ ((p ^ n : ℕ) : ℤ) ∣ (t.appr n : ℤ) := fun n =>
+  have hlev : ∀ n, ((p ^ n : ℕ) : ℤ) ∣ (s.appr n : ℤ) ∧ ((p ^ n : ℕ) : ℤ) ∣ (t.appr n : ℤ) :=
+    fun n =>
     dvd_of_rel_apply h1 n _ _ (by
       have := congrArg (fun z : TateModule p M => (z : ℕ → M) n) hst
       simpa only [coe_add, Pi.add_apply, smul_apply, coe_zero, Pi.zero_apply] using this)
@@ -636,10 +652,12 @@ theorem mem_span_pair (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : 
   rw [coe_add, Pi.add_apply, smul_apply, smul_apply, ← proj_apply n z, ← hab n]
   congr 1
   · refine natCast_smul_eq_of_zmod_eq (torsion x n) ?_
-    rw [← toZModPow_eq_appr, PadicInt.toZModPow_ofIntSeq_of_pow_dvd_sub (fun i => (a i : ℤ)) p hca n,
+    rw [← toZModPow_eq_appr, PadicInt.toZModPow_ofIntSeq_of_pow_dvd_sub (fun i => (a i : ℤ)) p hca
+      n,
       Int.cast_natCast]
   · refine natCast_smul_eq_of_zmod_eq (torsion y n) ?_
-    rw [← toZModPow_eq_appr, PadicInt.toZModPow_ofIntSeq_of_pow_dvd_sub (fun i => (b i : ℤ)) p hcb n,
+    rw [← toZModPow_eq_appr, PadicInt.toZModPow_ofIntSeq_of_pow_dvd_sub (fun i => (b i : ℤ)) p hcb
+      n,
       Int.cast_natCast]
 
 theorem exists_pair (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) :
@@ -766,7 +784,6 @@ theorem coords_subset_torsionField (n : ℕ) {P : (W⁄(AlgebraicClosure ℚ)).P
   fun _ hz => IntermediateField.subset_adjoin ℚ _ (Set.mem_biUnion hP hz)
 
 omit [Fact p.Prime] in
-
 theorem finiteDimensional_torsionField (n : ℕ)
     (hfin : Finite (Submodule.torsionBy ℤ (W⁄(AlgebraicClosure ℚ)).Point ((p ^ n : ℕ) : ℤ))) :
     FiniteDimensional ℚ (W.torsionField p n) := by
@@ -779,8 +796,8 @@ theorem finiteDimensional_torsionField (n : ℕ)
     convert ((AlgebraicClosure.isAlgebraic ℚ).isAlgebraic z).isIntegral
 
 omit [Fact p.Prime] in
-
-theorem algEquiv_smul_eq_self_of_mem_torsionBy (n : ℕ) (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
+theorem algEquiv_smul_eq_self_of_mem_torsionBy (n : ℕ)
+    (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     (hσ : ∀ z ∈ W.torsionField p n, σ z = z) {P : (W⁄(AlgebraicClosure ℚ)).Point}
     (hP : P ∈ Submodule.torsionBy ℤ (W⁄(AlgebraicClosure ℚ)).Point ((p ^ n : ℕ) : ℤ)) :
     σ • P = P :=
@@ -833,7 +850,8 @@ theorem tateModuleRepOfBasis_ρ
     (hcard : ∀ n : ℕ, Nat.card (Submodule.torsionBy ℤ (W⁄(AlgebraicClosure ℚ)).Point ((p ^ n : ℕ) : ℤ))
       = (p ^ n) ^ 2)
     (b : Module.Basis (Fin 2) ℤ_[p] (TateModule p (W⁄(AlgebraicClosure ℚ)).Point))
-    (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (x : TateModule p (W⁄(AlgebraicClosure ℚ)).Point)
+    (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
+    (x : TateModule p (W⁄(AlgebraicClosure ℚ)).Point)
     (n : ℕ) :
     ((show TateModule p (W⁄(AlgebraicClosure ℚ)).Point from (W.tateModuleRepOfBasis p hcard b).ρ σ x) :
         ℕ → (W⁄(AlgebraicClosure ℚ)).Point) n
@@ -870,8 +888,8 @@ theorem eq_padicIntToRing (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) {φ : ℤ_[p] 
   IsAdicComplete.eq_liftRingHom (maximalIdeal 𝒪) _ _ φ hφ
 
 omit [IsAdicComplete (maximalIdeal 𝒪) 𝒪] in
-
-theorem mk_comp_eq_padicIntToRingLevel_iff (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (φ : ℤ_[p] →+* 𝒪) (n : ℕ) :
+theorem mk_comp_eq_padicIntToRingLevel_iff (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (φ : ℤ_[p] →+* 𝒪) (n : ℕ)
+    :
     (Ideal.Quotient.mk (maximalIdeal 𝒪 ^ n)).comp φ = padicIntToRingLevel 𝒪 p hp n ↔
       ∀ a : ℤ_[p], φ a - (a.appr n : 𝒪) ∈ maximalIdeal 𝒪 ^ n := by
   constructor
@@ -934,7 +952,8 @@ theorem tateModuleRep_ρ (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime]
 @[simp] theorem tateModuleRep_ρ_apply (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime]
     (hcard : ∀ n : ℕ,
       Nat.card (Submodule.torsionBy ℤ (W⁄(AlgebraicClosure ℚ)).Point ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
-    (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (x : TateModule p (W⁄(AlgebraicClosure ℚ)).Point)
+    (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
+    (x : TateModule p (W⁄(AlgebraicClosure ℚ)).Point)
     (n : ℕ) :
     ((show TateModule p (W⁄(AlgebraicClosure ℚ)).Point from (W.tateModuleRep p hcard).ρ σ x) : ℕ → _) n
       = σ • (x : ℕ → (W⁄(AlgebraicClosure ℚ)).Point) n := rfl

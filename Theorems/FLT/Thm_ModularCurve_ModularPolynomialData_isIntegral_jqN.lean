@@ -77,6 +77,9 @@ public section publicSection
 
 
 open ModularCurve IntermediateField
-theorem ModularCurve.ModularPolynomialData.isIntegral_jqN {N : ℕ} [NeZero N] (data : ModularPolynomialData N) : IsIntegral ℚ⟮jq⟯ (jqN N) := _root_.P2MW.S_ModularCurve_ModularPolynomialData_isIntegral_jqN.solution data
+theorem ModularCurve.ModularPolynomialData.isIntegral_jqN {N : ℕ} [NeZero N]
+    (data : ModularPolynomialData N) :
+    IsIntegral ℚ⟮jq⟯ (jqN N) :=
+  solution data
 
 end publicSection

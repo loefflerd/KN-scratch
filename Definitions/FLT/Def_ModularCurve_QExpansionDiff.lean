@@ -79,7 +79,6 @@ def thetaL : LaurentSeries L →ₗ[L] LaurentSeries L where
       mul_left_comm]
 
 variable {L} in
-
 theorem thetaL_apply (f : LaurentSeries L) :
     thetaL L f = single (1 : ℤ) (1 : L) * LaurentSeries.derivative L f :=
   rfl
@@ -96,7 +95,6 @@ def IsQExpansionDiffAlong (σ : F →ₐ[K] LaurentSeries L) (φ : Ω[F⁄K] →
     ∀ (f : F) (ω : Ω[F⁄K]), φ (f • ω) = σ f * φ ω
 
 open scoped Classical in
-
 def qExpansionDiffAlong (σ : F →ₐ[K] LaurentSeries L) : Ω[F⁄K] →ₗ[K] LaurentSeries L :=
   if h : ∃ φ : Ω[F⁄K] →ₗ[K] LaurentSeries L, IsQExpansionDiffAlong σ φ then h.choose else 0
 
@@ -116,7 +114,6 @@ def IsTraceDiff (t : Ω[F'⁄K] →ₗ[F] Ω[F⁄K]) : Prop :=
     t (y • KaehlerDifferential.map K K F F' ω) = Algebra.trace F F' y • ω
 
 open scoped Classical in
-
 def traceDiff : Ω[F'⁄K] →ₗ[F] Ω[F⁄K] :=
   if h : ∃ t : Ω[F'⁄K] →ₗ[F] Ω[F⁄K], IsTraceDiff K F F' t then h.choose else 0
 

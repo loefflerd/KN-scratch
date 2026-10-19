@@ -272,7 +272,8 @@ private theorem tendsto_div_atImInfty_of_triple {N : ℕ} [NeZero N] {G H : ℍ 
     pow_ne_zero _ (Complex.exp_ne_zero _)
   rw [Pi.div_apply, idG τ, idH τ, hm, mul_div_mul_left _ _ hqne]
 
-private theorem chart_eventually_ne_zero {N : ℕ} [NeZero N] {u : ℂ → ℂ} (hu : ContinuousAt u 0) (hu0 : u 0 ≠ 0) :
+private theorem chart_eventually_ne_zero {N : ℕ} [NeZero N] {u : ℂ → ℂ} (hu : ContinuousAt u 0)
+    (hu0 : u 0 ≠ 0) :
     ∀ᶠ τ : ℍ in atImInfty, u (Periodic.qParam N τ) ≠ 0 := by
   have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   exact (hu.tendsto.comp (qParam_tendsto_atImInfty hN)).eventually_ne hu0
@@ -295,7 +296,7 @@ private theorem tendsto_div_mul_qParam_zpow {N : ℕ} [NeZero N] {G H : ℍ → 
   refine (hTG.div hTH nH).congr' ?_
   filter_upwards [chart_eventually_ne_zero (N := N) cH nH] with τ hτ
   have hq : Periodic.qParam N (τ : ℂ) ≠ 0 := Complex.exp_ne_zero _
-  show uG (Periodic.qParam N τ) / uH (Periodic.qParam N τ) = _
+  change uG (Periodic.qParam N τ) / uH (Periodic.qParam N τ) = _
   rw [idG τ, idH τ, zpow_neg, zpow_sub₀ hq, zpow_natCast, zpow_natCast]
   field_simp
 
@@ -319,9 +320,10 @@ private theorem exists_tendsto_div_of_le {N : ℕ} [NeZero N] {G H : ℍ → ℂ
   refine ⟨(0 : ℂ) ^ (a - b) * (uG 0 / uH 0), ((hTq.mul (hTG.div hTH nH)).congr' ?_)⟩
   filter_upwards [chart_eventually_ne_zero (N := N) cH nH] with τ hτ
   have hq : Periodic.qParam N (τ : ℂ) ≠ 0 := Complex.exp_ne_zero _
-  show Periodic.qParam N τ ^ (a - b) * (uG (Periodic.qParam N τ) / uH (Periodic.qParam N τ)) = _
+  change Periodic.qParam N τ ^ (a - b) * (uG (Periodic.qParam N τ) / uH (Periodic.qParam N τ)) = _
   rw [idG τ, idH τ]
-  have : (Periodic.qParam N (τ : ℂ)) ^ a = Periodic.qParam N (τ : ℂ) ^ (a - b) * Periodic.qParam N (τ : ℂ) ^ b := by
+  have : (Periodic.qParam N (τ : ℂ)) ^ a = Periodic.qParam N (τ : ℂ) ^ (a - b) * Periodic.qParam N (τ : ℂ) ^ b :=
+    by
     rw [← pow_add, Nat.sub_add_cancel hle]
   rw [this]
   field_simp
@@ -557,7 +559,7 @@ variable (hΦ : ∀ c : K, Φ (algebraMap K F c) = HahnSeries.C c) {t : F} (ht :
 private def orderPlace : AlgebraicCurve.Place K F where
   toValuationSubring := orderValuationSubring Φ
   algebraMap_mem' c := by
-    show 0 ≤ (Φ (algebraMap K F c)).order
+    change 0 ≤ (Φ (algebraMap K F c)).order
     rw [hΦ, HahnSeries.order_C]
   ne_top' h := by
     have : t ∈ orderValuationSubring Φ := h ▸ ValuationSubring.mem_top t
@@ -669,12 +671,13 @@ private theorem translate_ne_zero_iff {k : ℤ} (h : ModularForm Γ k) :
     exact slash_ne_zero σ H (by rw [← coe_translate_SL, H', FunLike.coe_zero])
 
 include hN in
-private theorem Lq_slash_ne_zero {k : ℤ} {h : ModularForm Γ k} (hh : h ≠ 0) : Lq N (⇑h ∣[k] σ) ≠ 0 :=
+private theorem Lq_slash_ne_zero {k : ℤ} {h : ModularForm Γ k} (hh : h ≠ 0) :
+    Lq N (⇑h ∣[k] σ) ≠ 0 :=
   (translate_ne_zero_iff σ N hN h).2 hh
 
 include hN in
-
-private theorem Lq_slash_mul [Γ.HasDetOne] {k k' : ℤ} (g : ModularForm Γ k) (g' : ModularForm Γ k') :
+private theorem Lq_slash_mul [Γ.HasDetOne] {k k' : ℤ} (g : ModularForm Γ k) (g' : ModularForm Γ k')
+    :
     Lq N (⇑(g.mul g') ∣[k + k'] σ) = Lq N (⇑g ∣[k] σ) * Lq N (⇑g' ∣[k'] σ) := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   rw [ModularForm.coe_mul, mul_slash_SL2, Lq, Lq, Lq, ← map_mul, ← coe_translate_SL,
@@ -683,7 +686,6 @@ private theorem Lq_slash_mul [Γ.HasDetOne] {k k' : ℤ} (g : ModularForm Γ k) 
       (ModularForm.translate g' (σ : GL (Fin 2) ℝ))]
 
 include hN in
-
 private theorem Lq_slash_add {k : ℤ} (A B : ModularForm Γ k) :
     Lq N (⇑(A + B) ∣[k] σ) = Lq N (⇑A ∣[k] σ) + Lq N (⇑B ∣[k] σ) := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
@@ -693,7 +695,6 @@ private theorem Lq_slash_add {k : ℤ} (A B : ModularForm Γ k) :
       (ModularForm.translate B (σ : GL (Fin 2) ℝ))]
 
 include hN in
-
 private theorem Lq_slash_smul [Γ.HasDetOne] {k : ℤ} (c : ℂ) (A : ModularForm Γ k) :
     Lq N (⇑(c • A) ∣[k] σ) = HahnSeries.C c * Lq N (⇑A ∣[k] σ) := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
@@ -724,8 +725,8 @@ private theorem Lq_one_zero {k : ℤ} : Lq 1 ⇑(0 : ModularForm Γ k) = 0 := by
   exact Lq_zero_fun 1
 
 include h1 in
-
-private theorem eq_of_Lq_one_eq {k : ℤ} {A B : ModularForm Γ k} (H : Lq 1 ⇑A = Lq 1 ⇑B) : A = B := by
+private theorem eq_of_Lq_one_eq {k : ℤ} {A B : ModularForm Γ k} (H : Lq 1 ⇑A = Lq 1 ⇑B) :
+    A = B := by
   have hsub : qExpansion 1 ⇑(A - B) = 0 := by
     have := ModularForm.qExpansion_sub one_pos h1 A B
     rw [FunLike.coe_sub]
@@ -740,7 +741,6 @@ private theorem Lq_one_ne_zero {k : ℤ} {A : ModularForm Γ k} (hA : A ≠ 0) :
   exact hA
 
 include h1 in
-
 private theorem mul_ne_zero_MF [Γ.HasDetOne] {k k' : ℤ} {A : ModularForm Γ k} {B : ModularForm Γ k'}
     (hA : A ≠ 0) (hB : B ≠ 0) : A.mul B ≠ 0 := by
   intro H
@@ -749,8 +749,8 @@ private theorem mul_ne_zero_MF [Γ.HasDetOne] {k k' : ℤ} {A : ModularForm Γ k
   exact mul_ne_zero (Lq_one_ne_zero h1 hA) (Lq_one_ne_zero h1 hB) h
 
 include hN h1 in
-
-private theorem cuspRatio_eq_of_cross [Γ.HasDetOne] {k k' : ℤ} {g h : ModularForm Γ k} {g' h' : ModularForm Γ k'}
+private theorem cuspRatio_eq_of_cross [Γ.HasDetOne] {k k' : ℤ} {g h : ModularForm Γ k}
+    {g' h' : ModularForm Γ k'}
     (hh : h ≠ 0) (hh' : h' ≠ 0) (H : Lq 1 ⇑g * Lq 1 ⇑h' = Lq 1 ⇑g' * Lq 1 ⇑h) :
     cuspRatio σ N g h = cuspRatio σ N g' h' := by
   have hforms : g.mul h' = h.mul g' := by
@@ -762,13 +762,15 @@ private theorem cuspRatio_eq_of_cross [Γ.HasDetOne] {k k' : ℤ} {g h : Modular
     (Lq_slash_ne_zero σ N hN hh'), hL, mul_comm]
 
 include hN in
-private theorem cuspRatio_mul [Γ.HasDetOne] {k k' : ℤ} (g h : ModularForm Γ k) (g' h' : ModularForm Γ k') :
+private theorem cuspRatio_mul [Γ.HasDetOne] {k k' : ℤ} (g h : ModularForm Γ k)
+    (g' h' : ModularForm Γ k') :
     cuspRatio σ N (g.mul g') (h.mul h') = cuspRatio σ N g h * cuspRatio σ N g' h' := by
   rw [cuspRatio, cuspRatio, cuspRatio, Lq_slash_mul σ N hN, Lq_slash_mul σ N hN,
     mul_div_mul_comm]
 
 include hN in
-private theorem cuspRatio_add [Γ.HasDetOne] {k k' : ℤ} {g h : ModularForm Γ k} {g' h' : ModularForm Γ k'}
+private theorem cuspRatio_add [Γ.HasDetOne] {k k' : ℤ} {g h : ModularForm Γ k}
+    {g' h' : ModularForm Γ k'}
     (hh : h ≠ 0) (hh' : h' ≠ 0) :
     cuspRatio σ N (g.mul h' + h.mul g') (h.mul h') = cuspRatio σ N g h + cuspRatio σ N g' h' := by
   rw [cuspRatio, cuspRatio, cuspRatio, Lq_slash_add σ N hN, Lq_slash_mul σ N hN,
@@ -842,7 +844,8 @@ private theorem Lq_natCast_eq_qExpand (N : ℕ) [NeZero N] {F : ℍ → ℂ}
     · have hNk : (N : ℤ) * k < 0 := by
         have hN0 : (0 : ℤ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
         nlinarith
-      rw [ModularCurve.ofPowerSeries_coeff_of_neg _ hNk, ModularCurve.ofPowerSeries_coeff_of_neg _ hk]
+      rw [ModularCurve.ofPowerSeries_coeff_of_neg _ hNk, ModularCurve.ofPowerSeries_coeff_of_neg _
+        hk]
     · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hk
       rw [show ((N : ℤ) * (n : ℤ)) = ((N * n : ℕ) : ℤ) by push_cast; ring,
         HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff, hcoeff,
@@ -872,7 +875,8 @@ private theorem order_inv_lq {R : Type*} [Field R] {x : LaurentSeries R} (hx : x
   rw [mul_inv_cancel₀ hx, HahnSeries.order_one] at h
   omega
 
-private theorem PowerSeries_order_eq_of_div_order_eq_zero {R : Type*} [Field R] {p q : PowerSeries R}
+private theorem PowerSeries_order_eq_of_div_order_eq_zero {R : Type*} [Field R]
+    {p q : PowerSeries R}
     (hp : p ≠ 0) (hq : q ≠ 0)
     (h0 : (HahnSeries.ofPowerSeries ℤ R p / HahnSeries.ofPowerSeries ℤ R q).order = 0) :
     p.order = q.order := by
@@ -900,7 +904,7 @@ private abbrev CF : IntermediateField ℂ (LaurentSeries ℂ) :=
   ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)
 
 private theorem one_mem_strictPeriods_levelOne : (1 : ℝ) ∈ Γ1top.strictPeriods := by
-  show (1 : ℝ) ∈ Subgroup.strictPeriods
+  change (1 : ℝ) ∈ Subgroup.strictPeriods
     ((CongruenceSubgroup.Gamma0 1 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
   rw [CongruenceSubgroup.strictPeriods_Gamma0]
   exact AddSubgroup.mem_zmultiples _
@@ -908,7 +912,7 @@ private theorem one_mem_strictPeriods_levelOne : (1 : ℝ) ∈ Γ1top.strictPeri
 variable [hTΓ : Fact (ModularGroup.T ∈ Γ)]
 
 private theorem one_mem_strictPeriods_Gamma0 : (1 : ℝ) ∈ (Γ0 Γ).strictPeriods := by
-  show (1 : ℝ) ∈ Subgroup.strictPeriods ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
+  change (1 : ℝ) ∈ Subgroup.strictPeriods ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
   rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem hTΓ.out]
   exact AddSubgroup.mem_zmultiples _
 
@@ -924,7 +928,8 @@ variable (hN : (N : ℝ) ∈ (ConjAct.toConjAct (σ : GL (Fin 2) ℝ)⁻¹ • �
 
 private def presWt (x : CF Γ) : ℤ := (pres x x.2).choose
 
-private def presNum (x : CF Γ) : ModularForm (Γ0 Γ) (presWt Γ pres x) := (pres x x.2).choose_spec.choose
+private def presNum (x : CF Γ) :
+    ModularForm (Γ0 Γ) (presWt Γ pres x) := (pres x x.2).choose_spec.choose
 
 private def presDen (x : CF Γ) : ModularForm (Γ0 Γ) (presWt Γ pres x) :=
   (pres x x.2).choose_spec.choose_spec.choose
@@ -940,7 +945,6 @@ private def Φσfun (x : CF Γ) : LaurentSeries ℂ :=
   cuspRatio σ N (presNum Γ pres x) (presDen Γ pres x)
 
 include hN in
-
 private theorem Φσfun_eq {x : CF Γ} {k : ℤ} {g h : ModularForm (Γ0 Γ) k} (hh : h ≠ 0)
     (hx : (x : LaurentSeries ℂ) * Lq 1 ⇑h = Lq 1 ⇑g) :
     Φσfun Γ N σ pres x = cuspRatio σ N g h := by
@@ -949,7 +953,6 @@ private theorem Φσfun_eq {x : CF Γ} {k : ℤ} {g h : ModularForm (Γ0 Γ) k} 
   ring
 
 include hN in
-
 private def Φσ : CF Γ →+* LaurentSeries ℂ where
   toFun := Φσfun Γ N σ pres
   map_one' := by
@@ -964,7 +967,8 @@ private def Φσ : CF Γ →+* LaurentSeries ℂ where
       (h := (presDen Γ pres x).mul (presDen Γ pres y))
       (mul_ne_zero_MF (one_mem_strictPeriods_Gamma0 Γ) (presDen_ne_zero Γ pres x)
         (presDen_ne_zero Γ pres y)) (by
-        rw [Lq_one_mul (one_mem_strictPeriods_Gamma0 Γ), Lq_one_mul (one_mem_strictPeriods_Gamma0 Γ),
+        rw [Lq_one_mul (one_mem_strictPeriods_Gamma0 Γ), Lq_one_mul (one_mem_strictPeriods_Gamma0
+          Γ),
           ← hx, ← hy]
         push_cast
         ring)
@@ -994,15 +998,14 @@ include hN in
 private theorem Φσ_apply (x : CF Γ) : Φσ Γ N σ pres hN x = Φσfun Γ N σ pres x := rfl
 
 include hN in
-
 private theorem Φσ_eq {x : CF Γ} {k : ℤ} {g h : ModularForm (Γ0 Γ) k} (hh : h ≠ 0)
     (hx : (x : LaurentSeries ℂ) * Lq 1 ⇑h = Lq 1 ⇑g) :
     Φσ Γ N σ pres hN x = Lq N (⇑g ∣[k] σ) / Lq N (⇑h ∣[k] σ) :=
   Φσfun_eq Γ N σ pres hN hh hx
 
 include hN in
-
-private theorem Φσ_algebraMap (c : ℂ) : Φσ Γ N σ pres hN (algebraMap ℂ (CF Γ) c) = HahnSeries.C c := by
+private theorem Φσ_algebraMap (c : ℂ) :
+    Φσ Γ N σ pres hN (algebraMap ℂ (CF Γ) c) = HahnSeries.C c := by
   have h := Φσfun_eq Γ N σ pres hN (x := algebraMap ℂ (CF Γ) c) (presDen_ne_zero Γ pres 1)
     (g := c • presDen Γ pres 1) (by
       rw [Lq_one_smul (one_mem_strictPeriods_Gamma0 Γ)]
@@ -1023,7 +1026,8 @@ private def restrictOne {k : ℤ} (f : ModularForm (Γ1top) k) : ModularForm (Γ
 @[scoped simp]
 private theorem coe_restrictOne {k : ℤ} (f : ModularForm (Γ1top) k) : ⇑(restrictOne Γ f) = ⇑f := rfl
 
-private theorem slash_eq_self_of_level_one {k : ℤ} (f : ModularForm (Γ1top) k) : ⇑f ∣[k] σ = ⇑f := by
+private theorem slash_eq_self_of_level_one {k : ℤ} (f : ModularForm (Γ1top) k) :
+    ⇑f ∣[k] σ = ⇑f := by
   have hσ : (σ : GL (Fin 2) ℝ) ∈ Γ1top :=
     Subgroup.mem_map_of_mem _ (CongruenceSubgroup.Gamma0_mem.mpr (Subsingleton.elim _ _))
   rw [SL_slash]
@@ -1040,7 +1044,6 @@ private def Reindex : Prop :=
     (qExpansion N ⇑f).coeff n = if N ∣ n then (qExpansion 1 ⇑f).coeff (n / N) else 0
 
 include hN in
-
 private theorem Φσ_jq (presJ : PresJ) (reindex : Reindex N)
     (hj : ModularCurve.coeffEmb ℂ ModularCurve.jq ∈ CF Γ) :
     Φσ Γ N σ pres hN ⟨ModularCurve.coeffEmb ℂ ModularCurve.jq, hj⟩ =
@@ -1059,7 +1062,6 @@ private theorem Φσ_jq (presJ : PresJ) (reindex : Reindex N)
   exact (eq_div_of_mul_eq hh₁L HJ).symm
 
 include hN in
-
 private theorem order_Φσ_jq (presJ : PresJ) (reindex : Reindex N)
     (hj : ModularCurve.coeffEmb ℂ ModularCurve.jq ∈ CF Γ) :
     (Φσ Γ N σ pres hN ⟨ModularCurve.coeffEmb ℂ ModularCurve.jq, hj⟩).order = -N := by
@@ -1116,7 +1118,8 @@ private theorem eventually_apply_smul_ne_zero {k : ℤ}
   apply hτ
   rw [SL_slash_apply, hc, zero_mul]
 
-theorem jqModC_complex_eq_coeffEmb : ModularCurve.jqModC ℂ = ModularCurve.coeffEmb ℂ ModularCurve.jq := by
+theorem jqModC_complex_eq_coeffEmb :
+    ModularCurve.jqModC ℂ = ModularCurve.coeffEmb ℂ ModularCurve.jq := by
   rw [← ModularCurve.map_jqModC (algebraMap ℚ ℂ), ModularCurve.jqModC_rat]
   ext n
   rw [HahnSeries.map_coeff, ModularCurve.coeffEmb_coeff]
@@ -1176,11 +1179,14 @@ private theorem order_Φ_eq_sub {x : S3c.CF Γ} (hx : x ≠ 0) {k : ℤ} {g h : 
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
         FunLike.coe_zero, qExpansion_zero, map_zero]
     exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
-  have hgq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑g ∣[k] σ) ≠ 0 := S3CuspLimit.qExpansion_slash_ne_zero g σ hg
-  have hhq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑h ∣[k] σ) ≠ 0 := S3CuspLimit.qExpansion_slash_ne_zero h σ hh
+  have hgq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑g ∣[k] σ) ≠ 0 :=
+    S3CuspLimit.qExpansion_slash_ne_zero g σ hg
+  have hhq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑h ∣[k] σ) ≠ 0 :=
+    S3CuspLimit.qExpansion_slash_ne_zero h σ hh
   have hgL : S3c.Lq (S3CuspLimit.wd Γ) (⇑g ∣[k] σ) ≠ 0 := (S3c.Lq_eq_zero_iff _ _).not.mpr hgq
   have hhL : S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) ≠ 0 := (S3c.Lq_eq_zero_iff _ _).not.mpr hhq
-  rw [Φ_eq Γ σ hh hxgh, div_eq_mul_inv, HahnSeries.order_mul hgL (inv_ne_zero hhL), S3c.order_inv_lq hhL,
+  rw [Φ_eq Γ σ hh hxgh, div_eq_mul_inv, HahnSeries.order_mul hgL (inv_ne_zero hhL), S3c.order_inv_lq
+    hhL,
     S3c.Lq_def, S3c.Lq_def, S3c.order_ofPowerSeries hgq, S3c.order_ofPowerSeries hhq]
   ring
 
@@ -1245,7 +1251,8 @@ private theorem tendsto_realizeOf_zero :
     Tendsto (fun τ : ℍ => realizeOf Γ (0 : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 0) := by
   set h₀ := S3c.presDen Γ (S3glue.presN Γ) 1
   have hh₀ : h₀ ≠ 0 := S3c.presDen_ne_zero Γ (S3glue.presN Γ) 1
-  have hpres : (0 : LaurentSeries ℂ) * S3c.Lq 1 ⇑h₀ = S3c.Lq 1 ⇑(0 : ModularForm (S3c.Γ0 Γ) (S3c.presWt Γ (S3glue.presN Γ) 1)) := by
+  have hpres : (0 : LaurentSeries ℂ) * S3c.Lq 1 ⇑h₀ = S3c.Lq 1 ⇑(0 : ModularForm (S3c.Γ0 Γ) (S3c.presWt Γ (S3glue.presN Γ) 1)) :=
+    by
     rw [zero_mul, S3c.Lq_def, FunLike.coe_zero, qExpansion_zero, map_zero]
   have hne := S3glue.eventually_apply_smul_ne_zero Γ σ h₀ hh₀
   refine (tendsto_const_nhds (x := (0 : ℂ))).congr' ?_
@@ -1311,16 +1318,18 @@ theorem solution
     have hhL : S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) ≠ 0 :=
       (S3c.Lq_eq_zero_iff _ _).not.mpr (S3CuspLimit.qExpansion_slash_ne_zero h σ hh)
     have := S3readout.Φ_eq Γ σ (x := x) hh hxgh
-    show S3readout.Φ Γ σ x * S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) = S3c.Lq (S3CuspLimit.wd Γ) (⇑g ∣[k] σ)
+    change S3readout.Φ Γ σ x * S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) = S3c.Lq (S3CuspLimit.wd Γ) (⇑g ∣[k] σ)
     rw [this, div_mul_cancel₀ _ hhL]
   · intro y hy
     have hyeq : (y : LaurentSeries ℂ) = coeffEmb ℂ jq := hy.trans S3glue.jqModC_complex_eq_coeffEmb
     have hyel : y = S3readout.J Γ := Subtype.ext hyeq
     subst hyel
-    have h1 : (S3readout.Φ Γ σ (S3readout.J Γ)).order = -(S3CuspLimit.wd Γ : ℤ) := S3readout.order_Φ_J Γ σ
+    have h1 : (S3readout.Φ Γ σ (S3readout.J Γ)).order = -(S3CuspLimit.wd Γ : ℤ) :=
+      S3readout.order_Φ_J Γ σ
     have hJ0 : S3readout.J Γ ≠ 0 := by
       intro h0
-      have : (S3readout.Φ Γ σ (S3readout.J Γ)).order = 0 := by rw [h0, map_zero, HahnSeries.order_zero]
+      have : (S3readout.Φ Γ σ (S3readout.J Γ)).order = 0 :=
+        by rw [h0, map_zero, HahnSeries.order_zero]
       rw [this] at h1
       have := Nat.pos_of_ne_zero (NeZero.ne (S3CuspLimit.wd Γ))
       omega
@@ -1378,6 +1387,7 @@ theorem ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash
         Filter.Tendsto
           (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ) *
             Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * P.ord x : ℂ) * (τ : ℂ) / (Γ.normalCore.index : ℂ))))
-          atImInfty (𝓝 L)) := _root_.P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.solution Γ hT F₀ hF σ
+          atImInfty (𝓝 L)) :=
+  solution Γ hT F₀ hF σ
 
 end publicSection

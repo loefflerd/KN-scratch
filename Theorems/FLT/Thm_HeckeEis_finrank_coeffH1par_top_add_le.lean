@@ -70,7 +70,8 @@ namespace P2MW.S_HeckeEis_finrank_coeffH1par_top_add_le
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffCocycles coeffCoboundaryMap coeffCoboundaryMap_apply coeffCoboundaries coeffParabolicCocycles coeffCoboundaries_le_coeffParabolicCocycles coeffH1par"
+p2m_export "HeckeEis" "coeffCocycles coeffCoboundaryMap coeffCoboundaryMap_apply coeffCoboundaries \
+  coeffParabolicCocycles coeffCoboundaries_le_coeffParabolicCocycles coeffH1par"
 namespace UASol
 p2m_open "HeckeEis"
 
@@ -88,18 +89,22 @@ theorem S_mul_S : S * S = -1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S]
 
 theorem ST_pow_three : S * T * (S * T) * (S * T) = -1 := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, ModularGroup.T, Matrix.mul_apply, Fin.sum_univ_two]
+  ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, ModularGroup.T, Matrix.mul_apply,
+    Fin.sum_univ_two]
 
 theorem eS_mul_eS : eS * eS = eN := Subtype.ext S_mul_S
 theorem eU_mul_eU_mul_eU : eU * eU * eU = eN := Subtype.ext ST_pow_three
-theorem eN_mul_eN : eN * eN = 1 := Subtype.ext (by show (-1 : SL(2, ℤ)) * -1 = 1; rw [neg_mul_neg, one_mul])
-theorem eN_mul_comm (g : ↥Gt) : eN * g = g * eN := Subtype.ext (by show (-1 : SL(2, ℤ)) * g = g * -1; rw [neg_one_mul, mul_neg_one])
+theorem eN_mul_eN :
+    eN * eN = 1 := Subtype.ext (by change (-1 : SL(2, ℤ)) * -1 = 1; rw [neg_mul_neg, one_mul])
+theorem eN_mul_comm (g : ↥Gt) :
+    eN * g = g * eN := Subtype.ext (by change (-1 : SL(2, ℤ)) * g = g * -1; rw [neg_one_mul,
+      mul_neg_one])
 
 theorem eS_inv : eS⁻¹ = eN * eS := by
   rw [inv_eq_iff_mul_eq_one, eN_mul_comm, ← mul_assoc, eS_mul_eS, eN_mul_eN]
 theorem eT_eq : eT = eS⁻¹ * eU := by
   apply Subtype.ext
-  show T = S⁻¹ * (S * T)
+  change T = S⁻¹ * (S * T)
   rw [← mul_assoc, inv_mul_cancel, one_mul]
 
 theorem trace_T_sq : ((T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
@@ -155,7 +160,8 @@ theorem z_eq_zero (hS : z eS = 0) (hU : z eU = 0) : z = 0 := by
   funext g
   have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ)) := by
     rw [SpecialLinearGroup.SL2Z_generators]; trivial
-  have key : ∀ x (hx : x ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ))), z ⟨x, Subgroup.mem_top _⟩ = 0 := by
+  have key : ∀ x (hx : x ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ))), z ⟨x, Subgroup.mem_top _⟩ = 0 :=
+    by
     intro x hx
     induction hx using Subgroup.closure_induction with
     | mem x hx =>
@@ -184,7 +190,8 @@ theorem finrank_ker_add_of_sq_eq_one (s : Module.End ℂ V) (hs : s * s = 1) :
   have hinf : LinearMap.ker (s + 1) ⊓ LinearMap.ker (s - 1) = ⊥ := by
     rw [eq_bot_iff]
     intro v hv
-    rw [Submodule.mem_inf, LinearMap.mem_ker, LinearMap.mem_ker, LinearMap.add_apply, LinearMap.sub_apply,
+    rw [Submodule.mem_inf, LinearMap.mem_ker, LinearMap.mem_ker, LinearMap.add_apply,
+      LinearMap.sub_apply,
       Module.End.one_apply] at hv
     rw [Submodule.mem_bot]
     have : (2 : ℂ) • v = 0 := by
@@ -221,9 +228,11 @@ theorem finrank_ker_add_of_cube_eq_one (u : Module.End ℂ V) (hu : u * u * u = 
   have hinf : LinearMap.ker (1 + u + u * u) ⊓ LinearMap.ker (u - 1) = ⊥ := by
     rw [eq_bot_iff]
     intro v hv
-    rw [Submodule.mem_inf, LinearMap.mem_ker, LinearMap.mem_ker, LinearMap.sub_apply, Module.End.one_apply, sub_eq_zero] at hv
+    rw [Submodule.mem_inf, LinearMap.mem_ker, LinearMap.mem_ker, LinearMap.sub_apply,
+      Module.End.one_apply, sub_eq_zero] at hv
     obtain ⟨h1, h2⟩ := hv
-    rw [LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply, Module.End.mul_apply, h2, h2] at h1
+    rw [LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply, Module.End.mul_apply, h2,
+      h2] at h1
     rw [Submodule.mem_bot]
     have : (3 : ℂ) • v = 0 := by
       rw [show (3 : ℂ) = 1 + 1 + 1 by norm_num, add_smul, add_smul, one_smul]; exact h1
@@ -237,13 +246,15 @@ theorem finrank_ker_add_of_cube_eq_one (u : Module.End ℂ V) (hu : u * u * u = 
         smul_smul, inv_mul_cancel₀ three_ne_zero, one_smul]
     rw [hv]
     refine Submodule.add_mem_sup (Submodule.smul_mem _ _ ?_) (Submodule.smul_mem _ _ ?_)
-    · rw [LinearMap.mem_ker, LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply, Module.End.mul_apply]
+    · rw [LinearMap.mem_ker, LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply,
+        Module.End.mul_apply]
       simp only [map_sub, map_add, hu3]
       abel
     · rw [LinearMap.mem_ker, LinearMap.sub_apply, Module.End.one_apply]
       simp only [map_add, hu3]
       abel
-  have h := Submodule.finrank_sup_add_finrank_inf_eq (LinearMap.ker (1 + u + u * u)) (LinearMap.ker (u - 1))
+  have h :=
+    Submodule.finrank_sup_add_finrank_inf_eq (LinearMap.ker (1 + u + u * u)) (LinearMap.ker (u - 1))
   rw [hinf, hsup, finrank_bot, add_zero, finrank_top] at h
   exact h.symm
 
@@ -285,18 +296,19 @@ omit [FiniteDimensional ℂ V] in
 theorem E_mem_K (z : ↥(coeffParabolicCocycles W)) : E W z ∈ K W := by
   have hz := z.2.1
   refine Submodule.mem_inf.mpr ⟨Submodule.mem_prod.mpr ⟨?_, ?_⟩, LinearMap.mem_ker.mpr ?_⟩
-  · show (z : ↥Gt → V) eS ∈ LinearMap.ker (W eS + 1)
+  · change (z : ↥Gt → V) eS ∈ LinearMap.ker (W eS + 1)
     rw [LinearMap.mem_ker, LinearMap.add_apply, Module.End.one_apply, add_comm]
     exact z_eS_rel hneg hz
-  · show (z : ↥Gt → V) eU ∈ LinearMap.ker (1 + W eU + W eU * W eU)
-    rw [LinearMap.mem_ker, LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply, Module.End.mul_apply]
+  · change (z : ↥Gt → V) eU ∈ LinearMap.ker (1 + W eU + W eU * W eU)
+    rw [LinearMap.mem_ker, LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply,
+      Module.End.mul_apply]
     exact z_eU_rel hneg hz
-  · show Submodule.mkQ _ ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS) = 0
+  · change Submodule.mkQ _ ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS) = 0
     rw [Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]
     obtain ⟨v, hv⟩ := z.2.2 eT trace_T_sq
     refine ⟨W eS ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS), ⟨v, ?_⟩, ?_⟩
     · rw [hv]; exact z_eT hneg hz
-    · show W eS (W eS ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS)) = _
+    · change W eS (W eS ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS)) = _
       rw [← Module.End.mul_apply, ← map_mul, eS_mul_eS, hneg, LinearMap.id_apply]
 
 omit hinv in
@@ -313,16 +325,18 @@ theorem finrank_K_add :
     obtain ⟨v, rfl⟩ := Submodule.mkQ_surjective R₁ q
     obtain ⟨a, b, hv⟩ := hcoinv v
     refine ⟨⟨(a - W eS a, W eU b - b), Submodule.mem_prod.mpr ⟨?_, ?_⟩⟩, ?_⟩
-    · show a - W eS a ∈ A
+    · change a - W eS a ∈ A
       have h2 : W eS (W eS a) = a := by
         rw [← Module.End.mul_apply, ← map_mul, eS_mul_eS, hneg, LinearMap.id_apply]
       rw [hA, LinearMap.mem_ker, LinearMap.add_apply, Module.End.one_apply, map_sub, h2]; abel
-    · show W eU b - b ∈ B
+    · change W eU b - b ∈ B
       have h3 : W eU (W eU (W eU b)) = b := by
-        rw [← Module.End.mul_apply, ← Module.End.mul_apply, ← map_mul, ← map_mul, eU_mul_eU_mul_eU, hneg, LinearMap.id_apply]
-      rw [hB, LinearMap.mem_ker, LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply, Module.End.mul_apply]
+        rw [← Module.End.mul_apply, ← Module.End.mul_apply, ← map_mul, ← map_mul, eU_mul_eU_mul_eU,
+          hneg, LinearMap.id_apply]
+      rw [hB, LinearMap.mem_ker, LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply,
+        Module.End.mul_apply]
       simp only [map_sub, h3]; abel
-    · show Submodule.mkQ R₁ ((W eU b - b) - (a - W eS a)) = Submodule.mkQ R₁ v
+    · change Submodule.mkQ R₁ ((W eU b - b) - (a - W eS a)) = Submodule.mkQ R₁ v
       congr 1; rw [hv]; abel
   have hker : Module.finrank ℂ ↥(LinearMap.ker δ') = Module.finrank ℂ ↥(K W) := by
     let e : ↥(LinearMap.ker δ') ≃ₗ[ℂ] ↥(K W) :=
@@ -342,11 +356,13 @@ theorem finrank_K_add :
       have hSinv : Function.Injective (W eS) := by
         intro x y h
         have := congrArg (W eS) h
-        rwa [← Module.End.mul_apply, ← map_mul, eS_mul_eS, hneg, ← Module.End.mul_apply, ← map_mul, eS_mul_eS, hneg] at this
+        rwa [← Module.End.mul_apply, ← map_mul, eS_mul_eS, hneg, ← Module.End.mul_apply, ← map_mul,
+          eS_mul_eS, hneg] at this
       exact LinearEquiv.finrank_eq (Submodule.equivMapOfInjective _ hSinv _).symm
     have h3 := LinearMap.finrank_range_add_finrank_ker (W eT - 1)
     omega
-  have hprod : Module.finrank ℂ ↥(Submodule.prod A B) = Module.finrank ℂ ↥A + Module.finrank ℂ ↥B := by
+  have hprod : Module.finrank ℂ ↥(Submodule.prod A B) = Module.finrank ℂ ↥A + Module.finrank ℂ ↥B :=
+    by
     let e2 : ↥(Submodule.prod A B) ≃ₗ[ℂ] (↥A × ↥B) :=
       { toFun := fun x => (⟨x.1.1, x.2.1⟩, ⟨x.1.2, x.2.2⟩)
         invFun := fun y => ⟨(y.1, y.2), y.1.2, y.2.2⟩
@@ -366,7 +382,8 @@ end
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffCocycles coeffCoboundaryMap coeffCoboundaryMap_apply coeffCoboundaries coeffParabolicCocycles coeffCoboundaries_le_coeffParabolicCocycles coeffH1par"
+p2m_export "HeckeEis" "coeffCocycles coeffCoboundaryMap coeffCoboundaryMap_apply coeffCoboundaries \
+  coeffParabolicCocycles coeffCoboundaries_le_coeffParabolicCocycles coeffH1par"
 namespace UASol
 p2m_open "HeckeEis"
 
@@ -375,7 +392,8 @@ open ModularGroup
 
 section Final
 
-variable {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V] (W : Representation ℂ ↥Gt V)
+variable {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
+    (W : Representation ℂ ↥Gt V)
   (hneg : W eN = LinearMap.id)
   (hinv : ∀ v : V, (∀ g : ↥Gt, W g v = v) → v = 0)
   (hcoinv : ∀ v : V, ∃ a b : V, v = (W eS a - a) + (W eU b - b))
@@ -410,7 +428,7 @@ theorem main :
     ext z
     constructor
     · rintro ⟨v, rfl⟩
-      show (coeffCoboundaryMap W v) ∈ coeffCoboundaries W
+      change (coeffCoboundaryMap W v) ∈ coeffCoboundaries W
       exact ⟨v, rfl⟩
     · rintro ⟨v, hv⟩
       exact ⟨v, Subtype.ext hv⟩
@@ -421,7 +439,9 @@ theorem main :
     Submodule.finrank_quotient_add_finrank CB'
   have hK := finrank_K_add W hneg hcoinv
   have hS := finrank_ker_add_of_sq_eq_one (W eS) (by rw [← map_mul, eS_mul_eS, hneg]; rfl)
-  have hU := finrank_ker_add_of_cube_eq_one (W eU) (by rw [← map_mul, ← map_mul, eU_mul_eU_mul_eU, hneg]; rfl)
+  have hU :=
+    finrank_ker_add_of_cube_eq_one (W eU) (by
+      rw [← map_mul, ← map_mul, eU_mul_eU_mul_eU, hneg]; rfl)
   omega
 
 end Final
@@ -454,7 +474,8 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.finrank_coeffH1par_top_add_le {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
+theorem HeckeEis.finrank_coeffH1par_top_add_le {V : Type} [AddCommGroup V] [Module ℂ V]
+    [FiniteDimensional ℂ V]
     (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) V)
     (hneg : W ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id)
     (hinv : ∀ v : V, (∀ g : (⊤ : Subgroup SL(2, ℤ)), W g v = v) → v = 0)
@@ -464,6 +485,7 @@ theorem HeckeEis.finrank_coeffH1par_top_add_le {V : Type} [AddCommGroup V] [Modu
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1))
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1))
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1))
-      ≤ Module.finrank ℂ V := _root_.P2MW.S_HeckeEis_finrank_coeffH1par_top_add_le.solution W hneg hinv hcoinv
+      ≤ Module.finrank ℂ V :=
+  solution W hneg hinv hcoinv
 
 end publicSection

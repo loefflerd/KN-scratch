@@ -220,7 +220,7 @@ theorem coe_heckeConjSL (γ : heckeUpper N ℓ) :
 
 theorem heckeConjSL_mem_Gamma0 (γ : heckeUpper N ℓ) : heckeConjSL N ℓ γ ∈ Gamma0 N := by
   rw [Gamma0_mem]
-  show (((heckeConjMat ℓ ((γ : Gamma0 N) : SL(2, ℤ))) 1 0 : ℤ) : ZMod N) = 0
+  change (((heckeConjMat ℓ ((γ : Gamma0 N) : SL(2, ℤ))) 1 0 : ℤ) : ZMod N) = 0
   rw [heckeConjMat_apply_one_zero, Int.cast_mul]
   have hc : ((((γ : Gamma0 N) : SL(2, ℤ)) 1 0 : ℤ) : ZMod N) = 0 :=
     Gamma0_mem.mp (γ : Gamma0 N).2
@@ -230,11 +230,11 @@ def heckeConj : heckeUpper N ℓ →* Gamma0 N where
   toFun γ := ⟨heckeConjSL N ℓ γ, heckeConjSL_mem_Gamma0 N ℓ γ⟩
   map_one' := by
     refine Subtype.ext (Subtype.ext ?_)
-    show heckeConjMat ℓ (1 : Matrix (Fin 2) (Fin 2) ℤ) = (1 : Matrix (Fin 2) (Fin 2) ℤ)
+    change heckeConjMat ℓ (1 : Matrix (Fin 2) (Fin 2) ℤ) = (1 : Matrix (Fin 2) (Fin 2) ℤ)
     exact heckeConjMat_one ℓ
   map_mul' γ δ := by
     refine Subtype.ext (Subtype.ext ?_)
-    show heckeConjMat ℓ
+    change heckeConjMat ℓ
         ((((γ : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) *
           (((δ : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) =
       heckeConjMat ℓ (((γ : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) *
@@ -299,7 +299,7 @@ noncomputable def coresHom : (Additive H →+ A) →+ (Additive G →+ A) :=
       AddMonoidHom.mk'
         (fun g => ∑ q : G ⧸ H, φ (Additive.ofMul (transferAux H g.toMul q)))
         (fun g₁ g₂ => by
-          show ∑ q : G ⧸ H, φ (Additive.ofMul (transferAux H (g₁.toMul * g₂.toMul) q)) =
+          change ∑ q : G ⧸ H, φ (Additive.ofMul (transferAux H (g₁.toMul * g₂.toMul) q)) =
             (∑ q : G ⧸ H, φ (Additive.ofMul (transferAux H g₁.toMul q))) +
               ∑ q : G ⧸ H, φ (Additive.ofMul (transferAux H g₂.toMul q))
           simp_rw [transferAux_mul, ofMul_mul, map_add]

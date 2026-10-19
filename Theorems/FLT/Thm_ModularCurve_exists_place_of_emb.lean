@@ -99,13 +99,13 @@ theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
       (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))
       = (coeffEmb (AlgebraicClosure ℚ)).comp evalAtJ := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
-    show ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
+    change ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
         ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (evalAtJ X)
     rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X]
   have h0 := congrArg (coeffEmb (AlgebraicClosure ℚ)) data.eval_eq_zero
   rw [map_zero, Polynomial.hom_eval₂, ← hval] at h0
   rw [ZeroMemClass.coe_zero, ← h0]
-  show ((modularFunctionFieldBar N).toSubfield.subtype) _ = _
+  change ((modularFunctionFieldBar N).toSubfield.subtype) _ = _
   rw [Polynomial.hom_eval₂]
   rfl
 
@@ -187,18 +187,19 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
   have he : 0 < e := Nat.factorial_pos _
   refine ⟨e, he, ?_⟩
   let S := HahnSeries.puiseuxRamSubfield (AlgebraicClosure ℚ) (e := e) he
-  have hS : ∀ y, y ∈ S ↔ HahnSeries.HasRamBound e y := fun y => HahnSeries.mem_puiseuxRamSubfield_iff he
+  have hS : ∀ y, y ∈ S ↔ HahnSeries.HasRamBound e y :=
+    fun y => HahnSeries.mem_puiseuxRamSubfield_iff he
   let T : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     (S.comap ψ.toRingHom).toIntermediateField (fun a => by
-      show ψ (algebraMap (AlgebraicClosure ℚ) _ a) ∈ S
+      change ψ (algebraMap (AlgebraicClosure ℚ) _ a) ∈ S
       rw [ψ.commutes, hS, algebraMap_hahn_eq_C]
       exact hasRamBound_of_one he (hasRamBound_C a))
   have hjb : jb N ∈ T := by
-    show ψ (jb N) ∈ S
+    change ψ (jb N) ∈ S
     rw [hψ, hS]
     exact hasRamBound_of_one he (hasRamBound_C_add_single j₀)
   have hjNb : jNb N ∈ T := by
-    show ψ (jNb N) ∈ S
+    change ψ (jNb N) ∈ S
     rw [hS]; exact hbN
   have htop := ModularCurve.adjoin_jBar_jNBar_eq_top (AlgebraicClosure ℚ) N
   have hle : (⊤ : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) ≤ T := by
@@ -247,7 +248,8 @@ theorem pos_ord_of_induces (j₀ : AlgebraicClosure ℚ) (ψ : Emb N j₀)
   have hx := h (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)
   rw [map_sub, ψ.2, AlgHom.commutes, algebraMap_hahn_eq_C, add_sub_cancel_left,
     HahnSeries.order_single (one_ne_zero)] at hx
-  have : (0 : ℚ) < (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀) : ℚ) * g := by
+  have : (0 : ℚ) < (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀) : ℚ) * g :=
+    by
     rw [hx]; exact_mod_cast one_pos
   exact_mod_cast pos_of_mul_pos_left this hg.le
 
@@ -259,7 +261,8 @@ theorem exists_induces (j₀ : AlgebraicClosure ℚ) (ψ : Emb N j₀) :
     rw [map_sub, ψ.2, AlgHom.commutes, algebraMap_hahn_eq_C, add_sub_cancel_left,
       HahnSeries.order_single (one_ne_zero)]
     exact one_ne_zero
-  obtain ⟨w, g, hg, h⟩ := AlgebraicCurve.Place.exists_ord_mul_eq_order_of_hasRamBound ψ.1 he hall hnt
+  obtain ⟨w, g, hg, h⟩ :=
+    AlgebraicCurve.Place.exists_ord_mul_eq_order_of_hasRamBound ψ.1 he hall hnt
   exact ⟨w, g, hg, h⟩
 
 end S12P
@@ -287,6 +290,7 @@ open Polynomial
 theorem ModularCurve.exists_place_of_emb (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
     (ψ : Emb N j₀) :
     ∃ (w : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) (g : ℚ), 0 < g ∧
-      ∀ x : ↥(modularFunctionFieldBar N), (w.ord x : ℚ) * g = (ψ.1 x).order := _root_.P2MW.S_ModularCurve_exists_place_of_emb.solution N j₀ ψ
+      ∀ x : ↥(modularFunctionFieldBar N), (w.ord x : ℚ) * g = (ψ.1 x).order :=
+  solution N j₀ ψ
 
 end publicSection

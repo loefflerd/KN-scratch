@@ -83,7 +83,12 @@ open Complex MvPolynomial
 open scoped MatrixGroups ComplexConjugate ModularForm Manifold Pointwise
 
 namespace HeckeEis
-p2m_export "HeckeEis" "eval_smul_of_isHomogeneous BinaryForm binarySubst binarySubst_one binarySubst_mul binaryFormRepSL binaryFormRepSL_apply_coe coeffCoboundaries mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk linePow coe_linePow jFactor jFactor_eq_denom jFactor_ne_zero coe_smul_mul_jFactor IsEichlerIntegral eichlerShimuraMap eichlerShimuraMap_def exists_isEichlerIntegral_isParabolicCocycle IsEichlerIntegral.slash"
+p2m_export "HeckeEis" "eval_smul_of_isHomogeneous BinaryForm binarySubst binarySubst_one \
+  binarySubst_mul binaryFormRepSL binaryFormRepSL_apply_coe coeffCoboundaries \
+  mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk linePow coe_linePow \
+  jFactor jFactor_eq_denom jFactor_ne_zero coe_smul_mul_jFactor IsEichlerIntegral \
+  eichlerShimuraMap eichlerShimuraMap_def exists_isEichlerIntegral_isParabolicCocycle \
+  IsEichlerIntegral.slash"
 namespace ESDisjoint
 p2m_open "HeckeEis"
 
@@ -102,7 +107,7 @@ theorem coeff_conjP (Q : MvPolynomial (Fin 2) ℂ) (d : Fin 2 →₀ ℕ) :
 theorem conjP_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (Q : MvPolynomial (Fin 2) ℂ) :
     conjP (binarySubst ℂ M Q) = binarySubst ℂ M (conjP Q) := by
   rw [binarySubst, aeval_eq_bind₁]
-  show (MvPolynomial.map (starRingEnd ℂ)) ((bind₁ _) Q) = (bind₁ _) ((MvPolynomial.map (starRingEnd ℂ)) Q)
+  change (MvPolynomial.map (starRingEnd ℂ)) ((bind₁ _) Q) = (bind₁ _) ((MvPolynomial.map (starRingEnd ℂ)) Q)
   rw [map_bind₁]
   have h : (fun j : Fin 2 => (MvPolynomial.map (starRingEnd ℂ)) (∑ i : Fin 2, C (((M i j : ℤ)) : ℂ) * X i))
       = fun j : Fin 2 => ∑ i : Fin 2, C (((M i j : ℤ)) : ℂ) * X i := by
@@ -110,7 +115,8 @@ theorem conjP_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (Q : MvPolynomial (Fi
     simp [map_sum, MvPolynomial.map_X, MvPolynomial.map_C]
   rw [h]
 
-theorem conjP_mem {n : ℕ} {Q : MvPolynomial (Fin 2) ℂ} (hQ : Q ∈ BinaryForm ℂ n) : conjP Q ∈ BinaryForm ℂ n := by
+theorem conjP_mem {n : ℕ} {Q : MvPolynomial (Fin 2) ℂ} (hQ : Q ∈ BinaryForm ℂ n) :
+    conjP Q ∈ BinaryForm ℂ n := by
   rw [mem_homogeneousSubmodule] at hQ ⊢
   intro d hd
   rw [coeff_conjP] at hd
@@ -118,12 +124,15 @@ theorem conjP_mem {n : ℕ} {Q : MvPolynomial (Fin 2) ℂ} (hQ : Q ∈ BinaryFor
 
 def ev (z : ℂ) (Q : MvPolynomial (Fin 2) ℂ) : ℂ := eval ![(1 : ℂ), -z] Q
 
-theorem ev_add (z : ℂ) (P Q : MvPolynomial (Fin 2) ℂ) : ev z (P + Q) = ev z P + ev z Q := map_add _ _ _
-theorem ev_sub (z : ℂ) (P Q : MvPolynomial (Fin 2) ℂ) : ev z (P - Q) = ev z P - ev z Q := map_sub _ _ _
+theorem ev_add (z : ℂ) (P Q : MvPolynomial (Fin 2) ℂ) :
+    ev z (P + Q) = ev z P + ev z Q := map_add _ _ _
+theorem ev_sub (z : ℂ) (P Q : MvPolynomial (Fin 2) ℂ) :
+    ev z (P - Q) = ev z P - ev z Q := map_sub _ _ _
 theorem ev_smul (z : ℂ) (c : ℂ) (Q : MvPolynomial (Fin 2) ℂ) : ev z (c • Q) = c * ev z Q := by
   rw [ev, ev, smul_eval]
 
-theorem eval_bind₁' (x : Fin 2 → ℂ) (h : Fin 2 → MvPolynomial (Fin 2) ℂ) (Q : MvPolynomial (Fin 2) ℂ) :
+theorem eval_bind₁' (x : Fin 2 → ℂ) (h : Fin 2 → MvPolynomial (Fin 2) ℂ)
+    (Q : MvPolynomial (Fin 2) ℂ) :
     eval x (bind₁ h Q) = eval (fun i => eval x (h i)) Q := by
   rw [MvPolynomial.eval, eval₂Hom_bind₁]
   rfl
@@ -134,7 +143,7 @@ theorem jFactor_pow_mul_ev_smul {n : ℕ} (γ : SL(2, ℤ)) (τ : ℍ) {Q : MvPo
   have hj := jFactor_ne_zero γ τ
   rw [mem_homogeneousSubmodule] at hQ
   rw [ev, ev, binarySubst, aeval_eq_bind₁]
-  show jFactor γ τ ^ n * eval ![(1 : ℂ), -((γ • τ : ℍ) : ℂ)] ((bind₁ _) Q) = _
+  change jFactor γ τ ^ n * eval ![(1 : ℂ), -((γ • τ : ℍ) : ℂ)] ((bind₁ _) Q) = _
   rw [eval_bind₁']
   have hsm := coe_smul_mul_jFactor γ τ
   have hdet : ((γ : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * ((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
@@ -148,15 +157,18 @@ theorem jFactor_pow_mul_ev_smul {n : ℕ} (γ : SL(2, ℤ)) (τ : ℍ) {Q : MvPo
     rw [jFactor] at hsm hj ⊢
     funext i
     fin_cases i
-    · simp only [Fin.sum_univ_two, Fin.isValue, map_add, map_mul, eval_C, eval_X, Matrix.cons_val_zero,
+    · simp only [Fin.sum_univ_two, Fin.isValue, map_add, map_mul, eval_C, eval_X,
+        Matrix.cons_val_zero,
         Matrix.cons_val_one, Fin.zero_eta, Pi.smul_apply, smul_eq_mul, mul_one, mul_neg]
       field_simp
       linear_combination -((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * hsm + hdet
-    · simp only [Fin.sum_univ_two, Fin.isValue, map_add, map_mul, eval_C, eval_X, Matrix.cons_val_zero,
+    · simp only [Fin.sum_univ_two, Fin.isValue, map_add, map_mul, eval_C, eval_X,
+        Matrix.cons_val_zero,
         Matrix.cons_val_one, Fin.mk_one, Pi.smul_apply, smul_eq_mul, mul_one, mul_neg]
       field_simp
       linear_combination -((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ) * hsm - (τ : ℂ) * hdet
-  rw [hpt, eval_smul_of_isHomogeneous hQ, ← mul_assoc, ← mul_pow, mul_inv_cancel₀ hj, one_pow, one_mul]
+  rw [hpt, eval_smul_of_isHomogeneous hQ, ← mul_assoc, ← mul_pow, mul_inv_cancel₀ hj, one_pow,
+    one_mul]
 
 theorem jFactor_pow_mul_ev_rep {n : ℕ} (γ : SL(2, ℤ)) (τ : ℍ) (Q : ↥(BinaryForm ℂ n)) :
     jFactor γ τ ^ n * ev ((γ • τ : ℍ) : ℂ) ((binaryFormRepSL ℂ n γ Q : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
@@ -250,20 +262,25 @@ theorem binarySubst_inv_mul (σ : SL(2, ℤ)) (Q : MvPolynomial (Fin 2) ℂ) :
 def Edat (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (τ : ℍ) : ℂ :=
   ev τ (conjP (A τ : MvPolynomial (Fin 2) ℂ)) - ev τ (B τ : MvPolynomial (Fin 2) ℂ) + ev τ (conjP (c : MvPolynomial (Fin 2) ℂ))
 
-def Pdat (φ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (τ : ℍ) : ℂ := φ τ * Edat A B c τ
+def Pdat (φ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (τ : ℍ) :
+    ℂ := φ τ * Edat A B c τ
 
-def trV (σ : SL(2, ℤ)) (A : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : ↥(BinaryForm ℂ n) := binaryFormRepSL ℂ n σ⁻¹ (A (σ • τ))
+def trV (σ : SL(2, ℤ)) (A : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) :
+    ↥(BinaryForm ℂ n) := binaryFormRepSL ℂ n σ⁻¹ (A (σ • τ))
 
-theorem jFactor_pow_mul_Edat_smul (σ : SL(2, ℤ)) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (τ : ℍ) :
+theorem jFactor_pow_mul_Edat_smul (σ : SL(2, ℤ)) (A B : ℍ → ↥(BinaryForm ℂ n))
+    (c : ↥(BinaryForm ℂ n)) (τ : ℍ) :
     jFactor σ τ ^ n * Edat A B c (σ • τ) = Edat (trV σ A) (trV σ B) (binaryFormRepSL ℂ n σ⁻¹ c) τ := by
   have hA : A (σ • τ) = binaryFormRepSL ℂ n σ (trV σ A τ) := (coe_rep_inv_rep σ _).symm
   have hB : B (σ • τ) = binaryFormRepSL ℂ n σ (trV σ B τ) := (coe_rep_inv_rep σ _).symm
   have hc : c = binaryFormRepSL ℂ n σ (binaryFormRepSL ℂ n σ⁻¹ c) := (coe_rep_inv_rep σ _).symm
   unfold Edat
   conv_lhs => rw [hA, hB, hc]
-  rw [mul_add, mul_sub, jFactor_pow_mul_ev_conjP_rep, jFactor_pow_mul_ev_rep, jFactor_pow_mul_ev_conjP_rep]
+  rw [mul_add, mul_sub, jFactor_pow_mul_ev_conjP_rep, jFactor_pow_mul_ev_rep,
+    jFactor_pow_mul_ev_conjP_rep]
 
-theorem Pdat_smul (σ : SL(2, ℤ)) (φ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (τ : ℍ) :
+theorem Pdat_smul (σ : SL(2, ℤ)) (φ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n))
+    (τ : ℍ) :
     Pdat φ A B c (σ • τ) = denom (σ : GL (Fin 2) ℝ) τ ^ 2 *
       Pdat (φ ∣[((n : ℤ) + 2)] σ) (trV σ A) (trV σ B) (binaryFormRepSL ℂ n σ⁻¹ c) τ := by
   have hD : denom (σ : GL (Fin 2) ℝ) τ ≠ 0 := UpperHalfPlane.denom_ne_zero _ _
@@ -272,7 +289,8 @@ theorem Pdat_smul (σ : SL(2, ℤ)) (φ : ℍ → ℂ) (A B : ℍ → ↥(Binary
   rw [hj] at hE
   unfold Pdat
   rw [← hE, ModularForm.SL_slash_apply]
-  have : denom (σ : GL (Fin 2) ℝ) τ ^ (-((n : ℤ) + 2)) = (denom (σ : GL (Fin 2) ℝ) τ ^ n)⁻¹ * (denom (σ : GL (Fin 2) ℝ) τ ^ 2)⁻¹ := by
+  have : denom (σ : GL (Fin 2) ℝ) τ ^ (-((n : ℤ) + 2)) = (denom (σ : GL (Fin 2) ℝ) τ ^ n)⁻¹ * (denom (σ : GL (Fin 2) ℝ) τ ^ 2)⁻¹ :=
+    by
     rw [zpow_neg, ← mul_inv]
     congr 1
     rw [← zpow_natCast, ← zpow_natCast, ← zpow_add₀ hD]
@@ -309,7 +327,8 @@ theorem Edat_trV_of_cocycle (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(Binar
   rw [ev_add, ev_sub] at h4
   linear_combination h4
 
-theorem Pdat_smul_of_mem (φ : ℍ → ℂ) (hφ : ∀ γ : CongruenceSubgroup.Gamma0 N, φ ∣[((n : ℤ) + 2)] (γ : SL(2, ℤ)) = φ)
+theorem Pdat_smul_of_mem (φ : ℍ → ℂ)
+    (hφ : ∀ γ : CongruenceSubgroup.Gamma0 N, φ ∣[((n : ℤ) + 2)] (γ : SL(2, ℤ)) = φ)
     (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n))
     (zA zB : CongruenceSubgroup.Gamma0 N → ↥(BinaryForm ℂ n))
     (hA : ∀ (γ : CongruenceSubgroup.Gamma0 N) (τ : ℍ), A ((γ : SL(2, ℤ)) • τ) = zA γ + binaryFormRepSL ℂ n γ (A τ))
@@ -449,7 +468,8 @@ def EC (z : ℂ) : ℂ := ∑ i ∈ Finset.range (n + 1), eC A B c i z * (-z) ^ 
 def TC (z : ℂ) : ℂ := fC φ z * EC A B c z
 
 theorem Edat_ofComplex {z : ℂ} (hz : 0 < z.im) : Edat A B c (ofComplex z) = EC A B c z := by
-  rw [Edat, coe_ofComplex hz, ev_eq_sum z (conjP_mem (A _).2), ev_eq_sum z (B _).2, ev_eq_sum z (conjP_mem c.2), EC,
+  rw [Edat, coe_ofComplex hz, ev_eq_sum z (conjP_mem (A _).2), ev_eq_sum z (B _).2, ev_eq_sum z
+    (conjP_mem c.2), EC,
     ← Finset.sum_sub_distrib, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [eC, aC, aC, cc, coeff_conjP, coeff_conjP]
@@ -463,7 +483,8 @@ variable (hA : IsEichlerIntegral n φ A) (hB : IsEichlerIntegral n ψ B)
   (hφ : DifferentiableOn ℂ (fC φ) {z : ℂ | 0 < z.im}) (hψ : ContinuousOn (fC ψ) {z : ℂ | 0 < z.im})
 
 include hA in
-theorem hasDerivAt_aC (i : ℕ) {z : ℂ} (hz : 0 < z.im) : HasDerivAt (aC A i) (fC φ z * ell n i z) z := by
+theorem hasDerivAt_aC (i : ℕ) {z : ℂ} (hz : 0 < z.im) :
+    HasDerivAt (aC A i) (fC φ z * ell n i z) z := by
   have h := hA (expo n i) (ofComplex z)
   rw [coe_ofComplex hz] at h
   exact h
@@ -473,21 +494,24 @@ def dmC (i : ℕ) (z : ℂ) : ℂ := (i : ℂ) * (-z) ^ (i - 1) * (-1)
 def eD (n : ℕ) (φ ψ : ℍ → ℂ) (i : ℕ) (z : ℂ) : ℂ →L[ℝ] ℂ :=
   (conjCLE : ℂ →L[ℝ] ℂ).comp ((fC φ z * ell n i z) • (1 : ℂ →L[ℝ] ℂ)) - (fC ψ z * ell n i z) • (1 : ℂ →L[ℝ] ℂ)
 
-def termD (φ ψ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (i : ℕ) (z : ℂ) : ℂ →L[ℝ] ℂ :=
+def termD (φ ψ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (i : ℕ) (z : ℂ) :
+    ℂ →L[ℝ] ℂ :=
   eC A B c i z • (dmC i z • (1 : ℂ →L[ℝ] ℂ)) + (-z) ^ i • eD n φ ψ i z
 
 def TD (φ ψ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(BinaryForm ℂ n)) (z : ℂ) : ℂ →L[ℝ] ℂ :=
   fC φ z • (∑ i ∈ Finset.range (n + 1), termD φ ψ A B c i z) + EC A B c z • (deriv (fC φ) z • (1 : ℂ →L[ℝ] ℂ))
 
 include hA hB in
-theorem hasFDerivAt_eC (i : ℕ) {z : ℂ} (hz : 0 < z.im) : HasFDerivAt (eC A B c i) (eD n φ ψ i z) z := by
+theorem hasFDerivAt_eC (i : ℕ) {z : ℂ} (hz : 0 < z.im) :
+    HasFDerivAt (eC A B c i) (eD n φ ψ i z) z := by
   have h1 : HasFDerivAt (fun w => conj (aC A i w)) ((conjCLE : ℂ →L[ℝ] ℂ).comp ((fC φ z * ell n i z) • (1 : ℂ →L[ℝ] ℂ))) z :=
     (conjCLE : ℂ ≃L[ℝ] ℂ).hasFDerivAt.comp z (hasDerivAt_aC hA i hz).complexToReal_fderiv
   have h2 : HasFDerivAt (aC B i) ((fC ψ z * ell n i z) • (1 : ℂ →L[ℝ] ℂ)) z :=
     (hasDerivAt_aC hB i hz).complexToReal_fderiv
   exact (h1.sub h2).add_const _
 
-theorem hasFDerivAt_negPow (i : ℕ) (z : ℂ) : HasFDerivAt (fun w : ℂ => (-w) ^ i) (dmC i z • (1 : ℂ →L[ℝ] ℂ)) z :=
+theorem hasFDerivAt_negPow (i : ℕ) (z : ℂ) :
+    HasFDerivAt (fun w : ℂ => (-w) ^ i) (dmC i z • (1 : ℂ →L[ℝ] ℂ)) z :=
   ((hasDerivAt_neg' z).fun_pow i).complexToReal_fderiv
 
 include hA hB in
@@ -508,7 +532,8 @@ theorem differentiableOn_aC (i : ℕ) : DifferentiableOn ℂ (aC A i) {z : ℂ |
   fun z hz => (hasDerivAt_aC hA i hz).differentiableAt.differentiableWithinAt
 
 include hA in
-theorem continuousOn_aC (i : ℕ) : ContinuousOn (aC A i) {z : ℂ | 0 < z.im} := (differentiableOn_aC hA i).continuousOn
+theorem continuousOn_aC (i : ℕ) :
+    ContinuousOn (aC A i) {z : ℂ | 0 < z.im} := (differentiableOn_aC hA i).continuousOn
 
 include hA hB in
 theorem continuousOn_eC (i : ℕ) : ContinuousOn (eC A B c i) {z : ℂ | 0 < z.im} :=
@@ -557,7 +582,8 @@ theorem TD_apply (z w : ℂ) :
     one_apply_eq_self, smul_eq_mul, termD_apply, Finset.sum_add_distrib, ← Finset.sum_mul]
   ring
 
-theorem sum_termK (φ : ℍ → ℂ) (z : ℂ) : ∑ i ∈ Finset.range (n + 1), termK n φ i z = conj (fC φ z) * (conj z - z) ^ n := by
+theorem sum_termK (φ : ℍ → ℂ) (z : ℂ) :
+    ∑ i ∈ Finset.range (n + 1), termK n φ i z = conj (fC φ z) * (conj z - z) ^ n := by
   have h := ev_eq_sum z (conjP_mem (linePow n z).2)
   rw [ev_conjP_linePow] at h
   rw [h, Finset.mul_sum]
@@ -613,18 +639,21 @@ theorem one_add_norm_le {z : ℂ} (hz : z ∈ strip) : 1 + ‖z‖ ≤ 2 + z.im 
 theorem two_add_im_ge_one {z : ℂ} (hz : z ∈ strip) : 1 ≤ 2 + z.im := by
   linarith [hz.1]
 
-theorem norm_neg_pow_le {z : ℂ} (hz : z ∈ strip) {i : ℕ} (hi : i ≤ n) : ‖(-z) ^ i‖ ≤ (2 + z.im) ^ n := by
+theorem norm_neg_pow_le {z : ℂ} (hz : z ∈ strip) {i : ℕ} (hi : i ≤ n) :
+    ‖(-z) ^ i‖ ≤ (2 + z.im) ^ n := by
   rw [norm_pow, norm_neg]
   calc ‖z‖ ^ i ≤ (2 + z.im) ^ i := pow_le_pow_left₀ (norm_nonneg _) (by linarith [norm_le_of_mem_strip hz]) _
     _ ≤ (2 + z.im) ^ n := pow_le_pow_right₀ (two_add_im_ge_one hz) hi
 
-theorem norm_dmC_le {z : ℂ} (hz : z ∈ strip) {i : ℕ} (hi : i ≤ n) : ‖dmC i z‖ ≤ n * (2 + z.im) ^ n := by
+theorem norm_dmC_le {z : ℂ} (hz : z ∈ strip) {i : ℕ} (hi : i ≤ n) :
+    ‖dmC i z‖ ≤ n * (2 + z.im) ^ n := by
   rw [dmC, norm_mul, norm_mul, norm_neg, norm_one, mul_one, Complex.norm_natCast]
   have h1 : ‖(-z) ^ (i - 1)‖ ≤ (2 + z.im) ^ n := norm_neg_pow_le hz ((Nat.sub_le i 1).trans hi)
   have h2 : (i : ℝ) ≤ n := by exact_mod_cast hi
   exact mul_le_mul h2 h1 (norm_nonneg _) (Nat.cast_nonneg _)
 
-theorem norm_ell_le' {z : ℂ} (hz : z ∈ strip) {i : ℕ} (hi : i ≤ n) : ‖ell n i z‖ ≤ 2 ^ n * (2 + z.im) ^ n :=
+theorem norm_ell_le' {z : ℂ} (hz : z ∈ strip) {i : ℕ} (hi : i ≤ n) :
+    ‖ell n i z‖ ≤ 2 ^ n * (2 + z.im) ^ n :=
   (norm_ell_le hi z).trans (mul_le_mul_of_nonneg_left (pow_le_pow_left₀ (by positivity) (one_add_norm_le hz) _)
     (by positivity))
 
@@ -638,12 +667,13 @@ theorem isCompact_box (M : ℝ) : IsCompact (Set.Icc (-1 : ℝ) 1 ×ℂ Set.Icc 
 theorem box_subset (M : ℝ) : Set.Icc (-1 : ℝ) 1 ×ℂ Set.Icc (1 / 2 : ℝ) M ⊆ {z : ℂ | 0 < z.im} := by
   intro z hz
   have := (Complex.mem_reProdIm.mp hz).2.1
-  show 0 < z.im
+  change 0 < z.im
   linarith
 
 variable {φ ψ : ℍ → ℂ} {A B : ℍ → ↥(BinaryForm ℂ n)} (c₀ : ↥(BinaryForm ℂ n))
 variable (hA : IsEichlerIntegral n φ A)
-variable {c Cφ : ℝ} (hc : 0 < c) (hφd : ∀ z : ℂ, 1 / 4 ≤ z.im → ‖fC φ z‖ ≤ Cφ * Real.exp (-c * z.im))
+variable {c Cφ : ℝ} (hc : 0 < c)
+    (hφd : ∀ z : ℂ, 1 / 4 ≤ z.im → ‖fC φ z‖ ≤ Cφ * Real.exp (-c * z.im))
 
 include hφd in
 theorem Cφ_nonneg : 0 ≤ Cφ := by
@@ -652,7 +682,6 @@ theorem Cφ_nonneg : 0 ≤ Cφ := by
   nlinarith [norm_nonneg (fC φ Complex.I)]
 
 include hA hc hφd in
-
 theorem norm_deriv_aC_le {i : ℕ} (hi : i ≤ n) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ z ∈ strip, ‖fC φ z * ell n i z‖ ≤ K * Real.exp (-(c / 2) * z.im) := by
   obtain ⟨K₁, hK₁, hK⟩ := poly_exp_bound c hc n
@@ -668,10 +697,10 @@ theorem norm_deriv_aC_le {i : ℕ} (hi : i ≤ n) :
     _ = _ := by ring
 
 include hA hc hφd in
-
 theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖aC A i z‖ ≤ K := by
   obtain ⟨K₂, hK₂0, hK₂⟩ := norm_deriv_aC_le hA hc hφd hi
-  obtain ⟨M, hM⟩ := (isCompact_box 1).exists_bound_of_continuousOn ((continuousOn_aC hA i).mono (box_subset _))
+  obtain ⟨M, hM⟩ :=
+    (isCompact_box 1).exists_bound_of_continuousOn ((continuousOn_aC hA i).mono (box_subset _))
   refine ⟨M + K₂ * (2 / c), fun z hz => ?_⟩
   have hz0 := im_pos_of_mem_strip hz
   have hMK : 0 ≤ K₂ * (2 / c) := by positivity
@@ -689,7 +718,8 @@ theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖a
     have hpstrip : ∀ t : ℝ, 1 / 2 ≤ t → p t ∈ strip := by
       intro t ht
       exact ⟨by rw [hpim]; exact ht, by rw [hpre]; exact hz.2⟩
-    have hderiv : ∀ t ∈ Set.uIcc 1 y, HasDerivAt (fun s : ℝ => aC A i (p s)) ((fC φ (p t) * ell n i (p t)) * Complex.I) t := by
+    have hderiv : ∀ t ∈ Set.uIcc 1 y, HasDerivAt (fun s : ℝ => aC A i (p s)) ((fC φ (p t) * ell n i (p t)) * Complex.I) t :=
+      by
       intro t ht
       rw [Set.uIcc_of_le h1.le] at ht
       have hpt : HasDerivAt p Complex.I t := by
@@ -697,19 +727,21 @@ theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖a
         simpa [hp] using this
       have hd := hasDerivAt_aC hA i (z := p t) (by rw [hpim]; linarith [ht.1])
       exact hd.comp t hpt
-    have hcont : ContinuousOn (fun t : ℝ => (fC φ (p t) * ell n i (p t)) * Complex.I) (Set.uIcc 1 y) := by
+    have hcont : ContinuousOn (fun t : ℝ => (fC φ (p t) * ell n i (p t)) * Complex.I) (Set.uIcc 1 y) :=
+      by
       rw [Set.uIcc_of_le h1.le]
       have hpc : Continuous p := by simp only [hp]; fun_prop
       have h1' : ContinuousOn (fun t : ℝ => deriv (aC A i) (p t)) (Set.Icc 1 y) := by
         refine ((differentiableOn_aC hA i).analyticOnNhd isOpen_upperHalfPlaneSet).deriv.continuousOn.comp
           hpc.continuousOn fun t ht => ?_
-        show 0 < (p t).im
+        change 0 < (p t).im
         rw [hpim]; linarith [ht.1]
       refine (h1'.congr fun t ht => ?_).mul continuousOn_const
       exact ((hasDerivAt_aC hA i (z := p t) (by rw [hpim]; linarith [ht.1])).deriv).symm
     have hFTC := intervalIntegral.integral_eq_sub_of_hasDerivAt hderiv (hcont.intervalIntegrable)
     have hbound : ‖∫ t in (1 : ℝ)..y, (fC φ (p t) * ell n i (p t)) * Complex.I‖ ≤ K₂ * (2 / c) := by
-      have hle : ∀ t ∈ Set.Ioc 1 y, ‖(fC φ (p t) * ell n i (p t)) * Complex.I‖ ≤ K₂ * Real.exp (-(c / 2) * t) := by
+      have hle : ∀ t ∈ Set.Ioc 1 y, ‖(fC φ (p t) * ell n i (p t)) * Complex.I‖ ≤ K₂ * Real.exp (-(c / 2) * t) :=
+        by
         intro t ht
         rw [norm_mul, Complex.norm_I, mul_one]
         have := hK₂ (p t) (hpstrip t (by linarith [ht.1]))
@@ -745,11 +777,11 @@ variable {c Cφ Cφ' Cψ : ℝ} (hc : 0 < c)
   (hφ'd : ∀ z : ℂ, 1 / 2 ≤ z.im → ‖deriv (fC φ) z‖ ≤ Cφ' * Real.exp (-c * z.im))
   (hψd : ∀ z : ℂ, 1 / 4 ≤ z.im → ‖fC ψ z‖ ≤ Cψ * Real.exp (-c * z.im))
 
-theorem exp_neg_le_one {c : ℝ} (hc : 0 < c) {z : ℂ} (hz : z ∈ strip) : Real.exp (-c * z.im) ≤ 1 := by
+theorem exp_neg_le_one {c : ℝ} (hc : 0 < c) {z : ℂ} (hz : z ∈ strip) :
+    Real.exp (-c * z.im) ≤ 1 := by
   rw [Real.exp_le_one_iff]; nlinarith [hz.1]
 
 include hA hB hc hφd hψd in
-
 theorem norm_eC_le : ∃ Ke : ℕ → ℝ, ∀ i, i ≤ n → ∀ z ∈ strip, ‖eC A B c₀ i z‖ ≤ Ke i := by
   have h : ∀ i : ℕ, ∃ K : ℝ, i ≤ n → ∀ z ∈ strip, ‖eC A B c₀ i z‖ ≤ K := by
     intro i
@@ -825,7 +857,8 @@ theorem norm_sum_termK_le : ∀ z ∈ strip,
   have h1 : ‖conj z - z‖ ≤ 2 * (2 + z.im) := by
     have : conj z - z = -(2 * z.im * Complex.I) := by
       apply Complex.ext <;> simp; ring
-    rw [this, norm_neg, norm_mul, norm_mul, Complex.norm_I, mul_one, Complex.norm_two, Complex.norm_real,
+    rw [this, norm_neg, norm_mul, norm_mul, Complex.norm_I, mul_one, Complex.norm_two,
+      Complex.norm_real,
       Real.norm_eq_abs, abs_of_pos (im_pos_of_mem_strip hz)]
     linarith
   calc ‖fC φ z‖ * ‖conj z - z‖ ^ n ≤ (Cφ * Real.exp (-c * z.im)) * (2 * (2 + z.im)) ^ n :=
@@ -839,7 +872,6 @@ theorem norm_sum_termK_le : ∀ z ∈ strip,
     _ ≤ Cφ * 2 ^ n * (2 + z.im) ^ (2 * n) := mul_le_mul_of_nonneg_left (pow_le_pow_two_mul hz) (by positivity)
 
 include hA hB hc hφd hφ'd hψd in
-
 theorem tile_bounds :
     (∃ C : ℝ, ∀ z ∈ strip, ‖TC φ A B c₀ z‖ ≤ C * Real.exp (-(c / 2) * z.im)) ∧
     (∃ C : ℝ, ∀ z ∈ strip, ‖TD φ ψ A B c₀ z‖ ≤ C * Real.exp (-(c / 2) * z.im)) := by
@@ -991,7 +1023,7 @@ theorem deriv_fC_decay (hk : 0 ≤ k) :
     rw [Metric.mem_closedBall, dist_eq_norm] at hw
     have := (abs_le.mp (h1.trans hw)).1
     simp only [Complex.sub_im] at this
-    show 0 < w.im
+    change 0 < w.im
     linarith
   have hd : DiffContOnCl ℂ (fC (⇑f ∣[k] σ)) (Metric.ball z (1 / 4)) :=
     ((differentiableOn_fC f σ).mono hball).diffContOnCl_ball (subset_refl _)
@@ -1056,9 +1088,10 @@ theorem sqrt3_div_two_gt : (1 : ℝ) / 2 < Real.sqrt 3 / 2 := by
     exact Real.sqrt_lt_sqrt (by norm_num) (by norm_num)
   linarith
 
-theorem ray_mem_Ubox {y : ℝ} (hy : y ∈ Set.Ioi (Real.sqrt 3 / 2)) : (-(1 / 2) + y * Complex.I : ℂ) ∈ Ubox := by
+theorem ray_mem_Ubox {y : ℝ} (hy : y ∈ Set.Ioi (Real.sqrt 3 / 2)) :
+    (-(1 / 2) + y * Complex.I : ℂ) ∈ Ubox := by
   refine ⟨?_, ?_⟩
-  · show 1 / 2 < (-(1 / 2) + y * Complex.I : ℂ).im
+  · change 1 / 2 < (-(1 / 2) + y * Complex.I : ℂ).im
     simpa using sqrt3_div_two_gt.trans hy
   · show |(-(1 / 2) + y * Complex.I : ℂ).re| < 1
     rw [show (-(1 / 2) + y * Complex.I : ℂ).re = -(1 / 2) by simp, abs_neg, abs_of_pos (by norm_num)]
@@ -1081,10 +1114,11 @@ theorem intervalIntegrable_arc {Φ : ℂ → ℂ} (hc : ContinuousOn Φ {z : ℂ
       MeasureTheory.volume (Real.pi / 3) (2 * Real.pi / 3) := by
   refine ContinuousOn.intervalIntegrable ?_
   have hpath : Continuous fun θ : ℝ => Complex.exp (θ * Complex.I) := by fun_prop
-  have hmem : ∀ θ ∈ Set.uIcc (Real.pi / 3) (2 * Real.pi / 3), Complex.exp (θ * Complex.I) ∈ {z : ℂ | 0 < z.im} := by
+  have hmem : ∀ θ ∈ Set.uIcc (Real.pi / 3) (2 * Real.pi / 3), Complex.exp (θ * Complex.I) ∈ {z : ℂ | 0 < z.im} :=
+    by
     intro θ hθ
     rw [Set.uIcc_of_le (by linarith [Real.pi_pos])] at hθ
-    show 0 < (Complex.exp (θ * Complex.I)).im
+    change 0 < (Complex.exp (θ * Complex.I)).im
     rw [Complex.exp_ofReal_mul_I_im]
     exact Real.sin_pos_of_pos_of_lt_pi (by linarith [Real.pi_pos, hθ.1]) (by linarith [Real.pi_pos, hθ.2])
   have h2 : Continuous fun θ : ℝ => Complex.I * Complex.exp (θ * Complex.I) := by fun_prop
@@ -1094,10 +1128,12 @@ theorem integrableOn_exp_neg_im {δ : ℝ} (hδ : 0 < δ) (a b : ℝ) :
     MeasureTheory.IntegrableOn (fun z : ℂ => Real.exp (-δ * z.im)) (Set.Icc a b ×ℂ Set.Ioi (0 : ℝ)) := by
   have e := Complex.volume_preserving_equiv_real_prod.symm
   rw [← e.integrableOn_comp_preimage (Complex.measurableEquivRealProd.symm.measurableEmbedding)]
-  have hpre : (Complex.measurableEquivRealProd.symm ⁻¹' (Set.Icc a b ×ℂ Set.Ioi (0 : ℝ))) = Set.Icc a b ×ˢ Set.Ioi 0 := by
+  have hpre : (Complex.measurableEquivRealProd.symm ⁻¹' (Set.Icc a b ×ℂ Set.Ioi (0 : ℝ))) = Set.Icc a b ×ˢ Set.Ioi 0 :=
+    by
     ext p
     simp [Complex.measurableEquivRealProd, Complex.mem_reProdIm]
-  rw [hpre, MeasureTheory.IntegrableOn, MeasureTheory.Measure.volume_eq_prod, ← MeasureTheory.Measure.prod_restrict]
+  rw [hpre, MeasureTheory.IntegrableOn, MeasureTheory.Measure.volume_eq_prod, ←
+    MeasureTheory.Measure.prod_restrict]
   have h1 : MeasureTheory.Integrable (fun _ : ℝ => (1 : ℝ)) (MeasureTheory.volume.restrict (Set.Icc a b)) :=
     MeasureTheory.integrable_const _
   have h2 : MeasureTheory.Integrable (fun y : ℝ => Real.exp (-δ * y)) (MeasureTheory.volume.restrict (Set.Ioi 0)) :=
@@ -1115,7 +1151,8 @@ section Assembly
 open MeasureTheory
 
 variable {N : ℕ} [NeZero N] {n : ℕ}
-variable (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) (F G : ℍ → ↥(BinaryForm ℂ n)) (v : ↥(BinaryForm ℂ n))
+variable (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) (F G : ℍ → ↥(BinaryForm ℂ n))
+    (v : ↥(BinaryForm ℂ n))
 
 noncomputable scoped instance fintypeQuot : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) :=
   (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
@@ -1142,7 +1179,6 @@ theorem continuousOn_tileΦ (σ : SL(2, ℤ)) : ContinuousOn (tileΦ f F G v σ)
   exact h.congr fun z hz => tileΦ_eq f F G v σ hz
 
 include hF hG in
-
 theorem tile_green (σ : SL(2, ℤ)) :
     (∃ (δ C : ℝ), 0 < δ ∧ ∀ z ∈ Ubox, ‖tileΦ f F G v σ z‖ ≤ C * Real.exp (-δ * z.im)) ∧
     (∫ z in fdC, 2 * Complex.I * (fC (⇑f ∣[((n : ℤ) + 2)] σ) z * conj (fC (⇑f ∣[((n : ℤ) + 2)] σ) z) * (conj z - z) ^ n)) =
@@ -1165,7 +1201,8 @@ theorem tile_green (σ : SL(2, ℤ)) :
   set c := min c₁ (min c₂ c₃) with hcdef
   have hc : 0 < c := lt_min hc₁ (lt_min hc₂ hc₃)
   have hφd := decay_weaken hC₁0 (min_le_left c₁ (min c₂ c₃)) ha4.le hC₁
-  have hφ'd := decay_weaken hC₂0 ((min_le_right c₁ _).trans (min_le_left c₂ c₃)) (by norm_num : (0 : ℝ) ≤ 1 / 2) hC₂
+  have hφ'd :=
+    decay_weaken hC₂0 ((min_le_right c₁ _).trans (min_le_left c₂ c₃)) (by norm_num : (0 : ℝ) ≤ 1 / 2) hC₂
   have hψd := decay_weaken hC₃0 ((min_le_right c₁ _).trans (min_le_right c₂ c₃)) ha4.le hC₃
   rw [← hcdef] at hφd hφ'd hψd
   obtain ⟨⟨CT, hCT⟩, ⟨CD, hCD⟩⟩ := tile_bounds c₀ hA hB hc hφd hφ'd hψd
@@ -1193,30 +1230,33 @@ variable (zF zG : CongruenceSubgroup.Gamma0 N → ↥(BinaryForm ℂ n))
     = binarySubst ℂ ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (v : MvPolynomial (Fin 2) ℂ) - v)
 
 include hF hG hFsm hGsm hcoc in
-
 theorem sum_tiles_eq_zero :
     ∑ q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N,
       (∫ z in fdC, 2 * Complex.I * (fC (⇑f ∣[((n : ℤ) + 2)] (rep q)) z * conj (fC (⇑f ∣[((n : ℤ) + 2)] (rep q)) z)
         * (conj z - z) ^ n)) = 0 := by
   have hslash : ∀ γ : CongruenceSubgroup.Gamma0 N, ⇑f ∣[((n : ℤ) + 2)] (γ : SL(2, ℤ)) = ⇑f := by
     intro γ
-    have := SlashInvariantForm.slash_action_eqn f ((γ : SL(2, ℤ)) : GL (Fin 2) ℝ) (Subgroup.mem_map.mpr ⟨γ, γ.2, rfl⟩)
+    have :=
+      SlashInvariantForm.slash_action_eqn f ((γ : SL(2, ℤ)) : GL (Fin 2) ℝ) (Subgroup.mem_map.mpr ⟨γ, γ.2, rfl⟩)
     rw [ModularForm.SL_slash]
     exact this
   have hP : ∀ γ ∈ CongruenceSubgroup.Gamma0 N, ∀ τ : ℍ,
       Pdat (⇑f) F G v (γ • τ) / denom (γ : GL (Fin 2) ℝ) τ ^ 2 = Pdat (⇑f) F G v τ + (fun _ : SL(2, ℤ) => (0 : ℂ)) γ * (fun _ : ℍ => (0 : ℂ)) τ :=
     fun γ hγ τ => Pdat_smul_of_mem (⇑f) hslash F G v zF zG hFsm hGsm hcoc γ hγ τ
-  have hsp := ModularCurve.gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add (CongruenceSubgroup.Gamma0 N)
+  have hsp :=
+    ModularCurve.gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add (CongruenceSubgroup.Gamma0 N)
     (Pdat (⇑f) F G v) (fun _ => 0) (fun _ => 0) hP (tileΦ f F G v)
     (fun σ z => (fun _ : ℍ => (0 : ℂ)) (σ • ofComplex z) / denom (σ : GL (Fin 2) ℝ) (ofComplex z) ^ 2)
     (fun σ z => rfl) (fun σ z => rfl) (Set.Ioi (Real.sqrt 3 / 2)) measurableSet_Ioi (Set.Ioi_subset_Ioi (by positivity))
     (fun q => ?_) (fun q => ?_) (fun q => ?_) (fun q => ?_)
   · have htile := fun q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N => (tile_green v hF hG (rep q)).2
     simp only [rep] at htile ⊢
-    rw [Finset.sum_congr rfl fun q _ => htile q, Finset.sum_sub_distrib, Finset.sum_sub_distrib, ← Finset.smul_sum,
+    rw [Finset.sum_congr rfl fun q _ => htile q, Finset.sum_sub_distrib, Finset.sum_sub_distrib, ←
+      Finset.smul_sum,
       ← Finset.smul_sum, hsp.1]
     have h2 := hsp.2
-    simp only [zero_mul, Finset.sum_const_zero, add_zero, neg_zero, mul_eq_zero, OfNat.ofNat_ne_zero, false_or] at h2 ⊢
+    simp only [zero_mul, Finset.sum_const_zero, add_zero, neg_zero, mul_eq_zero,
+      OfNat.ofNat_ne_zero, false_or] at h2 ⊢
     rw [h2, sub_self, zero_sub, neg_eq_zero]
   · obtain ⟨δ, C, hδ, hb⟩ := (tile_green v hF hG (rep q)).1
     exact integrableOn_ray (continuousOn_tileΦ v hF hG (rep q)) hδ hb
@@ -1239,7 +1279,6 @@ theorem integrand_eq (φ : ℂ → ℂ) (z : ℂ) :
   ring
 
 include hF hG hFsm hGsm hcoc in
-
 theorem sum_norm_sq_integral_eq_zero :
     ∑ q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N,
       (∫ z in fdC, ‖fC (⇑f ∣[((n : ℤ) + 2)] (rep q)) z‖ ^ 2 * z.im ^ n) = 0 := by
@@ -1260,7 +1299,6 @@ theorem sum_norm_sq_integral_eq_zero :
   exact h.resolve_left hK
 
 include hF hG hFsm hGsm hcoc in
-
 theorem norm_sq_integral_eq_zero :
     (∫ z in fdC, ‖fC (⇑f ∣[((n : ℤ) + 2)] (rep (QuotientGroup.mk 1 : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))) z‖ ^ 2 * z.im ^ n) = 0 := by
   have h := sum_norm_sq_integral_eq_zero v hF hG zF zG hFsm hGsm hcoc
@@ -1272,7 +1310,8 @@ theorem norm_sq_integral_eq_zero :
     positivity
   exact (Finset.sum_eq_zero_iff_of_nonneg hnn).mp h _ (Finset.mem_univ _)
 
-theorem rep_one_mem : rep (QuotientGroup.mk 1 : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) ∈ CongruenceSubgroup.Gamma0 N := by
+theorem rep_one_mem :
+    rep (QuotientGroup.mk 1 : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) ∈ CongruenceSubgroup.Gamma0 N := by
   have h := (QuotientGroup.mk (1 : SL(2, ℤ)) : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N).out_eq
   rw [QuotientGroup.eq] at h
   simpa [rep] using h
@@ -1292,12 +1331,12 @@ theorem two_I_mem_fdInt : (2 * Complex.I : ℂ) ∈ fdInt := by
   · simp
 
 include hF hG hFsm hGsm hcoc in
-
 theorem f_eq_zero : f = 0 := by
   set σ₀ : SL(2, ℤ) := rep (QuotientGroup.mk 1 : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) with hσ₀
   have hσ₀mem : σ₀ ∈ CongruenceSubgroup.Gamma0 N := rep_one_mem
   have hslash : ⇑f ∣[((n : ℤ) + 2)] σ₀ = ⇑f := by
-    have := SlashInvariantForm.slash_action_eqn f (σ₀ : GL (Fin 2) ℝ) (Subgroup.mem_map.mpr ⟨σ₀, hσ₀mem, rfl⟩)
+    have :=
+      SlashInvariantForm.slash_action_eqn f (σ₀ : GL (Fin 2) ℝ) (Subgroup.mem_map.mpr ⟨σ₀, hσ₀mem, rfl⟩)
     rw [ModularForm.SL_slash]
     exact this
   have h0 := norm_sq_integral_eq_zero v hF hG zF zG hFsm hGsm hcoc
@@ -1331,14 +1370,16 @@ theorem f_eq_zero : f = 0 := by
   have hnn : 0 ≤ᵐ[volume.restrict fdC] h :=
     ae_restrict_of_forall_mem measurableSet_fdC fun z hz => by have := hz.2.2; positivity
   have hae : h =ᵐ[volume.restrict fdC] 0 := (setIntegral_eq_zero_iff_of_nonneg_ae hnn hint).mp h0
-  have hae' : h =ᵐ[volume.restrict fdInt] 0 := ae_restrict_of_ae_restrict_of_subset fdInt_subset_fdC hae
+  have hae' : h =ᵐ[volume.restrict fdInt] 0 :=
+    ae_restrict_of_ae_restrict_of_subset fdInt_subset_fdC hae
   have heq : Set.EqOn h 0 fdInt :=
     Measure.eqOn_open_of_ae_eq hae' isOpen_fdInt
       (hcont.mono (t := fdInt) fun z hz => hz.2.2) continuousOn_const
   have hvan : ∀ z ∈ fdInt, f (ofComplex z) = 0 := by
     intro z hz
     have h1 := heq hz
-    simp only [hh, Pi.zero_apply, mul_eq_zero, pow_eq_zero_iff, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true,
+    simp only [hh, Pi.zero_apply, mul_eq_zero, pow_eq_zero_iff, ne_eq, OfNat.ofNat_ne_zero,
+      not_false_eq_true,
       norm_eq_zero] at h1
     rcases h1 with h1 | h1
     · rw [fC, hslash] at h1; exact h1
@@ -1350,7 +1391,7 @@ theorem f_eq_zero : f = 0 := by
   have hanal : AnalyticOnNhd ℂ (⇑f ∘ ofComplex) {z : ℂ | 0 < z.im} :=
     (UpperHalfPlane.mdifferentiable_iff.mp (ModularFormClass.holo f)).analyticOnNhd isOpen_upperHalfPlaneSet
   have hpre : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected
-  have h2I : (2 * Complex.I : ℂ) ∈ {z : ℂ | 0 < z.im} := by show 0 < (2 * Complex.I : ℂ).im; simp
+  have h2I : (2 * Complex.I : ℂ) ∈ {z : ℂ | 0 < z.im} := by change 0 < (2 * Complex.I : ℂ).im; simp
   have hev : (⇑f ∘ ofComplex) =ᶠ[nhds (2 * Complex.I : ℂ)] 0 :=
     Filter.eventuallyEq_of_mem (isOpen_fdInt.mem_nhds two_I_mem_fdInt) fun z hz => hvan z hz
   have hzero := hanal.eqOn_zero_of_preconnected_of_eventuallyEq_zero hpre h2I hev
@@ -1373,8 +1414,10 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
             = MvPolynomial.map (starRingEnd ℂ)
                 (((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) g : MvPolynomial (Fin 2) ℂ))) ∧
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
-    (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) (hfg : ES f = Φ (ES g)) : f = 0 := by
-  obtain ⟨F, G, v, zF, zG, hF, hG, hFsm, hGsm, hcoc⟩ := HeckeEis.ESDisjoint.unpack N n ES hES Φ hΦ f g hfg
+    (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) (hfg : ES f = Φ (ES g))
+    : f = 0 := by
+  obtain ⟨F, G, v, zF, zG, hF, hG, hFsm, hGsm, hcoc⟩ :=
+    HeckeEis.ESDisjoint.unpack N n ES hES Φ hΦ f g hfg
   exact HeckeEis.ESDisjoint.f_eq_zero v hF hG zF zG hFsm hGsm hcoc
 
 end
@@ -1398,6 +1441,8 @@ theorem HeckeEis.range_eichlerShimuraMap_inf_range_conj_eq_bot (N : ℕ) [NeZero
             = MvPolynomial.map (starRingEnd ℂ)
                 (((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) g : MvPolynomial (Fin 2) ℂ))) ∧
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
-    (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) (hfg : ES f = Φ (ES g)) : f = 0 := _root_.P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot.solution N n ES hES Φ hΦ f g hfg
+    (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) (hfg : ES f = Φ (ES g))
+    : f = 0 :=
+  solution N n ES hES Φ hΦ f g hfg
 
 end publicSection

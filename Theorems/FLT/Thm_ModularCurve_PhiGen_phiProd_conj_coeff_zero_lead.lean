@@ -67,7 +67,8 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq coeff_jq_neg_one coeff_jq_of_lt qTwist qTwist_coeff coeffEmb coeffEmb_coeff"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq coeff_jq_neg_one \
+  coeff_jq_of_lt qTwist qTwist_coeff coeffEmb coeffEmb_coeff"
 p2m_open "ModularCurve"
 namespace PhiGen
 p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd TPoleOrderLE JSimplePole"
@@ -86,7 +87,8 @@ private theorem coeff_coeffEmb_jq_of_lt {k : ℤ} (hk : k < -1) : (coeffEmb K jq
 end CoeffEmbJq
 
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mono {K : Type*} [Field K] {f : LaurentSeries K} {m n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mono {K : Type*} [Field K]
+    {f : LaurentSeries K} {m n : ℕ}
     (hf : TPoleOrderLE f m) (hmn : m ≤ n) : TPoleOrderLE f n :=
   fun k hk => hf k (by omega)
 
@@ -102,7 +104,8 @@ private theorem tPoleOrderLE_one {K : Type*} [Field K] :
   rw [HahnSeries.coeff_one, ite_eq_right (by omega)]
 
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K]
+    {f : LaurentSeries K} {n : ℕ}
     (hf : TPoleOrderLE f n) : TPoleOrderLE (-f) n := by
   intro m hm
   rw [HahnSeries.coeff_neg, hf m hm, neg_zero]
@@ -115,7 +118,8 @@ private theorem TPoleOrderLE.add {K : Type*} [Field K] {f g : LaurentSeries K} {
   rw [HahnSeries.coeff_add, hf m hm, hg m hm, add_zero]
 
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mul {K : Type*} [Field K] {f g : LaurentSeries K} {m n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mul {K : Type*} [Field K]
+    {f g : LaurentSeries K} {m n : ℕ}
     (hf : TPoleOrderLE f m) (hg : TPoleOrderLE g n) : TPoleOrderLE (f * g) (m + n) := by
   intro k hk
   rw [HahnSeries.coeff_mul]
@@ -130,7 +134,8 @@ private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mul {K : Type*} [Field K
 end TPoleOrderLE
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.mul"
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qTwist {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qTwist {K : Type*} [Field K]
+    {f : LaurentSeries K} {n : ℕ}
     (hf : TPoleOrderLE f n) (u : Kˣ) : TPoleOrderLE (ModularCurve.qTwist u f) n := by
   intro m hm
   rw [qTwist_coeff, hf m hm, mul_zero]
@@ -138,7 +143,8 @@ private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qTwist {K : Type*} [Fiel
 end TPoleOrderLE
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.qTwist"
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qExpand {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qExpand {K : Type*} [Field K]
+    {f : LaurentSeries K} {n : ℕ}
     (hf : TPoleOrderLE f n) (N : ℕ) [NeZero N] :
     TPoleOrderLE (ModularCurve.qExpand K N f) (N * n) := by
   intro m hm
@@ -418,8 +424,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) : ((phiProd ℓ (conj ℓ ζ)).coeff 0).coeff (-((ℓ * ℓ + ℓ : ℕ) : ℤ)) = 1 :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
+    ((phiProd ℓ (conj ℓ ζ)).coeff 0).coeff (-((ℓ * ℓ + ℓ : ℕ) : ℤ)) = 1 :=
   ModularCurve.PhiGen.phiProd_conj_coeff_zero_lead ℓ ζ hζ
 
 end S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead
@@ -432,6 +439,9 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.phiProd_conj_coeff_zero_lead {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) : ((phiProd ℓ (conj ℓ ζ)).coeff 0).coeff (-((ℓ * ℓ + ℓ : ℕ) : ℤ)) = 1 := _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.solution ℓ ζ hζ
+theorem ModularCurve.PhiGen.phiProd_conj_coeff_zero_lead {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ)
+    [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
+    ((phiProd ℓ (conj ℓ ζ)).coeff 0).coeff (-((ℓ * ℓ + ℓ : ℕ) : ℤ)) = 1 :=
+  solution ℓ ζ hζ
 
 end publicSection

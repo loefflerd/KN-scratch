@@ -110,7 +110,7 @@ lemma rational_translate_integrable
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (GammaOne N) (k : ℤ)) (r : ℚ) (j : ℕ) :
     IntegrableOn (fun t : ℝ =>
-      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ)^j) (Set.Ioi 0) := by
+      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ) ^ j) (Set.Ioi 0) := by
   let : NeZero N := ⟨by omega⟩
   let g : GL (Fin 2) ℚ := Matrix.GeneralLinearGroup.upperRightHom r
   let gr : GL (Fin 2) ℝ := g.map (Rat.castHom ℝ)
@@ -469,10 +469,12 @@ lemma act_X (γ : Matrix (Fin 2) (Fin 2) ℤ) (i : Fin 2) :
       ∑ a : Fin 2, ((γ a i : ℤ) : ℂ) • (MvPolynomial.X a : Binary ℂ) := by
   rw [act_eq_actAlg]; simp [actAlg]
 
-lemma act_C (γ : Matrix (Fin 2) (Fin 2) ℤ) (c : ℂ) : act γ (MvPolynomial.C c) = MvPolynomial.C c := by
+lemma act_C (γ : Matrix (Fin 2) (Fin 2) ℤ) (c : ℂ) :
+    act γ (MvPolynomial.C c) = MvPolynomial.C c := by
   rw [act_eq_actAlg]; simp [actAlg]
 
-lemma act_mul (γ : Matrix (Fin 2) (Fin 2) ℤ) (P Q : Binary ℂ) : act γ (P * Q) = act γ P * act γ Q := by
+lemma act_mul (γ : Matrix (Fin 2) (Fin 2) ℤ) (P Q : Binary ℂ) :
+    act γ (P * Q) = act γ P * act γ Q := by
   rw [act_eq_actAlg, act_eq_actAlg, act_eq_actAlg, map_mul]
 
 /-- `hat` intertwines the two coefficient actions. -/
@@ -670,7 +672,7 @@ end MTT.HeckeEquiv
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, (I f).val = integrationCochain f) :
     HeckeEquivariant I := by
   intro e l hl f g hg
@@ -687,7 +689,7 @@ open scoped BigOperators TensorProduct
 open MTT.Cohomology
 theorem MTT.Cohomology.integration_cochain_hecke_equivariant
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, (I f).val = integrationCochain f) :
     HeckeEquivariant I := _root_.solution hN hk I hI
 end

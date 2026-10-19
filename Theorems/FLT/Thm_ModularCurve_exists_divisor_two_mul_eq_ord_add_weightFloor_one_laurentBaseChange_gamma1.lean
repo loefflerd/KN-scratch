@@ -126,7 +126,8 @@ theorem solution
   by_cases hP : y ∈ P.toValuationSubring
   · exact ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1 M
       (by omega) y hy w hw v hv P hP
-  · have h2 := ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1 M hM
+  · have h2 :=
+      ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1 M hM
       y hy w hw v hv P hP
     have hy0 : y ≠ 0 := fun h => hP (h ▸ zero_mem _)
     have hneg : P.ord y < 0 := by
@@ -170,6 +171,7 @@ theorem ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBa
         2 * D P = P.ord v +
           ((if 0 < P.ord y then (2 * P.ord y) / 3 else 0)
             + (if 0 < P.ord (y - 1728) then (P.ord (y - 1728)) / 2 else 0)
-            + (if P.ord y < 0 then P.ord y else 0)) := _root_.P2MW.S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1.solution M hM y hy w hw v hv
+            + (if P.ord y < 0 then P.ord y else 0)) :=
+  solution M hM y hy w hw v hv
 
 end publicSection

@@ -61,11 +61,15 @@ namespace P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImIn
 open scoped Manifold Topology
 
 namespace UpperHalfPlane
-p2m_export "UpperHalfPlane" "cuspFunction isOpen_upperHalfPlaneSet σ analyticAt_cuspFunction_zero differentiableOn_cuspFunction_ball I eq_cuspFunction cuspFunction_apply_zero IsZeroAtImInfty IsBoundedAtImInfty im coe_vadd ofComplex"
+p2m_export "UpperHalfPlane" "cuspFunction isOpen_upperHalfPlaneSet σ analyticAt_cuspFunction_zero \
+  differentiableOn_cuspFunction_ball I eq_cuspFunction cuspFunction_apply_zero IsZeroAtImInfty \
+  IsBoundedAtImInfty im coe_vadd ofComplex"
 namespace PeriodicPrimitiveSol
 p2m_open "UpperHalfPlane"
 
-p2m_open "UpperHalfPlane P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty.UpperHalfPlane Filter Topology Complex Function Metric"
+p2m_open "UpperHalfPlane \
+  P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty.UpperHalfPlane Filter \
+  Topology Complex Function Metric"
 open scoped Real Manifold
 
 local notation "𝕢" => Function.Periodic.qParam
@@ -89,7 +93,8 @@ theorem qParam_add_period (h : ℝ) (hh : h ≠ 0) (z : ℂ) : 𝕢 h (z + h) = 
   rw [show 2 * ↑π * Complex.I * (z + ↑h) / ↑h = 2 * ↑π * Complex.I * z / ↑h + 2 * ↑π * Complex.I by field_simp,
     Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
 
-theorem exists_periodic_primitive {h : ℝ} {g : ℍ → ℂ} (hh : 0 < h) (hper : Periodic (g ∘ ofComplex) h)
+theorem exists_periodic_primitive {h : ℝ} {g : ℍ → ℂ} (hh : 0 < h)
+    (hper : Periodic (g ∘ ofComplex) h)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : IsZeroAtImInfty g) :
     ∃ G : ℂ → ℂ, (∀ τ : ℍ, HasDerivAt G (g τ) ↑τ) ∧ Periodic G h := by
   have hbdd : IsBoundedAtImInfty g := hzero.boundedAtFilter
@@ -127,7 +132,7 @@ theorem exists_periodic_primitive {h : ℝ} {g : ℍ → ℂ} (hh : 0 < h) (hper
       field_simp
     rw [h3, hΦ₁mul]
     exact (eq_cuspFunction τ hh.ne' hper).symm
-  · show ↑h / (2 * π * Complex.I) * Ψ (𝕢 h (z + h)) = ↑h / (2 * π * Complex.I) * Ψ (𝕢 h z)
+  · change ↑h / (2 * π * Complex.I) * Ψ (𝕢 h (z + h)) = ↑h / (2 * π * Complex.I) * Ψ (𝕢 h z)
     rw [qParam_add_period h hh.ne' z]
 
 theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
@@ -174,6 +179,7 @@ theorem UpperHalfPlane.apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty {h : 
     {g : UpperHalfPlane → ℂ} (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) h)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g)
     {φ : ℂ → ℂ} (hφ : ∀ τ : UpperHalfPlane, HasDerivAt φ (g τ) ↑τ) (τ : UpperHalfPlane) :
-    φ (↑τ + h) = φ ↑τ := _root_.P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty.solution hh hper hhol hzero hφ τ
+    φ (↑τ + h) = φ ↑τ :=
+  solution hh hper hhol hzero hφ τ
 
 end publicSection

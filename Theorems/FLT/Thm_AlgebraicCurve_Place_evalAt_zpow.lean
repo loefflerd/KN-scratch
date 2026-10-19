@@ -61,7 +61,9 @@ namespace P2MW.S_AlgebraicCurve_Place_evalAt_zpow
 
 open AlgebraicCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) (n : ℤ) : v.evalAt (f ^ n) = v.evalAt f ^ n := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational)
+    {f : F} (hf : f ≠ 0) (h : v.ord f = 0) (n : ℤ) :
+    v.evalAt (f ^ n) = v.evalAt f ^ n := by
   have hpow : ∀ m : ℕ, v.evalAt (f ^ m) = v.evalAt f ^ m := by
     intro m
     induction m with
@@ -90,6 +92,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.evalAt_zpow {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) (n : ℤ) : v.evalAt (f ^ n) = v.evalAt f ^ n := _root_.P2MW.S_AlgebraicCurve_Place_evalAt_zpow.solution v hv hf h n
+theorem AlgebraicCurve.Place.evalAt_zpow {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) (n : ℤ) :
+    v.evalAt (f ^ n) = v.evalAt f ^ n :=
+  solution v hv hf h n
 
 end publicSection

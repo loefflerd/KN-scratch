@@ -125,7 +125,6 @@ theorem apply_eq_of_coe_eq_add_nat (hf : Periodic (f ∘ ofComplex) 1) {τ₁ τ
   exact h1
 
 variable {p} in
-
 theorem heckeMatrix_smul_vadd (hp : p ≠ 0) (j : ℕ) (τ : ℍ) :
     heckeMatrix p j • ((1 : ℝ) +ᵥ τ) = heckeMatrix p (j + 1) • τ := by
   apply UpperHalfPlane.ext
@@ -134,7 +133,6 @@ theorem heckeMatrix_smul_vadd (hp : p ≠ 0) (j : ℕ) (τ : ℍ) :
   ring
 
 variable {p} in
-
 theorem coe_heckeMatrix_smul_self (hp : p ≠ 0) (τ : ℍ) :
     ((heckeMatrix p p • τ : ℍ) : ℂ) = (heckeMatrix p 0 • τ : ℍ) + (1 : ℕ) := by
   have hp' : (p : ℂ) ≠ 0 := by exact_mod_cast hp
@@ -144,7 +142,6 @@ theorem coe_heckeMatrix_smul_self (hp : p ≠ 0) (τ : ℍ) :
   ring
 
 variable {p} in
-
 theorem coe_heckeDiagMatrix_smul_vadd (hp : p ≠ 0) (τ : ℍ) :
     ((heckeDiagMatrix p • ((1 : ℝ) +ᵥ τ) : ℍ) : ℂ) = (heckeDiagMatrix p • τ : ℍ) + (p : ℕ) := by
   rw [coe_heckeDiagMatrix_smul hp, coe_heckeDiagMatrix_smul hp, coe_vadd]
@@ -251,7 +248,6 @@ theorem qParam_heckeDiagMatrix_smul (τ : ℍ) :
   ring
 
 include hp in
-
 theorem exp_div_pow (τ : ℍ) : exp (2 * π * I * τ / p) ^ p = Periodic.qParam 1 τ := by
   rw [qParam_one, ← Complex.exp_nat_mul]
   congr 1
@@ -259,7 +255,6 @@ theorem exp_div_pow (τ : ℍ) : exp (2 * π * I * τ / p) ^ p = Periodic.qParam
   field_simp
 
 include hp in
-
 theorem sum_rootOfUnity_pow (m : ℕ) :
     ∑ j ∈ Finset.range p, (exp (2 * π * I / p) ^ j) ^ m = if p ∣ m then (p : ℂ) else 0 := by
   have hζ := Complex.isPrimitiveRoot_exp p hp

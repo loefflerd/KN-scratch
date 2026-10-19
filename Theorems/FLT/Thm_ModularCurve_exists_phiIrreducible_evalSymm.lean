@@ -76,7 +76,10 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq ModularPolynomialData EvalSymm PhiIrreducible PhiGen.IntCoeffs PhiGen.exists_phiGenDescends PhiGen.mem_adjoin_jq_of_phiGenDescends PhiGen.exists_modularPolynomialData_coeff_eq PhiGen.evalSymm_of_coeff_evalAtJ_eq PhiGen.splits_of_coeff_evalAtJ_eq PhiGen.phiIrreducible_of_splits"
+p2m_export "ModularCurve" "jq ModularPolynomialData EvalSymm PhiIrreducible PhiGen.IntCoeffs \
+  PhiGen.exists_phiGenDescends PhiGen.mem_adjoin_jq_of_phiGenDescends \
+  PhiGen.exists_modularPolynomialData_coeff_eq PhiGen.evalSymm_of_coeff_evalAtJ_eq \
+  PhiGen.splits_of_coeff_evalAtJ_eq PhiGen.phiIrreducible_of_splits"
 p2m_open "ModularCurve"
 
 private theorem exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
@@ -110,8 +113,8 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_evalSymm.ModularCurve ModularCurve.PhiGen in
-
-theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ :=
+theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ :=
   ModularCurve.exists_phiIrreducible_evalSymm ℓ
 
 end S_ModularCurve_exists_phiIrreducible_evalSymm
@@ -124,6 +127,8 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ := _root_.P2MW.S_ModularCurve_exists_phiIrreducible_evalSymm.solution ℓ
+theorem ModularCurve.exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ :=
+  solution ℓ
 
 end publicSection

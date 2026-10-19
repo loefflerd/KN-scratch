@@ -83,7 +83,7 @@ def SeededHorizontalProjectionSystem.supportProjection
 /-- A faithful realization of horizontal characters as Dirichlet characters.
 
 The character `atLevel χ` is allowed to be imprimitive at the full product
-modulus.  The compatibility equation says that, after applying the fixed
+modulus. The compatibility equation says that, after applying the fixed
 embedding into `ℂ_[p]`, it is exactly the pullback of the horizontal character
 along the product of the quotient maps from equation (5.1). -/
 structure SeededHorizontalCharacterRealizationV2
@@ -146,7 +146,7 @@ theorem SeededHorizontalCharacterRealizationV2.realized_conductor_dvd
     _ ∣ L.supportModulus χ.support :=
       DirichletCharacter.conductor_dvd_level _
 
-/-- The properties needed later for interpolation and counting.  Unlike the
+/-- The properties needed later for interpolation and counting. Unlike the
 old structure, these are conclusions to be proved from the pullback equation,
 not unconstrained fields in the realization data. -/
 def SeededHorizontalCharacterRealizationV2.HasExpectedProperties

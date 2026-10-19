@@ -125,7 +125,8 @@ theorem ϖ_C (a : A) : ϖ A (HahnSeries.C a) =
 def intSeriesA (p : PowerSeries ℤ) : LaurentSeries A :=
   HahnSeries.ofPowerSeries ℤ A (p.map (Int.castRingHom A))
 
-theorem coeffMap_intSeries {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (p : PowerSeries ℤ) :
+theorem coeffMap_intSeries {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (p : PowerSeries ℤ)
+    :
     coeffMap f (HahnSeries.ofPowerSeries ℤ R (p.map (Int.castRingHom R))) =
       HahnSeries.ofPowerSeries ℤ S (p.map (Int.castRingHom S)) := by
   rw [coeffMap_ofPowerSeries]
@@ -200,7 +201,8 @@ theorem exists_coeffMap_subtype_eq (x : LaurentSeries L) (hx : ∀ n, x.coeff n 
   · ext n
     rfl
 
-theorem valuation_le_of_mem_span (T : Finset L) (c : L) (hc : ∀ t ∈ T, A.valuation t ≤ A.valuation c)
+theorem valuation_le_of_mem_span (T : Finset L) (c : L)
+    (hc : ∀ t ∈ T, A.valuation t ≤ A.valuation c)
     {x : L} (hx : x ∈ Submodule.span ℤ (T : Set L)) : A.valuation x ≤ A.valuation c := by
   induction hx using Submodule.span_induction with
   | mem x h => exact hc x h
@@ -268,9 +270,11 @@ theorem exists_primitive_form {x : LaurentSeries L} (hx : x ≠ 0) (M : Submodul
     ∃ c : L, c ≠ 0 ∧ ∃ x₀ : LaurentSeries A, ϖ A x₀ ≠ 0 ∧
       x = algebraMap L (LaurentSeries L) c * ι A x₀ := by
   obtain ⟨c, hc0, hcA, n₀, hn₀⟩ := exists_primitive_scaling A hx M hM hxM
-  have hcoeff : ∀ n, (algebraMap L (LaurentSeries L) c⁻¹ * x).coeff n = c⁻¹ * x.coeff n := fun n => by
+  have hcoeff : ∀ n, (algebraMap L (LaurentSeries L) c⁻¹ * x).coeff n = c⁻¹ * x.coeff n :=
+    fun n => by
     rw [algebraMap_laurentSeries_eq_single, HahnSeries.coeff_single_zero_mul]
-  obtain ⟨y, hy⟩ := exists_coeffMap_subtype_eq A (algebraMap L (LaurentSeries L) c⁻¹ * x) fun n => by
+  obtain ⟨y, hy⟩ :=
+    exists_coeffMap_subtype_eq A (algebraMap L (LaurentSeries L) c⁻¹ * x) fun n => by
     rw [hcoeff]; exact hcA n
   refine ⟨c, hc0, y, ?_, ?_⟩
   · intro h
@@ -369,7 +373,8 @@ local notation "kk" => IsLocalRing.ResidueField A
 theorem exists_frac_form (f : FF) (hf : f ≠ 0) :
     ∃ c : L, c ≠ 0 ∧ ∃ x₀ y₀ : LaurentSeries A, ϖ A x₀ ≠ 0 ∧ ϖ A y₀ ≠ 0 ∧
       (f : LaurentSeries L) * ι A y₀ = algebraMap L (LaurentSeries L) c * ι A x₀ := by
-  have hfF : (f : LaurentSeries L) ∈ adjoin L (gensZ L Γ) := laurentBaseChange_le_adjoin_gensZ L Γ f.2
+  have hfF : (f : LaurentSeries L) ∈ adjoin L (gensZ L Γ) :=
+    laurentBaseChange_le_adjoin_gensZ L Γ f.2
   obtain ⟨r, hr, s, hs, hrs⟩ := (mem_adjoin_iff_div (F := L)).mp hfF
   have hf0' : (f : LaurentSeries L) ≠ 0 := fun h => hf (Subtype.ext h)
   have hr0 : r ≠ 0 := by rintro rfl; exact hf0' (by rw [hrs, zero_div])
@@ -637,7 +642,8 @@ theorem coe_jF' : ((jF Γ : FF) : LaurentSeries L) = ι A (jqModC A) := by
 def jbar (K : Type*) [Field K] : qExpFunctionFieldC K Γ :=
   ⟨jqModC K, intFormRatiosC_subset K Γ (ModularCurve.jqModC_mem_intFormRatiosC K Γ)⟩
 
-theorem coe_jbar (K : Type*) [Field K] : ((jbar Γ K : qExpFunctionFieldC K Γ) : LaurentSeries K) = jqModC K :=
+theorem coe_jbar (K : Type*) [Field K] :
+    ((jbar Γ K : qExpFunctionFieldC K Γ) : LaurentSeries K) = jqModC K :=
   rfl
 
 theorem transcendental_jbar (K : Type*) [Field K] :
@@ -705,7 +711,8 @@ theorem exists_resHom_eq {z : LaurentSeries kk} (hz : z ∈ qExpFunctionFieldC k
       have hϖg : ϖ A (intSeriesA A pg) ≠ 0 := by rwa [ϖ_intSeriesA]
       have hιg : ι A (intSeriesA A pg) ≠ 0 := by
         rw [Ne, ι_eq_zero_iff]; exact ϖ_ne_zero_ne_zero hϖg
-      have hw : ((⟨_, hmem⟩ : FF) : LaurentSeries L) * ι A (intSeriesA A pg) = ι A (intSeriesA A pf) := by
+      have hw : ((⟨_, hmem⟩ : FF) : LaurentSeries L) * ι A (intSeriesA A pg) = ι A (intSeriesA A pf) :=
+        by
         change ι A (intSeriesA A pf) / ι A (intSeriesA A pg) * ι A (intSeriesA A pg) = _
         rw [div_mul_cancel₀ _ hιg]
       have hO : (⟨_, hmem⟩ : FF) ∈ gaussRing A Γ := (mem_gaussRing_iff A Γ _).mpr ⟨_, _, hϖg, hw⟩
@@ -739,7 +746,8 @@ theorem exists_adjoin_coe_eq_resHom {g : FF} (hgK : g ∈ IntermediateField.adjo
   have hS₀ : ϖ A S₀ ≠ 0 := by rw [hϖS]; exact aeval_jqModC_ne_zero hs₀
   have hιS₀ : ι A S₀ ≠ 0 := by rw [Ne, ι_eq_zero_iff]; exact ϖ_ne_zero_ne_zero hS₀
   have hιR₀ : ι A R₀ ≠ 0 := by rw [Ne, ι_eq_zero_iff]; exact ϖ_ne_zero_ne_zero hR₀
-  have e0 : ∀ p : L[X], ((aeval (jF Γ) p : FF) : LaurentSeries L) = aeval (jqModC L) p := fun p => by
+  have e0 : ∀ p : L[X], ((aeval (jF Γ) p : FF) : LaurentSeries L) = aeval (jqModC L) p :=
+    fun p => by
     rw [← coe_jF (L := L) Γ]
     exact (aeval_algHom_apply (laurentBaseChange L (qExpFunctionFieldC ℚ Γ)).val (jF Γ) p).symm
   have e1 : (g : LaurentSeries L) = aeval (jqModC L) r / aeval (jqModC L) s := by
@@ -836,7 +844,7 @@ theorem card_le_finrank_of_linearIndependent
   have hcK : ∀ o, c o ∈ K0 := fun o => div_mem (g o).2 (g i₀).2
   have hcO : ∀ o, c o ∈ gaussRing A Γ := fun o => by
     rw [← (gaussRing A Γ).valuation_le_one_iff]
-    show (gaussRing A Γ).valuation (_ / _) ≤ 1
+    change (gaussRing A Γ).valuation (_ / _) ≤ 1
     rw [map_div₀, div_le_one₀ hvpos]
     exact hi₀ o (Finset.mem_univ o)
   have hci₀ : c i₀ = 1 := div_self hgi₀
@@ -892,7 +900,8 @@ section Exchange
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-theorem finite_adjoin_adjoin {x t : F} (hfin : FiniteDimensional (IntermediateField.adjoin K {x}) F) :
+theorem finite_adjoin_adjoin {x t : F} (hfin : FiniteDimensional (IntermediateField.adjoin K {x}) F)
+    :
     Module.Finite (IntermediateField.adjoin (IntermediateField.adjoin K {t}) {x}) F := by
   set Kx := IntermediateField.adjoin K {x} with hKx
   set Kt := IntermediateField.adjoin K {t} with hKt
@@ -932,7 +941,8 @@ theorem isAlgebraic_of_sum_aeval_mul_pow_eq_zero {x t : F} (ht : Transcendental 
       push Not at h
       exact hc (Polynomial.ext fun m => by simpa using h m)
     have hcoeff := congrArg (fun p : Kt[X] => ((p.coeff m : Kt) : F)) hq
-    simp only [q, finsetSum_coeff, coeff_C_mul, coeff_map, coeff_zero, ZeroMemClass.coe_zero] at hcoeff
+    simp only [q, finsetSum_coeff, coeff_C_mul, coeff_map, coeff_zero,
+      ZeroMemClass.coe_zero] at hcoeff
     rw [AddSubmonoidClass.coe_finsetSum] at hcoeff
     have hpoly : aeval t (∑ i : Fin n, C ((c i).coeff m) * X ^ (i : ℕ)) = 0 := by
       rw [map_sum]
@@ -944,7 +954,8 @@ theorem isAlgebraic_of_sum_aeval_mul_pow_eq_zero {x t : F} (ht : Transcendental 
     have hcm := congrArg (fun p : K[X] => p.coeff (i₁ : ℕ)) hzero
     simp only [finsetSum_coeff, coeff_C_mul, coeff_X_pow, coeff_zero] at hcm
     rw [Finset.sum_eq_single i₁ (fun j _ hj => by
-        rw [ite_eq_right (fun h => hj (Fin.ext h.symm)), mul_zero]) (fun h => absurd (Finset.mem_univ _) h),
+        rw [ite_eq_right (fun h => hj (Fin.ext h.symm)),
+          mul_zero]) (fun h => absurd (Finset.mem_univ _) h),
       ite_eq_left rfl, mul_one] at hcm
     exact hm hcm
   · have h1 : (aeval x q : F) = ∑ i : Fin n, aeval x (c i) * t ^ (i : ℕ) := by
@@ -980,7 +991,8 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
   have hD : ∀ i, aeval x (c i) = ((g i : Kx) : F) * ∏ j, aeval x (s j) := by
     intro i
     simp only [c, map_mul, map_prod]
-    rw [← Finset.mul_prod_erase Finset.univ (fun j => aeval x (s j)) (Finset.mem_univ i), ← mul_assoc,
+    rw [← Finset.mul_prod_erase Finset.univ (fun j => aeval x (s j)) (Finset.mem_univ i), ←
+      mul_assoc,
       hgrs i]
   have hprod : ∏ j, aeval x (s j) ≠ 0 := Finset.prod_ne_zero_iff.mpr fun j _ => hs j
   have hrel : ∑ i : Fin (d + 1), aeval x (c i) * t ^ (i : ℕ) = 0 := by
@@ -1082,6 +1094,7 @@ theorem ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_
           Module.finrank
             (IntermediateField.adjoin L
               ({y} : Set (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-            (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) := _root_.P2MW.S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField.solution L A Γ hT
+            (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+  solution L A Γ hT
 
 end publicSection

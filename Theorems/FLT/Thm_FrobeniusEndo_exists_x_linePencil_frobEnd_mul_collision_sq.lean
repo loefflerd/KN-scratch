@@ -67,7 +67,8 @@ namespace P2MW.S_FrobeniusEndo_exists_x_linePencil_frobEnd_mul_collision_sq
 
 open Polynomial
 open scoped Polynomial.Bivariate
-p2m_open "WeierstrassCurve~evalEval_ψ_sq~evalEval_φ WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo"
+p2m_open "WeierstrassCurve~evalEval_ψ_sq~evalEval_φ WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.Point FrobeniusEndo"
 
 namespace FrobLineH3
 
@@ -84,7 +85,8 @@ lemma ν_smul_basis_of_ne (p q : K[X]) (hq : q ≠ 0) :
   unfold ν
   have hdeg := CoordinateRing.degree_norm_smul_basis (W' := W.toAffine) p q
   rw [degree_eq_natDegree hq] at hdeg
-  have h3 : (2 • ((q.natDegree : ℕ) : WithBot ℕ)) + 3 = ((2 * q.natDegree + 3 : ℕ) : WithBot ℕ) := by
+  have h3 : (2 • ((q.natDegree : ℕ) : WithBot ℕ)) + 3 = ((2 * q.natDegree + 3 : ℕ) : WithBot ℕ) :=
+    by
     rw [two_nsmul, two_mul]; norm_cast
   rw [h3] at hdeg
   by_cases hp : p = 0
@@ -290,7 +292,6 @@ theorem addX_slope_mul_sub_sq [DecidableEq K] (W : WeierstrassCurve K) {x₁ x�
   rw [WeierstrassCurve.Affine.slope_of_X_ne hx]
   rw [WeierstrassCurve.Affine.equation_iff] at h₁ h₂
   have hx' : x₁ - x₂ ≠ 0 := sub_ne_zero.mpr hx
-
   have hL : (y₁ - y₂) / (x₁ - x₂) * (x₁ - x₂) = y₁ - y₂ := div_mul_cancel₀ _ hx'
   unfold starRHS WeierstrassCurve.Affine.addX
   linear_combination h₁ + h₂
@@ -374,12 +375,10 @@ theorem ν_omega_psi_le (m : ℤ) (hm : m ≠ 0)
   set α := CoordinateRing.mk W (C (C W.a₁ * W.Φ m * W.ΨSq m + C W.a₃ * W.ΨSq m ^ 2)) with hα
   set β := CoordinateRing.mk W (C (W.Φ m ^ 3 * W.ΨSq m + C W.a₂ * W.Φ m ^ 2 * W.ΨSq m ^ 2
       + C W.a₄ * W.Φ m * W.ΨSq m ^ 3 + C W.a₆ * W.ΨSq m ^ 4)) with hβ
-
   have hrel : Z ^ 2 + α * Z = β := by
     apply sub_eq_zero.mp
     rw [hZ, hα, hβ, ← _root_.map_pow, ← _root_.map_mul, ← _root_.map_add, ← _root_.map_sub]
     exact hEZ
-
   have hα_le : ν W α ≤ 4 * N2 - 2 := by
     have h1 : (C W.a₁ * W.Φ m * W.ΨSq m).natDegree ≤ N2 + (N2 - 1) :=
       natDegree_mul_le.trans (add_le_add ((natDegree_C_mul_le _ _).trans hΦ_le) hΨ_le)
@@ -390,8 +389,10 @@ theorem ν_omega_psi_le (m : ℤ) (hm : m ≠ 0)
     refine (ν_mk_C_le W h).trans ?_
     omega
   have hβ_le : ν W β ≤ 8 * N2 - 2 := by
-    have hΦ2 : (W.Φ m ^ 2).natDegree ≤ 2 * N2 := natDegree_pow_le.trans (Nat.mul_le_mul_left 2 hΦ_le)
-    have hΦ3 : (W.Φ m ^ 3).natDegree ≤ 3 * N2 := natDegree_pow_le.trans (Nat.mul_le_mul_left 3 hΦ_le)
+    have hΦ2 : (W.Φ m ^ 2).natDegree ≤ 2 * N2 :=
+      natDegree_pow_le.trans (Nat.mul_le_mul_left 2 hΦ_le)
+    have hΦ3 : (W.Φ m ^ 3).natDegree ≤ 3 * N2 :=
+      natDegree_pow_le.trans (Nat.mul_le_mul_left 3 hΦ_le)
     have hΨ2 : (W.ΨSq m ^ 2).natDegree ≤ 2 * (N2 - 1) :=
       natDegree_pow_le.trans (Nat.mul_le_mul_left 2 hΨ_le)
     have hΨ3 : (W.ΨSq m ^ 3).natDegree ≤ 3 * (N2 - 1) :=
@@ -448,7 +449,6 @@ theorem ν_Gpoly (q : ℕ) (hq : 2 ≤ q) (m : ℤ) (hm : (m : K) ≠ 0)
   have hΦΨ : (W.Φ m * W.ΨSq m).natDegree = 2 * N2 - 1 := by
     rw [natDegree_mul (W.Φ_ne_zero m) hΨ0, hΦ, hΨ]; omega
   have hXq : ((X : K[X]) ^ q).natDegree = q := natDegree_X_pow q
-
   set D := 2 * N2 + 2 * q - 1 with hD
   have hD1 : 1 ≤ D := by omega
   set B₀ : K[X] := W.Φ m * X ^ q * (W.Φ m + X ^ q * W.ΨSq m)
@@ -515,7 +515,8 @@ theorem ν_Gpoly (q : ℕ) (hq : 2 ≤ q) (m : ℤ) (hm : (m : K) ≠ 0)
       (natDegree_C_mul_le _ _).trans (natDegree_pow_le.trans (Nat.mul_le_mul_left 2 hΨ_le))
     have := (ν_mul_le W _ _).trans (add_le_add (ν_mk_C_le W h1) hnegq)
     omega
-  have t9 : ν W (CoordinateRing.mk W (2 * (W.ω m * W.ψ m) * W.toAffine.negPolynomial ^ q)) < NN := by
+  have t9 : ν W (CoordinateRing.mk W (2 * (W.ω m * W.ψ m) * W.toAffine.negPolynomial ^ q)) < NN :=
+    by
     rw [_root_.map_mul, _root_.map_mul, map_ofNat]
     have := (ν_mul_le W _ _).trans (add_le_add ((ν_mul_le W _ _).trans
       (add_le_add (ν_two W).le hZ)) hnegq)
@@ -614,7 +615,8 @@ lemma mk_eq_smul_basis (g : K[X][Y]) :
   have e : CoordinateRing.mk W g = CoordinateRing.mk W (g %ₘ W.toAffine.polynomial) := by
     conv_lhs => rw [← hdiv]
     rw [map_add, map_mul, AdjoinRoot.mk_self, zero_mul, add_zero]
-  rw [e, modByMonic_eq, map_add, map_mul, CoordinateRing.smul, CoordinateRing.smul, mul_one, add_comm]
+  rw [e, modByMonic_eq, map_add, map_mul, CoordinateRing.smul, CoordinateRing.smul, mul_one,
+    add_comm]
 
 lemma evalEval_eq_redX_add_redY {x y : K} (h : W.toAffine.Equation x y) (g : K[X][Y]) :
     g.evalEval x y = (redX W g).eval x + (redY W g).eval x * y := by
@@ -630,7 +632,6 @@ lemma evalEval_eq_redX_add_redY {x y : K} (h : W.toAffine.Equation x y) (g : K[X
 lemma mk_eq_zero_of_evalEval_eq_zero [IsAlgClosed K] [W.IsElliptic] {T : Set K} (hT : T.Finite)
     (g : K[X][Y]) (hg : ∀ {x y : K}, W.toAffine.Equation x y → x ∉ T → g.evalEval x y = 0) :
     CoordinateRing.mk W g = 0 := by
-
   have hbad : (T ∪ {x : K | W.Ψ₂Sq.IsRoot x}).Finite :=
     hT.union (Polynomial.finite_setOfPred_isRoot (Ψ₂Sq_ne_zero W))
   have key : ∀ x : K, x ∉ T ∪ {x : K | W.Ψ₂Sq.IsRoot x} →
@@ -696,7 +697,6 @@ lemma pow_card_algebraMap (a : R) : (algebraMap R k a) ^ Fintype.card F = algebr
   rw [← hσ, IsScalarTower.algebraMap_apply R F k, AlgEquiv.commutes]
 
 include hσ in
-
 lemma negY_pow_card (x y : k) :
     ((W⁄k).negY x y) ^ Fintype.card F = (W⁄k).negY (x ^ Fintype.card F) (y ^ Fintype.card F) := by
   have h1 : (W⁄k).a₁ = algebraMap R k W.a₁ := rfl
@@ -706,7 +706,6 @@ lemma negY_pow_card (x y : k) :
     AlgEquiv.commutes]
 
 include hσ in
-
 lemma smul_some_eq [DecidableEq k] {x y : k} (h : (W⁄k).Nonsingular x y) :
     ∃ h' : (W⁄k).Nonsingular (x ^ Fintype.card F) (y ^ Fintype.card F),
       σ • (Point.some x y h : (W⁄k).Point) = Point.some (x ^ Fintype.card F) (y ^ Fintype.card F) h' := by
@@ -755,7 +754,6 @@ lemma key_step (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k
       = Point.some (x ^ Fintype.card F) ((W⁄k).negY (x ^ Fintype.card F) (y ^ Fintype.card F))
           ((Affine.nonsingular_neg ..).mpr hq') := by
     rw [hσP, neg_some]
-
   have hA : linePencil (frobEnd W σ) m 1 (Point.some x y h)
       = Point.some x₁ y₁ h₁ + Point.some (x ^ Fintype.card F)
           ((W⁄k).negY (x ^ Fintype.card F) (y ^ Fintype.card F)) ((Affine.nonsingular_neg ..).mpr hq') := by
@@ -806,7 +804,8 @@ theorem exists_x_linePencil_frobEnd_mul_collision_sq [IsAlgClosed k] (W : Weiers
     have hZ := ν_omega_psi_le (W⁄k) m hm0 hEZ
     have hGν := ν_Gpoly (W⁄k) (Fintype.card F) hq2 m hmk hZ
     rw [mk_eq_smul_basis (W⁄k) (Gpoly (W⁄k) (Fintype.card F) m)] at hGν
-    have hn : 4 * m.natAbs ^ 2 + 4 * Fintype.card F - 2 = 2 * (2 * m.natAbs ^ 2 + 2 * Fintype.card F - 1) := by
+    have hn : 4 * m.natAbs ^ 2 + 4 * Fintype.card F - 2 = 2 * (2 * m.natAbs ^ 2 + 2 * Fintype.card F - 1) :=
+      by
       omega
     rw [hn] at hGν
     exact natDegree_of_ν_even (W⁄k) hGν
@@ -814,7 +813,6 @@ theorem exists_x_linePencil_frobEnd_mul_collision_sq [IsAlgClosed k] (W : Weiers
     obtain ⟨hA, hval⟩ := key_step W σ hσ m h h₁ hmP hC
     refine ⟨hA, fun {x' y'} h' hrepr => ?_⟩
     have e1 := hval h' hrepr
-
     have hn : (W⁄k).Nonsingular x ((W⁄k).negY x y) := (Affine.nonsingular_neg ..).mpr h
     have hn₁ : (W⁄k).Nonsingular x₁ ((W⁄k).negY x₁ y₁) := (Affine.nonsingular_neg ..).mpr h₁
     have hmP' : m • (Point.some x ((W⁄k).negY x y) hn : (W⁄k).Point)
@@ -846,8 +844,14 @@ end Main
 
 end FrobLineH3
 
-p2m_open "WeierstrassCurve~evalEval_ψ_sq~evalEval_φ" in open  WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo in
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (m : ℤ) (hfin : {x : k | ∃ (y : k) (h : (W⁄k).Nonsingular x y), m • Point.some x y h = 0}.Finite) : ∃ U : Polynomial k, ((m : k) ≠ 0 → U.natDegree = 2 * m.natAbs ^ 2 + 2 * Fintype.card F - 1) ∧ ∀ {x y : k} (h : (W⁄k).Nonsingular x y) {x₁ y₁ : k} (h₁ : (W⁄k).Nonsingular x₁ y₁), m • Point.some x y h = Point.some x₁ y₁ h₁ → ((W⁄k).ΨSq m).eval x ≠ 0 → ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ≠ 0 → (W⁄k).Ψ₂Sq.eval x ≠ 0 → linePencil (frobEnd W σ) m 1 (Point.some x y h) ≠ 0 ∧ ∀ {x' y' : k} (h' : (W⁄k).Nonsingular x' y'), linePencil (frobEnd W σ) m 1 (Point.some x y h) = Point.some x' y' h' → x' * ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ^ 2 = U.eval x :=
+p2m_open "WeierstrassCurve~evalEval_ψ_sq~evalEval_φ" in
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo in
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+    [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k]
+    (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
+    (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (m : ℤ)
+    (hfin : {x : k | ∃ (y : k) (h : (W⁄k).Nonsingular x y), m • Point.some x y h = 0}.Finite) :
+    ∃ U : Polynomial k, ((m : k) ≠ 0 → U.natDegree = 2 * m.natAbs ^ 2 + 2 * Fintype.card F - 1) ∧ ∀ {x y : k} (h : (W⁄k).Nonsingular x y) {x₁ y₁ : k} (h₁ : (W⁄k).Nonsingular x₁ y₁), m • Point.some x y h = Point.some x₁ y₁ h₁ → ((W⁄k).ΨSq m).eval x ≠ 0 → ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ≠ 0 → (W⁄k).Ψ₂Sq.eval x ≠ 0 → linePencil (frobEnd W σ) m 1 (Point.some x y h) ≠ 0 ∧ ∀ {x' y' : k} (h' : (W⁄k).Nonsingular x' y'), linePencil (frobEnd W σ) m 1 (Point.some x y h) = Point.some x' y' h' → x' * ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ^ 2 = U.eval x :=
   FrobLineH3.exists_x_linePencil_frobEnd_mul_collision_sq W σ hσ m hfin
 
 end S_FrobeniusEndo_exists_x_linePencil_frobEnd_mul_collision_sq
@@ -861,6 +865,12 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (m : ℤ) (hfin : {x : k | ∃ (y : k) (h : (W⁄k).Nonsingular x y), m • Point.some x y h = 0}.Finite) : ∃ U : Polynomial k, ((m : k) ≠ 0 → U.natDegree = 2 * m.natAbs ^ 2 + 2 * Fintype.card F - 1) ∧ ∀ {x y : k} (h : (W⁄k).Nonsingular x y) {x₁ y₁ : k} (h₁ : (W⁄k).Nonsingular x₁ y₁), m • Point.some x y h = Point.some x₁ y₁ h₁ → ((W⁄k).ΨSq m).eval x ≠ 0 → ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ≠ 0 → (W⁄k).Ψ₂Sq.eval x ≠ 0 → linePencil (frobEnd W σ) m 1 (Point.some x y h) ≠ 0 ∧ ∀ {x' y' : k} (h' : (W⁄k).Nonsingular x' y'), linePencil (frobEnd W σ) m 1 (Point.some x y h) = Point.some x' y' h' → x' * ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ^ 2 = U.eval x := _root_.P2MW.S_FrobeniusEndo_exists_x_linePencil_frobEnd_mul_collision_sq.solution W σ hσ m hfin
+theorem FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq {R : Type*} [CommRing R]
+    {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F]
+    [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R)
+    [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (m : ℤ)
+    (hfin : {x : k | ∃ (y : k) (h : (W⁄k).Nonsingular x y), m • Point.some x y h = 0}.Finite) :
+    ∃ U : Polynomial k, ((m : k) ≠ 0 → U.natDegree = 2 * m.natAbs ^ 2 + 2 * Fintype.card F - 1) ∧ ∀ {x y : k} (h : (W⁄k).Nonsingular x y) {x₁ y₁ : k} (h₁ : (W⁄k).Nonsingular x₁ y₁), m • Point.some x y h = Point.some x₁ y₁ h₁ → ((W⁄k).ΨSq m).eval x ≠ 0 → ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ≠ 0 → (W⁄k).Ψ₂Sq.eval x ≠ 0 → linePencil (frobEnd W σ) m 1 (Point.some x y h) ≠ 0 ∧ ∀ {x' y' : k} (h' : (W⁄k).Nonsingular x' y'), linePencil (frobEnd W σ) m 1 (Point.some x y h) = Point.some x' y' h' → x' * ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ^ 2 = U.eval x :=
+  solution W σ hσ m hfin
 
 end publicSection

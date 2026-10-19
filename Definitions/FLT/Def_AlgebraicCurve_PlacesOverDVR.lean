@@ -142,7 +142,6 @@ private theorem coe_chartHom (hw : ∀ r : R, algebraMap R F r ∈ w.toValuation
     (chartHom w hw r : F) = algebraMap R F r := rfl
 
 variable (R) in
-
 def center (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) : Ideal R :=
   (IsLocalRing.maximalIdeal w.toValuationSubring).comap (chartHom w hw)
 
@@ -165,7 +164,6 @@ theorem mem_center_iff_ord_pos (hw : ∀ r : R, algebraMap R F r ∈ w.toValuati
   rw [mem_center_iff, w.mem_maximalIdeal_iff_ord_pos hr']
 
 omit [IsDedekindDomain R] [IsFractionRing R F] in
-
 private theorem inv_algebraMap_mem (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring)
     {s : R} (hs : IsUnit (chartHom w hw s)) :
     (algebraMap R F s)⁻¹ ∈ w.toValuationSubring := by
@@ -196,7 +194,6 @@ theorem center_ne_bot (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring
   exact mul_mem (hw a) (inv_algebraMap_mem w hw (hunit b (nonZeroDivisors.ne_zero hb)))
 
 variable (R) in
-
 def centerHeightOneSpectrum (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
     HeightOneSpectrum R :=
   ⟨center R w hw, inferInstance, center_ne_bot w hw⟩
@@ -248,7 +245,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [FiniteDimensional F F'] [Algebra.IsSeparable F F']
 
 variable (F') in
-
 @[reducible] def valuationSubringAlgebra (v : Place K F) : Algebra v.toValuationSubring F' :=
   ((algebraMap F F').comp (algebraMap v.toValuationSubring F)).toAlgebra
 
@@ -257,7 +253,6 @@ section Setup
 variable (v : Place K F)
 
 variable (F') in
-
 abbrev integralClosureAt : Type _ := integralClosure v.toValuationSubring F'
 
 instance : IsDedekindDomain (integralClosureAt F' v) :=
@@ -271,7 +266,6 @@ instance : Module.Finite v.toValuationSubring (integralClosureAt F' v) :=
 
 omit [Algebra K F'] [IsScalarTower K F F'] [FiniteDimensional F F']
   [Algebra.IsSeparable F F'] in
-
 theorem algebraMap_integralClosureAt_injective :
     Function.Injective
       (algebraMap v.toValuationSubring (integralClosureAt F' v)) := by
@@ -341,7 +335,6 @@ section Center
 variable {v : Place K F} {w : Place K F'}
 
 omit [FiniteDimensional F F'] in
-
 theorem forall_mem_of_restrict_eq (hw : w.restrict F = v) (c : integralClosureAt F' v) :
     algebraMap (integralClosureAt F' v) F' c ∈ w.toValuationSubring := by
   obtain ⟨Q, hQmonic, hQeval⟩ := c.2
@@ -357,7 +350,6 @@ theorem forall_mem_of_restrict_eq (hw : w.restrict F = v) (c : integralClosureAt
   exact hOv _ (Q.coeff i).2
 
 variable (F' v) in
-
 def fiberCenter (hw : w.restrict F = v) : HeightOneSpectrum (integralClosureAt F' v) :=
   centerHeightOneSpectrum (integralClosureAt F' v) w (forall_mem_of_restrict_eq hw)
 
@@ -382,13 +374,11 @@ theorem mem_maximalIdeal_iff_ord_pos' {r : v.toValuationSubring} (hr : r ≠ 0) 
 
 omit [Algebra K F'] [IsScalarTower K F F'] [FiniteDimensional F F']
   [Algebra.IsSeparable F F'] in
-
 theorem algebraMap_integralClosureAt_ne_zero {r : v.toValuationSubring} (hr : r ≠ 0) :
     algebraMap v.toValuationSubring (integralClosureAt F' v) r ≠ 0 := fun h =>
   hr (algebraMap_integralClosureAt_injective v (by rw [h, map_zero]))
 
 omit [FiniteDimensional F F'] in
-
 theorem ord_algebraMap_integralClosureAt (hw : w.restrict F = v) (r : v.toValuationSubring) :
     w.ord (algebraMap (integralClosureAt F' v) F'
         (algebraMap v.toValuationSubring (integralClosureAt F' v) r))
@@ -492,7 +482,6 @@ section Fiber
 variable (v : Place K F)
 
 variable (F') in
-
 def fiberEquiv :
     {w : Place K F' // w.restrict F = v} ≃ HeightOneSpectrum (integralClosureAt F' v) where
   toFun w := fiberCenter F' v w.2
@@ -523,7 +512,6 @@ theorem finite_setOf_restrict_eq : {w : Place K F' | w.restrict F = v}.Finite :=
   exact Set.toFinite _
 
 variable (F') in
-
 def fiberOver : Finset (Place K F') :=
   (finite_setOf_restrict_eq (F' := F') v).toFinset
 

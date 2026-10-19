@@ -138,7 +138,8 @@ theorem solution (M : ℕ) [NeZero M] {k : ℤ}
   have hcoe : (⇑g : ℍ → ℂ) = (⇑f : ℍ → ℂ) ∣[k] γ := coe_diamondSlash γ hγ f
   have hrat' : ∀ n : ℕ, ∃ r : ℚ, (qExpansion 1 g).coeff n = (r : ℂ) := by
     rw [hcoe]; exact hrat
-  obtain ⟨D, p₁, hD, hint⟩ := ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion M g hrat'
+  obtain ⟨D, p₁, hD, hint⟩ :=
+    ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion M g hrat'
   refine ⟨D, (D : ℂ) • g, p₁, hD, ?_, ?_⟩
   · rw [FunLike.coe_smul]; exact hint
   · rw [FunLike.coe_smul, hcoe]
@@ -160,6 +161,7 @@ theorem ModularCurve.exists_isIntegralQExp_smul_slash_of_mem_Gamma0 (M : ℕ) [N
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M) :
     ∃ (D : ℤ) (f₁ : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)
       (p₁ : PowerSeries ℤ), D ≠ 0 ∧ ModularCurve.IsIntegralQExp f₁ p₁ ∧
-        (⇑f₁ : UpperHalfPlane → ℂ) = (D : ℂ) • ((⇑f : UpperHalfPlane → ℂ) ∣[k] γ) := _root_.P2MW.S_ModularCurve_exists_isIntegralQExp_smul_slash_of_mem_Gamma0.solution M f hp γ hγ
+        (⇑f₁ : UpperHalfPlane → ℂ) = (D : ℂ) • ((⇑f : UpperHalfPlane → ℂ) ∣[k] γ) :=
+  solution M f hp γ hγ
 
 end publicSection

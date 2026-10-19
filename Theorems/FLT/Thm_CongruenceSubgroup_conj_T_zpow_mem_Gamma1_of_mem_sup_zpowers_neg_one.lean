@@ -137,6 +137,7 @@ public section publicSection
 open scoped MatrixGroups
 theorem CongruenceSubgroup.conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one (M : ℕ) (hM : ¬ M ∣ 4)
     (σ : SL(2, ℤ)) (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
-    σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M := _root_.P2MW.S_CongruenceSubgroup_conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one.solution M hM σ h hmem
+    σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M :=
+  solution M hM σ h hmem
 
 end publicSection

@@ -88,10 +88,10 @@ def cyclicAddSubgroupMapEquiv (f : A →+ E) (hf : Function.Injective f) :
   invFun H := ⟨H.1.comap f,
     isAddCyclic_comap_and_card_of_le_range N f hf H.2.1 H.2.2.1 H.2.2.2⟩
   left_inv C := Subtype.ext (by
-    show (C.1.map f).comap f = C.1
+    change (C.1.map f).comap f = C.1
     exact AddSubgroup.comap_map_eq_self_of_injective hf C.1)
   right_inv H := Subtype.ext (by
-    show (H.1.comap f).map f = H.1
+    change (H.1.comap f).map f = H.1
     exact AddSubgroup.map_comap_eq_self H.2.2.2)
 
 theorem le_of_card_eq_of_nsmul_mem {H T : AddSubgroup E} (hcard : Nat.card H = N)

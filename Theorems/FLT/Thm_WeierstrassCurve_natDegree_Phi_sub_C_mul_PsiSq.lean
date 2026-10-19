@@ -73,7 +73,8 @@ theorem PortCard.natDegree_Φ_sub_C_mul_ΨSq {R : Type*} [CommRing R] [Nontrivia
       _ < n.natAbs ^ 2 := Nat.sub_lt (by omega) one_pos
       _ = (W.Φ n).natDegree := (WeierstrassCurve.natDegree_Φ W n).symm
 
-theorem solution {R : Type*} [CommRing R] [Nontrivial R] (W : WeierstrassCurve R) (n : ℤ) (c : R) : (W.Φ n - Polynomial.C c * W.ΨSq n).natDegree = n.natAbs ^ 2 :=
+theorem solution {R : Type*} [CommRing R] [Nontrivial R] (W : WeierstrassCurve R) (n : ℤ) (c : R) :
+    (W.Φ n - Polynomial.C c * W.ΨSq n).natDegree = n.natAbs ^ 2 :=
   PortCard.natDegree_Φ_sub_C_mul_ΨSq W n c
 
 end S_WeierstrassCurve_natDegree_Phi_sub_C_mul_PsiSq
@@ -85,6 +86,9 @@ end privateSection
 public section publicSection
 
 
-theorem WeierstrassCurve.natDegree_Phi_sub_C_mul_PsiSq {R : Type*} [CommRing R] [Nontrivial R] (W : WeierstrassCurve R) (n : ℤ) (c : R) : (W.Φ n - Polynomial.C c * W.ΨSq n).natDegree = n.natAbs ^ 2 := _root_.P2MW.S_WeierstrassCurve_natDegree_Phi_sub_C_mul_PsiSq.solution W n c
+theorem WeierstrassCurve.natDegree_Phi_sub_C_mul_PsiSq {R : Type*} [CommRing R] [Nontrivial R]
+    (W : WeierstrassCurve R) (n : ℤ) (c : R) :
+    (W.Φ n - Polynomial.C c * W.ΨSq n).natDegree = n.natAbs ^ 2 :=
+  solution W n c
 
 end publicSection

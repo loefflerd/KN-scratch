@@ -100,6 +100,7 @@ open UpperHalfPlane ModularForm Finset
 theorem ModularCurve.qExpansion_E6_eq_map_mk :
     UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₆ =
       PowerSeries.map (Int.castRingHom ℂ)
-        (PowerSeries.mk fun n => if n = 0 then 1 else -504 * ∑ d ∈ n.divisors, (d : ℤ) ^ 5) := _root_.P2MW.S_ModularCurve_qExpansion_E6_eq_map_mk.solution
+        (PowerSeries.mk fun n => if n = 0 then 1 else -504 * ∑ d ∈ n.divisors, (d : ℤ) ^ 5) :=
+  solution
 
 end publicSection

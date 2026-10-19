@@ -78,6 +78,8 @@ public section publicSection
 
 
 open ModularCurve IntermediateField
-theorem ModularCurve.transcendental_jq : Transcendental ℚ jq := _root_.P2MW.S_ModularCurve_transcendental_jq.solution
+theorem ModularCurve.transcendental_jq :
+    Transcendental ℚ jq :=
+  solution
 
 end publicSection

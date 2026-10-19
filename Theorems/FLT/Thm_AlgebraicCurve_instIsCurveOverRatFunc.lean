@@ -64,7 +64,8 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
 p2m_open "AlgebraicCurve"
 
 scoped instance instHasPrincipalDivisorsRatFuncLaneB (K : Type*) [Field K] : HasPrincipalDivisors K (RatFunc K) :=
@@ -79,11 +80,13 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ResidueField deg FiniteResidue ofHeightOneSpectrum FiniteResidue.finite"
+p2m_export "AlgebraicCurve.Place" "ResidueField deg FiniteResidue ofHeightOneSpectrum \
+  FiniteResidue.finite"
 p2m_open "AlgebraicCurve.Place"
 
 section DegPos
@@ -95,7 +98,8 @@ theorem finiteResidue_of_deg_pos (h : 0 < v.deg) : v.FiniteResidue :=
 end DegPos
 end Place
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "exists_irreducible_span deg_ofHeightOneSpectrum placeInfty eq_ofHeightOneSpectrum_or_eq_placeInfty deg_placeInfty hasPrincipalDivisors"
+p2m_export "AlgebraicCurve.RationalFunctionField" "exists_irreducible_span deg_ofHeightOneSpectrum \
+  placeInfty eq_ofHeightOneSpectrum_or_eq_placeInfty deg_placeInfty hasPrincipalDivisors"
 p2m_open "AlgebraicCurve.RationalFunctionField"
 variable (K : Type*) [Field K]
 
@@ -111,7 +115,6 @@ scoped instance instFiniteResiduePlaceInfty [DecidableEq (RatFunc K)] :
   Place.finiteResidue_of_deg_pos _ (by rw [deg_placeInfty K]; exact one_pos)
 
 variable {K} in
-
 scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue := by
   classical
   rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, rfl⟩ | rfl
@@ -121,7 +124,8 @@ scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue :=
 end RationalFunctionField
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ResidueField deg FiniteResidue ofHeightOneSpectrum FiniteResidue.finite"
+p2m_export "AlgebraicCurve.Place" "ResidueField deg FiniteResidue ofHeightOneSpectrum \
+  FiniteResidue.finite"
 end Place
 end AlgebraicCurve
 end
@@ -133,7 +137,8 @@ noncomputable section
 open KaehlerDifferential
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
 p2m_open "AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
@@ -143,10 +148,10 @@ def KaehlerRankOne : Prop :=
 
 variable {K F}
 namespace IsCurveOver
-p2m_export "AlgebraicCurve.IsCurveOver" "hasPrincipalDivisors instFiniteResidue finiteResidue kaehler_free_rank_one"
+p2m_export "AlgebraicCurve.IsCurveOver" "hasPrincipalDivisors instFiniteResidue finiteResidue \
+  kaehler_free_rank_one"
 end IsCurveOver
 p2m_open_scoped "AlgebraicCurve.IsCurveOver" in
-
 theorem IsCurveOver.of_finiteResidue_of_kaehlerRankOne
     [HasPrincipalDivisors K F] [∀ v : Place K F, v.FiniteResidue]
     (hΩ : KaehlerRankOne K F) : IsCurveOver K F where
@@ -154,7 +159,8 @@ theorem IsCurveOver.of_finiteResidue_of_kaehlerRankOne
   kaehler_free_rank_one := hΩ
 
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "exists_irreducible_span deg_ofHeightOneSpectrum placeInfty eq_ofHeightOneSpectrum_or_eq_placeInfty deg_placeInfty hasPrincipalDivisors"
+p2m_export "AlgebraicCurve.RationalFunctionField" "exists_irreducible_span deg_ofHeightOneSpectrum \
+  placeInfty eq_ofHeightOneSpectrum_or_eq_placeInfty deg_placeInfty hasPrincipalDivisors"
 p2m_open "AlgebraicCurve.RationalFunctionField"
 
 variable (K : Type*) [Field K]
@@ -170,11 +176,13 @@ section
 
 noncomputable section
 
-p2m_open "IntermediateField AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve Polynomial TensorProduct Module"
+p2m_open "IntermediateField AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve Polynomial TensorProduct Module"
 
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \
+  Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
 p2m_open "AlgebraicCurve"
 
 variable (K : Type*) [Field K]
@@ -214,6 +222,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.instIsCurveOverRatFunc (K : Type*) [Field K] :
-    AlgebraicCurve.IsCurveOver K (RatFunc K) := _root_.P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.solution K
+    AlgebraicCurve.IsCurveOver K (RatFunc K) :=
+  solution K
 
 end publicSection

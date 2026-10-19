@@ -124,7 +124,8 @@ private lemma tprod_eq_map_dedekindEtaUnit :
 end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit.ModularCurve in
-theorem solution : UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ) (PowerSeries.X * ModularCurve.dedekindEtaUnit) := by
+theorem solution :
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ) (PowerSeries.X * ModularCurve.dedekindEtaUnit) := by
   rw [qExpansion_discriminant_eq_X_mul_tprod, map_mul, PowerSeries.map_X,
     tprod_eq_map_dedekindEtaUnit]
 end
@@ -137,6 +138,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit : UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ) (PowerSeries.X * ModularCurve.dedekindEtaUnit) := _root_.P2MW.S_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit.solution
+theorem ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit :
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ) (PowerSeries.X * ModularCurve.dedekindEtaUnit) :=
+  solution
 
 end publicSection

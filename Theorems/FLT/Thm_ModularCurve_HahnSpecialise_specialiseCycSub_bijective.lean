@@ -74,7 +74,6 @@ variable {G G' : Type*} [AddCommGroup G] [AddCommGroup G'] (f : G →+ G') {N : 
 variable (hf : ∀ ⦃P Q : G⦄, N • P = 0 → N • Q = 0 → f P = f Q → P = Q)
 
 include hf in
-
 theorem addOrderOf_map_eq_of_injOn {g : G} (hg : N • g = 0) : addOrderOf (f g) = addOrderOf g := by
   apply Nat.dvd_antisymm (addOrderOf_map_dvd f g)
   apply addOrderOf_dvd_of_nsmul_eq_zero
@@ -83,7 +82,6 @@ theorem addOrderOf_map_eq_of_injOn {g : G} (hg : N • g = 0) : addOrderOf (f g)
   · rw [map_nsmul, addOrderOf_nsmul_eq_zero, map_zero]
 
 include hf in
-
 theorem map_surjective_of_surjOn
     (hs : ∀ P' : G', N • P' = 0 → ∃ P : G, N • P = 0 ∧ f P = P') :
     Function.Surjective (map f hf) := by
@@ -119,8 +117,10 @@ public section publicSection
 open ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise
 open ModularCurve.TatePoint (Qbar H CycSubH)
 open scoped Classical
-theorem ModularCurve.HahnSpecialise.specialiseCycSub_bijective (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
+theorem ModularCurve.HahnSpecialise.specialiseCycSub_bijective (E : WeierstrassCurve H)
+    (hE : IntegralCoeffs E)
     (hΔ : (specialFibre E).Δ ≠ 0) (N : ℕ) [NeZero N] :
-    Function.Bijective (specialiseCycSub E hE hΔ N) := _root_.P2MW.S_ModularCurve_HahnSpecialise_specialiseCycSub_bijective.solution E hE hΔ N
+    Function.Bijective (specialiseCycSub E hE hΔ N) :=
+  solution E hE hΔ N
 
 end publicSection

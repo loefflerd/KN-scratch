@@ -62,7 +62,10 @@ open scoped Pointwise
 
 noncomputable section
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') (f : F) : (g' • w).ord (algebraMap F F' f) = w.ord (algebraMap F F' (g⁻¹ • f)) := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'}
+    (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') (f : F) :
+    (g' • w).ord (algebraMap F F' f) = w.ord (algebraMap F F' (g⁻¹ • f)) := by
   have hrw : algebraMap F F' f = g' • (algebraMap F F' (g⁻¹ • f)) := by
     rw [hgg' (g⁻¹ • f), smul_inv_smul]
   rw [hrw]
@@ -80,6 +83,11 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.SemilinearAut
-theorem AlgebraicCurve.SemilinearAut.ord_algebraMap_smul {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') (f : F) : (g' • w).ord (algebraMap F F' f) = w.ord (algebraMap F F' (g⁻¹ • f)) := _root_.P2MW.S_AlgebraicCurve_SemilinearAut_ord_algebraMap_smul.solution hgg' w f
+theorem AlgebraicCurve.SemilinearAut.ord_algebraMap_smul {K F F' : Type*} [Field K] [Field F]
+    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] {g : SemilinearAut K F}
+    {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F')
+    (f : F) :
+    (g' • w).ord (algebraMap F F' f) = w.ord (algebraMap F F' (g⁻¹ • f)) :=
+  solution hgg' w f
 
 end publicSection

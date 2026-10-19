@@ -79,15 +79,17 @@ open scoped MatrixGroups
 
 theorem UHAsm.finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := by
   classical
-  rw [Module.Finite.iff_fg, show (HeckeEis.BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) = MvPolynomial.homogeneousSubmodule (Fin 2) ℂ n from rfl,
-    MvPolynomial.homogeneousSubmodule_eq_finsupp_supported, AddMonoidAlgebra.supported_eq_span_single]
+  rw [Module.Finite.iff_fg, show (HeckeEis.BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) =
+    MvPolynomial.homogeneousSubmodule (Fin 2) ℂ n from rfl,
+    MvPolynomial.homogeneousSubmodule_eq_finsupp_supported,
+    AddMonoidAlgebra.supported_eq_span_single]
   refine Submodule.fg_span (Set.Finite.image _ ?_)
   refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i + Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
   intro d hd
   have hsum : d 0 + d 1 = n := by
     have : d.degree = n := hd
     rw [← this, Finsupp.degree_eq_sum, Fin.sum_univ_two]
-  refine ⟨d 0, (by show d 0 ≤ n; omega), ?_⟩
+  refine ⟨d 0, (by change d 0 ≤ n; omega), ?_⟩
   ext j; fin_cases j
   · simp
   · simp; omega
@@ -99,8 +101,10 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
   classical
   have : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := UHAsm.finite_binaryForm n
   have : (CongruenceSubgroup.Gamma0 N).FiniteIndex := inferInstance
-  let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
-  obtain ⟨W, hW, hneg, hinv, hcoinv⟩ := HeckeEis.exists_induced_binaryFormRepSL_top N n hne (by omega)
+  let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) :=
+    (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
+  obtain ⟨W, hW, hneg, hinv, hcoinv⟩ :=
+    HeckeEis.exists_induced_binaryFormRepSL_top N n hne (by omega)
   have hB := HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced N n W hW
   have hA := HeckeEis.finrank_coeffH1par_top_add_le W hneg hinv hcoinv
   obtain ⟨h1, h2⟩ := HeckeEis.le_finrank_fixed_S_and_ST_binaryFormRepSL n hne
@@ -109,9 +113,11 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
   have hν₃ := ModularCurve.natCard_fixedPoints_ST_cosets_Gamma0_eq_nuThree N
   have hc := ModularCurve.natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount N
   have hμ := ModularCurve.Gamma0_index N
-  have hle₂ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index := by
+  have hle₂ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index :=
+    by
     rw [Subgroup.index]; exact Finite.card_subtype_le _
-  have hle₃ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index := by
+  have hle₃ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index :=
+    by
     rw [Subgroup.index]; exact Finite.card_subtype_le _
   have hq4 : 2 * ((n + 2) / 4) ≤ n + 1 := by omega
   have hq3 : 2 * ((n + 2) / 3) ≤ n + 1 := by omega
@@ -139,9 +145,11 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
       + 2 * (3 * ((ν₃ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 3 : ℕ) : ℚ))) + ((μ : ℚ) - ν₃) * ((n : ℚ) + 1)) + 6 * (cc : ℚ)
       ≤ 6 * (((n : ℚ) + 1) * μ) := by
     have := hmain'
-    have c1 : ((n + 1 - 2 * ((n + 2) / 4) : ℕ) : ℚ) = (n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ) := by
+    have c1 : ((n + 1 - 2 * ((n + 2) / 4) : ℕ) : ℚ) = (n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ) :=
+      by
       rw [Nat.cast_sub hq4]; push_cast; ring
-    have c2 : ((n + 1 - 2 * ((n + 2) / 3) : ℕ) : ℚ) = (n : ℚ) + 1 - 2 * (((n + 2) / 3 : ℕ) : ℚ) := by
+    have c2 : ((n + 1 - 2 * ((n + 2) / 3) : ℕ) : ℚ) = (n : ℚ) + 1 - 2 * (((n + 2) / 3 : ℕ) : ℚ) :=
+      by
       rw [Nat.cast_sub hq3]; push_cast; ring
     have c3 : ((μ - ν₂ : ℕ) : ℚ) = (μ : ℚ) - ν₂ := Nat.cast_sub hle₂
     have c4 : ((μ - ν₃ : ℕ) : ℚ) = (μ : ℚ) - ν₃ := Nat.cast_sub hle₃
@@ -172,9 +180,11 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
+theorem HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n)
+    (hne : Even n) :
     (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
       ≤ 2 * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)) := _root_.P2MW.S_HeckeEis_finrank_coeffH1par_le_two_mul_dimFormula.solution N n hn hne
+        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)) :=
+  solution N n hn hne
 
 end publicSection

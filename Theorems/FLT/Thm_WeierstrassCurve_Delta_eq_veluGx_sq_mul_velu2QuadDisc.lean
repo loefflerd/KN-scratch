@@ -42,11 +42,17 @@ The identity expresses the classical factorisation of the discriminant at a $2$-
 the form $\operatorname{disc}((X-x_0)Q) = \operatorname{Res}(X-x_0,Q)^2 \operatorname{disc}(Q)$
 applied to the splitting off of the root $x_0$ from the $2$-division polynomial. It is used to show
 that both factors are nonzero at a $2$-torsion point when $\Delta$ is, in
-[`WeierstrassCurve.veluGx_ne_zero_of_two_torsion`](thm.html#WeierstrassCurve.veluGx_ne_zero_of_two_torsion)
+[nonvanishing of `veluGx`](thm.html#WeierstrassCurve.veluGx_ne_zero_of_two_torsion)
 and
-[`WeierstrassCurve.velu2QuadDisc_ne_zero_of_two_torsion`](thm.html#WeierstrassCurve.velu2QuadDisc_ne_zero_of_two_torsion),
+[nonvanishing of the cofactor](thm.html#WeierstrassCurve.velu2QuadDisc_ne_zero_of_two_torsion),
 which feed into the construction of the quotient of a curve by an order-two subgroup via Vélu's
 formulae.
+
+## Local proof
+
+Translate the kernel point to the origin using `VariableChange`. Mathlib supplies
+invariance of the discriminant; the translated coefficients and quadratic cofactor
+reduce the result to a small polynomial identity over an arbitrary commutative ring.
 
 ## Explanation of the source proof
 
@@ -58,20 +64,18 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_WeierstrassCurve_Delta_eq_veluGx_sq_mul_velu2QuadDisc
 
 open WeierstrassCurve WeierstrassCurve.Affine in
 theorem solution {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ : R}
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
     W.Δ = W.veluGx x₀ y₀ ^ 2 * W.velu2QuadDisc x₀ := by
-  rw [Affine.equation_iff] at hQ
-  simp only [veluGy] at hgy
-  simp only [Δ, b₂, b₄, b₆, b₈, veluGx, velu2QuadDisc]
-  linear_combination
-    (W.a₁^6 + 12*W.a₁^4*W.a₂ - 36*W.a₁^3*W.a₃ + 48*W.a₁^2*W.a₂^2 - 72*W.a₁^2*W.a₄ - 144*W.a₁*W.a₂*W.a₃ + 432*W.a₁*x₀*y₀ + 64*W.a₂^3 - 288*W.a₂*W.a₄ - 432*W.a₂*x₀^2 + 216*W.a₃^2 + 432*W.a₃*y₀ - 432*W.a₄*x₀ + 432*W.a₆ - 432*x₀^3 + 432*y₀^2) * hQ
-    + (W.a₁^6*y₀ - W.a₁^5*W.a₂*x₀ - W.a₁^5*W.a₄ - W.a₁^5*x₀^2 + W.a₁^4*W.a₂*W.a₃ + 10*W.a₁^4*W.a₂*y₀ + W.a₁^4*W.a₃*x₀ - 4*W.a₁^4*x₀*y₀ - 8*W.a₁^3*W.a₂^2*x₀ - 8*W.a₁^3*W.a₂*W.a₄ - W.a₁^3*W.a₃^2 - 34*W.a₁^3*W.a₃*y₀ + 6*W.a₁^3*W.a₄*x₀ + 9*W.a₁^3*x₀^3 + 8*W.a₁^2*W.a₂^2*W.a₃ + 32*W.a₁^2*W.a₂^2*y₀ + 36*W.a₁^2*W.a₂*W.a₃*x₀ - 16*W.a₁^2*W.a₂*x₀*y₀ + 30*W.a₁^2*W.a₃*W.a₄ + 27*W.a₁^2*W.a₃*x₀^2 - 68*W.a₁^2*W.a₄*y₀ + 30*W.a₁^2*x₀^2*y₀ - 16*W.a₁*W.a₂^3*x₀ - 16*W.a₁*W.a₂^2*W.a₄ + 16*W.a₁*W.a₂^2*x₀^2 - 36*W.a₁*W.a₂*W.a₃^2 - 72*W.a₁*W.a₂*W.a₃*y₀ + 88*W.a₁*W.a₂*W.a₄*x₀ - 24*W.a₁*W.a₂*x₀^3 - 27*W.a₁*W.a₃^2*x₀ + 108*W.a₁*W.a₃*x₀*y₀ + 64*W.a₁*W.a₄^2 + 24*W.a₁*W.a₄*x₀^2 - 72*W.a₁*x₀^4 + 324*W.a₁*x₀*y₀^2 + 16*W.a₂^3*W.a₃ + 32*W.a₂^3*y₀ - 72*W.a₂*W.a₃*W.a₄ - 216*W.a₂*W.a₃*x₀^2 - 144*W.a₂*W.a₄*y₀ - 432*W.a₂*x₀^2*y₀ + 27*W.a₃^3 + 162*W.a₃^2*y₀ - 216*W.a₃*W.a₄*x₀ - 216*W.a₃*x₀^3 + 324*W.a₃*y₀^2 - 432*W.a₄*x₀*y₀ - 432*x₀^3*y₀ + 216*y₀^3) * hgy
+  have hΔ : ((⟨1, x₀, 0, y₀⟩ : VariableChange R) • W).Δ = W.Δ := by
+    simpa only [inv_one, Units.val_one, one_pow, one_mul] using
+      W.variableChange_Δ (⟨1, x₀, 0, y₀⟩ : VariableChange R)
+  rw [← hΔ, W.velu2_variableChange hQ hgy, W.velu2QuadDisc_eq_shifted hgy]
+  simp only [Δ, b₂, b₄, b₆, b₈]
+  ring
 
 end S_WeierstrassCurve_Delta_eq_veluGx_sq_mul_velu2QuadDisc
 end P2MW
@@ -86,7 +90,8 @@ namespace WeierstrassCurve
 variable {R : Type*} [CommRing R] {W : WeierstrassCurve R}
 theorem Delta_eq_veluGx_sq_mul_velu2QuadDisc {x₀ y₀ : R}
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
-    W.Δ = W.veluGx x₀ y₀ ^ 2 * W.velu2QuadDisc x₀ := _root_.P2MW.S_WeierstrassCurve_Delta_eq_veluGx_sq_mul_velu2QuadDisc.solution hQ hgy
+    W.Δ = W.veluGx x₀ y₀ ^ 2 * W.velu2QuadDisc x₀ :=
+  _root_.P2MW.S_WeierstrassCurve_Delta_eq_veluGx_sq_mul_velu2QuadDisc.solution hQ hgy
 end WeierstrassCurve
 
 end publicSection

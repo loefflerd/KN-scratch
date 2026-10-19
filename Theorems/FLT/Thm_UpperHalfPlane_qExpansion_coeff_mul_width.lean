@@ -103,9 +103,9 @@ theorem main (f : ℍ → ℂ) (h₀ : ℝ) (hh₀ : 0 < h₀)
     intro i
     split_ifs with hdiv
     · obtain ⟨n, rfl⟩ := hdiv
-      show extend (fun n : ℕ => m' * n) a 0 (m' * n) = _
+      change extend (fun n : ℕ => m' * n) a 0 (m' * n) = _
       rw [hinj.extend_apply, Nat.mul_div_cancel_left _ hm']
-    · show extend (fun n : ℕ => m' * n) a 0 i = 0
+    · change extend (fun n : ℕ => m' * n) a 0 i = 0
       rw [extend_apply' _ _ _ (hnot i hdiv), Pi.zero_apply]
   have hsum : ∀ τ : ℍ, HasSum (fun i => c i • Periodic.qParam ((m' : ℝ) * h₀) τ ^ i) (F τ) := by
     intro τ
@@ -120,7 +120,8 @@ theorem main (f : ℍ → ℂ) (h₀ : ℝ) (hh₀ : 0 < h₀)
       · rw [extend_apply' _ _ _ (hnot i hdiv), Pi.zero_apply, zero_smul]
     rw [heq, hasSum_extend_zero hinj]
     exact h1
-  have huniq := qExpansion_coeff_unique F hh (analyticAt_cuspFunction_zero hh hper' hhol hbdd) hsum i
+  have huniq :=
+    qExpansion_coeff_unique F hh (analyticAt_cuspFunction_zero hh hper' hhol hbdd) hsum i
   change c i = PowerSeries.coeff i (qExpansion ((m' : ℝ) * h₀) f) at huniq
   rw [← huniq, hc]
 
@@ -153,6 +154,7 @@ theorem UpperHalfPlane.qExpansion_coeff_mul_width (f : UpperHalfPlane → ℂ) (
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) (hbdd : UpperHalfPlane.IsBoundedAtImInfty f)
     (m' : ℕ) (hm' : 0 < m') (i : ℕ) :
     PowerSeries.coeff i (UpperHalfPlane.qExpansion ((m' : ℝ) * h₀) f) =
-      if m' ∣ i then PowerSeries.coeff (i / m') (UpperHalfPlane.qExpansion h₀ f) else 0 := _root_.P2MW.S_UpperHalfPlane_qExpansion_coeff_mul_width.solution f h₀ hh₀ hper hhol hbdd m' hm' i
+      if m' ∣ i then PowerSeries.coeff (i / m') (UpperHalfPlane.qExpansion h₀ f) else 0 :=
+  solution f h₀ hh₀ hper hhol hbdd m' hm' i
 
 end publicSection

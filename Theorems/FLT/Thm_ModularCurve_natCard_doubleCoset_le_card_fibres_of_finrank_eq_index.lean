@@ -93,7 +93,12 @@ open scoped MatrixGroups IntermediateField Manifold
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpFunctionFieldC jGen laurentBaseChange jqModC LevelN.wp LevelN.fricke LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin LevelN.exists_place_ord_sub_pos_forall_smul_eq LevelN.exists_place_ord_neg_forall_smul_eq exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN LevelN.exists_place_ord_jGen_le_two_three_level transcendental_jqModC"
+p2m_export "ModularCurve" "qExpFunctionFieldC jGen laurentBaseChange jqModC LevelN.wp \
+  LevelN.fricke LevelN.jAnalytic LevelN.ring LevelN.jGen \
+  LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin \
+  LevelN.exists_place_ord_sub_pos_forall_smul_eq LevelN.exists_place_ord_neg_forall_smul_eq \
+  exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN \
+  LevelN.exists_place_ord_jGen_le_two_three_level transcendental_jqModC"
 namespace SpecialFibresLB
 p2m_open "ModularCurve"
 
@@ -553,7 +558,8 @@ def liftE (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈
 theorem liftE_apply (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈ E', φ x = x) (x : L) :
     liftE E' φ hφ x = φ x := rfl
 
-theorem restrictScalars_liftE (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈ E', φ x = x) :
+theorem restrictScalars_liftE (E' : IntermediateField ℂ L) (φ : L ≃ₐ[ℂ] L) (hφ : ∀ x ∈ E', φ x = x)
+    :
     (liftE E' φ hφ).restrictScalars ℂ = φ :=
   AlgEquiv.ext fun _ => rfl
 
@@ -630,7 +636,6 @@ theorem galoisPackage :
   ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin M K
 
 include K in
-
 theorem comp_smul_mem (γ : SL(2, ℤ)) (F : ℍ → ℂ) (hF : F ∈ LevelN.ring M) :
     (fun τ : ℍ => F (γ • τ)) ∈ LevelN.ring M :=
   (galoisPackage M K).choose γ F hF
@@ -870,7 +875,8 @@ theorem adjoin_range_eq_top
     IntermediateField.adjoin ℂ (Set.range (algebraMap F E)) = ⊤ := by
   let f : E →ₐ[ℂ] L := E.val.restrictScalars ℂ
   set A := IntermediateField.adjoin ℂ (Set.range (algebraMap F E)) with hA
-  have hmapA : A.map f = IntermediateField.adjoin ℂ (Set.range fun u : F => (algebraMap F E u : L)) := by
+  have hmapA : A.map f = IntermediateField.adjoin ℂ (Set.range fun u : F => (algebraMap F E u : L)) :=
+    by
     rw [hA, IntermediateField.adjoin_map, ← Set.range_comp]
     rfl
   rw [eq_top_iff]
@@ -935,7 +941,8 @@ theorem finrank_fixedField_map (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgr
   have hcard : 0 < Nat.card H := Nat.card_pos
   rw [h1, h3, ← h4] at h2
   rw [← hidx]
-  have : Module.finrank ℂ⟮jK M K⟯ (IntermediateField.fixedField H) * Nat.card H = H.index * Nat.card H := by
+  have : Module.finrank ℂ⟮jK M K⟯ (IntermediateField.fixedField H) * Nat.card H = H.index * Nat.card H :=
+    by
     rw [h2, mul_comm]
   exact Nat.eq_of_mul_eq_mul_right hcard this
 
@@ -990,7 +997,8 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     exact Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
   have : AlgebraicCurve.IsCurveOver ℚ̄ FF :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField hyT hfin
-  have hjE : jK M K ∈ E := E.algebraMap_mem (⟨jK M K, IntermediateField.mem_adjoin_simple_self ℂ _⟩ : L₀)
+  have hjE : jK M K ∈ E :=
+    E.algebraMap_mem (⟨jK M K, IntermediateField.mem_adjoin_simple_self ℂ _⟩ : L₀)
   let xE : E := ⟨jK M K, hjE⟩
   have hyt : ((algebraMap FF E y : E) : K) = jK M K := hΦy y hy
   have hΦEy : algebraMap FF E y = xE := Subtype.ext hyt
@@ -1104,7 +1112,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     exact h1.trans hle
 
 include hΓ in
-
 theorem main (y : FF) (hy : (y : LaurentSeries ℚ̄) = jqModC ℚ̄)
     (hfull : Module.finrank ℚ̄⟮y⟯ FF = (Γ ⊔ Subgroup.zpowers (-1)).index) :
     Nat.card (DoubleCoset.Quotient (Γ : Set SL(2, ℤ))
@@ -1197,6 +1204,7 @@ theorem ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index
             Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
           (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
-            P.ord y < 0} := _root_.P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.solution M Γ hΓ y hy hfull
+            P.ord y < 0} :=
+  solution M Γ hΓ y hy hfull
 
 end publicSection

@@ -85,16 +85,19 @@ def xco [DecidableEq L] {W : WeierstrassCurve L} : W.toAffine.Point → Option L
   | 0 => none
   | .some x _ _ => some x
 
-@[scoped simp] theorem xco_zero [DecidableEq L] {W : WeierstrassCurve L} : xco (0 : W.toAffine.Point) = none := rfl
+@[scoped simp] theorem xco_zero [DecidableEq L] {W : WeierstrassCurve L} :
+    xco (0 : W.toAffine.Point) = none := rfl
 @[scoped simp] theorem xco_some [DecidableEq L] {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
     xco (Point.some x y h) = some x := rfl
 
-theorem xco_neg [DecidableEq L] {W : WeierstrassCurve L} (P : W.toAffine.Point) : xco (-P) = xco P := by
+theorem xco_neg [DecidableEq L] {W : WeierstrassCurve L} (P : W.toAffine.Point) :
+    xco (-P) = xco P := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
   · rw [Point.neg_some]; rfl
 
-theorem eq_or_eq_neg_of_xco_eq [DecidableEq L] {W : WeierstrassCurve L} {P Q : W.toAffine.Point} (hPQ : xco P = xco Q) :
+theorem eq_or_eq_neg_of_xco_eq [DecidableEq L] {W : WeierstrassCurve L} {P Q : W.toAffine.Point}
+    (hPQ : xco P = xco Q) :
     P = Q ∨ P = -Q := by
   rcases P with _ | ⟨x, y, h⟩ <;> rcases Q with _ | ⟨x', y', h'⟩
   · exact Or.inl rfl
@@ -114,15 +117,18 @@ theorem eq_or_eq_neg_of_xco_eq [DecidableEq L] {W : WeierstrassCurve L} {P Q : W
     · exact Or.inl rfl
     · right; rw [Point.neg_some]
 
-theorem xco_eq_of_heq [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) {P : W₁.toAffine.Point} {Q : W₂.toAffine.Point}
+theorem xco_eq_of_heq [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂)
+    {P : W₁.toAffine.Point} {Q : W₂.toAffine.Point}
     (h : HEq P Q) : xco P = xco Q := by
   subst e
   rw [eq_of_heq h]
 
-def castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) : W₁.toAffine.Point ≃+ W₂.toAffine.Point := by
+def castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) :
+    W₁.toAffine.Point ≃+ W₂.toAffine.Point := by
   subst e; exact AddEquiv.refl _
 
-theorem xco_castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) (P : W₁.toAffine.Point) :
+theorem xco_castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂)
+    (P : W₁.toAffine.Point) :
     xco (castPt e P) = xco P := by
   subst e; rfl
 
@@ -130,7 +136,7 @@ theorem xco_vcInvFun [DecidableEq L] (u : Lˣ) (W : WeierstrassCurve L) (P : W.t
     xco (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L) W.toAffine P) = (xco P).map (fun x => ((u⁻¹ : Lˣ) : L) ^ 2 * x) := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
-  · show some _ = some _
+  · change some _ = some _
     simp [WeierstrassCurve.Affine.vcXInv]
 
 section Scalar
@@ -169,7 +175,8 @@ theorem exists_common_scalar {p : ℕ} [Fact p.Prime] (e : ZMod p × ZMod p ≃+
   obtain ⟨⟨s, t⟩, rfl⟩ := e.surjective v
   have hv : e (s, t) = (s.val : ℤ) • e (1, 0) + (t.val : ℤ) • e (0, 1) := by
     rw [← map_zsmul, ← map_zsmul, ← map_add]; congr 1; ext <;> simp []
-  rw [hv, map_add, map_zsmul, map_zsmul, ha, hb, smul_add, smul_comm c (s.val : ℤ), smul_comm c (t.val : ℤ),
+  rw [hv, map_add, map_zsmul, map_zsmul, ha, hb, smul_add, smul_comm c (s.val : ℤ), smul_comm c
+    (t.val : ℤ),
     hzs a c _ hca.symm, hzs b c _ hcb.symm]
 
 end Scalar
@@ -191,7 +198,8 @@ theorem natDegree_Phi_sub_C_mul_X_mul_PsiSq_le (c : L) (m : ℕ) (hm : 1 ≤ m) 
     have hCX : (C c * X : L[X]).natDegree ≤ 1 := (natDegree_C_mul_le _ _).trans natDegree_X_le
     omega
 
-theorem Phi_sub_C_mul_X_mul_PsiSq_ne_zero (c : L) (m : ℕ) (hm : 1 ≤ m) (hc : 1 - c * (m : L) ^ 2 ≠ 0) :
+theorem Phi_sub_C_mul_X_mul_PsiSq_ne_zero (c : L) (m : ℕ) (hm : 1 ≤ m)
+    (hc : 1 - c * (m : L) ^ 2 ≠ 0) :
     W.Φ (m : ℤ) - C c * X * W.ΨSq (m : ℤ) ≠ 0 := by
   intro h0
   have hcoef : (W.Φ (m : ℤ) - C c * X * W.ΨSq (m : ℤ)).coeff (m ^ 2) = 1 - c * (m : L) ^ 2 := by
@@ -235,7 +243,8 @@ theorem solution
     rw [Units.val_inv_eq_inv_val, inv_pow, hu2inv]
   have h2 : (2 : L) ≠ 0 := two_ne_zero
   have hΔ : W.Δ = -432 * B ^ 2 := by
-    simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
+    simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄,
+      WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
   have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hB])⟩
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_pow_three_eq_one u hu B
@@ -248,10 +257,11 @@ theorem solution
     rw [← this]; simp [hu2inv]
   obtain ⟨e, he⟩ := WeierstrassCurve.exists_addEquiv_point_variableChange W γ
   let σ : W.toAffine.Point →+ W.toAffine.Point := (castPt hW).toAddMonoidHom.comp e.toAddMonoidHom
-  have hσx : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), xco (σ (Point.some x y h)) = some ((u : L) * x) := by
+  have hσx : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), xco (σ (Point.some x y h)) = some ((u : L) * x) :=
+    by
     intro x y h
     obtain ⟨h', he'⟩ := he x y h
-    show xco (castPt hW (e (Point.some x y h))) = _
+    change xco (castPt hW (e (Point.some x y h))) = _
     rw [xco_castPt, he', xco_some]
     simp [hγdef, hu2inv]
   have hσ0 : ∀ P : W.toAffine.Point, σ P = 0 ↔ P = 0 := fun P =>
@@ -269,7 +279,7 @@ theorem solution
     have hns : W.toAffine.Nonsingular a 0 := by
       rw [WeierstrassCurve.Affine.nonsingular_iff']
       refine ⟨heq, Or.inl ?_⟩
-      show (0 : L) * 0 - (3 * a ^ 2 + 2 * 0 * a + 0) ≠ 0
+      change (0 : L) * 0 - (3 * a ^ 2 + 2 * 0 * a + 0) ≠ 0
       intro h3a
       apply ha0
       have : (3 : L) * a ^ 2 = 0 := by linear_combination -h3a
@@ -300,7 +310,7 @@ theorem solution
       have hpL : ((p : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hp.ne_zero
       have h := W.card_torsion_of_isAlgClosed (K := L) hpL
       have hb : (W⁄L) = W.toAffine := by
-        show (W.baseChange L).toAffine = W.toAffine
+        change (W.baseChange L).toAffine = W.toAffine
         rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
       rw [hb] at h
       exact h
@@ -319,7 +329,8 @@ theorem solution
         · exact ⟨k, by rw [h1, natCast_zsmul]⟩
         · exact ⟨-k, by rw [h1, neg_smul, natCast_zsmul]⟩
     let Ep := (Submodule.torsionBy ℤ W.toAffine.Point p).toAddSubgroup
-    have hEp_mem : ∀ T : W.toAffine.Point, T ∈ Ep ↔ (p : ℤ) • T = 0 := fun T => Submodule.mem_torsionBy_iff _ _
+    have hEp_mem : ∀ T : W.toAffine.Point, T ∈ Ep ↔ (p : ℤ) • T = 0 :=
+      fun T => Submodule.mem_torsionBy_iff _ _
     have hσEp : ∀ T ∈ Ep, σ T ∈ Ep := by
       intro T hT
       rw [hEp_mem] at hT ⊢
@@ -329,7 +340,7 @@ theorem solution
       have hpL : ((p : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hp.ne_zero
       have h := W.nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed (K := L) hpL
       have hb : (W⁄L) = W.toAffine := by
-        show (W.baseChange L).toAffine = W.toAffine
+        change (W.baseChange L).toAffine = W.toAffine
         rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
       rw [hb] at h
       exact h
@@ -351,12 +362,15 @@ theorem solution
         have := hc ⟨_, hT⟩
         have hval : σ (Point.some x y h) = c • Point.some x y h := congrArg Subtype.val this
         rw [hval]
-        obtain ⟨k, hk⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub (r : ℤ) c p).mp (by exact_mod_cast hr)
+        obtain ⟨k, hk⟩ :=
+          (ZMod.intCast_eq_intCast_iff_dvd_sub (r : ℤ) c p).mp (by exact_mod_cast hr)
         have : c = r + p * k := by linarith
         rw [this, add_zsmul, mul_comm, mul_zsmul, hpT, zsmul_zero, add_zero]
-      obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 := by
+      obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 :=
+        by
         have h1 : 1 < Nat.card Ep := by rw [show Nat.card Ep = p ^ 2 from hcard]; nlinarith
-        have : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
+        have : Finite Ep :=
+          Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
         have : Nontrivial Ep := Finite.one_lt_card_iff_nontrivial.mp h1
         obtain ⟨⟨T, hT⟩, hT0⟩ := exists_ne (0 : Ep)
         rcases T with _ | ⟨x, y, h⟩
@@ -395,7 +409,8 @@ theorem solution
     have hF0 : F ≠ 0 := Phi_sub_C_mul_X_mul_PsiSq_ne_zero W (u : L) m hm1 hc
     have hFdeg : F.natDegree ≤ m ^ 2 := natDegree_Phi_sub_C_mul_X_mul_PsiSq_le W (u : L) m hm1
     have hmp : (m : ℤ) • (0 : W.toAffine.Point) = 0 := zsmul_zero _
-    have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 → F.IsRoot x := by
+    have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 → F.IsRoot x :=
+      by
       intro x y h hpT
       have hord : addOrderOf (Point.some x y h) = p :=
         addOrderOf_eq_prime_iff.mpr ⟨by rw [← natCast_zsmul]; exact hpT, Point.some_ne_zero h⟩
@@ -414,10 +429,11 @@ theorem solution
       have hΨ : (W.ΨSq (m : ℤ)).eval x ≠ 0 := by
         rw [← WeierstrassCurve.Affine.evalEval_psi_sq W h.1 (m : ℤ)]; exact pow_ne_zero 2 hψ
       rw [div_eq_iff hΨ] at hx
-      show F.eval x = 0
+      change F.eval x = 0
       rw [hFdef, eval_sub, eval_mul, eval_mul, eval_C, eval_X]
       linear_combination hx
-    have hfinEp : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
+    have hfinEp : Finite Ep :=
+      Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
     have : Fintype Ep := Fintype.ofFinite Ep
     classical
     let g : Ep → Option L := fun T => xco (T.1 : W.toAffine.Point)
@@ -475,6 +491,7 @@ theorem WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three
     (p : ℕ) (hp : p.Prime) :
     ∃ T : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine.Point, addOrderOf T = p ∧
       ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ : WeierstrassCurve.VariableChange L)
-        (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine T) (k • T) := _root_.P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one.solution B hB u hu hu1 p hp
+        (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine T) (k • T) :=
+  solution B hB u hu hu1 p hp
 
 end publicSection

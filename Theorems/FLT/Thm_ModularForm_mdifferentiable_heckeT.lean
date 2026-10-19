@@ -130,7 +130,6 @@ theorem apply_eq_of_coe_eq_add_nat (hf : Periodic (f ∘ ofComplex) 1) {τ₁ τ
   exact h1
 
 variable {p} in
-
 theorem heckeMatrix_smul_vadd (hp : p ≠ 0) (j : ℕ) (τ : ℍ) :
     heckeMatrix p j • ((1 : ℝ) +ᵥ τ) = heckeMatrix p (j + 1) • τ := by
   apply UpperHalfPlane.ext
@@ -139,7 +138,6 @@ theorem heckeMatrix_smul_vadd (hp : p ≠ 0) (j : ℕ) (τ : ℍ) :
   ring
 
 variable {p} in
-
 theorem coe_heckeMatrix_smul_self (hp : p ≠ 0) (τ : ℍ) :
     ((heckeMatrix p p • τ : ℍ) : ℂ) = (heckeMatrix p 0 • τ : ℍ) + (1 : ℕ) := by
   have hp' : (p : ℂ) ≠ 0 := by exact_mod_cast hp
@@ -149,7 +147,6 @@ theorem coe_heckeMatrix_smul_self (hp : p ≠ 0) (τ : ℍ) :
   ring
 
 variable {p} in
-
 theorem coe_heckeDiagMatrix_smul_vadd (hp : p ≠ 0) (τ : ℍ) :
     ((heckeDiagMatrix p • ((1 : ℝ) +ᵥ τ) : ℍ) : ℂ) = (heckeDiagMatrix p • τ : ℍ) + (p : ℕ) := by
   rw [coe_heckeDiagMatrix_smul hp, coe_heckeDiagMatrix_smul hp, coe_vadd]
@@ -240,7 +237,6 @@ include hp in
 theorem natCast_ne_zero' : (p : ℂ) ≠ 0 := by exact_mod_cast hp
 
 include hp in
-
 theorem qParam_heckeMatrix_smul (j : ℕ) (τ : ℍ) :
     Periodic.qParam 1 ((heckeMatrix p j • τ : ℍ) : ℂ)
       = exp (2 * π * I * τ / p) * exp (2 * π * I / p) ^ j := by
@@ -250,7 +246,6 @@ theorem qParam_heckeMatrix_smul (j : ℕ) (τ : ℍ) :
   field_simp
 
 include hp in
-
 theorem qParam_heckeDiagMatrix_smul (τ : ℍ) :
     Periodic.qParam 1 ((heckeDiagMatrix p • τ : ℍ) : ℂ) = Periodic.qParam 1 τ ^ p := by
   rw [qParam_one, qParam_one, coe_heckeDiagMatrix_smul hp, ← Complex.exp_nat_mul]
@@ -258,7 +253,6 @@ theorem qParam_heckeDiagMatrix_smul (τ : ℍ) :
   ring
 
 include hp in
-
 theorem exp_div_pow (τ : ℍ) : exp (2 * π * I * τ / p) ^ p = Periodic.qParam 1 τ := by
   rw [qParam_one, ← Complex.exp_nat_mul]
   congr 1
@@ -266,7 +260,6 @@ theorem exp_div_pow (τ : ℍ) : exp (2 * π * I * τ / p) ^ p = Periodic.qParam
   field_simp
 
 include hp in
-
 theorem sum_rootOfUnity_pow (m : ℕ) :
     ∑ j ∈ Finset.range p, (exp (2 * π * I / p) ^ j) ^ m = if p ∣ m then (p : ℂ) else 0 := by
   have hζ := Complex.isPrimitiveRoot_exp p hp
@@ -288,7 +281,6 @@ variable {f : ℍ → ℂ} (hper : Periodic (f ∘ ofComplex) 1) (hhol : MDiff f
   (hbdd : IsBoundedAtImInfty f)
 
 include hp hper hhol hbdd in
-
 theorem hasSum_average (τ : ℍ) :
     HasSum (fun l : ℕ ↦ qCoeff f (l * p) * Periodic.qParam 1 τ ^ l)
       ((p : ℂ)⁻¹ * ∑ j ∈ Finset.range p, f (heckeMatrix p j • τ)) := by
@@ -323,7 +315,6 @@ theorem hasSum_average (τ : ℍ) :
   exact h5
 
 include hp hper hhol hbdd in
-
 theorem hasSum_diag (k : ℤ) (τ : ℍ) :
     HasSum (fun n : ℕ ↦ if p ∣ n then (p : ℂ) ^ (k - 1) * qCoeff f (n / p) * Periodic.qParam 1 τ ^ n
         else 0)
@@ -335,20 +326,19 @@ theorem hasSum_diag (k : ℤ) (τ : ℍ) :
   refine (hinj.hasSum_iff (fun m hm => by simp [not_dvd_of_not_mem_range hm])).mp ?_
   convert hD using 1
   funext l
-  simp only [comp_apply, ite_eq_left (dvd_mul_left p l), Nat.mul_div_cancel _ (Nat.pos_of_ne_zero hp),
+  simp only [comp_apply, ite_eq_left (dvd_mul_left p l), Nat.mul_div_cancel _ (Nat.pos_of_ne_zero
+    hp),
     smul_eq_mul]
   rw [← pow_mul, mul_comm l p, mul_assoc]
   rfl
 
 include hp hper hhol hbdd in
-
 theorem hasSum_heckeU (k : ℤ) (τ : ℍ) :
     HasSum (fun n : ℕ ↦ coeffHeckeU p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeU k p f τ) := by
   rw [heckeU_apply k hp]
   simpa only [coeffHeckeU_apply, smul_eq_mul] using hasSum_average hp hper hhol hbdd τ
 
 include hp hper hhol hbdd in
-
 theorem hasSum_heckeT (k : ℤ) (τ : ℍ) :
     HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) := by
   rw [heckeT_apply k hp]
@@ -395,7 +385,9 @@ end M4cP1W2
 
 end
 
-theorem solution {f : UpperHalfPlane → ℂ} (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) :=
+theorem solution {f : UpperHalfPlane → ℂ}
+    (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) :
+    MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) :=
   M4cP1W2.mdifferentiable_heckeT k p hf
 
 end S_ModularForm_mdifferentiable_heckeT
@@ -406,6 +398,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularForm.mdifferentiable_heckeT {f : UpperHalfPlane → ℂ} (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) := _root_.P2MW.S_ModularForm_mdifferentiable_heckeT.solution hf k p
+theorem ModularForm.mdifferentiable_heckeT {f : UpperHalfPlane → ℂ}
+    (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) :
+    MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) :=
+  solution hf k p
 
 end publicSection

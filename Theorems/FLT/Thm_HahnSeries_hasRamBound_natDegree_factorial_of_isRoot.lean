@@ -72,7 +72,8 @@ namespace P2MW.S_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot
 open Polynomial
 
 namespace HahnSeries
-p2m_export "HahnSeries" "support isPWO_support mem_support coeff_mul coeff coeff_one coeff_zero map coeff_add isPWO_support' HasRamBound"
+p2m_export "HahnSeries" "support isPWO_support mem_support coeff_mul coeff coeff_one coeff_zero \
+  map coeff_add isPWO_support' HasRamBound"
 namespace PuiseuxTwist
 p2m_open "HahnSeries"
 
@@ -154,7 +155,8 @@ theorem twist_eq_self_of_hasRamBound_one {χ : Multiplicative ℚ →* Kˣ}
 
 theorem isRoot_twist {χ : Multiplicative ℚ →* Kˣ}
     (hχ : ∀ k : ℤ, χ (Multiplicative.ofAdd (k : ℚ)) = 1) {p : (HahnSeries ℚ K)[X]}
-    (hcoeff : ∀ i : ℕ, HahnSeries.HasRamBound 1 (p.coeff i)) {y : HahnSeries ℚ K} (hy : p.IsRoot y) :
+    (hcoeff : ∀ i : ℕ, HahnSeries.HasRamBound 1 (p.coeff i)) {y : HahnSeries ℚ K} (hy : p.IsRoot y)
+    :
     p.IsRoot (twist χ y) := by
   have hmap : p.map (twistRingHom χ) = p := by
     ext i
@@ -174,7 +176,8 @@ noncomputable def rootSeq : ℕ → Kˣ
     Units.mk0 (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq m : Kˣ) : K) m.succ_pos))
       (by
         intro h0
-        have h := Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq m : Kˣ) : K) m.succ_pos)
+        have h :=
+          Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq m : Kˣ) : K) m.succ_pos)
         rw [h0, zero_pow (Nat.succ_ne_zero m)] at h
         exact (rootSeq m).ne_zero h.symm)
 
@@ -183,7 +186,7 @@ theorem rootSeq_zero : rootSeq ζ 0 = ζ := rfl
 theorem rootSeq_succ_pow (m : ℕ) : (rootSeq ζ (m + 1)) ^ (m + 1) = rootSeq ζ m := by
   apply Units.ext
   rw [Units.val_pow_eq_pow_val]
-  show (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
+  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
   exact Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)
 
 theorem rootSeq_add_pow (m j : ℕ) :
@@ -191,7 +194,8 @@ theorem rootSeq_add_pow (m j : ℕ) :
   induction j with
   | zero => simp [Nat.div_self (Nat.factorial_pos m)]
   | succ j ih =>
-    rw [← add_assoc, Nat.factorial_succ, Nat.mul_div_assoc _ (Nat.factorial_dvd_factorial (Nat.le_add_right m j)),
+    rw [← add_assoc, Nat.factorial_succ, Nat.mul_div_assoc _ (Nat.factorial_dvd_factorial
+      (Nat.le_add_right m j)),
       pow_mul, rootSeq_succ_pow, ih]
 
 theorem rootSeq_pow_of_le {m M : ℕ} (h : m ≤ M) :
@@ -220,7 +224,8 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_right x.den m))
   have e2 : (((b * x.den.factorial) / x.den : ℕ) : ℤ) * (x.den : ℤ) = b * x.den.factorial := by
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
-  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) := by
+  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) :=
+    by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
     have hq : (k : ℚ) * x.den = x.num * (b * m.factorial : ℕ) := by
@@ -252,10 +257,10 @@ variable (b)
 noncomputable def char : Multiplicative ℚ →* Kˣ where
   toFun q := charFun ζ b (Multiplicative.toAdd q)
   map_one' := by
-    show charFun ζ b 0 = 1
+    change charFun ζ b 0 = 1
     rw [charFun_eq ζ 0 0 0 (by simp), zpow_zero]
   map_mul' x y := by
-    show charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
+    change charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
       = charFun ζ b (Multiplicative.toAdd x) * charFun ζ b (Multiplicative.toAdd y)
     have hm0 : 0 < (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den :=
       Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd y).den_nz)
@@ -317,7 +322,8 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
       exact isRoot_twist (char_intCast (ζ : Kˣ) ((mem_rootsOfUnity _ _).mp ζ.2)) hcoeff hy⟩
   have hinj : Function.Injective f := by
     intro ζ₁ ζ₂ h
-    have hc : (twist (char ((ζ₁ : Kˣ)) q.den) y).coeff q = (twist (char ((ζ₂ : Kˣ)) q.den) y).coeff q := by
+    have hc : (twist (char ((ζ₁ : Kˣ)) q.den) y).coeff q = (twist (char ((ζ₂ : Kˣ)) q.den) y).coeff q :=
+      by
       have := congrArg Subtype.val h
       simp only [f] at this
       rw [this]
@@ -381,6 +387,7 @@ theorem HahnSeries.hasRamBound_natDegree_factorial_of_isRoot
     {p : Polynomial (HahnSeries ℚ K)} (hp : p ≠ 0)
     (hcoeff : ∀ i : ℕ, HahnSeries.HasRamBound 1 (p.coeff i))
     {y : HahnSeries ℚ K} (hy : p.IsRoot y) :
-    HahnSeries.HasRamBound p.natDegree.factorial y := _root_.P2MW.S_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot.solution hp hcoeff hy
+    HahnSeries.HasRamBound p.natDegree.factorial y :=
+  solution hp hcoeff hy
 
 end publicSection

@@ -63,7 +63,10 @@ open scoped Pointwise
 
 noncomputable section
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [CharZero F] (φ : F →ₐ[K] F') [HasPrincipalDivisors K F'] (hfin : FiniteAlong K φ) (hsep : SeparableAlong K φ) : NormFormulaAlong K φ hfin := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [CharZero F] (φ : F →ₐ[K] F') [HasPrincipalDivisors K F'] (hfin : FiniteAlong K φ)
+    (hsep : SeparableAlong K φ) :
+    NormFormulaAlong K φ hfin := by
   let := algebraAlong φ
   have := isScalarTower_along φ
   have : Module.Finite F F' := hfin
@@ -82,6 +85,10 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.SemilinearAut
-theorem AlgebraicCurve.normFormulaAlong {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [CharZero F] (φ : F →ₐ[K] F') [HasPrincipalDivisors K F'] (hfin : FiniteAlong K φ) (hsep : SeparableAlong K φ) : NormFormulaAlong K φ hfin := _root_.P2MW.S_AlgebraicCurve_normFormulaAlong.solution φ hfin hsep
+theorem AlgebraicCurve.normFormulaAlong {K F F' : Type*} [Field K] [Field F] [Field F']
+    [Algebra K F] [Algebra K F'] [CharZero F] (φ : F →ₐ[K] F') [HasPrincipalDivisors K F']
+    (hfin : FiniteAlong K φ) (hsep : SeparableAlong K φ) :
+    NormFormulaAlong K φ hfin :=
+  solution φ hfin hsep
 
 end publicSection

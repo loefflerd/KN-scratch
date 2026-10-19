@@ -75,7 +75,8 @@ theorem solution (N n : ℕ) [NeZero N]
           ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F,
         HeckeEis.IsParabolicCocycle
           ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle := by
-  obtain ⟨F, hEI⟩ := HeckeEis.exists_isEichlerIntegral n (f := (f : UpperHalfPlane → ℂ)) (CuspFormClass.holo f)
+  obtain ⟨F, hEI⟩ :=
+    HeckeEis.exists_isEichlerIntegral n (f := (f : UpperHalfPlane → ℂ)) (CuspFormClass.holo f)
   have hF : HeckeEis.IsEquivariantPrimitiveWith
       ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F :=
     HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral hEI
@@ -98,6 +99,7 @@ theorem HeckeEis.exists_isEichlerIntegral_isParabolicCocycle (N n : ℕ) [NeZero
       ∃ hF : HeckeEis.IsEquivariantPrimitiveWith
           ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F,
         HeckeEis.IsParabolicCocycle
-          ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle := _root_.P2MW.S_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle.solution N n f
+          ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle :=
+  solution N n f
 
 end publicSection

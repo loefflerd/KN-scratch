@@ -60,9 +60,11 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_add
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ map variableChange_a₃ a₄ a₂ variableChange_a₂ toAffine Affine.Point variableChange_a₁ variableChange_a₄ VariableChange Affine.Point.vcInvFun"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ map variableChange_a₃ a₄ a₂ variableChange_a₂ toAffine \
+  Affine.Point variableChange_a₁ variableChange_a₄ VariableChange Affine.Point.vcInvFun"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Nonsingular negAddY slope_of_Y_ne Point addX addY Y_eq_of_X_eq vcX vcY Point.vcInvFun"
+p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Nonsingular \
+  negAddY slope_of_Y_ne Point addX addY Y_eq_of_X_eq vcX vcY Point.vcInvFun"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {K : Type*} [Field K]
@@ -193,7 +195,8 @@ theorem addY_variableChange (x₁' x₂' y₁' L : K) :
 end Formulas
 
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add_of_Y_eq some add_some map vcFun vcInvFun vcFun_zero vcFun_leftInverse vcFun_rightInverse"
+p2m_export "WeierstrassCurve.Affine.Point" "add_of_Y_eq some add_some map vcFun vcInvFun \
+  vcFun_zero vcFun_leftInverse vcFun_rightInverse"
 p2m_open "WeierstrassCurve.Affine.Point"
 
 variable {C : VariableChange K} {W : WeierstrassCurve.Affine K}
@@ -215,14 +218,14 @@ theorem vcFun_add (P Q : (C • W).toAffine.Point) :
   · rfl
   by_cases hxy : x₁ = x₂ ∧ y₁ = (C • W).toAffine.negY x₂ y₂
   · rw [add_of_Y_eq hxy.1 hxy.2, vcFun_zero]
-    show (0 : W.Point) = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂ y₂) _
+    change (0 : W.Point) = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂ y₂) _
     have hxyW := (Yeq_variableChange_iff (W := W) x₁ x₂ y₁ y₂).mpr hxy
     exact (add_of_Y_eq hxyW.1 hxyW.2).symm
   · have hxyW : ¬(vcX C x₁ = vcX C x₂ ∧ vcY C x₁ y₁ = W.negY (vcX C x₂) (vcY C x₂ y₂)) :=
       fun h => hxy ((Yeq_variableChange_iff x₁ x₂ y₁ y₂).mp h)
     have hslope := slope_variableChange (W := W) x₁ x₂ y₁ y₂ h₁.1 h₂.1 hxy
     rw [add_some hxy]
-    show Point.some _ _ _ = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂ y₂) _
+    change Point.some _ _ _ = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂ y₂) _
     rw [add_some hxyW]
     refine some_of_eq_of_eq' ?_ ?_
     · rw [hslope, addX_variableChange]
@@ -254,6 +257,7 @@ public section publicSection
 theorem WeierstrassCurve.Affine.Point.vcInvFun_add {K : Type*} [Field K] [DecidableEq K]
     (C : WeierstrassCurve.VariableChange K) (W : WeierstrassCurve.Affine K) (P Q : W.Point) :
     WeierstrassCurve.Affine.Point.vcInvFun C W (P + Q) =
-      WeierstrassCurve.Affine.Point.vcInvFun C W P + WeierstrassCurve.Affine.Point.vcInvFun C W Q := _root_.P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_add.solution C W P Q
+      WeierstrassCurve.Affine.Point.vcInvFun C W P + WeierstrassCurve.Affine.Point.vcInvFun C W Q :=
+  solution C W P Q
 
 end publicSection

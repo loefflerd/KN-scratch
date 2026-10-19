@@ -134,11 +134,11 @@ theorem Affine.notMem_nonunits_of_sub_negY_mem_nonunits (hΔ : (W.map (residue A
       apply hX
       rw [heX] at h0
       simp only [map_sub, map_add, map_mul, map_pow, map_ofNat] at h0
-      show residue A W.a₁ * residue A ⟨y, hy⟩ = 3 * residue A ⟨x, hx⟩ ^ 2 +
+      change residue A W.a₁ * residue A ⟨y, hy⟩ = 3 * residue A ⟨x, hx⟩ ^ 2 +
         2 * residue A W.a₂ * residue A ⟨x, hx⟩ + residue A W.a₄
       linear_combination -h0
     · exact absurd (by
-        show residue A ⟨y, hy⟩ = -residue A ⟨y, hy⟩ - residue A W.a₁ * residue A ⟨x, hx⟩ -
+        change residue A ⟨y, hy⟩ = -residue A ⟨y, hy⟩ - residue A W.a₁ * residue A ⟨x, hx⟩ -
           residue A W.a₃
         rw [heY] at hY0
         simp only [Affine.negY, map_sub, map_neg, map_mul] at hY0
@@ -527,52 +527,52 @@ omit [DecidableEq L] in
 theorem secant_slope_identity {x₁ y₁ x₂ y₂ : L}
     (h₁ : (W.map A.subtype).toAffine.Equation x₁ y₁)
     (h₂ : (W.map A.subtype).toAffine.Equation x₂ y₂) :
-    (y₁ - y₂) * (y₁^2*y₂^2 + (W.map A.subtype).toAffine.a₁*x₁*y₁*y₂^2
-        - (W.map A.subtype).toAffine.a₂*x₁^2*y₂^2
-        + (W.map A.subtype).toAffine.a₃*(y₁*y₂^2 + y₁^2*y₂)
-        - (W.map A.subtype).toAffine.a₄*x₁*(y₂^2 + y₁*y₂)
-        - (W.map A.subtype).toAffine.a₆*(y₂^2 + y₁*y₂ + y₁^2)) =
-    (x₂*y₁ - x₁*y₂) * (-(W.map A.subtype).toAffine.a₁*y₁^2*y₂
-        + (W.map A.subtype).toAffine.a₂*x₁*y₁*y₂ + (W.map A.subtype).toAffine.a₂*x₂*y₁^2
-        + (W.map A.subtype).toAffine.a₄*y₁^2 + x₁^2*y₂^2 + x₁*x₂*y₁*y₂ + x₂^2*y₁^2) := by
+    (y₁ - y₂) * (y₁ ^ 2*y₂ ^ 2 + (W.map A.subtype).toAffine.a₁*x₁*y₁*y₂ ^ 2
+        - (W.map A.subtype).toAffine.a₂*x₁ ^ 2*y₂ ^ 2
+        + (W.map A.subtype).toAffine.a₃*(y₁*y₂ ^ 2 + y₁ ^ 2*y₂)
+        - (W.map A.subtype).toAffine.a₄*x₁*(y₂ ^ 2 + y₁*y₂)
+        - (W.map A.subtype).toAffine.a₆*(y₂ ^ 2 + y₁*y₂ + y₁ ^ 2)) =
+    (x₂*y₁ - x₁*y₂) * (-(W.map A.subtype).toAffine.a₁*y₁ ^ 2*y₂
+        + (W.map A.subtype).toAffine.a₂*x₁*y₁*y₂ + (W.map A.subtype).toAffine.a₂*x₂*y₁ ^ 2
+        + (W.map A.subtype).toAffine.a₄*y₁ ^ 2 + x₁ ^ 2*y₂ ^ 2 + x₁*x₂*y₁*y₂ + x₂ ^ 2*y₁ ^ 2) := by
   rw [Affine.equation_iff] at h₁ h₂
   set a1 := (W.map A.subtype).toAffine.a₁
   set a2 := (W.map A.subtype).toAffine.a₂
   set a3 := (W.map A.subtype).toAffine.a₃
   set a4 := (W.map A.subtype).toAffine.a₄
   set a6 := (W.map A.subtype).toAffine.a₆
-  linear_combination (-a1^2*x₁*x₂*y₂ + a1*a2*x₁*x₂^2 - a1*a3*x₁*y₂ - a1*a3*x₂*y₂ + a1*a4*x₁*x₂
-      + a1*a6*x₁ + a1*x₁*x₂^3 - a1*x₁*y₂^2 + a1*x₂*y₁*y₂ + a2*a3*x₂^2 - a2*x₂^2*y₁ - a3^2*y₂
-      + a3*a4*x₂ + a3*a6 + a3*x₂^3 + a3*y₁*y₂ - a3*y₂^2 - a4*x₂*y₁ - a6*y₁ - x₂^3*y₁
-      + y₁*y₂^2 - y₂^3) * h₁
-    + (a1^2*x₁^2*y₁ - a1*a2*x₁^3 + 2*a1*a3*x₁*y₁ - a1*a4*x₁^2 - a1*a6*x₁ - a1*x₁^4
-      - a2*a3*x₁^2 + a2*x₁^2*y₁ + a3^2*y₁ - a3*a4*x₁ - a3*a6 - a3*x₁^3 + a4*x₁*y₁ + a6*y₁
-      + x₁^3*y₁) * h₂
+  linear_combination (-a1 ^ 2*x₁*x₂*y₂ + a1*a2*x₁*x₂ ^ 2 - a1*a3*x₁*y₂ - a1*a3*x₂*y₂ + a1*a4*x₁*x₂
+      + a1*a6*x₁ + a1*x₁*x₂ ^ 3 - a1*x₁*y₂ ^ 2 + a1*x₂*y₁*y₂ + a2*a3*x₂ ^ 2 - a2*x₂ ^ 2*y₁ - a3 ^ 2*y₂
+      + a3*a4*x₂ + a3*a6 + a3*x₂ ^ 3 + a3*y₁*y₂ - a3*y₂ ^ 2 - a4*x₂*y₁ - a6*y₁ - x₂ ^ 3*y₁
+      + y₁*y₂ ^ 2 - y₂ ^ 3) * h₁
+    + (a1 ^ 2*x₁ ^ 2*y₁ - a1*a2*x₁ ^ 3 + 2*a1*a3*x₁*y₁ - a1*a4*x₁ ^ 2 - a1*a6*x₁ - a1*x₁ ^ 4
+      - a2*a3*x₁ ^ 2 + a2*x₁ ^ 2*y₁ + a3 ^ 2*y₁ - a3*a4*x₁ - a3*a6 - a3*x₁ ^ 3 + a4*x₁*y₁ + a6*y₁
+      + x₁ ^ 3*y₁) * h₂
 
 omit [DecidableEq L] in
 theorem tangent_slope_identity {x₁ y₁ : L}
     (h₁ : (W.map A.subtype).toAffine.Equation x₁ y₁) :
-    -(3*x₁^2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
+    -(3*x₁ ^ 2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
         - (W.map A.subtype).toAffine.a₁*y₁)
-      * ((W.map A.subtype).toAffine.a₁*x₁*y₁ - (W.map A.subtype).toAffine.a₂*x₁^2
+      * ((W.map A.subtype).toAffine.a₁*x₁*y₁ - (W.map A.subtype).toAffine.a₂*x₁ ^ 2
         + 2*(W.map A.subtype).toAffine.a₃*y₁ - 2*(W.map A.subtype).toAffine.a₄*x₁
-        - 3*(W.map A.subtype).toAffine.a₆ + y₁^2) =
+        - 3*(W.map A.subtype).toAffine.a₆ + y₁ ^ 2) =
     (y₁*(2*y₁ + (W.map A.subtype).toAffine.a₁*x₁ + (W.map A.subtype).toAffine.a₃)
-        - x₁*(3*x₁^2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
+        - x₁*(3*x₁ ^ 2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
             - (W.map A.subtype).toAffine.a₁*y₁))
-      * (3*x₁^2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
+      * (3*x₁ ^ 2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
         - (W.map A.subtype).toAffine.a₁*y₁) := by
   rw [Affine.equation_iff] at h₁
   linear_combination (3*(W.map A.subtype).toAffine.a₁*y₁ - 6*(W.map A.subtype).toAffine.a₂*x₁
-    - 3*(W.map A.subtype).toAffine.a₄ - 9*x₁^2) * h₁
+    - 3*(W.map A.subtype).toAffine.a₄ - 9*x₁ ^ 2) * h₁
 
 omit [DecidableEq L] in
 theorem tangent_intercept_identity {x₁ y₁ : L}
     (h₁ : (W.map A.subtype).toAffine.Equation x₁ y₁) :
     y₁*(2*y₁ + (W.map A.subtype).toAffine.a₁*x₁ + (W.map A.subtype).toAffine.a₃)
-        - x₁*(3*x₁^2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
+        - x₁*(3*x₁ ^ 2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
             - (W.map A.subtype).toAffine.a₁*y₁) =
-      -(x₁^3 - (W.map A.subtype).toAffine.a₄*x₁ - 2*(W.map A.subtype).toAffine.a₆
+      -(x₁ ^ 3 - (W.map A.subtype).toAffine.a₄*x₁ - 2*(W.map A.subtype).toAffine.a₆
         + (W.map A.subtype).toAffine.a₃*y₁) := by
   rw [Affine.equation_iff] at h₁
   linear_combination 2 * h₁
@@ -1045,7 +1045,6 @@ section Assembly
 variable [DecidableEq L]
 
 open Affine.Point in
-
 theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular x y)
     (hx : x ∉ A) (j : ℕ) :
     (j • (some x y h : (W.map A.subtype).toAffine.Point) = 0 → (j : L) ∈ A.nonunits) ∧
@@ -1146,7 +1145,6 @@ end Assembly
 end Affine
 
 open Affine Affine.Point in
-
 theorem X_mem_of_nsmul_eq_zero' [DecidableEq L] {n : ℕ}
     (hn : (n : ResidueField A) ≠ 0) {x y : L}
     (h : (W.map A.subtype).toAffine.Nonsingular x y)
@@ -1163,7 +1161,6 @@ theorem X_mem_of_nsmul_eq_zero'' [DecidableEq L] {n : ℕ}
   X_mem_of_nsmul_eq_zero' W hn h hP
 
 open Affine.Point in
-
 theorem some_eq_of_mem_inertia_of_nsmul_eq_zero' [DecidableEq L]
     (hΔ : (W.map (residue A)).Δ ≠ 0)
     {K : Type*} [Field K] [Algebra K L] {σ : L ≃ₐ[K] L} (hσ : σ ∈ A.decompositionSubgroup K)
@@ -1210,7 +1207,6 @@ theorem some_eq_of_mem_inertia_of_nsmul_eq_zero' [DecidableEq L]
   exact hresy
 
 open Affine.Point in
-
 theorem fixed_of_mem_inertia_of_nsmul_eq_zero [DecidableEq L] {V : WeierstrassCurve L}
     (W : WeierstrassCurve A) (hVW : W.map A.subtype = V)
     (hΔ : (W.map (residue A)).Δ ≠ 0)

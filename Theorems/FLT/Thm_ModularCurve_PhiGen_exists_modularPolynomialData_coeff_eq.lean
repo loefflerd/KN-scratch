@@ -78,10 +78,12 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt jqN evalAtJ ModularPolynomialData PoleOrderLE coeffEmb dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand algebraMap_apply_eq_single jq coeff_jq_pow_self \
+  coeff_jq_pow_of_lt jqN evalAtJ ModularPolynomialData PoleOrderLE coeffEmb dedekindPsi_prime"
 p2m_open "ModularCurve"
 namespace PhiGen
-p2m_export "ModularCurve.PhiGen" "conj phiProd IntCoeffs PhiGenDescends evalAtJ_injective aeval_jq_intCoeffs_descent"
+p2m_export "ModularCurve.PhiGen" "conj phiProd IntCoeffs PhiGenDescends evalAtJ_injective \
+  aeval_jq_intCoeffs_descent"
 p2m_open "ModularCurve.PhiGen"
 
 private theorem evalAtJ_eq_aeval_map (Q : Polynomial ℤ) :
@@ -119,7 +121,8 @@ theorem natDegree_le_of_poleOrderLE_aeval (P : Polynomial ℚ) {n : ℕ}
   rw [coeff_aeval_jq_neg P le_rfl] at h0
   exact (Polynomial.leadingCoeff_ne_zero.mpr hP) h0
 
-theorem exists_aeval_jq_eq_of_mem_adjoin {f : LaurentSeries ℚ} (hf : f ∈ Algebra.adjoin ℚ {jq}) {n : ℕ}
+theorem exists_aeval_jq_eq_of_mem_adjoin {f : LaurentSeries ℚ} (hf : f ∈ Algebra.adjoin ℚ {jq})
+    {n : ℕ}
     (hn : PoleOrderLE f n) : ∃ P : Polynomial ℚ, P.natDegree ≤ n ∧ f = Polynomial.aeval jq P := by
   rw [Algebra.adjoin_singleton_eq_range_aeval] at hf
   obtain ⟨P, rfl⟩ := hf
@@ -131,11 +134,11 @@ variable {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Pri
 variable {c : ℕ → LaurentSeries ℚ}
 
 namespace PhiGenDescends
-p2m_export "ModularCurve.PhiGen.PhiGenDescends" "c_top c_eq_zero poleOrderLE sum_mul_jqN_pow_eq_zero"
+p2m_export "ModularCurve.PhiGen.PhiGenDescends" "c_top c_eq_zero poleOrderLE \
+  sum_mul_jqN_pow_eq_zero"
 end PhiGenDescends
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-
 private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.exists_intPoly (hc : PhiGenDescends ℓ ζ c)
     (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) (k : ℕ) :
     ∃ Q : Polynomial ℤ, Q.natDegree ≤ ℓ + 1 ∧ evalAtJ Q = c k := by
@@ -200,7 +203,7 @@ private theorem exists_modularPolynomialData_coeff_eq (hc : PhiGenDescends ℓ �
     · rw [Polynomial.coeff_eq_zero_of_natDegree_lt (by omega : Φ.natDegree < k), map_zero,
         hc.c_eq_zero (by omega : ℓ + 1 < k)]
   refine ⟨⟨Φ, ?_, ?_, ?_⟩, hΦcoeff⟩
-  · show Φ.coeff Φ.natDegree = 1
+  · change Φ.coeff Φ.natDegree = 1
     rw [hΦdeg]
     exact hΦtop
   · rw [hΦdeg, dedekindPsi_prime hℓ.out]
@@ -220,8 +223,10 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) : ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
+    {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k))
+    (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) :
+    ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k :=
   ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq hc hint hmem
 
 end S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq
@@ -234,6 +239,11 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) : ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k := _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.solution hc hint hmem
+theorem ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq {K : Type*} [Field K]
+    [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ}
+    (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k))
+    (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) :
+    ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k :=
+  solution hc hint hmem
 
 end publicSection

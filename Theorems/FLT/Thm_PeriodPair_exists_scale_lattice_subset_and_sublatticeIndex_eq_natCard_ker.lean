@@ -70,15 +70,20 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ \
+  weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero \
+  toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep \
+  scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
-private theorem _root_.PeriodPair.kw_toPoint_add (L : PeriodPair) (hD : L.DiscriminantNeZero) (z w : ℂ) :
+private theorem _root_.PeriodPair.kw_toPoint_add (L : PeriodPair) (hD : L.DiscriminantNeZero)
+    (z w : ℂ) :
     L.toPoint hD (z + w) = L.toPoint hD z + L.toPoint hD w :=
   (PeriodPair.isUniformization_toPoint L hD).1 z w
 p2m_export "PeriodPair" "kw_toPoint_add"
 
-private theorem _root_.PeriodPair.kw_isUniformization (L : PeriodPair) : L.IsUniformization L.discriminant_ne_zero :=
+private theorem _root_.PeriodPair.kw_isUniformization (L : PeriodPair) :
+    L.IsUniformization L.discriminant_ne_zero :=
   PeriodPair.isUniformization_toPoint L _
 p2m_export "PeriodPair" "kw_isUniformization"
 end PeriodPair
@@ -90,13 +95,18 @@ namespace Filter
 p2m_export "Filter" "ker mk cocountable mem_ker mem_map unique map"
 end Filter
 namespace Module
-p2m_export "Module" "Injective equiv Finite.equiv finrank Free mk Dual Free.of_equiv End restrictScalars"
+p2m_export "Module" "Injective equiv Finite.equiv finrank Free mk Dual Free.of_equiv End \
+  restrictScalars"
 end Module
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ \
+  weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero \
+  toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep \
+  scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
 end PeriodPair
 namespace Polynomial
-p2m_export "Polynomial" "C X unique aeval ext_iff degree factor map roots sum infinite reverse nontrivial flt coe_zero module coe_add div mod ext content ring lifts restriction"
+p2m_export "Polynomial" "C X unique aeval ext_iff degree factor map roots sum infinite reverse \
+  nontrivial flt coe_zero module coe_add div mod ext content ring lifts restriction"
 end Polynomial
 namespace Set
 p2m_export "Set" "image ext unit mem_singleton_iff mem_image integer mem_insert_iff inclusion range"
@@ -105,22 +115,31 @@ namespace UpperHalfPlane
 p2m_export "UpperHalfPlane" "σ ne_zero I J mk coe_mk re"
 end UpperHalfPlane
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ map mk a₄ Jacobian a₂ a₆ exists_variableChange_of_j_eq reduction toAffine Δ c₄ j"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ map mk a₄ Jacobian a₂ a₆ exists_variableChange_of_j_eq \
+  reduction toAffine Δ c₄ j"
 end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ map mk a₄ Jacobian a₂ a₆ exists_variableChange_of_j_eq reduction toAffine Δ c₄ j"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ map mk a₄ Jacobian a₂ a₆ exists_variableChange_of_j_eq \
+  reduction toAffine Δ c₄ j"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "map Point polynomial"
 end WeierstrassCurve.Affine
 
 section
 
-p2m_open "Complex P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Complex Filter P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Filter Set P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Set"
+p2m_open "Complex \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Complex Filter \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Filter Set \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Set"
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ \
+  weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero \
+  toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep \
+  scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
 end PeriodPair
 
 namespace Projectivization
@@ -134,7 +153,11 @@ section
 
 noncomputable section
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurv\
+  e \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 namespace ModularCurve
 
@@ -145,10 +168,10 @@ variable {V : Type*} [AddCommGroup V] [DivisibleBy V ℤ] [NoZeroSMulDivisors �
 def divNHom (n : ℤ) (hn : n ≠ 0) : V →+ V where
   toFun v := DivisibleBy.div v n
   map_zero' := smul_right_injective V hn (by
-    show n • DivisibleBy.div (0 : V) n = n • 0
+    change n • DivisibleBy.div (0 : V) n = n • 0
     rw [DivisibleBy.div_cancel _ hn, smul_zero])
   map_add' a b := smul_right_injective V hn (by
-    show n • DivisibleBy.div (a + b) n = n • (DivisibleBy.div a n + DivisibleBy.div b n)
+    change n • DivisibleBy.div (a + b) n = n • (DivisibleBy.div a n + DivisibleBy.div b n)
     rw [smul_add, DivisibleBy.div_cancel _ hn, DivisibleBy.div_cancel _ hn,
       DivisibleBy.div_cancel _ hn])
 
@@ -167,16 +190,16 @@ def latticeDivQuot (hn : (n : ℤ) ≠ 0) :
     ↥Λ →+ Submodule.torsionBy ℤ (V ⧸ Λ) (n : ℤ) where
   toFun w := ⟨QuotientAddGroup.mk (divNHom (n : ℤ) hn (w : V)), by
     rw [Submodule.mem_torsionBy_iff]
-    show (n : ℤ) • (QuotientAddGroup.mk (divNHom (n : ℤ) hn (w : V)) : V ⧸ Λ) = 0
+    change (n : ℤ) • (QuotientAddGroup.mk (divNHom (n : ℤ) hn (w : V)) : V ⧸ Λ) = 0
     rw [← QuotientAddGroup.mk_zsmul, smul_divNHom]
     exact (QuotientAddGroup.eq_zero_iff _).mpr w.2⟩
   map_zero' := by
     apply Subtype.ext
-    show (QuotientAddGroup.mk (divNHom (n : ℤ) hn ((0 : ↥Λ) : V)) : V ⧸ Λ) = 0
+    change (QuotientAddGroup.mk (divNHom (n : ℤ) hn ((0 : ↥Λ) : V)) : V ⧸ Λ) = 0
     simp
   map_add' a b := by
     apply Subtype.ext
-    show (QuotientAddGroup.mk (divNHom (n : ℤ) hn (((a + b : ↥Λ)) : V)) : V ⧸ Λ)
+    change (QuotientAddGroup.mk (divNHom (n : ℤ) hn (((a + b : ↥Λ)) : V)) : V ⧸ Λ)
         = QuotientAddGroup.mk (divNHom (n : ℤ) hn (a : V))
           + QuotientAddGroup.mk (divNHom (n : ℤ) hn (b : V))
     push_cast
@@ -197,7 +220,7 @@ theorem latticeDivQuot_surjective (hn : (n : ℤ) ≠ 0) :
     exact hx
   refine ⟨⟨(n : ℤ) • v, hvΛ⟩, Subtype.ext ?_⟩
   rw [coe_latticeDivQuot]
-  show (QuotientAddGroup.mk (divNHom (n : ℤ) hn ((n : ℤ) • v)) : V ⧸ Λ)
+  change (QuotientAddGroup.mk (divNHom (n : ℤ) hn ((n : ℤ) • v)) : V ⧸ Λ)
       = QuotientAddGroup.mk v
   rw [divNHom_smul]
 
@@ -213,13 +236,13 @@ theorem mem_ker_latticeDivQuot (hn : (n : ℤ) ≠ 0) (w : ↥Λ) :
     rw [coe_latticeDivQuot, QuotientAddGroup.eq_zero_iff] at hcoe
     refine ⟨⟨divNHom (n : ℤ) hn (w : V), hcoe⟩, ?_⟩
     apply Subtype.ext
-    show (n : ℤ) • divNHom (n : ℤ) hn (w : V) = (w : V)
+    change (n : ℤ) • divNHom (n : ℤ) hn (w : V) = (w : V)
     exact smul_divNHom (n : ℤ) hn (w : V)
   · rintro ⟨μ, rfl⟩
     rw [AddMonoidHom.mem_ker]
     apply Subtype.ext
     rw [coe_latticeDivQuot]
-    show (QuotientAddGroup.mk (divNHom (n : ℤ) hn ((n : ℤ) • (μ : V))) : V ⧸ Λ) = 0
+    change (QuotientAddGroup.mk (divNHom (n : ℤ) hn ((n : ℤ) • (μ : V))) : V ⧸ Λ) = 0
     rw [divNHom_smul, QuotientAddGroup.eq_zero_iff]
     exact μ.2
 
@@ -262,12 +285,23 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve Polynomial P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurv\
+  e WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve\
+  .Affine \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve \
+  Polynomial \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ \
+  weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero \
+  toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep \
+  scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -298,10 +332,14 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ \
+  weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero \
+  toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep \
+  scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -362,7 +400,8 @@ section
 
 noncomputable section
 
-p2m_open "Module P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Module"
+p2m_open "Module \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Module"
 
 namespace ModularCurve
 
@@ -424,8 +463,14 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair UpperHalfPlane P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.UpperHalfPlane"
-p2m_open "PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair Polynomial P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair \
+  UpperHalfPlane \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.UpperHalfPlane"
+p2m_open "PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair \
+  Polynomial \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial"
 
 namespace ModularCurve
 
@@ -454,7 +499,16 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve.Affine Polynomial P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
+p2m_open "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularC\
+  urve WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurv\
+  e WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve\
+  .Affine Polynomial \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve \
+  PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 namespace ModularCurve
 
@@ -485,7 +539,9 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
+p2m_open "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularC\
+  urve PeriodPair \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 namespace ModularCurve
 
@@ -498,7 +554,6 @@ variable (L L' : PeriodPair)
   (hint : ∀ z, L'.kw_toPointHom ((α : ℂ) * z) = ψ (L.kw_toPointHom z))
 
 include hint in
-
 def kw_surgehgf4_hID_kerIndexHom : L'.lattice.toAddSubgroup →+ ψ.ker where
   toFun l' := ⟨L.kw_toPointHom ((α : ℂ)⁻¹ * (l' : ℂ)), by
     rw [AddMonoidHom.mem_ker, ← hint ((α : ℂ)⁻¹ * (l' : ℂ)),
@@ -516,7 +571,6 @@ theorem kw_surgehgf4_hID_kerIndexHom_apply (l' : L'.lattice.toAddSubgroup) :
       = L.kw_toPointHom ((α : ℂ)⁻¹ * (l' : ℂ)) := rfl
 
 include hint in
-
 theorem kw_surgehgf4_hID_scale_subset :
     ((L.scale α).lattice : Set ℂ) ⊆ L'.lattice := by
   intro z hz
@@ -529,7 +583,6 @@ theorem kw_surgehgf4_hID_scale_subset :
   rw [hl0, _root_.map_zero]
 
 include hint in
-
 theorem kw_surgehgf4_hID_kerIndexHom_surjective :
     Function.Surjective (kw_surgehgf4_hID_kerIndexHom L L' α ψ hint) := by
   rintro ⟨P, hP⟩
@@ -542,7 +595,6 @@ theorem kw_surgehgf4_hID_kerIndexHom_surjective :
       L.kw_toPointHom_apply, hz]⟩
 
 include hint in
-
 theorem kw_surgehgf4_hID_ker_kerIndexHom :
     (kw_surgehgf4_hID_kerIndexHom L L' α ψ hint).ker
       = (L.scale α).lattice.toAddSubgroup.addSubgroupOf L'.lattice.toAddSubgroup := by
@@ -558,13 +610,12 @@ theorem kw_surgehgf4_hID_ker_kerIndexHom :
     rw [Submodule.mem_toAddSubgroup, L.mem_scale_lattice_iff] at h
     obtain ⟨v, hv, hvl'⟩ := h
     apply Subtype.ext
-    show L.kw_toPointHom ((α : ℂ)⁻¹ * l') = 0
+    change L.kw_toPointHom ((α : ℂ)⁻¹ * l') = 0
     rw [show (l' : ℂ) = (α : ℂ) * v from hvl', inv_mul_cancel_left₀ α.ne_zero,
       ← AddMonoidHom.mem_ker, L.kw_ker_toPointHom]
     exact hv
 
 include hint in
-
 theorem kw_surgehgf4_hID_forwardIndex_eq_card_ker :
     PeriodPair.sublatticeIndex L' (L.scale α) = Nat.card ψ.ker := by
   unfold PeriodPair.sublatticeIndex
@@ -574,7 +625,6 @@ theorem kw_surgehgf4_hID_forwardIndex_eq_card_ker :
   rfl
 
 include hint in
-
 theorem kw_surgehgf4_hID_card_smul_subset :
     ∀ l' ∈ L'.lattice, (Nat.card ψ.ker : ℂ) * l' ∈ (L.scale α).lattice := by
   intro l' hl'
@@ -612,7 +662,6 @@ variable (L L' : PeriodPair)
   (hint : ∀ z, L'.kw_toPointHom ((α : ℂ) * z) = ψ (L.kw_toPointHom z))
 
 include hint in
-
 theorem kw_surgehgf4_hID_dual_subset (hN : 0 < Nat.card ψ.ker) :
     ((L'.scale (kw_surgehgf4_hID_dualUnit α ψ hN)).lattice : Set ℂ) ⊆ L.lattice := by
   intro z hz
@@ -662,7 +711,7 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
         rw [← QuotientAddGroup.eq_zero_iff, QuotientAddGroup.mk_zsmul]; exact hx
       simpa [zsmul_eq_mul] using this
     refine ⟨⟨(N : ℂ) * z, hNz⟩, Subtype.ext ?_⟩
-    show QuotientAddGroup.mk ((N : ℂ)⁻¹ * ((N : ℂ) * z)) = QuotientAddGroup.mk z
+    change QuotientAddGroup.mk ((N : ℂ)⁻¹ * ((N : ℂ) * z)) = QuotientAddGroup.mk z
     rw [inv_mul_cancel_left₀ (by exact_mod_cast hN.ne' : (N : ℂ) ≠ 0)]
   have hker : (kw_surgehgf4_hID_scaleIndexHom M hN).ker
       = (M.scale Nu).lattice.toAddSubgroup.addSubgroupOf M.lattice.toAddSubgroup := by
@@ -680,7 +729,7 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
         by rw [hNuval, mul_inv_cancel_left₀ (by exact_mod_cast hN.ne' : (N : ℂ) ≠ 0)]⟩
     · rintro ⟨v, hv, hvl⟩
       apply Subtype.ext
-      show QuotientAddGroup.mk ((N : ℂ)⁻¹ * l) = 0
+      change QuotientAddGroup.mk ((N : ℂ)⁻¹ * l) = 0
       rw [QuotientAddGroup.eq_zero_iff,
         show l = (N : ℂ) * v from hNuval ▸ hvl,
         inv_mul_cancel_left₀ (by exact_mod_cast hN.ne' : (N : ℂ) ≠ 0)]
@@ -695,7 +744,6 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
   rfl
 
 include hint in
-
 theorem kw_surgehgf4_hID_card_ker_pos : 0 < Nat.card ψ.ker := by
   rw [← kw_surgehgf4_hID_forwardIndex_eq_card_ker L L' α ψ hint]
   refine Nat.pos_of_ne_zero ?_
@@ -717,7 +765,6 @@ theorem kw_surgehgf4_hID_card_ker_pos : 0 < Nat.card ψ.ker := by
   exact absurd h0R (ne_of_gt hratio)
 
 include hint in
-
 theorem kw_surgehgf4_hID_dualIndex_eq (hN : 0 < Nat.card ψ.ker) :
     PeriodPair.sublatticeIndex L (L'.scale (kw_surgehgf4_hID_dualUnit α ψ hN))
       = Nat.card ψ.ker := by
@@ -778,7 +825,8 @@ end ModularCurve
 end
 end
 
-theorem solution (L L' : PeriodPair) (hL : L.DiscriminantNeZero) (hL' : L'.DiscriminantNeZero) (α : ℂˣ)
+theorem solution (L L' : PeriodPair) (hL : L.DiscriminantNeZero) (hL' : L'.DiscriminantNeZero)
+    (α : ℂˣ)
     (ψ : L.weierstrassCurve.toAffine.Point →+ L'.weierstrassCurve.toAffine.Point)
     (hψ : ∀ z : ℂ, L'.toPoint hL' ((α : ℂ) * z) = ψ (L.toPoint hL z)) :
     ∃ β : ℂˣ, ((L'.scale β).lattice : Set ℂ) ⊆ L.lattice ∧
@@ -805,6 +853,7 @@ theorem PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ke
     (ψ : L.weierstrassCurve.toAffine.Point →+ L'.weierstrassCurve.toAffine.Point)
     (hψ : ∀ z : ℂ, L'.toPoint hL' ((α : ℂ) * z) = ψ (L.toPoint hL z)) :
     ∃ β : ℂˣ, ((L'.scale β).lattice : Set ℂ) ⊆ L.lattice ∧
-      PeriodPair.sublatticeIndex L (L'.scale β) = Nat.card ψ.ker := _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.solution L L' hL hL' α ψ hψ
+      PeriodPair.sublatticeIndex L (L'.scale β) = Nat.card ψ.ker :=
+  solution L L' hL hL' α ψ hψ
 
 end publicSection

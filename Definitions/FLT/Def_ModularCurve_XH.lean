@@ -120,7 +120,6 @@ theorem GammaH_bot : CohCarrier.GammaH M ⊥ = Gamma1 M := by
   exact hda
 
 variable {M} in
-
 theorem GammaH_mono {H H' : Subgroup (ZMod M)ˣ} (h : H ≤ H') :
     CohCarrier.GammaH M H ≤ CohCarrier.GammaH M H' := by
   intro A hA
@@ -162,7 +161,6 @@ theorem x0_le_xHFunctionFieldC : qExpFunctionFieldC K (Gamma0 M) ≤ xHFunctionF
   qExpFunctionFieldC_mono K (CohCarrier.GammaH_le_Gamma0 H)
 
 variable {H} in
-
 theorem xHFunctionFieldC_antitone {H' : Subgroup (ZMod M)ˣ} (h : H ≤ H') :
     xHFunctionFieldC K M H' ≤ xHFunctionFieldC K M H :=
   qExpFunctionFieldC_mono K (GammaH_mono h)

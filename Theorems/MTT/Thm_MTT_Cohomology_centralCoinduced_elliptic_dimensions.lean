@@ -203,11 +203,12 @@ namespace LinearMap
 
 theorem trace_eq_zero_of_shift_without_fixed_points
     {K V X : Type*} [Field K] [AddCommGroup V] [Module K V]
-    [FiniteDimensional K V] [Fintype X]
+    [FiniteDimensional K V] [Finite X]
     (f : Module.End K (X → V)) (σ : X → X) (A : X → Module.End K V)
     (hf : ∀ v x, f v x = A x (v (σ x))) (hσ : ∀ x, σ x ≠ x) :
     trace K (X → V) f = 0 := by
   classical
+  let := Fintype.ofFinite X
   let b := Module.Free.chooseBasis K V
   rw [trace_eq_matrix_trace K (Pi.basis fun _ : X => b), Matrix.trace]
   apply Finset.sum_eq_zero

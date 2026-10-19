@@ -62,13 +62,14 @@ namespace LaurentSeries
 p2m_open "LaurentSeries"
 
 open Polynomial in
-
-theorem transcendental_of_order_ne_zero {L : Type*} [Field L] (x : LaurentSeries L) (hx : x.order ≠ 0) :
+theorem transcendental_of_order_ne_zero {L : Type*} [Field L] (x : LaurentSeries L)
+    (hx : x.order ≠ 0) :
     Transcendental L x := by
   classical
   have hx0 : x ≠ 0 := fun h => hx (by rw [h, HahnSeries.order_zero])
   rintro ⟨p, hp0, hpx⟩
-  obtain ⟨i₀, hi₀, hmin⟩ := p.support.exists_min_image (fun i : ℕ => (i : ℤ) * x.order) (Polynomial.support_nonempty.mpr hp0)
+  obtain ⟨i₀, hi₀, hmin⟩ :=
+    p.support.exists_min_image (fun i : ℕ => (i : ℤ) * x.order) (Polynomial.support_nonempty.mpr hp0)
   have hord : ∀ i : ℕ, (x ^ i).order = (i : ℤ) * x.order := fun i => by
     rw [HahnSeries.order_pow, nsmul_eq_mul]
   have hinj : ∀ i : ℕ, (i : ℤ) * x.order = (i₀ : ℤ) * x.order → i = i₀ := fun i h => by
@@ -88,7 +89,8 @@ theorem transcendental_of_order_ne_zero {L : Type*} [Field L] (x : LaurentSeries
   simp_rw [Algebra.smul_def, halg, HahnSeries.C_mul_eq_smul] at hpx
   have hc := congrArg (fun y : LaurentSeries L => y.coeff ((i₀ : ℤ) * x.order)) hpx
   simp only [HahnSeries.coeff_sum, HahnSeries.coeff_zero] at hc
-  rw [Finset.sum_eq_single i₀ hterm (fun h => absurd (Polynomial.supp_subset_range_natDegree_succ hi₀) h),
+  rw [Finset.sum_eq_single i₀ hterm (fun h => absurd (Polynomial.supp_subset_range_natDegree_succ
+    hi₀) h),
     HahnSeries.coeff_smul, smul_eq_mul] at hc
   have hlead : (x ^ i₀).coeff ((i₀ : ℤ) * x.order) ≠ 0 := by
     rw [← hord]
@@ -126,6 +128,7 @@ theorem ModularCurve.transcendental_of_coe_eq_coeffEmb_jq
     (A : Type) [CommRing A] [IsDomain A] [Algebra A L] [IsFractionRing A L]
     [Algebra A ↥K] [IsScalarTower A L ↥K]
     (j : ↥K) (hj : ((j : LaurentSeries L)) = ModularCurve.coeffEmb L ModularCurve.jq) :
-    Transcendental A j := _root_.P2MW.S_ModularCurve_transcendental_of_coe_eq_coeffEmb_jq.solution L K A j hj
+    Transcendental A j :=
+  solution L K A j hj
 
 end publicSection

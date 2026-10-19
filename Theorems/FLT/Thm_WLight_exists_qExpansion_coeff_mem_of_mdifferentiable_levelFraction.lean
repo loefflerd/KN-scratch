@@ -95,7 +95,8 @@ theorem powerSeries_coeff_mem_of_mul_eq {K : Type*} [Field K] (k : Subfield K)
   | _ n ih =>
   have hcm := PowerSeries.coeff_mul n g h
   rw [heq] at hcm
-  have h0n : (0, n) ∈ Finset.HasAntidiagonal.antidiagonal n := Finset.HasAntidiagonal.mem_antidiagonal.mpr (zero_add n)
+  have h0n : (0, n) ∈ Finset.HasAntidiagonal.antidiagonal n :=
+    Finset.HasAntidiagonal.mem_antidiagonal.mpr (zero_add n)
   rw [← Finset.add_sum_erase _ _ h0n] at hcm
   have hg0' : PowerSeries.coeff 0 g ≠ 0 := by
     rwa [PowerSeries.coeff_zero_eq_constantCoeff_apply]
@@ -130,7 +131,7 @@ theorem powerSeries_coeff_mem_of_mul_eq' {K : Type*} [Field K] (k : Subfield K)
     rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
     intro habs
     refine (PowerSeries.coeff_order hg0) ?_
-    show PowerSeries.coeff r g = 0
+    change PowerSeries.coeff r g = 0
     rw [hg', PowerSeries.coeff_X_pow_mul', ite_eq_left le_rfl, Nat.sub_self, habs]
   obtain ⟨f', hf'⟩ : PowerSeries.X ^ r ∣ f := ⟨g' * h, by rw [← heq, hg', mul_assoc]⟩
   have hf'_coeff : ∀ n, PowerSeries.coeff n f' ∈ k := fun n ↦ by
@@ -175,7 +176,6 @@ theorem norm_le_of_monicRel {K : Type*} [NormedField K] {z : K} {a : ℕ → K} 
     linarith
 
 open Asymptotics in
-
 theorem isBoundedAtImInfty_of_monicRel {H : ℍ → ℂ} {c : ℕ → ℍ → ℂ} {d : ℕ}
     (hc : ∀ n < d, IsBoundedAtImInfty (c n))
     (hrel : ∀ τ : ℍ, H τ ^ d + ∑ n ∈ Finset.range d, c n τ * H τ ^ n = 0) :
@@ -316,7 +316,8 @@ end CuspCriterion
 
 section RatCoeff
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 private lemma ratCoeff_mul {p q : PowerSeries ℂ}
@@ -760,7 +761,7 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
       exact jf_smul hjf γ τ
     | some v =>
       funext τ
-      show fricke v.1 (γ • τ) = fricke v.1 τ
+      change fricke v.1 (γ • τ) = fricke v.1 τ
       rw [hR4c v.1 γ τ, map_castRingHom_eq_one hγ, Matrix.vecMul_one]
   have haeval_inv : ∀ γ ∈ CongruenceSubgroup.Gamma N,
       ∀ R : MvPolynomial (Option {v : Fin 2 → ZMod N // v ≠ 0}) ℂ,
@@ -999,6 +1000,7 @@ theorem WLight.exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction
       ∀ τ : ℍ, G τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * G τ ^ (i : ℕ) = 0) :
     ∃ m : ℕ, Function.Periodic ((G * ModularForm.discriminant ^ m) ∘ UpperHalfPlane.ofComplex) N ∧
       IsBoundedAtImInfty (G * ModularForm.discriminant ^ m) ∧
-      ∀ n : ℕ, (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n ∈ K := _root_.P2MW.S_WLight_exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction.solution N L hL W hW fricke hfricke jf hjf K hK hG P Q hPK hQK hQ0 hGQ hint
+      ∀ n : ℕ, (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n ∈ K :=
+  solution N L hL W hW fricke hfricke jf hjf K hK hG P Q hPK hQK hQ0 hGQ hint
 
 end publicSection

@@ -78,7 +78,8 @@ namespace WeierstrassCurve
 variable {R : Type*} [CommRing R] [NoZeroDivisors R] {W : WeierstrassCurve R} {x₀ y₀ : R}
 theorem veluQuotient2_Delta_ne_zero (hΔ : W.Δ ≠ 0)
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
-    (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := _root_.P2MW.S_WeierstrassCurve_veluQuotient2_Delta_ne_zero.solution hΔ hQ hgy
+    (W.veluQuotient2 x₀ y₀).Δ ≠ 0 :=
+  solution hΔ hQ hgy
 end WeierstrassCurve
 
 end publicSection

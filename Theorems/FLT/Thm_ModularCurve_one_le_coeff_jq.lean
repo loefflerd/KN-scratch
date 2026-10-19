@@ -65,7 +65,8 @@ open scoped PowerSeries.WithPiTopology
 open PowerSeries Finset
 
 namespace ModularCurve
-p2m_export "ModularCurve" "eisenstein4 constantCoeff_eisenstein4 etaProd dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq"
+p2m_export "ModularCurve" "eisenstein4 constantCoeff_eisenstein4 etaProd dedekindEtaUnit \
+  dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq"
 p2m_open "ModularCurve"
 
 private theorem coeff_one_sub_X_pow_of_lt {R : Type*} [CommRing R] {e m : ℕ} (h : m < e) :
@@ -74,7 +75,7 @@ private theorem coeff_one_sub_X_pow_of_lt {R : Type*} [CommRing R] {e m : ℕ} (
     sub_zero]
 
 private theorem coeff_prod_one_sub_X_pow_eq_coeff_one {R : Type*} [CommRing R]
-    {ι : Type*} [DecidableEq ι] {n : ℕ} (s : Finset ι) (e : ι → ℕ)
+    {ι : Type*} {n : ℕ} (s : Finset ι) (e : ι → ℕ)
     (he : ∀ i ∈ s, n < e i) :
     ∀ m ≤ n, PowerSeries.coeff m (∏ i ∈ s, ((1 : PowerSeries R) - X ^ e i)) =
       if m = 0 then 1 else 0 := by
@@ -434,6 +435,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.one_le_coeff_jq (n : ℕ) : (1 : ℚ) ≤ jq.coeff (n : ℤ) := _root_.P2MW.S_ModularCurve_one_le_coeff_jq.solution n
+theorem ModularCurve.one_le_coeff_jq (n : ℕ) :
+    (1 : ℚ) ≤ jq.coeff (n : ℤ) :=
+  solution n
 
 end publicSection

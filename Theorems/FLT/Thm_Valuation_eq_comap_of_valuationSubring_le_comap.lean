@@ -62,7 +62,8 @@ namespace P2MW.S_Valuation_eq_comap_of_valuationSubring_le_comap
 open scoped WithZero
 
 namespace Valuation
-p2m_export "Valuation" "valuationSubring ext mem_valuationSubring_iff comap_apply ne_zero_iff IsNontrivial comap IsEquiv isEquiv_iff_valuationSubring"
+p2m_export "Valuation" "valuationSubring ext mem_valuationSubring_iff comap_apply ne_zero_iff \
+  IsNontrivial comap IsEquiv isEquiv_iff_valuationSubring"
 p2m_open "Valuation"
 
 variable {L : Type*} [Field L]
@@ -78,7 +79,6 @@ theorem eq_of_valuationSubring_eq_aux (v w : Valuation L ℤᵐ⁰)
   have hwπ : w π = WithZero.exp (-1) := by
     have hwπ1 : w π < 1 := heq.lt_one_iff_lt_one.mp (by rw [hπ]; decide)
     have hwπ0 : w π ≠ 0 := (w.ne_zero_iff).mpr hπ0
-
     have hle : w π ≤ w ρ := by
       rw [hρ, ← WithZero.exp_log hwπ0, WithZero.exp_le_exp]
       have : WithZero.log (w π) < 0 := by
@@ -95,7 +95,6 @@ theorem eq_of_valuationSubring_eq_aux (v w : Valuation L ℤᵐ⁰)
       omega
     rw [← hρ]
     exact (heq.eq_iff.mp hvρ).symm
-
   ext x
   by_cases hx : x = 0
   · simp [hx]
@@ -133,7 +132,11 @@ theorem eq_comap_of_valuationSubring_le_comap_aux {L' : Type*} [Field L'] {v : V
 
 end Valuation
 
-theorem solution {L L' : Type*} [Field L] [Field L'] {v : Valuation L' (WithZero (Multiplicative ℤ))} {w : Valuation L (WithZero (Multiplicative ℤ))} (hv : Function.Surjective v) (hw : Function.Surjective w) (σ : L ≃+* L') (hle : w.valuationSubring ≤ v.valuationSubring.comap σ.toRingHom) : w = v.comap σ.toRingHom :=
+theorem solution {L L' : Type*} [Field L] [Field L']
+    {v : Valuation L' (WithZero (Multiplicative ℤ))} {w : Valuation L (WithZero (Multiplicative ℤ))}
+    (hv : Function.Surjective v) (hw : Function.Surjective w) (σ : L ≃+* L')
+    (hle : w.valuationSubring ≤ v.valuationSubring.comap σ.toRingHom) :
+    w = v.comap σ.toRingHom :=
   Valuation.eq_comap_of_valuationSubring_le_comap_aux hv hw σ hle
 
 end S_Valuation_eq_comap_of_valuationSubring_le_comap
@@ -145,6 +148,11 @@ end privateSection
 public section publicSection
 
 
-theorem Valuation.eq_comap_of_valuationSubring_le_comap {L L' : Type*} [Field L] [Field L'] {v : Valuation L' (WithZero (Multiplicative ℤ))} {w : Valuation L (WithZero (Multiplicative ℤ))} (hv : Function.Surjective v) (hw : Function.Surjective w) (σ : L ≃+* L') (hle : w.valuationSubring ≤ v.valuationSubring.comap σ.toRingHom) : w = v.comap σ.toRingHom := _root_.P2MW.S_Valuation_eq_comap_of_valuationSubring_le_comap.solution hv hw σ hle
+theorem Valuation.eq_comap_of_valuationSubring_le_comap {L L' : Type*} [Field L] [Field L']
+    {v : Valuation L' (WithZero (Multiplicative ℤ))} {w : Valuation L (WithZero (Multiplicative ℤ))}
+    (hv : Function.Surjective v) (hw : Function.Surjective w) (σ : L ≃+* L')
+    (hle : w.valuationSubring ≤ v.valuationSubring.comap σ.toRingHom) :
+    w = v.comap σ.toRingHom :=
+  solution hv hw σ hle
 
 end publicSection

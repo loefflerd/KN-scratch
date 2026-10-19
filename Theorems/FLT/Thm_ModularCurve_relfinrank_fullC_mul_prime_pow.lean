@@ -76,10 +76,15 @@ namespace P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve ModularCurve.PhiGen"
+p2m_open "ModularCurve P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve \
+  ModularCurve.PhiGen"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -96,13 +101,15 @@ theorem jqModC_eq_TS : jqModC K = TS K 1 1 := by
 theorem jqNModC_eq_TS (d : ℕ) [NeZero d] : jqNModC K d = TS K d 1 := by
   rw [jqNModC, TS, qTwist_one_apply]
 
-theorem qExpand_jqNModC (A d : ℕ) [NeZero A] [NeZero d] : qExpand K A (jqNModC K d) = TS K (A * d) 1 := by
+theorem qExpand_jqNModC (A d : ℕ) [NeZero A] [NeZero d] :
+    qExpand K A (jqNModC K d) = TS K (A * d) 1 := by
   rw [jqNModC_eq_TS, qExpand_TS]
 
 theorem qExpand_jqModC_eq_TS (A : ℕ) [NeZero A] : qExpand K A (jqModC K) = TS K A 1 := by
   rw [TS, qTwist_one_apply]
 
-theorem qTwist_qExpand_of_pow_eq_one (A : ℕ) [NeZero A] (v : Kˣ) (hv : v ^ A = 1) (x : LaurentSeries K) :
+theorem qTwist_qExpand_of_pow_eq_one (A : ℕ) [NeZero A] (v : Kˣ) (hv : v ^ A = 1)
+    (x : LaurentSeries K) :
     qTwist v (qExpand K A x) = qExpand K A x := by
   rw [qTwist_qExpand]
   have : v ^ (A : ℤ) = 1 := by exact_mod_cast hv
@@ -111,7 +118,11 @@ theorem qTwist_qExpand_of_pow_eq_one (A : ℕ) [NeZero A] (v : Kˣ) (hv : v ^ A 
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -140,15 +151,16 @@ def qTwistEquiv (u : Kˣ) : LaurentSeries K ≃+* LaurentSeries K where
   toFun := qTwist u
   invFun := qTwist u⁻¹
   left_inv := fun f => by
-    show qTwist u⁻¹ (qTwist u f) = f
+    change qTwist u⁻¹ (qTwist u f) = f
     rw [qTwist_qTwist, inv_mul_cancel, qTwist_one_apply]
   right_inv := fun f => by
-    show qTwist u (qTwist u⁻¹ f) = f
+    change qTwist u (qTwist u⁻¹ f) = f
     rw [qTwist_qTwist, mul_inv_cancel, qTwist_one_apply]
   map_mul' := map_mul _
   map_add' := map_add _
 
-@[scoped simp] theorem qTwistEquiv_apply (u : Kˣ) (f : LaurentSeries K) : qTwistEquiv u f = qTwist u f := rfl
+@[scoped simp] theorem qTwistEquiv_apply (u : Kˣ) (f : LaurentSeries K) :
+    qTwistEquiv u f = qTwist u f := rfl
 
 theorem coe_qTwistEquiv (u : Kˣ) :
     ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
@@ -174,13 +186,18 @@ theorem isPrimitiveRoot_pow_div {N : ℕ} [NeZero N] {ζ : Kˣ} (hζ : IsPrimiti
   rw [Nat.div_div_self hpN hN] at h
   rwa [← Units.val_pow_eq_pow_val] at h
 
-theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) N) : ζ ^ N = 1 :=
+theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) N) :
+    ζ ^ N = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -189,14 +206,16 @@ p2m_open "ModularCurve"
 
 
 
-theorem phiAtSeed_jqNModC_eval {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
+theorem phiAtSeed_jqNModC_eval {R : Type*} [CommRing R] (n : ℕ) [NeZero n]
+    (data : ModularPolynomialData n)
     (d : ℕ) [NeZero d] : (phiAtSeed data (jqNModC R d)).eval (jqNModC R (d * n)) = 0 := by
   have h := data.eval_jqNModC_mul_eq_zero R d
   rw [phiAtSeed, Polynomial.eval_map]
   convert h using 2
   exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by simp)
 
-theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
+theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n]
+    (data : ModularPolynomialData n)
     (hsymm : EvalSymm data.Φ) (d : ℕ) [NeZero d] :
     (phiAtSeed data (jqNModC R (d * n))).eval (jqNModC R d) = 0 := by
   have h := data.eval_jqNModC_of_mul_eq_zero hsymm R d
@@ -213,13 +232,18 @@ theorem phiAtSeed_TS_eval {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : ℕ) [
 theorem phiAtSeed_TS_eval_symm {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : ℕ) [NeZero n]
     (data : ModularPolynomialData n) (hsymm : EvalSymm data.Φ) (d : ℕ) [NeZero d] :
     (phiAtSeed data (TS K (A * (d * n)) 1)).eval (TS K (A * d) 1) = 0 := by
-  have h := phiAtSeed_eval_map data _ _ (qExpand K A) (phiAtSeed_jqNModC_eval_symm (R := K) n data hsymm d)
+  have h :=
+    phiAtSeed_eval_map data _ _ (qExpand K A) (phiAtSeed_jqNModC_eval_symm (R := K) n data hsymm d)
   rwa [qExpand_jqNModC, qExpand_jqNModC] at h
 
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -232,7 +256,8 @@ private theorem prod_form_ne_zero (ζ : Kˣ) (p : ℕ) [NeZero p] (e : ℕ) [NeZ
   mul_ne_zero (Polynomial.X_sub_C_ne_zero _)
     (Polynomial.monic_prod_of_monic _ _ fun _ _ => Polynomial.monic_X_sub_C _).ne_zero
 
-theorem roots_prime_at_slot (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
+theorem roots_prime_at_slot (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K))
         (qExpand K (p * e) (qTwist (u ^ p) (jqModC K))))).roots
@@ -249,7 +274,8 @@ theorem roots_prime_at_slot (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ 
         (fun b => qExpand K e (qTwist (u * ζ ^ b) (jqModC K))) (Multiset.range p)).symm,
     Polynomial.roots_multiset_prod_X_sub_C, Multiset.singleton_add]
 
-theorem roots_prime_at_slot_nodup (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
+theorem roots_prime_at_slot_nodup (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) p)
     (e : ℕ) [NeZero e] (u : Kˣ) :
     ((qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K))) ::ₘ
         (Multiset.range p).map (fun b => qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))).Nodup := by
@@ -257,7 +283,8 @@ theorem roots_prime_at_slot_nodup (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
   constructor
   · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
-    have h := (TS_injective (K := K) (e := e) (e' := p * (p * e)) (u := u * ζ ^ b) (u' := u ^ (p * p)) heq).1
+    have h :=
+      (TS_injective (K := K) (e := e) (e' := p * (p * e)) (u := u * ζ ^ b) (u' := u ^ (p * p)) heq).1
     have hp2 : 2 ≤ p := hp.out.two_le
     have he1 : 0 < e := Nat.pos_of_ne_zero (NeZero.ne e)
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
@@ -279,7 +306,8 @@ theorem roots_prime_at_slot_roots_nodup (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ 
   rw [roots_prime_at_slot p ζ hζ data e u]
   exact roots_prime_at_slot_nodup p ζ hζ e u
 
-theorem isRoot_prime_at_slot_iff (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
+theorem isRoot_prime_at_slot_iff (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) (y : LaurentSeries K) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K))
         (qExpand K (p * e) (qTwist (u ^ p) (jqModC K))))).IsRoot y ↔
@@ -289,7 +317,8 @@ theorem isRoot_prime_at_slot_iff (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) 
       (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))) ≠ 0 := by
     rw [ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p ζ hζ data e u]
     exact prod_form_ne_zero ζ p e u
-  rw [← Polynomial.mem_roots hne, roots_prime_at_slot p ζ hζ data e u, Multiset.mem_cons, Multiset.mem_map]
+  rw [← Polynomial.mem_roots hne, roots_prime_at_slot p ζ hζ data e u, Multiset.mem_cons,
+    Multiset.mem_map]
   constructor
   · rintro (h | ⟨b, hb, rfl⟩)
     · exact Or.inl h
@@ -298,7 +327,8 @@ theorem isRoot_prime_at_slot_iff (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) 
     · exact Or.inl h
     · exact Or.inr ⟨b, Multiset.mem_range.mpr hb, rfl⟩
 
-theorem roots_phiAtSeed_TS (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
+theorem roots_phiAtSeed_TS (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) :
     (phiAtSeed data (TS K (p * e) (u ^ p))).roots
       = TS K (p * (p * e)) (u ^ (p * p)) ::ₘ (Multiset.range p).map (fun b => TS K e (u * ζ ^ b)) :=
@@ -307,7 +337,11 @@ theorem roots_phiAtSeed_TS (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ :
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -348,7 +382,8 @@ theorem fullC_le_iff {L : ℕ} {F : IntermediateField K (LaurentSeries K)} :
   · rintro h x ⟨d, hd0, hdL, rfl⟩
     exact h d hdL
 
-theorem jqNModC_injective {d d' : ℕ} [NeZero d] [NeZero d'] (h : jqNModC K d = jqNModC K d') : d = d' := by
+theorem jqNModC_injective {d d' : ℕ} [NeZero d] [NeZero d'] (h : jqNModC K d = jqNModC K d') :
+    d = d' := by
   rw [jqNModC_eq_TS, jqNModC_eq_TS] at h
   exact (TS_injective h).1
 
@@ -358,19 +393,23 @@ theorem qTwist_jqModC_eq_TS (u : Kˣ) : qTwist u (jqModC K) = TS K 1 u := by
 def qExpandₐK (K : Type*) [Field K] (n : ℕ) [NeZero n] : LaurentSeries K →ₐ[K] LaurentSeries K where
   __ := qExpand K n
   commutes' c := by
-    show qExpand K n (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+    change qExpand K n (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
     rw [HahnSeries.algebraMap_apply']
     simp
 
-@[scoped simp] theorem qExpandₐK_apply (n : ℕ) [NeZero n] (f : LaurentSeries K) : qExpandₐK K n f = qExpand K n f := rfl
+@[scoped simp] theorem qExpandₐK_apply (n : ℕ) [NeZero n] (f : LaurentSeries K) :
+    qExpandₐK K n f = qExpand K n f := rfl
 
-theorem qExpandₐK_jqNModC (n d : ℕ) [NeZero n] [NeZero d] : qExpandₐK K n (jqNModC K d) = jqNModC K (n * d) := by
+theorem qExpandₐK_jqNModC (n d : ℕ) [NeZero n] [NeZero d] :
+    qExpandₐK K n (jqNModC K d) = jqNModC K (n * d) := by
   rw [qExpandₐK_apply, jqNModC, jqNModC, qExpand_qExpand]
 
-def eFull (K : Type*) [Field K] (n : ℕ) [NeZero n] (L : ℕ) : IntermediateField K (LaurentSeries K) :=
+def eFull (K : Type*) [Field K] (n : ℕ) [NeZero n] (L : ℕ) :
+    IntermediateField K (LaurentSeries K) :=
   IntermediateField.adjoin K ((qExpandₐK K n) '' divSet K L)
 
-theorem eFull_eq_map (n : ℕ) [NeZero n] (L : ℕ) : eFull K n L = (fullC K L).map (qExpandₐK K n) := by
+theorem eFull_eq_map (n : ℕ) [NeZero n] (L : ℕ) :
+    eFull K n L = (fullC K L).map (qExpandₐK K n) := by
   rw [eFull, fullC, IntermediateField.adjoin_map]
 
 theorem eFull_mono (n : ℕ) [NeZero n] {L L' : ℕ} (h : L ∣ L') : eFull K n L ≤ eFull K n L' :=
@@ -380,13 +419,15 @@ theorem jqNModC_mul_mem_eFull (n : ℕ) [NeZero n] {d L : ℕ} [NeZero d] (hd : 
     jqNModC K (n * d) ∈ eFull K n L :=
   IntermediateField.subset_adjoin K _ ⟨jqNModC K d, jqNModC_mem_divSet hd, qExpandₐK_jqNModC n d⟩
 
-theorem exists_eq_qExpand_of_mem_eFull (n : ℕ) [NeZero n] {L : ℕ} {x : LaurentSeries K} (hx : x ∈ eFull K n L) :
+theorem exists_eq_qExpand_of_mem_eFull (n : ℕ) [NeZero n] {L : ℕ} {x : LaurentSeries K}
+    (hx : x ∈ eFull K n L) :
     ∃ y : LaurentSeries K, qExpand K n y = x := by
   rw [eFull_eq_map, IntermediateField.mem_map] at hx
   obtain ⟨y, -, hy⟩ := hx
   exact ⟨y, hy⟩
 
-theorem qTwist_eq_self_of_mem_eFull (n : ℕ) [NeZero n] {L : ℕ} {v : Kˣ} (hv : v ^ n = 1) {x : LaurentSeries K}
+theorem qTwist_eq_self_of_mem_eFull (n : ℕ) [NeZero n] {L : ℕ} {v : Kˣ} (hv : v ^ n = 1)
+    {x : LaurentSeries K}
     (hx : x ∈ eFull K n L) : qTwist v x = x := by
   obtain ⟨y, rfl⟩ := exists_eq_qExpand_of_mem_eFull n hx
   exact qTwist_qExpand_of_pow_eq_one n v hv y
@@ -399,7 +440,8 @@ theorem eFull_le_fullC (n : ℕ) [NeZero n] (L : ℕ) : eFull K n L ≤ fullC K 
   rw [Nat.mul_comm d n] at h
   exact jqNModC_mem_fullC h
 
-theorem mem_adjoin_of_mem {E : IntermediateField K (LaurentSeries K)} {x : LaurentSeries K} (hx : x ∈ E)
+theorem mem_adjoin_of_mem {E : IntermediateField K (LaurentSeries K)} {x : LaurentSeries K}
+    (hx : x ∈ E)
     (T : Set (LaurentSeries K)) : x ∈ IntermediateField.adjoin E T :=
   (IntermediateField.adjoin E T).algebraMap_mem ⟨x, hx⟩
 
@@ -417,7 +459,8 @@ theorem relfinrank_adjoin_insert (T : Set (LaurentSeries K)) (α : LaurentSeries
       · exact IntermediateField.subset_adjoin _ _ rfl
       · exact mem_adjoin_of_mem (IntermediateField.subset_adjoin K T hxT) _
     · exact IntermediateField.adjoin.mono _ _ _ (Set.singleton_subset_iff.mpr (Set.mem_insert α T))
-  rw [IntermediateField.relfinrank_eq_finrank_of_le h, IntermediateField.extendScalars_adjoin h, hEq]
+  rw [IntermediateField.relfinrank_eq_finrank_of_le h, IntermediateField.extendScalars_adjoin h,
+    hEq]
 
 theorem relfinrank_adjoin_insert_eq_natDegree (T : Set (LaurentSeries K)) {α : LaurentSeries K}
     (hα : IsIntegral (IntermediateField.adjoin K T) α) :
@@ -425,7 +468,8 @@ theorem relfinrank_adjoin_insert_eq_natDegree (T : Set (LaurentSeries K)) {α : 
       = (minpoly (IntermediateField.adjoin K T) α).natDegree := by
   rw [relfinrank_adjoin_insert, IntermediateField.adjoin.finrank hα]
 
-theorem relfinrank_fullC_insert_eq_natDegree (L : ℕ) {α : LaurentSeries K} (hα : IsIntegral (fullC K L) α) :
+theorem relfinrank_fullC_insert_eq_natDegree (L : ℕ) {α : LaurentSeries K}
+    (hα : IsIntegral (fullC K L) α) :
     IntermediateField.relfinrank (fullC K L) (IntermediateField.adjoin K (insert α (divSet K L)))
       = (minpoly (fullC K L) α).natDegree :=
   relfinrank_adjoin_insert_eq_natDegree (divSet K L) hα
@@ -440,7 +484,8 @@ section packetBounds
 
 variable {F : IntermediateField K (LaurentSeries K)} {p : ℕ} [NeZero p]
 
-theorem phiAtSeed_map_algebraMap (data : ModularPolynomialData p) {s : LaurentSeries K} (hs : s ∈ F) :
+theorem phiAtSeed_map_algebraMap (data : ModularPolynomialData p) {s : LaurentSeries K} (hs : s ∈ F)
+    :
     (phiAtSeed data (⟨s, hs⟩ : F)).map (algebraMap F (LaurentSeries K)) = phiAtSeed data s := by
   rw [phiAtSeed_map]; rfl
 
@@ -450,12 +495,14 @@ theorem aeval_phiAtSeed_eq_zero (data : ModularPolynomialData p) {s : LaurentSer
   rw [← Polynomial.eval_map_algebraMap, phiAtSeed_map_algebraMap]
   exact ht
 
-theorem isIntegral_of_phiAtSeed_root (data : ModularPolynomialData p) {s : LaurentSeries K} (hs : s ∈ F)
+theorem isIntegral_of_phiAtSeed_root (data : ModularPolynomialData p) {s : LaurentSeries K}
+    (hs : s ∈ F)
     {t : LaurentSeries K} (ht : (phiAtSeed data s).eval t = 0) : IsIntegral F t :=
   ⟨phiAtSeed data (⟨s, hs⟩ : F), phiAtSeed_monic data _, by
     rw [← Polynomial.aeval_def]; exact aeval_phiAtSeed_eq_zero data hs ht⟩
 
-theorem natDegree_minpoly_le_dedekindPsi_of_phiAtSeed_root (data : ModularPolynomialData p) {s : LaurentSeries K}
+theorem natDegree_minpoly_le_dedekindPsi_of_phiAtSeed_root (data : ModularPolynomialData p)
+    {s : LaurentSeries K}
     (hs : s ∈ F) {t : LaurentSeries K} (ht : (phiAtSeed data s).eval t = 0) :
     (minpoly F t).natDegree ≤ dedekindPsi p := by
   have h := minpoly.degree_le_of_ne_zero F t (phiAtSeed_monic data (⟨s, hs⟩ : F)).ne_zero
@@ -463,7 +510,8 @@ theorem natDegree_minpoly_le_dedekindPsi_of_phiAtSeed_root (data : ModularPolyno
   have h2 := Polynomial.natDegree_le_natDegree h
   rwa [phiAtSeed_natDegree] at h2
 
-theorem natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem (data : ModularPolynomialData p) {s : LaurentSeries K}
+theorem natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem (data : ModularPolynomialData p)
+    {s : LaurentSeries K}
     (hs : s ∈ F) {r : LaurentSeries K} (hr : r ∈ F) (hrroot : (phiAtSeed data s).eval r = 0)
     {t : LaurentSeries K} (ht : (phiAtSeed data s).eval t = 0) (htr : t ≠ r) :
     (minpoly F t).natDegree ≤ dedekindPsi p - 1 := by
@@ -472,17 +520,20 @@ theorem natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem (data : ModularPolyno
   have hPr : P.IsRoot rF := by
     rw [Polynomial.IsRoot.def]
     apply (algebraMap F (LaurentSeries K)).injective
-    rw [map_zero, ← Polynomial.eval₂_at_apply, ← Polynomial.eval_map, hPdef, phiAtSeed_map_algebraMap]
+    rw [map_zero, ← Polynomial.eval₂_at_apply, ← Polynomial.eval_map, hPdef,
+      phiAtSeed_map_algebraMap]
     exact hrroot
   set Q : Polynomial F := P /ₘ (Polynomial.X - Polynomial.C rF) with hQdef
-  have hPQ : (Polynomial.X - Polynomial.C rF) * Q = P := Polynomial.mul_divByMonic_eq_iff_isRoot.mpr hPr
+  have hPQ : (Polynomial.X - Polynomial.C rF) * Q = P :=
+    Polynomial.mul_divByMonic_eq_iff_isRoot.mpr hPr
   have hQne : Q ≠ 0 := by
     intro h0
     have hP0 : P ≠ 0 := (phiAtSeed_monic data (⟨s, hs⟩ : F)).ne_zero
     rw [← hPQ, h0, mul_zero] at hP0
     exact hP0 rfl
   have hQdeg : Q.natDegree = dedekindPsi p - 1 := by
-    rw [hQdef, Polynomial.natDegree_divByMonic _ (Polynomial.monic_X_sub_C rF), Polynomial.natDegree_X_sub_C,
+    rw [hQdef, Polynomial.natDegree_divByMonic _ (Polynomial.monic_X_sub_C rF),
+      Polynomial.natDegree_X_sub_C,
       hPdef, phiAtSeed_natDegree]
   have htP : Polynomial.aeval t P = 0 := aeval_phiAtSeed_eq_zero data hs ht
   have htQ : Polynomial.aeval t Q = 0 := by
@@ -523,7 +574,8 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     rw [hqe, mul_left_comm, Nat.mul_div_cancel' hqd]
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
   have data_q : ModularPolynomialData q := (ModularCurve.exists_phiIrreducible_evalSymm q).choose
-  let : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
+  let : Algebra F (LaurentSeries K) :=
+    ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
   have hmapA : (phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_p (qExpand K N (jqNModC K (d / p))) :=
     phiAtSeed_map data_p _ _
@@ -568,12 +620,16 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     intro y
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, hmapB, hseed_q]
     exact isRoot_prime_at_slot_iff q (ζ ^ (N / q)) hζq data_q (N / q * (d / q)) 1 y
-  have hA0 : phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F) ≠ 0 := (phiAtSeed_monic data_p _).ne_zero
-  have hAs : ((phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))).Splits := by
+  have hA0 : phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F) ≠ 0 :=
+    (phiAtSeed_monic data_p _).ne_zero
+  have hAs : ((phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))).Splits :=
+    by
     rw [hmapA, hseed_p, phiAtSeed,
-      ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p (ζ ^ (N / p)) hζp data_p (N / p * (d / p)) 1]
+      ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p (ζ ^ (N / p)) hζp data_p (N / p
+      * (d / p)) 1]
     exact (Polynomial.Splits.X_sub_C _).mul (Polynomial.Splits.prod fun b _ => Polynomial.Splits.X_sub_C _)
-  have hAnd : ((phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))).roots.Nodup := by
+  have hAnd : ((phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))).roots.Nodup :=
+    by
     rw [hmapA, hseed_p, phiAtSeed]
     exact roots_prime_at_slot_roots_nodup p (ζ ^ (N / p)) hζp data_p (N / p * (d / p)) 1
   have hxA : Polynomial.aeval (qExpand K N (jqNModC K d)) (phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)) = 0 :=
@@ -609,7 +665,8 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   rw [← hval]
   exact f.2
 
-theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) N)
     {F : IntermediateField K (LaurentSeries K)} {d : ℕ} [NeZero d]
     {l p : ℕ} (ll : Nat.Prime l) (pp : Nat.Prime p) (hlN : l ∣ N) (hpN : p ∣ N) (hld : l ∣ d)
     [NeZero (d / l)] [NeZero (p * d)] (hml : jqNModC K (d / l) ∈ F) (hmp : jqNModC K (p * d) ∈ F) :
@@ -629,7 +686,8 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
   have hpe : N * (p * d) = p * (N * d) := Nat.mul_left_comm N p d
   have data_l : ModularPolynomialData l := (ModularCurve.exists_phiIrreducible_evalSymm l).choose
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
-  let : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
+  let : Algebra F (LaurentSeries K) :=
+    ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
   have hmapA : (phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_l (qExpand K N (jqNModC K (d / l))) :=
     phiAtSeed_map data_l _ _
@@ -642,7 +700,8 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
       rw [one_pow]
       exact TS_congr hle.symm 1
     exact (qExpand_jqNModC N (d / l)).trans h2
-  have hseed_p : qExpand K N (jqNModC K (p * d)) = qExpand K (p * (N * d)) (qTwist ((1 : Kˣ) ^ p) (jqModC K)) := by
+  have hseed_p : qExpand K N (jqNModC K (p * d)) = qExpand K (p * (N * d)) (qTwist ((1 : Kˣ) ^ p) (jqModC K)) :=
+    by
     have h2 : TS K (N * (p * d)) 1 = TS K (p * (N * d)) ((1 : Kˣ) ^ p) := by
       rw [one_pow]
       exact TS_congr hpe 1
@@ -653,7 +712,8 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
       rw [one_pow]
       exact TS_congr hle2.symm 1
     exact (qExpand_jqNModC N d).trans h2
-  have hdist_p : qExpand K N (jqNModC K d) = qExpand K (N * d) (qTwist (1 * (ζ ^ (N / p)) ^ 0) (jqModC K)) := by
+  have hdist_p : qExpand K N (jqNModC K d) = qExpand K (N * d) (qTwist (1 * (ζ ^ (N / p)) ^ 0) (jqModC K)) :=
+    by
     rw [pow_zero, mul_one]
     exact qExpand_jqNModC N d
   have hrootA : ∀ y : LaurentSeries K,
@@ -670,12 +730,16 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
     intro y
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, hmapB, hseed_p]
     exact isRoot_prime_at_slot_iff p (ζ ^ (N / p)) hζp data_p (N * d) 1 y
-  have hA0 : phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F) ≠ 0 := (phiAtSeed_monic data_l _).ne_zero
-  have hAs : ((phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))).Splits := by
+  have hA0 : phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F) ≠ 0 :=
+    (phiAtSeed_monic data_l _).ne_zero
+  have hAs : ((phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))).Splits :=
+    by
     rw [hmapA, hseed_l, phiAtSeed,
-      ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot l (ζ ^ (N / l)) hζl data_l (N / l * (d / l)) 1]
+      ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot l (ζ ^ (N / l)) hζl data_l (N / l
+      * (d / l)) 1]
     exact (Polynomial.Splits.X_sub_C _).mul (Polynomial.Splits.prod fun b _ => Polynomial.Splits.X_sub_C _)
-  have hAnd : ((phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))).roots.Nodup := by
+  have hAnd : ((phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))).roots.Nodup :=
+    by
     rw [hmapA, hseed_l, phiAtSeed]
     exact roots_prime_at_slot_roots_nodup l (ζ ^ (N / l)) hζl data_l (N / l * (d / l)) 1
   have hxA : Polynomial.aeval (qExpand K N (jqNModC K d)) (phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)) = 0 :=
@@ -720,13 +784,18 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 namespace W1
 p2m_open "ModularCurve"
 
 variable {K : Type*} [Field K]
 
-theorem jqNModC_mem_adjoin_top_insert (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M)
+theorem jqNModC_mem_adjoin_top_insert (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ)
+    (hpM : ¬ p ∣ M)
     (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) :
     ∀ (d : ℕ) [NeZero d], d ∣ M * p ^ (a + 1) →
       jqNModC K d ∈ IntermediateField.adjoin K (insert (jqNModC K (p ^ (a + 1))) (divSet K (M * p ^ a))) := by
@@ -779,7 +848,8 @@ theorem jqNModC_mem_adjoin_top_insert (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact 
           exact (Nat.div_dvd_of_dvd hqd).trans hdN
         exact jqNModC_mem_of_div_primes ζ hζ hdN hp.out hq hqp hpd hqd hmem_p hmem_q
 
-theorem fullC_succ_eq_adjoin_insert_divSet (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ)
+theorem fullC_succ_eq_adjoin_insert_divSet (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)]
+    (a : ℕ)
     (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) :
     fullC K (M * p ^ (a + 1))
       = IntermediateField.adjoin K (insert (jqNModC K (p ^ (a + 1))) (divSet K (M * p ^ a))) := by
@@ -792,7 +862,8 @@ theorem fullC_succ_eq_adjoin_insert_divSet (M : ℕ) [NeZero M] (p : ℕ) [hp : 
     · exact jqNModC_mem_fullC (dvd_mul_left _ _)
     · exact fullC_mono (mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ a))) (IntermediateField.subset_adjoin K _ hx)
 
-theorem fullC_mul_prime_eq_adjoin_insert_image (L₀ : ℕ) [NeZero L₀] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
+theorem fullC_mul_prime_eq_adjoin_insert_image (L₀ : ℕ) [NeZero L₀] (p : ℕ)
+    [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) (L₀ * p)) :
     fullC K (L₀ * p) = IntermediateField.adjoin K (insert (jqModC K) ((qExpandₐK K p) '' divSet K L₀)) := by
   refine le_antisymm ?_ ?_
@@ -850,8 +921,8 @@ theorem jqNModC_prime_mem_eFull : jqNModC K p ∈ eFull K p L₀ := by
   rwa [jqNModC_congr (Nat.mul_one p)] at h
 
 omit hp in
-
-theorem phiAtSeed_jqNModC_prime_eval_jqModC [NeZero p] (data : ModularPolynomialData p) (hsymm : EvalSymm data.Φ) :
+theorem phiAtSeed_jqNModC_prime_eval_jqModC [NeZero p] (data : ModularPolynomialData p)
+    (hsymm : EvalSymm data.Φ) :
     (phiAtSeed data (jqNModC K p)).eval (jqModC K) = 0 := by
   have h := phiAtSeed_jqNModC_eval_symm (R := K) p data hsymm 1
   rwa [jqNModC_congr (Nat.one_mul p), jqNModC_one] at h
@@ -861,21 +932,26 @@ theorem isIntegral_jqModC_eFull : IsIntegral (eFull K p L₀) (jqModC K) := by
   exact isIntegral_of_phiAtSeed_root data (jqNModC_prime_mem_eFull L₀ p)
     (phiAtSeed_jqNModC_prime_eval_jqModC p data hsymm)
 
-theorem natDegree_minpoly_jqModC_eFull_le : (minpoly (eFull K p L₀) (jqModC K)).natDegree ≤ p + 1 := by
+theorem natDegree_minpoly_jqModC_eFull_le :
+    (minpoly (eFull K p L₀) (jqModC K)).natDegree ≤ p + 1 := by
   obtain ⟨data, -, hsymm⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
-  have h := natDegree_minpoly_le_dedekindPsi_of_phiAtSeed_root data (jqNModC_prime_mem_eFull (K := K) L₀ p)
+  have h :=
+    natDegree_minpoly_le_dedekindPsi_of_phiAtSeed_root data (jqNModC_prime_mem_eFull (K := K) L₀ p)
     (phiAtSeed_jqNModC_prime_eval_jqModC (K := K) p data hsymm)
   rwa [ModularCurve.dedekindPsi_prime hp.out] at h
 
-theorem natDegree_minpoly_jqModC_eFull_le_of_dvd (hpL : p ∣ L₀) : (minpoly (eFull K p L₀) (jqModC K)).natDegree ≤ p := by
+theorem natDegree_minpoly_jqModC_eFull_le_of_dvd (hpL : p ∣ L₀) :
+    (minpoly (eFull K p L₀) (jqModC K)).natDegree ≤ p := by
   obtain ⟨data, -, hsymm⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
   have hr : jqNModC K (p * p) ∈ eFull K p L₀ := jqNModC_mul_mem_eFull p hpL
-  have hrroot : (phiAtSeed data (jqNModC K p)).eval (jqNModC K (p * p)) = 0 := phiAtSeed_jqNModC_eval (R := K) p data p
+  have hrroot : (phiAtSeed data (jqNModC K p)).eval (jqNModC K (p * p)) = 0 :=
+    phiAtSeed_jqNModC_eval (R := K) p data p
   have hne : jqModC K ≠ jqNModC K (p * p) := by
     intro h
     have h1 : (1 : ℕ) = p * p := jqNModC_injective (by rw [jqNModC_one]; exact h)
     nlinarith [hp.out.two_le]
-  have h := natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem data (jqNModC_prime_mem_eFull (K := K) L₀ p) hr hrroot
+  have h :=
+    natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem data (jqNModC_prime_mem_eFull (K := K) L₀ p) hr hrroot
     (phiAtSeed_jqNModC_prime_eval_jqModC (K := K) p data hsymm) hne
   rw [ModularCurve.dedekindPsi_prime hp.out] at h
   omega
@@ -885,7 +961,8 @@ theorem le_natDegree_minpoly_jqModC_eFull (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ 
   classical
   have hint : IsIntegral (eFull K p L₀) (jqModC K) := isIntegral_jqModC_eFull L₀ p
   have hζp : ζ ^ p = 1 := units_pow_eq_one_of_isPrimitiveRoot hζ
-  have hroot : ∀ b : ℕ, Polynomial.aeval (qTwist (ζ ^ b) (jqModC K)) (minpoly (eFull K p L₀) (jqModC K)) = 0 := by
+  have hroot : ∀ b : ℕ, Polynomial.aeval (qTwist (ζ ^ b) (jqModC K)) (minpoly (eFull K p L₀) (jqModC K)) = 0 :=
+    by
     intro b
     have hvb : (ζ ^ b) ^ p = 1 := by rw [← pow_mul, Nat.mul_comm, pow_mul, hζp, one_pow]
     have hfix : (qTwist (ζ ^ b)).comp (algebraMap (eFull K p L₀) (LaurentSeries K))
@@ -895,7 +972,8 @@ theorem le_natDegree_minpoly_jqModC_eFull (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ 
       exact qTwist_eq_self_of_mem_eFull p hvb x.2
     have h0 := minpoly.aeval (eFull K p L₀) (jqModC K)
     rw [Polynomial.aeval_def] at h0 ⊢
-    have h1 := Polynomial.hom_eval₂ (minpoly (eFull K p L₀) (jqModC K)) (algebraMap (eFull K p L₀) (LaurentSeries K))
+    have h1 :=
+      Polynomial.hom_eval₂ (minpoly (eFull K p L₀) (jqModC K)) (algebraMap (eFull K p L₀) (LaurentSeries K))
       (qTwist (ζ ^ b)) (jqModC K)
     rw [hfix, h0, map_zero] at h1
     exact h1.symm
@@ -904,7 +982,8 @@ theorem le_natDegree_minpoly_jqModC_eFull (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ 
   have hmem : ∀ b : ℕ, qTwist (ζ ^ b) (jqModC K)
       ∈ ((minpoly (eFull K p L₀) (jqModC K)).map (algebraMap (eFull K p L₀) (LaurentSeries K))).roots.toFinset := by
     intro b
-    rw [Multiset.mem_toFinset, Polynomial.mem_roots hmne, Polynomial.IsRoot.def, Polynomial.eval_map_algebraMap]
+    rw [Multiset.mem_toFinset, Polynomial.mem_roots hmne, Polynomial.IsRoot.def,
+      Polynomial.eval_map_algebraMap]
     exact hroot b
   have hinj : Set.InjOn (fun b : ℕ => qTwist (ζ ^ b) (jqModC K)) ↑(Finset.range p) := by
     intro b hb b' hb' h
@@ -931,15 +1010,18 @@ theorem le_natDegree_minpoly_jqModC_eFull (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ 
         Polynomial.card_roots' _
     _ = (minpoly (eFull K p L₀) (jqModC K)).natDegree := (minpoly.monic hint).natDegree_map _
 
-theorem relfinrank_eFull_fullC_eq_natDegree [NeZero L₀] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (L₀ * p)) :
+theorem relfinrank_eFull_fullC_eq_natDegree [NeZero L₀] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) (L₀ * p)) :
     IntermediateField.relfinrank (eFull K p L₀) (fullC K (L₀ * p)) = (minpoly (eFull K p L₀) (jqModC K)).natDegree := by
   rw [fullC_mul_prime_eq_adjoin_insert_image L₀ p ζ hζ]
   exact relfinrank_eFull_insert_eq_natDegree p L₀ (isIntegral_jqModC_eFull L₀ p)
 
 end eFullDegree
 
-theorem finrank_adjoin_jqNModC_prime_of_not_mem' (F : IntermediateField K (LaurentSeries K)) (hj : jqModC K ∈ F)
-    (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (hpF : jqNModC K p ∉ F) :
+theorem finrank_adjoin_jqNModC_prime_of_not_mem' (F : IntermediateField K (LaurentSeries K))
+    (hj : jqModC K ∈ F)
+    (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
+    (hpF : jqNModC K p ∉ F) :
     Module.finrank F (IntermediateField.adjoin F ({jqNModC K p} : Set (LaurentSeries K))) = p + 1 := by
   classical
   obtain ⟨data, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
@@ -956,35 +1038,42 @@ theorem finrank_adjoin_jqNModC_prime_of_not_mem' (F : IntermediateField K (Laure
   have hseed : qExpand K p (jqModC K) = qExpand K (p * 1) (qTwist ((1 : Kˣ) ^ p) (jqModC K)) := by
     rw [one_pow, qTwist_one_apply]
     exact qExpand_congr (Nat.mul_one p).symm _
-  have hspread : qExpand K p (jqNModC K p) = qExpand K (p * (p * 1)) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K)) := by
+  have hspread : qExpand K p (jqNModC K p) = qExpand K (p * (p * 1)) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K)) :=
+    by
     rw [one_pow, qTwist_one_apply, jqNModC, qExpand_qExpand]
     exact qExpand_congr (by ring) _
   have hirr : Irreducible (phiAtSeed data (⟨jqModC K, hj⟩ : F)) := by
-    let : Algebra F (LaurentSeries K) := ((qExpand K p).comp (algebraMap F (LaurentSeries K))).toAlgebra
-    have halg : ∀ x : F, algebraMap F (LaurentSeries K) x = qExpand K p (x : LaurentSeries K) := fun _ => rfl
+    let : Algebra F (LaurentSeries K) :=
+      ((qExpand K p).comp (algebraMap F (LaurentSeries K))).toAlgebra
+    have halg : ∀ x : F, algebraMap F (LaurentSeries K) x = qExpand K p (x : LaurentSeries K) :=
+      fun _ => rfl
     have hPmapL : (phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))
         = phiAtSeed data (qExpand K (p * 1) (qTwist ((1 : Kˣ) ^ p) (jqModC K))) := by
       rw [← hseed]
       exact phiAtSeed_map data _ _
-    have hPs : ((phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))).Splits := by
-      rw [hPmapL, phiAtSeed, ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p ζ hζ data 1 1]
+    have hPs : ((phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))).Splits :=
+      by
+      rw [hPmapL, phiAtSeed, ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p ζ hζ data
+        1 1]
       exact (Polynomial.Splits.X_sub_C _).mul (Polynomial.Splits.prod fun _ _ => Polynomial.Splits.X_sub_C _)
     have hroots : ((phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))).roots
         = qExpand K (p * (p * 1)) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K)) ::ₘ
             (Multiset.range p).map (fun b => qExpand K 1 (qTwist (1 * ζ ^ b) (jqModC K))) := by
       rw [hPmapL]
       exact roots_prime_at_slot p ζ hζ data 1 1
-    have hnodup : ((phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))).roots.Nodup := by
+    have hnodup : ((phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))).roots.Nodup :=
+      by
       rw [hPmapL, phiAtSeed]
       exact roots_prime_at_slot_roots_nodup p ζ hζ data 1 1
-    have hσ : ∀ x : F, qTwistEquiv ζ (algebraMap F (LaurentSeries K) x) = algebraMap F (LaurentSeries K) x := by
+    have hσ : ∀ x : F, qTwistEquiv ζ (algebraMap F (LaurentSeries K) x) = algebraMap F (LaurentSeries K) x :=
+      by
       intro x
       rw [halg, qTwistEquiv_apply]
       exact qTwist_qExpand_of_pow_eq_one p ζ hζp _
     have hcycle : ∀ i < p, qTwistEquiv ζ (qExpand K 1 (qTwist (1 * ζ ^ i) (jqModC K)))
         = qExpand K 1 (qTwist (1 * ζ ^ ((i + 1) % p)) (jqModC K)) := by
       intro i _
-      show qTwist ζ (TS K 1 (1 * ζ ^ i)) = TS K 1 (1 * ζ ^ ((i + 1) % p))
+      change qTwist ζ (TS K 1 (1 * ζ ^ i)) = TS K 1 (1 * ζ ^ ((i + 1) % p))
       rw [one_mul, one_mul]
       exact qTwist_TS_one_cycle ζ hζp i
     have hy₀ : qExpand K (p * (p * 1)) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K))
@@ -998,7 +1087,8 @@ theorem finrank_adjoin_jqNModC_prime_of_not_mem' (F : IntermediateField K (Laure
     minpoly.eq_of_irreducible_of_monic hirr hProot hPmonic
   rw [IntermediateField.adjoin.finrank hα, ← hmin, hPdeg]
 
-theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M)
+theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ)
+    (hpM : ¬ p ∣ M)
     (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1)))
     (hprev : ∀ b : ℕ, a = b + 1 →
       IntermediateField.relfinrank (fullC K (M * p ^ b)) (fullC K (M * p ^ (b + 1))) = if b = 0 then p + 1 else p)
@@ -1034,11 +1124,13 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
     have hL1 : M * p ^ (b + 1 + 1) = M * p ^ (b + 1) * p := by ring
     have hpL1 : p ∣ M * p ^ (b + 1 + 1) := Dvd.dvd.mul_left (dvd_pow_self p (Nat.succ_ne_zero _)) M
     have hζ0 : IsPrimitiveRoot ((ζ ^ (M * p ^ (b + 1 + 1) / (M * p ^ b * p)) : Kˣ) : K) (M * p ^ b * p) :=
-      isPrimitiveRoot_pow_div hζ (by rw [← hL0]; exact mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ _)))
+      isPrimitiveRoot_pow_div hζ (by
+        rw [← hL0]; exact mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ _)))
     have hζ1 : IsPrimitiveRoot (ζ : K) (M * p ^ (b + 1) * p) := by
       rw [← hL1]
       exact hζ
-    have hζp : IsPrimitiveRoot ((ζ ^ (M * p ^ (b + 1 + 1) / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpL1
+    have hζp : IsPrimitiveRoot ((ζ ^ (M * p ^ (b + 1 + 1) / p) : Kˣ) : K) p :=
+      isPrimitiveRoot_pow_div hζ hpL1
     have hGE : eFull K p (M * p ^ b) ≤ eFull K p (M * p ^ (b + 1)) :=
       eFull_mono p (mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ b)))
     have hG0 : eFull K p (M * p ^ b) ≤ fullC K (M * p ^ (b + 1)) := by
@@ -1055,7 +1147,8 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
         = if b = 0 then p + 1 else p := by
       rw [eFull_eq_map, eFull_eq_map, IntermediateField.relfinrank_map_map]
       exact hprev b rfl
-    have hδpos : 0 < IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1))) := by
+    have hδpos : 0 < IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1))) :=
+      by
       rw [hδ]
       split_ifs <;> omega
     have hx : IntermediateField.relfinrank (eFull K p (M * p ^ b)) (fullC K (M * p ^ (b + 1)))
@@ -1066,10 +1159,12 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
         exact natDegree_minpoly_jqModC_eFull_le (M * p ^ b) p
       · rw [ite_eq_right hb]
         exact natDegree_minpoly_jqModC_eFull_le_of_dvd (M * p ^ b) p (Dvd.dvd.mul_left (dvd_pow_self p hb) M)
-    have hy : p ≤ IntermediateField.relfinrank (eFull K p (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) := by
+    have hy : p ≤ IntermediateField.relfinrank (eFull K p (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) :=
+      by
       rw [hL1, relfinrank_eFull_fullC_eq_natDegree (M * p ^ (b + 1)) p ζ hζ1]
       exact le_natDegree_minpoly_jqModC_eFull (M * p ^ (b + 1)) p _ hζp
-    have hdle : IntermediateField.relfinrank (fullC K (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) ≤ p := by
+    have hdle : IntermediateField.relfinrank (fullC K (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) ≤ p :=
+      by
       rw [hd_eq]
       have hr : jqNModC K (p ^ b) ∈ fullC K (M * p ^ (b + 1)) :=
         jqNModC_mem_fullC (Dvd.dvd.mul_left (pow_dvd_pow p (Nat.le_succ b)) M)
@@ -1095,29 +1190,40 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap \
+  coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC \
+  jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC \
+  PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
-private theorem ModularCurve.fullC_mul_prime_pow_eq_adjoin {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) : IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'} = IntermediateField.adjoin K (insert (jqNModC K (p ^ (a + 1))) ((IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'} : IntermediateField K (LaurentSeries K)) : Set (LaurentSeries K))) := by
+private theorem ModularCurve.fullC_mul_prime_pow_eq_adjoin {K : Type*} [Field K] (M : ℕ) [NeZero M]
+    (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) :
+    IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'} = IntermediateField.adjoin K (insert (jqNModC K (p ^ (a + 1))) ((IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'} : IntermediateField K (LaurentSeries K)) : Set (LaurentSeries K))) := by
   rw [IntermediateField.adjoin_insert_adjoin]
   exact fullC_succ_eq_adjoin_insert_divSet M p a hpM ζ hζ
 
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
-private theorem ModularCurve.finrank_adjoin_jqNModC_prime_of_not_mem {K : Type*} [Field K] (F : IntermediateField K (LaurentSeries K)) (hj : jqModC K ∈ F) (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (hpF : jqNModC K p ∉ F) : Module.finrank F (IntermediateField.adjoin F ({jqNModC K p} : Set (LaurentSeries K))) = p + 1 :=
+private theorem ModularCurve.finrank_adjoin_jqNModC_prime_of_not_mem {K : Type*} [Field K]
+    (F : IntermediateField K (LaurentSeries K)) (hj : jqModC K ∈ F) (p : ℕ)
+    [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (hpF : jqNModC K p ∉ F) :
+    Module.finrank F (IntermediateField.adjoin F ({jqNModC K p} : Set (LaurentSeries K))) = p + 1 :=
   finrank_adjoin_jqNModC_prime_of_not_mem' F hj p ζ hζ hpF
 
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
-private theorem ModularCurve.relfinrank_fullC_mul_prime_pow {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) : IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p :=
+private theorem ModularCurve.relfinrank_fullC_mul_prime_pow {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) :
+    IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p :=
   relfinrank_fullC_step M p a hpM ζ hζ hprev hnm
 
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve in
-
-theorem solution {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) : IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p :=
+theorem solution {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) :
+    IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p :=
   ModularCurve.relfinrank_fullC_mul_prime_pow M p a hpM ζ hζ hprev hnm
 
 end S_ModularCurve_relfinrank_fullC_mul_prime_pow
@@ -1130,6 +1236,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.relfinrank_fullC_mul_prime_pow {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) : IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p := _root_.P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.solution M p a hpM ζ hζ hprev hnm
+theorem ModularCurve.relfinrank_fullC_mul_prime_pow {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) :
+    IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p :=
+  solution M p a hpM ζ hζ hprev hnm
 
 end publicSection

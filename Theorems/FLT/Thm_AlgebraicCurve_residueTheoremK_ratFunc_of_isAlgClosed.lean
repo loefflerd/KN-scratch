@@ -181,7 +181,6 @@ variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalDivisor (K := K) (F :=
 variable [∀ v : Place K F, v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
 
 omit [HasCanonicalLocalResidueKStar K F] [HasCanonicalDivisor (K := K) (F := F)] [Nontrivial Ω[F⁄K]] in
-
 theorem exists_smul_eq_of_ne_zero (v : Place K F) {ω ω₀ : Ω[F⁄K]}
     (hω : ω ≠ 0) (hω₀ : ω₀ ≠ 0) : ∃ g : F, g ≠ 0 ∧ ω = g • ω₀ := by
   set a := v.differentialCoeff ω with ha
@@ -237,7 +236,6 @@ variable [∀ v : Place K F, v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
 variable [HasPrincipalDivisors K F]
 
 variable (K F) in
-
 def principalAdele : F →ₗ[K] adeleSpace K F where
   toFun f := ⟨diagonalHom K F f, diagonal_mem_adeleSpace f⟩
   map_add' f g := Subtype.ext ((diagonalHom K F).map_add f g)
@@ -246,7 +244,8 @@ def principalAdele : F →ₗ[K] adeleSpace K F where
 section P1NamedRows
 
 variable (K)
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
+    [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
@@ -298,7 +297,7 @@ theorem mk_mem_maximalIdeal_iff {f : F} (hf : f ∈ v.toValuationSubring) :
       · exfalso
         apply hu
         rw [← v.adicValuation_coe_eq_one_iff ⟨f, hf⟩]
-        show v.adicValuation f = 1
+        change v.adicValuation f = 1
         rw [v.adicValuation_eq_exp_neg_ord hf0, ← h, _root_.neg_zero, WithZero.exp_zero]
   · intro h hu
     have hne : f ≠ 0 := fun h0 => hu.ne_zero (Subtype.ext h0)
@@ -375,7 +374,8 @@ section P1PolynomialSubrows
 
 variable (K)
 variable [DecidableEq (RatFunc K)]
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
+    [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
@@ -388,7 +388,8 @@ section P1PrincipalPartSubrows
 
 variable (K)
 variable [DecidableEq (RatFunc K)]
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
+    [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
@@ -400,7 +401,6 @@ variable {K}
 omit [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
   [HasPrincipalDivisors K (RatFunc K)] in
-
 theorem finitePlace_ne_placeInfty {p : K[X]} (hp : Irreducible p) :
     finitePlace K hp ≠ placeInfty K :=
   fun h => placeInfty_ne_ofHeightOneSpectrum K _ h.symm
@@ -491,7 +491,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring'' : v.toValuationSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.polynomialAlgebra : Algebra K[X] v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.polynomialAlgebra :
+    Algebra K[X] v.toValuationSubring :=
   (Polynomial.aeval (R := K) v.uniformizerSubring'').toRingHom.toAlgebra
 
 private theorem _root_.AlgebraicCurve.Place.polynomialAlgebra_algebraMap_X :
@@ -504,7 +505,7 @@ private lemma _root_.AlgebraicCurve.Place.polynomialIsScalarTower :
     IsScalarTower K K[X] v.toValuationSubring := by
   let := v.polynomialAlgebra
   refine IsScalarTower.of_algebraMap_eq fun a => ?_
-  show _ = aeval v.uniformizerSubring'' (algebraMap K K[X] a)
+  change _ = aeval v.uniformizerSubring'' (algebraMap K K[X] a)
   simp [Polynomial.algebraMap_eq, aeval_C]
 
 private theorem _root_.AlgebraicCurve.Place.range_mapBaseChange_le_span_D_uniformizer :
@@ -678,7 +679,6 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)] [CharZero K]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem p1PrincipalPartAtom_ne_zero {p : K[X]} (hp : p ≠ 0) {c : K[X]} (hc : c ≠ 0)
     (m : ℕ) : p1PrincipalPartAtom K p c m ≠ 0 := by
   simp only [p1PrincipalPartAtom, ne_eq, div_eq_zero_iff, not_or]
@@ -700,10 +700,12 @@ section ResidueEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring''' : v.toValuationSubring :=
+private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring''' :
+    v.toValuationSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
-private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring''' : Irreducible v.uniformizerSubring''' :=
+private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring''' :
+    Irreducible v.uniformizerSubring''' :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
 
 private theorem _root_.AlgebraicCurve.Place.maximalIdeal_eq_span_uniformizer :
@@ -797,7 +799,8 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_polynomialKaehler_of_is
 private theorem _root_.AlgebraicCurve.Place.isSeparable_residueField_of_charZero_of_finiteResidue
     [CharZero K] [v.FiniteResidue] :
     Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring) := by
-  have : Module.Finite K (IsLocalRing.ResidueField v.toValuationSubring) := Place.FiniteResidue.finite
+  have : Module.Finite K (IsLocalRing.ResidueField v.toValuationSubring) :=
+    Place.FiniteResidue.finite
   have : Algebra.IsAlgebraic K (IsLocalRing.ResidueField v.toValuationSubring) :=
     Algebra.IsAlgebraic.of_finite K _
   exact Algebra.IsAlgebraic.isSeparable_of_perfectField
@@ -1009,13 +1012,13 @@ section Discharge
 
 variable (K)
 variable [CharZero K] [DecidableEq (RatFunc K)]
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
+    [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
 omit [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
   [HasPrincipalDivisors K (RatFunc K)] in
-
 theorem p1DifferentialCoeffRegularFinite_dX :
     P1DifferentialCoeffRegularFinite K (dX_ne_zero K) := by
   intro v hvinf
@@ -1036,7 +1039,6 @@ variable {K : Type*} [Field K] [DecidableEq (RatFunc K)]
 variable (K)
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem ord_ofHeightOneSpectrum_irreducible_eq_zero_of_ne
     (w : HeightOneSpectrum K[X]) {p : K[X]} (hp : Irreducible p)
     (hne : w ≠ heightOneSpectrumOfIrreducible K hp) :
@@ -1141,7 +1143,6 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem ratFuncX_inv_pow_inv (m : ℕ) :
     (((RatFunc.X : RatFunc K)⁻¹) ^ m)⁻¹ = (RatFunc.X : RatFunc K) ^ m := by
   rw [inv_pow, inv_inv]
@@ -1266,13 +1267,11 @@ theorem two_le_ord_placeInfty_p1PrincipalPartAtom
   nlinarith
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem not_dvd_of_degree_lt {p c : K[X]} (hc : c ≠ 0)
     (hdeg : c.degree < p.degree) : ¬ p ∣ c :=
   fun hdvd => not_lt.mpr (Polynomial.degree_le_of_dvd hdvd hc) hdeg
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem ord_finitePlace_of_degree_lt {p : K[X]} (hp : Irreducible p) {c : K[X]} (hc : c ≠ 0)
     (hdeg : c.degree < p.degree) :
     (finitePlace K hp).ord (algebraMap K[X] (RatFunc K) c) = 0 :=
@@ -1280,7 +1279,6 @@ theorem ord_finitePlace_of_degree_lt {p : K[X]} (hp : Irreducible p) {c : K[X]} 
     not_dvd_of_degree_lt K hc hdeg ((ord_finitePlace_ne_zero_iff K hp hc).mp h)
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem ord_finitePlace_p1PrincipalPartAtom {p : K[X]} (hp : Irreducible p)
     {c : K[X]} (hc : c ≠ 0) (hdeg : c.degree < p.degree) (m : ℕ) :
     (finitePlace K hp).ord (p1PrincipalPartAtom K p c m) = -(m : ℤ) := by
@@ -1295,7 +1293,8 @@ theorem ord_finitePlace_p1PrincipalPartAtom {p : K[X]} (hp : Irreducible p)
 
 section UnitFinite
 
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
+    [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
@@ -1303,7 +1302,6 @@ variable {K}
 
 omit [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
   [Nontrivial Ω[(RatFunc K)⁄K]] [HasPrincipalDivisors K (RatFunc K)] in
-
 theorem p1DifferentialCoeffRegularFinite_of_unitFinite
     {ω₀ : Ω[(RatFunc K)⁄K]} (hω₀ : ω₀ ≠ 0)
     (hunit : P1DifferentialCoeffUnitFinite K hω₀) :
@@ -1327,14 +1325,12 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem derivative_monic_natDegree_one_eq_one {p : K[X]} (hpmon : p.Monic)
     (hdeg : p.natDegree = 1) : derivative p = 1 := by
   rw [hpmon.eq_X_add_C hdeg, derivative_add, derivative_X, derivative_C, add_zero]
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem D_algebraMap_polynomial_degOne {p : K[X]} (hpmon : p.Monic) (hdeg : p.natDegree = 1) :
     KaehlerDifferential.D K (RatFunc K) (algebraMap K[X] (RatFunc K) p) = dX K := by
   rw [D_algebraMap_polynomial K p, derivative_monic_natDegree_one_eq_one K hpmon hdeg, map_one,
@@ -1342,7 +1338,6 @@ theorem D_algebraMap_polynomial_degOne {p : K[X]} (hpmon : p.Monic) (hdeg : p.na
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem eq_C_coeff_zero_of_degree_lt_degOne {p c : K[X]} (hpirr : Irreducible p)
     (hdeg : p.natDegree = 1) (hcdeg : c.degree < p.degree) : c = C (c.coeff 0) := by
   have hpdeg : p.degree = (1 : ℕ) := by
@@ -1352,7 +1347,6 @@ theorem eq_C_coeff_zero_of_degree_lt_degOne {p c : K[X]} (hpirr : Irreducible p)
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem p1PrincipalPartAtom_mul_differentialCoeff_dX_degOne
     {p c : K[X]} (hpmon : p.Monic) (hpirr : Irreducible p) (hdeg : p.natDegree = 1)
     (hcdeg : c.degree < p.degree) (m : ℕ) :
@@ -1386,7 +1380,6 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem p1FinitePlaceCanonicalResidueAtom_of_coordIndep_degOne
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K))
     {p c : K[X]} {m : ℕ} (hpmon : p.Monic) (hpirr : Irreducible p)
@@ -1407,7 +1400,6 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem p1FinitePlaceCanonicalResidueAtomMGeTwoHigherDeg_of_algClosed :
     P1FinitePlaceCanonicalResidueAtomMGeTwoHigherDeg K := by
   intro p c m _ hpirr _ _ hdeg
@@ -1459,13 +1451,15 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
 variable (A : Subalgebra K F) (hA : (A : Set F) ⊆ (v.toValuationSubring : Set F))
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelInclusion : A →+* v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelInclusion :
+    A →+* v.toValuationSubring :=
   (Subring.inclusion (show A.toSubring ≤ v.toValuationSubring.toSubring from hA))
 
 @[scoped simp] theorem coe_modelInclusion (a : A) :
     ((v.modelInclusion A hA a : v.toValuationSubring) : F) = (a : F) := rfl
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelAlgebra : Algebra A v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelAlgebra :
+    Algebra A v.toValuationSubring :=
   (v.modelInclusion A hA).toAlgebra
 
 @[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerIdeal : Ideal A :=
@@ -1627,7 +1621,7 @@ theorem p1MOneAtom_mul_differentialCoeff_mem_simplePole_finitePlace
     p1PrincipalPartAtom K p c 1 * (finitePlace K hp).differentialCoeff ω₀
       ∈ (finitePlace K hp).simplePoleSubmodule := by
   rcases eq_or_ne c 0 with rfl | hc
-  · show algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
+  · change algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
         * (finitePlace K hp).differentialCoeff ω₀ ∈ _
     rw [_root_.map_zero, zero_div, zero_mul]; exact zero_mem _
   · have hatom0 : p1PrincipalPartAtom K p c 1 ≠ 0 := by
@@ -1652,7 +1646,7 @@ theorem p1MOneAtom_mul_differentialCoeff_mem_simplePole_placeInfty
     p1PrincipalPartAtom K p c 1 * (placeInfty K).differentialCoeff ω₀
       ∈ (placeInfty K).simplePoleSubmodule := by
   rcases eq_or_ne c 0 with rfl | hc
-  · show algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
+  · change algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
         * (placeInfty K).differentialCoeff ω₀ ∈ _
     rw [_root_.map_zero, zero_div, zero_mul]; exact zero_mem _
   · have hatom0 : p1PrincipalPartAtom K p c 1 ≠ 0 := by
@@ -1725,7 +1719,6 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_higherDeg
     (h : P1FinitePlaceCanonicalResidueAtomMGeTwoHigherDeg K) :
     P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K :=
@@ -1772,7 +1765,6 @@ variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFun
 
 omit [DecidableEq (RatFunc K)]
   [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]] in
-
 theorem p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_algClosed :
     P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K :=
   p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_higherDeg K
@@ -1884,11 +1876,13 @@ scoped instance centerLocalizationValuationSubring_isDiscreteValuationRing
     IsDiscreteValuationRing (v.centerLocalizationValuationSubring A hA) :=
   v.centerLocalizationSubalgebra_isDiscreteValuationRing A hA
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_le [IsDedekindDomain A] [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_le
+    [IsDedekindDomain A] [IsFractionRing A F] :
     v.centerLocalizationValuationSubring A hA ≤ v.toValuationSubring :=
   v.centerLocalizationSubalgebra_subset A hA
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_eq [IsDedekindDomain A] [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_eq
+    [IsDedekindDomain A] [IsFractionRing A F] :
     v.centerLocalizationValuationSubring A hA = v.toValuationSubring :=
   ValuationSubring.eq_of_isDiscreteValuationRing_of_le
     (v.centerLocalizationValuationSubring_le A hA) v.ne_top'
@@ -1899,7 +1893,8 @@ theorem coe_centerLocalizationSubalgebra_eq [IsDedekindDomain A] [IsFractionRing
   rw [← coe_centerLocalizationValuationSubring]
   exact congrArg (SetLike.coe) (v.centerLocalizationValuationSubring_eq A hA)
 
-private theorem _root_.AlgebraicCurve.Place.mem_centerLocalizationSubalgebra_of_mem [IsDedekindDomain A] [IsFractionRing A F]
+private theorem _root_.AlgebraicCurve.Place.mem_centerLocalizationSubalgebra_of_mem
+    [IsDedekindDomain A] [IsFractionRing A F]
     (x : F) (hx : x ∈ v.toValuationSubring) :
     x ∈ (v.centerLocalizationSubalgebra A hA : Subalgebra A F) := by
   rw [← SetLike.mem_coe, coe_centerLocalizationSubalgebra_eq]; exact hx
@@ -1916,7 +1911,7 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
       v.mem_centerLocalizationSubalgebra_of_mem A hA (x : F) x.2
     obtain ⟨a, s, hs, hxeq⟩ := hxP
     refine ⟨⟨a, ⟨s, hs⟩⟩, Subtype.ext ?_⟩
-    show (x : F) * ((s : A) : F) = ((a : A) : F)
+    change (x : F) * ((s : A) : F) = ((a : A) : F)
     have halg_s : algebraMap A F s = ((s : A) : F) := rfl
     have halg_a : algebraMap A F a = ((a : A) : F) := rfl
     have hs0 : algebraMap A F s ≠ 0 := by
@@ -1965,17 +1960,21 @@ section EulerGeneral
 
 variable [CharZero K] {p : K[X]} [Fact (Irreducible p)]
 
+omit [DecidableEq (RatFunc K)] in
 theorem aeval_root_eq_sum_range {c : K[X]} {d : ℕ} (hd : c.natDegree < d) :
     (aeval (AdjoinRoot.root p) c : AdjoinRoot p)
       = ∑ k ∈ Finset.range d, c.coeff k • AdjoinRoot.root p ^ k := by
+  classical
   rw [aeval_def, eval₂_eq_sum_range' (algebraMap K (AdjoinRoot p)) hd]
   exact Finset.sum_congr rfl fun k _ => (Algebra.smul_def _ _).symm
 
+omit [DecidableEq (RatFunc K)] in
 theorem trace_adjoinRoot_mk_div_mk_derivative_of_degree_lt (hpmon : p.Monic)
     {c : K[X]} (hdeg : c.degree < p.degree) :
     Algebra.trace K (AdjoinRoot p)
         (AdjoinRoot.mk p c / AdjoinRoot.mk p (derivative p))
       = c.coeff (p.natDegree - 1) := by
+  classical
   have : FiniteDimensional K (AdjoinRoot p) :=
     Module.Finite.of_basis (AdjoinRoot.powerBasis hpmon.ne_zero).basis
   have hpd : 0 < p.natDegree := (Fact.out : Irreducible p).natDegree_pos
@@ -2008,22 +2007,27 @@ def finitePlaceResidueFieldAlgEquivAdjoinRoot :
     AdjoinRoot p ≃ₐ[K] (finitePlace K hpirr).ResidueField :=
   residueFieldEquivOfHeightOneSpectrum K (heightOneSpectrumOfIrreducible K hpirr)
 
+omit [DecidableEq (RatFunc K)] in
 theorem finitePlaceResidueFieldAlgEquivAdjoinRoot_mk (q : K[X]) :
     finitePlaceResidueFieldAlgEquivAdjoinRoot K hpirr (AdjoinRoot.mk p q)
       = IsLocalRing.residue _ ⟨algebraMap K[X] (RatFunc K) q,
-          algebraMap_mem_ofHeightOneSpectrum K _ q⟩ :=
-  rfl
+          algebraMap_mem_ofHeightOneSpectrum K _ q⟩ := by
+  classical
+  exact
+    rfl
 
 end AlgEquiv
 section TraceTransport
 
 variable {p : K[X]} (hpirr : Irreducible p)
 
+omit [DecidableEq (RatFunc K)] in
 theorem trace_finitePlace_residueField_eq_trace_adjoinRoot
     (y : (finitePlace K hpirr).ResidueField) :
     Algebra.trace K (finitePlace K hpirr).ResidueField y
       = Algebra.trace K (AdjoinRoot p)
           ((finitePlaceResidueFieldAlgEquivAdjoinRoot K hpirr).symm y) := by
+  classical
   conv_lhs => rw [← (finitePlaceResidueFieldAlgEquivAdjoinRoot K hpirr).apply_symm_apply y]
   exact Algebra.trace_eq_of_algEquiv _ _
 
@@ -2057,6 +2061,7 @@ variable [CharZero K]
 variable [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates]
 
+omit [DecidableEq (RatFunc K)] in
 theorem trace_finitePlace_simplePoleResidue_of_adjoinRootValue
     (hbridge : P1FinitePlaceSimplePoleResidueAdjoinRootValue K)
     {p c : K[X]} (hpmon : p.Monic) (hpirr : Irreducible p) (hdeg : c.degree < p.degree)
@@ -2065,6 +2070,7 @@ theorem trace_finitePlace_simplePoleResidue_of_adjoinRootValue
     Algebra.trace K (finitePlace K hpirr).ResidueField
         ((finitePlace K hpirr).simplePoleResidueAux ⟨_, hfmem⟩)
       = c.coeff (p.natDegree - 1) := by
+  classical
   have : Fact (Irreducible p) := ⟨hpirr⟩
   have hval := hbridge p c hpmon hpirr hdeg
   rw [trace_finitePlace_residueField_eq_trace_adjoinRoot K hpirr, hval hfmem,
@@ -2112,7 +2118,6 @@ private theorem _root_.AlgebraicCurve.Place.mem_valuationSubring_of_isIntegral {
 variable (B : Subalgebra K F) (hB : (B : Set F) ⊆ (v.toValuationSubring : Set F))
 
 include hB in
-
 private theorem _root_.AlgebraicCurve.Place.modelAlgebra_isScalarTower_top :
     letI := v.modelAlgebra B hB
     IsScalarTower B v.toValuationSubring F := by
@@ -2121,7 +2126,6 @@ private theorem _root_.AlgebraicCurve.Place.modelAlgebra_isScalarTower_top :
   rfl
 
 include hB in
-
 private theorem _root_.AlgebraicCurve.Place.mem_valuationSubring_of_isIntegral_subalgebra {x : F}
     (hx : _root_.IsIntegral B x) :
     x ∈ v.toValuationSubring := by
@@ -2130,7 +2134,6 @@ private theorem _root_.AlgebraicCurve.Place.mem_valuationSubring_of_isIntegral_s
   exact v.mem_valuationSubring_of_isIntegral (hx.tower_top (A := v.toValuationSubring))
 
 include hB in
-
 private theorem _root_.AlgebraicCurve.Place.integralClosure_subset_valuationSubring :
     ((integralClosure B F : Subalgebra B F) : Set F)
       ⊆ (v.toValuationSubring : Set F) := fun _ hx =>
@@ -2175,7 +2178,8 @@ section Gates
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) : Subalgebra K F where
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) :
+    Subalgebra K F where
   __ := v.toValuationSubring.toSubring
   algebraMap_mem' c := v.algebraMap_mem' c
 
@@ -2206,7 +2210,8 @@ namespace Place
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.simplePoleResidueAux_mul_of_mem {a : F} (ha : a ∈ v.toValuationSubring)
+private theorem _root_.AlgebraicCurve.Place.simplePoleResidueAux_mul_of_mem {a : F}
+    (ha : a ∈ v.toValuationSubring)
     {f : F} (hf : f ∈ v.simplePoleSubmodule)
     (haf : a * f ∈ v.simplePoleSubmodule) :
     v.simplePoleResidueAux ⟨a * f, haf⟩
@@ -2214,7 +2219,8 @@ private theorem _root_.AlgebraicCurve.Place.simplePoleResidueAux_mul_of_mem {a :
   rw [simplePoleResidueAux_apply, simplePoleResidueAux_apply, ← map_mul]
   exact congrArg (IsLocalRing.residue _) (Subtype.ext (mul_left_comm _ _ _))
 
-private theorem _root_.AlgebraicCurve.Place.mul_mem_simplePoleSubmodule_of_mem {a : F} (ha : a ∈ v.toValuationSubring)
+private theorem _root_.AlgebraicCurve.Place.mul_mem_simplePoleSubmodule_of_mem {a : F}
+    (ha : a ∈ v.toValuationSubring)
     {f : F} (hf : f ∈ v.simplePoleSubmodule) :
     a * f ∈ v.simplePoleSubmodule := by
   rw [mem_simplePoleSubmodule, mul_left_comm]
@@ -2226,9 +2232,11 @@ section DerivativeRegular
 variable (K)
 variable [DecidableEq (RatFunc K)]
 
+omit [DecidableEq (RatFunc K)] in
 theorem denom_notMem_of_mem_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) {f : RatFunc K}
     (hf : f ∈ (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring) :
     f.denom ∉ w.asIdeal := by
+  classical
   intro hd
   have hxval : w.valuation (RatFunc K) f ≤ 1 :=
     (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
@@ -2255,20 +2263,27 @@ theorem denom_notMem_of_mem_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) {f 
 
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
+omit [DecidableEq (RatFunc K)] in
 private theorem differentialCoeff_add' (v : Place K (RatFunc K)) (ω₁ ω₂ : Ω[(RatFunc K)⁄K]) :
-    v.differentialCoeff (ω₁ + ω₂) = v.differentialCoeff ω₁ + v.differentialCoeff ω₂ :=
-  v.differentialCoeff_unique
-    (by rw [add_smul, v.differentialCoeff_smul_dCoord, v.differentialCoeff_smul_dCoord])
+    v.differentialCoeff (ω₁ + ω₂) = v.differentialCoeff ω₁ + v.differentialCoeff ω₂ := by
+  classical
+  exact
+    v.differentialCoeff_unique
+      (by rw [add_smul, v.differentialCoeff_smul_dCoord, v.differentialCoeff_smul_dCoord])
 
+omit [DecidableEq (RatFunc K)] in
 theorem differentialCoeff_D_algebraMap_polynomial (v : Place K (RatFunc K)) (q : K[X]) :
     v.differentialCoeff (D K (RatFunc K) (algebraMap K[X] (RatFunc K) q))
       = algebraMap K[X] (RatFunc K) q.derivative * v.differentialCoeff (dX K) := by
+  classical
   rw [D_algebraMap_polynomial K q, v.differentialCoeff_smul]
 
+omit [DecidableEq (RatFunc K)] in
 theorem differentialCoeff_D_mem_finitePlace [CharZero K] {p : K[X]} (hpirr : Irreducible p)
     {f : RatFunc K} (hf : f ∈ (finitePlace K hpirr).toValuationSubring) :
     (finitePlace K hpirr).differentialCoeff (D K (RatFunc K) f)
       ∈ (finitePlace K hpirr).toValuationSubring := by
+  classical
   set v := finitePlace K hpirr
   set ξ : K[X] := f.num.derivative * f.denom - f.num * f.denom.derivative
   have hd0 : algebraMap K[X] (RatFunc K) f.denom ≠ 0 :=
@@ -2302,9 +2317,11 @@ variable (K)
 variable [DecidableEq (RatFunc K)] [CharZero K]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
+omit [DecidableEq (RatFunc K)] in
 theorem uniformizer_div_mem_finitePlace {p : K[X]} (hpirr : Irreducible p) :
     (finitePlace K hpirr).uniformizer / algebraMap K[X] (RatFunc K) p
       ∈ (finitePlace K hpirr).toValuationSubring := by
+  classical
   set v := finitePlace K hpirr
   have hp0 : algebraMap K[X] (RatFunc K) p ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr hpirr.ne_zero
@@ -2313,6 +2330,7 @@ theorem uniformizer_div_mem_finitePlace {p : K[X]} (hpirr : Irreducible p) :
     v.ord_uniformizer, ord_finitePlace_self K hpirr]
   omega
 
+omit [DecidableEq (RatFunc K)] in
 theorem one_sub_uniformizer_div_mul_differentialCoeff_D
     {p : K[X]} (hpirr : Irreducible p) :
     (1 : RatFunc K) - (finitePlace K hpirr).uniformizer / algebraMap K[X] (RatFunc K) p
@@ -2322,6 +2340,7 @@ theorem one_sub_uniformizer_div_mul_differentialCoeff_D
           * (finitePlace K hpirr).differentialCoeff
               (D K (RatFunc K) ((finitePlace K hpirr).uniformizer
                 / algebraMap K[X] (RatFunc K) p)) := by
+  classical
   set v := finitePlace K hpirr
   have hp0 : algebraMap K[X] (RatFunc K) p ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr hpirr.ne_zero
@@ -2345,12 +2364,14 @@ theorem one_sub_uniformizer_div_mul_differentialCoeff_D
       v.differentialCoeff_smul, v.differentialCoeff_smul]
   linear_combination h1
 
+omit [DecidableEq (RatFunc K)] in
 theorem uniformizer_div_mul_differentialCoeff_D_mem_finitePlace
     {p : K[X]} (hpirr : Irreducible p) :
     (finitePlace K hpirr).uniformizer / algebraMap K[X] (RatFunc K) p
         * (finitePlace K hpirr).differentialCoeff
             (D K (RatFunc K) (algebraMap K[X] (RatFunc K) p))
       ∈ (finitePlace K hpirr).toValuationSubring := by
+  classical
   set v := finitePlace K hpirr
   have hp0 : algebraMap K[X] (RatFunc K) p ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr hpirr.ne_zero
@@ -2361,10 +2382,12 @@ theorem uniformizer_div_mul_differentialCoeff_D_mem_finitePlace
       (ord_differentialCoeff_dX_ofHeightOneSpectrum hpirr
         (heightOneSpectrumOfIrreducible_asIdeal K hpirr) hpirr.separable).ge)
 
+omit [DecidableEq (RatFunc K)] in
 theorem residue_uniformizer_div_mul_differentialCoeff_D_eq_one
     {p : K[X]} (hpirr : Irreducible p) :
     IsLocalRing.residue _ ⟨_, uniformizer_div_mul_differentialCoeff_D_mem_finitePlace K hpirr⟩
       = (1 : (finitePlace K hpirr).ResidueField) := by
+  classical
   set v := finitePlace K hpirr
   rw [← sub_eq_zero, show (1 : v.ResidueField) = IsLocalRing.residue _ 1 by simp,
     ← map_sub, IsLocalRing.residue_eq_zero_iff]
@@ -2408,10 +2431,12 @@ variable [DecidableEq (RatFunc K)] [CharZero K]
 variable [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
+omit [DecidableEq (RatFunc K)] in
 theorem residue_algebraMap_derivative_ne_zero {p : K[X]} (hpirr : Irreducible p) :
     IsLocalRing.residue _ ⟨algebraMap K[X] (RatFunc K) p.derivative,
         algebraMap_mem_ofHeightOneSpectrum K _ p.derivative⟩
       ≠ (0 : (finitePlace K hpirr).ResidueField) := by
+  classical
   rw [ne_eq, IsLocalRing.residue_eq_zero_iff,
     Place.mem_maximalIdeal_iff_adicValuation_lt_one]
   intro hlt
@@ -2421,6 +2446,7 @@ theorem residue_algebraMap_derivative_ne_zero {p : K[X]} (hpirr : Irreducible p)
     heightOneSpectrumOfIrreducible_asIdeal K hpirr, Ideal.mem_span_singleton] at hlt'
   exact hpirr.not_isUnit (hpirr.separable.isUnit_of_dvd' dvd_rfl hlt')
 
+omit [DecidableEq (RatFunc K)] in
 theorem simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
     {p c : K[X]} (hpirr : Irreducible p)
     (hfmem : p1PrincipalPartAtom K p c 1 * (finitePlace K hpirr).differentialCoeff (dX K)
@@ -2430,6 +2456,7 @@ theorem simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
             algebraMap_mem_ofHeightOneSpectrum K _ c⟩
         / IsLocalRing.residue _ ⟨algebraMap K[X] (RatFunc K) p.derivative,
             algebraMap_mem_ofHeightOneSpectrum K _ p.derivative⟩ := by
+  classical
   set v := finitePlace K hpirr
   have hp0 : algebraMap K[X] (RatFunc K) p ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr hpirr.ne_zero
@@ -2440,7 +2467,7 @@ theorem simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
         * (v.uniformizer / algebraMap K[X] (RatFunc K) p
             * v.differentialCoeff (D K (RatFunc K) (algebraMap K[X] (RatFunc K) p))) := by
     rw [differentialCoeff_D_algebraMap_polynomial K]
-    show v.uniformizer
+    change v.uniformizer
         * (algebraMap K[X] (RatFunc K) c / algebraMap K[X] (RatFunc K) p ^ 1
             * v.differentialCoeff (dX K))
         * algebraMap K[X] (RatFunc K) (derivative p)
@@ -2476,8 +2503,10 @@ theorem simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
     _ = IsLocalRing.residue _ ⟨_, algebraMap_mem_ofHeightOneSpectrum K _ c⟩ := by
         rw [residue_uniformizer_div_mul_differentialCoeff_D_eq_one K hpirr, mul_one]
 
+omit [DecidableEq (RatFunc K)] in
 theorem p1FinitePlaceSimplePoleResidueAdjoinRootValue_dX :
     P1FinitePlaceSimplePoleResidueAdjoinRootValue K := by
+  classical
   intro p c _ hpirr _
   have : Fact (Irreducible p) := ⟨hpirr⟩
   intro hfmem
@@ -2491,7 +2520,8 @@ section ComposedEngine
 
 variable (K)
 variable [DecidableEq (RatFunc K)] [CharZero K]
-variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)]
+variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)]
+    [HasCanonicalLocalResidueKStar K (RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 theorem p1PrincipalPartMOneSimplePoleCancel_of_inftyBridge
@@ -2512,7 +2542,8 @@ section AdjoinRingProperties
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin {t : F} (ht : Transcendental K t)
+    :
     IsPrincipalIdealRing ↥(Algebra.adjoin K ({t} : Set F)) :=
   IsPrincipalIdealRing.of_surjective
     (Polynomial.algEquivOfTranscendental K t ht).toRingHom
@@ -2695,11 +2726,11 @@ theorem p1MOneAtom_mul_differentialCoeff_dX_mem_placeInfty
     p1PrincipalPartAtom K p c 1 * (placeInfty K).differentialCoeff (dX K)
       ∈ (placeInfty K).toValuationSubring := by
   rcases hcdeg with rfl | hcdeg
-  · show algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
+  · change algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
         * (placeInfty K).differentialCoeff (dX K) ∈ _
     rw [_root_.map_zero, zero_div, zero_mul]; exact zero_mem _
   · rcases eq_or_ne c 0 with rfl | hc
-    · show algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
+    · change algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ 1
           * (placeInfty K).differentialCoeff (dX K) ∈ _
       rw [_root_.map_zero, zero_div, zero_mul]; exact zero_mem _
     have hatom0 : p1PrincipalPartAtom K p c 1 ≠ 0 := by
@@ -2762,13 +2793,12 @@ section EraseLeadLinearity
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem p1PrincipalPartAtom_add_mul_differentialCoeff (p c₁ c₂ : K[X]) (m : ℕ)
     (v : Place K (RatFunc K)) (ω : Ω[(RatFunc K)⁄K]) :
     p1PrincipalPartAtom K p (c₁ + c₂) m * v.differentialCoeff ω
       = p1PrincipalPartAtom K p c₁ m * v.differentialCoeff ω
         + p1PrincipalPartAtom K p c₂ m * v.differentialCoeff ω := by
-  show algebraMap K[X] (RatFunc K) (c₁ + c₂) / (algebraMap K[X] (RatFunc K) p) ^ m
+  change algebraMap K[X] (RatFunc K) (c₁ + c₂) / (algebraMap K[X] (RatFunc K) p) ^ m
         * v.differentialCoeff ω
     = algebraMap K[X] (RatFunc K) c₁ / (algebraMap K[X] (RatFunc K) p) ^ m * v.differentialCoeff ω
       + algebraMap K[X] (RatFunc K) c₂ / (algebraMap K[X] (RatFunc K) p) ^ m
@@ -2776,12 +2806,11 @@ theorem p1PrincipalPartAtom_add_mul_differentialCoeff (p c₁ c₂ : K[X]) (m : 
   rw [map_add]; ring
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem p1PrincipalPartAtom_C_mul_mul_differentialCoeff (p c : K[X]) (a : K) (m : ℕ)
     (v : Place K (RatFunc K)) (ω : Ω[(RatFunc K)⁄K]) :
     p1PrincipalPartAtom K p (C a * c) m * v.differentialCoeff ω
       = a • (p1PrincipalPartAtom K p c m * v.differentialCoeff ω) := by
-  show algebraMap K[X] (RatFunc K) (C a * c) / (algebraMap K[X] (RatFunc K) p) ^ m
+  change algebraMap K[X] (RatFunc K) (C a * c) / (algebraMap K[X] (RatFunc K) p) ^ m
         * v.differentialCoeff ω
     = a • (algebraMap K[X] (RatFunc K) c / (algebraMap K[X] (RatFunc K) p) ^ m
         * v.differentialCoeff ω)
@@ -2869,7 +2898,7 @@ theorem p1PlaceInftySimplePoleResidueEulerValueTopDeg_of_monomial
     rw [p1PrincipalPartAtom_add_mul_differentialCoeff K]; exact add_mem hCXmem hELmem
   have heq : (⟨_, himem⟩ : (placeInfty K).simplePoleSubmodule) = ⟨_, h12mem⟩ := by
     refine Subtype.ext ?_
-    show algebraMap K[X] (RatFunc K) c / (algebraMap K[X] (RatFunc K) p) ^ 1
+    change algebraMap K[X] (RatFunc K) c / (algebraMap K[X] (RatFunc K) p) ^ 1
           * (placeInfty K).differentialCoeff (dX K)
       = algebraMap K[X] (RatFunc K) (C c.leadingCoeff * X ^ (p.natDegree - 1) + c.eraseLead)
           / (algebraMap K[X] (RatFunc K) p) ^ 1 * (placeInfty K).differentialCoeff (dX K)
@@ -2898,7 +2927,8 @@ end EraseLeadLinearity
 section ComposedEngine
 
 variable [CharZero K]
-variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)]
+variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)]
+    [HasCanonicalLocalResidueKStar K (RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 theorem p1PrincipalPartMOneSimplePoleCancel_of_inftyMonomial
@@ -3028,8 +3058,10 @@ theorem X_pow_natDegree_div_mem_placeInfty {p : K[X]} (hp : p ≠ 0) :
   exact (placeInfty K).mem_of_ord_nonneg (div_ne_zero hXd' hp')
     (ord_placeInfty_X_pow_natDegree_div K hp).ge
 
+omit [DecidableEq (RatFunc K)] in
 theorem degree_X_pow_natDegree_sub_lt_of_monic {p : K[X]} (hpmon : p.Monic) :
     ((X : K[X]) ^ p.natDegree - p).degree < p.degree := by
+  classical
   have hdeg : ((X : K[X]) ^ p.natDegree).degree = p.degree := by
     rw [degree_X_pow, degree_eq_natDegree hpmon.ne_zero]
   refine (Polynomial.degree_sub_lt_left hdeg (pow_ne_zero _ X_ne_zero) ?_).trans_le hdeg.le
@@ -3060,7 +3092,7 @@ theorem residue_placeInfty_X_pow_natDegree_div_monic_eq_one {p : K[X]} (hpmon : 
         - 1 : (placeInfty K).toValuationSubring)
       = ⟨_, hsubmem⟩ := by
     refine Subtype.ext ?_
-    show algebraMap K[X] (RatFunc K) (X ^ d) / algebraMap K[X] (RatFunc K) p - 1
+    change algebraMap K[X] (RatFunc K) (X ^ d) / algebraMap K[X] (RatFunc K) p - 1
       = algebraMap K[X] (RatFunc K) (X ^ d - p) / algebraMap K[X] (RatFunc K) p
     rw [map_sub, sub_div, div_self hp']
   rw [hcoe, Place.mk_mem_maximalIdeal_iff]
@@ -3099,7 +3131,7 @@ theorem p1MonomialAtom_eq_monicRatio_mul {p : K[X]} (hpdeg : 1 ≤ p.natDegree) 
       = (algebraMap K[X] (RatFunc K) (X ^ p.natDegree) / algebraMap K[X] (RatFunc K) p)
         * (p1PrincipalPartAtom K (X : K[X]) 1 1
             * (placeInfty K).differentialCoeff (dX K)) := by
-  show algebraMap K[X] (RatFunc K) (X ^ (p.natDegree - 1)) / algebraMap K[X] (RatFunc K) p ^ 1
+  change algebraMap K[X] (RatFunc K) (X ^ (p.natDegree - 1)) / algebraMap K[X] (RatFunc K) p ^ 1
         * (placeInfty K).differentialCoeff (dX K)
     = algebraMap K[X] (RatFunc K) (X ^ p.natDegree) / algebraMap K[X] (RatFunc K) p
         * (algebraMap K[X] (RatFunc K) 1 / algebraMap K[X] (RatFunc K) X ^ 1
@@ -3153,7 +3185,8 @@ end MonicRatioReduction
 section ComposedEngine
 
 variable [CharZero K]
-variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)]
+variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)]
+    [HasCanonicalLocalResidueKStar K (RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 theorem p1PrincipalPartMOneSimplePoleCancel_of_inftyX
@@ -3250,7 +3283,7 @@ theorem p1XAtom_mul_differentialCoeff_dX_eq_neg :
       = -((placeInfty K).differentialCoeff
             (KaehlerDifferential.D K (RatFunc K) (RatFunc.X : RatFunc K)⁻¹)
           * ((RatFunc.X : RatFunc K)⁻¹)⁻¹) := by
-  show algebraMap K[X] (RatFunc K) 1 / algebraMap K[X] (RatFunc K) X ^ 1
+  change algebraMap K[X] (RatFunc K) 1 / algebraMap K[X] (RatFunc K) X ^ 1
         * (placeInfty K).differentialCoeff (dX K)
       = -((placeInfty K).differentialCoeff
             (KaehlerDifferential.D K (RatFunc K) (RatFunc.X : RatFunc K)⁻¹)
@@ -3294,7 +3327,8 @@ end InftyXDischarge
 section ComposedEngine
 
 variable (K) [DecidableEq (RatFunc K)] [CharZero K]
-variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)]
+variable [HasCanonicalDivisor (K := K) (F := RatFunc K)] [HasLocalResidue K (RatFunc K)]
+    [HasCanonicalLocalResidueKStar K (RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 theorem p1PrincipalPartMOneSimplePoleCancel_of_simplePoleCoordIndep
@@ -3468,12 +3502,14 @@ namespace Place
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.differentialCoeff_add'' [v.DCoordGenerates] [Nontrivial Ω[F⁄K]] (ω₁ ω₂ : Ω[F⁄K]) :
+private theorem _root_.AlgebraicCurve.Place.differentialCoeff_add'' [v.DCoordGenerates]
+    [Nontrivial Ω[F⁄K]] (ω₁ ω₂ : Ω[F⁄K]) :
     v.differentialCoeff (ω₁ + ω₂) = v.differentialCoeff ω₁ + v.differentialCoeff ω₂ :=
   v.differentialCoeff_unique (by
     rw [add_smul, v.differentialCoeff_smul_dCoord, v.differentialCoeff_smul_dCoord])
 
-private theorem _root_.AlgebraicCurve.Place.differentialCoeff_D_uniformizer_pow_inv [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
+private theorem _root_.AlgebraicCurve.Place.differentialCoeff_D_uniformizer_pow_inv
+    [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
     (m : ℕ) :
     v.differentialCoeff (KaehlerDifferential.D K F ((v.uniformizer ^ (m + 1))⁻¹))
       = -((m + 1 : ℕ) : F) * (v.uniformizer ^ (m + 2))⁻¹ := by
@@ -4028,11 +4064,12 @@ private theorem ag9b12c_differentialCoeff_add (v : Place K (RatFunc K))
   v.differentialCoeff_unique
     (by rw [add_smul, v.differentialCoeff_smul_dCoord, v.differentialCoeff_smul_dCoord])
 
-theorem ag9b12c_differentialCoeff_D_mem_finitePlace [DecidableEq (RatFunc K)]
+theorem ag9b12c_differentialCoeff_D_mem_finitePlace
     {p : K[X]} (hpirr : Irreducible p)
     {f : RatFunc K} (hf : f ∈ (finitePlace K hpirr).toValuationSubring) :
     (finitePlace K hpirr).differentialCoeff (D K (RatFunc K) f)
       ∈ (finitePlace K hpirr).toValuationSubring := by
+  classical
   set v := finitePlace K hpirr
   set ξ : K[X] := f.num.derivative * f.denom - f.num * f.denom.derivative
   have hd0 : algebraMap K[X] (RatFunc K) f.denom ≠ 0 :=
@@ -4108,12 +4145,12 @@ theorem ag9b12c_one_sub_uniformizer_div_mul_differentialCoeff_D
   linear_combination h1
 
 theorem ag9b12c_uniformizer_div_mul_differentialCoeff_D_mem_finitePlace
-    [DecidableEq (RatFunc K)]
     {p : K[X]} (hpirr : Irreducible p) :
     (finitePlace K hpirr).uniformizer / algebraMap K[X] (RatFunc K) p
         * (finitePlace K hpirr).differentialCoeff
             (D K (RatFunc K) (algebraMap K[X] (RatFunc K) p))
       ∈ (finitePlace K hpirr).toValuationSubring := by
+  classical
   set v := finitePlace K hpirr
   refine mul_mem (ag9b12c_uniformizer_div_mem_finitePlace K hpirr) ?_
   rw [differentialCoeff_D_algebraMap_polynomial K]
@@ -4124,11 +4161,11 @@ theorem ag9b12c_uniformizer_div_mul_differentialCoeff_D_mem_finitePlace
         (PerfectField.separable_of_irreducible hpirr)).ge)
 
 theorem ag9b12c_residue_uniformizer_div_mul_differentialCoeff_D_eq_one
-    [DecidableEq (RatFunc K)]
     {p : K[X]} (hpirr : Irreducible p) :
     IsLocalRing.residue _
         ⟨_, ag9b12c_uniformizer_div_mul_differentialCoeff_D_mem_finitePlace K hpirr⟩
       = (1 : (finitePlace K hpirr).ResidueField) := by
+  classical
   set v := finitePlace K hpirr
   rw [← sub_eq_zero, show (1 : v.ResidueField) = IsLocalRing.residue _ 1 by simp,
     ← map_sub, IsLocalRing.residue_eq_zero_iff]
@@ -4184,7 +4221,6 @@ theorem ag9b12c_residue_algebraMap_derivative_ne_zero {p : K[X]} (hpirr : Irredu
     ((PerfectField.separable_of_irreducible hpirr).isUnit_of_dvd' dvd_rfl hlt')
 
 theorem ag9b12c_simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
-    [DecidableEq (RatFunc K)]
     {p c : K[X]} (hpirr : Irreducible p)
     (hfmem : p1PrincipalPartAtom K p c 1 * (finitePlace K hpirr).differentialCoeff (dX K)
         ∈ (finitePlace K hpirr).simplePoleSubmodule) :
@@ -4193,6 +4229,7 @@ theorem ag9b12c_simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
             algebraMap_mem_ofHeightOneSpectrum K _ c⟩
         / IsLocalRing.residue _ ⟨algebraMap K[X] (RatFunc K) p.derivative,
             algebraMap_mem_ofHeightOneSpectrum K _ p.derivative⟩ := by
+  classical
   set v := finitePlace K hpirr
   rw [Place.simplePoleResidueAux_apply,
     eq_div_iff (ag9b12c_residue_algebraMap_derivative_ne_zero K hpirr)]
@@ -4202,7 +4239,7 @@ theorem ag9b12c_simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
         * (v.uniformizer / algebraMap K[X] (RatFunc K) p
             * v.differentialCoeff (D K (RatFunc K) (algebraMap K[X] (RatFunc K) p))) := by
     rw [differentialCoeff_D_algebraMap_polynomial K]
-    show v.uniformizer
+    change v.uniformizer
         * (algebraMap K[X] (RatFunc K) c / algebraMap K[X] (RatFunc K) p ^ 1
             * v.differentialCoeff (dX K))
         * algebraMap K[X] (RatFunc K) (derivative p)
@@ -4239,8 +4276,9 @@ theorem ag9b12c_simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
         rw [ag9b12c_residue_uniformizer_div_mul_differentialCoeff_D_eq_one K hpirr, mul_one]
 
 theorem ag9b12c_p1FinitePlaceSimplePoleResidueAdjoinRootValue_of_perfectField
-    [DecidableEq (RatFunc K)] :
+    :
     P1FinitePlaceSimplePoleResidueAdjoinRootValue K := by
+  classical
   intro p c _ hpirr _
   have : Fact (Irreducible p) := ⟨hpirr⟩
   intro hfmem
@@ -4253,13 +4291,13 @@ end BridgeDischarge
 section TraceValue
 
 theorem ag9b12c_trace_finitePlace_simplePoleResidue_mOne_of_perfectField
-    [DecidableEq (RatFunc K)]
     {p c : K[X]} (hpmon : p.Monic) (hpirr : Irreducible p) (hdeg : c.degree < p.degree)
     (hfmem : p1PrincipalPartAtom K p c 1 * (finitePlace K hpirr).differentialCoeff (dX K)
         ∈ (finitePlace K hpirr).simplePoleSubmodule) :
     Algebra.trace K (finitePlace K hpirr).ResidueField
         ((finitePlace K hpirr).simplePoleResidueAux ⟨_, hfmem⟩)
       = c.coeff (p.natDegree - 1) := by
+  classical
   have : Fact (Irreducible p) := ⟨hpirr⟩
   have hval := ag9b12c_p1FinitePlaceSimplePoleResidueAdjoinRootValue_of_perfectField K
     p c hpmon hpirr hdeg
@@ -4478,9 +4516,11 @@ section PerGenerator
 variable {K : Type*} [Field K] [CharZero K] [DecidableEq (RatFunc K)]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
+omit [DecidableEq (RatFunc K)] in
 theorem kaehlerResidueFunctionalK_dX_X_pow
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK) (n : ℕ) :
     kaehlerResidueFunctionalK Rfam (dX_ne_zero K) ((RatFunc.X : RatFunc K) ^ n) = 0 := by
+  classical
   refine kaehlerResidueFunctionalK_eq_zero_of_singleton Rfam (dX_ne_zero K)
     (v₀ := placeInfty K) ?_ ?_
   · intro v hv
@@ -4513,7 +4553,7 @@ theorem kaehlerResidueTermKFam_atom_placeInfty_eq_zero_of_two_le
   rw [diagonalHom_apply]
   rcases eq_or_ne c 0 with rfl | hc
   · left
-    show algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ m
+    change algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ m
         * (placeInfty K).differentialCoeff (dX K) = 0
     rw [_root_.map_zero, zero_div, zero_mul]
   · right
@@ -4528,6 +4568,7 @@ theorem kaehlerResidueTermKFam_atom_placeInfty_eq_zero_of_two_le
       ordDifferential_placeInfty_D_ratFuncX K hwd
     omega
 
+omit [DecidableEq (RatFunc K)] in
 theorem kaehlerResidueTermKFam_atom_finitePlace_eq_zero_of_two_le
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K))
@@ -4536,6 +4577,7 @@ theorem kaehlerResidueTermKFam_atom_finitePlace_eq_zero_of_two_le
     (hdeg : c.degree < p.degree) (hm : 2 ≤ m) :
     kaehlerResidueTermKFam Rfam (dX K)
       (diagonalHom K (RatFunc K) (p1PrincipalPartAtom K p c m)) (finitePlace K hpirr) = 0 := by
+  classical
   rw [kaehlerResidueTermKFam_apply, diagonalHom_apply]
   exact p1FinitePlaceCanonicalResidueAtomMGeTwoTrace_of_coordIndep_higherDeg K hcoord hHigh5
     p c m hpmon hpirr hdeg hm (Rfam (finitePlace K hpirr))
@@ -4558,6 +4600,7 @@ theorem kaehlerResidueTermKFam_atom_mOne_two_place_sum
   exact p1PrincipalPartMOneSimplePoleCancel_of_simplePoleCoordIndep K hwd
     (dX_ne_zero K) rfl hsp p c hpmon hpirr hdeg hfmem himem
 
+omit [DecidableEq (RatFunc K)] in
 theorem kaehlerResidueFunctionalK_dX_atom
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
@@ -4567,6 +4610,7 @@ theorem kaehlerResidueFunctionalK_dX_atom
     {p c : K[X]} {m : ℕ} (hpmon : p.Monic) (hpirr : Irreducible p)
     (hdeg : c.degree < p.degree) (hm : 1 ≤ m) :
     kaehlerResidueFunctionalK Rfam (dX_ne_zero K) (p1PrincipalPartAtom K p c m) = 0 := by
+  classical
   refine kaehlerResidueFunctionalK_eq_zero_of_pair Rfam (dX_ne_zero K)
     (finitePlace_ne_placeInfty hpirr)
     (fun v hvp hvinf => kaehlerResidueTermKFam_atom_eq_zero_of_ne_of_ne Rfam hpirr c m
@@ -4578,6 +4622,7 @@ theorem kaehlerResidueFunctionalK_dX_atom
       kaehlerResidueTermKFam_atom_placeInfty_eq_zero_of_two_le Rfam hwd hpirr c hdeg hm2,
       add_zero]
 
+omit [DecidableEq (RatFunc K)] in
 theorem kaehlerResidueFunctionalK_dX_eq_zero
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
@@ -4586,6 +4631,7 @@ theorem kaehlerResidueFunctionalK_dX_eq_zero
     (hHigh5 : P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K)
     (h : RatFunc K) :
     kaehlerResidueFunctionalK Rfam (dX_ne_zero K) h = 0 := by
+  classical
   have hker : Submodule.span K (P1PartialFractionGenerators K)
       ≤ LinearMap.ker (kaehlerResidueFunctionalK Rfam (dX_ne_zero K)) := by
     rw [Submodule.span_le]
@@ -4607,12 +4653,14 @@ section Engine
 
 variable {K : Type*} [Field K] [CharZero K] [DecidableEq (RatFunc K)]
 
+omit [DecidableEq (RatFunc K)] in
 theorem residueTheoremK_ratFunc_of_subrows
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K))
     (hsp : CanonicalLocalResidueKSimplePoleCoordIndep K (RatFunc K))
     (hHigh5 : P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K) :
     ResidueTheoremK K (RatFunc K) := by
+  classical
   intro Rfam instHPD ω hω f
   obtain ⟨g, hg, rfl⟩ := exists_smul_eq_of_ne_zero (placeInfty K) hω (dX_ne_zero K)
   calc weilOfKaehlerK Rfam hω
@@ -4627,12 +4675,15 @@ section AlgClosedDischarge
 
 variable (K : Type*) [Field K] [CharZero K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
 
-theorem residueTheoremK_ratFunc_of_isAlgClosed_main : ResidueTheoremK K (RatFunc K) :=
-  residueTheoremK_ratFunc_of_subrows
-    (ordDifferentialWellDefined_ratFunc K)
-    (canonicalLocalResidueKDifferentialCoordIndep_ratFunc_of_isAlgClosed K)
-    (canonicalLocalResidueKSimplePoleCoordIndep_ratFunc K)
-    (p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_algClosed K)
+omit [DecidableEq (RatFunc K)] in
+theorem residueTheoremK_ratFunc_of_isAlgClosed_main : ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    residueTheoremK_ratFunc_of_subrows
+      (ordDifferentialWellDefined_ratFunc K)
+      (canonicalLocalResidueKDifferentialCoordIndep_ratFunc_of_isAlgClosed K)
+      (canonicalLocalResidueKSimplePoleCoordIndep_ratFunc K)
+      (p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_algClosed K)
 
 end AlgClosedDischarge
 
@@ -4658,11 +4709,13 @@ section PerGenerator
 variable {K : Type*} [Field K] [PerfectField K] [DecidableEq (RatFunc K)]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n21_rtk_kaehlerResidueFunctionalK_dX_X_pow
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K)) (n : ℕ) :
     kaehlerResidueFunctionalK Rfam (dX_ne_zero K) ((RatFunc.X : RatFunc K) ^ n) = 0 := by
+  classical
   refine kaehlerResidueFunctionalK_eq_zero_of_singleton Rfam (dX_ne_zero K)
     (v₀ := placeInfty K) ?_ ?_
   · intro v hv
@@ -4698,7 +4751,7 @@ theorem p0n21_rtk_kaehlerResidueTermKFam_atom_placeInfty_eq_zero_of_two_le
   rw [diagonalHom_apply]
   rcases eq_or_ne c 0 with rfl | hc
   · left
-    show algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ m
+    change algebraMap K[X] (RatFunc K) 0 / (algebraMap K[X] (RatFunc K) p) ^ m
         * (placeInfty K).differentialCoeff (dX K) = 0
     rw [_root_.map_zero, zero_div, zero_mul]
   · right
@@ -4713,6 +4766,7 @@ theorem p0n21_rtk_kaehlerResidueTermKFam_atom_placeInfty_eq_zero_of_two_le
       ordDifferential_placeInfty_D_ratFuncX K hwd
     omega
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n21_rtk_kaehlerResidueTermKFam_atom_finitePlace_eq_zero_of_two_le
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K))
@@ -4721,6 +4775,7 @@ theorem p0n21_rtk_kaehlerResidueTermKFam_atom_finitePlace_eq_zero_of_two_le
     (hdeg : c.degree < p.degree) (hm : 2 ≤ m) :
     kaehlerResidueTermKFam Rfam (dX K)
       (diagonalHom K (RatFunc K) (p1PrincipalPartAtom K p c m)) (finitePlace K hpirr) = 0 := by
+  classical
   rw [kaehlerResidueTermKFam_apply, diagonalHom_apply]
   exact p1FinitePlaceCanonicalResidueAtomMGeTwoTrace_of_coordIndep_higherDeg K hcoord hHigh5
     p c m hpmon hpirr hdeg hm (Rfam (finitePlace K hpirr))
@@ -4741,6 +4796,7 @@ theorem p0n21_rtk_kaehlerResidueTermKFam_atom_mOne_two_place_sum
     kaehlerResidueTermKFam_eq_of_mem_simplePoleSubmodule Rfam himem]
   exact p0n21_rtk_p1MOneSimplePoleCancel_dX_of_perfectField K p c hpmon hpirr hdeg hfmem himem
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n21_rtk_kaehlerResidueFunctionalK_dX_atom
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
@@ -4749,6 +4805,7 @@ theorem p0n21_rtk_kaehlerResidueFunctionalK_dX_atom
     {p c : K[X]} {m : ℕ} (hpmon : p.Monic) (hpirr : Irreducible p)
     (hdeg : c.degree < p.degree) (hm : 1 ≤ m) :
     kaehlerResidueFunctionalK Rfam (dX_ne_zero K) (p1PrincipalPartAtom K p c m) = 0 := by
+  classical
   refine kaehlerResidueFunctionalK_eq_zero_of_pair Rfam (dX_ne_zero K)
     (finitePlace_ne_placeInfty hpirr)
     (fun v hvp hvinf => p0n21_rtk_kaehlerResidueTermKFam_atom_eq_zero_of_ne_of_ne Rfam hpirr
@@ -4761,6 +4818,7 @@ theorem p0n21_rtk_kaehlerResidueFunctionalK_dX_atom
         hdeg hm2,
       add_zero]
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n21_rtk_kaehlerResidueFunctionalK_dX_eq_zero
     (Rfam : ∀ v : Place K (RatFunc K), v.CanonicalLocalResidueDataK)
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
@@ -4768,6 +4826,7 @@ theorem p0n21_rtk_kaehlerResidueFunctionalK_dX_eq_zero
     (hHigh5 : P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K)
     (h : RatFunc K) :
     kaehlerResidueFunctionalK Rfam (dX_ne_zero K) h = 0 := by
+  classical
   have hker : Submodule.span K (P1PartialFractionGenerators K)
       ≤ LinearMap.ker (kaehlerResidueFunctionalK Rfam (dX_ne_zero K)) := by
     rw [Submodule.span_le]
@@ -4790,11 +4849,13 @@ section EngineCharFree
 
 variable {K : Type*} [Field K] [PerfectField K] [DecidableEq (RatFunc K)]
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n21_rtk_residueTheoremK_ratFunc_of_subrows_charFree
     (hwd : OrdDifferentialWellDefined K (RatFunc K))
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K))
     (hHigh5 : P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K) :
     ResidueTheoremK K (RatFunc K) := by
+  classical
   intro Rfam instHPD ω hω f
   obtain ⟨g, hg, rfl⟩ := exists_smul_eq_of_ne_zero (placeInfty K) hω (dX_ne_zero K)
   calc weilOfKaehlerK Rfam hω
@@ -4804,22 +4865,27 @@ theorem p0n21_rtk_residueTheoremK_ratFunc_of_subrows_charFree
         weilOfKaehlerK_smul_diagonal Rfam (dX_ne_zero K) hω f
     _ = 0 := p0n21_rtk_kaehlerResidueFunctionalK_dX_eq_zero Rfam hwd hcoord hHigh5 (g * f)
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n21_rtk_residueTheoremK_ratFunc_of_coordIndep_higherDeg_of_perfectField
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K))
     (hHigh5 : P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg K) :
-    ResidueTheoremK K (RatFunc K) :=
-  p0n21_rtk_residueTheoremK_ratFunc_of_subrows_charFree
-    (ordDifferentialWellDefined_ratFunc_of_perfectField K) hcoord hHigh5
+    ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    p0n21_rtk_residueTheoremK_ratFunc_of_subrows_charFree
+      (ordDifferentialWellDefined_ratFunc_of_perfectField K) hcoord hHigh5
 
 end EngineCharFree
 section AlgClosedAnyChar
 
 theorem p0n21_rtk_residueTheoremK_ratFunc_of_isAlgClosed_of_coordIndep
-    (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    (K : Type*) [Field K] [IsAlgClosed K]
     (hcoord : CanonicalLocalResidueKDifferentialCoordIndep K (RatFunc K)) :
-    ResidueTheoremK K (RatFunc K) :=
-  p0n21_rtk_residueTheoremK_ratFunc_of_coordIndep_higherDeg_of_perfectField hcoord
-    (p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_algClosed K)
+    ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    p0n21_rtk_residueTheoremK_ratFunc_of_coordIndep_higherDeg_of_perfectField hcoord
+      (p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_algClosed K)
 
 end AlgClosedAnyChar
 
@@ -5663,14 +5729,17 @@ theorem p0n22_cpf_canonicalLocalResidueKDifferentialCoordIndep_ratFunc_of_isAlgC
 
 theorem p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed_of_charP
     (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime] [CharP K p]
-    [DecidableEq (RatFunc K)] :
-    ResidueTheoremK K (RatFunc K) :=
-  p0n21_rtk_residueTheoremK_ratFunc_of_isAlgClosed_of_coordIndep K
-    (p0n22_cpf_canonicalLocalResidueKDifferentialCoordIndep_ratFunc_of_isAlgClosed K p)
+    :
+    ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    p0n21_rtk_residueTheoremK_ratFunc_of_isAlgClosed_of_coordIndep K
+      (p0n22_cpf_canonicalLocalResidueKDifferentialCoordIndep_ratFunc_of_isAlgClosed K p)
 
 theorem p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed_main
-    (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)] :
+    (K : Type*) [Field K] [IsAlgClosed K] :
     ResidueTheoremK K (RatFunc K) := by
+  classical
   rcases CharP.char_is_prime_or_zero K (ringChar K) with hprime | hzero
   · have : Fact (ringChar K).Prime := ⟨hprime⟩
     exact p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed_of_charP K (ringChar K)
@@ -5684,12 +5753,14 @@ end AlgebraicCurve
 end
 
 theorem solution
-    (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    (K : Type*) [Field K] [IsAlgClosed K]
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K (RatFunc K)]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := RatFunc K)]
     [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
-    AlgebraicCurve.ResidueTheoremK K (RatFunc K) :=
-  AlgebraicCurve.p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed_main K
+    AlgebraicCurve.ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    AlgebraicCurve.p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed_main K
 
 end
 
@@ -5698,11 +5769,13 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.residueTheoremK_ratFunc_of_isAlgClosed
-    (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    (K : Type*) [Field K] [IsAlgClosed K]
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K (RatFunc K)]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := RatFunc K)]
     [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
-    AlgebraicCurve.ResidueTheoremK K (RatFunc K) :=
-  _root_.solution K
+    AlgebraicCurve.ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    _root_.solution K
 
 end publicSection

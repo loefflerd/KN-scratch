@@ -99,7 +99,8 @@ namespace WLight
 
 section A1_levelOne_ratSpan
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 def RatQExp {k : ℤ} (f : ModularForm 𝒮ℒ k) : Prop :=
@@ -295,7 +296,8 @@ end A1_levelOne_ratSpan
 
 section A2_polynomial_j
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries OnePoint Matrix.SpecialLinearGroup"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries OnePoint Matrix.SpecialLinearGroup"
 
 open scoped MatrixGroups Manifold
 
@@ -424,7 +426,8 @@ end A2_polynomial_j
 
 section A3_qexp_principle
 
-p2m_open "UpperHalfPlane ModularForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm ModularFormClass CuspForm ModularForm.CuspForm \
+  EisensteinSeries"
 open scoped MatrixGroups
 
 lemma coeff_pow_eq_zero_of_lt {D : PowerSeries ℂ} (hD0 : D.coeff 0 = 0) {k n : ℕ}
@@ -575,7 +578,8 @@ end A3_qexp_principle
 
 section A4_j_surjective
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm SlashInvariantFormClass ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries OnePoint Matrix.SpecialLinearGroup Filter"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm SlashInvariantFormClass ModularFormClass \
+  CuspForm ModularForm.CuspForm EisensteinSeries OnePoint Matrix.SpecialLinearGroup Filter"
 
 open scoped MatrixGroups Manifold Topology
 
@@ -602,7 +606,7 @@ theorem j_surjective : Function.Surjective j := by
     intro z h0
     rw [hFapp z, sub_eq_zero] at h0
     refine hc z ?_
-    show E₄ z ^ 3 / ModularForm.discriminant z = c
+    change E₄ z ^ 3 / ModularForm.discriminant z = c
     rw [h0, mul_div_cancel_right₀ _ (ModularForm.discriminant_ne_zero z)]
   have hF0 : (qExpansion 1 Fc).coeff 0 = 1 := by
     rw [hFdef, FunLike.coe_sub,
@@ -691,7 +695,8 @@ end A4_j_surjective
 
 section R2WidthCopy
 
-p2m_open "UpperHalfPlane ModularForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "UpperHalfPlane ModularForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial \
+  Real.Polynomial Filter"
 open scoped Manifold MatrixGroups
 
 lemma qParam_one_eq_pow {N : ℕ} (hN : N ≠ 0) (τ : ℂ) :
@@ -752,7 +757,9 @@ end C6_width
 
 section BoundedFurniture
 
-p2m_open "UpperHalfPlane ModularForm P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "UpperHalfPlane ModularForm \
+  P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm \
+  Polynomial Real.Polynomial Filter"
 open scoped Manifold MatrixGroups
 
 def PoleBounded (f : ℍ → ℂ) : Prop :=
@@ -784,7 +791,9 @@ end BoundedFurniture
 
 section A3K
 
-p2m_open "UpperHalfPlane ModularForm P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm \
+  P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm \
+  EisensteinSeries"
 open scoped MatrixGroups
 
 variable (k : Subfield ℂ)
@@ -886,7 +895,9 @@ end A3K
 
 section KBridge
 
-p2m_open "UpperHalfPlane ModularForm P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial"
+p2m_open "UpperHalfPlane ModularForm \
+  P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm \
+  Polynomial Real.Polynomial"
 open scoped MatrixGroups
 
 noncomputable def polyDiscForm (m : ℕ) (P : Polynomial ℂ) : ModularForm 𝒮ℒ (12 * m) :=
@@ -980,7 +991,9 @@ end KBridge
 
 section KPoleSec
 
-p2m_open "UpperHalfPlane ModularForm P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "UpperHalfPlane ModularForm \
+  P2MW.S_WLight_levelOne_hauptmodul_package.WLight.ModularFormClass CuspForm ModularForm.CuspForm \
+  Polynomial Real.Polynomial Filter"
 open scoped MatrixGroups Manifold
 
 variable {N : ℕ}
@@ -1190,7 +1203,6 @@ open scoped Manifold MatrixGroups ModularForm
 
 open WLight in
 theorem solution :
-
     (∀ (m : ℕ) (h : ℍ → ℂ), MDifferentiable 𝓘(ℂ) 𝓘(ℂ) h →
       (∀ γ : SL(2, ℤ), h ∣[(0 : ℤ)] γ = h) →
       IsBoundedAtImInfty (h * ModularForm.discriminant ^ m) →
@@ -1258,7 +1270,6 @@ open Complex Real Polynomial
 open UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 theorem WLight.levelOne_hauptmodul_package :
-
     (∀ (m : ℕ) (h : ℍ → ℂ), MDifferentiable 𝓘(ℂ) 𝓘(ℂ) h →
       (∀ γ : SL(2, ℤ), h ∣[(0 : ℤ)] γ = h) →
       IsBoundedAtImInfty (h * ModularForm.discriminant ^ m) →
@@ -1282,6 +1293,7 @@ theorem WLight.levelOne_hauptmodul_package :
       (∀ n : ℕ, (∑ i ∈ Finset.range (m + 1),
           PowerSeries.C (P.coeff i) * qExpansion 1 ⇑ModularForm.E₄ ^ (3 * i) *
             qExpansion 1 ModularForm.discriminant ^ (m - i)).coeff n ∈ k) →
-      ∀ i : ℕ, P.coeff i ∈ k) := _root_.P2MW.S_WLight_levelOne_hauptmodul_package.solution
+      ∀ i : ℕ, P.coeff i ∈ k) :=
+  solution
 
 end publicSection

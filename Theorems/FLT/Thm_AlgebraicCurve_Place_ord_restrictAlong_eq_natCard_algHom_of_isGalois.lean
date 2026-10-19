@@ -177,7 +177,6 @@ theorem polyEquiv_X_sub_C (c : K) :
   simp [polyEquiv, Subalgebra.equivOfEq_apply, AlgEquiv.ofInjective_apply]
 
 include htr in
-
 theorem prime_linGen (c : K) : Prime (linGen t c) := by
   rw [← polyEquiv_X_sub_C t htr c, MulEquiv.prime_iff]
   exact Polynomial.prime_X_sub_C c
@@ -215,7 +214,7 @@ theorem forall_algebraMap_mem (v : Place K (IntermediateField.adjoin K ({t} : Se
     algebraMap (Algebra.adjoin K ({t} : Set F)) (IntermediateField.adjoin K ({t} : Set F)) r ∈
       v.toValuationSubring := by
   obtain ⟨x, hx⟩ := r
-  show (⟨x, IntermediateField.algebra_adjoin_le_adjoin K _ hx⟩ :
+  change (⟨x, IntermediateField.algebra_adjoin_le_adjoin K _ hx⟩ :
       IntermediateField.adjoin K ({t} : Set F)) ∈ v.toValuationSubring
   induction hx using Algebra.adjoin_induction with
   | mem y hy =>
@@ -227,7 +226,6 @@ theorem forall_algebraMap_mem (v : Place K (IntermediateField.adjoin K ({t} : Se
   | mul y z hy hz ihy ihz => exact mul_mem ihy ihz
 
 include htr in
-
 theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : Set F))) (c : K)
     (hv : 0 < v.ord (IntermediateField.AdjoinSimple.gen K t - algebraMap K _ c)) :
     v = basePlace t htr c := by
@@ -250,7 +248,6 @@ theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : 
   rfl
 
 include htr in
-
 theorem restrict_eq_basePlace [Algebra.IsIntegral (IntermediateField.adjoin K ({t} : Set F)) F]
     (w : Place K F) (c : K) (hw : 0 < w.ord (t - algebraMap K F c)) :
     w.restrict (IntermediateField.adjoin K ({t} : Set F)) = basePlace t htr c ∧
@@ -258,7 +255,8 @@ theorem restrict_eq_basePlace [Algebra.IsIntegral (IntermediateField.adjoin K ({
       (IntermediateField.AdjoinSimple.gen K t - algebraMap K _ c) = 1 := by
   have hgen : algebraMap (IntermediateField.adjoin K ({t} : Set F)) F
       (IntermediateField.AdjoinSimple.gen K t - algebraMap K _ c) = t - algebraMap K F c := by
-    rw [map_sub, IntermediateField.AdjoinSimple.algebraMap_gen K t, ← IsScalarTower.algebraMap_apply]
+    rw [map_sub, IntermediateField.AdjoinSimple.algebraMap_gen K t, ←
+      IsScalarTower.algebraMap_apply]
   have h := Place.ord_restrict (F := IntermediateField.adjoin K ({t} : Set F)) w
     (IntermediateField.AdjoinSimple.gen K t - algebraMap K _ c)
   rw [hgen] at h
@@ -267,7 +265,8 @@ theorem restrict_eq_basePlace [Algebra.IsIntegral (IntermediateField.adjoin K ({
     rw [h] at hw
     exact (pos_iff_pos_of_mul_pos hw).mp
       (by exact_mod_cast w.ramificationIndex_pos (F := IntermediateField.adjoin K ({t} : Set F)))
-  have heq := eq_basePlace_of_ord_pos t htr (w.restrict (IntermediateField.adjoin K ({t} : Set F))) c
+  have heq :=
+    eq_basePlace_of_ord_pos t htr (w.restrict (IntermediateField.adjoin K ({t} : Set F))) c
     hpos
   refine ⟨heq, ?_⟩
   have h1 := ord_basePlace t htr c
@@ -306,7 +305,8 @@ theorem finiteAlong_of_finiteDimensional_adjoin
   | zero => exact zero_mem _
   | add b b' _ _ ih ih' => exact add_mem ih ih'
   | smul r' b _ ih =>
-    have hc : (r' : M) = ι ((adjoinEquivAlong ι y).symm r' : IntermediateField.adjoin K ({y} : Set F)) := by
+    have hc : (r' : M) = ι ((adjoinEquivAlong ι y).symm r' : IntermediateField.adjoin K ({y} : Set F)) :=
+      by
       rw [← coe_adjoinEquivAlong ι y, AlgEquiv.apply_symm_apply]
     have hr : r' • b =
         (((adjoinEquivAlong ι y).symm r' : IntermediateField.adjoin K ({y} : Set F)) : F) • b := by
@@ -328,7 +328,8 @@ theorem separableAlong_of_isSeparable_adjoin
   have hcomp : (algebraMap F M).comp φ = algebraMap R' M := by
     ext r'
     change ι (algebraMap R F (e.symm r')) = (r' : M)
-    rw [show algebraMap R F (e.symm r') = ((e.symm r' : R) : F) from rfl, ← coe_adjoinEquivAlong ι y,
+    rw [show algebraMap R F (e.symm r') = ((e.symm r' : R) : F) from rfl, ← coe_adjoinEquivAlong ι
+      y,
       AlgEquiv.apply_symm_apply]
   have hq : ((minpoly R' b).map φ).Separable := hs.map
   have hqb : Polynomial.aeval b ((minpoly R' b).map φ) = 0 := by
@@ -353,7 +354,8 @@ theorem normalAlong_of_normal_adjoin
   have hcomp : (algebraMap F M).comp φ = algebraMap R' M := by
     ext r'
     change ι (algebraMap R F (e.symm r')) = (r' : M)
-    rw [show algebraMap R F (e.symm r') = ((e.symm r' : R) : F) from rfl, ← coe_adjoinEquivAlong ι y,
+    rw [show algebraMap R F (e.symm r') = ((e.symm r' : R) : F) from rfl, ← coe_adjoinEquivAlong ι
+      y,
       AlgEquiv.apply_symm_apply]
   refine normal_iff.mpr fun b => ?_
   have hint : IsIntegral R' b := Normal.isIntegral inferInstance b
@@ -434,7 +436,6 @@ theorem card_stabilizer_mul_card_fiberOver (P : Place K M) :
   exact h1
 
 omit [FiniteDimensional E M] [IsGalois E M] in
-
 theorem inertiaDeg_eq_one_of_deg_eq_one {F' : Type*} [Field F'] [Algebra K F'] [Algebra F' M]
     [IsScalarTower K F' M] [Algebra.IsIntegral F' M] (W : Place K M) (hW : W.deg = 1) :
     W.inertiaDeg F' = 1 := by
@@ -471,7 +472,7 @@ def baseHom (ψ : F →ₐ[K] M) (hψ : ψ x = t) : K⟮t⟯ →+* F :=
   (algebraMap K⟮x⟯ F).comp ((adjoinEquivNorm x t ψ hψ).symm : K⟮t⟯ →+* K⟮x⟯)
 
 theorem psi_baseHom (ψ : F →ₐ[K] M) (hψ : ψ x = t) (r : K⟮t⟯) : ψ (baseHom x t ψ hψ r) = r := by
-  show ψ (((adjoinEquivNorm x t ψ hψ).symm r : K⟮x⟯) : F) = r
+  change ψ (((adjoinEquivNorm x t ψ hψ).symm r : K⟮x⟯) : F) = r
   rw [← coe_adjoinEquivNorm x t ψ hψ, AlgEquiv.apply_symm_apply]
 
 theorem baseHom_mem (ψ : F →ₐ[K] M) (hψ : ψ x = t) (r : K⟮t⟯) : baseHom x t ψ hψ r ∈ K⟮x⟯ :=
@@ -483,7 +484,7 @@ theorem apply_eq_of_mem_adjoin (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t) (hψ' :
     refine IntermediateField.adjoin_algHom_ext K fun y hy => ?_
     rw [Set.mem_singleton_iff] at hy
     subst hy
-    show ψ y = ψ' y
+    change ψ y = ψ' y
     rw [hψ, hψ']
   exact congrArg (fun φ : K⟮x⟯ →ₐ[K] M => φ ⟨f, hf⟩) h
 
@@ -501,13 +502,13 @@ theorem exists_algEquiv_comp_eq [Normal K⟮t⟯ M] (ψ ψ' : F →ₐ[K] M) (h�
   let ϕ : F →ₐ[K⟮t⟯] M :=
     { (ψ' : F →+* M) with
       commutes' := fun r => by
-        show ψ' (baseHom x t ψ hψ r) = (r : M)
+        change ψ' (baseHom x t ψ hψ r) = (r : M)
         exact psi'_baseHom x t ψ ψ' hψ hψ' r }
   have hϕ : ∀ f, ϕ f = ψ' f := fun f => rfl
   let τh : M →ₐ[K⟮t⟯] M := ϕ.liftNormal M
   have : Algebra.IsAlgebraic K⟮t⟯ M := Algebra.IsIntegral.isAlgebraic
   refine ⟨AlgEquiv.ofBijective τh (Algebra.IsAlgebraic.algHom_bijective τh), fun f => ?_⟩
-  show τh (algebraMap F M f) = ψ' f
+  change τh (algebraMap F M f) = ψ' f
   rw [AlgHom.liftNormal_commutes]
   exact hϕ f
 
@@ -520,7 +521,7 @@ theorem restrictAlong_comp (ψ : F →ₐ[K] M) (τ : M ≃ₐ[K⟮t⟯] M)
       (τ⁻¹ • W).restrictAlong ψ h₂ := by
   apply Place.ext
   ext f
-  show (τ (ψ f) ∈ W.toValuationSubring) ↔ ψ f ∈ (τ⁻¹ • W).toValuationSubring
+  change (τ (ψ f) ∈ W.toValuationSubring) ↔ ψ f ∈ (τ⁻¹ • W).toValuationSubring
   rw [mem_smul_place_iff]
   rfl
 
@@ -560,7 +561,6 @@ theorem algebraMap_gen_sub :
   rw [map_sub, IntermediateField.AdjoinSimple.algebraMap_gen K t, ← IsScalarTower.algebraMap_apply]
 
 include hW₀ in
-
 theorem transcendental_t : Transcendental K t := by
   intro halg
   obtain ⟨c, hc⟩ : t ∈ (algebraMap K M).range := by
@@ -569,11 +569,11 @@ theorem transcendental_t : Transcendental K t := by
   rw [← hc, ← map_sub, Place.ord_algebraMap] at hW₀
   exact lt_irrefl _ hW₀
 
-theorem psi_sub (ψ : F →ₐ[K] M) (hψ : ψ x = t) : ψ (x - algebraMap K F j₀) = t - algebraMap K M j₀ := by
+theorem psi_sub (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
+    ψ (x - algebraMap K F j₀) = t - algebraMap K M j₀ := by
   rw [map_sub, hψ, ψ.commutes]
 
 include hW₀ in
-
 theorem ord_eq_card_stabilizer :
     W₀.ord (t - algebraMap K M j₀) = Nat.card (MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀) := by
   have htr := transcendental_t t j₀ W₀ hW₀
@@ -588,7 +588,6 @@ theorem ord_eq_card_stabilizer :
   exact_mod_cast (card_stabilizer_eq (K := K) (E := K⟮t⟯) W₀ hdeg).symm
 
 include hW₀ in
-
 theorem ord_restrictAlong_pos (ψ : F →ₐ[K] M) (hψ : ψ x = t) (h : ψ.toRingHom.IsIntegral) :
     0 < (W₀.restrictAlong ψ h).ord (x - algebraMap K F j₀) := by
   have hf := Place.ord_restrictAlong ψ h W₀ (x - algebraMap K F j₀)
@@ -597,7 +596,6 @@ theorem ord_restrictAlong_pos (ψ : F →ₐ[K] M) (hψ : ψ x = t) (h : ψ.toRi
   exact pos_of_mul_pos_right hW₀ (by exact_mod_cast Nat.zero_le _)
 
 include hW₀ in
-
 theorem exists_smul_eq_of_ord_pos (W : Place K M) (hW : 0 < W.ord (t - algebraMap K M j₀)) :
     ∃ σ : M ≃ₐ[K⟮t⟯] M, σ • W₀ = W := by
   have htr := transcendental_t t j₀ W₀ hW₀
@@ -607,12 +605,11 @@ theorem exists_smul_eq_of_ord_pos (W : Place K M) (hW : 0 < W.ord (t - algebraMa
 
 theorem inv_comp_apply (σ : M ≃ₐ[K⟮t⟯] M) (hι : ι x = t) :
     (((σ⁻¹ : M ≃ₐ[K⟮t⟯] M) : M →ₐ[K⟮t⟯] M).restrictScalars K).comp ι x = t := by
-  show σ⁻¹ (ι x) = t
+  change σ⁻¹ (ι x) = t
   rw [hι]
   exact σ⁻¹.commutes (⟨t, IntermediateField.mem_adjoin_simple_self K t⟩ : K⟮t⟯)
 
 include hι hW₀ in
-
 theorem exists_restrictAlong_eq (w : Place K F) (hw : 0 < w.ord (x - algebraMap K F j₀)) :
     ∃ (ψ : F →ₐ[K] M) (hψ : ψ x = t), W₀.restrictAlong ψ (hint ψ hψ) = w := by
   obtain ⟨W, hWw⟩ := Place.restrictAlong_surjective ι (hint ι hι) (finiteAlong_norm x t ι hι)
@@ -635,7 +632,7 @@ theorem exists_restrictAlong_eq (w : Place K F) (hw : 0 < w.ord (x - algebraMap 
 def toGal (ψ : F →ₐ[K] M) (hψ : ψ x = t) (u : M ≃+* M) (hu : ∀ f, u (ψ f) = ψ f) :
     M ≃ₐ[K⟮t⟯] M :=
   AlgEquiv.ofRingEquiv (f := u) fun r => by
-    show u (r : M) = r
+    change u (r : M) = r
     rw [← psi_baseHom x t ψ hψ r]
     exact hu _
 
@@ -666,10 +663,10 @@ theorem restrictAlong_eq_iff (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t) (hψ' : �
         AlgEquiv.ext fun _ => rfl]
       exact hu
     refine ⟨τ * uk, ?_, ?_⟩
-    · show (τ * uk) • W₀ = W₀
+    · change (τ * uk) • W₀ = W₀
       rw [mul_smul, huk, smul_inv_smul]
     · ext f
-      show τ (ψ f) = (τ * uk) (ψ f)
+      change τ (ψ f) = (τ * uk) (ψ f)
       rw [AlgEquiv.mul_apply, toGal_apply]
       exact congrArg τ (huc f).symm
   · rintro ⟨σ, hσ, rfl⟩
@@ -683,7 +680,7 @@ abbrev Emb : Type _ := {ψ : F →ₐ[K] M // ψ x = t}
 
 @[reducible] def embAction : MulAction (M ≃ₐ[K⟮t⟯] M) (Emb x t (K := K)) where
   smul σ ψ := ⟨((σ : M →ₐ[K⟮t⟯] M).restrictScalars K).comp ψ.1, by
-    show σ (ψ.1 x) = t
+    change σ (ψ.1 x) = t
     rw [ψ.2]
     exact σ.commutes (⟨t, IntermediateField.mem_adjoin_simple_self K t⟩ : K⟮t⟯)⟩
   one_smul ψ := Subtype.ext (AlgHom.ext fun _ => rfl)
@@ -707,7 +704,6 @@ theorem setOf_sameClass_eq_orbit (ψ : Emb x t (K := K)) :
     exact ⟨σ, hσ, (congrArg Subtype.val h).symm⟩
 
 include hW₀ in
-
 theorem card_stabilizer_emb (ψ : Emb x t (K := K)) :
     Nat.card (MulAction.stabilizer (MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀) ψ) =
       Place.ramificationIndexAlong ψ.1 W₀ := by
@@ -747,7 +743,6 @@ theorem card_stabilizer_emb (ψ : Emb x t (K := K)) :
       right_inv := fun u => Subtype.ext (AlgEquiv.ext fun _ => rfl) }
 
 include hW₀ in
-
 theorem ord_restrictAlong_eq_card (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
     (W₀.restrictAlong ψ (hint ψ hψ)).ord (x - algebraMap K F j₀) =
       Nat.card {ψ' : Emb x t (K := K) //
@@ -849,6 +844,7 @@ theorem AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois
     (∀ (ψ : F →ₐ[K] M) (hψ : ψ x = t),
         (W₀.restrictAlong ψ (hint ψ hψ)).ord (x - algebraMap K F j₀) =
           Nat.card {ψ' : {ψ' : F →ₐ[K] M // ψ' x = t} //
-            W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ (hint ψ hψ)}) := _root_.P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.solution K x t j₀ ι hι hfin hgal hint W₀ hW₀
+            W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ (hint ψ hψ)}) :=
+  solution K x t j₀ ι hι hfin hgal hint W₀ hW₀
 
 end publicSection

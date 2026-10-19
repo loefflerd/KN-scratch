@@ -107,6 +107,7 @@ theorem WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd_apply_eq_sub
     (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) (P : W.Point) :
     D.pointEnd hN P
       = (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D.ι D.hι)
-        - (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) := _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_pointEnd_apply_eq_sub.solution D hN P
+        - (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) :=
+  solution D hN P
 
 end publicSection

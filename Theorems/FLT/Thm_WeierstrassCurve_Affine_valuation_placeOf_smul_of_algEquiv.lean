@@ -67,7 +67,10 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine"
 open scoped Polynomial.Bivariate
 open scoped nonZeroDivisors
 
@@ -124,15 +127,19 @@ theorem galRing_map_XYIdeal (σ : K ≃ₐ[F] K) (φ : (W⁄K).CoordinateRing �
     (CoordinateRing.XYIdeal (W⁄K) x (C y)).map φ = CoordinateRing.XYIdeal (W⁄K) (σ x) (C (σ y)) := by
   rw [CoordinateRing.XYIdeal, Ideal.map_span, Set.image_pair, CoordinateRing.XClass,
     CoordinateRing.YClass, hφ, hφ]
-  simp only [Polynomial.map_sub, Polynomial.map_C, Polynomial.map_X, coe_mapRingHom, RingHom.coe_coe]
+  simp only [Polynomial.map_sub, Polynomial.map_C, Polynomial.map_X, coe_mapRingHom,
+    RingHom.coe_coe]
   rfl
 
 end GalRing
 
 namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "HeightOneSpectrum.comap HeightOneSpectrum.comap_asIdeal HeightOneSpectrum.ext mk HeightOneSpectrum"
+p2m_export "IsDedekindDomain" "HeightOneSpectrum.comap HeightOneSpectrum.comap_asIdeal \
+  HeightOneSpectrum.ext mk HeightOneSpectrum"
 namespace HeightOneSpectrum
-p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap intValuation_le_pow_iff_mem mk asIdeal comap valuation comap_asIdeal intValuation_if_neg prime intValuation"
+p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap \
+  intValuation_le_pow_iff_mem mk asIdeal comap valuation comap_asIdeal intValuation_if_neg prime \
+  intValuation"
 p2m_open "IsDedekindDomain.HeightOneSpectrum IsDedekindDomain"
 
 variable {R S K L : Type*} [CommRing R] [IsDedekindDomain R] [CommRing S] [IsDedekindDomain S]
@@ -141,7 +148,7 @@ variable {R S K L : Type*} [CommRing R] [IsDedekindDomain R] [CommRing S] [IsDed
 omit [IsDedekindDomain R] [IsDedekindDomain S] in
 theorem mem_comap_pow_iff (e : R ≃+* S) (v : HeightOneSpectrum S) (r : R) (n : ℕ) :
     r ∈ (v.comap (e : R →+* S) e.surjective).asIdeal ^ n ↔ e r ∈ v.asIdeal ^ n := by
-  show r ∈ (v.asIdeal.comap e) ^ n ↔ e r ∈ v.asIdeal ^ n
+  change r ∈ (v.asIdeal.comap e) ^ n ↔ e r ∈ v.asIdeal ^ n
   rw [← Ideal.map_symm, ← Ideal.map_pow, Ideal.map_symm, Ideal.mem_comap]
 
 theorem intValuation_comap_ringEquiv (e : R ≃+* S) (v : HeightOneSpectrum S) (r : R) :
@@ -151,7 +158,6 @@ theorem intValuation_comap_ringEquiv (e : R ≃+* S) (v : HeightOneSpectrum S) (
   have her : e r ≠ 0 := (map_ne_zero_iff e e.injective).mpr hr
   set w := v.comap (e : R →+* S) e.surjective
   classical
-
   obtain ⟨m₁, hm₁⟩ : ∃ m : ℕ, w.intValuation r = WithZero.exp (-(m : ℤ)) :=
     ⟨_, w.intValuation_if_neg hr⟩
   obtain ⟨m₂, hm₂⟩ : ∃ m : ℕ, v.intValuation (e r) = WithZero.exp (-(m : ℤ)) :=
@@ -173,7 +179,9 @@ end IsDedekindDomain.HeightOneSpectrum
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk map_id"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing.XYIdeal CoordinateRing map CoordinateRing.YClass FunctionField Point CoordinateRing.mk CoordinateRing.XClass baseChange_polynomial polynomial placeOf placeOf_asIdeal"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing.XYIdeal CoordinateRing map \
+  CoordinateRing.YClass FunctionField Point CoordinateRing.mk CoordinateRing.XClass \
+  baseChange_polynomial polynomial placeOf placeOf_asIdeal"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 section GalA2
@@ -187,7 +195,6 @@ variable {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : We
 include hΦ
 
 omit hΦ in
-
 theorem xc_smul (P : (W⁄K).Point) : (σ • P).xc = σ P.xc := by
   rcases P with _ | ⟨x, y, h⟩
   · exact (map_zero σ).symm
@@ -204,7 +211,8 @@ end GalA2
 end WeierstrassCurve.Affine
 
 open _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine in
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) : (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) :
+    (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f := by
   obtain ⟨φ, hφ⟩ := galRing_exists W σ
   have hΦφ : ∀ a : (W⁄K).CoordinateRing, Φ (algebraMap _ (W⁄K).FunctionField a) =
       algebraMap _ (W⁄K).FunctionField (φ a) := by
@@ -214,7 +222,8 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have hv : (placeOf W K (σ • P) hσP).comap (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing)
       φ.surjective = placeOf W K P hP := by
     apply IsDedekindDomain.HeightOneSpectrum.ext
-    rw [IsDedekindDomain.HeightOneSpectrum.comap_asIdeal, placeOf_asIdeal, placeOf_asIdeal, xc_smul W σ,
+    rw [IsDedekindDomain.HeightOneSpectrum.comap_asIdeal, placeOf_asIdeal, placeOf_asIdeal, xc_smul
+      W σ,
       yc_smul W σ, ← galRing_map_XYIdeal W σ (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing) hφ]
     exact Ideal.comap_map_of_bijective _ φ.bijective
   rw [IsDedekindDomain.HeightOneSpectrum.valuation_comap_ringEquiv φ Φ hΦφ, hv]
@@ -231,6 +240,8 @@ public section publicSection
 open Polynomial WeierstrassCurve WeierstrassCurve.Affine
 open scoped Polynomial.Bivariate
 
-theorem WeierstrassCurve.Affine.valuation_placeOf_smul_of_algEquiv {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) : (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f := _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.solution W σ Φ hΦ hP hσP f
+theorem WeierstrassCurve.Affine.valuation_placeOf_smul_of_algEquiv {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) :
+    (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f :=
+  solution W σ Φ hΦ hP hσP f
 
 end publicSection

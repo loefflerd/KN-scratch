@@ -101,8 +101,10 @@ theorem ΨSq_eval_eq_zero_of_preΨ {m : ℕ} {x₀ : K}
 
 variable [IsAlgClosed K] [DecidableEq K]
 
+omit [DecidableEq K] in
 theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     IsCoprime ((W.baseChange K).ΨSq n) ((W.baseChange K).ΨSq (n + 1)) := by
+  classical
   rw [Polynomial.isCoprime_iff_aeval_ne_zero_of_isAlgClosed (k := K) (K := K)]
   intro x₀
   by_contra hcon
@@ -120,7 +122,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     linear_combination hy₀
   have hns : (W.baseChange K).toAffine.Nonsingular x₀ y₀ :=
     (Affine.equation_iff_nonsingular).mp heq
-
   have hψ0 : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ = 0 := by
     have h2 := evalEval_ψ_sq (W.baseChange K) heq (n : ℤ)
     rw [hn0] at h2
@@ -129,7 +130,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     have h2 := evalEval_ψ_sq (W.baseChange K) heq ((n : ℤ) + 1)
     rw [hn1] at h2
     exact (pow_eq_zero_iff two_ne_zero).mp h2
-
   have h0 : (n : ℤ) • (Affine.Point.some x₀ y₀ hns) = 0 :=
     (smul_eq_zero_iff_evalEval_ψ (W.baseChange K) hns (n : ℤ)).mpr hψ0
   have h1 : ((n : ℤ) + 1) • (Affine.Point.some x₀ y₀ hns) = 0 :=
@@ -189,7 +189,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
         _ = _ := by
             rw [hQeq, Jacobian.Point.toAffineAddEquiv_apply]
             exact Jacobian.Point.toAffineLift_of_Z_ne_zero hVz
-    · show ((W.baseChange K).φ (n : ℤ)).evalEval x₀ y₀ /
+    · change ((W.baseChange K).φ (n : ℤ)).evalEval x₀ y₀ /
           ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ ^ 2 *
           ((W.baseChange K).ΨSq (n : ℤ)).eval x₀ =
           ((W.baseChange K).Φ (n : ℤ)).eval x₀
@@ -226,7 +226,6 @@ theorem smul_x_eq [W.IsElliptic] {n : ℕ} (hn : 0 < n) {x₀ y₀ : K}
   (smul_formula_or_zero W hn h).1 hns
 
 omit [DecidableEq K] in
-
 private lemma eval_ne_of_isCoprime {f g : Polynomial K} (h : IsCoprime f g) {x₀ : K}
     (hf : f.eval x₀ = 0) (hg : g.eval x₀ = 0) : False := by
   obtain ⟨a, b, hab⟩ := h
@@ -234,8 +233,11 @@ private lemma eval_ne_of_isCoprime {f g : Polynomial K} (h : IsCoprime f g) {x�
   simp only [eval_add, eval_mul, hf, hg, mul_zero, add_zero, eval_one] at h1
   exact zero_ne_one h1
 
-private theorem _root_.Deep.Gen.isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n) :
+omit [DecidableEq K] in
+private theorem _root_.Deep.Gen.isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n)
+    :
     IsCoprime ((W.baseChange K).Φ n) ((W.baseChange K).ΨSq n) := by
+  classical
   rw [Polynomial.isCoprime_iff_aeval_ne_zero_of_isAlgClosed (k := K) (K := K)]
   intro x₀
   by_contra hcon
@@ -288,7 +290,6 @@ theorem smul_eq_zero_of_ΨSq_eval_eq_zero [W.IsElliptic] {n : ℕ} (hn : 0 < n)
   (smul_formula_or_zero W hn h).2 hz
 
 omit [DecidableEq K] in
-
 theorem ΨSq_odd_eq_sq {n : ℕ} (hodd : Odd n) :
     (W.baseChange K).ΨSq n = ((W.baseChange K).preΨ' n) ^ 2 := by
   rw [ΨSq_ofNat, ite_eq_right (Nat.not_even_iff_odd.mpr hodd), mul_one]
@@ -321,7 +322,8 @@ section PortCardCopr
 open Polynomial
 
 namespace PortCard
-private theorem _root_.PortCard.isCoprime_Φ_ΨSq {F : Type*} [Field F] (W : WeierstrassCurve F) [W.IsElliptic]
+private theorem _root_.PortCard.isCoprime_Φ_ΨSq {F : Type*} [Field F] (W : WeierstrassCurve F)
+    [W.IsElliptic]
     (n : ℤ) : IsCoprime (W.Φ n) (W.ΨSq n) := by
   classical
   suffices key : ∀ m : ℕ, IsCoprime (W.Φ m) (W.ΨSq m) by
@@ -340,7 +342,8 @@ end PortCard
 p2m_export "" "PortCard.isCoprime_Φ_ΨSq"
 end PortCardCopr
 
-theorem solution {F : Type*} [Field F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) : IsCoprime (W.Φ n) (W.ΨSq n) :=
+theorem solution {F : Type*} [Field F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) :
+    IsCoprime (W.Φ n) (W.ΨSq n) :=
   PortCard.isCoprime_Φ_ΨSq W n
 
 end S_WeierstrassCurve_isCoprime_Phi_PsiSq
@@ -352,6 +355,9 @@ end privateSection
 public section publicSection
 
 
-theorem WeierstrassCurve.isCoprime_Phi_PsiSq {F : Type*} [Field F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) : IsCoprime (W.Φ n) (W.ΨSq n) := _root_.P2MW.S_WeierstrassCurve_isCoprime_Phi_PsiSq.solution W n
+theorem WeierstrassCurve.isCoprime_Phi_PsiSq {F : Type*} [Field F] (W : WeierstrassCurve F)
+    [W.IsElliptic] (n : ℤ) :
+    IsCoprime (W.Φ n) (W.ΨSq n) :=
+  solution W n
 
 end publicSection

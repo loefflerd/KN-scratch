@@ -118,6 +118,8 @@ open AlgebraicCurve ModularCurve IsDedekindDomain WithZero
 theorem ModularCurve.place_eq_of_induces {N : ℕ} [NeZero N]
     {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
     {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
-    (h : Induces ψ w) (h' : Induces ψ w') : w = w' := _root_.P2MW.S_ModularCurve_place_eq_of_induces.solution h h'
+    (h : Induces ψ w) (h' : Induces ψ w')
+    : w = w' :=
+  solution h h'
 
 end publicSection

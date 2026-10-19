@@ -75,10 +75,12 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.isCurveOver_of_transcendental_of_isSeparable (K F : Type*) [Field K] [Field F]
+theorem AlgebraicCurve.isCurveOver_of_transcendental_of_isSeparable (K F : Type*) [Field K]
+    [Field F]
     [Algebra K F] (x : F) (hx : Transcendental K x)
     (hfin : FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
     (hsep : Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F) :
-    IsCurveOver K F := _root_.P2MW.S_AlgebraicCurve_isCurveOver_of_transcendental_of_isSeparable.solution K F x hx hfin hsep
+    IsCurveOver K F :=
+  solution K F x hx hfin hsep
 
 end publicSection

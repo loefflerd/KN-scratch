@@ -73,7 +73,6 @@ abbrev Vertex : Type _ :=
   (i : ι) × (CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range)
 
 variable {G} in
-
 abbrev Vertex.mk (i : ι) (g : CoprodI G) : Vertex G :=
   ⟨i, QuotientGroup.mk g⟩
 
@@ -121,11 +120,11 @@ theorem smul_mk (g : CoprodI G) (i : ι) (h : CoprodI G) :
 scoped instance : MulAction (CoprodI G) (Vertex G) where
   one_smul := by
     rintro ⟨i, x⟩
-    show (⟨i, (1 : CoprodI G) • x⟩ : Vertex G) = ⟨i, x⟩
+    change (⟨i, (1 : CoprodI G) • x⟩ : Vertex G) = ⟨i, x⟩
     rw [one_smul]
   mul_smul g h := by
     rintro ⟨i, x⟩
-    show (⟨i, (g * h) • x⟩ : Vertex G) = ⟨i, g • h • x⟩
+    change (⟨i, (g * h) • x⟩ : Vertex G) = ⟨i, g • h • x⟩
     rw [mul_smul]
 
 theorem smul_adj {v w : Vertex G} (g : CoprodI G) (h : (graph G).Adj v w) :
@@ -233,7 +232,9 @@ end GroupTheory
 p2m_open "Subgroup SimpleGraph P2MW.S_Monoid_CoprodI_isTree_cosetGraph.SimpleGraph"
 
 namespace SimpleGraph
-p2m_export "SimpleGraph" "IsAcyclic loopless connected_iff_exists_forall_reachable isAcyclic_iff_forall_adj_isBridge fromRel fromRel_adj IsBridge Reachable.refl Connected Walk mk IsTree symm between isBridge_iff deleteEdges_adj Adj structure Reachable edge"
+p2m_export "SimpleGraph" "IsAcyclic loopless connected_iff_exists_forall_reachable \
+  isAcyclic_iff_forall_adj_isBridge fromRel fromRel_adj IsBridge Reachable.refl Connected Walk mk \
+  IsTree symm between isBridge_iff deleteEdges_adj Adj structure Reachable edge"
 p2m_open "SimpleGraph"
 
 variable {V : Type*} {α : Type*}
@@ -276,7 +277,6 @@ section DecEq
 variable [DecidableEq ι] [∀ i, DecidableEq (G i)]
 
 omit [DecidableEq ι] in
-
 theorem lastIdx_rcons_getD {i : ι} (p : Word.Pair G i) :
     (lastIdx (Word.rcons p)).getD i = (lastIdx p.tail).getD i := by
   rw [Word.rcons]
@@ -345,7 +345,6 @@ theorem side_mk_one (i : ι) : side (Vertex.mk i (1 : CoprodI G)) = i := by
   rw [side_mk, sideAux_one]
 
 omit [DecidableEq ι] [∀ i, DecidableEq (G i)] in
-
 theorem sym2_mk_eq_sym2_mk (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) {i j k l : ι}
     (hij : i ≠ j) (hkl : k ≠ l) (g : CoprodI G) :
     s(Vertex.mk i g, Vertex.mk j g) = s(Vertex.mk k g, Vertex.mk l g) := by
@@ -360,14 +359,16 @@ theorem sym2_mk_eq_sym2_mk (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) {i
     · exact absurd h hkl
   · exact absurd h hkl
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 theorem isBridge_mk_mk (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) {i j : ι} (hij : i ≠ j)
     (g : CoprodI G) : (graph G).IsBridge s(Vertex.mk i g, Vertex.mk j g) := by
+  classical
   refine isBridge_of_separating (fun v => side (g⁻¹ • v)) ?_ ?_
-  · show side (g⁻¹ • Vertex.mk i g) ≠ side (g⁻¹ • Vertex.mk j g)
+  · change side (g⁻¹ • Vertex.mk i g) ≠ side (g⁻¹ • Vertex.mk j g)
     rw [smul_mk, smul_mk, inv_mul_cancel, side_mk_one, side_mk_one]
     exact hij
   · rintro v w ⟨hvw, h, hhv, hhw⟩ hne
-    show side (g⁻¹ • v) = side (g⁻¹ • w)
+    change side (g⁻¹ • v) = side (g⁻¹ • w)
     rw [← hhv, ← hhw] at hne ⊢
     rw [smul_mk, smul_mk, side_mk, side_mk]
     rcases eq_or_ne h g with rfl | hhg
@@ -444,6 +445,7 @@ theorem Monoid.CoprodI.isTree_cosetGraph {G : Fin 2 → Type*} [∀ i, Group (G 
     (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range) =>
         v.1 ≠ w.1 ∧ ∃ g : Monoid.CoprodI G,
           v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := v.1)).range) ∧
-          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := w.1)).range)).IsTree := _root_.P2MW.S_Monoid_CoprodI_isTree_cosetGraph.solution
+          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := w.1)).range)).IsTree :=
+  solution
 
 end publicSection

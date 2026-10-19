@@ -84,7 +84,11 @@ open scoped MatrixGroups ModularForm
 local notation "𝕢" => Function.Periodic.qParam
 
 namespace ModularCurve
-p2m_export "ModularCurve" "dedekindEtaUnitQ deltaSeries isMonicOfOrder_deltaSeries deltaSeries_ne_zero deltaSeriesN isMonicOfOrder_deltaSeriesN modularUnitSeries qExpand_coeff_mul qExpand_coeff_of_not_dvd dedekindEtaUnit ofPowerSeries_coeff_of_neg qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit hasSum_qParam_mul_laurent laurent_qParam_coeff_unique"
+p2m_export "ModularCurve" "dedekindEtaUnitQ deltaSeries isMonicOfOrder_deltaSeries \
+  deltaSeries_ne_zero deltaSeriesN isMonicOfOrder_deltaSeriesN modularUnitSeries qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd dedekindEtaUnit ofPowerSeries_coeff_of_neg \
+  qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit hasSum_qParam_mul_laurent \
+  laurent_qParam_coeff_unique"
 p2m_open "ModularCurve"
 
 namespace QexpN
@@ -129,7 +133,8 @@ private theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : �
         (fun n : ℕ => (n : ℤ) + k) = fun n : ℕ => (PowerSeries.coeff n P * q ^ n) * q ^ k := by
       funext n
       simp only [Function.comp_apply]
-      rw [HahnSeries.coeff_single_mul_add, one_mul, LaurentSeries.coeff_coe_powerSeries, zpow_add₀ hq,
+      rw [HahnSeries.coeff_single_mul_add, one_mul, LaurentSeries.coeff_coe_powerSeries, zpow_add₀
+        hq,
         zpow_natCast]
       ring
     rw [hfg]
@@ -139,7 +144,8 @@ private theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : �
       by_contra hge
       push Not at hge
       exact hm ⟨(m - k).toNat, by simp only; omega⟩
-    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe, ite_eq_left hmk,
+    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe,
+      ite_eq_left hmk,
       zero_mul]
 
 private theorem hasSum_theta_deltaSeries (τ : ℍ) :
@@ -385,7 +391,8 @@ end ModularCurve
 
 end
 
-theorem solution (N : ℕ) [NeZero N] (τ : UpperHalfPlane) : HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) * Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
+theorem solution (N : ℕ) [NeZero N] (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) * Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
   ModularCurve.QexpN.hasSum_smul_inv N τ
 
 end S_ModularCurve_hasSum_smul_modularUnitSeries_inv_qParam
@@ -396,6 +403,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.hasSum_smul_modularUnitSeries_inv_qParam (N : ℕ) [NeZero N] (τ : UpperHalfPlane) : HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) * Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) := _root_.P2MW.S_ModularCurve_hasSum_smul_modularUnitSeries_inv_qParam.solution N τ
+theorem ModularCurve.hasSum_smul_modularUnitSeries_inv_qParam (N : ℕ) [NeZero N]
+    (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) * Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
+  solution N τ
 
 end publicSection

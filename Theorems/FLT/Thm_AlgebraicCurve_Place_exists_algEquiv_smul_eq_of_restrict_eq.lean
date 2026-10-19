@@ -64,14 +64,20 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq
 
 noncomputable section
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq.AlgebraicCurve \
+  IsDedekindDomain"
 open scoped Pointwise
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext SemilinearAut SemilinearAut.inv_smul_def SemilinearAut.ofAlgAut SemilinearAut.toRingAut_ofAlgAut SemilinearAut.smul_toValuationSubring SemilinearAut.ord_smul"
+p2m_export "AlgebraicCurve" "Place Place.ext SemilinearAut SemilinearAut.inv_smul_def \
+  SemilinearAut.ofAlgAut SemilinearAut.toRingAut_ofAlgAut SemilinearAut.smul_toValuationSubring \
+  SemilinearAut.ord_smul"
 p2m_open "AlgebraicCurve"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "integralClosureAt fiberCenter mem_fiberCenter_iff_ord_pos fiberCenter_liesOver eq_of_fiberCenter_eq restrict restrict_toValuationSubring ext ord smul_toValuationSubring ord_smul toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "integralClosureAt fiberCenter mem_fiberCenter_iff_ord_pos \
+  fiberCenter_liesOver eq_of_fiberCenter_eq restrict restrict_toValuationSubring ext ord \
+  smul_toValuationSubring ord_smul toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F' M : Type*} [Field K] [Field F'] [Field M] [Algebra K F'] [Algebra K M]
@@ -148,10 +154,12 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.exists_algEquiv_smul_eq_of_restrict_eq {K F' M : Type*} [Field K] [Field F'] [Field M]
+theorem AlgebraicCurve.Place.exists_algEquiv_smul_eq_of_restrict_eq {K F' M : Type*} [Field K]
+    [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (W W' : Place K M)
     (h : W'.restrict F' = W.restrict F') :
-    ∃ σ : M ≃ₐ[F'] M, SemilinearAut.ofAlgAut (σ.restrictScalars K) • W = W' := _root_.P2MW.S_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq.solution W W' h
+    ∃ σ : M ≃ₐ[F'] M, SemilinearAut.ofAlgAut (σ.restrictScalars K) • W = W' :=
+  solution W W' h
 
 end publicSection

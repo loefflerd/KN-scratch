@@ -215,7 +215,7 @@ instance instSubsingletonOfOne : Subsingleton (CuspSpace 1) := by
   rintro ⟨x⟩ ⟨y⟩
   obtain ⟨g, hg⟩ := OnePoint.exists_mem_SL2 ℤ x
   obtain ⟨h, hh⟩ := OnePoint.exists_mem_SL2 ℤ y
-  show mk 1 x = mk 1 y
+  change mk 1 x = mk 1 y
   have hmem : ∀ γ : SL(2, ℤ), γ ∈ Gamma0 1 := fun γ => by
     rw [Gamma0_mem]; exact Subsingleton.elim _ _
   rw [← hg, ← hh]
@@ -400,20 +400,20 @@ theorem cuspWidth_mk_ratPoint {a c : ℤ} (h : IsCoprime a c) :
     cuspWidth (mk N (ratPoint a c)) = N / Nat.gcd (c.natAbs ^ 2) N := by
   have h1 : cuspDenom N (mk N (ratPoint a c)) = Nat.gcd c.natAbs N := by
     rw [cuspDenom_mk_ratPoint h]
-    show Nat.gcd c.natAbs (N : ℤ).natAbs = _
+    change Nat.gcd c.natAbs (N : ℤ).natAbs = _
     rw [Int.natAbs_natCast]
-  show cuspWidthOfDenom N (cuspDenom N (mk N (ratPoint a c))) = _
+  change cuspWidthOfDenom N (cuspDenom N (mk N (ratPoint a c))) = _
   rw [h1]
-  show N / Nat.gcd (Nat.gcd c.natAbs N ^ 2) N = _
+  change N / Nat.gcd (Nat.gcd c.natAbs N ^ 2) N = _
   rw [gcd_sq_gcd_left]
 
 theorem cuspWidth_mk_infty (hN : N ≠ 0) : cuspWidth (mk N ∞) = 1 := by
-  show cuspWidthOfDenom N (cuspDenom N (mk N ∞)) = 1
+  change cuspWidthOfDenom N (cuspDenom N (mk N ∞)) = 1
   rw [cuspDenom_mk_infty]
   exact cuspWidthOfDenom_self hN
 
 theorem cuspWidth_mk_zero : cuspWidth (mk N ((0 : ℚ) : OnePoint ℚ)) = N := by
-  show cuspWidthOfDenom N (cuspDenom N (mk N ((0 : ℚ) : OnePoint ℚ))) = N
+  change cuspWidthOfDenom N (cuspDenom N (mk N ((0 : ℚ) : OnePoint ℚ))) = N
   rw [cuspDenom_mk_zero]
   exact cuspWidthOfDenom_one N
 

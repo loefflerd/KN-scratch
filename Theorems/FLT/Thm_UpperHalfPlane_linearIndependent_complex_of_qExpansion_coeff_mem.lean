@@ -75,7 +75,8 @@ namespace WLight
 
 section RatCoeff
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 private lemma ratCoeff_mul {p q : PowerSeries ℂ}
@@ -144,7 +145,8 @@ private lemma ratCoeff_discriminant :
   push_cast
   ring
 
-private lemma ratCoeff_pow {p : PowerSeries ℂ} (hp : ∀ n : ℕ, ∃ a : ℚ, p.coeff n = (a : ℂ)) (k : ℕ) :
+private lemma ratCoeff_pow {p : PowerSeries ℂ} (hp : ∀ n : ℕ, ∃ a : ℚ, p.coeff n = (a : ℂ)) (k : ℕ)
+    :
     ∀ n : ℕ, ∃ a : ℚ, (p ^ k).coeff n = (a : ℂ) := by
   induction k with
   | zero =>
@@ -160,7 +162,8 @@ end RatCoeff
 
 section DiscPow
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries OnePoint Matrix.SpecialLinearGroup"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries OnePoint Matrix.SpecialLinearGroup"
 
 open scoped MatrixGroups Manifold
 
@@ -237,10 +240,13 @@ end WidthMF
 
 section BSix
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm P2MW.S_UpperHalfPlane_linearIndependent_complex_of_qExpansion_coeff_mem.WLight.ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm \
+  P2MW.S_UpperHalfPlane_linearIndependent_complex_of_qExpansion_coeff_mem.WLight.ModularFormClass \
+  CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
 open scoped MatrixGroups Manifold
 
-private lemma isBoundedAtImInfty_discriminant : IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
+private lemma isBoundedAtImInfty_discriminant :
+    IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
   (CuspFormClass.zero_at_infty CuspForm.discriminant).boundedAtFilter
 
 private lemma isBoundedAtImInfty_discPow (n : ℕ) :
@@ -266,12 +272,15 @@ end BSix
 
 section KPoleSec
 
-p2m_open "UpperHalfPlane ModularForm P2MW.S_UpperHalfPlane_linearIndependent_complex_of_qExpansion_coeff_mem.WLight.ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "UpperHalfPlane ModularForm \
+  P2MW.S_UpperHalfPlane_linearIndependent_complex_of_qExpansion_coeff_mem.WLight.ModularFormClass \
+  CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
 open scoped MatrixGroups Manifold
 
 variable {N : ℕ}
 
-private lemma mem_of_rat (K : IntermediateField ℚ ℂ) {x : ℂ} (h : ∃ q : ℚ, x = (q : ℂ)) : x ∈ K := by
+private lemma mem_of_rat (K : IntermediateField ℚ ℂ) {x : ℂ} (h : ∃ q : ℚ, x = (q : ℂ)) :
+    x ∈ K := by
   obtain ⟨q, rfl⟩ := h
   exact SubfieldClass.ratCast_mem K q
 
@@ -283,7 +292,8 @@ private def KPoleAt (K : IntermediateField ℚ ℂ) (N m : ℕ) (f : ℍ → ℂ
 private def KPole (K : IntermediateField ℚ ℂ) (N : ℕ) (f : ℍ → ℂ) : Prop :=
   MDiff f ∧ ∃ m : ℕ, KPoleAt K N m f
 
-private lemma periodic_one_fn (c : ℝ) : Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
+private lemma periodic_one_fn (c : ℝ) :
+    Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
 
 private lemma periodic_discPow_comp_ofComplex (k : ℕ) (N : ℕ) :
     Function.Periodic ((⇑CuspForm.discriminant ^ k : ℍ → ℂ) ∘ ofComplex) N := by
@@ -616,6 +626,7 @@ theorem UpperHalfPlane.linearIndependent_complex_of_qExpansion_coeff_mem (N : �
       Function.Periodic ((f i * ModularForm.discriminant ^ m) ∘ UpperHalfPlane.ofComplex) N ∧
       UpperHalfPlane.IsBoundedAtImInfty (f i * ModularForm.discriminant ^ m) ∧
       ∀ n : ℕ, (UpperHalfPlane.qExpansion N (f i * ModularForm.discriminant ^ m)).coeff n ∈ K)
-    (hli : LinearIndependent ↥K f) : LinearIndependent ℂ f := _root_.P2MW.S_UpperHalfPlane_linearIndependent_complex_of_qExpansion_coeff_mem.solution N K f hf hli
+    (hli : LinearIndependent ↥K f) : LinearIndependent ℂ f :=
+  solution N K f hf hli
 
 end publicSection

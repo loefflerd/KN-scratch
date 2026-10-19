@@ -58,7 +58,9 @@ namespace P2MW.S_AlgebraicCurve_Pic0_zsmul_mk
 
 open AlgebraicCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (m : ℤ) (D : Divisor.degZero (K := K) (F := F)) : m • Pic0.mk D = Pic0.mk (m • D) :=
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (m : ℤ)
+    (D : Divisor.degZero (K := K) (F := F)) :
+    m • Pic0.mk D = Pic0.mk (m • D) :=
   (map_zsmul (QuotientAddGroup.mk' _) m D).symm
 
 end S_AlgebraicCurve_Pic0_zsmul_mk
@@ -71,6 +73,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Pic0.zsmul_mk {K F : Type*} [Field K] [Field F] [Algebra K F] (m : ℤ) (D : Divisor.degZero (K := K) (F := F)) : m • Pic0.mk D = Pic0.mk (m • D) := _root_.P2MW.S_AlgebraicCurve_Pic0_zsmul_mk.solution m D
+theorem AlgebraicCurve.Pic0.zsmul_mk {K F : Type*} [Field K] [Field F] [Algebra K F] (m : ℤ)
+    (D : Divisor.degZero (K := K) (F := F)) :
+    m • Pic0.mk D = Pic0.mk (m • D) :=
+  solution m D
 
 end publicSection

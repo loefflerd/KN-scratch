@@ -59,10 +59,14 @@ namespace P2MW.S_AlgebraicCurve_Divisor_evalFun_zpow_left
 
 open AlgebraicCurve AlgebraicCurve.Divisor
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {f : F} (hf : f ≠ 0) {D : Divisor K F} (n : ℤ) (hrat : ∀ v ∈ D.support, Place.IsRational v) (hord : ∀ v ∈ D.support, Place.ord v f = 0) : Divisor.evalFun (f ^ n) D = Divisor.evalFun f D ^ n := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {f : F} (hf : f ≠ 0)
+    {D : Divisor K F} (n : ℤ) (hrat : ∀ v ∈ D.support, Place.IsRational v)
+    (hord : ∀ v ∈ D.support, Place.ord v f = 0) :
+    Divisor.evalFun (f ^ n) D = Divisor.evalFun f D ^ n := by
   rw [evalFun_def, evalFun_def, ← Finset.prod_zpow]
   refine Finset.prod_congr rfl fun v hv => ?_
-  rw [AlgebraicCurve.Place.evalAt_zpow v (hrat v hv) hf (hord v hv) n, ← zpow_mul, ← zpow_mul, mul_comm]
+  rw [AlgebraicCurve.Place.evalAt_zpow v (hrat v hv) hf (hord v hv) n, ← zpow_mul, ← zpow_mul,
+    mul_comm]
 
 end S_AlgebraicCurve_Divisor_evalFun_zpow_left
 end P2MW
@@ -74,6 +78,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Divisor.evalFun_zpow_left {K F : Type*} [Field K] [Field F] [Algebra K F] {f : F} (hf : f ≠ 0) {D : Divisor K F} (n : ℤ) (hrat : ∀ v ∈ D.support, Place.IsRational v) (hord : ∀ v ∈ D.support, Place.ord v f = 0) : Divisor.evalFun (f ^ n) D = Divisor.evalFun f D ^ n := _root_.P2MW.S_AlgebraicCurve_Divisor_evalFun_zpow_left.solution hf n hrat hord
+theorem AlgebraicCurve.Divisor.evalFun_zpow_left {K F : Type*} [Field K] [Field F] [Algebra K F]
+    {f : F} (hf : f ≠ 0) {D : Divisor K F} (n : ℤ) (hrat : ∀ v ∈ D.support, Place.IsRational v)
+    (hord : ∀ v ∈ D.support, Place.ord v f = 0) :
+    Divisor.evalFun (f ^ n) D = Divisor.evalFun f D ^ n :=
+  solution hf n hrat hord
 
 end publicSection

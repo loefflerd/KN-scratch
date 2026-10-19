@@ -108,6 +108,8 @@ public section publicSection
 
 universe u
 theorem Field.nonempty_ringHom_complex_of_countable
-    (K : Type u) [Field K] [CharZero K] [Countable K] : Nonempty (K →+* ℂ) := _root_.P2MW.S_Field_nonempty_ringHom_complex_of_countable.solution K
+    (K : Type u) [Field K] [CharZero K] [Countable K]
+    : Nonempty (K →+* ℂ) :=
+  solution K
 
 end publicSection

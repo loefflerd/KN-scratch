@@ -129,7 +129,7 @@ theorem act_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     act A (MvPolynomial.map f P) = MvPolynomial.map f (act A P) := by
   unfold act
   simp only [AlgHom.toLinearMap_apply]
-  show MvPolynomial.bind₁ (fun i : Fin 2 => ∑ a : Fin 2, (A a i : S) • MvPolynomial.X a)
+  change MvPolynomial.bind₁ (fun i : Fin 2 => ∑ a : Fin 2, (A a i : S) • MvPolynomial.X a)
       (MvPolynomial.map f P)
     = MvPolynomial.map f (MvPolynomial.bind₁
         (fun i : Fin 2 => ∑ a : Fin 2, (A a i : R) • MvPolynomial.X a) P)
@@ -356,7 +356,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
   set G : ℂ × Hc N n ℤ → Hc N n ℂ := fun i => eC (1 ⊗ₜ[ℤ] i.2) with hGdef
   set Gq : ℂ × Hc N n ℤ → Hc N n MTT.Qbar := fun i => eQ (1 ⊗ₜ[ℤ] i.2) with hGqdef
   ------------------------------------------------------------------
-  -- 1.  `φ` is a finite ℂ-combination of coefficientwise-integral classes.
+  -- 1. `φ` is a finite ℂ-combination of coefficientwise-integral classes.
   ------------------------------------------------------------------
   have hdecomp : φ = ∑ i ∈ T, i.1 • G i := by
     conv_lhs => rw [← eC.apply_symm_apply φ, hT]
@@ -368,7 +368,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
     simp
   have hval : φ.val = ∑ i ∈ T, i.1 • (G i).val := by rw [hdecomp]; push_cast; rfl
   ------------------------------------------------------------------
-  -- 2.  Those classes are algebraic: they are ι-images of Qbar-classes.
+  -- 2. Those classes are algebraic: they are ι-images of Qbar-classes.
   ------------------------------------------------------------------
   have hExt : ∀ i, ∀ D : Cusp × Cusp, (G i).val D = MvPolynomial.map ι ((Gq i).val D) := by
     intro i D
@@ -380,7 +380,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
     exact h1
   have halgG : ∀ i, Alg ι ((G i).val) := fun i => ⟨(Gq i).val, hExt i⟩
   ------------------------------------------------------------------
-  -- 3.  A Qbar-coordinate system on ℂ.
+  -- 3. A Qbar-coordinate system on ℂ.
   ------------------------------------------------------------------
   let : Module MTT.Qbar ℂ := ι.toModule
   set B := Module.Basis.ofVectorSpace MTT.Qbar ℂ with hB
@@ -399,7 +399,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
           Finset.sum_congr rfl fun t _ => rfl
       _ = z := h
   ------------------------------------------------------------------
-  -- 4.  The descended candidates.
+  -- 4. The descended candidates.
   ------------------------------------------------------------------
   set Φ : ↥(Module.Basis.ofVectorSpaceIndex MTT.Qbar ℂ) → Hc N n ℂ :=
     fun t => ∑ i ∈ T, (ι (π t i.1)) • G i with hΦ
@@ -416,7 +416,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [map_smul_eq ι, ← hExt i (x, y)]
   ------------------------------------------------------------------
-  -- 5.  Each candidate satisfies the same eigenpacket equations.
+  -- 5. Each candidate satisfies the same eigenpacket equations.
   ------------------------------------------------------------------
   have hsign : ((MTT.sign s : ℤ) : ℂ) = ι (((MTT.sign s : ℤ) : MTT.Qbar)) := by
     rw [map_intCast]
@@ -486,7 +486,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
       rw [hvalΦ t, reflection_lin, smul_lin]
       exact hd
   ------------------------------------------------------------------
-  -- 6.  The candidates span `φ`, so one of them is nonzero.
+  -- 6. The candidates span `φ`, so one of them is nonzero.
   ------------------------------------------------------------------
   set Tset : Finset ↥(Module.Basis.ofVectorSpaceIndex MTT.Qbar ℂ) :=
     T.biUnion (fun i => (B.repr i.1).support) with hTset
@@ -512,7 +512,7 @@ theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [smul_smul, mul_comm]
   ------------------------------------------------------------------
-  -- 7.  Conclusion.
+  -- 7. Conclusion.
   ------------------------------------------------------------------
   by_cases hφ0 : φ = 0
   · refine ⟨1, one_ne_zero, 0, ?_⟩

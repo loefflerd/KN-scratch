@@ -81,7 +81,7 @@ namespace P2MW.S_AlgebraicCurve_weilDualityAdelic_of_isAlgClosed
 open AlgebraicCurve
 
 theorem solution
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -97,6 +97,7 @@ theorem solution
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F] :
     AlgebraicCurve.WeilDualityAdelic K F := by
+  classical
   have hC : ConstantsAreBase K F := constantsAreBase_of_isAlgClosed K F
   have : Algebra.EssFiniteType (Polynomial K) (RatFunc K) :=
     Algebra.EssFiniteType.of_isLocalization (RatFunc K) (nonZeroDivisors (Polynomial K))
@@ -116,7 +117,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.weilDualityAdelic_of_isAlgClosed
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -132,6 +133,7 @@ theorem AlgebraicCurve.weilDualityAdelic_of_isAlgClosed
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F] :
     AlgebraicCurve.WeilDualityAdelic K F := by
+  classical
   exact solution
 
 end publicSection

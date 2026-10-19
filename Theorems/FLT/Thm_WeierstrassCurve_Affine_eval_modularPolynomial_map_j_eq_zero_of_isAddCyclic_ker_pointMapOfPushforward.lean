@@ -87,7 +87,10 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ g₃ ω₂ G g₂ weierstrassCurve DiscriminantNeZero jLattice jLattice_eq_c₄_pow_three_div_Δ scale_indep scale exists_variableChange_smul_weierstrassCurve_eq exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient discriminant_ne_zero"
+p2m_export "PeriodPair" "lattice ω₁ g₃ ω₂ G g₂ weierstrassCurve DiscriminantNeZero jLattice \
+  jLattice_eq_c₄_pow_three_div_Δ scale_indep scale exists_variableChange_smul_weierstrassCurve_eq \
+  exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 open Complex
 variable (L : PeriodPair)
@@ -107,7 +110,8 @@ private def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictSca
 
 @[scoped simp] private theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
+private theorem _root_.PeriodPair.scale_lattice :
+    (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
   congr 1
@@ -230,7 +234,7 @@ theorem separableAlong_of_charZero {E E' : WeierstrassCurve.Affine K}
   have : Module.Finite E'.FunctionField E.FunctionField := hfin
   have : CharZero E'.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap K E'.FunctionField).injective
-  show Algebra.IsSeparable E'.FunctionField E.FunctionField
+  change Algebra.IsSeparable E'.FunctionField E.FunctionField
   infer_instance
 
 theorem normFormulaAlong_of_charZero {E E' : WeierstrassCurve.Affine K}
@@ -253,7 +257,8 @@ theorem map_eval_map_Φ {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp
 
-theorem isElliptic_map {R S : Type*} [CommRing R] [CommRing S] (W : WeierstrassCurve R) [W.IsElliptic]
+theorem isElliptic_map {R S : Type*} [CommRing R] [CommRing S] (W : WeierstrassCurve R)
+    [W.IsElliptic]
     (f : R →+* S) : (W.map f).IsElliptic :=
   ⟨by rw [WeierstrassCurve.map_Δ]; exact (W.isUnit_Δ).map f⟩
 
@@ -268,18 +273,20 @@ theorem jLattice_eq_j (L : PeriodPair) : L.jLattice = L.weierstrassCurve.j := by
   rw [PeriodPair.jLattice_eq_c₄_pow_three_div_Δ, j_eq_div]
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
     [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    (ι : E'.FunctionField →ₐ[ℂ] E.FunctionField) (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong ℂ ι)
+    (ι : E'.FunctionField →ₐ[ℂ] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
+    (hfin : FiniteAlong ℂ ι)
     (hN : NormFormulaAlong ℂ ι hfin) (N : ℕ) [NeZero N]
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker)
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N)
     (data : ModularCurve.ModularPolynomialData N) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ) E.j)).eval E'.j = 0 := by
-  obtain ⟨L, C, hE⟩ := PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E : WeierstrassCurve ℂ)
-  obtain ⟨L', C', hE'⟩ := PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E' : WeierstrassCurve ℂ)
+  obtain ⟨L, C, hE⟩ :=
+    PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E : WeierstrassCurve ℂ)
+  obtain ⟨L', C', hE'⟩ :=
+    PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E' : WeierstrassCurve ℂ)
   subst hE hE'
   have : IsDedekindDomain L.weierstrassCurve.toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain L.weierstrassCurve
@@ -301,8 +308,10 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
   have := haL
   have := hcL'
   have := haL'
-  obtain ⟨eE⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
-  obtain ⟨eE'⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L'.weierstrassCurve C'
+  obtain ⟨eE⟩ :=
+    WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
+  obtain ⟨eE'⟩ :=
+    WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L'.weierstrassCurve C'
   have hι'' := conjSeam_isIntegral eE eE' ι hι
   have hfin'' := conjSeam_finiteAlong eE eE' ι hfin
   have hN'' : NormFormulaAlong ℂ (conjSeam eE eE' ι) hfin'' := normFormulaAlong_of_charZero _ hfin''
@@ -323,8 +332,10 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
     WeierstrassCurve.variableChange_j _ _
   have hj' : WeierstrassCurve.j (C' • L'.weierstrassCurve) = L'.weierstrassCurve.j :=
     WeierstrassCurve.variableChange_j _ _
-  have hjE : (show WeierstrassCurve.Affine ℂ from C • L.weierstrassCurve).j = L.weierstrassCurve.j := hj
-  have hjE' : (show WeierstrassCurve.Affine ℂ from C' • L'.weierstrassCurve).j = L'.weierstrassCurve.j := hj'
+  have hjE : (show WeierstrassCurve.Affine ℂ from C • L.weierstrassCurve).j = L.weierstrassCurve.j :=
+    hj
+  have hjE' : (show WeierstrassCurve.Affine ℂ from C' • L'.weierstrassCurve).j = L'.weierstrassCurve.j :=
+    hj'
   rw [hjE, hjE']
   exact hroot
 
@@ -334,13 +345,13 @@ namespace F4Proof
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem solution0
     {K : Type} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
     [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
+    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
+    (hfin : FiniteAlong K ι)
     (hN : NormFormulaAlong K ι hfin) (N : ℕ) [NeZero N]
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker)
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N)
@@ -377,7 +388,8 @@ theorem solution0
   have := a₁
   have := c₂
   have := a₂
-  have hN₀ : NormFormulaAlong (AlgebraicClosure K₀) ι₀ hfin₀ := normFormulaAlong_of_charZero ι₀ hfin₀
+  have hN₀ : NormFormulaAlong (AlgebraicClosure K₀) ι₀ hfin₀ :=
+    normFormulaAlong_of_charZero ι₀ hfin₀
   obtain ⟨hcyc₀, hcard₀⟩ := H hN₀
   obtain ⟨φ₀⟩ := Field.nonempty_ringHom_complex_of_countable K₀
   let : Algebra K₀ ℂ := φ₀.toAlgebra
@@ -435,7 +447,8 @@ theorem solution
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
     [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
+    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
+    (hfin : FiniteAlong K ι)
     (hN : NormFormulaAlong K ι hfin) (N : ℕ) [NeZero N]
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker)
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N)
@@ -458,11 +471,13 @@ theorem WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyc
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
     [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
+    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
+    (hfin : FiniteAlong K ι)
     (hN : NormFormulaAlong K ι hfin) (N : ℕ) [NeZero N]
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker)
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N)
     (data : ModularCurve.ModularPolynomialData N) :
-    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K) E.j)).eval E'.j = 0 := _root_.P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.solution K E E' ι hι hfin hN N hcyc hcard data
+    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K) E.j)).eval E'.j = 0 :=
+  solution K E E' ι hι hfin hN N hcyc hcard data
 
 end publicSection

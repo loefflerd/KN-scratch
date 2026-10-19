@@ -141,6 +141,7 @@ theorem AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YC
       ∈ v.toValuationSubring.nonunits)
     (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing)
     (hw : w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y)) :
-    v = Place.ofHeightOneSpectrum (K := F) w := _root_.P2MW.S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits.solution v hX hY w hw
+    v = Place.ofHeightOneSpectrum (K := F) w :=
+  solution v hX hY w hw
 
 end publicSection

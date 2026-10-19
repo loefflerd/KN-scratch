@@ -211,6 +211,7 @@ theorem AlgebraicCurve.exists_separating_transcendental_of_perfectField
     (hfd : FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F) :
     ∃ t : F, Transcendental K t ∧
       FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F ∧
-      Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := _root_.P2MW.S_AlgebraicCurve_exists_separating_transcendental_of_perfectField.solution htr hfd
+      Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F :=
+  solution htr hfd
 
 end publicSection

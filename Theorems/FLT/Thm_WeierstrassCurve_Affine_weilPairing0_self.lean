@@ -85,7 +85,6 @@ theorem transEquiv_comm (S T : (W⁄K).Point) (h : (W⁄K).FunctionField) :
   rw [transEquiv_transEquiv, transEquiv_transEquiv, add_comm]
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
-
 theorem const_unique {g : (W⁄K).FunctionField} (hg : g ≠ 0) {c c' : K}
     (h : algebraMap K (W⁄K).FunctionField c * g = algebraMap K (W⁄K).FunctionField c' * g) :
     c = c' :=
@@ -100,7 +99,6 @@ theorem weilPairing0_eq_of {n : ℕ} (hn : (n : K) ≠ 0) {S T : (W⁄K).Point} 
   exact (Units.ext (const_unique W (WeierstrassCurve.Affine.weilFun_ne_zero W hn hT) h')).symm
 
 omit [DecidableEq K] in
-
 theorem exists_eq_algebraMap {f : (W⁄K).FunctionField}
     (hf : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (placeOf W K P hP).valuation (W⁄K).FunctionField f = 1) :
     ∃ c : K, c ≠ 0 ∧ f = algebraMap K (W⁄K).FunctionField c := by
@@ -180,7 +178,6 @@ theorem transEquiv_weilFun_self {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Poin
     rw [hn'] at hshift hG
     rw [hshift, hG, Finset.prod_range_succ, Finset.prod_range_succ' a] at hfix
     have hcancel := mul_left_cancel₀ (Finset.prod_ne_zero_iff.mpr fun i _ => ha0 (i + 1)) hfix
-
     simp only [ha] at hcancel
     rw [Nat.cast_zero, zero_smul, transEquiv_zero, AlgEquiv.coe_refl, id_eq,
       show (((m + 1 : ℕ) : ℤ)) = (n : ℤ) by rw [hn'], hT'] at hcancel
@@ -188,7 +185,10 @@ theorem transEquiv_weilFun_self {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Poin
 
 end WeilLaws
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (T : (W⁄K).Point) (hT : (n : ℤ) • T = 0) : weilPairing0 W K n T T = 1 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
+    (hn : (n : K) ≠ 0) (T : (W⁄K).Point) (hT : (n : ℤ) • T = 0) :
+    weilPairing0 W K n T T = 1 := by
   apply WeilLaws.weilPairing0_eq_of W hn hT
   rw [Units.val_one, map_one, one_mul]
   exact WeilLaws.transEquiv_weilFun_self W hn hT
@@ -204,6 +204,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.weilPairing0_self {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (T : (W⁄K).Point) (hT : (n : ℤ) • T = 0) : weilPairing0 W K n T T = 1 := _root_.P2MW.S_WeierstrassCurve_Affine_weilPairing0_self.solution W hn T hT
+theorem WeierstrassCurve.Affine.weilPairing0_self {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (T : (W⁄K).Point)
+    (hT : (n : ℤ) • T = 0) :
+    weilPairing0 W K n T T = 1 :=
+  solution W hn T hT
 
 end publicSection

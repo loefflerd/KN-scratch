@@ -83,7 +83,12 @@ noncomputable section
 p2m_open "ModularCurve P2MW.S_ModularCurve_isRoot_map_Phi_apply_jBar.ModularCurve"
 
 namespace HahnSeries
-p2m_export "HahnSeries" "support algebraMap_apply' ofPowerSeries_C support_embDomain_subset single embDomain order mem_support powerSeriesAlgebra coeff order_mul order_le_of_coeff_ne_zero ofPowerSeries_X algebraMap_apply coeff_zero embDomainRingHom_C C map ofPowerSeries_apply_coeff single_ne_zero order_zero ofPowerSeries_injective ofPowerSeries coeff_order_eq_zero ofPowerSeries_apply embDomain_single order_single HasRamBound puiseuxRamSubfield mem_puiseuxRamSubfield_iff isAlgClosed_rat"
+p2m_export "HahnSeries" "support algebraMap_apply' ofPowerSeries_C support_embDomain_subset single \
+  embDomain order mem_support powerSeriesAlgebra coeff order_mul order_le_of_coeff_ne_zero \
+  ofPowerSeries_X algebraMap_apply coeff_zero embDomainRingHom_C C map ofPowerSeries_apply_coeff \
+  single_ne_zero order_zero ofPowerSeries_injective ofPowerSeries coeff_order_eq_zero \
+  ofPowerSeries_apply embDomain_single order_single HasRamBound puiseuxRamSubfield \
+  mem_puiseuxRamSubfield_iff isAlgClosed_rat"
 p2m_open "HahnSeries"
 
 variable {K : Type*} [Field K]
@@ -106,12 +111,23 @@ theorem single_one_mem_puiseuxRamSubfield {e : ℕ} (he : 0 < e) (c : K) :
 end HahnSeries
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.heightOneSpectrumOfIrreducible RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap"
+p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut \
+  SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  RationalFunctionField.heightOneSpectrumOfIrreducible \
+  RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace \
+  RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound \
+  Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq \
+  RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty \
+  RationalFunctionField.ord_placeInfty_algebraMap"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ord ord_coe_irreducible ord_smul toValuationSubring ramificationIndex ramificationIndex_pos restrict ord_restrict ord_ofHeightOneSpectrum_ne_zero_iff exists_ord_mul_eq_order_of_hasRamBound exists_algEquiv_smul_eq_of_restrict_eq exists_restrict_eq"
+p2m_export "AlgebraicCurve.Place" "ext ord ord_coe_irreducible ord_smul toValuationSubring \
+  ramificationIndex ramificationIndex_pos restrict ord_restrict \
+  ord_ofHeightOneSpectrum_ne_zero_iff exists_ord_mul_eq_order_of_hasRamBound \
+  exists_algEquiv_smul_eq_of_restrict_eq exists_restrict_eq"
 end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
-private theorem AlgebraicCurve.Place.ord_pos_and_dvd_of_hasRamBound {K L F : Type*} [Field K] [Field L]
+private theorem AlgebraicCurve.Place.ord_pos_and_dvd_of_hasRamBound {K L F : Type*} [Field K]
+    [Field L]
     [Algebra K L] [Field F] [Algebra K F] (φ : F →ₐ[K] HahnSeries ℚ L) {d : ℕ}
     (hram : ∀ x : F, HahnSeries.HasRamBound d (φ x)) (v : AlgebraicCurve.Place K F) {g : ℚ}
     (hg : 0 < g) (hφv : ∀ x : F, (v.ord x : ℚ) * g = (φ x).order) {x₀ : F}
@@ -146,12 +162,16 @@ private theorem AlgebraicCurve.Place.ord_pos_and_dvd_of_hasRamBound {K L F : Typ
   exact ⟨by exact_mod_cast hpos, Dvd.intro k hkint⟩
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand jq jqN evalAtJ evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionField modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full modularFunctionField_eq_full laurentBaseChange_adjoin"
+p2m_export "ModularCurve" "qExpand jq jqN evalAtJ evalAtJ_X ModularPolynomialData \
+  FunctionFieldGeneration modularFunctionField modularFunctionFieldFull jqd_mem_full coeffEmb \
+  laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full modularFunctionField_eq_full \
+  laurentBaseChange_adjoin"
 p2m_open "ModularCurve"
 
 variable (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
 
-theorem isRoot_map_Φ_apply_jBar_of_dvd {d : ℕ} [NeZero d] (hd : d ∣ N) (dd : ModularPolynomialData d)
+theorem isRoot_map_Φ_apply_jBar_of_dvd {d : ℕ} [NeZero d] (hd : d ∣ N)
+    (dd : ModularPolynomialData d)
     {A : Type*} [CommRing A] [Algebra L A]
     (φ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A) :
     (dd.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom A)
@@ -210,7 +230,8 @@ theorem isRoot_map_Φ_apply_jBar (data : ModularPolynomialData N) {A : Type*} [C
 private theorem laurentBaseChange_full_eq_adjoin_pair :
     laurentBaseChange L (modularFunctionFieldFull N)
       = IntermediateField.adjoin L {coeffEmb L jq, coeffEmb L (qExpand ℚ N jq)} := by
-  rw [← modularFunctionField_eq_full N, modularFunctionField, laurentBaseChange_adjoin, Set.image_pair]
+  rw [← modularFunctionField_eq_full N, modularFunctionField, laurentBaseChange_adjoin,
+    Set.image_pair]
 
 private theorem adjoin_jBar_jNBar_eq_top :
     IntermediateField.adjoin L
@@ -244,10 +265,14 @@ private theorem adjoin_jBar_jNBar_eq_top :
 end ModularCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand jq jqN evalAtJ evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionField modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full modularFunctionField_eq_full laurentBaseChange_adjoin"
+p2m_export "ModularCurve" "qExpand jq jqN evalAtJ evalAtJ_X ModularPolynomialData \
+  FunctionFieldGeneration modularFunctionField modularFunctionFieldFull jqd_mem_full coeffEmb \
+  laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full modularFunctionField_eq_full \
+  laurentBaseChange_adjoin"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.ord_jBar_sub_pos_and_dvd_of_forall_isRoot_hasRamBound (L : Type*) [Field L]
+private theorem ModularCurve.ord_jBar_sub_pos_and_dvd_of_forall_isRoot_hasRamBound (L : Type*)
+    [Field L]
     [Algebra ℚ L] (N : ℕ) [NeZero N] (data : ModularCurve.ModularPolynomialData N) (j₀ : L)
     {d : ℕ} (hd : 0 < d)
     (hroots : ∀ r : HahnSeries ℚ L,
@@ -300,7 +325,12 @@ private theorem ModularCurve.ord_jBar_sub_pos_and_dvd_of_forall_isRoot_hasRamBou
 open Polynomial
 
 namespace HahnSeries
-p2m_export "HahnSeries" "support algebraMap_apply' ofPowerSeries_C support_embDomain_subset single embDomain order mem_support powerSeriesAlgebra coeff order_mul order_le_of_coeff_ne_zero ofPowerSeries_X algebraMap_apply coeff_zero embDomainRingHom_C C map ofPowerSeries_apply_coeff single_ne_zero order_zero ofPowerSeries_injective ofPowerSeries coeff_order_eq_zero ofPowerSeries_apply embDomain_single order_single HasRamBound puiseuxRamSubfield mem_puiseuxRamSubfield_iff isAlgClosed_rat"
+p2m_export "HahnSeries" "support algebraMap_apply' ofPowerSeries_C support_embDomain_subset single \
+  embDomain order mem_support powerSeriesAlgebra coeff order_mul order_le_of_coeff_ne_zero \
+  ofPowerSeries_X algebraMap_apply coeff_zero embDomainRingHom_C C map ofPowerSeries_apply_coeff \
+  single_ne_zero order_zero ofPowerSeries_injective ofPowerSeries coeff_order_eq_zero \
+  ofPowerSeries_apply embDomain_single order_single HasRamBound puiseuxRamSubfield \
+  mem_puiseuxRamSubfield_iff isAlgClosed_rat"
 p2m_open "HahnSeries"
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
@@ -313,7 +343,6 @@ theorem algebraMap_eq_C_algebraMap (k : K) :
     ofPowerSeries_C]
 
 omit [Algebra K L] in
-
 theorem eval₂_C_single_one_eq_ofPowerSeries (r : L[X]) :
     r.eval₂ (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) (1 : L)) = ofPowerSeries ℚ L (r : PowerSeries L) := by
   have h : (Polynomial.eval₂RingHom (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) 1))
@@ -326,8 +355,8 @@ theorem eval₂_C_single_one_eq_ofPowerSeries (r : L[X]) :
   exact RingHom.congr_fun h r
 
 omit [Algebra K L] in
-
-theorem eval₂_C_single_one_ne_zero_and_order_eq_one (q : L[X]) (h0 : q.coeff 0 = 0) (h1 : q.coeff 1 ≠ 0) :
+theorem eval₂_C_single_one_ne_zero_and_order_eq_one (q : L[X]) (h0 : q.coeff 0 = 0)
+    (h1 : q.coeff 1 ≠ 0) :
     q.eval₂ (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) (1 : L)) ≠ 0 ∧
       (q.eval₂ (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) (1 : L))).order = 1 := by
   have hq : q = q.divX * Polynomial.X := by
@@ -361,7 +390,8 @@ theorem eval₂_C_comp_add_single_eq_taylor (p : K[X]) (a : L) :
   rw [← Polynomial.eval₂_map, Polynomial.taylor_apply, Polynomial.eval₂_comp, Polynomial.eval₂_add,
     Polynomial.eval₂_X, Polynomial.eval₂_C, add_comm]
 
-theorem eval₂_C_add_single_ne_zero_and_order_eq_one (p : K[X]) (a : L) (ha : Polynomial.aeval a p = 0)
+theorem eval₂_C_add_single_ne_zero_and_order_eq_one (p : K[X]) (a : L)
+    (ha : Polynomial.aeval a p = 0)
     (ha' : Polynomial.aeval a (Polynomial.derivative p) ≠ 0) :
     p.eval₂ ((C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) (C a + single (1 : ℚ) (1 : L)) ≠ 0 ∧
       (p.eval₂ ((C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) (C a + single (1 : ℚ) (1 : L))).order = 1 := by
@@ -369,7 +399,8 @@ theorem eval₂_C_add_single_ne_zero_and_order_eq_one (p : K[X]) (a : L) (ha : P
   have h0 : (Polynomial.taylor a (p.map (algebraMap K L))).coeff 0 = 0 := by
     rw [Polynomial.taylor_coeff_zero, Polynomial.eval_map, ← Polynomial.aeval_def, ha]
   have h1 : (Polynomial.taylor a (p.map (algebraMap K L))).coeff 1 ≠ 0 := by
-    rw [Polynomial.taylor_coeff_one, Polynomial.derivative_map, Polynomial.eval_map, ← Polynomial.aeval_def]
+    rw [Polynomial.taylor_coeff_one, Polynomial.derivative_map, Polynomial.eval_map, ←
+      Polynomial.aeval_def]
     exact ha'
   rw [hshift]
   exact eval₂_C_single_one_ne_zero_and_order_eq_one _ h0 h1
@@ -377,12 +408,22 @@ theorem eval₂_C_add_single_ne_zero_and_order_eq_one (p : K[X]) (a : L) (ha : P
 end HahnSeries
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.heightOneSpectrumOfIrreducible RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap"
+p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut \
+  SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  RationalFunctionField.heightOneSpectrumOfIrreducible \
+  RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace \
+  RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound \
+  Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq \
+  RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty \
+  RationalFunctionField.ord_placeInfty_algebraMap"
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal finitePlace finitePlace_def eq_ofHeightOneSpectrum_or_eq_placeInfty ord_placeInfty_algebraMap"
+p2m_export "AlgebraicCurve.RationalFunctionField" "heightOneSpectrumOfIrreducible \
+  heightOneSpectrumOfIrreducible_asIdeal finitePlace finitePlace_def \
+  eq_ofHeightOneSpectrum_or_eq_placeInfty ord_placeInfty_algebraMap"
 end AlgebraicCurve.RationalFunctionField
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.RationalFunctionField" in
-private theorem AlgebraicCurve.RationalFunctionField.eq_finitePlace_of_ord_pos {K : Type*} [Field K] {p : K[X]}
+private theorem AlgebraicCurve.RationalFunctionField.eq_finitePlace_of_ord_pos {K : Type*} [Field K]
+    {p : K[X]}
     (hp : Irreducible p) (v : AlgebraicCurve.Place K (RatFunc K))
     (hv : 0 < v.ord (algebraMap K[X] (RatFunc K) p)) :
     v = AlgebraicCurve.RationalFunctionField.finitePlace K hp := by
@@ -443,12 +484,14 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
     have he := V.ramificationIndex_pos (F := RatFunc K)
     rw [V.ord_restrict (F := RatFunc K)] at hV
     exact pos_of_mul_pos_right hV (by exact_mod_cast he.le)
-  have hWW₀ : W.restrict (RatFunc K) = W₀.restrict (RatFunc K) := (hres W hW).trans (hres W₀ h0.1).symm
+  have hWW₀ : W.restrict (RatFunc K) = W₀.restrict (RatFunc K) :=
+    (hres W hW).trans (hres W₀ h0.1).symm
   obtain ⟨σ, hσ⟩ := AlgebraicCurve.Place.exists_algEquiv_smul_eq_of_restrict_eq W₀ W hWW₀
   have hfix : AlgebraicCurve.SemilinearAut.ofAlgAut (σ.restrictScalars K)
       • (algebraMap (RatFunc K) M (algebraMap K[X] (RatFunc K) p))
       = algebraMap (RatFunc K) M (algebraMap K[X] (RatFunc K) p) := by
-    rw [AlgebraicCurve.SemilinearAut.ofAlgAut_smul, AlgEquiv.restrictScalars_apply, AlgEquiv.commutes]
+    rw [AlgebraicCurve.SemilinearAut.ofAlgAut_smul, AlgEquiv.restrictScalars_apply,
+      AlgEquiv.commutes]
   rw [← hσ, ← hfix, AlgebraicCurve.SemilinearAut.ord_smul]
   exact h0.2
 
@@ -469,7 +512,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     (hw : 0 < w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p))) :
     w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) := by
   classical
-  let φ₀ : K[X] →ₐ[K] HahnSeries ℚ L := Polynomial.aeval (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L))
+  let φ₀ : K[X] →ₐ[K] HahnSeries ℚ L :=
+    Polynomial.aeval (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L))
   have hφ₀ : ∀ q : K[X], φ₀ q = q.eval₂ ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L))
       (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L)) := by
     intro q
@@ -481,7 +525,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     intro q₁ q₂ h
     have key : ∀ q : K[X], φ₀ q = HahnSeries.ofPowerSeries ℚ L
         ((Polynomial.taylor a (q.map (algebraMap K L)) : PowerSeries L) : PowerSeries L) := fun q => by
-      rw [hφ₀, HahnSeries.eval₂_C_comp_add_single_eq_taylor, HahnSeries.eval₂_C_single_one_eq_ofPowerSeries]
+      rw [hφ₀, HahnSeries.eval₂_C_comp_add_single_eq_taylor,
+        HahnSeries.eval₂_C_single_one_eq_ofPowerSeries]
     rw [key, key] at h
     exact Polynomial.map_injective _ (algebraMap K L).injective
       (Polynomial.taylor_injective a (Polynomial.coe_inj.mp (HahnSeries.ofPowerSeries_injective h)))
@@ -491,13 +536,15 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   have hψ₀ : ∀ q : K[X], ψ₀ (algebraMap K[X] (RatFunc K) q) = φ₀ q := fun q => by
     have h := RatFunc.liftAlgHom_apply_div φ₀ hφ₀' q 1
     rwa [map_one, div_one, map_one, div_one] at h
-  have hψ₀X : ψ₀ (algebraMap K[X] (RatFunc K) Polynomial.X) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) := by
+  have hψ₀X : ψ₀ (algebraMap K[X] (RatFunc K) Polynomial.X) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) :=
+    by
     rw [hψ₀]; exact Polynomial.aeval_X _
   have : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite (RatFunc K) F
   have : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
   obtain ⟨Ψ, hΨ⟩ := IsAlgClosed.surjective_domRestrict_of_isAlgebraic (K := K) (L := RatFunc K)
     (M := HahnSeries ℚ L) (E := AlgebraicClosure F) ψ₀
-  have hΨr : ∀ r : RatFunc K, Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) = ψ₀ r := fun r => by
+  have hΨr : ∀ r : RatFunc K, Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) = ψ₀ r :=
+    fun r => by
     rw [← hΨ]; rfl
   have hφ₀P : ∀ q : K[X], φ₀ q ∈ HahnSeries.puiseuxRamSubfield L hd := by
     intro q
@@ -505,7 +552,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     | add q₁ q₂ h₁ h₂ => rw [map_add]; exact add_mem h₁ h₂
     | monomial n c =>
         change Polynomial.aeval _ (Polynomial.monomial n c) ∈ _
-        rw [← Polynomial.C_mul_X_pow_eq_monomial, map_mul, map_pow, Polynomial.aeval_C, Polynomial.aeval_X,
+        rw [← Polynomial.C_mul_X_pow_eq_monomial, map_mul, map_pow, Polynomial.aeval_C,
+          Polynomial.aeval_X,
           HahnSeries.algebraMap_eq_C_algebraMap]
         exact mul_mem (HahnSeries.C_mem_puiseuxRamSubfield hd _)
           (pow_mem (add_mem (HahnSeries.C_mem_puiseuxRamSubfield hd _)
@@ -558,13 +606,16 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   have hWpos : 0 < W.ord (algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F))
       (algebraMap K[X] (RatFunc K) p)) := by
     rw [hordW]; exact mul_pos (by exact_mod_cast he) hw
-  have hdvd := AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois p hp a ha ha' hd ΨM hΨMX hΨM W hWpos
+  have hdvd :=
+    AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois p hp a ha ha' hd ΨM hΨMX hΨM W hWpos
   rw [hordW] at hdvd
   exact dvd_of_mul_left_dvd hdvd
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.isRoot_map_Phi_apply_jBar_of_dvd (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
-    (d : ℕ) [NeZero d] (hd : d ∣ N) (dd : ModularPolynomialData d) (A : Type*) [CommRing A] [Algebra L A]
+private theorem ModularCurve.isRoot_map_Phi_apply_jBar_of_dvd (L : Type*) [Field L] [Algebra ℚ L]
+    (N : ℕ) [NeZero N]
+    (d : ℕ) [NeZero d] (hd : d ∣ N) (dd : ModularPolynomialData d) (A : Type*) [CommRing A]
+    [Algebra L A]
     (φ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A) :
     (dd.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom A)
       (φ ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩))).IsRoot
@@ -573,7 +624,8 @@ private theorem ModularCurve.isRoot_map_Phi_apply_jBar_of_dvd (L : Type*) [Field
   ModularCurve.isRoot_map_Φ_apply_jBar_of_dvd L N hd dd φ
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.isRoot_map_Phi_apply_jBar (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
+private theorem ModularCurve.isRoot_map_Phi_apply_jBar (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ)
+    [NeZero N]
     (data : ModularPolynomialData N) (A : Type*) [CommRing A] [Algebra L A]
     (φ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom A)
@@ -585,7 +637,6 @@ private theorem ModularCurve.isRoot_map_Phi_apply_jBar (L : Type*) [Field L] [Al
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_isRoot_map_Phi_apply_jBar.ModularCurve in
-
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N) (A : Type*) [CommRing A] [Algebra L A]
     (φ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A) :
@@ -605,12 +656,14 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.isRoot_map_Phi_apply_jBar (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
+theorem ModularCurve.isRoot_map_Phi_apply_jBar (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ)
+    [NeZero N]
     (data : ModularPolynomialData N) (A : Type*) [CommRing A] [Algebra L A]
     (φ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom A)
       (φ ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩))).IsRoot
       (φ ⟨coeffEmb L (qExpand ℚ N jq),
-        coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩) := _root_.P2MW.S_ModularCurve_isRoot_map_Phi_apply_jBar.solution L N data A φ
+        coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩) :=
+  solution L N data A φ
 
 end publicSection

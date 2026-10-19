@@ -91,6 +91,7 @@ theorem AlgebraicCurve.degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_tr
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (-v.ord x)) :
-    Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental.solution x hx D hD
+    Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) :=
+  solution x hx D hD
 
 end publicSection

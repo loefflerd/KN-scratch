@@ -108,7 +108,8 @@ def qEuler : Derivation R (LaurentSeries R) (LaurentSeries R) where
   map_smul' r x := by
     ext n
     simp only [RingHom.id_apply, qEulerFun_coeff]
-    rw [Algebra.smul_def, algebraMap_laurentSeries_apply_alt, coeff_single_zero_mul, HahnSeries.coeff_smul,
+    rw [Algebra.smul_def, algebraMap_laurentSeries_apply_alt, coeff_single_zero_mul,
+      HahnSeries.coeff_smul,
       qEulerFun_coeff, smul_eq_mul]
     ring
   map_one_eq_zero' := by
@@ -170,7 +171,7 @@ instance instIsScalarTowerKaehlerIntermediateFieldLaurent : IsScalarTower L F Ω
 
 instance instIsScalarTowerIntermediateFieldLaurent : IsScalarTower L F (LaurentSeries L) :=
   ⟨fun c f x => by
-    show ((c • f : F) : LaurentSeries L) * x = c • ((f : LaurentSeries L) * x)
+    change ((c • f : F) : LaurentSeries L) * x = c • ((f : LaurentSeries L) * x)
     rw [IntermediateField.coe_smul, Algebra.smul_def, algebraMap_laurentSeries_eq_single,
       ← C_apply, mul_assoc, C_mul_eq_smul]⟩
 

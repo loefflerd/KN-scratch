@@ -147,10 +147,10 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (hT : HeckeEquivariant I)
     (g h : CuspForm (MTT.GammaOne N) (k : ℤ)) (Φ : Cusp → Binary ℂ)
-    (hΦ : IsBoundaryDatum N (k-2) Φ) (e : DirichletCharacter ℂ N)
+    (hΦ : IsBoundaryDatum N (k - 2) Φ) (e : DirichletCharacter ℂ N)
     (hg : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       (I g).val (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) • act γ.val.val ((I g).val (x, y)))
@@ -219,10 +219,10 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.eichler_shimura_hecke_compatible_char
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (hT : HeckeEquivariant I)
     (g h : CuspForm (MTT.GammaOne N) (k : ℤ)) (Φ : Cusp → Binary ℂ)
-    (hΦ : IsBoundaryDatum N (k-2) Φ) (e : DirichletCharacter ℂ N)
+    (hΦ : IsBoundaryDatum N (k - 2) Φ) (e : DirichletCharacter ℂ N)
     (hg : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       (I g).val (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) • act γ.val.val ((I g).val (x, y)))

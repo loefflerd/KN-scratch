@@ -77,7 +77,8 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "LevelN.ring LevelN.jGen"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jAnalytic_mem fricke_mem jGen coe_jGen"
+p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jAnalytic_mem fricke_mem \
+  jGen coe_jGen"
 namespace GaloisStructure
 p2m_open "ModularCurve.LevelN ModularCurve"
 
@@ -150,7 +151,6 @@ theorem invariant_fraction (a b : ℍ → ℂ) (ha : a ∈ ring N) (hb : b ∈ r
   exact h.2.1 a b ha hb hb0 hinv
 
 omit [NeZero N] in
-
 theorem eq_zero_of_eval_jAnalytic (P : Polynomial ℂ) (hP : ∀ τ : ℍ, P.eval (jAnalytic τ) = 0) :
     P = 0 := by
   have h := WLight.levelN_structure_package 1 PeriodPair.ofTau (fun τ => ⟨rfl, rfl⟩) (wp 1)
@@ -163,7 +163,6 @@ theorem fricke_smul (v : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ) :
     (by simp [PeriodPair.ofTau])).1 v γ τ
 
 omit [NeZero N] in
-
 theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jAnalytic τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have h4 : (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • τ) =
@@ -179,7 +178,6 @@ theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jA
   field_simp
 
 omit [NeZero N] in
-
 theorem vecMul_ne_zero {v : Fin 2 → ZMod N} (hv : v ≠ 0) (γ : SL(2, ℤ)) :
     Matrix.vecMul v (redMat N γ) ≠ 0 := by
   intro h
@@ -196,7 +194,6 @@ theorem vecMul_ne_zero {v : Fin 2 → ZMod N} (hv : v ≠ 0) (γ : SL(2, ℤ)) :
   exact this
 
 omit [NeZero N] in
-
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
   AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
@@ -279,11 +276,11 @@ theorem σHom_algebraMap' (γ : SL(2, ℤ)) (F : ℍ → ℂ) (hF : F ∈ ring N
 
 theorem ker_σHom : (σHom N K).ker = (ρHom N).ker := by
   rw [σHom, ← MonoidHom.comap_ker,
-    (MonoidHom.ker_eq_bot_iff _).mpr (IsFractionRing.fieldEquivOfAlgEquivHom_injective ℂ (ring N) ℂ K),
+    (MonoidHom.ker_eq_bot_iff _).mpr (IsFractionRing.fieldEquivOfAlgEquivHom_injective ℂ (ring N) ℂ
+    K),
     MonoidHom.comap_bot]
 
 omit [NeZero N] in
-
 theorem algHom_eq_id_of_forall {φ : ring N →ₐ[ℂ] ring N}
     (h : ∀ (G : ℍ → ℂ) (hG : G ∈ generators N), φ ⟨G, Algebra.subset_adjoin hG⟩ =
       ⟨G, Algebra.subset_adjoin hG⟩) : φ = AlgHom.id ℂ (ring N) := by
@@ -307,7 +304,8 @@ theorem ρHom_eq_one_iff (γ : SL(2, ℤ)) :
       ∀ v : Fin 2 → ZMod N, v ≠ 0 → fricke N (Matrix.vecMul v (redMat N γ⁻¹)) = fricke N v := by
   constructor
   · intro h v hv
-    have hF := congrArg (fun e : ring N ≃ₐ[ℂ] ring N => ((e ⟨fricke N v, fricke_mem N hv⟩ : ring N) : ℍ → ℂ)) h
+    have hF :=
+      congrArg (fun e : ring N ≃ₐ[ℂ] ring N => ((e ⟨fricke N v, fricke_mem N hv⟩ : ring N) : ℍ → ℂ)) h
     funext τ
     have := congrFun hF τ
     change fricke N v (γ⁻¹ • τ) = fricke N v τ at this
@@ -557,6 +555,7 @@ theorem ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin (N : 
         (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index ∧
       IsGalois
           (IntermediateField.adjoin ℂ
-            ({algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)} : Set K)) K := _root_.P2MW.S_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField_eq_adjoin.solution N K
+            ({algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)} : Set K)) K :=
+  solution N K
 
 end publicSection

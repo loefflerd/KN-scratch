@@ -89,7 +89,8 @@ theorem cosetConj_eq (ζ : Kˣ) (J : LaurentSeries K) (a b d : ℕ) [NeZero a] :
   unfold cosetConj
   rw [dite_eq_right (NeZero.ne a)]
 
-noncomputable def cosetTwoVarPoly (ζ : Kˣ) (N : ℕ) (J : LaurentSeries K) : Polynomial (LaurentSeries K) :=
+noncomputable def cosetTwoVarPoly (ζ : Kˣ) (N : ℕ) (J : LaurentSeries K) :
+    Polynomial (LaurentSeries K) :=
   (primCosetReps N).prod fun t => Polynomial.X - Polynomial.C (cosetConj ζ J t)
 
 end Conjugates

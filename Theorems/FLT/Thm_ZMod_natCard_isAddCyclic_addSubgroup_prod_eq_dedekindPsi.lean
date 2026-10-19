@@ -64,7 +64,8 @@ namespace P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "dedekindPsi IsUnimodularRow UnimodularRow ProjectiveLine card_projectiveLine_zmod"
+p2m_export "ModularCurve" "dedekindPsi IsUnimodularRow UnimodularRow ProjectiveLine \
+  card_projectiveLine_zmod"
 p2m_open "ModularCurve"
 
 open AddSubgroup
@@ -100,7 +101,6 @@ p2m_export "ModularCurve.IsUnimodularRow" "map"
 end IsUnimodularRow
 p2m_open_scoped "ModularCurve.IsUnimodularRow" in
 omit [NeZero N] in
-
 theorem IsUnimodularRow.addOrderOf_eq {a c : ZMod N} (h : IsUnimodularRow a c) :
     addOrderOf ((a, c) : ZMod N × ZMod N) = N := by
   obtain ⟨x, y, hxy⟩ := h
@@ -192,9 +192,9 @@ theorem zmultiples_unit_mul (u : (ZMod N)ˣ) (x : ZMod N × ZMod N) :
     intro w y
     refine AddSubgroup.mem_zmultiples_iff.mpr ⟨((w : ZMod N).val : ℤ), ?_⟩
     refine Prod.ext ?_ ?_
-    · show ((((w : ZMod N).val : ℤ)) • y).1 = (w : ZMod N) * y.1
+    · change ((((w : ZMod N).val : ℤ)) • y).1 = (w : ZMod N) * y.1
       rw [zsmul_pair_fst, zsmul_eq_mul, Int.cast_natCast, ZMod.natCast_zmod_val]
-    · show ((((w : ZMod N).val : ℤ)) • y).2 = (w : ZMod N) * y.2
+    · change ((((w : ZMod N).val : ℤ)) • y).2 = (w : ZMod N) * y.2
       rw [zsmul_pair_snd, zsmul_eq_mul, Int.cast_natCast, ZMod.natCast_zmod_val]
   refine le_antisymm (AddSubgroup.zmultiples_le.mpr (key u x)) (AddSubgroup.zmultiples_le.mpr ?_)
   have hmem := key u⁻¹ (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N)
@@ -209,7 +209,6 @@ theorem zmultiples_unit_mul (u : (ZMod N)ˣ) (x : ZMod N × ZMod N) :
   rwa [hx] at hmem
 
 omit [NeZero N] in
-
 theorem eq_of_mul_unimodularRow_eq {a c : ZMod N} (h : IsUnimodularRow a c) {r s : ZMod N}
     (h1 : r * a = s * a) (h2 : r * c = s * c) : r = s := by
   obtain ⟨x, y, hxy⟩ := h
@@ -236,7 +235,7 @@ def projectiveLineToCyclicAddSubgroup :
   Quotient.lift (unimodularRowToCyclicAddSubgroup N) <| by
     rintro v w ⟨u, h1, h2⟩
     refine Subtype.ext ?_
-    show AddSubgroup.zmultiples v.1 = AddSubgroup.zmultiples w.1
+    change AddSubgroup.zmultiples v.1 = AddSubgroup.zmultiples w.1
     have hw : w.1 = (((u : ZMod N) * v.1.1, (u : ZMod N) * v.1.2) : ZMod N × ZMod N) := by
       rw [h1, h2]
     rw [hw, zmultiples_unit_mul]
@@ -282,7 +281,7 @@ theorem projectiveLineToCyclicAddSubgroup_surjective :
     rw [hg', horder]
   refine ⟨⟦⟨(g.1, g.2), hrow⟩⟧, ?_⟩
   refine Subtype.ext ?_
-  show AddSubgroup.zmultiples ((g.1, g.2) : ZMod N × ZMod N) = H
+  change AddSubgroup.zmultiples ((g.1, g.2) : ZMod N × ZMod N) = H
   have hg' : ((g.1, g.2) : ZMod N × ZMod N) = g := rfl
   rw [hg', hg]
 
@@ -328,6 +327,7 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 theorem ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi (n : ℕ) [NeZero n] :
-    Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n := _root_.P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi.solution n
+    Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n :=
+  solution n
 
 end publicSection

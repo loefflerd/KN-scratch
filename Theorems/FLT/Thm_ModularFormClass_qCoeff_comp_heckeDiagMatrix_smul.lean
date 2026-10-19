@@ -60,13 +60,16 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul
 
-p2m_open "Complex Filter Function UpperHalfPlane P2MW.S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane ModularForm"
+p2m_open "Complex Filter Function UpperHalfPlane \
+  P2MW.S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane ModularForm"
 open scoped Real MatrixGroups Topology Manifold ModularForm
 
 noncomputable section
 
 namespace UpperHalfPlane
-p2m_export "UpperHalfPlane" "cuspFunction qExpansion ofComplex_apply_of_im_pos analyticAt_cuspFunction_zero atImInfty ofComplex_apply_of_im_nonpos hasSum_qExpansion qExpansion_coeff_unique im_smul_eq_div_normSq re IsBoundedAtImInfty im ofComplex"
+p2m_export "UpperHalfPlane" "cuspFunction qExpansion ofComplex_apply_of_im_pos \
+  analyticAt_cuspFunction_zero atImInfty ofComplex_apply_of_im_nonpos hasSum_qExpansion \
+  qExpansion_coeff_unique im_smul_eq_div_normSq re IsBoundedAtImInfty im ofComplex"
 namespace DegeneracyQExp
 p2m_open "UpperHalfPlane"
 
@@ -93,7 +96,8 @@ theorem periodic_comp_smul (hd : d ≠ 0) {F : ℍ → ℂ} (hper : Periodic (F 
   by_cases hw : 0 < w.im
   · have hw1 : 0 < (w + 1).im := by simpa using hw
     simp only [comp_apply]
-    rw [heckeDiagMatrix_smul_ofComplex hd hw1, heckeDiagMatrix_smul_ofComplex hd hw, mul_add, mul_one]
+    rw [heckeDiagMatrix_smul_ofComplex hd hw1, heckeDiagMatrix_smul_ofComplex hd hw, mul_add,
+      mul_one]
     have h := hper.nat_mul d ((d : ℂ) * w)
     simpa using h
   · push Not at hw
@@ -153,7 +157,7 @@ theorem qCoeff_comp_smul {F : ℍ → ℂ} (hper : Periodic (F ∘ ofComplex) 1)
     ext m
     simp [hc, Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hd)]
   have key := qExpansion_coeff_unique (F := FnLike) (show FnLike from G) one_pos han hsum n
-  show (qExpansion 1 G).coeff n = if d ∣ n then (qExpansion 1 F).coeff (n / d) else 0
+  change (qExpansion 1 G).coeff n = if d ∣ n then (qExpansion 1 F).coeff (n / d) else 0
   exact key.symm
 
 theorem qCoeff_comp_smul_of_modularFormClass {FF : Type*} [FunLike FF ℍ ℂ]
@@ -168,7 +172,10 @@ theorem qCoeff_comp_smul_of_modularFormClass {FF : Type*} [FunLike FF ℍ ℂ]
 end UpperHalfPlane.DegeneracyQExp
 end
 
-theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ] {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F) (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) : ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
+theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ]
+    {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
+    (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) :
+    ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
   UpperHalfPlane.DegeneracyQExp.qCoeff_comp_smul_of_modularFormClass f hΓ hd n
 
 end S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul
@@ -180,6 +187,10 @@ end privateSection
 public section publicSection
 
 
-theorem ModularFormClass.qCoeff_comp_heckeDiagMatrix_smul {F : Type*} [FunLike F UpperHalfPlane ℂ] {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F) (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) : ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 := _root_.P2MW.S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul.solution f hΓ hd n
+theorem ModularFormClass.qCoeff_comp_heckeDiagMatrix_smul {F : Type*} [FunLike F UpperHalfPlane ℂ]
+    {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
+    (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) :
+    ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
+  solution f hΓ hd n
 
 end publicSection

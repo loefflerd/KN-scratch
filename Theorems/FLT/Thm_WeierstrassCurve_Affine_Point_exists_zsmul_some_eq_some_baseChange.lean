@@ -122,7 +122,6 @@ theorem some_congr {F : Type*} [CommRing F] {V : Affine F} {x₁ x₂ y₁ y₂ 
   subst ex ey; exact ⟨h₁, rfl⟩
 
 universe u v in
-
 theorem exists_zsmul_some_eq_some_baseChange {R : Type u} [CommRing R] (W : WeierstrassCurve R)
     (n : ℤ) : ∃ ω : R[X][Y], ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F}
       (h : (W.baseChange F).toAffine.Nonsingular x y),
@@ -156,7 +155,8 @@ end PortCardMulXY
 
 universe u v
 
-theorem solution {R : Type u} [CommRing R] (W : WeierstrassCurve R) (n : ℤ) : ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 → ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3) h' :=
+theorem solution {R : Type u} [CommRing R] (W : WeierstrassCurve R) (n : ℤ) :
+    ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 → ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3) h' :=
   PortCard.exists_zsmul_some_eq_some_baseChange W n
 
 end S_WeierstrassCurve_Affine_Point_exists_zsmul_some_eq_some_baseChange
@@ -170,6 +170,9 @@ public section publicSection
 
 universe u v
 
-theorem WeierstrassCurve.Affine.Point.exists_zsmul_some_eq_some_baseChange {R : Type u} [CommRing R] (W : WeierstrassCurve R) (n : ℤ) : ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 → ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3) h' := _root_.P2MW.S_WeierstrassCurve_Affine_Point_exists_zsmul_some_eq_some_baseChange.solution W n
+theorem WeierstrassCurve.Affine.Point.exists_zsmul_some_eq_some_baseChange {R : Type u} [CommRing R]
+    (W : WeierstrassCurve R) (n : ℤ) :
+    ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 → ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3) h' :=
+  solution W n
 
 end publicSection

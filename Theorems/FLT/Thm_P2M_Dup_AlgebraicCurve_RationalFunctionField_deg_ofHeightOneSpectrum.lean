@@ -61,14 +61,17 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum.AlgebraicCurve"
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.deg Place.ofHeightOneSpectrum Place.mem_iff_adicValuation_le_one Place.mem_maximalIdeal_iff_adicValuation_lt_one Place.isEquiv_adicValuation_ofHeightOneSpectrum"
+p2m_export "AlgebraicCurve" "Place Place.deg Place.ofHeightOneSpectrum \
+  Place.mem_iff_adicValuation_le_one Place.mem_maximalIdeal_iff_adicValuation_lt_one \
+  Place.isEquiv_adicValuation_ofHeightOneSpectrum"
 namespace RationalFunctionField
 p2m_open "AlgebraicCurve"
 
@@ -139,7 +142,7 @@ theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
   refine ⟨x.num * t, ?_⟩
   rw [residueOfHeightOneSpectrum_apply, ← sub_eq_zero, ← map_sub,
     IsLocalRing.residue_eq_zero_iff, Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-  show (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).adicValuation
+  change (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).adicValuation
     (algebraMap K[X] (RatFunc K) (x.num * t) - x) < 1
   rw [← (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
       (F := RatFunc K) w).lt_one_iff_lt_one]
@@ -173,7 +176,9 @@ end AlgebraicCurve.RationalFunctionField
 
 end
 
-theorem solution (K : Type*) [Field K] {w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)} {p : Polynomial K} (hw : w.asIdeal = Ideal.span {p}) : (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).deg = p.natDegree := by
+theorem solution (K : Type*) [Field K] {w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)}
+    {p : Polynomial K} (hw : w.asIdeal = Ideal.span {p}) :
+    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).deg = p.natDegree := by
   rw [Place.deg, ← (AlgebraicCurve.RationalFunctionField.WFf.residueFieldEquivOfHeightOneSpectrum K
     w).toLinearEquiv.finrank_eq, hw]
   exact finrank_quotient_span_eq_natDegree
@@ -188,6 +193,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.deg_ofHeightOneSpectrum (K : Type*) [Field K] {w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)} {p : Polynomial K} (hw : w.asIdeal = Ideal.span {p}) : (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).deg = p.natDegree := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum.solution K hw
+theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.deg_ofHeightOneSpectrum (K : Type*) [Field K]
+    {w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)} {p : Polynomial K}
+    (hw : w.asIdeal = Ideal.span {p}) :
+    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).deg = p.natDegree :=
+  solution K hw
 
 end publicSection

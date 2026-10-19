@@ -64,10 +64,13 @@ the sum of the local residues of $f\,\omega$ over all places vanishes, expressed
 the associated adelic Weil functional on the diagonal copy of $F$. It is the input for the duality
 step behind Riemann–Roch for function fields and for the construction of differentials with
 prescribed orders, and is used by
-[`AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed`](thm.html#AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed),
-[`AlgebraicCurve.residueTheorem_of_isAlgClosed`](thm.html#AlgebraicCurve.residueTheorem_of_isAlgClosed)
+[`AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed),
+[`AlgebraicCurve.residueTheorem_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.residueTheorem_of_isAlgClosed)
 and
-[`AlgebraicCurve.exists_ordDifferential_ge_neg_one_and_evalAt_eq_of_degree_eq_zero`](thm.html#AlgebraicCurve.exists_ordDifferential_ge_neg_one_and_evalAt_eq_of_degree_eq_zero);
+[`AlgebraicCurve.exists_ordDifferential_ge_neg_one_and_evalAt_eq_of_degree_eq_zero`]
+(thm.html#AlgebraicCurve.exists_ordDifferential_ge_neg_one_and_evalAt_eq_of_degree_eq_zero);
 its proof reduces the general case to the rational function field by the trace compatibility of
 residues under the finite separable extension $F/\mathrm{RatFunc}\,K$.
 
@@ -249,7 +252,7 @@ theorem kw_ffgc_absoluteValue_extends (c : (W.restrict F).adicCompletion) :
   let := kw_ffgc_rankOne_adicCompletion W
   have hr : (0 : ℝ) < (W.ramificationIndex F : ℝ) :=
     Nat.cast_pos.mpr (W.ramificationIndex_pos (F := F))
-  show ‖algebraMap (W.restrict F).adicCompletion W.adicCompletion c‖
+  change ‖algebraMap (W.restrict F).adicCompletion W.adicCompletion c‖
       ^ ((W.ramificationIndex F : ℝ))⁻¹ = ‖c‖
   rw [kw_ffgc_norm_adicCompletion_eq W, kw_ffgc_norm_adicCompletion_eq (W.restrict F),
     kw_ffgc_algebraMap_adicCompletionComap_eq, kw_ffgc_valued_adicCompletionComap,
@@ -285,7 +288,7 @@ theorem kw_ffgc_isIntegral_adicCompletionIntegers_of_algebraic
       (kw_ffgc_absoluteValue_extends F W) (x : W.adicCompletion)).symm
   have hspec : spectralValue (minpoly (W.restrict F).adicCompletion
       (x : W.adicCompletion)) ≤ 1 := by
-    show spectralNorm (W.restrict F).adicCompletion W.adicCompletion
+    change spectralNorm (W.restrict F).adicCompletion W.adicCompletion
       (x : W.adicCompletion) ≤ 1
     rw [hsn]; exact Real.rpow_le_one (norm_nonneg _) hxn hr.le
   have hmon : (minpoly (W.restrict F).adicCompletion (x : W.adicCompletion)).Monic :=
@@ -439,7 +442,8 @@ namespace Place
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 @[scoped simp]
-private theorem _root_.AlgebraicCurve.Place.mem_regularSubmodule (w : Place K F) (ωF : Ω[F⁄K]) (f : F) :
+private theorem _root_.AlgebraicCurve.Place.mem_regularSubmodule (w : Place K F) (ωF : Ω[F⁄K])
+    (f : F) :
     f ∈ w.regularSubmodule ωF ↔ f * w.differentialCoeff ωF ∈ w.toValuationSubring := Iff.rfl
 
 end Place
@@ -453,11 +457,13 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-private def _root_.AlgebraicCurve.Place.regularPoleSubmodule (w : Place K F) (ωF : Ω[F⁄K]) (n : ℕ) : Submodule K F :=
+private def _root_.AlgebraicCurve.Place.regularPoleSubmodule (w : Place K F) (ωF : Ω[F⁄K]) (n : ℕ) :
+    Submodule K F :=
   (w.poleSubmodule n).comap (LinearMap.mulRight K (w.differentialCoeff ωF))
 
 @[scoped simp]
-private theorem _root_.AlgebraicCurve.Place.mem_regularPoleSubmodule (w : Place K F) (ωF : Ω[F⁄K]) (n : ℕ) (f : F) :
+private theorem _root_.AlgebraicCurve.Place.mem_regularPoleSubmodule (w : Place K F) (ωF : Ω[F⁄K])
+    (n : ℕ) (f : F) :
     f ∈ w.regularPoleSubmodule ωF n
       ↔ w.uniformizer ^ n * (f * w.differentialCoeff ωF) ∈ w.toValuationSubring := Iff.rfl
 
@@ -466,11 +472,13 @@ theorem regularPoleSubmodule_zero (w : Place K F) (ωF : Ω[F⁄K]) :
   ext f
   simp only [mem_regularPoleSubmodule, pow_zero, one_mul, mem_regularSubmodule]
 
-private theorem _root_.AlgebraicCurve.Place.regularPoleSubmodule_mono (w : Place K F) (ωF : Ω[F⁄K]) :
+private theorem _root_.AlgebraicCurve.Place.regularPoleSubmodule_mono (w : Place K F) (ωF : Ω[F⁄K])
+    :
     Monotone (w.regularPoleSubmodule ωF) :=
   fun _ _ hmn => Submodule.comap_mono (w.poleSubmodule_mono hmn)
 
-private theorem _root_.AlgebraicCurve.Place.iSup_regularPoleSubmodule_eq_top (w : Place K F) (ωF : Ω[F⁄K]) :
+private theorem _root_.AlgebraicCurve.Place.iSup_regularPoleSubmodule_eq_top (w : Place K F)
+    (ωF : Ω[F⁄K]) :
     ⨆ n, w.regularPoleSubmodule ωF n = ⊤ := by
   rw [eq_top_iff]
   intro f _
@@ -480,7 +488,8 @@ private theorem _root_.AlgebraicCurve.Place.iSup_regularPoleSubmodule_eq_top (w 
     (Monotone.directed_le w.poleSubmodule_mono)).mp hmem
   exact Submodule.mem_iSup_of_mem n hn
 
-private theorem _root_.AlgebraicCurve.Place.exists_mem_regularPoleSubmodule (w : Place K F) (ωF : Ω[F⁄K]) (f : F) :
+private theorem _root_.AlgebraicCurve.Place.exists_mem_regularPoleSubmodule (w : Place K F)
+    (ωF : Ω[F⁄K]) (f : F) :
     ∃ n, f ∈ w.regularPoleSubmodule ωF n := by
   have h : f ∈ ⨆ n, w.regularPoleSubmodule ωF n :=
     (w.iSup_regularPoleSubmodule_eq_top ωF) ▸ Submodule.mem_top
@@ -543,7 +552,8 @@ namespace AlgebraicCurve
 section SeparatingWitness
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F] [IsScalarTower K E F]
+variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F]
+    [IsScalarTower K E F]
 
 theorem kaehlerCotrace_dCoord_ne_zero_of_exists
     (v : Place K E) [v.DCoordGenerates]
@@ -622,7 +632,8 @@ end CotraceDX
 section SeparatingCarrier
 
 variable (K : Type*) [Field K]
-variable (F : Type*) [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F] [Algebra (RatFunc K) F]
+variable (F : Type*) [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+    [Algebra (RatFunc K) F]
 
 def IsSeparatingTranscendental : Prop :=
   KaehlerDifferential.D K F (algebraMap (RatFunc K) F RatFunc.X) ≠ 0
@@ -670,7 +681,8 @@ end SepIffInjective
 section MapBaseChangeSurj
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F] [IsScalarTower K E F]
+variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F]
+    [IsScalarTower K E F]
 
 theorem surjective_mapBaseChange_of_formallyUnramified [Algebra.FormallyUnramified E F] :
     Function.Surjective (KaehlerDifferential.mapBaseChange K E F) := by
@@ -681,7 +693,8 @@ end MapBaseChangeSurj
 section CotraceNeZero
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F] [IsScalarTower K E F]
+variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F]
+    [IsScalarTower K E F]
 
 theorem exists_kaehlerCotrace_ne_zero_of_formallyUnramified
     [Algebra.FormallyUnramified E F] [Nontrivial Ω[F⁄K]] :
@@ -693,7 +706,7 @@ theorem exists_kaehlerCotrace_ne_zero_of_formallyUnramified
     induction t using TensorProduct.inductionOn with
     | tmul f ωE =>
         rw [KaehlerDifferential.mapBaseChange_tmul]
-        show f • kaehlerCotrace K E F ωE = 0
+        change f • kaehlerCotrace K E F ωE = 0
         rw [h ωE, smul_zero]
     | add a b ha hb => rw [map_add, ha, hb, add_zero]
   obtain ⟨ωF, hωF⟩ := exists_ne (0 : Ω[F⁄K])
@@ -704,7 +717,8 @@ end CotraceNeZero
 section CotraceInjective
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F] [IsScalarTower K E F]
+variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F]
+    [IsScalarTower K E F]
 
 theorem kaehlerCotrace_injective_of_formallyUnramified
     (v : Place K E) [v.DCoordGenerates] [Nontrivial Ω[E⁄K]]
@@ -769,7 +783,8 @@ namespace AlgebraicCurve
 section CurrencyBridge
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F] [IsScalarTower K E F]
+variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F]
+    [IsScalarTower K E F]
 
 theorem kaehlerPullback_eq_kaehlerCotrace (ωE : Ω[E⁄K]) :
     kaehlerPullback K F E ωE = kaehlerCotrace K E F ωE := rfl
@@ -778,7 +793,8 @@ end CurrencyBridge
 section NamedRows
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable (E : Type*) [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F] [IsScalarTower K E F]
+variable (E : Type*) [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E] [Algebra E F]
+    [IsScalarTower K E F]
 variable [HasLocalResidue K E] [HasLocalResidue K F]
 variable [Algebra.IsIntegral E F]
 
@@ -807,12 +823,14 @@ end
 section S18AliasT2
 open scoped AlgebraicCurve in
 theorem AlgebraicCurve.p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed
-    (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    (K : Type*) [Field K] [IsAlgClosed K]
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K (RatFunc K)]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := RatFunc K)]
     [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
-    AlgebraicCurve.ResidueTheoremK K (RatFunc K) :=
-  AlgebraicCurve.residueTheoremK_ratFunc_of_isAlgClosed K
+    AlgebraicCurve.ResidueTheoremK K (RatFunc K) := by
+  classical
+  exact
+    AlgebraicCurve.residueTheoremK_ratFunc_of_isAlgClosed K
 end S18AliasT2
 
 noncomputable section
@@ -909,14 +927,17 @@ variable [HasCanonicalDivisor (K := K) (F := F)] [∀ w : Place K F, w.DCoordGen
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [Algebra.IsIntegral (RatFunc K) F]
 
+omit [DecidableEq (RatFunc K)] in
 theorem residueTheoremK_of_cotraceResidueIdentityK_ratFunc_isAlgClosed
     [HasPrincipalDivisors K F]
     (hgen : kaehlerPullback K F (RatFunc K) (dX K) ≠ 0)
     (hIdentK : FiberKaehlerCotraceResidueIdentityK K F (RatFunc K)) :
-    ResidueTheoremK K F :=
-  residueTheoremK_of_cotraceResidueIdentityK
-    (p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed K)
-    (dX_ne_zero K) hgen hIdentK
+    ResidueTheoremK K F := by
+  classical
+  exact
+    residueTheoremK_of_cotraceResidueIdentityK
+      (p0n22_cpf_residueTheoremK_ratFunc_of_isAlgClosed K)
+      (dX_ne_zero K) hgen hIdentK
 
 end RatFuncFloorSupply
 end AlgebraicCurve
@@ -1124,7 +1145,8 @@ section RowB
 theorem gf24a9r_cotraceFiberLocalizedPolarApprox
     (K F : Type*) [Field K] [Field F] [Algebra K F]
     (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-    [HasLocalResidue K E] [HasCanonicalLocalResidueKStar K E] [HasLocalResidue K F] [HasCanonicalLocalResidueKStar K F]
+    [HasLocalResidue K E] [HasCanonicalLocalResidueKStar K E] [HasLocalResidue K F]
+    [HasCanonicalLocalResidueKStar K F]
     [Algebra.IsIntegral E F] :
     CotraceFiberLocalizedPolarApprox K F E := by
   intro _instE _instF ωE _hωE _hgen v w _hwfib n f hf
@@ -1419,13 +1441,16 @@ variable [HasCanonicalDivisor (K := K) (F := F)] [∀ w : Place K F, w.DCoordGen
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [Algebra.IsIntegral (RatFunc K) F] [HasLocalResidue K F]
 
+omit [DecidableEq (RatFunc K)] in
 theorem residueTheoremK_of_rowAK_ratFunc_isAlgClosed
     [HasPrincipalDivisors K F]
     (hgen : kaehlerPullback K F (RatFunc K) (dX K) ≠ 0)
     (hA : CotraceResidueIdentityOnFiberLocalizedK K F (RatFunc K)) :
-    ResidueTheoremK K F :=
-  residueTheoremK_of_cotraceResidueIdentityK_ratFunc_isAlgClosed hgen
-    (fiberKaehlerCotraceResidueIdentityK_of_rowAK hA)
+    ResidueTheoremK K F := by
+  classical
+  exact
+    residueTheoremK_of_cotraceResidueIdentityK_ratFunc_isAlgClosed hgen
+      (fiberKaehlerCotraceResidueIdentityK_of_rowAK hA)
 
 end CompositeRatFunc
 end AlgebraicCurve
@@ -1457,7 +1482,7 @@ section AlgClosedSurj
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
-private theorem _root_.AlgebraicCurve.Place.surjective_algebraMap_residueField_of_isAlgClosed_of_finiteResidue
+private theorem surjective_algebraMap_residueField_of_isAlgClosed_of_finiteResidue
     [IsAlgClosed K] (v : Place K F) [v.FiniteResidue] :
     Function.Surjective (algebraMap K v.ResidueField) := by
   have : Module.Finite K v.ResidueField := Place.FiniteResidue.finite
@@ -1467,7 +1492,7 @@ private theorem _root_.AlgebraicCurve.Place.surjective_algebraMap_residueField_o
 
 end Place
 namespace Place
-private theorem _root_.AlgebraicCurve.Place.subsingleton_canonicalLocalResidueDataK_of_isAlgClosed_of_finiteResidue
+private theorem subsingleton_canonicalLocalResidueDataK_of_isAlgClosed_of_finiteResidue
     [IsAlgClosed K] (v : Place K F) [v.FiniteResidue] :
     Subsingleton v.CanonicalLocalResidueDataK :=
   v.subsingleton_canonicalLocalResidueDataK_of_surj
@@ -1514,7 +1539,7 @@ variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 
 theorem kw_mlc_hrtCharP7_kaehlerPullback_smul (g : E) (ωE : Ω[E⁄K]) :
     kaehlerPullback K F E (g • ωE) = (algebraMap E F g) • kaehlerPullback K F E ωE := by
-  show (KaehlerDifferential.map K K E F) (g • ωE)
+  change (KaehlerDifferential.map K K E F) (g • ωE)
     = (algebraMap E F g) • (KaehlerDifferential.map K K E F) ωE
   rw [LinearMap.map_smul, algebra_compatible_smul F g]
 
@@ -1550,16 +1575,19 @@ variable [Algebra.IsIntegral (RatFunc K) F] [Module.Finite (RatFunc K) F]
 variable [HasLocalResidue K F]
 variable [∀ w : Place K F, w.FiniteResidue]
 
+omit [DecidableEq (RatFunc K)] in
 theorem residueTheoremK_of_fiberKaehlerCotraceResidueIdentity_ratFunc_isAlgClosed
     [HasPrincipalDivisors K F]
     (hgen : kaehlerPullback K F (RatFunc K) (dX K) ≠ 0)
     (hFKCRI : FiberKaehlerCotraceResidueIdentity K F (RatFunc K)) :
-    ResidueTheoremK K F :=
-  residueTheoremK_of_rowAK_ratFunc_isAlgClosed hgen
-    (cotraceResidueIdentityOnFiberLocalizedK_of_committed
-      (fun w => w.subsingleton_canonicalLocalResidueDataK_of_isAlgClosed_of_finiteResidue)
-      (kw_mlc_hrtCharP9_cotraceResidueIdentityOnFiberLocalized_of_fkcri K F (RatFunc K)
-        hFKCRI))
+    ResidueTheoremK K F := by
+  classical
+  exact
+    residueTheoremK_of_rowAK_ratFunc_isAlgClosed hgen
+      (cotraceResidueIdentityOnFiberLocalizedK_of_committed
+        (fun w => w.subsingleton_canonicalLocalResidueDataK_of_isAlgClosed_of_finiteResidue)
+        (kw_mlc_hrtCharP9_cotraceResidueIdentityOnFiberLocalized_of_fkcri K F (RatFunc K)
+          hFKCRI))
 
 end FKCRIProduction
 end AlgebraicCurve
@@ -1675,7 +1703,7 @@ theorem kaehlerResidueTerm_kaehlerPullback_diagonal_eq_dCoord_shift
           (diagonalHom K F (g * algebraMap E F (v.differentialCoeff ωE))) w := by
   unfold kaehlerResidueTerm
   congr 2
-  show g * w.differentialCoeff (kaehlerPullback K F E ωE)
+  change g * w.differentialCoeff (kaehlerPullback K F E ωE)
     = g * algebraMap E F (v.differentialCoeff ωE)
         * w.differentialCoeff (kaehlerPullback K F E v.dCoord)
   rw [Place.differentialCoeff_kaehlerPullback v w ωE, mul_assoc]
@@ -1710,7 +1738,7 @@ theorem kwF4R1V391a_completionTraceAt_mul_algebraMap
       = kwHgfV352_completionTraceAt v w hw g * algebraMap E v.adicCompletion c := by
   have hv : w.restrict E = v := Place.mem_fiber.mp hw
   subst hv
-  show (Place.mem_fiber.mp hw ▸ kw_ffgc_completionTraceF' E w (g * algebraMap E F c))
+  change (Place.mem_fiber.mp hw ▸ kw_ffgc_completionTraceF' E w (g * algebraMap E F c))
     = (Place.mem_fiber.mp hw ▸ kw_ffgc_completionTraceF' E w g)
         * algebraMap E (w.restrict E).adicCompletion c
   rw [kwF4R1V391a_completionTraceF'_mul_algebraMap w g c]
@@ -1961,7 +1989,7 @@ theorem kwF4R1V384a_semilocalDiag_surjective_of_distinctKernels
     Ideal.quotientInfToPiQuotient_surj hcop (fun w' => Ideal.Quotient.mk (m w') (xw w'))
   obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective xbar
   refine ⟨x, funext fun w' => ?_⟩
-  show kwF4R1V384a_semilocalComponent F v w' x = y w'
+  change kwF4R1V384a_semilocalComponent F v w' x = y w'
   have hcomp : Ideal.Quotient.mk (m w') x = Ideal.Quotient.mk (m w') (xw w') := by
     have := congrFun hxbar w'
     rwa [Ideal.quotientInfToPiQuotient_mk' m x w'] at this
@@ -2192,7 +2220,7 @@ theorem kwF4R1V386a_absoluteValue_algebraMap_le_one_iff
   let := kw_ffgc_rankOne_adicCompletion w'
   have hr : (0 : ℝ) < ((w'.ramificationIndex E : ℝ))⁻¹ :=
     inv_pos.mpr (Nat.cast_pos.mpr (w'.ramificationIndex_pos (F := E)))
-  show ‖algebraMap F w'.adicCompletion g‖ ^ ((w'.ramificationIndex E : ℝ))⁻¹ ≤ 1
+  change ‖algebraMap F w'.adicCompletion g‖ ^ ((w'.ramificationIndex E : ℝ))⁻¹ ≤ 1
     ↔ g ∈ w'.toValuationSubring
   constructor
   · intro hle
@@ -2311,7 +2339,6 @@ theorem kwF4R1V386a_ramificationIdx_completion_eq
     simp only [WithZero.coe_le_coe, Multiplicative.ofAdd_le, not_le]
     omega
 
-set_option synthInstance.maxHeartbeats 12800000 in
 theorem kwF4R1V386a_integersToCompletion_commute
     (w' : Place K F) (a : (w'.restrict E).toValuationSubring) :
     algebraMap (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers
@@ -2322,8 +2349,6 @@ theorem kwF4R1V386a_integersToCompletion_commute
   apply Subtype.ext
   exact (kw_ffgc_adicCompletionComap_algebraMap_algebraMap E w' (a : E)).symm
 
-set_option synthInstance.maxHeartbeats 8000000 in
-set_option backward.isDefEq.respectTransparency.types false in
 theorem kwF4R1V386a_inertiaDeg_completion_eq
     (w' : Place K F) :
     (maximalIdeal w'.adicCompletionIntegers).inertiaDeg
@@ -2348,12 +2373,10 @@ theorem kwF4R1V386a_inertiaDeg_completion_eq
     (kw_ffgc_residueFieldEquivCompletionResidueField w') ?_
   ext a
   obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective a
-  simp only [RingHom.coe_comp, Function.comp_apply, RingEquiv.toRingHom_eq_coe,
-    RingHom.coe_coe]
+  simp only [RingHom.coe_comp, Function.comp_apply]
   exact congrArg (IsLocalRing.residue w'.adicCompletionIntegers)
     (kwF4R1V386a_integersToCompletion_commute (K := K) (E := E) w' a)
 
-set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem kwF4R1V386a_finrankCompletionEF [Algebra.IsSeparable E F] :
     KwF4R1V384aFinrankCompletionEF K F E := by
   intro _ _ _ v wfib
@@ -2523,26 +2546,31 @@ variable [HasLocalResidue K F]
 variable [∀ w : Place K F, w.FiniteResidue]
 variable [Nontrivial Ω[F⁄K]]
 
+omit [DecidableEq (RatFunc K)] in
 theorem kw_es_residueTheoremK_of_RTCC_isAlgClosed
     [HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates]
     (hgen : kaehlerPullback K F (RatFunc K) (dX K) ≠ 0)
     (hRTCC : KwF4R1V391aResidueTraceCompletionCommute K F (RatFunc K)) :
     ResidueTheoremK K F := by
+  classical
   have hCTS : KwHgfV352CompletionTraceSum K F (RatFunc K) :=
     KwF4R1V386a.kwF4R1V386a_completionTraceSum_of_isSeparable (K := K) (F := F) (E := RatFunc K)
   exact residueTheoremK_of_fiberKaehlerCotraceResidueIdentity_ratFunc_isAlgClosed hgen
     (kw_es_fiberKaehlerCotraceResidueIdentity_of_RTCC_CTS hRTCC hCTS)
 
+omit [DecidableEq (RatFunc K)] in
 theorem kw_es_residueTheoremK_of_RTCC_isAlgClosed'
     [HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates]
     (hRTCC : KwF4R1V391aResidueTraceCompletionCommute K F (RatFunc K)) :
-    ResidueTheoremK K F :=
-  kw_es_residueTheoremK_of_RTCC_isAlgClosed
-    (kaehlerPullback_eq_kaehlerCotrace (K := K) (F := F) (E := RatFunc K) (dX K) ▸
-      kaehlerCotrace_dX_ne_zero_of_isSeparable K F (RationalFunctionField.placeInfty K))
-    hRTCC
+    ResidueTheoremK K F := by
+  classical
+  exact
+    kw_es_residueTheoremK_of_RTCC_isAlgClosed
+      (kaehlerPullback_eq_kaehlerCotrace (K := K) (F := F) (E := RatFunc K) (dX K) ▸
+        kaehlerCotrace_dX_ne_zero_of_isSeparable K F (RationalFunctionField.placeInfty K))
+      hRTCC
 
 end Compose
 end AlgebraicCurve
@@ -2583,12 +2611,15 @@ variable [Nontrivial Ω[F⁄K]]
 variable [IsCurveOver K F] [IsCurveOver K (RatFunc K)]
 variable [∀ u : Place K (RatFunc K), u.FiniteResidue]
 
+omit [DecidableEq (RatFunc K)] in
 theorem kwTateRR3_residueTheoremK_of_isAlgClosed
     [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates] :
-    ResidueTheoremK K F :=
-  kw_es_residueTheoremK_of_RTCC_isAlgClosed'
-    (kwTateRR3_RTCC_of_isSeparable (E := RatFunc K))
+    ResidueTheoremK K F := by
+  classical
+  exact
+    kw_es_residueTheoremK_of_RTCC_isAlgClosed'
+      (kwTateRR3_RTCC_of_isSeparable (E := RatFunc K))
 
 end RTKCapstone
 end KwTateRR3
@@ -2596,7 +2627,7 @@ end ModularCurve
 end
 end
 theorem solution
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -2610,8 +2641,10 @@ theorem solution
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
     [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
-    AlgebraicCurve.ResidueTheoremK K F :=
-  ModularCurve.KwTateRR3.kwTateRR3_residueTheoremK_of_isAlgClosed
+    AlgebraicCurve.ResidueTheoremK K F := by
+  classical
+  exact
+    ModularCurve.KwTateRR3.kwTateRR3_residueTheoremK_of_isAlgClosed
 
 end
 
@@ -2620,7 +2653,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.residueTheoremK_of_isAlgClosed
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -2634,7 +2667,9 @@ theorem AlgebraicCurve.residueTheoremK_of_isAlgClosed
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
     [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
-    AlgebraicCurve.ResidueTheoremK K F :=
-  solution
+    AlgebraicCurve.ResidueTheoremK K F := by
+  classical
+  exact
+    solution
 
 end publicSection

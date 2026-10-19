@@ -69,7 +69,8 @@ namespace C6PortS10T3b
 
 variable {Qt : Ideal (𝓞 (AlgebraicClosure ℚ))} {A : ValuationSubring (AlgebraicClosure ℚ)}
 
-private def IsLoc (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) (A : ValuationSubring (AlgebraicClosure ℚ)) :
+private def IsLoc (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) (A : ValuationSubring (AlgebraicClosure ℚ))
+    :
     Prop :=
   ∀ x : AlgebraicClosure ℚ, x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧
     ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a
@@ -117,7 +118,6 @@ private theorem ψ_mem_maximalIdeal {z : 𝓞 (AlgebraicClosure ℚ)} (hz : z �
   exact this ▸ Qt.mul_mem_right a hz
 
 omit [Qt.IsMaximal] in
-
 private theorem liesOverPrime {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓQ : (ℓ : 𝓞 (AlgebraicClosure ℚ)) ∈ Qt) :
     A.LiesOverPrime ℓ := by
   rw [ValuationSubring.LiesOverPrime, ValuationSubring.mem_nonunits_iff_or]
@@ -131,7 +131,6 @@ private theorem liesOverPrime {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓQ : (ℓ : �
   exact this ▸ Qt.mul_mem_right a hℓQ
 
 omit [Qt.IsMaximal] in
-
 private theorem smul_mem {σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ}
     (hσ : ∀ x : 𝓞 (AlgebraicClosure ℚ), σ • x ∈ Qt ↔ x ∈ Qt) {x : AlgebraicClosure ℚ} (hx : x ∈ A) :
     σ • x ∈ A := by
@@ -141,7 +140,6 @@ private theorem smul_mem {σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure
   rwa [smul_mul'] at this
 
 omit [Qt.IsMaximal] in
-
 private theorem mem_decompositionSubgroup {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ}
     (hstab : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x ∈ Qt ↔ x ∈ Qt) : τ ∈ A.decompositionSubgroup ℚ := by
   have hstab' : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ⁻¹ • x ∈ Qt ↔ x ∈ Qt := fun x => by
@@ -151,7 +149,8 @@ private theorem mem_decompositionSubgroup {τ : AlgebraicClosure ℚ ≃ₐ[ℚ]
   rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
   exact ⟨fun h => by simpa using smul_mem hA hstab h, fun h => smul_mem hA hstab' h⟩
 
-private theorem smul_ψ {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ} (hτ : τ ∈ A.decompositionSubgroup ℚ)
+private theorem smul_ψ {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ}
+    (hτ : τ ∈ A.decompositionSubgroup ℚ)
     (x : 𝓞 (AlgebraicClosure ℚ)) :
     (⟨τ, hτ⟩ : A.decompositionSubgroup ℚ) • ψ hA x = ψ hA (τ • x) := rfl
 
@@ -173,7 +172,8 @@ private theorem smul_residue {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClo
     rw [Ne, IsLocalRing.residue_eq_zero_iff, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
       not_not]
     exact isUnit_ψ hA hs
-  have h1 : IsLocalRing.residue A (ψ hA s) * IsLocalRing.residue A r = IsLocalRing.residue A (ψ hA a) := by
+  have h1 : IsLocalRing.residue A (ψ hA s) * IsLocalRing.residue A r = IsLocalRing.residue A (ψ hA a) :=
+    by
     rw [← map_mul, hsr]
   have h2 : g • (IsLocalRing.residue A (ψ hA s) * IsLocalRing.residue A r) =
       IsLocalRing.residue A (ψ hA s) ^ ℓ * g • IsLocalRing.residue A r := by
@@ -218,6 +218,7 @@ theorem ValuationSubring.isFrobeniusAt_of_forall_smul_sub_pow_mem
     (A : ValuationSubring (AlgebraicClosure ℚ))
     (hA : ∀ x : AlgebraicClosure ℚ,
       x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a) :
-    A.LiesOverPrime ℓ ∧ A.IsFrobeniusAt τ ℓ := _root_.P2MW.S_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem.solution Qt ℓ hℓ hℓQ τ hstab hfrob A hA
+    A.LiesOverPrime ℓ ∧ A.IsFrobeniusAt τ ℓ :=
+  solution Qt ℓ hℓ hℓQ τ hstab hfrob A hA
 
 end publicSection

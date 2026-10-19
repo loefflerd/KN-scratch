@@ -78,7 +78,7 @@ theorem solution
     rw [hsome] at h0
     exact Affine.Point.some_ne_zero h' (h0.trans (Affine.Point.zero_def).symm)
   · intro hx
-    show (if _ : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 ∧
+    change (if _ : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 ∧
         valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1
         then _ else Affine.Point.zero) = Affine.Point.zero
     rw [dite_eq_right (fun hc => hx hc.1)]
@@ -96,6 +96,7 @@ theorem WeierstrassCurve.reducePoint_some_eq_zero_iff
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y) :
     WeierstrassCurve.reducePoint_alt R W (.some x y h) = .zero ↔
-      ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 := _root_.P2MW.S_WeierstrassCurve_reducePoint_some_eq_zero_iff.solution R W h
+      ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 :=
+  solution R W h
 
 end publicSection

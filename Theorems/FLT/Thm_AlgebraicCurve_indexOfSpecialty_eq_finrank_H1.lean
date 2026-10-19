@@ -60,7 +60,11 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors HasPrincipalDivisors.exists_divisor repartitions mem_repartitions_of_forall_le_exp repartitionsOf principalRepartitions mem_principalRepartitions_iff H1 adeleBdd diagonalHom adeleSpace adeleBdd_le_adeleSpace globalSub indexOfSpecialty mem_adeleSpace_iff adeleBddPrincipal indexOfSpecialty_eq"
+p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor repartitions mem_repartitions_of_forall_le_exp \
+  repartitionsOf principalRepartitions mem_principalRepartitions_iff H1 adeleBdd diagonalHom \
+  adeleSpace adeleBdd_le_adeleSpace globalSub indexOfSpecialty mem_adeleSpace_iff \
+  adeleBddPrincipal indexOfSpecialty_eq"
 p2m_open "AlgebraicCurve"
 
 open WithZero
@@ -70,7 +74,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 theorem mem_repartitionsOf_iff_coe_mem_adeleBdd {D : Divisor K F} {α : ↥(repartitions K F)} :
     α ∈ repartitionsOf D ↔ (α : Place K F → F) ∈ adeleBdd D := Iff.rfl
 
-theorem mem_repartitions_of_mem_adeleBdd {D : Divisor K F} {α : Place K F → F} (hα : α ∈ adeleBdd D) :
+theorem mem_repartitions_of_mem_adeleBdd {D : Divisor K F} {α : Place K F → F} (hα : α ∈ adeleBdd D)
+    :
     α ∈ repartitions K F :=
   mem_repartitions_of_forall_le_exp D α hα
 
@@ -129,7 +134,8 @@ theorem mem_adeleSpace_iff_mem_repartitions [HasPrincipalDivisors K F] {α : Pla
           have : ¬v.adicValuation (β v) ≤ 1 := by simpa [S] using hv
           apply this; simp [h0]
         rw [v.adicValuation_eq_exp_neg_ord hβv, exp_le_exp, Finsupp.finsetSum_apply,
-          Finset.sum_eq_single v (fun w _ hw => Finsupp.single_eq_of_ne (Ne.symm hw)) (fun h => (h hv).elim),
+          Finset.sum_eq_single v (fun w _ hw => Finsupp.single_eq_of_ne (Ne.symm hw)) (fun h => (h
+          hv).elim),
           Finsupp.single_eq_same]
       · have : v.adicValuation (β v) ≤ 1 := by
           by_contra h; exact hv (by simpa [S] using h)
@@ -156,7 +162,8 @@ noncomputable def adeleSpaceEquivRepartitions [HasPrincipalDivisors K F] :
 end AlgebraicCurve
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1.AlgebraicCurve WithZero in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F] (D : Divisor K F) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F]
+    (D : Divisor K F) :
     indexOfSpecialty D = Module.finrank K (H1 D) := by
   let e := adeleSpaceEquivRepartitions (K := K) (F := F)
   have hmap : (adeleBddPrincipal K F D).map (e : ↥(adeleSpace K F) →ₗ[K] ↥(repartitions K F))
@@ -187,8 +194,10 @@ public section publicSection
 
 
 namespace AlgebraicCurve
-theorem indexOfSpecialty_eq_finrank_H1 {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F] (D : Divisor K F) :
-    indexOfSpecialty D = Module.finrank K (H1 D) := _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1.solution D
+theorem indexOfSpecialty_eq_finrank_H1 {K F : Type*} [Field K] [Field F] [Algebra K F]
+    [HasPrincipalDivisors K F] (D : Divisor K F) :
+    indexOfSpecialty D = Module.finrank K (H1 D) :=
+  solution D
 end AlgebraicCurve
 
 end publicSection

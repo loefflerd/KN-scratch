@@ -74,7 +74,8 @@ p2m_export "ModularCurve" "jNumQ jq coeff_jq_of_lt hasSum_jNum_qParam"
 end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_hasSum_jq_qParam.ModularCurve in
-theorem solution (τ : UpperHalfPlane) : HasSum (fun m : ℤ => ((ModularCurve.jq.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) := by
+theorem solution (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => ((ModularCurve.jq.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) := by
   set q : ℂ := 𝕢 1 (τ : ℂ) with hqdef
   have hq : q ≠ 0 := Function.Periodic.qParam_ne_zero _
   have h := (hasSum_jNum_qParam τ).mul_left q⁻¹
@@ -104,6 +105,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.hasSum_jq_qParam (τ : UpperHalfPlane) : HasSum (fun m : ℤ => ((ModularCurve.jq.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) := _root_.P2MW.S_ModularCurve_hasSum_jq_qParam.solution τ
+theorem ModularCurve.hasSum_jq_qParam (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => ((ModularCurve.jq.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) :=
+  solution τ
 
 end publicSection

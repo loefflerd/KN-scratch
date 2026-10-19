@@ -97,7 +97,8 @@ theorem eq_zero_or_eq_zero_of_mul_eq_zero {a b : ℍ → ℂ} (ha : a ∈ ring N
     (fun v τ => rfl) (fricke N) (fun v τ => rfl) jAnalytic (fun τ => rfl)
   exact h.2.2.2.2.2 a b ha hb hab
 
-private abbrev _root_.ModularCurve.LevelN.AnalyticOrderPlace.ext (F : ℍ → ℂ) : ℂ → ℂ := F ∘ ofComplex
+private abbrev _root_.ModularCurve.LevelN.AnalyticOrderPlace.ext (F : ℍ → ℂ) :
+    ℂ → ℂ := F ∘ ofComplex
 
 p2m_export "ModularCurve.LevelN.AnalyticOrderPlace" "ext"
 theorem ext_apply_coe (F : ℍ → ℂ) (τ : ℍ) : ext F τ = F τ := by
@@ -166,7 +167,6 @@ theorem ordAt_one (τ₀ : ℍ) : ordAt τ₀ (1 : ℍ → ℂ) = 0 := by
   rfl
 
 open Classical in
-
 def ordFun (τ₀ : ℍ) (F : ring N) : WithZero (Multiplicative ℤ) :=
   if (F : ℍ → ℂ) = 0 then 0 else WithZero.exp (-(ordAt τ₀ (F : ℍ → ℂ) : ℤ))
 
@@ -261,7 +261,8 @@ theorem ordValuationK_algebraMap (τ₀ : ℍ) (F : ring N) :
 
 def jSub (τ₀ : ℍ) : ring N := jGen N - algebraMap ℂ (ring N) (jAnalytic τ₀)
 
-theorem coe_jSub (τ₀ : ℍ) : ((jSub N τ₀ : ring N) : ℍ → ℂ) = fun τ => jAnalytic τ - jAnalytic τ₀ := by
+theorem coe_jSub (τ₀ : ℍ) :
+    ((jSub N τ₀ : ring N) : ℍ → ℂ) = fun τ => jAnalytic τ - jAnalytic τ₀ := by
   funext τ
   simp [jSub, jGen, Algebra.algebraMap_eq_smul_one]
 
@@ -313,7 +314,8 @@ theorem nontrivial_valueGroup (τ₀ : ℍ) :
   refine ⟨Units.mk0 _ hne, ?_, ?_⟩
   · exact MonoidWithZeroHom.mem_valueGroup _ ⟨_, rfl⟩
   · intro h
-    have h' := congrArg (fun u : (WithZero (Multiplicative ℤ))ˣ => (u : WithZero (Multiplicative ℤ))) h
+    have h' :=
+      congrArg (fun u : (WithZero (Multiplicative ℤ))ˣ => (u : WithZero (Multiplicative ℤ))) h
     simp only [Units.val_mk0, Units.val_one] at h'
     exact (ordValuationK_jSub_lt_one N K τ₀).ne h'
 
@@ -416,7 +418,8 @@ theorem exists_pos_neg_log_eq_mul_ord (τ₀ : ℍ) :
       rw [map_mul, map_one] at this
       exact eq_inv_of_mul_eq_one_right this
     rw [hvinv] at hinv
-    have hpos : 0 < v ((u : W.toValuationSubring) : K) := zero_lt_iff.mpr ((Valuation.ne_zero_iff v).mpr hu0)
+    have hpos : 0 < v ((u : W.toValuationSubring) : K) :=
+      zero_lt_iff.mpr ((Valuation.ne_zero_iff v).mpr hu0)
     exact (inv_le_one₀ hpos).mp hinv
   have hvx : v x = v ((u : W.toValuationSubring) : K) * v (π : K) ^ W.ord x := by
     conv_lhs => rw [hux]
@@ -475,6 +478,7 @@ theorem ModularCurve.LevelN.exists_place_analyticOrderAt_eq_mul_ord (N : ℕ) [N
       ∀ (F : UpperHalfPlane → ℂ) (hF : F ∈ ModularCurve.LevelN.ring N), F ≠ 0 →
         analyticOrderAt (F ∘ UpperHalfPlane.ofComplex) (τ₀ : ℂ) ≠ ⊤ ∧
         ((analyticOrderAt (F ∘ UpperHalfPlane.ofComplex) (τ₀ : ℂ)).toNat : ℤ) =
-          e * W.ord (algebraMap (ModularCurve.LevelN.ring N) K ⟨F, hF⟩) := _root_.P2MW.S_ModularCurve_LevelN_exists_place_analyticOrderAt_eq_mul_ord.solution N K τ₀
+          e * W.ord (algebraMap (ModularCurve.LevelN.ring N) K ⟨F, hF⟩) :=
+  solution N K τ₀
 
 end publicSection

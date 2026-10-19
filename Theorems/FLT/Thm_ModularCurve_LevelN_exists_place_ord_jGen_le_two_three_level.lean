@@ -77,9 +77,13 @@ open scoped MatrixGroups IntermediateField Manifold
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.coe_jGen jqModC jGen order_qExpandC order_jqModC_def jqModC_ne_zero_def LevelN.exists_algHom_laurentSeries_qExpansion LevelN.exists_place_analyticOrderAt_eq_mul_ord meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two"
+p2m_export "ModularCurve" "LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.coe_jGen jqModC jGen \
+  order_qExpandC order_jqModC_def jqModC_ne_zero_def LevelN.exists_algHom_laurentSeries_qExpansion \
+  LevelN.exists_place_analyticOrderAt_eq_mul_ord \
+  meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen exists_algHom_laurentSeries_qExpansion exists_place_analyticOrderAt_eq_mul_ord"
+p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen \
+  exists_algHom_laurentSeries_qExpansion exists_place_analyticOrderAt_eq_mul_ord"
 namespace SpecialRamification
 p2m_open "ModularCurve.LevelN ModularCurve"
 
@@ -170,7 +174,8 @@ theorem jAnalytic_sub_ne_zero (c : ℂ) : (fun τ : ℍ => LevelN.jAnalytic τ -
   have : (1728 : ℂ) = 0 := by linear_combination h2 - h1
   norm_num at this
 
-theorem natCard_stabilizer_I_le : Nat.card (MulAction.stabilizer SL(2, ℤ) UpperHalfPlane.I) ≤ 4 := by
+theorem natCard_stabilizer_I_le :
+    Nat.card (MulAction.stabilizer SL(2, ℤ) UpperHalfPlane.I) ≤ 4 := by
   classical
   rw [Nat.card_congr (Equiv.subtypeEquivRight
     (q := fun g => g ∈ ({1, -1, ModularGroup.S, -ModularGroup.S} : Finset SL(2, ℤ)))
@@ -211,13 +216,15 @@ theorem analyticAt_comp_ofComplex {G : ℍ → ℂ} (hG : MDiff G) (τ : ℍ) :
     UpperHalfPlane.mdifferentiable_iff.mp hG
   exact (hd.analyticOnNhd isOpen_upperHalfPlaneSet) τ τ.im_pos
 
-@[scoped simp] theorem comp_ofComplex_apply_coe (G : ℍ → ℂ) (τ : ℍ) : (G ∘ ofComplex) (τ : ℂ) = G τ := by
+@[scoped simp] theorem comp_ofComplex_apply_coe (G : ℍ → ℂ) (τ : ℍ) :
+    (G ∘ ofComplex) (τ : ℂ) = G τ := by
   simp [Function.comp_apply, ofComplex_apply]
 
 theorem analyticOrderAt_jsub (τ₀ : ℍ) :
     analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) (τ₀ : ℂ) =
       ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) : ℕ∞) := by
-  have hmero := ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ₀
+  have hmero :=
+    ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ₀
   have hfun : (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 / ModularForm.discriminant (ofComplex z)
       - (ModularForm.E₄ : ℍ → ℂ) τ₀ ^ 3 / ModularForm.discriminant τ₀) =
       ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) := by
@@ -372,6 +379,7 @@ theorem ModularCurve.LevelN.exists_place_ord_jGen_le_two_three_level (N : ℕ) [
           W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) ≤ 3) ∧
       (∃ W : AlgebraicCurve.Place ℂ K,
         W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) < 0 ∧
-          -(N : ℤ) ≤ W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N))) := _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level.solution N K
+          -(N : ℤ) ≤ W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N))) :=
+  solution N K
 
 end publicSection

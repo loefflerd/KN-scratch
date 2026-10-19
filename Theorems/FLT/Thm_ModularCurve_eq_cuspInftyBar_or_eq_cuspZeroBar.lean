@@ -90,7 +90,8 @@ theorem prime' : ℓ.Prime := Fact.out
 
 theorem dedekindPsi_prime : dedekindPsi ℓ = ℓ + 1 := by
   have hℓ : ℓ.Prime := Fact.out
-  rw [dedekindPsi, hℓ.divisors, Finset.filter_true_of_mem, Finset.sum_pair hℓ.one_lt.ne, Nat.div_one,
+  rw [dedekindPsi, hℓ.divisors, Finset.filter_true_of_mem, Finset.sum_pair hℓ.one_lt.ne,
+    Nat.div_one,
     Nat.div_self hℓ.pos, add_comm]
   intro d hd
   simp only [Finset.mem_insert, Finset.mem_singleton] at hd
@@ -98,14 +99,15 @@ theorem dedekindPsi_prime : dedekindPsi ℓ = ℓ + 1 := by
   · exact squarefree_one
   · exact hℓ.squarefree
 
-def jb : modularFunctionFieldBar ℓ := ⟨coeffEmb 𝕂 jq, coeffEmb_mem_laurentBaseChange 𝕂 (jq_mem_full ℓ)⟩
+def jb :
+    modularFunctionFieldBar ℓ := ⟨coeffEmb 𝕂 jq, coeffEmb_mem_laurentBaseChange 𝕂 (jq_mem_full ℓ)⟩
 
 theorem coe_jb : (jb ℓ : LaurentSeries 𝕂) = jqModC 𝕂 := coeffEmb_jq 𝕂
 
 theorem bar_eq_restrictScalars :
     modularFunctionFieldBar ℓ = (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯).restrictScalars 𝕂 := by
   have hℓ : ℓ.Prime := Fact.out
-  show laurentBaseChange 𝕂 (modularFunctionFieldFull ℓ) = _
+  change laurentBaseChange 𝕂 (modularFunctionFieldFull ℓ) = _
   rw [full_eq_of_prime hℓ, laurentBaseChange_modularFunctionField]
   exact (adjoin_simple_adjoin_simple 𝕂 (jqModC 𝕂) (jqNModC 𝕂 ℓ)).symm
 
@@ -149,7 +151,8 @@ theorem coe_φ (x : RatFunc 𝕂) :
     ((φ ℓ x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = (σa x : LaurentSeries 𝕂) := by
   rw [φ_apply, coe_jTr, coe_algebraMap_tower]
 
-theorem φ_algebraMap (k : 𝕂) : φ ℓ (algebraMap 𝕂 (RatFunc 𝕂) k) = algebraMap 𝕂 (modularFunctionFieldBar ℓ) k := by
+theorem φ_algebraMap (k : 𝕂) :
+    φ ℓ (algebraMap 𝕂 (RatFunc 𝕂) k) = algebraMap 𝕂 (modularFunctionFieldBar ℓ) k := by
   ext
   rw [coe_φ, AlgEquiv.commutes]
   rfl
@@ -175,7 +178,7 @@ theorem he_compat :
       = (jTr ℓ).toRingHom.comp (algebraMap (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯)) := by
   apply RingHom.ext
   intro y
-  show φ ℓ (σa.symm y) = jTr ℓ (algebraMap _ _ y)
+  change φ ℓ (σa.symm y) = jTr ℓ (algebraMap _ _ y)
   rw [φ_apply, AlgEquiv.apply_symm_apply]
 
 theorem finite_ratFunc : Module.Finite (RatFunc 𝕂) (modularFunctionFieldBar ℓ) := by
@@ -283,7 +286,6 @@ theorem eq_cuspInftyBar_or_eq_cuspZeroBar (hw : IsFrickeAutFull ℓ (frickeInvol
 end TwoCuspAux
 
 open TwoCuspAux in
-
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ)) (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ) w) :
     w = cuspInftyBar ℓ ∨ w = cuspZeroBar ℓ :=
   TwoCuspAux.eq_cuspInftyBar_or_eq_cuspZeroBar ℓ (isFrickeAutFull_frickeInvolutionFull_prime ℓ) w hc
@@ -299,6 +301,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.eq_cuspInftyBar_or_eq_cuspZeroBar (ℓ : ℕ) [Fact ℓ.Prime] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ)) (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ) w) : w = cuspInftyBar ℓ ∨ w = cuspZeroBar ℓ := _root_.P2MW.S_ModularCurve_eq_cuspInftyBar_or_eq_cuspZeroBar.solution ℓ w hc
+theorem ModularCurve.eq_cuspInftyBar_or_eq_cuspZeroBar (ℓ : ℕ) [Fact ℓ.Prime] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ)) (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ) w) :
+    w = cuspInftyBar ℓ ∨ w = cuspZeroBar ℓ :=
+  solution ℓ w hc
 
 end publicSection

@@ -71,7 +71,9 @@ namespace P2MW.S_ModularCurve_exists_phiIrreducible_of_finrank_eq
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi evalAtJ ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen PhiIrreducible exists_monic_evalAtJ_jqN_eq_zero PhiGen.evalAtJ_injective"
+p2m_export "ModularCurve" "jq jqN dedekindPsi evalAtJ ModularPolynomialData evalAtJGen \
+  algebraMap_comp_evalAtJGen PhiIrreducible exists_monic_evalAtJ_jqN_eq_zero \
+  PhiGen.evalAtJ_injective"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -101,10 +103,11 @@ end ModularCurve.W1
 open IntermediateField Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi evalAtJ ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen PhiIrreducible exists_monic_evalAtJ_jqN_eq_zero PhiGen.evalAtJ_injective"
+p2m_export "ModularCurve" "jq jqN dedekindPsi evalAtJ ModularPolynomialData evalAtJGen \
+  algebraMap_comp_evalAtJGen PhiIrreducible exists_monic_evalAtJ_jqN_eq_zero \
+  PhiGen.evalAtJ_injective"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZero N]
     (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
       (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
@@ -176,7 +179,7 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
           ⟨Polynomial.C br * IsLocalization.integerNormalization (nonZeroDivisors ℤ) s,
             mem_nonZeroDivisors_of_ne_zero
               (mul_ne_zero (Polynomial.C_ne_zero.mpr hbr) hs'0)⟩), Subtype.ext ?_⟩
-        show ((z * algebraMap (Polynomial ℤ) ℚ⟮jq⟯
+        change ((z * algebraMap (Polynomial ℤ) ℚ⟮jq⟯
             (Polynomial.C br * IsLocalization.integerNormalization (nonZeroDivisors ℤ) s) :
               ℚ⟮jq⟯) : LaurentSeries ℚ) =
           ((algebraMap (Polynomial ℤ) ℚ⟮jq⟯
@@ -201,7 +204,7 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
     rw [Polynomial.aeval_def] at ha
     exact ha
   refine ⟨⟨minpoly (Polynomial ℤ) (jqN N), hΦm, hdeg, heval⟩, ?_⟩
-  show Irreducible (Polynomial.map evalAtJGen (minpoly (Polynomial ℤ) (jqN N)))
+  change Irreducible (Polynomial.map evalAtJGen (minpoly (Polynomial ℤ) (jqN N)))
   have hmap : Polynomial.map evalAtJGen (minpoly (Polynomial ℤ) (jqN N)) =
       minpoly ℚ⟮jq⟯ (jqN N) := hmin.symm
   rw [hmap]
@@ -210,8 +213,8 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_of_finrank_eq.ModularCurve ModularCurve.PhiGen in
-
-theorem solution (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) : ∃ data : ModularPolynomialData N, PhiIrreducible data :=
+theorem solution (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) :
+    ∃ data : ModularPolynomialData N, PhiIrreducible data :=
   ModularCurve.exists_phiIrreducible_of_finrank_eq N h
 
 end S_ModularCurve_exists_phiIrreducible_of_finrank_eq
@@ -224,6 +227,8 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) : ∃ data : ModularPolynomialData N, PhiIrreducible data := _root_.P2MW.S_ModularCurve_exists_phiIrreducible_of_finrank_eq.solution N h
+theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) :
+    ∃ data : ModularPolynomialData N, PhiIrreducible data :=
+  solution N h
 
 end publicSection

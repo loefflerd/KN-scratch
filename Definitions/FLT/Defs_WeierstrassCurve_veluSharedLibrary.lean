@@ -328,7 +328,7 @@ theorem deg_eq_one_of_surjective (v : Place K F)
     (h : Function.Surjective (algebraMap K v.ResidueField)) : v.deg = 1 := by
   have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
     ⟨(algebraMap K v.ResidueField).injective, h⟩
-  show Module.finrank K v.ResidueField = 1
+  change Module.finrank K v.ResidueField = 1
   rw [← Module.finrank_self K]
   exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
 
@@ -350,7 +350,7 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
       intro hn
       refine d.2 ?_
       replace hn : n ∈ w.asIdeal := hn
-      show (d : R) ∈ w.asIdeal
+      change (d : R) ∈ w.asIdeal
       rw [← w.valuation_lt_one_iff_mem (K := F)] at hn ⊢
       calc w.valuation F (algebraMap R F (d : R))
           = w.valuation F (a : F) * w.valuation F (algebraMap R F n) := by
@@ -393,7 +393,7 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
     field_simp
     linear_combination (-(algebraMap K F cd)) * hnd
   refine (Valuation.mem_maximalIdeal_iff (v := w.valuation F)).mpr ?_
-  show w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F)) < 1
+  change w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F)) < 1
   calc w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F))
       = w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F))
         * (w.valuation F (algebraMap K F cd) * w.valuation F (algebraMap R F d)) := by
@@ -434,7 +434,8 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 
 end CoordinateRing
 
-@[expose] public def IsFinitePlace.ringHom {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v) :
+@[expose] public def IsFinitePlace.ringHom
+    {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v) :
     W.CoordinateRing →+* v.toValuationSubring where
   toFun r := ⟨algebraMap W.CoordinateRing W.FunctionField r, hv r⟩
   map_one' := Subtype.ext (map_one _)
@@ -442,7 +443,8 @@ end CoordinateRing
   map_zero' := Subtype.ext (_root_.map_zero _)
   map_add' a b := Subtype.ext (map_add _ a b)
 
-@[expose] public def IsFinitePlace.centre {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v) :
+@[expose] public def IsFinitePlace.centre
+    {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v) :
     Ideal W.CoordinateRing :=
   (IsLocalRing.maximalIdeal v.toValuationSubring).comap hv.ringHom
 
@@ -528,7 +530,7 @@ public theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
       rw [ValuationSubring.ofPrime_top] at h3
       have hAv : A = v.toValuationSubring := h3.symm.trans hSP
       refine (AlgebraicCurve.Place.ext ?_).symm
-      show (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
+      change (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
       rw [AlgebraicCurve.Place.ofHeightOneSpectrum_toValuationSubring,
         ← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
       exact hAv
@@ -569,7 +571,6 @@ section IsOddVeluSet
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F}
 
 omit [DecidableEq F] in
-
 public lemma exists_some_of_ne_zero {P : W.toAffine.Point} (hP : P ≠ 0) :
     ∃ (x y : F) (h : W.toAffine.Nonsingular x y), P = Point.some x y h ∧
       P.coordsOrZero = (x, y) := by
@@ -893,7 +894,7 @@ public theorem ord_sub_evalAt_pos (hrat : v.IsRational) {f : F} (hf : f ∈ v.to
       have hcoe : (⟨f - algebraMap K F (v.evalAt f), hmem⟩ : v.toValuationSubring)
           = ⟨f, hf⟩ - algebraMap K v.toValuationSubring (v.evalAt f) := by
         refine Subtype.ext ?_
-        show f - algebraMap K F (v.evalAt f)
+        change f - algebraMap K F (v.evalAt f)
           = f - (algebraMap K v.toValuationSubring (v.evalAt f) : F)
         rw [Place.coe_algebraMap]
       rw [hcoe, map_sub, sub_eq_zero, ← v.algebraMap_evalAt hrat hf,
@@ -1214,8 +1215,9 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   by_cases hq : q = 0
   · subst hq
     have hp : p ≠ 0 := fun h => hf (by rw [h, zero_smul, zero_smul, add_zero])
-    rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul, add_zero,
-      v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp]
+    rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul,
+      add_zero, v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C
+      hA hp]
     ring
   · by_cases hp : p = 0
     · subst hp
@@ -1418,12 +1420,12 @@ theorem veluDeficitLinearTerm_mul_cube_eq {x₀ y₀ r s : R}
   rw [W.eval_Ψ₃_eq_b']
   simp only [veluT, veluU, veluW, veluGx, veluGy, b₂, b₄, b₆, b₈]
   linear_combination
-    (-2*W.a₁^2*r*x₀ - 2*W.a₁^2*x₀^2 - 2*W.a₁*W.a₃*r - 6*W.a₁*W.a₃*x₀ - 16*W.a₁*x₀*y₀
-        - 8*W.a₂*r*x₀ + 8*W.a₂*x₀^2 - 4*W.a₃^2 - 16*W.a₃*y₀ - 4*W.a₄*r + 4*W.a₄*x₀
-        - 12*r*x₀^2 + 12*x₀^3 - 16*y₀^2) * hP
-    + (-6*W.a₁^2*r^2 + 14*W.a₁^2*r*x₀ - 4*W.a₁^2*x₀^2 + 2*W.a₁*W.a₃*r + 6*W.a₁*W.a₃*x₀
-        + 16*W.a₁*x₀*y₀ - 24*W.a₂*r^2 + 56*W.a₂*r*x₀ - 32*W.a₂*x₀^2 + 4*W.a₃^2 + 16*W.a₃*y₀
-        + 4*W.a₄*r - 4*W.a₄*x₀ - 72*r^2*x₀ + 156*r*x₀^2 - 84*x₀^3 + 16*y₀^2) * hQ
+    (-2*W.a₁ ^ 2*r*x₀ - 2*W.a₁ ^ 2*x₀ ^ 2 - 2*W.a₁*W.a₃*r - 6*W.a₁*W.a₃*x₀ - 16*W.a₁*x₀*y₀
+        - 8*W.a₂*r*x₀ + 8*W.a₂*x₀ ^ 2 - 4*W.a₃ ^ 2 - 16*W.a₃*y₀ - 4*W.a₄*r + 4*W.a₄*x₀
+        - 12*r*x₀ ^ 2 + 12*x₀ ^ 3 - 16*y₀ ^ 2) * hP
+    + (-6*W.a₁ ^ 2*r ^ 2 + 14*W.a₁ ^ 2*r*x₀ - 4*W.a₁ ^ 2*x₀ ^ 2 + 2*W.a₁*W.a₃*r + 6*W.a₁*W.a₃*x₀
+        + 16*W.a₁*x₀*y₀ - 24*W.a₂*r ^ 2 + 56*W.a₂*r*x₀ - 32*W.a₂*x₀ ^ 2 + 4*W.a₃ ^ 2 + 16*W.a₃*y₀
+        + 4*W.a₄*r - 4*W.a₄*x₀ - 72*r ^ 2*x₀ + 156*r*x₀ ^ 2 - 84*x₀ ^ 3 + 16*y₀ ^ 2) * hQ
 
 end ClearedIdentity
 section FieldLaurent
@@ -1521,11 +1523,11 @@ section PsiCofactor
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 
 def veluDeficitPsiCofactor (x₀ x : R) : R :=
-  2*W.a₁^2*x^3*x₀ - 3*W.a₁^2*x^2*x₀^2 + W.a₁^2*x₀^4 + 2*W.a₁*W.a₃*x^3 - 6*W.a₁*W.a₃*x*x₀^2
-    + 4*W.a₁*W.a₃*x₀^3 + 8*W.a₂*x^3*x₀ - 12*W.a₂*x^2*x₀^2 + 4*W.a₂*x₀^4 + 3*W.a₃^2*x^2
-    - 6*W.a₃^2*x*x₀ + 3*W.a₃^2*x₀^2 + 4*W.a₄*x^3 - 12*W.a₄*x*x₀^2 + 8*W.a₄*x₀^3 + 12*W.a₆*x^2
-    - 24*W.a₆*x*x₀ + 12*W.a₆*x₀^2 - 6*x^5 + 30*x^4*x₀ - 48*x^3*x₀^2 + 36*x^2*x₀^3 - 18*x*x₀^4
-    + 6*x₀^5
+  2*W.a₁ ^ 2*x ^ 3*x₀ - 3*W.a₁ ^ 2*x ^ 2*x₀ ^ 2 + W.a₁ ^ 2*x₀ ^ 4 + 2*W.a₁*W.a₃*x ^ 3
+    - 6*W.a₁*W.a₃*x*x₀ ^ 2 + 4*W.a₁*W.a₃*x₀ ^ 3 + 8*W.a₂*x ^ 3*x₀ - 12*W.a₂*x ^ 2*x₀ ^ 2
+    + 4*W.a₂*x₀ ^ 4 + 3*W.a₃ ^ 2*x ^ 2 - 6*W.a₃ ^ 2*x*x₀ + 3*W.a₃ ^ 2*x₀ ^ 2 + 4*W.a₄*x ^ 3
+    - 12*W.a₄*x*x₀ ^ 2 + 8*W.a₄*x₀ ^ 3 + 12*W.a₆*x ^ 2 - 24*W.a₆*x*x₀ + 12*W.a₆*x₀ ^ 2 - 6*x ^ 5
+    + 30*x ^ 4*x₀ - 48*x ^ 3*x₀ ^ 2 + 36*x ^ 2*x₀ ^ 3 - 18*x*x₀ ^ 4 + 6*x₀ ^ 5
 
 lemma eval_Ψ₃_eq' (x : R) :
     (W.Ψ₃).eval x = 3 * x ^ 4 + W.b₂ * x ^ 3 + 3 * W.b₄ * x ^ 2 + 3 * W.b₆ * x + W.b₈ := by
@@ -1545,8 +1547,71 @@ theorem velu_singleton_deficit_cleared_eq_psi {x₀ y₀ x y : R}
   simp only [veluDeficitPsiCofactor, b₂, b₄, b₆, b₈, veluXNum, veluYNum, veluT, veluU, veluW,
     veluGx, veluGy]
   linear_combination
-    (W.a₁^4*x^2*x₀^2 + 2*W.a₁^4*x*x₀^3 + W.a₁^4*x₀^4 + 2*W.a₁^3*W.a₃*x^2*x₀ + 8*W.a₁^3*W.a₃*x*x₀^2 + 6*W.a₁^3*W.a₃*x₀^3 + 16*W.a₁^3*x*x₀^2*y₀ + 16*W.a₁^3*x₀^3*y₀ + 8*W.a₁^2*W.a₂*x^2*x₀^2 - 8*W.a₁^2*W.a₂*x₀^4 + W.a₁^2*W.a₃^2*x^2 + 10*W.a₁^2*W.a₃^2*x*x₀ + 13*W.a₁^2*W.a₃^2*x₀^2 + 32*W.a₁^2*W.a₃*x*x₀*y₀ + 64*W.a₁^2*W.a₃*x₀^2*y₀ + 4*W.a₁^2*W.a₄*x^2*x₀ - 4*W.a₁^2*W.a₄*x₀^3 - 2*W.a₁^2*x^4*x₀ + 4*W.a₁^2*x^3*x₀^2 + 12*W.a₁^2*x^2*x₀^3 - 4*W.a₁^2*x*x₀^4 + 16*W.a₁^2*x*x₀*y₀^2 - 10*W.a₁^2*x₀^5 + 80*W.a₁^2*x₀^2*y₀^2 + 8*W.a₁*W.a₂*W.a₃*x^2*x₀ + 16*W.a₁*W.a₂*W.a₃*x*x₀^2 - 24*W.a₁*W.a₂*W.a₃*x₀^3 + 64*W.a₁*W.a₂*x*x₀^2*y₀ - 64*W.a₁*W.a₂*x₀^3*y₀ + 4*W.a₁*W.a₃^3*x + 12*W.a₁*W.a₃^3*x₀ + 16*W.a₁*W.a₃^2*x*y₀ + 80*W.a₁*W.a₃^2*x₀*y₀ + 4*W.a₁*W.a₃*W.a₄*x^2 + 8*W.a₁*W.a₃*W.a₄*x*x₀ - 12*W.a₁*W.a₃*W.a₄*x₀^2 - 2*W.a₁*W.a₃*x^4 + 24*W.a₁*W.a₃*x^2*x₀^2 + 8*W.a₁*W.a₃*x*x₀^3 + 16*W.a₁*W.a₃*x*y₀^2 - 30*W.a₁*W.a₃*x₀^4 + 176*W.a₁*W.a₃*x₀*y₀^2 + 32*W.a₁*W.a₄*x*x₀*y₀ - 32*W.a₁*W.a₄*x₀^2*y₀ - 16*W.a₁*x^3*x₀*y₀ + 48*W.a₁*x^2*x₀^2*y₀ + 48*W.a₁*x*x₀^3*y₀ - 80*W.a₁*x₀^4*y₀ + 128*W.a₁*x₀*y₀^3 + 16*W.a₂^2*x^2*x₀^2 - 32*W.a₂^2*x*x₀^3 + 16*W.a₂^2*x₀^4 + 16*W.a₂*W.a₃^2*x*x₀ - 16*W.a₂*W.a₃^2*x₀^2 + 64*W.a₂*W.a₃*x*x₀*y₀ - 64*W.a₂*W.a₃*x₀^2*y₀ + 16*W.a₂*W.a₄*x^2*x₀ - 32*W.a₂*W.a₄*x*x₀^2 + 16*W.a₂*W.a₄*x₀^3 - 8*W.a₂*x^4*x₀ + 32*W.a₂*x^3*x₀^2 - 64*W.a₂*x*x₀^4 + 64*W.a₂*x*x₀*y₀^2 + 40*W.a₂*x₀^5 - 64*W.a₂*x₀^2*y₀^2 + 4*W.a₃^4 + 32*W.a₃^3*y₀ + 8*W.a₃^2*W.a₄*x - 8*W.a₃^2*W.a₄*x₀ - 4*W.a₃^2*x^3 + 12*W.a₃^2*x^2*x₀ + 12*W.a₃^2*x*x₀^2 - 20*W.a₃^2*x₀^3 + 96*W.a₃^2*y₀^2 + 32*W.a₃*W.a₄*x*y₀ - 32*W.a₃*W.a₄*x₀*y₀ - 16*W.a₃*x^3*y₀ + 48*W.a₃*x^2*x₀*y₀ + 48*W.a₃*x*x₀^2*y₀ - 80*W.a₃*x₀^3*y₀ + 128*W.a₃*y₀^3 + 4*W.a₄^2*x^2 - 8*W.a₄^2*x*x₀ + 4*W.a₄^2*x₀^2 - 4*W.a₄*x^4 + 16*W.a₄*x^3*x₀ - 32*W.a₄*x*x₀^3 + 32*W.a₄*x*y₀^2 + 20*W.a₄*x₀^4 - 32*W.a₄*x₀*y₀^2 + x^6 - 6*x^5*x₀ + 3*x^4*x₀^2 + 28*x^3*x₀^3 - 16*x^3*y₀^2 - 21*x^2*x₀^4 + 48*x^2*x₀*y₀^2 - 30*x*x₀^5 + 48*x*x₀^2*y₀^2 + 25*x₀^6 - 80*x₀^3*y₀^2 + 64*y₀^4) * hP
-    + (2*W.a₁^4*x^3*x₀ - 4*W.a₁^4*x^2*x₀^2 - 2*W.a₁^4*x*x₀^3 + 2*W.a₁^3*W.a₃*x^3 - 2*W.a₁^3*W.a₃*x^2*x₀ - 14*W.a₁^3*W.a₃*x*x₀^2 - 2*W.a₁^3*W.a₃*x₀^3 + 12*W.a₁^3*x^2*x₀*y₀ - 40*W.a₁^3*x*x₀^2*y₀ - 4*W.a₁^3*x₀^3*y₀ + 16*W.a₁^2*W.a₂*x^3*x₀ - 44*W.a₁^2*W.a₂*x^2*x₀^2 + 24*W.a₁^2*W.a₂*x*x₀^3 + 4*W.a₁^2*W.a₂*x₀^4 + 2*W.a₁^2*W.a₃^2*x^2 - 16*W.a₁^2*W.a₃^2*x*x₀ - 10*W.a₁^2*W.a₃^2*x₀^2 + 12*W.a₁^2*W.a₃*x^2*y₀ - 56*W.a₁^2*W.a₃*x*x₀*y₀ - 52*W.a₁^2*W.a₃*x₀^2*y₀ + 4*W.a₁^2*W.a₄*x^3 - 16*W.a₁^2*W.a₄*x^2*x₀ + 12*W.a₁^2*W.a₄*x*x₀^2 + 12*W.a₁^2*W.a₆*x^2 - 24*W.a₁^2*W.a₆*x*x₀ + 12*W.a₁^2*W.a₆*x₀^2 - 6*W.a₁^2*x^5 + 32*W.a₁^2*x^4*x₀ - 28*W.a₁^2*x^3*x₀^2 - 12*W.a₁^2*x^2*x₀^3 + 12*W.a₁^2*x^2*y₀^2 - 14*W.a₁^2*x*x₀^4 - 40*W.a₁^2*x*x₀*y₀^2 + 28*W.a₁^2*x₀^5 - 68*W.a₁^2*x₀^2*y₀^2 + 8*W.a₁*W.a₂*W.a₃*x^3 - 8*W.a₁*W.a₂*W.a₃*x^2*x₀ - 40*W.a₁*W.a₂*W.a₃*x*x₀^2 + 40*W.a₁*W.a₂*W.a₃*x₀^3 + 48*W.a₁*W.a₂*x^2*x₀*y₀ - 160*W.a₁*W.a₂*x*x₀^2*y₀ + 112*W.a₁*W.a₂*x₀^3*y₀ - 4*W.a₁*W.a₃^3*x - 12*W.a₁*W.a₃^3*x₀ - 16*W.a₁*W.a₃^2*x*y₀ - 80*W.a₁*W.a₃^2*x₀*y₀ - 16*W.a₁*W.a₃*W.a₄*x^2 + 16*W.a₁*W.a₃*W.a₄*x*x₀ + 2*W.a₁*W.a₃*x^4 + 24*W.a₁*W.a₃*x^3*x₀ + 12*W.a₁*W.a₃*x^2*x₀^2 - 152*W.a₁*W.a₃*x*x₀^3 - 16*W.a₁*W.a₃*x*y₀^2 + 114*W.a₁*W.a₃*x₀^4 - 176*W.a₁*W.a₃*x₀*y₀^2 - 32*W.a₁*W.a₄*x*x₀*y₀ + 32*W.a₁*W.a₄*x₀^2*y₀ + 16*W.a₁*x^3*x₀*y₀ + 96*W.a₁*x^2*x₀^2*y₀ - 336*W.a₁*x*x₀^3*y₀ + 224*W.a₁*x₀^4*y₀ - 128*W.a₁*x₀*y₀^3 + 32*W.a₂^2*x^3*x₀ - 112*W.a₂^2*x^2*x₀^2 + 128*W.a₂^2*x*x₀^3 - 48*W.a₂^2*x₀^4 + 24*W.a₂*W.a₃^2*x^2 - 64*W.a₂*W.a₃^2*x*x₀ + 40*W.a₂*W.a₃^2*x₀^2 + 48*W.a₂*W.a₃*x^2*y₀ - 160*W.a₂*W.a₃*x*x₀*y₀ + 112*W.a₂*W.a₃*x₀^2*y₀ + 16*W.a₂*W.a₄*x^3 - 64*W.a₂*W.a₄*x^2*x₀ + 80*W.a₂*W.a₄*x*x₀^2 - 32*W.a₂*W.a₄*x₀^3 + 48*W.a₂*W.a₆*x^2 - 96*W.a₂*W.a₆*x*x₀ + 48*W.a₂*W.a₆*x₀^2 - 24*W.a₂*x^5 + 128*W.a₂*x^4*x₀ - 128*W.a₂*x^3*x₀^2 - 144*W.a₂*x^2*x₀^3 + 48*W.a₂*x^2*y₀^2 + 280*W.a₂*x*x₀^4 - 160*W.a₂*x*x₀*y₀^2 - 112*W.a₂*x₀^5 + 112*W.a₂*x₀^2*y₀^2 - 4*W.a₃^4 - 32*W.a₃^3*y₀ - 8*W.a₃^2*W.a₄*x + 8*W.a₃^2*W.a₄*x₀ + 4*W.a₃^2*x^3 + 60*W.a₃^2*x^2*x₀ - 156*W.a₃^2*x*x₀^2 + 92*W.a₃^2*x₀^3 - 96*W.a₃^2*y₀^2 - 32*W.a₃*W.a₄*x*y₀ + 32*W.a₃*W.a₄*x₀*y₀ + 16*W.a₃*x^3*y₀ + 96*W.a₃*x^2*x₀*y₀ - 336*W.a₃*x*x₀^2*y₀ + 224*W.a₃*x₀^3*y₀ - 128*W.a₃*y₀^3 - 16*W.a₄^2*x^2 + 32*W.a₄^2*x*x₀ - 16*W.a₄^2*x₀^2 + 4*W.a₄*x^4 + 32*W.a₄*x^3*x₀ - 72*W.a₄*x^2*x₀^2 + 32*W.a₄*x*x₀^3 - 32*W.a₄*x*y₀^2 + 4*W.a₄*x₀^4 + 32*W.a₄*x₀*y₀^2 + 144*W.a₆*x^2*x₀ - 288*W.a₆*x*x₀^2 + 144*W.a₆*x₀^3 - 72*x^5*x₀ + 372*x^4*x₀^2 - 624*x^3*x₀^3 + 16*x^3*y₀^2 + 360*x^2*x₀^4 + 96*x^2*x₀*y₀^2 + 24*x*x₀^5 - 336*x*x₀^2*y₀^2 - 60*x₀^6 + 224*x₀^3*y₀^2 - 64*y₀^4) * hQ
+    (W.a₁ ^ 4*x ^ 2*x₀ ^ 2 + 2*W.a₁ ^ 4*x*x₀ ^ 3 + W.a₁ ^ 4*x₀ ^ 4 + 2*W.a₁ ^ 3*W.a₃*x ^ 2*x₀
+      + 8*W.a₁ ^ 3*W.a₃*x*x₀ ^ 2 + 6*W.a₁ ^ 3*W.a₃*x₀ ^ 3 + 16*W.a₁ ^ 3*x*x₀ ^ 2*y₀
+      + 16*W.a₁ ^ 3*x₀ ^ 3*y₀ + 8*W.a₁ ^ 2*W.a₂*x ^ 2*x₀ ^ 2 - 8*W.a₁ ^ 2*W.a₂*x₀ ^ 4
+      + W.a₁ ^ 2*W.a₃ ^ 2*x ^ 2 + 10*W.a₁ ^ 2*W.a₃ ^ 2*x*x₀ + 13*W.a₁ ^ 2*W.a₃ ^ 2*x₀ ^ 2
+      + 32*W.a₁ ^ 2*W.a₃*x*x₀*y₀ + 64*W.a₁ ^ 2*W.a₃*x₀ ^ 2*y₀ + 4*W.a₁ ^ 2*W.a₄*x ^ 2*x₀
+      - 4*W.a₁ ^ 2*W.a₄*x₀ ^ 3 - 2*W.a₁ ^ 2*x ^ 4*x₀ + 4*W.a₁ ^ 2*x ^ 3*x₀ ^ 2
+      + 12*W.a₁ ^ 2*x ^ 2*x₀ ^ 3 - 4*W.a₁ ^ 2*x*x₀ ^ 4 + 16*W.a₁ ^ 2*x*x₀*y₀ ^ 2
+      - 10*W.a₁ ^ 2*x₀ ^ 5 + 80*W.a₁ ^ 2*x₀ ^ 2*y₀ ^ 2 + 8*W.a₁*W.a₂*W.a₃*x ^ 2*x₀
+      + 16*W.a₁*W.a₂*W.a₃*x*x₀ ^ 2 - 24*W.a₁*W.a₂*W.a₃*x₀ ^ 3 + 64*W.a₁*W.a₂*x*x₀ ^ 2*y₀
+      - 64*W.a₁*W.a₂*x₀ ^ 3*y₀ + 4*W.a₁*W.a₃ ^ 3*x + 12*W.a₁*W.a₃ ^ 3*x₀ + 16*W.a₁*W.a₃ ^ 2*x*y₀
+      + 80*W.a₁*W.a₃ ^ 2*x₀*y₀ + 4*W.a₁*W.a₃*W.a₄*x ^ 2 + 8*W.a₁*W.a₃*W.a₄*x*x₀
+      - 12*W.a₁*W.a₃*W.a₄*x₀ ^ 2 - 2*W.a₁*W.a₃*x ^ 4 + 24*W.a₁*W.a₃*x ^ 2*x₀ ^ 2
+      + 8*W.a₁*W.a₃*x*x₀ ^ 3 + 16*W.a₁*W.a₃*x*y₀ ^ 2 - 30*W.a₁*W.a₃*x₀ ^ 4
+      + 176*W.a₁*W.a₃*x₀*y₀ ^ 2 + 32*W.a₁*W.a₄*x*x₀*y₀ - 32*W.a₁*W.a₄*x₀ ^ 2*y₀
+      - 16*W.a₁*x ^ 3*x₀*y₀ + 48*W.a₁*x ^ 2*x₀ ^ 2*y₀ + 48*W.a₁*x*x₀ ^ 3*y₀ - 80*W.a₁*x₀ ^ 4*y₀
+      + 128*W.a₁*x₀*y₀ ^ 3 + 16*W.a₂ ^ 2*x ^ 2*x₀ ^ 2 - 32*W.a₂ ^ 2*x*x₀ ^ 3 + 16*W.a₂ ^ 2*x₀ ^ 4
+      + 16*W.a₂*W.a₃ ^ 2*x*x₀ - 16*W.a₂*W.a₃ ^ 2*x₀ ^ 2 + 64*W.a₂*W.a₃*x*x₀*y₀
+      - 64*W.a₂*W.a₃*x₀ ^ 2*y₀ + 16*W.a₂*W.a₄*x ^ 2*x₀ - 32*W.a₂*W.a₄*x*x₀ ^ 2
+      + 16*W.a₂*W.a₄*x₀ ^ 3 - 8*W.a₂*x ^ 4*x₀ + 32*W.a₂*x ^ 3*x₀ ^ 2 - 64*W.a₂*x*x₀ ^ 4
+      + 64*W.a₂*x*x₀*y₀ ^ 2 + 40*W.a₂*x₀ ^ 5 - 64*W.a₂*x₀ ^ 2*y₀ ^ 2 + 4*W.a₃ ^ 4 + 32*W.a₃ ^ 3*y₀
+      + 8*W.a₃ ^ 2*W.a₄*x - 8*W.a₃ ^ 2*W.a₄*x₀ - 4*W.a₃ ^ 2*x ^ 3 + 12*W.a₃ ^ 2*x ^ 2*x₀
+      + 12*W.a₃ ^ 2*x*x₀ ^ 2 - 20*W.a₃ ^ 2*x₀ ^ 3 + 96*W.a₃ ^ 2*y₀ ^ 2 + 32*W.a₃*W.a₄*x*y₀
+      - 32*W.a₃*W.a₄*x₀*y₀ - 16*W.a₃*x ^ 3*y₀ + 48*W.a₃*x ^ 2*x₀*y₀ + 48*W.a₃*x*x₀ ^ 2*y₀
+      - 80*W.a₃*x₀ ^ 3*y₀ + 128*W.a₃*y₀ ^ 3 + 4*W.a₄ ^ 2*x ^ 2 - 8*W.a₄ ^ 2*x*x₀
+      + 4*W.a₄ ^ 2*x₀ ^ 2 - 4*W.a₄*x ^ 4 + 16*W.a₄*x ^ 3*x₀ - 32*W.a₄*x*x₀ ^ 3 + 32*W.a₄*x*y₀ ^ 2
+      + 20*W.a₄*x₀ ^ 4 - 32*W.a₄*x₀*y₀ ^ 2 + x ^ 6 - 6*x ^ 5*x₀ + 3*x ^ 4*x₀ ^ 2 + 28*x ^ 3*x₀ ^ 3
+      - 16*x ^ 3*y₀ ^ 2 - 21*x ^ 2*x₀ ^ 4 + 48*x ^ 2*x₀*y₀ ^ 2 - 30*x*x₀ ^ 5 + 48*x*x₀ ^ 2*y₀ ^ 2
+      + 25*x₀ ^ 6 - 80*x₀ ^ 3*y₀ ^ 2 + 64*y₀ ^ 4) * hP
+    + (2*W.a₁ ^ 4*x ^ 3*x₀ - 4*W.a₁ ^ 4*x ^ 2*x₀ ^ 2 - 2*W.a₁ ^ 4*x*x₀ ^ 3 + 2*W.a₁ ^ 3*W.a₃*x ^ 3
+      - 2*W.a₁ ^ 3*W.a₃*x ^ 2*x₀ - 14*W.a₁ ^ 3*W.a₃*x*x₀ ^ 2 - 2*W.a₁ ^ 3*W.a₃*x₀ ^ 3
+      + 12*W.a₁ ^ 3*x ^ 2*x₀*y₀ - 40*W.a₁ ^ 3*x*x₀ ^ 2*y₀ - 4*W.a₁ ^ 3*x₀ ^ 3*y₀
+      + 16*W.a₁ ^ 2*W.a₂*x ^ 3*x₀ - 44*W.a₁ ^ 2*W.a₂*x ^ 2*x₀ ^ 2 + 24*W.a₁ ^ 2*W.a₂*x*x₀ ^ 3
+      + 4*W.a₁ ^ 2*W.a₂*x₀ ^ 4 + 2*W.a₁ ^ 2*W.a₃ ^ 2*x ^ 2 - 16*W.a₁ ^ 2*W.a₃ ^ 2*x*x₀
+      - 10*W.a₁ ^ 2*W.a₃ ^ 2*x₀ ^ 2 + 12*W.a₁ ^ 2*W.a₃*x ^ 2*y₀ - 56*W.a₁ ^ 2*W.a₃*x*x₀*y₀
+      - 52*W.a₁ ^ 2*W.a₃*x₀ ^ 2*y₀ + 4*W.a₁ ^ 2*W.a₄*x ^ 3 - 16*W.a₁ ^ 2*W.a₄*x ^ 2*x₀
+      + 12*W.a₁ ^ 2*W.a₄*x*x₀ ^ 2 + 12*W.a₁ ^ 2*W.a₆*x ^ 2 - 24*W.a₁ ^ 2*W.a₆*x*x₀
+      + 12*W.a₁ ^ 2*W.a₆*x₀ ^ 2 - 6*W.a₁ ^ 2*x ^ 5 + 32*W.a₁ ^ 2*x ^ 4*x₀
+      - 28*W.a₁ ^ 2*x ^ 3*x₀ ^ 2 - 12*W.a₁ ^ 2*x ^ 2*x₀ ^ 3 + 12*W.a₁ ^ 2*x ^ 2*y₀ ^ 2
+      - 14*W.a₁ ^ 2*x*x₀ ^ 4 - 40*W.a₁ ^ 2*x*x₀*y₀ ^ 2 + 28*W.a₁ ^ 2*x₀ ^ 5
+      - 68*W.a₁ ^ 2*x₀ ^ 2*y₀ ^ 2 + 8*W.a₁*W.a₂*W.a₃*x ^ 3 - 8*W.a₁*W.a₂*W.a₃*x ^ 2*x₀
+      - 40*W.a₁*W.a₂*W.a₃*x*x₀ ^ 2 + 40*W.a₁*W.a₂*W.a₃*x₀ ^ 3 + 48*W.a₁*W.a₂*x ^ 2*x₀*y₀
+      - 160*W.a₁*W.a₂*x*x₀ ^ 2*y₀ + 112*W.a₁*W.a₂*x₀ ^ 3*y₀ - 4*W.a₁*W.a₃ ^ 3*x
+      - 12*W.a₁*W.a₃ ^ 3*x₀ - 16*W.a₁*W.a₃ ^ 2*x*y₀ - 80*W.a₁*W.a₃ ^ 2*x₀*y₀
+      - 16*W.a₁*W.a₃*W.a₄*x ^ 2 + 16*W.a₁*W.a₃*W.a₄*x*x₀ + 2*W.a₁*W.a₃*x ^ 4 + 24*W.a₁*W.a₃*x ^ 3*x₀
+      + 12*W.a₁*W.a₃*x ^ 2*x₀ ^ 2 - 152*W.a₁*W.a₃*x*x₀ ^ 3 - 16*W.a₁*W.a₃*x*y₀ ^ 2
+      + 114*W.a₁*W.a₃*x₀ ^ 4 - 176*W.a₁*W.a₃*x₀*y₀ ^ 2 - 32*W.a₁*W.a₄*x*x₀*y₀
+      + 32*W.a₁*W.a₄*x₀ ^ 2*y₀ + 16*W.a₁*x ^ 3*x₀*y₀ + 96*W.a₁*x ^ 2*x₀ ^ 2*y₀
+      - 336*W.a₁*x*x₀ ^ 3*y₀ + 224*W.a₁*x₀ ^ 4*y₀ - 128*W.a₁*x₀*y₀ ^ 3 + 32*W.a₂ ^ 2*x ^ 3*x₀
+      - 112*W.a₂ ^ 2*x ^ 2*x₀ ^ 2 + 128*W.a₂ ^ 2*x*x₀ ^ 3 - 48*W.a₂ ^ 2*x₀ ^ 4
+      + 24*W.a₂*W.a₃ ^ 2*x ^ 2 - 64*W.a₂*W.a₃ ^ 2*x*x₀ + 40*W.a₂*W.a₃ ^ 2*x₀ ^ 2
+      + 48*W.a₂*W.a₃*x ^ 2*y₀ - 160*W.a₂*W.a₃*x*x₀*y₀ + 112*W.a₂*W.a₃*x₀ ^ 2*y₀ + 16*W.a₂*W.a₄*x ^ 3
+      - 64*W.a₂*W.a₄*x ^ 2*x₀ + 80*W.a₂*W.a₄*x*x₀ ^ 2 - 32*W.a₂*W.a₄*x₀ ^ 3 + 48*W.a₂*W.a₆*x ^ 2
+      - 96*W.a₂*W.a₆*x*x₀ + 48*W.a₂*W.a₆*x₀ ^ 2 - 24*W.a₂*x ^ 5 + 128*W.a₂*x ^ 4*x₀
+      - 128*W.a₂*x ^ 3*x₀ ^ 2 - 144*W.a₂*x ^ 2*x₀ ^ 3 + 48*W.a₂*x ^ 2*y₀ ^ 2 + 280*W.a₂*x*x₀ ^ 4
+      - 160*W.a₂*x*x₀*y₀ ^ 2 - 112*W.a₂*x₀ ^ 5 + 112*W.a₂*x₀ ^ 2*y₀ ^ 2 - 4*W.a₃ ^ 4
+      - 32*W.a₃ ^ 3*y₀ - 8*W.a₃ ^ 2*W.a₄*x + 8*W.a₃ ^ 2*W.a₄*x₀ + 4*W.a₃ ^ 2*x ^ 3
+      + 60*W.a₃ ^ 2*x ^ 2*x₀ - 156*W.a₃ ^ 2*x*x₀ ^ 2 + 92*W.a₃ ^ 2*x₀ ^ 3 - 96*W.a₃ ^ 2*y₀ ^ 2
+      - 32*W.a₃*W.a₄*x*y₀ + 32*W.a₃*W.a₄*x₀*y₀ + 16*W.a₃*x ^ 3*y₀ + 96*W.a₃*x ^ 2*x₀*y₀
+      - 336*W.a₃*x*x₀ ^ 2*y₀ + 224*W.a₃*x₀ ^ 3*y₀ - 128*W.a₃*y₀ ^ 3 - 16*W.a₄ ^ 2*x ^ 2
+      + 32*W.a₄ ^ 2*x*x₀ - 16*W.a₄ ^ 2*x₀ ^ 2 + 4*W.a₄*x ^ 4 + 32*W.a₄*x ^ 3*x₀
+      - 72*W.a₄*x ^ 2*x₀ ^ 2 + 32*W.a₄*x*x₀ ^ 3 - 32*W.a₄*x*y₀ ^ 2 + 4*W.a₄*x₀ ^ 4
+      + 32*W.a₄*x₀*y₀ ^ 2 + 144*W.a₆*x ^ 2*x₀ - 288*W.a₆*x*x₀ ^ 2 + 144*W.a₆*x₀ ^ 3 - 72*x ^ 5*x₀
+      + 372*x ^ 4*x₀ ^ 2 - 624*x ^ 3*x₀ ^ 3 + 16*x ^ 3*y₀ ^ 2 + 360*x ^ 2*x₀ ^ 4
+      + 96*x ^ 2*x₀*y₀ ^ 2 + 24*x*x₀ ^ 5 - 336*x*x₀ ^ 2*y₀ ^ 2 - 60*x₀ ^ 6 + 224*x₀ ^ 3*y₀ ^ 2
+      - 64*y₀ ^ 4) * hQ
 
 end PsiCofactor
 section PsiField
@@ -1629,7 +1694,6 @@ section GeneralOrbitSum
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 theorem veluY_eq_add_sum_singleton (S : Finset (F × F)) (x y : F) :
     W.veluY S x y = y + ∑ P ∈ S, (W.veluY {P} x y - y) := by
   simp only [veluY, Finset.sum_singleton, sub_sub_cancel_left, Finset.sum_neg_distrib]
@@ -1660,7 +1724,6 @@ section GeneralOrbitSum
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 theorem veluX_eq_add_sum_singleton (S : Finset (F × F)) (x : F) :
     W.veluX S x = x + ∑ P ∈ S, (W.veluX {P} x - x) := by
   simp only [veluX, Finset.sum_singleton, add_sub_cancel_left]
@@ -1808,7 +1871,8 @@ section FunctionFieldLift
 
 variable {F : Type*} [Field F] (W : Affine F)
 
-@[expose] public def liftSummingSet (S : Finset (F × F)) : Finset (W.FunctionField × W.FunctionField) :=
+@[expose] public def liftSummingSet
+    (S : Finset (F × F)) : Finset (W.FunctionField × W.FunctionField) :=
   S.map ⟨Prod.map (algebraMap F W.FunctionField) (algebraMap F W.FunctionField),
     (algebraMap F W.FunctionField).injective.prodMap (algebraMap F W.FunctionField).injective⟩
 
@@ -2044,7 +2108,6 @@ def addYFun : W.FunctionField :=
     ((W.map ι).slope (polyToFunctionField W X) (ι a) (yGen W) (ι b))
 
 variable {a b} in
-
 theorem equation_map_addFun (hA : W.Equation a b) :
     (W.map ι).Equation (W.addXFun a b) (W.addYFun a b) :=
   Affine.equation_add (W := (W.map ι).toAffine)
@@ -2052,7 +2115,6 @@ theorem equation_map_addFun (hA : W.Equation a b) :
     (fun h => polyToFunctionField_X_ne_algebraMap a h.1)
 
 variable {a b} in
-
 theorem eval₂_polynomial_addFun (hA : W.Equation a b) :
     W.polynomial.eval₂
       (Polynomial.aeval (R := F) (W.addXFun a b)).toRingHom (W.addYFun a b) = 0 := by
@@ -2108,7 +2170,7 @@ theorem addFun_ne_mapPoint (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b) :
     ¬ (W.addXFun a b = ι a ∧ W.addYFun a b = ι b) := by
   intro ⟨hX, hY⟩
   have heq : Affine.Point.some _ _ (nonsingular_map_addFun hΔ hA) = mapPoint hΔ hA := by
-    show Affine.Point.some _ _ _ = Affine.Point.some _ _ _
+    change Affine.Point.some _ _ _ = Affine.Point.some _ _ _
     simp only [Affine.Point.some.injEq]; exact ⟨hX, hY⟩
   have h0 : genericPoint' hΔ + mapPoint hΔ hA = 0 + mapPoint hΔ hA := by
     rw [zero_add]; exact (genericPoint'_add_map hΔ hA).trans heq
@@ -2117,7 +2179,7 @@ theorem addFun_ne_mapPoint (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b) :
 theorem neg_mapPoint_eq (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b) :
     -(mapPoint hΔ hA) = Affine.Point.some (ι a) (ι (W.negY a b))
       (nonsingular_map_algebraMap hΔ (equation_neg_mapPoint hA)) := by
-  show Affine.Point.some (ι a) ((W.map ι).negY (ι a) (ι b)) _ = _
+  change Affine.Point.some (ι a) ((W.map ι).negY (ι a) (ι b)) _ = _
   congr 1
   exact map_negY ι a b
 
@@ -2168,7 +2230,7 @@ def translationCoordHom : W.CoordinateRing →ₐ[F] W.FunctionField where
     (Polynomial.aeval (R := F) (W.addXFun a b)).toRingHom
     (W.addYFun a b) (eval₂_polynomial_addFun W hA)
   commutes' c := by
-    show AdjoinRoot.lift _ _ (eval₂_polynomial_addFun W hA) (algebraMap F _ c)
+    change AdjoinRoot.lift _ _ (eval₂_polynomial_addFun W hA) (algebraMap F _ c)
       = algebraMap F W.FunctionField c
     rw [CoordinateRing.algebraMap_eq_mk_C_C, AdjoinRoot.lift_mk, eval₂_C]
     exact Polynomial.aeval_C _ c
@@ -2182,7 +2244,7 @@ theorem translationCoordHom_comp_algebraMap :
     (translationCoordHom hA).toRingHom.comp (algebraMap F[X] W.CoordinateRing)
       = (Polynomial.aeval (R := F) (W.addXFun a b)).toRingHom := by
   refine RingHom.ext fun p => ?_
-  show translationCoordHom hA (algebraMap F[X] _ p) = _
+  change translationCoordHom hA (algebraMap F[X] _ p) = _
   rw [algebraMap_polynomial_eq_mk_C, translationCoordHom_mk, eval₂_C]
 
 @[scoped simp] theorem translationCoordHom_XClass :
@@ -2228,7 +2290,6 @@ theorem slope_mem_intermediateField {K : IntermediateField F W.FunctionField}
   · exact div_mem (sub_mem hy₁ hy₂) (sub_mem hx₁ hx₂)
 
 include hΔ hA in
-
 theorem polyToFunctionField_X_mem_adjoin_addFun :
     polyToFunctionField W X
       ∈ IntermediateField.adjoin F ({W.addXFun a b, W.addYFun a b} : Set W.FunctionField) := by
@@ -2238,14 +2299,13 @@ theorem polyToFunctionField_X_mem_adjoin_addFun :
   have hY' : W.addYFun a b ∈ K := IntermediateField.subset_adjoin F _ (Or.inr rfl)
   have hF : ∀ c : F, ι c ∈ K := fun c => (algebraMap F K c).2
   have hslope := slope_mem_intermediateField (W := W) hX' (hF a) hY' (hF (W.negY a b))
-  show (W.map ι).addX (W.addXFun a b) (ι a) _ ∈ K
+  change (W.map ι).addX (W.addXFun a b) (ι a) _ ∈ K
   rw [Affine.addX]
   simp only [map_a₁, map_a₂]
   exact sub_mem (sub_mem (sub_mem (add_mem (pow_mem hslope 2) (mul_mem (hF _) hslope))
     (hF _)) hX') (hF _)
 
 include hΔ hA in
-
 theorem yGen_mem_adjoin_addFun :
     yGen W
       ∈ IntermediateField.adjoin F ({W.addXFun a b, W.addYFun a b} : Set W.FunctionField) := by
@@ -2261,14 +2321,13 @@ theorem yGen_mem_adjoin_addFun :
     simp only [map_a₁, map_a₂]
     exact sub_mem (sub_mem (sub_mem (add_mem (pow_mem hslope 2) (mul_mem (hF _) hslope))
       (hF _)) hX') (hF _)
-  show (W.map ι).addY (W.addXFun a b) (ι a) (W.addYFun a b) _ ∈ K
+  change (W.map ι).addY (W.addXFun a b) (ι a) (W.addYFun a b) _ ∈ K
   rw [Affine.addY, Affine.negY, Affine.negAddY]
   simp only [map_a₁, map_a₃]
   exact sub_mem (sub_mem (neg_mem (add_mem (mul_mem hslope (sub_mem haddX hX')) hY'))
     (mul_mem (hF _) haddX)) (hF _)
 
 include hΔ hA in
-
 theorem adjoin_addFun_eq_top :
     IntermediateField.adjoin F ({W.addXFun a b, W.addYFun a b} : Set W.FunctionField) = ⊤ := by
   rw [eq_top_iff]
@@ -2304,7 +2363,6 @@ def AddXFunTranscendental (W : Affine F) (a b : F) : Prop :=
 variable (htr : AddXFunTranscendental W a b)
 
 include htr in
-
 theorem translationCoordHom_injective : Function.Injective (translationCoordHom hA) := by
   have hker : RingHom.ker (translationCoordHom hA).toRingHom = ⊥ := by
     have : Module.Finite F[X] W.CoordinateRing :=
@@ -2329,13 +2387,12 @@ theorem translationHom_algebraMap (r : W.CoordinateRing) :
 
 @[scoped simp] theorem translationHom_yGen :
     translationHom hA htr (yGen W) = W.addYFun a b := by
-  show translationHom hA htr (algebraMap _ _ (CoordinateRing.mk W Y)) = _
+  change translationHom hA htr (algebraMap _ _ (CoordinateRing.mk W Y)) = _
   rw [translationHom_algebraMap, translationCoordHom_YClass]
 
 variable (hΔ : W.Δ ≠ 0)
 
 include hΔ in
-
 theorem translationHom_surjective : Function.Surjective (translationHom hA htr) := by
   intro z
   have hz : z ∈ IntermediateField.adjoin F
@@ -2637,7 +2694,6 @@ section ClearedPoly
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 def veluKernelDenom (S : Finset (F × F)) : F[X] := ∏ A ∈ S, (X - C A.1)
 
 omit [DecidableEq F] in
@@ -2711,7 +2767,7 @@ end ClearedPoly
 
 section ArchetypeGeneralD
 
-variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
+variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 
 theorem veluDeficit_isConstant_constant_eq_zero_of_crossQuadProdDegLt [Infinite F]
     {S : Finset (F × F)} (hS : S.Nonempty) {c : F}
@@ -2723,6 +2779,7 @@ theorem veluDeficit_isConstant_constant_eq_zero_of_crossQuadProdDegLt [Infinite 
     (hM : ∀ ⦃r s : F⦄, W.toAffine.Equation r s → (∀ A ∈ S, r ≠ A.1) →
       W.veluDeficitCrossQuad S r s * (∏ A ∈ S, (r - A.1)) ^ 4 = M.eval r) :
     c = 0 := by
+  classical
   set D : F[X] := veluKernelDenom S with hD_def
   set P : F[X] := C c * D ^ 4 - W.veluDeficitSingletonSumClearedPoly S - M with hP_def
   have hroot : ∀ r ∈ ((S.image Prod.fst : Finset F) : Set F)ᶜ, P.IsRoot r := by
@@ -2931,12 +2988,11 @@ end TransportEngine
 
 section NonDegeneracy
 
-variable [DecidableEq F] (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
+variable (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
 
 local notation "ι" => algebraMap F W.FunctionField
 
 include hΔ hA in
-
 theorem addXFun_ne_algebraMap : W.addXFun a b ≠ ι a := by
   classical
   intro hX
@@ -2998,7 +3054,6 @@ section AlphaPoly
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 def veluXCorrNumPoly (A : F × F) : F[X] :=
   C (W.veluT A.1 A.2) * (X - C A.1) + C (W.veluU A.1 A.2)
 
@@ -3027,7 +3082,6 @@ theorem eval_veluXCorrPadPoly {S : Finset (F × F)} {A : F × F} (hA : A ∈ S) 
 def veluXCorrSumPadPoly (S : Finset (F × F)) : F[X] := ∑ A ∈ S, W.veluXCorrPadPoly S A
 
 omit [DecidableEq F] in
-
 lemma veluX_sub_self_eq_sum_singleton (S : Finset (F × F)) (r : F) :
     W.veluX S r - r = ∑ A ∈ S, (W.veluX {A} r - r) := by
   simp only [veluX, Finset.sum_singleton, add_sub_cancel_left]
@@ -3069,7 +3123,6 @@ variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
   W.veluDeficitCrossQuad S r s - W.veluDeficitCrossQuadAlphaSq S r
 
 omit [DecidableEq F] in
-
 lemma veluDeficitCrossQuad_eq_alphaSq_add_cubeBeta (S : Finset (F × F)) (r s : F) :
     W.veluDeficitCrossQuad S r s
       = W.veluDeficitCrossQuadAlphaSq S r + W.veluDeficitCrossQuadCubeBeta S r s := by
@@ -3397,7 +3450,6 @@ public theorem kw_infinite_of_isAlgClosed : Infinite F := by
   exact one_ne_zero hx
 
 omit [DecidableEq F] in
-
 public theorem kw_hDDTerm :
     ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing :=
   fun _W hΔ => Affine.CoordinateRing.isDedekindDomain_of_Δ_ne_zero hΔ
@@ -3444,7 +3496,8 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 @[expose] public def veluDeficitCrossQuadAlphaCube (S : Finset (F × F)) (r : F) : F :=
   (W.veluX S r - r) ^ 3 - ∑ A ∈ S, (W.veluX {A} r - r) ^ 3
 
-@[expose] public def veluDeficitCrossQuadBetaOnly [DecidableEq F] (S : Finset (F × F)) (r s : F) : F :=
+@[expose] public def veluDeficitCrossQuadBetaOnly
+    [DecidableEq F] (S : Finset (F × F)) (r s : F) : F :=
   W.veluDeficitCrossQuadCubeBeta S r s + W.veluDeficitCrossQuadAlphaCube S r
 
 lemma veluDeficitCrossQuadCubeBeta_eq_betaOnly_sub_alphaCube [DecidableEq F]
@@ -3731,7 +3784,6 @@ local notation "y" => yGen W
 local notation "𝒪" => v.toValuationSubring
 
 include hS in
-
 theorem IsFinitePlace.veluX_liftSummingSet_mem_of_forall_XClass_notMem_centre :
     (W.map ι).veluX (W.liftSummingSet S) x ∈ 𝒪 := by
   unfold WeierstrassCurve.veluX WeierstrassCurve.liftSummingSet
@@ -3746,7 +3798,6 @@ theorem IsFinitePlace.veluX_liftSummingSet_mem_of_forall_XClass_notMem_centre :
     exact mul_mem (v.algebraMap_mem' _) (pow_mem hδ 2)
 
 include hS in
-
 theorem IsFinitePlace.veluY_liftSummingSet_mem_of_forall_XClass_notMem_centre :
     (W.map ι).veluY (W.liftSummingSet S) x y ∈ 𝒪 := by
   unfold WeierstrassCurve.veluY WeierstrassCurve.liftSummingSet
@@ -3771,7 +3822,6 @@ theorem IsFinitePlace.veluY_liftSummingSet_mem_of_forall_XClass_notMem_centre :
     exact mul_mem (sub_mem (mul_mem (hF _) (hF _)) (mul_mem (hF _) (hF _))) (pow_mem hδ 2)
 
 include hS in
-
 theorem IsFinitePlace.veluDeficitFun_mem_of_forall_XClass_notMem_centre :
     W.veluDeficitFun S ∈ 𝒪 := by
   unfold WeierstrassCurve.veluDeficitFun WeierstrassCurve.veluDeficit
@@ -3899,7 +3949,6 @@ public theorem yGen_mem_placeOfEquation :
   isFinitePlace_placeOfEquation hrs _
 
 include hrs in
-
 theorem evalAt_polyToFunctionField_X_placeOfEquation :
     (placeOfEquation hrs).evalAt (polyToFunctionField W X) = r := by
   have hX : XClass W r ∈ XYIdeal W r (C s) := Ideal.subset_span (Set.mem_insert _ _)
@@ -3915,7 +3964,6 @@ theorem evalAt_polyToFunctionField_X_placeOfEquation :
   exact h0
 
 include hrs in
-
 theorem evalAt_yGen_placeOfEquation :
     (placeOfEquation hrs).evalAt (yGen W) = s := by
   have hY : YClass W (C s) ∈ XYIdeal W r (C s) :=
@@ -3931,7 +3979,6 @@ theorem evalAt_yGen_placeOfEquation :
   exact h0
 
 include hrs in
-
 theorem evalAt_X_sub_const_placeOfEquation (c : F) :
     (placeOfEquation hrs).evalAt (polyToFunctionField W X - algebraMap F W.FunctionField c)
       = r - c := by
@@ -3941,7 +3988,6 @@ theorem evalAt_X_sub_const_placeOfEquation (c : F) :
     evalAt_polyToFunctionField_X_placeOfEquation hrs, Place.evalAt_algebraMap]
 
 include hrs in
-
 public theorem ord_X_sub_const_placeOfEquation_of_ne {c : F} (hrc : r ≠ c) :
     (placeOfEquation hrs).ord (polyToFunctionField W X - algebraMap F W.FunctionField c) = 0 := by
   have hbridge : polyToFunctionField W X - algebraMap F W.FunctionField c
@@ -3970,7 +4016,6 @@ lemma const_mem_placeOfEquation (c : F) :
   (placeOfEquation hrs).algebraMap_mem' c
 
 omit [IsDedekindDomain W.CoordinateRing] in
-
 lemma X_sub_const_ne_zero (c : F) :
     (polyToFunctionField W X - algebraMap F W.FunctionField c : W.FunctionField) ≠ 0 :=
   sub_ne_zero.mpr (polyToFunctionField_X_ne_algebraMap c)
@@ -3996,7 +4041,6 @@ lemma veluX_summand_mem (A : F × F) (hrA : r ≠ A.1) :
     exact mul_mem (const_mem_placeOfEquation hrs _) (pow_mem hδ 2)
 
 include hrs in
-
 public theorem evalAt_veluX_liftSummingSet_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1) :
     (placeOfEquation hrs).evalAt
         ((W.map (algebraMap F W.FunctionField)).veluX (W.liftSummingSet S)
@@ -4090,7 +4134,6 @@ lemma veluY_liftSummingSet_mem_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1) :
     (Subring.sum_mem _ fun A hA => veluY_summand_mem hrs A (hS A hA))
 
 include hrs in
-
 public theorem evalAt_veluY_liftSummingSet_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1) :
     (placeOfEquation hrs).evalAt
         ((W.map (algebraMap F W.FunctionField)).veluY (W.liftSummingSet S)
@@ -4152,7 +4195,7 @@ public theorem evalAt_veluY_liftSummingSet_placeOfEquation (hS : ∀ A ∈ S, r 
     (placeOfEquation hrs).evalAt_div' hv hN1 (pow_ne_zero 3 hδ0) (hδpow 3), hδpoweval 3,
     (placeOfEquation hrs).evalAt_div' hv hN2 (pow_ne_zero 2 hδ0) (hδpow 2), hδpoweval 2,
     (placeOfEquation hrs).evalAt_div' hv hN3 (pow_ne_zero 2 hδ0) (hδpow 2), hδpoweval 2]
-  congr 1; congr 1
+  congr 2
   · rw [(placeOfEquation hrs).evalAt_mul hv (hF _)
         (add_mem (add_mem (mul_mem (ofNat_mem _ 2) hY) (mul_mem (hF _) hX)) (hF _)),
       Place.evalAt_algebraMap,
@@ -4187,7 +4230,6 @@ variable [IsDedekindDomain W.CoordinateRing] {r s : F} (hrs : W.Equation r s)
   {S : Finset (F × F)}
 
 include hrs in
-
 theorem evalAt_veluDeficitFun_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1) :
     (placeOfEquation hrs).evalAt (W.veluDeficitFun S) = W.veluDeficit S r s := by
   have hv := isRational_placeOfEquation hrs
@@ -4335,7 +4377,6 @@ section BetaSCoeffPoly
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 def veluYCorrSCoeffNumPoly (A : F × F) : F[X] :=
   -(C (2 * W.veluU A.1 A.2) + C (W.veluT A.1 A.2) * (X - C A.1))
 
@@ -4363,7 +4404,6 @@ theorem eval_veluYCorrSCoeffPadPoly {S : Finset (F × F)} {A : F × F} (hA : A �
 def veluYCorrSCoeffSumPadPoly (S : Finset (F × F)) : F[X] := ∑ A ∈ S, W.veluYCorrSCoeffPadPoly S A
 
 omit [DecidableEq F] in
-
 lemma veluY_sub_self_sLinear (S : Finset (F × F)) (r s : F) :
     (W.veluY S r s - s) - (W.veluY S r 0 - 0)
       = (∑ A ∈ S, -(2 * W.veluU A.1 A.2 / (r - A.1) ^ 3
@@ -4373,7 +4413,6 @@ lemma veluY_sub_self_sLinear (S : Finset (F × F)) (r s : F) :
   exact Finset.sum_congr rfl fun A _ => by ring
 
 omit [DecidableEq F] in
-
 theorem veluY_singleton_sub_sLinear (A : F × F) (r s : F) :
     (W.veluY {A} r s - s) - (W.veluY {A} r 0 - 0)
       = -(2 * W.veluU A.1 A.2 / (r - A.1) ^ 3 + W.veluT A.1 A.2 / (r - A.1) ^ 2) * s := by
@@ -4428,18 +4467,18 @@ section Transcendence
 variable {W : Affine F} {a b : F}
 
 theorem isIntegral_addYFun_adjoin_addXFun (hA : W.Equation a b) :
-    _root_.IsIntegral (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) (W.addYFun a b) := by
+    IsIntegral (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) (W.addYFun a b) := by
   set R := Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)
   have hmem : ∀ p : F[X], (Polynomial.aeval (R := F) (W.addXFun a b)).toRingHom p ∈ R := by
     intro p
-    show Polynomial.aeval (R := F) (W.addXFun a b) p ∈ R
+    change Polynomial.aeval (R := F) (W.addXFun a b) p ∈ R
     rw [show R = Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField) from rfl,
       Algebra.adjoin_singleton_eq_range_aeval]
     exact ⟨p, rfl⟩
   let φ : F[X] →+* R :=
     (Polynomial.aeval (R := F) (W.addXFun a b)).toRingHom.codRestrict R.toSubring hmem
   refine ⟨W.polynomial.map φ, monic_polynomial.map φ, ?_⟩
-  show Polynomial.eval₂ (algebraMap R W.FunctionField) (W.addYFun a b) (W.polynomial.map φ) = 0
+  change Polynomial.eval₂ (algebraMap R W.FunctionField) (W.addYFun a b) (W.polynomial.map φ) = 0
   rw [Polynomial.eval₂_map]
   exact eval₂_polynomial_addFun W hA
 
@@ -4562,7 +4601,6 @@ section BetaConstPoly
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 def veluYCorrConstNumPoly (A : F × F) : F[X] :=
   -(C (W.veluU A.1 A.2) * (C W.a₁ * X + C W.a₃))
     - (C (W.veluT A.1 A.2) * (C W.a₁ * (X - C A.1) - C A.2)
@@ -4754,8 +4792,8 @@ theorem liftSummingSet_map_algHom (τ : W.FunctionField →ₐ[F] W.FunctionFiel
   rw [Finset.map_map]
   congr 1
   refine Function.Embedding.ext fun ⟨c, d⟩ => ?_
-  show (τ.toRingHom (algebraMap F W.FunctionField c), τ.toRingHom (algebraMap F W.FunctionField d))
-    = (algebraMap F W.FunctionField c, algebraMap F W.FunctionField d)
+  change (τ.toRingHom (algebraMap F W.FunctionField c), τ.toRingHom (algebraMap F W.FunctionField
+    d)) = (algebraMap F W.FunctionField c, algebraMap F W.FunctionField d)
   rw [show τ.toRingHom (algebraMap F W.FunctionField c) = algebraMap F W.FunctionField c from
         τ.commutes c,
       show τ.toRingHom (algebraMap F W.FunctionField d) = algebraMap F W.FunctionField d from
@@ -4862,14 +4900,14 @@ variable {F : Type u} [Field F] {W : Affine F}
 
 section InverseOnX
 
-variable [DecidableEq F] (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
+variable (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
 
 local notation "ι" => algebraMap F W.FunctionField
 
 include hΔ hA in
-
 theorem translationAlgEquivOf_addXFun_negY :
     translationAlgEquivOf hΔ hA (W.addXFun a (W.negY a b)) = polyToFunctionField W X := by
+  classical
   have key := addFun_neg_cancel_X hΔ hA
   rw [Affine.slope_of_X_ne (addXFun_ne_algebraMap hΔ hA)] at key
   rw [addXFun, Affine.slope_of_X_ne (polyToFunctionField_X_ne_algebraMap a)]
@@ -4883,7 +4921,6 @@ theorem translationAlgEquivOf_addXFun_negY :
   exact key
 
 include hΔ hA in
-
 theorem translationAlgEquivOf_symm_polyToFunctionField_X :
     (translationAlgEquivOf hΔ hA).symm (polyToFunctionField W X)
       = W.addXFun a (W.negY a b) :=
@@ -4898,7 +4935,6 @@ variable [DecidableEq F]
 local notation "ι" => algebraMap F W.FunctionField
 
 omit [DecidableEq F] in
-
 lemma algebraMap_XClass_eq (c : F) :
     algebraMap W.CoordinateRing W.FunctionField (XClass W c)
       = polyToFunctionField W X - ι c := by
@@ -4906,17 +4942,15 @@ lemma algebraMap_XClass_eq (c : F) :
     ← polyToFunctionField_apply, map_sub, polyToFunctionField_C]
 
 omit [DecidableEq F] in
-
 lemma algebraMap_YClass_eq (c : F) :
     algebraMap W.CoordinateRing W.FunctionField (YClass W (C c)) = yGen W - ι c := by
   have h1 : (YClass W (C c) : W.CoordinateRing)
       = CoordinateRing.mk W Y - algebraMap F[X] W.CoordinateRing (C c) := by
-    show CoordinateRing.mk W (Y - C (C c)) = _
+    change CoordinateRing.mk W (Y - C (C c)) = _
     rw [map_sub]; rfl
   rw [h1, map_sub, ← polyToFunctionField_apply, polyToFunctionField_C]; rfl
 
 omit [DecidableEq F] in
-
 theorem addXFun_negY_notMem_of_XClass_mem_centre {a b : F}
     {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v)
     (hX : XClass W a ∈ hv.centre) (hY : YClass W (C (W.negY a b)) ∉ hv.centre) :
@@ -4973,7 +5007,7 @@ end Pole
 
 section CombinedDischarge
 
-variable [DecidableEq F] (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
+variable (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
 
 theorem not_isFinitePlace_translationAlgEquivOf_smul_of_centre
     {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v)
@@ -5417,7 +5451,6 @@ section S2Reduction
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 def veluWeierstrassCubicPoly : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆
 
 omit [DecidableEq F] in
@@ -5425,7 +5458,6 @@ lemma veluWeierstrassCubicPoly_natDegree_le : W.veluWeierstrassCubicPoly.natDegr
   unfold veluWeierstrassCubicPoly; compute_degree
 
 omit [DecidableEq F] in
-
 theorem sq_eq_veluWeierstrassCubicPoly_sub_of_equation {r s : F} (hrs : W.toAffine.Equation r s) :
     s ^ 2 = W.veluWeierstrassCubicPoly.eval r - (W.a₁ * r + W.a₃) * s := by
   have heq := (Affine.equation_iff r s).mp hrs
@@ -5546,7 +5578,7 @@ variable {k : Type*} [Field k] (f : F →+* k) {W : WeierstrassCurve F}
 theorem coordsOrZero_ratPointMap (P : W.toAffine.Point) :
     (ratPointMap f P).coordsOrZero = (f P.coordsOrZero.1, f P.coordsOrZero.2) := by
   rcases P with _ | ⟨x, y, h⟩
-  · show ((0, 0) : k × k) = (f 0, f 0); rw [_root_.map_zero]
+  · change ((0, 0) : k × k) = (f 0, f 0); rw [_root_.map_zero]
   · rfl
 
 end CoordsAPI
@@ -5744,7 +5776,7 @@ theorem kw_veluX_oddOrderSummingSet_eq_sum_Icc_odd (hp3 : 3 ≤ p) (hpodd : Odd 
   have hIcc : (Finset.Icc 1 d).card = d := by rw [Nat.card_Icc]; omega
   have hinj : Set.InjOn (fun k : ℕ => (k • Q).coordsOrZero) (Finset.Icc 1 d) := by
     rw [← Finset.card_image_iff]; exact hcard.trans hIcc.symm
-  show ∑ A ∈ W.oddOrderSummingSet Q d, _ = _
+  change ∑ A ∈ W.oddOrderSummingSet Q d, _ = _
   rw [oddOrderSummingSet, Finset.sum_image (fun a ha b hb => hinj ha hb)]
   refine Finset.sum_congr rfl fun k hk => ?_
   rw [Finset.mem_Icc] at hk
@@ -5856,7 +5888,7 @@ theorem kw_veluY_oddOrderSummingSet_eq_sum_Icc_odd (hp3 : 3 ≤ p) (hpodd : Odd 
   have hIcc : (Finset.Icc 1 d).card = d := by rw [Nat.card_Icc]; omega
   have hinj : Set.InjOn (fun k : ℕ => (k • Q).coordsOrZero) (Finset.Icc 1 d) := by
     rw [← Finset.card_image_iff]; exact hcard.trans hIcc.symm
-  show ∑ A ∈ W.oddOrderSummingSet Q d, _ = _
+  change ∑ A ∈ W.oddOrderSummingSet Q d, _ = _
   rw [oddOrderSummingSet, Finset.sum_image (fun a ha b hb => hinj ha hb)]
   refine Finset.sum_congr rfl fun k hk => ?_
   rw [Finset.mem_Icc] at hk
@@ -6011,7 +6043,6 @@ theorem kw_mem_zmultiples_of_abscissa_mem_oddOrderSummingSet_odd (hp3 : 3 ≤ p)
       exact kw_vdcoog_some_congr hax.symm hby.symm _ _⟩
 
 variable (F : Type*) [Field F] [DecidableEq F] in
-
 theorem kw_veluDeficitFunKernelTranslationFixesAt_odd {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitFunKernelTranslationFixesAt F p := by
   intro W hΔ x₀ y₀ h₀ hord a b hab hA
@@ -6034,12 +6065,11 @@ theorem kw_veluDeficitFunKernelTranslationFixesAt_odd {p : ℕ} (hp3 : 3 ≤ p) 
     rw [add_sub_cancel_left]
     obtain ⟨n, hn⟩ := AddSubgroup.mem_zmultiples_iff.mp hAmem
     exact AddSubgroup.mem_zmultiples_iff.mpr ⟨n, by
-      show n • Q' = ratPointHom (W₀ := W) ι (Affine.Point.some a b hab')
+      change n • Q' = ratPointHom (W₀ := W) ι (Affine.Point.some a b hab')
       rw [← hn, ← map_zsmul]⟩
   exact kw_veluDeficit_eq_of_sub_mem_zmultiples_odd hp3 hpodd hord' hPmem hdiff
 
 variable (F : Type*) [Field F] [DecidableEq F] in
-
 theorem kw_veluDeficitFunOrdNonnegAtInftyAt_odd {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitFunOrdNonnegAtInftyAt F p := by
   intro W _hΔ x₀ y₀ h₀ hord v hv
@@ -6047,7 +6077,6 @@ theorem kw_veluDeficitFunOrdNonnegAtInftyAt_odd {p : ℕ} (hp3 : 3 ≤ p) (hpodd
     (kw_isOddVeluSet_oddOrderSummingSet_odd hp3 hpodd hord le_rfl).equation
 
 variable (F : Type*) [Field F] [DecidableEq F] [IsAlgClosed F] in
-
 theorem kw_veluDeficitFunKernelTranslationYNotCentreAt_odd
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
     {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
@@ -6063,7 +6092,6 @@ theorem kw_veluDeficitFunKernelTranslationYNotCentreAt_odd
   exact ⟨A.1, b, hab, ⟨A, hA, rfl⟩, hXcen, hYcen⟩
 
 variable (F : Type*) [Field F] [DecidableEq F] [IsAlgClosed F] in
-
 public theorem kw_veluDeficitFunOrdNonnegAt_odd
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
     {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
@@ -6082,7 +6110,8 @@ section ConstantIsZero
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
-public theorem kw_veluDeficitCrossQuadBetaSqDecompDegLtAt_odd {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
+public theorem kw_veluDeficitCrossQuadBetaSqDecompDegLtAt_odd
+    {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitCrossQuadBetaSqDecompDegLtAt F p := by
   intro W hΔ x₀ y₀ h₀ hord
   have hodd : p % 2 = 1 := Nat.odd_iff.mp hpodd

@@ -68,10 +68,10 @@ namespace P2MW.S_ModularCurve_restrict_eq_jLinePlaceInfty_iff
 open IntermediateField AlgebraicCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jAdjoinAlgebra jLinePlaceInfty jq modularFunctionField jq_mem jGen eq_jLinePlaceInfty_iff_ord_jGen_neg"
+p2m_export "ModularCurve" "jAdjoinAlgebra jLinePlaceInfty jq modularFunctionField jq_mem jGen \
+  eq_jLinePlaceInfty_iff_ord_jGen_neg"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 theorem ModularCurve.RestrictAux.ord_algebraMap_pos_iff (N : ℕ) [NeZero N] :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
@@ -120,6 +120,7 @@ theorem ModularCurve.restrict_eq_jLinePlaceInfty_iff (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceInfty ↔
-        w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) < 0 := _root_.P2MW.S_ModularCurve_restrict_eq_jLinePlaceInfty_iff.solution N
+        w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) < 0 :=
+  solution N
 
 end publicSection

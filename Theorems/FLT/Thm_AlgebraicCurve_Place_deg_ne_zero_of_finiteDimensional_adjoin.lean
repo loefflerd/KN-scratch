@@ -60,20 +60,25 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_deg_ne_zero_of_finiteDimensional_adjoin
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
-    (x : F) (hx : Transcendental K x) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
+    (x : F) (hx : Transcendental K x)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (v : AlgebraicCurve.Place K F) : v.deg ≠ 0 := by
   classical
-  have hinj : Function.Injective (Polynomial.aeval x : Polynomial K →ₐ[K] F) := transcendental_iff_injective.mp hx
+  have hinj : Function.Injective (Polynomial.aeval x : Polynomial K →ₐ[K] F) :=
+    transcendental_iff_injective.mp hx
   let lift : RatFunc K →ₐ[K] F :=
     RatFunc.liftAlgHom (Polynomial.aeval x) (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj)
-  have hlift : ∀ p : Polynomial K, lift (algebraMap (Polynomial K) (RatFunc K) p) = Polynomial.aeval x p := fun p => by
+  have hlift : ∀ p : Polynomial K, lift (algebraMap (Polynomial K) (RatFunc K) p) = Polynomial.aeval x p :=
+    fun p => by
     have h := RatFunc.liftAlgHom_apply_div (Polynomial.aeval x)
       (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj) p 1
     rwa [map_one, div_one, map_one, div_one] at h
   let : Algebra (RatFunc K) F := lift.toRingHom.toAlgebra
-  have : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq' (lift.comp_algebraMap).symm
+  have : IsScalarTower K (RatFunc K) F :=
+    IsScalarTower.of_algebraMap_eq' (lift.comp_algebraMap).symm
   have hFD : FiniteDimensional (RatFunc K) F := by
-    obtain ⟨s, hs⟩ := Module.finite_def.mp ‹FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F›
+    obtain ⟨s, hs⟩ :=
+      Module.finite_def.mp ‹FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F›
     refine ⟨⟨s, ?_⟩⟩
     rw [eq_top_iff]
     rintro z -
@@ -107,8 +112,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.deg_ne_zero_of_finiteDimensional_adjoin {K F : Type*} [Field K] [Field F] [Algebra K F]
-    (x : F) (hx : Transcendental K x) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
-    (v : AlgebraicCurve.Place K F) : v.deg ≠ 0 := _root_.P2MW.S_AlgebraicCurve_Place_deg_ne_zero_of_finiteDimensional_adjoin.solution x hx v
+theorem AlgebraicCurve.Place.deg_ne_zero_of_finiteDimensional_adjoin {K F : Type*} [Field K]
+    [Field F] [Algebra K F]
+    (x : F) (hx : Transcendental K x)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) : v.deg ≠ 0 :=
+  solution x hx v
 
 end publicSection

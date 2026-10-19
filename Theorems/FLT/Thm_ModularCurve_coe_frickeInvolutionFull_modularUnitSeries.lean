@@ -64,7 +64,9 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_coe_frickeInvolutionFull_modularUnitSeries
 
-theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (hmem : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionFieldFull ℓ) : ((ModularCurve.frickeInvolutionFull ℓ ⟨ModularCurve.modularUnitSeries ℓ, hmem⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = (ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹ := by
+theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)]
+    (hmem : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionFieldFull ℓ) :
+    ((ModularCurve.frickeInvolutionFull ℓ ⟨ModularCurve.modularUnitSeries ℓ, hmem⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = (ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹ := by
   have : NeZero ℓ := ⟨(Fact.out : Nat.Prime ℓ).ne_zero⟩
   exact ModularCurve.coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant ℓ
     (ModularCurve.modularUnitSeries ℓ) ((ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹)
@@ -82,6 +84,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.coe_frickeInvolutionFull_modularUnitSeries (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (hmem : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionFieldFull ℓ) : ((ModularCurve.frickeInvolutionFull ℓ ⟨ModularCurve.modularUnitSeries ℓ, hmem⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = (ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹ := _root_.P2MW.S_ModularCurve_coe_frickeInvolutionFull_modularUnitSeries.solution ℓ hmem
+theorem ModularCurve.coe_frickeInvolutionFull_modularUnitSeries (ℓ : ℕ) [Fact (Nat.Prime ℓ)]
+    (hmem : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionFieldFull ℓ) :
+    ((ModularCurve.frickeInvolutionFull ℓ ⟨ModularCurve.modularUnitSeries ℓ, hmem⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = (ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹ :=
+  solution ℓ hmem
 
 end publicSection

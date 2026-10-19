@@ -67,17 +67,25 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap.AlgebraicC\
+  urve"
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree Divisor.degree_single Place.ofHeightOneSpectrum RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree Divisor.degree_single \
+  Place.ofHeightOneSpectrum RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum \
+  Place.ord_ofHeightOneSpectrum_ne_zero_iff"
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "exists_forall_ne_ofHeightOneSpectrum subsingleton_setOf_forall_ne_ofHeightOneSpectrum ord_ofHeightOneSpectrum_of_span ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum deg_ofHeightOneSpectrum deg_eq_one_of_forall_ne_ofHeightOneSpectrum"
-p2m_open "AlgebraicCurve.RationalFunctionField~finitePlace~heightOneSpectrumOfIrreducible_asIdeal~heightOneSpectrumOfIrreducible AlgebraicCurve"
+p2m_export "AlgebraicCurve.RationalFunctionField" "exists_forall_ne_ofHeightOneSpectrum \
+  subsingleton_setOf_forall_ne_ofHeightOneSpectrum ord_ofHeightOneSpectrum_of_span \
+  ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum deg_ofHeightOneSpectrum \
+  deg_eq_one_of_forall_ne_ofHeightOneSpectrum"
+p2m_open "AlgebraicCurve.RationalFunctionField~finitePlace~heightOneSpectrumOfIrreducible_asIdeal~h\
+  eightOneSpectrumOfIrreducible AlgebraicCurve"
 
 namespace WFj
 variable (K : Type*) [Field K]
@@ -97,7 +105,8 @@ def finitePlace {p : K[X]} (hp : Irreducible p) : Place K (RatFunc K) :=
 variable {K}
 
 theorem ne_finitePlace_of_forall_ne {v : Place K (RatFunc K)}
-    (hv : ∀ w : HeightOneSpectrum K[X], v ≠ Place.ofHeightOneSpectrum w) {p : K[X]} (hp : Irreducible p) :
+    (hv : ∀ w : HeightOneSpectrum K[X], v ≠ Place.ofHeightOneSpectrum w) {p : K[X]}
+    (hp : Irreducible p) :
     v ≠ finitePlace K hp :=
   hv _
 
@@ -136,7 +145,8 @@ theorem single_add_single_apply_eq_ord {vinf : Place K (RatFunc K)}
     have hveq : v = vinf := subsingleton_setOf_forall_ne_ofHeightOneSpectrum hv hvinf
     rw [Finsupp.single_eq_of_ne (show v ≠ finitePlace K hp from hv _), zero_add, hveq,
       Finsupp.single_eq_same,
-      ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum vinf hvinf (RatFunc.algebraMap_ne_zero hp0),
+      ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum vinf hvinf (RatFunc.algebraMap_ne_zero
+      hp0),
       RatFunc.intDegree_polynomial]
 
 theorem degree_single_add_single {vinf : Place K (RatFunc K)}
@@ -157,9 +167,11 @@ end AlgebraicCurve.RationalFunctionField
 
 end
 
-theorem solution {K : Type*} [Field K] (q : Polynomial K) : ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K) (RatFunc K) q)) → Divisor.degree D = 0 := by
+theorem solution {K : Type*} [Field K] (q : Polynomial K) :
+    ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K) (RatFunc K) q)) → Divisor.degree D = 0 := by
   classical
-  obtain ⟨vinf, hvinf⟩ := AlgebraicCurve.RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum (K := K)
+  obtain ⟨vinf, hvinf⟩ :=
+    AlgebraicCurve.RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum (K := K)
   refine UniqueFactorizationMonoid.induction_on_prime q ?_ ?_ ?_
   · intro D hD
     have hzero : D = 0 := by
@@ -206,6 +218,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap {K : Type*} [Field K] (q : Polynomial K) : ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K) (RatFunc K) q)) → Divisor.degree D = 0 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap.solution q
+theorem AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap {K : Type*}
+    [Field K] (q : Polynomial K) :
+    ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K) (RatFunc K) q)) → Divisor.degree D = 0 :=
+  solution q
 
 end publicSection

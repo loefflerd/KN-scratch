@@ -64,7 +64,10 @@ namespace P2MW.S_WeierstrassCurve_Affine_weilFun_ne_zero
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero
 open scoped nonZeroDivisors
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) : weilFun W K n T ≠ 0 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
+    (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) :
+    weilFun W K n T ≠ 0 := by
   rw [weilFun]
   exact div_ne_zero
     ((map_ne_zero_iff _ (IsFractionRing.injective _ _)).mpr
@@ -83,6 +86,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.weilFun_ne_zero {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) : weilFun W K n T ≠ 0 := _root_.P2MW.S_WeierstrassCurve_Affine_weilFun_ne_zero.solution W hn hT
+theorem WeierstrassCurve.Affine.weilFun_ne_zero {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
+    (hT : (n : ℤ) • T = 0) :
+    weilFun W K n T ≠ 0 :=
+  solution W hn hT
 
 end publicSection

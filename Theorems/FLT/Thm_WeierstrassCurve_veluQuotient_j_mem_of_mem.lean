@@ -57,7 +57,9 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_WeierstrassCurve_veluQuotient_j_mem_of_mem
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "a₃ a₁ b₂ a₄ a₂ a₆ Δ j veluGx veluGy veluT veluU veluW veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ j_mem_of_a_mem"
+p2m_export "WeierstrassCurve" "a₃ a₁ b₂ a₄ a₂ a₆ Δ j veluGx veluGy veluT veluU veluW veluTSum \
+  veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ \
+  veluQuotient_a₆ j_mem_of_a_mem"
 p2m_open "WeierstrassCurve"
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_veluQuotient_j_mem_of_mem.WeierstrassCurve"
@@ -80,7 +82,8 @@ private theorem _root_.WeierstrassCurve.veluGy_mem (h₁ : V.a₁ ∈ A) (h₃ :
 
 p2m_export "WeierstrassCurve" "veluGy_mem"
 
-private theorem _root_.WeierstrassCurve.veluT_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A) (h₄ : V.a₄ ∈ A)
+private theorem _root_.WeierstrassCurve.veluT_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A)
+    (h₄ : V.a₄ ∈ A)
     {x y : L} (hx : x ∈ A) (hy : y ∈ A) : V.veluT x y ∈ A := by
   rw [veluT]
   exact sub_mem (mul_mem (ofNat_mem A 2) (V.veluGx_mem A h₁ h₂ h₄ hx hy))
@@ -95,7 +98,8 @@ private theorem _root_.WeierstrassCurve.veluU_mem (h₁ : V.a₁ ∈ A) (h₃ : 
 
 p2m_export "WeierstrassCurve" "veluU_mem"
 
-private theorem _root_.WeierstrassCurve.veluW_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A) (h₄ : V.a₄ ∈ A)
+private theorem _root_.WeierstrassCurve.veluW_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A)
+    (h₄ : V.a₄ ∈ A)
     {x y : L} (hx : x ∈ A) (hy : y ∈ A) : V.veluW x y ∈ A := by
   rw [veluW]
   exact add_mem (V.veluU_mem A h₁ h₃ hx hy)
@@ -103,7 +107,8 @@ private theorem _root_.WeierstrassCurve.veluW_mem (h₁ : V.a₁ ∈ A) (h₂ : 
 
 p2m_export "WeierstrassCurve" "veluW_mem"
 
-private theorem _root_.WeierstrassCurve.veluTSum_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A) (h₄ : V.a₄ ∈ A)
+private theorem _root_.WeierstrassCurve.veluTSum_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A)
+    (h₄ : V.a₄ ∈ A)
     {K : Finset (L × L)} (hK : ∀ P ∈ K, P.1 ∈ A ∧ P.2 ∈ A) :
     V.veluTSum K ∈ A := by
   rw [veluTSum]
@@ -111,7 +116,8 @@ private theorem _root_.WeierstrassCurve.veluTSum_mem (h₁ : V.a₁ ∈ A) (h₂
 
 p2m_export "WeierstrassCurve" "veluTSum_mem"
 
-private theorem _root_.WeierstrassCurve.veluWSum_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A) (h₄ : V.a₄ ∈ A)
+private theorem _root_.WeierstrassCurve.veluWSum_mem (h₁ : V.a₁ ∈ A) (h₂ : V.a₂ ∈ A) (h₃ : V.a₃ ∈ A)
+    (h₄ : V.a₄ ∈ A)
     {K : Finset (L × L)} (hK : ∀ P ∈ K, P.1 ∈ A ∧ P.2 ∈ A) :
     V.veluWSum K ∈ A := by
   rw [veluWSum]
@@ -148,11 +154,13 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.veluQuotient_j_mem_of_mem {F : Type*} [Field F] {S : Type*} [SetLike S F] [SubfieldClass S F]
+theorem WeierstrassCurve.veluQuotient_j_mem_of_mem {F : Type*} [Field F] {S : Type*} [SetLike S F]
+    [SubfieldClass S F]
     (W : WeierstrassCurve F) (K : S) (T : Finset (F × F))
     (h₁ : W.a₁ ∈ K) (h₂ : W.a₂ ∈ K) (h₃ : W.a₃ ∈ K) (h₄ : W.a₄ ∈ K) (h₆ : W.a₆ ∈ K)
     (hT : ∀ P ∈ T, P.1 ∈ K ∧ P.2 ∈ K) (hΔ : (W.veluQuotient T).Δ ≠ 0) :
     haveI : (W.veluQuotient T).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-    (W.veluQuotient T).j ∈ K := _root_.P2MW.S_WeierstrassCurve_veluQuotient_j_mem_of_mem.solution W K T h₁ h₂ h₃ h₄ h₆ hT hΔ
+    (W.veluQuotient T).j ∈ K :=
+  solution W K T h₁ h₂ h₃ h₄ h₆ hT hΔ
 
 end publicSection

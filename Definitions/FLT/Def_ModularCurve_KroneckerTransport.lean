@@ -75,11 +75,11 @@ def laurentMap (f : R →+* S) : LaurentSeries R →+* LaurentSeries S where
   map_mul' _ _ := HahnSeries.map_mul (R := R) (S := S) f.toNonUnitalRingHom
   map_zero' := by
     ext k
-    show f ((0 : LaurentSeries R).coeff k) = (0 : LaurentSeries S).coeff k
+    change f ((0 : LaurentSeries R).coeff k) = (0 : LaurentSeries S).coeff k
     rw [HahnSeries.coeff_zero, HahnSeries.coeff_zero, map_zero]
   map_add' x y := by
     ext k
-    show f ((x + y).coeff k) = (x.map f + y.map f).coeff k
+    change f ((x + y).coeff k) = (x.map f + y.map f).coeff k
     rw [HahnSeries.coeff_add, HahnSeries.coeff_add, map_add]
     rfl
 

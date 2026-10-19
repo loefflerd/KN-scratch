@@ -187,7 +187,8 @@ private theorem mwP2_exists_unique_coord [IsAlgClosed K] {x : L}
   have : DecidableEq (RatFunc K) := Classical.decEq _
   rcases RationalFunctionField.eq_placeOfPoint_or_eq_placeInfty K v₀ with ⟨a, ha⟩ | hinf
   · have hXa : (Polynomial.X - Polynomial.C a : Polynomial K) ≠ 0 := Polynomial.X_sub_C_ne_zero a
-    have h1 : v₀.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C a)) = 1 := by
+    have h1 : v₀.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C a)) = 1 :=
+      by
       rw [ha, RationalFunctionField.ord_placeOfPoint_algebraMap a hXa,
         Polynomial.rootMultiplicity_X_sub_C_self]
       simp
@@ -290,6 +291,7 @@ theorem ModularCurve.jCoordinate_spec_modularFunctionFieldBar (N : ℕ) [NeZero 
             algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) c)}.Finite) ∧
       ({v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) |
         v.ord ⟨coeffEmb (AlgebraicClosure ℚ) jq,
-          coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ < 0}.Finite) := _root_.P2MW.S_ModularCurve_jCoordinate_spec_modularFunctionFieldBar.solution N
+          coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ < 0}.Finite) :=
+  solution N
 
 end publicSection

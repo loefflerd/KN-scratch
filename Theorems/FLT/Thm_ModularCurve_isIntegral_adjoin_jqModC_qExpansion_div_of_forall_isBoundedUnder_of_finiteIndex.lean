@@ -340,7 +340,6 @@ theorem exists_qParam_pow_le_slash [Γ.FiniteIndex] (h : ModularForm (Γ : Subgr
     (translateSL Γ h A) hne
 
 open scoped Classical in
-
 def cuspOrder (φ : ℍ → ℂ) : ℕ :=
   if H : ∃ (n : ℕ) (C : ℝ), 0 < C ∧ ∀ᶠ τ : ℍ in atImInfty,
       C * ‖Periodic.qParam (wd Γ) (τ : ℂ)‖ ^ n ≤ ‖φ τ‖
@@ -354,7 +353,8 @@ theorem cuspOrder_spec (φ : ℍ → ℂ)
   rw [cuspOrder, dite_eq_left H]
   exact H.choose_spec
 
-theorem exists_forall_cuspOrder_le [Γ.FiniteIndex] (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
+theorem exists_forall_cuspOrder_le [Γ.FiniteIndex] (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+    :
     ∃ m : ℕ, ∀ A : SL(2, ℤ), cuspOrder Γ (⇑h ∣[k] A) ≤ m := by
   classical
   have : Finite (SL(2, ℤ) ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
@@ -374,7 +374,8 @@ theorem exists_forall_cuspOrder_le [Γ.FiniteIndex] (h : ModularForm (Γ : Subgr
   rw [key]
   exact hm ⟨_, rfl⟩
 
-theorem isBoundedAtImInfty_of_mul_eq [Γ.FiniteIndex] (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+theorem isBoundedAtImInfty_of_mul_eq [Γ.FiniteIndex]
+    (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
     (hh : h ≠ 0) (F₀ : ℍ → ℂ) (hF : ∀ τ, F₀ τ * h τ = g τ) (A : SL(2, ℤ)) {m : ℕ}
     (hm : cuspOrder Γ (⇑h ∣[k] A) ≤ m) :
     IsBoundedAtImInfty (fun τ : ℍ => F₀ (A • τ) * (ModularForm.discriminant τ) ^ m) := by
@@ -423,7 +424,8 @@ theorem le_SL : ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤ �
 def Δ₀ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12 :=
   restrict (le_SL Γ) CuspForm.discriminant
 
-@[scoped simp] theorem coe_Δ₀ : ((Δ₀ Γ : ModularForm _ 12) : ℍ → ℂ) = ModularForm.discriminant := rfl
+@[scoped simp] theorem coe_Δ₀ :
+    ((Δ₀ Γ : ModularForm _ 12) : ℍ → ℂ) = ModularForm.discriminant := rfl
 
 def Δ₁ : ModularForm 𝒮ℒ 12 := restrict le_rfl CuspForm.discriminant
 
@@ -462,7 +464,8 @@ theorem slash_zero_eq {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) �
     rw [e1, ← e2]; ring
   exact mul_right_cancel₀ (mul_ne_zero hd hτ) this
 
-def liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0)
+def liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+    (hh : h ≠ 0)
     (F₀ : ℍ → ℂ) (hF₀ : MDiff F₀) (hF : ∀ τ, F₀ τ * h τ = g τ) (m : ℕ)
     (hm : ∀ A : SL(2, ℤ), cuspOrder Γ (⇑h ∣[k] A) ≤ m) :
     ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) ((m : ℤ) * 12) where
@@ -474,7 +477,7 @@ def liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (F
         (Matrix.SpecialLinearGroup.mapGL ℝ γ) ⟨γ, rfl⟩
     have e := ModularForm.mul_slash_SL2 0 ((m : ℤ) * 12) γ F₀ ⇑(Δ₁.pow m)
     rw [zero_add] at e
-    show (F₀ * ⇑(Δ₁.pow m)) ∣[((m : ℤ) * 12)] γ = F₀ * ⇑(Δ₁.pow m)
+    change (F₀ * ⇑(Δ₁.pow m)) ∣[((m : ℤ) * 12)] γ = F₀ * ⇑(Δ₁.pow m)
     rw [e, slash_zero_eq Γ g h hh F₀ hF₀ hF γ hγ', hΔ]
   holo' := hF₀.mul (Δ₁.pow m).holo'
   bdd_at_cusps' {c} hc := by
@@ -486,7 +489,7 @@ def liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (F
         (Matrix.SpecialLinearGroup.mapGL ℝ A) ⟨A, rfl⟩
     have e := ModularForm.mul_slash_SL2 0 ((m : ℤ) * 12) A F₀ ⇑(Δ₁.pow m)
     rw [zero_add] at e
-    show IsBoundedAtImInfty ((F₀ * ⇑(Δ₁.pow m)) ∣[((m : ℤ) * 12)] A)
+    change IsBoundedAtImInfty ((F₀ * ⇑(Δ₁.pow m)) ∣[((m : ℤ) * 12)] A)
     rw [e, hΔ]
     have : (F₀ ∣[(0 : ℤ)] A * ⇑(Δ₁.pow m)) =
         fun τ => F₀ (A • τ) * ModularForm.discriminant τ ^ m := by
@@ -495,12 +498,14 @@ def liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (F
     rw [this]
     exact isBoundedAtImInfty_of_mul_eq Γ g h hh F₀ hF A (hm A)
 
-theorem coe_liftForm' [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0)
+theorem coe_liftForm' [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+    (hh : h ≠ 0)
     (F₀ : ℍ → ℂ) (hF₀ : MDiff F₀) (hF : ∀ τ, F₀ τ * h τ = g τ) (m : ℕ)
     (hm : ∀ A : SL(2, ℤ), cuspOrder Γ (⇑h ∣[k] A) ≤ m) :
     ⇑(liftForm Γ g h hh F₀ hF₀ hF m hm) = F₀ * ⇑(Δ₁.pow m) := rfl
 
-theorem coe_liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0)
+theorem coe_liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+    (hh : h ≠ 0)
     (F₀ : ℍ → ℂ) (hF₀ : MDiff F₀) (hF : ∀ τ, F₀ τ * h τ = g τ) (m : ℕ)
     (hm : ∀ A : SL(2, ℤ), cuspOrder Γ (⇑h ∣[k] A) ≤ m) :
     (⇑(liftForm Γ g h hh F₀ hF₀ hF m hm)) * ⇑h = ⇑g * ⇑((Δ₀ Γ).pow m) := by
@@ -510,8 +515,8 @@ theorem coe_liftForm [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgrou
   rw [mul_right_comm, hF]
 
 include hT in
-
-theorem qL_liftForm_mul [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0)
+theorem qL_liftForm_mul [Γ.FiniteIndex] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+    (hh : h ≠ 0)
     (F₀ : ℍ → ℂ) (hF₀ : MDiff F₀) (hF : ∀ τ, F₀ τ * h τ = g τ) (m : ℕ)
     (hm : ∀ A : SL(2, ℤ), cuspOrder Γ (⇑h ∣[k] A) ≤ m) :
     qL ⇑(liftForm Γ g h hh F₀ hF₀ hF m hm) * qL ⇑h =
@@ -546,7 +551,6 @@ theorem qL_discriminant_ne_zero : qL ModularForm.discriminant ≠ 0 := by
   exact qL_ne_zero (⊤ : Subgroup SL(2, ℤ)) T_mem_SL (Δ₀ ⊤) Δ₀_ne_zero
 
 include hT in
-
 theorem isIntegral_of_forall_isBoundedUnder [Γ.FiniteIndex] {k : ℤ}
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0)
     (hb : ∀ τ : ℍ, IsBoundedUnder (· ≤ ·) (𝓝[≠] τ) (fun z : ℍ => ‖g z / h z‖)) :
@@ -598,6 +602,7 @@ theorem ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBounded
       (fun z : UpperHalfPlane => ‖g z / h z‖)) :
     IsIntegral (Algebra.adjoin ℂ ({ModularCurve.jqModC ℂ} : Set (LaurentSeries ℂ)))
       (HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 ⇑g) /
-        HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 ⇑h)) := _root_.P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex.solution Γ hT g h hh hb
+        HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 ⇑h)) :=
+  solution Γ hT g h hh hb
 
 end publicSection

@@ -66,7 +66,8 @@ p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation algebraMap_mem' toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation algebraMap_mem' \
+  toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -114,7 +115,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.adicValuation_isTrivialOn {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
-    v.adicValuation.IsTrivialOn K := _root_.P2MW.S_AlgebraicCurve_Place_adicValuation_isTrivialOn.solution v
+theorem AlgebraicCurve.Place.adicValuation_isTrivialOn {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (v : Place K F) :
+    v.adicValuation.IsTrivialOn K :=
+  solution v
 
 end publicSection

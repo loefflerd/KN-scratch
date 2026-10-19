@@ -68,17 +68,22 @@ omit [NeZero n] in
 theorem nsmul_self_eq_zero (v : (ZMod n × ZMod n)) : n • v = 0 := by
   ext <;> simp [nsmul_eq_mul]
 
-theorem map_zmod_smul (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (c : ZMod n) (v : (ZMod n × ZMod n)) : τ (c • v) = c • τ v := by
+theorem map_zmod_smul (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (c : ZMod n)
+    (v : (ZMod n × ZMod n)) :
+    τ (c • v) = c • τ v := by
   rw [← ZMod.natCast_zmod_val c, Nat.cast_smul_eq_nsmul, Nat.cast_smul_eq_nsmul, map_nsmul]
 
-theorem eq_zero_of_smul_eq_zero {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {c : ZMod n} (hc : c • v = 0) : c = 0 := by
+theorem eq_zero_of_smul_eq_zero {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {c : ZMod n}
+    (hc : c • v = 0) :
+    c = 0 := by
   rw [← ZMod.natCast_zmod_val c, Nat.cast_smul_eq_nsmul] at hc
   have hdvd : addOrderOf v ∣ c.val := addOrderOf_dvd_of_nsmul_eq_zero hc
   rw [hv] at hdvd
   have hval : c.val = 0 := Nat.eq_zero_of_dvd_of_lt hdvd (ZMod.val_lt c)
   exact (ZMod.val_eq_zero c).mp hval
 
-def eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : AddSubgroup (ZMod n × ZMod n) where
+def eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) :
+    AddSubgroup (ZMod n × ZMod n) where
   carrier := {v | τ v = k • v}
   zero_mem' := by simp only [Set.mem_ofPred_eq, map_zero, smul_zero]
   add_mem' ha hb := by
@@ -87,18 +92,23 @@ def eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : AddSubg
     simp only [Set.mem_ofPred_eq] at ha ⊢; rw [map_neg, ha, smul_neg]
 
 omit [NeZero n] in
-theorem mem_eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) : v ∈ eig τ k ↔ τ v = k • v := Iff.rfl
+theorem mem_eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) :
+    v ∈ eig τ k ↔ τ v = k • v := Iff.rfl
 
-def shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (ZMod n × ZMod n) →+ (ZMod n × ZMod n) where
+def shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) :
+    (ZMod n × ZMod n) →+ (ZMod n × ZMod n) where
   toFun v := τ v - k • v
   map_zero' := by simp only [map_zero, smul_zero, sub_zero]
   map_add' v w := by simp only [map_add, smul_add]; abel
 
 omit [NeZero n] in
-theorem shift_apply (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) : shift τ k v = τ v - k • v := rfl
+theorem shift_apply (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n)
+    (v : (ZMod n × ZMod n)) :
+    shift τ k v = τ v - k • v := rfl
 
 omit [NeZero n] in
-theorem ker_shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (shift τ k).ker = eig τ k := by
+theorem ker_shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) :
+    (shift τ k).ker = eig τ k := by
   ext v
   rw [AddMonoidHom.mem_ker, shift_apply, sub_eq_zero, mem_eig]
 
@@ -113,7 +123,8 @@ theorem τ_injective : Function.Injective τ := fun a b h => by
   have hb : b = s • τ b - τ (τ b) := by rw [hτ]; abel
   rw [ha, hb, h]
 
-theorem root_of_eigen {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {k : ZMod n} (hk : τ v = k • v) :
+theorem root_of_eigen {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {k : ZMod n}
+    (hk : τ v = k • v) :
     k * k = s * k - 1 := by
   have h1 : τ (τ v) = (k * k) • v := by rw [hk, map_zmod_smul, hk, smul_smul]
   have h2 : τ (τ v) = (s * k - 1) • v := by rw [hτ, hk, smul_smul, sub_smul, one_smul]
@@ -130,7 +141,8 @@ theorem range_shift_le {k : ZMod n} (hk : k * k = s * k - 1) :
 theorem sq_le_card_mul_card {k : ZMod n} (hk : k * k = s * k - 1) :
     n ^ 2 ≤ Nat.card (eig τ k) * Nat.card (eig τ (s - k)) := by
   have hN2 : Nat.card (ZMod n × ZMod n) = n ^ 2 := by rw [Nat.card_prod, Nat.card_zmod, sq]
-  have hfirst : Nat.card (ZMod n × ZMod n) = Nat.card (shift τ k).ker * Nat.card (shift τ k).range := by
+  have hfirst : Nat.card (ZMod n × ZMod n) = Nat.card (shift τ k).ker * Nat.card (shift τ k).range :=
+    by
     rw [mul_comm, ← Nat.card_congr (QuotientAddGroup.quotientKerEquivRange (shift τ k)).toEquiv,
       ← AddSubgroup.card_eq_card_quotient_mul_card_addSubgroup]
   rw [← hN2, hfirst, ker_shift]
@@ -164,7 +176,8 @@ theorem card_pTorsion_le {p : ℕ} (hp : p.Prime) :
     calc Nat.card {x : ZMod n // p • x = 0} = Nat.card S := rfl
       _ = AddMonoid.exponent S := IsAddCyclic.exponent_eq_card.symm
       _ ≤ p := Nat.le_of_dvd hp.pos hexp
-  have e : {v : (ZMod n × ZMod n) // p • v = 0} ≃ {x : ZMod n // p • x = 0} × {y : ZMod n // p • y = 0} := by
+  have e : {v : (ZMod n × ZMod n) // p • v = 0} ≃ {x : ZMod n // p • x = 0} × {y : ZMod n // p • y = 0} :=
+    by
     refine ⟨fun v => (⟨v.1.1, (Prod.mk_inj.mp v.2).1⟩, ⟨v.1.2, (Prod.mk_inj.mp v.2).2⟩),
       fun z => ⟨(z.1.1, z.2.1), Prod.ext z.1.2 z.2.2⟩, ?_, ?_⟩
     · intro v; exact Subtype.ext rfl
@@ -205,7 +218,7 @@ theorem isAddCyclic_of_card_pTorsion_le {G : Type*} [AddCommGroup G]
     have hmpm : m / p < m := Nat.div_lt_self hm hp.one_lt
     let φ : T m →+ T p :=
       { toFun := fun g => ⟨(m/p) • g.1, by
-          show p • ((m/p) • g.1) = 0
+          change p • ((m/p) • g.1) = 0
           rw [← mul_nsmul', Nat.mul_div_cancel' hpm]; exact g.2⟩
         map_zero' := Subtype.ext (by simp)
         map_add' := fun a b => Subtype.ext (by simp) }
@@ -227,7 +240,8 @@ theorem isAddCyclic_of_card_pTorsion_le {G : Type*} [AddCommGroup G]
       _ ≤ (m/p) * p := Nat.mul_le_mul hkerφ himφ
       _ = m := Nat.div_mul_cancel hpm
 
-theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) {p : ℕ} (hp : p.Prime)
+theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) {p : ℕ}
+    (hp : p.Prime)
     (hns : ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m • v) :
     Nat.card {g : eig τ k // p • g = 0} ≤ p := by
   have : Fact p.Prime := ⟨hp⟩
@@ -268,7 +282,7 @@ theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (
   let f : Kp × Z → {v : (ZMod n × ZMod n) // p • v = 0} := fun gz => ⟨gz.1.1 + gz.2.1, by
     obtain ⟨⟨g, hg⟩, ⟨z, hz⟩⟩ := gz
     obtain ⟨a, rfl⟩ := AddSubgroup.mem_zmultiples_iff.mp hz
-    show p • (g + a • v₀) = 0
+    change p • (g + a • v₀) = 0
     rw [nsmul_add, hg.2, zero_add, smul_comm, ← hv₀, addOrderOf_nsmul_eq_zero, smul_zero]⟩
   have hf : Function.Injective f := by
     rintro ⟨⟨g, hg⟩, ⟨z, hz⟩⟩ ⟨⟨g', hg'⟩, ⟨z', hz'⟩⟩ h
@@ -360,13 +374,14 @@ theorem card_stable_eq_card_roots :
     rw [sub_smul, ← hv1, ← hv2, sub_self]
   · rintro ⟨H, hc, hcard, hst⟩
     obtain ⟨v, hv, hvH⟩ := gen H hc hcard
-    have hτv : τ v ∈ H := by rw [← hst]; exact AddSubgroup.mem_map_of_mem τ (hvH ▸ AddSubgroup.mem_zmultiples v)
+    have hτv : τ v ∈ H :=
+      by rw [← hst]; exact AddSubgroup.mem_map_of_mem τ (hvH ▸ AddSubgroup.mem_zmultiples v)
     rw [← hvH, AddSubgroup.mem_zmultiples_iff] at hτv
     obtain ⟨a, ha⟩ := hτv
     have hk : τ v = (a : ZMod n) • v := by rw [Int.cast_smul_eq_zsmul, ha]
     have hroot : (a : ZMod n) * (a : ZMod n) = s * (a : ZMod n) - 1 := root_of_eigen τ s hτ hv hk
     refine ⟨⟨(a : ZMod n), hroot⟩, Subtype.ext ?_⟩
-    show eig τ (a : ZMod n) = H
+    change eig τ (a : ZMod n) = H
     have : Finite (eig τ (a : ZMod n)) := inferInstance
     symm
     refine AddSubgroup.eq_of_le_of_card_ge ?_ ?_
@@ -403,6 +418,7 @@ theorem ZMod.natCard_isAddCyclic_addSubgroup_prod_map_eq_nuThree (n : ℕ) [NeZe
     (τ : ZMod n × ZMod n →+ ZMod n × ZMod n) (hτ : ∀ v, τ (τ v) + τ v + v = 0)
     (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, τ v ≠ k • v) :
     Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}
-      = nuThree n := _root_.P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_map_eq_nuThree.solution n τ hτ hns
+      = nuThree n :=
+  solution n τ hτ hns
 
 end publicSection

@@ -87,7 +87,7 @@ theorem normFormulaAlong_of_finiteAlong_aux
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -106,7 +106,7 @@ theorem solution
   have hN₃ : NormFormulaAlong F D₃.ι D₃.hfin := normFormulaAlong_of_finiteAlong_aux D₃.ι D₃.hfin
   refine ⟨D₃, hN₃, ?_⟩
   refine AddMonoidHom.ext fun P => ?_
-  show D₃.pointEnd hN₃ P = D₁.pointEnd hN₁ P + D₂.pointEnd hN₂ P
+  change D₃.pointEnd hN₃ P = D₁.pointEnd hN₁ P + D₂.pointEnd hN₂ P
   rw [IsogenyEndDatum.pointEnd_apply_eq_sub D₃ hN₃, IsogenyEndDatum.pointEnd_apply_eq_sub D₁ hN₁,
     IsogenyEndDatum.pointEnd_apply_eq_sub D₂ hN₂, hD₃ P, hD₃ 0,
     pointEquivPlace_symm_placeOfPoint, pointEquivPlace_symm_placeOfPoint]
@@ -132,6 +132,7 @@ theorem WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add
     (D₂ : IsogenyEndDatum W) (hN₂ : NormFormulaAlong F D₂.ι D₂.hfin)
     (h : D₁.pointEnd hN₁ + D₂.pointEnd hN₂ ≠ 0) :
     ∃ (D₃ : IsogenyEndDatum W) (hN₃ : NormFormulaAlong F D₃.ι D₃.hfin),
-      D₃.pointEnd hN₃ = D₁.pointEnd hN₁ + D₂.pointEnd hN₂ := _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_add.solution D₁ hN₁ D₂ hN₂ h
+      D₃.pointEnd hN₃ = D₁.pointEnd hN₁ + D₂.pointEnd hN₂ :=
+  solution D₁ hN₁ D₂ hN₂ h
 
 end publicSection

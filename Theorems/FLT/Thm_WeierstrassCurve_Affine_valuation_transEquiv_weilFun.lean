@@ -73,13 +73,21 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.WeierstrassCurve.Affine \
+  IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero Polynomial"
 open scoped nonZeroDivisors
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine baseChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add_of_Y_eq CoordinateRing baseChange FunctionField Point Y_eq_of_X_eq fibSet mem_fibSet weilNum weilFun Point.xc_some transEquiv transEquiv_zero placeOf placeOf_surjective placeOf_injective valuation_weilNum weilNum_ne_zero fibSet_finite ncard_fibSet CoordinateRing.natDegree_norm_eq_finsum_count valuation_placeOf_neg_transEquiv_algebraMap valuation_transEquiv_le valuation_transEquiv_le_self"
+p2m_export "WeierstrassCurve.Affine" "Point.add_of_Y_eq CoordinateRing baseChange FunctionField \
+  Point Y_eq_of_X_eq fibSet mem_fibSet weilNum weilFun Point.xc_some transEquiv transEquiv_zero \
+  placeOf placeOf_surjective placeOf_injective valuation_weilNum weilNum_ne_zero fibSet_finite \
+  ncard_fibSet CoordinateRing.natDegree_norm_eq_finsum_count \
+  valuation_placeOf_neg_transEquiv_algebraMap valuation_transEquiv_le valuation_transEquiv_le_self"
 namespace DivTau
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
@@ -102,7 +110,8 @@ theorem valuation_transEquiv_eq {P S : (W⁄K).Point} (hP : P ≠ 0) (hPS : P + 
       (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField f ≤ 1 →
         (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S f) ≤ 1 := by
     intro f hf
-    have hf' : (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField f ≤ exp (-((0 : ℕ) : ℤ)) := by
+    have hf' : (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField f ≤ exp (-((0 : ℕ) : ℤ)) :=
+      by
       simpa using hf
     by_cases hx : P.xc ≠ S.xc
     · simpa using valuation_transEquiv_le W K hP hS hx hPS f 0 hf'
@@ -180,7 +189,8 @@ theorem natDegree_norm_weilNum {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point
     have h0 : (0 : (W⁄K).Point) ∈ fibSet W K n 0 := by rw [mem_fibSet, smul_zero]
     rw [Set.ncard_sdiff_singleton_of_mem h0, ncard_fibSet W hn 0, ite_eq_left rfl]
     have : 1 ≤ n ^ 2 := by
-      have := Set.ncard_ne_zero_of_mem h0 (fibSet_finite W hn 0); rw [ncard_fibSet W hn 0] at this; omega
+      have :=
+        Set.ncard_ne_zero_of_mem h0 (fibSet_finite W hn 0); rw [ncard_fibSet W hn 0] at this; omega
     push_cast [Nat.cast_sub this]
     ring
   · have h0 : (0 : (W⁄K).Point) ∉ fibSet W K n T := by rw [mem_fibSet, smul_zero]; exact Ne.symm hT0
@@ -196,7 +206,11 @@ theorem valuation_weilFun' {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (h
 end WeierstrassCurve.Affine.DivTau
 
 open WeierstrassCurve.Affine.DivTau in
-theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) : (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) := by
+theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
+    [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+    {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0)
+    (P : (W⁄K).Point) (hP : P ≠ 0) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) := by
   by_cases hPS : P + S = 0
   · have hS : S ≠ 0 := by rintro rfl; exact hP (by simpa using hPS)
     have hPe : P = -S := eq_neg_of_add_eq_zero_left hPS
@@ -224,6 +238,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.valuation_transEquiv_weilFun {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) : (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) := _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.solution W hn S hT P hP
+theorem WeierstrassCurve.Affine.valuation_transEquiv_weilFun {F : Type*} {K : Type*} [Field F]
+    [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point)
+    {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) :=
+  solution W hn S hT P hP
 
 end publicSection

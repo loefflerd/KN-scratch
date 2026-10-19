@@ -61,10 +61,12 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero
 
-p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo P2MW.S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero.FrobeniusEndo"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo \
+  P2MW.S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero.FrobeniusEndo"
 
 namespace FrobeniusEndo
-p2m_export "FrobeniusEndo" "linePencil linePencil_apply kerDeg kerDeg_def frobEnd frobEnd_apply frobPencilEnd"
+p2m_export "FrobeniusEndo" "linePencil linePencil_apply kerDeg kerDeg_def frobEnd frobEnd_apply \
+  frobPencilEnd"
 p2m_open "FrobeniusEndo"
 
 section Pencil
@@ -105,17 +107,14 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
 theorem dvd_kerDeg_of_det_eq_zero {m n : ℤ}
     (hdet : LinearMap.det (frobPencilEnd W σ p m n) = 0) :
     p ∣ kerDeg (frobEnd W σ) m n := by
-
   have hker : LinearMap.ker (frobPencilEnd W σ p m n) ≠ ⊥ :=
     bot_lt_iff_ne_bot.mp (LinearMap.bot_lt_ker_of_det_eq_zero hdet)
   obtain ⟨x, hxker, hx0⟩ := (Submodule.ne_bot_iff _).mp hker
   rw [LinearMap.mem_ker, frobPencilEnd_eq_zero_iff] at hxker
-
   have hx0' : (x : (W⁄K).Point) ≠ 0 := fun h0 => hx0 (Subtype.ext h0)
   have hxp : p • (x : (W⁄K).Point) = 0 := by
     have hx_tors : ((p : ℤ)) • (x : (W⁄K).Point) = 0 := (Submodule.mem_torsionBy_iff _ _).mp x.2
     rwa [Nat.cast_smul_eq_nsmul] at hx_tors
-
   set y : (linePencil (frobEnd W σ) m n).ker := ⟨_, hxker⟩ with hy
   have hyp : p • y = 0 := Subtype.ext hxp
   have hy0 : y ≠ 0 := fun h0 => hx0' (congrArg Subtype.val h0)
@@ -124,7 +123,6 @@ theorem dvd_kerDeg_of_det_eq_zero {m n : ℤ}
     rcases (Nat.Prime.eq_one_or_self_of_dvd (Fact.out : p.Prime) _ h1) with h | h
     · exact absurd (AddMonoid.addOrderOf_eq_one_iff.mp h) hy0
     · exact h
-
   rw [kerDeg_def, ← hyord]
   exact addOrderOf_dvd_natCard y
 
@@ -132,7 +130,11 @@ end Dictionary
 
 end FrobeniusEndo
 
-theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] {m n : ℤ} (h : LinearMap.det (frobPencilEnd W σ p m n) = 0) : p ∣ kerDeg (frobEnd W σ) m n :=
+theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
+    [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K]
+    (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] {m n : ℤ}
+    (h : LinearMap.det (frobPencilEnd W σ p m n) = 0) :
+    p ∣ kerDeg (frobEnd W σ) m n :=
   FrobeniusEndo.dvd_kerDeg_of_det_eq_zero W σ p h
 
 end S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero
@@ -146,6 +148,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.dvd_kerDeg_of_det_frobPencilEnd_eq_zero {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] {m n : ℤ} (h : LinearMap.det (frobPencilEnd W σ p m n) = 0) : p ∣ kerDeg (frobEnd W σ) m n := _root_.P2MW.S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero.solution W σ p h
+theorem FrobeniusEndo.dvd_kerDeg_of_det_frobPencilEnd_eq_zero {R : Type*} {S : Type*} {K : Type*}
+    [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K]
+    [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] {m n : ℤ}
+    (h : LinearMap.det (frobPencilEnd W σ p m n) = 0) :
+    p ∣ kerDeg (frobEnd W σ) m n :=
+  solution W σ p h
 
 end publicSection

@@ -76,7 +76,8 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe binaryFormRepSL_neg_one_apply"
+p2m_export "HeckeEis" "BinaryForm binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe \
+  binaryFormRepSL_neg_one_apply"
 namespace UH2
 p2m_open "HeckeEis"
 
@@ -111,24 +112,24 @@ theorem extZero_apply_not_mem {s : Finset X} {M : Type*} [AddCommGroup M] [Modul
 variable (σ : Equiv.Perm X) (A : V →ₗ[k] V) (Φ : Module.End k (X → V))
 
 omit [Fintype X] [DecidableEq X] in
-
 theorem pow_shift_apply (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) (i : ℕ) (f : X → V) (x : X) :
     (Φ ^ i) f x = (A ^ i) (f ((σ ^ i)⁻¹ x)) := by
   induction i generalizing x with
   | zero => simp
   | succ i ih =>
-    rw [pow_succ', pow_succ', pow_succ', Module.End.mul_apply, hΦ, ih, Module.End.mul_apply, mul_inv_rev,
+    rw [pow_succ', pow_succ', pow_succ', Module.End.mul_apply, hΦ, ih, Module.End.mul_apply,
+      mul_inv_rev,
       Equiv.Perm.mul_apply]
 
 omit [Fintype X] [DecidableEq X] in
-
 theorem dvd_of_pow_apply_eq {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1) {x : X} (hx : σ x ≠ x) {i : ℕ}
     (hi : (σ ^ i) x = x) : p ∣ i := by
   by_contra hndvd
   have hcop : Nat.Coprime i p := ((Nat.Prime.coprime_iff_not_dvd hp).mpr hndvd).symm
   apply hx
   have key : (σ ^ ((i : ℤ) * Nat.gcdA i p + (p : ℤ) * Nat.gcdB i p)) x = x := by
-    rw [zpow_add, zpow_mul, zpow_mul, Equiv.Perm.mul_apply, zpow_natCast, zpow_natCast, hσ, one_zpow,
+    rw [zpow_add, zpow_mul, zpow_mul, Equiv.Perm.mul_apply, zpow_natCast, zpow_natCast, hσ,
+      one_zpow,
       Equiv.Perm.one_apply]
     exact Equiv.Perm.zpow_apply_eq_self_of_apply_eq_self hi _
   have hg : ((i : ℤ) * Nat.gcdA i p + (p : ℤ) * Nat.gcdB i p) = 1 := by
@@ -236,14 +237,16 @@ theorem card_fiber {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1) {r : X} (hr : r �
 theorem card_moving {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1) :
     (moving σ).card = p * (freeReps σ).card := by
   rw [Finset.card_eq_sum_card_fiberwise (f := rep σ) (t := freeReps σ)]
-  · rw [Finset.sum_congr rfl fun r hr => card_fiber σ hp hσ hr, Finset.sum_const, smul_eq_mul, mul_comm]
+  · rw [Finset.sum_congr rfl fun r hr => card_fiber σ hp hσ hr, Finset.sum_const, smul_eq_mul,
+      mul_comm]
   · intro a ha
     rw [Finset.mem_coe, mem_moving] at ha
     rw [Finset.mem_coe, mem_freeReps]
     exact ⟨apply_rep_ne σ ha, rep_rep σ a⟩
 
 omit [Fintype X] [DecidableEq X] in
-theorem shift_pow_eq_one (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hσ : σ ^ p = 1) (hA : A ^ p = 1) :
+theorem shift_pow_eq_one (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hσ : σ ^ p = 1)
+    (hA : A ^ p = 1) :
     Φ ^ p = 1 := by
   refine LinearMap.ext fun f => funext fun x => ?_
   rw [pow_shift_apply σ A Φ hΦ, hA, hσ]
@@ -254,7 +257,8 @@ noncomputable def avg (p : ℕ) : Module.End k (X → V) := ∑ i ∈ Finset.ran
 omit [Fintype X] [DecidableEq X] in
 theorem avg_mem_ker (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hσ : σ ^ p = 1) (hA : A ^ p = 1)
     (g : X → V) : avg Φ p g ∈ LinearMap.ker (Φ - 1) := by
-  rw [LinearMap.mem_ker, ← Module.End.mul_apply, avg, mul_geom_sum, shift_pow_eq_one σ A Φ hΦ hσ hA, sub_self,
+  rw [LinearMap.mem_ker, ← Module.End.mul_apply, avg, mul_geom_sum, shift_pow_eq_one σ A Φ hΦ hσ hA,
+    sub_self,
     LinearMap.zero_apply]
 
 omit [Fintype X] [DecidableEq X] in
@@ -285,7 +289,8 @@ theorem extZero_fixed_mem_ker (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x)))
     have hx2 : x ∉ fixedPts σ := by rw [mem_fixedPts]; exact hx
     rw [extZero_apply_not_mem _ hx', extZero_apply_not_mem _ hx2, map_zero]
 
-noncomputable def compMap (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hσ : σ ^ p = 1) (hA : A ^ p = 1) :
+noncomputable def compMap (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hσ : σ ^ p = 1)
+    (hA : A ^ p = 1) :
     ((↥(fixedPts σ) → LinearMap.ker (A - 1)) × (↥(freeReps σ) → V)) →ₗ[k] LinearMap.ker (Φ - 1) :=
   LinearMap.codRestrict (LinearMap.ker (Φ - 1))
     (LinearMap.coprod
@@ -296,7 +301,8 @@ noncomputable def compMap (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} 
       rw [LinearMap.coprod_apply]
       exact Submodule.add_mem _ (extZero_fixed_mem_ker σ A Φ hΦ u) (avg_mem_ker σ A Φ hΦ hσ hA _))
 
-theorem avg_extZero_apply_rep (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1)
+theorem avg_extZero_apply_rep (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hp : p.Prime)
+    (hσ : σ ^ p = 1)
     (v : ↥(freeReps σ) → V) {r : X} (hr : r ∈ freeReps σ) :
     avg Φ p (extZero k (freeReps σ) V v) r = v ⟨r, hr⟩ := by
   rw [avg_apply σ A Φ hΦ, Finset.sum_eq_single 0]
@@ -314,11 +320,13 @@ theorem avg_extZero_apply_rep (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : �
   · intro h
     exact absurd (Finset.mem_range.mpr hp.pos) h
 
-theorem compMap_injective (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1)
+theorem compMap_injective (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} (hp : p.Prime)
+    (hσ : σ ^ p = 1)
     (hA : A ^ p = 1) : Function.Injective (compMap σ A Φ hΦ hσ hA) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   rintro ⟨u, v⟩ huv
-  have H : extZero k (fixedPts σ) V (fun y => (u y : V)) + avg Φ p (extZero k (freeReps σ) V v) = 0 := by
+  have H : extZero k (fixedPts σ) V (fun y => (u y : V)) + avg Φ p (extZero k (freeReps σ) V v) = 0 :=
+    by
     have := congrArg Subtype.val huv
     simp [compMap] at this
     exact this
@@ -326,7 +334,8 @@ theorem compMap_injective (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} 
     funext ⟨r, hr⟩
     have Hr := congrFun H r
     have hrF : r ∉ fixedPts σ := by rw [mem_fixedPts]; exact ((mem_freeReps σ).mp hr).1
-    rw [Pi.add_apply, extZero_apply_not_mem _ hrF, zero_add, avg_extZero_apply_rep σ A Φ hΦ hp hσ v hr,
+    rw [Pi.add_apply, extZero_apply_not_mem _ hrF, zero_add, avg_extZero_apply_rep σ A Φ hΦ hp hσ v
+      hr,
       Pi.zero_apply] at Hr
     exact Hr
   subst hv
@@ -347,7 +356,8 @@ theorem le_finrank_ker_shift_sub_one (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x)))
       ≤ p * finrank k (LinearMap.ker (Φ - 1)) := by
   have hle := LinearMap.finrank_le_finrank_of_injective (compMap_injective σ A Φ hΦ hp hσ hA)
   rw [Module.finrank_prod, Module.finrank_pi_fintype, Module.finrank_pi_fintype, Finset.sum_const,
-    Finset.sum_const, smul_eq_mul, smul_eq_mul, Finset.card_univ, Finset.card_univ, Fintype.card_coe,
+    Finset.sum_const, smul_eq_mul, smul_eq_mul, Finset.card_univ, Finset.card_univ,
+    Fintype.card_coe,
     Fintype.card_coe] at hle
   have hX : Fintype.card X - (fixedPts σ).card = p * (freeReps σ).card := by
     rw [← card_fixedPts_add_card_moving σ, Nat.add_sub_cancel_left, card_moving σ hp hσ]
@@ -364,7 +374,8 @@ section Concrete
 open scoped MatrixGroups
 p2m_open "HeckeEis P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL.HeckeEis MvPolynomial"
 
-theorem finrank_binaryForm (K : Type*) [Field K] (n : ℕ) : Module.finrank K (BinaryForm K n) = n + 1 := by
+theorem finrank_binaryForm (K : Type*) [Field K] (n : ℕ) :
+    Module.finrank K (BinaryForm K n) = n + 1 := by
   let S : Set (Fin 2 →₀ ℕ) := {d | d.degree = n}
   have e1 : (BinaryForm K n) ≃ₗ[K] (S →₀ K) :=
     (LinearEquiv.ofEq _ _ (MvPolynomial.homogeneousSubmodule_eq_finsupp_supported (Fin 2) K n)).trans
@@ -397,7 +408,8 @@ scoped instance instFiniteDimensionalBinaryForm (K : Type*) [Field K] (n : ℕ) 
 
 variable (N : ℕ)
 
-theorem neg_one_smul_coset (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) : (-1 : SL(2, ℤ)) • x = x := by
+theorem neg_one_smul_coset (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) :
+    (-1 : SL(2, ℤ)) • x = x := by
   induction x using QuotientGroup.induction_on with
   | H g =>
     rw [MulAction.Quotient.smul_mk, smul_eq_mul, neg_one_mul, ← mul_neg_one]
@@ -414,7 +426,8 @@ theorem toPerm_coset_pow_eq_one {g : SL(2, ℤ)} {p : ℕ} (hg : g ^ p = -1) :
 
 theorem S_sq : ModularGroup.S ^ 2 = -1 := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [ModularGroup.coe_S, pow_succ, Matrix.mul_apply, Fin.sum_univ_two]
+  fin_cases i <;> fin_cases j <;> simp [ModularGroup.coe_S, pow_succ, Matrix.mul_apply,
+    Fin.sum_univ_two]
 
 theorem ST_cube : (ModularGroup.S * ModularGroup.T) ^ 3 = -1 := by
   ext i j
@@ -454,7 +467,8 @@ theorem finrank_coset_fun [NeZero N] :
       = (n + 1) * (CongruenceSubgroup.Gamma0 N).index := by
   classical
   let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := Fintype.ofFinite _
-  rw [Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, smul_eq_mul, finrank_binaryForm,
+  rw [Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, smul_eq_mul,
+    finrank_binaryForm,
     Subgroup.index_eq_card, Nat.card_eq_fintype_card, mul_comm]
 
 theorem prime_conjunct [NeZero N] (hn : Even n) {g : SL(2, ℤ)}
@@ -471,13 +485,15 @@ theorem prime_conjunct [NeZero N] (hn : Even n) {g : SL(2, ℤ)}
   have hΦ : ∀ f x, Φ f x = binaryFormRepSL ℂ n g (f ((MulAction.toPerm g)⁻¹ x)) := by
     intro f x
     rw [hW, Equiv.Perm.inv_def, MulAction.toPerm_symm_apply]
-  have key := le_finrank_ker_shift_sub_one (k := ℂ) (MulAction.toPerm g) (binaryFormRepSL ℂ n g) Φ hΦ hp
+  have key :=
+    le_finrank_ker_shift_sub_one (k := ℂ) (MulAction.toPerm g) (binaryFormRepSL ℂ n g) Φ hΦ hp
     (toPerm_coset_pow_eq_one N hg) (binaryFormRepSL_pow_eq_one n hn hg)
   have h1 : (fixedPts (MulAction.toPerm g : Equiv.Perm (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))).card
       = Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // g • x = x} := by
     rw [Nat.card_eq_fintype_card, Fintype.card_subtype, fixedPts]
     simp only [MulAction.toPerm_apply]
-  have h2 : Fintype.card (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) = (CongruenceSubgroup.Gamma0 N).index := by
+  have h2 : Fintype.card (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) = (CongruenceSubgroup.Gamma0 N).index :=
+    by
     rw [Subgroup.index_eq_card, Nat.card_eq_fintype_card]
   rw [h1, h2, finrank_binaryForm, mul_assoc] at key
   exact key
@@ -573,6 +589,7 @@ theorem HeckeEis.le_finrank_fixed_induced_binaryFormRepSL (N : ℕ) [NeZero N] (
       + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}) * (n + 1)
       ≤ 3 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1)) ∧
     Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))
-      ≤ Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1)) := _root_.P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL.solution N n hn W hW
+      ≤ Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1)) :=
+  solution N n hn W hW
 
 end publicSection

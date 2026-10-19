@@ -122,7 +122,7 @@ theorem mem_coeffCoboundaries_iff (ρ : Representation K G V) (z : G → V) :
 theorem coeffCoboundaries_le_coeffCocycles (ρ : Representation K G V) :
     coeffCoboundaries ρ ≤ coeffCocycles ρ := by
   rintro z ⟨v, rfl⟩ g h
-  show ρ (g * h) v - v = (ρ g v - v) + ρ g (ρ h v - v)
+  change ρ (g * h) v - v = (ρ g v - v) + ρ g (ρ h v - v)
   rw [map_mul, map_sub]
   simp only [Module.End.mul_apply]
   abel

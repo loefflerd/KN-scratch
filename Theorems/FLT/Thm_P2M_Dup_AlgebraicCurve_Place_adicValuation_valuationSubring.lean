@@ -103,7 +103,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.adicValuation_valuationSubring {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
-    v.adicValuation.valuationSubring = v.toValuationSubring := _root_.P2MW.S_AlgebraicCurve_Place_adicValuation_valuationSubring.solution v
+theorem P2M.Dup.AlgebraicCurve.Place.adicValuation_valuationSubring {K F : Type*} [Field K]
+    [Field F] [Algebra K F] (v : Place K F) :
+    v.adicValuation.valuationSubring = v.toValuationSubring :=
+  solution v
 
 end publicSection

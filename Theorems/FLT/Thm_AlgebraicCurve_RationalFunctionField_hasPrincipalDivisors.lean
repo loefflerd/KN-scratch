@@ -82,6 +82,8 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.hasPrincipalDivisors (K : Type*) [Field K] : HasPrincipalDivisors K (RatFunc K) := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_hasPrincipalDivisors.solution K
+theorem AlgebraicCurve.RationalFunctionField.hasPrincipalDivisors (K : Type*) [Field K] :
+    HasPrincipalDivisors K (RatFunc K) :=
+  solution K
 
 end publicSection

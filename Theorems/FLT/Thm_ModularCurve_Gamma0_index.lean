@@ -216,7 +216,7 @@ private theorem firstColumnClass_eq_iff (A B : SpecialLinearGroup (Fin 2) R) :
     obtain ⟨u, h1, h2⟩ := Quotient.exact hAB
     have h1' : (u : R) * A.1 0 0 = B.1 0 0 := h1
     have h2' : (u : R) * A.1 1 0 = B.1 1 0 := h2
-    show (A⁻¹ * B).1 1 0 = 0
+    change (A⁻¹ * B).1 1 0 = 0
     rw [SpecialLinearGroup.coe_mul, SpecialLinearGroup.SL2_inv_expl A,
       (Matrix.two_mul_expl _ B.1).2.2.1]
     simp only [Matrix.cons_val_one, Matrix.cons_val_zero]
@@ -234,8 +234,8 @@ private theorem firstColumnClass_eq_iff (A B : SpecialLinearGroup (Fin 2) R) :
       exact (Matrix.two_mul_expl A.1 (A⁻¹ * B).1).2.2.1
     refine Quotient.sound ⟨⟨(A⁻¹ * B).1 0 0, (A⁻¹ * B).1 1 1, hCdet,
       (mul_comm _ _).trans hCdet⟩, ?_, ?_⟩
-    · show (A⁻¹ * B).1 0 0 * A.1 0 0 = B.1 0 0; rw [hB00, hC10]; ring
-    · show (A⁻¹ * B).1 0 0 * A.1 1 0 = B.1 1 0; rw [hB10, hC10]; ring
+    · change (A⁻¹ * B).1 0 0 * A.1 0 0 = B.1 0 0; rw [hB00, hC10]; ring
+    · change (A⁻¹ * B).1 0 0 * A.1 1 0 = B.1 1 0; rw [hB10, hC10]; ring
 
 private theorem card_quotient_borel (R : Type*) [CommRing R] :
     Nat.card (SpecialLinearGroup (Fin 2) R ⧸ borel R) = Nat.card (ProjectiveLine R) := by
@@ -255,10 +255,10 @@ private theorem card_quotient_borel (R : Type*) [CommRing R] :
     obtain ⟨x, y, hxy⟩ := v.2
     refine ⟨QuotientGroup.mk ⟨!![v.1.1, -y; v.1.2, x], by
       rw [Matrix.det_fin_two_of]; linear_combination hxy⟩, ?_⟩
-    show firstColumnClass _ = ⟦v⟧
+    change firstColumnClass _ = ⟦v⟧
     refine Quotient.sound ⟨1, ?_, ?_⟩
-    · show (1 : R) * !![v.1.1, -y; v.1.2, x] 0 0 = v.1.1; simp
-    · show (1 : R) * !![v.1.1, -y; v.1.2, x] 1 0 = v.1.2; simp
+    · change (1 : R) * !![v.1.1, -y; v.1.2, x] 0 0 = v.1.1; simp
+    · change (1 : R) * !![v.1.1, -y; v.1.2, x] 1 0 = v.1.2; simp
 
 end QuotientBorel
 
@@ -269,7 +269,7 @@ private theorem Gamma0_eq_comap_borel (N : ℕ) :
   rw [Gamma0_mem, Subgroup.mem_comap, mem_borel_iff]
   constructor
   · intro hA
-    show (Int.castRingHom (ZMod N)).mapMatrix A.1 1 0 = 0; simpa using hA
+    change (Int.castRingHom (ZMod N)).mapMatrix A.1 1 0 = 0; simpa using hA
   · intro hA
     have hA' : (Int.castRingHom (ZMod N)).mapMatrix A.1 1 0 = 0 := hA; simpa using hA'
 
@@ -290,6 +290,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.Gamma0_index (N : ℕ) [NeZero N] : (CongruenceSubgroup.Gamma0 N).index = dedekindPsi N := _root_.P2MW.S_ModularCurve_Gamma0_index.solution N
+theorem ModularCurve.Gamma0_index (N : ℕ) [NeZero N] :
+    (CongruenceSubgroup.Gamma0 N).index = dedekindPsi N :=
+  solution N
 
 end publicSection

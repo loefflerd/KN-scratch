@@ -69,14 +69,18 @@ p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing'"
+p2m_export "AlgebraicCurve.Place" "ext ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow \
+  ord_unit_smul_zpow exists_unit_mul_zpow ne_top' algebraMap_mem' toValuationSubring \
+  isPrincipalIdealRing'"
 p2m_open "AlgebraicCurve.Place"
 
 section SinglePlace
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F}
+    (hf : f ∈ v.toValuationSubring) :
+    0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -92,7 +96,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F} (hf : f �
   exact Int.natCast_nonneg n
 
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem'"
-private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg' {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg' {f : F} (hf : f ≠ 0)
+    (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -212,7 +217,8 @@ private theorem _root_.AlgebraicCurve.Place.ramificationIndex'_set_nonempty :
   exact ⟨(w.ord (algebraMap F F' f)).toNat, by omega, f, hf0, by omega⟩
 
 p2m_export "AlgebraicCurve.Place" "ramificationIndex'_set_nonempty"
-private theorem _root_.AlgebraicCurve.Place.ramificationIndex'_pos : 0 < ramificationIndex' (F := F) w :=
+private theorem _root_.AlgebraicCurve.Place.ramificationIndex'_pos :
+    0 < ramificationIndex' (F := F) w :=
   (Nat.sInf_mem (w.ramificationIndex'_set_nonempty (F := F))).1
 
 p2m_export "AlgebraicCurve.Place" "ramificationIndex'_pos"
@@ -330,7 +336,6 @@ section RestrictDef
 variable [Algebra K F] [IsScalarTower K F F']
 
 variable (F) in
-
 private def _root_.AlgebraicCurve.Place.restrict' : Place K F where
   toValuationSubring := w.toValuationSubring.comap (algebraMap F F')
   algebraMap_mem' a := by
@@ -386,7 +391,8 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap.AlgebraicCurve in
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (w : Place K F') :
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (w : Place K F') :
     ∃ v : Place K F, v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F') :=
   AlgebraicCurve.Place.rowMain w
 
@@ -400,6 +406,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.exists_toValuationSubring_eq_comap {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (w : Place K F') : ∃ v : Place K F, v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F') := _root_.P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap.solution w
+theorem AlgebraicCurve.Place.exists_toValuationSubring_eq_comap {K F F' : Type*} [Field K] [Field F]
+    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
+    [Algebra.IsIntegral F F'] (w : Place K F') :
+    ∃ v : Place K F, v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F') :=
+  solution w
 
 end publicSection

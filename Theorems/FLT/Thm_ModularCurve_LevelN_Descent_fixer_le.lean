@@ -80,7 +80,11 @@ open scoped MatrixGroups IntermediateField
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpFunctionFieldC qExpand qExpand_single coeffMap coeffMap_single coeffMap_coeffMap coeffMap_congr algebraMap_laurentSeries_eq_single coeffMap_algebraMap coeffEmb coeffMap_coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff coeffMap_mem_laurentBaseChange jqModC map_jqModC finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index"
+p2m_export "ModularCurve" "qExpFunctionFieldC qExpand qExpand_single coeffMap coeffMap_single \
+  coeffMap_coeffMap coeffMap_congr algebraMap_laurentSeries_eq_single coeffMap_algebraMap coeffEmb \
+  coeffMap_coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff \
+  coeffMap_mem_laurentBaseChange jqModC map_jqModC \
+  finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index"
 namespace LevelN
 namespace Descent
 p2m_open "ModularCurve.LevelN ModularCurve"
@@ -90,7 +94,7 @@ local notation "ℚ̄" => AlgebraicClosure ℚ
 def qExpC (M : ℕ) [NeZero M] : LaurentSeries ℂ →ₐ[ℂ] LaurentSeries ℂ :=
   { qExpand ℂ M with
     commutes' := fun c => by
-      show qExpand ℂ M (algebraMap ℂ (LaurentSeries ℂ) c) = algebraMap ℂ (LaurentSeries ℂ) c
+      change qExpand ℂ M (algebraMap ℂ (LaurentSeries ℂ) c) = algebraMap ℂ (LaurentSeries ℂ) c
       rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero] }
 
 theorem qExpC_apply (M : ℕ) [NeZero M] (f : LaurentSeries ℂ) : qExpC M f = qExpand ℂ M f := rfl
@@ -158,9 +162,10 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := by
   let yC : ↥FC := ⟨coeffMap ι (y₀ : LaurentSeries ℚ̄), coeffMap_mem_laurentBaseChange ι _ y₀.2⟩
   have hyC : (yC : LaurentSeries ℂ) = jqModC ℂ := by
-    show coeffMap ι (y₀ : LaurentSeries ℚ̄) = jqModC ℂ
+    change coeffMap ι (y₀ : LaurentSeries ℚ̄) = jqModC ℂ
     rw [hy₀]; exact map_jqModC ι
-  have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M yC hyC
+  have hfull :=
+    ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M yC hyC
   rw [← hfull]
   symm
   set EE : IntermediateField ℂ K := IntermediateField.adjoin ℂ (Set.range Φ) with hEE
@@ -172,8 +177,8 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
   have hj : ∀ z : ↥FC, ((j z : ↥EE) : K) = (j z : K) := fun _ => rfl
   have hjval : ∀ z : ↥FC, E' ((j z : ↥EE) : K) = qExpC M (z : LaurentSeries ℂ) := by
     intro z
-    show (((EE.equivMap E') (j z) : ↥(EE.map E')) : LaurentSeries ℂ) = _
-    show (((EE.equivMap E') ((EE.equivMap E').symm
+    change (((EE.equivMap E') (j z) : ↥(EE.map E')) : LaurentSeries ℂ) = _
+    change (((EE.equivMap E') ((EE.equivMap E').symm
       (IntermediateField.equivOfEq heq ((FC).equivMap (qExpC M) z))) : ↥(EE.map E')) : LaurentSeries ℂ) = _
     rw [AlgEquiv.apply_symm_apply]
     rfl
@@ -184,9 +189,10 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
     rw [hjval, qExpC_apply, hyC, hE'j]
   have hmap : (ℂ⟮yC⟯).map j.toAlgHom = ℂ⟮tE⟯ := by
     rw [IntermediateField.adjoin_map, Set.image_singleton]
-    show ℂ⟮j yC⟯ = ℂ⟮tE⟯
+    change ℂ⟮j yC⟯ = ℂ⟮tE⟯
     rw [hjy]
-  let i : ↥ℂ⟮yC⟯ ≃ₐ[ℂ] ↥ℂ⟮tE⟯ := ((ℂ⟮yC⟯).equivMap j.toAlgHom).trans (IntermediateField.equivOfEq hmap)
+  let i : ↥ℂ⟮yC⟯ ≃ₐ[ℂ] ↥ℂ⟮tE⟯ :=
+    ((ℂ⟮yC⟯).equivMap j.toAlgHom).trans (IntermediateField.equivOfEq hmap)
   have hi : ∀ z : ↥ℂ⟮yC⟯, ((i z : ↥ℂ⟮tE⟯) : ↥EE) = j (z : ↥FC) := fun _ => rfl
   refine Algebra.finrank_eq_of_equiv_equiv i.toRingEquiv j.toRingEquiv ?_
   refine RingHom.ext fun z => ?_
@@ -202,30 +208,35 @@ variable (K : Type*) [Field K] [Algebra ℂ K]
 
 local notation "FF" => laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
 
-theorem apply_eq_self_of_mem_adjoin (t : K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = t) (z : K) (hz : z ∈ ℂ⟮t⟯) : ψ z = z := by
-  let S : IntermediateField ℂ K := (AlgHom.equalizer ψ (AlgHom.id ℂ K)).toIntermediateField (fun x hx => by
+theorem apply_eq_self_of_mem_adjoin (t : K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = t) (z : K) (hz : z ∈ ℂ⟮t⟯) :
+    ψ z = z := by
+  let S : IntermediateField ℂ K :=
+    (AlgHom.equalizer ψ (AlgHom.id ℂ K)).toIntermediateField (fun x hx => by
     simp only [AlgHom.mem_equalizer, AlgHom.coe_id, id_eq] at hx ⊢
     rw [map_inv₀, hx])
   have hle : ℂ⟮t⟯ ≤ S := by
     rw [IntermediateField.adjoin_le_iff, Set.singleton_subset_iff]
-    show ψ t = AlgHom.id ℂ K t
+    change ψ t = AlgHom.id ℂ K t
     rw [ht]; rfl
   exact hle hz
 
-theorem apply_eq_self_of_mem_adjoin_range {F : Type*} (Φ : F → K) (ψ : K →ₐ[ℂ] K) (hΦ : ∀ u, ψ (Φ u) = Φ u) (z : K)
+theorem apply_eq_self_of_mem_adjoin_range {F : Type*} (Φ : F → K) (ψ : K →ₐ[ℂ] K)
+    (hΦ : ∀ u, ψ (Φ u) = Φ u) (z : K)
     (hz : z ∈ IntermediateField.adjoin ℂ (Set.range Φ)) : ψ z = z := by
-  let S : IntermediateField ℂ K := (AlgHom.equalizer ψ (AlgHom.id ℂ K)).toIntermediateField (fun x hx => by
+  let S : IntermediateField ℂ K :=
+    (AlgHom.equalizer ψ (AlgHom.id ℂ K)).toIntermediateField (fun x hx => by
     simp only [AlgHom.mem_equalizer, AlgHom.coe_id, id_eq] at hx ⊢
     rw [map_inv₀, hx])
   have hle : IntermediateField.adjoin ℂ (Set.range Φ) ≤ S := by
     rw [IntermediateField.adjoin_le_iff]
     rintro _ ⟨u, rfl⟩
-    show ψ (Φ u) = AlgHom.id ℂ K (Φ u)
+    change ψ (Φ u) = AlgHom.id ℂ K (Φ u)
     rw [hΦ]; rfl
   exact hle hz
 
 theorem fixer_le (t : K)
-    (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K)) (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
+    (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K))
+    (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hfin : FiniteDimensional ℂ⟮t⟯ K) (hgal : IsGalois ℂ⟮t⟯ K)
     (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
     (ι : ℚ̄ →+* ℂ) (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] LaurentSeries ℂ)
@@ -241,20 +252,21 @@ theorem fixer_le (t : K)
   let S₁ : Subgroup SL(2, ℤ) :=
     { carrier := {δ | ∀ u, σ δ (Φ u) = Φ u}
       mul_mem' := fun {a b} ha hb u => by
-        show σ (a * b) (Φ u) = Φ u
+        change σ (a * b) (Φ u) = Φ u
         rw [map_mul, AlgEquiv.mul_apply, hb, ha]
       one_mem' := fun u => by
-        show σ 1 (Φ u) = Φ u
+        change σ 1 (Φ u) = Φ u
         rw [map_one, AlgEquiv.one_apply]
       inv_mem' := fun {a} ha u => by
-        show σ a⁻¹ (Φ u) = Φ u
+        change σ a⁻¹ (Φ u) = Φ u
         rw [map_inv, AlgEquiv.aut_inv]
         conv_lhs => rw [← ha u]
         exact (σ a).symm_apply_apply _ }
   have hmemS : ∀ d, d ∈ S₁ ↔ ∀ u, σ d (Φ u) = Φ u := fun _ => Iff.rfl
   set G₁ : Subgroup SL(2, ℤ) := CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) with hG₁
   have hneg : σ (-1) = 1 := by
-    have : (-1 : SL(2, ℤ)) ∈ σ.ker := by rw [hker]; exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
+    have : (-1 : SL(2, ℤ)) ∈ σ.ker :=
+      by rw [hker]; exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
     exact this
   have hkerS : σ.ker ≤ S₁ := fun d hd u => by
     have hd' : σ d = 1 := hd
@@ -274,10 +286,10 @@ theorem fixer_le (t : K)
   let θ : S₁ →* (K ≃ₐ[ℂ⟮t⟯] K) :=
     { toFun := fun d => { (σ d).toRingEquiv with commutes' := fun z => hfixt d z z.2 }
       map_one' := AlgEquiv.ext fun z => by
-        show σ (1 : S₁) z = z
+        change σ (1 : S₁) z = z
         rw [OneMemClass.coe_one, map_one, AlgEquiv.one_apply]
       map_mul' := fun a b => AlgEquiv.ext fun z => by
-        show σ ((a * b : S₁) : SL(2, ℤ)) z = σ a (σ b z)
+        change σ ((a * b : S₁) : SL(2, ℤ)) z = σ a (σ b z)
         rw [Subgroup.coe_mul, map_mul, AlgEquiv.mul_apply] }
   have hθapply : ∀ (d : S₁) (z : K), θ d z = σ d z := fun _ _ => rfl
   have hθrange : θ.range ≤ E₂.fixingSubgroup := by
@@ -298,11 +310,12 @@ theorem fixer_le (t : K)
     · intro h
       apply AlgEquiv.ext
       intro z
-      show σ d z = z
+      change σ d z = z
       rw [h, AlgEquiv.one_apply]
   have : Finite (K ≃ₐ[ℂ⟮t⟯] K) := inferInstance
   have hcard1 : Nat.card θ.range ≤ Nat.card E₂.fixingSubgroup := Subgroup.card_le_of_le hθrange
-  have hcard2 : Nat.card E₂.fixingSubgroup = Module.finrank ↥E₂ K := IsGalois.card_fixingSubgroup_eq_finrank E₂
+  have hcard2 : Nat.card E₂.fixingSubgroup = Module.finrank ↥E₂ K :=
+    IsGalois.card_fixingSubgroup_eq_finrank E₂
   have hcard3 : σ.ker.relIndex S₁ = Nat.card θ.range := by
     rw [← Subgroup.index_ker, hθker]; rfl
   have htower : Module.finrank ↥ℂ⟮t⟯ ↥E₂ * Module.finrank ↥E₂ K = Module.finrank ↥ℂ⟮t⟯ K :=
@@ -313,7 +326,8 @@ theorem fixer_le (t : K)
     set tE : ↥EE := ⟨t, hΦy ▸ IntermediateField.subset_adjoin ℂ _ ⟨y₀, rfl⟩⟩ with htE
     have hlift : IntermediateField.lift ℂ⟮tE⟯ = ℂ⟮t⟯ := by
       rw [IntermediateField.lift_adjoin_simple]
-    let e₁ : ↥ℂ⟮tE⟯ ≃ₐ[ℂ] ↥ℂ⟮t⟯ := (IntermediateField.liftAlgEquiv _).trans (IntermediateField.equivOfEq hlift)
+    let e₁ : ↥ℂ⟮tE⟯ ≃ₐ[ℂ] ↥ℂ⟮t⟯ :=
+      (IntermediateField.liftAlgEquiv _).trans (IntermediateField.equivOfEq hlift)
     let e₂ : ↥EE ≃+* ↥E₂ := RingEquiv.refl _
     symm
     refine Algebra.finrank_eq_of_equiv_equiv e₁.toRingEquiv e₂ ?_
@@ -358,7 +372,8 @@ end
 
 theorem solution (M : ℕ) [NeZero M]
     (K : Type*) [Field K] [Algebra ℂ K] (t : K)
-    (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K)) (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
+    (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K))
+    (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hfin : FiniteDimensional ℂ⟮t⟯ K) (hgal : IsGalois ℂ⟮t⟯ K)
     (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
     (ι : AlgebraicClosure ℚ →+* ℂ)
@@ -371,7 +386,8 @@ theorem solution (M : ℕ) [NeZero M]
         E' (Φ u) = ModularCurve.qExpand ℂ M (ModularCurve.coeffMap ι (u : LaurentSeries (AlgebraicClosure ℚ))))
     (y₀ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
-    (hy₀ : (y₀ : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ)) (hΦy : Φ y₀ = t)
+    (hy₀ : (y₀ : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ))
+    (hΦy : Φ y₀ = t)
     (hΦfix : ∀ γ ∈ CongruenceSubgroup.Gamma1 M, ∀ u, σ γ (Φ u) = Φ u)
     (δ : SL(2, ℤ)) (hδ : ∀ u, σ δ (Φ u) = Φ u) :
     δ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) :=
@@ -389,7 +405,8 @@ public section publicSection
 open scoped MatrixGroups IntermediateField
 theorem ModularCurve.LevelN.Descent.fixer_le (M : ℕ) [NeZero M]
     (K : Type*) [Field K] [Algebra ℂ K] (t : K)
-    (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K)) (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
+    (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K))
+    (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hfin : FiniteDimensional ℂ⟮t⟯ K) (hgal : IsGalois ℂ⟮t⟯ K)
     (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
     (ι : AlgebraicClosure ℚ →+* ℂ)
@@ -402,9 +419,11 @@ theorem ModularCurve.LevelN.Descent.fixer_le (M : ℕ) [NeZero M]
         E' (Φ u) = ModularCurve.qExpand ℂ M (ModularCurve.coeffMap ι (u : LaurentSeries (AlgebraicClosure ℚ))))
     (y₀ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
-    (hy₀ : (y₀ : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ)) (hΦy : Φ y₀ = t)
+    (hy₀ : (y₀ : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ))
+    (hΦy : Φ y₀ = t)
     (hΦfix : ∀ γ ∈ CongruenceSubgroup.Gamma1 M, ∀ u, σ γ (Φ u) = Φ u)
     (δ : SL(2, ℤ)) (hδ : ∀ u, σ δ (Φ u) = Φ u) :
-    δ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := _root_.P2MW.S_ModularCurve_LevelN_Descent_fixer_le.solution M K t σ hker hfin hgal hdeg ι Φ E' hE'j hE'Φ y₀ hy₀ hΦy hΦfix δ hδ
+    δ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) :=
+  solution M K t σ hker hfin hgal hdeg ι Φ E' hE'j hE'Φ y₀ hy₀ hΦy hΦfix δ hδ
 
 end publicSection

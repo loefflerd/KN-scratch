@@ -78,7 +78,6 @@ def IsFrickeAut (σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N)
   σ ⟨jq, jq_mem N⟩ = ⟨jqN N, jqN_mem N⟩ ∧ σ ⟨jqN N, jqN_mem N⟩ = ⟨jq, jq_mem N⟩
 
 open Classical in
-
 def frickeInvolution : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N :=
   if h : ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ
   then h.choose else AlgEquiv.refl
@@ -109,7 +108,6 @@ def IsFrickeAutFull (N : ℕ) [NeZero N]
       = ⟨qExpand ℚ b jq, jqd_mem_full N (Dvd.intro_left a hab)⟩
 
 open Classical in
-
 def frickeInvolutionFull (N : ℕ) [NeZero N] :
     modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N :=
   if h : ∃ σ : modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N, IsFrickeAutFull N σ

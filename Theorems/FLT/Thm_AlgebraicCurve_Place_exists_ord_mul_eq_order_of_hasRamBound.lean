@@ -67,12 +67,14 @@ namespace P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound.AlgebraicCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ord exists_unit_mul_zpow ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing'"
+p2m_export "AlgebraicCurve.Place" "ext ord exists_unit_mul_zpow ne_top' algebraMap_mem' \
+  toValuationSubring isPrincipalIdealRing'"
 namespace HahnEmbedding
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
@@ -111,7 +113,7 @@ theorem order_map_algebraMap (c : K) : (φ (algebraMap K F c)).order = 0 := by
 def valuationSubring : ValuationSubring F where
   carrier := {x | 0 ≤ (φ x).order}
   mul_mem' {x y} hx hy := by
-    show 0 ≤ (φ (x * y)).order
+    change 0 ≤ (φ (x * y)).order
     rcases eq_or_ne x 0 with rfl | hx0
     · simp
     rcases eq_or_ne y 0 with rfl | hy0
@@ -119,25 +121,25 @@ def valuationSubring : ValuationSubring F where
     rw [order_map_mul φ hx0 hy0]
     exact add_nonneg hx hy
   one_mem' := by
-    show 0 ≤ (φ 1).order
+    change 0 ≤ (φ 1).order
     rw [map_one, HahnSeries.order_one]
   add_mem' {x y} hx hy := by
-    show 0 ≤ (φ (x + y)).order
+    change 0 ≤ (φ (x + y)).order
     rcases eq_or_ne (φ (x + y)) 0 with h0 | h0
     · rw [h0, HahnSeries.order_zero]
     rw [map_add] at h0 ⊢
     exact le_trans (le_min hx hy) (HahnSeries.min_order_le_order_add h0)
   zero_mem' := by
-    show 0 ≤ (φ 0).order
+    change 0 ≤ (φ 0).order
     rw [map_zero, HahnSeries.order_zero]
   neg_mem' {x} hx := by
-    show 0 ≤ (φ (-x)).order
+    change 0 ≤ (φ (-x)).order
     rwa [map_neg, HahnSeries.order_neg]
   mem_or_inv_mem' x := by
     rcases le_or_gt 0 (φ x).order with h | h
     · exact Or.inl h
     · right
-      show 0 ≤ (φ x⁻¹).order
+      change 0 ≤ (φ x⁻¹).order
       rw [order_map_inv]
       linarith
 
@@ -340,7 +342,7 @@ theorem hasUnitMulPowIrreducibleFactorization :
   have : ((hu.unit : valuationSubring φ) : F) = (x : F) * (π ^ n)⁻¹ := by
     rw [IsUnit.unit_spec]
   rw [Subring.coe_mul, SubmonoidClass.coe_pow, this]
-  show π ^ n * ((x : F) * (π ^ n)⁻¹) = x
+  change π ^ n * ((x : F) * (π ^ n)⁻¹) = x
   field_simp
 
 def place : Place K F where
@@ -378,7 +380,6 @@ end Generator
 end AlgebraicCurve.Place.HahnEmbedding
 
 open AlgebraicCurve.Place.HahnEmbedding in
-
 theorem solution
     {K L F : Type*} [Field K] [Field L] [Algebra K L] [Field F] [Algebra K F]
     (φ : F →ₐ[K] HahnSeries ℚ L) {d : ℕ} (hd : 0 < d)
@@ -405,6 +406,7 @@ theorem AlgebraicCurve.Place.exists_ord_mul_eq_order_of_hasRamBound
     (hφ : ∀ x : F, HahnSeries.HasRamBound d (φ x))
     (hnt : ∃ x : F, (φ x).order ≠ 0) :
     ∃ (w : AlgebraicCurve.Place K F) (g : ℚ), 0 < g ∧
-      ∀ x : F, (w.ord x : ℚ) * g = (φ x).order := _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound.solution φ hd hφ hnt
+      ∀ x : F, (w.ord x : ℚ) * g = (φ x).order :=
+  solution φ hd hφ hnt
 
 end publicSection

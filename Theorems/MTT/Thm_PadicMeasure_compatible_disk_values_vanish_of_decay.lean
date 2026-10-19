@@ -72,7 +72,7 @@ lemma child_coprime {p n : ℕ} (hn : 0 < n) {a : ℤ}
 /-- Compatible residue-disk values that decay uniformly with depth vanish. -/
 theorem solution {p : ℕ} [Fact p.Prime] (D : ℕ → ℤ → ℂ_[p])
     (hadd : ∀ n : ℕ, 0 < n → ∀ a : ℤ, IsCoprime a (p : ℤ) →
-      (∑ b ∈ Finset.range p, D (n+1) (a+(b : ℤ)*(p : ℤ)^n)) = D n a)
+      (∑ b ∈ Finset.range p, D (n+1) (a+(b : ℤ)*(p : ℤ) ^ n)) = D n a)
     (B : ℕ → ℝ) (hB : Filter.Tendsto B Filter.atTop (nhds 0))
     (hbound : ∀ n : ℕ, 0 < n → ∀ a : ℤ, IsCoprime a (p : ℤ) → ‖D n a‖ ≤ B n) :
     ∀ n : ℕ, 0 < n → ∀ a : ℤ, IsCoprime a (p : ℤ) → D n a = 0 := by
@@ -88,7 +88,7 @@ theorem solution {p : ℕ} [Fact p.Prime] (D : ℕ → ℤ → ℂ_[p])
         (Finset.nonempty_range_iff.mpr (Fact.out : p.Prime).ne_zero)
       intro b _
       simpa only [Nat.add_assoc,Nat.add_comm 1] using
-        ih (n+1) (by omega) (a+(b : ℤ)*(p : ℤ)^n) (child_coprime hn ha b)
+        ih (n+1) (by omega) (a+(b : ℤ)*(p : ℤ) ^ n) (child_coprime hn ha b)
   intro n hn a ha
   apply norm_eq_zero.mp
   apply le_antisymm _ (norm_nonneg _)
@@ -102,9 +102,10 @@ public section publicSection
 open scoped BigOperators
 open Filter
 
-theorem PadicMeasure.compatible_disk_values_vanish_of_decay {p : ℕ} [Fact p.Prime] (D : ℕ → ℤ → ℂ_[p])
+theorem PadicMeasure.compatible_disk_values_vanish_of_decay {p : ℕ} [Fact p.Prime]
+    (D : ℕ → ℤ → ℂ_[p])
     (hadd : ∀ n : ℕ, 0 < n → ∀ a : ℤ, IsCoprime a (p : ℤ) →
-      (∑ b ∈ Finset.range p, D (n+1) (a+(b : ℤ)*(p : ℤ)^n)) = D n a)
+      (∑ b ∈ Finset.range p, D (n+1) (a+(b : ℤ)*(p : ℤ) ^ n)) = D n a)
     (B : ℕ → ℝ) (hB : Filter.Tendsto B Filter.atTop (nhds 0))
     (hbound : ∀ n : ℕ, 0 < n → ∀ a : ℤ, IsCoprime a (p : ℤ) → ‖D n a‖ ≤ B n) :
     ∀ n : ℕ, 0 < n → ∀ a : ℤ, IsCoprime a (p : ℤ) → D n a = 0 :=

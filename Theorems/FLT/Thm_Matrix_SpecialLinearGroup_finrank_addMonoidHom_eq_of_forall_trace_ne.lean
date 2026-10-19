@@ -74,7 +74,7 @@ variable {ι K L : Type*} [Group K] [Group L]
 
 theorem lift_apply_basis (b : FreeGroupBasis ι K) (f : ι → L) (i : ι) :
     b.lift f (b i) = f i := by
-  show FreeGroup.lift f (b.repr (b i)) = f i
+  change FreeGroup.lift f (b.repr (b i)) = f i
   rw [FreeGroupBasis.repr_apply_coe, FreeGroup.lift_apply_of]
 
 theorem closure_range_basis (b : FreeGroupBasis ι K) :
@@ -169,7 +169,7 @@ theorem finrank_addMonoidHom [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
     intro φ
     have h2 : (⟨-1, hneg⟩ : Γ) * ⟨-1, hneg⟩ = 1 := by
       apply Subtype.ext
-      show (-1 : SL(2, ℤ)) * -1 = 1
+      change (-1 : SL(2, ℤ)) * -1 = 1
       rw [neg_mul_neg, one_mul]
     have : φ (Additive.ofMul (⟨-1, hneg⟩ : Γ)) + φ (Additive.ofMul (⟨-1, hneg⟩ : Γ)) = 0 := by
       rw [← map_add, ← ofMul_mul, h2, ofMul_one, map_zero]
@@ -196,7 +196,7 @@ theorem finrank_addMonoidHom [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
     intro v
     obtain ⟨f, hf⟩ := hext (Multiplicative K) (fun i => Multiplicative.ofAdd (v i))
     refine ⟨(MonoidHom.toAdditive f), funext fun i => ?_⟩
-    show Multiplicative.toAdd (f (gens i)) = v i
+    change Multiplicative.toAdd (f (gens i)) = v i
     rw [hf i]
     rfl
   rw [(LinearEquiv.ofBijective ev ⟨hinj, hsurj⟩).finrank_eq, Module.finrank_fin_fun]
@@ -226,6 +226,7 @@ theorem Matrix.SpecialLinearGroup.finrank_addMonoidHom_eq_of_forall_trace_ne
     (hΓ : ∀ γ ∈ Γ, (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ 0 ∧
       (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ 1 ∧ (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ -1)
     (K : Type) [Field K] [CharZero K] :
-    Module.finrank K (Additive Γ →+ K) = 1 + Γ.index / 6 := _root_.P2MW.S_Matrix_SpecialLinearGroup_finrank_addMonoidHom_eq_of_forall_trace_ne.solution Γ hneg hΓ K
+    Module.finrank K (Additive Γ →+ K) = 1 + Γ.index / 6 :=
+  solution Γ hneg hΓ K
 
 end publicSection

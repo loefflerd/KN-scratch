@@ -97,13 +97,16 @@ namespace ModularForm
 p2m_export "ModularForm" "toCuspForm discriminant discriminant_qExpansion_coeff_one"
 end ModularForm
 p2m_open_scoped "ModularForm" in
-private theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) : ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n := by
+private theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
+    (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) :
+    ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n := by
   obtain ⟨c, hZ⟩ := WL12Pen.exists_coe_eq_smul_discriminant Z h0
   have hq := WL12Pen.qExpansion_eq_smul Z c hZ
   intro n
   rw [WL12Pen.qCoeff_eq_mul Z c hq n, WL12Pen.qCoeff_one_eq Z c hq]
 
-theorem solution (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) : ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n :=
+theorem solution (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) :
+    ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n :=
   ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
 
 end S_ModularForm_levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
@@ -116,6 +119,9 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) : ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n := _root_.P2MW.S_ModularForm_levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant.solution Z h0
+theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
+    (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) :
+    ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n :=
+  solution Z h0
 
 end publicSection

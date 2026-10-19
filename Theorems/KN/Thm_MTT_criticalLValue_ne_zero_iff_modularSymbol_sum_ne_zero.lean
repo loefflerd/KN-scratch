@@ -140,7 +140,7 @@ open scoped BigOperators
 
 open MTT in
 /-- For a primitive Dirichlet character, the scalar in the Birch--Mellin
-formula is nonzero.  Thus the critical L-value vanishes exactly when its
+formula is nonzero. Thus the critical L-value vanishes exactly when its
 character-weighted modular-symbol sum vanishes. -/
 theorem MTT.criticalLValue_ne_zero_iff_modularSymbol_sum_ne_zero
     {N k m : ℕ} [NeZero m] (hN : 0 < N) (hk : 2 ≤ k)

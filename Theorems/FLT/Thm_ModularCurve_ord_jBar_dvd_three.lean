@@ -157,11 +157,11 @@ theorem transcendental_single_one : Transcendental K (HahnSeries.single (1 : ℚ
   have heq : (Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K))).toRingHom
       = (HahnSeries.ofPowerSeries ℚ K).comp (Polynomial.coeToPowerSeries.ringHom (R := K)) := by
     refine Polynomial.ringHom_ext (fun a => ?_) ?_
-    · show Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) (Polynomial.C a) = _
+    · change Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) (Polynomial.C a) = _
       rw [Polynomial.aeval_C, algebraMap_eq_C,
         RingHom.coe_comp, Function.comp_apply, Polynomial.coeToPowerSeries.ringHom_apply,
         Polynomial.coe_C, HahnSeries.ofPowerSeries_C]
-    · show Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) Polynomial.X = _
+    · change Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) Polynomial.X = _
       rw [Polynomial.aeval_X, RingHom.coe_comp, Function.comp_apply,
         Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_X, HahnSeries.ofPowerSeries_X]
   intro p q hpq
@@ -233,7 +233,7 @@ theorem hasRamBound_three_of_isRoot_at_zero
   have hτroot : (spec data.Φ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j).IsRoot
       (hahnExpMul 3 (by norm_num) r) := by
     rw [← hτj, spec_hahnExpMul]
-    show Polynomial.eval _ _ = 0
+    change Polynomial.eval _ _ = 0
     rw [Polynomial.eval_map, Polynomial.eval₂_hom,
       show Polynomial.eval r (spec data.Φ _) = 0 from hroot, map_zero]
   have hmemL : ∀ y : 𝕂, y ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos ↔ HasRamBound 1 y :=
@@ -279,6 +279,7 @@ open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_jBar_dvd_three (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
     (hpos : 0 < v.ord (ModularCurve.jBar N)) :
-    v.ord (ModularCurve.jBar N) ∣ 3 := _root_.P2MW.S_ModularCurve_ord_jBar_dvd_three.solution N v hpos
+    v.ord (ModularCurve.jBar N) ∣ 3 :=
+  solution N v hpos
 
 end publicSection

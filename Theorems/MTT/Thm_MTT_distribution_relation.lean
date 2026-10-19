@@ -273,7 +273,7 @@ theorem vm_shrink_integrable (r : ℚ) (j : ℕ) {c : ℕ} (hc : 0 < c) :
       (fun y : ℝ => f (ofComplex (((r / c : ℚ) : ℂ) + Complex.I * y)) * (y : ℂ) ^ j) 0
       (inv_pos.mpr hcR)).2 (by simpa using hbase)
     exact this
-  show Integrable _ (volume.restrict (Set.Ioi 0))
+  change Integrable _ (volume.restrict (Set.Ioi 0))
   simpa only [← vm_shrink_pt f r j hc] using hcomp.const_mul ((c : ℂ) ^ j)
 
 include hN hk in
@@ -289,7 +289,7 @@ theorem vm_stretch_integrable (r : ℚ) (j : ℕ) {c : ℕ} (hc : 0 < c) :
       (fun y : ℝ => f (ofComplex (((c * r : ℚ) : ℂ) + Complex.I * y)) * (y : ℂ) ^ j) 0
       hcR).2 (by simpa using hbase)
     exact this
-  show Integrable _ (volume.restrict (Set.Ioi 0))
+  change Integrable _ (volume.restrict (Set.Ioi 0))
   simpa only [← vm_stretch_pt f r j hc] using hcomp.const_mul (((c : ℂ) ^ j)⁻¹)
 
 end Integrability

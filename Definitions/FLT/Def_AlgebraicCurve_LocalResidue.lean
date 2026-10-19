@@ -92,12 +92,10 @@ structure CanonicalLocalResidueDataK extends v.LocalResidueData where
 end Place
 
 variable (K F) in
-
 class HasLocalResidue : Prop where
   exists_data : ∀ v : Place K F, Nonempty v.LocalResidueData
 
 variable (K F) in
-
 class HasCanonicalLocalResidueK : Prop where
   exists_data : ∀ v : Place K F, Nonempty v.CanonicalLocalResidueDataK
 
@@ -106,7 +104,6 @@ instance (priority := 100) instHasLocalResidue_of_hasCanonicalLocalResidueK
   ⟨fun v => (HasCanonicalLocalResidueK.exists_data v).map (·.toLocalResidueData)⟩
 
 variable (K F) in
-
 class HasCanonicalLocalResidueKStar where
   dataKStar : ∀ v : Place K F, v.CanonicalLocalResidueDataK
 
@@ -229,7 +226,6 @@ theorem adeleSingle_coe [DecidableEq (Place K F)]
 end Single
 
 variable (K F) in
-
 class HasSeparableResidue : Prop where
   trace_ne_zero : ∀ v : Place K F, (Algebra.trace K v.ResidueField : _ →ₗ[K] K) ≠ 0
 

@@ -154,14 +154,14 @@ theorem nonempty_zmodPowSqAddEquiv_of_span_pair {n : ℕ} (hn : n ≠ 0)
   have : Finite M := Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn)
   let f : (ZMod n × ZMod n) →+ M := AddMonoidHom.mk' (fun c => c.1 • x + c.2 • y) (by
     intro c d
-    show (c.1 + d.1) • x + (c.2 + d.2) • y = (c.1 • x + c.2 • y) + (d.1 • x + d.2 • y)
+    change (c.1 + d.1) • x + (c.2 + d.2) • y = (c.1 • x + c.2 • y) + (d.1 • x + d.2 • y)
     rw [add_smul, add_smul]
     abel)
   have hfsurj : Function.Surjective f := by
     intro t
     obtain ⟨a, b, ht⟩ := hgen t
     refine ⟨((a : ZMod n), (b : ZMod n)), ?_⟩
-    show ((a : ℤ) : ZMod n) • x + ((b : ℤ) : ZMod n) • y = t
+    change ((a : ℤ) : ZMod n) • x + ((b : ℤ) : ZMod n) • y = t
     rw [Int.cast_smul_eq_zsmul (ZMod n) a x, Int.cast_smul_eq_zsmul (ZMod n) b y, ht]
   have hcards : Nat.card (ZMod n × ZMod n) = Nat.card M := by
     rw [Nat.card_prod, Nat.card_zmod, hcard]
@@ -326,7 +326,7 @@ def torsionByMulCoprimeSplitAddEquiv (M N : ℕ) (a b : ℤ)
       add_zero]⟩
   left_inv t := by
     apply Subtype.ext
-    show ((N : ℤ) * b) • (t : A) + ((M : ℤ) * a) • (t : A) = (t : A)
+    change ((N : ℤ) * b) • (t : A) + ((M : ℤ) * a) • (t : A) = (t : A)
     rw [← add_smul, show (N : ℤ) * b + (M : ℤ) * a = 1 by linarith [hab], one_smul]
   right_inv uv := by
     have hu : (M : ℤ) • (uv.1 : A) = 0 := by
@@ -337,7 +337,7 @@ def torsionByMulCoprimeSplitAddEquiv (M N : ℕ) (a b : ℤ)
       rwa [Submodule.mem_torsionBy_iff] at h2
     apply Prod.ext
     · apply Subtype.ext
-      show ((N : ℤ) * b) • ((uv.1 : A) + (uv.2 : A)) = (uv.1 : A)
+      change ((N : ℤ) * b) • ((uv.1 : A) + (uv.2 : A)) = (uv.1 : A)
       rw [smul_add,
         show ((N : ℤ) * b) • (uv.2 : A) = 0 by
           rw [show (N : ℤ) * b = b * (N : ℤ) by ring, ← smul_smul, hv, smul_zero],
@@ -346,7 +346,7 @@ def torsionByMulCoprimeSplitAddEquiv (M N : ℕ) (a b : ℤ)
             show (M : ℤ) * a = a * (M : ℤ) by ring, ← smul_smul, hu, smul_zero, sub_zero],
         add_zero]
     · apply Subtype.ext
-      show ((M : ℤ) * a) • ((uv.1 : A) + (uv.2 : A)) = (uv.2 : A)
+      change ((M : ℤ) * a) • ((uv.1 : A) + (uv.2 : A)) = (uv.2 : A)
       rw [smul_add,
         show ((M : ℤ) * a) • (uv.1 : A) = 0 by
           rw [show (M : ℤ) * a = a * (M : ℤ) by ring, ← smul_smul, hu, smul_zero],
@@ -357,11 +357,11 @@ def torsionByMulCoprimeSplitAddEquiv (M N : ℕ) (a b : ℤ)
   map_add' t s := by
     apply Prod.ext
     · apply Subtype.ext
-      show ((N : ℤ) * b) • ((t : A) + (s : A))
+      change ((N : ℤ) * b) • ((t : A) + (s : A))
         = ((N : ℤ) * b) • (t : A) + ((N : ℤ) * b) • (s : A)
       rw [smul_add]
     · apply Subtype.ext
-      show ((M : ℤ) * a) • ((t : A) + (s : A))
+      change ((M : ℤ) * a) • ((t : A) + (s : A))
         = ((M : ℤ) * a) • (t : A) + ((M : ℤ) * a) • (s : A)
       rw [smul_add]
 
@@ -439,6 +439,7 @@ public section publicSection
 theorem AddCommGroup.nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq
     {A : Type*} [AddCommGroup A] {n : ℕ} (hn : n ≠ 0)
     (hcard : ∀ d : ℕ, d ∣ n → Nat.card (Submodule.torsionBy ℤ A d) = d ^ 2) :
-    Nonempty (ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n) := _root_.P2MW.S_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq.solution hn hcard
+    Nonempty (ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n) :=
+  solution hn hcard
 
 end publicSection

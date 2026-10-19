@@ -63,7 +63,8 @@ namespace P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL linePow coe_linePow jFactor coe_smul_mul_jFactor binaryFormRepSL_linePow"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL linePow coe_linePow jFactor coe_smul_mul_jFactor \
+  binaryFormRepSL_linePow"
 namespace PairingSol
 p2m_open "HeckeEis"
 
@@ -141,7 +142,8 @@ theorem linePow_expand (τ : ℂ) :
   refine sum_congr rfl fun m hm => ?_
   rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial,
     monomial_mul_monomial, ex]
-  rw [mul_comm (monomial _ _) ((n.choose m : MvPolynomial (Fin 2) ℂ)), ← C_eq_coe_nat, C_mul_monomial]
+  rw [mul_comm (monomial _ _) ((n.choose m : MvPolynomial (Fin 2) ℂ)), ← C_eq_coe_nat,
+    C_mul_monomial]
   simp only [mul_one]
 
 theorem coeff_linePow {i : ℕ} (hi : i ≤ n) (τ : ℂ) :
@@ -190,14 +192,15 @@ theorem pairing_monomial (P : ↥(BinaryForm ℂ n)) {i : ℕ} (hi : i ≤ n) :
     omega
   · intro h; exact absurd (mem_range.mpr (Nat.lt_succ_of_le hi)) h
 
-theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairing n P Q = 0) : P = 0 := by
+theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairing n P Q = 0) :
+    P = 0 := by
   have hc : ∀ i ≤ n, AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (ex n i) = 0 := by
     intro i hi
     have := h ⟨monomial (ex n (n - i)) 1, monomial_ex_mem n (Nat.sub_le n i)⟩
     rw [pairing_monomial n P hi] at this
     exact (mul_eq_zero.mp this).resolve_left (wt_ne_zero n hi)
   apply Subtype.ext
-  show (P : MvPolynomial (Fin 2) ℂ) = 0
+  change (P : MvPolynomial (Fin 2) ℂ) = 0
   ext d
   rw [AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
   by_contra hd
@@ -215,7 +218,8 @@ end
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL linePow coe_linePow jFactor coe_smul_mul_jFactor binaryFormRepSL_linePow"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL linePow coe_linePow jFactor coe_smul_mul_jFactor \
+  binaryFormRepSL_linePow"
 namespace PairingSol
 p2m_open "HeckeEis"
 
@@ -244,12 +248,15 @@ theorem jFactor_mul_jFactor_mul_sub (g : SL(2, ℤ)) (τ σ : ℍ) :
 theorem pairing_rep_linePow (g : SL(2, ℤ)) (τ σ : ℍ) :
     pairing n (binaryFormRepSL ℂ n g (linePow n (τ : ℂ))) (binaryFormRepSL ℂ n g (linePow n (σ : ℂ)))
       = pairing n (linePow n (τ : ℂ)) (linePow n (σ : ℂ)) := by
-  rw [binaryFormRepSL_linePow, binaryFormRepSL_linePow, LinearMap.map_smul₂, LinearMap.map_smul, pairing_linePow,
-    pairing_linePow, smul_eq_mul, smul_eq_mul, ← mul_pow, ← mul_pow, ← mul_assoc, jFactor_mul_jFactor_mul_sub]
+  rw [binaryFormRepSL_linePow, binaryFormRepSL_linePow, LinearMap.map_smul₂, LinearMap.map_smul,
+    pairing_linePow,
+    pairing_linePow, smul_eq_mul, smul_eq_mul, ← mul_pow, ← mul_pow, ← mul_assoc,
+    jFactor_mul_jFactor_mul_sub]
 
 def node (j : Fin (n + 1)) : ℍ := ⟨(j : ℂ) + Complex.I, by simp⟩
 
-@[scoped simp] theorem coe_node (j : Fin (n + 1)) : ((node n j : ℍ) : ℂ) = (j : ℂ) + Complex.I := rfl
+@[scoped simp] theorem coe_node (j : Fin (n + 1)) :
+    ((node n j : ℍ) : ℂ) = (j : ℂ) + Complex.I := rfl
 
 theorem node_injective : Function.Injective (fun j : Fin (n + 1) => ((node n j : ℍ) : ℂ)) := by
   intro j j' h
@@ -259,7 +266,8 @@ theorem node_injective : Function.Injective (fun j : Fin (n + 1) => ((node n j :
 def lineSpan : Submodule ℂ ↥(BinaryForm ℂ n) :=
   Submodule.span ℂ (Set.range fun τ : ℍ => linePow n (τ : ℂ))
 
-theorem linePow_mem_lineSpan (τ : ℍ) : linePow n (τ : ℂ) ∈ lineSpan n := Submodule.subset_span ⟨τ, rfl⟩
+theorem linePow_mem_lineSpan (τ : ℍ) :
+    linePow n (τ : ℂ) ∈ lineSpan n := Submodule.subset_span ⟨τ, rfl⟩
 
 theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     (⟨monomial (ex n k) 1, monomial_ex_mem n hk⟩ : ↥(BinaryForm ℂ n)) ∈ lineSpan n := by
@@ -271,7 +279,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     intro j
     rw [hL, Lagrange.natDegree_basis hvs (Finset.mem_univ j), Finset.card_univ, Fintype.card_fin]
     omega
-  have heval : ∀ j m : Fin (n + 1), ∑ i : Fin (n + 1), (L j).coeff i * v m ^ (i : ℕ) = if j = m then 1 else 0 := by
+  have heval : ∀ j m : Fin (n + 1), ∑ i : Fin (n + 1), (L j).coeff i * v m ^ (i : ℕ) = if j = m then 1 else 0 :=
+    by
     intro j m
     rw [Fin.sum_univ_eq_sum_range (fun i => (L j).coeff i * v m ^ i) (n + 1),
       ← Polynomial.eval_eq_sum_range' (hdeg j)]
@@ -285,7 +294,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     rw [Matrix.mul_apply, Matrix.one_apply]
     exact heval j m
   have hVA : V * A = 1 := mul_eq_one_comm.mp hAV
-  have hcol : ∀ i k' : Fin (n + 1), ∑ j : Fin (n + 1), v j ^ (i : ℕ) * (L j).coeff k' = if i = k' then 1 else 0 := by
+  have hcol : ∀ i k' : Fin (n + 1), ∑ j : Fin (n + 1), v j ^ (i : ℕ) * (L j).coeff k' = if i = k' then 1 else 0 :=
+    by
     intro i k'
     have := congrFun (congrFun hVA i) k'
     rwa [Matrix.mul_apply, Matrix.one_apply] at this
@@ -295,9 +305,11 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
   have hcomb : ((∑ j : Fin (n + 1), (L j).coeff k • linePow n (v j) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
       = C ((n.choose k : ℂ)) * monomial (ex n k) 1 := by
     rw [Submodule.coe_sum]
-    simp only [Submodule.coe_smul, coe_linePow, linePow_expand, smul_sum, smul_monomial, smul_eq_mul]
+    simp only [Submodule.coe_smul, coe_linePow, linePow_expand, smul_sum, smul_monomial,
+      smul_eq_mul]
     rw [Finset.sum_comm]
-    rw [← Fin.sum_univ_eq_sum_range (fun m => ∑ j : Fin (n + 1), monomial (ex n m) ((L j).coeff k * ((n.choose m : ℂ) * v j ^ m))) (n + 1)]
+    rw [← Fin.sum_univ_eq_sum_range (fun m => ∑ j : Fin (n + 1), monomial (ex n m) ((L j).coeff k *
+      ((n.choose m : ℂ) * v j ^ m))) (n + 1)]
     have inner : ∀ m : Fin (n + 1), ∑ j : Fin (n + 1), monomial (ex n m) ((L j).coeff k * ((n.choose (m : ℕ) : ℂ) * v j ^ (m : ℕ)))
         = monomial (ex n m) ((n.choose (m : ℕ) : ℂ) * (if m = kk then 1 else 0)) := by
       intro m
@@ -314,7 +326,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
   have : (⟨monomial (ex n k) 1, monomial_ex_mem n hk⟩ : ↥(BinaryForm ℂ n))
       = (n.choose k : ℂ)⁻¹ • ∑ j : Fin (n + 1), (L j).coeff k • linePow n (v j) := by
     apply Subtype.ext
-    rw [Submodule.coe_smul, hcomb, smul_eq_C_mul, ← mul_assoc, ← C_mul, inv_mul_cancel₀ hne, C_1, one_mul]
+    rw [Submodule.coe_smul, hcomb, smul_eq_C_mul, ← mul_assoc, ← C_mul, inv_mul_cancel₀ hne, C_1,
+      one_mul]
   rw [this]
   exact Submodule.smul_mem _ _ hmem
 
@@ -325,9 +338,10 @@ theorem lineSpan_eq_top : lineSpan n = ⊤ := by
     intro d hd
     obtain ⟨hd', hle⟩ := eq_ex_of_degree n hd
     refine ⟨⟨monomial (ex n (d 0)) 1, monomial_ex_mem n hle⟩, monomial_mem_lineSpan n hle, ?_⟩
-    show monomial (ex n (d 0)) (1 : ℂ) = monomial d 1
+    change monomial (ex n (d 0)) (1 : ℂ) = monomial d 1
     rw [← hd']
-  have hle : (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) ≤ (lineSpan n).map (BinaryForm ℂ n).subtype := by
+  have hle : (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) ≤ (lineSpan n).map (BinaryForm ℂ n).subtype :=
+    by
     intro φ hφ
     have hφ' : φ ∈ AddMonoidAlgebra.supported ℂ ℂ {d : Fin 2 →₀ ℕ | d.degree = n} := by
       rwa [← MvPolynomial.homogeneousSubmodule_eq_finsupp_supported]
@@ -347,7 +361,8 @@ end
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL linePow coe_linePow jFactor coe_smul_mul_jFactor binaryFormRepSL_linePow"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL linePow coe_linePow jFactor coe_smul_mul_jFactor \
+  binaryFormRepSL_linePow"
 namespace PairingSol
 p2m_open "HeckeEis"
 
@@ -403,6 +418,7 @@ theorem HeckeEis.exists_pairing_binaryForm_linePow (n : ℕ) :
           B (HeckeEis.binaryFormRepSL ℂ n g P) (HeckeEis.binaryFormRepSL ℂ n g Q) = B P Q) ∧
       (∀ P Q : ↥(HeckeEis.BinaryForm ℂ n), B Q P = (-1) ^ n * B P Q) ∧
       (∀ P : ↥(HeckeEis.BinaryForm ℂ n), (∀ Q : ↥(HeckeEis.BinaryForm ℂ n), B P Q = 0) → P = 0) ∧
-      (∀ τ σ : ℂ, B (HeckeEis.linePow n τ) (HeckeEis.linePow n σ) = (τ - σ) ^ n) := _root_.P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.solution n
+      (∀ τ σ : ℂ, B (HeckeEis.linePow n τ) (HeckeEis.linePow n σ) = (τ - σ) ^ n) :=
+  solution n
 
 end publicSection

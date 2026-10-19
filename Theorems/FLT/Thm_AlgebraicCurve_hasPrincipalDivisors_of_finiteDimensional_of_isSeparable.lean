@@ -229,7 +229,7 @@ theorem solution {K : Type*} [Field K] (E : Type*) [Field E] [Algebra K E]
     IsScalarTower.of_algebraMap_eq fun x => (g.commutes x).symm
   have : IsScalarTower K E (minpoly (RatFunc K) α).SplittingField :=
     IsScalarTower.of_algebraMap_eq fun x => by
-      show algebraMap K (minpoly (RatFunc K) α).SplittingField x = g (algebraMap K E x)
+      change algebraMap K (minpoly (RatFunc K) α).SplittingField x = g (algebraMap K E x)
       rw [IsScalarTower.algebraMap_apply K (RatFunc K) E x, g.commutes,
         ← IsScalarTower.algebraMap_apply K (RatFunc K)
           (minpoly (RatFunc K) α).SplittingField x]
@@ -263,6 +263,7 @@ theorem AlgebraicCurve.hasPrincipalDivisors_of_finiteDimensional_of_isSeparable
     {K : Type*} [Field K] (E : Type*) [Field E] [Algebra K E]
     [Algebra (RatFunc K) E] [IsScalarTower K (RatFunc K) E]
     [FiniteDimensional (RatFunc K) E] [Algebra.IsSeparable (RatFunc K) E] :
-    HasPrincipalDivisors K E := _root_.P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_of_isSeparable.solution E
+    HasPrincipalDivisors K E :=
+  solution E
 
 end publicSection

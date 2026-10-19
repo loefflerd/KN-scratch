@@ -115,12 +115,14 @@ private theorem emd_of_beta_docks (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure
     : EMD N j₀ := by
   classical
   obtain ⟨E₀, hell, hj, f, hiff, hsize⟩ := hβ
-  have hInd : ∀ ψ : Emb N j₀, ∃ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), Induces ψ.1 w := by
+  have hInd : ∀ ψ : Emb N j₀, ∃ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), Induces ψ.1 w :=
+    by
     intro ψ
     obtain ⟨w, g, hg, hx⟩ := hEP ψ
     exact ⟨w, g, hg, hx⟩
   choose wOf hwOf using hInd
-  have hC : ∀ c : (AlgebraicClosure ℚ), algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) c = HahnSeries.C c := by
+  have hC : ∀ c : (AlgebraicClosure ℚ), algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) c = HahnSeries.C c :=
+    by
     intro c
     rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
   have habove : ∀ ψ : Emb N j₀,
@@ -208,7 +210,6 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_emd_of_beta_docks.ModularCurve AlgebraicCurve in
-
 theorem solution (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure ℚ))
     (hβ : ∃ (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) (_ : E₀.IsElliptic), E₀.j = j₀ ∧
       ∃ f : CycSub E₀ N →
@@ -278,6 +279,7 @@ theorem ModularCurve.emd_of_beta_docks (N : ℕ) [NeZero N] (j₀ : (AlgebraicCl
           HahnSeries ℚ (AlgebraicClosure ℚ)}
       {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)},
       Induces ψ w → Induces ψ w' → w = w')
-    : EMD N j₀ := _root_.P2MW.S_ModularCurve_emd_of_beta_docks.solution N j₀ hβ hfin hEP hPEO hC535
+    : EMD N j₀ :=
+  solution N j₀ hβ hfin hEP hPEO hC535
 
 end publicSection

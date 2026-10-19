@@ -30,7 +30,7 @@ namespace HorizontalPadicL
 
 /-- The finite theta element has the expected critical-value zero set for
 horizontal characters whose primitive conductor uses every prime in their
-chosen support.  Characters with redundant support are treated separately by
+chosen support. Characters with redundant support are treated separately by
 the horizontal norm relations. -/
 def SeededFiniteThetaDataV3.HasFullSupportCriticalZeroSetV2
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]

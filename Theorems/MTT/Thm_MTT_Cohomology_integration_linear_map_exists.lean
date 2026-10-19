@@ -91,7 +91,7 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) :
-    ∃ I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ,
+    ∃ I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ,
       ∀ f, (I f).val = integrationCochain f := by
   obtain ⟨hequiv, hadd, hsmul⟩ := MTT.Cohomology.cuspPrimitive_analytic_relations hN hk
   have hmem : ∀ f : CuspForm (MTT.GammaOne N) (k : ℤ),
@@ -131,7 +131,7 @@ open scoped BigOperators TensorProduct
 open MTT.Cohomology
 theorem MTT.Cohomology.integration_linear_map_exists
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) :
-    ∃ I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ,
+    ∃ I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ,
       ∀ f, (I f).val = integrationCochain f := _root_.solution hN hk
 end
 

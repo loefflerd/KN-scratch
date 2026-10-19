@@ -111,7 +111,8 @@ theorem algebraMap_laurentSeries_eq_C {K : Type*} [Field K] (a : K) :
 
 theorem Φ_algebraMap (a : κ) :
     Φ φ (algebraMap κ (LaurentSeries κ) a) = algebraMap k (LaurentSeries k) (φ a) := by
-  rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply, HahnSeries.C_apply,
+  rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply,
+    HahnSeries.C_apply,
     coeffMap_single]
 
 theorem coe_mem_adjoin_of_mem_adjoin {K L : Type*} [Field K] [Field L] [Algebra K L]
@@ -261,12 +262,12 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
       add_mem' := fun {a b} ha hb => add_mem ha hb
       zero_mem' := zero_mem _
       algebraMap_mem' := fun r => by
-        show algebraMap k (LaurentSeries k) r ∈ S
+        change algebraMap k (LaurentSeries k) r ∈ S
         rw [IsScalarTower.algebraMap_apply k K₁ (LaurentSeries k) r, Algebra.algebraMap_eq_smul_one]
         exact Submodule.smul_mem _ _ hone
       inv_mem' := fun a ha => hinv a ha }
   have hFkS : Fk ≤ SF := by
-    show adjoin k (intFormRatiosC k Γ) ≤ SF
+    change adjoin k (intFormRatiosC k Γ) ≤ SF
     rw [adjoin_le_iff, ← image_intFormRatiosC φ Γ]
     rintro _ ⟨y, hy, rfl⟩
     exact hsub y (intFormRatiosC_subset κ Γ hy)
@@ -318,7 +319,8 @@ theorem isAlgebraic_residueField :
       (Fact.out : p.Prime) hA
     letI := ZMod.algebra (IsLocalRing.ResidueField A) p
     Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := by
-  let : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
+  let : CharP (IsLocalRing.ResidueField A) p :=
+    ValuationSubring.charP_residueField_of_liesOverPrime_def
     (Fact.out : p.Prime) hA
   let := ZMod.algebra (IsLocalRing.ResidueField A) p
   have hp : p.Prime := Fact.out
@@ -341,7 +343,8 @@ theorem isAlgebraic_residueField :
     have hinj : Function.Injective A.subtype := Subtype.val_injective
     apply hinj
     rw [hom_eval₂, map_zero]
-    have h2 : (A.subtype.comp (Int.castRingHom A)) = algebraMap ℤ (AlgebraicClosure ℚ) := RingHom.ext_int _ _
+    have h2 : (A.subtype.comp (Int.castRingHom A)) = algebraMap ℤ (AlgebraicClosure ℚ) :=
+      RingHom.ext_int _ _
     rw [h2]
     exact hQy
   set Qbar := Q.map (Int.castRingHom (ZMod p)) with hQbar
@@ -352,7 +355,8 @@ theorem isAlgebraic_residueField :
       have hi := congrArg (fun R : (ZMod p)[X] => R.coeff i) h0
       simp only [hQbar, coeff_map, coeff_zero, eq_intCast] at hi
       exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ p).mp hi
-    have hunit : IsUnit (p : ℤ) := (isPrimitive_primPart P) (p : ℤ) ((C_dvd_iff_dvd_coeff _ _).mpr hdvd)
+    have hunit : IsUnit (p : ℤ) :=
+      (isPrimitive_primPart P) (p : ℤ) ((C_dvd_iff_dvd_coeff _ _).mpr hdvd)
     rw [Int.isUnit_iff_natAbs_eq, Int.natAbs_natCast] at hunit
     exact hp.one_lt.ne' hunit
   refine ⟨Qbar, hQbar0, ?_⟩
@@ -391,7 +395,6 @@ variable (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex
   (hneg : ∀ γ ∈ Γ', γ ∈ Γ ∨ -γ ∈ Γ)
 
 include hT hΓ' hneg in
-
 theorem bound_of_isAlgClosed (K' : Type*) [Field K'] [IsAlgClosed K']
     (x' : qExpFunctionFieldC K' Γ) (hx' : (x' : LaurentSeries K') = jqModC K') :
     FiniteDimensional (adjoin K' ({x'} : Set (qExpFunctionFieldC K' Γ))) (qExpFunctionFieldC K' Γ) ∧
@@ -444,7 +447,6 @@ end P2MKcQExpDeg
 end
 
 open P2MKcQExpDeg ModularCurve IntermediateField in
-
 theorem solution
     (K : Type*) [Field K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
@@ -496,6 +498,7 @@ theorem ModularCurve.finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFie
         (ModularCurve.qExpFunctionFieldC K Γ) ∧
       Module.finrank
           (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
-          (ModularCurve.qExpFunctionFieldC K Γ) ≤ Γ'.index := _root_.P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index.solution K Γ hT Γ' hΓ' hneg x hx
+          (ModularCurve.qExpFunctionFieldC K Γ) ≤ Γ'.index :=
+  solution K Γ hT Γ' hΓ' hneg x hx
 
 end publicSection

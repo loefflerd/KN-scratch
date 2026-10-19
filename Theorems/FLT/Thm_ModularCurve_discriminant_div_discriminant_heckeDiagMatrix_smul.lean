@@ -107,7 +107,9 @@ end ModularCurve
 
 end
 
-theorem solution (N : ℕ) [NeZero N] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) (τ : UpperHalfPlane) : ModularForm.discriminant (γ • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • γ • τ) = ModularForm.discriminant τ / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • τ) :=
+theorem solution (N : ℕ) [NeZero N] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ)
+    (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) (τ : UpperHalfPlane) :
+    ModularForm.discriminant (γ • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • γ • τ) = ModularForm.discriminant τ / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • τ) :=
   ModularCurve.QexpN.discriminant_div_discriminant_heckeDiagMatrix_smul' N γ hγ τ
 
 end S_ModularCurve_discriminant_div_discriminant_heckeDiagMatrix_smul
@@ -118,6 +120,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.discriminant_div_discriminant_heckeDiagMatrix_smul (N : ℕ) [NeZero N] (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) (τ : UpperHalfPlane) : ModularForm.discriminant (γ • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • γ • τ) = ModularForm.discriminant τ / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • τ) := _root_.P2MW.S_ModularCurve_discriminant_div_discriminant_heckeDiagMatrix_smul.solution N γ hγ τ
+theorem ModularCurve.discriminant_div_discriminant_heckeDiagMatrix_smul (N : ℕ) [NeZero N]
+    (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N)
+    (τ : UpperHalfPlane) :
+    ModularForm.discriminant (γ • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • γ • τ) = ModularForm.discriminant τ / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • τ) :=
+  solution N γ hγ τ
 
 end publicSection

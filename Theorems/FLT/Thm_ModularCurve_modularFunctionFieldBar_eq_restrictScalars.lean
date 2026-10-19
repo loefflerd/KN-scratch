@@ -113,7 +113,8 @@ theorem coeffEmb_modularUnitSeries_ne_zero : coeffEmb 𝕂 (modularUnitSeries �
   intro h
   exact modularUnitSeries_ne_zero ℓ (coeffEmb_injective 𝕂 (by rw [h, map_zero]))
 
-theorem ubar_ne_zero (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ) : ubar ℓ hmem ≠ 0 := by
+theorem ubar_ne_zero (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ) :
+    ubar ℓ hmem ≠ 0 := by
   intro h
   exact coeffEmb_modularUnitSeries_ne_zero ℓ (by rw [← coe_ubar ℓ hmem, h]; rfl)
 
@@ -155,7 +156,8 @@ theorem ell_pow_ne_zero : ((ℓ : 𝕂) ^ 12) ≠ 0 :=
 theorem fricke_symm_ubar (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ) :
     (frickeInvolutionBar ℓ).symm (ubar ℓ hmem) = ((((ℓ : 𝕂) ^ 12))⁻¹ • ubar ℓ hmem)⁻¹ := by
   apply (frickeInvolutionBar ℓ).injective
-  rw [AlgEquiv.apply_symm_apply, map_inv₀, Algebra.smul_def, map_mul, AlgEquiv.commutes, fricke_ubar_elt,
+  rw [AlgEquiv.apply_symm_apply, map_inv₀, Algebra.smul_def, map_mul, AlgEquiv.commutes,
+    fricke_ubar_elt,
     ← mul_assoc, ← map_mul, inv_mul_cancel₀ (ell_pow_ne_zero ℓ), map_one, one_mul, inv_inv]
 
 theorem ord_zero (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ) :
@@ -168,7 +170,8 @@ theorem ord_zero (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ)
     Place.ord_smul_of_ne_zero _ (inv_ne_zero (ell_pow_ne_zero ℓ)), ord_inf]
   ring
 
-def jb : modularFunctionFieldBar ℓ := ⟨coeffEmb 𝕂 jq, coeffEmb_mem_laurentBaseChange 𝕂 (jq_mem_full ℓ)⟩
+def jb :
+    modularFunctionFieldBar ℓ := ⟨coeffEmb 𝕂 jq, coeffEmb_mem_laurentBaseChange 𝕂 (jq_mem_full ℓ)⟩
 
 theorem coe_jb : (jb ℓ : LaurentSeries 𝕂) = coeffEmb 𝕂 jq := rfl
 
@@ -210,7 +213,8 @@ theorem isIntegral_ubar_inv (hmem : modularUnitSeries ℓ ∈ modularFunctionFie
   exact h3
 
 theorem ord_of_not_isCusp (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ)
-    (w : Place 𝕂 (modularFunctionFieldBar ℓ)) (hw : ¬ IsCusp (jb ℓ) w) : w.ord (ubar ℓ hmem) = 0 := by
+    (w : Place 𝕂 (modularFunctionFieldBar ℓ)) (hw : ¬ IsCusp (jb ℓ) w)
+    : w.ord (ubar ℓ hmem) = 0 := by
   rw [isCusp_iff, not_not] at hw
   exact Place.ord_eq_zero_of_isIntegral_adjoin w hw (isIntegral_ubar ℓ hmem) (isIntegral_ubar_inv ℓ hmem)
 
@@ -221,7 +225,8 @@ theorem smul_cuspidalDivisor_apply (hmem : modularUnitSeries ℓ ∈ modularFunc
   have hℓ : ℓ.Prime := Fact.out
   have hne : cuspZeroBar ℓ ≠ cuspInftyBar ℓ :=
     cuspZeroBar_ne_cuspInftyBar ℓ (isFrickeAutFull_frickeInvolutionFull_prime ℓ) hℓ.one_lt
-  simp only [cuspidalDivisor_def, Finsupp.smul_apply, Finsupp.sub_apply, Finsupp.single_apply, smul_eq_mul]
+  simp only [cuspidalDivisor_def, Finsupp.smul_apply, Finsupp.sub_apply, Finsupp.single_apply,
+    smul_eq_mul]
   by_cases hc : IsCusp (jb ℓ) v
   · rcases eq_cuspInftyBar_or_eq_cuspZeroBar ℓ v hc with rfl | rfl
     · rw [ite_eq_right hne, ite_eq_left rfl, ord_inf]; ring
@@ -230,7 +235,8 @@ theorem smul_cuspidalDivisor_apply (hmem : modularUnitSeries ℓ ∈ modularFunc
     have h2 : cuspInftyBar ℓ ≠ v := fun h => hc (h ▸ isCusp_inf ℓ)
     rw [ite_eq_right h1, ite_eq_right h2, ord_of_not_isCusp ℓ hmem v hc]; ring
 
-theorem isPrincipal_smul_cuspidalDivisor : Divisor.IsPrincipal (((ℓ : ℤ) - 1) • cuspidalDivisor ℓ) :=
+theorem isPrincipal_smul_cuspidalDivisor :
+    Divisor.IsPrincipal (((ℓ : ℤ) - 1) • cuspidalDivisor ℓ) :=
   ⟨ubar ℓ (modularUnitSeries_mem_modularFunctionFieldFull ℓ), ubar_ne_zero ℓ _,
     smul_cuspidalDivisor_apply ℓ _⟩
 
@@ -251,7 +257,7 @@ theorem bar_eq_restrictScalars :
       (IntermediateField.adjoin (IntermediateField.adjoin 𝕂 ({jqModC 𝕂} : Set (LaurentSeries 𝕂)))
         ({jqNModC 𝕂 ℓ} : Set (LaurentSeries 𝕂))).restrictScalars 𝕂 := by
   have hℓ : ℓ.Prime := Fact.out
-  show laurentBaseChange 𝕂 (modularFunctionFieldFull ℓ) = _
+  change laurentBaseChange 𝕂 (modularFunctionFieldFull ℓ) = _
   rw [full_eq_of_prime hℓ, laurentBaseChange_modularFunctionField]
   exact (adjoin_simple_adjoin_simple 𝕂 (jqModC 𝕂) (jqNModC 𝕂 ℓ)).symm
 
@@ -286,7 +292,7 @@ theorem compat :
   apply RingHom.ext
   intro y
   apply Subtype.ext
-  show ((((e₁ ℓ).symm y : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ))) :
+  change ((((e₁ ℓ).symm y : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ))) :
       modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = ((jTr ℓ (algebraMap _ _ y) : modularFunctionFieldBar ℓ) :
         LaurentSeries 𝕂)
   rw [coe_jTr, ← coe_e₁, AlgEquiv.apply_symm_apply]
@@ -331,6 +337,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.modularFunctionFieldBar_eq_restrictScalars (ℓ : ℕ) [Fact ℓ.Prime] : modularFunctionFieldBar ℓ = (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))).restrictScalars (AlgebraicClosure ℚ) := _root_.P2MW.S_ModularCurve_modularFunctionFieldBar_eq_restrictScalars.solution ℓ
+theorem ModularCurve.modularFunctionFieldBar_eq_restrictScalars (ℓ : ℕ) [Fact ℓ.Prime] :
+    modularFunctionFieldBar ℓ = (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))).restrictScalars (AlgebraicClosure ℚ) :=
+  solution ℓ
 
 end publicSection

@@ -100,12 +100,14 @@ theorem isIntegralQExp_mcast {a b : ℤ} (h : a = b) (f : ModularForm Γ₁ℝ a
 theorem mk_sigma_three_eq_eisenstein4 :
     (PowerSeries.mk fun n => if n = 0 then 1 else 240 * (σ 3 n : ℤ)) = eisenstein4 := by
   ext n
-  simp only [eisenstein4, PowerSeries.coeff_mk, ArithmeticFunction.sigma_apply, Nat.cast_sum, Nat.cast_pow]
+  simp only [eisenstein4, PowerSeries.coeff_mk, ArithmeticFunction.sigma_apply, Nat.cast_sum,
+    Nat.cast_pow]
 
 theorem mk_sigma_five_eq_eisenstein6 :
     (PowerSeries.mk fun n => if n = 0 then 1 else -504 * (σ 5 n : ℤ)) = eisenstein6 := by
   ext n
-  simp only [eisenstein6, PowerSeries.coeff_mk, ArithmeticFunction.sigma_apply, Nat.cast_sum, Nat.cast_pow]
+  simp only [eisenstein6, PowerSeries.coeff_mk, ArithmeticFunction.sigma_apply, Nat.cast_sum,
+    Nat.cast_pow]
 
 theorem coeffEmb_intSeriesC (L : Type*) [Field L] [CharZero L] (q : PowerSeries ℤ) :
     coeffEmb L (intSeriesC ℚ q) = intSeriesC L q := by
@@ -113,14 +115,16 @@ theorem coeffEmb_intSeriesC (L : Type*) [Field L] [CharZero L] (q : PowerSeries 
   rw [coeffEmb_coeff, intSeriesC, intSeriesC]
   rcases le_or_gt 0 n with hn | hn
   · obtain ⟨m, rfl⟩ := Int.eq_ofNat_of_zero_le hn
-    rw [HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map,
+    rw [HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff,
+      PowerSeries.coeff_map,
       PowerSeries.coeff_map, eq_intCast, eq_intCast, map_intCast]
   · rw [ofPowerSeries_coeff_of_neg _ hn, ofPowerSeries_coeff_of_neg _ hn, map_zero]
 
 theorem coeffEmb_thetaL (L : Type*) [Field L] [CharZero L] (f : LaurentSeries ℚ) :
     coeffEmb L (thetaL ℚ f) = thetaL L (coeffEmb L f) := by
   ext n
-  rw [coeffEmb_coeff, thetaL_apply, thetaL_apply, ModularCurve.theta_coeff, ModularCurve.theta_coeff,
+  rw [coeffEmb_coeff, thetaL_apply, thetaL_apply, ModularCurve.theta_coeff,
+    ModularCurve.theta_coeff,
     coeffEmb_coeff, zsmul_eq_mul, zsmul_eq_mul, map_mul, map_intCast]
 
 theorem intSeriesC_ne_zero_of_constantCoeff (K : Type*) [Field K] (q : PowerSeries ℤ)
@@ -128,7 +132,8 @@ theorem intSeriesC_ne_zero_of_constantCoeff (K : Type*) [Field K] (q : PowerSeri
   intro h
   have := congrArg (fun s : LaurentSeries K => s.coeff 0) h
   simp only [intSeriesC, HahnSeries.coeff_zero] at this
-  rw [show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map,
+  rw [show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
+    PowerSeries.coeff_map,
     PowerSeries.coeff_zero_eq_constantCoeff, hq, map_one] at this
   exact one_ne_zero this
 
@@ -155,7 +160,8 @@ theorem solution
   have hWne : intSeriesC ℂ wI.series ≠ 0 := by
     intro h
     apply wI.intSeriesC_ne_zero
-    have h' : intSeriesC ℂ wI.series = coeffEmb ℂ (intSeriesC ℚ wI.series) := (coeffEmb_intSeriesC ℂ _).symm
+    have h' : intSeriesC ℂ wI.series = coeffEmb ℂ (intSeriesC ℚ wI.series) :=
+      (coeffEmb_intSeriesC ℂ _).symm
     rw [h'] at h
     exact (map_eq_zero (coeffEmb ℂ)).mp h
   have hw0 : w ≠ 0 := by
@@ -195,7 +201,8 @@ theorem solution
   · exact neg_mem (mul_mem humem (inv_mem hjmem))
   · have hjC : coeffEmb ℂ jq = ModularCurve.jqModC ℂ := by
       rw [← jqModC_rat]; exact map_jqModC (algebraMap ℚ ℂ)
-    have hid := congrArg (coeffEmb ℂ) ModularCurve.thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6
+    have hid :=
+      congrArg (coeffEmb ℂ) ModularCurve.thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6
     rw [map_mul, map_neg, map_mul, coeffEmb_thetaL, hjC] at hid
     have h4 : coeffEmb ℂ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4)) =
         intSeriesC ℂ eisenstein4 := coeffEmb_intSeriesC ℂ eisenstein4
@@ -226,6 +233,7 @@ theorem ModularForm.exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion
     ∃ (w : ModularForm (Gamma1 M) 1) (v : LaurentSeries ℂ), w ≠ 0 ∧
       v ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) ∧
       v * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
-        HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2 := _root_.P2MW.S_ModularForm_exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq.solution M hM
+        HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2 :=
+  solution M hM
 
 end publicSection

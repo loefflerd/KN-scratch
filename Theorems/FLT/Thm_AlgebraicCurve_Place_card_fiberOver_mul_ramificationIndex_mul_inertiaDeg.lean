@@ -62,14 +62,19 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg
 
 noncomputable section
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.AlgebraicCurve \
+  IsDedekindDomain"
 open scoped Pointwise
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ramificationIndex_eq_of_restrict_eq Place.inertiaDeg_eq_of_restrict_eq"
+p2m_export "AlgebraicCurve" "Place Place.ramificationIndex_eq_of_restrict_eq \
+  Place.inertiaDeg_eq_of_restrict_eq"
 p2m_open "AlgebraicCurve"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver ramificationIndex restrict inertiaDeg ramificationIndex_eq_of_restrict_eq inertiaDeg_eq_of_restrict_eq sum_ramificationIndex_mul_inertiaDeg_fiberOver"
+p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver ramificationIndex \
+  restrict inertiaDeg ramificationIndex_eq_of_restrict_eq inertiaDeg_eq_of_restrict_eq \
+  sum_ramificationIndex_mul_inertiaDeg_fiberOver"
 end Place
 end AlgebraicCurve
 
@@ -102,10 +107,12 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg {K F' M : Type*} [Field K] [Field F'] [Field M]
+theorem AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg {K F' M : Type*}
+    [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (w : Place K F') (W : Place K M)
     (hW : W.restrict F' = w) :
-    (w.fiberOver M).card * (W.ramificationIndex F' * W.inertiaDeg F') = Module.finrank F' M := _root_.P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.solution w W hW
+    (w.fiberOver M).card * (W.ramificationIndex F' * W.inertiaDeg F') = Module.finrank F' M :=
+  solution w W hW
 
 end publicSection

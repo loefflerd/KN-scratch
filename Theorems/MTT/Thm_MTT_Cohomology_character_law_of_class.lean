@@ -157,7 +157,7 @@ lemma Sym_ext {n : ℕ} {P Q : Binary ℂ} (hP : P ∈ Sym ℂ n) (hQ : Q ∈ Sy
 
 /-- Any integration map is injective (from `period_vanishing`). -/
 theorem injective_of_integralClass {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) : Function.Injective I := by
   intro f g hfg
   have h0 : I (f - g) = 0 := by rw [map_sub, hfg, sub_self]
@@ -166,7 +166,7 @@ theorem injective_of_integralClass {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
   have hzero : f - g = 0 := MTT.period_vanishing hN hk (f - g) (fun j hj r => by
     have h := hcls j r hj
     rw [map_zero] at h
-    have hch : (((k-2).choose j : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj).ne'
+    have hch : (((k - 2).choose j : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj).ne'
     exact (mul_eq_zero.mp h.symm).resolve_left hch)
   exact sub_eq_zero.mp hzero
 
@@ -210,7 +210,7 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f))
     (e : ZMod N → ℂ) (g : CuspForm (MTT.GammaOne N) (k : ℤ))
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
@@ -277,7 +277,7 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.character_law_of_class
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f))
     (e : ZMod N → ℂ) (g : CuspForm (MTT.GammaOne N) (k : ℤ))
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,

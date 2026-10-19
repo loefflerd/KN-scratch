@@ -70,7 +70,9 @@ noncomputable section
 p2m_open "HahnSeries PowerSeries ModularCurve P2MW.S_ModularCurve_StarBank_press.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qExpand qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd algebraMap_laurentSeries_eq_single jqModC jqNModC coeff_jqModC_neg_one coeff_jqModC_pow_self coeff_jqModC_pow_of_lt"
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qExpand \
+  qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd algebraMap_laurentSeries_eq_single jqModC \
+  jqNModC coeff_jqModC_neg_one coeff_jqModC_pow_self coeff_jqModC_pow_of_lt"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -144,7 +146,7 @@ theorem monic_of_aeval_eq (h : Polynomial.aeval (jqModC K) R = jqNModC K p) : R.
   have hd := natDegree_eq_of_aeval_eq h
   have h1 := coeff_aeval_jqModC_neg_natDegree R
   rw [h, hd, coeff_jqNModC_self] at h1
-  show R.coeff R.natDegree = 1
+  change R.coeff R.natDegree = 1
   rw [hd]; exact h1.symm
 
 theorem qTwist_qExpand_of_pow_eq_one (A : ℕ) [NeZero A] (v : Kˣ) (hv : v ^ A = 1)
@@ -179,7 +181,6 @@ theorem aeval_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
   exact h2
 
 omit hp in
-
 theorem qTwist_pow_jqModC_injective (hζ : IsPrimitiveRoot (ζ : K) p) :
     Function.Injective (fun b : Fin p => qTwist (ζ ^ (b : ℕ)) (jqModC K)) := by
   intro b b' h
@@ -198,10 +199,11 @@ end ModularCurve.W1
 open ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qExpand qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd algebraMap_laurentSeries_eq_single jqModC jqNModC coeff_jqModC_neg_one coeff_jqModC_pow_self coeff_jqModC_pow_of_lt"
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qExpand \
+  qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd algebraMap_laurentSeries_eq_single jqModC \
+  jqNModC coeff_jqModC_neg_one coeff_jqModC_pow_self coeff_jqModC_pow_of_lt"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.press {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) {R : Polynomial K}
     (hR : Polynomial.aeval (jqModC K) R = jqNModC K p) :
@@ -253,7 +255,6 @@ example : qTwist ((1 : ℚˣ) ^ 0) (jqModC ℚ) = qTwist ((1 : ℚˣ) ^ 1) (jqMo
   simp [qTwist_one_apply]
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_press.ModularCurve in
-
 theorem solution {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) {R : Polynomial K}
     (hR : Polynomial.aeval (jqModC K) R = jqNModC K p) :
@@ -278,6 +279,7 @@ theorem ModularCurve.StarBank.press {K : Type*} [Field K] (p : ℕ) [Fact p.Prim
     (hR : Polynomial.aeval (jqModC K) R = jqNModC K p) :
     R.Monic ∧ R.natDegree = p ∧
       R.map (algebraMap K (LaurentSeries K)) - Polynomial.C (jqNModC K p) =
-        ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) := _root_.P2MW.S_ModularCurve_StarBank_press.solution p ζ hζ hR
+        ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) :=
+  solution p ζ hζ hR
 
 end publicSection

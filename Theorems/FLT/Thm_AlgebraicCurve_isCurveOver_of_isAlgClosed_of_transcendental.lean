@@ -80,6 +80,7 @@ theorem AlgebraicCurve.isCurveOver_of_isAlgClosed_of_transcendental
     {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] :
-    IsCurveOver K F := _root_.P2MW.S_AlgebraicCurve_isCurveOver_of_isAlgClosed_of_transcendental.solution x hx
+    IsCurveOver K F :=
+  solution x hx
 
 end publicSection

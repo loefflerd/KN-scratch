@@ -145,7 +145,8 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
       (s : AlgebraicClosure ℚ) ∉ A.nonunits ∧ a * s = x := by
   classical
   have halg : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
-    have h : @Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) _ _ (AlgebraicClosure.instAlgebra ℚ) := inferInstance
+    have h : @Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) _ _ (AlgebraicClosure.instAlgebra ℚ) :=
+      inferInstance
     exact h
   have int_mem : ∀ b : (AlgebraicClosure ℚ), IsIntegral ℤ b → b ∈ A := by
     intro b hb
@@ -175,10 +176,12 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     int_mem _ (map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ)) (NumberField.RingOfIntegers.isIntegral_coe b))
   let φ : 𝓞 F →+* A :=
     ((algebraMap F (AlgebraicClosure ℚ)).comp (algebraMap (𝓞 F) F)).codRestrict A.toSubring (fun b => hOA b)
-  have hφ : ∀ b : 𝓞 F, (φ b : (AlgebraicClosure ℚ)) = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) := fun b => rfl
+  have hφ : ∀ b : 𝓞 F, (φ b : (AlgebraicClosure ℚ)) = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) :=
+    fun b => rfl
   let P : Ideal (𝓞 F) := Ideal.comap φ (IsLocalRing.maximalIdeal A)
   have hPprime : P.IsPrime := Ideal.IsPrime.comap φ
-  have hmemP : ∀ b : 𝓞 F, b ∈ P ↔ algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) ∈ A.nonunits := by
+  have hmemP : ∀ b : 𝓞 F, b ∈ P ↔ algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) ∈ A.nonunits :=
+    by
     intro b
     rw [← hφ, ValuationSubring.coe_mem_nonunits_iff]
     rfl
@@ -189,7 +192,8 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     intro hbot
     rw [hbot, Ideal.mem_bot] at hqP
     exact hq.ne_zero (Nat.cast_eq_zero.mp hqP)
-  have hval1 : ∀ s : 𝓞 F, s ∉ P → A.valuation (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s)) = 1 := by
+  have hval1 : ∀ s : 𝓞 F, s ∉ P → A.valuation (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s)) = 1 :=
+    by
     intro s hs
     refine le_antisymm ((A.valuation_le_one_iff _).mpr (hOA s)) (not_lt.mp fun hlt => hs ?_)
     rw [hmemP, ValuationSubring.mem_nonunits_iff]
@@ -197,7 +201,8 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
   let a' : F := ⟨a, IntermediateField.mem_adjoin_simple_self ℚ a⟩
   have ha' : algebraMap F (AlgebraicClosure ℚ) a' = a := rfl
   have ha'0 : a' ≠ 0 := fun h => ha0 (by rw [← ha', h, map_zero])
-  have hint : ∀ b : 𝓞 F, IsIntegral ℤ (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)) := fun b =>
+  have hint : ∀ b : 𝓞 F, IsIntegral ℤ (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)) :=
+    fun b =>
     map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ)) (NumberField.RingOfIntegers.isIntegral_coe b)
   rcases exists_div_rep_or_inv_div_rep_of_ne_bot P hPbot a' ha'0 with
     ⟨b, s, hs, hrep⟩ | ⟨b, s, hb, hs, hrep⟩
@@ -214,7 +219,8 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
       rw [← ha', hrep, map_div₀, div_mul_cancel₀ _ hsK]
   · exfalso
     have hlt : A.valuation a⁻¹ < 1 := by
-      have : a⁻¹ = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) / algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) := by
+      have : a⁻¹ = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) / algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) :=
+        by
         rw [← ha', ← map_inv₀, hrep, map_div₀]
       rw [this, map_div₀, hval1 s hs, div_one, ← ValuationSubring.mem_nonunits_iff, ← hmemP]
       exact hb
@@ -348,6 +354,13 @@ end privateSection
 public section publicSection
 
 
-theorem ValuationSubring.exists_liesOverPrime_mem_inertiaSubgroupIn (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [𝔔.IsMaximal] {q : ℕ} (hq : q.Prime) (hq𝔔 : (q : integralClosure ℤ (AlgebraicClosure ℚ)) ∈ 𝔔) (σ : (AlgebraicClosure ℚ) ≃ₐ[ℚ] (AlgebraicClosure ℚ)) (hσ : ∀ b : integralClosure ℤ (AlgebraicClosure ℚ), ∃ c ∈ 𝔔, (c : AlgebraicClosure ℚ) = σ b - b) : ∃ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime q ∧ σ ∈ A.inertiaSubgroupIn ℚ := _root_.P2MW.S_ValuationSubring_exists_liesOverPrime_mem_inertiaSubgroupIn.solution 𝔔 hq hq𝔔 σ hσ
+theorem ValuationSubring.exists_liesOverPrime_mem_inertiaSubgroupIn
+    (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [𝔔.IsMaximal] {q : ℕ} (hq : q.Prime)
+    (hq𝔔 : (q : integralClosure ℤ (AlgebraicClosure ℚ)) ∈ 𝔔)
+    (σ : (AlgebraicClosure ℚ) ≃ₐ[ℚ] (AlgebraicClosure ℚ))
+    (hσ : ∀ b : integralClosure ℤ (AlgebraicClosure ℚ), ∃ c ∈ 𝔔, (c : AlgebraicClosure ℚ) = σ b - b)
+    :
+    ∃ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime q ∧ σ ∈ A.inertiaSubgroupIn ℚ :=
+  solution 𝔔 hq hq𝔔 σ hσ
 
 end publicSection

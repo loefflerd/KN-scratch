@@ -227,7 +227,6 @@ theorem lipschitz_two_closed_of_im_neg {x : ℂ} (hx : x.im < 0) :
   ring
 
 open Metric Set Filter Topology in
-
 theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
     ∑' n : ℤ, 1 / (x + n) ^ 2 =
       (2 * π * I) ^ 2 * (cexp (2 * π * I * x) / (1 - cexp (2 * π * I * x)) ^ 2) := by
@@ -526,7 +525,6 @@ end B2_rearrange
 section B2_assembly
 
 open scoped UpperHalfPlane in
-
 theorem weierstrassP_periodPairOfTau_qExpansion (τ : ℍ) {z : ℂ}
     (hz₁ : -τ.im < z.im) (hz₂ : z.im < τ.im) (hz : z ∈ Complex.integerComplement) :
     PeriodPair.weierstrassP (periodPairOfTau τ) z =
@@ -584,7 +582,6 @@ private lemma torsion_term_aux (ζ q : ℂ) (hq : q ≠ 0) (a₁ a₂ k m : ℕ)
   linear_combination h2
 
 open scoped UpperHalfPlane in
-
 lemma torsionPt_hyps (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     -τ.im < (((a₁ : ℂ) * τ + a₂) / N).im ∧ (((a₁ : ℂ) * τ + a₂) / N).im < τ.im ∧
@@ -627,7 +624,6 @@ lemma torsionPt_hyps (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : 
     omega
 
 open scoped UpperHalfPlane in
-
 theorem weierstrassP_torsionPt_qExpansion (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     PeriodPair.weierstrassP (periodPairOfTau τ) (((a₁ : ℂ) * τ + a₂) / N) =
@@ -780,7 +776,6 @@ lemma differentiable_wpTail (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) :
   fun_prop
 
 open Complex in
-
 theorem differentiableOn_wpTorsionSeries {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     DifferentiableOn ℂ (wpTorsionSeries N a₁ a₂) {τ : ℂ | 0 < τ.im} := by
@@ -844,7 +839,6 @@ open Complex Real in
 open scoped UpperHalfPlane Manifold in
 open WLight in
 theorem solution :
-
     (∀ w : ℂ, 0 < w.im →
       ∑' n : ℤ, 1 / (w + n) ^ 2 =
         (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (2 * π * I * w) ^ m) ∧
@@ -919,7 +913,6 @@ public section publicSection
 open Complex Real
 open scoped UpperHalfPlane Manifold
 theorem WLight.weierstrassP_qExpansion_package :
-
     (∀ w : ℂ, 0 < w.im →
       ∑' n : ℤ, 1 / (w + n) ^ 2 =
         (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (2 * π * I * w) ^ m) ∧
@@ -950,6 +943,7 @@ theorem WLight.weierstrassP_qExpansion_package :
           (fun τ : ℍ => PeriodPair.weierstrassP (L τ) (((a₁ : ℂ) * τ + a₂) / N))) ∧
     (∀ L L' : PeriodPair, ∀ c : ℂ, L'.ω₁ = c * L.ω₁ → L'.ω₂ = c * L.ω₂ →
       ∀ z : ℂ, PeriodPair.weierstrassP L' (c * z) =
-        c⁻¹ ^ 2 * PeriodPair.weierstrassP L z) := _root_.P2MW.S_WLight_weierstrassP_qExpansion_package.solution
+        c⁻¹ ^ 2 * PeriodPair.weierstrassP L z) :=
+  solution
 
 end publicSection

@@ -63,7 +63,8 @@ namespace P2MW.S_ModularCurve_coeffEmb_qExpand
 
 open ModularCurve IntermediateField HahnSeries
 
-theorem solution (L : Type*) [Field L] [Algebra ℚ L] (n : ℕ) [NeZero n] (x : LaurentSeries ℚ) : ModularCurve.coeffEmb L (ModularCurve.qExpand ℚ n x) = ModularCurve.qExpand L n (ModularCurve.coeffEmb L x) :=
+theorem solution (L : Type*) [Field L] [Algebra ℚ L] (n : ℕ) [NeZero n] (x : LaurentSeries ℚ) :
+    ModularCurve.coeffEmb L (ModularCurve.qExpand ℚ n x) = ModularCurve.qExpand L n (ModularCurve.coeffEmb L x) :=
   coeffMap_qExpand _ n x
 
 end S_ModularCurve_coeffEmb_qExpand
@@ -74,6 +75,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.coeffEmb_qExpand (L : Type*) [Field L] [Algebra ℚ L] (n : ℕ) [NeZero n] (x : LaurentSeries ℚ) : ModularCurve.coeffEmb L (ModularCurve.qExpand ℚ n x) = ModularCurve.qExpand L n (ModularCurve.coeffEmb L x) := _root_.P2MW.S_ModularCurve_coeffEmb_qExpand.solution L n x
+theorem ModularCurve.coeffEmb_qExpand (L : Type*) [Field L] [Algebra ℚ L] (n : ℕ) [NeZero n]
+    (x : LaurentSeries ℚ) :
+    ModularCurve.coeffEmb L (ModularCurve.qExpand ℚ n x) = ModularCurve.qExpand L n (ModularCurve.coeffEmb L x) :=
+  solution L n x
 
 end publicSection

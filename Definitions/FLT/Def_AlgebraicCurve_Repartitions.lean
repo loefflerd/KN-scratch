@@ -131,14 +131,14 @@ def repartitionsOf (D : Divisor K F) : Submodule K ↥(repartitions K F) where
     {α | ∀ v : Place K F, v.adicValuation ((α : Place K F → F) v) ≤ exp (D v)}
   zero_mem' := by
     intro v
-    show v.adicValuation (0 : F) ≤ exp (D v)
+    change v.adicValuation (0 : F) ≤ exp (D v)
     simp
   add_mem' := by
     intro α β hα hβ v
     exact (Valuation.map_add _ _ _).trans (max_le (hα v) (hβ v))
   smul_mem' := by
     intro c α hα v
-    show v.adicValuation (c • (α : Place K F → F) v) ≤ exp (D v)
+    change v.adicValuation (c • (α : Place K F → F) v) ≤ exp (D v)
     rw [Algebra.smul_def, map_mul]
     exact (mul_le_of_le_one_left' (v.adicValuation_algebraMap_le_one c)).trans (hα v)
 
@@ -146,7 +146,7 @@ theorem mem_repartitionsOf_iff {D : Divisor K F} {α : ↥(repartitions K F)} :
     α ∈ repartitionsOf D ↔
       ∀ v : Place K F,
         (α : Place K F → F) v = 0 ∨ -D v ≤ v.ord ((α : Place K F → F) v) := by
-  show (∀ v : Place K F, v.adicValuation ((α : Place K F → F) v) ≤ exp (D v)) ↔ _
+  change (∀ v : Place K F, v.adicValuation ((α : Place K F → F) v) ≤ exp (D v)) ↔ _
   exact forall_congr' fun v => v.adicValuation_le_exp_iff
 
 theorem repartitionsOf_mono {D D' : Divisor K F} (h : D ≤ D') :
@@ -163,17 +163,16 @@ def riemannRochSpace (D : Divisor K F) : Submodule K F where
     exact (Valuation.map_add _ _ _).trans (max_le (hf v) (hg v))
   smul_mem' := by
     intro c f hf v
-    show v.adicValuation (c • f) ≤ exp (D v)
+    change v.adicValuation (c • f) ≤ exp (D v)
     rw [Algebra.smul_def, map_mul]
     exact (mul_le_of_le_one_left' (v.adicValuation_algebraMap_le_one c)).trans (hf v)
 
 theorem mem_riemannRochSpace_iff {D : Divisor K F} {f : F} :
     f ∈ riemannRochSpace D ↔ ∀ v : Place K F, f = 0 ∨ -D v ≤ v.ord f := by
-  show (∀ v : Place K F, v.adicValuation f ≤ exp (D v)) ↔ _
+  change (∀ v : Place K F, v.adicValuation f ≤ exp (D v)) ↔ _
   exact forall_congr' fun v => v.adicValuation_le_exp_iff
 
 variable (K F) in
-
 def principalRepartitions : Submodule K ↥(repartitions K F) :=
   (LinearMap.range (Algebra.linearMap F ↥(repartitions K F))).restrictScalars K
 
@@ -192,7 +191,6 @@ abbrev H1 (D : Divisor K F) : Type _ :=
   ↥(repartitions K F) ⧸ (repartitionsOf D ⊔ principalRepartitions K F)
 
 variable (K F) in
-
 def genusFF : ℕ := Module.finrank K (H1 (0 : Divisor K F))
 
 end AlgebraicCurve

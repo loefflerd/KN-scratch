@@ -225,6 +225,7 @@ public section publicSection
 theorem ValuationSubring.isDiscreteValuationRing_comap_of_liesOverPrime
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L]
     (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq : q.Prime) (hA : A.LiesOverPrime q) :
-    IsDiscreteValuationRing (A.comap (algebraMap L (AlgebraicClosure ℚ))) := _root_.P2MW.S_ValuationSubring_isDiscreteValuationRing_comap_of_liesOverPrime.solution L A hq hA
+    IsDiscreteValuationRing (A.comap (algebraMap L (AlgebraicClosure ℚ))) :=
+  solution L A hq hA
 
 end publicSection

@@ -345,7 +345,7 @@ lemma exists_realization_on_conductor (hR : R.HasExpectedProperties) {A : Finset
           ⟨i.2, fun h => hi (Finset.mem_filter.mpr ⟨i.2, h⟩)⟩
         exact (localProjection_eq_one R.projections _
           (hz'2.of_dvd (Finset.dvd_prod_of_mem L.primeAt hi''))).symm
-    show χ.toMonoidHom (extendOne hsub _) = _
+    change χ.toMonoidHom (extendOne hsub _) = _
     rw [hext, ← realized_apply_natCast R χ z' hz'T, apply_natCast_of_eq hχ z']
     congr 2
     rw [ZMod.natCast_eq_natCast_iff]
@@ -355,7 +355,7 @@ lemma exists_realization_on_conductor (hR : R.HasExpectedProperties) {A : Finset
   have hord' : orderOf χ'.toMonoidHom = p ^ m := by
     refine Nat.dvd_antisymm (orderOf_dvd_of_pow_eq_one ?_) ?_
     · refine MonoidHom.ext fun g => ?_
-      show (χ.toMonoidHom.comp (extendOne hsub) ^ p ^ m) g = 1
+      change (χ.toMonoidHom.comp (extendOne hsub) ^ p ^ m) g = 1
       rw [MonoidHom.pow_apply, MonoidHom.comp_apply, ← MonoidHom.pow_apply, ← hχord,
         pow_orderOf_eq_one, MonoidHom.one_apply]
     · rw [← hord]

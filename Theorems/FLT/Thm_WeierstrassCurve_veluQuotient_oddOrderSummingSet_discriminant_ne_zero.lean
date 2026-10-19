@@ -65,15 +65,19 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.WeierstrassCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.WeierstrassCurve"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "twoTorsionPolynomial_discr map twoTorsionPolynomial Ψ₂Sq map_id toAffine Δ Δ' veluQuotient oddOrderSummingSet veluX veluX_oddOrderSummingSet_injOn_psi2Sq_roots eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero"
+p2m_export "WeierstrassCurve" "twoTorsionPolynomial_discr map twoTorsionPolynomial Ψ₂Sq map_id \
+  toAffine Δ Δ' veluQuotient oddOrderSummingSet veluX veluX_oddOrderSummingSet_injOn_psi2Sq_roots \
+  eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero"
 p2m_open "WeierstrassCurve"
 
 variable {L : Type*} [Field L] (V : WeierstrassCurve L)
 
-private lemma _root_.WeierstrassCurve.ws18_Ψ₂Sq_eq_toPoly : V.Ψ₂Sq = V.twoTorsionPolynomial.toPoly := by
+private lemma _root_.WeierstrassCurve.ws18_Ψ₂Sq_eq_toPoly :
+    V.Ψ₂Sq = V.twoTorsionPolynomial.toPoly := by
   simp only [Ψ₂Sq, twoTorsionPolynomial, Cubic.toPoly]
 
 p2m_export "WeierstrassCurve" "ws18_Ψ₂Sq_eq_toPoly"
@@ -164,6 +168,7 @@ theorem WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero
     {L : Type*} [Field L] [DecidableEq L] [IsAlgClosed L] (h2 : (2 : L) ≠ 0)
     (W : WeierstrassCurve L) [W.IsElliptic] (n : ℕ) (Q : W.toAffine.Point)
     (hQ : addOrderOf Q = 2 * n + 1) :
-    (W.veluQuotient (W.oddOrderSummingSet Q n)).Δ ≠ 0 := _root_.P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.solution h2 W n Q hQ
+    (W.veluQuotient (W.oddOrderSummingSet Q n)).Δ ≠ 0 :=
+  solution h2 W n Q hQ
 
 end publicSection

@@ -62,7 +62,9 @@ noncomputable section
 open HahnSeries
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC jqNModC jqModC_eq_map_intCast qExpand qExpand_congr qExpand_qExpand jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow map_intCast_pow_char_eq_qExpand"
+p2m_export "ModularCurve" "jqModC jqNModC jqModC_eq_map_intCast qExpand qExpand_congr \
+  qExpand_qExpand jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow \
+  map_intCast_pow_char_eq_qExpand"
 p2m_open "ModularCurve"
 namespace CharLRows
 
@@ -75,7 +77,8 @@ theorem jqModC_pow (n : ℕ) :
   rw [jqModC, mul_pow, HahnSeries.single_pow, one_pow, h, ← map_pow]
 
 theorem constantCoeff_jNum_map : PowerSeries.constantCoeff (jNum.map (Int.castRingHom K)) = 1 := by
-  rw [← PowerSeries.coeff_zero_eq_constantCoeff, PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff,
+  rw [← PowerSeries.coeff_zero_eq_constantCoeff, PowerSeries.coeff_map,
+    PowerSeries.coeff_zero_eq_constantCoeff,
     constantCoeff_jNum, map_one]
 
 theorem coeff_jqModC_pow_self (n : ℕ) : ((jqModC K) ^ n).coeff (-(n : ℤ)) = 1 := by
@@ -83,7 +86,8 @@ theorem coeff_jqModC_pow_self (n : ℕ) : ((jqModC K) ^ n).coeff (-(n : ℤ)) = 
     show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
     PowerSeries.coeff_zero_eq_constantCoeff, map_pow, constantCoeff_jNum_map, one_pow]
 
-theorem coeff_jqModC_pow_of_lt {n : ℕ} {m : ℤ} (hm : m < -(n : ℤ)) : ((jqModC K) ^ n).coeff m = 0 := by
+theorem coeff_jqModC_pow_of_lt {n : ℕ} {m : ℤ} (hm : m < -(n : ℤ)) :
+    ((jqModC K) ^ n).coeff m = 0 := by
   rw [jqModC_pow, HahnSeries.coeff_single_mul, one_mul]
   exact ofPowerSeries_coeff_of_neg _ (by omega)
 
@@ -96,7 +100,8 @@ theorem algebraMap_laurentSeries_eq_single (c : K) :
   rw [HahnSeries.algebraMap_apply', h1, HahnSeries.ofPowerSeries_C]
   rfl
 
-theorem aeval_jqModC_eq_zero {p : Polynomial K} (hp : Polynomial.aeval (jqModC K) p = 0) : p = 0 := by
+theorem aeval_jqModC_eq_zero {p : Polynomial K} (hp : Polynomial.aeval (jqModC K) p = 0) :
+    p = 0 := by
   by_contra hp0
   set n := p.natDegree with hn
   have hcoeff : (Polynomial.aeval (jqModC K) p).coeff (-(n : ℤ)) = p.coeff n := by
@@ -145,7 +150,8 @@ theorem qExpand_jqNModC_eq_pow (N : ℕ) [NeZero N] (ℓ : ℕ) [Fact ℓ.Prime]
   rw [jqNModC, qExpand_qExpand, qExpand_congr (mul_comm ℓ N), ← qExpand_qExpand,
     qExpand_jqModC_eq_pow K ℓ, map_pow]
 
-theorem frobenius_identity_geom (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ] : jqNModC K ℓ = (jqModC K) ^ ℓ := by
+theorem frobenius_identity_geom (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ] :
+    jqNModC K ℓ = (jqModC K) ^ ℓ := by
   rw [jqNModC]; exact qExpand_jqModC_eq_pow K ℓ
 
 end CharLRows
@@ -168,7 +174,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.qExpand_jqModC_eq_pow_unconditional (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ] :
-    qExpand K ℓ (jqModC K) = (jqModC K) ^ ℓ := _root_.P2MW.S_ModularCurve_qExpand_jqModC_eq_pow_unconditional.solution K
+theorem ModularCurve.qExpand_jqModC_eq_pow_unconditional (K : Type*) [CommRing K] {ℓ : ℕ}
+    [Fact ℓ.Prime] [CharP K ℓ] :
+    qExpand K ℓ (jqModC K) = (jqModC K) ^ ℓ :=
+  solution K
 
 end publicSection

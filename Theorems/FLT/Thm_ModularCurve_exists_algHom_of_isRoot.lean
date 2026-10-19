@@ -80,7 +80,11 @@ noncomputable section
 open Polynomial IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand jq jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData modularFunctionFieldFull jqd_mem_full jqModC jqNModC relfinrank_laurentBaseChange_modularFunctionFieldFull jq_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange relfinrank_full_eq_dedekindPsi laurentBaseChange_adjoin_pair functionFieldGeneration coeffEmb_jq coeffEmb_jqN transcendental_jqModC"
+p2m_export "ModularCurve" "qExpand jq jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData \
+  modularFunctionFieldFull jqd_mem_full jqModC jqNModC \
+  relfinrank_laurentBaseChange_modularFunctionFieldFull jq_mem_full coeffEmb laurentBaseChange \
+  coeffEmb_mem_laurentBaseChange relfinrank_full_eq_dedekindPsi laurentBaseChange_adjoin_pair \
+  functionFieldGeneration coeffEmb_jq coeffEmb_jqN transcendental_jqModC"
 p2m_open "ModularCurve~jAdj"
 
 namespace B1Zero
@@ -173,7 +177,8 @@ theorem finrank_adjoin_jqNModC (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [
     ← IntermediateField.relfinrank_eq_finrank_of_le (jAdj_le_laurentBaseChange L N)]
   have e1 : jAdj L = IntermediateField.adjoin L ({coeffEmb L jq} : Set (LaurentSeries L)) := by
     rw [coeffEmb_jq]
-  rw [e1, relfinrank_laurentBaseChange_modularFunctionFieldFull L N, relfinrank_full_eq_dedekindPsi N]
+  rw [e1, relfinrank_laurentBaseChange_modularFunctionFieldFull L N, relfinrank_full_eq_dedekindPsi
+    N]
 
 theorem natDegree_minpoly_jqNModC (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N) :
@@ -183,14 +188,13 @@ theorem natDegree_minpoly_jqNModC (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ
 end B1Zero
 
 open B1Zero in
-
 private theorem minpoly_jqNModC_eq (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N) :
     minpoly (↥(IntermediateField.adjoin L ({jqModC L} : Set (LaurentSeries L)))) (jqNModC L N) =
       data.Φ.map (Polynomial.eval₂RingHom
         (Int.castRingHom (↥(IntermediateField.adjoin L ({jqModC L} : Set (LaurentSeries L)))))
         ⟨jqModC L, IntermediateField.mem_adjoin_simple_self L (jqModC L)⟩) := by
-  show minpoly (jAdj L) (jqNModC L N) = ΦL L N data
+  change minpoly (jAdj L) (jqNModC L N) = ΦL L N data
   symm
   refine Polynomial.eq_of_monic_of_dvd_of_natDegree_le (minpoly.monic (isIntegral_jqNModC L N data))
     (monic_ΦL L N data) (minpoly.dvd _ _ (aeval_jqNModC_ΦL L N data)) (le_of_eq ?_)
@@ -214,7 +218,7 @@ theorem jBaseHom_jGenL {c : A} (hc : Transcendental L c) : jBaseHom L hc (jGenL 
   have h1 : (RatFunc.algEquivOfTranscendental (jqModC L) (transcendental_jqModC L)).symm
       (jGenL L) = RatFunc.X :=
     RatFunc.algEquivOfTranscendental_symm_gen (jqModC L) (transcendental_jqModC L)
-  show L⟮c⟯.val ((RatFunc.algEquivOfTranscendental c hc)
+  change L⟮c⟯.val ((RatFunc.algEquivOfTranscendental c hc)
     ((RatFunc.algEquivOfTranscendental (jqModC L) (transcendental_jqModC L)).symm (jGenL L))) = c
   rw [h1]
   exact RatFunc.algEquivOfTranscendental_X c hc
@@ -269,7 +273,7 @@ private theorem exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N
           : (jAdjField L)⟮jqNModC L N⟯)
         = algebraMap (jAdjField L) ((jAdjField L)⟮jqNModC L N⟯) (jGenL L) :=
       Subtype.ext (coeffEmb_jq L)
-    show ψ₁ ((equivOfEq hadj).symm ⟨coeffEmb L jq, _⟩) = c
+    change ψ₁ ((equivOfEq hadj).symm ⟨coeffEmb L jq, _⟩) = c
     rw [hamb, ψ₁.commutes, hamap, hφ₀c]
   · have hamb' : ((equivOfEq hadj).symm
           ⟨coeffEmb L (qExpand ℚ N jq),
@@ -277,15 +281,16 @@ private theorem exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N
           : (jAdjField L)⟮jqNModC L N⟯)
         = AdjoinSimple.gen (jAdjField L) (jqNModC L N) :=
       Subtype.ext (coeffEmb_jqN L N)
-    show ψ₁ ((equivOfEq hadj).symm ⟨coeffEmb L (qExpand ℚ N jq), _⟩) = y
+    change ψ₁ ((equivOfEq hadj).symm ⟨coeffEmb L (qExpand ℚ N jq), _⟩) = y
     rw [hamb', hψ₁gen]
 
 end ModularCurve
 
 end
 
-p2m_open "ModularCurve~jAdj" in open _root_.P2MW.S_ModularCurve_exists_algHom_of_isRoot.ModularCurve in
-
+p2m_open "ModularCurve~jAdj\
+  " in
+open _root_.P2MW.S_ModularCurve_exists_algHom_of_isRoot.ModularCurve in
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N) {A : Type*} [Field A] [Algebra L A] (c y : A)
     (hc : Transcendental L c)
@@ -313,6 +318,7 @@ theorem ModularCurve.exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ 
     ∃ ψ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A,
       ψ ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩ = c ∧
       ψ ⟨coeffEmb L (qExpand ℚ N jq),
-        coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩ = y := _root_.P2MW.S_ModularCurve_exists_algHom_of_isRoot.solution L N data c y hc hy
+        coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩ = y :=
+  solution L N data c y hc hy
 
 end publicSection

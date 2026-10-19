@@ -56,12 +56,13 @@ namespace P2MW.S_AlgebraicCurve_Place_isRational_iff_deg_eq_one
 
 open AlgebraicCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) : v.IsRational ↔ v.deg = 1 := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
+    v.IsRational ↔ v.deg = 1 := by
   constructor
   · intro hv
     have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
       ⟨v.algebraMap_residueField_injective, hv⟩
-    show Module.finrank K v.ResidueField = 1
+    change Module.finrank K v.ResidueField = 1
     rw [← Module.finrank_self K]
     exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
   · intro h x
@@ -82,6 +83,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.isRational_iff_deg_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) : v.IsRational ↔ v.deg = 1 := _root_.P2MW.S_AlgebraicCurve_Place_isRational_iff_deg_eq_one.solution v
+theorem AlgebraicCurve.Place.isRational_iff_deg_eq_one {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (v : Place K F) :
+    v.IsRational ↔ v.deg = 1 :=
+  solution v
 
 end publicSection

@@ -64,15 +64,18 @@ open scoped Polynomial.Bivariate WithZero nonZeroDivisors
 p2m_open "Polynomial Polynomial.Bivariate.Polynomial"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ Affine.CoordinateRing mk a₄ a₂ a₆ Affine.FunctionField toAffine Affine.Point Affine.CoordinateRing.mk Affine.polynomial"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ Affine.CoordinateRing mk a₄ a₂ a₆ Affine.FunctionField \
+  toAffine Affine.Point Affine.CoordinateRing.mk Affine.polynomial"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing CoordinateRing.smul FunctionField Point CoordinateRing.mk CoordinateRing.exists_smul_basis_eq CoordinateRing.basis polynomial"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing CoordinateRing.smul FunctionField Point \
+  CoordinateRing.mk CoordinateRing.exists_smul_basis_eq CoordinateRing.basis polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {K : Type*} [Field K] (W : Affine K)
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul mk degree_norm_smul_basis exists_smul_basis_eq"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul mk degree_norm_smul_basis \
+  exists_smul_basis_eq"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 lemma natDegree_norm_smul_basis_of_eq_zero (p : K[X]) :
@@ -178,7 +181,6 @@ lemma valuation_algebraMap_K {c : K} (hc : c ≠ 0) :
   exact (O.valuation_le_one_iff _).mpr (hK c⁻¹)
 
 include hK hx in
-
 lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
     O.valuation (algebraMap W.CoordinateRing W.FunctionField f) ^ 2 =
       O.valuation (algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (C X))) ^
@@ -306,7 +308,8 @@ end FunctionField
 
 end WeierstrassCurve.Affine
 
-theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) (O : ValuationSubring W.toAffine.FunctionField) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∉ O) (v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ))) (hv : ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ)) : O = v.valuationSubring :=
+theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) (O : ValuationSubring W.toAffine.FunctionField) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∉ O) (v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ))) (hv : ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ)) :
+    O = v.valuationSubring :=
   WeierstrassCurve.Affine.FunctionField.eq_valuationSubring_of_X_not_mem_aux W.toAffine O hK hX v hv
 
 end S_WeierstrassCurve_Affine_FunctionField_eq_valuationSubring_of_X_not_mem
@@ -317,6 +320,8 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.FunctionField.eq_valuationSubring_of_X_not_mem {K : Type*} [Field K] (W : WeierstrassCurve K) (O : ValuationSubring W.toAffine.FunctionField) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∉ O) (v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ))) (hv : ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ)) : O = v.valuationSubring := _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_eq_valuationSubring_of_X_not_mem.solution W O hK hX v hv
+theorem WeierstrassCurve.Affine.FunctionField.eq_valuationSubring_of_X_not_mem {K : Type*} [Field K] (W : WeierstrassCurve K) (O : ValuationSubring W.toAffine.FunctionField) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∉ O) (v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ))) (hv : ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ)) :
+    O = v.valuationSubring :=
+  solution W O hK hX v hv
 
 end publicSection

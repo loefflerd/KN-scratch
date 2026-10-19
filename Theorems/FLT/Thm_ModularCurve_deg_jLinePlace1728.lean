@@ -77,6 +77,8 @@ public section publicSection
 
 
 open IntermediateField AlgebraicCurve
-theorem ModularCurve.deg_jLinePlace1728 : ModularCurve.jLinePlace1728.deg = 1 := _root_.P2MW.S_ModularCurve_deg_jLinePlace1728.solution
+theorem ModularCurve.deg_jLinePlace1728 :
+    ModularCurve.jLinePlace1728.deg = 1 :=
+  solution
 
 end publicSection

@@ -130,7 +130,7 @@ private theorem finrank_algebraMapRange_eq :
     (fun e ↦ (algebraMap E M).rangeRestrictFieldEquiv e) (AddEquiv.refl M)
     (algebraMap E M).rangeRestrictFieldEquiv.bijective
     (fun e m ↦ by
-      show e • m = ((algebraMap E M).rangeRestrictFieldEquiv e) • m
+      change e • m = ((algebraMap E M).rangeRestrictFieldEquiv e) • m
       rw [Algebra.smul_def, Subfield.smul_def]
       rfl)
   simp only [Cardinal.lift_id] at h
@@ -471,9 +471,12 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.isSeparable_adjoin_of_ord_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
+theorem AlgebraicCurve.Place.isSeparable_adjoin_of_ord_eq_one {K F : Type*} [Field K] [Field F]
+    [Algebra K F] [PerfectField K] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F}
     (ht : v.ord t = 1) :
-    Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := _root_.P2MW.S_AlgebraicCurve_Place_isSeparable_adjoin_of_ord_eq_one.solution x v ht
+    Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F :=
+  solution x v ht
 
 end publicSection

@@ -91,6 +91,7 @@ end privateSection
 public section publicSection
 
 theorem ValuationSubring.exists_liesOverPrime_algebraicClosure_rat (p : Nat.Primes) :
-    ∃ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime (p : ℕ) := _root_.P2MW.S_ValuationSubring_exists_liesOverPrime_algebraicClosure_rat.solution p
+    ∃ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime (p : ℕ) :=
+  solution p
 
 end publicSection

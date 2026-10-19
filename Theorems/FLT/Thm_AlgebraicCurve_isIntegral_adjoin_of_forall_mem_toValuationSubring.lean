@@ -78,7 +78,8 @@ theorem isIntegral_of_mem_adjoin_inv {A F : Type*} [CommRing A] [Field F] [Algeb
     conv_lhs => rw [← hp']
     rw [Polynomial.aeval_eq_sum_range]
     simp only [Algebra.smul_def]
-  have hzpow : ∀ i ∈ Finset.range (p.natDegree + 1), z ^ p.natDegree * z⁻¹ ^ i = z ^ (p.natDegree - i) := by
+  have hzpow : ∀ i ∈ Finset.range (p.natDegree + 1), z ^ p.natDegree * z⁻¹ ^ i = z ^ (p.natDegree - i) :=
+    by
     intro i hi
     have hi' : i ≤ p.natDegree := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
     obtain ⟨k, hk⟩ := Nat.exists_eq_add_of_le hi'
@@ -122,14 +123,14 @@ theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring
   have hAV : A ≤ V.toSubring := by
     intro a ha
     have : (a : F) ∈ Bs := by
-      show a ∈ B
+      change a ∈ B
       exact Subalgebra.algebraMap_mem B ⟨a, ha⟩
     exact hLV (hBL this)
   have hzV : z ∈ V := h V hAV
   have hyL : (algebraMap Bs L.toSubring ⟨y, hyB⟩) ∈ IsLocalRing.maximalIdeal L.toSubring :=
     (IsLocalization.AtPrime.to_map_mem_maximal_iff L.toSubring m' ⟨y, hyB⟩).mpr hym
   have hcoe : ((algebraMap Bs L.toSubring ⟨y, hyB⟩ : L.toSubring) : F) = y := by
-    show algebraMap L.toSubring F (algebraMap Bs L.toSubring ⟨y, hyB⟩) = y
+    change algebraMap L.toSubring F (algebraMap Bs L.toSubring ⟨y, hyB⟩) = y
     rw [← IsScalarTower.algebraMap_apply Bs L.toSubring F]
     rfl
   have hyV' : ¬ IsUnit (Subring.inclusion hLV (algebraMap Bs L.toSubring ⟨y, hyB⟩)) := by
@@ -184,6 +185,7 @@ theorem AlgebraicCurve.isIntegral_adjoin_of_forall_mem_toValuationSubring
     [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F]
     (t z : F)
     (h : ∀ v : AlgebraicCurve.Place K F, t ∈ v.toValuationSubring → z ∈ v.toValuationSubring) :
-    IsIntegral (Algebra.adjoin K ({t} : Set F)) z := _root_.P2MW.S_AlgebraicCurve_isIntegral_adjoin_of_forall_mem_toValuationSubring.solution x t z h
+    IsIntegral (Algebra.adjoin K ({t} : Set F)) z :=
+  solution x t z h
 
 end publicSection

@@ -80,7 +80,8 @@ theorem coeff_smul' {L : Type*} [Field L] (r : L) (x : LaurentSeries L) (n : ℤ
     (r • x).coeff n = r * x.coeff n := by
   rw [Algebra.smul_def, algebraMap_laurentSeries_eq_single, HahnSeries.coeff_single_zero_mul]
 
-theorem coeffMap_intSeriesC (p : PowerSeries ℤ) : coeffMap φ (intSeriesC K₀ p) = intSeriesC K p := by
+theorem coeffMap_intSeriesC (p : PowerSeries ℤ) :
+    coeffMap φ (intSeriesC K₀ p) = intSeriesC K p := by
   rw [intSeriesC, intSeriesC, coeffMap_ofPowerSeries, ← RingHom.comp_apply (PowerSeries.map φ),
     ← PowerSeries.map_comp, RingHom.ext_int (φ.comp (Int.castRingHom K₀)) (Int.castRingHom K)]
 
@@ -121,7 +122,8 @@ def iota : qExpFunctionFieldC K₀ Γ →+* qExpFunctionFieldC K Γ where
 @[scoped simp] theorem coe_iota (y : qExpFunctionFieldC K₀ Γ) :
     ((iota φ Γ y : qExpFunctionFieldC K Γ) : LaurentSeries K) = coeffMap φ y := rfl
 
-theorem linearIndependent_coeffMap {ι : Type*} {v : ι → LaurentSeries K₀} (hv : LinearIndependent K₀ v) :
+theorem linearIndependent_coeffMap {ι : Type*} {v : ι → LaurentSeries K₀}
+    (hv : LinearIndependent K₀ v) :
     LinearIndependent K (fun i => coeffMap φ (v i)) := by
   classical
   let : Algebra K₀ K := φ.toAlgebra
@@ -179,11 +181,11 @@ local notation "E₀" => (qExpFunctionFieldC K₀ Γ)
 local notation "E" => (qExpFunctionFieldC K Γ)
 
 include hx₀ in
-
-theorem linearIndependent_pow_smul {ι : Type*} [Fintype ι] (v : ι → E₀)
+theorem linearIndependent_pow_smul {ι : Type*} [Finite ι] (v : ι → E₀)
     (hv : LinearIndependent (IntermediateField.adjoin K₀ ({x₀} : Set E₀)) v) (N : ℕ) :
     LinearIndependent K₀ (fun p : ι × Fin N => (x₀ : E₀) ^ (p.2 : ℕ) * v p.1) := by
   classical
+  let := Fintype.ofFinite ι
   rw [Fintype.linearIndependent_iff]
   intro a ha
   let A : ι → IntermediateField.adjoin K₀ ({x₀} : Set E₀) := fun i =>
@@ -220,7 +222,8 @@ theorem linearIndependent_pow_smul {ι : Type*} [Fintype ι] (v : ι → E₀)
     by_contra hne
     exact hx₀ ⟨P, hne, hP⟩
   have := congrArg (fun Q : K₀[X] => Q.coeff (m : ℕ)) hP0
-  simp only [P, Polynomial.finsetSum_coeff, Polynomial.coeff_monomial, Polynomial.coeff_zero] at this
+  simp only [P, Polynomial.finsetSum_coeff, Polynomial.coeff_monomial,
+    Polynomial.coeff_zero] at this
   rw [Finset.sum_eq_single m] at this
   · simpa using this
   · intro m' _ hm'
@@ -229,17 +232,18 @@ theorem linearIndependent_pow_smul {ι : Type*} [Fintype ι] (v : ι → E₀)
   · intro h; exact absurd (Finset.mem_univ m) h
 
 include hx₀ hx in
-
-theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
+theorem linearIndependent_iota {ι : Type*} [Finite ι] (v : ι → E₀)
     (hv : LinearIndependent (IntermediateField.adjoin K₀ ({x₀} : Set E₀)) v) :
     LinearIndependent (IntermediateField.adjoin K ({x} : Set E)) (fun i => iota φ Γ (v i)) := by
   classical
+  let := Fintype.ofFinite ι
   rw [Fintype.linearIndependent_iff]
   intro c hc
   by_contra hne
   push Not at hne
   obtain ⟨i₀, hi₀⟩ := hne
-  have hrep : ∀ i, ∃ r s : K[X], (c i : E) = Polynomial.aeval (x : E) r / Polynomial.aeval (x : E) s := by
+  have hrep : ∀ i, ∃ r s : K[X], (c i : E) = Polynomial.aeval (x : E) r / Polynomial.aeval (x : E) s :=
+    by
     intro i
     exact (IntermediateField.mem_adjoin_simple_iff (F := K) (α := x) (c i : E)).mp (c i).2
   choose r s hrs using hrep
@@ -251,7 +255,8 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
     · rw [map_one]; exact one_ne_zero
     · exact h
   let r' : ι → K[X] := fun i => if Polynomial.aeval (x : E) (s i) = 0 then 0 else r i
-  have hrs' : ∀ i, (c i : E) * Polynomial.aeval (x : E) (s' i) = Polynomial.aeval (x : E) (r' i) := by
+  have hrs' : ∀ i, (c i : E) * Polynomial.aeval (x : E) (s' i) = Polynomial.aeval (x : E) (r' i) :=
+    by
     intro i
     simp only [s', r']
     split_ifs with h
@@ -293,7 +298,8 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
   have hindK := linearIndependent_coeffMap φ hind₀'
   have hexp : ∑ p : ι × Fin N, (P p.1).coeff (p.2 : ℕ) •
       coeffMap φ (((x₀ : E₀) ^ ((p.2 : ℕ)) * v p.1 : E₀) : LaurentSeries K₀) = 0 := by
-    have e1 : ∀ i, Polynomial.aeval (x : E) (P i) = ∑ m : Fin N, (P i).coeff (m : ℕ) • (x : E) ^ (m : ℕ) := by
+    have e1 : ∀ i, Polynomial.aeval (x : E) (P i) =
+      ∑ m : Fin N, (P i).coeff (m : ℕ) • (x : E) ^ (m : ℕ) := by
       intro i
       rw [Polynomial.aeval_eq_sum_range' (hdeg i), Finset.sum_range]
     have := congrArg (fun z : E => (z : LaurentSeries K)) hrel
@@ -303,7 +309,8 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
     rw [e1, Finset.sum_smul, IntermediateField.coe_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [MulMemClass.coe_mul, SubmonoidClass.coe_pow, map_mul, map_pow, ← hx, smul_eq_mul,
-      MulMemClass.coe_mul, IntermediateField.coe_smul, SubmonoidClass.coe_pow, coe_iota, smul_mul_assoc]
+      MulMemClass.coe_mul, IntermediateField.coe_smul, SubmonoidClass.coe_pow, coe_iota,
+      smul_mul_assoc]
   have hzero := Fintype.linearIndependent_iff.mp hindK (fun p => (P p.1).coeff (p.2 : ℕ)) hexp
   apply hPi₀
   ext m
@@ -371,6 +378,7 @@ theorem ModularCurve.finiteDimensional_and_finrank_adjoin_le_of_eq_coeffMap
       Module.finrank (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀ Γ)))
           (ModularCurve.qExpFunctionFieldC K₀ Γ) ≤
         Module.finrank (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
-          (ModularCurve.qExpFunctionFieldC K Γ) := _root_.P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_le_of_eq_coeffMap.solution φ Γ x₀ x hx₀ hx
+          (ModularCurve.qExpFunctionFieldC K Γ) :=
+  solution φ Γ x₀ x hx₀ hx
 
 end publicSection

@@ -83,7 +83,9 @@ open scoped MatrixGroups
 local notation "𝕢" => Function.Periodic.qParam
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq PoleOrderLE coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single hasSum_jq_qParam coeff_eq_zero_of_hasSum_of_slash_invariant hasSum_qParam_mul_laurent E4_cube_div_discriminant_smul exists_aeval_jq_sub_holomorphicAtInfty"
+p2m_export "ModularCurve" "jq PoleOrderLE coeffMap coeffMap_coeff coeffMap_single \
+  algebraMap_laurentSeries_eq_single hasSum_jq_qParam coeff_eq_zero_of_hasSum_of_slash_invariant \
+  hasSum_qParam_mul_laurent E4_cube_div_discriminant_smul exists_aeval_jq_sub_holomorphicAtInfty"
 p2m_open "ModularCurve"
 
 def RealL (h : ℝ) (A : LaurentSeries ℂ) (F : ℍ → ℂ) : Prop :=
@@ -122,7 +124,8 @@ lemma one (h : ℝ) : RealL h 1 1 := by
 
 lemma zero (h : ℝ) : RealL h 0 0 := fun τ => by simp [hasSum_zero]
 
-lemma congr {A' : LaurentSeries ℂ} {F' : ℍ → ℂ} (hA : RealL h A F) (h1 : A = A') (h2 : ∀ τ, F τ = F' τ) :
+lemma congr {A' : LaurentSeries ℂ} {F' : ℍ → ℂ} (hA : RealL h A F) (h1 : A = A')
+    (h2 : ∀ τ, F τ = F' τ) :
     RealL h A' F' := fun τ => by rw [← h1, ← h2]; exact hA τ
 
 lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries ℂ} {F : ι → ℍ → ℂ}
@@ -131,7 +134,8 @@ lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries �
   induction s using Finset.induction_on with
   | empty => (have h__af := one h; simp at h__af ⊢; exact h__af)
   | insert a s ha ih =>
-    have h1 := (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
+    have h1 :=
+      (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
     refine h1.congr (Finset.prod_insert ha).symm fun τ => ?_
     simp [Finset.prod_insert ha]
 
@@ -163,7 +167,8 @@ lemma coeff_prod_X_sub_C (hh : 0 < h) {ι : Type} (s : Finset ι) {a : ι → La
       · rw [hA, Polynomial.mul_coeff_zero, Polynomial.coeff_sub, Polynomial.coeff_X_zero,
           Polynomial.coeff_C_zero, zero_sub]
         exact (mul_neg (α := LaurentSeries ℂ) _ _).symm
-      · simp only [hfun τ, Polynomial.mul_coeff_zero, Pi.neg_apply, Pi.mul_apply, Polynomial.coeff_sub,
+      · simp only [hfun τ, Polynomial.mul_coeff_zero, Pi.neg_apply, Pi.mul_apply,
+          Polynomial.coeff_sub,
           Polynomial.coeff_X_zero, Polynomial.coeff_C_zero, zero_sub, mul_neg]
     | succ k =>
       refine ((ih' k).sub ((ih' (k + 1)).mul hh hb')).congr ?_ fun τ => ?_
@@ -263,7 +268,8 @@ end JOut
 
 end ModularCurve
 
-theorem solution (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) : f ∈ Algebra.adjoin ℚ {ModularCurve.jq} :=
+theorem solution (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) :
+    f ∈ Algebra.adjoin ℚ {ModularCurve.jq} :=
   ModularCurve.mem_adjoin_jq_of_realL_invariant f F hF hinv
 
 end
@@ -276,6 +282,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.mem_adjoin_jq_of_hasSum_of_slash_invariant (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) : f ∈ Algebra.adjoin ℚ {ModularCurve.jq} := _root_.P2MW.S_ModularCurve_mem_adjoin_jq_of_hasSum_of_slash_invariant.solution f F hF hinv
+theorem ModularCurve.mem_adjoin_jq_of_hasSum_of_slash_invariant (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) :
+    f ∈ Algebra.adjoin ℚ {ModularCurve.jq} :=
+  solution f F hF hinv
 
 end publicSection

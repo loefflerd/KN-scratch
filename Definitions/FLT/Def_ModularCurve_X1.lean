@@ -136,7 +136,8 @@ theorem intSeriesC_one : intSeriesC K 1 = 1 := by
 theorem intSeriesC_zero : intSeriesC K 0 = 0 := by
   simp [intSeriesC]
 
-theorem intSeriesC_mul (p p' : PowerSeries ℤ) : intSeriesC K (p * p') = intSeriesC K p * intSeriesC K p' := by
+theorem intSeriesC_mul (p p' : PowerSeries ℤ) :
+    intSeriesC K (p * p') = intSeriesC K p * intSeriesC K p' := by
   simp [intSeriesC]
 
 def intFormRatiosC : Set (LaurentSeries K) :=
@@ -160,7 +161,8 @@ theorem one_mem_intFormRatiosC : (1 : LaurentSeries K) ∈ intFormRatiosC K Γ :
 def qExpFunctionFieldC : IntermediateField K (LaurentSeries K) :=
   IntermediateField.adjoin K (intFormRatiosC K Γ)
 
-theorem intFormRatiosC_subset : intFormRatiosC K Γ ⊆ (qExpFunctionFieldC K Γ : Set (LaurentSeries K)) :=
+theorem intFormRatiosC_subset :
+    intFormRatiosC K Γ ⊆ (qExpFunctionFieldC K Γ : Set (LaurentSeries K)) :=
   IntermediateField.subset_adjoin K _
 
 variable {K Γ} in
@@ -171,7 +173,6 @@ theorem div_mem_qExpFunctionFieldC {k : ℤ} (f g : ModularForm (Γ : Subgroup (
   intFormRatiosC_subset K Γ (mem_intFormRatiosC f g hf hg hg0)
 
 variable {Γ} in
-
 theorem intFormRatiosC_mono {Γ' : Subgroup SL(2, ℤ)} (h : Γ' ≤ Γ) :
     intFormRatiosC K Γ ⊆ intFormRatiosC K Γ' := by
   rintro x ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩
@@ -179,7 +180,6 @@ theorem intFormRatiosC_mono {Γ' : Subgroup SL(2, ℤ)} (h : Γ' ≤ Γ) :
   exact ⟨k, restrictForm h' f, restrictForm h' g, pf, pg, hf, hg, hg0, rfl⟩
 
 variable {Γ} in
-
 theorem qExpFunctionFieldC_mono {Γ' : Subgroup SL(2, ℤ)} (h : Γ' ≤ Γ) :
     qExpFunctionFieldC K Γ ≤ qExpFunctionFieldC K Γ' :=
   IntermediateField.adjoin.mono K _ _ (intFormRatiosC_mono K h)
@@ -213,7 +213,6 @@ theorem x1x0FunctionFieldC_one : x1x0FunctionFieldC K M 1 = x1FunctionFieldC K M
   rw [x1x0FunctionFieldC, this, x1FunctionFieldC]
 
 variable {M} in
-
 theorem Gamma1_le_of_dvd {M' : ℕ} (h : M ∣ M') : Gamma1 M' ≤ Gamma1 M := by
   intro A hA
   rw [Gamma1_mem] at hA ⊢
@@ -227,7 +226,6 @@ theorem Gamma1_le_of_dvd {M' : ℕ} (h : M ∣ M') : Gamma1 M' ≤ Gamma1 M := b
     rwa [map_intCast, map_zero] at this
 
 variable {M} in
-
 theorem x1FunctionFieldC_le_of_dvd {M' : ℕ} (h : M ∣ M') :
     x1FunctionFieldC K M ≤ x1FunctionFieldC K M' :=
   qExpFunctionFieldC_mono K (Gamma1_le_of_dvd h)

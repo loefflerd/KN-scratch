@@ -78,7 +78,14 @@ open scoped Manifold MatrixGroups
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_mul binarySubst_mem binaryFormRepSL binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe alphaMat det_alphaMat heckeConjMat heckeConjMat_mul_alphaMat heckeUpper mem_heckeUpper heckeConj transferAux coe_transferAux IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffHeckeFun coeffHeckeFun_apply IsEquivariantPrimitiveWith IsEquivariantPrimitiveWith.cocycle IsEichlerIntegral eichlerShimuraMap binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj exists_isEichlerIntegral_isParabolicCocycle isParabolicCocycle_cocycle_of_isEichlerIntegral eichlerShimuraMap_eq_coeffH1parMk"
+p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_mul binarySubst_mem binaryFormRepSL \
+  binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe alphaMat det_alphaMat \
+  heckeConjMat heckeConjMat_mul_alphaMat heckeUpper mem_heckeUpper heckeConj transferAux \
+  coe_transferAux IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffHeckeFun \
+  coeffHeckeFun_apply IsEquivariantPrimitiveWith IsEquivariantPrimitiveWith.cocycle \
+  IsEichlerIntegral eichlerShimuraMap binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj \
+  exists_isEichlerIntegral_isParabolicCocycle isParabolicCocycle_cocycle_of_isEichlerIntegral \
+  eichlerShimuraMap_eq_coeffH1parMk"
 namespace HeckeESSol
 p2m_open "HeckeEis"
 
@@ -95,7 +102,8 @@ def repMat (ℓ : ℕ) : Option (Fin ℓ) → Matrix (Fin 2) (Fin 2) ℤ
 
 @[scoped simp] lemma repMat_none (ℓ : ℕ) : repMat ℓ none = !![(ℓ : ℤ), 0; 0, 1] := rfl
 
-@[scoped simp] lemma repMat_some (ℓ : ℕ) (j : Fin ℓ) : repMat ℓ (some j) = !![1, (j : ℤ); 0, (ℓ : ℤ)] :=
+@[scoped simp] lemma repMat_some (ℓ : ℕ) (j : Fin ℓ) :
+    repMat ℓ (some j) = !![1, (j : ℤ); 0, (ℓ : ℤ)] :=
   rfl
 
 lemma det_repMat (ℓ : ℕ) (i : Option (Fin ℓ)) : (repMat ℓ i).det = (ℓ : ℤ) := by
@@ -145,7 +153,8 @@ end BoardBridge
 
 end HeckeAnalytic
 
-p2m_open "UpperHalfPlane Filter Topology Complex Function ModularForm Matrix CongruenceSubgroup Subgroup HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis"
+p2m_open "UpperHalfPlane Filter Topology Complex Function ModularForm Matrix CongruenceSubgroup \
+  Subgroup HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis"
 
 noncomputable local instance (N ℓ : ℕ) [NeZero ℓ] :
     Fintype (Gamma0 N ⧸ heckeUpper N ℓ) :=
@@ -172,7 +181,7 @@ theorem alphaGL_coe :
   rfl
 
 theorem alphaGL_val_det : (alphaGL ℓ).val.det = (ℓ : ℝ) := by
-  show ((alphaMat ℓ).map (algebraMap ℤ ℝ)).det = (ℓ : ℝ)
+  change ((alphaMat ℓ).map (algebraMap ℤ ℝ)).det = (ℓ : ℝ)
   rw [← RingHom.mapMatrix_apply, ← RingHom.map_det, det_alphaMat]
   simp
 
@@ -212,7 +221,7 @@ theorem gammaToGL_heckeConj_mul_alphaGL (h : heckeUpper N ℓ) :
     gammaToGL N (heckeConj N ℓ h) * alphaGL ℓ = alphaGL ℓ * gammaToGL N (h : Gamma0 N) := by
   apply Units.ext
   rw [Units.val_mul, Units.val_mul]
-  show (heckeConjMat ℓ ((((h : Gamma0 N) : SL(2, ℤ))) : Matrix (Fin 2) (Fin 2) ℤ)).map
+  change (heckeConjMat ℓ ((((h : Gamma0 N) : SL(2, ℤ))) : Matrix (Fin 2) (Fin 2) ℤ)).map
         (algebraMap ℤ ℝ) * ((alphaMat ℓ).map (algebraMap ℤ ℝ))
       = ((alphaMat ℓ).map (algebraMap ℤ ℝ))
         * ((((h : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).map (algebraMap ℤ ℝ))
@@ -220,7 +229,6 @@ theorem gammaToGL_heckeConj_mul_alphaGL (h : heckeUpper N ℓ) :
     heckeConjMat_mul_alphaMat ((mem_heckeUpper N ℓ).mp h.2)]
 
 omit [NeZero ℓ] in
-
 theorem coe_transferAux_inv_smul (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) :
     ((transferAux (heckeUpper N ℓ) γ (γ⁻¹ • q) : heckeUpper N ℓ) : Gamma0 N)
       = (Quotient.out q)⁻¹ * (γ * Quotient.out (γ⁻¹ • q)) := by
@@ -252,14 +260,12 @@ section UBridge
 variable {N : ℕ} [NeZero N] {ℓ : ℕ} [NeZero ℓ]
 
 variable (N ℓ) in
-
 def UCosetMatch : Prop :=
   ∃ e : Fin ℓ ≃ (Gamma0 N ⧸ heckeUpper N ℓ),
     ∀ j : Fin ℓ, ∃ δ : Gamma0 N,
       HeckeAnalytic.repGL ℓ (some j) = gammaToGL N δ * heckeCosetRep N ℓ (e j)
 
 omit [NeZero N] in
-
 theorem heckeUSlashSum_eq_heckeQuotSlashSum (hmatch : UCosetMatch N ℓ) (k : ℤ) {f : ℍ → ℂ}
     (hf : ∀ γ ∈ ((Gamma0 N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)),
       f ∣[k] γ = f) :
@@ -281,28 +287,28 @@ section URepresentatives
 def unipotentUpper (N : ℕ) (t : ℤ) : Gamma0 N :=
   ⟨⟨!![1, t; 0, 1], by rw [Matrix.det_fin_two_of]; ring⟩, by
     rw [Gamma0_mem]
-    show ((0 : ℤ) : ZMod N) = 0
+    change ((0 : ℤ) : ZMod N) = 0
     exact Int.cast_zero⟩
 
 theorem unipotentUpper_mul (N : ℕ) (s t : ℤ) :
     unipotentUpper N s * unipotentUpper N t = unipotentUpper N (s + t) := by
   refine Subtype.ext (Subtype.ext ?_)
-  show (!![1, s; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) * !![1, t; 0, 1] = !![1, s + t; 0, 1]
+  change (!![1, s; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) * !![1, t; 0, 1] = !![1, s + t; 0, 1]
   rw [Matrix.mul_fin_two]
   refine Matrix.ext fun x y => ?_
   fin_cases x <;> fin_cases y
-  · show (1 * 1 + s * 0 : ℤ) = 1
+  · change (1 * 1 + s * 0 : ℤ) = 1
     ring
-  · show (1 * t + s * 1 : ℤ) = s + t
+  · change (1 * t + s * 1 : ℤ) = s + t
     ring
-  · show (0 * 1 + 1 * 0 : ℤ) = 0
+  · change (0 * 1 + 1 * 0 : ℤ) = 0
     ring
-  · show (0 * t + 1 * 1 : ℤ) = 1
+  · change (0 * t + 1 * 1 : ℤ) = 1
     ring
 
 theorem unipotentUpper_zero (N : ℕ) : unipotentUpper N 0 = 1 := by
   refine Subtype.ext (Subtype.ext ?_)
-  show (!![1, 0; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) = 1
+  change (!![1, 0; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) = 1
   rw [Matrix.one_fin_two]
 
 theorem inv_unipotentUpper (N : ℕ) (t : ℤ) :
@@ -386,10 +392,10 @@ theorem uCosetOfRep_surjective (hℓ : ℓ.Prime) (hℓN : ℓ ∣ N) :
     have hentry : (((unipotentUpper N ((⟨j0.toNat, hjnat⟩ : Fin ℓ) : ℤ) * γ : Gamma0 N)
           : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 1
         = M 0 1 + j0 * M 1 1 := by
-      show ((((unipotentUpper N _ : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)
+      change ((((unipotentUpper N _ : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)
           * M) 0 1 = M 0 1 + j0 * M 1 1
       rw [Matrix.mul_apply, Fin.sum_univ_two]
-      show (1 : ℤ) * M 0 1 + (((⟨j0.toNat, hjnat⟩ : Fin ℓ) : ℕ) : ℤ) * M 1 1
+      change (1 : ℤ) * M 0 1 + (((⟨j0.toNat, hjnat⟩ : Fin ℓ) : ℕ) : ℤ) * M 1 1
           = M 0 1 + j0 * M 1 1
       rw [hcast]
       ring
@@ -438,13 +444,13 @@ theorem repGL_some_eq_alphaGL_mul (j : Fin ℓ) :
       = alphaGL ℓ * gammaToGL N (unipotentUpper N (j : ℤ)) := by
   apply Units.ext
   rw [Units.val_mul]
-  show (HeckeAnalytic.repMat ℓ (some j)).map (algebraMap ℤ ℝ)
+  change (HeckeAnalytic.repMat ℓ (some j)).map (algebraMap ℤ ℝ)
       = (alphaMat ℓ).map (algebraMap ℤ ℝ)
         * ((((unipotentUpper N (j : ℤ) : Gamma0 N) : SL(2, ℤ))
             : Matrix (Fin 2) (Fin 2) ℤ)).map (algebraMap ℤ ℝ)
   rw [← map_int_mul_u]
   congr 1
-  show !![1, (j : ℤ); 0, (ℓ : ℤ)] = !![1, 0; 0, (ℓ : ℤ)] * !![1, (j : ℤ); 0, 1]
+  change !![1, (j : ℤ); 0, (ℓ : ℤ)] = !![1, 0; 0, (ℓ : ℤ)] * !![1, (j : ℤ); 0, 1]
   rw [Matrix.mul_fin_two]
   refine Matrix.ext fun x y => ?_
   fin_cases x <;> fin_cases y <;> simp
@@ -473,7 +479,14 @@ end
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_mul binarySubst_mem binaryFormRepSL binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe alphaMat det_alphaMat heckeConjMat heckeConjMat_mul_alphaMat heckeUpper mem_heckeUpper heckeConj transferAux coe_transferAux IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffHeckeFun coeffHeckeFun_apply IsEquivariantPrimitiveWith IsEquivariantPrimitiveWith.cocycle IsEichlerIntegral eichlerShimuraMap binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj exists_isEichlerIntegral_isParabolicCocycle isParabolicCocycle_cocycle_of_isEichlerIntegral eichlerShimuraMap_eq_coeffH1parMk"
+p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_mul binarySubst_mem binaryFormRepSL \
+  binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe alphaMat det_alphaMat \
+  heckeConjMat heckeConjMat_mul_alphaMat heckeUpper mem_heckeUpper heckeConj transferAux \
+  coe_transferAux IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffHeckeFun \
+  coeffHeckeFun_apply IsEquivariantPrimitiveWith IsEquivariantPrimitiveWith.cocycle \
+  IsEichlerIntegral eichlerShimuraMap binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj \
+  exists_isEichlerIntegral_isParabolicCocycle isParabolicCocycle_cocycle_of_isEichlerIntegral \
+  eichlerShimuraMap_eq_coeffH1parMk"
 namespace HeckeESSol
 p2m_open "HeckeEis"
 
@@ -489,12 +502,10 @@ section CoeffTelescoping
 variable {N ℓ : ℕ} [NeZero ℓ] {n : ℕ}
 
 variable (N ℓ n) in
-
 def cosetOp (q : Gamma0 N ⧸ heckeUpper N ℓ) : ↥(BinaryForm ℂ n) →ₗ[ℂ] ↥(BinaryForm ℂ n) :=
   ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (Quotient.out q) ∘ₗ binaryFormAlphaAdj ℂ n ℓ
 
 variable (N ℓ n) in
-
 def heckeEichler (F : ℍ → ↥(BinaryForm ℂ n)) (z : ℍ) : ↥(BinaryForm ℂ n) :=
   ∑ q : Gamma0 N ⧸ heckeUpper N ℓ, cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z))
 
@@ -502,27 +513,32 @@ theorem smul_smul_eq (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (z : �
     heckeCosetRep N ℓ q • ((γ : SL(2, ℤ)) • z)
       = ((heckeConj N ℓ (transferAux (heckeUpper N ℓ) γ (γ⁻¹ • q)) : Gamma0 N) : SL(2, ℤ))
           • (heckeCosetRep N ℓ (γ⁻¹ • q) • z) := by
-  rw [show ((γ : SL(2, ℤ)) • z) = gammaToGL N γ • z from rfl, ← mul_smul, heckeCosetRep_mul_gammaToGL, mul_smul]
+  rw [show ((γ : SL(2, ℤ)) • z) = gammaToGL N γ • z from rfl, ← mul_smul,
+    heckeCosetRep_mul_gammaToGL, mul_smul]
   rfl
 
-theorem cosetOp_heckeConj_apply (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (v : ↥(BinaryForm ℂ n)) :
+theorem cosetOp_heckeConj_apply (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ)
+    (v : ↥(BinaryForm ℂ n)) :
     cosetOp N ℓ n q (((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (heckeConj N ℓ (transferAux (heckeUpper N ℓ) γ (γ⁻¹ • q))) v)
       = ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (cosetOp N ℓ n (γ⁻¹ • q) v) := by
   have h1 := LinearMap.congr_fun
     (HeckeEis.binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj ℂ n N ℓ (transferAux (heckeUpper N ℓ) γ (γ⁻¹ • q))) v
   rw [LinearMap.comp_apply, LinearMap.comp_apply] at h1
-  rw [cosetOp, cosetOp, LinearMap.comp_apply, LinearMap.comp_apply, h1, ← Module.End.mul_apply, ← map_mul,
+  rw [cosetOp, cosetOp, LinearMap.comp_apply, LinearMap.comp_apply, h1, ← Module.End.mul_apply, ←
+    map_mul,
     coe_transferAux_inv_smul, mul_inv_cancel_left, map_mul, Module.End.mul_apply]
 
 theorem cosetOp_apply_smul {F : ℍ → ↥(BinaryForm ℂ n)}
-    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F) (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (z : ℍ) :
+    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F)
+    (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper N ℓ) (z : ℍ) :
     cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • ((γ : SL(2, ℤ)) • z)))
       = cosetOp N ℓ n q (hF.cocycle (heckeConj N ℓ (transferAux (heckeUpper N ℓ) γ (γ⁻¹ • q))))
         + ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (cosetOp N ℓ n (γ⁻¹ • q) (F (heckeCosetRep N ℓ (γ⁻¹ • q) • z))) := by
   rw [smul_smul_eq, hF.apply_smul, map_add, cosetOp_heckeConj_apply]
 
 theorem sum_cosetOp_cocycle {F : ℍ → ↥(BinaryForm ℂ n)}
-    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F) (γ : Gamma0 N) :
+    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F)
+    (γ : Gamma0 N) :
     ∑ q : Gamma0 N ⧸ heckeUpper N ℓ,
         cosetOp N ℓ n (γ • q) (hF.cocycle (heckeConj N ℓ (transferAux (heckeUpper N ℓ) γ q)))
       = coeffHeckeFun N ℓ ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (binaryFormAlphaAdj ℂ n ℓ) hF.cocycle γ := by
@@ -531,7 +547,8 @@ theorem sum_cosetOp_cocycle {F : ℍ → ↥(BinaryForm ℂ n)}
   rw [cosetOp, LinearMap.comp_apply]
 
 theorem sum_cosetOp_smul {F : ℍ → ↥(BinaryForm ℂ n)}
-    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F) (γ : Gamma0 N) (z : ℍ) :
+    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F)
+    (γ : Gamma0 N) (z : ℍ) :
     ∑ q : Gamma0 N ⧸ heckeUpper N ℓ, cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • ((γ : SL(2, ℤ)) • z)))
       = coeffHeckeFun N ℓ ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (binaryFormAlphaAdj ℂ n ℓ) hF.cocycle γ
         + ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (∑ q : Gamma0 N ⧸ heckeUpper N ℓ, cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z))) := by
@@ -550,17 +567,20 @@ theorem sum_cosetOp_smul {F : ℍ → ↥(BinaryForm ℂ n)}
           + ∑ q : Gamma0 N ⧸ heckeUpper N ℓ,
             ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z))) := by
         rw [(MulAction.bijective (γ⁻¹ : Gamma0 N)).sum_comp
-            (fun q : Gamma0 N ⧸ heckeUpper N ℓ => ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z)))),
+            (fun q : Gamma0 N ⧸ heckeUpper N ℓ => ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ
+          (cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z)))),
           ← (MulAction.bijective (γ : Gamma0 N)).sum_comp
             (fun q : Gamma0 N ⧸ heckeUpper N ℓ =>
-              cosetOp N ℓ n q (hF.cocycle (heckeConj N ℓ (transferAux (heckeUpper N ℓ) γ (γ⁻¹ • q)))))]
+              cosetOp N ℓ n q (hF.cocycle (heckeConj N ℓ (transferAux (heckeUpper N ℓ) γ (γ⁻¹ •
+          q)))))]
         simp only [inv_smul_smul]
     _ = coeffHeckeFun N ℓ ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (binaryFormAlphaAdj ℂ n ℓ) hF.cocycle γ
           + ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (∑ q : Gamma0 N ⧸ heckeUpper N ℓ, cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z))) := by
         rw [sum_cosetOp_cocycle hF γ, map_sum]
 
 theorem heckeEichler_smul {F : ℍ → ↥(BinaryForm ℂ n)}
-    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F) (γ : Gamma0 N) (z : ℍ) :
+    (hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F)
+    (γ : Gamma0 N) (z : ℍ) :
     heckeEichler N ℓ n F ((γ : SL(2, ℤ)) • z)
       = coeffHeckeFun N ℓ ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (binaryFormAlphaAdj ℂ n ℓ) hF.cocycle γ
         + ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) γ (heckeEichler N ℓ n F z) :=
@@ -585,7 +605,8 @@ section EichlerSum
 
 variable {N ℓ : ℕ} [NeZero ℓ] {n : ℕ}
 
-theorem isEichlerIntegral_sum {ι : Type*} (s : Finset ι) {f : ι → ℍ → ℂ} {F : ι → ℍ → ↥(BinaryForm ℂ n)}
+theorem isEichlerIntegral_sum {ι : Type*} (s : Finset ι) {f : ι → ℍ → ℂ}
+    {F : ι → ℍ → ↥(BinaryForm ℂ n)}
     (h : ∀ i ∈ s, IsEichlerIntegral n (f i) (F i)) :
     IsEichlerIntegral n (∑ i ∈ s, f i) (fun z => ∑ i ∈ s, F i z) := by
   intro d τ
@@ -607,14 +628,16 @@ theorem det_cosetMat (q : Gamma0 N ⧸ heckeUpper N ℓ) : (cosetMat (ℓ := ℓ
 
 theorem coe_heckeCosetRep (q : Gamma0 N ⧸ heckeUpper N ℓ) :
     ((heckeCosetRep N ℓ q : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = (cosetMat q).map (algebraMap ℤ ℝ) := by
-  rw [heckeCosetRep_def, Units.val_mul, alphaGL_coe, gammaToGL_apply, Matrix.SpecialLinearGroup.mapGL_coe_matrix,
+  rw [heckeCosetRep_def, Units.val_mul, alphaGL_coe, gammaToGL_apply,
+    Matrix.SpecialLinearGroup.mapGL_coe_matrix,
     Matrix.SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, cosetMat, ← map_int_mul']
 
 omit [NeZero ℓ] in
 theorem adjugate_cosetMat (q : Gamma0 N ⧸ heckeUpper N ℓ) :
     (cosetMat (ℓ := ℓ) q).adjugate
       = (((Quotient.out q : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) * !![(ℓ : ℤ), 0; 0, 1] := by
-  rw [cosetMat, Matrix.adjugate_mul_distrib, ← Matrix.SpecialLinearGroup.coe_inv, Subgroup.coe_inv, inv_inv]
+  rw [cosetMat, Matrix.adjugate_mul_distrib, ← Matrix.SpecialLinearGroup.coe_inv, Subgroup.coe_inv,
+    inv_inv]
   congr 1
   rw [alphaMat, Matrix.adjugate_fin_two]
   ext i j
@@ -626,12 +649,14 @@ theorem cosetOp_apply_eq (q : Gamma0 N ⧸ heckeUpper N ℓ) (v : ↥(BinaryForm
         (fun _ h => binarySubst_mem ℂ (cosetMat (ℓ := ℓ) q).adjugate h)) v := by
   apply Subtype.ext
   rw [cosetOp, LinearMap.comp_apply]
-  show ((((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (Quotient.out q)) (binaryFormAlphaAdj ℂ n ℓ v) : MvPolynomial (Fin 2) ℂ)
+  change ((((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (Quotient.out q)) (binaryFormAlphaAdj ℂ n ℓ v) : MvPolynomial (Fin 2) ℂ)
     = binarySubst ℂ (cosetMat (ℓ := ℓ) q).adjugate v
-  rw [MonoidHom.comp_apply, Subgroup.coe_subtype, binaryFormRepSL_apply_coe, binaryFormAlphaAdj_apply_coe,
+  rw [MonoidHom.comp_apply, Subgroup.coe_subtype, binaryFormRepSL_apply_coe,
+    binaryFormAlphaAdj_apply_coe,
     adjugate_cosetMat, binarySubst_mul, AlgHom.comp_apply]
 
-theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)} (hF : IsEichlerIntegral n f F) :
+theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)}
+    (hF : IsEichlerIntegral n f F) :
     IsEichlerIntegral n (heckeQuotSlashSum N ℓ ((n : ℤ) + 2) f) (heckeEichler N ℓ n F) := by
   have h := isEichlerIntegral_sum (Finset.univ : Finset (Gamma0 N ⧸ heckeUpper N ℓ))
     (f := fun q => f ∣[((n : ℤ) + 2)] heckeCosetRep N ℓ q)
@@ -664,10 +689,13 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (
       = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) := by
   have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   obtain ⟨F, hEI, hF, hpar⟩ := HeckeEis.exists_isEichlerIntegral_isParabolicCocycle N n f
-  have hGEI : IsEichlerIntegral n (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) (heckeEichler N ℓ n F) := by
+  have hGEI : IsEichlerIntegral n (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) (heckeEichler N ℓ n F) :=
+    by
     have h := isEichlerIntegral_heckeEichler (N := N) (ℓ := ℓ) hEI
-    rwa [← heckeUSlashSum_eq_heckeQuotSlashSum (uCosetMatch hℓ hℓN) _ (SlashInvariantFormClass.slash_action_eq f),
-      HeckeAnalytic.heckeUSlashSum_eq_heckeU, ← CuspForm.coe_heckeULin_apply ((n : ℤ) + 2) hℓN f] at h
+    rwa [← heckeUSlashSum_eq_heckeQuotSlashSum (uCosetMatch hℓ hℓN) _
+      (SlashInvariantFormClass.slash_action_eq f),
+      HeckeAnalytic.heckeUSlashSum_eq_heckeU, ← CuspForm.coe_heckeULin_apply ((n : ℤ) + 2) hℓN
+      f] at h
   have hG := isEquivariantPrimitiveWith_heckeEichler (ℓ := ℓ) hF
   have hGc := cocycle_heckeEichler (ℓ := ℓ) hF
   have hGpar : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) hG.cocycle :=
@@ -689,7 +717,8 @@ public section publicSection
 
 
 open scoped Manifold MatrixGroups
-theorem HeckeEis.eichlerShimuraMap_heckeULin (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ℓ ∣ N)
+theorem HeckeEis.eichlerShimuraMap_heckeULin (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime)
+    (hℓN : ℓ ∣ N)
     (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ]
       HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hT : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
@@ -700,6 +729,7 @@ theorem HeckeEis.eichlerShimuraMap_heckeULin (N : ℕ) [NeZero N] (n : ℕ) {ℓ
             T (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
     T (HeckeEis.eichlerShimuraMap n N f)
-      = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) := _root_.P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.solution N n hℓ hℓN T hT f
+      = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) :=
+  solution N n hℓ hℓN T hT f
 
 end publicSection

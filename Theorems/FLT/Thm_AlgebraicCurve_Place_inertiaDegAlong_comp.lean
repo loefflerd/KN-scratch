@@ -60,7 +60,10 @@ namespace P2MW.S_AlgebraicCurve_Place_inertiaDegAlong_comp
 
 open IsDedekindDomain AlgebraicCurve
 
-theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') : W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ := by
+theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F]
+    [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral)
+    (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') :
+    W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ := by
   let iχ : Algebra F' F'' := algebraAlong χ
   have := isScalarTower_along χ
   have := isIntegral_along χ hχ
@@ -76,12 +79,12 @@ theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F'']
   have : IsScalarTower v.ResidueField w.ResidueField W.ResidueField := by
     refine IsScalarTower.of_algebraMap_eq fun x => ?_
     obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective x
-    show Place.restrictResidueMap F W (IsLocalRing.residue _ a)
+    change Place.restrictResidueMap F W (IsLocalRing.residue _ a)
       = Place.restrictResidueMap F' W (Place.restrictResidueMap F w (IsLocalRing.residue _ a))
     rw [Place.restrictResidueMap_residue, Place.restrictResidueMap_residue,
       Place.restrictResidueMap_residue]
     exact congrArg _ (Subtype.ext rfl)
-  show Module.finrank v.ResidueField W.ResidueField
+  change Module.finrank v.ResidueField W.ResidueField
     = Module.finrank w.ResidueField W.ResidueField * Module.finrank v.ResidueField w.ResidueField
   rw [mul_comm]
   exact (Module.finrank_mul_finrank v.ResidueField w.ResidueField W.ResidueField).symm
@@ -96,6 +99,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.inertiaDegAlong_comp {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') : W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ := _root_.P2MW.S_AlgebraicCurve_Place_inertiaDegAlong_comp.solution φ χ hφ hχ hχφ W
+theorem AlgebraicCurve.Place.inertiaDegAlong_comp {K F F' F'' : Type*} [Field K] [Field F]
+    [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F')
+    (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral)
+    (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') :
+    W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ :=
+  solution φ χ hφ hχ hχφ W
 
 end publicSection

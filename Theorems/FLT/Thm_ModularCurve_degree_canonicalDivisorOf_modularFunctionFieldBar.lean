@@ -85,20 +85,24 @@ theorem solution (N : ℕ) [NeZero N]
     {ω : Ω[↥(ModularCurve.modularFunctionFieldBar N)⁄(AlgebraicClosure ℚ)]} (hω : ω ≠ 0) :
     (AlgebraicCurve.canonicalDivisorOf hω).degree
       = 2 * (AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) : ℤ) - 2 := by
-  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
-  have : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := IsCurveOver.hasPrincipalDivisors
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+    isCurveOver_modularFunctionFieldBar N
+  have : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+    IsCurveOver.hasPrincipalDivisors
   have : Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     essFiniteType_modularFunctionFieldBar N
   have hDCG : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
-  let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) := (jLineBarRingEquiv N).toRingHom.toAlgebra
+  let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
+    (jLineBarRingEquiv N).toRingHom.toAlgebra
   let algRF : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
     ((algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)).comp (jLineBarRingEquiv N).toRingHom).toAlgebra
   have : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
+  have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
+    by
     refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
-    show algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N) (jLineBarRingEquiv N (algebraMap _ _ a))
+    change algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N) (jLineBarRingEquiv N (algebraMap _ _ a))
     rw [jLineBarRingEquiv_algebraMap]
     rfl
   have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
@@ -123,7 +127,8 @@ theorem solution (N : ℕ) [NeZero N]
     Algebra.EssFiniteType.comp (AlgebraicClosure ℚ) (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ))
   have hDCGR : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
-  have : HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := inferInstance
+  have : HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+    inferInstance
   have : HasSeparableResidue (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := inferInstance
   exact AlgebraicCurve.degree_canonicalDivisor_eq_of_isAlgClosed hω
 
@@ -139,6 +144,7 @@ theorem ModularCurve.degree_canonicalDivisorOf_modularFunctionFieldBar (N : ℕ)
     [AlgebraicCurve.HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := ↥(ModularCurve.modularFunctionFieldBar N))]
     {ω : Ω[↥(ModularCurve.modularFunctionFieldBar N)⁄(AlgebraicClosure ℚ)]} (hω : ω ≠ 0) :
     (AlgebraicCurve.canonicalDivisorOf hω).degree
-      = 2 * (AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) : ℤ) - 2 := _root_.P2MW.S_ModularCurve_degree_canonicalDivisorOf_modularFunctionFieldBar.solution N hω
+      = 2 * (AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) : ℤ) - 2 :=
+  solution N hω
 
 end publicSection

@@ -403,22 +403,18 @@ theorem latticeSum_eq_tsum_repCount {τ : ℂ} (hτ : 0 < τ.im) :
   (hasSum_repCount_qpow hτ).tsum_eq.symm
 
 open FLT.EisensteinWeightOne in
-
 def RepresentationCountAgrees : Prop :=
   ∀ n : ℕ, (repCount n : ℤ) = PowerSeries.coeff n e1Chi3
 
 open FLT.EisensteinWeightOne in
-
 theorem representationCountAgrees_zero : (repCount 0 : ℤ) = PowerSeries.coeff 0 e1Chi3 := by
   simp [repCount_zero, coeff_e1Chi3]
 
 open FLT.EisensteinWeightOne in
-
 theorem representationCountAgrees_one : (repCount 1 : ℤ) = PowerSeries.coeff 1 e1Chi3 := by
   rw [repCount_one, coeff_one_e1Chi3]; rfl
 
 open FLT.EisensteinWeightOne in
-
 theorem latticeSum_eq_e1Chi3_qSeries (hW1 : RepresentationCountAgrees) (z : UpperHalfPlane) :
     latticeSum z
       = ∑' n : ℕ, ((PowerSeries.coeff n e1Chi3 : ℤ) : ℂ) *
@@ -1204,16 +1200,16 @@ theorem slash_eq_chi3_smul
     intro g; rw [closure_T_U_neg_one_eq]
   refine Subgroup.closure_induction (k := gens) (p := p) ?_ ?_ ?_ ?_ (hmem_iff.mpr hγ)
   · rintro x (rfl | rfl | rfl)
-    · show F ∣[(1 : ℤ)] ModularGroup.T = (chi3 ModularGroup.T : ℂ) • F
+    · change F ∣[(1 : ℤ)] ModularGroup.T = (chi3 ModularGroup.T : ℂ) • F
       rw [hT, chi3_T]; simp
-    · show F ∣[(1 : ℤ)] U₃ = (chi3 U₃ : ℂ) • F
+    · change F ∣[(1 : ℤ)] U₃ = (chi3 U₃ : ℂ) • F
       rw [hU, chi3_U₃]; simp
     · exact slash_neg_one F
-  · show F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
+  · change F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
     rw [SlashAction.slash_one, chi3_one]
     simp
   · intro x y hx hy hpx hpy
-    show F ∣[(1 : ℤ)] (x * y) = (chi3 (x * y) : ℂ) • F
+    change F ∣[(1 : ℤ)] (x * y) = (chi3 (x * y) : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hy' : y ∈ Gamma0 3 := hmem_iff.mp hy
     calc F ∣[(1 : ℤ)] (x * y) = (F ∣[(1 : ℤ)] x) ∣[(1 : ℤ)] y := by
@@ -1224,7 +1220,7 @@ theorem slash_eq_chi3_smul
       _ = ((chi3 x * chi3 y : ℤ) : ℂ) • F := by rw [smul_smul]; norm_num
       _ = (chi3 (x * y) : ℂ) • F := by rw [← chi3_mul hx' hy']
   · intro x hx hpx
-    show F ∣[(1 : ℤ)] x⁻¹ = (chi3 x⁻¹ : ℂ) • F
+    change F ∣[(1 : ℤ)] x⁻¹ = (chi3 x⁻¹ : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hxinv : x⁻¹ ∈ Gamma0 3 := inv_mem hx'
     have hchi : chi3 x⁻¹ = chi3 x := by
@@ -1348,7 +1344,7 @@ theorem hexThetaH_slash_T : hexThetaH ∣[(1 : ℤ)] ModularGroup.T = hexThetaH 
   rw [show ModularGroup.T 1 0 = 0 from rfl, show ModularGroup.T 1 1 = 1 from rfl,
     modular_T_smul]
   simp only [Int.cast_zero, Int.cast_one, zero_mul, zero_add, zpow_one, one_mul]
-  show latticeSum (((1 : ℝ) +ᵥ z : ℍ) : ℂ) = latticeSum (z : ℂ)
+  change latticeSum (((1 : ℝ) +ᵥ z : ℍ) : ℂ) = latticeSum (z : ℂ)
   rw [UpperHalfPlane.coe_vadd, latticeSum_eq_hexTheta, latticeSum_eq_hexTheta,
     Complex.ofReal_one, add_comm, hexTheta_add_one]
 
@@ -1427,7 +1423,7 @@ theorem hexThetaH_slash_U : hexThetaH ∣[(1 : ℤ)] U₃ = hexThetaH := by
   rw [U₃_one_zero, U₃_one_one]
   push_cast
   rw [zpow_one]
-  show latticeSum ((U₃ • z : ℍ) : ℂ) = _ * latticeSum (z : ℂ)
+  change latticeSum ((U₃ • z : ℍ) : ℂ) = _ * latticeSum (z : ℂ)
   rw [coe_U_smul, latticeSum_eq_hexTheta, latticeSum_eq_hexTheta, hexTheta_U_law hz]
 
 def thetaBound : ℝ :=
@@ -1514,7 +1510,7 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
       sqrt_three_mul_sqrt_three, mul_inv_cancel₀ hden_ne]
     ring
   rw [ModularForm.SL_slash_apply, hdenom, _root_.zpow_neg, zpow_one]
-  show latticeSum ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ) * _ = _
+  change latticeSum ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ) * _ = _
   rw [hsmul, latticeSum_eq_hexTheta, hfricke]
   linear_combination (hexTheta (((z : ℂ) + (k.val : ℂ)) / 3)) * hmul
 
@@ -2063,7 +2059,7 @@ theorem nuThree_prime (hp : p.Prime) (hp3 : p ≠ 3) :
       (sq_add_self_add_one_eq_zero_iff_orderOf_eq_three hp hp3 ζ).mpr hζord
     have hζ' : (-1 - ζ) ^ 2 + (-1 - ζ) + 1 = 0 := by linear_combination hζ
     have hne : ζ ≠ -1 - ζ := ne_neg_one_sub_of_sq_add_self_add_one_eq_zero hp hp3 hζ
-    show Nat.card {x : ZMod p // x ^ 2 + x + 1 = 0} = 2
+    change Nat.card {x : ZMod p // x ^ 2 + x + 1 = 0} = 2
     rw [Nat.card_eq_two_iff]
     refine ⟨⟨ζ, hζ⟩, ⟨-1 - ζ, hζ'⟩, ?_, ?_⟩
     · simp only [ne_eq, Subtype.mk.injEq]
@@ -2159,7 +2155,7 @@ theorem nuThree_mul_of_coprime {M N : ℕ} (h : Nat.Coprime M N) :
     Equiv.subtypeProdEquivProd
       (p := fun a : ZMod M => a ^ 2 + a + 1 = 0)
       (q := fun b : ZMod N => b ^ 2 + b + 1 = 0)
-  show Nat.card {x : ZMod (M * N) // x ^ 2 + x + 1 = 0} =
+  change Nat.card {x : ZMod (M * N) // x ^ 2 + x + 1 = 0} =
     Nat.card {a : ZMod M // a ^ 2 + a + 1 = 0} * Nat.card {b : ZMod N // b ^ 2 + b + 1 = 0}
   rw [Nat.card_congr (e₁.trans e₂), Nat.card_prod]
 
@@ -3060,7 +3056,6 @@ theorem orbitCountMultiplicative_holds : OrbitCountMultiplicative := by
 end HexInt
 
 open HexInt in
-
 theorem reprCountEqCoeffE1Chi3_of_splitPrimePowCount (hsplit : SplitPrimePowCount) :
     ReprCountEqCoeffE1Chi3 :=
   reprCountEqCoeffE1Chi3_of_residuals orbitCountMultiplicative_holds hsplit
@@ -3580,7 +3575,7 @@ theorem reprCount_eq_twelve_of_split {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
     card_image_emul hp hπ'] at hcui
   have hone : (reprSols 1).card = 6 := reprCount_one
   have hgoal : reprCount (p * 1) = 12 := by
-    show (reprSols (p * 1)).card = 12
+    change (reprSols (p * 1)).card = 12
     rw [reprSols_mul_eq_union hp hπ 1]
     omega
   simpa using hgoal
@@ -3594,7 +3589,7 @@ theorem reprCount_mul_mul {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b : ℤ}
     ((reprSols (p * m)).image (emul (a + b, -b)))
   rw [inter_image_eq_dilate hp h1 hπ m, card_image_dilate hp, card_image_emul hp hπ,
     card_image_emul hp hπ'] at hcui
-  show (reprSols (p * (p * m))).card + (reprSols m).card = 2 * (reprSols (p * m)).card
+  change (reprSols (p * (p * m))).card + (reprSols m).card = 2 * (reprSols (p * m)).card
   rw [reprSols_mul_eq_union hp hπ (p * m)]
   omega
 
@@ -3710,6 +3705,8 @@ public section publicSection
 
 
 open EisensteinWeightOne
-theorem EisensteinWeightOne.e1Chi3IsModular : EisensteinWeightOne.E1Chi3IsModular := _root_.P2MW.S_EisensteinWeightOne_e1Chi3IsModular.solution
+theorem EisensteinWeightOne.e1Chi3IsModular :
+    EisensteinWeightOne.E1Chi3IsModular :=
+  solution
 
 end publicSection

@@ -88,6 +88,7 @@ open AlgebraicCurve
 theorem AlgebraicCurve.exists_divisor_eq_max_ord_sub_algebraMap
     {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F]
     (x : F) (hx : Transcendental K x) (a : K) :
-    ∃ D : Divisor K F, ∀ v : Place K F, D v = max 0 (v.ord (x - algebraMap K F a)) := _root_.P2MW.S_AlgebraicCurve_exists_divisor_eq_max_ord_sub_algebraMap.solution x hx a
+    ∃ D : Divisor K F, ∀ v : Place K F, D v = max 0 (v.ord (x - algebraMap K F a)) :=
+  solution x hx a
 
 end publicSection

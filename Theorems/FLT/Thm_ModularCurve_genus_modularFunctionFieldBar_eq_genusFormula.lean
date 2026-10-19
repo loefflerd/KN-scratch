@@ -108,8 +108,10 @@ theorem solution (N : ℕ) [NeZero N]
     rw [map_ofNat]
   have : CharZero ↥(modularFunctionFieldBar N) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
-  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
-  have : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := IsCurveOver.hasPrincipalDivisors
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+    isCurveOver_modularFunctionFieldBar N
+  have : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+    IsCurveOver.hasPrincipalDivisors
   have : Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     essFiniteType_modularFunctionFieldBar N
   have hfd : FiniteDimensional ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
@@ -122,7 +124,8 @@ theorem solution (N : ℕ) [NeZero N]
       ↥(modularFunctionFieldBar N) := Algebra.IsIntegral.of_finite _ _
   have : Algebra.IsSeparable ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
       ↥(modularFunctionFieldBar N) := Algebra.IsSeparable.of_integral _ _
-  have htr : Transcendental (AlgebraicClosure ℚ) j := transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N
+  have htr : Transcendental (AlgebraicClosure ℚ) j :=
+    transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N
   have hdeg : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.deg = 1 :=
     deg_eq_one_modularFunctionFieldBar N
   obtain ⟨hval, hfinc, hfinI⟩ := jCoordinate_spec_modularFunctionFieldBar N
@@ -161,13 +164,15 @@ theorem solution (N : ℕ) [NeZero N]
     simpa [map_zero, sub_zero] using h
   have hψ₁ : ∑ v ∈ S1, v.ord (j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 1728) = (dedekindPsi N : ℤ) :=
     sum_ord_jBar_sub_eq_dedekindPsi N 1728 hdeg S1 hS1
-  have hψinf : ∑ v ∈ Sinf, -v.ord j = (dedekindPsi N : ℤ) := sum_neg_ord_jBar_eq_dedekindPsi N Sinf hSI
+  have hψinf : ∑ v ∈ Sinf, -v.ord j = (dedekindPsi N : ℤ) :=
+    sum_neg_ord_jBar_eq_dedekindPsi N Sinf hSI
   set S := S0 ∪ S1 ∪ Sinf with hSdef
   have hS : ∀ v, v ∈ S ↔ v ∈ S0 ∨ v ∈ S1 ∨ v ∈ Sinf := fun v => by
     simp only [hSdef, Finset.mem_union, or_assoc]
   have hDj : KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j ≠ 0 :=
     KaehlerDifferential.D_ne_zero_of_transcendental (AlgebraicClosure ℚ) j htr
-  have hoff : ∀ v, v ∉ S → v.ordDiff (KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j) = 0 := by
+  have hoff : ∀ v, v ∉ S → v.ordDiff (KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j) = 0 :=
+    by
     intro v hv
     rw [hS] at hv
     push Not at hv
@@ -237,14 +242,16 @@ theorem solution (N : ℕ) [NeZero N]
         0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3 := fun v hv => ord_jBar_dvd_three N v hv
     have hcount : Nat.card {v : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) // 0 < v.ord (jBar N)}
         = Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure ℚ)} := by
-      rw [← card_eq_natCard_moduliPoint_j_eq_of_EMD N 0 (emd_holds N 0) S0 (fun v => by rw [hS0, hj, map_zero, sub_zero])]
+      rw [← card_eq_natCard_moduliPoint_j_eq_of_EMD N 0 (emd_holds N 0) S0 (fun v => by rw [hS0, hj,
+        map_zero, sub_zero])]
       exact hNC _ S0 (fun v => by rw [hS0, hj])
     have h := natCard_ord_jBar_eq_one_eq_nuThree N h3 hcount
     rwa [hNC _ (S0.filter fun v => v.ord j = 1)
       (fun v => by
         rw [Finset.mem_filter, hS0, hj]
         exact ⟨fun hv => hv.2, fun hv => ⟨by rw [hv]; exact one_pos, hv⟩⟩)] at h
-  have hcard : Sinf.card = cuspCount N := card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg N Sinf hSI
+  have hcard : Sinf.card = cuspCount N :=
+    card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg N Sinf hSI
   rw [hε₂, hε₃, hcard] at hHE
   have key : (12 : ℚ) * (genus (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℚ)
       = 12 + (dedekindPsi N : ℚ) - 3 * (nuTwo N : ℚ) - 4 * (nuThree N : ℚ) - 6 * (cuspCount N : ℚ) := by
@@ -263,6 +270,7 @@ public section publicSection
 theorem ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula (N : ℕ) [NeZero N]
     [AlgebraicCurve.HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := ↥(ModularCurve.modularFunctionFieldBar N))] :
     (AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) : ℚ)
-      = ModularCurve.genusFormula N := _root_.P2MW.S_ModularCurve_genus_modularFunctionFieldBar_eq_genusFormula.solution N
+      = ModularCurve.genusFormula N :=
+  solution N
 
 end publicSection

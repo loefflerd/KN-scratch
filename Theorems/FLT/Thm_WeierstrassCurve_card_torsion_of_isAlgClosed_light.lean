@@ -59,7 +59,9 @@ namespace P2MW.S_WeierstrassCurve_card_torsion_of_isAlgClosed_light
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 :=
+theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K]
+    [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
+    Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 :=
   WeierstrassCurve.card_torsion_of_isAlgClosed W hn
 
 end S_WeierstrassCurve_card_torsion_of_isAlgClosed_light
@@ -72,6 +74,10 @@ public section publicSection
 
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
-theorem WeierstrassCurve.card_torsion_of_isAlgClosed_light {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 := _root_.P2MW.S_WeierstrassCurve_card_torsion_of_isAlgClosed_light.solution W hn
+theorem WeierstrassCurve.card_torsion_of_isAlgClosed_light {F : Type*} {K : Type*} [Field F]
+    [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic]
+    {n : ℕ} (hn : (n : K) ≠ 0) :
+    Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 :=
+  solution W hn
 
 end publicSection

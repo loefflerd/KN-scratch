@@ -100,11 +100,11 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
   have μ_one : μ 1 = 0 := by simpa using h_const 1 one_ne_zero
   let v : Valuation F ℤᵐ⁰ :=
     { toFun := fun x => w (μ x)
-      map_zero' := by show w (μ 0) = 0; rw [(h_top 0).mpr rfl, w_top]
-      map_one' := by show w (μ 1) = 1; rw [μ_one, w_zero]
-      map_mul' := fun x y => by show w (μ (x * y)) = w (μ x) * w (μ y); rw [h_mul, w_add]
+      map_zero' := by change w (μ 0) = 0; rw [(h_top 0).mpr rfl, w_top]
+      map_one' := by change w (μ 1) = 1; rw [μ_one, w_zero]
+      map_mul' := fun x y => by change w (μ (x * y)) = w (μ x) * w (μ y); rw [h_mul, w_add]
       map_add_le_max' := fun x y => by
-        show w (μ (x + y)) ≤ max (w (μ x)) (w (μ y))
+        change w (μ (x + y)) ≤ max (w (μ x)) (w (μ y))
         rcases le_total (μ x) (μ y) with hxy | hxy
         · refine le_trans ?_ (le_max_left _ _)
           rw [w_le]; exact le_trans (by simp [hxy]) (h_add x y)
@@ -237,6 +237,7 @@ theorem AlgebraicCurve.Place.exists_of_orderMap {K F : Type*} [Field K] [Field F
     (h_const : ∀ c : K, c ≠ 0 → μ (algebraMap K F c) = 0) (h_nontriv : ∃ x, 0 < μ x ∧ μ x ≠ ⊤) :
     ∃ (P : AlgebraicCurve.Place K F) (e : ℕ), 0 < e ∧
       (∀ x, x ∈ P.toValuationSubring ↔ 0 ≤ μ x) ∧
-      ∀ x, x ≠ 0 → μ x = (((e : ℤ) * P.ord x : ℤ) : WithTop ℤ) := _root_.P2MW.S_AlgebraicCurve_Place_exists_of_orderMap.solution μ h_top h_mul h_add h_const h_nontriv
+      ∀ x, x ≠ 0 → μ x = (((e : ℤ) * P.ord x : ℤ) : WithTop ℤ) :=
+  solution μ h_top h_mul h_add h_const h_nontriv
 
 end publicSection

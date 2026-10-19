@@ -83,11 +83,11 @@ def tateHeckeRep : HeckeAlg →+* Module.End ℤ_[p] (TateModule p J) where
   toMonoidHom := TateModule.rep p J HeckeAlg
   map_zero' := by
     refine LinearMap.ext fun x => Subtype.ext (funext fun n => ?_)
-    show (0 : HeckeAlg) • (x : ℕ → J) n = 0
+    change (0 : HeckeAlg) • (x : ℕ → J) n = 0
     exact zero_smul HeckeAlg ((x : ℕ → J) n)
   map_add' s t := by
     refine LinearMap.ext fun x => Subtype.ext (funext fun n => ?_)
-    show (s + t) • (x : ℕ → J) n = s • (x : ℕ → J) n + t • (x : ℕ → J) n
+    change (s + t) • (x : ℕ → J) n = s • (x : ℕ → J) n + t • (x : ℕ → J) n
     exact add_smul s t ((x : ℕ → J) n)
 
 theorem tateHeckeRep_apply (t : HeckeAlg) :

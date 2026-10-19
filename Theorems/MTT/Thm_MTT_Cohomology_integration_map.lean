@@ -39,12 +39,12 @@ Injectivity is explicitly an open obligation.
 # Injective MTT integration map from the cochain realization
 
 The target asks for a linear map from cusp forms to compactly supported
-cohomology that is injective, Hecke-equivariant, and integral-valued.  The
+cohomology that is injective, Hecke-equivariant, and integral-valued. The
 open child `integration_linear_map_exists` supplies a map `I` whose value has
-the canonical `integrationCochain` realization.  The open child
+the canonical `integrationCochain` realization. The open child
 `integration_cochain_injective` turns that realization into injectivity, while
 the proved children `integration_cochain_hecke_equivariant` and
-`integration_cochain_integral_class` supply the other two properties.  The
+`integration_cochain_integral_class` supply the other two properties. The
 candidate simply packages these four source-backed facts for the same `N` and
 `k`; it is a conditional reduction and does not claim the underlying open
 children are themselves proved.
@@ -75,7 +75,7 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.integration_map
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) :
-    ∃ I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ,
+    ∃ I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ,
       Function.Injective I ∧ HeckeEquivariant I ∧ ∀ f, IntegralClass f (I f) := _root_.solution hN hk
 end
 

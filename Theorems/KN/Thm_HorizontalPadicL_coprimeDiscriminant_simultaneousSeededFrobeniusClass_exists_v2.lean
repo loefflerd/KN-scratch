@@ -95,9 +95,9 @@ namespace HorizontalPadicL
 
 Suppose the kernel field of a residual eigenform representation has
 discriminant supported on `N * p`, and choose a residue class on which the
-seed character has full order.  If the seed conductor is coprime to `N * p`,
+seed character has full order. If the seed conductor is coprime to `N * p`,
 then the residual kernel field and the `p ^ m * N` cyclotomic field are
-linearly disjoint from the seed cyclotomic field.  A product automorphism
+linearly disjoint from the seed cyclotomic field. A product automorphism
 which is trivial on the first two factors and realizes the chosen seed class
 therefore determines the required Chebotarev class. -/
 theorem coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2

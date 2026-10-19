@@ -61,7 +61,8 @@ namespace P2MW.S_ModularCurve_laurentBaseChange_adjoin
 
 open ModularCurve IntermediateField Polynomial
 
-theorem solution (L : Type*) [Field L] [Algebra ℚ L] (S : Set (LaurentSeries ℚ)) : ModularCurve.laurentBaseChange L (IntermediateField.adjoin ℚ S) = IntermediateField.adjoin L (ModularCurve.coeffEmb L '' S) := by
+theorem solution (L : Type*) [Field L] [Algebra ℚ L] (S : Set (LaurentSeries ℚ)) :
+    ModularCurve.laurentBaseChange L (IntermediateField.adjoin ℚ S) = IntermediateField.adjoin L (ModularCurve.coeffEmb L '' S) := by
   apply le_antisymm
   · rw [laurentBaseChange, IntermediateField.adjoin_le_iff]
     rintro _ ⟨y, hy, rfl⟩
@@ -92,6 +93,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.laurentBaseChange_adjoin (L : Type*) [Field L] [Algebra ℚ L] (S : Set (LaurentSeries ℚ)) : ModularCurve.laurentBaseChange L (IntermediateField.adjoin ℚ S) = IntermediateField.adjoin L (ModularCurve.coeffEmb L '' S) := _root_.P2MW.S_ModularCurve_laurentBaseChange_adjoin.solution L S
+theorem ModularCurve.laurentBaseChange_adjoin (L : Type*) [Field L] [Algebra ℚ L]
+    (S : Set (LaurentSeries ℚ)) :
+    ModularCurve.laurentBaseChange L (IntermediateField.adjoin ℚ S) = IntermediateField.adjoin L (ModularCurve.coeffEmb L '' S) :=
+  solution L S
 
 end publicSection

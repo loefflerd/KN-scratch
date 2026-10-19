@@ -68,7 +68,9 @@ open UpperHalfPlane
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intSeriesC_zero intFormRatiosC qExpFunctionFieldC ofPowerSeries_coeff_of_neg coeffMap_single algebraMap_laurentSeries_eq_single coeffEmb coeffEmb_coeff laurentBaseChange mem_laurentBaseChange_iff"
+p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intSeriesC_zero intFormRatiosC \
+  qExpFunctionFieldC ofPowerSeries_coeff_of_neg coeffMap_single algebraMap_laurentSeries_eq_single \
+  coeffEmb coeffEmb_coeff laurentBaseChange mem_laurentBaseChange_iff"
 namespace RatioFieldOfGroup
 p2m_open "ModularCurve"
 
@@ -92,7 +94,8 @@ theorem qL_ne_zero {k : ℤ} (f : ModularForm Γ k) (hf : f ≠ 0) : qL f ≠ 0 
   apply (HahnSeries.ofPowerSeries_injective (Γ := ℤ) (R := ℂ))
   simpa [qL] using h
 
-theorem qL_mul {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) : qL (f.mul g) = qL f * qL g := by
+theorem qL_mul {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) :
+    qL (f.mul g) = qL f * qL g := by
   simp only [qL, ModularForm.coe_mul,
     ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods hT), PowerSeries.coe_mul]
 
@@ -116,7 +119,8 @@ theorem one_ne_zero' : (1 : ModularForm Γ 0) ≠ 0 := by
   have := congrArg (fun F : ModularForm Γ 0 => (F : ℍ → ℂ) UpperHalfPlane.I) h
   simp [ModularForm.one_coe_eq_one] at this
 
-theorem mul_ne_zero' {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) (hf : f ≠ 0) (hg : g ≠ 0) :
+theorem mul_ne_zero' {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) (hf : f ≠ 0) (hg : g ≠ 0)
+    :
     f.mul g ≠ 0 := by
   intro hfg
   have h := congrArg (qL (Γ := Γ)) hfg
@@ -128,7 +132,6 @@ theorem mul_ne_zero' {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) (
 
 omit hT in
 variable (Γ) in
-
 def IsRatio (x : LaurentSeries ℂ) : Prop :=
   ∃ (k : ℤ) (g h : ModularForm Γ k), h ≠ 0 ∧ x * qL h = qL g
 
@@ -175,7 +178,6 @@ theorem IsRatio.inv {x : LaurentSeries ℂ} (hx : IsRatio Γ x) : IsRatio Γ x�
   rw [← hxe, mul_comm x, mul_comm x⁻¹, mul_assoc, mul_inv_cancel₀ hx0, mul_one]
 
 omit hT in
-
 theorem coeffEmb_algebraMap (r : ℚ) :
     coeffEmb ℂ (algebraMap ℚ (LaurentSeries ℚ) r) = algebraMap ℂ (LaurentSeries ℂ) (r : ℂ) := by
   rw [algebraMap_laurentSeries_eq_single, algebraMap_laurentSeries_eq_single, coeffEmb,
@@ -183,7 +185,6 @@ theorem coeffEmb_algebraMap (r : ℚ) :
   simp
 
 omit hT in
-
 theorem coeffEmb_intSeriesC (p : PowerSeries ℤ) : coeffEmb ℂ (intSeriesC ℚ p) = intSeriesC ℂ p := by
   ext k
   rw [coeffEmb_coeff]
@@ -192,12 +193,13 @@ theorem coeffEmb_intSeriesC (p : PowerSeries ℤ) : coeffEmb ℂ (intSeriesC ℚ
       map_zero]
   · lift k to ℕ using hk with k
     rw [intSeriesC, intSeriesC, HahnSeries.ofPowerSeries_apply_coeff,
-      HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map, PowerSeries.coeff_map, eq_intCast,
+      HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map, PowerSeries.coeff_map,
+      eq_intCast,
       eq_intCast, map_intCast]
 
 omit hT in
-
-theorem intSeriesC_eq_qL {k : ℤ} {f : ModularForm Γ k} {p : PowerSeries ℤ} (hf : IsIntegralQExp f p) :
+theorem intSeriesC_eq_qL {k : ℤ} {f : ModularForm Γ k} {p : PowerSeries ℤ} (hf : IsIntegralQExp f p)
+    :
     intSeriesC ℂ p = qL f := by
   rw [intSeriesC, hf]
 
@@ -280,6 +282,7 @@ theorem ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChan
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) :
     ∃ (k : ℤ) (g h : ModularForm Γ k), h ≠ 0 ∧
       x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-        ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := _root_.P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem.solution Γ hT x hx
+        ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+  solution Γ hT x hx
 
 end publicSection

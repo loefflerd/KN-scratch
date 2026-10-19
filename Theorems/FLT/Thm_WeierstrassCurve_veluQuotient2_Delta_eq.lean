@@ -38,11 +38,17 @@ This is the discriminant formula for the quotient of a Weierstrass curve by the 
 by a point of order two in Vélu's explicit form: one factor of $g_x$ is traded for one factor of the
 quadratic cofactor $\mathrm{velu2QuadDisc}$ relative to the corresponding factorisation of
 $\Delta(W)$. It is used to show that the order-two Vélu quotient is again elliptic
-([`WeierstrassCurve.veluQuotient2_Delta_ne_zero`](thm.html#WeierstrassCurve.veluQuotient2_Delta_ne_zero)),
+([nonvanishing](thm.html#WeierstrassCurve.veluQuotient2_Delta_ne_zero)),
 to compute its $j$-invariant
 ([`WeierstrassCurve.veluQuotient2_j`](thm.html#WeierstrassCurve.veluQuotient2_j)), and in the
 construction of the induced map on points
-([`WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2`](thm.html#WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2)).
+([additivity](thm.html#WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2)).
+
+## Local proof
+
+Translate the kernel point to the origin using `VariableChange`. Mathlib supplies
+invariance of the discriminant; the translated coefficients and quadratic cofactor
+reduce the result to a small polynomial identity over an arbitrary commutative ring.
 
 ## Explanation of the source proof
 
@@ -54,20 +60,19 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_WeierstrassCurve_veluQuotient2_Delta_eq
 
 open WeierstrassCurve WeierstrassCurve.Affine in
 theorem solution {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ : R}
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
     (W.veluQuotient2 x₀ y₀).Δ = W.veluGx x₀ y₀ * W.velu2QuadDisc x₀ ^ 2 := by
-  rw [Affine.equation_iff] at hQ
-  simp only [veluGy] at hgy
-  simp only [Δ, b₂, b₄, b₆, b₈, veluQuotient2, veluGx, velu2QuadDisc]
-  linear_combination
-    (W.a₁^6 + 12*W.a₁^4*W.a₂ - 36*W.a₁^3*W.a₃ + 504*W.a₁^3*y₀ + 48*W.a₁^2*W.a₂^2 - 1008*W.a₁^2*W.a₂*x₀ - 576*W.a₁^2*W.a₄ - 1512*W.a₁^2*x₀^2 - 144*W.a₁*W.a₂*W.a₃ + 2016*W.a₁*W.a₂*y₀ + 6480*W.a₁*x₀*y₀ + 64*W.a₂^3 - 4032*W.a₂^2*x₀ - 2304*W.a₂*W.a₄ - 18576*W.a₂*x₀^2 + 216*W.a₃^2 + 432*W.a₃*y₀ - 6480*W.a₄*x₀ + 432*W.a₆ - 18576*x₀^3 + 432*y₀^2) * hQ
-    + (24*W.a₁^6*y₀ - 47*W.a₁^5*W.a₂*x₀ - 24*W.a₁^5*W.a₄ - 70*W.a₁^5*x₀^2 + W.a₁^4*W.a₂*W.a₃ + 194*W.a₁^4*W.a₂*y₀ + W.a₁^4*W.a₃*x₀ - 110*W.a₁^4*x₀*y₀ - 376*W.a₁^3*W.a₂^2*x₀ - 192*W.a₁^3*W.a₂*W.a₄ - 340*W.a₁^3*W.a₂*x₀^2 - W.a₁^3*W.a₃^2 - 692*W.a₁^3*W.a₃*y₀ + 112*W.a₁^3*W.a₄*x₀ + 327*W.a₁^3*x₀^3 + 4252*W.a₁^3*y₀^2 + 8*W.a₁^2*W.a₂^2*W.a₃ + 400*W.a₁^2*W.a₂^2*y₀ + 1352*W.a₁^2*W.a₂*W.a₃*x₀ - 16944*W.a₁^2*W.a₂*x₀*y₀ + 688*W.a₁^2*W.a₃*W.a₄ + 2001*W.a₁^2*W.a₃*x₀^2 - 9888*W.a₁^2*W.a₄*y₀ - 24606*W.a₁^2*x₀^2*y₀ - 752*W.a₁*W.a₂^3*x₀ - 384*W.a₁*W.a₂^2*W.a₄ + 15760*W.a₁*W.a₂^2*x₀^2 - 36*W.a₁*W.a₂*W.a₃^2 + 432*W.a₁*W.a₂*W.a₃*y₀ + 19648*W.a₁*W.a₂*W.a₄*x₀ + 49008*W.a₁*W.a₂*x₀^3 + 1008*W.a₁*W.a₂*y₀^2 - 27*W.a₁*W.a₃^2*x₀ + 1620*W.a₁*W.a₃*x₀*y₀ + 5632*W.a₁*W.a₄^2 + 28608*W.a₁*W.a₄*x₀^2 + 35568*W.a₁*x₀^4 + 3348*W.a₁*x₀*y₀^2 + 16*W.a₂^3*W.a₃ + 32*W.a₂^3*y₀ - 1008*W.a₂^2*W.a₃*x₀ - 2016*W.a₂^2*x₀*y₀ - 576*W.a₂*W.a₃*W.a₄ - 4752*W.a₂*W.a₃*x₀^2 - 1152*W.a₂*W.a₄*y₀ - 9504*W.a₂*x₀^2*y₀ + 27*W.a₃^3 + 162*W.a₃^2*y₀ - 1728*W.a₃*W.a₄*x₀ - 4752*W.a₃*x₀^3 + 324*W.a₃*y₀^2 - 3456*W.a₄*x₀*y₀ - 9504*x₀^3*y₀ + 216*y₀^3) * hgy
+  have hΔ : ((⟨1, x₀, 0, y₀⟩ : VariableChange R) • W.veluQuotient2 x₀ y₀).Δ =
+      (W.veluQuotient2 x₀ y₀).Δ := by
+    simpa only [inv_one, Units.val_one, one_pow, one_mul] using
+      (W.veluQuotient2 x₀ y₀).variableChange_Δ (⟨1, x₀, 0, y₀⟩ : VariableChange R)
+  rw [← hΔ, W.veluQuotient2_variableChange hQ hgy, W.velu2QuadDisc_eq_shifted hgy]
+  simp only [Δ, b₂, b₄, b₆, b₈]
+  ring
 
 end S_WeierstrassCurve_veluQuotient2_Delta_eq
 end P2MW
@@ -82,7 +87,8 @@ namespace WeierstrassCurve
 variable {R : Type*} [CommRing R] {W : WeierstrassCurve R}
 theorem veluQuotient2_Delta_eq {x₀ y₀ : R}
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
-    (W.veluQuotient2 x₀ y₀).Δ = W.veluGx x₀ y₀ * W.velu2QuadDisc x₀ ^ 2 := _root_.P2MW.S_WeierstrassCurve_veluQuotient2_Delta_eq.solution hQ hgy
+    (W.veluQuotient2 x₀ y₀).Δ = W.veluGx x₀ y₀ * W.velu2QuadDisc x₀ ^ 2 :=
+  _root_.P2MW.S_WeierstrassCurve_veluQuotient2_Delta_eq.solution hQ hgy
 end WeierstrassCurve
 
 end publicSection

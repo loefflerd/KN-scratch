@@ -538,7 +538,8 @@ lemma exists_H_lower :
   have hY1 : 1 ≤ Y := le_trans (one_le_pow₀ hB1.le) hY
   -- Locate `Y` between consecutive iterates.
   have hex : ∃ r : ℕ, Y < B ^ (3 ^ (r + 1) * t₀) := by
-    obtain ⟨n, hn⟩ := (tendsto_pow_atTop_atTop_of_one_lt hB1).eventually_gt_atTop Y |>.exists_forall_of_atTop
+    obtain ⟨n, hn⟩ :=
+      (tendsto_pow_atTop_atTop_of_one_lt hB1).eventually_gt_atTop Y |>.exists_forall_of_atTop
     refine ⟨n, hn _ ?_⟩
     calc n ≤ 3 ^ (n + 1) := (Nat.lt_pow_self (by norm_num)).le.trans
           (Nat.pow_le_pow_right (by norm_num) (Nat.le_succ n))

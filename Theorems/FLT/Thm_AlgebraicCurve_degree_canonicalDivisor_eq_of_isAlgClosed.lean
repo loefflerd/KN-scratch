@@ -67,7 +67,7 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_degree_canonicalDivisor_eq_of_isAlgClosed
 
 theorem solution
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -83,8 +83,13 @@ theorem solution
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F]
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
-    AlgebraicCurve.Divisor.degree (AlgebraicCurve.canonicalDivisorOf hω) = 2 * (AlgebraicCurve.genus K F : ℤ) - 2 :=
-  AlgebraicCurve.degree_canonicalDivisor_eq_of_riemannRoch AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed (AlgebraicCurve.constantsAreBase_of_isAlgClosed K F) hω
+    AlgebraicCurve.Divisor.degree (AlgebraicCurve.canonicalDivisorOf hω) = 2 * (AlgebraicCurve.genus
+        K F : ℤ) - 2 := by
+  classical
+  exact
+    AlgebraicCurve.degree_canonicalDivisor_eq_of_riemannRoch
+        AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed
+        (AlgebraicCurve.constantsAreBase_of_isAlgClosed K F) hω
 
 end S_AlgebraicCurve_degree_canonicalDivisor_eq_of_isAlgClosed
 end P2MW
@@ -95,7 +100,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.degree_canonicalDivisor_eq_of_isAlgClosed
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -111,6 +116,10 @@ theorem AlgebraicCurve.degree_canonicalDivisor_eq_of_isAlgClosed
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F]
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
-    AlgebraicCurve.Divisor.degree (AlgebraicCurve.canonicalDivisorOf hω) = 2 * (AlgebraicCurve.genus K F : ℤ) - 2 := _root_.P2MW.S_AlgebraicCurve_degree_canonicalDivisor_eq_of_isAlgClosed.solution hω
+    AlgebraicCurve.Divisor.degree (AlgebraicCurve.canonicalDivisorOf hω) = 2 * (AlgebraicCurve.genus
+        K F : ℤ) - 2 := by
+  classical
+  exact
+    solution hω
 
 end publicSection

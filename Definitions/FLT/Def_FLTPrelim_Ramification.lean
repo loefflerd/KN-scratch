@@ -88,7 +88,6 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [Field S] [Field K]
   [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K]
 
 variable (S K) in
-
 def GaloisRepUnramifiedAt (W' : Affine R) (n : ℕ) (q : ℕ) : Prop :=
   ∀ A : ValuationSubring K, A.LiesOverPrime q →
     ∀ σ ∈ A.inertiaSubgroupIn S,

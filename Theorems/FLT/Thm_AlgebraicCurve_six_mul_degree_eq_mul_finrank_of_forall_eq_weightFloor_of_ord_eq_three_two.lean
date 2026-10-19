@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
+Based on Prove2Me node
+AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
 (f86dd52b-1791-5409-af29-3f1659cf67cd) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission df99bc9f-8a31-52d7-bb8e-5bd74ab83aaa
@@ -56,9 +57,11 @@ there are no elliptic places: the contributions $2mn/3$, $mn/2$ and $-mn$ at the
 0$, $j = 1728$ and $j = \infty$ combine to $6 \deg D = mn$ with $n = [F : k(y)]$. Together with
 Riemann–Roch it yields the dimension formula for modular forms of even and of odd weight on
 $\Gamma_1(M)$, and it is used by
-[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even`](thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even)
+[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even`]
+  (thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even)
 and
-[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`](thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd).
+[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`]
+  (thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd).
 
 ## Explanation of the source proof
 
@@ -73,7 +76,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
+namespace
+  P2MW.S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
 
 open AlgebraicCurve
 
@@ -87,7 +91,8 @@ theorem mem_iff_le_one {f : FF} : f ∈ w.toValuationSubring ↔ w.adicValuation
   Place.mem_iff_adicValuation_le_one w
 
 theorem ord_nonneg_iff {f : FF} (hf : f ≠ 0) : 0 ≤ w.ord f ↔ w.adicValuation f ≤ 1 := by
-  rw [Place.ord, neg_nonneg, WithZero.log_le_iff_le_exp (w.adicValuation_ne_zero hf), WithZero.exp_zero]
+  rw [Place.ord, neg_nonneg, WithZero.log_le_iff_le_exp (w.adicValuation_ne_zero hf),
+    WithZero.exp_zero]
 
 theorem ord_pos_iff {f : FF} (hf : f ≠ 0) : 0 < w.ord f ↔ w.adicValuation f < 1 := by
   rw [Place.ord, neg_pos, ← WithZero.log_one,
@@ -110,7 +115,8 @@ theorem mem_of_ord_nonneg {f : FF} (h : 0 ≤ w.ord f) : f ∈ w.toValuationSubr
 theorem ord_pow (f : FF) (n : ℕ) : w.ord (f ^ n) = n * w.ord f := by
   rw [← zpow_natCast, Place.ord_zpow]
 
-theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) : w.adicValuation (algebraMap K FF c) = 1 := by
+theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) :
+    w.adicValuation (algebraMap K FF c) = 1 := by
   apply le_antisymm (w.adicValuation_algebraMap_le_one c)
   have h1 : w.adicValuation (algebraMap K FF c) * w.adicValuation (algebraMap K FF c⁻¹) = 1 := by
     rw [← map_mul, ← map_mul, mul_inv_cancel₀ hc, map_one, map_one]
@@ -125,12 +131,13 @@ theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) : w.adicValuation (algeb
 theorem ord_algebraMap {c : K} (hc : c ≠ 0) : w.ord (algebraMap K FF c) = 0 := by
   rw [Place.ord, adicValuation_algebraMap w hc, WithZero.log_one, neg_zero]
 
-theorem ord_sub_algebraMap_eq_zero_of_ord_pos {t : FF} (ht : t ≠ 0) {c : K} (hc : c ≠ 0) (h : 0 < w.ord t) :
+theorem ord_sub_algebraMap_eq_zero_of_ord_pos {t : FF} (ht : t ≠ 0) {c : K} (hc : c ≠ 0)
+    (h : 0 < w.ord t) :
     w.ord (t - algebraMap K FF c) = 0 := by
   have hv : w.adicValuation t < w.adicValuation (algebraMap K FF c) := by
     rw [adicValuation_algebraMap w hc]; exact (ord_pos_iff w ht).1 h
-  rw [Place.ord, Valuation.map_sub_swap, Valuation.map_sub_eq_of_lt_left _ hv, adicValuation_algebraMap w hc,
-    WithZero.log_one, neg_zero]
+  rw [Place.ord, Valuation.map_sub_swap, Valuation.map_sub_eq_of_lt_left _ hv,
+    adicValuation_algebraMap w hc, WithZero.log_one, neg_zero]
 
 theorem ord_sub_algebraMap_eq_of_ord_neg {t : FF} (ht : t ≠ 0) (c : K) (h : w.ord t < 0) :
     w.ord (t - algebraMap K FF c) = w.ord t := by
@@ -138,16 +145,19 @@ theorem ord_sub_algebraMap_eq_of_ord_neg {t : FF} (ht : t ≠ 0) (c : K) (h : w.
     lt_of_le_of_lt (w.adicValuation_algebraMap_le_one c) ((ord_neg_iff w ht).1 h)
   rw [Place.ord, Place.ord, Valuation.map_sub_eq_of_lt_left _ hv]
 
-theorem ord_eq_zero_of_ord_sub_algebraMap_pos {t : FF} {c : K} (hc : c ≠ 0) (htc : t - algebraMap K FF c ≠ 0)
-    (h : 0 < w.ord (t - algebraMap K FF c)) : w.ord t = 0 := by
+theorem ord_eq_zero_of_ord_sub_algebraMap_pos {t : FF} {c : K} (hc : c ≠ 0)
+    (htc : t - algebraMap K FF c ≠ 0) (h : 0 < w.ord (t - algebraMap K FF c)) :
+    w.ord t = 0 := by
   have hv : w.adicValuation (t - algebraMap K FF c) < w.adicValuation (algebraMap K FF c) := by
     rw [adicValuation_algebraMap w hc]; exact (ord_pos_iff w htc).1 h
   have : t = (t - algebraMap K FF c) + algebraMap K FF c := by ring
-  rw [Place.ord, this, Valuation.map_add_eq_of_lt_right _ hv, adicValuation_algebraMap w hc, WithZero.log_one, neg_zero]
+  rw [Place.ord, this, Valuation.map_add_eq_of_lt_right _ hv, adicValuation_algebraMap w hc,
+    WithZero.log_one, neg_zero]
 
 end Ord
 
-theorem ord_eq_of_ord_sub_algebraMap_neg {K : Type*} {FF : Type*} [Field K] [Field FF] [Algebra K FF] (w : Place K FF)
+theorem ord_eq_of_ord_sub_algebraMap_neg {K : Type*} {FF : Type*} [Field K] [Field FF]
+    [Algebra K FF] (w : Place K FF)
     {t : FF} (c : K) (htc : t - algebraMap K FF c ≠ 0) (h : w.ord (t - algebraMap K FF c) < 0) :
     w.ord t = w.ord (t - algebraMap K FF c) := by
   have := ord_sub_algebraMap_eq_of_ord_neg w htc (-c) h
@@ -167,7 +177,8 @@ theorem solution
       D w = (if 0 < w.ord y then (2 * (m : ℤ) * w.ord y) / 3 else 0)
           + (if 0 < w.ord (y - 1728) then ((m : ℤ) * w.ord (y - 1728)) / 2 else 0)
           + (if w.ord y < 0 then (m : ℤ) * w.ord y else 0)) :
-    6 * D.degree = (m : ℤ) * (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) := by
+    6 * D.degree = (m : ℤ)
+      * (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) := by
   classical
   have := hfin
   have : IsCurveOver k F := isCurveOver_of_transcendental_of_perfectField hy hfin
@@ -176,15 +187,18 @@ theorem solution
   set n : ℤ := (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) with hn
   have hc : (1728 : F) = algebraMap k F 1728 := (map_ofNat (algebraMap k F) 1728).symm
   have hD' : ∀ w : Place k F, D w = (if 0 < w.ord y then (2 * (m : ℤ) * w.ord y) / 3 else 0)
-          + (if 0 < w.ord (y - algebraMap k F 1728) then ((m : ℤ) * w.ord (y - algebraMap k F 1728)) / 2 else 0)
+          + (if 0 < w.ord (y - algebraMap k F 1728)
+              then ((m : ℤ) * w.ord (y - algebraMap k F 1728)) / 2 else 0)
           + (if w.ord y < 0 then (m : ℤ) * w.ord y else 0) := fun w => by rw [← hc]; exact hD w
-  have h1728' : ∀ w : Place k F, 0 < w.ord (y - algebraMap k F 1728) → w.ord (y - algebraMap k F 1728) = 2 :=
+  have h1728' : ∀ w : Place k F,
+      0 < w.ord (y - algebraMap k F 1728) → w.ord (y - algebraMap k F 1728) = 2 :=
     fun w => by rw [← hc]; exact h1728 w
   have hy0 : y ≠ 0 := fun h => hy (h ▸ isAlgebraic_zero)
   have hyc : y - algebraMap k F 1728 ≠ 0 := fun h => hy (by
     rw [sub_eq_zero] at h; rw [h]; exact isAlgebraic_algebraMap (1728 : k))
   obtain ⟨Dj, hDj, hDj0⟩ := HasPrincipalDivisors.exists_divisor (K := k) (F := F) y hy0
-  obtain ⟨Dc, hDc, hDc0⟩ := HasPrincipalDivisors.exists_divisor (K := k) (F := F) (y - algebraMap k F 1728) hyc
+  obtain ⟨Dc, hDc, hDc0⟩ := HasPrincipalDivisors.exists_divisor
+      (K := k) (F := F) (y - algebraMap k F 1728) hyc
   set S0 := Dj.support.filter (fun v => 0 < v.ord y) with hS0def
   set S1 := Dc.support.filter (fun v => 0 < v.ord (y - algebraMap k F 1728)) with hS1def
   set T := Dj.support.filter (fun v => v.ord y < 0) with hTdef
@@ -256,7 +270,8 @@ theorem solution
     fun v hv => ord_sub_algebraMap_eq_of_ord_neg v hy0 1728 hv
   have hzero_j : ∀ v : Place k F, 0 < v.ord (y - algebraMap k F 1728) → v.ord y = 0 :=
     fun v hv => ord_eq_zero_of_ord_sub_algebraMap_pos v hk hyc hv
-  have hpole_j : ∀ v : Place k F, v.ord (y - algebraMap k F 1728) < 0 → v.ord y = v.ord (y - algebraMap k F 1728) :=
+  have hpole_j : ∀ v : Place k F, v.ord (y - algebraMap k F 1728) < 0 →
+      v.ord y = v.ord (y - algebraMap k F 1728) :=
     fun v hv => ord_eq_of_ord_sub_algebraMap_neg v 1728 hyc hv
   have hsupp_c : Dc.support = S1 ∪ T := by
     ext v
@@ -287,18 +302,18 @@ theorem solution
     rw [← hS1sum, show ∑ v ∈ S1, v.ord (y - algebraMap k F 1728) = ∑ v ∈ S1, (2 : ℤ) from
       Finset.sum_congr rfl fun v hv => h1728' v ((hS1 v).1 hv)]
     simp only [Finset.sum_const]; ring
-  have hDval : ∀ v : Place k F, D v =
-      (if v ∈ S0 then 2 * (m : ℤ) else 0) + (if v ∈ S1 then (m : ℤ) else 0) + (if v ∈ T then (m : ℤ) * v.ord y else 0) := by
+  have hDval : ∀ v : Place k F, D v = (if v ∈ S0 then 2 * (m : ℤ) else 0)
+      + (if v ∈ S1 then (m : ℤ) else 0) + (if v ∈ T then (m : ℤ) * v.ord y else 0) := by
     intro v
     rw [hD' v]
     congr 1
-    congr 1
-    · by_cases h : 0 < v.ord y
-      · rw [ite_eq_left h, ite_eq_left ((hS0 v).2 h), h0 v h]; omega
-      · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hS0 v).1 h'))]
-    · by_cases h : 0 < v.ord (y - algebraMap k F 1728)
-      · rw [ite_eq_left h, ite_eq_left ((hS1 v).2 h), h1728' v h]; omega
-      · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hS1 v).1 h'))]
+    · congr 1
+      · by_cases h : 0 < v.ord y
+        · rw [ite_eq_left h, ite_eq_left ((hS0 v).2 h), h0 v h]; omega
+        · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hS0 v).1 h'))]
+      · by_cases h : 0 < v.ord (y - algebraMap k F 1728)
+        · rw [ite_eq_left h, ite_eq_left ((hS1 v).2 h), h1728' v h]; omega
+        · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hS1 v).1 h'))]
     · by_cases h : v.ord y < 0
       · rw [ite_eq_left h, ite_eq_left ((hT v).2 h)]
       · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hT v).1 h'))]
@@ -323,19 +338,21 @@ theorem solution
   have hB : ∑ v ∈ S0 ∪ S1 ∪ T, (if v ∈ S1 then (m : ℤ) else 0) = (m : ℤ) * S1.card := by
     rw [Finset.sum_ite_mem, Finset.inter_eq_right.2 (by intro v hv; simp [hv]), Finset.sum_const]
     simp only [nsmul_eq_mul]; ring
-  have hC : ∑ v ∈ S0 ∪ S1 ∪ T, (if v ∈ T then (m : ℤ) * v.ord y else 0) = (m : ℤ) * ∑ v ∈ T, v.ord y := by
+  have hC : ∑ v ∈ S0 ∪ S1 ∪ T, (if v ∈ T then (m : ℤ) * v.ord y else 0) =
+      (m : ℤ) * ∑ v ∈ T, v.ord y := by
     rw [Finset.sum_ite_mem, Finset.inter_eq_right.2 (by intro v hv; simp [hv]), Finset.mul_sum]
   rw [hDdeg, hsumD, Finset.sum_add_distrib, Finset.sum_add_distrib, hA, hB, hC, hTsum]
   linear_combination (4 * (m : ℤ)) * hcnt0 + (3 * (m : ℤ)) * hcnt1
 
 end S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
 end P2MW
-export P2MW.S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two (solution)
+export
+  P2MW.S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
+  (solution)
 
 end privateSection
 
 public section publicSection
-
 
 theorem AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
     (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebra k F]
@@ -348,6 +365,7 @@ theorem AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of
       D w = (if 0 < w.ord y then (2 * (m : ℤ) * w.ord y) / 3 else 0)
           + (if 0 < w.ord (y - 1728) then ((m : ℤ) * w.ord (y - 1728)) / 2 else 0)
           + (if w.ord y < 0 then (m : ℤ) * w.ord y else 0)) :
-    6 * D.degree = (m : ℤ) * (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two.solution k y hy hfin h0 h1728 m D hD
+    6 * D.degree = (m : ℤ) * (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) :=
+  solution k y hy hfin h0 h1728 m D hD
 
 end publicSection

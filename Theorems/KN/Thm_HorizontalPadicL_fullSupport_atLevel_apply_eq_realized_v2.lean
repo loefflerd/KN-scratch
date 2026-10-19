@@ -44,7 +44,7 @@ namespace HorizontalPadicL
 
 /-- If a horizontal character uses its full conductor, then the full-level
 character used in the quotient construction agrees, on units, with its
-primitive realization.  The formulation on integer representatives avoids
+primitive realization. The formulation on integer representatives avoids
 dependent transports between equal `ZMod` levels. -/
 theorem fullSupport_atLevel_apply_eq_realized
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
@@ -71,7 +71,7 @@ namespace HorizontalPadicL
 
 /-- If a horizontal character uses its full conductor, then the full-level
 character used in the quotient construction agrees, on units, with its
-primitive realization.  The formulation on integer representatives avoids
+primitive realization. The formulation on integer representatives avoids
 dependent transports between equal `ZMod` levels. -/
 theorem _root_.solution
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
@@ -98,7 +98,7 @@ namespace HorizontalPadicL
 
 /-- If a horizontal character uses its full conductor, then the full-level
 character used in the quotient construction agrees, on units, with its
-primitive realization.  The formulation on integer representatives avoids
+primitive realization. The formulation on integer representatives avoids
 dependent transports between equal `ZMod` levels. -/
 theorem fullSupport_atLevel_apply_eq_realized_v2
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]

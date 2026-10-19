@@ -121,13 +121,11 @@ noncomputable instance instModuleZModTorsionBy (n : ℕ) :
     exact Submodule.smul_torsionBy _ x
 
 variable (S) in
-
 def IsGaloisStable {n : ℕ}
     (N : Submodule (ZMod n) (Submodule.torsionBy ℤ (W'⁄K).Point n)) : Prop :=
   ∀ (σ : K ≃ₐ[S] K), ∀ x ∈ N, σ • x ∈ N
 
 variable (S) in
-
 def GaloisRepIsIrreducible (W' : Affine R) (n : ℕ) : Prop :=
   Nontrivial (Submodule.torsionBy ℤ (W'⁄K).Point n) ∧
     ∀ N : Submodule (ZMod n) (Submodule.torsionBy ℤ (W'⁄K).Point n),

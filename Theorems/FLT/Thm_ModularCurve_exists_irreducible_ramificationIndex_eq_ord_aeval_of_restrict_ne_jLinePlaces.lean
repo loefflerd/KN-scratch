@@ -76,7 +76,9 @@ attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 attribute [local instance] ModularCurve.instDecidableEqRatFuncRat
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jAdjoinAlgebra algebraMap_jGen_val jLineRingEquiv jLineRingEquiv_X instDecidableEqRatFuncRat jLinePlace1728 jLinePlaceZero jLinePlaceInfty jq modularFunctionField jq_mem jGen"
+p2m_export "ModularCurve" "jAdjoinAlgebra algebraMap_jGen_val jLineRingEquiv jLineRingEquiv_X \
+  instDecidableEqRatFuncRat jLinePlace1728 jLinePlaceZero jLinePlaceInfty jq modularFunctionField \
+  jq_mem jGen"
 namespace JLineFiniteAux
 p2m_open "ModularCurve"
 
@@ -123,7 +125,8 @@ theorem solution (N : ℕ) [NeZero N] :
     rintro rfl; exact h0 hv'
   have h1728' : v' ≠ placeOfPoint ℚ 1728 := by
     rintro rfl; exact h1728 hv'
-  obtain ⟨P, rfl⟩ : ∃ P : IsDedekindDomain.HeightOneSpectrum ℚ[X], v' = Place.ofHeightOneSpectrum P := by
+  obtain ⟨P, rfl⟩ : ∃ P : IsDedekindDomain.HeightOneSpectrum ℚ[X], v' = Place.ofHeightOneSpectrum P :=
+    by
     rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v' with h | h
     · exact h
     · exact absurd h hinf'
@@ -174,7 +177,8 @@ public section publicSection
 
 
 open IntermediateField AlgebraicCurve
-theorem ModularCurve.exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces (N : ℕ) [NeZero N] :
+theorem ModularCurve.exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces
+    (N : ℕ) [NeZero N] :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
@@ -183,6 +187,7 @@ theorem ModularCurve.exists_irreducible_ramificationIndex_eq_ord_aeval_of_restri
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ ≠ ModularCurve.jLinePlaceInfty →
       ∃ p : Polynomial ℚ, Irreducible p ∧ p.Monic ∧ p.eval 0 ≠ 0 ∧ p.eval 1728 ≠ 0 ∧
         0 < w.ord (Polynomial.aeval (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) p) ∧
-        (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (Polynomial.aeval (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) p) := _root_.P2MW.S_ModularCurve_exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces.solution N
+        (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (Polynomial.aeval (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) p) :=
+  solution N
 
 end publicSection

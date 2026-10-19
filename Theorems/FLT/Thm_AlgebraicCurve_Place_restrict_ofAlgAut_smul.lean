@@ -58,11 +58,13 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul
 
 noncomputable section
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul.AlgebraicCurve \
+  IsDedekindDomain"
 open scoped Pointwise
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext SemilinearAut SemilinearAut.inv_smul_def SemilinearAut.ofAlgAut SemilinearAut.toRingAut_ofAlgAut SemilinearAut.smul_toValuationSubring"
+p2m_export "AlgebraicCurve" "Place Place.ext SemilinearAut SemilinearAut.inv_smul_def \
+  SemilinearAut.ofAlgAut SemilinearAut.toRingAut_ofAlgAut SemilinearAut.smul_toValuationSubring"
 p2m_open "AlgebraicCurve"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "restrict restrict_toValuationSubring ext smul_toValuationSubring"
@@ -100,6 +102,7 @@ open AlgebraicCurve
 theorem AlgebraicCurve.Place.restrict_ofAlgAut_smul {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [Algebra.IsIntegral F' M] (σ : M ≃ₐ[F'] M) (W : Place K M) :
-    (SemilinearAut.ofAlgAut (σ.restrictScalars K) • W).restrict F' = W.restrict F' := _root_.P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul.solution σ W
+    (SemilinearAut.ofAlgAut (σ.restrictScalars K) • W).restrict F' = W.restrict F' :=
+  solution σ W
 
 end publicSection

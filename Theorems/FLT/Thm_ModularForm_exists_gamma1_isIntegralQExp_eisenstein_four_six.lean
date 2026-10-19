@@ -107,13 +107,13 @@ theorem isIntegralQExp_E6 :
 end E46Aux
 
 open E46Aux in
-
 theorem solution (M : ℕ) [NeZero M] :
     ∃ (E4 : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 4)
       (E6 : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 6),
       ModularCurve.IsIntegralQExp E4 (PowerSeries.mk fun n => if n = 0 then 1 else 240 * (σ 3 n : ℤ)) ∧
       ModularCurve.IsIntegralQExp E6 (PowerSeries.mk fun n => if n = 0 then 1 else -504 * (σ 5 n : ℤ)) := by
-  have hle : ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤ 𝒮ℒ := Subgroup.map_le_range _ _
+  have hle : ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤ 𝒮ℒ :=
+    Subgroup.map_le_range _ _
   exact ⟨restrictForm hle ModularForm.E₄, restrictForm hle ModularForm.E₆, isIntegralQExp_E4, isIntegralQExp_E6⟩
 
 end S_ModularForm_exists_gamma1_isIntegralQExp_eisenstein_four_six
@@ -130,6 +130,7 @@ theorem ModularForm.exists_gamma1_isIntegralQExp_eisenstein_four_six (M : ℕ) [
     ∃ (E4 : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 4)
       (E6 : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 6),
       ModularCurve.IsIntegralQExp E4 (PowerSeries.mk fun n => if n = 0 then 1 else 240 * (σ 3 n : ℤ)) ∧
-      ModularCurve.IsIntegralQExp E6 (PowerSeries.mk fun n => if n = 0 then 1 else -504 * (σ 5 n : ℤ)) := _root_.P2MW.S_ModularForm_exists_gamma1_isIntegralQExp_eisenstein_four_six.solution M
+      ModularCurve.IsIntegralQExp E6 (PowerSeries.mk fun n => if n = 0 then 1 else -504 * (σ 5 n : ℤ)) :=
+  solution M
 
 end publicSection

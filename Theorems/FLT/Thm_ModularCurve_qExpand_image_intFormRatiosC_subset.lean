@@ -108,7 +108,7 @@ theorem isCusp_heckeDiagMatrix_smul (hℓ : ℓ ≠ 0) {c : OnePoint ℝ} (hc : 
   have hg : gQ.map (Rat.castHom ℝ) = heckeDiagMatrix ℓ := by
     apply Units.ext
     rw [val_heckeDiagMatrix hℓ]
-    show (gQ : Matrix (Fin 2) (Fin 2) ℚ).map (Rat.castHom ℝ) = _
+    change (gQ : Matrix (Fin 2) (Fin 2) ℚ).map (Rat.castHom ℝ) = _
     ext i j; fin_cases i <;> fin_cases j <;> simp [gQ]
   refine ⟨gQ • c₀, ?_⟩
   rw [← hg, ← Rat.coe_castHom, OnePoint.map_smul]
@@ -159,7 +159,6 @@ theorem coe_stretch (hℓ : ℓ ≠ 0) (f : ModularForm (Γ : Subgroup (GL (Fin 
   funext (stretch_apply hΓ' hℓ f)
 
 omit [Γ.FiniteIndex] in
-
 private theorem _root_.X1QExpandStretch.periodic_comp_ofComplex (hT : ModularGroup.T ∈ Γ)
     (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
     Periodic ((⇑f : ℍ → ℂ) ∘ ofComplex) 1 := by
@@ -213,7 +212,8 @@ theorem intSeriesC_expandPS (K : Type*) [Field K] (ℓ : ℕ) [NeZero ℓ] (p : 
       rw [ite_eq_left this, ite_eq_left hm']
     · have hm'0 : 0 ≤ m' := le_of_not_gt hm'
       have hprod : ¬ (ℓ : ℤ) * m' < 0 := not_lt.mpr (mul_nonneg (by positivity) hm'0)
-      rw [ite_eq_right hprod, ite_eq_right hm', PowerSeries.coeff_map, PowerSeries.coeff_map, coeff_expandPS]
+      rw [ite_eq_right hprod, ite_eq_right hm', PowerSeries.coeff_map, PowerSeries.coeff_map,
+        coeff_expandPS]
       have habs : ((ℓ : ℤ) * m').natAbs = ℓ * m'.natAbs := by
         rw [Int.natAbs_mul, Int.natAbs_natCast]
       rw [habs, ite_eq_left (dvd_mul_right ℓ _), Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hℓ)]
@@ -266,6 +266,7 @@ theorem ModularCurve.qExpand_image_intFormRatiosC_subset (K : Type*) [Field K]
     (hΓ' : ∀ γ ∈ Γ', ∃ γ₁ ∈ Γ,
       γ₁ 0 0 = γ 0 0 ∧ γ₁ 0 1 = (ℓ : ℤ) * γ 0 1 ∧ (ℓ : ℤ) * γ₁ 1 0 = γ 1 0 ∧ γ₁ 1 1 = γ 1 1) :
     ModularCurve.qExpand K ℓ '' ModularCurve.intFormRatiosC K Γ ⊆
-      ModularCurve.intFormRatiosC K Γ' := _root_.P2MW.S_ModularCurve_qExpand_image_intFormRatiosC_subset.solution K hT ℓ hΓ'
+      ModularCurve.intFormRatiosC K Γ' :=
+  solution K hT ℓ hΓ'
 
 end publicSection

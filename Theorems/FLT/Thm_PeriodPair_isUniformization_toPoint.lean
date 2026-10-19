@@ -78,29 +78,61 @@ namespace Bornology
 p2m_export "Bornology" "IsBounded.subset ext induced IsBounded cobounded"
 end Bornology
 namespace Complex
-p2m_export "Complex" "re lift differentiableOn_compl_singleton_and_continuousAt_iff rank_real_complex exists ext I"
+p2m_export "Complex" "re lift differentiableOn_compl_singleton_and_continuousAt_iff \
+  rank_real_complex exists ext I"
 end Complex
 namespace Filter
-p2m_export "Filter" "NeBot Tendsto inter_mem IsBounded sets tendsto_atTop_mono atTop Tendsto.congr' tendsto_inv₀_cobounded eventually_of_mem tendsto_atTop_add_const_right codiscrete map"
+p2m_export "Filter" "NeBot Tendsto inter_mem IsBounded sets tendsto_atTop_mono atTop \
+  Tendsto.congr' tendsto_inv₀_cobounded eventually_of_mem tendsto_atTop_add_const_right codiscrete \
+  map"
 end Filter
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 end PeriodPair
 namespace Set
-p2m_export "Set" "mem_diff preimage countable_coe_iff mem_compl_iff image ext preimage_compl compl_union mem_singleton_iff nonempty_compl compl_setOf diff_subset mem_inter inter_subset_left EqOn countable_range mem_inter_iff mem_ofPred_eq mem_preimage range"
+p2m_export "Set" "mem_diff preimage countable_coe_iff mem_compl_iff image ext preimage_compl \
+  compl_union mem_singleton_iff nonempty_compl compl_setOf diff_subset mem_inter inter_subset_left \
+  EqOn countable_range mem_inter_iff mem_ofPred_eq mem_preimage range"
 end Set
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.negAddY reduction toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some j"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map a₄ a₂ a₆ \
+  Affine.Point.some Affine.Point.some.injEq Affine.negAddY reduction toAffine Affine.Point \
+  Affine.addX Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Point.add_of_X_ne \
+  Affine.equation_iff Affine.Point.neg_some j"
 end WeierstrassCurve
 
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
-p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -113,7 +145,8 @@ private theorem _root_.PeriodPair.kw_countable_lattice : (L.lattice : Set ℂ).C
 
 p2m_export "PeriodPair" "kw_countable_lattice"
 
-private theorem _root_.PeriodPair.kw_isPreconnected_compl_lattice : IsPreconnected (L.lattice : Set ℂ)ᶜ := by
+private theorem _root_.PeriodPair.kw_isPreconnected_compl_lattice :
+    IsPreconnected (L.lattice : Set ℂ)ᶜ := by
   have hrank : 1 < Module.rank ℝ ℂ := by simp [Complex.rank_real_complex]
   have hpath : IsPathConnected (L.lattice : Set ℂ)ᶜ :=
     L.kw_countable_lattice.isPathConnected_compl_of_one_lt_rank hrank
@@ -121,7 +154,8 @@ private theorem _root_.PeriodPair.kw_isPreconnected_compl_lattice : IsPreconnect
 
 p2m_export "PeriodPair" "kw_isPreconnected_compl_lattice"
 
-private theorem _root_.PeriodPair.kw_compl_lattice_mem_nhdsNE_zero : (L.lattice : Set ℂ)ᶜ ∈ 𝓝[≠] (0 : ℂ) := by
+private theorem _root_.PeriodPair.kw_compl_lattice_mem_nhdsNE_zero :
+    (L.lattice : Set ℂ)ᶜ ∈ 𝓝[≠] (0 : ℂ) := by
   have hcl : IsClosed ((L.lattice : Set ℂ) \ {0}) :=
     L.isClosed_of_subset_lattice Set.sdiff_subset
   have hopen : ((L.lattice : Set ℂ) \ {0})ᶜ ∈ 𝓝 (0 : ℂ) :=
@@ -131,7 +165,8 @@ private theorem _root_.PeriodPair.kw_compl_lattice_mem_nhdsNE_zero : (L.lattice 
 
 p2m_export "PeriodPair" "kw_compl_lattice_mem_nhdsNE_zero"
 
-private theorem _root_.PeriodPair.kw_weierstrassP_not_eventually_const {c : ℂ} (hc : c ∉ L.lattice) (e : ℂ) :
+private theorem _root_.PeriodPair.kw_weierstrassP_not_eventually_const {c : ℂ} (hc : c ∉ L.lattice)
+    (e : ℂ) :
     ¬ ℘[L] =ᶠ[𝓝 c] fun _ => e := by
   intro hconst
   have hEq : Set.EqOn ℘[L] (fun _ => e) (L.lattice : Set ℂ)ᶜ :=
@@ -152,7 +187,8 @@ private theorem _root_.PeriodPair.kw_weierstrassP_not_eventually_const {c : ℂ}
 
 p2m_export "PeriodPair" "kw_weierstrassP_not_eventually_const"
 
-private theorem _root_.PeriodPair.kw_analyticOrderAt_weierstrassP_sub_self_ne_top {c : ℂ} (hc : c ∉ L.lattice) :
+private theorem _root_.PeriodPair.kw_analyticOrderAt_weierstrassP_sub_self_ne_top {c : ℂ}
+    (hc : c ∉ L.lattice) :
     analyticOrderAt (fun z => ℘[L] z - ℘[L] c) c ≠ ⊤ := by
   rw [Ne, analyticOrderAt_eq_top]
   exact fun h => L.kw_weierstrassP_not_eventually_const hc (℘[L] c)
@@ -160,7 +196,8 @@ private theorem _root_.PeriodPair.kw_analyticOrderAt_weierstrassP_sub_self_ne_to
 
 p2m_export "PeriodPair" "kw_analyticOrderAt_weierstrassP_sub_self_ne_top"
 
-private theorem _root_.PeriodPair.kw_analyticOrderAt_derivWeierstrassP {c : ℂ} (hc : c ∉ L.lattice) :
+private theorem _root_.PeriodPair.kw_analyticOrderAt_derivWeierstrassP {c : ℂ} (hc : c ∉ L.lattice)
+    :
     analyticOrderAt ℘'[L] c + 1 = analyticOrderAt (fun z => ℘[L] z - ℘[L] c) c := by
   have hP : AnalyticAt ℂ ℘[L] c := L.analyticOnNhd_weierstrassP c hc
   simpa [L.deriv_weierstrassP] using hP.analyticOrderAt_deriv_add_one
@@ -173,19 +210,33 @@ end
 
 section
 
-p2m_open "Complex P2MW.S_PeriodPair_isUniformization_toPoint.Complex Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
+p2m_open "Complex P2MW.S_PeriodPair_isUniformization_toPoint.Complex Filter \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
 p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
 section Liouville
 
-private theorem _root_.PeriodPair.sub_fract_mem_lattice (z : ℂ) : z - ZSpan.fract L.basis z ∈ L.lattice := by
+private theorem _root_.PeriodPair.sub_fract_mem_lattice (z : ℂ) :
+    z - ZSpan.fract L.basis z ∈ L.lattice := by
   rw [L.lattice_eq_span_range_basis]
   have h := (ZSpan.fract_eq_fract L.basis (ZSpan.fract L.basis z) z).mp
     (by rw [ZSpan.fract_eq_self.mpr (ZSpan.fract_mem_fundamentalDomain L.basis z)])
@@ -213,7 +264,8 @@ end Liouville
 
 section ToPoint
 
-private theorem _root_.PeriodPair.toPoint_add_mem (h : L.DiscriminantNeZero) (z : ℂ) {l : ℂ} (hl : l ∈ L.lattice) :
+private theorem _root_.PeriodPair.toPoint_add_mem (h : L.DiscriminantNeZero) (z : ℂ) {l : ℂ}
+    (hl : l ∈ L.lattice) :
     L.toPoint h (z + l) = L.toPoint h z := by
   by_cases hz : z ∈ L.lattice
   · rw [L.toPoint_of_mem h hz, L.toPoint_of_mem h (add_mem hz hl)]
@@ -254,11 +306,24 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
-p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -277,7 +342,8 @@ private theorem _root_.PeriodPair.kw_exists_derivWeierstrassP_ne_zero :
 
 p2m_export "PeriodPair" "kw_exists_derivWeierstrassP_ne_zero"
 
-private theorem _root_.PeriodPair.kw_two_mul_deriv_derivWeierstrassP_mul {z : ℂ} (hz : z ∉ L.lattice) :
+private theorem _root_.PeriodPair.kw_two_mul_deriv_derivWeierstrassP_mul {z : ℂ}
+    (hz : z ∉ L.lattice) :
     2 * ℘'[L] z * deriv ℘'[L] z = (12 * ℘[L] z ^ 2 - L.g₂) * ℘'[L] z := by
   have hP : DifferentiableAt ℂ ℘[L] z := (L.analyticOnNhd_weierstrassP z hz).differentiableAt
   have hP' : DifferentiableAt ℂ ℘'[L] z := (L.analyticOnNhd_derivWeierstrassP z hz).differentiableAt
@@ -341,11 +407,26 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
-p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set Bornology P2MW.S_PeriodPair_isUniformization_toPoint.Bornology Complex P2MW.S_PeriodPair_isUniformization_toPoint.Complex"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set Bornology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Bornology Complex \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Complex"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -366,7 +447,8 @@ private theorem _root_.PeriodPair.kw_tendsto_weierstrassP_cobounded {l : ℂ} (h
 
 p2m_export "PeriodPair" "kw_tendsto_weierstrassP_cobounded"
 
-private theorem _root_.PeriodPair.kw_weierstrassP_surjective (x₀ : ℂ) : ∃ z, z ∉ L.lattice ∧ ℘[L] z = x₀ := by
+private theorem _root_.PeriodPair.kw_weierstrassP_surjective (x₀ : ℂ) :
+    ∃ z, z ∉ L.lattice ∧ ℘[L] z = x₀ := by
   by_contra! hno
   classical
   let G : ℂ → ℂ := fun z => if z ∈ L.lattice then 0 else (℘[L] z - x₀)⁻¹
@@ -461,11 +543,24 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
-p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair) {w : ℂ}
@@ -517,7 +612,8 @@ private def _root_.PeriodPair.kwAddCoreE₂ (w : ℂ) (z : ℂ) : ℂ :=
 
 p2m_export "PeriodPair" "kwAddCoreE₂"
 
-private theorem _root_.PeriodPair.kw_analyticAt_addCoreE (hw : w ∉ L.lattice) : AnalyticAt ℂ (L.kwAddCoreE w) 0 := by
+private theorem _root_.PeriodPair.kw_analyticAt_addCoreE (hw : w ∉ L.lattice) :
+    AnalyticAt ℂ (L.kwAddCoreE w) 0 := by
   unfold kwAddCoreE
   have hP := L.kw_analyticAt_weierstrassP_add_zero hw
   fun_prop
@@ -564,7 +660,6 @@ private theorem _root_.PeriodPair.kw_deriv_addCoreE_zero : deriv (L.kwAddCoreE w
 
 p2m_export "PeriodPair" "kw_deriv_addCoreE_zero"
 omit hw in
-
 private theorem _root_.PeriodPair.kw_hasDerivAt_addCoreE₁ {z : ℂ} (hz : z + w ∉ L.lattice) :
     HasDerivAt (L.kwAddCoreE₁ w)
       (4 * deriv ℘'[L] (z + w)
@@ -600,7 +695,8 @@ private theorem _root_.PeriodPair.kw_deriv2_addCoreE_eqNhds :
 
 p2m_export "PeriodPair" "kw_deriv2_addCoreE_eqNhds"
 
-private theorem _root_.PeriodPair.kw_deriv2_addCoreE_zero : deriv (deriv (L.kwAddCoreE w)) 0 = 0 := by
+private theorem _root_.PeriodPair.kw_deriv2_addCoreE_zero :
+    deriv (deriv (L.kwAddCoreE w)) 0 = 0 := by
   rw [(L.kw_deriv2_addCoreE_eqNhds hw).eq_of_nhds]
   simp only [kwAddCoreE₂, zero_add, mul_zero, zero_mul, add_zero]
   rw [L.kw_deriv_derivWeierstrassP hw]
@@ -608,7 +704,6 @@ private theorem _root_.PeriodPair.kw_deriv2_addCoreE_zero : deriv (deriv (L.kwAd
 
 p2m_export "PeriodPair" "kw_deriv2_addCoreE_zero"
 omit hw in
-
 private theorem _root_.PeriodPair.kw_hasDerivAt_addCoreE₂ {z : ℂ} (hz : z + w ∉ L.lattice) :
     HasDerivAt (L.kwAddCoreE₂ w)
       (4 * deriv (deriv ℘'[L]) (z + w)
@@ -651,7 +746,8 @@ private theorem _root_.PeriodPair.kw_deriv3_addCoreE_eqNhds :
 
 p2m_export "PeriodPair" "kw_deriv3_addCoreE_eqNhds"
 
-private theorem _root_.PeriodPair.kw_deriv3_addCoreE_zero : deriv (deriv (deriv (L.kwAddCoreE w))) 0 = 0 := by
+private theorem _root_.PeriodPair.kw_deriv3_addCoreE_zero :
+    deriv (deriv (deriv (L.kwAddCoreE w))) 0 = 0 := by
   rw [(L.kw_deriv3_addCoreE_eqNhds hw).eq_of_nhds]
   simp only [zero_add, mul_zero, zero_mul, add_zero]
   rw [L.kw_deriv2_derivWeierstrassP hw]
@@ -681,11 +777,24 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
-p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair) {w : ℂ}
@@ -782,7 +891,8 @@ private theorem _root_.PeriodPair.kw_addΦ_diffEq {z : ℂ} (hz : z ∉ L.lattic
 
 p2m_export "PeriodPair" "kw_addΦ_diffEq"
 
-private theorem _root_.PeriodPair.kw_addBridge_identity {z : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
+private theorem _root_.PeriodPair.kw_addBridge_identity {z : ℂ} (hz : z ∉ L.lattice)
+    (hw : w ∉ L.lattice)
     (hz0 : z ≠ 0) :
     z ^ 4 * L.kwAddΦ w z = L.kwAddCoreE w z + L.kwAddBridgeR w z := by
   have hPz : ℘[L] z = (z ^ 2)⁻¹ + L.weierstrassPExcept (0 : ℂ) z := by
@@ -815,16 +925,32 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
-p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set Complex P2MW.S_PeriodPair_isUniformization_toPoint.Complex WeierstrassCurve P2MW.S_PeriodPair_isUniformization_toPoint.WeierstrassCurve"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Set Complex \
+  P2MW.S_PeriodPair_isUniformization_toPoint.Complex WeierstrassCurve \
+  P2MW.S_PeriodPair_isUniformization_toPoint.WeierstrassCurve"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair) {w : ℂ}
 
-private def _root_.PeriodPair.kwAddΦDomain (w : ℂ) : Set ℂ := {z | z ∉ L.lattice ∧ z + w ∉ L.lattice}
+private def _root_.PeriodPair.kwAddΦDomain (w : ℂ) :
+    Set ℂ := {z | z ∉ L.lattice ∧ z + w ∉ L.lattice}
 
 p2m_export "PeriodPair" "kwAddΦDomain"
 private theorem _root_.PeriodPair.kw_isOpen_addΦDomain : IsOpen (L.kwAddΦDomain w) :=
@@ -855,7 +981,8 @@ private theorem _root_.PeriodPair.kw_analyticAt_weierstrassP_add {z : ℂ} (hzw 
 
 p2m_export "PeriodPair" "kw_analyticAt_weierstrassP_add"
 
-private theorem _root_.PeriodPair.kw_analyticAt_derivWeierstrassP_add {z : ℂ} (hzw : z + w ∉ L.lattice) :
+private theorem _root_.PeriodPair.kw_analyticAt_derivWeierstrassP_add {z : ℂ}
+    (hzw : z + w ∉ L.lattice) :
     AnalyticAt ℂ (fun u => ℘'[L] (u + w)) z := by
   have hd : DifferentiableOn ℂ (fun u => ℘'[L] (u + w)) {u : ℂ | u + w ∉ L.lattice} := fun u hu =>
     ((L.analyticOnNhd_derivWeierstrassP (u + w) hu).differentiableAt.comp u
@@ -865,7 +992,8 @@ private theorem _root_.PeriodPair.kw_analyticAt_derivWeierstrassP_add {z : ℂ} 
 
 p2m_export "PeriodPair" "kw_analyticAt_derivWeierstrassP_add"
 
-private theorem _root_.PeriodPair.kw_analyticOnNhd_addΦ : AnalyticOnNhd ℂ (L.kwAddΦ w) (L.kwAddΦDomain w) := by
+private theorem _root_.PeriodPair.kw_analyticOnNhd_addΦ :
+    AnalyticOnNhd ℂ (L.kwAddΦ w) (L.kwAddΦDomain w) := by
   intro z ⟨hz, hzw⟩
   have hP := L.analyticOnNhd_weierstrassP z hz
   have hP' := L.analyticOnNhd_derivWeierstrassP z hz
@@ -940,7 +1068,8 @@ private theorem _root_.PeriodPair.kw_addΦ_removable_at_neg (hw : w ∉ L.lattic
 
 p2m_export "PeriodPair" "kw_addΦ_removable_at_neg"
 
-private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.lattice) (h2w : 2 * w ∉ L.lattice)
+private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.lattice)
+    (h2w : 2 * w ∉ L.lattice)
     {H : ℂ → ℂ} (hHan : AnalyticOnNhd ℂ H (L.kwAddΦDomain w))
     (hHper : ∀ l ∈ L.lattice, ∀ z, H (z + l) = H z)
     (hH0 : ∃ B, AnalyticAt ℂ B (0 : ℂ) ∧ H =ᶠ[𝓝[≠] (0 : ℂ)] B)
@@ -1055,7 +1184,8 @@ private theorem _root_.PeriodPair.kw_addΦ_eq_zero (hw : w ∉ L.lattice) (h2w :
 
 p2m_export "PeriodPair" "kw_addΦ_eq_zero"
 
-private theorem _root_.PeriodPair.kw_weierstrassP_add_eq_addX (hw : w ∉ L.lattice) (h2w : 2 * w ∉ L.lattice)
+private theorem _root_.PeriodPair.kw_weierstrassP_add_eq_addX (hw : w ∉ L.lattice)
+    (h2w : 2 * w ∉ L.lattice)
     {z : ℂ} (hz : z ∉ L.lattice) (hzw : z + w ∉ L.lattice) (hne : ℘[L] z ≠ ℘[L] w) :
     ℘[L] (z + w) = L.weierstrassCurve.toAffine.addX (℘[L] z) (℘[L] w)
       (L.weierstrassCurve.toAffine.slope (℘[L] z) (℘[L] w) (℘'[L] z / 2) (℘'[L] w / 2)) := by
@@ -1087,7 +1217,8 @@ private theorem _root_.PeriodPair.kw_addΨ_self_eq_zero : L.kwAddΨ w w = 0 := b
 
 p2m_export "PeriodPair" "kw_addΨ_self_eq_zero"
 
-private theorem _root_.PeriodPair.kw_analyticOnNhd_addΨ : AnalyticOnNhd ℂ (L.kwAddΨ w) (L.kwAddΦDomain w) := by
+private theorem _root_.PeriodPair.kw_analyticOnNhd_addΨ :
+    AnalyticOnNhd ℂ (L.kwAddΨ w) (L.kwAddΦDomain w) := by
   intro z ⟨hz, hzw⟩
   have hP := L.analyticOnNhd_weierstrassP z hz
   have hP' := L.analyticOnNhd_derivWeierstrassP z hz
@@ -1098,7 +1229,8 @@ private theorem _root_.PeriodPair.kw_analyticOnNhd_addΨ : AnalyticOnNhd ℂ (L.
 
 p2m_export "PeriodPair" "kw_analyticOnNhd_addΨ"
 
-private theorem _root_.PeriodPair.kw_addΨ_neg_sub (z : ℂ) : L.kwAddΨ w (-z - w) = -L.kwAddΨ w z := by
+private theorem _root_.PeriodPair.kw_addΨ_neg_sub (z : ℂ) :
+    L.kwAddΨ w (-z - w) = -L.kwAddΨ w z := by
   unfold kwAddΨ
   rw [show -z - w + w = -z from by ring, L.weierstrassP_neg, L.derivWeierstrassP_neg,
     show -z - w = -(z + w) from by ring, L.weierstrassP_neg, L.derivWeierstrassP_neg]
@@ -1255,7 +1387,8 @@ private theorem _root_.PeriodPair.kw_addΨ_eq_zero (hw : w ∉ L.lattice) (h2w :
 
 p2m_export "PeriodPair" "kw_addΨ_eq_zero"
 
-private theorem _root_.PeriodPair.kw_derivWeierstrassP_add_eq_addY (hw : w ∉ L.lattice) (h2w : 2 * w ∉ L.lattice)
+private theorem _root_.PeriodPair.kw_derivWeierstrassP_add_eq_addY (hw : w ∉ L.lattice)
+    (h2w : 2 * w ∉ L.lattice)
     {z : ℂ} (hz : z ∉ L.lattice) (hzw : z + w ∉ L.lattice) (hne : ℘[L] z ≠ ℘[L] w) :
     ℘'[L] (z + w) / 2 = L.weierstrassCurve.toAffine.addY (℘[L] z) (℘[L] w) (℘'[L] z / 2)
       (L.weierstrassCurve.toAffine.slope (℘[L] z) (℘[L] w) (℘'[L] z / 2) (℘'[L] w / 2)) := by
@@ -1403,7 +1536,18 @@ end
 noncomputable section
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice \
+  derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept \
+  analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe \
+  order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ \
+  weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept \
+  deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP \
+  derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice \
+  derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ \
+  weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero \
+  toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex \
+  discriminant_ne_zero"
 p2m_open "PeriodPair"
 
 private theorem _root_.PeriodPair.kw_isUniformization (L : PeriodPair) :
@@ -1429,6 +1573,7 @@ end privateSection
 public section publicSection
 
 theorem PeriodPair.isUniformization_toPoint (L : PeriodPair) (h : L.DiscriminantNeZero) :
-    L.IsUniformization h := _root_.P2MW.S_PeriodPair_isUniformization_toPoint.solution L h
+    L.IsUniformization h :=
+  solution L h
 
 end publicSection

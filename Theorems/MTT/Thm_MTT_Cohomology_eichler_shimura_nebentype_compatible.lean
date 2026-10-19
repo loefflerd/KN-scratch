@@ -249,7 +249,8 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have hj' := Finset.mem_range.mp hj
   rw [monomial_binaryExponent, act_eq_actAlg, map_mul, map_mul, map_pow, map_pow, actAlg_C,
     MvPolynomial.mem_homogeneousSubmodule]
-  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
+  have :=
+    ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
     ((actAlg_X_isHomogeneous γ 0).pow j)).mul ((actAlg_X_isHomogeneous γ 1).pow (n - j))
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
@@ -279,10 +280,14 @@ def conjRefl {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) : CongruenceSubgroup.G
       change ((-(γ.val 1 0) : ℤ) : ZMod N) = 0
       rw [Int.cast_neg, CongruenceSubgroup.Gamma0_mem.mp γ.2, neg_zero])⟩
 
-lemma conjRefl_00 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) : (conjRefl γ).val 0 0 = γ.val 0 0 := rfl
-lemma conjRefl_01 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) : (conjRefl γ).val 0 1 = -γ.val 0 1 := rfl
-lemma conjRefl_10 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) : (conjRefl γ).val 1 0 = -γ.val 1 0 := rfl
-lemma conjRefl_11 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) : (conjRefl γ).val 1 1 = γ.val 1 1 := rfl
+lemma conjRefl_00 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) :
+    (conjRefl γ).val 0 0 = γ.val 0 0 := rfl
+lemma conjRefl_01 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) :
+    (conjRefl γ).val 0 1 = -γ.val 0 1 := rfl
+lemma conjRefl_10 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) :
+    (conjRefl γ).val 1 0 = -γ.val 1 0 := rfl
+lemma conjRefl_11 {N : ℕ} (γ : CongruenceSubgroup.Gamma0 N) :
+    (conjRefl γ).val 1 1 = γ.val 1 1 := rfl
 
 lemma refl_mul_refl : (!![-1, 0; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) * !![-1, 0; 0, 1] = 1 := by
   ext i j
@@ -353,7 +358,7 @@ lemma cuspAct_mul (γ δ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (x : Cusp) :
 
 /-- The class of `g` at `(∞, s)` is the cusp primitive, and the cocycle relation. -/
 lemma class_eq_primitive {N k : ℕ} (hk : 2 ≤ k) (g : CuspForm (MTT.GammaOne N) (k : ℤ))
-    (φ : Hc N (k-2) ℂ) (hφ : IntegralClass g φ) (x y : Cusp) :
+    (φ : Hc N (k - 2) ℂ) (hφ : IntegralClass g φ) (x y : Cusp) :
     φ.val (x, y) = cuspPrimitive g y - cuspPrimitive g x := by
   obtain ⟨hsym, hcocy, -⟩ := φ.2
   have hval : ∀ s : Cusp, φ.val (OnePoint.infty, s) = cuspPrimitive g s := by
@@ -368,7 +373,7 @@ lemma class_eq_primitive {N k : ℕ} (hk : 2 ≤ k) (g : CuspForm (MTT.GammaOne 
   rw [← hval y, ← hval x, ← this]; abel
 
 lemma transport_holo {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (g g' : CuspForm (MTT.GammaOne N) (k : ℤ))
     (γ : CongruenceSubgroup.Gamma0 N)
     (hg' : ∀ z : UpperHalfPlane,
@@ -382,7 +387,7 @@ lemma transport_holo {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
   abel
 
 lemma transport_refl {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (h h' : CuspForm (MTT.GammaOne N) (k : ℤ))
     (γ : CongruenceSubgroup.Gamma0 N)
     (hh' : ∀ z : UpperHalfPlane,
@@ -450,10 +455,10 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f))
     (g h : CuspForm (MTT.GammaOne N) (k : ℤ)) (Φ : Cusp → Binary ℂ)
-    (hΦ : IsBoundaryDatum N (k-2) Φ) (e : ZMod N → ℂ)
+    (hΦ : IsBoundaryDatum N (k - 2) Φ) (e : ZMod N → ℂ)
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       ((I g).val + reflection (I h).val + boundaryCochain Φ) (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) •
@@ -526,10 +531,10 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.eichler_shimura_nebentype_compatible
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f))
     (g h : CuspForm (MTT.GammaOne N) (k : ℤ)) (Φ : Cusp → Binary ℂ)
-    (hΦ : IsBoundaryDatum N (k-2) Φ) (e : ZMod N → ℂ)
+    (hΦ : IsBoundaryDatum N (k - 2) Φ) (e : ZMod N → ℂ)
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       ((I g).val + reflection (I h).val + boundaryCochain Φ) (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) •

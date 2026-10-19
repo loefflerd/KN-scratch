@@ -67,7 +67,8 @@ open scoped MatrixGroups
 open UpperHalfPlane Filter Topology
 
 namespace ModularCurve
-p2m_export "ModularCurve" "HasEquivariantPrimitiveOf periodMapOf periodMapOf_def period Period.parabolicHoms"
+p2m_export "ModularCurve" "HasEquivariantPrimitiveOf periodMapOf periodMapOf_def period \
+  Period.parabolicHoms"
 namespace PeriodMapParabolicOf
 p2m_open "ModularCurve"
 
@@ -121,7 +122,8 @@ theorem isParabolicHom_periodHom {Γ : Subgroup SL(2, ℤ)} {f : CuspForm Γ 2} 
     (hF : ModularCurve.HasEquivariantPrimitiveOf Γ f F) :
     IsParabolicHom Γ hF.2.2.1.periodHom := by
   intro γ hγ
-  obtain ⟨ε, δ, n, hε, hγeq⟩ := ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
+  obtain ⟨ε, δ, n, hε, hγeq⟩ :=
+    ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
   obtain ⟨L, hL⟩ := hF.2.2.2 δ
   have hmem : ε * (δ * ModularGroup.T ^ n * δ⁻¹) ∈ Γ := by rw [← hγeq]; exact γ.2
   have hγ' : γ = ⟨_, hmem⟩ := Subtype.ext hγeq
@@ -157,6 +159,7 @@ public section publicSection
 
 open scoped MatrixGroups
 theorem ModularCurve.periodMapOf_mem_parabolicHoms (Γ : Subgroup SL(2, ℤ)) (f : CuspForm Γ 2) :
-    ModularCurve.periodMapOf Γ f ∈ ModularCurve.Period.parabolicHoms ℂ Γ ℂ := _root_.P2MW.S_ModularCurve_periodMapOf_mem_parabolicHoms.solution Γ f
+    ModularCurve.periodMapOf Γ f ∈ ModularCurve.Period.parabolicHoms ℂ Γ ℂ :=
+  solution Γ f
 
 end publicSection

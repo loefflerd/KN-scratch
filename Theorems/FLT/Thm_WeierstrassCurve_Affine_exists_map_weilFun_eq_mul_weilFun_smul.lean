@@ -80,7 +80,8 @@ theorem smul_point_ne_zero (σ : K ≃ₐ[F] K) {P : (W⁄K).Point} (hP : P ≠ 
   apply hP
   have : σ • (0 : (W⁄K).Point) = 0 := smul_zero σ
   rw [← this] at h
-  exact Point.map_injective _ (by rw [Point.algEquiv_smul_def, Point.algEquiv_smul_def] at h; exact h)
+  exact Point.map_injective _ (by rw [Point.algEquiv_smul_def,
+    Point.algEquiv_smul_def] at h; exact h)
 
 omit [IsAlgClosed K] [W.IsElliptic] in
 theorem smul_point_eq_iff (σ : K ≃ₐ[F] K) {P Q : (W⁄K).Point} : σ • P = σ • Q ↔ P = Q :=
@@ -88,10 +89,11 @@ theorem smul_point_eq_iff (σ : K ≃ₐ[F] K) {P Q : (W⁄K).Point} : σ • P 
     (by rw [Point.algEquiv_smul_def, Point.algEquiv_smul_def] at h; exact h), fun h => by rw [h]⟩
 
 omit [DecidableEq K] in
-theorem exists_eq_algebraMap [DecidableEq K] [IsDedekindDomain (W⁄K).CoordinateRing]
+theorem exists_eq_algebraMap [IsDedekindDomain (W⁄K).CoordinateRing]
     {f : (W⁄K).FunctionField}
     (hf : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (placeOf W K P hP).valuation (W⁄K).FunctionField f = 1) :
     ∃ c : K, c ≠ 0 ∧ f = algebraMap K (W⁄K).FunctionField c := by
+  classical
   apply WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one (W := W⁄K)
   intro v
   obtain ⟨P, hP, rfl⟩ := placeOf_surjective W K v
@@ -99,7 +101,8 @@ theorem exists_eq_algebraMap [DecidableEq K] [IsDedekindDomain (W⁄K).Coordinat
 
 end WeilGal
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) : ∃ c : Kˣ, Φ (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n (σ • T) := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) :
+    ∃ c : Kˣ, Φ (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n (σ • T) := by
   have hσT : (n : ℤ) • (σ • T) = 0 := by rw [← Point.algEquiv_smul_zsmul, hT, smul_zero]
   have hg0 := WeierstrassCurve.Affine.weilFun_ne_zero W hn hσT
   suffices h : ∃ c : K, c ≠ 0 ∧ Φ (weilFun W K n T) / weilFun W K n (σ • T) = algebraMap K _ c by
@@ -140,6 +143,8 @@ open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) : ∃ c : Kˣ, Φ (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n (σ • T) := _root_.P2MW.S_WeierstrassCurve_Affine_exists_map_weilFun_eq_mul_weilFun_smul.solution W hn σ Φ hΦ hT
+theorem WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) :
+    ∃ c : Kˣ, Φ (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n (σ • T) :=
+  solution W hn σ Φ hΦ hT
 
 end publicSection

@@ -149,7 +149,7 @@ lemma rational_translate_integrable
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (GammaOne N) (k : ℤ)) (r : ℚ) (j : ℕ) :
     IntegrableOn (fun t : ℝ =>
-      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ)^j) (Set.Ioi 0) := by
+      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ) ^ j) (Set.Ioi 0) := by
   let : NeZero N := ⟨by omega⟩
   let g : GL (Fin 2) ℚ := Matrix.GeneralLinearGroup.upperRightHom r
   let gr : GL (Fin 2) ℝ := g.map (Rat.castHom ℝ)

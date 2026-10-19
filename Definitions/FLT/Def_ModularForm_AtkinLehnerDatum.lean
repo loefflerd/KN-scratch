@@ -82,14 +82,12 @@ variable {M q : ℕ} (W : AtkinLehnerDatum M q)
 lemma hM_int : (M : ℤ) = (q : ℤ) * (W.R : ℤ) := by exact_mod_cast W.hM
 
 include W in
-
 lemma q_pos [NeZero M] : 0 < q := by
   rcases Nat.eq_zero_or_pos q with h | h
   · exact absurd (W.hM.trans (Nat.mul_eq_zero.mpr (Or.inl h))) (NeZero.ne M)
   · exact h
 
 include W in
-
 lemma R_pos [NeZero M] : 0 < W.R := by
   rcases Nat.eq_zero_or_pos W.R with h | h
   · exact absurd (W.hM.trans (Nat.mul_eq_zero.mpr (Or.inr h))) (NeZero.ne M)
@@ -113,15 +111,15 @@ theorem mat_sq : W.mat * W.mat = (q : ℤ) • W.sqUnit := by
   rw [mat, sqUnit, Matrix.mul_fin_two]
   refine Matrix.ext fun i j => ?_
   fin_cases i <;> fin_cases j
-  · show (q : ℤ) * W.a * ((q : ℤ) * W.a) + W.b * ((q : ℤ) * (W.R : ℤ))
+  · change (q : ℤ) * W.a * ((q : ℤ) * W.a) + W.b * ((q : ℤ) * (W.R : ℤ))
       = (q : ℤ) * ((q : ℤ) * W.a ^ 2 + (W.R : ℤ) * W.b)
     ring
-  · show (q : ℤ) * W.a * W.b + W.b * (q : ℤ) = (q : ℤ) * (W.b * (W.a + 1))
+  · change (q : ℤ) * W.a * W.b + W.b * (q : ℤ) = (q : ℤ) * (W.b * (W.a + 1))
     ring
-  · show (q : ℤ) * (W.R : ℤ) * ((q : ℤ) * W.a) + (q : ℤ) * ((q : ℤ) * (W.R : ℤ))
+  · change (q : ℤ) * (W.R : ℤ) * ((q : ℤ) * W.a) + (q : ℤ) * ((q : ℤ) * (W.R : ℤ))
       = (q : ℤ) * ((q : ℤ) * (W.R : ℤ) * (W.a + 1))
     ring
-  · show (q : ℤ) * (W.R : ℤ) * W.b + (q : ℤ) * (q : ℤ)
+  · change (q : ℤ) * (W.R : ℤ) * W.b + (q : ℤ) * (q : ℤ)
       = (q : ℤ) * ((W.R : ℤ) * W.b + (q : ℤ))
     ring
 
@@ -135,7 +133,7 @@ def sqUnitSL : SL(2, ℤ) := ⟨W.sqUnit, W.det_sqUnit⟩
 
 lemma sqUnitSL_mem : W.sqUnitSL ∈ Gamma0 M := by
   rw [Gamma0_mem]
-  show (((W.sqUnit 1 0 : ℤ) : ZMod M) = 0)
+  change (((W.sqUnit 1 0 : ℤ) : ZMod M) = 0)
   have h : W.sqUnit 1 0 = (M : ℤ) * (W.a + 1) := by
     rw [sqUnit, W.hM_int]; simp
   rw [h]
@@ -181,9 +179,9 @@ def alGLQ [NeZero M] : GL (Fin 2) ℚ :=
 
 lemma alGLQ_map_castHom [NeZero M] : (W.alGLQ).map (Rat.castHom ℝ) = W.alGL := by
   apply Units.ext
-  show (Rat.castHom ℝ).mapMatrix ((W.alGLQ : Matrix (Fin 2) (Fin 2) ℚ))
+  change (Rat.castHom ℝ).mapMatrix ((W.alGLQ : Matrix (Fin 2) (Fin 2) ℚ))
       = (W.alGL : Matrix (Fin 2) (Fin 2) ℝ)
-  show (Rat.castHom ℝ).mapMatrix ((W.mat).map (algebraMap ℤ ℚ))
+  change (Rat.castHom ℝ).mapMatrix ((W.mat).map (algebraMap ℤ ℚ))
       = (W.mat).map (algebraMap ℤ ℝ)
   rw [RingHom.mapMatrix_apply, Matrix.map_map]
   congr 1

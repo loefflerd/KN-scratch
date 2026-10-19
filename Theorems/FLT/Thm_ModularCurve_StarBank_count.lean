@@ -223,7 +223,6 @@ example : ¬ ∃ β₀ : Kbar2, (∀ β : Kbar2, (X ^ 2 - X : Polynomial Kbar2).
   exact one_ne_zero ((huniq 1 h1).trans (huniq 0 h0).symm)
 
 open Polynomial in
-
 theorem solution {K : Type*} [Field K] [IsAlgClosed K] {p : ℕ}
     (hp0 : (p : K) ≠ 0) (hp2 : 2 ≤ p) {R G : Polynomial K} (hR : R.Monic)
     (hRdeg : R.natDegree = p) (hG : 0 < G.natDegree) {c : K} (hc : c ≠ 0)
@@ -247,6 +246,7 @@ theorem ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgClosed K] {p : �
     (hRdeg : R.natDegree = p) (hG : 0 < G.natDegree) {c : K} (hc : c ≠ 0)
     (hdvd : G.comp R ∣ Polynomial.C c * G ^ (p + 1)) :
     ∃ β₀ : K, (∀ β : K, G.IsRoot β → β = β₀) ∧
-      R = (Polynomial.X - Polynomial.C β₀) ^ p + Polynomial.C β₀ := _root_.P2MW.S_ModularCurve_StarBank_count.solution hp0 hp2 hR hRdeg hG hc hdvd
+      R = (Polynomial.X - Polynomial.C β₀) ^ p + Polynomial.C β₀ :=
+  solution hp0 hp2 hR hRdeg hG hc hdvd
 
 end publicSection

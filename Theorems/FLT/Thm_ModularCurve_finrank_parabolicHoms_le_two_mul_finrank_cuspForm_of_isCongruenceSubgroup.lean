@@ -66,7 +66,9 @@ namespace P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "Period.parabolicHoms finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm"
+p2m_export "ModularCurve" "Period.parabolicHoms \
+  finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal \
+  finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm"
 namespace ESSurjCongruence
 p2m_open "ModularCurve"
 
@@ -101,6 +103,7 @@ open scoped MatrixGroups
 theorem ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
     (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) :
     Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ Γ ℤ) ≤
-      2 * Module.finrank ℂ (CuspForm Γ 2) := _root_.P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup.solution Γ hΓ
+      2 * Module.finrank ℂ (CuspForm Γ 2) :=
+  solution Γ hΓ
 
 end publicSection

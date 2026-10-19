@@ -100,7 +100,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.mem_iff_adicValuation_le_one {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} :
-    f ∈ v.toValuationSubring ↔ v.adicValuation f ≤ 1 := _root_.P2MW.S_AlgebraicCurve_Place_mem_iff_adicValuation_le_one.solution v
+theorem P2M.Dup.AlgebraicCurve.Place.mem_iff_adicValuation_le_one {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (v : Place K F) {f : F} :
+    f ∈ v.toValuationSubring ↔ v.adicValuation f ≤ 1 :=
+  solution v
 
 end publicSection

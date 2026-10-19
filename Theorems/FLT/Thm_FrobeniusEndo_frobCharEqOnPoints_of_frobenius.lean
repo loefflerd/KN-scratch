@@ -68,9 +68,11 @@ namespace P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_frobenius
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k]
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+    [DecidableEq k]
     [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k]
-    (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
+    (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
+    (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
     (hF : (Fintype.card F).Prime) :
     FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F) := by
   refine FrobeniusEndo.frobCharEqOnPoints_of_line W σ hσ _
@@ -90,6 +92,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.frobCharEqOnPoints_of_frobenius {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) : FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F) := _root_.P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_frobenius.solution W σ hσ hF
+theorem FrobeniusEndo.frobCharEqOnPoints_of_frobenius {R : Type*} [CommRing R] {F : Type*} [Field F]
+    [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k]
+    [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic]
+    (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) :
+    FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F) :=
+  solution W σ hσ hF
 
 end publicSection

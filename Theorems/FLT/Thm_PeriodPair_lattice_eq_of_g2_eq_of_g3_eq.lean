@@ -69,7 +69,11 @@ open Complex Filter Topology
 p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_lattice_eq_of_g2_eq_of_g3_eq.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "analyticAt_weierstrassPExcept isClosed_lattice derivWeierstrassPExcept_sub lattice weierstrassPExcept order_weierstrassP analyticAt_derivWeierstrassPExcept g₃ weierstrassPExcept_add derivWeierstrassP_sq eqOn_deriv_weierstrassPExcept_derivWeierstrassPExcept derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds g₂ analyticOnNhd_weierstrassP"
+p2m_export "PeriodPair" "analyticAt_weierstrassPExcept isClosed_lattice \
+  derivWeierstrassPExcept_sub lattice weierstrassPExcept order_weierstrassP \
+  analyticAt_derivWeierstrassPExcept g₃ weierstrassPExcept_add derivWeierstrassP_sq \
+  eqOn_deriv_weierstrassPExcept_derivWeierstrassPExcept derivWeierstrassPExcept \
+  compl_lattice_diff_singleton_mem_nhds g₂ analyticOnNhd_weierstrassP"
 namespace LatticeFromInvariants
 p2m_open "PeriodPair"
 
@@ -279,7 +283,6 @@ end PeriodPair.LatticeFromInvariants
 end
 
 open PeriodPair.LatticeFromInvariants in
-
 theorem solution (L L' : PeriodPair)
     (h₂ : L.g₂ = L'.g₂) (h₃ : L.g₃ = L'.g₃) : L.lattice = L'.lattice := by
   have heq := eqOn_of_eventuallyEq_zero L L' (eventuallyEq_zero L L' h₂ h₃)
@@ -296,6 +299,8 @@ end privateSection
 public section publicSection
 
 theorem PeriodPair.lattice_eq_of_g2_eq_of_g3_eq (L L' : PeriodPair)
-    (h₂ : L.g₂ = L'.g₂) (h₃ : L.g₃ = L'.g₃) : L.lattice = L'.lattice := _root_.P2MW.S_PeriodPair_lattice_eq_of_g2_eq_of_g3_eq.solution L L' h₂ h₃
+    (h₂ : L.g₂ = L'.g₂) (h₃ : L.g₃ = L'.g₃)
+    : L.lattice = L'.lattice :=
+  solution L L' h₂ h₃
 
 end publicSection

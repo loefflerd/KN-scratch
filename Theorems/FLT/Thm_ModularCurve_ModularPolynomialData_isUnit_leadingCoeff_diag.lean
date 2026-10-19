@@ -60,7 +60,8 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag
 
 theorem solution
-    (N : ℕ) [NeZero N] (h2 : 2 ≤ N) (hN : ¬ IsSquare N) (data : ModularCurve.ModularPolynomialData N) :
+    (N : ℕ) [NeZero N] (h2 : 2 ≤ N) (hN : ¬ IsSquare N)
+    (data : ModularCurve.ModularPolynomialData N) :
     IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=
   (fun _ => ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare N hN data) h2
 
@@ -73,7 +74,9 @@ end privateSection
 public section publicSection
 
 theorem ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag
-    (N : ℕ) [NeZero N] (h2 : 2 ≤ N) (hN : ¬ IsSquare N) (data : ModularCurve.ModularPolynomialData N) :
-    IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff := _root_.P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag.solution N h2 hN data
+    (N : ℕ) [NeZero N] (h2 : 2 ≤ N) (hN : ¬ IsSquare N)
+    (data : ModularCurve.ModularPolynomialData N) :
+    IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=
+  solution N h2 hN data
 
 end publicSection

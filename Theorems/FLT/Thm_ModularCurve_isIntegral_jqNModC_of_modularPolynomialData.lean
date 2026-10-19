@@ -70,14 +70,17 @@ noncomputable section
 open HahnSeries Polynomial IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC jqNModC jqModC_rat map_jqModC qExpand qExpand_coeff_of_not_dvd jq ModularPolynomialData qTwist qTwist_coeff qTwist_one_apply qTwist_qExpand evalAtJ_def EvalSymm coeffMap coeffMap_coeff coeffEmb coeff_jqModC_neg_one coeffMap_qExpand dedekindPsi_prime"
+p2m_export "ModularCurve" "jqModC jqNModC jqModC_rat map_jqModC qExpand qExpand_coeff_of_not_dvd \
+  jq ModularPolynomialData qTwist qTwist_coeff qTwist_one_apply qTwist_qExpand evalAtJ_def \
+  EvalSymm coeffMap coeffMap_coeff coeffEmb coeff_jqModC_neg_one coeffMap_qExpand dedekindPsi_prime"
 p2m_open "ModularCurve"
 namespace SepFibre
 
 section eval
 variable {A B : Type*} [CommRing A] [CommRing B]
 
-def ev (Φ : Polynomial (Polynomial ℤ)) (x y : A) : A := Φ.eval₂ (eval₂RingHom (Int.castRingHom A) x) y
+def ev (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
+    A := Φ.eval₂ (eval₂RingHom (Int.castRingHom A) x) y
 
 theorem aeval_toRingHom_eq [Algebra ℤ A] (x : A) :
     (Polynomial.aeval (R := ℤ) x).toRingHom = eval₂RingHom (Int.castRingHom A) x :=
@@ -89,18 +92,21 @@ theorem ev_eq_evalEval (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
 
 theorem map_ev (φ : A →+* B) (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
     φ (ev Φ x y) = ev Φ (φ x) (φ y) := by
-  rw [ev_eq_evalEval, ev_eq_evalEval, ← map_mapRingHom_evalEval φ, Polynomial.map_map, mapRingHom_comp,
+  rw [ev_eq_evalEval, ev_eq_evalEval, ← map_mapRingHom_evalEval φ, Polynomial.map_map,
+    mapRingHom_comp,
     RingHom.ext_int (φ.comp (Int.castRingHom A)) (Int.castRingHom B)]
 
 theorem ev_eq_aevalAeval (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
     ev Φ x y = aevalAeval x y Φ := by
-  have h : eval₂RingHom (eval₂RingHom (Int.castRingHom A) x) y = (aevalAeval (R := ℤ) x y).toRingHom := by
+  have h : eval₂RingHom (eval₂RingHom (Int.castRingHom A) x) y = (aevalAeval (R := ℤ) x y).toRingHom :=
+    by
     refine Polynomial.ringHom_ext' (Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_) ?_
     · simp
     · simp
   exact RingHom.congr_fun h Φ
 
-theorem ev_swap (Φ : Polynomial (Polynomial ℤ)) (x y : A) : ev (Bivariate.swap Φ) x y = ev Φ y x := by
+theorem ev_swap (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
+    ev (Bivariate.swap Φ) x y = ev Φ y x := by
   rw [ev_eq_aevalAeval, ev_eq_aevalAeval, Bivariate.aevalAeval_swap]
 
 theorem ev_int (Φ : Polynomial (Polynomial ℤ)) (a b : ℤ) : ev Φ a b = Φ.evalEval a b := by
@@ -110,19 +116,22 @@ theorem ev_int (Φ : Polynomial (Polynomial ℤ)) (a b : ℤ) : ev Φ a b = Φ.e
     rw [RingHom.ext_int (Int.castRingHom ℤ) (RingHom.id ℤ)]; exact mapRingHom_id
   rw [h]; exact Polynomial.map_id
 
-theorem ev_sub (Φ Ψ : Polynomial (Polynomial ℤ)) (x y : A) : ev (Φ - Ψ) x y = ev Φ x y - ev Ψ x y := by
+theorem ev_sub (Φ Ψ : Polynomial (Polynomial ℤ)) (x y : A) :
+    ev (Φ - Ψ) x y = ev Φ x y - ev Ψ x y := by
   rw [ev_eq_aevalAeval, map_sub, ← ev_eq_aevalAeval, ← ev_eq_aevalAeval]
 
 end eval
 
-theorem swap_eq_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ) : Bivariate.swap Φ = Φ := by
+theorem swap_eq_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ) :
+    Bivariate.swap Φ = Φ := by
   set G : Polynomial (Polynomial ℤ) := Bivariate.swap Φ - Φ with hG
   have hL : ∀ x y : LaurentSeries ℚ, ev G x y = 0 := fun x y => by
     have hxy := h x y
     rw [aeval_toRingHom_eq, aeval_toRingHom_eq] at hxy
     rw [hG, ev_sub, ev_swap, sub_eq_zero]; exact hxy.symm
   let ι : ℤ →+* LaurentSeries ℚ := (algebraMap ℚ (LaurentSeries ℚ)).comp (Int.castRingHom ℚ)
-  have hι : Function.Injective ι := (algebraMap ℚ (LaurentSeries ℚ)).injective.comp Int.cast_injective
+  have hι : Function.Injective ι :=
+    (algebraMap ℚ (LaurentSeries ℚ)).injective.comp Int.cast_injective
   have hZ : ∀ a b : ℤ, G.evalEval a b = 0 := fun a b => hι (by rw [← ev_int, map_ev, hL, map_zero])
   have h1 : ∀ b : ℤ, G.eval (Polynomial.C b) = 0 := fun b =>
     Polynomial.eq_zero_of_infinite_isRoot _ (Set.infinite_of_injective_forall_mem (f := fun a : ℤ => a)
@@ -132,19 +141,22 @@ theorem swap_eq_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ)
       (f := fun b : ℤ => Polynomial.C b) (fun _ _ h => Polynomial.C_injective h) fun b => h1 b)
   exact sub_eq_zero.mp h2
 
-theorem ev_comm_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ) {A : Type*} [CommRing A] (x y : A) :
+theorem ev_comm_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ) {A : Type*}
+    [CommRing A] (x y : A) :
     ev Φ x y = ev Φ y x := by
   rw [← ev_swap, swap_eq_of_evalSymm h]
 
 section rel
 variable {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
 
-theorem coeffMap_injective {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S} (hf : Function.Injective f) :
+theorem coeffMap_injective {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S}
+    (hf : Function.Injective f) :
     Function.Injective (coeffMap f) := fun x y h => by
   ext k
   exact hf (by rw [← coeffMap_coeff, ← coeffMap_coeff, h])
 
-theorem coeffMap_jqModC {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) : coeffMap f (jqModC R) = jqModC S :=
+theorem coeffMap_jqModC {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) :
+    coeffMap f (jqModC R) = jqModC S :=
   map_jqModC f
 
 theorem coeffMap_jqNModC {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (N : ℕ) [NeZero N] :
@@ -205,23 +217,23 @@ theorem root_succ (b : Fin N) : root K ζ b.succ = qTwist (ζ ^ (b : ℕ)) (jqMo
 
 omit hN in
 include hζ in
-theorem zeta_pow_N : ζ ^ N = 1 := Units.ext (by rw [Units.val_pow_eq_pow_val, Units.val_one]; exact hζ.pow_eq_one)
+theorem zeta_pow_N :
+    ζ ^ N = 1 := Units.ext (by rw [Units.val_pow_eq_pow_val, Units.val_one]; exact hζ.pow_eq_one)
 
 include hsymm hζ in
-
 theorem isRoot_root (i : Fin (N + 1)) : (slice data.Φ (jqNModC K N)).IsRoot (root K ζ i) := by
   rw [Polynomial.IsRoot, eval_slice]
   refine Fin.cases ?_ (fun b => ?_) i
   · rw [root_zero, jqNModC, ← map_ev, ← jqNModC, ev_jq data K, map_zero]
   · rw [root_succ, ev_comm_of_evalSymm hsymm]
     have hfix : qTwist (ζ ^ (b : ℕ)) (jqNModC K N) = jqNModC K N := by
-      rw [jqNModC, qTwist_qExpand, zpow_natCast, ← pow_mul, mul_comm, pow_mul, zeta_pow_N K ζ hζ, one_pow,
+      rw [jqNModC, qTwist_qExpand, zpow_natCast, ← pow_mul, mul_comm, pow_mul, zeta_pow_N K ζ hζ,
+        one_pow,
         qTwist_one_apply]
     have h := congrArg (qTwist (ζ ^ (b : ℕ))) (ev_jq data K)
     rwa [map_ev, hfix, map_zero] at h
 
 include hζ in
-
 theorem root_injective : Function.Injective (root (N := N) K ζ) := by
   have hN2 : ¬ ((N : ℤ) ∣ (-1 : ℤ)) := fun h => by
     have h1 : (N : ℤ) ∣ 1 := (Int.dvd_neg).mp h
@@ -246,7 +258,6 @@ theorem root_injective : Function.Injective (root (N := N) K ζ) := by
     exact congrArg Fin.succ (Fin.ext (hζ.pow_inj b.isLt b'.isLt h2))
 
 include hsymm hζ in
-
 theorem slice_jqNModC_eq_prod :
     slice data.Φ (jqNModC K N) = ∏ i : Fin (N + 1), (Polynomial.X - Polynomial.C (root K ζ i)) := by
   have hdvd : (∏ i : Fin (N + 1), (Polynomial.X - Polynomial.C (root K ζ i))) ∣ slice data.Φ (jqNModC K N) :=
@@ -261,7 +272,6 @@ theorem slice_jqNModC_separable : (slice data.Φ (jqNModC K N)).Separable := by
   exact separable_prod_X_sub_C_iff.mpr (root_injective K ζ hζ)
 
 include hsymm hζ in
-
 theorem slice_jqModC_separable_of_prim : (slice data.Φ (jqModC K)).Separable := by
   rw [← separable_map (qExpand K N), slice_map]
   exact slice_jqNModC_separable K data hsymm ζ hζ
@@ -269,7 +279,8 @@ theorem slice_jqModC_separable_of_prim : (slice data.Φ (jqModC K)).Separable :=
 end roots
 
 section noroot
-variable (K : Type*) [Field K] {N : ℕ} [hN : Fact N.Prime] (data : ModularPolynomialData N) (hsymm : EvalSymm data.Φ)
+variable (K : Type*) [Field K] {N : ℕ} [hN : Fact N.Prime] (data : ModularPolynomialData N)
+    (hsymm : EvalSymm data.Φ)
 
 include hsymm in
 theorem slice_jqModC_separable (hNK : (N : K) ≠ 0) : (slice data.Φ (jqModC K)).Separable := by
@@ -281,12 +292,12 @@ theorem slice_jqModC_separable (hNK : (N : K) ≠ 0) : (slice data.Φ (jqModC K)
   exact slice_jqModC_separable_of_prim (AlgebraicClosure K) data hsymm _ hz'
 
 include hsymm in
-
 theorem isSeparable_jqNModC (hNK : (N : K) ≠ 0) :
     IsSeparable (IntermediateField.adjoin K {jqModC K}) (jqNModC K N) := by
   set E := IntermediateField.adjoin K {jqModC K}
   let jE : E := ⟨jqModC K, IntermediateField.mem_adjoin_simple_self K (jqModC K)⟩
-  have hmap : (slice data.Φ jE).map (algebraMap E (LaurentSeries K)) = slice data.Φ (jqModC K) := slice_map _ _ _
+  have hmap : (slice data.Φ jE).map (algebraMap E (LaurentSeries K)) = slice data.Φ (jqModC K) :=
+    slice_map _ _ _
   have hsep : (slice data.Φ jE).Separable :=
     (separable_map (algebraMap E (LaurentSeries K))).mp (hmap ▸ slice_jqModC_separable K data hsymm hNK)
   have h0 : Polynomial.aeval (jqNModC K N) (slice data.Φ jE) = 0 := by
@@ -323,7 +334,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.isIntegral_jqNModC_of_modularPolynomialData (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
-    IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) := _root_.P2MW.S_ModularCurve_isIntegral_jqNModC_of_modularPolynomialData.solution K data
+theorem ModularCurve.isIntegral_jqNModC_of_modularPolynomialData (K : Type*) [Field K] {N : ℕ}
+    [NeZero N] (data : ModularPolynomialData N) :
+    IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) :=
+  solution K data
 
 end publicSection

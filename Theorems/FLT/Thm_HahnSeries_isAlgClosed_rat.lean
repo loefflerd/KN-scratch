@@ -932,7 +932,7 @@ theorem kaplanskySlope_kaplanskyLimit {C : Set (HahnSeries ℚ K)}
   have hbelow : KaplanskyBelowSlope f a q := ⟨j, hj, hjle, hlt⟩
   have hcoeff : (kaplanskyLimit hC - a).coeff q = 0 := by
     rw [HahnSeries.coeff_sub]
-    show kaplanskyLimitCoeff (f := f) C q - a.coeff q = 0
+    change kaplanskyLimitCoeff (f := f) C q - a.coeff q = 0
     rw [kaplanskyLimitCoeff_eq hC ha hbelow, sub_self]
   rw [hq, ← HahnSeries.leadingCoeff_eq] at hcoeff
   exact (HahnSeries.leadingCoeff_ne_zero.mpr hne) hcoeff
@@ -992,6 +992,7 @@ end privateSection
 public section publicSection
 
 theorem HahnSeries.isAlgClosed_rat {K : Type*} [Field K] [IsAlgClosed K] :
-    IsAlgClosed (HahnSeries ℚ K) := _root_.P2MW.S_HahnSeries_isAlgClosed_rat.solution
+    IsAlgClosed (HahnSeries ℚ K) :=
+  solution
 
 end publicSection

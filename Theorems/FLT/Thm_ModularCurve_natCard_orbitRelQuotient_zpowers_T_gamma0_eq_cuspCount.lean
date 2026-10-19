@@ -102,7 +102,7 @@ theorem neg_one_mem_Gamma0 : (-1 : SL(2, ℤ)) ∈ Gamma0 N := by
 theorem fromCoset_T_zpow_smul (n : ℤ) (x : SL(2, ℤ) ⧸ Gamma0 N) :
     fromCoset N (ModularGroup.T ^ n • x) = fromCoset N x := by
   induction x using QuotientGroup.induction_on with | H g =>
-  show fromCoset N ((ModularGroup.T ^ n * g : SL(2, ℤ)) : SL(2, ℤ) ⧸ Gamma0 N) = _
+  change fromCoset N ((ModularGroup.T ^ n * g : SL(2, ℤ)) : SL(2, ℤ) ⧸ Gamma0 N) = _
   rw [fromCoset_mk, fromCoset_mk, _root_.mul_inv_rev, map_mul, mul_smul, ← _root_.zpow_neg,
     mapGL_T_zpow_smul_infty]
 
@@ -138,7 +138,7 @@ theorem toCuspSpace_injective : Function.Injective (toCuspSpace N) := by
   obtain ⟨n, hn⟩ := eq_T_zpow_or_neg (g * γ * g'⁻¹) h10
   apply Quotient.sound
   refine ⟨⟨ModularGroup.T ^ n, n, rfl⟩, ?_⟩
-  show ((ModularGroup.T ^ n * g' : SL(2, ℤ)) : SL(2, ℤ) ⧸ Gamma0 N) = (g : SL(2, ℤ) ⧸ Gamma0 N)
+  change ((ModularGroup.T ^ n * g' : SL(2, ℤ)) : SL(2, ℤ) ⧸ Gamma0 N) = (g : SL(2, ℤ) ⧸ Gamma0 N)
   have hg : (g : SL(2, ℤ) ⧸ Gamma0 N) = ((g * γ : SL(2, ℤ)) : SL(2, ℤ) ⧸ Gamma0 N) := by
     rw [QuotientGroup.eq, inv_mul_cancel_left]
     exact hγ
@@ -176,6 +176,7 @@ public section publicSection
 theorem ModularCurve.natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount (N : ℕ) [NeZero N] :
     Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T)
         (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma0 N))
-      = ModularCurve.cuspCount N := _root_.P2MW.S_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount.solution N
+      = ModularCurve.cuspCount N :=
+  solution N
 
 end publicSection

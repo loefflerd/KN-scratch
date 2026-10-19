@@ -61,7 +61,9 @@ namespace P2MW.S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount
 
 open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
-p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount.ModularCurve ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount.ModularCurve.CuspSpace"
+p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount.ModularCurve \
+  ModularCurve.CuspSpace \
+  P2MW.S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount.ModularCurve.CuspSpace"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "CuspSpace cuspCount CuspSpace.classification"
@@ -110,6 +112,7 @@ public section publicSection
 
 open OnePoint
 theorem ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount {N : ℕ} (hN : N ≠ 0) :
-    Nat.card (ModularCurve.CuspSpace N) = ModularCurve.cuspCount N := _root_.P2MW.S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount.solution hN
+    Nat.card (ModularCurve.CuspSpace N) = ModularCurve.cuspCount N :=
+  solution hN
 
 end publicSection

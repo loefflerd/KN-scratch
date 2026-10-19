@@ -65,7 +65,8 @@ noncomputable section
 open KaehlerDifferential
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.diffCoeff Place.diffCoeff_smul_D Place.ordDiff_def Place isAlgebraic_adjoin_of_transcendental"
+p2m_export "AlgebraicCurve" "Place.diffCoeff Place.diffCoeff_smul_D Place.ordDiff_def Place \
+  isAlgebraic_adjoin_of_transcendental"
 namespace FF2R3
 p2m_open "AlgebraicCurve"
 
@@ -73,7 +74,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
   [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
 
 include x in
-
 private theorem isSeparable_adjoin (v : Place K F) {t : F} (ht : v.ord t ≠ 0) :
     Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := by
   have : Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
@@ -85,7 +85,8 @@ include x in
 theorem exists_eq_smul_D_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
     ∃ g : F, ω = g • D K F t := by
   have := isSeparable_adjoin x v ht
-  have hspan := KaehlerDifferential.span_D_eq_top_of_transcendental K t (v.transcendental_of_ord_ne_zero ht)
+  have hspan :=
+    KaehlerDifferential.span_D_eq_top_of_transcendental K t (v.transcendental_of_ord_ne_zero ht)
   have hω : ω ∈ Submodule.span F {D K F t} := by rw [hspan]; trivial
   obtain ⟨g, hg⟩ := Submodule.mem_span_singleton.mp hω
   exact ⟨g, hg.symm⟩
@@ -100,7 +101,8 @@ end AlgebraicCurve.FF2R3
 end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
     AlgebraicCurve.Place.diffCoeff t ω • KaehlerDifferential.D K F t = ω :=
   AlgebraicCurve.FF2R3.diffCoeff_smul_D_of_ord_ne_zero x v ht ω
 
@@ -112,8 +114,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.diffCoeff_smul_D_of_ord_ne_zero {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
-    AlgebraicCurve.Place.diffCoeff t ω • KaehlerDifferential.D K F t = ω := _root_.P2MW.S_AlgebraicCurve_Place_diffCoeff_smul_D_of_ord_ne_zero.solution x v ht ω
+theorem AlgebraicCurve.Place.diffCoeff_smul_D_of_ord_ne_zero {K F : Type*} [Field K] [Field F]
+    [Algebra K F] [CharZero K] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
+    AlgebraicCurve.Place.diffCoeff t ω • KaehlerDifferential.D K F t = ω :=
+  solution x v ht ω
 
 end publicSection

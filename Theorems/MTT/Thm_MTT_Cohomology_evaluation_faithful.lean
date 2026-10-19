@@ -166,7 +166,7 @@ theorem hc_eq_zero_of_evaluations (φ : Hc N n R)
     | coe r => exact val_infty_eq_zero φ h r
   refine Subtype.ext (funext fun D => ?_)
   obtain ⟨x, y⟩ := D
-  show φ.val (x, y) = 0
+  change φ.val (x, y) = 0
   rw [val_eq φ x y, hall, hall, sub_zero]
 
 end P2MEF

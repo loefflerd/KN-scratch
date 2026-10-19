@@ -90,7 +90,6 @@ scoped instance : HasEnoughRootsOfUnity ℂ (Monoid.exponent (ZMod L)ˣ) := by
   infer_instance
 
 open Classical in
-
 def oddCharSum (a : ZMod L) : ℂ :=
   ∑ χ : DirichletCharacter ℂ L, if χ.Odd then χ a else 0
 
@@ -149,7 +148,6 @@ theorem isPrimitive_of_odd {χ : DirichletCharacter ℂ L} (h : χ.Odd) : χ.IsP
 
 omit hL in
 open scoped Classical in
-
 theorem coeff_qExpansion_eisensteinOdd (χ : DirichletCharacter ℂ L) (n : ℕ) :
     (qExpansion 1 ⇑(eisensteinOdd L χ)).coeff n =
       if χ.Odd then
@@ -248,7 +246,6 @@ theorem coeff_zero_oddEisensteinSum :
   ring
 
 omit hL in
-
 theorem coeff_pos_oddEisensteinSum {n : ℕ} (hn : 0 < n) :
     2 * (qExpansion 1 ⇑(oddEisensteinSum L)).coeff n = (L.totient : ℂ) * (divisorSignCount L n : ℂ) := by
   classical
@@ -273,11 +270,11 @@ end WeightOneEisensteinSum
 end ModularCurve
 
 namespace ModularForm
-p2m_export "ModularForm" "mk IsGLPos.coe_smul coe_smul qExpansionAddHom ext coe_zero exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd"
+p2m_export "ModularForm" "mk IsGLPos.coe_smul coe_smul qExpansionAddHom ext coe_zero \
+  exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd"
 end ModularForm
 p2m_open_scoped "ModularForm" in
 open ModularCurve.WeightOneEisensteinSum in
-
 theorem ModularForm.exists_weightOne_qExpansion_coeff_eq_card_filter_of_forall_isPrimitive
     (L : ℕ) [NeZero L] (hL : 2 < L)
     (hprim : ∀ χ : DirichletCharacter ℂ L, χ ≠ 1 → χ.IsPrimitive)
@@ -371,7 +368,8 @@ theorem isPrimitive_of_ne_one_of_prime {p : ℕ} (hp : p.Prime) (χ : DirichletC
   · exact h
 
 theorem isPrimitive_of_ne_one_four (χ : DirichletCharacter ℂ 4) (hχ : χ ≠ 1) : χ.IsPrimitive := by
-  have hd : χ.conductor ∈ Nat.divisors 4 := Nat.mem_divisors.mpr ⟨χ.conductor_dvd_level, by norm_num⟩
+  have hd : χ.conductor ∈ Nat.divisors 4 :=
+    Nat.mem_divisors.mpr ⟨χ.conductor_dvd_level, by norm_num⟩
   have h124 : χ.conductor = 1 ∨ χ.conductor = 2 ∨ χ.conductor = 4 := by
     have : Nat.divisors 4 = {1, 2, 4} := by decide
     simpa [this] using hd
@@ -416,7 +414,8 @@ theorem solution
     refine ModularCurve.nonempty_integralWeightOneForm_of_dvd κ hLM f _ hf 0 ?_
     simp [ModularCurve.WeightOneEisensteinSum.thetaLikeSeries, PowerSeries.coeff_mk]
   · have : NeZero L := ⟨hp.ne_zero⟩
-    have hL2 : 2 < L := lt_of_le_of_ne hp.two_le (fun h => by rw [← h] at hodd; exact (by decide : ¬ Odd 2) hodd)
+    have hL2 : 2 < L :=
+      lt_of_le_of_ne hp.two_le (fun h => by rw [← h] at hodd; exact (by decide : ¬ Odd 2) hodd)
     obtain ⟨f, hf⟩ := ModularCurve.WeightOneEisensteinSum.exists_isIntegralQExp_thetaLikeSeries L
       hL2 (ModularCurve.isPrimitive_of_ne_one_of_prime hp) (2 * L) (L - 2) (by ring)
     by_cases h0 : (((L - 2 : ℕ) : ℤ) : κ) ≠ 0
@@ -463,6 +462,7 @@ public section publicSection
 
 theorem ModularCurve.nonempty_integralWeightOneForm
     (κ : Type) [Field κ] (M : ℕ) (hM : 3 ≤ M) :
-    Nonempty (ModularCurve.IntegralWeightOneForm κ M) := _root_.P2MW.S_ModularCurve_nonempty_integralWeightOneForm.solution κ M hM
+    Nonempty (ModularCurve.IntegralWeightOneForm κ M) :=
+  solution κ M hM
 
 end publicSection

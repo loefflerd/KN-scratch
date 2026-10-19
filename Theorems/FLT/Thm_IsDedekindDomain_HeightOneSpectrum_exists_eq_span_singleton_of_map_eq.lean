@@ -74,7 +74,6 @@ lemma le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1) := 
     omega
 
 omit [IsDedekindDomain R] in
-
 lemma isUnit_of_forall_not_mem [IsDomain R] {r : R} (hr : ∀ w : HeightOneSpectrum R, r ∉ w.asIdeal)
     (w₀ : HeightOneSpectrum R) : IsUnit r := by
   by_contra hu
@@ -96,7 +95,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
     ∃ r : R, t₀.asIdeal = Ideal.span {r} := by
   obtain ⟨h, rfl⟩ := hgμ
   obtain ⟨v₀, hv₀⟩ := hN t₀
-
   have hg_le : ∀ v w, N v = some w → v.valuation K (μ h) ≤ 1 := by
     intro v w hvw
     by_cases hw : w = t₀
@@ -129,7 +127,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
   obtain ⟨r, hr⟩ := mem_integers_of_valuation_le_one K h h1
   subst hr
   have hr0 : r ≠ 0 := fun h0 => hh0 (by rw [h0, map_zero])
-
   have h3 : ∀ w : HeightOneSpectrum R, w ≠ t₀ → r ∉ w.asIdeal := by
     intro w hw hmem
     obtain ⟨v, hv⟩ := hN w
@@ -189,7 +186,8 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
 
 end WeilPairingND
 
-theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (μ : K →+* K) (N : IsDedekindDomain.HeightOneSpectrum R → Option (IsDedekindDomain.HeightOneSpectrum R)) (hN : ∀ w, ∃ v, N v = some w) (hμ : ∀ v w, N v = some w → ∀ (h : K) (k : ℕ), w.valuation K h ≤ WithZero.exp (-(k : ℤ)) → v.valuation K (μ h) ≤ WithZero.exp (-(k : ℤ))) (g : K) (t₀ : IsDedekindDomain.HeightOneSpectrum R) (hg₀ : ∀ v, N v = some t₀ → v.valuation K g = WithZero.exp (-1)) (hg₁ : ∀ v w, N v = some w → w ≠ t₀ → v.valuation K g = 1) (hgμ : ∃ h, μ h = g) : ∃ r : R, t₀.asIdeal = Ideal.span {r} :=
+theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (μ : K →+* K) (N : IsDedekindDomain.HeightOneSpectrum R → Option (IsDedekindDomain.HeightOneSpectrum R)) (hN : ∀ w, ∃ v, N v = some w) (hμ : ∀ v w, N v = some w → ∀ (h : K) (k : ℕ), w.valuation K h ≤ WithZero.exp (-(k : ℤ)) → v.valuation K (μ h) ≤ WithZero.exp (-(k : ℤ))) (g : K) (t₀ : IsDedekindDomain.HeightOneSpectrum R) (hg₀ : ∀ v, N v = some t₀ → v.valuation K g = WithZero.exp (-1)) (hg₁ : ∀ v w, N v = some w → w ≠ t₀ → v.valuation K g = 1) (hgμ : ∃ h, μ h = g) :
+    ∃ r : R, t₀.asIdeal = Ideal.span {r} :=
   WeilPairingND.exists_eq_span_of_eq_pullback μ N hN hμ g t₀ hg₀ hg₁ hgμ
 
 end S_IsDedekindDomain_HeightOneSpectrum_exists_eq_span_singleton_of_map_eq
@@ -201,6 +199,8 @@ end privateSection
 public section publicSection
 
 
-theorem IsDedekindDomain.HeightOneSpectrum.exists_eq_span_singleton_of_map_eq {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (μ : K →+* K) (N : IsDedekindDomain.HeightOneSpectrum R → Option (IsDedekindDomain.HeightOneSpectrum R)) (hN : ∀ w, ∃ v, N v = some w) (hμ : ∀ v w, N v = some w → ∀ (h : K) (k : ℕ), w.valuation K h ≤ WithZero.exp (-(k : ℤ)) → v.valuation K (μ h) ≤ WithZero.exp (-(k : ℤ))) (g : K) (t₀ : IsDedekindDomain.HeightOneSpectrum R) (hg₀ : ∀ v, N v = some t₀ → v.valuation K g = WithZero.exp (-1)) (hg₁ : ∀ v w, N v = some w → w ≠ t₀ → v.valuation K g = 1) (hgμ : ∃ h, μ h = g) : ∃ r : R, t₀.asIdeal = Ideal.span {r} := _root_.P2MW.S_IsDedekindDomain_HeightOneSpectrum_exists_eq_span_singleton_of_map_eq.solution μ N hN hμ g t₀ hg₀ hg₁ hgμ
+theorem IsDedekindDomain.HeightOneSpectrum.exists_eq_span_singleton_of_map_eq {R : Type*} [CommRing R] [IsDedekindDomain R] {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (μ : K →+* K) (N : IsDedekindDomain.HeightOneSpectrum R → Option (IsDedekindDomain.HeightOneSpectrum R)) (hN : ∀ w, ∃ v, N v = some w) (hμ : ∀ v w, N v = some w → ∀ (h : K) (k : ℕ), w.valuation K h ≤ WithZero.exp (-(k : ℤ)) → v.valuation K (μ h) ≤ WithZero.exp (-(k : ℤ))) (g : K) (t₀ : IsDedekindDomain.HeightOneSpectrum R) (hg₀ : ∀ v, N v = some t₀ → v.valuation K g = WithZero.exp (-1)) (hg₁ : ∀ v w, N v = some w → w ≠ t₀ → v.valuation K g = 1) (hgμ : ∃ h, μ h = g) :
+    ∃ r : R, t₀.asIdeal = Ideal.span {r} :=
+  solution μ N hN hμ g t₀ hg₀ hg₁ hgμ
 
 end publicSection

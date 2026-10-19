@@ -67,10 +67,14 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_qExpand algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_of_lt jqN evalAtJ qTwist qTwist_coeff PoleOrderLE PhiGen.PhiGenDescends coeffMap coeffEmb coeffEmb_coeff coeffMap_qExpand coeffEmb_injective"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  qExpand_qExpand algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt \
+  coeff_jq_of_lt jqN evalAtJ qTwist qTwist_coeff PoleOrderLE PhiGen.PhiGenDescends coeffMap \
+  coeffEmb coeffEmb_coeff coeffMap_qExpand coeffEmb_injective"
 p2m_open "ModularCurve"
 namespace PhiGen
-p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd phiProd_monic phiProd_natDegree phiProd_eval_conj TPoleOrderLE tPoleOrderLE_iff_poleOrderLE JSimplePole PhiGenDescends"
+p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd phiProd_monic phiProd_natDegree \
+  phiProd_eval_conj TPoleOrderLE tPoleOrderLE_iff_poleOrderLE JSimplePole PhiGenDescends"
 p2m_open "ModularCurve.PhiGen"
 
 section CoeffEmbJq
@@ -106,7 +110,8 @@ theorem tPoleOrderLE_of_qExpand {K : Type*} [Field K] {f : LaurentSeries K} {N n
   nlinarith
 
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mono {K : Type*} [Field K] {f : LaurentSeries K} {m n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mono {K : Type*} [Field K]
+    {f : LaurentSeries K} {m n : ℕ}
     (hf : TPoleOrderLE f m) (hmn : m ≤ n) : TPoleOrderLE f n :=
   fun k hk => hf k (by omega)
 
@@ -122,7 +127,8 @@ private theorem tPoleOrderLE_one {K : Type*} [Field K] :
   rw [HahnSeries.coeff_one, ite_eq_right (by omega)]
 
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K]
+    {f : LaurentSeries K} {n : ℕ}
     (hf : TPoleOrderLE f n) : TPoleOrderLE (-f) n := by
   intro m hm
   rw [HahnSeries.coeff_neg, hf m hm, neg_zero]
@@ -130,7 +136,8 @@ private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K
 end TPoleOrderLE
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.neg"
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mul {K : Type*} [Field K] {f g : LaurentSeries K} {m n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mul {K : Type*} [Field K]
+    {f g : LaurentSeries K} {m n : ℕ}
     (hf : TPoleOrderLE f m) (hg : TPoleOrderLE g n) : TPoleOrderLE (f * g) (m + n) := by
   intro k hk
   rw [HahnSeries.coeff_mul]
@@ -145,7 +152,8 @@ private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.mul {K : Type*} [Field K
 end TPoleOrderLE
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.mul"
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qTwist {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qTwist {K : Type*} [Field K]
+    {f : LaurentSeries K} {n : ℕ}
     (hf : TPoleOrderLE f n) (u : Kˣ) : TPoleOrderLE (ModularCurve.qTwist u f) n := by
   intro m hm
   rw [qTwist_coeff, hf m hm, mul_zero]
@@ -153,7 +161,8 @@ private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qTwist {K : Type*} [Fiel
 end TPoleOrderLE
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.qTwist"
 namespace TPoleOrderLE
-private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qExpand {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
+private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.qExpand {K : Type*} [Field K]
+    {f : LaurentSeries K} {n : ℕ}
     (hf : TPoleOrderLE f n) (N : ℕ) [NeZero N] :
     TPoleOrderLE (ModularCurve.qExpand K N f) (N * n) := by
   intro m hm
@@ -313,7 +322,7 @@ theorem PhiGenDescends.sum_mul_jqN_pow_eq_zero {K : Type*} [Field K] [Algebra �
   have hFapp : ∀ f : LaurentSeries ℚ, F f = coeffEmb K (qExpand ℚ ℓ f) := fun f => rfl
   have hFinj : Function.Injective F := coeffEmb_qExpand_injective
   have hconj0 : conj ℓ ζ (0 : Fin (ℓ + 1)) = F (jqN ℓ) := by
-    show conj ℓ ζ 0 = coeffMap (algebraMap ℚ K) (qExpand ℚ ℓ (jqN ℓ))
+    change conj ℓ ζ 0 = coeffMap (algebraMap ℚ K) (qExpand ℚ ℓ (jqN ℓ))
     rw [conj_zero, jqN, qExpand_qExpand, coeffMap_qExpand]
     rfl
   have hterm : ∀ k ∈ Finset.range (ℓ + 2),
@@ -368,8 +377,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) {k : ℕ} (hk : ℓ + 1 < k) : c k = 0 :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
+    {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) {k : ℕ} (hk : ℓ + 1 < k) :
+    c k = 0 :=
   ModularCurve.PhiGen.PhiGenDescends.c_eq_zero hc hk
 
 end S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero
@@ -382,6 +392,10 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.PhiGenDescends.c_eq_zero {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) {k : ℕ} (hk : ℓ + 1 < k) : c k = 0 := _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.solution hc hk
+theorem ModularCurve.PhiGen.PhiGenDescends.c_eq_zero {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ}
+    [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) {k : ℕ}
+    (hk : ℓ + 1 < k) :
+    c k = 0 :=
+  solution hc hk
 
 end publicSection

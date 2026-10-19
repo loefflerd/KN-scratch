@@ -167,7 +167,6 @@ theorem exists_slotAt_of_ord_neg (ζ : Kbˣ) (hζ : IsPrimitiveRoot (ζ : Kb) N)
     exact_mod_cast Nat.mul_pos (NeZero.pos a) (gcd_pos_of_dvd ha)
 
 variable (N) in
-
 def labels : Finset (Σ _ : ℕ, ℕ) :=
   N.divisors.sigma fun a =>
     {b ∈ Finset.range (Nat.gcd a (N / a)) | (Nat.gcd a (N / a)).Coprime b}
@@ -219,7 +218,7 @@ theorem solution (N : ℕ) [NeZero N]
     have hg : 0 < Nat.gcd a (N / a) := gcd_pos_of_dvd ha
     have hmem : (⟨a, b % Nat.gcd a (N / a)⟩ : Σ _ : ℕ, ℕ) ∈ labels N := by
       refine mem_labels.mpr ⟨ha, Nat.mod_lt _ hg, ?_⟩
-      show Nat.Coprime (Nat.gcd a (N / a)) (b % Nat.gcd a (N / a))
+      change Nat.Coprime (Nat.gcd a (N / a)) (b % Nat.gcd a (N / a))
       rw [Nat.coprime_iff_gcd_eq_one, Nat.gcd_comm (Nat.gcd a (N / a)) (b % Nat.gcd a (N / a)),
         ← Nat.gcd_rec]
       exact Nat.coprime_iff_gcd_eq_one.mp hcop
@@ -240,6 +239,7 @@ open ModularCurve AlgebraicCurve
 theorem ModularCurve.card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg (N : ℕ) [NeZero N]
     (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
-    S.card = ModularCurve.cuspCount N := _root_.P2MW.S_ModularCurve_card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg.solution N S hS
+    S.card = ModularCurve.cuspCount N :=
+  solution N S hS
 
 end publicSection

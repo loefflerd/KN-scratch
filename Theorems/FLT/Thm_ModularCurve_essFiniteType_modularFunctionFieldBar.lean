@@ -85,6 +85,7 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.essFiniteType_modularFunctionFieldBar (N : ℕ) [NeZero N] :
-    Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) := _root_.P2MW.S_ModularCurve_essFiniteType_modularFunctionFieldBar.solution N
+    Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) :=
+  solution N
 
 end publicSection

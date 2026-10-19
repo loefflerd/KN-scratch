@@ -92,7 +92,8 @@ theorem torsion_finite {n : ℕ} (hn : (n : K) ≠ 0) :
 
 theorem card_torsion_toFinset {n : ℕ} (hn : (n : K) ≠ 0) :
     (torsion_finite W hn).toFinset.card = n ^ 2 := by
-  rw [← WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hn, ← Nat.card_eq_card_finite_toFinset]
+  rw [← WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hn, ←
+    Nat.card_eq_card_finite_toFinset]
   have hset : {S : (W⁄K).Point | (n : ℤ) • S = 0} =
       ((Submodule.torsionBy ℤ (W⁄K).Point n : Submodule ℤ (W⁄K).Point) : Set (W⁄K).Point) := by
     ext S
@@ -131,7 +132,6 @@ theorem sum_fibSet_eq_zero {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (h
 variable [IsDedekindDomain (W⁄K).CoordinateRing]
 
 omit [IsAlgClosed K] [W.IsElliptic] in
-
 theorem intValuation_of_span_eq_prod (s : Finset (W⁄K).Point) {r : (W⁄K).CoordinateRing}
     (hr : Ideal.span {r} = ∏ P ∈ s, placeIdeal W K P) (P₁ : (W⁄K).Point) (hP₁ : P₁ ≠ 0) :
     (placeOf W K P₁ hP₁).intValuation r = if P₁ ∈ s then exp (-1) else 1 := by
@@ -164,7 +164,8 @@ theorem intValuation_of_span_eq_prod (s : Finset (W⁄K).Point) {r : (W⁄K).Coo
   · rw [ite_eq_left hmem]
     have hsplit := Finset.prod_eq_mul_prod_sdiff_singleton_of_mem hmem (fun P => placeIdeal W K P)
     have hmem1 : r ∈ v.asIdeal ^ 1 := by
-      rw [pow_one, ← Ideal.span_singleton_le_iff_mem, hr, hsplit, hv, ← placeIdeal_of_ne_zero W K hP₁]
+      rw [pow_one, ← Ideal.span_singleton_le_iff_mem, hr, hsplit, hv, ← placeIdeal_of_ne_zero W K
+        hP₁]
       exact Ideal.mul_le_left
     have hnot2 : r ∉ v.asIdeal ^ 2 := by
       intro h2
@@ -175,7 +176,8 @@ theorem intValuation_of_span_eq_prod (s : Finset (W⁄K).Point) {r : (W⁄K).Coo
       obtain ⟨P, hPs, hPle⟩ := (Ideal.IsPrime.prod_le v.isPrime).mp h3
       have hPP := hle P (Finset.mem_sdiff.mp hPs).1 hPle
       exact (Finset.mem_sdiff.mp hPs).2 (Finset.mem_singleton.mpr hPP)
-    have hle1 : v.intValuation r ≤ exp (-((1 : ℕ) : ℤ)) := (intValuation_le_pow_iff_mem v r 1).mpr hmem1
+    have hle1 : v.intValuation r ≤ exp (-((1 : ℕ) : ℤ)) :=
+      (intValuation_le_pow_iff_mem v r 1).mpr hmem1
     have hgt2 : ¬ v.intValuation r ≤ exp (-((2 : ℕ) : ℤ)) := fun h =>
       hnot2 ((intValuation_le_pow_iff_mem v r 2).mp h)
     obtain ⟨z, hz⟩ : ∃ z : ℤ, v.intValuation r = exp z :=
@@ -199,12 +201,12 @@ theorem fibIdeal_isPrincipal {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
   rw [fibIdeal_eq W K hfin]
   set s := hfin.toFinset with hs
   let s' : Finset {P : (W⁄K).Point // P ≠ 0} := s.subtype (· ≠ 0)
-
   have hprod1 : (∏ P ∈ s, placeIdeal W K P) = ∏ i ∈ s', placeIdeal W K i.1 := by
     rw [Finset.prod_subtype_eq_prod_filter, Finset.prod_filter_of_ne]
     intro P _ hP1 hP0
     exact hP1 (by rw [hP0, placeIdeal_zero, Ideal.one_eq_top])
-  have key := (WeierstrassCurve.Affine.CoordinateRing.isPrincipal_prod_XYIdeal_zpow_iff (W := W⁄K) s'
+  have key :=
+    (WeierstrassCurve.Affine.CoordinateRing.isPrincipal_prod_XYIdeal_zpow_iff (W := W⁄K) s'
     (fun i => i.1.xc) (fun i => i.1.yc) (fun i => Point.nonsingular_xc_yc i.2) (fun _ => 1)).mpr ?_
   · have hcoe : ((∏ i ∈ s', CoordinateRing.XYIdeal' (Point.nonsingular_xc_yc i.2) ^ (1 : ℤ) :
         (FractionalIdeal (W⁄K).CoordinateRing⁰ (W⁄K).FunctionField)ˣ) :
@@ -237,9 +239,13 @@ theorem span_weilNum_eq {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT :
 
 end WeilDiv
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) : (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
+    (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 := by
   classical
-  rw [valuation_of_algebraMap, WeilDiv.intValuation_of_span_eq_prod W _ (WeilDiv.span_weilNum_eq W hn hT) P hP]
+  rw [valuation_of_algebraMap, WeilDiv.intValuation_of_span_eq_prod W _ (WeilDiv.span_weilNum_eq W
+    hn hT) P hP]
   simp only [Set.Finite.mem_toFinset, mem_fibSet]
 
 end S_WeierstrassCurve_Affine_valuation_weilNum
@@ -253,6 +259,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.valuation_weilNum {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) : (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 := _root_.P2MW.S_WeierstrassCurve_Affine_valuation_weilNum.solution W hn hT P hP
+theorem WeierstrassCurve.Affine.valuation_weilNum {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
+    (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 :=
+  solution W hn hT P hP
 
 end publicSection

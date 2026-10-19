@@ -98,7 +98,9 @@ theorem mem_range_qExpand_of_qTwist_eq' {K : Type*} [Field K] (n : ℕ) [NeZero 
 
 end ModularCurve
 
-theorem solution {K : Type*} [Field K] (n : ℕ) [NeZero n] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K) (h : ModularCurve.qTwist ζ f = f) : f ∈ Set.range (ModularCurve.qExpand K n) :=
+theorem solution {K : Type*} [Field K] (n : ℕ) [NeZero n] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) n)
+    (f : LaurentSeries K) (h : ModularCurve.qTwist ζ f = f) :
+    f ∈ Set.range (ModularCurve.qExpand K n) :=
   ModularCurve.mem_range_qExpand_of_qTwist_eq' n ζ hζ f h
 
 end S_ModularCurve_mem_range_qExpand_of_qTwist_eq
@@ -109,6 +111,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.mem_range_qExpand_of_qTwist_eq {K : Type*} [Field K] (n : ℕ) [NeZero n] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K) (h : ModularCurve.qTwist ζ f = f) : f ∈ Set.range (ModularCurve.qExpand K n) := _root_.P2MW.S_ModularCurve_mem_range_qExpand_of_qTwist_eq.solution n ζ hζ f h
+theorem ModularCurve.mem_range_qExpand_of_qTwist_eq {K : Type*} [Field K] (n : ℕ) [NeZero n]
+    (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K)
+    (h : ModularCurve.qTwist ζ f = f) :
+    f ∈ Set.range (ModularCurve.qExpand K n) :=
+  solution n ζ hζ f h
 
 end publicSection

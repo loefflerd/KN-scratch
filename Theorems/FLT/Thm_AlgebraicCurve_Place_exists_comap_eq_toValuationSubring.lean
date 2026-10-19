@@ -62,9 +62,11 @@ namespace P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring
 open IsDedekindDomain
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring"
+p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ofHeightOneSpectrum \
+  ofHeightOneSpectrum_toValuationSubring toValuationSubring"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
@@ -83,7 +85,7 @@ theorem rowMain (v : Place K F) :
   let : Algebra K C := ((algebraMap A C).comp (algebraMap K A)).toAlgebra
   have hAC : ∀ a : A, algebraMap C F' (algebraMap A C a) = algebraMap F F' (a : F) := fun a => rfl
   have : IsScalarTower K C F' := IsScalarTower.of_algebraMap_eq (fun a => by
-    show algebraMap K F' a = algebraMap C F' (algebraMap A C (algebraMap K A a))
+    change algebraMap K F' a = algebraMap C F' (algebraMap A C (algebraMap K A a))
     rw [hAC, Place.coe_algebraMap, ← IsScalarTower.algebraMap_apply])
   have hinj : Function.Injective (algebraMap A C) := by
     intro a b h
@@ -137,7 +139,9 @@ theorem rowMain (v : Place K F) :
 end AlgebraicCurve.Place
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring.AlgebraicCurve in
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) :
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
+    (v : Place K F) :
     ∃ w : Place K F', w.toValuationSubring.comap (algebraMap F F') = v.toValuationSubring :=
   AlgebraicCurve.Place.rowMain v
 
@@ -151,6 +155,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.exists_comap_eq_toValuationSubring {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) : ∃ w : Place K F', w.toValuationSubring.comap (algebraMap F F') = v.toValuationSubring := _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring.solution v
+theorem AlgebraicCurve.Place.exists_comap_eq_toValuationSubring {K F F' : Type*} [Field K] [Field F]
+    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
+    [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) :
+    ∃ w : Place K F', w.toValuationSubring.comap (algebraMap F F') = v.toValuationSubring :=
+  solution v
 
 end publicSection

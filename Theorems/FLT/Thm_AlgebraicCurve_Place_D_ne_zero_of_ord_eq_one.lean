@@ -73,8 +73,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.D_ne_zero_of_ord_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t = 1) :
-    KaehlerDifferential.D K F t ≠ 0 := _root_.P2MW.S_AlgebraicCurve_Place_D_ne_zero_of_ord_eq_one.solution x v ht
+theorem AlgebraicCurve.Place.D_ne_zero_of_ord_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F]
+    [PerfectField K] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t = 1) :
+    KaehlerDifferential.D K F t ≠ 0 :=
+  solution x v ht
 
 end publicSection

@@ -64,7 +64,8 @@ namespace P2MW.S_ModularForm_exists_rankinCohen_one_qExpansion_eq
 
 open UpperHalfPlane Filter
 open scoped Real
-p2m_open_scoped "MatrixGroups Manifold Topology ModularForm P2MW.S_ModularForm_exists_rankinCohen_one_qExpansion_eq.ModularForm"
+p2m_open_scoped "MatrixGroups Manifold Topology ModularForm \
+  P2MW.S_ModularForm_exists_rankinCohen_one_qExpansion_eq.ModularForm"
 
 noncomputable section
 
@@ -372,6 +373,7 @@ theorem ModularForm.exists_rankinCohen_one_qExpansion_eq
             PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 (h : ℍ → ℂ)).coeff n)
           - PowerSeries.C (k₂ : ℂ) *
             PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 (g : ℍ → ℂ)).coeff n) *
-              qExpansion 1 (h : ℍ → ℂ) := _root_.P2MW.S_ModularForm_exists_rankinCohen_one_qExpansion_eq.solution h1 g h
+              qExpansion 1 (h : ℍ → ℂ) :=
+  solution h1 g h
 
 end publicSection

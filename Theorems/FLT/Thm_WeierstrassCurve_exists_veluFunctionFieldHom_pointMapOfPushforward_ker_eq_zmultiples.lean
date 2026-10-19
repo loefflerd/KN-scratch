@@ -122,6 +122,7 @@ theorem WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_e
       AlgebraicCurve.finrankAlong F ι = 2 * n + 1
         ∧ ∀ hN : AlgebraicCurve.NormFormulaAlong F ι hfin,
             (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
-              = AddSubgroup.zmultiples Q := _root_.P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples.solution hord hΔ'
+              = AddSubgroup.zmultiples Q :=
+  solution hord hΔ'
 
 end publicSection

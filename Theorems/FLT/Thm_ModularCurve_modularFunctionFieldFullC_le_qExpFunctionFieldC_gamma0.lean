@@ -86,7 +86,7 @@ theorem solution
   refine ⟨⟨!![γ 0 0, (d : ℤ) * γ 0 1; c, γ 1 1], ?_⟩, Subgroup.mem_top _, rfl, rfl, ?_, rfl⟩
   · rw [Matrix.det_fin_two_of]
     linear_combination hdet
-  · show (d : ℤ) * c = γ 1 0
+  · change (d : ℤ) * c = γ 1 0
     rw [hc]
 
 end S_ModularCurve_modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0
@@ -100,6 +100,7 @@ public section publicSection
 theorem ModularCurve.modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0
     (K : Type*) [Field K] (M : ℕ) [NeZero M] :
     ModularCurve.modularFunctionFieldFullC K M ≤
-      ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M) := _root_.P2MW.S_ModularCurve_modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0.solution K M
+      ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M) :=
+  solution K M
 
 end publicSection

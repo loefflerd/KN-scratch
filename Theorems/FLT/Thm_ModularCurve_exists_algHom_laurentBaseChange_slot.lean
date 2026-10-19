@@ -164,7 +164,7 @@ theorem eval₂_minpoly_slot (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveR
         ((coeffEmb K).comp (qExpand ℚ N)).comp
           (algebraMap (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
             (LaurentSeries ℚ)) from RingHom.ext fun y => by
-      show qExpand K N (coeffEmb K (y : LaurentSeries ℚ)) =
+      change qExpand K N (coeffEmb K (y : LaurentSeries ℚ)) =
         coeffEmb K (qExpand ℚ N (y : LaurentSeries ℚ))
       exact qExpand_coeffEmb K N _,
     ← eval_map,
@@ -176,7 +176,8 @@ theorem eval₂_minpoly_slot (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveR
   refine Finset.prod_eq_zero (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hb, hg⟩) ?_
   simp only [eval_sub, eval_X, eval_C, dite_eq_right (NeZero.ne a), sub_self]
 
-private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot' (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot' (N : ℕ) [NeZero N]
+    (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) (hb : b < N / a) (hg : Nat.gcd (Nat.gcd a b) (N / a) = 1) [NeZero a] :
     ∃ ι : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K,
       ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
@@ -194,21 +195,21 @@ private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot' (N : �
   have hφalg : ∀ x : K⟮coeffEmb K jq⟯,
       φ (algebraMap K⟮coeffEmb K jq⟯ K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯ x) =
         qExpand K N x := fun x => by
-    show L (e.symm (algebraMap _ _ x)) = _
+    change L (e.symm (algebraMap _ _ x)) = _
     rw [AlgEquiv.commutes, AdjoinRoot.algebraMap_eq, AdjoinRoot.lift_of]
     rfl
   have hφgen : φ (AdjoinSimple.gen K⟮coeffEmb K jq⟯ (coeffEmb K (jqN N))) =
       qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) := by
-    show L (e.symm (AdjoinSimple.gen _ _)) = _
+    change L (e.symm (AdjoinSimple.gen _ _)) = _
     rw [adjoinRootEquivAdjoin_symm_apply_gen, AdjoinRoot.lift_root]
   have hF := laurentBaseChange_full_eq_adjoin_adjoin K N
   let ι' : (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯).restrictScalars K →ₐ[K] LaurentSeries K :=
     { toRingHom := φ
       commutes' := fun c => by
-        show φ (algebraMap K⟮coeffEmb K jq⟯ K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯
+        change φ (algebraMap K⟮coeffEmb K jq⟯ K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯
           (algebraMap K K⟮coeffEmb K jq⟯ c)) = _
         rw [hφalg]
-        show qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+        change qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
         rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero] }
   refine ⟨ι'.comp (inclusion hF.le), ?_, ?_⟩
   · exact hφalg ⟨coeffEmb K jq, mem_adjoin_simple_self K _⟩
@@ -217,8 +218,8 @@ private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot' (N : �
 end CD
 
 open ModularCurve AlgebraicCurve in
-
-theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) (hb : b < N / a) (hg : Nat.gcd (Nat.gcd a b) (N / a) = 1) [NeZero a] :
     ∃ ι : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K,
       ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
@@ -237,12 +238,14 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.exists_algHom_laurentBaseChange_slot (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem ModularCurve.exists_algHom_laurentBaseChange_slot (K : Type*) [Field K] [Algebra ℚ K]
+    (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) (hb : b < N / a) (hg : Nat.gcd (Nat.gcd a b) (N / a) = 1) [NeZero a] :
     ∃ ι : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K,
       ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
           qExpand K N (coeffEmb K jq) ∧
       ι ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
-          qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) := _root_.P2MW.S_ModularCurve_exists_algHom_laurentBaseChange_slot.solution K N ζ hζ a b ha hb hg
+          qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) :=
+  solution K N ζ hζ a b ha hb hg
 
 end publicSection

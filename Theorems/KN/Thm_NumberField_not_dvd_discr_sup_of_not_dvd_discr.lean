@@ -96,7 +96,7 @@ lemma fu_away (K : Type*) [Field K] [NumberField K] (N : ℤ) (hN : discr K ∣ 
   rw [h, ← Algebra.basicOpen_subset_unramifiedLocus_iff]
   intro Q hQ
   have hQ' : algebraMap ℤ (𝓞 K) N ∉ Q.asIdeal := hQ
-  show Algebra.IsUnramifiedAt ℤ Q.asIdeal
+  change Algebra.IsUnramifiedAt ℤ Q.asIdeal
   rw [← not_dvd_differentIdeal_iff]
   intro hdvd
   apply hQ'

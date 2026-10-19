@@ -66,11 +66,11 @@ def kw_E6sq : ModularForm 𝒮ℒ 12 :=
   ModularForm.mcast (by ring) (E₆.mul E₆)
 
 @[scoped simp] theorem kw_E4cube_apply (τ : ℍ) : kw_E4cube τ = E₄ τ ^ 3 := by
-  show ((E₄.mul E₄).mul E₄) τ = E₄ τ ^ 3
+  change ((E₄.mul E₄).mul E₄) τ = E₄ τ ^ 3
   simp only [ModularForm.coe_mul, Pi.mul_apply]; ring
 
 @[scoped simp] theorem kw_E6sq_apply (τ : ℍ) : kw_E6sq τ = E₆ τ ^ 2 := by
-  show (E₆.mul E₆) τ = E₆ τ ^ 2
+  change (E₆.mul E₆) τ = E₆ τ ^ 2
   simp only [ModularForm.coe_mul, Pi.mul_apply]; ring
 
 def kw_E4cube_sub_E6sq : ModularForm 𝒮ℒ 12 := kw_E4cube - kw_E6sq
@@ -81,14 +81,14 @@ def kw_E4cube_sub_E6sq : ModularForm 𝒮ℒ 12 := kw_E4cube - kw_E6sq
 
 theorem kw_qExpansion_E4cube :
     qExpansion 1 (kw_E4cube : ℍ → ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) ^ 3 := by
-  show qExpansion 1 (((E₄.mul E₄).mul E₄ : ModularForm _ _) : ℍ → ℂ) = _
+  change qExpansion 1 (((E₄.mul E₄).mul E₄ : ModularForm _ _) : ℍ → ℂ) = _
   rw [ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL,
     ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL]
   ring
 
 theorem kw_qExpansion_E6sq :
     qExpansion 1 (kw_E6sq : ℍ → ℂ) = qExpansion 1 (E₆ : ℍ → ℂ) ^ 2 := by
-  show qExpansion 1 ((E₆.mul E₆ : ModularForm _ _) : ℍ → ℂ) = _
+  change qExpansion 1 ((E₆.mul E₆ : ModularForm _ _) : ℍ → ℂ) = _
   rw [ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL]
   ring
 
@@ -254,7 +254,8 @@ def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictScalars ℤ
 
 @[scoped simp] theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
+theorem _root_.PeriodPair.scale_lattice :
+    (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
   congr 1

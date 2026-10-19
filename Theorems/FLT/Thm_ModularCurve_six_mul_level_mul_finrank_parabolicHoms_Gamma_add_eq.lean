@@ -230,7 +230,6 @@ theorem sum_apply_cuspGen_eq_zero (φ : Additive Γ →+ ℚ) :
   rfl
 
 omit [Γ.FiniteIndex] in
-
 theorem apply_gen_eq_zero_of_forall (h : ∀ q : Cusp Γ, φ (Additive.ofMul (cuspGen q)) = 0)
     (g : SL(2, ℤ)) : φ (Additive.ofMul (genΓ Γ g)) = 0 := by
   set q : Cusp Γ := Quotient.mk _ (g : SL(2, ℤ) ⧸ Γ) with hq
@@ -243,7 +242,6 @@ theorem apply_gen_eq_zero_of_forall (h : ∀ q : Cusp Γ, φ (Additive.ofMul (cu
   exact h q
 
 omit [Γ.FiniteIndex] in
-
 theorem isParabolicHom_of_forall (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
     (h : ∀ q : Cusp Γ, φ (Additive.ofMul (cuspGen q)) = 0)
     (htors : ∀ a : A, 2 • a = 0 → a = 0) : IsParabolicHom Γ φ := by
@@ -485,9 +483,9 @@ theorem dvd_index_of_pow_eq (hN : 2 ≤ N) (u : SL(2, ℤ)) (p : ℕ) [Fact p.Pr
     induction x using QuotientGroup.induction_on with
     | H g =>
       apply minimalPeriod_eq_prime
-      · show (u • ·)^[p] (g : SL(2, ℤ) ⧸ Gpm N) = g
+      · change (u • ·)^[p] (g : SL(2, ℤ) ⧸ Gpm N) = g
         rw [smul_iterate]
-        show u ^ p • (g : SL(2, ℤ) ⧸ Gpm N) = g
+        change u ^ p • (g : SL(2, ℤ) ⧸ Gpm N) = g
         rw [hu, MulAction.Quotient.smul_coe, smul_eq_mul, QuotientGroup.eq]
         rw [show (-1 * g)⁻¹ * g = -1 by
           rw [mul_inv_rev, inv_neg, inv_one, mul_neg_one, neg_mul, inv_mul_cancel]]
@@ -511,7 +509,8 @@ theorem six_dvd_index (hN : 2 ≤ N) : 6 ∣ (Gpm N).index := by
   have h3 : 3 ∣ (Gpm N).index := by
     have : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
     refine dvd_index_of_pow_eq N hN (ModularGroup.S * ModularGroup.T) 3 ST_pow_three (Or.inr (Or.inl ?_))
-    rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_fin_two,
+    rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T,
+      Matrix.mul_fin_two,
       Matrix.trace_fin_two_of]
     norm_num
   have : Nat.Coprime 2 3 := by norm_num
@@ -524,7 +523,8 @@ theorem finrank_int_eq_finrank_rat [NeZero N] :
   obtain ⟨bQ, -⟩ := hb ℚ
   rw [Module.finrank_eq_card_basis b, Module.finrank_eq_card_basis bQ]
 
-noncomputable def resHom : (Additive ↥(Gpm N) →+ ℚ) →ₗ[ℚ] (Additive ↥(CongruenceSubgroup.Gamma N) →+ ℚ) where
+noncomputable def resHom :
+    (Additive ↥(Gpm N) →+ ℚ) →ₗ[ℚ] (Additive ↥(CongruenceSubgroup.Gamma N) →+ ℚ) where
   toFun φ := φ.comp (MonoidHom.toAdditive (Subgroup.inclusion (le_sup_left :
     CongruenceSubgroup.Gamma N ≤ Gpm N)))
   map_add' _ _ := rfl
@@ -540,7 +540,8 @@ theorem resHom_mem (φ : Additive ↥(Gpm N) →+ ℚ) (hφ : φ ∈ parabolicHo
   rw [resHom_apply]
   exact hφ ⟨(γ : SL(2, ℤ)), Subgroup.mem_sup_left γ.2⟩ hγ
 
-noncomputable def resP : parabolicHoms ℚ (Gpm N) ℚ →ₗ[ℚ] parabolicHoms ℚ (CongruenceSubgroup.Gamma N) ℚ :=
+noncomputable def resP :
+    parabolicHoms ℚ (Gpm N) ℚ →ₗ[ℚ] parabolicHoms ℚ (CongruenceSubgroup.Gamma N) ℚ :=
   (resHom N).restrict (fun φ hφ => resHom_mem N φ hφ)
 
 theorem resP_bijective : Function.Bijective (resP N) := by
@@ -621,6 +622,7 @@ open scoped MatrixGroups
 theorem ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq (N : ℕ) (hN : 2 ≤ N) :
     6 * N * Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ (CongruenceSubgroup.Gamma N) ℤ) +
         6 * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index =
-      12 * N + N * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := _root_.P2MW.S_ModularCurve_six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq.solution N hN
+      12 * N + N * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
+  solution N hN
 
 end publicSection

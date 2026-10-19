@@ -80,6 +80,7 @@ public section publicSection
 
 open ModularCurve IntermediateField
 theorem ModularCurve.evalAtJGen_injective :
-    Function.Injective (ModularCurve.evalAtJGen : Polynomial ℤ →+* ↥ℚ⟮ModularCurve.jq⟯) := _root_.P2MW.S_ModularCurve_evalAtJGen_injective.solution
+    Function.Injective (ModularCurve.evalAtJGen : Polynomial ℤ →+* ↥ℚ⟮ModularCurve.jq⟯) :=
+  solution
 
 end publicSection

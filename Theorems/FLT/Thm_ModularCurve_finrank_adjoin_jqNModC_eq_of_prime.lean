@@ -94,7 +94,8 @@ theorem prime' : ℓ.Prime := Fact.out
 
 theorem dedekindPsi_prime : dedekindPsi ℓ = ℓ + 1 := by
   have hℓ : ℓ.Prime := Fact.out
-  rw [dedekindPsi, hℓ.divisors, Finset.filter_true_of_mem, Finset.sum_pair hℓ.one_lt.ne, Nat.div_one,
+  rw [dedekindPsi, hℓ.divisors, Finset.filter_true_of_mem, Finset.sum_pair hℓ.one_lt.ne,
+    Nat.div_one,
     Nat.div_self hℓ.pos, add_comm]
   intro d hd
   simp only [Finset.mem_insert, Finset.mem_singleton] at hd
@@ -102,14 +103,15 @@ theorem dedekindPsi_prime : dedekindPsi ℓ = ℓ + 1 := by
   · exact squarefree_one
   · exact hℓ.squarefree
 
-def jb : modularFunctionFieldBar ℓ := ⟨coeffEmb 𝕂 jq, coeffEmb_mem_laurentBaseChange 𝕂 (jq_mem_full ℓ)⟩
+def jb :
+    modularFunctionFieldBar ℓ := ⟨coeffEmb 𝕂 jq, coeffEmb_mem_laurentBaseChange 𝕂 (jq_mem_full ℓ)⟩
 
 theorem coe_jb : (jb ℓ : LaurentSeries 𝕂) = jqModC 𝕂 := coeffEmb_jq 𝕂
 
 theorem bar_eq_restrictScalars :
     modularFunctionFieldBar ℓ = (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯).restrictScalars 𝕂 := by
   have hℓ : ℓ.Prime := Fact.out
-  show laurentBaseChange 𝕂 (modularFunctionFieldFull ℓ) = _
+  change laurentBaseChange 𝕂 (modularFunctionFieldFull ℓ) = _
   rw [full_eq_of_prime hℓ, laurentBaseChange_modularFunctionField]
   exact (adjoin_simple_adjoin_simple 𝕂 (jqModC 𝕂) (jqNModC 𝕂 ℓ)).symm
 
@@ -151,7 +153,8 @@ theorem coe_φ (x : RatFunc 𝕂) :
     ((φ ℓ x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = (σa x : LaurentSeries 𝕂) := by
   rw [φ_apply, coe_jTr, coe_algebraMap_tower]
 
-theorem φ_algebraMap (k : 𝕂) : φ ℓ (algebraMap 𝕂 (RatFunc 𝕂) k) = algebraMap 𝕂 (modularFunctionFieldBar ℓ) k := by
+theorem φ_algebraMap (k : 𝕂) :
+    φ ℓ (algebraMap 𝕂 (RatFunc 𝕂) k) = algebraMap 𝕂 (modularFunctionFieldBar ℓ) k := by
   ext
   rw [coe_φ, AlgEquiv.commutes]
   rfl
@@ -177,7 +180,7 @@ theorem he_compat :
       = (jTr ℓ).toRingHom.comp (algebraMap (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯)) := by
   apply RingHom.ext
   intro y
-  show φ ℓ (σa.symm y) = jTr ℓ (algebraMap _ _ y)
+  change φ ℓ (σa.symm y) = jTr ℓ (algebraMap _ _ y)
   rw [φ_apply, AlgEquiv.apply_symm_apply]
 
 theorem finite_ratFunc : Module.Finite (RatFunc 𝕂) (modularFunctionFieldBar ℓ) := by
@@ -318,7 +321,6 @@ theorem finrank_tower_eq : Module.finrank (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC
 end DegAux
 
 open DegAux in
-
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime] :
     Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1 := by
   apply le_antisymm
@@ -340,6 +342,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.finrank_adjoin_jqNModC_eq_of_prime (ℓ : ℕ) [Fact ℓ.Prime] : Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1 := _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_of_prime.solution ℓ
+theorem ModularCurve.finrank_adjoin_jqNModC_eq_of_prime (ℓ : ℕ) [Fact ℓ.Prime] :
+    Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1 :=
+  solution ℓ
 
 end publicSection

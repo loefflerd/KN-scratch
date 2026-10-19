@@ -73,23 +73,29 @@ open scoped Manifold MatrixGroups
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL IsParabolicCocycle IsEquivariantPrimitiveWith IsEichlerIntegral binaryFormRepSL_neg_one_apply"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL IsParabolicCocycle IsEquivariantPrimitiveWith \
+  IsEichlerIntegral binaryFormRepSL_neg_one_apply"
 namespace ParabolicSol
 p2m_open "HeckeEis"
 
-p2m_open "UpperHalfPlane MvPolynomial CongruenceSubgroup HeckeEis P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis"
+p2m_open "UpperHalfPlane MvPolynomial CongruenceSubgroup HeckeEis \
+  P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis"
 open scoped Manifold MatrixGroups ModularForm Pointwise
 
-theorem periodic_slash_comp_ofComplex_of_conj_T_zpow_mem {k : ℤ} {Γ : Subgroup SL(2, ℤ)} {F' : Type*}
-    [FunLike F' ℍ ℂ] [SlashInvariantFormClass F' (Γ : Subgroup (GL (Fin 2) ℝ)) k] (f : F') (δ : SL(2, ℤ)) {h : ℤ}
+theorem periodic_slash_comp_ofComplex_of_conj_T_zpow_mem {k : ℤ} {Γ : Subgroup SL(2, ℤ)}
+    {F' : Type*}
+    [FunLike F' ℍ ℂ] [SlashInvariantFormClass F' (Γ : Subgroup (GL (Fin 2) ℝ)) k] (f : F')
+    (δ : SL(2, ℤ)) {h : ℤ}
     (hmem : δ * ModularGroup.T ^ h * δ⁻¹ ∈ Γ) :
     Function.Periodic (((f : ℍ → ℂ) ∣[k] δ) ∘ ofComplex) ((h : ℝ) : ℂ) := by
   refine SlashInvariantFormClass.periodic_comp_ofComplex
     (SlashInvariantForm.translate f (Matrix.SpecialLinearGroup.mapGL ℝ δ)) ?_
-  rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff, ConjAct.toConjAct_smul]
+  rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff,
+    ConjAct.toConjAct_smul]
   have hTh : Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ h)
       = Matrix.GeneralLinearGroup.upperRightHom (h : ℝ) := by
-    rw [Units.ext_iff, Matrix.SpecialLinearGroup.mapGL_coe_matrix, Matrix.SpecialLinearGroup.map_apply_coe,
+    rw [Units.ext_iff, Matrix.SpecialLinearGroup.mapGL_coe_matrix,
+      Matrix.SpecialLinearGroup.map_apply_coe,
       ModularGroup.coe_T_zpow, Matrix.GeneralLinearGroup.upperRightHom_apply]
     ext i j
     fin_cases i <;> fin_cases j <;> simp
@@ -104,7 +110,8 @@ end HeckeEis.ParabolicSol
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis HeckeEis.ParabolicSol UpperHalfPlane CongruenceSubgroup in
 open scoped ModularForm Pointwise in
 theorem solution (N n : ℕ) [NeZero N]
-    (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2))
+    {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)
     (hF : HeckeEis.IsEquivariantPrimitiveWith
       ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F) :
@@ -123,12 +130,14 @@ theorem solution (N n : ℕ) [NeZero N]
     rw [← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
   intro γ hγ
   rcases Nat.even_or_odd n with heven | hodd
-  · obtain ⟨ε, δ, h, hε, hγeq⟩ := ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
+  · obtain ⟨ε, δ, h, hε, hγeq⟩ :=
+      ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
     have hRε : R ε = 1 := by
       rcases hε with rfl | rfl
       · exact map_one R
       · refine LinearMap.ext fun P => ?_
-        rw [hR, binaryFormRepSL_neg_one_apply, Even.neg_one_pow heven, one_smul, Module.End.one_apply]
+        rw [hR, binaryFormRepSL_neg_one_apply, Even.neg_one_pow heven, one_smul,
+          Module.End.one_apply]
     have hRεx : ∀ x : SL(2, ℤ), R (ε * x) = R x := fun x => by rw [map_mul, hRε, one_mul]
     have hεsmul : ∀ (x : SL(2, ℤ)) (τ : ℍ), (ε * x) • τ = x • τ := by
       rcases hε with rfl | rfl
@@ -137,7 +146,8 @@ theorem solution (N n : ℕ) [NeZero N]
     have hσ : δ * ModularGroup.T ^ h * δ⁻¹ ∈ Gamma0 N := by
       rcases hε with rfl | rfl
       · rw [one_mul] at hγeq; rw [← hγeq]; exact γ.2
-      · have e : δ * ModularGroup.T ^ h * δ⁻¹ = -1 * (γ : SL(2, ℤ)) := by rw [hγeq, ← mul_assoc, neg_one_mul, neg_neg, one_mul]
+      · have e : δ * ModularGroup.T ^ h * δ⁻¹ = -1 * (γ : SL(2, ℤ)) :=
+          by rw [hγeq, ← mul_assoc, neg_one_mul, neg_neg, one_mul]
         rw [e]; exact Subgroup.mul_mem _ hneg1 γ.2
     set g : ℍ → ℂ := (f : ℍ → ℂ) ∣[((n : ℤ) + 2)] δ with hg
     set G : ℍ → ↥(BinaryForm ℂ n) := fun τ => R δ⁻¹ (F (δ • τ)) with hGdef
@@ -148,12 +158,15 @@ theorem solution (N n : ℕ) [NeZero N]
       periodic_slash_comp_ofComplex_of_conj_T_zpow_mem f δ hσ
     have hFG : ∀ u : ℍ, F (δ • u) = R δ (G u) := fun u => by rw [hGdef, hRinv']
     have hcoc : hF.cocycle γ = R δ (G (ModularGroup.T ^ h • I) - R (ModularGroup.T ^ h) (G I)) := by
-      rw [← hF.sub_eq_cocycle γ (δ • I), hρapp, hγeq, hεsmul, hRεx, ← mul_smul, inv_mul_cancel_right, mul_smul,
+      rw [← hF.sub_eq_cocycle γ (δ • I), hρapp, hγeq, hεsmul, hRεx, ← mul_smul,
+        inv_mul_cancel_right, mul_smul,
         hFG, hFG, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, hRinv, map_sub]
-    have htrans : ∀ y ∈ LinearMap.range (R (ModularGroup.T ^ h) - 1), R δ y ∈ LinearMap.range (ρ γ - 1) := by
+    have htrans : ∀ y ∈ LinearMap.range (R (ModularGroup.T ^ h) - 1), R δ y ∈ LinearMap.range (ρ γ - 1) :=
+      by
       rintro _ ⟨w, rfl⟩
       refine ⟨R δ w, ?_⟩
-      rw [LinearMap.sub_apply, Module.End.one_apply, hρapp, hγeq, hRεx, map_mul, map_mul, Module.End.mul_apply,
+      rw [LinearMap.sub_apply, Module.End.one_apply, hρapp, hγeq, hRεx, map_mul, map_mul,
+        Module.End.mul_apply,
         Module.End.mul_apply, hRinv, LinearMap.sub_apply, Module.End.one_apply, map_sub]
     rw [hcoc]
     apply htrans
@@ -164,7 +177,7 @@ theorem solution (N n : ℕ) [NeZero N]
   · set m : Gamma0 N := ⟨-1, hneg1⟩ with hm
     have hρm : ∀ v, ρ m v = -v := fun v => by
       rw [hρapp]
-      show binaryFormRepSL ℂ n (-1) v = -v
+      change binaryFormRepSL ℂ n (-1) v = -v
       rw [binaryFormRepSL_neg_one_apply, Odd.neg_one_pow hodd]
       exact neg_one_smul ℂ v
     have hz := hF.cocycle_mem_coeffCocycles
@@ -198,11 +211,13 @@ public section publicSection
 
 open scoped Manifold MatrixGroups
 theorem HeckeEis.isParabolicCocycle_cocycle_of_isEichlerIntegral (N n : ℕ) [NeZero N]
-    (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2))
+    {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)
     (hF : HeckeEis.IsEquivariantPrimitiveWith
       ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F) :
     HeckeEis.IsParabolicCocycle
-      ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle := _root_.P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.solution N n f hEI hF
+      ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle :=
+  solution N n f hEI hF
 
 end publicSection

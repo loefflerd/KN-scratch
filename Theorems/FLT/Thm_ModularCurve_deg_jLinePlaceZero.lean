@@ -81,6 +81,8 @@ public section publicSection
 
 
 open IntermediateField AlgebraicCurve
-theorem ModularCurve.deg_jLinePlaceZero : ModularCurve.jLinePlaceZero.deg = 1 := _root_.P2MW.S_ModularCurve_deg_jLinePlaceZero.solution
+theorem ModularCurve.deg_jLinePlaceZero :
+    ModularCurve.jLinePlaceZero.deg = 1 :=
+  solution
 
 end publicSection

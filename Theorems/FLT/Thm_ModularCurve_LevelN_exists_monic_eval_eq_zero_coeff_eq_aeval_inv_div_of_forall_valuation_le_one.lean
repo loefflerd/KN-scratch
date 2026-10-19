@@ -317,6 +317,7 @@ theorem ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_
       ∀ i : ℕ, ∃ p q : ℂ[X], q.coeff 0 ≠ 0 ∧
         P.coeff i =
           aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ p /
-            aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ q := _root_.P2MW.S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one.solution M K σ hker hfixed E hEj z hz
+            aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ q :=
+  solution M K σ hker hfixed E hEj z hz
 
 end publicSection

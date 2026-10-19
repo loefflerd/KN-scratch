@@ -79,7 +79,7 @@ theorem solution
     have : Module.Finite E'.FunctionField E.FunctionField := hfin
     have : CharZero E'.FunctionField :=
       charZero_of_injective_algebraMap (algebraMap F E'.FunctionField).injective
-    show Algebra.IsSeparable E'.FunctionField E.FunctionField
+    change Algebra.IsSeparable E'.FunctionField E.FunctionField
     exact Algebra.IsSeparable.of_integral E'.FunctionField E.FunctionField
   choose s hs using AlgebraicCurve.Place.restrictAlong_surjective ι hι hfin hsep
   have hpush : Function.Surjective (Pic0.pushforwardAlongHom ι hι hfin hN) := by
@@ -87,7 +87,7 @@ theorem solution
     obtain ⟨D', rfl⟩ := Pic0.mk_surjective c'
     let D : Divisor F E.FunctionField := Finsupp.mapDomain s (D' : Divisor F E'.FunctionField)
     have hD : Divisor.pushforwardAlong ι hι D = (D' : Divisor F E'.FunctionField) := by
-      show Divisor.pushforwardAlong ι hι (Finsupp.mapDomain s (D' : Divisor F E'.FunctionField)) = _
+      change Divisor.pushforwardAlong ι hι (Finsupp.mapDomain s (D' : Divisor F E'.FunctionField)) = _
       rw [Finsupp.mapDomain, map_finsuppSum]
       conv_rhs => rw [← Finsupp.sum_single (D' : Divisor F E'.FunctionField)]
       refine Finsupp.sum_congr (fun v _ => ?_)
@@ -124,6 +124,7 @@ theorem WeierstrassCurve.Affine.pointMapOfPushforward_surjective
     [E'.IsElliptic] [GenusOnePlaceGate E'] [AbelTheorem E']
     (ι : E'.FunctionField →ₐ[F] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
     (hfin : FiniteAlong F ι) (hN : NormFormulaAlong F ι hfin) :
-    Function.Surjective (pointMapOfPushforward ι hι hfin hN) := _root_.P2MW.S_WeierstrassCurve_Affine_pointMapOfPushforward_surjective.solution E E' ι hι hfin hN
+    Function.Surjective (pointMapOfPushforward ι hι hfin hN) :=
+  solution E E' ι hι hfin hN
 
 end publicSection

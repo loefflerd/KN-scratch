@@ -80,7 +80,12 @@ open UpperHalfPlane Filter Polynomial
 open scoped MatrixGroups Topology Manifold IntermediateField.algebraAdjoinAdjoin nonZeroDivisors
 
 namespace ModularCurve
-p2m_export "ModularCurve" "realizeOf ComplexPlaceDictionaryOf laurentBaseChange ComplexPlaceDictionary qExpFunctionFieldC jqModC transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC realizeOf_eq_div jqModC_eq_qExpansion_E4_cube_div_discriminant isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex"
+p2m_export "ModularCurve" "realizeOf ComplexPlaceDictionaryOf laurentBaseChange \
+  ComplexPlaceDictionary qExpFunctionFieldC jqModC \
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqMod\
+  C exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC \
+  realizeOf_eq_div jqModC_eq_qExpansion_E4_cube_div_discriminant \
+  isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex"
 namespace Ws49
 namespace CCPL
 p2m_open "ModularCurve"
@@ -91,7 +96,9 @@ abbrev CF : Type := ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ Γ))
 
 variable (x : CF Γ)
 
-theorem transcendental_jX [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : Transcendental ℂ x :=
+theorem transcendental_jX [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
+    [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] :
+    Transcendental ℂ x :=
   (transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
     ℂ Γ hT.out x hx.out).1
 
@@ -99,7 +106,9 @@ abbrev A : Subalgebra ℂ (CF Γ) := Algebra.adjoin ℂ {x}
 
 abbrev Kj : IntermediateField ℂ (CF Γ) := IntermediateField.adjoin ℂ {x}
 
-def polyEquiv [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : ℂ[X] ≃ₐ[ℂ] A Γ x :=
+def polyEquiv [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
+    [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] :
+    ℂ[X] ≃ₐ[ℂ] A Γ x :=
   Polynomial.algEquivOfTranscendental ℂ x (transcendental_jX Γ x)
 
 scoped instance instIsPrincipalIdealRingA [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsPrincipalIdealRing (A Γ x) :=
@@ -216,13 +225,15 @@ theorem one_mem_strictPeriods [hT : Fact (ModularGroup.T ∈ Γ)] :
 theorem one_mem_strictPeriods_SL : (1 : ℝ) ∈ (𝒮ℒ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   simp
 
-private theorem _root_.ModularCurve.Ws49.CCPL.continuous_coe {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
+private theorem _root_.ModularCurve.Ws49.CCPL.continuous_coe {k : ℤ}
+    (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
     Continuous (f : ℍ → ℂ) :=
   (ModularFormClass.holo f).continuous
 
 p2m_export "ModularCurve.Ws49.CCPL" "continuous_coe"
 
-theorem qL_ne_zero [hT : Fact (ModularGroup.T ∈ Γ)] {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hf : f ≠ 0) :
+theorem qL_ne_zero [hT : Fact (ModularGroup.T ∈ Γ)] {k : ℤ}
+    (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hf : f ≠ 0) :
     qL Γ f ≠ 0 := by
   intro h
   apply hf
@@ -296,7 +307,8 @@ theorem eventually_ne_zero {k : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2)
   filter_upwards [htend.eventually hC] with z hz
   simpa only [ofComplex_apply] using hz
 
-theorem isBoundedUnder_div_of_realizeOf [hT : Fact (ModularGroup.T ∈ Γ)] {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+theorem isBoundedUnder_div_of_realizeOf [hT : Fact (ModularGroup.T ∈ Γ)] {k : ℤ}
+    (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
     (hh : h ≠ 0) (y : LaurentSeries ℂ) (hy : y * qL Γ h = qL Γ g) (τ : ℍ)
     (hb : IsBoundedUnder (· ≤ ·) (𝓝[≠] τ) (fun z : ℍ => ‖realizeOf Γ y z‖)) :
     IsBoundedUnder (· ≤ ·) (𝓝[≠] τ) (fun z : ℍ => ‖(g : ℍ → ℂ) z / (h : ℍ → ℂ) z‖) := by
@@ -311,24 +323,26 @@ theorem isBoundedUnder_div_of_realizeOf [hT : Fact (ModularGroup.T ∈ Γ)] {k :
 
 end ModularForms
 
-theorem jX_mem_pt [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] (D : ComplexPlaceDictionaryOf Γ (qExpFunctionFieldC ℚ Γ)) (τ : ℍ) :
+theorem jX_mem_pt [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)]
+    (D : ComplexPlaceDictionaryOf Γ (qExpFunctionFieldC ℚ Γ)) (τ : ℍ) :
     x ∈ (D.pt τ).toValuationSubring := by
   rw [D.mem_pt_iff τ x, hx.out]
   exact isBoundedUnder_realizeOf_jqModC Γ τ
 
 open AlgebraicCurve in
-theorem eq_of_center_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] {Q Q' : Place ℂ (CF Γ)}
+theorem eq_of_center_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
+    [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] {Q Q' : Place ℂ (CF Γ)}
     (hQ : ∀ b : B Γ x, algebraMap (B Γ x) (CF Γ) b ∈ Q.toValuationSubring)
     (hQ' : ∀ b : B Γ x, algebraMap (B Γ x) (CF Γ) b ∈ Q'.toValuationSubring)
     (h : Place.center (B Γ x) Q hQ = Place.center (B Γ x) Q' hQ') : Q = Q' := by
   apply Place.ext
-  rw [Place.toValuationSubring_eq_of_forall_mem Q hQ, Place.toValuationSubring_eq_of_forall_mem Q' hQ']
+  rw [Place.toValuationSubring_eq_of_forall_mem Q hQ, Place.toValuationSubring_eq_of_forall_mem Q'
+    hQ']
   have hc : Place.centerHeightOneSpectrum (B Γ x) Q hQ = Place.centerHeightOneSpectrum (B Γ x) Q' hQ' :=
     IsDedekindDomain.HeightOneSpectrum.ext h
   rw [hc]
 
 open AlgebraicCurve in
-
 theorem mem_of_mul_eq [Γ.FiniteIndex] {Q : Place ℂ (CF Γ)}
     (hQ : ∀ b : B Γ x, algebraMap (B Γ x) (CF Γ) b ∈ Q.toValuationSubring)
     {y : CF Γ} {b s : B Γ x} (hs : s ∉ Place.center (B Γ x) Q hQ)
@@ -349,7 +363,8 @@ theorem mem_of_mul_eq [Γ.FiniteIndex] {Q : Place ℂ (CF Γ)}
   exact O.valuation_le_one ⟨_, hQ b⟩
 
 open AlgebraicCurve in
-theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)]
+theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
+    [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)]
     (D : ComplexPlaceDictionaryOf Γ (qExpFunctionFieldC ℚ Γ)) (P : Place ℂ (CF Γ))
     (hP : x ∈ P.toValuationSubring) : ∃ τ : ℍ, D.pt τ = P := by
   by_contra hne
@@ -385,7 +400,8 @@ theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : 
   have hb' : ∀ τ : ℍ, IsBoundedUnder (· ≤ ·) (𝓝[≠] τ)
       (fun z : ℍ => ‖(g : ℍ → ℂ) z / (h : ℍ → ℂ) z‖) :=
     fun τ => isBoundedUnder_div_of_realizeOf Γ g h hh (y : LaurentSeries ℂ) hgh τ (hbdd τ)
-  have hint0 := ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex Γ hT.out g h hh hb'
+  have hint0 :=
+    ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex Γ hT.out g h hh hb'
   have hyeq : (y : LaurentSeries ℂ) = qL Γ g / qL Γ h := by
     rw [eq_div_iff (qL_ne_zero Γ h hh)]
     exact hgh
@@ -433,6 +449,7 @@ theorem ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem
     (P : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ F₀))
     (x : ModularCurve.laurentBaseChange ℂ F₀) (hx : (x : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (hP : x ∈ P.toValuationSubring) :
-    ∃ τ : UpperHalfPlane, D.pt τ = P := _root_.P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.solution Γ hT F₀ hF D P x hx hP
+    ∃ τ : UpperHalfPlane, D.pt τ = P :=
+  solution Γ hT F₀ hF D P x hx hP
 
 end publicSection

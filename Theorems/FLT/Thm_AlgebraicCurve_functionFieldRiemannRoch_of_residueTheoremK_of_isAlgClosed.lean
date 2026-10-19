@@ -219,10 +219,10 @@ theorem deg_placeInfty : (placeInfty K).deg = 1 := by
       obtain ⟨c, hc⟩ := exists_sub_algebraMap_intDegree_neg K
         ((Valuation.mem_valuationSubring_iff _ _).mp hx)
       refine ⟨c, ?_⟩
-      show IsLocalRing.residue _ (algebraMap K (placeInfty K).toValuationSubring c) = _
+      change IsLocalRing.residue _ (algebraMap K (placeInfty K).toValuationSubring c) = _
       rw [← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff,
         Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-      show (placeInfty K).adicValuation (algebraMap K (RatFunc K) c - x) < 1
+      change (placeInfty K).adicValuation (algebraMap K (RatFunc K) c - x) < 1
       rw [← (inftyValuation_isEquiv_adicValuation K).lt_one_iff_lt_one,
         show algebraMap K (RatFunc K) c - x = -(x - algebraMap K (RatFunc K) c) from
           (neg_sub _ _).symm, Valuation.map_neg]
@@ -255,7 +255,8 @@ namespace Place
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.isUnit_mk_of_ord_eq_zero {f : F} (hf : f ≠ 0) (h : v.ord f = 0) :
+private theorem _root_.AlgebraicCurve.Place.isUnit_mk_of_ord_eq_zero {f : F} (hf : f ≠ 0)
+    (h : v.ord f = 0) :
     IsUnit (⟨f, v.mem_of_ord_nonneg hf h.ge⟩ : v.toValuationSubring) := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -265,7 +266,8 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_mk_of_ord_eq_zero {f : F} (hf
   rw [huf]
   exact u.isUnit
 
-private theorem _root_.AlgebraicCurve.Place.residue_ne_zero_of_ord_eq_zero {f : F} (hf : f ≠ 0) (h : v.ord f = 0) :
+private theorem _root_.AlgebraicCurve.Place.residue_ne_zero_of_ord_eq_zero {f : F} (hf : f ≠ 0)
+    (h : v.ord f = 0) :
     residue v.toValuationSubring (⟨f, v.mem_of_ord_nonneg hf h.ge⟩ : v.toValuationSubring)
       ≠ 0 :=
   (residue_ne_zero_iff_isUnit _).mpr (v.isUnit_mk_of_ord_eq_zero hf h)
@@ -466,7 +468,8 @@ namespace Place
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F} (hf : f ∈ v.toValuationSubring) :
+private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F}
+    (hf : f ∈ v.toValuationSubring) :
     (⟨f, hf⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring
       ↔ f = 0 ∨ 0 < v.ord f := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
@@ -480,7 +483,7 @@ private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F} (hf 
       · exfalso
         apply hu
         rw [← v.adicValuation_coe_eq_one_iff ⟨f, hf⟩]
-        show v.adicValuation f = 1
+        change v.adicValuation f = 1
         rw [v.adicValuation_eq_exp_neg_ord hf0, ← h, neg_zero, WithZero.exp_zero]
   · intro h hu
     have hne : f ≠ 0 := fun h0 => hu.ne_zero (Subtype.ext h0)
@@ -545,11 +548,11 @@ def lSpaceShiftEquiv (D : Divisor K F) {g : F} (hg : g ≠ 0)
     ring
   left_inv h := by
     apply Subtype.ext
-    show (h : F) * g⁻¹ * g = (h : F)
+    change (h : F) * g⁻¹ * g = (h : F)
     rw [mul_assoc, inv_mul_cancel₀ hg, mul_one]
   right_inv k := by
     apply Subtype.ext
-    show (k : F) * g * g⁻¹ = (k : F)
+    change (k : F) * g * g⁻¹ = (k : F)
     rw [mul_assoc, mul_inv_cancel₀ hg, mul_one]
 
 end AlgebraicCurve
@@ -674,7 +677,7 @@ theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x : F'} (h
       ring
   · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
-    show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
+    change 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
       rw [toValuationSubring_eq_of_restrict_eq hw,
         HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
@@ -854,7 +857,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
     (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
+  change Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
   ext a
@@ -863,12 +866,12 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     RingHom.coe_coe]
   apply (residueFieldEquivQuotientCenter hw).injective
   rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
+  change IsLocalRing.residue w.toValuationSubring
       (toValuationSubringOfRestrictEq hw
         (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
     = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
+  change algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
     = algebraMap F F' (a : F)
   rw [← IsScalarTower.algebraMap_apply,
@@ -1114,7 +1117,7 @@ def adeleBddQuotSingleEquivResidueField (D : Divisor K F) (P : Place K F) :
     (Algebra.linearMap P.toValuationSubring P.ResidueField).restrictScalars K
   have hres : ∀ x : P.toValuationSubring, res x = IsLocalRing.residue _ x := by
     intro x
-    show (Algebra.linearMap P.toValuationSubring P.ResidueField).restrictScalars K x = _
+    change (Algebra.linearMap P.toValuationSubring P.ResidueField).restrictScalars K x = _
     rw [LinearMap.restrictScalars_apply, Algebra.linearMap_apply,
       IsLocalRing.ResidueField.algebraMap_eq]
   let φ : adeleBdd D →ₗ[K] P.ResidueField := res ∘ₗ ψ
@@ -1170,12 +1173,12 @@ def adeleBddQuotSingleEquivResidueField (D : Divisor K F) (P : Place K F) :
           linarith
       · rw [Pi.single_eq_of_ne hv, Valuation.map_zero]; exact zero_le
     refine ⟨⟨Pi.single P f, hαD⟩, ?_⟩
-    show res (ψ ⟨Pi.single P f, hαD⟩) = c
+    change res (ψ ⟨Pi.single P f, hαD⟩) = c
     rw [hres]
     rw [show (ψ ⟨Pi.single P f, hαD⟩ : P.toValuationSubring) = cl from ?_, hcl]
     apply Subtype.ext
     rw [hψ_apply]
-    show t ^ (D P) * (Pi.single P f : Place K F → F) P = (cl : F)
+    change t ^ (D P) * (Pi.single P f : Place K F → F) P = (cl : F)
     rw [show (Pi.single P f : Place K F → F) P = f from Pi.single_eq_same _ _, hf,
       mul_comm (cl : F), ← mul_assoc, ← zpow_add₀ ht0, add_neg_cancel, zpow_zero, one_mul]
   exact (Submodule.Quotient.equiv _ _ (LinearEquiv.refl K _) (by rw [← hker]; simp)).trans
@@ -1420,7 +1423,7 @@ theorem range_lSpaceQuotientToAdeleBddQuotient {D₁ D₂ : Divisor K F} (hD : D
               (fun g hg => diagonal_mem_adeleBdd_iff.mpr hg) ⟨f, hf⟩) from rfl,
       ← hβeq, Submodule.Quotient.eq]
     refine Submodule.mem_comap.mpr ?_
-    show diagonalHom K F f - (β : Place K F → F) ∈ adeleBdd D₁
+    change diagonalHom K F f - (β : Place K F → F) ∈ adeleBdd D₁
     have hβsub : diagonalHom K F f - (β : Place K F → F) = -γ := by
       rw [← hsum, hfδ]; ring
     rw [hβsub]; exact (adeleBdd D₁).neg_mem hγ
@@ -1521,7 +1524,8 @@ end Index
 
 namespace RiemannGenusReachedAt
 
-private theorem _root_.AlgebraicCurve.RiemannGenusReachedAt.eq_of_ge [IsCurveOver K F] [Nonempty (Place K F)]
+private theorem _root_.AlgebraicCurve.RiemannGenusReachedAt.eq_of_ge [IsCurveOver K F]
+    [Nonempty (Place K F)]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     {D : Divisor K F} (hD : D₀ ≤ D) :
@@ -2076,7 +2080,8 @@ end SimplePoleProbe
 
 namespace Place
 
-private theorem _root_.AlgebraicCurve.Place.exists_trace_residue_ne_zero [HasSeparableResidue K F] (v : Place K F) :
+private theorem _root_.AlgebraicCurve.Place.exists_trace_residue_ne_zero [HasSeparableResidue K F]
+    (v : Place K F) :
     ∃ c : v.toValuationSubring,
       Algebra.trace K v.ResidueField (IsLocalRing.residue _ c) ≠ 0 := by
   have htr := HasSeparableResidue.trace_ne_zero (K := K) (F := F) v
@@ -2195,7 +2200,7 @@ theorem pow_mul_u_mem_lSpace_of_le {j m : ℕ} (hjm : j + P.c ≤ m) (i : Fin P.
   refine lSpace_mono ?_ (P.pow_mul_u_mem_lSpace j i)
   intro v
   have hBv : (0 : ℤ) ≤ P.B v := P.hB_eff v
-  show ((j + P.c) • P.B) v ≤ (m • P.B) v
+  change ((j + P.c) • P.B) v ≤ (m • P.B) v
   simp only [Finsupp.smul_apply, nsmul_eq_mul]
   exact mul_le_mul_of_nonneg_right (by exact_mod_cast hjm) hBv
 
@@ -2508,12 +2513,14 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral {f : F} (hf : _root_.IsIntegral w.toValuationSubring f) :
+private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral {f : F}
+    (hf : _root_.IsIntegral w.toValuationSubring f) :
     f ∈ w.toValuationSubring := by
   obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hf
   exact hy ▸ y.2
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral_of_algebraMap_mem {A : Type*} [CommRing A] [Algebra A F]
+private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral_of_algebraMap_mem {A : Type*}
+    [CommRing A] [Algebra A F]
     (hA : ∀ a : A, algebraMap A F a ∈ w.toValuationSubring)
     {f : F} (hf : _root_.IsIntegral A f) : f ∈ w.toValuationSubring := by
   let : Algebra A w.toValuationSubring :=
@@ -2532,7 +2539,8 @@ variable {A : Type*} [CommRing A] [Algebra A E] [Algebra A F] [IsScalarTower A E
 
 namespace Place
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral_of_restrict [Algebra.IsIntegral E F] (w : Place K F)
+private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral_of_restrict [Algebra.IsIntegral E F]
+    (w : Place K F)
     {u : Place K E} (hw : w.restrict E = u)
     (hA : ∀ a : A, algebraMap A E a ∈ u.toValuationSubring)
     {f : F} (hf : _root_.IsIntegral A f) : f ∈ w.toValuationSubring := by
@@ -2544,7 +2552,8 @@ end Place
 
 namespace Place
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_isIntegral_of_restrict [Algebra.IsIntegral E F] (w : Place K F)
+private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_isIntegral_of_restrict
+    [Algebra.IsIntegral E F] (w : Place K F)
     {u : Place K E} (hw : w.restrict E = u)
     (hA : ∀ a : A, algebraMap A E a ∈ u.toValuationSubring)
     {f : F} (hf : _root_.IsIntegral A f) : 0 ≤ w.ord f :=
@@ -2626,7 +2635,7 @@ theorem TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F
   intro y hy
   rw [Set.mem_singleton_iff] at hy
   subst hy
-  show T.x ∈ u.toValuationSubring
+  change T.x ∈ u.toValuationSubring
   exact u.mem_of_ord_nonneg T.x_ne_zero (T.hxreg u hu)
 
 omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
@@ -2725,7 +2734,7 @@ theorem isFractionRing_adjoin_X :
   refine IsFractionRing.of_field _ _ fun z => ?_
   refine ⟨⟨algebraMap K[X] (RatFunc K) z.num, algebraMap_polynomial_mem_adjoin_X K z.num⟩,
     ⟨algebraMap K[X] (RatFunc K) z.denom, algebraMap_polynomial_mem_adjoin_X K z.denom⟩, ?_⟩
-  show z = algebraMap K[X] (RatFunc K) z.num / algebraMap K[X] (RatFunc K) z.denom
+  change z = algebraMap K[X] (RatFunc K) z.num / algebraMap K[X] (RatFunc K) z.denom
   exact z.num_div_denom.symm
 
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
@@ -2733,10 +2742,13 @@ variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsCurveOver K F] [Nonempty (Place K F)]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]
 
+omit [DecidableEq (RatFunc K)] in
 theorem stichtenothGenusExists_of_ratFunc_tower :
-    StichtenothGenusExists K F :=
-  stichtenothGenusExists_of_adjoin_x_isFractionRing
-    (transcendenceTower K F) (isFractionRing_adjoin_X K)
+    StichtenothGenusExists K F := by
+  classical
+  exact
+    stichtenothGenusExists_of_adjoin_x_isFractionRing
+      (transcendenceTower K F) (isFractionRing_adjoin_X K)
 
 end RationalFunctionField
 
@@ -2804,8 +2816,11 @@ section LyingOver
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 attribute [local instance 0] Place.valuationSubringAlgebra
 
-theorem nonempty_place_of_ratFunc_tower : Nonempty (Place K F) :=
-  (exists_restrict_eq K F (placeInfty K)).nonempty
+omit [DecidableEq (RatFunc K)] in
+theorem nonempty_place_of_ratFunc_tower : Nonempty (Place K F) := by
+  classical
+  exact
+    (exists_restrict_eq K F (placeInfty K)).nonempty
 
 end LyingOver
 
@@ -2838,11 +2853,14 @@ variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsCurveOver K F]
 
+omit [DecidableEq (RatFunc K)] in
 theorem stichtenothGenusExists (hC : ConstantsAreBase K F) :
-    StichtenothGenusExists K F :=
-  haveI := nonempty_place_of_ratFunc_tower K F
-  haveI := finiteDimensional_lSpace_zero_of_constantsAreBase K F hC
-  stichtenothGenusExists_of_ratFunc_tower K F
+    StichtenothGenusExists K F := by
+  classical
+  exact
+    haveI := nonempty_place_of_ratFunc_tower K F
+    haveI := finiteDimensional_lSpace_zero_of_constantsAreBase K F hC
+    stichtenothGenusExists_of_ratFunc_tower K F
 
 end RationalFunctionField
 
@@ -2863,7 +2881,9 @@ variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsAlgClosed K] [IsCurveOver K F]
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n20_rr_constantsAreBase_of_isAlgClosed : ConstantsAreBase K F := by
+  classical
   obtain ⟨v⟩ := RationalFunctionField.nonempty_place_of_ratFunc_tower K F
   exact constantsAreBase_of_deg_eq_one v (IsCurveOver.deg_eq_one_of_isAlgClosed v)
 
@@ -2886,7 +2906,8 @@ theorem p0n25_wkc_kaehlerResidueTermKFam_single_of_ne
     (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK) (ω : Ω[F⁄K])
     {v : Place K F} (g : F) {w : Place K F} (hw : w ≠ v) :
     kaehlerResidueTermKFam Rfam ω (Pi.single v g) w = 0 := by
-  rw [kaehlerResidueTermKFam_apply, Pi.single_eq_of_ne hw, zero_mul, _root_.map_zero, _root_.map_zero]
+  rw [kaehlerResidueTermKFam_apply, Pi.single_eq_of_ne hw, zero_mul, _root_.map_zero,
+    _root_.map_zero]
 
 theorem p0n25_wkc_localResidueData_res_mul_uniformizer_inv
     {v : Place K F} (R : v.LocalResidueData) (c : v.toValuationSubring) :
@@ -3056,40 +3077,47 @@ end MirrorIdentification
 section MirrorAssembly
 
 variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
-variable (F : Type*) [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F] [Algebra (RatFunc K) F]
+variable (F : Type*) [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+    [Algebra (RatFunc K) F]
   [IsScalarTower K (RatFunc K) F]
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsCurveOver K F] [HasCanonicalDivisor (K := K) (F := F)]
 variable [∀ v : Place K F, v.DCoordGenerates]
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n25_wkc_riemannGenusReached_of_weilMax
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
       ∀ D : Divisor K F, φ ∈ omegaSpace D → D ≤ canonicalDivisorOf hω)
     (hC : ConstantsAreBase K F) :
     RiemannGenusReached K F (genus K F) := by
+  classical
   obtain ⟨hne, hL0, γ, D₀, hD₀⟩ := RationalFunctionField.stichtenothGenusExists K F hC
   have := hne
   have := hL0
   have hγeq := p0n25_wkc_stichtenothGenus_eq_genus_of_weilMax hD₀ hsup hC
   exact ⟨hne, hL0, D₀, hγeq ▸ hD₀⟩
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n25_wkc_riemannIndexFormula_of_weilMax
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
       ∀ D : Divisor K F, φ ∈ omegaSpace D → D ≤ canonicalDivisorOf hω)
     (hC : ConstantsAreBase K F) :
     RiemannIndexFormula K F := by
+  classical
   refine riemannIndexFormula_of_genusReached ?_
   intro _ _
   exact p0n25_wkc_riemannGenusReached_of_weilMax K F hsup hC
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n25_wkc_weilOmegaEllAgrees_of_weilMax [Nonempty (Place K F)]
     (hRI : RiemannIndexFormula K F)
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
       ∀ D : Divisor K F, φ ∈ omegaSpace D → D ≤ canonicalDivisorOf hω) :
     WeilOmegaEllAgrees K F := by
+  classical
   have hSurj : ResiduePairingSurjective K F :=
     residuePairingSurjective_of_riemannIndexFormula hRI
   intro _ _ _ ω hω D
@@ -3099,12 +3127,14 @@ theorem p0n25_wkc_weilOmegaEllAgrees_of_weilMax [Nonempty (Place K F)]
   exact_mod_cast (LinearEquiv.ofBijective
     (residuePairing K F (canonicalDivisorOf hω) D hmem) ⟨hinj, hsurj⟩).finrank_eq.symm
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n25_wkc_functionFieldRiemannRoch_of_weilMax_of_constantsAreBase
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
       ∀ D : Divisor K F, φ ∈ omegaSpace D → D ≤ canonicalDivisorOf hω)
     (hC : ConstantsAreBase K F) :
     FunctionFieldRiemannRoch K F := by
+  classical
   have hRI : RiemannIndexFormula K F :=
     p0n25_wkc_riemannIndexFormula_of_weilMax K F hsup hC
   have := RationalFunctionField.nonempty_place_of_ratFunc_tower K F
@@ -3115,10 +3145,12 @@ theorem p0n25_wkc_functionFieldRiemannRoch_of_weilMax_of_constantsAreBase
   intro _ _ _ ω hω D
   exact functionFieldRiemannRoch_of_riemann_and_duality K F hWD hω D
 
+omit [DecidableEq (RatFunc K)] in
 theorem p0n25_wkc_functionFieldRiemannRoch_of_residueTheoremK
     [HasSeparableResidue K F]
     (hRTK : ResidueTheoremK K F) (hC : ConstantsAreBase K F) :
     FunctionFieldRiemannRoch K F := by
+  classical
   have := RationalFunctionField.nonempty_place_of_ratFunc_tower K F
   intro _ _ _ ω hω D
   exact p0n25_wkc_functionFieldRiemannRoch_of_weilMax_of_constantsAreBase K F
@@ -3131,7 +3163,7 @@ end ModularCurve
 end
 
 theorem solution
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -3148,6 +3180,7 @@ theorem solution
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F]
     (hRTK : AlgebraicCurve.ResidueTheoremK K F) :
     AlgebraicCurve.FunctionFieldRiemannRoch K F := by
+  classical
   intro _ _ _
   exact ModularCurve.p0n25_wkc_functionFieldRiemannRoch_of_residueTheoremK K F
     (hRTK := hRTK) (hC := ModularCurve.p0n20_rr_constantsAreBase_of_isAlgClosed K F)
@@ -3157,7 +3190,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -3174,6 +3207,7 @@ theorem AlgebraicCurve.functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClose
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F]
     (hRTK : AlgebraicCurve.ResidueTheoremK K F) :
     AlgebraicCurve.FunctionFieldRiemannRoch K F := by
+  classical
   -- `by exact` to suppress a linter warning (instance in conclusion overlaps with hypotheses)
   exact solution hRTK
 

@@ -54,7 +54,8 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-theorem solution {n : ℕ} {f g : UpperHalfPlane → ℂ} {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+theorem solution {n : ℕ} {f g : UpperHalfPlane → ℂ}
+    {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (hG : HeckeEis.IsEichlerIntegral n g G) :
     HeckeEis.IsEichlerIntegral n (f + g) (F + G) := by
   intro d τ
@@ -68,7 +69,8 @@ end privateSection
 public section publicSection
 
 open scoped MatrixGroups
-theorem HeckeEis.IsEichlerIntegral.add {n : ℕ} {f g : UpperHalfPlane → ℂ} {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+theorem HeckeEis.IsEichlerIntegral.add {n : ℕ} {f g : UpperHalfPlane → ℂ}
+    {F G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (hG : HeckeEis.IsEichlerIntegral n g G) :
     HeckeEis.IsEichlerIntegral n (f + g) (F + G) := _root_.solution hF hG
 

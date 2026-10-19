@@ -136,9 +136,9 @@ theorem N3Prep.exists_algHom_comp_eq
   refine ⟨(AlgEquiv.ofInjectiveField E).symm.toAlgHom.comp (E'.codRestrict E.range hmem), fun x => ?_⟩
   have h1 := AlgEquiv.ofInjective_apply E (RingHom.injective (E : K →+* L))
     ((AlgEquiv.ofInjectiveField E).symm (E'.codRestrict E.range hmem x))
-  show E ((AlgEquiv.ofInjectiveField E).symm (E'.codRestrict E.range hmem x)) = E' x
+  change E ((AlgEquiv.ofInjectiveField E).symm (E'.codRestrict E.range hmem x)) = E' x
   rw [← h1]
-  show (((AlgEquiv.ofInjectiveField E) ((AlgEquiv.ofInjectiveField E).symm
+  change (((AlgEquiv.ofInjectiveField E) ((AlgEquiv.ofInjectiveField E).symm
     (E'.codRestrict E.range hmem x))) : L) = E' x
   rw [AlgEquiv.apply_symm_apply]
   rfl
@@ -178,7 +178,7 @@ theorem solution
       E₉.fieldRange.comap (N3Prep.qExpandAlgHom ℂ M) := by
     rw [ModularCurve.laurentBaseChange, IntermediateField.adjoin_le_iff]
     rintro _ ⟨x, hx, rfl⟩
-    show N3Prep.qExpandAlgHom ℂ M (ModularCurve.coeffEmb ℂ x) ∈ E₉.fieldRange
+    change N3Prep.qExpandAlgHom ℂ M (ModularCurve.coeffEmb ℂ x) ∈ E₉.fieldRange
     rw [AlgHom.mem_fieldRange]
     refine ⟨Φ ⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) x,
       ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) hx⟩, ?_⟩
@@ -202,9 +202,9 @@ theorem solution
         E₉.range hmem u with hw
     have h1 := AlgEquiv.ofInjective_apply E₉ (RingHom.injective (E₉ : K →+* LaurentSeries ℂ))
       ((AlgEquiv.ofInjectiveField E₉).symm w)
-    show E₉ ((AlgEquiv.ofInjectiveField E₉).symm w) = _
+    change E₉ ((AlgEquiv.ofInjectiveField E₉).symm w) = _
     rw [← h1]
-    show (((AlgEquiv.ofInjectiveField E₉) ((AlgEquiv.ofInjectiveField E₉).symm w)) : LaurentSeries ℂ) = _
+    change (((AlgEquiv.ofInjectiveField E₉) ((AlgEquiv.ofInjectiveField E₉).symm w)) : LaurentSeries ℂ) = _
     rw [AlgEquiv.apply_symm_apply]
     rfl
   have : σ.ker.FiniteIndex := by
@@ -247,6 +247,7 @@ theorem ModularCurve.LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand
     (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) :
     ∃ Ψ : ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ) →ₐ[ℂ] K,
       ∀ u : ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ),
-        E (Ψ u) = ModularCurve.qExpand ℂ M (u : LaurentSeries ℂ) := _root_.P2MW.S_ModularCurve_LevelN_exists_algHom_laurentBaseChange_apply_eq_qExpand.solution M K σ hker hfixed E hEj Γ hΓ hT
+        E (Ψ u) = ModularCurve.qExpand ℂ M (u : LaurentSeries ℂ) :=
+  solution M K σ hker hfixed E hEj Γ hΓ hT
 
 end publicSection

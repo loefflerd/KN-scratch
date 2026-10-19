@@ -107,11 +107,11 @@ theorem kaehlerRankOne_of_transcendental {x : F} (htr : Transcendental K x)
         (e.symm.toRingEquiv : K⟮x⟯ →+* RatFunc K)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap K⟮x⟯ F) := by
     refine RingHom.ext fun a => ?_
-    show algebraMap K⟮x⟯ F (e (e.symm a)) = algebraMap K⟮x⟯ F a
+    change algebraMap K⟮x⟯ F (e (e.symm a)) = algebraMap K⟮x⟯ F a
     rw [e.apply_symm_apply]
   have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun a => by
-      show algebraMap K F a = algebraMap K⟮x⟯ F (e (algebraMap K (RatFunc K) a))
+      change algebraMap K F a = algebraMap K⟮x⟯ F (e (algebraMap K (RatFunc K) a))
       rw [e.commutes, ← IsScalarTower.algebraMap_apply]
   have : Algebra.IsSeparable (RatFunc K) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
@@ -141,6 +141,7 @@ theorem AlgebraicCurve.kaehlerRankOne_of_transcendental
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     {x : F} (htr : Transcendental K x)
     (hsep : Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F) :
-    Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 := _root_.P2MW.S_AlgebraicCurve_kaehlerRankOne_of_transcendental.solution htr hsep
+    Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 :=
+  solution htr hsep
 
 end publicSection

@@ -99,7 +99,8 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
 end AlgebraicCurve.FF2KE3
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] {t : F} (ht : Transcendental K t) :
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] {t : F}
+    (ht : Transcendental K t) :
     Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
   AlgebraicCurve.FF2KE3.isAlgebraic_adjoin_of_transcendental' x ht
 
@@ -111,8 +112,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.isAlgebraic_adjoin_of_transcendental {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] {t : F} (ht : Transcendental K t) :
-    Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F := _root_.P2MW.S_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental.solution x ht
+theorem AlgebraicCurve.isAlgebraic_adjoin_of_transcendental {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] {t : F}
+    (ht : Transcendental K t) :
+    Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
+  solution x ht
 
 end publicSection

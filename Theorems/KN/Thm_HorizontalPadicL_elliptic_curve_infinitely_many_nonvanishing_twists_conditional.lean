@@ -69,12 +69,8 @@ theorem elliptic_curve_infinitely_many_nonvanishing_twists_of_quadratic_seed
   intro hfinite
   obtain ⟨α, _, hbound⟩ :=
     elliptic_curve_nonvanishing_of_quadratic_seed ι E d hmod hcase1 hSeed
-  apply logPowerLowerBound_not_bounded hbound _
-  intro X
-  unfold nonvanishingCount
-  apply Set.ncard_le_ncard _ hfinite
-  intro χ hχ
-  exact ⟨hχ.1, hχ.2.1, hχ.2.2.2⟩
+  exact logPowerLowerBound_not_bounded hbound _
+    (fun X ↦ Set.ncard_le_ncard (fun χ hχ ↦ by grind) hfinite)
 
 end HorizontalPadicL
 

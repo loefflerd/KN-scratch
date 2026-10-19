@@ -88,8 +88,8 @@ variable (R : Type*) [CommRing R]
 theorem jqNModC_rat (N : ℕ) [NeZero N] : jqNModC ℚ N = jqN N := rfl
 
 variable {R} in
-
-theorem coeffMap_jqModC {S : Type*} [CommRing S] (f : R →+* S) : coeffMap f (jqModC R) = jqModC S := by
+theorem coeffMap_jqModC {S : Type*} [CommRing S] (f : R →+* S) :
+    coeffMap f (jqModC R) = jqModC S := by
   rw [jqModC, map_mul, coeffMap_single, map_one, coeffMap_ofPowerSeries,
     ← RingHom.comp_apply (PowerSeries.map f) (PowerSeries.map (Int.castRingHom R)),
     ← PowerSeries.map_comp, RingHom.ext_int (f.comp (Int.castRingHom R)) (Int.castRingHom S)]
@@ -101,7 +101,6 @@ theorem coeffMap_jqNModC {S : Type*} [CommRing S] (f : R →+* S) (N : ℕ) [NeZ
   rw [jqNModC, coeffMap_qExpand, coeffMap_jqModC, jqNModC]
 
 variable {R} in
-
 theorem coeff_jqModC_eq_intCast (k : ℤ) : (jqModC R).coeff k = (((jqModC ℤ).coeff k : ℤ) : R) := by
   conv_lhs => rw [← coeffMap_jqModC (Int.castRingHom R)]
   rfl
@@ -127,7 +126,7 @@ variable (K : Type*) [Field K] (N : ℕ) [NeZero N]
 def qExpandAlgHomC : LaurentSeries K →ₐ[K] LaurentSeries K where
   __ := qExpand K N
   commutes' c := by
-    show qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+    change qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
     rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero]
 
 @[simp]
@@ -151,8 +150,8 @@ def modularFunctionFieldFullC : IntermediateField K (LaurentSeries K) :=
   IntermediateField.adjoin K (divisorExpansionsC K N)
 
 omit [NeZero N] in
-
-theorem modularFunctionFieldFullC_rat : modularFunctionFieldFullC ℚ N = modularFunctionFieldFull N :=
+theorem modularFunctionFieldFullC_rat :
+    modularFunctionFieldFullC ℚ N = modularFunctionFieldFull N :=
   rfl
 
 omit [NeZero N] in
@@ -164,7 +163,8 @@ omit [NeZero N] in
 theorem jqModC_mem_full : jqModC K ∈ modularFunctionFieldFullC K N := by
   simpa [qExpand_one_apply] using jqModCd_mem_full K N (one_dvd N)
 
-theorem modularFunctionFieldC_le_full : modularFunctionFieldC K N ≤ modularFunctionFieldFullC K N := by
+theorem modularFunctionFieldC_le_full :
+    modularFunctionFieldC K N ≤ modularFunctionFieldFullC K N := by
   rw [modularFunctionFieldC, adjoin_le_iff]
   rintro x (rfl | rfl)
   · exact jqModC_mem_full K N
@@ -178,14 +178,13 @@ theorem full_degeneracyC_le {N M : ℕ} [NeZero N] [NeZero M] (h : N ∣ M) :
   exact jqModCd_mem_full K M (hdvd.trans h)
 
 omit [NeZero N] in
-
 theorem full_degeneracyC_map_le (ℓ : ℕ) [NeZero ℓ] :
     (modularFunctionFieldFullC K N).map (qExpandAlgHomC K ℓ) ≤ modularFunctionFieldFullC K (N * ℓ) := by
   rw [modularFunctionFieldFullC, adjoin_map, adjoin_le_iff]
   rintro x ⟨y, ⟨d, hne, hdvd, rfl⟩, rfl⟩
   have := hne
   have : NeZero (ℓ * d) := ⟨Nat.mul_ne_zero (NeZero.ne ℓ) (NeZero.ne d)⟩
-  show qExpandAlgHomC K ℓ (qExpand K d (jqModC K)) ∈ _
+  change qExpandAlgHomC K ℓ (qExpand K d (jqModC K)) ∈ _
   rw [qExpandAlgHomC_apply, qExpand_qExpand]
   exact jqModCd_mem_full K (N * ℓ) ((mul_dvd_mul_left ℓ hdvd).trans (dvd_of_eq (mul_comm ℓ N)))
 

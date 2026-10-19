@@ -224,7 +224,7 @@ theorem cyclotomic_galEquivZMod_of_isArithFrobAt
   simpa [ZMod.coe_unitOfCoprime] using hpow
 
 /-- Automorphisms of a field algebra-equivalent to a cyclotomic field
-commute.  This lets us remove conjugacy after restricting a Chebotarev
+commute. This lets us remove conjugacy after restricting a Chebotarev
 class to the seed cyclotomic factor. -/
 theorem algAut_commute_of_cyclotomic_equiv
     (n : ℕ) (K L : Type*) [Field K] [Field L]
@@ -314,7 +314,7 @@ theorem IsConj.eq_of_left_commutes
     _ = y * z := hz
 
 /-- The natural action of the rational Galois group on the ring of integers
-has no extra integral fixed points.  Mathlib's general theorem uses a locally
+has no extra integral fixed points. Mathlib's general theorem uses a locally
 installed action obtained from `galRestrict`; this specialization records the
 same fact for the standard `RingOfIntegers` action used by Frobenius. -/
 theorem ringOfIntegers_isInvariant_galois
@@ -437,7 +437,7 @@ theorem _root_.solution
     discr_isCoprime_of_prime_support K₀ K₁ (N * p) η.2.conductor
       hηcoprime hK₀support hK₁support
   let E : IntermediateField ℚ MTT.Qbar := K₀ ⊔ K₁
-  -- Use the intermediate-field algebra structure consistently below.  It is
+  -- Use the intermediate-field algebra structure consistently below. It is
   -- propositionally equal to the rational algebra structure supplied by the
   -- field instance, but fixing it here avoids duplicate-instance terms in
   -- `lift`, `restrict`, and the Galois restriction maps.
@@ -541,7 +541,7 @@ theorem _root_.solution
     exact φprod.commutes x
   have hσK₁ : σ.restrictNormal K₁E = τ₁E := hφprod
   -- Delete primes dividing the declared level of the seed character as well
-  -- as its conductor.  This is needed to compare the imprimitive character
+  -- as its conductor. This is needed to compare the imprimitive character
   -- with its primitive character at every prime in the class.
   let bad : ℕ := B * (N * p * η.1.1)
   have hbad : bad ≠ 0 := by
@@ -879,11 +879,11 @@ namespace HorizontalPadicL
 
 Assume the two standard discriminant facts needed in the argument: primes
 unramified in two number fields remain unramified in their compositum, and a
-prime ramified in an `n`-th cyclotomic field divides `n`.  If the residual
+prime ramified in an `n`-th cyclotomic field divides `n`. If the residual
 kernel discriminant is supported on `N * p` and the seed conductor is
 coprime to `N * p`, then linear disjointness supplies the automorphism which
 is trivial on the residual and `p ^ m * N` cyclotomic factors and has the
-chosen full-order value on the seed factor.  Its Chebotarev class gives the
+chosen full-order value on the seed factor. Its Chebotarev class gives the
 required seeded Frobenius data. -/
 theorem coprimeRamification_productFrobeniusClass_exists_v2
     {N k p : ℕ} [Fact p.Prime]

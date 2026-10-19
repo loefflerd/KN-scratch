@@ -64,7 +64,8 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt PoleOrderLE"
+p2m_export "ModularCurve" "algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt \
+  PoleOrderLE"
 p2m_open "ModularCurve"
 
 theorem poleOrderLE_iff_le_order {f : LaurentSeries ℚ} (hf : f ≠ 0) {n : ℕ} :
@@ -148,6 +149,8 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.exists_aeval_jq_sub_holomorphicAtInfty (n : ℕ) : ∀ f : LaurentSeries ℚ, PoleOrderLE f n → ∃ P : Polynomial ℚ, P.natDegree ≤ n ∧ PoleOrderLE (f - Polynomial.aeval jq P) 0 := _root_.P2MW.S_ModularCurve_exists_aeval_jq_sub_holomorphicAtInfty.solution n
+theorem ModularCurve.exists_aeval_jq_sub_holomorphicAtInfty (n : ℕ) :
+    ∀ f : LaurentSeries ℚ, PoleOrderLE f n → ∃ P : Polynomial ℚ, P.natDegree ≤ n ∧ PoleOrderLE (f - Polynomial.aeval jq P) 0 :=
+  solution n
 
 end publicSection

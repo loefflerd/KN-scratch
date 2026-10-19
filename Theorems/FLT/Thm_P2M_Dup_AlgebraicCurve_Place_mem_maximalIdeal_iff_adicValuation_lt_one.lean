@@ -64,7 +64,8 @@ p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_coe_eq_one_iff toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation \
+  adicValuation_coe_eq_one_iff toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -86,7 +87,8 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_mem_maximalIdeal_iff_adicValuation_lt_one.AlgebraicCurve in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (a : v.toValuationSubring) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
+    (a : v.toValuationSubring) :
     a ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔ v.adicValuation (a : F) < 1 :=
   AlgebraicCurve.Place.rowMain v a
 
@@ -100,7 +102,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.mem_maximalIdeal_iff_adicValuation_lt_one {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (a : v.toValuationSubring) :
-    a ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔ v.adicValuation (a : F) < 1 := _root_.P2MW.S_AlgebraicCurve_Place_mem_maximalIdeal_iff_adicValuation_lt_one.solution v a
+theorem P2M.Dup.AlgebraicCurve.Place.mem_maximalIdeal_iff_adicValuation_lt_one {K F : Type*}
+    [Field K] [Field F] [Algebra K F] (v : Place K F) (a : v.toValuationSubring) :
+    a ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔ v.adicValuation (a : F) < 1 :=
+  solution v a
 
 end publicSection

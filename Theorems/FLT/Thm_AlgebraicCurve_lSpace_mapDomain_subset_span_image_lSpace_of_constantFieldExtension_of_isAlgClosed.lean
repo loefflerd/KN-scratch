@@ -234,6 +234,7 @@ theorem AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFiel
     (hlift_inj : Function.Injective lift)
     (D : Divisor K F) {f' : F'}
     (hf' : f' ∈ LSpace (K := K') (Finsupp.mapDomain lift D)) :
-    f' ∈ Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) := _root_.P2MW.S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj D hf'
+    f' ∈ Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) :=
+  solution K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj D hf'
 
 end publicSection

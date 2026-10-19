@@ -195,7 +195,6 @@ open CongruenceSubgroup Matrix.SpecialLinearGroup
 variable {k : ℤ} {Γ : Subgroup SL(2, ℤ)} {F : Type*} [FunLike F ℍ ℂ] (f : F)
 
 open scoped Pointwise in
-
 theorem exists_common_width (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] :
     ∃ M : ℕ, 0 < M ∧ ∀ δ : SL(2, ℤ), (M : ℝ) ∈ Subgroup.strictPeriods
       (ConjAct.toConjAct (Matrix.SpecialLinearGroup.mapGL ℝ δ)⁻¹ •
@@ -290,6 +289,7 @@ public section publicSection
 open scoped MatrixGroups
 theorem ModularCurve.exists_hasEquivariantPrimitiveOf (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (f : CuspForm Γ 2) :
-    ∃ F : UpperHalfPlane → ℂ, ModularCurve.HasEquivariantPrimitiveOf Γ f F := _root_.P2MW.S_ModularCurve_exists_hasEquivariantPrimitiveOf.solution Γ f
+    ∃ F : UpperHalfPlane → ℂ, ModularCurve.HasEquivariantPrimitiveOf Γ f F :=
+  solution Γ f
 
 end publicSection

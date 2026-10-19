@@ -319,6 +319,7 @@ open scoped MatrixGroups
 theorem ModularCurve.exists_smul_eq_of_E4_cube_div_discriminant_eq (τ τ' : ℍ)
     (h : (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ =
       (ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') :
-    ∃ γ : SL(2, ℤ), γ • τ = τ' := _root_.P2MW.S_ModularCurve_exists_smul_eq_of_E4_cube_div_discriminant_eq.solution τ τ' h
+    ∃ γ : SL(2, ℤ), γ • τ = τ' :=
+  solution τ τ' h
 
 end publicSection

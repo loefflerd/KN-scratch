@@ -86,6 +86,7 @@ public section publicSection
 open scoped MatrixGroups
 theorem ModularCurve.periodMapOf_apply_eq_periodOf (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (f : CuspForm Γ 2) (γ : Γ) :
-    ModularCurve.periodMapOf Γ f (Additive.ofMul γ) = ModularCurve.periodOf Γ γ f := _root_.P2MW.S_ModularCurve_periodMapOf_apply_eq_periodOf.solution Γ f γ
+    ModularCurve.periodMapOf Γ f (Additive.ofMul γ) = ModularCurve.periodOf Γ γ f :=
+  solution Γ f γ
 
 end publicSection

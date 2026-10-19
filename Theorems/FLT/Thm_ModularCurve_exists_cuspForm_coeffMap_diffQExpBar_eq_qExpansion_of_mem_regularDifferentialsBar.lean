@@ -80,7 +80,8 @@ variable (N : ℕ) [NeZero N]
 abbrev jB : modularFunctionFieldBar N :=
   ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionField_le_full N (jq_mem N))⟩
 
-theorem coeffMap_qEuler {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (s : LaurentSeries R) :
+theorem coeffMap_qEuler {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (s : LaurentSeries R)
+    :
     coeffMap f (qEuler R s) = qEuler S (coeffMap f s) := by
   ext n
   simp [qEuler_coeff, coeffMap_coeff]
@@ -121,7 +122,8 @@ theorem coeffMap_mem_laurentBaseChange_complex (ι₀ : AlgebraicClosure ℚ →
   | inv x _ hx => simpa using inv_mem hx
   | mul x y _ _ hx hy => simpa using mul_mem hx hy
 
-noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) : modularFunctionFieldBar N →+* LaurentSeries ℂ :=
+noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) :
+    modularFunctionFieldBar N →+* LaurentSeries ℂ :=
   (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)).toSubfield.subtype
 
 omit [NeZero N] in
@@ -175,8 +177,9 @@ theorem D_jB_ne_zero : D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB 
   have h2 := congrArg (fun s : LaurentSeries (AlgebraicClosure ℚ) => s.coeff (-1)) h1
   simp only at h2
   rw [qEuler_coeff] at h2
-  have h3 : ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)).coeff (-1) = 1 := by
-    show (coeffEmb (AlgebraicClosure ℚ) jq).coeff (-1) = 1
+  have h3 : ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)).coeff (-1) = 1 :=
+    by
+    change (coeffEmb (AlgebraicClosure ℚ) jq).coeff (-1) = 1
     rw [coeffEmb_coeff, coeff_jq_neg_one, map_one]
   rw [h3, HahnSeries.coeff_zero] at h2
   norm_num at h2
@@ -196,7 +199,8 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
       Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] = 1 := IsCurveOver.finrank_kaehler
   obtain ⟨x, hx⟩ := (finrank_eq_one_iff_of_nonzero'
     (D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N)) (D_jB_ne_zero N)).mp hrank ω
-  have hxreg : x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N) ∈ regularDifferentialsBar N := by
+  have hxreg : x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N) ∈ regularDifferentialsBar N :=
+    by
     rw [hx]; exact hω
   obtain ⟨h₁, h₂⟩ :=
     ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar N x hxreg
@@ -211,7 +215,8 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
   rw [map_inv₀, hJ] at h₂'
   rw [hJ] at h₁'
   simp only [map_mul, map_pow, map_sub, hJ, h1728] at h₁' h₂'
-  obtain ⟨f, hf⟩ := ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral N (phi N ι₀ x) hXmem
+  obtain ⟨f, hf⟩ :=
+    ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral N (phi N ι₀ x) hXmem
     (dedekindPsi N) h₁' h₂'
   refine ⟨f, ?_⟩
   have hΘ : ModularCurve.diffQExpBar N ω =
@@ -239,6 +244,7 @@ theorem ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_r
     (hω : ω ∈ ModularCurve.regularDifferentialsBar N) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) 2,
       ModularCurve.coeffMap ι₀ (ModularCurve.diffQExpBar N ω) =
-        HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) := _root_.P2MW.S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar.solution N ι₀ ω hω
+        HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) :=
+  solution N ι₀ ω hω
 
 end publicSection

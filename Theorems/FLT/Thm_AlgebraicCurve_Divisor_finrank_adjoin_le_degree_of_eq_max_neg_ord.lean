@@ -103,7 +103,7 @@ theorem solution
     have hcoeS : ((Polynomial.aeval xE s : E) : F) = Polynomial.aeval x s := by
       have : xE = IntermediateField.AdjoinSimple.gen K x := rfl
       rw [this]; exact IntermediateField.AdjoinSimple.coe_aeval_gen_apply (F := K) (α := x) (f := s)
-    show (z : F) = ((algebraMap A E ⟨_, hrA⟩ / algebraMap A E ⟨_, hsA⟩ : E) : F)
+    change (z : F) = ((algebraMap A E ⟨_, hrA⟩ / algebraMap A E ⟨_, hsA⟩ : E) : F)
     rw [show algebraMap A E ⟨_, hrA⟩ = Polynomial.aeval xE r from rfl,
         show algebraMap A E ⟨_, hsA⟩ = Polynomial.aeval xE s from rfl,
         IntermediateField.coe_div, hcoeR, hcoeS, hzrs]
@@ -260,6 +260,7 @@ theorem AlgebraicCurve.Divisor.finrank_adjoin_le_degree_of_eq_max_neg_ord
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (-v.ord x)) :
-    (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) ≤ Divisor.degree D := _root_.P2MW.S_AlgebraicCurve_Divisor_finrank_adjoin_le_degree_of_eq_max_neg_ord.solution x hx D hD
+    (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) ≤ Divisor.degree D :=
+  solution x hx D hD
 
 end publicSection

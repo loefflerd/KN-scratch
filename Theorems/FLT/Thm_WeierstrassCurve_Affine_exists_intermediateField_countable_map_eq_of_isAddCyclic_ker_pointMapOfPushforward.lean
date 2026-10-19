@@ -223,12 +223,18 @@ variable [DecidableEq F] [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
 namespace InfinitePlace
 
-private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one : (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 :=
-  deg_placeOfPoint (W := W) 0
+omit [DecidableEq F] in
+private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one :
+    (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 := by
+  classical
+  exact
+    deg_placeOfPoint (W := W) 0
 
+omit [DecidableEq F] in
 theorem eq_of_not_isFinitePlace
     (v : AlgebraicCurve.Place F W.FunctionField) (hv : ¬ IsFinitePlace v) :
     v = place := by
+  classical
   obtain ⟨P, rfl⟩ : ∃ P : W.Point, placeOfPoint P = v :=
     ⟨(pointEquivPlace (W := W)).symm v, (pointEquivPlace (W := W)).apply_symm_apply v⟩
   cases P with
@@ -238,13 +244,24 @@ theorem eq_of_not_isFinitePlace
 
 end InfinitePlace
 
+omit [DecidableEq F] in
 @[scoped simp]
-theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := rfl
+theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := by
+  classical
+  exact
+    rfl
 
-theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := rfl
+omit [DecidableEq F] in
+theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := by
+  classical
+  exact
+    rfl
 
-theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).surjective
+omit [DecidableEq F] in
+theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).surjective
 
 end CentredGate
 end Affine
@@ -292,12 +309,14 @@ theorem evalAt_div (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubrin
     (hg : g ≠ 0) (hg0 : v.ord g = 0) :
     v.evalAt (f / g) = v.evalAt f / v.evalAt g := by
   have hginv : g⁻¹ ∈ v.toValuationSubring :=
-    AlgebraicCurve.Place.mem_of_ord_nonneg v (inv_ne_zero hg) (by rw [v.ord_inv, hg0]; exact neg_nonneg.mpr le_rfl)
+    AlgebraicCurve.Place.mem_of_ord_nonneg v (inv_ne_zero hg) (by
+      rw [v.ord_inv, hg0]; exact neg_nonneg.mpr le_rfl)
   rw [div_eq_mul_inv, v.evalAt_mul hv hf hginv, v.evalAt_inv hv hg hg0, div_eq_mul_inv]
 
 end MoreSinglePlace
 
-theorem mem_restrictAlong_iff {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+theorem mem_restrictAlong_iff {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F]
+    [Algebra K F']
     (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') (f : F) :
     f ∈ (w.restrictAlong φ hφ).toValuationSubring ↔ φ f ∈ w.toValuationSubring :=
@@ -347,12 +366,14 @@ namespace WeierstrassCurve
 namespace Affine
 
 section S13GlobalGate
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F] (W : Affine F) [W.IsElliptic]
+variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F] (W : Affine F)
+    [W.IsElliptic]
 
 theorem s13_exists_gate : ∃ (g : GenusOnePlaceGate W),
     @GenusOnePlaceGate.IsCentred F _ W g ∧ @AbelTheorem F _ _ g _ := by
   have : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
-  have : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
+    hasPrincipalDivisors_functionField W
   exact exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W)
 
 noncomputable scoped instance (priority := 50) s13GlobalGate : GenusOnePlaceGate W := (s13_exists_gate W).choose
@@ -447,7 +468,11 @@ section FGFieldDescentMint
 
 def KwD5BetweenCurvesFGFieldDescent : Prop :=
   ∀ (K : Type uK) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-    (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+    (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
     (ι : E'.FunctionField →ₐ[K] E.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
     (N : ℕ) [NeZero N],
@@ -604,7 +629,7 @@ def pointPullbackCoordHomTo {xP yP : L}
     (Polynomial.aeval xP : F[X] →ₐ[F] L).toRingHom
     yP (eval₂_polynomial_of_equation_map_target h)
   commutes' c := by
-    show AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map_target h) (algebraMap F _ c)
+    change AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map_target h) (algebraMap F _ c)
       = algebraMap F L c
     rw [CoordinateRing.algebraMap_eq_mk_C_C, AdjoinRoot.lift_mk, eval₂_C]
     exact Polynomial.aeval_C _ c
@@ -620,7 +645,7 @@ theorem pointPullbackCoordHomTo_comp_algebraMap {xP yP : L}
     (pointPullbackCoordHomTo h).toRingHom.comp (algebraMap F[X] W.CoordinateRing)
       = (Polynomial.aeval xP : F[X] →ₐ[F] L).toRingHom := by
   refine RingHom.ext fun p => ?_
-  show pointPullbackCoordHomTo h (algebraMap F[X] _ p) = _
+  change pointPullbackCoordHomTo h (algebraMap F[X] _ p) = _
   rw [algebraMap_polynomial_eq_mk_C, pointPullbackCoordHomTo_mk, eval₂_C]
 
 theorem pointPullbackCoordHomTo_injective {xP yP : L}
@@ -661,7 +686,7 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
     (h : (W.map (algebraMap F L)).toAffine.Equation xP yP)
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     pointPullbackHomTo h hx (yGen W) = yP := by
-  show pointPullbackHomTo h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
+  change pointPullbackHomTo h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
   rw [pointPullbackHomTo_algebraMap, pointPullbackCoordHomTo_mk]
   exact eval₂_X _ _
 
@@ -684,17 +709,22 @@ variable (F : Type u) [Field F] [Algebra R₀ F] [DecidableEq F] [CharZero F]
 variable (F' : Type u) [Field F'] [Algebra R₀ F'] [DecidableEq F'] [CharZero F']
 variable [Algebra F F'] [IsScalarTower R₀ F F']
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_transcendental_polyToFunctionField_X_over_baseGeneralNoAC :
-    Transcendental F (polyToFunctionField (W⁄F') X) :=
-  Transcendental.of_tower_top F (L := F')
-    (transcendental_polyToFunctionField_X (W := (W⁄F')))
+    Transcendental F (polyToFunctionField (W⁄F') X) := by
+  classical
+  exact
+    Transcendental.of_tower_top F (L := F')
+      (transcendental_polyToFunctionField_X (W := (W⁄F')))
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_equation_map_polyToFunctionField_yGen_over_baseGeneralNoAC :
     ((W⁄F).map (algebraMap F (W⁄F').FunctionField)).toAffine.Equation
       (polyToFunctionField (W⁄F') X) (yGen (W⁄F')) := by
+  classical
   have hcurve : (W⁄F).map (algebraMap F (W⁄F').FunctionField)
       = (W⁄F').map (algebraMap F' (W⁄F').FunctionField) := by
-    show (W.map _).map _ = (W.map _).map _
+    change (W.map _).map _ = (W.map _).map _
     rw [WeierstrassCurve.map_map, WeierstrassCurve.map_map]
     congr 1
     exact ((IsScalarTower.algebraMap_eq R₀ F (W⁄F').FunctionField).symm).trans
@@ -707,14 +737,20 @@ def kw_functionFieldMapAlongGeneralNoAC : (W⁄F).FunctionField →ₐ[F] (W⁄F
       transcendental_iff.mp (kw_transcendental_polyToFunctionField_X_over_baseGeneralNoAC W F F') p
         hp)
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X :
     kw_functionFieldMapAlongGeneralNoAC W F F' (polyToFunctionField (W⁄F) X)
-      = polyToFunctionField (W⁄F') X :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+      = polyToFunctionField (W⁄F') X := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldMapAlongGeneralNoAC_yGen :
-    kw_functionFieldMapAlongGeneralNoAC W F F' (yGen (W⁄F)) = yGen (W⁄F') :=
-  pointPullbackHomTo_yGen _ _
+    kw_functionFieldMapAlongGeneralNoAC W F F' (yGen (W⁄F)) = yGen (W⁄F') := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
 def KwFunctionFieldTensorIsDomainGeneralNoAC : Prop :=
   IsDomain ((W⁄F).FunctionField ⊗[F] F')
@@ -747,15 +783,17 @@ scoped instance kw_isScalarTower_base_right_fracTensorGeneralNoAC :
       (IsScalarTower.algebraMap_apply F' ((W⁄F).FunctionField ⊗[F] F')
         (FractionRing ((W⁄F).FunctionField ⊗[F] F')) (algebraMap R₀ F' r)).symm
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_equation_tensorFracXYGeneralNoAC :
     ((W⁄F').map (algebraMap F' (FractionRing ((W⁄F).FunctionField ⊗[F] F')))).toAffine.Equation
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')))
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((yGen (W⁄F)) ⊗ₜ[F] (1 : F'))) := by
+  classical
   have hcurve : (W⁄F').map (algebraMap F' (FractionRing ((W⁄F).FunctionField ⊗[F] F')))
       = W⁄(FractionRing ((W⁄F).FunctionField ⊗[F] F')) := by
-    show (W.map _).map _ = W.map _
+    change (W.map _).map _ = W.map _
     rw [WeierstrassCurve.map_map]; congr 1
     exact (IsScalarTower.algebraMap_eq R₀ F'
       (FractionRing ((W⁄F).FunctionField ⊗[F] F'))).symm
@@ -766,10 +804,12 @@ theorem kw_equation_tensorFracXYGeneralNoAC :
           (Algebra.TensorProduct.includeLeft (R := F) (S := R₀)))
     (equation_map_polyToFunctionField_yGen (W := (W⁄F)))
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_transcendental_tensorFracXGeneralNoAC :
     Function.Injective (Polynomial.aeval (R := F')
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')))) := by
+  classical
   rw [show algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F'))
       = IsScalarTower.toAlgHom F' ((W⁄F).FunctionField ⊗[F] F')
@@ -787,13 +827,13 @@ theorem kw_transcendental_tensorFracXGeneralNoAC :
           (Algebra.TensorProduct.comm F F' F[X]).toAlgHom.toRingHom).comp
           (polyEquivTensor' F F').toAlgHom.toRingHom := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
-    · show aeval _ (C c) = Algebra.TensorProduct.map _ _
+    · change aeval _ (C c) = Algebra.TensorProduct.map _ _
           (Algebra.TensorProduct.comm F F' F[X] (polyEquivTensor' F F' (C c)))
       rw [show (polyEquivTensor' F F') (C c) = c ⊗ₜ[F] (1 : F[X]) from by
             rw [coe_polyEquivTensor', polyEquivTensor_apply, eval₂_C]; rfl,
         Algebra.TensorProduct.comm_tmul, Algebra.TensorProduct.map_tmul, Polynomial.aeval_C,
         Algebra.TensorProduct.right_algebraMap_apply, AlgHom.coe_id, id_eq, map_one]
-    · show aeval _ (X : F'[X]) = Algebra.TensorProduct.map _ _
+    · change aeval _ (X : F'[X]) = Algebra.TensorProduct.map _ _
           (Algebra.TensorProduct.comm F F' F[X] (polyEquivTensor' F F' X))
       rw [show (polyEquivTensor' F F') X = (1:F') ⊗ₜ[F] (X : F[X]) from by
             rw [coe_polyEquivTensor', polyEquivTensor_apply, eval₂_X],
@@ -820,19 +860,27 @@ def kw_functionFieldTensorFracHomGeneralNoAC :
   pointPullbackHomTo (kw_equation_tensorFracXYGeneralNoAC W F F')
     (kw_transcendental_tensorFracXGeneralNoAC W F F')
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorFracHomGeneralNoAC_X :
     kw_functionFieldTensorFracHomGeneralNoAC W F F' (polyToFunctionField (W⁄F') X)
       = algebraMap ((W⁄F).FunctionField ⊗[F] F') _
-          ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')) :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+          ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')) := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorFracHomGeneralNoAC_yGen :
     kw_functionFieldTensorFracHomGeneralNoAC W F F' (yGen (W⁄F'))
-      = algebraMap ((W⁄F).FunctionField ⊗[F] F') _ ((yGen (W⁄F)) ⊗ₜ[F] (1 : F')) :=
-  pointPullbackHomTo_yGen _ _
+      = algebraMap ((W⁄F).FunctionField ⊗[F] F') _ ((yGen (W⁄F)) ⊗ₜ[F] (1 : F')) := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorFracHomGeneralNoAC_bijective :
     Function.Bijective (kw_functionFieldTensorFracHomGeneralNoAC W F F') := by
+  classical
   refine ⟨(kw_functionFieldTensorFracHomGeneralNoAC W F F').injective, ?_⟩
   set ψ := kw_functionFieldTensorFracHomGeneralNoAC W F F'
   have hκ : (ψ.restrictScalars F).comp (kw_functionFieldMapAlongGeneralNoAC W F F')
@@ -840,11 +888,11 @@ theorem kw_functionFieldTensorFracHomGeneralNoAC_bijective :
           (FractionRing ((W⁄F).FunctionField ⊗[F] F'))).comp
           (Algebra.TensorProduct.includeLeft (R := F)) := by
     refine kw_functionField_algHom_ext ?_ ?_
-    · show ψ (kw_functionFieldMapAlongGeneralNoAC W F F' (polyToFunctionField (W⁄F) X)) = _
+    · change ψ (kw_functionFieldMapAlongGeneralNoAC W F F' (polyToFunctionField (W⁄F) X)) = _
       rw [kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X,
         kw_functionFieldTensorFracHomGeneralNoAC_X]
       rfl
-    · show ψ (kw_functionFieldMapAlongGeneralNoAC W F F' (yGen (W⁄F))) = _
+    · change ψ (kw_functionFieldMapAlongGeneralNoAC W F F' (yGen (W⁄F))) = _
       rw [kw_functionFieldMapAlongGeneralNoAC_yGen, kw_functionFieldTensorFracHomGeneralNoAC_yGen]
       rfl
   have hT_sub : ∀ t : (W⁄F).FunctionField ⊗[F] F',
@@ -889,10 +937,12 @@ section FFDomain
 local notation3 "CR" => (W⁄F).toAffine.CoordinateRing
 local notation3 "FFₗ" => (W⁄F).FunctionField
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_coordinateRingMap_basisGeneralNoAC (i : ℕ × Fin 2) :
     CoordinateRing.map (W⁄F).toAffine (algebraMap F F')
         (kw_coordinateRingBasis (W⁄F).toAffine i)
       = kw_coordinateRingBasis ((W⁄F).toAffine.map (algebraMap F F')) i := by
+  classical
   obtain ⟨n, j⟩ := i
   simp only [kw_coordinateRingBasis, Module.Basis.smulTower_apply,
     Polynomial.coe_basisMonomials, CoordinateRing.map_smul]
@@ -909,7 +959,7 @@ def kw_coordinateRingMapAlongGeneralNoAC :
   commutes' r := by
     simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
       MonoidHom.coe_ofClass]
-    show CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
+    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
     rw [IsScalarTower.algebraMap_apply F F[X] CR,
       show (algebraMap F F[X] r) = Polynomial.C r from rfl,
       show (algebraMap F[X] CR) (C r) = (C r : F[X]) • (1 : CR) by
@@ -922,7 +972,9 @@ def kw_coordinateRingMapAlongGeneralNoAC :
         from rfl,
       Algebra.smul_def, mul_one]
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') := by
+  classical
   suffices h : IsDomain (F' ⊗[F] CR) by
     have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
@@ -943,16 +995,18 @@ theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') :=
     exact heq ▸ (bT.equiv bD (Equiv.refl _)).injective
   exact Function.Injective.isDomain θ.toRingHom hθ
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorIsDomain_dischargeGeneralNoAC :
     KwFunctionFieldTensorIsDomainGeneralNoAC W F F' := by
-  show IsDomain (FFₗ ⊗[F] F')
+  classical
+  change IsDomain (FFₗ ⊗[F] F')
   have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
   let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
   have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
-      show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
+      change Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
   have hloc : IsLocalization
@@ -989,8 +1043,10 @@ local notation "E" => E₀.map (algebraMap K₀ K)
 def kw_iA_polyDescend (p : Polynomial K) (hmem : ∀ j, p.coeff j ∈ K₀) : Polynomial K₀ :=
   ∑ j ∈ p.support, Polynomial.C (⟨p.coeff j, hmem j⟩ : K₀) * Polynomial.X ^ j
 
+omit [DecidableEq K] in
 theorem kw_iA_polyDescend_map (p : Polynomial K) (hmem : ∀ j, p.coeff j ∈ K₀) :
     (kw_iA_polyDescend p hmem).map (algebraMap K₀ K) = p := by
+  classical
   unfold kw_iA_polyDescend; rw [Polynomial.map_sum]
   conv_rhs => rw [p.as_sum_support_C_mul_X_pow]
   exact Finset.sum_congr rfl fun j _ => by
@@ -1006,9 +1062,11 @@ def kw_iA_crDescend (c : (E).toAffine.CoordinateRing) (hmem : kw_iA_crCoeffsIn E
       ((CoordinateRing.basis (E).toAffine).repr c i) (hmem i))
     • (CoordinateRing.basis E₀.toAffine) i
 
+omit [DecidableEq K] in
 theorem kw_iA_crDescend_map (c : (E).toAffine.CoordinateRing)
     (hmem : kw_iA_crCoeffsIn E₀ c) :
     CoordinateRing.map E₀.toAffine (algebraMap K₀ K) (kw_iA_crDescend E₀ c hmem) = c := by
+  classical
   unfold kw_iA_crDescend; rw [map_sum]
   conv_rhs => rw [← (CoordinateRing.basis (E).toAffine).sum_repr c]
   refine Finset.sum_congr rfl fun i _ => ?_
@@ -1019,9 +1077,11 @@ theorem kw_iA_crDescend_map (c : (E).toAffine.CoordinateRing)
     · exact h ▸ by rw [CoordinateRing.basis_one, CoordinateRing.basis_one,
         CoordinateRing.map_mk, Polynomial.map_X]
 
+omit [DecidableEq K] in
 theorem kw_iA_phiEquation :
     (E₀.map (algebraMap K₀ (E).toAffine.FunctionField)).toAffine.Equation
       (polyToFunctionField (E).toAffine X) (yGen (E).toAffine) := by
+  classical
   have h : E₀.map (algebraMap K₀ (E).toAffine.FunctionField)
       = (E).map (algebraMap K (E).toAffine.FunctionField) := by
     rw [show (algebraMap K₀ (E).toAffine.FunctionField)
@@ -1030,18 +1090,23 @@ theorem kw_iA_phiEquation :
       ← WeierstrassCurve.map_map]
   exact h ▸ equation_map_polyToFunctionField_yGen (W := (E).toAffine)
 
+omit [DecidableEq K] in
 theorem kw_iA_phiTranscendental :
     Function.Injective
-      (Polynomial.aeval (R := K₀) (polyToFunctionField (E).toAffine X)) :=
-  (injective_iff_map_eq_zero _).mpr fun p hp => transcendental_iff.mp
-    ((transcendental_polyToFunctionField_X (W := (E).toAffine)).restrictScalars
-      (R := K₀) (algebraMap K₀ K).injective) p hp
+      (Polynomial.aeval (R := K₀) (polyToFunctionField (E).toAffine X)) := by
+  classical
+  exact
+    (injective_iff_map_eq_zero _).mpr fun p hp => transcendental_iff.mp
+      ((transcendental_polyToFunctionField_X (W := (E).toAffine)).restrictScalars
+        (R := K₀) (algebraMap K₀ K).injective) p hp
 
 def kw_iA_phi : E₀.toAffine.FunctionField →ₐ[K₀] (E).toAffine.FunctionField :=
   pointPullbackHomTo (kw_iA_phiEquation E₀) (kw_iA_phiTranscendental E₀)
 
+omit [DecidableEq K] in
 theorem kw_iA_polyToFF_eq_aeval (W : WeierstrassCurve.Affine K) :
     polyToFunctionField W = (Polynomial.aeval (R := K) (polyToFunctionField W X)).toRingHom := by
+  classical
   refine Polynomial.ringHom_ext (fun c => ?_) ?_
   · rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Polynomial.aeval_C,
       polyToFunctionField_apply,
@@ -1051,10 +1116,12 @@ theorem kw_iA_polyToFF_eq_aeval (W : WeierstrassCurve.Affine K) :
       ← IsScalarTower.algebraMap_apply K W.CoordinateRing W.FunctionField]
   · rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Polynomial.aeval_X]
 
+omit [DecidableEq K] in
 theorem kw_iA_phiCRCompat (c₀ : E₀.toAffine.CoordinateRing) :
     kw_iA_phi E₀ (algebraMap E₀.toAffine.CoordinateRing E₀.toAffine.FunctionField c₀)
       = algebraMap (E).toAffine.CoordinateRing (E).toAffine.FunctionField
           (CoordinateRing.map E₀.toAffine (algebraMap K₀ K) c₀) := by
+  classical
   obtain ⟨g, rfl⟩ := AdjoinRoot.mk_surjective c₀
   unfold kw_iA_phi
   rw [pointPullbackHomTo_algebraMap, CoordinateRing.map_mk]
@@ -1082,6 +1149,7 @@ theorem kw_iA_phiCRCompat (c₀ : E₀.toAffine.CoordinateRing) :
       Polynomial.coe_mapRingHom, Polynomial.map_X]
     rw [pointPullbackCoordHomTo_mk, Polynomial.eval₂_X]; rfl
 
+omit [DecidableEq K] in
 theorem kw_iA_ffDescend_exists (x : (E).toAffine.FunctionField)
     (hnum : kw_iA_crCoeffsIn E₀
       (IsLocalization.sec (nonZeroDivisors (E).toAffine.CoordinateRing) x).1)
@@ -1089,6 +1157,7 @@ theorem kw_iA_ffDescend_exists (x : (E).toAffine.FunctionField)
       ((IsLocalization.sec (nonZeroDivisors (E).toAffine.CoordinateRing) x).2 :
         (E).toAffine.CoordinateRing)) :
     ∃ x₀ : E₀.toAffine.FunctionField, kw_iA_phi E₀ x₀ = x := by
+  classical
   let s := IsLocalization.sec (nonZeroDivisors (E).toAffine.CoordinateRing) x
   have hdenNZ : (s.2 : (E).toAffine.CoordinateRing) ≠ 0 := nonZeroDivisors.coe_ne_zero _
   refine ⟨algebraMap _ _ (kw_iA_crDescend E₀ s.1 hnum)
@@ -1344,23 +1413,29 @@ variable {K₀ : IntermediateField ℚ K}
 variable (E : WeierstrassCurve K) [E.IsElliptic]
 variable (E₀ : WeierstrassCurve K₀) [E₀.IsElliptic]
 
+omit [DecidableEq K] in
 theorem kw_iotaDescentCurve_map_FF (hmap : E₀.map (algebraMap K₀ K) = E) :
     E₀.map (algebraMap K₀ E.toAffine.FunctionField)
       = E.map (algebraMap K E.toAffine.FunctionField) := by
+  classical
   have htower : (algebraMap K₀ E.toAffine.FunctionField)
       = (algebraMap K E.toAffine.FunctionField).comp (algebraMap K₀ K) :=
     IsScalarTower.algebraMap_eq K₀ K E.toAffine.FunctionField
   rw [htower, ← WeierstrassCurve.map_map, hmap]
 
+omit [DecidableEq K] in
 theorem kw_iotaDescentPhi_equation (hmap : E₀.map (algebraMap K₀ K) = E) :
     (E₀.map (algebraMap K₀ E.toAffine.FunctionField)).toAffine.Equation
       (polyToFunctionField E.toAffine X) (yGen E.toAffine) := by
+  classical
   rw [kw_iotaDescentCurve_map_FF E E₀ hmap]
   exact equation_map_polyToFunctionField_yGen (W := E.toAffine)
 
+omit [DecidableEq K] in
 theorem kw_iotaDescentPhi_transcendental :
     Function.Injective
       (Polynomial.aeval (R := K₀) (polyToFunctionField E.toAffine X)) := by
+  classical
   have hK : Transcendental K (polyToFunctionField E.toAffine X) :=
     transcendental_polyToFunctionField_X (W := E.toAffine)
   have hK₀ : Transcendental K₀ (polyToFunctionField E.toAffine X) :=
@@ -1374,14 +1449,20 @@ def kw_iotaDescentPhi : E₀.toAffine.FunctionField →ₐ[K₀] E.toAffine.Func
   pointPullbackHomTo (kw_iotaDescentPhi_equation E E₀ hmap)
     (kw_iotaDescentPhi_transcendental E)
 
+omit [DecidableEq K] in
 theorem kw_iotaDescentPhi_X :
     kw_iotaDescentPhi E E₀ hmap (polyToFunctionField E₀.toAffine X)
-      = polyToFunctionField E.toAffine X :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+      = polyToFunctionField E.toAffine X := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq K] in
 theorem kw_iotaDescentPhi_yGen :
-    kw_iotaDescentPhi E E₀ hmap (yGen E₀.toAffine) = yGen E.toAffine :=
-  pointPullbackHomTo_yGen _ _
+    kw_iotaDescentPhi E E₀ hmap (yGen E₀.toAffine) = yGen E.toAffine := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
 end Phi
 end ModularCurve
@@ -1415,7 +1496,11 @@ section SubfieldDescentMint
 
 def KwD5BetweenCurvesSubfieldDescent : Prop :=
   ∀ (K : Type uK) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-    (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+    (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
     (ι : E'.FunctionField →ₐ[K] E.FunctionField)
     (_hι : ι.toRingHom.IsIntegral) (_hfin : FiniteAlong K ι),
     letI : Algebra ℚ K := DivisionRing.toRatAlgebra
@@ -1435,7 +1520,11 @@ section KerDescendMint
 
 def KwD5BetweenCurvesKerDescendAlgClosed : Prop :=
   ∀ (K : Type uK) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-    (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+    (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
     (ι : E'.FunctionField →ₐ[K] E.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
     (N : ℕ) [NeZero N],
@@ -1510,18 +1599,26 @@ def kw_surgehgf4_hfgkd_bcTensorIota :
     (E₀'⁄F).toAffine.FunctionField ⊗[F] F' →ₐ[F] (E₀⁄F).toAffine.FunctionField ⊗[F] F' :=
   Algebra.TensorProduct.map ι' (AlgHom.id F F')
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcTensorIota_tmul (a : (E₀'⁄F).toAffine.FunctionField)
     (c : F') :
     kw_surgehgf4_hfgkd_bcTensorIota E₀ E₀' F F' ι' (a ⊗ₜ[F] c) = (ι' a) ⊗ₜ[F] c := by
+  classical
   simp [kw_surgehgf4_hfgkd_bcTensorIota, Algebra.TensorProduct.map_tmul]
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcTensorIota_injective :
-    Function.Injective (kw_surgehgf4_hfgkd_bcTensorIota E₀ E₀' F F' ι') :=
-  Module.Flat.rTensor_preserves_injective_linearMap (M := F') ι'.toLinearMap ι'.injective
+    Function.Injective (kw_surgehgf4_hfgkd_bcTensorIota E₀ E₀' F F' ι') := by
+  classical
+  exact
+    Module.Flat.rTensor_preserves_injective_linearMap (M := F') ι'.toLinearMap ι'.injective
 
+omit [DecidableEq F] [DecidableEq F'] in
 scoped instance kw_surgehgf4_hfgkd_tensorIsDomain_E' :
-    IsDomain ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') :=
-  kw_functionFieldTensorIsDomain_dischargeGeneralNoAC E₀' F F'
+    IsDomain ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') := by
+  classical
+  exact
+    kw_functionFieldTensorIsDomain_dischargeGeneralNoAC E₀' F F'
 
 def kw_surgehgf4_hfgkd_bcTensorFracIota :
     FractionRing ((E₀'⁄F).toAffine.FunctionField ⊗[F] F')
@@ -1530,27 +1627,32 @@ def kw_surgehgf4_hfgkd_bcTensorFracIota :
     (L := FractionRing ((E₀⁄F).toAffine.FunctionField ⊗[F] F'))
     (kw_surgehgf4_hfgkd_bcTensorIota_injective E₀ E₀' F F' ι')
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcTensorFracIota_algebraMap
     (t : (E₀'⁄F).toAffine.FunctionField ⊗[F] F') :
     kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι'
         (algebraMap ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') _ t)
       = algebraMap ((E₀⁄F).toAffine.FunctionField ⊗[F] F') _
           (kw_surgehgf4_hfgkd_bcTensorIota E₀ E₀' F F' ι' t) := by
+  classical
   unfold kw_surgehgf4_hfgkd_bcTensorFracIota IsFractionRing.map
   exact IsLocalization.map_eq
     (T := nonZeroDivisors ((E₀⁄F).toAffine.FunctionField ⊗[F] F')) _ t
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcTensorIota_finite (hfin' : FiniteAlong F ι') :
-    (kw_surgehgf4_hfgkd_bcTensorIota E₀ E₀' F F' ι').toRingHom.Finite :=
-  RingHom.Finite.tensorProductMap (f := ι') hfin' (g := AlgHom.id F F')
-    (RingHom.Finite.id F')
+    (kw_surgehgf4_hfgkd_bcTensorIota E₀ E₀' F F' ι').toRingHom.Finite := by
+  classical
+  exact
+    RingHom.Finite.tensorProductMap (f := ι') hfin' (g := AlgHom.id F F')
+      (RingHom.Finite.id F')
 
 def kw_surgehgf4_hfgkd_bcTensorFracIotaAlg :
     FractionRing ((E₀'⁄F).toAffine.FunctionField ⊗[F] F')
       →ₐ[F'] FractionRing ((E₀⁄F).toAffine.FunctionField ⊗[F] F') :=
   { kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι' with
     commutes' := fun c => by
-      show kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι'
+      change kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι'
           (algebraMap F' _ c) = algebraMap F' _ c
       rw [IsScalarTower.algebraMap_apply F' ((E₀'⁄F).toAffine.FunctionField ⊗[F] F')
           (FractionRing ((E₀'⁄F).toAffine.FunctionField ⊗[F] F')),
@@ -1568,6 +1670,7 @@ def kw_surgehgf4_hfgkd_bcIota₁NoAC :
   (ψE.symm.toAlgHom.comp (kw_surgehgf4_hfgkd_bcTensorFracIotaAlg E₀ E₀' F F' ι')).comp
     ψE'.toAlgHom
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
     (kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι').Finite ∧
     (letI := (kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι').toAlgebra
@@ -1643,12 +1746,12 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
         rw [show ιT ((x : FF') ⊗ₜ[F] c') = (ι' x) ⊗ₜ[F] c' from
               kw_surgehgf4_hfgkd_bcTensorIota_tmul E₀ E₀' F F' ι' _ _,
             Algebra.TensorProduct.tmul_mul_tmul, mul_one]
-        show (pj (ι' x * b i)) ⊗ₜ[F] c' = if i = j then (x : FF') ⊗ₜ[F] c' else 0
+        change (pj (ι' x * b i)) ⊗ₜ[F] c' = if i = j then (x : FF') ⊗ₜ[F] c' else 0
         rw [show pj (ι' x * b i) = if i = j then x else 0 from ?_]
         · split_ifs with h
           · rfl
           · exact TensorProduct.zero_tmul _ c'
-        · show b.repr (ι' x * b i) j = if i = j then x else 0
+        · change b.repr (ι' x * b i) j = if i = j then x else 0
           rw [hrepr_mul, b.repr_self, Finsupp.single_apply]
           split_ifs with h <;> simp [h]
     have hc' : Ej (∑ i, ιT (c i) * e i) = 0 := by rw [hc, _root_.map_zero]
@@ -1725,11 +1828,13 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
       Submodule.smul_mem _ (d i) (Submodule.subset_span ⟨i, rfl⟩)
   let bFr' : Module.Basis (Fin D) FrT' FrT := .mk hli_modFr hsp_modFr
   refine ⟨Module.Finite.of_basis bFr', ?_⟩
-  show Module.finrank FrT' FrT = D
+  change Module.finrank FrT' FrT = D
   rw [Module.finrank_eq_card_basis bFr', Fintype.card_fin]
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_finiteAlong (hfin' : FiniteAlong F ι') :
     FiniteAlong F' (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι') := by
+  classical
   have hFr_fin := (kw_surgehgf4_hfgkd_bcTensorFracIotaSeam E₀ E₀' F F' ι' hfin').1
   let ψE := kw_functionFieldTensorFracEquivGeneralNoAC E₀ F F'
   let ψE' := kw_functionFieldTensorFracEquivGeneralNoAC E₀' F F'
@@ -1737,7 +1842,7 @@ theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_finiteAlong (hfin' : FiniteAlong F ι')
     RingHom.Finite.of_surjective _ ψE'.surjective
   have h2 : RingHom.Finite ψE.symm.toAlgHom.toRingHom :=
     RingHom.Finite.of_surjective _ ψE.symm.surjective
-  show RingHom.Finite (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom
+  change RingHom.Finite (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom
   have hcomp : (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom
       = (ψE.symm.toAlgHom.toRingHom.comp
           (kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι')).comp
@@ -1745,21 +1850,26 @@ theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_finiteAlong (hfin' : FiniteAlong F ι')
   rw [hcomp]
   exact RingHom.Finite.comp (RingHom.Finite.comp h2 hFr_fin) h1
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_isIntegral (hfin' : FiniteAlong F ι') :
-    (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom.IsIntegral :=
-  RingHom.Finite.to_isIntegral
-    (show RingHom.Finite (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom from
-      kw_surgehgf4_hfgkd_bcIota₁NoAC_finiteAlong E₀ E₀' F F' ι' hfin')
+    (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom.IsIntegral := by
+  classical
+  exact
+    RingHom.Finite.to_isIntegral
+      (show RingHom.Finite (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι').toRingHom from
+        kw_surgehgf4_hfgkd_bcIota₁NoAC_finiteAlong E₀ E₀' F F' ι' hfin')
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_finrankAlong (hfin' : FiniteAlong F ι') :
     finrankAlong F' (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι')
       = finrankAlong F ι' := by
+  classical
   let ψE := kw_functionFieldTensorFracEquivGeneralNoAC E₀ F F'
   let ψE' := kw_functionFieldTensorFracEquivGeneralNoAC E₀' F F'
   let ιFr := kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι'
   have hcomm : ∀ x, ιFr (ψE' x)
       = ψE (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι' x) := fun x => by
-    show ιFr (ψE' x) = ψE (ψE.symm (_))
+    change ιFr (ψE' x) = ψE (ψE.symm (_))
     exact (ψE.apply_symm_apply _).symm
   calc finrankAlong F' (kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι')
       = (letI := ιFr.toAlgebra
@@ -1772,10 +1882,12 @@ theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_finrankAlong (hfin' : FiniteAlong F ι'
     _ = finrankAlong F ι' :=
         (kw_surgehgf4_hfgkd_bcTensorFracIotaSeam E₀ E₀' F F' ι' hfin').2
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_compat (a : (E₀'⁄F).toAffine.FunctionField) :
     kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' F F' ι'
         (kw_functionFieldMapAlongGeneralNoAC E₀' F F' a)
       = kw_functionFieldMapAlongGeneralNoAC E₀ F F' (ι' a) := by
+  classical
   let ψE := kw_functionFieldTensorFracEquivGeneralNoAC E₀ F F'
   let ψE' := kw_functionFieldTensorFracEquivGeneralNoAC E₀' F F'
   let χE := kw_functionFieldMapAlongGeneralNoAC E₀ F F'
@@ -1788,10 +1900,10 @@ theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_compat (a : (E₀'⁄F).toAffine.Functi
             (FractionRing ((E₀'⁄F).toAffine.FunctionField ⊗[F] F'))).comp
             (Algebra.TensorProduct.includeLeft (R := F)) := by
       refine kw_functionField_algHom_ext ?_ ?_
-      · show kw_functionFieldTensorFracHomGeneralNoAC E₀' F F' (χE' _) = _
+      · change kw_functionFieldTensorFracHomGeneralNoAC E₀' F F' (χE' _) = _
         rw [kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X,
           kw_functionFieldTensorFracHomGeneralNoAC_X]; rfl
-      · show kw_functionFieldTensorFracHomGeneralNoAC E₀' F F' (χE' _) = _
+      · change kw_functionFieldTensorFracHomGeneralNoAC E₀' F F' (χE' _) = _
         rw [kw_functionFieldMapAlongGeneralNoAC_yGen,
           kw_functionFieldTensorFracHomGeneralNoAC_yGen]; rfl
     exact DFunLike.congr_fun hκ a
@@ -1806,20 +1918,20 @@ theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_compat (a : (E₀'⁄F).toAffine.Functi
             (FractionRing ((E₀⁄F).toAffine.FunctionField ⊗[F] F'))).comp
             (Algebra.TensorProduct.includeLeft (R := F)) := by
       refine kw_functionField_algHom_ext ?_ ?_
-      · show kw_functionFieldTensorFracHomGeneralNoAC E₀ F F' (χE _) = _
+      · change kw_functionFieldTensorFracHomGeneralNoAC E₀ F F' (χE _) = _
         rw [kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X,
           kw_functionFieldTensorFracHomGeneralNoAC_X]; rfl
-      · show kw_functionFieldTensorFracHomGeneralNoAC E₀ F F' (χE _) = _
+      · change kw_functionFieldTensorFracHomGeneralNoAC E₀ F F' (χE _) = _
         rw [kw_functionFieldMapAlongGeneralNoAC_yGen,
           kw_functionFieldTensorFracHomGeneralNoAC_yGen]; rfl
     exact (DFunLike.congr_fun hκ b).symm
-  show ψE.symm (kw_surgehgf4_hfgkd_bcTensorFracIotaAlg E₀ E₀' F F' ι' (ψE' (χE' a)))
+  change ψE.symm (kw_surgehgf4_hfgkd_bcTensorFracIotaAlg E₀ E₀' F F' ι' (ψE' (χE' a)))
       = χE (ι' a)
   rw [hκE',
     show kw_surgehgf4_hfgkd_bcTensorFracIotaAlg E₀ E₀' F F' ι'
         (algebraMap ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') _ (a ⊗ₜ[F] (1 : F')))
       = algebraMap ((E₀⁄F).toAffine.FunctionField ⊗[F] F') _ ((ι' a) ⊗ₜ[F] (1 : F')) from by
-        show kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι' _ = _
+        change kw_surgehgf4_hfgkd_bcTensorFracIota E₀ E₀' F F' ι' _ = _
         rw [kw_surgehgf4_hfgkd_bcTensorFracIota_algebraMap,
           kw_surgehgf4_hfgkd_bcTensorIota_tmul],
     hκE (ι' a)]
@@ -1938,11 +2050,16 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
       (g := (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K).toRingHom.comp
         ι₀.toRingHom)
       (fun r => by
-        have h1 : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K) (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField) r := by
-          rw [(kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K).commutes r, IsScalarTower.algebraMap_apply (AlgebraicClosure (↥K₀)) K ((E₀'⁄K).toAffine.FunctionField) r]
+        have h1 : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K) (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField) r :=
+          by
+          rw [(kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K).commutes r,
+            IsScalarTower.algebraMap_apply (AlgebraicClosure (↥K₀)) K
+            ((E₀'⁄K).toAffine.FunctionField) r]
           exact (ι.commutes _).trans (IsScalarTower.algebraMap_apply (AlgebraicClosure (↥K₀)) K ((E₀⁄K).toAffine.FunctionField) r).symm
-        have h2 : (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀ (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField) r := by
-          rw [ι₀.commutes r, (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K).commutes r]
+        have h2 : (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀ (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField) r :=
+          by
+          rw [ι₀.commutes r, (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀))
+            K).commutes r]
         exact h1.trans h2.symm)
       (by
         have key : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K) ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (polyToFunctionField (E₀'⁄(↥K₀)) X)))
@@ -1957,7 +2074,8 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
         rw [kw_functionFieldMapAlongGeneralNoAC_yGen] at key
         exact key)
     exact fun x => DFunLike.congr_fun hext x
-  have hKT_inst := hKT (↥K₀) E₀ E₀' (AlgebraicClosure (↥K₀)) K ι₀ hι₀ hfin₀ ι hι hfin hχ N hcyc hcard
+  have hKT_inst :=
+    hKT (↥K₀) E₀ E₀' (AlgebraicClosure (↥K₀)) K ι₀ hι₀ hfin₀ ι hι hfin hχ N hcyc hcard
   exact ⟨hE₀AC, hE₀'AC, ι₀, hι₀, hfin₀, hKT_inst.1, hKT_inst.2⟩
 
 end Reduce
@@ -1983,7 +2101,11 @@ namespace ModularCurve
 section BCCanonical
 
 variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable (E E' : WeierstrassCurve K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable (E E' : WeierstrassCurve K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.toAffine.FunctionField →ₐ[K] E.toAffine.FunctionField)
 
 def kw_surgehgf4_hSD_genSet : Set K :=
@@ -2099,18 +2221,27 @@ def kw_surgehgf4_hSD_yP : E₀.toAffine.FunctionField :=
   Classical.choose (kw_iA_ffDescend_exists E₀ (ι (yGen (E₀'.map (algebraMap K₀ K)).toAffine))
     hcoeffs.2.1 hcoeffs.2.2)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_xP_spec :
     kw_iA_phi E₀ (kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs)
-      = ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X) :=
-  Classical.choose_spec (kw_iA_ffDescend_exists E₀ _ hcoeffs.1.1 hcoeffs.1.2)
+      = ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X) := by
+  classical
+  exact
+    Classical.choose_spec (kw_iA_ffDescend_exists E₀ _ hcoeffs.1.1 hcoeffs.1.2)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_yP_spec :
-    kw_iA_phi E₀ (kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs) = ι (yGen (E₀'.map (algebraMap K₀ K)).toAffine) :=
-  Classical.choose_spec (kw_iA_ffDescend_exists E₀ _ hcoeffs.2.1 hcoeffs.2.2)
+    kw_iA_phi E₀ (kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs) = ι (yGen (E₀'.map (algebraMap K₀
+        K)).toAffine) := by
+  classical
+  exact
+    Classical.choose_spec (kw_iA_ffDescend_exists E₀ _ hcoeffs.2.1 hcoeffs.2.2)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_equation :
     (E₀'.map (algebraMap K₀ E₀.toAffine.FunctionField)).toAffine.Equation
       (kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs) (kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs) := by
+  classical
   set xP := kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs with hxP
   set yP := kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs with hyP
   have hι : ((E₀'.map (algebraMap K₀ K)).map (algebraMap K (E₀.map (algebraMap K₀ K)).toAffine.FunctionField)).toAffine.Equation
@@ -2118,7 +2249,8 @@ theorem kw_surgehgf4_hSD_equation :
     have h₀ := equation_map_polyToFunctionField_yGen (W := (E₀'.map (algebraMap K₀ K)).toAffine)
     rw [Affine.equation_iff] at h₀ ⊢
     have h₁ := congrArg ι h₀
-    simp only [map_add, map_mul, map_pow, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    simp only [map_add, map_mul, map_pow, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂,
+      WeierstrassCurve.map_a₃,
       WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆, AlgHom.commutes] at h₁ ⊢
     linear_combination h₁
   rw [Affine.equation_iff] at hι ⊢
@@ -2132,16 +2264,20 @@ theorem kw_surgehgf4_hSD_equation :
       (IsScalarTower.algebraMap_apply K₀ K (E₀.map (algebraMap K₀ K)).toAffine.FunctionField c)
   have hΦinj : Function.Injective (kw_iA_phi E₀) := (kw_iA_phi E₀).toRingHom.injective
   refine hΦinj ?_
-  simp only [map_add, map_mul, map_pow, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+  simp only [map_add, map_mul, map_pow, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂,
+    WeierstrassCurve.map_a₃,
     WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆] at hι ⊢
   rw [hΦc, hΦc, hΦc, hΦc, hΦc, hΦx, hΦy]
   exact hι
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_transcendental :
     Function.Injective
       (Polynomial.aeval (R := K₀) (kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs)) := by
+  classical
   refine (injective_iff_map_eq_zero _).mpr fun p hp => ?_
-  have hK : Transcendental K (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) := by
+  have hK : Transcendental K (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) :=
+    by
     intro halg
     obtain ⟨r, hr0, hreval⟩ := halg
     refine (transcendental_polyToFunctionField_X (W := (E₀'.map (algebraMap K₀ K)).toAffine)) ⟨r, hr0, ?_⟩
@@ -2164,43 +2300,62 @@ def kw_surgehgf4_hSD_ι' : E₀'.toAffine.FunctionField →ₐ[K₀] E₀.toAffi
   pointPullbackHomTo (kw_surgehgf4_hSD_equation E₀ E₀' ι hcoeffs)
     (kw_surgehgf4_hSD_transcendental E₀ E₀' ι hcoeffs)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_ι'_X :
     kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs (polyToFunctionField E₀'.toAffine Polynomial.X)
-      = kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+      = kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_ι'_yGen :
     kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs (yGen E₀'.toAffine)
-      = kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs :=
-  pointPullbackHomTo_yGen _ _
+      = kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_phiE'_X :
     kw_iA_phi E₀' (polyToFunctionField E₀'.toAffine Polynomial.X)
-      = polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+      = polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_phiE'_yGen :
-    kw_iA_phi E₀' (yGen E₀'.toAffine) = yGen (E₀'.map (algebraMap K₀ K)).toAffine :=
-  pointPullbackHomTo_yGen _ _
+    kw_iA_phi E₀' (yGen E₀'.toAffine) = yGen (E₀'.map (algebraMap K₀ K)).toAffine := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_phiCompat :
     (ι.restrictScalars K₀).comp (kw_iA_phi E₀')
       = (kw_iA_phi E₀).comp (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) := by
+  classical
   refine kw_functionField_algHom_ext ?_ ?_
-  · show ι (kw_iA_phi E₀' (polyToFunctionField E₀'.toAffine Polynomial.X))
+  · change ι (kw_iA_phi E₀' (polyToFunctionField E₀'.toAffine Polynomial.X))
         = kw_iA_phi E₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs
             (polyToFunctionField E₀'.toAffine Polynomial.X))
     rw [kw_surgehgf4_hSD_phiE'_X, kw_surgehgf4_hSD_ι'_X, kw_surgehgf4_hSD_xP_spec]
-  · show ι (kw_iA_phi E₀' (yGen E₀'.toAffine))
+  · change ι (kw_iA_phi E₀' (yGen E₀'.toAffine))
         = kw_iA_phi E₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs (yGen E₀'.toAffine))
     rw [kw_surgehgf4_hSD_phiE'_yGen, kw_surgehgf4_hSD_ι'_yGen, kw_surgehgf4_hSD_yP_spec]
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_phiCompat_apply (x : E₀'.toAffine.FunctionField) :
-    ι (kw_iA_phi E₀' x) = kw_iA_phi E₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs x) :=
-  DFunLike.congr_fun (kw_surgehgf4_hSD_phiCompat E₀ E₀' ι hcoeffs) x
+    ι (kw_iA_phi E₀' x) = kw_iA_phi E₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs x) := by
+  classical
+  exact
+    DFunLike.congr_fun (kw_surgehgf4_hSD_phiCompat E₀ E₀' ι hcoeffs) x
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_finiteAlong :
     FiniteAlong K₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) := by
+  classical
   set ι' := kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs
   set xP := kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs
   have hxPtr : Transcendental K₀ xP :=
@@ -2218,7 +2373,7 @@ theorem kw_surgehgf4_hSD_finiteAlong :
     IsScalarTower.of_algebraMap_eq (fun r => rfl)
   have hfdR : FiniteDimensional (↥ι'.fieldRange) E₀.toAffine.FunctionField :=
     FiniteDimensional.right (↥(K₀ : Type uK)⟮xP⟯) (↥ι'.fieldRange) E₀.toAffine.FunctionField
-  show ι'.toRingHom.Finite
+  change ι'.toRingHom.Finite
   let ρ : E₀'.toAffine.FunctionField →+* ↥ι'.fieldRange :=
     { toFun := fun x => ⟨ι' x, x, rfl⟩
       map_one' := Subtype.ext (map_one ι')
@@ -2231,11 +2386,14 @@ theorem kw_surgehgf4_hSD_finiteAlong :
   rw [hfactor]
   exact RingHom.Finite.comp hfdR (RingHom.Finite.of_surjective _ hsurj)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_isIntegral :
-    (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs).toRingHom.IsIntegral :=
-  RingHom.Finite.to_isIntegral
-    (f := (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs).toRingHom)
-    (kw_surgehgf4_hSD_finiteAlong E₀ E₀' ι hcoeffs)
+    (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs).toRingHom.IsIntegral := by
+  classical
+  exact
+    RingHom.Finite.to_isIntegral
+      (f := (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs).toRingHom)
+      (kw_surgehgf4_hSD_finiteAlong E₀ E₀' ι hcoeffs)
 
 def KwD5BCSubfieldDescentPinnedFinrankEq : Prop :=
   finrankAlong K₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) = finrankAlong K ι
@@ -2259,13 +2417,16 @@ def kw_surgehgf4_hSD_ιMpr
     (Eq.mpr (congrArg (fun V => W'.toAffine.FunctionField →ₐ[K] V.toAffine.FunctionField)
         heq) ι)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_phi_eq_iotaDescentPhi :
     kw_iA_phi E₀ = kw_iotaDescentPhi (E₀.map (algebraMap K₀ K)) E₀ rfl := by
+  classical
   refine kw_functionField_algHom_ext ?_ ?_
   · exact (pointPullbackHomTo_polyToFunctionField_X _ _).trans
       (kw_iotaDescentPhi_X _ _ rfl).symm
   · exact (pointPullbackHomTo_yGen _ _).trans (kw_iotaDescentPhi_yGen _ _ rfl).symm
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_hSD_instance_cast
     {W W' : WeierstrassCurve K} [W.IsElliptic] [W'.IsElliptic]
     (heq : E₀.map (algebraMap K₀ K) = W) (heq' : E₀'.map (algebraMap K₀ K) = W')
@@ -2284,6 +2445,7 @@ theorem kw_surgehgf4_hSD_instance_cast
       ∀ x : E₀'.toAffine.FunctionField,
         ι (kw_iotaDescentPhi W' E₀' hE₀'map x)
           = kw_iotaDescentPhi W E₀ hE₀map (ι' x) := by
+  classical
   subst heq; subst heq'
   refine ⟨K₀, hfg, E₀, E₀', inferInstance, inferInstance, rfl, rfl,
     kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs,
@@ -2313,7 +2475,11 @@ end RouteCBridge
 section Wire
 
 variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable (E E' : WeierstrassCurve K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable (E E' : WeierstrassCurve K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.toAffine.FunctionField →ₐ[K] E.toAffine.FunctionField)
 
 def kw_surgehgf4_hSD_ιCast :
@@ -2342,7 +2508,13 @@ end Wire
 
 theorem kw_surgehgf4_hSD_of_canonicalFinrankEq
     (hFrEq : ∀ (K : Type uK) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-      (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+      (E E' : WeierstrassCurve.Affine K) [E.IsElliptic]
+      [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+      [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E]
+      [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic]
+      [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+      [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+      [WeierstrassCurve.Affine.AbelTheorem E']
       (ι : E'.FunctionField →ₐ[K] E.FunctionField)
       (_hι : ι.toRingHom.IsIntegral) (_hfin : FiniteAlong K ι),
       letI : Algebra ℚ K := DivisionRing.toRatAlgebra
@@ -2375,7 +2547,7 @@ theorem kw_surgehgf4_hfgkd_chiCompChiEqPhi_proved :
   refine kw_iPFE_functionField_ringHom_ext (F := ↥K₀) (W := W.toAffine)
     (fun r => ?hF) ?hX ?hy
   case hF =>
-    show χ₂ (χ₁ (algebraMap (↥K₀) W.toAffine.FunctionField r))
+    change χ₂ (χ₁ (algebraMap (↥K₀) W.toAffine.FunctionField r))
       = Φ (algebraMap (↥K₀) W.toAffine.FunctionField r)
     rw [Φ.commutes]
     rw [IsScalarTower.algebraMap_apply (↥K₀) K
@@ -2387,14 +2559,14 @@ theorem kw_surgehgf4_hfgkd_chiCompChiEqPhi_proved :
       ← IsScalarTower.algebraMap_apply (↥K₀) F₁ K]
     rfl
   case hX =>
-    show χ₂ (χ₁ (polyToFunctionField W.toAffine X))
+    change χ₂ (χ₁ (polyToFunctionField W.toAffine X))
       = Φ (polyToFunctionField W.toAffine X)
     erw [kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X W (↥K₀) F₁,
       kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X W F₁ K,
       kw_iotaDescentPhi_X (W.map (algebraMap (↥K₀) K)) W rfl]
     rfl
   case hy =>
-    show χ₂ (χ₁ (yGen W.toAffine)) = Φ (yGen W.toAffine)
+    change χ₂ (χ₁ (yGen W.toAffine)) = Φ (yGen W.toAffine)
     erw [kw_functionFieldMapAlongGeneralNoAC_yGen W (↥K₀) F₁,
       kw_functionFieldMapAlongGeneralNoAC_yGen W F₁ K,
       kw_iotaDescentPhi_yGen (W.map (algebraMap (↥K₀) K)) W rfl]
@@ -2421,41 +2593,51 @@ def kw_surgehgf4_cfe_fχ :
   (kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) K).toRingHom
 
 attribute [-instance] IntermediateField.instAlgebraSubtypeMem in
+omit [DecidableEq K] in
 theorem kw_surgehgf4_cfe_fχ_apply (a : E₀.toAffine.FunctionField) :
-    kw_surgehgf4_cfe_fχ E₀ a = kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) K a := rfl
+    kw_surgehgf4_cfe_fχ E₀ a = kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) K a := by
+  classical
+  exact
+    rfl
 
 attribute [-instance] IntermediateField.instAlgebraSubtypeMem in
+omit [DecidableEq K] in
 theorem kw_surgehgf4_cfe_chi_const (r : ↥K₀) :
     kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) K
         (algebraMap (↥K₀) E₀.toAffine.FunctionField r)
       = algebraMap K (E₀.map (algebraMap K₀ K)).toAffine.FunctionField
           (algebraMap (↥K₀) K r) := by
+  classical
   erw [(kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) K).commutes r]
   exact IsScalarTower.algebraMap_apply (↥K₀) K (E₀⁄K).FunctionField r
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_cfe_fχ_eq_phi :
     kw_surgehgf4_cfe_fχ E₀ = (kw_iA_phi E₀).toRingHom := by
+  classical
   refine kw_iPFE_functionField_ringHom_ext (F := ↥K₀) (W := E₀.toAffine)
     (fun r => ?hF) ?hX ?hy
   case hF =>
-    show kw_surgehgf4_cfe_fχ E₀ (algebraMap (↥K₀) E₀.toAffine.FunctionField r)
+    change kw_surgehgf4_cfe_fχ E₀ (algebraMap (↥K₀) E₀.toAffine.FunctionField r)
       = kw_iA_phi E₀ (algebraMap (↥K₀) E₀.toAffine.FunctionField r)
     rw [(kw_iA_phi E₀).commutes r,
       IsScalarTower.algebraMap_apply (↥K₀) K
         (E₀.map (algebraMap K₀ K)).toAffine.FunctionField,
       kw_surgehgf4_cfe_fχ_apply, kw_surgehgf4_cfe_chi_const]
   case hX =>
-    show kw_surgehgf4_cfe_fχ E₀ (polyToFunctionField E₀.toAffine X)
+    change kw_surgehgf4_cfe_fχ E₀ (polyToFunctionField E₀.toAffine X)
       = kw_iA_phi E₀ (polyToFunctionField E₀.toAffine X)
     rw [kw_surgehgf4_cfe_fχ_apply]
     erw [kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X E₀ (↥K₀) K]
   case hy =>
-    show kw_surgehgf4_cfe_fχ E₀ (yGen E₀.toAffine) = kw_iA_phi E₀ (yGen E₀.toAffine)
+    change kw_surgehgf4_cfe_fχ E₀ (yGen E₀.toAffine) = kw_iA_phi E₀ (yGen E₀.toAffine)
     rw [kw_surgehgf4_cfe_fχ_apply]
     erw [kw_functionFieldMapAlongGeneralNoAC_yGen E₀ (↥K₀) K]
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_cfe_chi_eq_phi_apply (a : E₀.toAffine.FunctionField) :
     kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) K a = kw_iA_phi E₀ a := by
+  classical
   rw [← kw_surgehgf4_cfe_fχ_apply]
   exact DFunLike.congr_fun (kw_surgehgf4_cfe_fχ_eq_phi E₀) a
 
@@ -2476,9 +2658,11 @@ variable (ι : (E₀'.map (algebraMap K₀ K)).toAffine.FunctionField
   →ₐ[K] (E₀.map (algebraMap K₀ K)).toAffine.FunctionField)
 variable (hcoeffs : kw_surgehgf4_hSD_CoeffsHyp E₀ E₀' ι)
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_cfe_bcIota₁NoAC_eq_ι :
     kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' (↥K₀) K
         (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) = ι := by
+  classical
   set ι' := kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs with hι'_def
   refine kw_functionField_algHom_ext ?_ ?_
   · have key : ι (kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) K (polyToFunctionField (E₀'⁄(↥K₀)).toAffine X))
@@ -2498,8 +2682,10 @@ theorem kw_surgehgf4_cfe_bcIota₁NoAC_eq_ι :
     rw [kw_functionFieldMapAlongGeneralNoAC_yGen] at key
     exact key.symm
 
+omit [DecidableEq K] in
 theorem kw_surgehgf4_cfe_pinnedFinrankEq :
     KwD5BCSubfieldDescentPinnedFinrankEq E₀ E₀' ι hcoeffs := by
+  classical
   have hfin' : FiniteAlong (↥K₀) (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) :=
     kw_surgehgf4_hSD_finiteAlong E₀ E₀' ι hcoeffs
   have hD2 := kw_surgehgf4_hfgkd_bcIota₁NoAC_finrankAlong E₀ E₀' (↥K₀) K
@@ -2514,7 +2700,11 @@ end BCPinnedDischarge
 section Canonical
 
 variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable (E E' : WeierstrassCurve K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E] [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E'] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E'] [WeierstrassCurve.Affine.AbelTheorem E']
+variable (E E' : WeierstrassCurve K) [E.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E] [WeierstrassCurve.Affine.AbelTheorem E]
+    [E'.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate E']
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred E']
+    [WeierstrassCurve.Affine.AbelTheorem E']
 variable (ι : E'.toAffine.FunctionField →ₐ[K] E.toAffine.FunctionField)
 
 theorem kw_surgehgf4_cfe_canonicalFinrankEq :
@@ -2568,7 +2758,8 @@ theorem solution
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
     [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
+    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
+    (hfin : FiniteAlong K ι)
     (hN : NormFormulaAlong K ι hfin) (N : ℕ) [NeZero N]
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker)
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N) :
@@ -2626,7 +2817,8 @@ theorem WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isA
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
     [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
+    (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
+    (hfin : FiniteAlong K ι)
     (hN : NormFormulaAlong K ι hfin) (N : ℕ) [NeZero N]
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker)
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N) :

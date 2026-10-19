@@ -91,6 +91,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.deg_ne_zero {K : Type*} [Field K] (v : Place K (RatFunc K)) : v.deg ≠ 0 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ne_zero.solution v
+theorem AlgebraicCurve.RationalFunctionField.deg_ne_zero {K : Type*} [Field K]
+    (v : Place K (RatFunc K)) :
+    v.deg ≠ 0 :=
+  solution v
 
 end publicSection

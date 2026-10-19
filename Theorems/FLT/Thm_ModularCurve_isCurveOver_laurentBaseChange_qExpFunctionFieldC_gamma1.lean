@@ -70,7 +70,8 @@ open scoped MatrixGroups
 theorem solution
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M] :
     AlgebraicCurve.IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
-  obtain ⟨x, htr, hfd⟩ := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange
+  obtain ⟨x, htr, hfd⟩ :=
+    ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange
     K (CongruenceSubgroup.Gamma1 M) (by rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T])
   exact AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfd
 
@@ -87,6 +88,7 @@ open ModularCurve CongruenceSubgroup AlgebraicCurve
 open scoped MatrixGroups
 theorem ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M] :
-    AlgebraicCurve.IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := _root_.P2MW.S_ModularCurve_isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1.solution K M
+    AlgebraicCurve.IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+  solution K M
 
 end publicSection

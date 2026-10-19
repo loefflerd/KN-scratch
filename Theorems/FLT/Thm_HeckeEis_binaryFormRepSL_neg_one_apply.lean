@@ -81,7 +81,8 @@ theorem solution (K : Type*) [CommRing K] (n : ℕ) (P : ↥(HeckeEis.BinaryForm
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two] at hdn
   have hC : C ((-1 : K) ^ n) = (-1 : MvPolynomial (Fin 2) K) ^ (d 0) * (-1) ^ (d 1) := by
     rw [map_pow, map_neg, map_one, ← pow_add, hdn]
-  rw [monomial_eq, Finsupp.prod_fintype _ _ (fun i => pow_zero _), Fin.prod_univ_two, map_mul, binarySubst_C,
+  rw [monomial_eq, Finsupp.prod_fintype _ _ (fun i => pow_zero _), Fin.prod_univ_two, map_mul,
+    binarySubst_C,
     map_mul, map_pow, map_pow, h0, h1, smul_eq_C_mul, hC,
     neg_pow (X 0 : MvPolynomial (Fin 2) K), neg_pow (X 1 : MvPolynomial (Fin 2) K)]
   ring
@@ -96,7 +97,9 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.binaryFormRepSL_neg_one_apply (K : Type*) [CommRing K] (n : ℕ) (P : ↥(HeckeEis.BinaryForm K n)) :
-    HeckeEis.binaryFormRepSL K n (-1) P = ((-1 : K) ^ n) • P := _root_.P2MW.S_HeckeEis_binaryFormRepSL_neg_one_apply.solution K n P
+theorem HeckeEis.binaryFormRepSL_neg_one_apply (K : Type*) [CommRing K] (n : ℕ)
+    (P : ↥(HeckeEis.BinaryForm K n)) :
+    HeckeEis.binaryFormRepSL K n (-1) P = ((-1 : K) ^ n) • P :=
+  solution K n P
 
 end publicSection

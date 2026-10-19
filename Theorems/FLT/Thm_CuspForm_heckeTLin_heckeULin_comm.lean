@@ -77,7 +77,9 @@ end privateSection
 
 public section publicSection
 
-theorem CuspForm.heckeTLin_heckeULin_comm {N : ℕ} [NeZero N] (k : ℤ) {p q : ℕ} (hp : p.Prime) (hpN : ¬ p ∣ N) (hqN : q ∣ N) :
-    Commute (CuspForm.heckeTLin k hp hpN) (CuspForm.heckeULin k hqN) := _root_.P2MW.S_CuspForm_heckeTLin_heckeULin_comm.solution k hp hpN hqN
+theorem CuspForm.heckeTLin_heckeULin_comm {N : ℕ} [NeZero N] (k : ℤ) {p q : ℕ} (hp : p.Prime)
+    (hpN : ¬ p ∣ N) (hqN : q ∣ N) :
+    Commute (CuspForm.heckeTLin k hp hpN) (CuspForm.heckeULin k hqN) :=
+  solution k hp hpN hqN
 
 end publicSection

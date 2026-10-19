@@ -86,7 +86,8 @@ private theorem kaehler_free_rank_one (K : Type*) [Field K] {F : Type*} [Field F
     (x : F) (hx : Transcendental K x) [Algebra.IsSeparable K⟮x⟯ F] :
     Module.Free F (KaehlerDifferential K F) ∧ Module.finrank F (KaehlerDifferential K F) = 1 := by
   refine ⟨inferInstance, ?_⟩
-  have h1 := finrank_span_singleton (K := F) (KaehlerDifferential.D_ne_zero_of_transcendental K x hx)
+  have h1 :=
+    finrank_span_singleton (K := F) (KaehlerDifferential.D_ne_zero_of_transcendental K x hx)
   rwa [KaehlerDifferential.span_D_eq_top_of_transcendental K x hx, finrank_top] at h1
 
 section Adjoin
@@ -138,7 +139,7 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
       rw [lift_top, lift_adjoin]
       apply le_antisymm (adjoin_le_iff.mpr ?_) ?_
       · rintro _ ⟨y, hy, rfl⟩; exact y.2
-      · show IntermediateField.adjoin K (insert x (T : Set LF)) ≤ _
+      · change IntermediateField.adjoin K (insert x (T : Set LF)) ≤ _
         apply adjoin.mono
         intro z hz
         rcases hz with rfl | hz
@@ -159,7 +160,6 @@ end Adjoin
 
 set_option synthInstance.maxHeartbeats 1600000 in
 open ModularCurve in
-
 private theorem isCurveOver_laurentBaseChange (L : Type*) [Field L] {instQL : Algebra ℚ L} (N : ℕ)
     [NeZero N] : IsCurveOver L (laurentBaseChange L (modularFunctionFieldFull N)) := by
   have hpair : laurentBaseChange L (modularFunctionFieldFull N)
@@ -194,13 +194,15 @@ end AlgebraicCurve
 
 end
 
-p2m_open "ModularCurve AlgebraicCurve P2MW.S_ModularCurve_isCurveOver_modularFunctionFieldBar.AlgebraicCurve"
+p2m_open "ModularCurve AlgebraicCurve \
+  P2MW.S_ModularCurve_isCurveOver_modularFunctionFieldBar.AlgebraicCurve"
 
 theorem solution (N : ℕ) [NeZero N] :
     IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
   AlgebraicCurve.R0.isCurveOver_laurentBaseChange (AlgebraicClosure ℚ) N
 
-example : ∀ (N : ℕ) [NeZero N], IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := @solution
+example :
+    ∀ (N : ℕ) [NeZero N], IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := @solution
 
 end S_ModularCurve_isCurveOver_modularFunctionFieldBar
 end P2MW
@@ -213,6 +215,7 @@ public section publicSection
 
 open AlgebraicCurve ModularCurve
 theorem ModularCurve.isCurveOver_modularFunctionFieldBar (N : ℕ) [NeZero N] :
-    IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := _root_.P2MW.S_ModularCurve_isCurveOver_modularFunctionFieldBar.solution N
+    IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+  solution N
 
 end publicSection

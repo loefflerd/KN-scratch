@@ -65,7 +65,8 @@ open Polynomial
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map Affine.CoordinateRing mk toAffine Affine.Point Affine.CoordinateRing.mk"
+p2m_export "WeierstrassCurve" "Affine map Affine.CoordinateRing mk toAffine Affine.Point \
+  Affine.CoordinateRing.mk"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "CoordinateRing map FunctionField Point CoordinateRing.mk"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
@@ -77,7 +78,6 @@ p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk map"
 end CoordinateRing
 
 p2m_open_scoped "WeierstrassCurve.Affine.CoordinateRing" in
-
 theorem CoordinateRing.adjoin_mk_X_mk_Y :
     Algebra.adjoin K {CoordinateRing.mk W.toAffine (C X), CoordinateRing.mk W.toAffine Y} = ⊤ := by
   set x := CoordinateRing.mk W.toAffine (C X) with hx
@@ -110,7 +110,8 @@ theorem CoordinateRing.adjoin_mk_X_mk_Y :
 end WeierstrassCurve.Affine
 
 open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_adjoin_X_Y_eq_top.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_adjoin_X_Y_eq_top.WeierstrassCurve.Affine in
-theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) : IntermediateField.adjoin K {algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)), algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine Polynomial.X)} = ⊤ := by
+theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) :
+    IntermediateField.adjoin K {algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)), algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine Polynomial.X)} = ⊤ := by
   set x := CoordinateRing.mk W.toAffine (C X)
   set y := CoordinateRing.mk W.toAffine Y
   set S : IntermediateField K W.toAffine.FunctionField := IntermediateField.adjoin K
@@ -143,6 +144,9 @@ end privateSection
 public section publicSection
 
 
-theorem WeierstrassCurve.Affine.FunctionField.adjoin_X_Y_eq_top {K : Type*} [Field K] (W : WeierstrassCurve K) : IntermediateField.adjoin K {algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)), algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine Polynomial.X)} = ⊤ := _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_adjoin_X_Y_eq_top.solution W
+theorem WeierstrassCurve.Affine.FunctionField.adjoin_X_Y_eq_top {K : Type*} [Field K]
+    (W : WeierstrassCurve K) :
+    IntermediateField.adjoin K {algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)), algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine Polynomial.X)} = ⊤ :=
+  solution W
 
 end publicSection

@@ -93,7 +93,7 @@ theorem order_qTwist (u : Kˣ) (f : LaurentSeries K) : (qTwist u f).order = f.or
 noncomputable def qExpandAlgK (M : ℕ) [NeZero M] : LaurentSeries K →ₐ[K] LaurentSeries K where
   __ := qExpand K M
   commutes' r := by
-    show qExpand K M (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
+    change qExpand K M (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
     rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero]
 
 @[scoped simp]
@@ -106,7 +106,7 @@ theorem qExpand_mem_range_of_dvd (M P : ℕ) [NeZero M] [NeZero P] (h : M ∣ P)
   have : NeZero (P / M) :=
     ⟨Nat.div_ne_zero_iff.mpr ⟨NeZero.ne M, Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne P)) h⟩⟩
   refine ⟨qExpand K (P / M) f, ?_⟩
-  show qExpand K M (qExpand K (P / M) f) = qExpand K P f
+  change qExpand K M (qExpand K (P / M) f) = qExpand K P f
   rw [qExpand_qExpand]
   exact qExpand_congr (Nat.mul_div_cancel' h) f
 
@@ -114,7 +114,8 @@ end Helper
 
 variable (K : Type*) [Field K] [Algebra ℚ K]
 
-private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange' (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : a ∣ N) [NeZero a]
+private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange' (N : ℕ) [NeZero N]
+    (ζ : Kˣ) (a b : ℕ) (ha : a ∣ N) [NeZero a]
     (ι : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K)
     (hι₁ : ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
@@ -167,7 +168,7 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange' (N : �
         _ = IntermediateField.adjoin K ({jqModC K, jqNModC K N} : Set (LaurentSeries K)) := by
             congr 1
             rw [Set.image_insert_eq, Set.image_singleton]
-            show ({coeffEmb K jq, coeffEmb K (jqN N)} : Set (LaurentSeries K)) = _
+            change ({coeffEmb K jq, coeffEmb K (jqN N)} : Set (LaurentSeries K)) = _
             rw [coeffEmb_jq K, coeffEmb_jqN K N]
         _ = F := hadj.symm
         _ = (⊤ : IntermediateField K F).map F.val :=
@@ -197,7 +198,7 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange' (N : �
     exact this
   have hagdvdγ : ((a * g : ℕ) : ℤ) ∣ γ := by
     rw [hγeq, ← hfπ]
-    show ((a * g : ℕ) : ℤ) ∣ (qExpandAlgK (a * g) f).order
+    change ((a * g : ℕ) : ℤ) ∣ (qExpandAlgK (a * g) f).order
     rw [qExpandAlgK_apply, order_qExpand]
     exact Dvd.intro _ rfl
   have hagpos : 0 < ((a * g : ℕ) : ℤ) := by
@@ -219,8 +220,8 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange' (N : �
 end CD
 
 open ModularCurve AlgebraicCurve in
-
-theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : a ∣ N) [NeZero a]
+theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ)
+    (ha : a ∣ N) [NeZero a]
     (ι : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K)
     (hι₁ : ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
@@ -245,7 +246,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.slot_ord_of_algHom_laurentBaseChange (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : a ∣ N) [NeZero a]
+theorem ModularCurve.slot_ord_of_algHom_laurentBaseChange (K : Type*) [Field K] [Algebra ℚ K]
+    (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : a ∣ N) [NeZero a]
     (ι : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K)
     (hι₁ : ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
@@ -257,6 +259,7 @@ theorem ModularCurve.slot_ord_of_algHom_laurentBaseChange (K : Type*) [Field K] 
     w.ord ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         -((N / a / Nat.gcd a (N / a) : ℕ) : ℤ) ∧
     w.ord ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
-        -((a / Nat.gcd a (N / a) : ℕ) : ℤ) := _root_.P2MW.S_ModularCurve_slot_ord_of_algHom_laurentBaseChange.solution K N ζ a b ha ι hι₁ hι₂ w γ hγ hw
+        -((a / Nat.gcd a (N / a) : ℕ) : ℤ) :=
+  solution K N ζ a b ha ι hι₁ hι₂ w γ hγ hw
 
 end publicSection

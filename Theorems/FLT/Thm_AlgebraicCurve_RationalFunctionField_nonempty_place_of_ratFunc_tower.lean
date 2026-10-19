@@ -62,10 +62,13 @@ namespace P2MW.S_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_
 open AlgebraicCurve
 
 theorem solution (K : Type*) [Field K]
-    [DecidableEq (RatFunc K)] (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
-    [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F] :
-    Nonempty (AlgebraicCurve.Place K F) :=
-  (AlgebraicCurve.Place.exists_restrict_eq (M := F) (AlgebraicCurve.RationalFunctionField.placeInfty K)).nonempty
+    (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
+    [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F] :
+    Nonempty (AlgebraicCurve.Place K F) := by
+  classical
+  exact
+    (AlgebraicCurve.Place.exists_restrict_eq (M := F) (AlgebraicCurve.RationalFunctionField.placeInfty K)).nonempty
 
 end S_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_tower
 end P2MW
@@ -76,8 +79,12 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.RationalFunctionField.nonempty_place_of_ratFunc_tower (K : Type*) [Field K]
-    [DecidableEq (RatFunc K)] (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
-    [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F] :
-    Nonempty (AlgebraicCurve.Place K F) := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_tower.solution K F
+    (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
+    [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F] :
+    Nonempty (AlgebraicCurve.Place K F) := by
+  classical
+  exact
+    solution K F
 
 end publicSection

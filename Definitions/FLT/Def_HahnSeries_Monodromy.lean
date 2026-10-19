@@ -120,7 +120,7 @@ def hahnTwist (χ : Multiplicative ℚ →* Rˣ) : HahnSeries ℚ R ≃ₐ[R] Ha
     have hC : algebraMap R (HahnSeries ℚ R) r = HahnSeries.C r := by
       rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
     have hCs : (HahnSeries.C r : HahnSeries ℚ R) = single (0 : ℚ) r := rfl
-    show hahnTwistFun χ _ = _
+    change hahnTwistFun χ _ = _
     rw [hC, hCs, hahnTwistFun_single, ofAdd_zero, map_one, Units.val_one, one_mul]
 
 @[simp]
@@ -148,7 +148,6 @@ theorem order_hahnTwist (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R
     · exact fun h0 => hx' (coeff_order_eq_zero.mp (by rw [coeff_hahnTwist, h0, mul_zero]))
 
 variable (R) in
-
 def MonoChar : Subgroup (Multiplicative ℚ →* Rˣ) :=
   (MonoidHom.eval (Multiplicative.ofAdd (1 : ℚ))).ker
 
@@ -174,7 +173,6 @@ theorem hahnTwistHom_apply (χ : Multiplicative ℚ →* Rˣ) :
   (rfl)
 
 variable (R) in
-
 @[expose] def monodromy : Subgroup (HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R) :=
   (MonoChar R).map hahnTwistHom
 
@@ -247,7 +245,7 @@ private theorem fixedFun_add [DecidableEq K] (σ : K ≃ₐ[k] K) (E : Weierstra
   · have hxy' : ¬(σ x₁ = σ x₂ ∧ σ y₁ = E.toAffine.negY (σ x₂) (σ y₂)) := fun h =>
       hxy ⟨σ.injective h.1, σ.injective (by rw [hneg] at h; exact h.2)⟩
     rw [add_some hxy]
-    show some _ _ _ = some _ _ _ + some _ _ _
+    change some _ _ _ = some _ _ _ + some _ _ _
     rw [add_some hxy']
     congr 1
     · rw [hslope, haddX]
@@ -260,14 +258,14 @@ def fixedTransport [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
   left_inv P := by
     rcases P with _ | ⟨x, y, h⟩
     · rfl
-    · show some _ _ _ = some x y h
+    · change some _ _ _ = some x y h
       congr 1
       · exact σ.symm_apply_apply x
       · exact σ.symm_apply_apply y
   right_inv P := by
     rcases P with _ | ⟨x, y, h⟩
     · rfl
-    · show some _ _ _ = some x y h
+    · change some _ _ _ = some x y h
       congr 1
       · exact σ.apply_symm_apply x
       · exact σ.apply_symm_apply y

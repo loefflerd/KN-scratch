@@ -69,7 +69,8 @@ namespace P2MW.S_HeckeEis_existsEichlerShimuraMapLinear
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "binaryFormRepSL coeffH1par eichlerShimuraMap eichlerShimuraMap_add eichlerShimuraMap_smul"
+p2m_export "HeckeEis" "binaryFormRepSL coeffH1par eichlerShimuraMap eichlerShimuraMap_add \
+  eichlerShimuraMap_smul"
 p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial CongruenceSubgroup
@@ -105,6 +106,7 @@ public section publicSection
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.existsEichlerShimuraMapLinear (n N : ℕ) [NeZero N] :
     ∃ ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype),
-      ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap n N f := _root_.P2MW.S_HeckeEis_existsEichlerShimuraMapLinear.solution n N
+      ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap n N f :=
+  solution n N
 
 end publicSection

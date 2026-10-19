@@ -67,7 +67,8 @@ p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation ofHeightOneSpectrum toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation ofHeightOneSpectrum \
+  toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -93,7 +94,8 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum.AlgebraicCurve in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R]
+    [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
     [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) :
     (w.valuation F).IsEquiv (Place.ofHeightOneSpectrum (K := K) w).adicValuation :=
   AlgebraicCurve.Place.rowMain (K := K) (F := F) w
@@ -108,8 +110,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.isEquiv_adicValuation_ofHeightOneSpectrum {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
+theorem P2M.Dup.AlgebraicCurve.Place.isEquiv_adicValuation_ofHeightOneSpectrum {K F : Type*}
+    [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F]
+    [IsFractionRing R F]
     [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) :
-    (w.valuation F).IsEquiv (Place.ofHeightOneSpectrum (K := K) w).adicValuation := _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum.solution w
+    (w.valuation F).IsEquiv (Place.ofHeightOneSpectrum (K := K) w).adicValuation :=
+  solution w
 
 end publicSection

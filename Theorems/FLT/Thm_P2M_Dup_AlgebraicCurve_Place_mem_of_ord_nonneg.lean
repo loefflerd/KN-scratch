@@ -83,7 +83,8 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_mem_of_ord_nonneg.AlgebraicCurve in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F}
+    (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring :=
   AlgebraicCurve.Place.rowMain v hf h
 
@@ -97,7 +98,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.mem_of_ord_nonneg {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
-    f ∈ v.toValuationSubring := _root_.P2MW.S_AlgebraicCurve_Place_mem_of_ord_nonneg.solution v hf h
+theorem P2M.Dup.AlgebraicCurve.Place.mem_of_ord_nonneg {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (v : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+    f ∈ v.toValuationSubring :=
+  solution v hf h
 
 end publicSection

@@ -79,7 +79,8 @@ open scoped Manifold MatrixGroups ModularForm
 namespace ModularCurve
 p2m_export "ModularCurve" "LevelN.ring"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jAnalytic_mem fricke_mem jGen coe_jGen"
+p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jAnalytic_mem fricke_mem \
+  jGen coe_jGen"
 namespace CuspVanish
 p2m_open "ModularCurve.LevelN ModularCurve"
 
@@ -134,7 +135,6 @@ theorem orbit_pkg :
   exact ⟨h.1.2, fun v hv => (h.2.1 v hv).2⟩
 
 omit [NeZero N] in
-
 theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jAnalytic τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have h4 : (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • τ) =
@@ -166,7 +166,6 @@ theorem vecMul_ne_zero {v : Fin 2 → ZMod N} (hv : v ≠ 0) (γ : SL(2, ℤ)) :
   exact this
 
 omit [NeZero N] in
-
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
   AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
@@ -275,7 +274,8 @@ theorem exists_isBoundedAtImInfty {F : ℍ → ℂ} (hF : F ∈ ring N) :
 
 abbrev cf (P : ℍ → ℂ) : ℂ → ℂ := UpperHalfPlane.cuspFunction (N : ℝ) P
 
-private def _root_.ModularCurve.LevelN.CuspVanish.T (q : ℂ) : ℍ := ofComplex (Periodic.invQParam (N : ℝ) q)
+private def _root_.ModularCurve.LevelN.CuspVanish.T (q : ℂ) :
+    ℍ := ofComplex (Periodic.invQParam (N : ℝ) q)
 
 p2m_export "ModularCurve.LevelN.CuspVanish" "T"
 theorem cf_eq_T (P : ℍ → ℂ) {q : ℂ} (hq : q ≠ 0) : cf N P q = P (T N q) := by
@@ -309,7 +309,8 @@ theorem cf_discriminant_zero : cf N ModularForm.discriminant 0 = 0 := by
     (periodic_discriminant N)]
   exact ModularForm.discriminant_isZeroAtImInfty.valueAtInfty_eq_zero
 
-theorem eventually_cf_discriminant_ne_zero : ∀ᶠ q in 𝓝[≠] (0 : ℂ), cf N ModularForm.discriminant q ≠ 0 := by
+theorem eventually_cf_discriminant_ne_zero :
+    ∀ᶠ q in 𝓝[≠] (0 : ℂ), cf N ModularForm.discriminant q ≠ 0 := by
   filter_upwards [self_mem_nhdsWithin] with q hq
   rw [cf_eq_T N _ hq]
   exact ModularForm.discriminant_ne_zero _
@@ -347,9 +348,10 @@ theorem meromorphicOrderAt_cf_ne_top {P : ℍ → ℂ} (hP : P ∈ ring N) (hP0 
   set z₀ : ℂ := Complex.I * ((max A 0 : ℝ) + 1) with hz₀
   have hz₀im : z₀.im = max A 0 + 1 := by simp [hz₀]
   have hz₀pos : 0 < z₀.im := by rw [hz₀im]; positivity
-  have hopen : IsOpen {z : ℂ | max A 0 + 1 / 2 < z.im} := isOpen_lt continuous_const Complex.continuous_im
+  have hopen : IsOpen {z : ℂ | max A 0 + 1 / 2 < z.im} :=
+    isOpen_lt continuous_const Complex.continuous_im
   have hmem : z₀ ∈ {z : ℂ | max A 0 + 1 / 2 < z.im} := by
-    show max A 0 + 1 / 2 < z₀.im
+    change max A 0 + 1 / 2 < z₀.im
     rw [hz₀im]; linarith
   have hzero : ∀ᶠ z in 𝓝 z₀, (P ∘ ofComplex) z = 0 := by
     filter_upwards [hopen.mem_nhds hmem] with z hz
@@ -595,7 +597,8 @@ theorem meromorphicOrderAt_cf_G : meromorphicOrderAt (cf N G) 0 = 0 := by
     (nhdsWithin_le_nhds (s := ({0}ᶜ : Set ℂ)))
   rwa [cf_G_zero] at h
 
-theorem meromorphicOrderAt_cf_discriminant_pos : 0 < meromorphicOrderAt (cf N ModularForm.discriminant) 0 := by
+theorem meromorphicOrderAt_cf_discriminant_pos :
+    0 < meromorphicOrderAt (cf N ModularForm.discriminant) 0 := by
   apply (tendsto_zero_iff_meromorphicOrderAt_pos (analyticAt_cf_discriminant N).meromorphicAt).mp
   have h := ((analyticAt_cf_discriminant N).continuousAt.tendsto).mono_left
     (nhdsWithin_le_nhds (s := ({0}ᶜ : Set ℂ)))
@@ -751,7 +754,8 @@ theorem slash_two_apply (f : ℍ → ℂ) (γ : SL(2, ℤ)) (τ : ℍ) :
 theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
     HasDerivAt (𝕢 h) (𝕢 h z * (2 * ↑Real.pi * Complex.I / h)) z := by
   have qdiff : HasStrictDerivAt (𝕢 h) (𝕢 h z * (2 * ↑Real.pi * Complex.I / h)) z := by
-    have h0 := (((hasStrictDerivAt_id z).const_mul (2 * ↑Real.pi * Complex.I)).div_const (h : ℂ)).cexp
+    have h0 :=
+      (((hasStrictDerivAt_id z).const_mul (2 * ↑Real.pi * Complex.I)).div_const (h : ℂ)).cexp
     simp only [id_eq, mul_one] at h0
     first
       | exact h0
@@ -808,7 +812,6 @@ theorem slash_apply_eq {F : ℍ → ℂ} {a b c e : ℍ → ℂ} (hb : b ∈ rin
 variable {K}
 
 omit [NeZero N] in
-
 theorem eventuallyEq_nhds_of_nhdsNE {f g : ℂ → ℂ} {x : ℂ} (h : f =ᶠ[𝓝[≠] x] g) :
     ∀ᶠ z in 𝓝[≠] x, f =ᶠ[𝓝 z] g := by
   rw [Filter.EventuallyEq, eventually_nhdsWithin_iff] at h
@@ -939,6 +942,7 @@ theorem ModularCurve.LevelN.isZeroAtImInfty_slash_of_mem_regularDifferentials (N
         a τ * (e τ * deriv (c ∘ UpperHalfPlane.ofComplex) τ -
           c τ * deriv (e ∘ UpperHalfPlane.ofComplex) τ))
     (δ : SL(2, ℤ)) :
-    UpperHalfPlane.IsZeroAtImInfty (F ∣[(2 : ℤ)] δ) := _root_.P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.solution N K ω hω F hF δ
+    UpperHalfPlane.IsZeroAtImInfty (F ∣[(2 : ℤ)] δ) :=
+  solution N K ω hω F hF δ
 
 end publicSection

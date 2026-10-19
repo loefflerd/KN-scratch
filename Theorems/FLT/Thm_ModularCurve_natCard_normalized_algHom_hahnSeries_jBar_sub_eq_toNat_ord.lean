@@ -117,7 +117,7 @@ private theorem algebraMap_hahn_eq_C (r : K) :
 private def puiseuxAlgEmb {e : ℕ} (he : 0 < e) : LaurentSeries K →ₐ[K] HahnSeries ℚ K where
   toRingHom := HahnSeries.puiseuxRamEmb he
   commutes' r := by
-    show HahnSeries.puiseuxRamEmb he (algebraMap K (LaurentSeries K) r) =
+    change HahnSeries.puiseuxRamEmb he (algebraMap K (LaurentSeries K) r) =
       algebraMap K (HahnSeries ℚ K) r
     rw [algebraMap_laurent_eq_C, algebraMap_hahn_eq_C, HahnSeries.C_apply, HahnSeries.C_apply]
     have hsing : HahnSeries.puiseuxRamEmb (K := K) he (HahnSeries.single (0 : ℤ) r) =
@@ -128,7 +128,7 @@ private def puiseuxAlgEmb {e : ℕ} (he : 0 < e) : LaurentSeries K →ₐ[K] Hah
 private def qTwistAlg (u : Kˣ) : LaurentSeries K →ₐ[K] LaurentSeries K where
   toRingHom := qTwist u
   commutes' r := by
-    show qTwist u (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
+    change qTwist u (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
     rw [algebraMap_laurent_eq_C, HahnSeries.C_apply, qTwist_single]
     norm_num
 
@@ -216,7 +216,7 @@ private theorem normEmb_spec {e : ℕ} (he : 0 < e) (u : Kˣ) (hue : u ^ e = 1)
       rw [AlgHom.comp_apply, AlgHom.comp_apply, hφf]
       have hq : qTwistAlg (K := K) u (HahnSeries.single ((e : ℕ) : ℤ) 1) =
           HahnSeries.single ((e : ℕ) : ℤ) 1 := by
-        show qTwist u (HahnSeries.single ((e : ℕ) : ℤ) 1) = HahnSeries.single ((e : ℕ) : ℤ) 1
+        change qTwist u (HahnSeries.single ((e : ℕ) : ℤ) 1) = HahnSeries.single ((e : ℕ) : ℤ) 1
         rw [qTwist_single]
         congr 1
         rw [mul_one]
@@ -300,13 +300,13 @@ private theorem finite_allNorm_and_card_le (t : F) (c : K)
           inv_mem' := by
             intro y hy
             have h : ψ y = ψ₀ y := hy
-            show ψ y⁻¹ = ψ₀ y⁻¹
+            change ψ y⁻¹ = ψ₀ y⁻¹
             rw [map_inv₀, map_inv₀, h] } := by
       rw [hB, IntermediateField.adjoin_le_iff]
       intro z hz
       rw [Set.mem_singleton_iff] at hz
       rw [hz]
-      show ψ t = ψ₀ t
+      change ψ t = ψ₀ t
       rw [hψ, hψ₀]
     exact fun x hx => hsub hx
   set βr : ↥B →+* HahnSeries ℚ K := ψ₀.toRingHom.comp (algebraMap ↥B F) with hβrdef
@@ -315,7 +315,7 @@ private theorem finite_allNorm_and_card_le (t : F) (c : K)
       (ψ.toRingHom.comp (algebraMap ↥B F)) = βr := by
     intro ψ hψ
     refine RingHom.ext fun b => ?_
-    show ψ (algebraMap ↥B F b) = ψ₀ (algebraMap ↥B F b)
+    change ψ (algebraMap ↥B F b) = ψ₀ (algebraMap ↥B F b)
     exact hagree ψ hψ (algebraMap ↥B F b) (by simp)
   set mp : Polynomial ↥B := minpoly ↥B θ with hmp
   have hmonic : mp.Monic := minpoly.monic hint
@@ -330,7 +330,7 @@ private theorem finite_allNorm_and_card_le (t : F) (c : K)
           Polynomial.eval₂ (ψ.toRingHom.comp (algebraMap ↥B F)) (ψ θ) mp :=
         Polynomial.hom_eval₂ mp (algebraMap ↥B F) ψ.toRingHom θ
       rw [← hcomm, ← Polynomial.aeval_def, minpoly.aeval, map_zero]
-    show (mp.map βr).IsRoot (ψ θ)
+    change (mp.map βr).IsRoot (ψ θ)
     rw [Polynomial.IsRoot, Polynomial.eval_map, ← hβr ψ hψ]
     exact h1
   have hinj : ∀ ψ₁ ψ₂ : F →ₐ[K] HahnSeries ℚ K,
@@ -563,7 +563,6 @@ end B2Peo
 end
 
 open AlgebraicCurve ModularCurve Polynomial in
-
 theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
     [FiniteDimensional
@@ -637,6 +636,7 @@ theorem ModularCurve.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord 
           HahnSeries ℚ (AlgebraicClosure ℚ) //
         ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ) ∧
         ∃ g : ℚ, 0 < g ∧ ∀ x, (w.ord x : ℚ) * g = (ψ x).order} =
-      (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat := _root_.P2MW.S_ModularCurve_natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord.solution N j₀ S hS hsum hP1
+      (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat :=
+  solution N j₀ S hS hsum hP1
 
 end publicSection

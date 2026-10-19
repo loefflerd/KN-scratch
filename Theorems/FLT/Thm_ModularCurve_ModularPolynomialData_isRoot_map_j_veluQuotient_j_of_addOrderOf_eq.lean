@@ -89,7 +89,8 @@ theorem solution
   have : W.toAffine.IsElliptic := ‹W.IsElliptic›
   have : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.IsElliptic := hE'
   have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
-  have : HasPrincipalDivisors 𝕂 W.toAffine.FunctionField := hasPrincipalDivisors_functionField W.toAffine
+  have : HasPrincipalDivisors 𝕂 W.toAffine.FunctionField :=
+    hasPrincipalDivisors_functionField W.toAffine
   obtain ⟨g, hgc, hga⟩ :=
     exists_genusOnePlaceGate_isCentred_and_abelTheorem (F := 𝕂) (W := W.toAffine)
   let := g
@@ -116,7 +117,7 @@ theorem solution
     have := isScalarTower_along ι
     have : Module.Finite (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField
         W.toAffine.FunctionField := hfin
-    show Algebra.IsSeparable _ _
+    change Algebra.IsSeparable _ _
     infer_instance
   have hN : NormFormulaAlong 𝕂 ι hfin := AlgebraicCurve.normFormulaAlong ι hfin hsep
   have hkerQ := hker hN
@@ -147,6 +148,7 @@ theorem ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrd
     (data : ModularCurve.ModularPolynomialData (2 * n + 1)) :
     haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot
-      (W.veluQuotient (W.oddOrderSummingSet Q n)).j := _root_.P2MW.S_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq.solution W n Q hQ hΔ data
+      (W.veluQuotient (W.oddOrderSummingSet Q n)).j :=
+  solution W n Q hQ hΔ data
 
 end publicSection

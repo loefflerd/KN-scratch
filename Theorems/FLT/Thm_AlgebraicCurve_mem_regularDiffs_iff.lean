@@ -72,7 +72,9 @@ noncomputable section
 open KaehlerDifferential
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.diffCoeff Place.ordDiff_def IsRegularDiff regularDiffs mem_regularDiffs_of_isRegularDiff Place Place.diffCoeff_smul_D_of_ord_ne_zero Place.diffCoeff_smul_D_eq Place.ordDiff_zero Place.ordDiff_smul"
+p2m_export "AlgebraicCurve" "Place.diffCoeff Place.ordDiff_def IsRegularDiff regularDiffs \
+  mem_regularDiffs_of_isRegularDiff Place Place.diffCoeff_smul_D_of_ord_ne_zero \
+  Place.diffCoeff_smul_D_eq Place.ordDiff_zero Place.ordDiff_smul"
 namespace FF2Tail
 p2m_open "AlgebraicCurve"
 
@@ -103,7 +105,8 @@ theorem min_ordDiff_le_ordDiff_add (v : Place K F) {ω₁ ω₂ : Ω[F⁄K]} (h�
     exact hω this.symm
   simp only [Place.ordDiff_def]
   rw [diffCoeff_add x v hu]
-  exact v.min_ord_le_ord_add (hcoe _ h₁) (hcoe _ h₂) (by rw [← diffCoeff_add x v hu]; exact hcoe _ h₁₂)
+  exact v.min_ord_le_ord_add (hcoe _ h₁) (hcoe _ h₂) (by
+    rw [← diffCoeff_add x v hu]; exact hcoe _ h₁₂)
 
 include x in
 theorem isRegularDiff_zero : IsRegularDiff K F (0 : Ω[F⁄K]) := fun v => by
@@ -130,7 +133,6 @@ theorem isRegularDiff_smul (c : K) {ω : Ω[F⁄K]} (h : IsRegularDiff K F ω) :
   exact h v
 
 include x in
-
 theorem mem_regularDiffs_iff (ω : Ω[F⁄K]) : ω ∈ regularDiffs K F ↔ IsRegularDiff K F ω := by
   refine ⟨fun h => ?_, mem_regularDiffs_of_isRegularDiff⟩
   induction h using Submodule.span_induction with
@@ -156,8 +158,10 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.mem_regularDiffs_iff {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
+theorem AlgebraicCurve.mem_regularDiffs_iff {K F : Type*} [Field K] [Field F] [Algebra K F]
+    [CharZero K] (x : F)
     [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (ω : Ω[F⁄K]) :
-    ω ∈ AlgebraicCurve.regularDiffs K F ↔ AlgebraicCurve.IsRegularDiff K F ω := _root_.P2MW.S_AlgebraicCurve_mem_regularDiffs_iff.solution x ω
+    ω ∈ AlgebraicCurve.regularDiffs K F ↔ AlgebraicCurve.IsRegularDiff K F ω :=
+  solution x ω
 
 end publicSection

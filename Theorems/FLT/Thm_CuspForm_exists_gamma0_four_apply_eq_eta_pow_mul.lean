@@ -90,7 +90,8 @@ lemma eta_add_int (w : ℂ) (m : ℤ) : η (w + m) = cexp (π * I * m / 12) * η
   push_cast
   ring
 
-lemma eta_add_int_pow (w : ℂ) (m : ℤ) (e : ℕ) : η (w + m) ^ e = cexp (π * I * (m * e) / 12) * η w ^ e := by
+lemma eta_add_int_pow (w : ℂ) (m : ℤ) (e : ℕ) :
+    η (w + m) ^ e = cexp (π * I * (m * e) / 12) * η w ^ e := by
   rw [eta_add_int, mul_pow, ← Complex.exp_nat_mul]
   congr 2
   ring
@@ -130,7 +131,8 @@ lemma Gc_add_four_mul_int (a b c : ℕ) (w : ℂ) (m : ℤ) :
   push_cast
   ring
 
-lemma Fc_add_one (a b c : ℕ) (h₁ : 24 ∣ a + 2 * b + 4 * c) (w : ℂ) : Fc a b c (w + 1) = Fc a b c w := by
+lemma Fc_add_one (a b c : ℕ) (h₁ : 24 ∣ a + 2 * b + 4 * c) (w : ℂ) :
+    Fc a b c (w + 1) = Fc a b c w := by
   have := Fc_add_int a b c w 1
   rw [Int.cast_one] at this
   rw [this, cexp_phase_eq_one _ (by rw [one_mul]; exact Int.natCast_dvd_natCast.mpr h₁), one_mul]
@@ -149,7 +151,8 @@ lemma sqrt_sq (w : ℂ) : Complex.sqrt w ^ 2 = w := by
   rw [h2] at h
   exact h
 
-lemma eta_neg_inv (w : ℂ) (hw : 0 < w.im) : η (-w⁻¹) = (Complex.sqrt I)⁻¹ * (Complex.sqrt w * η w) := by
+lemma eta_neg_inv (w : ℂ) (hw : 0 < w.im) :
+    η (-w⁻¹) = (Complex.sqrt I)⁻¹ * (Complex.sqrt w * η w) := by
   have := ModularForm.eta_comp_eq_csqrt_I_inv hw
   rw [show -w⁻¹ = -1 / w by rw [neg_div, one_div]]
   simpa only [Function.comp, Pi.smul_apply, Pi.mul_apply, smul_eq_mul] using this
@@ -202,7 +205,8 @@ lemma F_slash_S (a' b' c' : ℕ) :
     (F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] ModularGroup.S =
       fun z : ℍ => CS a' b' c' * Gc (2 * a') (2 * b') (2 * c') z := by
   ext z
-  rw [ModularForm.SL_slash_apply, denom_S, F, coe_S_smul, Fc_neg_inv _ _ _ _ z.im_pos, zpow_neg, zpow_natCast]
+  rw [ModularForm.SL_slash_apply, denom_S, F, coe_S_smul, Fc_neg_inv _ _ _ _ z.im_pos, zpow_neg,
+    zpow_natCast]
   have hz : (z : ℂ) ^ (a' + b' + c') ≠ 0 := pow_ne_zero _ z.ne_zero
   field_simp
 
@@ -232,14 +236,16 @@ lemma T_mem : ModularGroup.T ∈ H := Subgroup.subset_closure (by simp)
 lemma R_mem : R ∈ H := Subgroup.subset_closure (by simp)
 lemma neg_one_mem : (-1 : SL(2, ℤ)) ∈ H := Subgroup.subset_closure (by simp)
 
-lemma coe_R_zpow (n : ℤ) : ((R ^ n : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; 4 * n, 1] := by
+lemma coe_R_zpow (n : ℤ) :
+    ((R ^ n : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; 4 * n, 1] := by
   induction n using Int.induction_on with
   | zero => simp [Matrix.one_fin_two]
   | succ n ih =>
     rw [zpow_add_one, Matrix.SpecialLinearGroup.coe_mul, ih, coe_R]
     ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] ; ring
   | pred n ih =>
-    rw [zpow_sub_one, Matrix.SpecialLinearGroup.coe_mul, ih, Matrix.SpecialLinearGroup.coe_inv, coe_R]
+    rw [zpow_sub_one, Matrix.SpecialLinearGroup.coe_mul, ih, Matrix.SpecialLinearGroup.coe_inv,
+      coe_R]
     ext i j; fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of] ; ring
 
@@ -247,7 +253,7 @@ lemma mul_T_zpow_apply (A : SL(2, ℤ)) (n : ℤ) :
     (A * ModularGroup.T ^ n) 1 0 = A 1 0 ∧ (A * ModularGroup.T ^ n) 1 1 = A 1 0 * n + A 1 1 ∧
     (A * ModularGroup.T ^ n) 0 0 = A 0 0 ∧ (A * ModularGroup.T ^ n) 0 1 = A 0 0 * n + A 0 1 := by
   refine ⟨?_, ?_, ?_, ?_⟩ <;>
-  · show ((A : Matrix (Fin 2) (Fin 2) ℤ) * ((ModularGroup.T ^ n : SL(2,ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) _ _ = _
+  · change ((A : Matrix (Fin 2) (Fin 2) ℤ) * ((ModularGroup.T ^ n : SL(2,ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) _ _ = _
     rw [ModularGroup.coe_T_zpow]
     simp [Matrix.mul_apply, Fin.sum_univ_two]
 
@@ -255,7 +261,7 @@ lemma mul_R_zpow_apply (A : SL(2, ℤ)) (n : ℤ) :
     (A * R ^ n) 1 0 = A 1 0 + A 1 1 * (4 * n) ∧ (A * R ^ n) 1 1 = A 1 1 ∧
     (A * R ^ n) 0 0 = A 0 0 + A 0 1 * (4 * n) ∧ (A * R ^ n) 0 1 = A 0 1 := by
   refine ⟨?_, ?_, ?_, ?_⟩ <;>
-  · show ((A : Matrix (Fin 2) (Fin 2) ℤ) * ((R ^ n : SL(2,ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) _ _ = _
+  · change ((A : Matrix (Fin 2) (Fin 2) ℤ) * ((R ^ n : SL(2,ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) _ _ = _
     rw [coe_R_zpow]
     simp [Matrix.mul_apply, Fin.sum_univ_two]
 
@@ -283,7 +289,8 @@ lemma mem_H_of_apply_one_zero_eq_zero (A : SL(2, ℤ)) (h : A 1 0 = 0) : A ∈ H
     rw [this]
     exact Subgroup.mul_mem _ neg_one_mem (Subgroup.zpow_mem _ T_mem _)
 
-lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n → (4 : ℤ) ∣ A 1 0 → A ∈ H := by
+lemma mem_H_of_four_dvd :
+    ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n → (4 : ℤ) ∣ A 1 0 → A ∈ H := by
   intro n
   induction n using Nat.strong_induction_on with
   | _ n ih =>
@@ -324,14 +331,16 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
     rwa [hd₁_eq, sub_add_cancel] at this
   have hd₁0 : d₁ ≠ 0 := by rintro h0; exact hd₁2 (h0 ▸ dvd_zero 2)
   have hm'0 : 0 < (4 * d₁).natAbs := Int.natAbs_pos.mpr (by positivity)
-  have hmm' : (((4 * d₁).natAbs : ℕ) : ℤ) = 4 * |d₁| := by rw [Int.natCast_natAbs, abs_mul]; norm_num
+  have hmm' : (((4 * d₁).natAbs : ℕ) : ℤ) = 4 * |d₁| :=
+    by rw [Int.natCast_natAbs, abs_mul]; norm_num
   set c' : ℤ := Int.bmod c (4 * d₁).natAbs with hc'
   have hc'_eq : c' = c - (((4 * d₁).natAbs : ℕ) : ℤ) * Int.bdiv c (4 * d₁).natAbs := by
     have := Int.bdiv_add_bmod c (4 * d₁).natAbs
     rw [hc']; linarith
   have hc'_lb : -((((4 * d₁).natAbs : ℕ) : ℤ) / 2) ≤ c' := Int.le_bmod hm'0
   have hc'_ub : c' < ((((4 * d₁).natAbs : ℕ) : ℤ) + 1) / 2 := Int.bmod_lt hm'0
-  obtain ⟨n₂, hn₂⟩ : ∃ n₂ : ℤ, d₁ * (4 * n₂) = -((((4 * d₁).natAbs : ℕ) : ℤ) * Int.bdiv c (4 * d₁).natAbs) := by
+  obtain ⟨n₂, hn₂⟩ : ∃ n₂ : ℤ, d₁ * (4 * n₂) = -((((4 * d₁).natAbs : ℕ) : ℤ) * Int.bdiv c (4 * d₁).natAbs) :=
+    by
     rw [hmm']
     rcases abs_cases d₁ with ⟨h, -⟩ | ⟨h, -⟩ <;> rw [h]
     exacts [⟨-(Int.bdiv c (4 * d₁).natAbs), by ring⟩, ⟨Int.bdiv c (4 * d₁).natAbs, by ring⟩]
@@ -403,22 +412,28 @@ lemma F_slash_R (a' b' c' : ℕ) (h₂ : 24 ∣ 4 * (2 * a') + 2 * (2 * b') + 2 
     (F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] R = F (2 * a') (2 * b') (2 * c') := by
   have hR : R = ModularGroup.S * ModularGroup.T ^ (-4 : ℤ) * ModularGroup.S⁻¹ := by
     ext i j
-    rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_inv,
+    rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul,
+      Matrix.SpecialLinearGroup.coe_inv,
       ModularGroup.coe_T_zpow, ModularGroup.coe_S, coe_R]
-    fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of]
-  rw [hR, SlashAction.slash_mul, SlashAction.slash_mul, F_slash_S_slash_T _ _ _ h₂, ← SlashAction.slash_mul,
+    fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two,
+      Matrix.adjugate_fin_two_of]
+  rw [hR, SlashAction.slash_mul, SlashAction.slash_mul, F_slash_S_slash_T _ _ _ h₂, ←
+    SlashAction.slash_mul,
     mul_inv_cancel, SlashAction.slash_one]
 
-def genGL : Set (GL (Fin 2) ℝ) := (Matrix.SpecialLinearGroup.mapGL ℝ : SL(2, ℤ) →* GL (Fin 2) ℝ) '' {ModularGroup.T, R, -1}
+def genGL :
+    Set (GL (Fin 2) ℝ) := (Matrix.SpecialLinearGroup.mapGL ℝ : SL(2, ℤ) →* GL (Fin 2) ℝ) '' {ModularGroup.T, R, -1}
 
 lemma map_H : H.map (Matrix.SpecialLinearGroup.mapGL ℝ) = Subgroup.closure genGL := by
   rw [H, MonoidHom.map_closure]; rfl
 
-lemma slash_eq_of_generators {f : ℍ → ℂ} {k : ℤ} (hT : f ∣[k] ModularGroup.T = f) (hR : f ∣[k] R = f)
+lemma slash_eq_of_generators {f : ℍ → ℂ} {k : ℤ} (hT : f ∣[k] ModularGroup.T = f)
+    (hR : f ∣[k] R = f)
     (hN : f ∣[k] (-1 : SL(2, ℤ)) = f) :
     ∀ γ ∈ ((CongruenceSubgroup.Gamma0 4 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)), f ∣[k] γ = f := by
   have hgen : ∀ γ ∈ Subgroup.closure genGL, f ∣[k] γ = f := by
-    rw [SlashInvariantForm.slash_action_generators (rfl : Subgroup.closure genGL = Subgroup.closure genGL)]
+    rw [SlashInvariantForm.slash_action_generators (rfl : Subgroup.closure genGL = Subgroup.closure
+      genGL)]
     rintro _ ⟨g, hg, rfl⟩
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hg
     rcases hg with rfl | rfl | rfl
@@ -457,7 +472,8 @@ open scoped MatrixGroups ModularForm Real UpperHalfPlane
 open Complex
 open ModularForm (eta)
 
-lemma Gamma0_le {N M : ℕ} (h : N ∣ M) : CongruenceSubgroup.Gamma0 M ≤ CongruenceSubgroup.Gamma0 N := by
+lemma Gamma0_le {N M : ℕ} (h : N ∣ M) :
+    CongruenceSubgroup.Gamma0 M ≤ CongruenceSubgroup.Gamma0 N := by
   intro A hA
   rw [CongruenceSubgroup.Gamma0_mem] at hA ⊢
   rw [ZMod.intCast_zmod_eq_zero_iff_dvd] at hA ⊢
@@ -548,13 +564,15 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
     set s₁ := UpperHalfPlane.σ g (η (1 * ((g • τ : ℍ) : ℂ)) ^ 24)
     set s₂ := UpperHalfPlane.σ g (η (2 * ((g • τ : ℍ) : ℂ)) ^ 24)
     set s₄ := UpperHalfPlane.σ g (η (4 * ((g • τ : ℍ) : ℂ)) ^ 24)
-    have hX : (X * (Dt ^ (2 * E) * Dt⁻¹) * (d ^ (2 * E))⁻¹) ^ 6 * Dt ^ 6 = X ^ 6 * Dt ^ (12 * E) * (d ^ (12 * E))⁻¹ := by
+    have hX : (X * (Dt ^ (2 * E) * Dt⁻¹) * (d ^ (2 * E))⁻¹) ^ 6 * Dt ^ 6 = X ^ 6 * Dt ^ (12 * E) * (d ^ (12 * E))⁻¹ :=
+      by
       field_simp
       ring
     rw [hX, hF, hEdef]
     simp only [← inv_pow]
     ring
-  have h6 : UpperHalfPlane.IsZeroAtImInfty (((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) ^ 6) := by
+  have h6 : UpperHalfPlane.IsZeroAtImInfty (((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) ^ 6) :=
+    by
     have hfun : ((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) ^ 6 = fun τ =>
         ((((⇑g₁) ∣[(12 : ℤ)] g) ^ α * ((⇑g₂) ∣[(12 : ℤ)] g) ^ β * ((⇑g₄) ∣[(12 : ℤ)] g) ^ γ) τ) * (Dt ^ E * (Dt ^ 6)⁻¹) := by
       funext τ
@@ -606,7 +624,7 @@ theorem solution (a b c : ℕ) (h0 : 0 < a + b + c)
     rw [← e1, ← e2, ← e3]
     convert this using 2
     ring
-  · show F (2 * (2 * α)) (2 * (2 * β)) (2 * (2 * γ)) z = _
+  · change F (2 * (2 * α)) (2 * (2 * β)) (2 * (2 * γ)) z = _
     rw [← e1, ← e2, ← e3]
     rfl
 
@@ -625,6 +643,7 @@ theorem CuspForm.exists_gamma0_four_apply_eq_eta_pow_mul (a b c : ℕ) (h0 : 0 <
     (h₁ : 24 ∣ a + 2 * b + 4 * c) (h₂ : 24 ∣ 4 * a + 2 * b + c) (hb : Even b) (h4 : 4 ∣ a + b + c) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 4) (((a + b + c) / 2 : ℕ) : ℤ),
       ∀ z : UpperHalfPlane, f z = ModularForm.eta (z : ℂ) ^ a * ModularForm.eta (2 * (z : ℂ)) ^ b *
-        ModularForm.eta (4 * (z : ℂ)) ^ c := _root_.P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.solution a b c h0 h₁ h₂ hb h4
+        ModularForm.eta (4 * (z : ℂ)) ^ c :=
+  solution a b c h0 h₁ h₂ hb h4
 
 end publicSection

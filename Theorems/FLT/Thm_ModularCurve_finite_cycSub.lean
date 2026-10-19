@@ -73,7 +73,7 @@ theorem solution (N : ℕ) [NeZero N] (E₀ : WeierstrassCurve (AlgebraicClosure
     rintro ⟨H, g, hg, rfl⟩ x hx
     rw [Submodule.mem_torsionBy_iff]
     obtain ⟨k, rfl⟩ := AddSubgroup.mem_zmultiples_iff.mp hx
-    show (N : ℤ) • (k • g) = 0
+    change (N : ℤ) • (k • g) = 0
     rw [smul_comm, ← hg, natCast_zsmul, addOrderOf_nsmul_eq_zero, smul_zero]
   let f : CycSub E₀ N → Set (Submodule.torsionBy ℤ E₀.toAffine.Point N) :=
     fun H => {x | (x : E₀.toAffine.Point) ∈ H.1}
@@ -100,7 +100,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.finite_cycSub (N : ℕ) [NeZero N] (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) [E₀.IsElliptic] :
-    Finite (CycSub E₀ N) := _root_.P2MW.S_ModularCurve_finite_cycSub.solution N E₀
+theorem ModularCurve.finite_cycSub (N : ℕ) [NeZero N] (E₀ : WeierstrassCurve (AlgebraicClosure ℚ))
+    [E₀.IsElliptic] :
+    Finite (CycSub E₀ N) :=
+  solution N E₀
 
 end publicSection

@@ -54,7 +54,13 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.WeierstrassCurve.Affine.CoordinateRing"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.WeierstrassCurve.Affine.Coor\
+  dinateRing"
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
@@ -94,7 +100,9 @@ end WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
 open WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
-theorem solution {F : Type*} [Field F] {W : Affine F} {x₁ y₁ : F} (h : W.Equation x₁ y₁) (x₂ y₂ : F) : XYIdeal W x₁ (C y₁) = XYIdeal W x₂ (C y₂) ↔ x₁ = x₂ ∧ y₁ = y₂ := by
+theorem solution {F : Type*} [Field F] {W : Affine F} {x₁ y₁ : F} (h : W.Equation x₁ y₁) (x₂ y₂ : F)
+    :
+    XYIdeal W x₁ (C y₁) = XYIdeal W x₂ (C y₂) ↔ x₁ = x₂ ∧ y₁ = y₂ := by
   refine ⟨fun he => ?_, by rintro ⟨rfl, rfl⟩; rfl⟩
   have hx : XClass W x₂ ∈ XYIdeal W x₁ (C y₁) := he ▸ Ideal.subset_span (by simp)
   have hy : YClass W (C y₂) ∈ XYIdeal W x₁ (C y₁) := he ▸ Ideal.subset_span (by simp)
@@ -115,6 +123,9 @@ public section publicSection
 
 open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing
 open scoped Polynomial.Bivariate
-theorem WeierstrassCurve.Affine.CoordinateRing.XYIdeal_eq_XYIdeal_iff {F : Type*} [Field F] {W : Affine F} {x₁ y₁ : F} (h : W.Equation x₁ y₁) (x₂ y₂ : F) : XYIdeal W x₁ (C y₁) = XYIdeal W x₂ (C y₂) ↔ x₁ = x₂ ∧ y₁ = y₂ := _root_.P2MW.S_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff.solution h x₂ y₂
+theorem WeierstrassCurve.Affine.CoordinateRing.XYIdeal_eq_XYIdeal_iff {F : Type*} [Field F]
+    {W : Affine F} {x₁ y₁ : F} (h : W.Equation x₁ y₁) (x₂ y₂ : F) :
+    XYIdeal W x₁ (C y₁) = XYIdeal W x₂ (C y₂) ↔ x₁ = x₂ ∧ y₁ = y₂ :=
+  solution h x₂ y₂
 
 end publicSection

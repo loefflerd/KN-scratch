@@ -98,7 +98,7 @@ theorem equation_weierstrassP {z : ℂ} (hz : z ∉ L.lattice) :
     L.weierstrassCurve.toAffine.Equation (℘[L] z) (℘'[L] z / 2) := by
   rw [WeierstrassCurve.Affine.equation_iff]
   have h := L.derivWeierstrassP_sq z hz
-  show (℘'[L] z / 2) ^ 2 + L.weierstrassCurve.a₁ * ℘[L] z * (℘'[L] z / 2) +
+  change (℘'[L] z / 2) ^ 2 + L.weierstrassCurve.a₁ * ℘[L] z * (℘'[L] z / 2) +
       L.weierstrassCurve.a₃ * (℘'[L] z / 2) = ℘[L] z ^ 3 + L.weierstrassCurve.a₂ * ℘[L] z ^ 2 +
       L.weierstrassCurve.a₄ * ℘[L] z + L.weierstrassCurve.a₆
   rw [weierstrassCurve_a₁, weierstrassCurve_a₂, weierstrassCurve_a₃, weierstrassCurve_a₄,
@@ -113,7 +113,6 @@ theorem DiscriminantNeZero.weierstrassCurve_Δ_ne_zero {L : PeriodPair}
   rwa [L.weierstrassCurve_Δ]
 
 open Classical in
-
 def toPoint (h : L.DiscriminantNeZero) (z : ℂ) : L.weierstrassCurve.toAffine.Point :=
   if hz : z ∈ L.lattice then 0
   else .some _ _ ((WeierstrassCurve.Affine.equation_iff_nonsingular_of_Δ_ne_zero

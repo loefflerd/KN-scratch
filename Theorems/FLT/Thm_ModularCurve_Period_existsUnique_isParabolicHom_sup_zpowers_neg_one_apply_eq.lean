@@ -107,12 +107,10 @@ variable {Γ}
 variable {A : Type*} [AddCommGroup A] (ψ : Additive Γ →+ A) (hψ : IsParabolicHom Γ ψ)
 
 include hψ in
-
 theorem apply_neg_one (h : (-1 : SL(2, ℤ)) ∈ Γ) : ψ (Additive.ofMul ⟨-1, h⟩) = 0 :=
   hψ ⟨-1, h⟩ trace_neg_one_sq
 
 include hψ in
-
 theorem apply_eq_of_eq_or_eq_neg {γ δ : SL(2, ℤ)} (hγ : γ ∈ Γ) (hδ : δ ∈ Γ)
     (h : γ = δ ∨ γ = -δ) : ψ (Additive.ofMul ⟨γ, hγ⟩) = ψ (Additive.ofMul ⟨δ, hδ⟩) := by
   rcases h with rfl | rfl
@@ -133,7 +131,6 @@ theorem eq_or_eq_neg_rep (g : pm Γ) : (g : SL(2, ℤ)) = rep g ∨ (g : SL(2, �
 noncomputable def extFun (g : pm Γ) : A := ψ (Additive.ofMul ⟨rep g, rep_mem g⟩)
 
 include hψ in
-
 theorem extFun_eq (g : pm Γ) {γ : SL(2, ℤ)} (hγ : γ ∈ Γ)
     (h : (g : SL(2, ℤ)) = γ ∨ (g : SL(2, ℤ)) = -γ) : extFun ψ g = ψ (Additive.ofMul ⟨γ, hγ⟩) := by
   unfold extFun
@@ -147,11 +144,11 @@ theorem extFun_eq (g : pm Γ) {γ : SL(2, ℤ)} (hγ : γ ∈ Γ)
 private noncomputable def _root_.ParabolicPlusMinus.ext : Additive (pm Γ) →+ A where
   toFun g := extFun ψ (Additive.toMul g)
   map_zero' := by
-    show extFun ψ (1 : pm Γ) = 0
+    change extFun ψ (1 : pm Γ) = 0
     rw [extFun_eq ψ hψ (1 : pm Γ) Γ.one_mem (Or.inl rfl)]
     exact map_zero ψ
   map_add' x y := by
-    show extFun ψ (Additive.toMul x * Additive.toMul y) = extFun ψ (Additive.toMul x) + extFun ψ (Additive.toMul y)
+    change extFun ψ (Additive.toMul x * Additive.toMul y) = extFun ψ (Additive.toMul x) + extFun ψ (Additive.toMul y)
     set g := Additive.toMul x
     set g' := Additive.toMul y
     have hgg : ((g * g' : pm Γ) : SL(2, ℤ)) = rep g * rep g' ∨
@@ -176,7 +173,7 @@ theorem ext_apply_of_mem (γ : Γ) :
 
 theorem isParabolicHom_ext : IsParabolicHom (pm Γ) (ext ψ hψ) := by
   intro g hg
-  show extFun ψ g = 0
+  change extFun ψ g = 0
   rw [extFun]
   apply hψ
   rcases eq_or_eq_neg_rep g with h | h
@@ -191,8 +188,9 @@ theorem unique_ext (φ : Additive (pm Γ) →+ A) (hφ : IsParabolicHom (pm Γ) 
     φ = ext ψ hψ := by
   ext x
   set g := Additive.toMul x
-  show φ (Additive.ofMul g) = ext ψ hψ (Additive.ofMul g)
-  have hm1 : φ (Additive.ofMul ⟨-1, neg_one_mem_pm Γ⟩) = 0 := hφ ⟨-1, neg_one_mem_pm Γ⟩ trace_neg_one_sq
+  change φ (Additive.ofMul g) = ext ψ hψ (Additive.ofMul g)
+  have hm1 : φ (Additive.ofMul ⟨-1, neg_one_mem_pm Γ⟩) = 0 :=
+    hφ ⟨-1, neg_one_mem_pm Γ⟩ trace_neg_one_sq
   rcases eq_or_eq_neg_rep g with h | h
   · have hg : g = ⟨rep g, mem_pm_of_mem Γ (rep_mem g)⟩ := Subtype.ext h
     rw [hg, hφψ ⟨rep g, rep_mem g⟩]
@@ -237,6 +235,7 @@ theorem ModularCurve.Period.existsUnique_isParabolicHom_sup_zpowers_neg_one_appl
     (ψ : Additive Γ →+ A) (hψ : ModularCurve.Period.IsParabolicHom Γ ψ) :
     ∃! φ : Additive ↥(Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) →+ A,
       ModularCurve.Period.IsParabolicHom (Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) φ ∧
-        ∀ γ : Γ, φ (Additive.ofMul ⟨(γ : SL(2, ℤ)), Subgroup.mem_sup_left γ.2⟩) = ψ (Additive.ofMul γ) := _root_.P2MW.S_ModularCurve_Period_existsUnique_isParabolicHom_sup_zpowers_neg_one_apply_eq.solution Γ A ψ hψ
+        ∀ γ : Γ, φ (Additive.ofMul ⟨(γ : SL(2, ℤ)), Subgroup.mem_sup_left γ.2⟩) = ψ (Additive.ofMul γ) :=
+  solution Γ A ψ hψ
 
 end publicSection

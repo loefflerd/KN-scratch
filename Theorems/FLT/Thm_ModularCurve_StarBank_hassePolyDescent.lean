@@ -68,11 +68,15 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_hassePolyDescent
 
-p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
+p2m_open "Polynomial HahnSeries ModularCurve \
+  P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekindEtaUnit jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit jqModC_eq_qExpansion_E4_cube_div_discriminant"
+p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekindEtaUnit jNum \
+  constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow \
+  qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit \
+  jqModC_eq_qExpansion_E4_cube_div_discriminant"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -142,10 +146,12 @@ theorem coeff_single_zero_mul {K : Type*} [Ring K] (c : K) (y : LaurentSeries K)
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekindEtaUnit jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit jqModC_eq_qExpansion_E4_cube_div_discriminant"
+p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekindEtaUnit jNum \
+  constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow \
+  qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit \
+  jqModC_eq_qExpansion_E4_cube_div_discriminant"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
     (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) {T : PowerSeries ℤ}
     (hT : T.map (Int.castRingHom ℂ) = UpperHalfPlane.qExpansion 1 ⇑F)
@@ -442,9 +448,9 @@ example : ¬ ∃ G : Polynomial ℤ, G.natDegree = 1 ∧
     exact hid0.symm
   exact hGne (Polynomial.leadingCoeff_eq_zero.mp hlead)
 
-p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
+p2m_open "Polynomial HahnSeries ModularCurve \
+  P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
 open scoped MatrixGroups in
-
 theorem solution {N : ℕ}
     (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) {T : PowerSeries ℤ}
     (hT : T.map (Int.castRingHom ℂ) = UpperHalfPlane.qExpansion 1 ⇑F)
@@ -475,6 +481,7 @@ theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
       HahnSeries.ofPowerSeries ℤ ℤ T
         = Polynomial.aeval (ModularCurve.jqModC ℤ) G
           * (HahnSeries.single (1 : ℤ) 1
-              * HahnSeries.ofPowerSeries ℤ ℤ ModularCurve.etaProd ^ 24) ^ N := _root_.P2MW.S_ModularCurve_StarBank_hassePolyDescent.solution F hT h0
+              * HahnSeries.ofPowerSeries ℤ ℤ ModularCurve.etaProd ^ 24) ^ N :=
+  solution F hT h0
 
 end publicSection

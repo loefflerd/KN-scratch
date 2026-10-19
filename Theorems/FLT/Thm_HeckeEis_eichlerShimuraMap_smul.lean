@@ -69,7 +69,9 @@ namespace P2MW.S_HeckeEis_eichlerShimuraMap_smul
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "binaryFormRepSL IsParabolicCocycle IsEquivariantPrimitiveWith IsEichlerIntegral eichlerShimuraMap exists_isEichlerIntegral_isParabolicCocycle eichlerShimuraMap_eq_coeffH1parMk IsEichlerIntegral.smul"
+p2m_export "HeckeEis" "binaryFormRepSL IsParabolicCocycle IsEquivariantPrimitiveWith \
+  IsEichlerIntegral eichlerShimuraMap exists_isEichlerIntegral_isParabolicCocycle \
+  eichlerShimuraMap_eq_coeffH1parMk IsEichlerIntegral.smul"
 p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial CongruenceSubgroup
@@ -83,7 +85,8 @@ variable {K : Type*} [CommRing K] {Γ : Subgroup SL(2, ℤ)} {V : Type*} [AddCom
 theorem add (hF : IsEquivariantPrimitiveWith ρ F) (hG : IsEquivariantPrimitiveWith ρ G) :
     IsEquivariantPrimitiveWith ρ (F + G) := fun γ =>
   ⟨hF.cocycle γ + hG.cocycle γ, fun τ => by
-    rw [Pi.add_apply, Pi.add_apply, map_add, ← hF.sub_eq_cocycle γ τ, ← hG.sub_eq_cocycle γ τ]; abel⟩
+    rw [Pi.add_apply, Pi.add_apply, map_add, ← hF.sub_eq_cocycle γ τ, ← hG.sub_eq_cocycle γ
+      τ]; abel⟩
 
 theorem cocycle_add (hF : IsEquivariantPrimitiveWith ρ F) (hG : IsEquivariantPrimitiveWith ρ G) :
     (add hF hG).cocycle = hF.cocycle + hG.cocycle := by
@@ -107,12 +110,12 @@ theorem cocycle_smul (hF : IsEquivariantPrimitiveWith ρ F) (c : K) :
 end EichlerLinAux
 
 open EichlerLinAux in
-
 theorem SolMain.essmul (n N : ℕ) [NeZero N] (c : ℂ) (f : CuspForm (Gamma0 N) ((n : ℤ) + 2)) :
     eichlerShimuraMap n N ⇑(c • f) = c • eichlerShimuraMap n N f := by
   obtain ⟨F, hEF, hF, hpF⟩ := exists_isEichlerIntegral_isParabolicCocycle N n f
   have hEcF : IsEichlerIntegral n (⇑(c • f)) (c • F) := hEF.smul c
-  have hpcF : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (smul hF c).cocycle := by
+  have hpcF : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (smul hF c).cocycle :=
+    by
     intro γ hγ
     rw [cocycle_smul hF c, Pi.smul_apply]
     exact Submodule.smul_mem _ c (hpF γ hγ)
@@ -143,6 +146,7 @@ public section publicSection
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.eichlerShimuraMap_smul (n N : ℕ) [NeZero N] (c : ℂ)
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
-    HeckeEis.eichlerShimuraMap n N ⇑(c • f) = c • HeckeEis.eichlerShimuraMap n N f := _root_.P2MW.S_HeckeEis_eichlerShimuraMap_smul.solution n N c f
+    HeckeEis.eichlerShimuraMap n N ⇑(c • f) = c • HeckeEis.eichlerShimuraMap n N f :=
+  solution n N c f
 
 end publicSection

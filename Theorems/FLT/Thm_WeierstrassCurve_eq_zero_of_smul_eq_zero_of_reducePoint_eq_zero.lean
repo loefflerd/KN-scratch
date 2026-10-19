@@ -62,7 +62,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero
 
-p2m_open "WeierstrassCurve~evalEval_ψ_sq IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum"
+p2m_open "WeierstrassCurve~evalEval_ψ_sq IsDiscreteValuationRing IsLocalRing \
+  IsDedekindDomain.HeightOneSpectrum"
 open Polynomial
 open scoped Polynomial.Bivariate
 
@@ -135,7 +136,7 @@ theorem evalEval_ψ_sq {F : Type*} [Field F] (W : WeierstrassCurve F) {x y : F}
     rw [eval₂_evalRingHom]; exact h
   let e : W.toAffine.CoordinateRing →+* F := AdjoinRoot.lift (evalRingHom x) y h0
   have he : ∀ p : F[X][Y], e (Affine.CoordinateRing.mk W p) = p.evalEval x y := fun p ↦ by
-    show AdjoinRoot.lift (evalRingHom x) y h0 (AdjoinRoot.mk _ p) = _
+    change AdjoinRoot.lift (evalRingHom x) y h0 (AdjoinRoot.mk _ p) = _
     rw [AdjoinRoot.lift_mk, eval₂_evalRingHom]
   calc ((W.ψ n).evalEval x y) ^ 2
       = e (Affine.CoordinateRing.mk W (W.ψ n)) ^ 2 := by rw [he]
@@ -148,11 +149,11 @@ theorem evalEval_ψ_sq {F : Type*} [Field F] (W : WeierstrassCurve F) {x y : F}
 end TorsionInjectivity
 
 open TorsionInjectivity in
-
 theorem solution
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [DecidableEq K] [Algebra R K] [IsFractionRing R K]
-    (W : WeierstrassCurve K) [W.HasGoodReduction R] {n : ℕ} (hn : (n : IsLocalRing.ResidueField R) ≠ 0)
+    (W : WeierstrassCurve K) [W.HasGoodReduction R] {n : ℕ}
+    (hn : (n : IsLocalRing.ResidueField R) ≠ 0)
     (P : W.toAffine.Point) (hP : n • P = 0) (h0 : WeierstrassCurve.reducePoint_alt R W P = 0) :
     P = 0 := by
   cases P with
@@ -162,7 +163,6 @@ theorem solution
     have hx : ¬ valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 :=
       (WeierstrassCurve.reducePoint_some_eq_zero_iff R W h).mp h0
     have hx1 : 1 < valuation K (IsDiscreteValuationRing.maximalIdeal R) x := not_le.mp hx
-
     have hz : (n : ℤ) • (Affine.Point.some x y h) = 0 := by
       rw [natCast_zsmul]; exact hP
     have hψ : (W.ψ (n : ℤ)).evalEval x y = 0 :=
@@ -171,7 +171,6 @@ theorem solution
       have h2 := evalEval_ψ_sq W h.1 (n : ℤ)
       rw [hψ, zero_pow two_ne_zero] at h2
       exact h2.symm
-
     obtain ⟨hvn, hn0⟩ := valuation_natCast_eq_one R (K := K) hn
     have hnK : ((n : ℤ) : K) ≠ 0 := by push_cast; exact hn0
     have hl : valuation K (IsDiscreteValuationRing.maximalIdeal R)
@@ -195,8 +194,10 @@ public section publicSection
 theorem WeierstrassCurve.eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [DecidableEq K] [Algebra R K] [IsFractionRing R K]
-    (W : WeierstrassCurve K) [W.HasGoodReduction R] {n : ℕ} (hn : (n : IsLocalRing.ResidueField R) ≠ 0)
+    (W : WeierstrassCurve K) [W.HasGoodReduction R] {n : ℕ}
+    (hn : (n : IsLocalRing.ResidueField R) ≠ 0)
     (P : W.toAffine.Point) (hP : n • P = 0) (h0 : WeierstrassCurve.reducePoint_alt R W P = 0) :
-    P = 0 := _root_.P2MW.S_WeierstrassCurve_eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero.solution R W hn P hP h0
+    P = 0 :=
+  solution R W hn P hP h0
 
 end publicSection

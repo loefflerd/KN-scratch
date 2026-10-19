@@ -35,8 +35,11 @@ equation of $W$ and $x_0$ is a root of the division polynomial $\Psi_3$ of $W$, 
 `veluXNum`, $Y =$ `veluYNum`,
 $$Y^2 + a_1XY(x-x_0) + a_3Y(x-x_0)^3 = X^3 + a_2X^2(x-x_0)^2 + (a_4-5t)X(x-x_0)^4 +
 (a_6-b_2t-7w)(x-x_0)^6,$$
-proved by an explicit linear combination of the two curve equations and the relation $3x_0^4 +
-b_2x_0^3 + 3b_4x_0^2 + 3b_6x_0 + b_8 = 0$. Over a field, `velu_singleton_map_equation` divides this
+proved in coordinates centred at $(x_0,y_0)$. Writing $a=a_1$, $b=-G_y$, $c=a_2+3x_0$,
+$g=G_x$, $d=x-x_0$, $e=y-y_0$, the source equation becomes
+$e^2+ade+be=d^3+cd^2+gd$ and the three-division relation becomes $cb^2-abg-g^2=0$.
+The target residual is a combination of these two relations with factored multipliers.
+Over a field, `velu_singleton_map_equation` divides this
 by $(x-x_0)^6$: under the same hypotheses and $x \neq x_0$, the point
 $(\mathrm{veluX}\,\{(x_0,y_0)\}\,x,\ \mathrm{veluY}\,\{(x_0,y_0)\}\,x\,y)$ satisfies the affine
 equation of `veluQuotient` $\{(x_0,y_0)\}$.
@@ -79,6 +82,39 @@ def veluYNum (x₀ y₀ x y : R) : R :=
     + W.veluT x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)
     + (W.a₁ * W.veluU x₀ y₀ - W.veluGx x₀ y₀ * W.veluGy x₀ y₀) * (x - x₀))
 
+/-- Keep the curve equation and three-division relation in translated coordinates. -/
+private lemma velu_singleton_shifted_certificate (a b c g t u d e X Y : R)
+    (ht : t = 2 * g + a * b) (hu : u = b ^ 2)
+    (hX : X = d ^ 3 + t * d + u)
+    (hY : Y = e * (d ^ 3 - t * d - 2 * u) - a * t * d ^ 2
+      - (2 * a * u + g * b) * d - b * u)
+    (hcurve : e ^ 2 + a * d * e + b * e - d ^ 3 - c * d ^ 2 - g * d = 0)
+    (hΨ : c * b ^ 2 - a * b * g - g ^ 2 = 0) :
+    Y ^ 2 + a * X * Y * d + b * Y * d ^ 3 - X ^ 3 - c * X ^ 2 * d ^ 2
+      - (g - 5 * t) * X * d ^ 4 + ((a ^ 2 + 4 * c) * t + 7 * u) * d ^ 6 = 0 := by
+  rw [hY, hX, ht, hu]
+  linear_combination
+    (d ^ 3 - (2 * g + a * b) * d - 2 * b ^ 2) ^ 2 * hcurve
+      + d ^ 2 * (3 * b ^ 2 + 2 * (2 * g + a * b) * d - 6 * d ^ 3) * hΨ
+
+/-- Translate the target equation while keeping its numerator coordinates abstract. -/
+private lemma velu_singleton_equation_translate {x₀ y₀ : R}
+    (hQ : W.toAffine.Equation x₀ y₀) (d X Y : R) :
+    (Y ^ 2 + W.a₁ * X * Y * d + W.a₃ * Y * d ^ 3)
+        - (X ^ 3 + W.a₂ * X ^ 2 * d ^ 2
+          + (W.a₄ - 5 * W.veluT x₀ y₀) * X * d ^ 4
+          + (W.a₆ - W.b₂ * W.veluT x₀ y₀ - 7 * W.veluW x₀ y₀) * d ^ 6) =
+      (Y - y₀ * d ^ 3) ^ 2
+        + W.a₁ * (X - x₀ * d ^ 2) * (Y - y₀ * d ^ 3) * d
+        + (-W.veluGy x₀ y₀) * (Y - y₀ * d ^ 3) * d ^ 3
+        - (X - x₀ * d ^ 2) ^ 3 - (W.a₂ + 3 * x₀) * (X - x₀ * d ^ 2) ^ 2 * d ^ 2
+        - (W.veluGx x₀ y₀ - 5 * W.veluT x₀ y₀) * (X - x₀ * d ^ 2) * d ^ 4
+        + ((W.a₁ ^ 2 + 4 * (W.a₂ + 3 * x₀)) * W.veluT x₀ y₀
+          + 7 * W.veluU x₀ y₀) * d ^ 6 := by
+  rw [Affine.equation_iff] at hQ
+  simp only [veluGx, veluGy, veluW, b₂]
+  linear_combination d ^ 6 * hQ
+
 theorem velu_singleton_equation_cleared {x₀ y₀ x y : R}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hΨ : (W.Ψ₃).eval x₀ = 0) :
@@ -87,14 +123,43 @@ theorem velu_singleton_equation_cleared {x₀ y₀ x y : R}
       = W.veluXNum x₀ y₀ x ^ 3 + W.a₂ * W.veluXNum x₀ y₀ x ^ 2 * (x - x₀) ^ 2
         + (W.a₄ - 5 * W.veluT x₀ y₀) * W.veluXNum x₀ y₀ x * (x - x₀) ^ 4
         + (W.a₆ - W.b₂ * W.veluT x₀ y₀ - 7 * W.veluW x₀ y₀) * (x - x₀) ^ 6 := by
-  rw [Affine.equation_iff] at hP hQ
-  rw [W.eval_Ψ₃_eq] at hΨ
-  simp only [b₂, b₄, b₆, b₈] at hΨ
-  simp only [veluXNum, veluYNum, veluT, veluU, veluW, veluGx, veluGy, b₂]
-  linear_combination
-    (W.a₁^4*x^2*x₀^2 + 2*W.a₁^4*x*x₀^3 + W.a₁^4*x₀^4 + 2*W.a₁^3*W.a₃*x^2*x₀ + 8*W.a₁^3*W.a₃*x*x₀^2 + 6*W.a₁^3*W.a₃*x₀^3 + 16*W.a₁^3*x*x₀^2*y₀ + 16*W.a₁^3*x₀^3*y₀ + 8*W.a₁^2*W.a₂*x^2*x₀^2 - 8*W.a₁^2*W.a₂*x₀^4 + W.a₁^2*W.a₃^2*x^2 + 10*W.a₁^2*W.a₃^2*x*x₀ + 13*W.a₁^2*W.a₃^2*x₀^2 + 32*W.a₁^2*W.a₃*x*x₀*y₀ + 64*W.a₁^2*W.a₃*x₀^2*y₀ + 4*W.a₁^2*W.a₄*x^2*x₀ - 4*W.a₁^2*W.a₄*x₀^3 - 2*W.a₁^2*x^4*x₀ + 4*W.a₁^2*x^3*x₀^2 + 12*W.a₁^2*x^2*x₀^3 - 4*W.a₁^2*x*x₀^4 + 16*W.a₁^2*x*x₀*y₀^2 - 10*W.a₁^2*x₀^5 + 80*W.a₁^2*x₀^2*y₀^2 + 8*W.a₁*W.a₂*W.a₃*x^2*x₀ + 16*W.a₁*W.a₂*W.a₃*x*x₀^2 - 24*W.a₁*W.a₂*W.a₃*x₀^3 + 64*W.a₁*W.a₂*x*x₀^2*y₀ - 64*W.a₁*W.a₂*x₀^3*y₀ + 4*W.a₁*W.a₃^3*x + 12*W.a₁*W.a₃^3*x₀ + 16*W.a₁*W.a₃^2*x*y₀ + 80*W.a₁*W.a₃^2*x₀*y₀ + 4*W.a₁*W.a₃*W.a₄*x^2 + 8*W.a₁*W.a₃*W.a₄*x*x₀ - 12*W.a₁*W.a₃*W.a₄*x₀^2 - 2*W.a₁*W.a₃*x^4 + 24*W.a₁*W.a₃*x^2*x₀^2 + 8*W.a₁*W.a₃*x*x₀^3 + 16*W.a₁*W.a₃*x*y₀^2 - 30*W.a₁*W.a₃*x₀^4 + 176*W.a₁*W.a₃*x₀*y₀^2 + 32*W.a₁*W.a₄*x*x₀*y₀ - 32*W.a₁*W.a₄*x₀^2*y₀ - 16*W.a₁*x^3*x₀*y₀ + 48*W.a₁*x^2*x₀^2*y₀ + 48*W.a₁*x*x₀^3*y₀ - 80*W.a₁*x₀^4*y₀ + 128*W.a₁*x₀*y₀^3 + 16*W.a₂^2*x^2*x₀^2 - 32*W.a₂^2*x*x₀^3 + 16*W.a₂^2*x₀^4 + 16*W.a₂*W.a₃^2*x*x₀ - 16*W.a₂*W.a₃^2*x₀^2 + 64*W.a₂*W.a₃*x*x₀*y₀ - 64*W.a₂*W.a₃*x₀^2*y₀ + 16*W.a₂*W.a₄*x^2*x₀ - 32*W.a₂*W.a₄*x*x₀^2 + 16*W.a₂*W.a₄*x₀^3 - 8*W.a₂*x^4*x₀ + 32*W.a₂*x^3*x₀^2 - 64*W.a₂*x*x₀^4 + 64*W.a₂*x*x₀*y₀^2 + 40*W.a₂*x₀^5 - 64*W.a₂*x₀^2*y₀^2 + 4*W.a₃^4 + 32*W.a₃^3*y₀ + 8*W.a₃^2*W.a₄*x - 8*W.a₃^2*W.a₄*x₀ - 4*W.a₃^2*x^3 + 12*W.a₃^2*x^2*x₀ + 12*W.a₃^2*x*x₀^2 - 20*W.a₃^2*x₀^3 + 96*W.a₃^2*y₀^2 + 32*W.a₃*W.a₄*x*y₀ - 32*W.a₃*W.a₄*x₀*y₀ - 16*W.a₃*x^3*y₀ + 48*W.a₃*x^2*x₀*y₀ + 48*W.a₃*x*x₀^2*y₀ - 80*W.a₃*x₀^3*y₀ + 128*W.a₃*y₀^3 + 4*W.a₄^2*x^2 - 8*W.a₄^2*x*x₀ + 4*W.a₄^2*x₀^2 - 4*W.a₄*x^4 + 16*W.a₄*x^3*x₀ - 32*W.a₄*x*x₀^3 + 32*W.a₄*x*y₀^2 + 20*W.a₄*x₀^4 - 32*W.a₄*x₀*y₀^2 + x^6 - 6*x^5*x₀ + 3*x^4*x₀^2 + 28*x^3*x₀^3 - 16*x^3*y₀^2 - 21*x^2*x₀^4 + 48*x^2*x₀*y₀^2 - 30*x*x₀^5 + 48*x*x₀^2*y₀^2 + 25*x₀^6 - 80*x₀^3*y₀^2 + 64*y₀^4) * hP
-    + (2*W.a₁^4*x^3*x₀ - 4*W.a₁^4*x^2*x₀^2 - 2*W.a₁^4*x*x₀^3 + 2*W.a₁^3*W.a₃*x^3 - 2*W.a₁^3*W.a₃*x^2*x₀ - 14*W.a₁^3*W.a₃*x*x₀^2 - 2*W.a₁^3*W.a₃*x₀^3 + 12*W.a₁^3*x^2*x₀*y₀ - 40*W.a₁^3*x*x₀^2*y₀ - 4*W.a₁^3*x₀^3*y₀ + 16*W.a₁^2*W.a₂*x^3*x₀ - 44*W.a₁^2*W.a₂*x^2*x₀^2 + 24*W.a₁^2*W.a₂*x*x₀^3 + 4*W.a₁^2*W.a₂*x₀^4 + 2*W.a₁^2*W.a₃^2*x^2 - 16*W.a₁^2*W.a₃^2*x*x₀ - 10*W.a₁^2*W.a₃^2*x₀^2 + 12*W.a₁^2*W.a₃*x^2*y₀ - 56*W.a₁^2*W.a₃*x*x₀*y₀ - 52*W.a₁^2*W.a₃*x₀^2*y₀ + 4*W.a₁^2*W.a₄*x^3 - 16*W.a₁^2*W.a₄*x^2*x₀ + 12*W.a₁^2*W.a₄*x*x₀^2 + 12*W.a₁^2*W.a₆*x^2 - 24*W.a₁^2*W.a₆*x*x₀ + 12*W.a₁^2*W.a₆*x₀^2 - 6*W.a₁^2*x^5 + 32*W.a₁^2*x^4*x₀ - 28*W.a₁^2*x^3*x₀^2 - 12*W.a₁^2*x^2*x₀^3 + 12*W.a₁^2*x^2*y₀^2 - 14*W.a₁^2*x*x₀^4 - 40*W.a₁^2*x*x₀*y₀^2 + 28*W.a₁^2*x₀^5 - 68*W.a₁^2*x₀^2*y₀^2 + 8*W.a₁*W.a₂*W.a₃*x^3 - 8*W.a₁*W.a₂*W.a₃*x^2*x₀ - 40*W.a₁*W.a₂*W.a₃*x*x₀^2 + 40*W.a₁*W.a₂*W.a₃*x₀^3 + 48*W.a₁*W.a₂*x^2*x₀*y₀ - 160*W.a₁*W.a₂*x*x₀^2*y₀ + 112*W.a₁*W.a₂*x₀^3*y₀ - 4*W.a₁*W.a₃^3*x - 12*W.a₁*W.a₃^3*x₀ - 16*W.a₁*W.a₃^2*x*y₀ - 80*W.a₁*W.a₃^2*x₀*y₀ - 16*W.a₁*W.a₃*W.a₄*x^2 + 16*W.a₁*W.a₃*W.a₄*x*x₀ + 2*W.a₁*W.a₃*x^4 + 24*W.a₁*W.a₃*x^3*x₀ + 12*W.a₁*W.a₃*x^2*x₀^2 - 152*W.a₁*W.a₃*x*x₀^3 - 16*W.a₁*W.a₃*x*y₀^2 + 114*W.a₁*W.a₃*x₀^4 - 176*W.a₁*W.a₃*x₀*y₀^2 - 32*W.a₁*W.a₄*x*x₀*y₀ + 32*W.a₁*W.a₄*x₀^2*y₀ + 16*W.a₁*x^3*x₀*y₀ + 96*W.a₁*x^2*x₀^2*y₀ - 336*W.a₁*x*x₀^3*y₀ + 224*W.a₁*x₀^4*y₀ - 128*W.a₁*x₀*y₀^3 + 32*W.a₂^2*x^3*x₀ - 112*W.a₂^2*x^2*x₀^2 + 128*W.a₂^2*x*x₀^3 - 48*W.a₂^2*x₀^4 + 24*W.a₂*W.a₃^2*x^2 - 64*W.a₂*W.a₃^2*x*x₀ + 40*W.a₂*W.a₃^2*x₀^2 + 48*W.a₂*W.a₃*x^2*y₀ - 160*W.a₂*W.a₃*x*x₀*y₀ + 112*W.a₂*W.a₃*x₀^2*y₀ + 16*W.a₂*W.a₄*x^3 - 64*W.a₂*W.a₄*x^2*x₀ + 80*W.a₂*W.a₄*x*x₀^2 - 32*W.a₂*W.a₄*x₀^3 + 48*W.a₂*W.a₆*x^2 - 96*W.a₂*W.a₆*x*x₀ + 48*W.a₂*W.a₆*x₀^2 - 24*W.a₂*x^5 + 128*W.a₂*x^4*x₀ - 128*W.a₂*x^3*x₀^2 - 144*W.a₂*x^2*x₀^3 + 48*W.a₂*x^2*y₀^2 + 280*W.a₂*x*x₀^4 - 160*W.a₂*x*x₀*y₀^2 - 112*W.a₂*x₀^5 + 112*W.a₂*x₀^2*y₀^2 - 4*W.a₃^4 - 32*W.a₃^3*y₀ - 8*W.a₃^2*W.a₄*x + 8*W.a₃^2*W.a₄*x₀ + 4*W.a₃^2*x^3 + 60*W.a₃^2*x^2*x₀ - 156*W.a₃^2*x*x₀^2 + 92*W.a₃^2*x₀^3 - 96*W.a₃^2*y₀^2 - 32*W.a₃*W.a₄*x*y₀ + 32*W.a₃*W.a₄*x₀*y₀ + 16*W.a₃*x^3*y₀ + 96*W.a₃*x^2*x₀*y₀ - 336*W.a₃*x*x₀^2*y₀ + 224*W.a₃*x₀^3*y₀ - 128*W.a₃*y₀^3 - 16*W.a₄^2*x^2 + 32*W.a₄^2*x*x₀ - 16*W.a₄^2*x₀^2 + 4*W.a₄*x^4 + 32*W.a₄*x^3*x₀ - 72*W.a₄*x^2*x₀^2 + 32*W.a₄*x*x₀^3 - 32*W.a₄*x*y₀^2 + 4*W.a₄*x₀^4 + 32*W.a₄*x₀*y₀^2 + 144*W.a₆*x^2*x₀ - 288*W.a₆*x*x₀^2 + 144*W.a₆*x₀^3 - 72*x^5*x₀ + 372*x^4*x₀^2 - 624*x^3*x₀^3 + 16*x^3*y₀^2 + 360*x^2*x₀^4 + 96*x^2*x₀*y₀^2 + 24*x*x₀^5 - 336*x*x₀^2*y₀^2 - 60*x₀^6 + 224*x₀^3*y₀^2 - 64*y₀^4) * hQ
-    + (2*W.a₁^2*x^3*x₀ - 3*W.a₁^2*x^2*x₀^2 + W.a₁^2*x₀^4 + 2*W.a₁*W.a₃*x^3 - 6*W.a₁*W.a₃*x*x₀^2 + 4*W.a₁*W.a₃*x₀^3 + 8*W.a₂*x^3*x₀ - 12*W.a₂*x^2*x₀^2 + 4*W.a₂*x₀^4 + 3*W.a₃^2*x^2 - 6*W.a₃^2*x*x₀ + 3*W.a₃^2*x₀^2 + 4*W.a₄*x^3 - 12*W.a₄*x*x₀^2 + 8*W.a₄*x₀^3 + 12*W.a₆*x^2 - 24*W.a₆*x*x₀ + 12*W.a₆*x₀^2 - 6*x^5 + 30*x^4*x₀ - 48*x^3*x₀^2 + 36*x^2*x₀^3 - 18*x*x₀^4 + 6*x₀^5) * hΨ
+  have hcurve :
+      (y - y₀) ^ 2 + W.a₁ * (x - x₀) * (y - y₀) + (-W.veluGy x₀ y₀) * (y - y₀)
+        - (x - x₀) ^ 3 - (W.a₂ + 3 * x₀) * (x - x₀) ^ 2
+        - W.veluGx x₀ y₀ * (x - x₀) = 0 := by
+    rw [Affine.equation_iff] at hP hQ
+    simp only [veluGx, veluGy]
+    linear_combination hP - hQ
+  have hdivision :
+      (W.a₂ + 3 * x₀) * (-W.veluGy x₀ y₀) ^ 2
+        - W.a₁ * (-W.veluGy x₀ y₀) * W.veluGx x₀ y₀ - W.veluGx x₀ y₀ ^ 2 = 0 := by
+    rw [Affine.equation_iff] at hQ
+    rw [W.eval_Ψ₃_eq] at hΨ
+    simp only [b₂, b₄, b₆, b₈] at hΨ
+    simp only [veluGx, veluGy]
+    linear_combination hΨ + (W.a₁ ^ 2 + 4 * (W.a₂ + 3 * x₀)) * hQ
+  have ht : W.veluT x₀ y₀ = 2 * W.veluGx x₀ y₀ + W.a₁ * (-W.veluGy x₀ y₀) := by
+    simp only [veluT]
+    ring
+  have hu : W.veluU x₀ y₀ = (-W.veluGy x₀ y₀) ^ 2 := by
+    simp only [veluU, neg_sq]
+  have hX : W.veluXNum x₀ y₀ x - x₀ * (x - x₀) ^ 2 =
+      (x - x₀) ^ 3 + W.veluT x₀ y₀ * (x - x₀) + W.veluU x₀ y₀ := by
+    simp only [veluXNum]
+    ring
+  have hY : W.veluYNum x₀ y₀ x y - y₀ * (x - x₀) ^ 3 =
+      (y - y₀) * ((x - x₀) ^ 3 - W.veluT x₀ y₀ * (x - x₀) - 2 * W.veluU x₀ y₀)
+        - W.a₁ * W.veluT x₀ y₀ * (x - x₀) ^ 2
+        - (2 * W.a₁ * W.veluU x₀ y₀ + W.veluGx x₀ y₀ * (-W.veluGy x₀ y₀)) * (x - x₀)
+        - (-W.veluGy x₀ y₀) * W.veluU x₀ y₀ := by
+    simp only [veluYNum, veluGy]
+    ring
+  apply sub_eq_zero.mp
+  rw [velu_singleton_equation_translate W hQ]
+  exact velu_singleton_shifted_certificate W.a₁ (-W.veluGy x₀ y₀) (W.a₂ + 3 * x₀)
+    (W.veluGx x₀ y₀) (W.veluT x₀ y₀) (W.veluU x₀ y₀) (x - x₀) (y - y₀)
+    (W.veluXNum x₀ y₀ x - x₀ * (x - x₀) ^ 2)
+    (W.veluYNum x₀ y₀ x y - y₀ * (x - x₀) ^ 3) ht hu hX hY hcurve hdivision
 
 end CommRing
 

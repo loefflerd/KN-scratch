@@ -97,6 +97,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.dedekindPsi_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k ≠ 0) : dedekindPsi (p ^ k) = p ^ k + p ^ (k - 1) := _root_.P2MW.S_ModularCurve_dedekindPsi_prime_pow.solution p k hp hk
+theorem ModularCurve.dedekindPsi_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k ≠ 0) :
+    dedekindPsi (p ^ k) = p ^ k + p ^ (k - 1) :=
+  solution p k hp hk
 
 end publicSection

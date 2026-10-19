@@ -63,10 +63,15 @@ namespace P2MW.S_AlgebraicCurve_ell_le_degree_add_ellZero
 
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono ConstantsAreBase ell_zero_eq_one_of_constantsAreBase WeilDifferentialRankOne StichtenothGenusExists"
+p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree \
+  Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver \
+  IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono ConstantsAreBase \
+  ell_zero_eq_one_of_constantsAreBase WeilDifferentialRankOne StichtenothGenusExists"
 p2m_open "AlgebraicCurve"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_coe_eq_one_iff ord ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring adicValuation_eq_exp_neg_ord"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_coe_eq_one_iff ord ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow \
+  ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring adicValuation_eq_exp_neg_ord"
 p2m_open "AlgebraicCurve.Place"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem"
@@ -78,7 +83,10 @@ end Place
 end AlgebraicCurve
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono ConstantsAreBase ell_zero_eq_one_of_constantsAreBase WeilDifferentialRankOne StichtenothGenusExists"
+p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree \
+  Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver \
+  IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono ConstantsAreBase \
+  ell_zero_eq_one_of_constantsAreBase WeilDifferentialRankOne StichtenothGenusExists"
 p2m_open "AlgebraicCurve"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 namespace Divisor
@@ -86,7 +94,6 @@ p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def"
 end Divisor
 variable {D : Divisor K F}
 p2m_open_scoped "AlgebraicCurve.Divisor" in
-
 theorem Divisor.degree_nonneg_of_nonneg [IsCurveOver K F]
     {D : Divisor K F} (hD : ∀ v, 0 ≤ D v) : 0 ≤ Divisor.degree D := by
   rw [Divisor.degree_eq_sum_support]
@@ -114,18 +121,24 @@ noncomputable section
 p2m_open "Module IsLocalRing Module.IsLocalRing IsDedekindDomain WithZero"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono ConstantsAreBase ell_zero_eq_one_of_constantsAreBase WeilDifferentialRankOne StichtenothGenusExists"
+p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree \
+  Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver \
+  IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono ConstantsAreBase \
+  ell_zero_eq_one_of_constantsAreBase WeilDifferentialRankOne StichtenothGenusExists"
 p2m_open "AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_coe_eq_one_iff ord ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring adicValuation_eq_exp_neg_ord"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation \
+  adicValuation_coe_eq_one_iff ord ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow \
+  ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring adicValuation_eq_exp_neg_ord"
 p2m_open "AlgebraicCurve.Place"
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F} (hf : f ∈ v.toValuationSubring) :
+private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F}
+    (hf : f ∈ v.toValuationSubring) :
     (⟨f, hf⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring
       ↔ f = 0 ∨ 0 < v.ord f := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
@@ -139,7 +152,7 @@ private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F} (hf 
       · exfalso
         apply hu
         rw [← v.adicValuation_coe_eq_one_iff ⟨f, hf⟩]
-        show v.adicValuation f = 1
+        change v.adicValuation f = 1
         rw [v.adicValuation_eq_exp_neg_ord hf0, ← h, neg_zero, WithZero.exp_zero]
   · intro h hu
     have hne : f ≠ 0 := fun h0 => hu.ne_zero (Subtype.ext h0)
@@ -191,7 +204,7 @@ theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : P
     (Algebra.linearMap P.toValuationSubring P.ResidueField).restrictScalars K
   have hres : ∀ x : P.toValuationSubring, res x = IsLocalRing.residue _ x := by
     intro x
-    show (Algebra.linearMap P.toValuationSubring P.ResidueField).restrictScalars K x = _
+    change (Algebra.linearMap P.toValuationSubring P.ResidueField).restrictScalars K x = _
     rw [LinearMap.restrictScalars_apply, Algebra.linearMap_apply,
       IsLocalRing.ResidueField.algebraMap_eq]
   let φ : LSpace D →ₗ[K] P.ResidueField := res ∘ₗ ψ
@@ -321,11 +334,11 @@ def lSpaceShiftEquiv (D : Divisor K F) {g : F} (hg : g ≠ 0)
     ring
   left_inv h := by
     apply Subtype.ext
-    show (h : F) * g⁻¹ * g = (h : F)
+    change (h : F) * g⁻¹ * g = (h : F)
     rw [mul_assoc, inv_mul_cancel₀ hg, mul_one]
   right_inv k := by
     apply Subtype.ext
-    show (k : F) * g * g⁻¹ = (k : F)
+    change (k : F) * g * g⁻¹ = (k : F)
     rw [mul_assoc, mul_inv_cancel₀ hg, mul_one]
 
 theorem ell_le_degree_add_one [IsCurveOver K F] (hC : ConstantsAreBase K F)
@@ -368,9 +381,11 @@ public section publicSection
 
 
 namespace AlgebraicCurve
-theorem ell_le_degree_add_ellZero {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F] {D : Divisor K F}
+theorem ell_le_degree_add_ellZero {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]
+    {D : Divisor K F}
     (hD : 0 ≤ D) [FiniteDimensional K ↥(LSpace (0 : Divisor K F))] :
-    (ell D : ℤ) ≤ Divisor.degree D + ell (0 : Divisor K F) := _root_.P2MW.S_AlgebraicCurve_ell_le_degree_add_ellZero.solution hD
+    (ell D : ℤ) ≤ Divisor.degree D + ell (0 : Divisor K F) :=
+  solution hD
 end AlgebraicCurve
 
 end publicSection

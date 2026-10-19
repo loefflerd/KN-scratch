@@ -84,12 +84,13 @@ theorem tau_X0 (c₁ c₂ : ℂ) : tau c₁ c₂ (X 0) = X 0 + C c₁ * X 1 := b
 theorem tau_X1 (c₁ c₂ : ℂ) : tau c₁ c₂ (X 1) = X 0 + C c₂ * X 1 := by
   simp [tau]
 
-theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : (tauInv c₁ c₂).comp (tau c₁ c₂) = AlgHom.id ℂ _ := by
+theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) :
+    (tauInv c₁ c₂).comp (tau c₁ c₂) = AlgHom.id ℂ _ := by
   have hne : (c₂ - c₁) ≠ 0 := sub_ne_zero.mpr (Ne.symm hc)
   refine MvPolynomial.algHom_ext fun j => ?_
   fin_cases j
   · simp only [AlgHom.comp_apply, AlgHom.id_apply]
-    show tauInv c₁ c₂ (tau c₁ c₂ (X 0)) = X 0
+    change tauInv c₁ c₂ (tau c₁ c₂ (X 0)) = X 0
     rw [tau_X0, map_add, map_mul, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq]
     simp only [tauInv, MvPolynomial.aeval_X, Fin.isValue, ↓reduceIte, one_ne_zero]
     have key : C ((c₂ - c₁)⁻¹) * (C c₂ * X 0 - C c₁ * X 1) + C c₁ * (C ((c₂ - c₁)⁻¹) * (X 1 - X 0))
@@ -98,7 +99,7 @@ theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : (tauInv c₁ c�
       ring
     rw [key, inv_mul_cancel₀ hne, C_1, one_mul]
   · simp only [AlgHom.comp_apply, AlgHom.id_apply]
-    show tauInv c₁ c₂ (tau c₁ c₂ (X 1)) = X 1
+    change tauInv c₁ c₂ (tau c₁ c₂ (X 1)) = X 1
     rw [tau_X1, map_add, map_mul, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq]
     simp only [tauInv, MvPolynomial.aeval_X, Fin.isValue, ↓reduceIte, one_ne_zero]
     have key : C ((c₂ - c₁)⁻¹) * (C c₂ * X 0 - C c₁ * X 1) + C c₂ * (C ((c₂ - c₁)⁻¹) * (X 1 - X 0))
@@ -110,7 +111,8 @@ theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : (tauInv c₁ c�
 theorem tau_injective (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : Function.Injective (tau c₁ c₂) := by
   intro p q h
   have := congrArg (tauInv c₁ c₂) h
-  rwa [← AlgHom.comp_apply, ← AlgHom.comp_apply, tauInv_comp_tau c₁ c₂ hc, AlgHom.id_apply, AlgHom.id_apply] at this
+  rwa [← AlgHom.comp_apply, ← AlgHom.comp_apply, tauInv_comp_tau c₁ c₂ hc, AlgHom.id_apply,
+    AlgHom.id_apply] at this
 
 noncomputable def bvec (c₁ c₂ : ℂ) (n a : ℕ) : MvPolynomial (Fin 2) ℂ :=
   (X 0 + C c₁ * X 1) ^ a * (X 0 + C c₂ * X 1) ^ (n - a)
@@ -137,7 +139,8 @@ theorem linearIndependent_monomials {ι : Type*} (n : ℕ) (a : ι → ℕ) (ha 
     have := congrArg (fun f : Fin 2 →₀ ℕ => f 0) h
     simpa [d, Finsupp.single_apply] using this
   have hb := (MvPolynomial.basisMonomials (Fin 2) ℂ).linearIndependent.comp d hd
-  have hmon : ∀ t, (X 0 ^ a t * X 1 ^ (n - a t) : MvPolynomial (Fin 2) ℂ) = MvPolynomial.monomial (d t) 1 := by
+  have hmon : ∀ t, (X 0 ^ a t * X 1 ^ (n - a t) : MvPolynomial (Fin 2) ℂ) = MvPolynomial.monomial (d t) 1 :=
+    by
     intro t
     simp only [d]
     rw [MvPolynomial.X_pow_eq_monomial, MvPolynomial.X_pow_eq_monomial,
@@ -146,7 +149,8 @@ theorem linearIndependent_monomials {ι : Type*} (n : ℕ) (a : ι → ℕ) (ha 
   funext t
   rw [Function.comp_apply, MvPolynomial.coe_basisMonomials, hmon]
 
-theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) (n : ℕ) (a : ι → ℕ) (ha : Function.Injective a) :
+theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) (n : ℕ) (a : ι → ℕ)
+    (ha : Function.Injective a) :
     LinearIndependent ℂ (fun t => bvec c₁ c₂ n (a t)) := by
   have h := (linearIndependent_monomials n a ha).map' (tau c₁ c₂).toLinearMap
     (LinearMap.ker_eq_bot.mpr (tau_injective c₁ c₂ hc))
@@ -164,7 +168,8 @@ theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm 
     refine Submodule.sum_mem _ fun d hd => ?_
     have hdeg' : ∑ i ∈ d.support, d i = n := by
       have h := hF (MvPolynomial.mem_support_iff.mp hd)
-      simpa [Finsupp.degree, Finsupp.weight, Finsupp.sum, Finsupp.linearCombination, Finsupp.lsum] using h
+      simpa [Finsupp.degree, Finsupp.weight, Finsupp.sum, Finsupp.linearCombination,
+        Finsupp.lsum] using h
     have hdeg : d 0 + d 1 = n := by
       rw [← hdeg', ← Fin.sum_univ_two (f := fun i => d i)]
       symm
@@ -197,23 +202,28 @@ namespace UH1
 open HeckeEis
 
 theorem subst_lin (M : Matrix (Fin 2) (Fin 2) ℤ) (c μ : ℂ)
-    (h1 : ((M 0 0 : ℤ) : ℂ) + c * ((M 0 1 : ℤ) : ℂ) = μ) (h2 : ((M 1 0 : ℤ) : ℂ) + c * ((M 1 1 : ℤ) : ℂ) = μ * c) :
+    (h1 : ((M 0 0 : ℤ) : ℂ) + c * ((M 0 1 : ℤ) : ℂ) = μ)
+    (h2 : ((M 1 0 : ℤ) : ℂ) + c * ((M 1 1 : ℤ) : ℂ) = μ * c) :
     binarySubst ℂ M (X 0 + C c * X 1) = C μ * (X 0 + C c * X 1) := by
   subst h1
   have h2' : (C (((M 1 0 : ℤ) : ℂ)) + C c * C (((M 1 1 : ℤ) : ℂ)) : MvPolynomial (Fin 2) ℂ)
       = (C (((M 0 0 : ℤ) : ℂ)) + C c * C (((M 0 1 : ℤ) : ℂ))) * C c := by
     have := congrArg (C : ℂ → MvPolynomial (Fin 2) ℂ) h2
     simpa only [map_add, map_mul] using this
-  rw [map_add, map_mul, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, binarySubst_X, binarySubst_X,
+  rw [map_add, map_mul, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, binarySubst_X,
+    binarySubst_X,
     Fin.sum_univ_two, Fin.sum_univ_two, map_add, map_mul]
   linear_combination (X 1 : MvPolynomial (Fin 2) ℂ) * h2'
 
 theorem subst_bvec (M : Matrix (Fin 2) (Fin 2) ℤ) (c₁ c₂ μ₁ μ₂ : ℂ)
-    (h11 : ((M 0 0 : ℤ) : ℂ) + c₁ * ((M 0 1 : ℤ) : ℂ) = μ₁) (h12 : ((M 1 0 : ℤ) : ℂ) + c₁ * ((M 1 1 : ℤ) : ℂ) = μ₁ * c₁)
-    (h21 : ((M 0 0 : ℤ) : ℂ) + c₂ * ((M 0 1 : ℤ) : ℂ) = μ₂) (h22 : ((M 1 0 : ℤ) : ℂ) + c₂ * ((M 1 1 : ℤ) : ℂ) = μ₂ * c₂)
+    (h11 : ((M 0 0 : ℤ) : ℂ) + c₁ * ((M 0 1 : ℤ) : ℂ) = μ₁)
+    (h12 : ((M 1 0 : ℤ) : ℂ) + c₁ * ((M 1 1 : ℤ) : ℂ) = μ₁ * c₁)
+    (h21 : ((M 0 0 : ℤ) : ℂ) + c₂ * ((M 0 1 : ℤ) : ℂ) = μ₂)
+    (h22 : ((M 1 0 : ℤ) : ℂ) + c₂ * ((M 1 1 : ℤ) : ℂ) = μ₂ * c₂)
     (n a : ℕ) :
     binarySubst ℂ M (bvec c₁ c₂ n a) = C (μ₁ ^ a * μ₂ ^ (n - a)) * bvec c₁ c₂ n a := by
-  rw [bvec, map_mul, map_pow, map_pow, subst_lin M c₁ μ₁ h11 h12, subst_lin M c₂ μ₂ h21 h22, mul_pow, mul_pow,
+  rw [bvec, map_mul, map_pow, map_pow, subst_lin M c₁ μ₁ h11 h12, subst_lin M c₂ μ₂ h21 h22,
+    mul_pow, mul_pow,
     map_mul, map_pow, map_pow]
   exact mul_mul_mul_comm _ _ _ _
 
@@ -232,7 +242,7 @@ theorem le_finrank_ker (n : ℕ) (g : SL(2, ℤ)) (c₁ c₂ μ₁ μ₂ : ℂ) 
       rw [LinearMap.mem_ker, LinearMap.sub_apply, Module.End.one_apply, sub_eq_zero]
       apply Subtype.ext
       rw [binaryFormRepSL_apply_coe]
-      show binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (bvec c₁ c₂ n (a t)) = bvec c₁ c₂ n (a t)
+      change binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (bvec c₁ c₂ n (a t)) = bvec c₁ c₂ n (a t)
       rw [subst_bvec _ c₁ c₂ μ₁ μ₂ h11 h12 h21 h22, heig t, C_1, one_mul]⟩
   have hli : LinearIndependent ℂ e := by
     apply LinearIndependent.of_comp ((BinaryForm ℂ n).subtype ∘ₗ (LinearMap.ker (binaryFormRepSL ℂ n g - 1)).subtype)
@@ -250,7 +260,8 @@ theorem ST_entries :
     ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 1 = -1 ∧
     ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 ∧
     ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 1 := by
-  simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two]
+  simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply,
+    Fin.sum_univ_two]
 
 theorem main (n : ℕ) (hn : Even n) :
     n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
@@ -276,13 +287,15 @@ theorem main (n : ℕ) (hn : Even n) :
       have := t.2
       omega
     · intro t
-      obtain ⟨q, hq⟩ : ∃ q, 2 * (t : ℕ) + p % 2 + p = 2 * q := ⟨(2 * (t : ℕ) + p % 2 + p) / 2, by omega⟩
+      obtain ⟨q, hq⟩ : ∃ q, 2 * (t : ℕ) + p % 2 + p = 2 * q :=
+        ⟨(2 * (t : ℕ) + p % 2 + p) / 2, by omega⟩
       have hle : 2 * (t : ℕ) + p % 2 ≤ n := by have := t.2; omega
       have hIn : Complex.I ^ n = (-1) ^ p := by rw [hp, ← two_mul, pow_mul, Complex.I_sq]
       rw [neg_pow Complex.I, mul_assoc, ← pow_add, show (2 * (t : ℕ) + p % 2) + (n - (2 * (t : ℕ) + p % 2)) = n by omega, hIn,
         ← pow_add, hq, pow_mul, neg_one_sq, one_pow]
   · obtain ⟨e00, e01, e10, e11⟩ := ST_entries
-    obtain ⟨ω, hω⟩ : ∃ ω : ℂ, IsPrimitiveRoot ω 3 := ⟨_, Complex.isPrimitiveRoot_exp 3 (by norm_num)⟩
+    obtain ⟨ω, hω⟩ : ∃ ω : ℂ, IsPrimitiveRoot ω 3 :=
+      ⟨_, Complex.isPrimitiveRoot_exp 3 (by norm_num)⟩
     have hω3 : ω ^ 3 = 1 := hω.pow_eq_one
     have hω1 : ω ≠ 1 := hω.ne_one (by norm_num)
     have hωq : ω ^ 2 + ω + 1 = 0 := by
@@ -316,7 +329,8 @@ theorem main (n : ℕ) (hn : Even n) :
       rcases h3 with h3 | h3 | h3 <;> omega
     · intro t
       have h3 : p % 3 = 0 ∨ p % 3 = 1 ∨ p % 3 = 2 := by omega
-      have hle : 3 * (t : ℕ) + (2 * n) % 3 ≤ n := by have := t.2; rcases h3 with h3 | h3 | h3 <;> omega
+      have hle : 3 * (t : ℕ) + (2 * n) % 3 ≤ n :=
+        by have := t.2; rcases h3 with h3 | h3 | h3 <;> omega
       obtain ⟨q, hq⟩ : ∃ q, 3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3)) = 3 * q :=
         ⟨(3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3))) / 3, by rcases h3 with h3 | h3 | h3 <;> omega⟩
       have hev : Even n := ⟨p, hp⟩
@@ -345,6 +359,7 @@ open scoped MatrixGroups
 theorem HeckeEis.le_finrank_fixed_S_and_ST_binaryFormRepSL (n : ℕ) (hn : Even n) :
     n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
     n + 1 - 2 * ((n + 2) / 3)
-      ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)) := _root_.P2MW.S_HeckeEis_le_finrank_fixed_S_and_ST_binaryFormRepSL.solution n hn
+      ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)) :=
+  solution n hn
 
 end publicSection

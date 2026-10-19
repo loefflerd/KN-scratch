@@ -396,7 +396,8 @@ lemma tendsto_primitive_cusp {G F : ℂ → ℂ} (hG : ∀ z ∈ UHP, HasDerivAt
     constructor
     · rintro ⟨n, hn⟩; exact lt_trans (hs n) hn
     · intro ht; obtain ⟨n, hn⟩ := exists_nat_one_div_lt ht; exact ⟨n, hn⟩
-  have hint' : IntegrableOn (fun t : ℝ => F ((x : ℂ) + t * I)) (⋃ n : ℕ, Ioi (1 / ((n : ℝ) + 1))) := by
+  have hint' : IntegrableOn (fun t : ℝ => F ((x : ℂ) + t * I)) (⋃ n : ℕ, Ioi (1 / ((n : ℝ) + 1))) :=
+    by
     rw [hunion]; exact hint
   have hlim := tendsto_setIntegral_of_monotone (fun n => measurableSet_Ioi) hmono hint'
   rw [hunion] at hlim
@@ -479,7 +480,7 @@ lemma rational_translate_integrable
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (r : ℚ) (j : ℕ) :
     IntegrableOn (fun t : ℝ =>
-      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ)^j) (Set.Ioi 0) := by
+      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ) ^ j) (Set.Ioi 0) := by
   let : NeZero N := ⟨by omega⟩
   let g : GL (Fin 2) ℚ := Matrix.GeneralLinearGroup.upperRightHom r
   let gr : GL (Fin 2) ℝ := g.map (Rat.castHom ℝ)
@@ -1239,10 +1240,10 @@ theorem cuspPrimitive_slash_relation_proof (hN : 0 < N) (hk : 2 ≤ k)
       pow_ne_zero _ (denom_SL_ne_zero γ.val τ)
     exact mul_left_cancel₀ hd h
   rcases x with _ | r
-  · show cuspPrimitive g (cuspAct γ.val OnePoint.infty) =
+  · change cuspPrimitive g (cuspAct γ.val OnePoint.infty) =
       act γ.val.val (cuspPrimitive g' OnePoint.infty) + cuspPrimitive g (cuspAct γ.val OnePoint.infty)
     rw [cuspPrimitive_infty, map_zero, zero_add]
-  · show cuspPrimitive g (cuspAct γ.val (r : Cusp)) =
+  · change cuspPrimitive g (cuspAct γ.val (r : Cusp)) =
       act γ.val.val (cuspPrimitive g' (r : Cusp)) + cuspPrimitive g (cuspAct γ.val OnePoint.infty)
     obtain ⟨σ, hσ⟩ := exists_SL_infty_eq r
     rw [← hσ, ← cuspAct_mul, cuspPrimitive_eq_Kconst hN hk g (γ.val * σ),

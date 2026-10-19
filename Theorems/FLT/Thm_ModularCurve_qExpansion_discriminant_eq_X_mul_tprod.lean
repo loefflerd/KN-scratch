@@ -72,7 +72,6 @@ local notation "𝕢" => Function.Periodic.qParam
 namespace ModularCurve
 
 open Polynomial in
-
 private def truncPoly (N : ℕ) : ℂ[X] := ∏ n ∈ Finset.range N, (1 - Polynomial.X ^ (n + 1)) ^ 24
 
 private def etaPow : PowerSeries ℂ := ∏' n : ℕ, (1 - PowerSeries.X ^ (n + 1)) ^ 24
@@ -127,7 +126,6 @@ private lemma truncPoly_toPowerSeries (N : ℕ) :
   simp [Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_pow, Polynomial.coe_X]
 
 open Polynomial in
-
 private lemma iterate_deriv_polynomial_eval (p : ℂ[X]) (m : ℕ) :
     deriv^[m] (fun q : ℂ => p.eval q) = fun q => (derivative^[m] p).eval q := by
   induction m generalizing p with
@@ -175,7 +173,6 @@ private lemma differentiableOn_gfun : DifferentiableOn ℂ gfun (Metric.ball (0 
   ModularForm.differentiableOn_tprod_one_sub_pow_pow 24
 
 open Polynomial in
-
 private lemma tendstoLocallyUniformlyOn_iterate_deriv_trunc (m : ℕ) :
     TendstoLocallyUniformlyOn (fun N q => (derivative^[m] (truncPoly N)).eval q) (deriv^[m] gfun)
       atTop (Metric.ball (0 : ℂ) 1) := by
@@ -183,14 +180,14 @@ private lemma tendstoLocallyUniformlyOn_iterate_deriv_trunc (m : ℕ) :
   | zero =>
     simpa only [Function.iterate_zero, id_eq, truncPoly_eval] using tendstoLocallyUniformlyOn_trunc
   | succ m ih =>
-    have h := ih.deriv (Eventually.of_forall fun N => (Polynomial.differentiable _).differentiableOn)
+    have h :=
+      ih.deriv (Eventually.of_forall fun N => (Polynomial.differentiable _).differentiableOn)
       Metric.isOpen_ball
     rw [Function.iterate_succ', Function.iterate_succ']
     refine h.congr fun N q _ => ?_
     simp only [Function.comp_apply, Polynomial.deriv]
 
 open Polynomial in
-
 private lemma iteratedDeriv_gfun_zero (m : ℕ) :
     iteratedDeriv m gfun 0 = m.factorial * PowerSeries.coeff m etaPow := by
   have h0 : (0 : ℂ) ∈ Metric.ball (0 : ℂ) 1 := Metric.mem_ball_self one_pos
@@ -220,7 +217,8 @@ private lemma hasSum_coeff_X_mul_etaPow {q : ℂ} (hq : ‖q‖ < 1) :
     HasSum (fun m : ℕ => PowerSeries.coeff m (PowerSeries.X * etaPow) * q ^ m) (q * gfun q) := by
   have h := (hasSum_coeff_etaPow hq).mul_left q
   rw [← hasSum_nat_add_iff' 1]
-  simp only [Finset.range_one, Finset.sum_singleton, pow_zero, mul_one, PowerSeries.coeff_zero_X_mul,
+  simp only [Finset.range_one, Finset.sum_singleton, pow_zero, mul_one,
+    PowerSeries.coeff_zero_X_mul,
     sub_zero]
   refine h.congr_fun fun m => ?_
   rw [PowerSeries.coeff_succ_X_mul, pow_succ]
@@ -233,7 +231,8 @@ private lemma discriminant_eq_qParam_mul_gfun (τ : ℍ) :
 end ModularCurve
 
 open ModularCurve in
-theorem solution : UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 := by
+theorem solution :
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 := by
   have hsum : ∀ τ : ℍ, HasSum (fun m : ℕ =>
       PowerSeries.coeff m (PowerSeries.X * etaPow) • 𝕢 1 (τ : ℂ) ^ m) (CuspForm.discriminant τ) := by
     intro τ
@@ -257,6 +256,8 @@ public section publicSection
 
 
 open scoped PowerSeries.WithPiTopology
-theorem ModularCurve.qExpansion_discriminant_eq_X_mul_tprod : UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 := _root_.P2MW.S_ModularCurve_qExpansion_discriminant_eq_X_mul_tprod.solution
+theorem ModularCurve.qExpansion_discriminant_eq_X_mul_tprod :
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 :=
+  solution
 
 end publicSection

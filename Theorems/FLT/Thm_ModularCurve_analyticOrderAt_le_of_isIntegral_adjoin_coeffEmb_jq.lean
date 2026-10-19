@@ -217,7 +217,7 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
   let Z : ModularForm 𝒮ℒ 12 := T - U
   have hZ : (Z : ℍ → ℂ) = ((𝔞 * (𝔞 * 𝔞) - 𝔟 * 𝔟 : 𝒩) : ℍ → ℂ) := by
     funext z
-    show (T : ℍ → ℂ) z - (U : ℍ → ℂ) z = _
+    change (T : ℍ → ℂ) z - (U : ℍ → ℂ) z = _
     rfl
   have hZq : qExpansion 1 (Z : ℍ → ℂ) =
       qExpansion 1 ⇑ModularForm.E₄ * (qExpansion 1 ⇑ModularForm.E₄ * qExpansion 1 ⇑ModularForm.E₄) -
@@ -228,10 +228,12 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
     simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_zero_mul', qA0, qB0]
     norm_num
   have h1 : ModularFormClass.qCoeff (Z : ℍ → ℂ) 1 = 1728 := by
-    simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_one_mul, coeff_zero_mul', qA0, qA1, qB0, qB1]
+    simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_one_mul, coeff_zero_mul', qA0, qA1, qB0,
+      qB1]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant := by
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant :=
+    by
     ext n
     rw [PowerSeries.coeff_C_mul]
     have := hW n
@@ -313,7 +315,8 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
       simp only [nsmul_eq_mul]
       push_cast
       ring
-    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
+    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) :=
+      by
       have e : ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) =
           ((6 * i * k + 6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
         simp only [nsmul_eq_mul]
@@ -361,7 +364,8 @@ theorem core (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ �
       _ = (ψ 𝔤 * ψ 𝔞 ^ 2 * ψ 𝔟) ^ 6 := by ring
   obtain ⟨p, hpm, hpev⟩ := h₁
   rw [hpm.as_sum] at hpev
-  simp only [Polynomial.eval₂_add, Polynomial.eval₂_pow, Polynomial.eval₂_X, Polynomial.eval₂_finsetSum,
+  simp only [Polynomial.eval₂_add, Polynomial.eval₂_pow, Polynomial.eval₂_X,
+    Polynomial.eval₂_finsetSum,
     Polynomial.eval₂_mul, Polynomial.eval₂_C] at hpev
   set R := Algebra.adjoin ℂ ({𝐉} : Set (LaurentSeries ℂ)) with hR
   set Y := X ^ 6 * 𝐉 ^ 4 * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ 3 with hY
@@ -370,7 +374,8 @@ theorem core (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ �
   have hmem : ∀ i, ∃ c : Polynomial ℂ,
       Polynomial.aeval (𝐉) c = algebraMap R (LaurentSeries ℂ) (p.coeff i) := by
     intro i
-    have hi' : algebraMap R (LaurentSeries ℂ) (p.coeff i) ∈ (Polynomial.aeval (R := ℂ) (𝐉)).range := by
+    have hi' : algebraMap R (LaurentSeries ℂ) (p.coeff i) ∈ (Polynomial.aeval (R := ℂ) (𝐉)).range :=
+      by
       rw [← Algebra.adjoin_singleton_eq_range_aeval]
       exact (p.coeff i).2
     exact hi'
@@ -380,7 +385,8 @@ theorem core (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ �
     Finset.single_le_sum (f := fun j => (c j).natDegree) (fun j _ => Nat.zero_le _) hi
   let Cn : ℕ → 𝒩 := fun i =>
     ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ (m - l) * 𝔞 ^ (3 * l))
-  have key3 : ∀ i ∈ Finset.range n, ψ 𝔡 ^ m * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (Cn i) := by
+  have key3 : ∀ i ∈ Finset.range n, ψ 𝔡 ^ m * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (Cn i) :=
+    by
     intro i hi
     simp only [Cn, map_sum, map_mul, map_pow, AlgHom.commutes]
     rw [← hc i, Polynomial.aeval_eq_sum_range, Finset.mul_sum]
@@ -404,7 +410,8 @@ theorem core (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ �
     calc (ψ Q ^ 6 * ψ 𝔡) ^ n * Y ^ i = (Y * (ψ Q ^ 6 * ψ 𝔡)) ^ i * (ψ Q ^ 6 * ψ 𝔡) ^ (n - i) := by
           rw [e, mul_pow Y (ψ Q ^ 6 * ψ 𝔡) i]; ring
       _ = ψ P ^ (6 * i) * (ψ Q ^ 6 * ψ 𝔡) ^ (n - i) := by rw [k1, ← pow_mul]
-  let E : 𝒩 := P ^ (6 * n) * 𝔡 ^ m + ∑ i ∈ Finset.range n, Cn i * (P ^ (6 * i) * (Q ^ 6 * 𝔡) ^ (n - i))
+  let E : 𝒩 :=
+    P ^ (6 * n) * 𝔡 ^ m + ∑ i ∈ Finset.range n, Cn i * (P ^ (6 * i) * (Q ^ 6 * 𝔡) ^ (n - i))
   have hE : ψ E = (ψ Q ^ 6 * ψ 𝔡) ^ n * ψ 𝔡 ^ m *
       (Y ^ n + ∑ i ∈ Finset.range n, algebraMap R (LaurentSeries ℂ) (p.coeff i) * Y ^ i) := by
     rw [mul_add, Finset.mul_sum]
@@ -457,6 +464,7 @@ theorem ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq (N : �
       (X ^ 6 * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ 4 * (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ 3))
     (τ : UpperHalfPlane) :
     analyticOrderAt ((fun z : UpperHalfPlane => h z * ModularForm.discriminant z) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
-      analyticOrderAt ((fun z : UpperHalfPlane => g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) := _root_.P2MW.S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq.solution N g h X hX h₁ τ
+      analyticOrderAt ((fun z : UpperHalfPlane => g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) :=
+  solution N g h X hX h₁ τ
 
 end publicSection

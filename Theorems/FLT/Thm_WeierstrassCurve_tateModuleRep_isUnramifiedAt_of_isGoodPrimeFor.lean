@@ -62,12 +62,17 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve \
+  WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine HasGoodReduction a₃ a₁ map isIntegral_of_exists_lift a₄ valuation_Δ_aux_eq_of_isIntegral a₂ a₆ reduction IsIntegral Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ VariableChange map_a₂ IsMinimal valuation_Δ_aux map_a₃ tateModuleRep Affine.Point.GaloisRepUnramifiedAt card IsGoodPrimeFor galoisRepUnramifiedAt_of_hasGoodReduction"
+p2m_export "WeierstrassCurve" "Affine HasGoodReduction a₃ a₁ map isIntegral_of_exists_lift a₄ \
+  valuation_Δ_aux_eq_of_isIntegral a₂ a₆ reduction IsIntegral Affine.Point map_Δ map_a₆ map_a₁ \
+  map_a₄ Δ VariableChange map_a₂ IsMinimal valuation_Δ_aux map_a₃ tateModuleRep \
+  Affine.Point.GaloisRepUnramifiedAt card IsGoodPrimeFor galoisRepUnramifiedAt_of_hasGoodReduction"
 namespace D5Sol
 p2m_open "WeierstrassCurve"
 
@@ -134,7 +139,6 @@ theorem hasGoodReduction_map (W : WeierstrassCurve ℤ) (hgood : ¬ (q : ℤ) �
   have hInt : IsIntegral (Zq q) E := by
     refine isIntegral_of_exists_lift (Zq q) ⟨W.a₁, ?_⟩ ⟨W.a₂, ?_⟩ ⟨W.a₃, ?_⟩ ⟨W.a₄, ?_⟩ ⟨W.a₆, ?_⟩
     all_goals simp only [hE, map_a₁, map_a₂, map_a₃, map_a₄, map_a₆, eq_intCast, hcoef]
-
   have hval_unit : ∀ r : Zq q, IsUnit r →
       (IsDiscreteValuationRing.maximalIdeal (Zq q)).valuation ℚ (algebraMap (Zq q) ℚ r) = 1 := by
     intro r hr
@@ -204,11 +208,13 @@ public section publicSection
 
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
-theorem WeierstrassCurve.tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor (W : WeierstrassCurve ℤ) (p : ℕ)
+theorem WeierstrassCurve.tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor (W : WeierstrassCurve ℤ)
+    (p : ℕ)
     [Fact p.Prime]
     (hcard : ∀ n : ℕ, Nat.card (Submodule.torsionBy ℤ
       ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2)
     {q : ℕ} (hq : q.Prime) (hqp : q ≠ p) (hgood : W.IsGoodPrimeFor q) :
-    ((W.map (Int.castRingHom ℚ)).tateModuleRep p hcard).IsUnramifiedAt q := _root_.P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.solution W p hcard hq hqp hgood
+    ((W.map (Int.castRingHom ℚ)).tateModuleRep p hcard).IsUnramifiedAt q :=
+  solution W p hcard hq hqp hgood
 
 end publicSection

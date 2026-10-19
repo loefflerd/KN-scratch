@@ -65,7 +65,9 @@ namespace P2MW.S_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cus
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "Period.parabolicHoms six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma"
+p2m_export "ModularCurve" "Period.parabolicHoms \
+  six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq \
+  twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma"
 namespace ESPrincipalAssembly
 p2m_open "ModularCurve"
 
@@ -163,7 +165,6 @@ theorem main_of_two_le (N : ℕ) (hN : 2 ≤ N) :
 end ModularCurve.ESPrincipalAssembly
 
 open ModularCurve.ESPrincipalAssembly in
-
 theorem solution (N : ℕ) [NeZero N] :
     Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ (CongruenceSubgroup.Gamma N) ℤ) ≤
       2 * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) := by
@@ -187,6 +188,7 @@ public section publicSection
 open scoped MatrixGroups
 theorem ModularCurve.finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm (N : ℕ) [NeZero N] :
     Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ (CongruenceSubgroup.Gamma N) ℤ) ≤
-      2 * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) := _root_.P2MW.S_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm.solution N
+      2 * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) :=
+  solution N
 
 end publicSection

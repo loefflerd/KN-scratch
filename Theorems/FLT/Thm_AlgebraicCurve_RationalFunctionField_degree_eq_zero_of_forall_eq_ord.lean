@@ -62,7 +62,9 @@ open AlgebraicCurve
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
-theorem solution {K : Type*} [Field K] {f : RatFunc K} (D : Divisor K (RatFunc K)) (hD : ∀ v : Place K (RatFunc K), D v = v.ord f) : Divisor.degree D = 0 := by
+theorem solution {K : Type*} [Field K] {f : RatFunc K} (D : Divisor K (RatFunc K))
+    (hD : ∀ v : Place K (RatFunc K), D v = v.ord f) :
+    Divisor.degree D = 0 := by
   rcases eq_or_ne f 0 with rfl | hf
   · have hzero : D = 0 := by
       ext v
@@ -103,6 +105,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord {K : Type*} [Field K] {f : RatFunc K} (D : Divisor K (RatFunc K)) (hD : ∀ v : Place K (RatFunc K), D v = v.ord f) : Divisor.degree D = 0 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord.solution D hD
+theorem AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord {K : Type*} [Field K]
+    {f : RatFunc K} (D : Divisor K (RatFunc K)) (hD : ∀ v : Place K (RatFunc K), D v = v.ord f) :
+    Divisor.degree D = 0 :=
+  solution D hD
 
 end publicSection

@@ -164,7 +164,6 @@ theorem ordAt_one (τ₀ : ℍ) : ordAt τ₀ (1 : ℍ → ℂ) = 0 := by
   rfl
 
 open Classical in
-
 def ordFun (τ₀ : ℍ) (F : ring N) : WithZero (Multiplicative ℤ) :=
   if (F : ℍ → ℂ) = 0 then 0 else WithZero.exp (-(ordAt τ₀ (F : ℍ → ℂ) : ℤ))
 
@@ -259,7 +258,8 @@ theorem ordValuationK_algebraMap (τ₀ : ℍ) (F : ring N) :
 
 def jSub (τ₀ : ℍ) : ring N := jGen N - algebraMap ℂ (ring N) (jAnalytic τ₀)
 
-theorem coe_jSub (τ₀ : ℍ) : ((jSub N τ₀ : ring N) : ℍ → ℂ) = fun τ => jAnalytic τ - jAnalytic τ₀ := by
+theorem coe_jSub (τ₀ : ℍ) :
+    ((jSub N τ₀ : ring N) : ℍ → ℂ) = fun τ => jAnalytic τ - jAnalytic τ₀ := by
   funext τ
   simp [jSub, jGen, Algebra.algebraMap_eq_smul_one]
 
@@ -311,7 +311,8 @@ theorem nontrivial_valueGroup (τ₀ : ℍ) :
   refine ⟨Units.mk0 _ hne, ?_, ?_⟩
   · exact MonoidWithZeroHom.mem_valueGroup _ ⟨_, rfl⟩
   · intro h
-    have h' := congrArg (fun u : (WithZero (Multiplicative ℤ))ˣ => (u : WithZero (Multiplicative ℤ))) h
+    have h' :=
+      congrArg (fun u : (WithZero (Multiplicative ℤ))ˣ => (u : WithZero (Multiplicative ℤ))) h
     simp only [Units.val_mk0, Units.val_one] at h'
     exact (ordValuationK_jSub_lt_one N K τ₀).ne h'
 
@@ -374,7 +375,6 @@ theorem algebraMap_mem_analyticPlace (τ₀ : ℍ) (F : ring N) :
 end FractionField
 
 omit [NeZero N] in
-
 def moeb (δ : SL(2, ℤ)) (z : ℂ) : ℂ :=
   (((δ 0 0 : ℤ) : ℂ) * z + ((δ 0 1 : ℤ) : ℂ)) / (((δ 1 0 : ℤ) : ℂ) * z + ((δ 1 1 : ℤ) : ℂ))
 
@@ -419,7 +419,8 @@ theorem hasDerivAt_moeb (δ : SL(2, ℤ)) (τ : ℍ) :
       ((δ 1 0 : ℤ) : ℂ) (τ : ℂ) := by
     simpa using ((hasDerivAt_id (τ : ℂ)).const_mul ((δ 1 0 : ℤ) : ℂ)).add_const ((δ 1 1 : ℤ) : ℂ)
   have h := hnum.div hden' hden
-  have hdet : ((δ 0 0 : ℤ) : ℂ) * ((δ 1 1 : ℤ) : ℂ) - ((δ 0 1 : ℤ) : ℂ) * ((δ 1 0 : ℤ) : ℂ) = 1 := by
+  have hdet : ((δ 0 0 : ℤ) : ℂ) * ((δ 1 1 : ℤ) : ℂ) - ((δ 0 1 : ℤ) : ℂ) * ((δ 1 0 : ℤ) : ℂ) = 1 :=
+    by
     have := δ.2
     rw [Matrix.det_fin_two] at this
     exact_mod_cast this
@@ -434,7 +435,6 @@ theorem deriv_moeb_ne_zero (δ : SL(2, ℤ)) (τ : ℍ) : deriv (moeb δ) τ ≠
   exact inv_ne_zero (pow_ne_zero _ (moeb_denom_ne_zero δ τ))
 
 omit [NeZero N] in
-
 theorem ext_comp_smul_eventuallyEq (δ : SL(2, ℤ)) (F : ℍ → ℂ) (τ₀ : ℍ) :
     ext (fun τ : ℍ => F (δ • τ)) =ᶠ[𝓝 (τ₀ : ℂ)] (ext F ∘ moeb δ) := by
   filter_upwards [isOpen_upperHalfPlaneSet.mem_nhds τ₀.im_pos] with z hz
@@ -450,7 +450,6 @@ theorem ext_comp_smul_eventuallyEq (δ : SL(2, ℤ)) (F : ℍ → ℂ) (τ₀ : 
   simpa using coe_smul_eq_moeb δ ⟨z, hz'⟩
 
 omit [NeZero N] in
-
 theorem analyticOrderAt_ext_comp_smul (δ : SL(2, ℤ)) (F : ℍ → ℂ) (τ₀ : ℍ) :
     analyticOrderAt (ext (fun τ : ℍ => F (δ • τ))) τ₀ = analyticOrderAt (ext F) ((δ • τ₀ : ℍ) : ℂ) := by
   rw [analyticOrderAt_congr (ext_comp_smul_eventuallyEq δ F τ₀),
@@ -597,6 +596,7 @@ theorem ModularCurve.LevelN.exists_place_ord_sub_pos_forall_smul_eq (N : ℕ) [N
             φ (algebraMap (ModularCurve.LevelN.ring N) K ⟨F, hF⟩) =
               algebraMap (ModularCurve.LevelN.ring N) K
                 ⟨fun τ : UpperHalfPlane => F (γ⁻¹ • τ), hst F hF⟩) →
-        AlgebraicCurve.SemilinearAut.ofAlgAut φ • W = W := _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.solution N K τ₀
+        AlgebraicCurve.SemilinearAut.ofAlgAut φ • W = W :=
+  solution N K τ₀
 
 end publicSection

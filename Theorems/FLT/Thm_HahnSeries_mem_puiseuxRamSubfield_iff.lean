@@ -132,6 +132,7 @@ public section publicSection
 
 theorem HahnSeries.mem_puiseuxRamSubfield_iff {K : Type*} [Field K] {e : ℕ} (he : 0 < e)
     {y : HahnSeries ℚ K} :
-    y ∈ HahnSeries.puiseuxRamSubfield K he ↔ HahnSeries.HasRamBound e y := _root_.P2MW.S_HahnSeries_mem_puiseuxRamSubfield_iff.solution he
+    y ∈ HahnSeries.puiseuxRamSubfield K he ↔ HahnSeries.HasRamBound e y :=
+  solution he
 
 end publicSection

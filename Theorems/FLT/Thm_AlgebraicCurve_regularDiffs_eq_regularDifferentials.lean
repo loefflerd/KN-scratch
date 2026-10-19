@@ -96,7 +96,7 @@ theorem regularDiffs_eq [CharZero K] [Algebra.EssFiniteType K F] [IsCurveOver K 
     · intro h
       exact ⟨v.differentialCoeff ω, mem_of_ord_nonneg v h, (v.differentialCoeff_smul_dCoord ω).symm⟩
     · rintro ⟨f, hf, rfl⟩
-      show 0 ≤ v.ord (v.differentialCoeff (f • v.dCoord))
+      change 0 ≤ v.ord (v.differentialCoeff (f • v.dCoord))
       rw [v.differentialCoeff_unique (rfl : f • v.dCoord = f • v.dCoord)]
       exact ord_nonneg_of_mem v hf
   apply le_antisymm
@@ -123,8 +123,10 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.regularDiffs_eq_regularDifferentials {K F : Type*} [Field K] [Field F] [Algebra K F]
+theorem AlgebraicCurve.regularDiffs_eq_regularDifferentials {K F : Type*} [Field K] [Field F]
+    [Algebra K F]
     [CharZero K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F] :
-    AlgebraicCurve.regularDiffs K F = AlgebraicCurve.regularDifferentials K F := _root_.P2MW.S_AlgebraicCurve_regularDiffs_eq_regularDifferentials.solution
+    AlgebraicCurve.regularDiffs K F = AlgebraicCurve.regularDifferentials K F :=
+  solution
 
 end publicSection

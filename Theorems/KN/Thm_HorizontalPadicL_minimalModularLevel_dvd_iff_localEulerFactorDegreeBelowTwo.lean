@@ -544,16 +544,16 @@ theorem exists_inv_cocycle {q R : ℕ} {γ : SL(2, ℤ)}
   · change ((c * (q : ℤ) : ℤ) : ZMod (q * R)) = 0
     rw [ZMod.intCast_zmod_eq_zero_iff_dvd, hc₁]
     exact ⟨c₁, by push_cast; ring⟩
-  · show (γ : Matrix (Fin 2) (Fin 2) ℤ) * FreyPackage.ModMCarrier.diagMatInt q
+  · change (γ : Matrix (Fin 2) (Fin 2) ℤ) * FreyPackage.ModMCarrier.diagMatInt q
       = FreyPackage.ModMCarrier.diagMatInt q * !![a, b₁; c * (q : ℤ), e]
     rw [hγmat]; unfold FreyPackage.ModMCarrier.diagMatInt
     rw [Matrix.mul_fin_two, Matrix.mul_fin_two]
     refine Matrix.ext fun i j => ?_
     fin_cases i <;> fin_cases j
-    · show (a * (q : ℤ) + b * 0 : ℤ) = (q : ℤ) * a + 0 * (c * (q : ℤ)); ring
-    · show (a * 0 + b * 1 : ℤ) = (q : ℤ) * b₁ + 0 * e; linear_combination hb₁
-    · show (c * (q : ℤ) + e * 0 : ℤ) = 0 * a + 1 * (c * (q : ℤ)); ring
-    · show (c * 0 + e * 1 : ℤ) = 0 * b₁ + 1 * e; ring
+    · change (a * (q : ℤ) + b * 0 : ℤ) = (q : ℤ) * a + 0 * (c * (q : ℤ)); ring
+    · change (a * 0 + b * 1 : ℤ) = (q : ℤ) * b₁ + 0 * e; linear_combination hb₁
+    · change (c * (q : ℤ) + e * 0 : ℤ) = 0 * a + 1 * (c * (q : ℤ)); ring
+    · change (c * 0 + e * 1 : ℤ) = 0 * b₁ + 1 * e; ring
 
 theorem map_int_mul_eq (A C : Matrix (Fin 2) (Fin 2) ℤ) :
     (A * C).map (algebraMap ℤ ℝ) = A.map (algebraMap ℤ ℝ) * C.map (algebraMap ℤ ℝ) := by
@@ -581,15 +581,15 @@ theorem Binv_mul_mapGL {q R : ℕ} (hq : q ≠ 0) {γ : SL(2, ℤ)}
 def stab (f : ℍ → ℂ) (k : ℤ) : Subgroup SL(2, ℤ) where
   carrier := {g | f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ g : GL (Fin 2) ℝ) = f}
   one_mem' := by
-    show f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (1 : SL(2, ℤ)) : GL (Fin 2) ℝ) = f
+    change f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (1 : SL(2, ℤ)) : GL (Fin 2) ℝ) = f
     rw [map_one, SlashAction.slash_one]
   mul_mem' := by
     intro a b ha hb
-    show f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (a * b) : GL (Fin 2) ℝ) = f
+    change f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (a * b) : GL (Fin 2) ℝ) = f
     rw [map_mul, SlashAction.slash_mul, ha, hb]
   inv_mem' := by
     intro a ha
-    show f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ) = f
+    change f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ) = f
     calc f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ)
         = (f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a : GL (Fin 2) ℝ)) ∣[k]
             (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ) := by rw [ha]

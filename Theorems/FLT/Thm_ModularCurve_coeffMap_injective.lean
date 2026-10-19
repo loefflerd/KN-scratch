@@ -56,7 +56,8 @@ namespace P2MW.S_ModularCurve_coeffMap_injective
 
 open ModularCurve IntermediateField HahnSeries
 
-theorem solution {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S} (hf : Function.Injective f) : Function.Injective (ModularCurve.coeffMap f) :=
+theorem solution {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S} (hf : Function.Injective f) :
+    Function.Injective (ModularCurve.coeffMap f) :=
   fun x y hxy => by
   ext k
   exact hf (by simpa using congrArg (fun z => HahnSeries.coeff z k) hxy)
@@ -69,6 +70,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.coeffMap_injective {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S} (hf : Function.Injective f) : Function.Injective (ModularCurve.coeffMap f) := _root_.P2MW.S_ModularCurve_coeffMap_injective.solution hf
+theorem ModularCurve.coeffMap_injective {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S}
+    (hf : Function.Injective f) :
+    Function.Injective (ModularCurve.coeffMap f) :=
+  solution hf
 
 end publicSection

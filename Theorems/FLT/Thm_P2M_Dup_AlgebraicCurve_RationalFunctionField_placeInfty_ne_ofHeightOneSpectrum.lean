@@ -60,7 +60,9 @@ namespace P2MW.S_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneS
 
 open IsDedekindDomain AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
-theorem solution (K : Type*) [Field K] [DecidableEq (RatFunc K)] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) : placeInfty K ≠ Place.ofHeightOneSpectrum w := by
+theorem solution (K : Type*) [Field K] [DecidableEq (RatFunc K)]
+    (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) :
+    placeInfty K ≠ Place.ofHeightOneSpectrum w := by
   intro h
   refine RatFunc.adicValuation_not_isEquiv_infty_valuation w
     ((Valuation.isEquiv_iff_valuationSubring _ _).mpr ?_)
@@ -78,6 +80,9 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
-theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum (K : Type*) [Field K] [DecidableEq (RatFunc K)] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) : placeInfty K ≠ Place.ofHeightOneSpectrum w := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum.solution K w
+theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum (K : Type*)
+    [Field K] [DecidableEq (RatFunc K)] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) :
+    placeInfty K ≠ Place.ofHeightOneSpectrum w :=
+  solution K w
 
 end publicSection

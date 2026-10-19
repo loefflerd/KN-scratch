@@ -63,7 +63,8 @@ namespace P2MW.S_ModularCurve_laurentBaseChange_modularFunctionField
 
 open ModularCurve IntermediateField HahnSeries
 
-theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) = ModularCurve.modularFunctionFieldC L N := by
+theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
+    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) = ModularCurve.modularFunctionFieldC L N := by
   apply le_antisymm
   · change IntermediateField.adjoin L (⇑(coeffEmb L) '' (modularFunctionField N : Set (LaurentSeries ℚ)))
       ≤ modularFunctionFieldC L N
@@ -100,6 +101,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.laurentBaseChange_modularFunctionField (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) = ModularCurve.modularFunctionFieldC L N := _root_.P2MW.S_ModularCurve_laurentBaseChange_modularFunctionField.solution L N
+theorem ModularCurve.laurentBaseChange_modularFunctionField (L : Type*) [Field L] [Algebra ℚ L]
+    (N : ℕ) [NeZero N] :
+    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) = ModularCurve.modularFunctionFieldC L N :=
+  solution L N
 
 end publicSection

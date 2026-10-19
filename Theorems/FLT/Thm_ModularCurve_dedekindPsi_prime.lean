@@ -74,6 +74,8 @@ public section publicSection
 
 
 open ModularCurve IntermediateField
-theorem ModularCurve.dedekindPsi_prime {p : ℕ} (hp : p.Prime) : dedekindPsi p = p + 1 := _root_.P2MW.S_ModularCurve_dedekindPsi_prime.solution hp
+theorem ModularCurve.dedekindPsi_prime {p : ℕ} (hp : p.Prime) :
+    dedekindPsi p = p + 1 :=
+  solution hp
 
 end publicSection

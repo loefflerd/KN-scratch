@@ -72,7 +72,7 @@ variable {ι K L : Type*} [Group K] [Group L]
 
 theorem lift_apply_basis (b : FreeGroupBasis ι K) (f : ι → L) (i : ι) :
     b.lift f (b i) = f i := by
-  show FreeGroup.lift f (b.repr (b i)) = f i
+  change FreeGroup.lift f (b.repr (b i)) = f i
   rw [FreeGroupBasis.repr_apply_coe, FreeGroup.lift_apply_of]
 
 theorem closure_range_basis (b : FreeGroupBasis ι K) :
@@ -182,6 +182,7 @@ theorem Matrix.SpecialLinearGroup.exists_generators_free_mod_neg_one_of_forall_t
     ∃ gens : Fin (1 + Γ.index / 6) → Γ,
       Subgroup.closure (Set.range gens ∪ {⟨-1, hneg⟩}) = ⊤ ∧
       ∀ (L : Type) [Group L] (v : Fin (1 + Γ.index / 6) → L),
-        ∃ f : Γ →* L, ∀ i, f (gens i) = v i := _root_.P2MW.S_Matrix_SpecialLinearGroup_exists_generators_free_mod_neg_one_of_forall_trace_ne.solution Γ hneg hΓ
+        ∃ f : Γ →* L, ∀ i, f (gens i) = v i :=
+  solution Γ hneg hΓ
 
 end publicSection

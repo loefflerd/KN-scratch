@@ -128,7 +128,6 @@ theorem algebraMap_polynomial_injective :
   exact polyToFunctionField_injective
 
 variable (W) in
-
 def ratFuncToFunctionField : RatFunc F →+* W.FunctionField :=
   IsFractionRing.lift algebraMap_polynomial_injective
 
@@ -152,12 +151,10 @@ instance : IsScalarTower F (RatFunc F) W.FunctionField := by
   exact (polyToFunctionField_C c).symm
 
 variable (W) in
-
 def yCoord : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
 variable (W) in
-
 def weierstrassQuadratic : Polynomial (RatFunc F) :=
   X ^ 2 + (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
     - C (algebraMap F[X] (RatFunc F) (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)))

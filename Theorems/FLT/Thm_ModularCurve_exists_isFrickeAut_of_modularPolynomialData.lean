@@ -59,21 +59,27 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve AlgebraicCurve IntermediateField P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve AlgebraicCurve \
+  IntermediateField \
+  P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField"
 
 noncomputable section
 
 namespace IntermediateField
-p2m_export "IntermediateField" "lift AdjoinSimple.gen ext adjoin_simple_adjoin_simple adjoinRootEquivAdjoin_symm_apply_gen adjoinRootEquivAdjoin restrictScalars adjoin_induction algebraMap_mem map"
+p2m_export "IntermediateField" "lift AdjoinSimple.gen ext adjoin_simple_adjoin_simple \
+  adjoinRootEquivAdjoin_symm_apply_gen adjoinRootEquivAdjoin restrictScalars adjoin_induction \
+  algebraMap_mem map"
 end IntermediateField
 p2m_open_scoped "IntermediateField" in
-
 scoped instance IntermediateField.W2B.instIsScalarTowerRatSubtypeMem {L : Type*} [Field L] [Algebra ℚ L]
     (F : IntermediateField ℚ L) : IsScalarTower ℚ F L :=
   IsScalarTower.of_algebraMap_eq' (by apply RingHom.ext_rat)
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsFrickeAut qExpand jq jqN ModularPolynomialData modularFunctionField jq_mem jqN_mem jGen evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin evalAtJqN evalAtJqN_X evalAtJqN_def EvalSymm PhiIrreducible"
+p2m_export "ModularCurve" "IsFrickeAut qExpand jq jqN ModularPolynomialData modularFunctionField \
+  jq_mem jqN_mem jGen evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin \
+  evalAtJqN evalAtJqN_X evalAtJqN_def EvalSymm PhiIrreducible"
 p2m_open "ModularCurve"
 
 namespace W2B
@@ -96,7 +102,7 @@ theorem algHom_ext_of_eq_on_gens {A : Type*} [DivisionRing A] [Algebra ℚ A]
           (modularFunctionField N).algebraMap_mem r⟩ : modularFunctionField N)
           = algebraMap ℚ (modularFunctionField N) r := by
         apply Subtype.ext
-        show algebraMap ℚ (LaurentSeries ℚ) r
+        change algebraMap ℚ (LaurentSeries ℚ) r
           = ((algebraMap ℚ (modularFunctionField N) r : modularFunctionField N) :
               LaurentSeries ℚ)
         rw [eq_ratCast (algebraMap ℚ (LaurentSeries ℚ)) r,
@@ -105,13 +111,13 @@ theorem algHom_ext_of_eq_on_gens {A : Type*} [DivisionRing A] [Algebra ℚ A]
       exact (congrArg f hr).trans
         ((f.commutes r).trans ((g.commutes r).symm.trans (congrArg g hr.symm)))
   | add x y hx hy ihx ihy =>
-      show f (⟨x, hx⟩ + ⟨y, hy⟩) = g (⟨x, hx⟩ + ⟨y, hy⟩)
+      change f (⟨x, hx⟩ + ⟨y, hy⟩) = g (⟨x, hx⟩ + ⟨y, hy⟩)
       rw [map_add, map_add, ihx, ihy]
   | inv x hx ih =>
-      show f (⟨x, hx⟩⁻¹) = g (⟨x, hx⟩⁻¹)
+      change f (⟨x, hx⟩⁻¹) = g (⟨x, hx⟩⁻¹)
       rw [map_inv₀, map_inv₀, ih]
   | mul x y hx hy ihx ihy =>
-      show f (⟨x, hx⟩ * ⟨y, hy⟩) = g (⟨x, hx⟩ * ⟨y, hy⟩)
+      change f (⟨x, hx⟩ * ⟨y, hy⟩) = g (⟨x, hx⟩ * ⟨y, hy⟩)
       rw [map_mul, map_mul, ihx, ihy]
 
 variable {N}
@@ -121,9 +127,9 @@ theorem exists_isFrickeAut_of_endo (φ : modularFunctionField N →ₐ[ℚ] modu
     ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ := by
   have hcomp : φ.comp φ = AlgHom.id ℚ (modularFunctionField N) := by
     refine algHom_ext_of_eq_on_gens N ?_ ?_
-    · show φ (φ (⟨jq, jq_mem N⟩ : modularFunctionField N)) = (⟨jq, jq_mem N⟩ : modularFunctionField N)
+    · change φ (φ (⟨jq, jq_mem N⟩ : modularFunctionField N)) = (⟨jq, jq_mem N⟩ : modularFunctionField N)
       rw [h1, h2]
-    · show φ (φ (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)
+    · change φ (φ (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)
       rw [h2, h1]
   exact ⟨AlgEquiv.ofAlgHom φ φ hcomp hcomp, h1, h2⟩
 
@@ -159,9 +165,9 @@ def frickeBaseHom : ℚ⟮jq⟯ →+* LaurentSeries ℚ :=
 theorem frickeBaseHom_comp_evalAtJGen :
     (frickeBaseHom N).comp evalAtJGen = evalAtJqN N := by
   refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-  show frickeBaseHom N (evalAtJGen Polynomial.X) = evalAtJqN N Polynomial.X
+  change frickeBaseHom N (evalAtJGen Polynomial.X) = evalAtJqN N Polynomial.X
   rw [evalAtJqN_X]
-  show frickeBaseHom N (Polynomial.eval₂ (Int.castRingHom ℚ⟮jq⟯) jGen Polynomial.X) = jqN N
+  change frickeBaseHom N (Polynomial.eval₂ (Int.castRingHom ℚ⟮jq⟯) jGen Polynomial.X) = jqN N
   rw [Polynomial.eval₂_X]
   rfl
 
@@ -233,22 +239,25 @@ def frickeAbsoluteHom (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
 
 theorem frickeAbsoluteHom_jInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
     frickeAbsoluteHom data hsymm hirr (⟨jq, jq_mem N⟩ : modularFunctionField N) = jqN N := by
-  show frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ : modularFunctionField N)) = jqN N
-  rw [show (relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ : modularFunctionField N) = algebraMap ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN N⟯ jGen from
+  change frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ : modularFunctionField N)) = jqN N
+  rw [show (relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ : modularFunctionField N) = algebraMap ℚ⟮jq⟯
+    ℚ⟮jq⟯⟮jqN N⟯ jGen from
     Subtype.ext rfl]
   rw [frickeRelativeHom_algebraMap]
   rfl
 
 theorem frickeAbsoluteHom_jNInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
     frickeAbsoluteHom data hsymm hirr (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = jq := by
-  show frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = jq
-  rw [show (relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = AdjoinSimple.gen ℚ⟮jq⟯ (jqN N) from
+  change frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = jq
+  rw [show (relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) =
+    AdjoinSimple.gen ℚ⟮jq⟯ (jqN N) from
     Subtype.ext rfl]
   exact frickeRelativeHom_gen data hsymm hirr
 
 theorem mem_of_apply_gens_mem (f : modularFunctionField N →+* LaurentSeries ℚ)
     (E : IntermediateField ℚ (LaurentSeries ℚ))
-    (hj : f (⟨jq, jq_mem N⟩ : modularFunctionField N) ∈ E) (hjN : f (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) ∈ E) (x : modularFunctionField N) :
+    (hj : f (⟨jq, jq_mem N⟩ : modularFunctionField N) ∈ E)
+    (hjN : f (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) ∈ E) (x : modularFunctionField N) :
     f x ∈ E := by
   obtain ⟨x, hx⟩ := x
   induction hx using IntermediateField.adjoin_induction with
@@ -261,7 +270,7 @@ theorem mem_of_apply_gens_mem (f : modularFunctionField N →+* LaurentSeries �
           (modularFunctionField N).algebraMap_mem r⟩ : modularFunctionField N)
           = (r : modularFunctionField N) := by
         apply Subtype.ext
-        show algebraMap ℚ (LaurentSeries ℚ) r
+        change algebraMap ℚ (LaurentSeries ℚ) r
           = ((r : modularFunctionField N) : LaurentSeries ℚ)
         rw [eq_ratCast (algebraMap ℚ (LaurentSeries ℚ)) r]
         norm_cast
@@ -270,11 +279,11 @@ theorem mem_of_apply_gens_mem (f : modularFunctionField N →+* LaurentSeries �
         exact SubfieldClass.ratCast_mem E r
       exact (congrArg f hr).symm ▸ hmem
   | add x y hx hy ihx ihy =>
-      show f (⟨x, hx⟩ + ⟨y, hy⟩) ∈ E
+      change f (⟨x, hx⟩ + ⟨y, hy⟩) ∈ E
       rw [map_add]
       exact add_mem ihx ihy
   | inv x hx ih =>
-      show f (⟨x, hx⟩⁻¹) ∈ E
+      change f (⟨x, hx⟩⁻¹) ∈ E
       rw [map_inv₀]
       exact inv_mem ih
   | mul x y hx hy ihx ihy =>
@@ -333,7 +342,9 @@ end Endo
 end W2B
 end ModularCurve
 
-theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) : ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ :=
+theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (hsymm : EvalSymm data.Φ)
+    (hirr : PhiIrreducible data) :
+    ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ :=
   ModularCurve.W2B.exists_isFrickeAut_of_modularPolynomialData data hsymm hirr
 
 end
@@ -347,6 +358,9 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve IntermediateField
-theorem ModularCurve.exists_isFrickeAut_of_modularPolynomialData {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) : ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ := _root_.P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.solution data hsymm hirr
+theorem ModularCurve.exists_isFrickeAut_of_modularPolynomialData {N : ℕ} [NeZero N]
+    (data : ModularPolynomialData N) (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
+    ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ :=
+  solution data hsymm hirr
 
 end publicSection

@@ -64,7 +64,8 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self"
+p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binaryFormRepSL \
+  binaryFormRepSL_apply_coe exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self"
 p2m_open "HeckeEis"
 
 open MvPolynomial
@@ -75,7 +76,8 @@ theorem UnipotentFixedAux.eq_S_mul_T_zpow_neg_mul_S_inv {h : ℤ} (g : SL(2, ℤ
     g = ModularGroup.S * ModularGroup.T ^ (-h) * ModularGroup.S⁻¹ := by
   rw [eq_mul_inv_iff_mul_eq]
   apply Subtype.ext
-  rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, hg, ModularGroup.coe_T_zpow, ModularGroup.coe_S]
+  rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, hg,
+    ModularGroup.coe_T_zpow, ModularGroup.coe_S]
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two]
 
@@ -86,7 +88,6 @@ theorem UnipotentFixedAux.binarySubst_S_X_zero_pow (R : Type*) [CommRing R] (n :
   simp [Fin.sum_univ_two]
 
 open UnipotentFixedAux in
-
 theorem SolMain.A3 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
     {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0)
     (g : SL(2, ℤ)) (hg : (g : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; h, 1])
@@ -96,7 +97,8 @@ theorem SolMain.A3 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
   set Q : ↥(BinaryForm R n) := binaryFormRepSL R n ModularGroup.S⁻¹ P with hQ
   have hQfix : binaryFormRepSL R n (ModularGroup.T ^ (-h)) Q = Q := by
     have h1 : binaryFormRepSL R n ModularGroup.S⁻¹ (binaryFormRepSL R n g P) = Q := by rw [hP]
-    rwa [hgS, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, ← Module.End.mul_apply (binaryFormRepSL R n _),
+    rwa [hgS, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, ← Module.End.mul_apply
+      (binaryFormRepSL R n _),
       ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply] at h1
   have hh' : ((-h : ℤ) : R) ≠ 0 := by rw [Int.cast_neg]; exact neg_ne_zero.mpr hh
   obtain ⟨c, hc⟩ := exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self n hh' hn Q hQfix
@@ -125,10 +127,12 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
+theorem HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self {R : Type*}
+    [CommRing R] [IsDomain R] (n : ℕ)
     {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0)
     (g : SL(2, ℤ)) (hg : (g : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; h, 1])
     (P : ↥(HeckeEis.BinaryForm R n)) (hP : HeckeEis.binaryFormRepSL R n g P = P) :
-    ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 1 ^ n := _root_.P2MW.S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self.solution n hh hn g hg P hP
+    ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 1 ^ n :=
+  solution n hh hn g hg P hP
 
 end publicSection

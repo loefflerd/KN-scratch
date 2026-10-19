@@ -57,7 +57,9 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk
 
-theorem solution {L F : Type*} [Field L] [Field F] [Algebra L F] (E : IntermediateField L F) {j x : F} (hj : j ∈ E) (hx : x ∈ E) (h : IsIntegral (Algebra.adjoin L {j}) x) : IsIntegral (Algebra.adjoin L {(⟨j, hj⟩ : E)}) (⟨x, hx⟩ : E) := by
+theorem solution {L F : Type*} [Field L] [Field F] [Algebra L F] (E : IntermediateField L F)
+    {j x : F} (hj : j ∈ E) (hx : x ∈ E) (h : IsIntegral (Algebra.adjoin L {j}) x) :
+    IsIntegral (Algebra.adjoin L {(⟨j, hj⟩ : E)}) (⟨x, hx⟩ : E) := by
   have hmapeq : (Algebra.adjoin L {(⟨j, hj⟩ : E)}).map E.val
       = Algebra.adjoin L {j} := by
     rw [← Algebra.adjoin_image, Set.image_singleton]
@@ -102,6 +104,10 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.isIntegral_adjoin_intermediateField_mk {L F : Type*} [Field L] [Field F] [Algebra L F] (E : IntermediateField L F) {j x : F} (hj : j ∈ E) (hx : x ∈ E) (h : IsIntegral (Algebra.adjoin L {j}) x) : IsIntegral (Algebra.adjoin L {(⟨j, hj⟩ : E)}) (⟨x, hx⟩ : E) := _root_.P2MW.S_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk.solution E hj hx h
+theorem AlgebraicCurve.isIntegral_adjoin_intermediateField_mk {L F : Type*} [Field L] [Field F]
+    [Algebra L F] (E : IntermediateField L F) {j x : F} (hj : j ∈ E) (hx : x ∈ E)
+    (h : IsIntegral (Algebra.adjoin L {j}) x) :
+    IsIntegral (Algebra.adjoin L {(⟨j, hj⟩ : E)}) (⟨x, hx⟩ : E) :=
+  solution E hj hx h
 
 end publicSection

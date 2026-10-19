@@ -105,12 +105,10 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
     rw [sub_eq_zero]; rfl
   have hXalg : IsAlgebraic M X := ⟨P, hP0, hPX⟩
   have hXint : IsIntegral M X := hXalg.isIntegral
-
   have hN'fd : FiniteDimensional M M⟮X⟯ := adjoin.finiteDimensional hXint
   have hN'deg : Module.finrank M M⟮X⟯ ≤ d := by
     rw [adjoin.finrank hXint, ← hPdeg]
     exact natDegree_le_natDegree (minpoly.degree_le_of_ne_zero M X hP0 hPX)
-
   have hKX : K⟮X⟯ ≤ (M⟮X⟯).restrictScalars K := by
     rw [adjoin_simple_le_iff]
     exact mem_adjoin_simple_self M X
@@ -129,7 +127,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
   have hXN : X ∈ N := (hmemN X).mpr (mem_adjoin_simple_self M X)
   have hYN : Y ∈ N := by
     by_contra hYN
-
     set a : N := ⟨A, (hmemN A).mpr hAN⟩ with ha
     set b : N := ⟨B, (hmemN B).mpr hBN⟩ with hb
     set q : N[X] := Polynomial.X ^ 2 + (C a * Polynomial.X + C b) with hq
@@ -150,7 +147,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
       rfl
     have hqY : aeval Y q = 0 := by rw [haeval, hY]
     have hYint : IsIntegral N Y := ⟨q, hqm, by rwa [← aeval_def]⟩
-
     have hmin2 : 2 ≤ (minpoly N Y).natDegree := by
       rw [minpoly.two_le_natDegree_iff hYint]
       rintro ⟨z, hz⟩
@@ -163,7 +159,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
     have hιroot : ι Y ∈ (minpoly N Y).aroots L := by
       rw [mem_aroots', hmin]
       exact ⟨Polynomial.map_ne_zero hq0, by rw [haeval, hιY]⟩
-
     have hXNY : X ∈ N⟮Y⟯ := (N⟮Y⟯).algebraMap_mem ⟨X, hXN⟩
     have hYNY : Y ∈ N⟮Y⟯ := mem_adjoin_simple_self N Y
     have htop : N⟮Y⟯ = ⊤ := eq_top_of_forall_mem hgen _ (hpair hXNY hYNY)
@@ -174,7 +169,7 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
     have heY : e Y = AdjoinSimple.gen N Y := by
       apply Subtype.ext; rfl
     have hθY : θ Y = ι Y := by
-      show θ₀ (e Y) = ι Y
+      change θ₀ (e Y) = ι Y
       rw [heY]
       exact algHomAdjoinIntegralEquiv_symm_apply_gen N hYint ⟨ι Y, hιroot⟩
     have hθfix : ∀ z : L, z ∈ N → θ z = z := fun z hz => θ.commutes ⟨z, hz⟩
@@ -196,7 +191,8 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
 
 end WeilPairingDEGN
 
-theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) : FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d :=
+theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) :
+    FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d :=
   WeilPairingDEGN.finrank_fieldRange_le X Y hgen A B hA hB hY μ ι hιX hιY hιμ Φ Ψ hd hroot hdeg
 
 end S_IntermediateField_finrank_fieldRange_le_of_adjoin_pair_eq_top
@@ -208,6 +204,8 @@ end privateSection
 public section publicSection
 
 
-theorem IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) : FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d := _root_.P2MW.S_IntermediateField_finrank_fieldRange_le_of_adjoin_pair_eq_top.solution X Y hgen A B hA hB hY μ ι hιX hιY hιμ Φ Ψ hd hroot hdeg
+theorem IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) :
+    FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d :=
+  solution X Y hgen A B hA hB hY μ ι hιX hιY hιμ Φ Ψ hd hroot hdeg
 
 end publicSection

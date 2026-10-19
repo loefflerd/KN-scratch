@@ -198,7 +198,6 @@ lemma vcFun_rightInverse : Function.RightInverse (vcInvFun C W) (vcFun C W) := b
     exact some_eq_some (vcX_vcXInv x) (vcY_vcYInv x y)
 
 variable (C W) in
-
 noncomputable def variableChangeEquiv : (C • W).toAffine.Point ≃ W.Point :=
   ⟨vcFun C W, vcInvFun C W, vcFun_leftInverse, vcFun_rightInverse⟩
 

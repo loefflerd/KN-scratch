@@ -62,7 +62,9 @@ namespace P2MW.S_AlgebraicCurve_Divisor_evalFun_add
 
 open AlgebraicCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (f : F) {D E : Divisor K F} (hD : ∀ v ∈ D.support, Place.evalAt v f ≠ 0) (hE : ∀ v ∈ E.support, Place.evalAt v f ≠ 0) : Divisor.evalFun f (D + E) = Divisor.evalFun f D * Divisor.evalFun f E := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (f : F) {D E : Divisor K F}
+    (hD : ∀ v ∈ D.support, Place.evalAt v f ≠ 0) (hE : ∀ v ∈ E.support, Place.evalAt v f ≠ 0) :
+    Divisor.evalFun f (D + E) = Divisor.evalFun f D * Divisor.evalFun f E := by
   classical
   refine Finsupp.prod_add_index (fun v _ => zpow_zero _) (fun v hv b₁ b₂ => ?_)
   refine zpow_add₀ ?_ b₁ b₂
@@ -80,6 +82,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Divisor.evalFun_add {K F : Type*} [Field K] [Field F] [Algebra K F] (f : F) {D E : Divisor K F} (hD : ∀ v ∈ D.support, Place.evalAt v f ≠ 0) (hE : ∀ v ∈ E.support, Place.evalAt v f ≠ 0) : Divisor.evalFun f (D + E) = Divisor.evalFun f D * Divisor.evalFun f E := _root_.P2MW.S_AlgebraicCurve_Divisor_evalFun_add.solution f hD hE
+theorem AlgebraicCurve.Divisor.evalFun_add {K F : Type*} [Field K] [Field F] [Algebra K F] (f : F)
+    {D E : Divisor K F} (hD : ∀ v ∈ D.support, Place.evalAt v f ≠ 0)
+    (hE : ∀ v ∈ E.support, Place.evalAt v f ≠ 0) :
+    Divisor.evalFun f (D + E) = Divisor.evalFun f D * Divisor.evalFun f E :=
+  solution f hD hE
 
 end publicSection

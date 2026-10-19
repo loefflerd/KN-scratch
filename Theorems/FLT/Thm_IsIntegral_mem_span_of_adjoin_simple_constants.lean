@@ -71,7 +71,6 @@ namespace WLightR7b
 variable {K : Type*} [Field K] [Algebra ℂ K]
 
 omit [Algebra ℂ K] in
-
 theorem isIntegral_subring_iff (T : Subring K) (y : K) :
     IsIntegral ↥T y ↔ ∃ p : K[X], p.Monic ∧ (∀ n, p.coeff n ∈ T) ∧ p.eval y = 0 := by
   constructor
@@ -88,7 +87,6 @@ theorem isIntegral_subring_iff (T : Subring K) (y : K) :
     rw [← Polynomial.eval_map, hq, hp]
 
 omit [Algebra ℂ K] in
-
 theorem isIntegral_subalgebra_iff {R₀ : Type*} [CommRing R₀] [Algebra R₀ K]
     (T : Subalgebra R₀ K) (y : K) :
     IsIntegral ↥T y ↔ ∃ p : K[X], p.Monic ∧ (∀ n, p.coeff n ∈ T) ∧ p.eval y = 0 := by
@@ -106,15 +104,14 @@ theorem isIntegral_subalgebra_iff {R₀ : Type*} [CommRing R₀] [Algebra R₀ K
     rw [← Polynomial.eval_map, hq, hp]
 
 omit [Algebra ℂ K] in
-
-theorem isIntegral_adjoin_iff_closure {R₀ : Type*} [CommRing R₀] [Algebra R₀ K] (B : Set K) (y : K) :
+theorem isIntegral_adjoin_iff_closure {R₀ : Type*} [CommRing R₀] [Algebra R₀ K] (B : Set K) (y : K)
+    :
     IsIntegral ↥(Algebra.adjoin R₀ B) y ↔
       IsIntegral ↥(Subring.closure (Set.range (algebraMap R₀ K) ∪ B)) y := by
   rw [isIntegral_subalgebra_iff, isIntegral_subring_iff]
   simp only [Algebra.mem_adjoin_iff]
 
 omit [Algebra ℂ K] in
-
 theorem isIntegral_of_isIntegral_adjoin_singleton {A : Type*} [CommRing A] [Algebra A K] {r z : K}
     (hr : IsIntegral A r) (hz : IsIntegral ↥(Algebra.adjoin A {r}) z) : IsIntegral A z := by
   have : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
@@ -187,7 +184,6 @@ theorem root_minpoly_KFld_eq_algebraMap {c : ℂ} (hc : IsIntegral ↥F c) {r : 
   exact ⟨minpoly ↥F c, minpoly.monic hc, by rwa [← Polynomial.aeval_def]⟩
 
 attribute [local instance] Classical.propDecidable in
-
 theorem card_rootFinset_minpoly_KFld {c : ℂ} (hc : IsIntegral ↥F c) :
     ((minpoly ↥(KFld F S) (algebraMap ℂ K c)).aroots K).toFinset.card =
       (minpoly ↥(KFld F S) (algebraMap ℂ K c)).natDegree := by
@@ -234,7 +230,6 @@ theorem closure_adjoin_le {c : ℂ} :
       ⟨y, IntermediateField.subset_adjoin ↥F S hy⟩
 
 variable (B) in
-
 theorem exists_lift_of_mem_adjoin (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegral ↥F c) {y : K}
     (hy : y ∈ Algebra.adjoin ↥(IntermediateField.adjoin ↥F {c}) B) :
     ∃ y' : ↥(IntermediateField.adjoin ↥(KFld F S) {algebraMap ℂ K c}),
@@ -278,7 +273,6 @@ theorem exists_lift_of_mem_adjoin (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegral ↥
       rw [map_mul]; exact Subalgebra.mul_mem _ (hx φ) (hy φ)⟩
 
 attribute [local instance] Classical.propDecidable in
-
 theorem isIntegral_coeff_lagrangeBasis {s : Finset K}
     (hs : ∀ r ∈ s, ∃ a : ℂ, IsIntegral ↥F a ∧ algebraMap ℂ K a = r)
     {r : K} (hr : r ∈ s) (k : ℕ) :
@@ -312,7 +306,6 @@ theorem isIntegral_coeff_lagrangeBasis {s : Finset K}
     (isAlgebraic_iff_isIntegral.mp (mem_algebraicClosure_iff.mp ha))
 
 variable (B S) in
-
 theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegral ↥F c) {x : K}
     (hxK : x ∈ Subfield.closure
       (⇑(algebraMap ℂ K) '' (IntermediateField.adjoin ↥F {c} : Set ℂ) ∪ S))
@@ -408,7 +401,8 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
   have hYeval : ∀ r ∈ s, Y.eval (id r) = zf r := by
     intro r hr
     have hr' : r ∈ roots := Multiset.mem_toFinset.mp hr
-    simp only [zf, dite_eq_left hr', id, hZ2 r hr', Y, Polynomial.eval_finsetSum, Polynomial.eval_mul,
+    simp only [zf, dite_eq_left hr', id, hZ2 r hr', Y, Polynomial.eval_finsetSum,
+      Polynomial.eval_mul,
       Polynomial.eval_C, Polynomial.eval_pow, Polynomial.eval_X]
   have hY : Y = Lagrange.interpolate s id zf :=
     Lagrange.eq_interpolate_of_eval_eq zf (Set.injOn_id _) hYdeg hYeval
@@ -496,6 +490,7 @@ theorem IsIntegral.mem_span_of_adjoin_simple_constants {K : Type*} [Field K] [Al
     (hyB : IsIntegral ↥(Subring.closure
       (⇑(algebraMap ℂ K) '' (IntermediateField.adjoin ↥F {c} : Set ℂ) ∪ B)) y) :
     y ∈ Submodule.span ℂ {z : K | z ∈ Subfield.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ S) ∧
-      IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ B)) z} := _root_.P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants.solution F B S hBS c hc y hyS hyB
+      IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ B)) z} :=
+  solution F B S hBS c hc y hyS hyB
 
 end publicSection

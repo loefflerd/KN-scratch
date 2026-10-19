@@ -66,14 +66,17 @@ p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow \
+  ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 section SinglePlace
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F}
+    (hf : f ∈ v.toValuationSubring) :
+    0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -89,7 +92,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F} (hf : f �
   exact Int.natCast_nonneg n
 
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem'"
-private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg' {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg' {f : F} (hf : f ≠ 0)
+    (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -182,7 +186,9 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_algebraMap_eq_mul_ord.AlgebraicCurve in
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] (w : Place K F') (v : Place K F) (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) :
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] (w : Place K F') (v : Place K F)
+    (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) :
     ∃ e : ℕ, 0 < e ∧ ∀ f : F, w.ord (algebraMap F F' f) = e * v.ord f :=
   AlgebraicCurve.Place.rowMain w v hv
 
@@ -196,6 +202,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.exists_ord_algebraMap_eq_mul_ord {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] (w : Place K F') (v : Place K F) (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) : ∃ e : ℕ, 0 < e ∧ ∀ f : F, w.ord (algebraMap F F' f) = e * v.ord f := _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_algebraMap_eq_mul_ord.solution w v hv
+theorem AlgebraicCurve.Place.exists_ord_algebraMap_eq_mul_ord {K F F' : Type*} [Field K] [Field F]
+    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] (w : Place K F') (v : Place K F)
+    (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) :
+    ∃ e : ℕ, 0 < e ∧ ∀ f : F, w.ord (algebraMap F F' f) = e * v.ord f :=
+  solution w v hv
 
 end publicSection

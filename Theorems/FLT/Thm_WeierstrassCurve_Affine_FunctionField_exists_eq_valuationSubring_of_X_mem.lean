@@ -64,15 +64,18 @@ open scoped Polynomial.Bivariate nonZeroDivisors
 p2m_open "Polynomial Polynomial.Bivariate.Polynomial IsDedekindDomain"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ Affine.CoordinateRing mk a₄ a₂ a₆ Affine.FunctionField toAffine Affine.Point Affine.CoordinateRing.mk Affine.polynomial"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ Affine.CoordinateRing mk a₄ a₂ a₆ Affine.FunctionField \
+  toAffine Affine.Point Affine.CoordinateRing.mk Affine.polynomial"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing CoordinateRing.smul FunctionField Point CoordinateRing.mk CoordinateRing.exists_smul_basis_eq polynomial"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing CoordinateRing.smul FunctionField Point \
+  CoordinateRing.mk CoordinateRing.exists_smul_basis_eq polynomial"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {K : Type*} [Field K] (W : Affine K)
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul YClass mk exists_smul_basis_eq YClass_ne_zero"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul YClass mk exists_smul_basis_eq \
+  YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 lemma mk_Y_ne_zero : mk W Y ≠ 0 := by
@@ -168,7 +171,8 @@ end FunctionField
 
 end WeierstrassCurve.Affine
 
-theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing] (O : ValuationSubring W.toAffine.FunctionField) (hO : O ≠ ⊤) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∈ O) : ∃ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, O = (v.valuation W.toAffine.FunctionField).valuationSubring :=
+theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing] (O : ValuationSubring W.toAffine.FunctionField) (hO : O ≠ ⊤) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∈ O) :
+    ∃ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, O = (v.valuation W.toAffine.FunctionField).valuationSubring :=
   WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem_aux W.toAffine O hO hK hX
 
 end S_WeierstrassCurve_Affine_FunctionField_exists_eq_valuationSubring_of_X_mem
@@ -179,6 +183,8 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem {K : Type*} [Field K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing] (O : ValuationSubring W.toAffine.FunctionField) (hO : O ≠ ⊤) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∈ O) : ∃ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, O = (v.valuation W.toAffine.FunctionField).valuationSubring := _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_valuationSubring_of_X_mem.solution W O hO hK hX
+theorem WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem {K : Type*} [Field K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing] (O : ValuationSubring W.toAffine.FunctionField) (hO : O ≠ ⊤) (hK : ∀ c : K, algebraMap K W.toAffine.FunctionField c ∈ O) (hX : algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField (WeierstrassCurve.Affine.CoordinateRing.mk W.toAffine (Polynomial.C Polynomial.X)) ∈ O) :
+    ∃ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, O = (v.valuation W.toAffine.FunctionField).valuationSubring :=
+  solution W O hO hK hX
 
 end publicSection

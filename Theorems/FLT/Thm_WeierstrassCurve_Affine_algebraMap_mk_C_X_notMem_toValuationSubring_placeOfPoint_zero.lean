@@ -70,10 +70,12 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 universe u
 
 theorem solution
-    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    {F : Type u} [Field F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F}
+    [W.IsElliptic]
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] :
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (Polynomial.C Polynomial.X))
       ∉ (placeOfPoint (0 : W.Point)).toValuationSubring := by
+  classical
   intro hXO
   have : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
   obtain ⟨w, hw⟩ := WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem W
@@ -87,7 +89,8 @@ theorem solution
   have h2 : placeOfPoint (0 : W.Point) = Place.ofHeightOneSpectrum (K := F) w :=
     AlgebraicCurve.Place.ext (by rw [Place.ofHeightOneSpectrum_toValuationSubring]; exact hw)
   have h3 : (Point.some a b hns : W.Point) = 0 :=
-    (pointEquivPlace (W := W)).injective (by rw [pointEquivPlace_apply, pointEquivPlace_apply, h1, h2])
+    (pointEquivPlace (W := W)).injective (by rw [pointEquivPlace_apply, pointEquivPlace_apply, h1,
+      h2])
   exact absurd h3 (by rintro ⟨⟩)
 
 end S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
@@ -103,9 +106,13 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
 universe u
 theorem WeierstrassCurve.Affine.algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
-    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    {F : Type u} [Field F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F}
+    [W.IsElliptic]
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] :
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (Polynomial.C Polynomial.X))
-      ∉ (placeOfPoint (0 : W.Point)).toValuationSubring := _root_.P2MW.S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero.solution
+      ∉ (placeOfPoint (0 : W.Point)).toValuationSubring := by
+  classical
+  exact
+    solution
 
 end publicSection

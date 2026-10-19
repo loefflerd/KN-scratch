@@ -105,10 +105,15 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open scoped MatrixGroups
-p2m_open "AlgebraicCurve IntermediateField KaehlerDifferential ModularCurve P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve"
+p2m_open "AlgebraicCurve IntermediateField KaehlerDifferential ModularCurve \
+  P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpFunctionFieldC coeffMap coeffMap_single coeffMap_coeffMap coeffMap_congr algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff jqModC map_jqModC ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728 JOneES.exists_transcendental_finiteDimensional_laurentBaseChange transcendental_jqModC"
+p2m_export "ModularCurve" "qExpFunctionFieldC coeffMap coeffMap_single coeffMap_coeffMap \
+  coeffMap_congr algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange \
+  coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff jqModC map_jqModC \
+  ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728 \
+  JOneES.exists_transcendental_finiteDimensional_laurentBaseChange transcendental_jqModC"
 namespace RiemannHurwitzCount
 p2m_open "ModularCurve"
 
@@ -141,17 +146,17 @@ theorem with_ratFunc {P : Prop}
   have hsq : RingHom.comp (algebraMap (RatFunc k) F) (e.symm.toRingEquiv : k⟮x⟯ →+* RatFunc k)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap k⟮x⟯ F) := by
     ext y
-    show algebraMap k⟮x⟯ F (e (e.symm y)) = algebraMap k⟮x⟯ F y
+    change algebraMap k⟮x⟯ F (e (e.symm y)) = algebraMap k⟮x⟯ F y
     rw [e.apply_symm_apply]
   have : IsScalarTower k (RatFunc k) F := IsScalarTower.of_algebraMap_eq fun a => by
-    show algebraMap k F a = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) a))
+    change algebraMap k F a = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) a))
     rw [e.commutes, ← IsScalarTower.algebraMap_apply]
   have hfd : FiniteDimensional (RatFunc k) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   have : Algebra.IsSeparable (RatFunc k) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   have hX : algebraMap (RatFunc k) F RatFunc.X = x := by
-    show algebraMap k⟮x⟯ F (e RatFunc.X) = x
+    change algebraMap k⟮x⟯ F (e RatFunc.X) = x
     have h := RatFunc.algEquivOfTranscendental_X x hx
     exact h
   have hn : Module.finrank (RatFunc k) F = Module.finrank k⟮x⟯ F :=
@@ -238,7 +243,6 @@ theorem coeff_unique {η : Ω[F⁄K]} (hη : η ≠ 0) {a b : F} (h : a • η =
   · exact absurd h1 hη
 
 include x in
-
 theorem ordDiff_eq_ordDifferential (v : Place K F) [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
     (ω : Ω[F⁄K]) : v.ordDiff ω = v.ordDifferential ω := by
   obtain ⟨t₂, ht₂, hdc⟩ := exists_dCoord_eq_D v
@@ -401,7 +405,8 @@ theorem ord_pos_of_mem_maximalIdeal (v : Place K F) {f : F} (hf0 : f ≠ 0)
   have hle : v.adicValuation f ≤ 1 := v.adicValuation_le_one_of_mem hf
   have hne : v.adicValuation f ≠ 1 := by
     intro h1
-    have hu : IsUnit (⟨f, hf⟩ : v.toValuationSubring) := (v.adicValuation_coe_eq_one_iff ⟨f, hf⟩).mp h1
+    have hu : IsUnit (⟨f, hf⟩ : v.toValuationSubring) :=
+      (v.adicValuation_coe_eq_one_iff ⟨f, hf⟩).mp h1
     exact (IsLocalRing.mem_maximalIdeal _).mp hmax hu
   have hlt : v.adicValuation f < 1 := lt_of_le_of_ne hle hne
   rw [v.adicValuation_eq_exp_neg_ord hf0, ← WithZero.exp_zero, WithZero.exp_lt_exp] at hlt
@@ -656,7 +661,6 @@ theorem T_mem_Gamma1 : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
   simp [ModularGroup.T]
 
 include hΓ in
-
 theorem ord_sub_algebraMap_le_one
     (y : laurentBaseChange ℚbar (qExpFunctionFieldC ℚ Γ))
     (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) (a : ℚbar) (ha₀ : a ≠ 0) (ha₁ : a ≠ 1728)
@@ -688,9 +692,10 @@ variable (M : ℕ) [NeZero M] (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgro
 
 local notation "FF" => laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ Γ)
 
-theorem sum_eq_sum_of_vanish {ι : Type*} [DecidableEq ι] (f : ι → ℤ) (S U : Finset ι)
+theorem sum_eq_sum_of_vanish {ι : Type*} (f : ι → ℤ) (S U : Finset ι)
     (hS : ∀ P, P ∉ S → f P = 0) (hU : ∀ P, P ∉ U → f P = 0) :
     ∑ P ∈ S, f P = ∑ P ∈ U, f P := by
+  classical
   have h1 : ∑ P ∈ S, f P = ∑ P ∈ S ∪ U, f P :=
     Finset.sum_subset Finset.subset_union_left fun P _ hPS => hS P hPS
   have h2 : ∑ P ∈ U, f P = ∑ P ∈ S ∪ U, f P :=
@@ -712,7 +717,8 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
     rw [← hy] at h
     exact (transcendental_algebraMap_iff (R := ℚbar) (A := LaurentSeries ℚbar) (S := ↥FF)
       Subtype.val_injective).mp h
-  obtain ⟨x₀, hx₀, hx₀fin⟩ := JOneES.exists_transcendental_finiteDimensional_laurentBaseChange ℚbar Γ hT
+  obtain ⟨x₀, hx₀, hx₀fin⟩ :=
+    JOneES.exists_transcendental_finiteDimensional_laurentBaseChange ℚbar Γ hT
   have := hx₀fin
   have hfin : FiniteDimensional ℚbar⟮y⟯ FF := finiteDimensional_adjoin_of_transcendental x₀ hytr
   have hsep : Algebra.IsSeparable ℚbar⟮y⟯ FF := Algebra.IsAlgebraic.isSeparable_of_perfectField
@@ -754,8 +760,10 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   set U : Finset (Place ℚbar FF) := Z₀ ∪ Z₁ ∪ Pinf with hU
   have hf_off : ∀ v, v ∉ U → f v = 0 := by
     intro v hv
-    have hv₀ : v ∉ Z₀ := fun h => hv (by rw [hU]; exact Finset.mem_union_left _ (Finset.mem_union_left _ h))
-    have hv₁ : v ∉ Z₁ := fun h => hv (by rw [hU]; exact Finset.mem_union_left _ (Finset.mem_union_right _ h))
+    have hv₀ : v ∉ Z₀ :=
+      fun h => hv (by rw [hU]; exact Finset.mem_union_left _ (Finset.mem_union_left _ h))
+    have hv₁ : v ∉ Z₁ :=
+      fun h => hv (by rw [hU]; exact Finset.mem_union_left _ (Finset.mem_union_right _ h))
     have hvinf : v ∉ Pinf := fun h => hv (by rw [hU]; exact Finset.mem_union_right _ h)
     have hreg : 0 ≤ v.ord y := by
       by_contra h; exact hvinf ((hPinf v).mpr (not_le.mp h))
@@ -782,7 +790,8 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   have hd01 : Disjoint Z₀ Z₁ := by
     rw [Finset.disjoint_left]
     intro v hv₀ hv₁
-    have h₀ : 0 < v.ord (y - algebraMap ℚbar FF 0) := by rw [map_zero, sub_zero]; exact (hZ₀ v).mp hv₀
+    have h₀ : 0 < v.ord (y - algebraMap ℚbar FF 0) :=
+      by rw [map_zero, sub_zero]; exact (hZ₀ v).mp hv₀
     exact not_ord_sub_pos_of_ord_sub_pos v h1728ne.symm h₀ ((hZ₁ v).mp hv₁)
   have hd0inf : Disjoint Z₀ Pinf := by
     rw [Finset.disjoint_left]
@@ -876,6 +885,7 @@ theorem ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma
             ({y} : Set (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
               (ModularCurve.qExpFunctionFieldC ℚ Γ))))
           (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) +
-        2 := _root_.P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.solution M Γ hΓ y hy
+        2 :=
+  solution M Γ hΓ y hy
 
 end publicSection

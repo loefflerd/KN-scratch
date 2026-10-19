@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv
+Based on Prove2Me node
+WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv
 (64076d31-9622-5011-95f6-dfae78c88a10) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 9f980d52-af45-58dd-8b36-299c979bed84
@@ -56,8 +57,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_baseChange_variableChange_smul_algEquiv
-
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
@@ -65,13 +64,16 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     ∃ φ : ((γ • W).baseChange K).toAffine.Point ≃+ (W.baseChange K).toAffine.Point,
       ∀ (σ : K ≃ₐ[F] K) (P : ((γ • W).baseChange K).toAffine.Point), φ (σ • P) = σ • φ P :=
   WeierstrassCurve.exists_addEquiv_point_of_variableChange_eq K γ⁻¹ (inv_smul_smul γ W)
-end S_WeierstrassCurve_exists_addEquiv_point_baseChange_variableChange_smul_algEquiv
-end P2MW
 
 end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (γ : WeierstrassCurve.VariableChange F) : ∃ φ : ((γ • W).baseChange K).toAffine.Point ≃+ (W.baseChange K).toAffine.Point, ∀ (σ : K ≃ₐ[F] K) (P : ((γ • W).baseChange K).toAffine.Point), φ (σ • P) = σ • φ P := _root_.P2MW.S_WeierstrassCurve_exists_addEquiv_point_baseChange_variableChange_smul_algEquiv.solution W γ
+theorem WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv {F K : Type*}
+    [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F)
+    (γ : WeierstrassCurve.VariableChange F) :
+    ∃ φ : ((γ • W).baseChange K).toAffine.Point ≃+ (W.baseChange K).toAffine.Point,
+      ∀ (σ : K ≃ₐ[F] K) (P : ((γ • W).baseChange K).toAffine.Point), φ (σ • P) = σ • φ P :=
+  solution W γ
 
 end publicSection

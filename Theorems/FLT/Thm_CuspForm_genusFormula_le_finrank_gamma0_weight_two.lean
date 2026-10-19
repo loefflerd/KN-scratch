@@ -149,7 +149,8 @@ theorem solution (N : ℕ) [NeZero N] :
   have hv : LinearIndependent (AlgebraicClosure ℚ) v := by
     rw [Fintype.linearIndependent_iff]
     intro d hd
-    have hsum : Θ ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) = 0 := by
+    have hsum : Θ ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) = 0 :=
+      by
       rw [Submodule.coe_sum, map_sum]
       ext n
       have hdn := congr_fun hd n
@@ -167,8 +168,10 @@ theorem solution (N : ℕ) [NeZero N] :
   have hvC : LinearIndependent ℂ (fun i n => ι₀ (v i n)) :=
     linearIndependent_ringHom_comp_of_linearIndependent ι₀ hv
   have hΓ := CongruenceSubgroup.one_mem_strictPeriods_Gamma0 N
-  have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) 2, ⇑(φ + ψ) = ⇑φ + ⇑ψ := fun _ _ => rfl
-  have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) 2), ⇑(x • φ) = x • ⇑φ := fun _ _ => rfl
+  have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) 2, ⇑(φ + ψ) = ⇑φ + ⇑ψ :=
+    fun _ _ => rfl
+  have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) 2), ⇑(x • φ) = x • ⇑φ :=
+    fun _ _ => rfl
   have hczero : ⇑(0 : CuspForm (CongruenceSubgroup.Gamma0 N) 2) = 0 := rfl
   have hqadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) 2,
       UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
@@ -231,6 +234,7 @@ public section publicSection
 
 
 theorem CuspForm.genusFormula_le_finrank_gamma0_weight_two (N : ℕ) [NeZero N] :
-    ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ) := _root_.P2MW.S_CuspForm_genusFormula_le_finrank_gamma0_weight_two.solution N
+    ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ) :=
+  solution N
 
 end publicSection

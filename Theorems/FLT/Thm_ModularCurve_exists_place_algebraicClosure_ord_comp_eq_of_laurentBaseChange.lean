@@ -71,11 +71,15 @@ namespace P2MW.S_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_of_laure
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve P2MW.S_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange.ModularCurve"
+p2m_open "AlgebraicCurve ModularCurve \
+  P2MW.S_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange.ModularCurve"
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpFunctionFieldC coeffMap coeffMap_single coeffMap_coeffMap coeffMap_congr algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff JOneES.exists_transcendental_finiteDimensional_laurentBaseChange"
+p2m_export "ModularCurve" "qExpFunctionFieldC coeffMap coeffMap_single coeffMap_coeffMap \
+  coeffMap_congr algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange \
+  coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff \
+  JOneES.exists_transcendental_finiteDimensional_laurentBaseChange"
 namespace T1Aux
 p2m_open "ModularCurve"
 
@@ -84,7 +88,8 @@ section CoeffLift
 variable {L : Type*} [Field L] {Ω : Type*} [Field Ω] [Algebra ℚ L] [Algebra ℚ Ω] (τ : L →ₐ[ℚ] Ω)
   (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
 
-theorem coeffMap_coeffEmb' (x : LaurentSeries ℚ) : coeffMap τ.toRingHom (coeffEmb L x) = coeffEmb Ω x := by
+theorem coeffMap_coeffEmb' (x : LaurentSeries ℚ) :
+    coeffMap τ.toRingHom (coeffEmb L x) = coeffEmb Ω x := by
   change coeffMap _ (coeffMap _ x) = coeffMap _ x
   rw [coeffMap_coeffMap]
   exact coeffMap_congr (RingHom.ext_rat _ _) x
@@ -121,7 +126,8 @@ theorem coe_liftRingHom (x : ↥(laurentBaseChange L F₀)) :
     ((liftRingHom τ F₀ x : ↥(laurentBaseChange Ω F₀)) : LaurentSeries Ω) = coeffMap τ.toRingHom x :=
   rfl
 
-def liftHom : letI := algebraOfLift τ F₀; ↥(laurentBaseChange L F₀) →ₐ[L] ↥(laurentBaseChange Ω F₀) :=
+def liftHom :
+    letI := algebraOfLift τ F₀; ↥(laurentBaseChange L F₀) →ₐ[L] ↥(laurentBaseChange Ω F₀) :=
   letI := algebraOfLift τ F₀
   { liftRingHom τ F₀ with
     commutes' := fun c => Subtype.ext (by
@@ -132,17 +138,19 @@ theorem coe_liftHom (x : ↥(laurentBaseChange L F₀)) :
     letI := algebraOfLift τ F₀; ((liftHom τ F₀ x : ↥(laurentBaseChange Ω F₀)) : LaurentSeries Ω) = coeffMap τ.toRingHom x :=
   rfl
 
-theorem liftHom_toRingHom : letI := algebraOfLift τ F₀; (liftHom τ F₀).toRingHom = liftRingHom τ F₀ := rfl
+theorem liftHom_toRingHom :
+    letI := algebraOfLift τ F₀; (liftHom τ F₀).toRingHom = liftRingHom τ F₀ := rfl
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem adjoin_range_liftRingHom_eq_top :
     IntermediateField.adjoin Ω (Set.range (liftRingHom τ F₀)) = ⊤ := by
   rw [eq_top_iff]
   intro z _
-  let T : IntermediateField Ω ↥(laurentBaseChange Ω F₀) := IntermediateField.adjoin Ω (Set.range (liftRingHom τ F₀))
+  let T : IntermediateField Ω ↥(laurentBaseChange Ω F₀) :=
+    IntermediateField.adjoin Ω (Set.range (liftRingHom τ F₀))
   let T' : Subfield (LaurentSeries Ω) := T.toSubfield.map (laurentBaseChange Ω F₀).val.toRingHom
-  have hgens : Set.range (algebraMap Ω (LaurentSeries Ω)) ∪ (⇑(coeffEmb Ω) '' (F₀ : Set (LaurentSeries ℚ))) ⊆ T' := by
+  have hgens : Set.range (algebraMap Ω (LaurentSeries Ω)) ∪ (⇑(coeffEmb Ω) '' (F₀ : Set (LaurentSeries ℚ))) ⊆ T' :=
+    by
     rintro w (⟨a, rfl⟩ | ⟨x, hx, rfl⟩)
     · exact ⟨algebraMap Ω ↥(laurentBaseChange Ω F₀) a, T.algebraMap_mem a, rfl⟩
     · refine ⟨liftRingHom τ F₀ ⟨coeffEmb L x, coeffEmb_mem_laurentBaseChange L hx⟩,
@@ -180,12 +188,16 @@ theorem solution
     refine RingHom.ext fun f => Subtype.ext ?_
     rw [hΨ, coe_liftRingHom]
   let algQK : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
-  let algQF : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := algebraOfLift τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
-  have : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  let algFF : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := Ψ.toAlgebra
-  have : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := by
+  let algQF : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+    algebraOfLift τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
+  have : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+    IsScalarTower.of_algebraMap_eq fun _ => rfl
+  let algFF : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+    Ψ.toAlgebra
+  have : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+    by
     refine IsScalarTower.of_algebraMap_eq fun c => ?_
-    show _ = Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) c)
+    change _ = Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) c)
     rw [hΨeq]
     exact ((liftHom τ (ModularCurve.qExpFunctionFieldC ℚ Γ)).commutes c).symm
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
@@ -193,19 +205,24 @@ theorem solution
   have := hx₀fd
   have : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
     isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
-  obtain ⟨x₁, hx₁tr, hx₁fd⟩ := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange K Γ hT
-  have hgen : IntermediateField.adjoin K (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)))) = ⊤ := by
-    show IntermediateField.adjoin K (Set.range Ψ) = ⊤
+  obtain ⟨x₁, hx₁tr, hx₁fd⟩ :=
+    ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange K Γ hT
+  have hgen : IntermediateField.adjoin K (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)))) = ⊤ :=
+    by
+    change IntermediateField.adjoin K (Set.range Ψ) = ⊤
     rw [hΨeq]
     exact adjoin_range_liftRingHom_eq_top τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
-  have hwK : ∀ a : AlgebraicClosure ℚ, Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) ∈ P.toValuationSubring := by
+  have hwK : ∀ a : AlgebraicClosure ℚ, Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) ∈ P.toValuationSubring :=
+    by
     intro a
-    have : Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) = algebraMap K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) (τ a) := by
+    have : Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) = algebraMap K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) (τ a) :=
+      by
       rw [hΨeq]
       exact (liftHom τ (ModularCurve.qExpFunctionFieldC ℚ Γ)).commutes a
     rw [this]
     exact P.algebraMap_mem' (τ a)
-  have hwx : ∃ y : ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)), Ψ y ∉ P.toValuationSubring := by
+  have hwx : ∃ y : ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)), Ψ y ∉ P.toValuationSubring :=
+    by
     obtain ⟨f, hf⟩ := hP
     by_contra hall
     push Not at hall
@@ -217,7 +234,8 @@ theorem solution
     let u : (↥P.toValuationSubring)ˣ :=
       ⟨⟨Ψ f, h1⟩, ⟨(Ψ f)⁻¹, h2⟩, Subtype.ext (mul_inv_cancel₀ hf0), Subtype.ext (inv_mul_cancel₀ hf0)⟩
     exact P.ord_coe_unit u
-  obtain ⟨P₀, hP₀⟩ := Place.exists_toValuationSubring_eq_comap_ringHom (K := AlgebraicClosure ℚ) x₀ Ψ
+  obtain ⟨P₀, hP₀⟩ :=
+    Place.exists_toValuationSubring_eq_comap_ringHom (K := AlgebraicClosure ℚ) x₀ Ψ
     P.toValuationSubring hwK hwx
   obtain ⟨P', -, hP'ord, huniq⟩ := Place.exists_comap_algebraMap_eq_of_constantFieldExtension
     (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ))
@@ -250,6 +268,7 @@ theorem ModularCurve.exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseCha
     (hP : ∃ f, P.ord (Ψ f) ≠ 0) :
     ∃ P₀ : AlgebraicCurve.Place (AlgebraicClosure ℚ)
         ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)),
-      ∀ f, P.ord (Ψ f) = P₀.ord f := _root_.P2MW.S_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange.solution K Γ hT τ Ψ hΨ P hP
+      ∀ f, P.ord (Ψ f) = P₀.ord f :=
+  solution K Γ hT τ Ψ hΨ P hP
 
 end publicSection

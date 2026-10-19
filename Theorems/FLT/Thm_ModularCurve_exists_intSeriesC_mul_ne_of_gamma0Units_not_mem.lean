@@ -135,7 +135,6 @@ end FaithHelpers
 open UpperHalfPlane
 
 open scoped MatrixGroups ModularForm in
-
 theorem solution
     (K : Type*) [Field K] (M : ℕ) [NeZero M] (hM : (M : K) ≠ 0) (H : Subgroup (ZMod M)ˣ)
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M)
@@ -158,7 +157,8 @@ theorem solution
       rw [ZMod.card_units_eq_totient]
       interval_cases M <;> decide
     have : Subsingleton (ZMod M)ˣ := Fintype.card_le_one_iff_subsingleton.mp hcard
-    exact hd (by rw [Subsingleton.elim (CohCarrier.gamma0Units M ⟨γ, hγ⟩) 1]; exact Subgroup.one_mem _)
+    exact hd (by
+      rw [Subsingleton.elim (CohCarrier.gamma0Units M ⟨γ, hγ⟩) 1]; exact Subgroup.one_mem _)
   obtain ⟨R, hRq, hRs⟩ :=
     ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq M hM3
   have hRq' : ∀ c : (ZMod M)ˣ,
@@ -318,7 +318,8 @@ theorem solution
   have h1A : (1 : (ZMod M)ˣ) ∈ A := (hmemA 1).mpr H'.one_mem
   have hm1A : (-1 : (ZMod M)ˣ) ∈ A :=
     (hmemA _).mpr (hH' ▸ Subgroup.mem_sup_right (Subgroup.mem_zpowers _))
-  have hpf1 : PowerSeries.coeff 1 (PowerSeries.mk fun n => (∑ c ∈ A, faithCoeff M (c * 1) n) / 2) = 1 := by
+  have hpf1 : PowerSeries.coeff 1 (PowerSeries.mk fun n => (∑ c ∈ A, faithCoeff M (c * 1) n) / 2) = 1 :=
+    by
     rw [PowerSeries.coeff_mk, hcount A 1, hpair A h1A hm1A]
     norm_num
   have hpg1 : PowerSeries.coeff 1 (PowerSeries.mk fun n =>
@@ -386,6 +387,7 @@ theorem ModularCurve.exists_intSeriesC_mul_ne_of_gamma0Units_not_mem
       (⇑g₁ : UpperHalfPlane → ℂ) = c • ((⇑g : UpperHalfPlane → ℂ) ∣[k] (γ : GL (Fin 2) ℝ)) ∧
       ModularCurve.intSeriesC K pg ≠ 0 ∧ ModularCurve.intSeriesC K pg₁ ≠ 0 ∧
       ModularCurve.intSeriesC K pf * ModularCurve.intSeriesC K pg₁ ≠
-        ModularCurve.intSeriesC K pg * ModularCurve.intSeriesC K pf₁ := _root_.P2MW.S_ModularCurve_exists_intSeriesC_mul_ne_of_gamma0Units_not_mem.solution K M hM H γ hγ hd
+        ModularCurve.intSeriesC K pg * ModularCurve.intSeriesC K pf₁ :=
+  solution K M hM H γ hγ hd
 
 end publicSection

@@ -56,7 +56,8 @@ where $g$ is the genus of $\Gamma_0(N)\backslash\mathbb{H}^*$ as computed from t
 signature data (index, elliptic points of order $2$ and $3$, cusps). It is stated purely in terms of
 the permutation representation of $\mathrm{SL}_2(\mathbb{Z})$ on the cosets of $\Gamma_0(N)$, and is
 used by
-[`ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula`](thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula)
+[`ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula`]
+(thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula)
 to bound the dimension of parabolic homomorphisms by twice the genus formula.
 
 ## Explanation of the source proof
@@ -90,7 +91,7 @@ theorem orbQ_surjective : Function.Surjective (orbQ σ) := by
 
 theorem orbQ_apply_perm (x : X) : orbQ σ (σ x) = orbQ σ x := by
   apply Quotient.sound
-  show σ x ∈ MulAction.orbit (Subgroup.zpowers σ) x
+  change σ x ∈ MulAction.orbit (Subgroup.zpowers σ) x
   exact ⟨⟨σ, Subgroup.mem_zpowers σ⟩, rfl⟩
 
 theorem natCard_fixedBy_eq (τ : Equiv.Perm X) :
@@ -283,10 +284,13 @@ theorem ker_orbFun_le (hconn : Connected σ₂ σ₃ K) :
     have hc : a (orbQ σ₂ x₀) = a (orbQ σ₂ x) := hconst x₀ x
     rw [hc]; linear_combination (-1 : K) * this
 
-theorem relSpace_rank_bound (h2 : σ₂ ^ 2 = 1) (h3 : σ₃ ^ 3 = 1) (hconn : Connected σ₂ σ₃ K) :
+omit [Fintype X] in
+theorem relSpace_rank_bound [Finite X]
+    (h2 : σ₂ ^ 2 = 1) (h3 : σ₃ ^ 3 = 1) (hconn : Connected σ₂ σ₃ K) :
     6 * Module.finrank K (relSpace K σ₂ σ₃) + 3 * Nat.card {x // σ₂ x = x}
         + 4 * Nat.card {x // σ₃ x = x} ≤ 6 + Nat.card X := by
   classical
+  let := Fintype.ofFinite X
   have hO2 := two_mul_natCard_orb σ₂ h2
   have hO3 := three_mul_natCard_orb σ₃ h3
   have hco := Subspace.finrank_add_finrank_dualCoannihilator_eq
@@ -297,7 +301,8 @@ theorem relSpace_rank_bound (h2 : σ₂ ^ 2 = 1) (h3 : σ₃ ^ 3 = 1) (hconn : C
   have hXK : Module.finrank K (X → K) = Nat.card X := by
     rw [Module.finrank_fintype_fun_eq_card, Nat.card_eq_fintype_card]
   have hrn := LinearMap.finrank_range_add_finrank_ker (orbFun K σ₂ σ₃)
-  have hdom : Module.finrank K ((Orb σ₂ → K) × (Orb σ₃ → K)) = Nat.card (Orb σ₂) + Nat.card (Orb σ₃) := by
+  have hdom : Module.finrank K ((Orb σ₂ → K) × (Orb σ₃ → K)) =
+      Nat.card (Orb σ₂) + Nat.card (Orb σ₃) := by
     rw [Module.finrank_prod, Module.finrank_fintype_fun_eq_card, Module.finrank_fintype_fun_eq_card,
       Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
   have hker : Module.finrank K (LinearMap.ker (orbFun K σ₂ σ₃)) ≤ 1 := by
@@ -356,7 +361,6 @@ theorem neg_one_mem_Gamma0 (N : ℕ) : (-1 : SL(2, ℤ)) ∈ Gamma0 N := by simp
 variable (Γ : Subgroup SL(2, ℤ)) {K : Type*} [Field K]
 
 open Classical in
-
 noncomputable def Phi (φ : Additive Γ →+ K) (g : SL(2, ℤ)) : K :=
   if h : g ∈ Γ then φ (Additive.ofMul ⟨g, h⟩) else 0
 
@@ -483,7 +487,8 @@ theorem nX_mk {φ : Additive (Gamma0 N) →+ K} (hφ : IsParabolicHom (Gamma0 N)
   unfold nX
   rw [hγ]
   unfold nSL
-  rw [_root_.mul_inv_rev, mul_assoc, Ppot_mul_left hφ c (inv_mem γ.2), Ppot_mul_left hφ c (inv_mem γ.2)]
+  rw [_root_.mul_inv_rev, mul_assoc, Ppot_mul_left hφ c (inv_mem γ.2), Ppot_mul_left hφ c (inv_mem
+    γ.2)]
   ring
 
 theorem nSL_two_term (φ : Additive (Gamma0 N) →+ K) (c : CuspSpace N → K) (g : SL(2, ℤ)) :
@@ -555,7 +560,6 @@ theorem sig3_cube : sig3 N ^ 3 = 1 := by
       ST_cube, mk_neg_one_mul]
 
 omit [Field K] in
-
 theorem connected : Connected (sig2 N) (sig3 N) K := by
   intro f h2 h3 x y
   have hS : ∀ x : X N, f ((S : SL(2, ℤ)) • x) = f x := h2
@@ -647,7 +651,7 @@ theorem thetaPlus_injective : Function.Injective (thetaPlus K N) := by
   have key : ∀ k : SL(2, ℤ), k ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ)) →
       ∀ h : SL(2, ℤ), Ppot N φ c (h * k) = Ppot N φ c h := by
     intro k hk
-    refine Subgroup.closure_induction (p := fun k _ => ∀ h : SL(2, ℤ), Ppot N φ c (h * k) = Ppot N φ c h)
+    refine Subgroup.closure_induction (p := fun k _ => ∀ h, Ppot N φ c (h * k) = Ppot N φ c h)
       ?_ ?_ ?_ ?_ hk
     · intro k hk h
       rcases hk with rfl | rfl
@@ -752,6 +756,7 @@ theorem ModularCurve.Period.six_mul_finrank_parabolicHoms_add_le_index (N : ℕ)
         + 3 * Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x}
         + 4 * Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N //
             (ModularGroup.S * ModularGroup.T) • x = x} ≤
-      12 + (CongruenceSubgroup.Gamma0 N).index := _root_.P2MW.S_ModularCurve_Period_six_mul_finrank_parabolicHoms_add_le_index.solution N K
+      12 + (CongruenceSubgroup.Gamma0 N).index :=
+  solution N K
 
 end publicSection

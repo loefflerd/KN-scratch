@@ -96,6 +96,7 @@ theorem ModularCurve.ramificationIndex_eq_ord_sub_of_restrict_eq_jLinePlace1728 
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 →
-      (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) - 1728) := _root_.P2MW.S_ModularCurve_ramificationIndex_eq_ord_sub_of_restrict_eq_jLinePlace1728.solution N
+      (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) - 1728) :=
+  solution N
 
 end publicSection

@@ -111,7 +111,8 @@ theorem eq_C_of_isAlgebraic {y : LaurentSeries K} (hy : IsAlgebraic K y) :
   have hcoef : ∀ n < (1 : ℤ), z.coeff n = 0 := by
     intro n hn
     rcases lt_or_eq_of_le (Int.lt_add_one_iff.mp (by simpa using hn) : n ≤ 0) with h | h
-    · simp [hz, HahnSeries.coeff_sub, hy0 n h, HahnSeries.C_apply, HahnSeries.coeff_single_of_ne h.ne]
+    · simp [hz, HahnSeries.coeff_sub, hy0 n h, HahnSeries.C_apply, HahnSeries.coeff_single_of_ne
+        h.ne]
     · subst h; simp [hz, HahnSeries.C_apply]
   have hzval : Valued.v z ≤ WithZero.exp (-(1 : ℤ)) :=
     (LaurentSeries.valuation_le_iff_coeff_lt_eq_zero K).2 hcoef
@@ -146,7 +147,6 @@ open ModularCurve HahnSeries Polynomial IntermediateField
 variable (L : Type*) [Field L] [Algebra ℚ L] (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
 
 omit [Algebra ℚ L] in
-
 theorem eq_C_of_forall_coeff_eq_zero {x : LaurentSeries ℚ} (h : ∀ n : ℤ, n ≠ 0 → x.coeff n = 0) :
     x = HahnSeries.C (x.coeff 0) := by
   ext n
@@ -166,17 +166,18 @@ theorem transcendental_coeffEmb {x : LaurentSeries ℚ} (hx : Transcendental ℚ
     push Not at hall
     apply hx
     refine ⟨X - Polynomial.C (x.coeff 0), X_sub_C_ne_zero _, ?_⟩
-    rw [map_sub, aeval_X, aeval_C, hC, ← eq_C_of_forall_coeff_eq_zero (fun n hn => hall n hn), sub_self]
+    rw [map_sub, aeval_X, aeval_C, hC, ← eq_C_of_forall_coeff_eq_zero (fun n hn => hall n hn),
+      sub_self]
   obtain ⟨n, hn, hxn⟩ := hne
   refine JOneESAlgBC.transcendental_of_coeff_ne_zero hn ?_
   rw [coeffEmb_coeff]
   exact (map_ne_zero_iff _ (algebraMap ℚ L).injective).mpr hxn
 
 omit [Algebra ℚ L] in
-
 theorem algebraMap_rat_eq_C : algebraMap ℚ (LaurentSeries ℚ) = HahnSeries.C := Subsingleton.elim _ _
 
-theorem coeffEmb_C (c : ℚ) : coeffEmb L (HahnSeries.C c) = algebraMap L (LaurentSeries L) (algebraMap ℚ L c) := by
+theorem coeffEmb_C (c : ℚ) :
+    coeffEmb L (HahnSeries.C c) = algebraMap L (LaurentSeries L) (algebraMap ℚ L c) := by
   rw [algebraMap_laurentSeries_eq_single]
   ext n
   rw [coeffEmb_coeff, HahnSeries.C_apply]
@@ -199,7 +200,6 @@ theorem coeffEmb_mem_adjoin_of_mem_adjoin (x : LaurentSeries ℚ) {z : LaurentSe
   | mul y w _ _ hy hw => rw [map_mul]; exact mul_mem hy hw
 
 omit [Algebra ℚ L] in
-
 theorem finiteDimensional_adjoin_of_extendScalars {A : Type*} [Field A] [Algebra L A]
     (E : IntermediateField L A) (Y : E) (hle : L⟮(Y : A)⟯ ≤ E)
     (hfin : Module.Finite L⟮(Y : A)⟯ (IntermediateField.extendScalars hle)) :
@@ -227,7 +227,8 @@ theorem finite_adjoin_of_le {A : Type*} [Field A] [Algebra L A] (K₁ : Intermed
     (IntermediateField.inclusion_injective hle)
 
 omit [Algebra ℚ L] in
-theorem finite_extendScalars_of_adjoin {A : Type*} [Field A] [Algebra L A] (K₁ : IntermediateField L A)
+theorem finite_extendScalars_of_adjoin {A : Type*} [Field A] [Algebra L A]
+    (K₁ : IntermediateField L A)
     (S : Set A) (hle : K₁ ≤ IntermediateField.adjoin L S)
     [FiniteDimensional K₁ (IntermediateField.adjoin K₁ S)] :
     Module.Finite K₁ (IntermediateField.extendScalars hle) :=
@@ -379,6 +380,7 @@ theorem ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseC
       FiniteDimensional
         (IntermediateField.adjoin L
           ({x} : Set (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-        (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) := _root_.P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange.solution L Γ hT
+        (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+  solution L Γ hT
 
 end publicSection

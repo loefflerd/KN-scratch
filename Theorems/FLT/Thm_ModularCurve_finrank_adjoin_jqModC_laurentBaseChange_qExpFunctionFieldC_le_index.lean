@@ -221,7 +221,8 @@ theorem q4_coeff_zero : PowerSeries.coeff 0 q4 = 1 :=
   E_qExpansion_coeff_zero (by norm_num) (by decide)
 
 theorem qExpansion_mem_monomialSpan (m : ℕ) :
-    ∀ (k : ℤ) (hk : k = 12 * (m : ℤ)) (h : ModularForm 𝒮ℒ k), qExpansion 1 (h : ℍ → ℂ) ∈ monomialSpan m := by
+    ∀ (k : ℤ) (hk : k = 12 * (m : ℤ)) (h : ModularForm 𝒮ℒ k)
+      , qExpansion 1 (h : ℍ → ℂ) ∈ monomialSpan m := by
   induction m with
   | zero =>
     intro k hk h
@@ -247,7 +248,8 @@ theorem qExpansion_mem_monomialSpan (m : ℕ) :
     let g : ModularForm 𝒮ℒ k := h - a₀ • P
     have hg : qExpansion 1 (g : ℍ → ℂ) = qExpansion 1 (h : ℍ → ℂ) - a₀ • q4 ^ (3 * (m + 1)) := by
       simp only [g]
-      rw [FunLike.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL, FunLike.coe_smul,
+      rw [FunLike.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
+        FunLike.coe_smul,
         ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL, hP]
     have hg0 : PowerSeries.coeff 0 (qExpansion 1 (g : ℍ → ℂ)) = 0 := by
       have h4 : PowerSeries.coeff 0 (q4 ^ (3 * (m + 1))) = 1 := by
@@ -302,8 +304,8 @@ theorem card_cos_eq_index : Nat.card (Cos Γ) = Γ.index := by
     Subgroup.relIndex_top_right]
 
 omit [Γ.FiniteIndex] in
-
-theorem one_mem_strictPeriods (hT : ModularGroup.T ∈ Γ) : (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
+theorem one_mem_strictPeriods (hT : ModularGroup.T ∈ Γ) :
+    (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.mem_strictPeriods_iff]
   refine ⟨ModularGroup.T, hT, ?_⟩
   ext i j
@@ -383,7 +385,8 @@ theorem charPolyAt_eq_sum (τ : ℍ) :
     charPolyAt f g τ = ∑ j : Fin (Nat.card (Cos Γ) + 1),
       C ((ModularForm.norm 𝒮ℒ ((node _ j) • g - f)) τ) * lag (Nat.card (Cos Γ)) j := by
   classical
-  have hdeg : (charPolyAt f g τ).degree < (Finset.univ : Finset (Fin (Nat.card (Cos Γ) + 1))).card := by
+  have hdeg : (charPolyAt f g τ).degree < (Finset.univ : Finset (Fin (Nat.card (Cos Γ) + 1))).card :=
+    by
     rw [Finset.card_univ, Fintype.card_fin]
     refine lt_of_le_of_lt (degree_le_natDegree) ?_
     exact_mod_cast Nat.lt_succ_of_le (natDegree_charPolyAt_le f g τ)
@@ -406,7 +409,8 @@ theorem coeffForm_apply (i : ℕ) (τ : ℍ) : coeffForm f g i τ = (charPolyAt 
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [smul_apply, coeff_C_mul, smul_eq_mul, mul_comm]
 
-theorem coe_coeffForm_card : (coeffForm f g (Nat.card (Cos Γ)) : ℍ → ℂ) = ModularForm.norm 𝒮ℒ g := by
+theorem coe_coeffForm_card :
+    (coeffForm f g (Nat.card (Cos Γ)) : ℍ → ℂ) = ModularForm.norm 𝒮ℒ g := by
   funext τ
   rw [coeffForm_apply, coeff_charPolyAt_card]
 
@@ -497,7 +501,8 @@ theorem qExpansion_sum' {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (h
 variable (hT : ModularGroup.T ∈ Γ)
 include hT
 
-theorem nice_of_modularForm {k' : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k') : Nice (h : ℍ → ℂ) :=
+theorem nice_of_modularForm {k' : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k') :
+    Nice (h : ℍ → ℂ) :=
   ModularFormClass.analyticAt_cuspFunction_zero _ one_pos (one_mem_strictPeriods hT)
 
 omit hT in
@@ -528,7 +533,6 @@ theorem sum_qExpansion_coeffForm_mul_pow_eq_zero :
     qExpansion_pow' (nice_of_modularForm hT f), qExpansion_pow' (nice_of_modularForm hT g)]
 
 omit hT in
-
 theorem qExpansion_coeffForm_card_ne_zero (hg : g ≠ 0) :
     qExpansion 1 (coeffForm f g (Nat.card (Cos Γ)) : ℍ → ℂ) ≠ 0 := by
   rw [coe_coeffForm_card]
@@ -553,7 +557,6 @@ section Lift
 variable {Γ' : Subgroup SL(2, ℤ)} {k : ℤ}
 
 omit [Γ.FiniteIndex] in
-
 theorem slash_neg_SL (f : ℍ → ℂ) (hk : Even k) (δ : SL(2, ℤ)) : f ∣[k] (-δ) = f ∣[k] δ := by
   funext τ
   rw [SL_slash_apply, SL_slash_apply]
@@ -604,12 +607,10 @@ theorem isIntegralQExp_E4 : IsIntegralQExp (E₄ : ℍ → ℂ) eisenstein4 := b
 noncomputable abbrev PΔ : PowerSeries ℤ := PowerSeries.X * dedekindEtaUnit
 
 variable (Γ) in
-
 noncomputable def A12 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12 :=
   restrictForm (Subgroup.map_le_range _ Γ) ((E₄.pow 3).mcast (by norm_num))
 
 variable (Γ) in
-
 noncomputable def D12 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12 :=
   restrictForm (Subgroup.map_le_range _ Γ) (CuspForm.discriminant : ModularForm 𝒮ℒ 12)
 
@@ -666,7 +667,6 @@ theorem wq_mem : wq ∈ qExpFunctionFieldC ℚ Γ :=
     intSeriesC_E4_cube_ne_zero
 
 omit [Γ.FiniteIndex] in
-
 theorem jqModC_mul_delta (K : Type*) [Field K] :
     jqModC K * intSeriesC K PΔ = intSeriesC K (eisenstein4 ^ 3) := by
   rw [jqModC, intSeriesC, intSeriesC, jNum, mul_assoc, ← map_mul, ← map_mul,
@@ -679,13 +679,11 @@ theorem jqModC_mul_delta (K : Type*) [Field K] :
   simp
 
 omit [Γ.FiniteIndex] in
-
 theorem wq_eq_inv : wq = (jqModC ℚ)⁻¹ := by
   rw [wq, eq_comm, inv_eq_iff_eq_inv, inv_div, eq_div_iff (intSeriesC_PΔ_ne_zero ℚ),
     jqModC_mul_delta]
 
 omit [Γ.FiniteIndex] in
-
 theorem wq_transcendental : Transcendental ℚ wq := by
   intro halg
   rw [wq_eq_inv] at halg
@@ -706,7 +704,8 @@ variable (hT : ModularGroup.T ∈ Γ)
 include hT
 
 omit [Γ.FiniteIndex] in
-theorem hper : (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := FIdxNorm.one_mem_strictPeriods hT
+theorem hper :
+    (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := FIdxNorm.one_mem_strictPeriods hT
 
 omit [Γ.FiniteIndex] in
 theorem mul_mem_intFormRatiosC {a b : LaurentSeries ℚ} (ha : a ∈ intFormRatiosC ℚ Γ)
@@ -729,7 +728,8 @@ theorem add_mem_intFormRatiosC {a b : LaurentSeries ℚ} (ha : a ∈ intFormRati
   refine ⟨k₁ + k₂, f₁.mul g₂ + (g₁.mul f₂), g₁.mul g₂, pf₁ * pg₂ + pg₁ * pf₂, pg₁ * pg₂, ?_, ?_, ?_, ?_⟩
   · rw [IsIntegralQExp, map_add, map_mul, map_mul, hf₁, hf₂, hg₁, hg₂, FunLike.coe_add,
       ModularForm.qExpansion_add one_pos (hper hT), ModularForm.coe_mul, ModularForm.coe_mul,
-      ModularForm.qExpansion_mul_coe one_pos (hper hT), ModularForm.qExpansion_mul_coe one_pos (hper hT)]
+      ModularForm.qExpansion_mul_coe one_pos (hper hT), ModularForm.qExpansion_mul_coe one_pos (hper
+      hT)]
   · rw [IsIntegralQExp, map_mul, hg₁, hg₂, ModularForm.coe_mul]
     exact (ModularForm.qExpansion_mul_coe one_pos (hper hT) g₁ g₂).symm
   · rw [intSeriesC_mul]; exact mul_ne_zero hg₁0 hg₂0
@@ -764,7 +764,8 @@ theorem algebraMap_mem_intFormRatiosC (c : ℚ) :
     have : ((ModularForm.const (c.num : ℂ) : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) : ℍ → ℂ) =
         (c.num : ℂ) • ((1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) : ℍ → ℂ) := by
       funext z
-      rw [Pi.smul_apply, ModularForm.const_apply, ModularForm.one_coe_eq_one, Pi.one_apply, smul_eq_mul,
+      rw [Pi.smul_apply, ModularForm.const_apply, ModularForm.one_coe_eq_one, Pi.one_apply,
+        smul_eq_mul,
         mul_one]
     rw [this, ModularForm.qExpansion_smul one_pos (hper hT), ModularForm.qExpansion_one,
       PowerSeries.smul_eq_C_mul, mul_one, eq_intCast]
@@ -772,7 +773,8 @@ theorem algebraMap_mem_intFormRatiosC (c : ℚ) :
     have : ((ModularForm.const (c.den : ℂ) : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) : ℍ → ℂ) =
         (c.den : ℂ) • ((1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) : ℍ → ℂ) := by
       funext z
-      rw [Pi.smul_apply, ModularForm.const_apply, ModularForm.one_coe_eq_one, Pi.one_apply, smul_eq_mul,
+      rw [Pi.smul_apply, ModularForm.const_apply, ModularForm.one_coe_eq_one, Pi.one_apply,
+        smul_eq_mul,
         mul_one]
     rw [this, ModularForm.qExpansion_smul one_pos (hper hT), ModularForm.qExpansion_one,
       PowerSeries.smul_eq_C_mul, mul_one, eq_intCast]
@@ -820,7 +822,8 @@ theorem coeffEmb_intSeriesC (p : PowerSeries ℤ) :
   · simp
 
 omit [Γ.FiniteIndex] [Γ'.FiniteIndex] hT hΓ' hneg in
-theorem coeffEmb_eq_map (z : LaurentSeries ℚ) : coeffEmb ℂ z = HahnSeries.map z (algebraMap ℚ ℂ) := by
+theorem coeffEmb_eq_map (z : LaurentSeries ℚ) :
+    coeffEmb ℂ z = HahnSeries.map z (algebraMap ℚ ℂ) := by
   ext n; rw [coeffEmb_coeff]; rfl
 
 omit [Γ.FiniteIndex] [Γ'.FiniteIndex] hT hΓ' hneg in
@@ -828,7 +831,8 @@ theorem sum_div_pow_eq {K : Type*} [Field K] {n : ℕ} (a : ℕ → K) (F G : K)
     (h : ∑ i ∈ Finset.range (n + 1), a i * F ^ i * G ^ (n - i) = 0) :
     ∑ i ∈ Finset.range (n + 1), a i * (F / G) ^ i = 0 := by
   have hGn : G ^ n ≠ 0 := pow_ne_zero _ hG
-  have key : ∀ i ∈ Finset.range (n + 1), a i * F ^ i * G ^ (n - i) = (a i * (F / G) ^ i) * G ^ n := by
+  have key : ∀ i ∈ Finset.range (n + 1), a i * F ^ i * G ^ (n - i) = (a i * (F / G) ^ i) * G ^ n :=
+    by
     intro i hi
     have hi' : i ≤ n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
     rw [div_pow, mul_assoc, mul_assoc]
@@ -839,7 +843,6 @@ theorem sum_div_pow_eq {K : Type*} [Field K] {n : ℕ} (a : ℕ → K) (F G : K)
   exact (mul_eq_zero.mp h).resolve_right hGn
 
 omit [Γ.FiniteIndex] [Γ'.FiniteIndex] hT hΓ' hneg in
-
 theorem monomial_eq {K : Type*} [Field K] {m b : ℕ} (hb : b ≤ m) (Q4 QD : K) (h4 : Q4 ≠ 0) :
     Q4 ^ (3 * (m - b)) * QD ^ b = Q4 ^ (3 * m) * (QD / Q4 ^ 3) ^ b := by
   rw [show 3 * m = 3 * (m - b) + 3 * b by omega, _root_.pow_add, div_pow, ← pow_mul, mul_assoc]
@@ -870,11 +873,15 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   let g₀ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (12 * k) := ((g.pow 11).mul g).mcast hw
   let f' : ModularForm (Γ' : Subgroup (GL (Fin 2) ℝ)) (12 * k) := liftEven hΓ' hneg heven f₀
   let g' : ModularForm (Γ' : Subgroup (GL (Fin 2) ℝ)) (12 * k) := liftEven hΓ' hneg heven g₀
-  have hqf' : qExpansion 1 (f' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (f : ℍ → ℂ) := by
-    simp only [f', f₀, coe_liftEven, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos (hper hT),
+  have hqf' : qExpansion 1 (f' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (f : ℍ → ℂ) :=
+    by
+    simp only [f', f₀, coe_liftEven, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul
+      one_pos (hper hT),
       ModularForm.qExpansion_pow one_pos (hper hT)]
-  have hqg' : qExpansion 1 (g' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (g : ℍ → ℂ) := by
-    simp only [g', g₀, coe_liftEven, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos (hper hT),
+  have hqg' : qExpansion 1 (g' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (g : ℍ → ℂ) :=
+    by
+    simp only [g', g₀, coe_liftEven, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul
+      one_pos (hper hT),
       ModularForm.qExpansion_pow one_pos (hper hT)]
   have hqg : qExpansion 1 (g : ℍ → ℂ) ≠ 0 := by
     rwa [Ne, ModularForm.qExpansion_eq_zero_iff one_pos (hper hT)]
@@ -906,7 +913,8 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     have h0 := congrArg (PowerSeries.coeff 0) this
     rw [FIdxLevelOne.q4_coeff_zero, map_zero] at h0
     exact one_ne_zero h0
-  have hrel' : ∑ i ∈ Finset.range (μ + 1), QE i * (QG ^ 11 * QF) ^ i * (QG ^ 11 * QG) ^ (μ - i) = 0 := by
+  have hrel' : ∑ i ∈ Finset.range (μ + 1), QE i * (QG ^ 11 * QF) ^ i * (QG ^ 11 * QG) ^ (μ - i) = 0 :=
+    by
     have := congrArg Φ hrel
     rw [map_sum, map_zero] at this
     rw [← this]
@@ -918,12 +926,14 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     mul_div_mul_left _ _ (pow_ne_zero _ hQG0)
   rw [hratio] at hdiv
   set Wh : LaurentSeries ℂ := QD / Q4 ^ 3 with hWh
-  have hQEi : ∀ i, QE i = Q4 ^ (3 * m) * ∑ b : Fin (m + 1), HahnSeries.C (c i b) * Wh ^ (b : ℕ) := by
+  have hQEi : ∀ i, QE i = Q4 ^ (3 * m) * ∑ b : Fin (m + 1), HahnSeries.C (c i b) * Wh ^ (b : ℕ) :=
+    by
     intro i
     simp only [hQE]
     rw [← hc i, map_sum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun b _ => ?_
-    rw [PowerSeries.smul_eq_C_mul, map_mul, map_mul, map_pow, map_pow, monomial_eq (Nat.lt_succ_iff.mp b.2) _ _ hQ40]
+    rw [PowerSeries.smul_eq_C_mul, map_mul, map_mul, map_pow, map_pow, monomial_eq
+      (Nat.lt_succ_iff.mp b.2) _ _ hQ40]
     simp only [Φ, HahnSeries.ofPowerSeries_C]
     ring
   have hsum : ∑ ib : Fin (μ + 1) × Fin (m + 1),
@@ -948,7 +958,8 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   obtain ⟨b₀, hb₀⟩ := hnz
   let v : Fin (μ + 1) × Fin (m + 1) → LaurentSeries ℚ :=
     fun ib => wq ^ (ib.2 : ℕ) * (intSeriesC ℚ pf / intSeriesC ℚ pg) ^ (ib.1 : ℕ)
-  have hvmap : ∀ ib, HahnSeries.map (v ib) (algebraMap ℚ ℂ) = Wh ^ (ib.2 : ℕ) * (QF / QG) ^ (ib.1 : ℕ) := by
+  have hvmap : ∀ ib, HahnSeries.map (v ib) (algebraMap ℚ ℂ) = Wh ^ (ib.2 : ℕ) * (QF / QG) ^ (ib.1 : ℕ) :=
+    by
     intro ib
     rw [← coeffEmb_eq_map, map_mul, map_pow, map_pow, wq, map_div₀, map_div₀,
       coeffEmb_intSeriesC, coeffEmb_intSeriesC, coeffEmb_intSeriesC, coeffEmb_intSeriesC]
@@ -977,7 +988,6 @@ variable (hT : ModularGroup.T ∈ Γ) (hΓ' : Γ ≤ Γ') (hneg : ∀ γ ∈ Γ'
 include hT hΓ' hneg
 
 omit [Γ.FiniteIndex] [Γ'.FiniteIndex] hT hΓ' hneg in
-
 theorem jqModC_mem : jqModC ℚ ∈ qExpFunctionFieldC ℚ Γ := by
   have h : (wq)⁻¹ ∈ qExpFunctionFieldC ℚ Γ := inv_mem wq_mem
   rwa [wq_eq_inv, inv_inv] at h
@@ -999,7 +1009,8 @@ theorem finrank_adjoin_wq_le :
     rw [Polynomial.aeval_def, show wq = φ X₀ from rfl, ← this, ← Polynomial.aeval_def, hr, map_zero]
   let K₀ := IntermediateField.adjoin ℚ ({X₀} : Set F)
   let Xk : K₀ := ⟨X₀, IntermediateField.mem_adjoin_simple_self ℚ X₀⟩
-  have hrat : ∀ e : ℚ, (((algebraMap ℚ K₀ e : K₀) : F) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries ℚ) e := by
+  have hrat : ∀ e : ℚ, (((algebraMap ℚ K₀ e : K₀) : F) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries ℚ) e :=
+    by
     intro e
     have h := RingHom.congr_fun (Subsingleton.elim
       ((φ.comp (algebraMap K₀ F)).comp (algebraMap ℚ K₀)) (algebraMap ℚ (LaurentSeries ℚ))) e
@@ -1018,7 +1029,8 @@ theorem finrank_adjoin_wq_le :
     simp only [coef]
     rw [IntermediateField.coe_sum, IntermediateField.coe_sum]
     refine Finset.sum_congr rfl fun b _ => ?_
-    rw [MulMemClass.coe_mul, MulMemClass.coe_mul, SubmonoidClass.coe_pow, SubmonoidClass.coe_pow, hrat]
+    rw [MulMemClass.coe_mul, MulMemClass.coe_mul, SubmonoidClass.coe_pow, SubmonoidClass.coe_pow,
+      hrat]
   let p : K₀[X] := ∑ i : Fin (Nat.card (FIdxNorm.Cos Γ') + 1), Polynomial.monomial (i : ℕ) (coef i)
   have hcoeff : ∀ i : Fin (Nat.card (FIdxNorm.Cos Γ') + 1), p.coeff i = coef i := by
     intro i
@@ -1061,7 +1073,8 @@ theorem finrank_adjoin_wq_le :
     simp only [p, map_sum, Polynomial.aeval_monomial]
     rw [IntermediateField.coe_sum, Fintype.sum_prod_type]
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [MulMemClass.coe_mul, SubmonoidClass.coe_pow, ← hY, IntermediateField.algebraMap_apply, hcoef,
+    rw [MulMemClass.coe_mul, SubmonoidClass.coe_pow, ← hY, IntermediateField.algebraMap_apply,
+      hcoef,
       Finset.sum_mul]
     refine Finset.sum_congr rfl fun b _ => ?_
     ring
@@ -1076,7 +1089,8 @@ open scoped MatrixGroups
 
 variable (L : Type*) [Field L] [Algebra ℚ L]
 
-theorem coeffEmb_eq_map (z : LaurentSeries ℚ) : coeffEmb L z = HahnSeries.map z (algebraMap ℚ L) := by
+theorem coeffEmb_eq_map (z : LaurentSeries ℚ) :
+    coeffEmb L z = HahnSeries.map z (algebraMap ℚ L) := by
   ext n; rw [coeffEmb_coeff]; rfl
 
 theorem coeffEmb_jqModC : coeffEmb L (jqModC ℚ) = jqModC L := by
@@ -1112,7 +1126,8 @@ theorem finrank_le (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGrou
   have hbc := ModularCurve.relfinrank_laurentBaseChange L (qExpFunctionFieldC ℚ Γ) (jqModC ℚ)
     FIdxRat.jqModC_mem (ModularCurve.transcendental_jqModC ℚ)
   rw [coeffEmb_jqModC] at hbc
-  have h2 := FIdxAlg.finrank_adjoin_simple_eq_relfinrank (laurentBaseChange L (qExpFunctionFieldC ℚ Γ)) y
+  have h2 :=
+    FIdxAlg.finrank_adjoin_simple_eq_relfinrank (laurentBaseChange L (qExpFunctionFieldC ℚ Γ)) y
   rw [hy, hbc] at h2
   exact h2.trans_le hQ'
 
@@ -1151,6 +1166,7 @@ theorem ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_
     Module.finrank
         (IntermediateField.adjoin L
           ({y} : Set (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-        (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) ≤ Γ'.index := _root_.P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.solution L Γ hT Γ' hΓ' hneg y hy
+        (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) ≤ Γ'.index :=
+  solution L Γ hT Γ' hΓ' hneg y hy
 
 end publicSection

@@ -64,14 +64,17 @@ namespace P2MW.S_ModularCurve_CuspSpace_classification
 
 open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
-p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve.CuspSpace"
+p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve \
+  ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve.CuspSpace"
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "ratPoint CuspSpace CuspSpace.Classification CuspSpace.exists_normalForm CuspSpace.normalFormCriterion"
+p2m_export "ModularCurve" "ratPoint CuspSpace CuspSpace.Classification CuspSpace.exists_normalForm \
+  CuspSpace.normalFormCriterion"
 namespace CuspSpace
-p2m_export "ModularCurve.CuspSpace" "mk cuspDenom cuspDenom_mk_ratPoint cuspDenom_dvd NormalFormCriterion Classification exists_normalForm normalFormCriterion"
+p2m_export "ModularCurve.CuspSpace" "mk cuspDenom cuspDenom_mk_ratPoint cuspDenom_dvd \
+  NormalFormCriterion Classification exists_normalForm normalFormCriterion"
 p2m_open "ModularCurve.CuspSpace ModularCurve"
 
 variable {N : ℕ}
@@ -195,7 +198,6 @@ noncomputable def fiberEquivUnits (hN : N ≠ 0) (hcrit : NormalFormCriterion N)
     ⟨fiberToUnits_injective hN hcrit hd, fiberToUnits_surjective hN hcrit hd⟩
 
 variable (N) in
-
 noncomputable def cuspDenomDvd (hN : N ≠ 0) (x : CuspSpace N) : N.divisors :=
   ⟨cuspDenom N x, Nat.mem_divisors.mpr ⟨cuspDenom_dvd x, hN⟩⟩
 
@@ -228,6 +230,7 @@ public section publicSection
 
 open OnePoint
 theorem ModularCurve.CuspSpace.classification {N : ℕ} (hN : N ≠ 0) :
-    ModularCurve.CuspSpace.Classification N := _root_.P2MW.S_ModularCurve_CuspSpace_classification.solution hN
+    ModularCurve.CuspSpace.Classification N :=
+  solution hN
 
 end publicSection

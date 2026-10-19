@@ -65,7 +65,8 @@ namespace P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunc
 open ModularCurve AlgebraicCurve
 
 theorem solution (L : Type*) [Field L] [Algebra ℚ L]
-    (N : ℕ) [NeZero N] : HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) :=
+    (N : ℕ) [NeZero N]
+    : HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) :=
   hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull L modularPolynomialFamily N
 
 end S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
@@ -78,7 +79,10 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional (L : Type*) [Field L] [Algebra ℚ L]
-    (N : ℕ) [NeZero N] : HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) := _root_.P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional.solution L N
+theorem ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
+    (L : Type*) [Field L] [Algebra ℚ L]
+    (N : ℕ) [NeZero N]
+    : HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) :=
+  solution L N
 
 end publicSection

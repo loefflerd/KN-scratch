@@ -149,7 +149,8 @@ theorem hasRamBound_one_ofPowerSeries (p : PowerSeries K) :
   obtain ⟨m, rfl⟩ := hq'
   exact ⟨(m : ℤ), by push_cast; ring⟩
 
-private theorem _root_.OrdJBarSub1728.Wire.algebraMap_eq_C (a : K) : algebraMap K (HahnSeries ℚ K) a = HahnSeries.C a := by
+private theorem _root_.OrdJBarSub1728.Wire.algebraMap_eq_C (a : K) :
+    algebraMap K (HahnSeries ℚ K) a = HahnSeries.C a := by
   have h1 : algebraMap K (PowerSeries K) a = PowerSeries.C a := by simp
   rw [HahnSeries.algebraMap_apply', h1, HahnSeries.ofPowerSeries_C]
 
@@ -159,11 +160,11 @@ theorem transcendental_single_one : Transcendental K (HahnSeries.single (1 : ℚ
   have heq : (Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K))).toRingHom
       = (HahnSeries.ofPowerSeries ℚ K).comp (Polynomial.coeToPowerSeries.ringHom (R := K)) := by
     refine Polynomial.ringHom_ext (fun a => ?_) ?_
-    · show Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) (Polynomial.C a) = _
+    · change Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) (Polynomial.C a) = _
       rw [Polynomial.aeval_C, algebraMap_eq_C,
         RingHom.coe_comp, Function.comp_apply, Polynomial.coeToPowerSeries.ringHom_apply,
         Polynomial.coe_C, HahnSeries.ofPowerSeries_C]
-    · show Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) Polynomial.X = _
+    · change Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) Polynomial.X = _
       rw [Polynomial.aeval_X, RingHom.coe_comp, Function.comp_apply,
         Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_X, HahnSeries.ofPowerSeries_X]
   intro p q hpq
@@ -248,8 +249,9 @@ theorem hasRamBound_two_of_isRoot_at_1728
   have hτroot : (spec data.Φ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j).IsRoot
       (hahnExpMul 2 (by norm_num) r) := by
     rw [← hτj, spec_hahnExpMul]
-    show Polynomial.eval _ _ = 0
-    rw [Polynomial.eval_map, Polynomial.eval₂_hom, show Polynomial.eval r (spec data.Φ _) = 0 from hroot,
+    change Polynomial.eval _ _ = 0
+    rw [Polynomial.eval_map, Polynomial.eval₂_hom, show Polynomial.eval r (spec data.Φ _) = 0 from
+      hroot,
       map_zero]
   have hmemL : ∀ y : 𝕂, y ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos ↔ HasRamBound 1 y :=
     fun y => HahnSeries.mem_puiseuxRamSubfield_iff Nat.one_pos
@@ -291,7 +293,7 @@ theorem isScalarTower_RF :
     IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
   let := algRF N
   refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
-  show algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)
+  change algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)
     (jLineBarRingEquiv N (algebraMap _ _ a))
   rw [jLineBarRingEquiv_algebraMap]
   rfl
@@ -300,7 +302,8 @@ theorem finite_RF :
     letI := algRF N
     FiniteDimensional (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
   let := algRF N
-  let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) := (jLineBarRingEquiv N).toRingHom.toAlgebra
+  let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
+    (jLineBarRingEquiv N).toRingHom.toAlgebra
   have : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
   have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
@@ -315,7 +318,7 @@ theorem algebraMap_RF_X :
     algebraMap (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N)
       (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) Polynomial.X) = jb N := by
   let := algRF N
-  show ((jLineBarRingEquiv N (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) X)
+  change ((jLineBarRingEquiv N (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) X)
     : ↥(jLineBar N)) : ↥(modularFunctionFieldBar N)) = jb N
   rw [RatFunc.algebraMap_X, jLineBarRingEquiv_X]
 
@@ -344,13 +347,13 @@ theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
       (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))
       = (coeffEmb (AlgebraicClosure ℚ)).comp evalAtJ := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
-    show ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
+    change ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
         ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (evalAtJ X)
     rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X]
   have h0 := congrArg (coeffEmb (AlgebraicClosure ℚ)) data.eval_eq_zero
   rw [map_zero, Polynomial.hom_eval₂, ← hval] at h0
   rw [ZeroMemClass.coe_zero, ← h0]
-  show ((modularFunctionFieldBar N).toSubfield.subtype) _ = _
+  change ((modularFunctionFieldBar N).toSubfield.subtype) _ = _
   rw [Polynomial.hom_eval₂]
   rfl
 
@@ -382,7 +385,8 @@ theorem hasRamBound_of_one' {e : ℕ} (he : 0 < e) {y : HahnSeries ℚ (Algebrai
   have he' : (e : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr he.ne'
   rw [← hk]; push_cast; field_simp
 
-theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : AlgebraicClosure ℚ) {d : ℕ} (hd : 0 < d)
+theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : AlgebraicClosure ℚ)
+    {d : ℕ} (hd : 0 < d)
     (hroots : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),
       (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
         (HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r → HahnSeries.HasRamBound d r)
@@ -390,20 +394,22 @@ theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : Algebr
     (hψ : ψ (jb N) = HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)) :
     ∀ z, HahnSeries.HasRamBound d (ψ z) := by
   let S := HahnSeries.puiseuxRamSubfield (AlgebraicClosure ℚ) (e := d) hd
-  have hS : ∀ y, y ∈ S ↔ HahnSeries.HasRamBound d y := fun y => HahnSeries.mem_puiseuxRamSubfield_iff hd
+  have hS : ∀ y, y ∈ S ↔ HahnSeries.HasRamBound d y :=
+    fun y => HahnSeries.mem_puiseuxRamSubfield_iff hd
   let T : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     (S.comap ψ.toRingHom).toIntermediateField (fun a => by
-      show ψ (algebraMap (AlgebraicClosure ℚ) _ a) ∈ S
-      have hC : algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) a = HahnSeries.C a := by
+      change ψ (algebraMap (AlgebraicClosure ℚ) _ a) ∈ S
+      have hC : algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) a = HahnSeries.C a :=
+        by
         rw [HahnSeries.algebraMap_apply']; simp
       rw [ψ.commutes, hS, hC]
       exact hasRamBound_of_one' hd (hasRamBound_C a))
   have hjb : jb N ∈ T := by
-    show ψ (jb N) ∈ S
+    change ψ (jb N) ∈ S
     rw [hψ, hS]
     exact hasRamBound_of_one' hd (hasRamBound_C_add_single c)
   have hjNb : jNb N ∈ T := by
-    show ψ (jNb N) ∈ S
+    change ψ (jNb N) ∈ S
     rw [hS]
     refine hroots _ ?_
     rw [Polynomial.IsRoot, Polynomial.eval_map, ← hψ]
@@ -426,7 +432,8 @@ theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : Algebr
   intro z
   exact (hS _).mp (hle IntermediateField.mem_top)
 
-theorem ord_jb_sub_dvd (data : ModularPolynomialData N) (c : AlgebraicClosure ℚ) {d : ℕ} (hd : 0 < d)
+theorem ord_jb_sub_dvd (data : ModularPolynomialData N) (c : AlgebraicClosure ℚ) {d : ℕ}
+    (hd : 0 < d)
     (hroots : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),
       (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
         (HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r → HahnSeries.HasRamBound d r)
@@ -477,6 +484,7 @@ open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_jBar_sub_1728_dvd_two (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
     (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728)) :
-    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ∣ 2 := _root_.P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.solution N v hpos
+    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ∣ 2 :=
+  solution N v hpos
 
 end publicSection

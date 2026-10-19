@@ -66,11 +66,14 @@ namespace P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminan
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero.ModularCurve UpperHalfPlane Polynomial"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero.ModularCurv\
+  e UpperHalfPlane Polynomial"
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "ModularPolynomialData primCosetReps mem_primCosetReps ModularPolynomialData.eval_E4_cube_div_discriminant_smul_eq_zero"
+p2m_export "ModularCurve" "ModularPolynomialData primCosetReps mem_primCosetReps \
+  ModularPolynomialData.eval_E4_cube_div_discriminant_smul_eq_zero"
 namespace CosetRootAux
 p2m_open "ModularCurve"
 
@@ -85,7 +88,8 @@ theorem jt_smul (γ : SL(2, ℤ)) (z : ℍ) : jt ((γ : GL (Fin 2) ℝ) • z) =
   rw [CuspForm.coe_discriminant] at h12
   have hd : denom (γ : GL (Fin 2) ℝ) (z : ℂ) ≠ 0 := UpperHalfPlane.denom_ne_zero _ z
   have hΔ : ModularForm.discriminant z ≠ 0 := ModularForm.discriminant_ne_zero z
-  rw [show (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • z) = ModularForm.E₄ ((γ : GL (Fin 2) ℝ) • z) from rfl, h4, h12]
+  rw [show (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • z) = ModularForm.E₄ ((γ : GL (Fin 2) ℝ) •
+    z) from rfl, h4, h12]
   field_simp
 
 theorem upperTriangularGL_eq {N a b d : ℕ} (hN : N ≠ 0) (γ₁ γ₂ : SL(2, ℤ))
@@ -95,13 +99,16 @@ theorem upperTriangularGL_eq {N a b d : ℕ} (hN : N ≠ 0) (γ₁ γ₂ : SL(2,
   apply Units.ext
   have hmap := congrArg (fun M : Matrix (Fin 2) (Fin 2) ℤ => M.map (Int.castRingHom ℝ)) hM
   simp only [Matrix.map_mul] at hmap
-  rw [Units.val_mul, Units.val_mul, ModularForm.val_upperTriangularGL, ModularForm.val_heckeDiagMatrix hN]
+  rw [Units.val_mul, Units.val_mul, ModularForm.val_upperTriangularGL,
+    ModularForm.val_heckeDiagMatrix hN]
   convert hmap using 3 <;> first | rfl | (ext i j; fin_cases i <;> fin_cases j <;> simp)
 
-theorem coe_upperTriangularGL_smul {a b d : ℕ} (ha : 0 < a) (hd : 0 < d) (had' : (a : ℝ) * d ≠ 0) (τ : ℍ) :
+theorem coe_upperTriangularGL_smul {a b d : ℕ} (ha : 0 < a) (hd : 0 < d) (had' : (a : ℝ) * d ≠ 0)
+    (τ : ℍ) :
     ((ModularForm.upperTriangularGL a b d had' • τ : ℍ) : ℂ) = ((a : ℂ) * τ + b) / d := by
   have hdet : 0 < ((ModularForm.upperTriangularGL (a : ℝ) b d had').det : ℝ) := by
-    rw [Matrix.GeneralLinearGroup.val_det_apply, ModularForm.val_upperTriangularGL, Matrix.det_fin_two_of]
+    rw [Matrix.GeneralLinearGroup.val_det_apply, ModularForm.val_upperTriangularGL,
+      Matrix.det_fin_two_of]
     have : (0 : ℝ) < a * d := mul_pos (by exact_mod_cast ha) (by exact_mod_cast hd)
     linarith
   rw [UpperHalfPlane.coe_smul_of_det_pos hdet]
@@ -111,7 +118,8 @@ end ModularCurve.CosetRootAux
 
 open ModularCurve.CosetRootAux in
 theorem solution (N : ℕ) [NeZero N]
-    (data : ModularCurve.ModularPolynomialData N) {a b d : ℕ} (habd : (a, b, d) ∈ ModularCurve.primCosetReps N)
+    (data : ModularCurve.ModularPolynomialData N) {a b d : ℕ}
+    (habd : (a, b, d) ∈ ModularCurve.primCosetReps N)
     (τ τ' : ℍ) (hτ' : (τ' : ℂ) = ((a : ℂ) * τ + b) / d) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ)
         ((ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ))).eval
@@ -122,11 +130,13 @@ theorem solution (N : ℕ) [NeZero N]
   have ha : 0 < a := Nat.pos_of_ne_zero (by rintro rfl; exact hN (by simpa using had.symm))
   have hd : 0 < d := Nat.pos_of_ne_zero (by rintro rfl; exact hN (by simpa using had.symm))
   have had' : (a : ℝ) * d ≠ 0 := by exact_mod_cast (mul_pos ha hd).ne'
-  obtain ⟨γ₁, γ₂, hM⟩ := Matrix.SpecialLinearGroup.exists_eq_mul_diagonal_mul_of_gcd_eq_one hN had hgcd
+  obtain ⟨γ₁, γ₂, hM⟩ :=
+    Matrix.SpecialLinearGroup.exists_eq_mul_diagonal_mul_of_gcd_eq_one hN had hgcd
   set g : GL (Fin 2) ℝ := ModularForm.upperTriangularGL a b d had' with hg
   have hgeq : g = (γ₁ : GL (Fin 2) ℝ) * ModularForm.heckeDiagMatrix N * (γ₂ : GL (Fin 2) ℝ) :=
     upperTriangularGL_eq hN γ₁ γ₂ hM had'
-  have hτ'pt : τ' = g • τ := UpperHalfPlane.ext (by rw [hτ', hg, coe_upperTriangularGL_smul ha hd had'])
+  have hτ'pt : τ' = g • τ :=
+    UpperHalfPlane.ext (by rw [hτ', hg, coe_upperTriangularGL_smul ha hd had'])
   set σ : ℍ := (γ₂ : GL (Fin 2) ℝ) • τ with hσ
   have h1 : τ' = (γ₁ : GL (Fin 2) ℝ) • (ModularForm.heckeDiagMatrix N • σ) := by
     rw [hτ'pt, hgeq, mul_smul, mul_smul]
@@ -147,11 +157,14 @@ public section publicSection
 
 
 open UpperHalfPlane
-theorem ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero (N : ℕ) [NeZero N]
-    (data : ModularCurve.ModularPolynomialData N) {a b d : ℕ} (habd : (a, b, d) ∈ ModularCurve.primCosetReps N)
+theorem ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero (N : ℕ)
+    [NeZero N]
+    (data : ModularCurve.ModularPolynomialData N) {a b d : ℕ}
+    (habd : (a, b, d) ∈ ModularCurve.primCosetReps N)
     (τ τ' : ℍ) (hτ' : (τ' : ℂ) = ((a : ℂ) * τ + b) / d) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ)
         ((ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ))).eval
-      ((ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') = 0 := _root_.P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero.solution N data habd τ τ' hτ'
+      ((ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') = 0 :=
+  solution N data habd τ τ' hτ'
 
 end publicSection

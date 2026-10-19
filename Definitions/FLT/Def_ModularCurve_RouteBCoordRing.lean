@@ -67,7 +67,8 @@ def jAdjoinRingHom : ℚ⟮jq⟯ →+* modularFunctionField N where
   map_zero' := rfl
   map_add' _ _ := rfl
 
-@[reducible] def algebraIntPolyModularFunctionField : Algebra (Polynomial ℤ) (modularFunctionField N) :=
+@[reducible] def algebraIntPolyModularFunctionField :
+    Algebra (Polynomial ℤ) (modularFunctionField N) :=
   ((jAdjoinRingHom N).comp evalAtJGen).toAlgebra
 
 attribute [local instance] algebraIntPolyModularFunctionField

@@ -63,12 +63,18 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero.Weierstrass\
+  Curve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY a₃ a₁ map b₂ Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.some.inj toAffine Affine.Point b₆ Affine.equation_iff Affine.Point.neg_some b₄ veluX veluGx veluGy veluT veluU veluU_eq_Ψ₂Sq_eval veluGy_eq_zero_of_negY_eq veluQuotient oddOrderSummingSet mem_oddOrderSummingSet veluY velu_map_equation_of_oddOrderSummingSet"
+p2m_export "WeierstrassCurve" "Affine Affine.negY a₃ a₁ map b₂ Ψ₂Sq a₄ a₂ a₆ Affine.Point.some \
+  Affine.Point.some.injEq Affine.Point.some.inj toAffine Affine.Point b₆ Affine.equation_iff \
+  Affine.Point.neg_some b₄ veluX veluGx veluGy veluT veluU veluU_eq_Ψ₂Sq_eval \
+  veluGy_eq_zero_of_negY_eq veluQuotient oddOrderSummingSet mem_oddOrderSummingSet veluY \
+  velu_map_equation_of_oddOrderSummingSet"
 p2m_open "WeierstrassCurve"
 
 section Helpers
@@ -119,7 +125,6 @@ theorem s18c_eval_Ψ₂Sq_ne_zero_of_mem_oddOrderSummingSet {n : ℕ}
   simpa only [veluU] using pow_ne_zero 2 (s18c_veluGy_ne_zero_of_two_nsmul_ne_zero h h2ns)
 
 omit [DecidableEq F] in
-
 private lemma s18c_veluY_summand_negY (x y : F) (A : F × F) :
     W.veluU A.1 A.2 * (2 * W.toAffine.negY x y + W.a₁ * x + W.a₃) / (x - A.1) ^ 3
       + W.veluT A.1 A.2 * (W.a₁ * (x - A.1) + W.toAffine.negY x y - A.2) / (x - A.1) ^ 2
@@ -136,7 +141,6 @@ private lemma s18c_veluY_summand_negY (x y : F) (A : F × F) :
     ring
 
 omit [DecidableEq F] in
-
 lemma s18c_veluY_negY (S : Finset (F × F)) (x y : F) :
     W.veluY S x (W.toAffine.negY x y)
       = (W.veluQuotient S).toAffine.negY (W.veluX S x) (W.veluY S x y) := by
@@ -147,7 +151,6 @@ lemma s18c_veluY_negY (S : Finset (F × F)) (x y : F) :
   ring
 
 omit [DecidableEq F] in
-
 theorem s18c_veluQuotient_eval_Ψ₂Sq_veluX_eq_zero_of_mapeq {S : Finset (F × F)} {r s : F}
     (hy : s = W.toAffine.negY r s)
     (hmapeq : (W.veluQuotient S).toAffine.Equation (W.veluX S r) (W.veluY S r s)) :
@@ -162,7 +165,6 @@ theorem s18c_veluQuotient_eval_Ψ₂Sq_veluX_eq_zero_of_mapeq {S : Finset (F × 
   simp [veluU, hgy']
 
 variable (W) in
-
 private def _root_.WeierstrassCurve.s18c_twoTorsionY (x : F) : F := -(W.a₁ * x + W.a₃) / 2
 
 p2m_export "WeierstrassCurve" "s18c_twoTorsionY"
@@ -229,6 +231,7 @@ theorem WeierstrassCurve.eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_e
     (W : WeierstrassCurve L) [W.IsElliptic] (n : ℕ) (Q : W.toAffine.Point)
     (hQ : addOrderOf Q = 2 * n + 1) {r : L} (hr : W.Ψ₂Sq.eval r = 0) :
     (W.veluQuotient (W.oddOrderSummingSet Q n)).Ψ₂Sq.eval
-      (W.veluX (W.oddOrderSummingSet Q n) r) = 0 := _root_.P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero.solution h2 W n Q hQ hr
+      (W.veluX (W.oddOrderSummingSet Q n) r) = 0 :=
+  solution h2 W n Q hQ hr
 
 end publicSection

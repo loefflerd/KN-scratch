@@ -118,7 +118,8 @@ end ModularCurve
 
 end
 
-theorem solution (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (A B : LaurentSeries ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) : A = B :=
+theorem solution (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (A B : LaurentSeries ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) :
+    A = B :=
   ModularCurve.QexpN.laurent_unique h hh F A B hA hB
 
 end S_ModularCurve_laurent_qParam_coeff_unique
@@ -129,6 +130,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.laurent_qParam_coeff_unique (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (A B : LaurentSeries ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) : A = B := _root_.P2MW.S_ModularCurve_laurent_qParam_coeff_unique.solution h hh F A B hA hB
+theorem ModularCurve.laurent_qParam_coeff_unique (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (A B : LaurentSeries ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) :
+    A = B :=
+  solution h hh F A B hA hB
 
 end publicSection

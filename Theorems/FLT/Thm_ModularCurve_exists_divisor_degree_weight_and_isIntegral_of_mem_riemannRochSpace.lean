@@ -94,11 +94,21 @@ namespace P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem
 
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jBar modularFunctionFieldBar jq coeff_jq_neg_one dedekindPsi coeffEmb coeffEmb_coeff nuTwo nuThree cuspCount genusFormula EMD ModuliPoint ModuliPoint.j sum_ord_jBar_sub_eq_dedekindPsi deg_eq_one_modularFunctionFieldBar jCoordinate_spec_modularFunctionFieldBar sum_neg_ord_jBar_eq_dedekindPsi ord_jBar_dvd_three ord_jBar_sub_1728_dvd_two card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo natCard_ord_jBar_eq_one_eq_nuThree card_eq_natCard_moduliPoint_j_eq_of_EMD emd_holds transcendental_coeffEmb_jq isCurveOver_modularFunctionFieldBar finiteDimensional_adjoin_coeffEmb_jq_of_neZero dedekindPsi_pos"
+p2m_export "ModularCurve" "jBar modularFunctionFieldBar jq coeff_jq_neg_one dedekindPsi coeffEmb \
+  coeffEmb_coeff nuTwo nuThree cuspCount genusFormula EMD ModuliPoint ModuliPoint.j \
+  sum_ord_jBar_sub_eq_dedekindPsi deg_eq_one_modularFunctionFieldBar \
+  jCoordinate_spec_modularFunctionFieldBar sum_neg_ord_jBar_eq_dedekindPsi ord_jBar_dvd_three \
+  ord_jBar_sub_1728_dvd_two card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg \
+  natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo natCard_ord_jBar_eq_one_eq_nuThree \
+  card_eq_natCard_moduliPoint_j_eq_of_EMD emd_holds transcendental_coeffEmb_jq \
+  isCurveOver_modularFunctionFieldBar finiteDimensional_adjoin_coeffEmb_jq_of_neZero \
+  dedekindPsi_pos"
 namespace LDivDegree
 p2m_open "ModularCurve"
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.ModularCurve AlgebraicCurve"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.ModularCu\
+  rve AlgebraicCurve"
 
 section Generic
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -145,7 +155,7 @@ theorem jBar_sub_algebraMap_ne_zero (c : ℚb) : jBar N - algebraMap ℚb 𝔽 c
   have htr := transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N
   apply htr
   have : (jBar N : 𝔽) = algebraMap ℚb 𝔽 c := sub_eq_zero.mp h
-  show IsAlgebraic ℚb (jBar N)
+  change IsAlgebraic ℚb (jBar N)
   rw [this]
   exact isAlgebraic_algebraMap c
 
@@ -280,7 +290,8 @@ theorem exists_weightDivisor :
       = 3 * ((2 * m / 3 : ℕ) : ℤ) * ((S0.filter fun v => v.ord (jBar N) = 1).card : ℤ)
         + 2 * (m : ℤ) * ((dedekindPsi N : ℤ) - ((S0.filter fun v => v.ord (jBar N) = 1).card : ℤ)) := by
     have hψ₀ : ∑ v ∈ S0, v.ord (jBar N) = (dedekindPsi N : ℤ) := by
-      have h := sum_ord_jBar_sub_eq_dedekindPsi N 0 hdeg S0 (fun v => by rw [hS0, map_zero, sub_zero])
+      have h :=
+        sum_ord_jBar_sub_eq_dedekindPsi N 0 hdeg S0 (fun v => by rw [hS0, map_zero, sub_zero])
       simpa [map_zero, sub_zero] using h
     have hcase : ∀ v ∈ S0, (v.ord (jBar N) = 1 ∧ recipe N m v = ((2 * m / 3 : ℕ) : ℤ)) ∨
         (v.ord (jBar N) = 3 ∧ recipe N m v = 2 * (m : ℤ)) := by
@@ -338,8 +349,10 @@ theorem exists_weightDivisor :
       rcases int_eq_of_pos_of_dvd_two hpos hdvd with h1 | h2
       · left; refine ⟨h1, ?_⟩; rw [h1]; push_cast; omega
       · right; refine ⟨h2, ?_⟩; rw [h2]; omega
-    rw [Finset.mul_sum, ← Finset.sum_filter_add_sum_filter_not S1 (fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1)]
-    rw [← Finset.sum_filter_add_sum_filter_not S1 (fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1)] at hψ₁
+    rw [Finset.mul_sum, ← Finset.sum_filter_add_sum_filter_not S1 (fun v => v.ord (jBar N -
+      algebraMap ℚb 𝔽 1728) = 1)]
+    rw [← Finset.sum_filter_add_sum_filter_not S1 (fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) =
+      1)] at hψ₁
     have hA : ∑ v ∈ S1.filter (fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1), 2 * recipe N m v
         = 2 * ((m / 2 : ℕ) : ℤ) * ((S1.filter fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1).card : ℤ) := by
       rw [Finset.sum_congr rfl (g := fun _ => 2 * ((m / 2 : ℕ) : ℤ)) (fun v hv => ?_)]
@@ -372,10 +385,12 @@ theorem exists_weightDivisor :
     rw [hψA, hψB] at hψ₁
     linear_combination (m : ℤ) * hψ₁
   have hsumI : ∑ v ∈ Sinf, recipe N m v = -(m : ℤ) * (dedekindPsi N : ℤ) - (Sinf.card : ℤ) := by
-    have hψinf : ∑ v ∈ Sinf, -v.ord (jBar N) = (dedekindPsi N : ℤ) := sum_neg_ord_jBar_eq_dedekindPsi N Sinf hSI
+    have hψinf : ∑ v ∈ Sinf, -v.ord (jBar N) = (dedekindPsi N : ℤ) :=
+      sum_neg_ord_jBar_eq_dedekindPsi N Sinf hSI
     rw [Finset.sum_congr rfl (g := fun v => -(m : ℤ) * (-v.ord (jBar N)) + (-1))
       (fun v hv => by rw [recipe_of_neg N m ((hSI v).1 hv)]; ring)]
-    rw [Finset.sum_add_distrib, ← Finset.mul_sum, hψinf, Finset.sum_const, nsmul_eq_mul, mul_neg, mul_one]
+    rw [Finset.sum_add_distrib, ← Finset.mul_sum, hψinf, Finset.sum_const, nsmul_eq_mul, mul_neg,
+      mul_one]
     ring
   have hNC : ∀ (P : Place ℚb 𝔽 → Prop) (T : Finset (Place ℚb 𝔽)),
       (∀ v, v ∈ T ↔ P v) → Nat.card {v // P v} = T.card := by
@@ -384,7 +399,8 @@ theorem exists_weightDivisor :
       Nat.card_eq_fintype_card, Fintype.card_coe]
   have h1728 : (jBar N - 1728 : 𝔽) = jBar N - algebraMap ℚb 𝔽 1728 := by rw [map_ofNat]
   have hε₂ : (S1.filter fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1).card = nuTwo N := by
-    have h2 : ∀ v : Place ℚb 𝔽, 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2 := fun v hv => by
+    have h2 : ∀ v : Place ℚb 𝔽, 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2 :=
+      fun v hv => by
       rw [h1728] at hv ⊢
       exact ord_jBar_sub_1728_dvd_two N v hv
     have hcount : Nat.card {v : Place ℚb 𝔽 // 0 < v.ord (jBar N - 1728)}
@@ -397,17 +413,20 @@ theorem exists_weightDivisor :
         rw [Finset.mem_filter, hS1, h1728]
         exact ⟨fun hv => hv.2, fun hv => ⟨by rw [hv]; exact one_pos, hv⟩⟩)] at h
   have hε₃ : (S0.filter fun v => v.ord (jBar N) = 1).card = nuThree N := by
-    have h3 : ∀ v : Place ℚb 𝔽, 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3 := fun v hv => ord_jBar_dvd_three N v hv
+    have h3 : ∀ v : Place ℚb 𝔽, 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3 :=
+      fun v hv => ord_jBar_dvd_three N v hv
     have hcount : Nat.card {v : Place ℚb 𝔽 // 0 < v.ord (jBar N)}
         = Nat.card {x : ModuliPoint N ℚb // ModuliPoint.j x = (0 : ℚb)} := by
-      rw [← card_eq_natCard_moduliPoint_j_eq_of_EMD N 0 (emd_holds N 0) S0 (fun v => by rw [hS0, map_zero, sub_zero])]
+      rw [← card_eq_natCard_moduliPoint_j_eq_of_EMD N 0 (emd_holds N 0) S0 (fun v => by rw [hS0,
+        map_zero, sub_zero])]
       exact hNC _ S0 (fun v => by rw [hS0])
     have h := natCard_ord_jBar_eq_one_eq_nuThree N h3 hcount
     rwa [hNC _ (S0.filter fun v => v.ord (jBar N) = 1)
       (fun v => by
         rw [Finset.mem_filter, hS0]
         exact ⟨fun hv => hv.2, fun hv => ⟨by rw [hv]; exact one_pos, hv⟩⟩)] at h
-  have hcard : Sinf.card = cuspCount N := card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg N Sinf hSI
+  have hcard : Sinf.card = cuspCount N :=
+    card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg N Sinf hSI
   rw [hε₃] at hsum0
   rw [hε₂] at hsum1
   rw [hcard] at hsumI
@@ -424,7 +443,8 @@ theorem exists_weightDivisor :
     simpa only [Int.cast_mul, Int.cast_add, Int.cast_sub, Int.cast_ofNat, Int.cast_natCast] using h
   have cI : (AI : ℚ) = -(m : ℚ) * (dedekindPsi N : ℚ) - (cuspCount N : ℚ) := by
     have h := congrArg (fun z : ℤ => (z : ℚ)) hsumI
-    simpa only [Int.cast_mul, Int.cast_add, Int.cast_sub, Int.cast_neg, Int.cast_ofNat, Int.cast_natCast] using h
+    simpa only [Int.cast_mul, Int.cast_add, Int.cast_sub, Int.cast_neg, Int.cast_ofNat,
+      Int.cast_natCast] using h
   have eD : (D.degree : ℚ) = (A0 : ℚ) + (A1 : ℚ) + (AI : ℚ) := by
     rw [hdegsum, hsplit]; push_cast; ring
   unfold genusFormula
@@ -432,13 +452,23 @@ theorem exists_weightDivisor :
 
 end ModularCurve.LDivDegree
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.ModularCurve AlgebraicCurve"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.ModularCu\
+  rve AlgebraicCurve"
 
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jBar modularFunctionFieldBar jq coeff_jq_neg_one dedekindPsi coeffEmb coeffEmb_coeff nuTwo nuThree cuspCount genusFormula EMD ModuliPoint ModuliPoint.j sum_ord_jBar_sub_eq_dedekindPsi deg_eq_one_modularFunctionFieldBar jCoordinate_spec_modularFunctionFieldBar sum_neg_ord_jBar_eq_dedekindPsi ord_jBar_dvd_three ord_jBar_sub_1728_dvd_two card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo natCard_ord_jBar_eq_one_eq_nuThree card_eq_natCard_moduliPoint_j_eq_of_EMD emd_holds transcendental_coeffEmb_jq isCurveOver_modularFunctionFieldBar finiteDimensional_adjoin_coeffEmb_jq_of_neZero dedekindPsi_pos"
+p2m_export "ModularCurve" "jBar modularFunctionFieldBar jq coeff_jq_neg_one dedekindPsi coeffEmb \
+  coeffEmb_coeff nuTwo nuThree cuspCount genusFormula EMD ModuliPoint ModuliPoint.j \
+  sum_ord_jBar_sub_eq_dedekindPsi deg_eq_one_modularFunctionFieldBar \
+  jCoordinate_spec_modularFunctionFieldBar sum_neg_ord_jBar_eq_dedekindPsi ord_jBar_dvd_three \
+  ord_jBar_sub_1728_dvd_two card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg \
+  natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo natCard_ord_jBar_eq_one_eq_nuThree \
+  card_eq_natCard_moduliPoint_j_eq_of_EMD emd_holds transcendental_coeffEmb_jq \
+  isCurveOver_modularFunctionFieldBar finiteDimensional_adjoin_coeffEmb_jq_of_neZero \
+  dedekindPsi_pos"
 namespace LDivIntegral
 p2m_open "ModularCurve"
 
@@ -543,11 +573,12 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
   have hsum : ∑ v ∈ S, -v.ord J = (ψ : ℤ) := by
     have := ModularCurve.sum_neg_ord_jBar_eq_dedekindPsi N S hS
     exact_mod_cast this
-  have hwidth : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), v.ord J < 0 → -v.ord J ≤ (ψ : ℤ) := by
+  have hwidth : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), v.ord J < 0 → -v.ord J ≤ (ψ : ℤ) :=
+    by
     intro v hv
     rw [← hsum]
     exact Finset.single_le_sum (f := fun w => -w.ord J)
-      (fun w hw => by have := (hS w).mp hw; show (0 : ℤ) ≤ -w.ord J; omega) ((hS v).mpr hv)
+      (fun w hw => by have := (hS w).mp hw; change (0 : ℤ) ≤ -w.ord J; omega) ((hS v).mpr hv)
   have hpole : ∃ v₀ : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), v₀.ord J < 0 := by
     by_contra hno
     push Not at hno
@@ -676,7 +707,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m) :
+theorem ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace (N : ℕ)
+    [NeZero N] (m : ℕ) (hm : 1 ≤ m) :
     ∃ D : AlgebraicCurve.Divisor (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N),
       ((D.degree : ℚ) + 1 - ModularCurve.genusFormula N =
         (2 * (m : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((m / 2 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
@@ -686,6 +718,7 @@ theorem ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannR
             (x ^ 6 * ModularCurve.jBar N ^ (4 * m) * (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (3 * m)) ∧
           IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(ModularCurve.jBar N)⁻¹} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
             (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N + 1) *
-              (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N)) := _root_.P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.solution N m hm
+              (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N)) :=
+  solution N m hm
 
 end publicSection

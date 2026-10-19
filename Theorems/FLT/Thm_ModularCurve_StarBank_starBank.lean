@@ -76,7 +76,11 @@ namespace P2MW.S_ModularCurve_StarBank_starBank
 p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_starBank.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_C etaProd constantCoeff_etaProd qTwist jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne StarBank.closure StarBank.count StarBank.deltaNorm StarBank.delta_pow_ne StarBank.eisInt_not_dvd_num StarBank.eisInt_series StarBank.hassePolyDescent StarBank.onePoint StarBank.press StarBank.starK"
+p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd qExpand_C etaProd constantCoeff_etaProd qTwist \
+  jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne StarBank.closure StarBank.count \
+  StarBank.deltaNorm StarBank.delta_pow_ne StarBank.eisInt_not_dvd_num StarBank.eisInt_series \
+  StarBank.hassePolyDescent StarBank.onePoint StarBank.press StarBank.starK"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -240,7 +244,7 @@ theorem aeval_jqModC_map_comm (φ : K →+* K') (R : Polynomial K) :
   have hcomp : (laurentMapRingHom φ).comp (algebraMap K (LaurentSeries K))
       = (algebraMap K' (LaurentSeries K')).comp φ := by
     refine RingHom.ext fun c => ?_
-    show (algebraMap K (LaurentSeries K) c).map φ = algebraMap K' (LaurentSeries K') (φ c)
+    change (algebraMap K (LaurentSeries K) c).map φ = algebraMap K' (LaurentSeries K') (φ c)
     rw [algebraMap_laurent_eq_single', algebraMap_laurent_eq_single']
     ext g
     rw [HahnSeries.map_coeff, HahnSeries.coeff_single, HahnSeries.coeff_single]
@@ -457,12 +461,16 @@ p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_starBank.ModularCurve"
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_C etaProd constantCoeff_etaProd qTwist jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne StarBank.closure StarBank.count StarBank.deltaNorm StarBank.delta_pow_ne StarBank.eisInt_not_dvd_num StarBank.eisInt_series StarBank.hassePolyDescent StarBank.onePoint StarBank.press StarBank.starK"
+p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd qExpand_C etaProd constantCoeff_etaProd qTwist \
+  jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne StarBank.closure StarBank.count \
+  StarBank.deltaNorm StarBank.delta_pow_ne StarBank.eisInt_not_dvd_num StarBank.eisInt_series \
+  StarBank.hassePolyDescent StarBank.onePoint StarBank.press StarBank.starK"
 namespace StarBank
-p2m_export "ModularCurve.StarBank" "closure count deltaNorm delta_pow_ne eisInt_not_dvd_num eisInt_series hassePolyDescent onePoint press starK"
+p2m_export "ModularCurve.StarBank" "closure count deltaNorm delta_pow_ne eisInt_not_dvd_num \
+  eisInt_series hassePolyDescent onePoint press starK"
 end ModularCurve.StarBank
 p2m_open_scoped "ModularCurve ModularCurve.StarBank" in
-
 private theorem ModularCurve.StarBank.starBank {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) :
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) := by
@@ -484,7 +492,6 @@ private theorem ModularCurve.StarBank.starBank {K : Type*} [Field K] {ℓ : ℕ}
 end Root
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_starBank.ModularCurve in
-
 theorem solution {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) :
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
@@ -502,6 +509,7 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.StarBank.starBank {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) :
-    jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) := _root_.P2MW.S_ModularCurve_StarBank_starBank.solution hpℓ
+    jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
+  solution hpℓ
 
 end publicSection

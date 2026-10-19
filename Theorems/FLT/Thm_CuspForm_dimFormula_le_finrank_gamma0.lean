@@ -109,7 +109,8 @@ theorem thetaL_coeffEmb_jq_pow_ne_zero (m : ℕ) :
   apply pow_ne_zero
   intro h
   have h2 := congrArg (fun s : LaurentSeries ℂ => s.coeff (-1)) h
-  rw [ModularCurve.thetaL_apply, ModularCurve.theta_coeff, ModularCurve.coeffEmb_coeff, ModularCurve.coeff_jq_neg_one,
+  rw [ModularCurve.thetaL_apply, ModularCurve.theta_coeff, ModularCurve.coeffEmb_coeff,
+    ModularCurve.coeff_jq_neg_one,
     map_one, HahnSeries.coeff_zero] at h2
   norm_num at h2
 
@@ -137,7 +138,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   have hRR := ModularCurve.degree_add_one_sub_genusFF_le_finrank_riemannRochSpace N D
   have hg1 := ModularCurve.genus_eq_genusFF_modularFunctionFieldBar N
   have hg2 := ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula N
-  have hgen : ModularCurve.genusFormula N = (genusFF (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℚ) := by
+  have hgen : ModularCurve.genusFormula N = (genusFF (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℚ) :=
+    by
     rw [← hg2, hg1]
   have hcast : (2 * (m : ℤ)) = ((2 * m : ℕ) : ℤ) := by push_cast; ring
   have hRR' : (D.degree : ℚ) + 1 - ModularCurve.genusFormula N
@@ -218,8 +220,10 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   have hvC : LinearIndependent ℂ (fun i n => ι₀ (v i n)) :=
     linearIndependent_ringHom_comp_of_linearIndependent' ι₀ hv
   have hΓ := CongruenceSubgroup.one_mem_strictPeriods_Gamma0 N
-  have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)), ⇑(φ + ψ) = ⇑φ + ⇑ψ := fun _ _ => rfl
-  have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))), ⇑(x • φ) = x • ⇑φ := fun _ _ => rfl
+  have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)), ⇑(φ + ψ) = ⇑φ + ⇑ψ :=
+    fun _ _ => rfl
+  have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))), ⇑(x • φ) = x • ⇑φ :=
+    fun _ _ => rfl
   have hczero : ⇑(0 : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))) = 0 := rfl
   have hqadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
       UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
@@ -247,7 +251,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
         rw [Finset.sum_insert ha, Finset.sum_insert ha, hcadd, hqadd, hcsmul, hqsmul, ih]
     have hq : ∑ i, c i • UpperHalfPlane.qExpansion 1 ⇑(f i) = 0 := by
       rw [← hqsum Finset.univ, hc, hczero, hqzero]
-    have hq' : HahnSeries.ofPowerSeries ℤ ℂ (∑ i, c i • UpperHalfPlane.qExpansion 1 ⇑(f i)) = 0 := by
+    have hq' : HahnSeries.ofPowerSeries ℤ ℂ (∑ i, c i • UpperHalfPlane.qExpansion 1 ⇑(f i)) = 0 :=
+      by
       rw [hq, map_zero]
     rw [map_sum] at hq'
     have hterm : ∀ i, HahnSeries.ofPowerSeries ℤ ℂ (c i • UpperHalfPlane.qExpansion 1 ⇑(f i)) =
@@ -288,9 +293,11 @@ end privateSection
 public section publicSection
 
 
-theorem CuspForm.dimFormula_le_finrank_gamma0 (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
+theorem CuspForm.dimFormula_le_finrank_gamma0 (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k)
+    :
     (((k : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((k / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
         + ((k / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + ((k : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ))
-      ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (k : ℤ)) : ℚ) := _root_.P2MW.S_CuspForm_dimFormula_le_finrank_gamma0.solution N k hk hke
+      ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (k : ℤ)) : ℚ) :=
+  solution N k hk hke
 
 end publicSection

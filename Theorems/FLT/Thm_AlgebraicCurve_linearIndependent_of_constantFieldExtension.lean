@@ -131,7 +131,8 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
   set dg := g.natDegree
   set dh := h.natDegree
   let σ : Type := (Fin dg × Fin N) ⊕ (Fin dh × Fin N)
-  let c : σ → K' := Sum.elim (fun jn => (g.coeff jn.1).coeff jn.2) (fun jn => (h.coeff jn.1).coeff jn.2)
+  let c : σ → K' :=
+    Sum.elim (fun jn => (g.coeff jn.1).coeff jn.2) (fun jn => (h.coeff jn.1).coeff jn.2)
   let R := MvPolynomial σ K
   let G : R[X][X] := genericPoly dg N (fun j n => MvPolynomial.X (Sum.inl (j, n)))
   let H : R[X][X] := genericPoly dh N (fun j n => MvPolynomial.X (Sum.inr (j, n)))
@@ -257,10 +258,11 @@ theorem aeval_gen_injective {x : F} (hx : Transcendental K x) :
   rw [← AdjoinSimple.coe_aeval_gen_apply (F := K) x p,
     ← AdjoinSimple.coe_aeval_gen_apply (F := K) x q, hpq]
 
-theorem exists_common_denom {x : F} (hx : Transcendental K x) {T : Type*} [Fintype T]
+theorem exists_common_denom {x : F} (hx : Transcendental K x) {T : Type*} [Finite T]
     (r : T → K⟮x⟯) : ∃ q : K[X], q ≠ 0 ∧ ∀ t, ∃ p : K[X],
       aeval (AdjoinSimple.gen K x) q * r t = aeval (AdjoinSimple.gen K x) p := by
   classical
+  let := Fintype.ofFinite T
   let e := RatFunc.algEquivOfTranscendental x hx
   let u : T → RatFunc K := fun t => e.symm (r t)
   have key : ∀ g : K[X], (aeval (AdjoinSimple.gen K x) g : K⟮x⟯) =
@@ -561,9 +563,10 @@ theorem eq_zero_of_sum_mul_algebraMap [IsAlgClosed K] [CharZero K] {x : F}
 theorem linearIndependent_algebraMap_of_fintype [IsAlgClosed K] [CharZero K] {x : F}
     (hx : Transcendental K x) [FiniteDimensional K⟮x⟯ F]
     (hx₁ : Transcendental K' (algebraMap F F' x))
-    {κ : Type*} [Fintype κ] {b : κ → F} (hb : LinearIndependent K b) :
+    {κ : Type*} [Finite κ] {b : κ → F} (hb : LinearIndependent K b) :
     LinearIndependent K' (fun i => algebraMap F F' (b i)) := by
   classical
+  let := Fintype.ofFinite κ
   rw [Fintype.linearIndependent_iff]
   intro a hrel i₀
   let W : Submodule K K' := Submodule.span K (Set.range a)
@@ -607,12 +610,12 @@ end Main
 end AlgebraicCurve.LinDisjSol
 
 open AlgebraicCurve.LinDisjSol in
-
 theorem solution (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [CharZero K]
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧
+      FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤)
@@ -638,11 +641,13 @@ theorem AlgebraicCurve.linearIndependent_of_constantFieldExtension (K F K' F' : 
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [CharZero K]
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧
+      FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤)
     {ι : Type*} {b : ι → F} (hb : LinearIndependent K b) :
-    LinearIndependent K' (fun i => algebraMap F F' (b i)) := _root_.P2MW.S_AlgebraicCurve_linearIndependent_of_constantFieldExtension.solution K F K' F' hfg hfg' hgen hb
+    LinearIndependent K' (fun i => algebraMap F F' (b i)) :=
+  solution K F K' F' hfg hfg' hgen hb
 
 end publicSection

@@ -88,7 +88,8 @@ p2m_open "Complex Real UpperHalfPlane Function Filter Polynomial Real.Polynomial
 open scoped Topology Manifold MatrixGroups ModularForm
 
 namespace WLight
-p2m_export "WLight" "exists_monicRel_j_of_mdifferentiable_levelFraction frickeFunction_modularity_package frickeFunction_orbit_package"
+p2m_export "WLight" "exists_monicRel_j_of_mdifferentiable_levelFraction \
+  frickeFunction_modularity_package frickeFunction_orbit_package"
 p2m_open "WLight"
 
 section Descent
@@ -302,7 +303,7 @@ lemma eq_zero_of_forall_im_ge {f : ℍ → ℂ} (hf : MDifferentiable 𝓘(ℂ) 
   have hev : f ∘ ofComplex =ᶠ[𝓝 (⟨0, max A 0 + 1⟩ : ℂ)] 0 := by
     have hopen : IsOpen {z : ℂ | max A 0 < z.im} := isOpen_lt continuous_const Complex.continuous_im
     have hmem : (⟨0, max A 0 + 1⟩ : ℂ) ∈ {z : ℂ | max A 0 < z.im} := by
-      show max A 0 < max A 0 + 1
+      change max A 0 < max A 0 + 1
       exact lt_add_one _
     filter_upwards [hopen.mem_nhds hmem] with z hz
     have hz' : 0 < z.im := lt_of_le_of_lt (le_max_right A 0) hz
@@ -390,7 +391,6 @@ structure GenData (jf : ℍ → ℂ) (fricke : (Fin 2 → ZMod N) → ℍ → �
         Matrix.SpecialLinearGroup (Fin 2) (ZMod N)) : Matrix (Fin 2) (Fin 2) (ZMod N))) τ
 
 omit [NeZero N] in
-
 lemma adjoin_props (hg : GenData jf fricke) {x : ℍ → ℂ}
     (hx : x ∈ Algebra.adjoin ℂ (Set.range (gen jf fricke))) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) x ∧
@@ -403,7 +403,7 @@ lemma adjoin_props (hg : GenData jf fricke) {x : ℍ → ℂ}
     | none => exact ⟨hg.jmd, hg.jbd, fun τ => hg.jinv _ τ⟩
     | some v =>
       refine ⟨hg.fmd v.1 v.2, hg.fbd v.1 v.2, fun τ => ?_⟩
-      show fricke v.1 _ = fricke v.1 τ
+      change fricke v.1 _ = fricke v.1 τ
       rw [hg.fslash, map_T_pow_eq_one, Matrix.vecMul_one]
   | algebraMap c =>
     refine ⟨mdifferentiable_const, ⟨0, ?_⟩, fun τ => rfl⟩
@@ -426,7 +426,6 @@ lemma adjoin_props (hg : GenData jf fricke) {x : ℍ → ℂ}
     exact hm.mul hn
 
 omit [NeZero N] in
-
 lemma comp_smul_mem_adjoin (hg : GenData jf fricke) (γ : SL(2, ℤ)) {x : ℍ → ℂ}
     (hx : x ∈ Algebra.adjoin ℂ (Set.range (gen jf fricke))) :
     x ∘ (γ • ·) ∈ Algebra.adjoin ℂ (Set.range (gen jf fricke)) := by
@@ -585,7 +584,8 @@ section QKitA
 
 variable {N : ℕ}
 
-private lemma isBoundedAtImInfty_discriminant : IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
+private lemma isBoundedAtImInfty_discriminant :
+    IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → ℂ) :=
   (CuspFormClass.zero_at_infty CuspForm.discriminant).boundedAtFilter
 
 private lemma isBoundedAtImInfty_discPow (n : ℕ) :
@@ -615,7 +615,8 @@ private lemma discPowForm_coe (m : ℕ) : ⇑(discPowForm m) = ⇑CuspForm.discr
   simp [discPowForm, ModularForm.coe_mcast, ModularForm.coe_pow,
     CuspForm.toModularFormₗ_apply]
 
-private lemma periodic_one_fn (c : ℝ) : Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
+private lemma periodic_one_fn (c : ℝ) :
+    Function.Periodic ((1 : ℍ → ℂ) ∘ ofComplex) c := fun _ => rfl
 
 private lemma periodic_discPow_comp_ofComplex (k : ℕ) (N : ℕ) :
     Function.Periodic ((⇑CuspForm.discriminant ^ k : ℍ → ℂ) ∘ ofComplex) N := by
@@ -704,7 +705,8 @@ end QKitA
 
 section RatCoeff
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 private lemma ratCoeff_mul {p q : PowerSeries ℂ}
@@ -795,7 +797,8 @@ open ModularForm
 
 variable {N : ℕ}
 
-private lemma mem_of_rat (K : IntermediateField ℚ ℂ) {x : ℂ} (h : ∃ q : ℚ, x = (q : ℂ)) : x ∈ K := by
+private lemma mem_of_rat (K : IntermediateField ℚ ℂ) {x : ℂ} (h : ∃ q : ℚ, x = (q : ℂ)) :
+    x ∈ K := by
   obtain ⟨q, rfl⟩ := h
   exact SubfieldClass.ratCast_mem K q
 
@@ -1460,6 +1463,7 @@ theorem WLight.exists_monicRel_j_K_of_mdifferentiable_frickeQuotient
       MvPolynomial.aeval (fun o : Option {v : Fin 2 → ZMod N // v ≠ 0} =>
         o.elim jf fun v => fricke v.1) (P₀.map (algebraMap ↥K ℂ))) :
     ∃ (d : ℕ) (p : Fin d → Polynomial ℂ), (∀ (i : Fin d) (n : ℕ), (p i).coeff n ∈ K) ∧
-      ∀ τ : ℍ, G τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * G τ ^ (i : ℕ) = 0 := _root_.P2MW.S_WLight_exists_monicRel_j_K_of_mdifferentiable_frickeQuotient.solution N L hL W hW fricke hfricke jf hjf K hK G hG P₀ Q₀ hQ0 hGQ
+      ∀ τ : ℍ, G τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * G τ ^ (i : ℕ) = 0 :=
+  solution N L hL W hW fricke hfricke jf hjf K hK G hG P₀ Q₀ hQ0 hGQ
 
 end publicSection

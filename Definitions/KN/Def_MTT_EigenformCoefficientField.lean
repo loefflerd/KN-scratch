@@ -48,7 +48,7 @@ theorem coeff_mem_coefficientField
     f.coeff n ∈ f.coefficientField :=
   Subfield.subset_closure (Set.mem_union_left _ ⟨n, rfl⟩)
 
-/-- Every prime Hecke eigenvalue belongs to the coefficient field.  In the
+/-- Every prime Hecke eigenvalue belongs to the coefficient field. In the
 normalization used by `MTT.Eigenform`, this eigenvalue is `f.coeff l`. -/
 theorem heckeEigenvalue_mem_coefficientField
     {N k : ℕ} {ι : Qbar →+* ℂ} (f : Eigenform N k ι)

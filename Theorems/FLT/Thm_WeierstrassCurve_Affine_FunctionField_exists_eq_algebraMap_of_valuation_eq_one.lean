@@ -61,19 +61,28 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.WeierstrassCurve.Affine"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.Weierstrass\
+  Curve.Affine"
 open scoped Polynomial.Bivariate nonZeroDivisors
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map Affine.CoordinateRing mk toAffine Affine.Point"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing.smul_basis_eq_zero CoordinateRing.XClass_ne_zero CoordinateRing.norm_smul_basis CoordinateRing CoordinateRing.smul map FunctionField Point CoordinateRing.mk CoordinateRing.degree_norm_smul_basis CoordinateRing.exists_smul_basis_eq CoordinateRing.XClass"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing.smul_basis_eq_zero \
+  CoordinateRing.XClass_ne_zero CoordinateRing.norm_smul_basis CoordinateRing CoordinateRing.smul \
+  map FunctionField Point CoordinateRing.mk CoordinateRing.degree_norm_smul_basis \
+  CoordinateRing.exists_smul_basis_eq CoordinateRing.XClass"
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XClass_ne_zero norm_smul_basis smul mk map degree_norm_smul_basis exists_smul_basis_eq XClass"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XClass_ne_zero \
+  norm_smul_basis smul mk map degree_norm_smul_basis exists_smul_basis_eq XClass"
 namespace DetInfra
 p2m_open "WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine WeierstrassCurve"
 
-theorem isUnit_iff_eq_algebraMap' {F : Type*} [Field F] {W : WeierstrassCurve F} (f : W.toAffine.CoordinateRing) :
+theorem isUnit_iff_eq_algebraMap' {F : Type*} [Field F] {W : WeierstrassCurve F}
+    (f : W.toAffine.CoordinateRing) :
     IsUnit f ↔ ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.CoordinateRing c := by
   constructor
   · intro hf
@@ -111,7 +120,8 @@ theorem XClass_not_isUnit {F : Type*} [Field F] {W : WeierstrassCurve F} (x : F)
     ¬IsUnit (CoordinateRing.XClass W.toAffine x) := by
   rw [isUnit_iff_eq_algebraMap']
   rintro ⟨c, -, hc⟩
-  have h1 : (X - C x - C c) • (1 : W.toAffine.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W.toAffine Y = 0 := by
+  have h1 : (X - C x - C c) • (1 : W.toAffine.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W.toAffine Y = 0 :=
+    by
     rw [zero_smul, add_zero, sub_smul, CoordinateRing.smul, mul_one, CoordinateRing.smul, mul_one,
       sub_eq_zero]
     exact hc
@@ -124,8 +134,8 @@ end WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
 open WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
-theorem solution {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) : ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.FunctionField c := by
-
+theorem solution {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) :
+    ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.FunctionField c := by
   obtain ⟨M, hMmax, hXM⟩ := exists_max_ideal_of_mem_nonunits (XClass_not_isUnit (W := W) 0)
   have hM0 : M ≠ ⊥ := fun h =>
     CoordinateRing.XClass_ne_zero (W' := W.toAffine) 0 (by rwa [h, Ideal.mem_bot] at hXM)
@@ -151,6 +161,8 @@ end privateSection
 public section publicSection
 
 
-theorem WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) : ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.FunctionField c := _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.solution hf
+theorem WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) :
+    ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.FunctionField c :=
+  solution hf
 
 end publicSection

@@ -138,7 +138,8 @@ theorem order_qExpand_jq (A : ℕ) [NeZero A] :
   rw [pow_one, mul_one] at h1 h2
   exact order_eq_of_coeff K (by rw [h1]; exact one_ne_zero) h2
 
-private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) [NeZero a] (a' b' : ℕ) (ha' : a' ∣ N) [NeZero a']
     (ι ι' : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K)
     (hι₁ : ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
@@ -248,8 +249,9 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N
     let T : LaurentSeries K →ₐ[K] LaurentSeries K :=
       { toRingHom := qTwist (ζ ^ k)
         commutes' := fun c => by
-          show qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
-          rw [algebraMap_laurentSeries_eq_single, qTwist_single, zpow_zero, Units.val_one, one_mul] }
+          change qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+          rw [algebraMap_laurentSeries_eq_single, qTwist_single, zpow_zero, Units.val_one,
+            one_mul] }
     have hFeq : laurentBaseChange K (modularFunctionFieldFull (a * d)) =
         IntermediateField.adjoin K {coeffEmb K jq, coeffEmb K (jqN (a * d))} := by
       rw [laurentBaseChange_adjoin_pair K (a * d) (functionFieldGeneration (a * d)), ← coeffEmb_jq,
@@ -257,10 +259,11 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N
     have hT : ι' = T.comp ι := by
       refine algHom_ext_of_eq_adjoin K hFeq fun x hx => ?_
       rcases hx with rfl | rfl
-      · show ι' jb = qTwist (ζ ^ k) (ι jb)
-        rw [hι'₁, hι₁, qTwist_qExpand, ← zpow_mul, zpow_mul', zpow_natCast, hζu.pow_eq_one, one_zpow,
+      · change ι' jb = qTwist (ζ ^ k) (ι jb)
+        rw [hι'₁, hι₁, qTwist_qExpand, ← zpow_mul, zpow_mul', zpow_natCast, hζu.pow_eq_one,
+          one_zpow,
           qTwist_one_apply]
-      · show ι' jbN = qTwist (ζ ^ k) (ι jbN)
+      · change ι' jbN = qTwist (ζ ^ k) (ι jbN)
         rw [hι'₂, hι₂, qTwist_qExpand, qTwist_qTwist, hk]
     have hordeq : ∀ x, (ι' x).order = (ι x).order := fun x => by
       rw [hT]
@@ -279,8 +282,8 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N
 end CD
 
 open ModularCurve AlgebraicCurve in
-
-theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) [NeZero a] (a' b' : ℕ) (ha' : a' ∣ N) [NeZero a']
     (ι ι' : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K)
     (hι₁ : ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
@@ -307,7 +310,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.slot_place_eq_iff_modEq (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem ModularCurve.slot_place_eq_iff_modEq (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N]
+    (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) [NeZero a] (a' b' : ℕ) (ha' : a' ∣ N) [NeZero a']
     (ι ι' : laurentBaseChange K (modularFunctionFieldFull N) →ₐ[K] LaurentSeries K)
     (hι₁ : ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
@@ -321,6 +325,7 @@ theorem ModularCurve.slot_place_eq_iff_modEq (K : Type*) [Field K] [Algebra ℚ 
     (w w' : Place K (laurentBaseChange K (modularFunctionFieldFull N))) (γ γ' : ℤ)
     (hγ : 0 < γ) (hγ' : 0 < γ')
     (hw : ∀ x, w.ord x * γ = (ι x).order) (hw' : ∀ x, w'.ord x * γ' = (ι' x).order) :
-    w = w' ↔ a = a' ∧ b ≡ b' [MOD Nat.gcd a (N / a)] := _root_.P2MW.S_ModularCurve_slot_place_eq_iff_modEq.solution K N ζ hζ a b ha a' b' ha' ι ι' hι₁ hι₂ hι'₁ hι'₂ w w' γ γ' hγ hγ' hw hw'
+    w = w' ↔ a = a' ∧ b ≡ b' [MOD Nat.gcd a (N / a)] :=
+  solution K N ζ hζ a b ha a' b' ha' ι ι' hι₁ hι₂ hι'₁ hι'₂ w w' γ γ' hγ hγ' hw hw'
 
 end publicSection

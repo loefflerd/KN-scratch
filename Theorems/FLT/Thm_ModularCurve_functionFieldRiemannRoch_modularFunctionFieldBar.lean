@@ -81,7 +81,9 @@ noncomputable section
 open IntermediateField
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place FunctionFieldRiemannRoch HasCanonicalDivisor IsCurveOver HasLocalResidue HasCanonicalLocalResidueKStar HasSeparableResidue functionFieldRiemannRoch_of_isAlgClosed dCoordGenerates_of_isCurveOver instIsCurveOverRatFunc"
+p2m_export "AlgebraicCurve" "Place FunctionFieldRiemannRoch HasCanonicalDivisor IsCurveOver \
+  HasLocalResidue HasCanonicalLocalResidueKStar HasSeparableResidue \
+  functionFieldRiemannRoch_of_isAlgClosed dCoordGenerates_of_isCurveOver instIsCurveOverRatFunc"
 p2m_open "AlgebraicCurve"
 
 namespace RDOCK
@@ -130,7 +132,7 @@ private theorem exists_transcendental_finiteDimensional (x : LF) (hx : Transcend
       rw [lift_top, lift_adjoin]
       apply le_antisymm (adjoin_le_iff.mpr ?_) ?_
       · rintro _ ⟨y, hy, rfl⟩; exact y.2
-      · show IntermediateField.adjoin K (insert x (T : Set LF)) ≤ _
+      · change IntermediateField.adjoin K (insert x (T : Set LF)) ≤ _
         apply adjoin.mono
         intro z hz
         rcases hz with rfl | hz
@@ -148,10 +150,10 @@ end AlgebraicCurve
 
 end
 
-p2m_open "ModularCurve AlgebraicCurve P2MW.S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar.AlgebraicCurve"
+p2m_open "ModularCurve AlgebraicCurve \
+  P2MW.S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar.AlgebraicCurve"
 
 set_option synthInstance.maxHeartbeats 800000 in
-
 theorem solution (N : ℕ) [NeZero N] :
     FunctionFieldRiemannRoch (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := by
   have hpair : laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)
@@ -170,35 +172,40 @@ theorem solution (N : ℕ) [NeZero N] :
     exact isIntegral_jqNModC_all (AlgebraicClosure ℚ) N
   obtain ⟨x', hx', hfd⟩ := h (modularFunctionFieldBar N) (by rw [Finset.coe_singleton]; exact hpair)
   let e := RatFunc.algEquivOfTranscendental x' hx'
-  let : Algebra (RatFunc (AlgebraicClosure ℚ)) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) := e.toAlgHom.toRingHom.toAlgebra
+  let : Algebra (RatFunc (AlgebraicClosure ℚ)) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) :=
+    e.toAlgHom.toRingHom.toAlgebra
   let : Algebra (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) :=
     ((algebraMap (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N)).comp e.toAlgHom.toRingHom).toAlgebra
   have : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq fun q => rfl
   have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq fun r => by
-      show algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) r = algebraMap (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) (e (algebraMap (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) r))
+      change algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) r = algebraMap (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) (e (algebraMap (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) r))
       rw [AlgEquiv.commutes]
       exact IsScalarTower.algebraMap_apply (AlgebraicClosure ℚ) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) r
   have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) :=
     Module.Finite.of_surjective (Algebra.linearMap (RatFunc (AlgebraicClosure ℚ)) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N)))) e.surjective
-  have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) := Module.Finite.trans (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N)
-  have : Algebra.IsIntegral (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) := Algebra.IsIntegral.of_finite (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N)
+  have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) :=
+    Module.Finite.trans (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N)
+  have : Algebra.IsIntegral (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) :=
+    Algebra.IsIntegral.of_finite (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N)
   have : CharZero (RatFunc (AlgebraicClosure ℚ)) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))).injective
   have : PerfectField (RatFunc (AlgebraicClosure ℚ)) := PerfectField.ofCharZero
   have := isCurveOver_modularFunctionFieldBar N
   have := hasCanonicalDivisor_modularFunctionFieldBar N
   have := essFiniteType_modularFunctionFieldBar N
-  have : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.DCoordGenerates := dCoordGenerates_of_isCurveOver
+  have : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.DCoordGenerates :=
+    dCoordGenerates_of_isCurveOver
   have := AlgebraicCurve.instIsCurveOverRatFunc (AlgebraicClosure ℚ)
   have : Algebra.EssFiniteType (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.of_isLocalization (RatFunc (AlgebraicClosure ℚ)) (nonZeroDivisors (Polynomial (AlgebraicClosure ℚ)))
   have : Algebra.EssFiniteType (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.comp (AlgebraicClosure ℚ) (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ))
-  have : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
+  have : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates :=
+    dCoordGenerates_of_isCurveOver
   exact @functionFieldRiemannRoch_of_isAlgClosed (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
-    _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 end S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar
 end P2MW
@@ -211,6 +218,7 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.functionFieldRiemannRoch_modularFunctionFieldBar (N : ℕ) [NeZero N] :
-    FunctionFieldRiemannRoch (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := _root_.P2MW.S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar.solution N
+    FunctionFieldRiemannRoch (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+  solution N
 
 end publicSection

@@ -80,7 +80,8 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "TatePoint.FullKernelIsRootAt"
 namespace TatePoint
-p2m_export "ModularCurve.TatePoint" "FullKernelIsRootAt FullKernelDiscAt isAlgClosed_H charZero_H H fullKernelIsRootAt_of_odd fullKernelDiscAt_of_odd"
+p2m_export "ModularCurve.TatePoint" "FullKernelIsRootAt FullKernelDiscAt isAlgClosed_H charZero_H \
+  H fullKernelIsRootAt_of_odd fullKernelDiscAt_of_odd"
 p2m_open "ModularCurve.TatePoint ModularCurve"
 
 attribute [local instance] isAlgClosed_H charZero_H
@@ -135,17 +136,16 @@ end
 namespace ModularCurve
 p2m_export "ModularCurve" "TatePoint.FullKernelIsRootAt"
 namespace TatePoint
-p2m_export "ModularCurve.TatePoint" "FullKernelIsRootAt FullKernelDiscAt isAlgClosed_H charZero_H H fullKernelIsRootAt_of_odd fullKernelDiscAt_of_odd"
+p2m_export "ModularCurve.TatePoint" "FullKernelIsRootAt FullKernelDiscAt isAlgClosed_H charZero_H \
+  H fullKernelIsRootAt_of_odd fullKernelDiscAt_of_odd"
 end ModularCurve.TatePoint
 p2m_open_scoped "ModularCurve ModularCurve.TatePoint" in
-
 private theorem ModularCurve.TatePoint.fullKernelIsRootAt_aux
     (N : ℕ) [NeZero N] : ModularCurve.TatePoint.FullKernelIsRootAt N :=
   ModularCurve.TatePoint.fullKernelIsRootAt_of_tower N
 
 open scoped Classical
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_TatePoint_fullKernelIsRootAt.ModularCurve _root_.ModularCurve.TatePoint _root_.P2MW.S_ModularCurve_TatePoint_fullKernelIsRootAt.ModularCurve.TatePoint in
-
 theorem solution (N : ℕ) [NeZero N] : FullKernelIsRootAt N :=
   ModularCurve.TatePoint.fullKernelIsRootAt_aux N
 
@@ -159,6 +159,8 @@ public section publicSection
 
 
 open scoped Classical
-theorem ModularCurve.TatePoint.fullKernelIsRootAt (N : ℕ) [NeZero N] : FullKernelIsRootAt N := _root_.P2MW.S_ModularCurve_TatePoint_fullKernelIsRootAt.solution N
+theorem ModularCurve.TatePoint.fullKernelIsRootAt (N : ℕ) [NeZero N] :
+    FullKernelIsRootAt N :=
+  solution N
 
 end publicSection

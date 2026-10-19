@@ -103,7 +103,9 @@ structure IsKummerGenerator (n : ℕ) (K₀ : IntermediateField κ Ω) (a : Ω) 
   ne_zero : a ≠ 0
   pow_mem : a ^ n ∈ K₀
 
-def restrictToBase (hint : (incl K₀ a).toRingHom.IsIntegral) (w : Place κ (igusaFunctionField K₀ a)) : Place κ K₀ :=
+def restrictToBase (hint : (incl K₀ a).toRingHom.IsIntegral) (w : Place κ (igusaFunctionField K₀ a))
+    :
+    Place κ K₀ :=
   w.restrictAlong (incl K₀ a) hint
 
 def ramificationIndexOverBase (w : Place κ (igusaFunctionField K₀ a)) : ℕ :=
@@ -124,7 +126,8 @@ def actDiff (d : IgusaDiamondData p k K₀ a) (b : (ZMod p)ˣ) :
     Ω[igusaFunctionField K₀ a⁄κ] →ₗ[κ] Ω[igusaFunctionField K₀ a⁄κ] :=
   pullbackDiff (d.act b : igusaFunctionField K₀ a →ₐ[κ] igusaFunctionField K₀ a)
 
-theorem act_incl (d : IgusaDiamondData p k K₀ a) (b : (ZMod p)ˣ) (x : K₀) : d.act b (incl K₀ a x) = incl K₀ a x :=
+theorem act_incl (d : IgusaDiamondData p k K₀ a) (b : (ZMod p)ˣ) (x : K₀) :
+    d.act b (incl K₀ a x) = incl K₀ a x :=
   d.act_apply_of_mem b _ x.2
 
 end IgusaDiamondData

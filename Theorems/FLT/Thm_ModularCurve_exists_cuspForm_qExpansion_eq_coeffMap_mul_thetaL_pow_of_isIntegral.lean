@@ -107,7 +107,8 @@ theorem coeffMap_mem_laurentBaseChange_complex (ι₀ : AlgebraicClosure ℚ →
   | inv x _ hx => simpa using inv_mem hx
   | mul x y _ _ hx hy => simpa using mul_mem hx hy
 
-noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) : modularFunctionFieldBar N →+* LaurentSeries ℂ :=
+noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) :
+    modularFunctionFieldBar N →+* LaurentSeries ℂ :=
   (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)).toSubfield.subtype
 
 omit [NeZero N] in
@@ -181,7 +182,8 @@ theorem solution (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m)
   rw [map_inv₀, hJ] at h₂'
   rw [hJ] at h₁'
   simp only [map_mul, map_pow, map_sub, hJ, h1728] at h₁' h₂'
-  obtain ⟨f, hf⟩ := ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral N m hm (phi N ι₀ x) hXmem
+  obtain ⟨f, hf⟩ :=
+    ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral N m hm (phi N ι₀ x) hXmem
     (dedekindPsi N) h₁' h₂'
   exact ⟨f, by rw [hf, phi_apply]⟩
 
@@ -195,7 +197,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m)
+theorem ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral (N : ℕ)
+    [NeZero N] (m : ℕ) (hm : 1 ≤ m)
     (ι₀ : AlgebraicClosure ℚ →+* ℂ) (x : ↥(ModularCurve.modularFunctionFieldBar N))
     (h₁ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({ModularCurve.jBar N} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
       (x ^ 6 * ModularCurve.jBar N ^ (4 * m) *
@@ -206,6 +209,7 @@ theorem ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_is
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
         ModularCurve.coeffMap ι₀ ((x : ↥(ModularCurve.modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) *
-          ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m := _root_.P2MW.S_ModularCurve_exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral.solution N m hm ι₀ x h₁ h₂
+          ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m :=
+  solution N m hm ι₀ x h₁ h₂
 
 end publicSection

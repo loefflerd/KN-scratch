@@ -82,17 +82,21 @@ theorem X_pow_mul_X_pow_mem {a b : ℕ} (h : a + b = n) :
 noncomputable def mono (b : ℕ) : ↥(BinaryForm K n) :=
   if hb : b ≤ n then ⟨X 0 ^ (n - b) * X 1 ^ b, X_pow_mul_X_pow_mem K n (by omega)⟩ else 0
 
-theorem coe_mono {b : ℕ} (hb : b ≤ n) : (mono K n b : MvPolynomial (Fin 2) K) = X 0 ^ (n - b) * X 1 ^ b := by
+theorem coe_mono {b : ℕ} (hb : b ≤ n) :
+    (mono K n b : MvPolynomial (Fin 2) K) = X 0 ^ (n - b) * X 1 ^ b := by
   rw [mono, dite_eq_left hb]
 
 theorem binaryFormRepSL_T_zpow_mono (h : ℤ) {b : ℕ} (hb : b ≤ n) :
     binaryFormRepSL K n (ModularGroup.T ^ h) (mono K n b)
       = ∑ i ∈ Finset.range (b + 1), ((b.choose i : K) * (h : K) ^ (b - i)) • mono K n i := by
   apply Subtype.ext
-  rw [binaryFormRepSL_apply_coe, coe_mono K n hb, Submodule.coe_sum, map_mul, map_pow, map_pow, binarySubst_X,
+  rw [binaryFormRepSL_apply_coe, coe_mono K n hb, Submodule.coe_sum, map_mul, map_pow, map_pow,
+    binarySubst_X,
     binarySubst_X, Fin.sum_univ_two, Fin.sum_univ_two]
-  simp only [ModularGroup.coe_T_zpow, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_one,
-    Matrix.cons_val_fin_one, Matrix.empty_val', Int.cast_one, Int.cast_zero, map_one, map_zero, one_mul, zero_mul,
+  simp only [ModularGroup.coe_T_zpow, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero,
+    Matrix.cons_val_one,
+    Matrix.cons_val_fin_one, Matrix.empty_val', Int.cast_one, Int.cast_zero, map_one, map_zero,
+    one_mul, zero_mul,
     add_zero]
   rw [add_comm (C (h : K) * X 0) (X 1), add_pow, Finset.mul_sum]
   refine Finset.sum_congr rfl fun i hi => ?_
@@ -110,7 +114,8 @@ theorem mono_mem_range_T_zpow_sub_one (n : ℕ) {h : ℤ} (hh : h ≠ 0) :
   | _ b ih =>
     intro hb
     have hexp := binaryFormRepSL_T_zpow_mono K n h (b := b + 1) (by omega)
-    rw [Finset.sum_range_succ, Finset.sum_range_succ, Nat.choose_self, Nat.sub_self, pow_zero, Nat.cast_one, one_mul,
+    rw [Finset.sum_range_succ, Finset.sum_range_succ, Nat.choose_self, Nat.sub_self, pow_zero,
+      Nat.cast_one, one_mul,
       one_smul, Nat.choose_succ_self_right, Nat.add_sub_cancel_left, pow_one] at hexp
     have hmem : (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) (mono K n (b + 1))
         ∈ LinearMap.range (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := LinearMap.mem_range_self _ _
@@ -175,9 +180,11 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.mem_range_binaryFormRepSL_T_zpow_sub_one {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
+theorem HeckeEis.mem_range_binaryFormRepSL_T_zpow_sub_one {K : Type*} [Field K] [CharZero K] (n : ℕ)
+    {h : ℤ}
     (hh : h ≠ 0) (P : ↥(HeckeEis.BinaryForm K n))
     (hP : AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) K) (Finsupp.single 1 n) = 0) :
-    P ∈ LinearMap.range (HeckeEis.binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := _root_.P2MW.S_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one.solution n hh P hP
+    P ∈ LinearMap.range (HeckeEis.binaryFormRepSL K n (ModularGroup.T ^ h) - 1) :=
+  solution n hh P hP
 
 end publicSection

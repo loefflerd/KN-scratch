@@ -58,7 +58,9 @@ namespace P2MW.S_ModularCurve_ord_qInftyPlaceBar
 
 open ModularCurve AlgebraicCurve
 
-theorem solution (L : Type*) [Field L] {F : IntermediateField L (LaurentSeries L)} (h : ∃ j : F, (qSeriesBar L F j).order = -1) (f : F) : (qInftyPlaceBar L F h).ord f = (qSeriesBar L F f).order := by
+theorem solution (L : Type*) [Field L] {F : IntermediateField L (LaurentSeries L)}
+    (h : ∃ j : F, (qSeriesBar L F j).order = -1) (f : F) :
+    (qInftyPlaceBar L F h).ord f = (qSeriesBar L F f).order := by
   obtain ⟨j, hj⟩ := h
   rcases eq_or_ne f 0 with rfl | hf
   · rw [Place.ord_zero, qSeriesBar_zero, HahnSeries.order_zero]
@@ -96,6 +98,10 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.ord_qInftyPlaceBar (L : Type*) [Field L] {F : IntermediateField L (LaurentSeries L)} (h : ∃ j : F, (qSeriesBar L F j).order = -1) (f : F) : (qInftyPlaceBar L F h).ord f = (qSeriesBar L F f).order := _root_.P2MW.S_ModularCurve_ord_qInftyPlaceBar.solution L h f
+theorem ModularCurve.ord_qInftyPlaceBar (L : Type*) [Field L]
+    {F : IntermediateField L (LaurentSeries L)} (h : ∃ j : F, (qSeriesBar L F j).order = -1) (f : F)
+    :
+    (qInftyPlaceBar L F h).ord f = (qSeriesBar L F f).order :=
+  solution L h f
 
 end publicSection

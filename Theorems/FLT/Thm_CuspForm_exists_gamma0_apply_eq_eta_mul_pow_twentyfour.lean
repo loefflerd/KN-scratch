@@ -86,7 +86,7 @@ lemma mem_upperHalfPlaneSet_eleven_mul {z : ℂ} (hz : z ∈ ℍₒ) : (11 : ℂ
   have hz' : 0 < z.im := hz
   have h11 : ((11 : ℂ) * z).im = 11 * z.im := by
     simp [Complex.mul_im]
-  show 0 < ((11 : ℂ) * z).im
+  change 0 < ((11 : ℂ) * z).im
   rw [h11]
   positivity
 
@@ -143,7 +143,7 @@ theorem exists_cuspForm_ne_zero_of_etaProduct (h : EtaProductIsCuspForm) :
   obtain ⟨f, hf⟩ := h
   refine ⟨f, fun hzero => ?_⟩
   have hI : (Complex.I : ℂ) ∈ ℍₒ := by
-    show (0 : ℝ) < (Complex.I).im
+    change (0 : ℝ) < (Complex.I).im
     simp
   have := hf ⟨Complex.I, hI⟩
   rw [hzero] at this
@@ -217,7 +217,7 @@ def deltaElevenFun : ℍ → ℂ := ⇑deltaEleven
 
 lemma deltaElevenFun_apply (τ : ℍ) :
     deltaElevenFun τ = η ((11 : ℂ) * τ) ^ 24 := by
-  show deltaEleven τ = _
+  change deltaEleven τ = _
   rw [deltaEleven_coe]
   simp only [deltaGamma0_coe, ModularForm.discriminant]
   rw [ModularForm.coe_heckeDiagMatrix_smul (by norm_num : (11 : ℕ) ≠ 0)]
@@ -233,7 +233,7 @@ lemma deltaElevenFun_slash {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 11) :
 lemma etaProductEleven_pow_twelve (τ : ℍ) :
     etaProductEleven (τ : ℂ) ^ 12 = ModularForm.discriminant τ * deltaElevenFun τ := by
   rw [deltaElevenFun_apply, etaProductEleven]
-  show (η (τ : ℂ) ^ 2 * η ((11 : ℂ) * τ) ^ 2) ^ 12 = η (τ : ℂ) ^ 24 * η ((11 : ℂ) * τ) ^ 24
+  change (η (τ : ℂ) ^ 2 * η ((11 : ℂ) * τ) ^ 2) ^ 12 = η (τ : ℂ) ^ 24 * η ((11 : ℂ) * τ) ^ 24
   ring
 
 private lemma mem_Gamma0_one (γ : SL(2, ℤ)) : γ ∈ Gamma0 1 := by
@@ -484,12 +484,12 @@ lemma apply_one_one_ne_zero (g : SL(2, ℤ)) (hc : (g 1 0 : ZMod 11) = 0) :
 
 lemma mul_inv_apply_one_zero (g h : SL(2, ℤ)) :
     (g * h⁻¹) 1 0 = g 1 0 * h 1 1 - g 1 1 * h 1 0 := by
-  show ((g : Matrix (Fin 2) (Fin 2) ℤ) * ((h⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) 1 0
+  change ((g : Matrix (Fin 2) (Fin 2) ℤ) * ((h⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) 1 0
       = (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 * (h : Matrix (Fin 2) (Fin 2) ℤ) 1 1
         - (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 * (h : Matrix (Fin 2) (Fin 2) ℤ) 1 0
   rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two, Matrix.mul_apply,
     Fin.sum_univ_two]
-  show (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 * (h : Matrix (Fin 2) (Fin 2) ℤ) 1 1
+  change (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 * (h : Matrix (Fin 2) (Fin 2) ℤ) 1 1
       + (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 * -((h : Matrix (Fin 2) (Fin 2) ℤ) 1 0) = _
   ring
 
@@ -669,7 +669,7 @@ private lemma etaMultiplier_eq_one_of_apply_eq_aux (γ : SL(2, ℤ))
     rw [hz₀_def]
     field_simp
   have hz₀ : z₀ ∈ ℍₒ := by
-    show (0 : ℝ) < z₀.im
+    change (0 : ℝ) < z₀.im
     have hnum : (-(11 * ((γ 0 1 : ℤ) : ℂ)) + s).im = Real.sqrt 11 := by
       rw [hs_def]
       simp
@@ -943,6 +943,7 @@ public section publicSection
 
 theorem CuspForm.exists_gamma0_apply_eq_eta_mul_pow_twentyfour (N : ℕ) [NeZero N] :
     ∃ g : CuspForm (CongruenceSubgroup.Gamma0 N) 12,
-      ∀ τ : UpperHalfPlane, g τ = ModularForm.eta (N * (τ : ℂ)) ^ 24 := _root_.P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.solution N
+      ∀ τ : UpperHalfPlane, g τ = ModularForm.eta (N * (τ : ℂ)) ^ 24 :=
+  solution N
 
 end publicSection

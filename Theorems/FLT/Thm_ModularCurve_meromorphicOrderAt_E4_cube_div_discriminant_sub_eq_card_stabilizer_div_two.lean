@@ -676,6 +676,7 @@ theorem ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_sta
         (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 /
             ModularForm.discriminant (ofComplex z)
           - (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ) (τ : ℂ) =
-      ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ) / 2 : ℕ) : ℤ) := _root_.P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two.solution τ
+      ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ) / 2 : ℕ) : ℤ) :=
+  solution τ
 
 end publicSection

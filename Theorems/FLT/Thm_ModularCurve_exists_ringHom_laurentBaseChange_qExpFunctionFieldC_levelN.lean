@@ -86,9 +86,14 @@ open scoped MatrixGroups Manifold Real ModularForm
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.ring LevelN.jGen IsIntegralQExp intSeriesC intSeriesC_zero intFormRatiosC qExpFunctionFieldC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single algebraMap_apply_eq_single ofPowerSeries_coeff_of_neg jGen coeffMap coeffMap_coeff coeffMap_single coeffMap_coeffMap algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange jqModC map_jqModC LevelN.exists_algHom_laurentSeries_qExpansion"
+p2m_export "ModularCurve" "LevelN.ring LevelN.jGen IsIntegralQExp intSeriesC intSeriesC_zero \
+  intFormRatiosC qExpFunctionFieldC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd \
+  qExpand_single algebraMap_apply_eq_single ofPowerSeries_coeff_of_neg jGen coeffMap \
+  coeffMap_coeff coeffMap_single coeffMap_coeffMap algebraMap_laurentSeries_eq_single coeffEmb \
+  laurentBaseChange jqModC map_jqModC LevelN.exists_algHom_laurentSeries_qExpansion"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jGen exists_algHom_laurentSeries_qExpansion"
+p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jGen \
+  exists_algHom_laurentSeries_qExpansion"
 namespace QExpBridge
 p2m_open "ModularCurve.LevelN ModularCurve"
 
@@ -164,7 +169,8 @@ theorem qExpansion_pow_of_good (hh : 0 < h) (hG : Good h G) :
   | n + 1 => by rw [pow_succ, pow_succ, qExpansion_mul_of_good hh (hG.pow n) hG,
       qExpansion_pow_of_good hh hG n]
 
-theorem qExpansion_const (hh : 0 < h) (c : ℂ) : qExpansion h (fun _ : ℍ => c) = PowerSeries.C c := by
+theorem qExpansion_const (hh : 0 < h) (c : ℂ) :
+    qExpansion h (fun _ : ℍ => c) = PowerSeries.C c := by
   have h1 : (fun _ : ℍ => c) = c • (1 : ℍ → ℂ) := by funext τ; simp
   rw [h1, qExpansion_smul ((Good.one h).analyticAt hh), qExpansion_one, Algebra.smul_def, mul_one]
   simp
@@ -281,7 +287,6 @@ theorem fricke_smul_of_mem (v : Fin 2 → ZMod N) {γ : SL(2, ℤ)}
     v γ hγ τ
 
 omit [NeZero N] in
-
 theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jAnalytic τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have h4 : (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • τ) =
@@ -414,10 +419,13 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
       mdiff := hf.mdiff
       bdd := hf.bdd }
   have hcoeff : ∀ m, c m = (qExpansion N f).coeff m := by
-    have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ) (τ : ℂ) ^ m) (f τ) :=
+    have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ)
+      (τ : ℂ) ^ m) (f τ) :=
       fun τ => hasSum_qExpansion hNpos hgoodN.periodic hgoodN.mdiff hgoodN.bdd τ
-    have h1 := (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN).hasFPowerSeriesAt
-    have h2 := (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN').hasFPowerSeriesAt
+    have h1 := (hasFPowerSeriesOnBall_cuspFunction hNpos
+      (hgoodN.analyticAt hNpos) hsumN).hasFPowerSeriesAt
+    have h2 := (hasFPowerSeriesOnBall_cuspFunction hNpos
+      (hgoodN.analyticAt hNpos) hsumN').hasFPowerSeriesAt
     have heq := h1.eq_formalMultilinearSeries h2
     have := (FormalMultilinearSeries.ofScalars_series_eq_iff (E := ℂ) c _).mp heq
     exact fun m => congrFun this m
@@ -463,15 +471,16 @@ theorem den_ne_zero (γ : SL(2, ℤ)) (τ : ℍ) : den γ τ ≠ 0 := denom_ne_z
 
 theorem apply_smul_eq_slash (f : ℍ → ℂ) (γ : SL(2, ℤ)) (τ : ℍ) :
     f (γ • τ) = (f ∣[k] γ) τ * den γ τ ^ k := by
-  rw [ModularForm.SL_slash_apply, mul_assoc, ← zpow_add₀ (den_ne_zero γ τ), neg_add_cancel, zpow_zero,
-    mul_one]
+  rw [ModularForm.SL_slash_apply, mul_assoc, ← zpow_add₀ (den_ne_zero γ τ), neg_add_cancel,
+    zpow_zero, mul_one]
 
 theorem discriminant_smul (γ : SL(2, ℤ)) (τ : ℍ) : Δ (γ • τ) = den γ τ ^ (12 : ℤ) * Δ τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have := SlashInvariantForm.slash_action_eqn'' CuspForm.discriminant hmem τ
   simpa [ModularGroup.sl_moeb] using this
 
-theorem apply_smul_of_mem (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) {δ : SL(2, ℤ)} (hδ : δ ∈ Γ)
+theorem apply_smul_of_mem
+    (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) {δ : SL(2, ℤ)} (hδ : δ ∈ Γ)
     (τ : ℍ) : f (δ • τ) = den δ τ ^ k * f τ := by
   have hmem : (δ : GL (Fin 2) ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)) := ⟨δ, hδ, rfl⟩
   have := SlashInvariantForm.slash_action_eqn'' f hmem τ
@@ -526,7 +535,8 @@ theorem mdifferentiable_discriminant_zpow (n : ℤ) : MDiff (fun τ : ℍ => Δ 
   exact hd.zpow (Or.inl fun z hz => by
     rw [Function.comp_apply]; exact ModularForm.discriminant_ne_zero _)
 
-theorem mdifferentiable_FF (k : ℤ) {f g : ℍ → ℂ} (hf : MDiff f) (hg : MDiff g) : MDiff (FF k f g) := by
+theorem mdifferentiable_FF
+    (k : ℤ) {f g : ℍ → ℂ} (hf : MDiff f) (hg : MDiff g) : MDiff (FF k f g) := by
   have : FF k f g = f * g ^ 11 * (fun τ : ℍ => Δ τ ^ (-k)) := by
     funext τ; simp [FF_apply]
   rw [this]
@@ -540,19 +550,23 @@ theorem factor_cancel (d : ℂ) (hd : d ≠ 0) (k : ℤ) :
 
 theorem FF_smul (k : ℤ) (f g : ℍ → ℂ) (γ : SL(2, ℤ)) (τ : ℍ) :
     FF k f g (γ • τ) = FF k (f ∣[k] γ) (g ∣[k] γ) τ := by
-  rw [FF_apply, FF_apply, apply_smul_eq_slash f γ τ, apply_smul_eq_slash g γ τ, discriminant_smul γ τ]
+  rw [FF_apply, FF_apply, apply_smul_eq_slash (k := k) f γ τ, apply_smul_eq_slash (k := k) g γ τ,
+    discriminant_smul γ τ]
   have hd := den_ne_zero γ τ
   set d := den γ τ
   rw [mul_pow, mul_zpow]
   have hc := factor_cancel d hd k
-  calc (f ∣[k] γ) τ * d ^ k * ((g ∣[k] γ) τ ^ 11 * (d ^ k) ^ 11) * ((d ^ (12 : ℤ)) ^ (-k) * Δ τ ^ (-k))
-      = (f ∣[k] γ) τ * (g ∣[k] γ) τ ^ 11 * Δ τ ^ (-k) * (d ^ k * (d ^ k) ^ 11 * (d ^ (12 : ℤ)) ^ (-k)) := by
+  calc (f ∣[k] γ) τ * d ^ k * ((g ∣[k] γ) τ ^ 11 * (d ^ k) ^ 11)
+      * ((d ^ (12 : ℤ)) ^ (-k) * Δ τ ^ (-k))
+    = (f ∣[k] γ) τ * (g ∣[k] γ) τ ^ 11 * Δ τ ^ (-k)
+          * (d ^ k * (d ^ k) ^ 11 * (d ^ (12 : ℤ)) ^ (-k)) := by
         ring
     _ = (f ∣[k] γ) τ * (g ∣[k] γ) τ ^ 11 * Δ τ ^ (-k) := by rw [hc, mul_one]
 
 variable {Γ : Subgroup SL(2, ℤ)} {k : ℤ}
 
-theorem FF_smul_of_mem (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) {δ : SL(2, ℤ)} (hδ : δ ∈ Γ)
+theorem FF_smul_of_mem
+    (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) {δ : SL(2, ℤ)} (hδ : δ ∈ Γ)
     (τ : ℍ) : FF k f g (δ • τ) = FF k f g τ := by
   rw [FF_smul]
   have hmem : (δ : GL (Fin 2) ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)) := ⟨δ, hδ, rfl⟩
@@ -562,7 +576,8 @@ theorem FF_smul_of_mem (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) {�
     rw [ModularForm.SL_slash]; exact SlashInvariantFormClass.slash_action_eq g _ hmem
   rw [hf, hg]
 
-theorem isBoundedAtImInfty_FF_smul [Γ.FiniteIndex] (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+theorem isBoundedAtImInfty_FF_smul
+    [Γ.FiniteIndex] (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
     (γ : SL(2, ℤ)) : IsBoundedAtImInfty ((fun τ => FF k f g (γ • τ)) * (Δ : ℍ → ℂ) ^ k.toNat) := by
   have : (fun τ => FF k f g (γ • τ)) = FF k ((f : ℍ → ℂ) ∣[k] γ) ((g : ℍ → ℂ) ∣[k] γ) := by
     funext τ; exact FF_smul k f g γ τ
@@ -597,7 +612,8 @@ theorem PB.add_right {F : ℍ → ℂ} {m : ℕ} (hm : PB F m) (k : ℕ) : PB F 
 theorem good_of_PB {F : ℍ → ℂ} (hF : F ∈ ring M) {m : ℕ} (hm : PB F m) :
     Good M (F * (Δ : ℍ → ℂ) ^ m) where
   periodic := by
-    have : (F * (Δ : ℍ → ℂ) ^ m) ∘ ofComplex = (F ∘ ofComplex) * (((Δ : ℍ → ℂ) ^ m) ∘ ofComplex) := rfl
+    have : (F * (Δ : ℍ → ℂ) ^ m) ∘ ofComplex = (F ∘ ofComplex) * (((Δ : ℍ → ℂ) ^ m) ∘ ofComplex) :=
+      rfl
     rw [this]
     exact (periodic_of_mem M hF).mul ((good_discriminant M).pow m).periodic
   mdiff := (mdifferentiable_of_mem M hF).mul ((good_discriminant M).pow m).mdiff
@@ -619,7 +635,8 @@ theorem famS_stable (γ : SL(2, ℤ)) : ∀ G ∈ famS M, (G ∘ (γ • ·)) �
   have : (CongruenceSubgroup.Gamma M).Normal := CongruenceSubgroup.Gamma_normal M
   refine ⟨hG.comp (mdifferentiable_sl_smul γ), fun δ hδ τ => ?_, fun γ' => ?_⟩
   · change G (γ • δ • τ) = G (γ • τ)
-    have hconj : γ * δ * γ⁻¹ ∈ CongruenceSubgroup.Gamma M := Subgroup.Normal.conj_mem inferInstance δ hδ γ
+    have hconj : γ * δ * γ⁻¹ ∈ CongruenceSubgroup.Gamma M :=
+      Subgroup.Normal.conj_mem inferInstance δ hδ γ
     have := hinv _ hconj (γ • τ)
     rw [← this, ← mul_smul, ← mul_smul]
     congr 1
@@ -652,7 +669,8 @@ theorem periodic_FF (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
   intro z
   have hf := (good_coe hT f).periodic z
   have hg := (good_coe hT g).periodic z
-  have hΔ := (by simpa using (good_discriminant 1).periodic : Periodic ((Δ : ℍ → ℂ) ∘ ofComplex) 1) z
+  have hΔ := (by simpa using (good_discriminant 1).periodic :
+    Periodic ((Δ : ℍ → ℂ) ∘ ofComplex) 1) z
   simp only [Function.comp_apply, Complex.ofReal_one] at hf hg hΔ ⊢
   rw [FF_apply, FF_apply, hf, hg, hΔ]
 
@@ -681,8 +699,8 @@ theorem Q_FF_mul_pow (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
   have hM := castM_pos M
   have hf : Good M (f : ℍ → ℂ) := Good.of_one M (good_coe hT f)
   have hg : Good M (g : ℍ → ℂ) := Good.of_one M (good_coe hT g)
-  rw [FF_mul_pow, Q_mul hM (hf.mul (hg.pow 11)) ((good_discriminant M).pow _), Q_mul hM hf (hg.pow 11),
-    Q_pow hM hg, Q_pow hM (good_discriminant M)]
+  rw [FF_mul_pow, Q_mul hM (hf.mul (hg.pow 11)) ((good_discriminant M).pow _),
+    Q_mul hM hf (hg.pow 11), Q_pow hM hg, Q_pow hM (good_discriminant M)]
 
 end Family
 
@@ -700,7 +718,8 @@ def E : K →ₐ[ℂ] LaurentSeries ℂ :=
 theorem E_jGen : E M K (algebraMap (ring M) K (jGen M)) = ModularCurve.qExpand ℂ M (jqModC ℂ) :=
   (ModularCurve.LevelN.exists_algHom_laurentSeries_qExpansion M K).choose_spec.1
 
-theorem E_mul_pow (F : ℍ → ℂ) (hF : F ∈ ring M) (m : ℕ) (hm : IsBoundedAtImInfty (F * (Δ : ℍ → ℂ) ^ m)) :
+theorem E_mul_pow
+    (F : ℍ → ℂ) (hF : F ∈ ring M) (m : ℕ) (hm : IsBoundedAtImInfty (F * (Δ : ℍ → ℂ) ^ m)) :
     E M K (algebraMap (ring M) K ⟨F, hF⟩) * Q M (Δ : ℍ → ℂ) ^ m = Q M (F * (Δ : ℍ → ℂ) ^ m) :=
   (ModularCurve.LevelN.exists_algHom_laurentSeries_qExpansion M K).choose_spec.2 F hF m hm
 
@@ -727,7 +746,8 @@ theorem E_div_eq {G a b : ℍ → ℂ} (ha : a ∈ ring M) (hb : b ∈ ring M) (
     rw [this]; exact hmb.mul hGp.bdd
   have hEa := E_mul_pow M K a ha (mb + p) ham
   have hEb := E_mul_pow M K b hb mb hmb
-  have hsplit : Q M (a * (Δ : ℍ → ℂ) ^ (mb + p)) = Q M (b * (Δ : ℍ → ℂ) ^ mb) * Q M (G * (Δ : ℍ → ℂ) ^ p) := by
+  have hsplit : Q M (a * (Δ : ℍ → ℂ) ^ (mb + p)) =
+      Q M (b * (Δ : ℍ → ℂ) ^ mb) * Q M (G * (Δ : ℍ → ℂ) ^ p) := by
     rw [← Q_mul hM hgoodb hGp]
     congr 1
     rw [← hGb]; ring
@@ -740,16 +760,20 @@ theorem E_div_eq {G a b : ℍ → ℂ} (ha : a ∈ ring M) (hb : b ∈ ring M) (
   rw [eq_div_iff (pow_ne_zero p hΔ0), div_mul_eq_mul_div, div_eq_iff hEb0]
   apply mul_right_cancel₀ (pow_ne_zero mb hΔ0)
   calc E M K (algebraMap (ring M) K ⟨a, ha⟩) * Q M (Δ : ℍ → ℂ) ^ p * Q M (Δ : ℍ → ℂ) ^ mb
-      = E M K (algebraMap (ring M) K ⟨a, ha⟩) * (Q M (Δ : ℍ → ℂ) ^ mb * Q M (Δ : ℍ → ℂ) ^ p) := by ring
+      = E M K (algebraMap (ring M) K ⟨a, ha⟩) * (Q M (Δ : ℍ → ℂ) ^ mb * Q M (Δ : ℍ → ℂ) ^ p) := by
+        ring
     _ = Q M (b * (Δ : ℍ → ℂ) ^ mb) * Q M (G * (Δ : ℍ → ℂ) ^ p) := hEa
-    _ = Q M (G * (Δ : ℍ → ℂ) ^ p) * (E M K (algebraMap (ring M) K ⟨b, hb⟩) * Q M (Δ : ℍ → ℂ) ^ mb) := by
+    _ = Q M (G * (Δ : ℍ → ℂ) ^ p) * (E M K (algebraMap (ring M) K ⟨b, hb⟩)
+          * Q M (Δ : ℍ → ℂ) ^ mb) := by
         rw [hEb]; ring
-    _ = Q M (G * (Δ : ℍ → ℂ) ^ p) * E M K (algebraMap (ring M) K ⟨b, hb⟩) * Q M (Δ : ℍ → ℂ) ^ mb := by
+    _ = Q M (G * (Δ : ℍ → ℂ) ^ p) * E M K (algebraMap (ring M) K ⟨b, hb⟩)
+          * Q M (Δ : ℍ → ℂ) ^ mb := by
         ring
 
 variable {Γ : Subgroup SL(2, ℤ)} {k : ℤ}
 
-theorem comp_smul_ne_zero {b : ℍ → ℂ} (hb0 : b ≠ 0) (γ : SL(2, ℤ)) : (fun τ : ℍ => b (γ • τ)) ≠ 0 := by
+theorem comp_smul_ne_zero {b : ℍ → ℂ} (hb0 : b ≠ 0) (γ : SL(2, ℤ)) :
+    (fun τ : ℍ => b (γ • τ)) ≠ 0 := by
   intro h
   apply hb0
   funext τ
@@ -849,14 +873,17 @@ theorem const_mem_goodSeries (c : ℚ̄) :
     change E M K (algebraMap ℂ K (ι c)) = _
     rw [AlgHom.commutes, algebraMap_laurentSeries]⟩
 
-theorem coeffMap_ofPowerSeries {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) (p : PowerSeries R) :
+theorem coeffMap_ofPowerSeries {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
+    (p : PowerSeries R) :
     ModularCurve.coeffMap φ (HahnSeries.ofPowerSeries ℤ R p) = HahnSeries.ofPowerSeries ℤ S (p.map φ) := by
   ext n
   rw [ModularCurve.coeffMap_coeff]
   rcases lt_or_ge n 0 with hn | hn
-  · rw [ModularCurve.ofPowerSeries_coeff_of_neg _ hn, ModularCurve.ofPowerSeries_coeff_of_neg _ hn, map_zero]
+  · rw [ModularCurve.ofPowerSeries_coeff_of_neg _ hn, ModularCurve.ofPowerSeries_coeff_of_neg _ hn,
+      map_zero]
   · lift n to ℕ using hn
-    rw [HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map]
+    rw [HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff,
+      PowerSeries.coeff_map]
 
 theorem iotaM_coeffEmb_intSeriesC {h : ℍ → ℂ} {p : PowerSeries ℤ} (hp : IsIntegralQExp h p) :
     iotaM M ι (coeffEmb ℚ̄ (intSeriesC ℚ p)) = ModularCurve.qExpand ℂ M (Q 1 h) := by
@@ -865,14 +892,16 @@ theorem iotaM_coeffEmb_intSeriesC {h : ℍ → ℂ} {p : PowerSeries ℤ} (hp : 
   rw [coeffEmb, intSeriesC, ModularCurve.coeffMap_coeffMap, coeffMap_ofPowerSeries]
   have hmap : PowerSeries.map (ι.comp (algebraMap ℚ ℚ̄)) (PowerSeries.map (Int.castRingHom ℚ) p) =
       PowerSeries.map (Int.castRingHom ℂ) p := by
-    rw [← RingHom.comp_apply (PowerSeries.map (ι.comp (algebraMap ℚ ℚ̄))) (PowerSeries.map (Int.castRingHom ℚ)),
+    rw [← RingHom.comp_apply (PowerSeries.map (ι.comp (algebraMap ℚ ℚ̄))) (PowerSeries.map
+      (Int.castRingHom ℚ)),
       ← PowerSeries.map_comp,
       RingHom.ext_int ((ι.comp (algebraMap ℚ ℚ̄)).comp (Int.castRingHom ℚ)) (Int.castRingHom ℂ)]
   rw [hmap, Q, hp]
 
 variable {Γ}
 
-theorem gen_mem_goodSeries (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
+theorem gen_mem_goodSeries (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ)
+    [Γ.FiniteIndex]
     {x : LaurentSeries ℚ} (hx : x ∈ intFormRatiosC ℚ Γ) :
     iotaM M ι (coeffEmb ℚ̄ x) ∈ goodSeries M K Γ := by
   obtain ⟨k, f, g, pf, pg, hf, hg, hpg0, rfl⟩ := hx
@@ -890,7 +919,8 @@ theorem gen_mem_goodSeries (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : Modul
   rw [hκ, map_div₀, map_div₀, iotaM_coeffEmb_intSeriesC M ι hf, iotaM_coeffEmb_intSeriesC M ι hg,
     Q_natCast_eq_qExpand M (good_coe hT f), Q_natCast_eq_qExpand M (good_coe hT g)]
 
-theorem laurentBaseChange_le (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
+theorem laurentBaseChange_le (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ)
+    [Γ.FiniteIndex]
     {u : LaurentSeries ℚ̄} (hu : u ∈ laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ Γ)) :
     iotaM M ι u ∈ goodSeries M K Γ := by
   have hF : (laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ Γ)).toSubfield ≤
@@ -922,11 +952,13 @@ variable (Γ)
 
 local notation "FFq" => laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ Γ)
 
-theorem exists_kappa_of_mem (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
+theorem exists_kappa_of_mem (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ)
+    [Γ.FiniteIndex]
     (u : FFq) : ∃ κ : K, κ ∈ fixedSub M K Γ ∧ E M K κ = iotaM M ι (u : LaurentSeries ℚ̄) :=
   Subfield.mem_map.mp (laurentBaseChange_le M K ι hΓ hT u.2)
 
-def Phi (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex] : FFq →+* K where
+def Phi (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex] :
+    FFq →+* K where
   toFun u := (exists_kappa_of_mem M K Γ ι hΓ hT u).choose
   map_one' := by
     apply E_injective M K
@@ -934,22 +966,27 @@ def Phi (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [
   map_mul' u v := by
     apply E_injective M K
     rw [(exists_kappa_of_mem M K Γ ι hΓ hT (u * v)).choose_spec.2, map_mul,
-      (exists_kappa_of_mem M K Γ ι hΓ hT u).choose_spec.2, (exists_kappa_of_mem M K Γ ι hΓ hT v).choose_spec.2,
+      (exists_kappa_of_mem M K Γ ι hΓ hT u).choose_spec.2, (exists_kappa_of_mem M K Γ ι hΓ hT
+      v).choose_spec.2,
       MulMemClass.coe_mul, map_mul]
   map_zero' := by
     apply E_injective M K
-    rw [(exists_kappa_of_mem M K Γ ι hΓ hT 0).choose_spec.2, map_zero, ZeroMemClass.coe_zero, map_zero]
+    rw [(exists_kappa_of_mem M K Γ ι hΓ hT 0).choose_spec.2, map_zero, ZeroMemClass.coe_zero,
+      map_zero]
   map_add' u v := by
     apply E_injective M K
     rw [(exists_kappa_of_mem M K Γ ι hΓ hT (u + v)).choose_spec.2, map_add,
-      (exists_kappa_of_mem M K Γ ι hΓ hT u).choose_spec.2, (exists_kappa_of_mem M K Γ ι hΓ hT v).choose_spec.2,
+      (exists_kappa_of_mem M K Γ ι hΓ hT u).choose_spec.2, (exists_kappa_of_mem M K Γ ι hΓ hT
+      v).choose_spec.2,
       AddMemClass.coe_add, map_add]
 
-theorem E_Phi (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex] (u : FFq) :
+theorem E_Phi (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
+    (u : FFq) :
     E M K (Phi M K Γ ι hΓ hT u) = iotaM M ι (u : LaurentSeries ℚ̄) :=
   (exists_kappa_of_mem M K Γ ι hΓ hT u).choose_spec.2
 
-theorem Phi_mem (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex] (u : FFq) :
+theorem Phi_mem (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
+    (u : FFq) :
     Phi M K Γ ι hΓ hT u ∈ fixedSub M K Γ :=
   (exists_kappa_of_mem M K Γ ι hΓ hT u).choose_spec.1
 
@@ -1041,6 +1078,7 @@ theorem ModularCurve.exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN
             φ (algebraMap (ModularCurve.LevelN.ring M) K ⟨G, hG⟩) =
               algebraMap (ModularCurve.LevelN.ring M) K
                 ⟨fun τ : UpperHalfPlane => G (γ⁻¹ • τ), hst G hG⟩) →
-        ∀ u, φ (Φ u) = Φ u := _root_.P2MW.S_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN.solution M Γ hΓ hT ι K
+        ∀ u, φ (Φ u) = Φ u :=
+  solution M Γ hΓ hT ι K
 
 end publicSection

@@ -48,7 +48,8 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 public section publicSection
 
-theorem HahnSeries.HasRamBound.add {K : Type*} [Field K] {e : ℕ} {x y : HahnSeries ℚ K} (hx : HasRamBound e x)
+theorem HahnSeries.HasRamBound.add {K : Type*} [Field K] {e : ℕ} {x y : HahnSeries ℚ K}
+    (hx : HasRamBound e x)
     (hy : HasRamBound e y) : HasRamBound e (x + y) := by
   intro g hg
   rcases support_add_subset x y hg with h | h

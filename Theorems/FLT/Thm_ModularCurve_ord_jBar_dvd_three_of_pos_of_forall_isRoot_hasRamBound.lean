@@ -83,7 +83,10 @@ noncomputable section
 open HahnSeries Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand jq ModularPolynomialData FunctionFieldGeneration modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full transcendental_coeffEmb_jq finiteDimensional_adjoin_coeffEmb_jq_full isRoot_map_Phi_apply_jBar adjoin_jBar_jNBar_eq_top nonempty_modularPolynomialData"
+p2m_export "ModularCurve" "qExpand jq ModularPolynomialData FunctionFieldGeneration \
+  modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange \
+  jq_mem_full transcendental_coeffEmb_jq finiteDimensional_adjoin_coeffEmb_jq_full \
+  isRoot_map_Phi_apply_jBar adjoin_jBar_jNBar_eq_top nonempty_modularPolynomialData"
 p2m_open "ModularCurve"
 
 private lemma algebraMap_hahnSeries_eq_C (a : AlgebraicClosure ℚ) :
@@ -112,7 +115,7 @@ private lemma forall_hasRamBound_of_embedding (N : ℕ) [NeZero N]
             HahnSeries ℚ (AlgebraicClosure ℚ)) := by
     intro a
     rw [Subfield.mem_comap]
-    show ψ (algebraMap _ _ a) ∈ _
+    change ψ (algebraMap _ _ a) ∈ _
     rw [AlgHom.commutes, algebraMap_hahnSeries_eq_C]
     exact (mem_puiseuxRamSubfield_iff hd).mpr (HahnSeries.hasRamBound_C a)
   have hmemS : ∀ z : ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)),
@@ -150,7 +153,10 @@ private lemma forall_hasRamBound_of_embedding (N : ℕ) [NeZero N]
 end ModularCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand jq ModularPolynomialData FunctionFieldGeneration modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full transcendental_coeffEmb_jq finiteDimensional_adjoin_coeffEmb_jq_full isRoot_map_Phi_apply_jBar adjoin_jBar_jNBar_eq_top nonempty_modularPolynomialData"
+p2m_export "ModularCurve" "qExpand jq ModularPolynomialData FunctionFieldGeneration \
+  modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange \
+  jq_mem_full transcendental_coeffEmb_jq finiteDimensional_adjoin_coeffEmb_jq_full \
+  isRoot_map_Phi_apply_jBar adjoin_jBar_jNBar_eq_top nonempty_modularPolynomialData"
 p2m_open "ModularCurve"
 
 set_option synthInstance.maxHeartbeats 1600000 in
@@ -236,7 +242,7 @@ private theorem engine_generic (N : ℕ) [NeZero N] (data : ModularPolynomialDat
         exact hrange c.2
       obtain ⟨c', hc'⟩ := hc
       have hcc : c • y = c' • y := by
-        show (c : ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N))) * y =
+        change (c : ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N))) * y =
           lift.toRingHom c' * y
         rw [hc']
       rw [hcc]
@@ -374,7 +380,6 @@ private theorem ord_jBar_sub_1728_dvd_two_of_pos_of_odd (N : ℕ) [NeZero N] (hN
 end ModularCurve
 
 open HahnSeries Polynomial _root_.ModularCurve _root_.P2MW.S_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound.ModularCurve in
-
 theorem solution (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N)
     (htrio : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),
@@ -415,6 +420,7 @@ theorem ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound (N :
           laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N))) :
     v.ord (⟨coeffEmb (AlgebraicClosure ℚ) jq,
         coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :
-          laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) ∣ (3 : ℤ) := _root_.P2MW.S_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound.solution N data htrio v hv
+          laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) ∣ (3 : ℤ) :=
+  solution N data htrio v hv
 
 end publicSection

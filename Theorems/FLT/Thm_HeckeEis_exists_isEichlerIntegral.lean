@@ -114,7 +114,7 @@ def assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) : ↥(BinaryFor
 
 theorem coeff_assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) (d : Fin 2 →₀ ℕ) :
     AddMonoidAlgebra.coeff (assemble n g τ : MvPolynomial (Fin 2) ℂ) d = if d ∈ degExps n then g d (τ : ℂ) else 0 := by
-  show AddMonoidAlgebra.coeff (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) d = _
+  change AddMonoidAlgebra.coeff (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) d = _
   simp only [coeff_sum, coeff_monomial, Finset.sum_ite_eq']
 
 end EichlerIntegralExistence
@@ -168,6 +168,7 @@ public section publicSection
 open scoped Manifold MatrixGroups
 theorem HeckeEis.exists_isEichlerIntegral (n : ℕ) {f : UpperHalfPlane → ℂ}
     (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) :
-    ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F := _root_.P2MW.S_HeckeEis_exists_isEichlerIntegral.solution n hf
+    ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F :=
+  solution n hf
 
 end publicSection

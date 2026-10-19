@@ -71,9 +71,13 @@ open UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.ring LevelN.exists_linearMap_regularDifferentials_mdifferentiable LevelN.isZeroAtImInfty_slash_of_mem_regularDifferentials LevelN.slash_eq_self_of_mem_Gamma_of_mul_eq"
+p2m_export "ModularCurve" "LevelN.ring \
+  LevelN.exists_linearMap_regularDifferentials_mdifferentiable \
+  LevelN.isZeroAtImInfty_slash_of_mem_regularDifferentials \
+  LevelN.slash_eq_self_of_mem_Gamma_of_mul_eq"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "ring exists_linearMap_regularDifferentials_mdifferentiable isZeroAtImInfty_slash_of_mem_regularDifferentials slash_eq_self_of_mem_Gamma_of_mul_eq"
+p2m_export "ModularCurve.LevelN" "ring exists_linearMap_regularDifferentials_mdifferentiable \
+  isZeroAtImInfty_slash_of_mem_regularDifferentials slash_eq_self_of_mem_Gamma_of_mul_eq"
 namespace CuspFormAssembly
 p2m_open "ModularCurve.LevelN ModularCurve"
 
@@ -97,7 +101,8 @@ theorem Ψ_spec :
           a τ * (e τ * deriv (c ∘ ofComplex) τ - c τ * deriv (e ∘ ofComplex) τ) :=
   (exists_linearMap_regularDifferentials_mdifferentiable N K).2.choose_spec
 
-theorem exists_rep (ω : KaehlerDifferential ℂ K) (hω : ω ∈ AlgebraicCurve.regularDifferentials ℂ K) :
+theorem exists_rep (ω : KaehlerDifferential ℂ K) (hω : ω ∈ AlgebraicCurve.regularDifferentials ℂ K)
+    :
     ∃ (a b c e : ℍ → ℂ) (ha : a ∈ ring N) (hb : b ∈ ring N) (hc : c ∈ ring N) (he : e ∈ ring N),
       b ≠ 0 ∧ e ≠ 0 ∧
       ω = (algebraMap (ring N) K ⟨a, ha⟩ / algebraMap (ring N) K ⟨b, hb⟩) •
@@ -110,7 +115,8 @@ def toCuspForm (ω : AlgebraicCurve.regularDifferentials ℂ K) :
   slash_action_eq' := by
     intro A hA
     obtain ⟨γ, hγ, rfl⟩ := hA
-    obtain ⟨a, b, c, e, ha, hb, hc, he, hb0, he0, hω⟩ := exists_rep N K (ω : KaehlerDifferential ℂ K) ω.2
+    obtain ⟨a, b, c, e, ha, hb, hc, he, hb0, he0, hω⟩ :=
+      exists_rep N K (ω : KaehlerDifferential ℂ K) ω.2
     exact slash_eq_self_of_mem_Gamma_of_mul_eq N (Ψ N K ω) ((Ψ_spec N K).2.1 ω) a b c e ha hb hc he
       hb0 he0 ((Ψ_spec N K).2.2 ω a b c e ha hb hc he hb0 he0 hω) γ hγ
   holo' := (Ψ_spec N K).2.1 ω
@@ -170,6 +176,7 @@ theorem ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injec
     [IsScalarTower ℂ (ModularCurve.LevelN.ring N) K]
     [IsFractionRing (ModularCurve.LevelN.ring N) K] :
     ∃ Φ : AlgebraicCurve.regularDifferentials ℂ K →ₗ[ℂ] CuspForm (CongruenceSubgroup.Gamma N) 2,
-      Function.Injective Φ := _root_.P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.solution N K
+      Function.Injective Φ :=
+  solution N K
 
 end publicSection

@@ -99,7 +99,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.exists_ord_pos {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
-    ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_pos.solution v
+theorem P2M.Dup.AlgebraicCurve.Place.exists_ord_pos {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : Place K F) :
+    ∃ f : F, f ≠ 0 ∧ 0 < v.ord f :=
+  solution v
 
 end publicSection

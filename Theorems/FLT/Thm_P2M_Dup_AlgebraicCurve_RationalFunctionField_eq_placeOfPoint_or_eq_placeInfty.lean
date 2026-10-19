@@ -63,15 +63,23 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty
 
-p2m_open "Polynomial IsDedekindDomain AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.RationalFunctionField"
+p2m_open "Polynomial IsDedekindDomain AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint \
+  P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve \
+  AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint \
+  P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.Ratio\
+  nalFunctionField"
 
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty"
+p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum \
+  RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty"
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span placeOfPoint placeOfPoint_eq_ofHeightOneSpectrum eq_ofHeightOneSpectrum_or_eq_placeInfty"
-p2m_open "AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint"
+p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty heightOneSpectrumOfIrreducible \
+  heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span placeOfPoint \
+  placeOfPoint_eq_ofHeightOneSpectrum eq_ofHeightOneSpectrum_or_eq_placeInfty"
+p2m_open "AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint \
+  AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint"
 
 variable (K : Type*) [Field K]
 
@@ -93,8 +101,14 @@ theorem exists_eq_placeOfPoint [IsAlgClosed K] (w : HeightOneSpectrum K[X]) :
 
 end AlgebraicCurve.RationalFunctionField
 
-p2m_open "AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint" in p2m_open "AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint" in open _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.RationalFunctionField in
-theorem solution (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) : (∃ a : K, v = placeOfPoint K a) ∨ v = placeInfty K := by
+p2m_open "AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint" in
+p2m_open "AlgebraicCurve.\
+  RationalFunctionField~exists_eq_placeOfPoint\
+  " in
+open _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.RationalFunctionField in
+theorem solution (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    (v : Place K (RatFunc K)) :
+    (∃ a : K, v = placeOfPoint K a) ∨ v = placeInfty K := by
   rcases AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, hw⟩ | hw
   · obtain ⟨a, ha⟩ := exists_eq_placeOfPoint K w
     exact Or.inl ⟨a, hw.trans ha⟩
@@ -110,6 +124,9 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
-theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.eq_placeOfPoint_or_eq_placeInfty (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) : (∃ a : K, v = placeOfPoint K a) ∨ v = placeInfty K := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.solution K v
+theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.eq_placeOfPoint_or_eq_placeInfty (K : Type*)
+    [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) :
+    (∃ a : K, v = placeOfPoint K a) ∨ v = placeInfty K :=
+  solution K v
 
 end publicSection

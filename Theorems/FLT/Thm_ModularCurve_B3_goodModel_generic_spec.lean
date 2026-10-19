@@ -78,7 +78,8 @@ theorem C_ofNat (n : ℕ) [n.AtLeastTwo] :
 theorem coeff_zero_C (c : Qbar) : (HahnSeries.C c : H).coeff 0 = c := by
   rw [HahnSeries.C_apply, HahnSeries.coeff_single_same]
 
-theorem coeff_zero_ofNat (n : ℕ) [n.AtLeastTwo] : (OfNat.ofNat n : H).coeff 0 = (OfNat.ofNat n : Qbar) := by
+theorem coeff_zero_ofNat (n : ℕ) [n.AtLeastTwo] :
+    (OfNat.ofNat n : H).coeff 0 = (OfNat.ofNat n : Qbar) := by
   rw [← C_ofNat, coeff_zero_C]
 
 theorem coeff_zero_sMon : sMon.coeff 0 = 0 :=
@@ -175,16 +176,16 @@ theorem specialFibre_generic : specialFibre (goodModel j₀) = ofJNe0Or1728 j₀
   have hw := w_mem j₀
   have hc := coeff_zero_w j₀
   ext
-  · show (jNear j₀ - 1728).coeff 0 = j₀ - 1728
+  · change (jNear j₀ - 1728).coeff 0 = j₀ - 1728
     exact hc
-  · show (0 : H).coeff 0 = 0
+  · change (0 : H).coeff 0 = 0
     simp
-  · show (0 : H).coeff 0 = 0
+  · change (0 : H).coeff 0 = 0
     simp
-  · show (-36 * (jNear j₀ - 1728) ^ 3).coeff 0 = -36 * (j₀ - 1728) ^ 3
+  · change (-36 * (jNear j₀ - 1728) ^ 3).coeff 0 = -36 * (j₀ - 1728) ^ 3
     rw [neg_mul, HahnSeries.coeff_neg, coeff_zero_mul_mem (ofNat_mem 36) (Subring.pow_mem _ hw 3),
       coeff_zero_pow_mem hw, hc, coeff_zero_ofNat, neg_mul]
-  · show (-(jNear j₀ - 1728) ^ 5).coeff 0 = -(j₀ - 1728) ^ 5
+  · change (-(jNear j₀ - 1728) ^ 5).coeff 0 = -(j₀ - 1728) ^ 5
     rw [HahnSeries.coeff_neg, coeff_zero_pow_mem hw, hc]
 
 theorem integralCoeffs_generic : IntegralCoeffs (goodModel j₀) := by
@@ -192,9 +193,9 @@ theorem integralCoeffs_generic : IntegralCoeffs (goodModel j₀) := by
   have hw := w_mem j₀
   refine ⟨orderTop_nonneg_of_mem hw, by simp [ofJNe0Or1728], by simp [ofJNe0Or1728],
     orderTop_nonneg_of_mem ?_, orderTop_nonneg_of_mem ?_⟩
-  · show -36 * (jNear j₀ - 1728) ^ 3 ∈ integralO
+  · change -36 * (jNear j₀ - 1728) ^ 3 ∈ integralO
     exact Subring.mul_mem _ (Subring.neg_mem _ (ofNat_mem 36)) (Subring.pow_mem _ hw 3)
-  · show -(jNear j₀ - 1728) ^ 5 ∈ integralO
+  · change -(jNear j₀ - 1728) ^ 5 ∈ integralO
     exact Subring.neg_mem _ (Subring.pow_mem _ hw 5)
 
 theorem isGood_generic : IntegralCoeffs (goodModel j₀) ∧
@@ -243,15 +244,16 @@ theorem goodModel_1728_a₆ : (goodModel 1728).a₆ = -HahnSeries.single (1 / 2 
 
 theorem specialFibre_1728 : specialFibre (goodModel 1728) = ⟨0, 0, 0, -36, 0⟩ := by
   ext
-  · show (goodModel 1728).a₁.coeff 0 = 0
+  · change (goodModel 1728).a₁.coeff 0 = 0
     rw [goodModel_1728_a₁]; exact HahnSeries.coeff_single_of_ne (by norm_num)
-  · show (goodModel 1728).a₂.coeff 0 = 0
+  · change (goodModel 1728).a₂.coeff 0 = 0
     rw [goodModel_1728_a₂]; simp
-  · show (goodModel 1728).a₃.coeff 0 = 0
+  · change (goodModel 1728).a₃.coeff 0 = 0
     rw [goodModel_1728_a₃]; simp
-  · show (goodModel 1728).a₄.coeff 0 = -36
-    rw [goodModel_1728_a₄, show (-36 : H) = -(36 : H) from rfl, HahnSeries.coeff_neg, coeff_zero_ofNat]
-  · show (goodModel 1728).a₆.coeff 0 = 0
+  · change (goodModel 1728).a₄.coeff 0 = -36
+    rw [goodModel_1728_a₄, show (-36 : H) = -(36 : H) from rfl, HahnSeries.coeff_neg,
+      coeff_zero_ofNat]
+  · change (goodModel 1728).a₆.coeff 0 = 0
     rw [goodModel_1728_a₆, HahnSeries.coeff_neg, HahnSeries.coeff_single_of_ne (by norm_num), neg_zero]
 
 theorem integralCoeffs_1728 : IntegralCoeffs (goodModel 1728) := by
@@ -351,18 +353,18 @@ theorem coeff_zero_a₆_0 : (mEl ^ 5 / 864).coeff 0 = (-1728) ^ 5 / 864 := by
 
 theorem specialFibre_0 : specialFibre (goodModel 0) = ⟨0, 0, 0, 0, (-1728) ^ 5 / 864⟩ := by
   ext
-  · show (goodModel 0).a₁.coeff 0 = 0
+  · change (goodModel 0).a₁.coeff 0 = 0
     rw [goodModel_0_a₁]; simp
-  · show (goodModel 0).a₂.coeff 0 = 0
+  · change (goodModel 0).a₂.coeff 0 = 0
     rw [goodModel_0_a₂]; simp
-  · show (goodModel 0).a₃.coeff 0 = 0
+  · change (goodModel 0).a₃.coeff 0 = 0
     rw [goodModel_0_a₃]; simp
-  · show (goodModel 0).a₄.coeff 0 = 0
+  · change (goodModel 0).a₄.coeff 0 = 0
     rw [goodModel_0_a₄, coeff_zero_mul_mem (single_mem (by norm_num) _)
       (by simpa [div_eq_mul_inv] using
         (Subring.mul_mem _ (Subring.neg_mem _ (Subring.pow_mem _ mEl_mem 3)) (inv_ofNat_mem 48))),
       HahnSeries.coeff_single_of_ne (by norm_num), zero_mul]
-  · show (goodModel 0).a₆.coeff 0 = (-1728) ^ 5 / 864
+  · change (goodModel 0).a₆.coeff 0 = (-1728) ^ 5 / 864
     rw [goodModel_0_a₆, coeff_zero_a₆_0]
 
 theorem integralCoeffs_0 : IntegralCoeffs (goodModel 0) := by
@@ -411,7 +413,8 @@ theorem orderTop_pow_of_eq_zero {x : H} (hx : x.orderTop = 0) (n : ℕ) : (x ^ n
   | zero => rw [pow_zero, HahnSeries.orderTop_one]
   | succ n ih => rw [pow_succ, HahnSeries.orderTop_mul, ih, hx, add_zero]
 
-theorem delta_nearCurve (j₀ : Qbar) : (nearCurve j₀).Δ = (jNear j₀) ^ 2 * (jNear j₀ - 1728) ^ 9 := by
+theorem delta_nearCurve (j₀ : Qbar) :
+    (nearCurve j₀).Δ = (jNear j₀) ^ 2 * (jNear j₀ - 1728) ^ 9 := by
   rw [nearCurve_eq, WeierstrassCurve.ofJNe0Or1728_Δ]
 
 theorem orderTop_delta_nearCurve_generic {j₀ : Qbar} (h0 : j₀ ≠ 0) (h1728 : j₀ ≠ 1728) :
@@ -454,7 +457,8 @@ theorem solution (j₀ : Qbar) (h0 : j₀ ≠ 0) (h1728 : j₀ ≠ 1728) :
       specialFibre (goodModel j₀) = WeierstrassCurve.ofJ j₀ := by
   refine ⟨S12B3.integralCoeffs_generic h0 h1728, ?_, ?_⟩
   · rw [goodModel_eq_nearCurve h0 h1728]; exact S12B3.orderTop_delta_nearCurve_generic h0 h1728
-  · rw [S12B3.specialFibre_generic h0 h1728]; exact (WeierstrassCurve.ofJ_ne_0_ne_1728 j₀ h0 h1728).symm
+  · rw [S12B3.specialFibre_generic h0
+      h1728]; exact (WeierstrassCurve.ofJ_ne_0_ne_1728 j₀ h0 h1728).symm
 
 end S_ModularCurve_B3_goodModel_generic_spec
 end P2MW
@@ -468,6 +472,7 @@ public section publicSection
 open ModularCurve.TatePoint
 theorem ModularCurve.B3.goodModel_generic_spec (j₀ : Qbar) (h0 : j₀ ≠ 0) (h1728 : j₀ ≠ 1728) :
     IntegralCoeffs (goodModel j₀) ∧ (goodModel j₀).Δ.orderTop = 0 ∧
-      specialFibre (goodModel j₀) = WeierstrassCurve.ofJ j₀ := _root_.P2MW.S_ModularCurve_B3_goodModel_generic_spec.solution j₀ h0 h1728
+      specialFibre (goodModel j₀) = WeierstrassCurve.ofJ j₀ :=
+  solution j₀ h0 h1728
 
 end publicSection

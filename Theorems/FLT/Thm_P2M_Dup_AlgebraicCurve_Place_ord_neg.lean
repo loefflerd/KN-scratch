@@ -74,7 +74,8 @@ theorem ord_neg (v : Place K F) (f : F) : v.ord (-f) = v.ord f := by
 
 end AlgebraicCurve.FF2S
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) (f : F) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F)
+    (f : F) :
     v.ord (-f) = v.ord f :=
   AlgebraicCurve.FF2S.ord_neg v f
 
@@ -86,7 +87,9 @@ end privateSection
 
 public section publicSection
 
-theorem P2M.Dup.AlgebraicCurve.Place.ord_neg {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) (f : F) :
-    v.ord (-f) = v.ord f := _root_.P2MW.S_AlgebraicCurve_Place_ord_neg.solution v f
+theorem P2M.Dup.AlgebraicCurve.Place.ord_neg {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : AlgebraicCurve.Place K F) (f : F) :
+    v.ord (-f) = v.ord f :=
+  solution v f
 
 end publicSection

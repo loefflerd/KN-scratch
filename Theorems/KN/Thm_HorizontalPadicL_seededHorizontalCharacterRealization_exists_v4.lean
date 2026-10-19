@@ -330,7 +330,7 @@ namespace HorizontalPadicL
 
 /-- The quotient maps `(Z/ℓₙZ)ˣ ↠ Z/p^(vₚ(ℓₙ-1))Z` can be chosen so that
 every finite-order horizontal character is the pullback of an algebraic
-Dirichlet character.  Primitive reduction preserves its order, and every
+Dirichlet character. Primitive reduction preserves its order, and every
 primitive `p`-power-order Dirichlet character supported on the selected primes
 arises in this way.
 

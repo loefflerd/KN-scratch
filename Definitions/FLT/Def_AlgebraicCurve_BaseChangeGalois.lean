@@ -73,10 +73,10 @@ def SemilinearAut : Subgroup (RingAut F × RingAut K) where
   carrier := {p | ∀ a : K, p.1 (algebraMap K F a) = algebraMap K F (p.2 a)}
   one_mem' _ := rfl
   mul_mem' := fun {p q} hp hq a => by
-    show p.1 (q.1 (algebraMap K F a)) = algebraMap K F (p.2 (q.2 a))
+    change p.1 (q.1 (algebraMap K F a)) = algebraMap K F (p.2 (q.2 a))
     rw [hq a, hp (q.2 a)]
   inv_mem' := fun {p} hp a => by
-    show p.1.symm (algebraMap K F a) = algebraMap K F (p.2.symm a)
+    change p.1.symm (algebraMap K F a) = algebraMap K F (p.2.symm a)
     apply p.1.injective
     rw [RingEquiv.apply_symm_apply, hp (p.2.symm a), RingEquiv.apply_symm_apply]
 
@@ -237,7 +237,7 @@ theorem smulResidueRingEquiv_algebraMap (a : K) :
     ext
     rw [coe_smulValuationSubringEquiv_apply, Place.coe_algebraMap, smul_algebraMap]
     exact (Place.coe_algebraMap (g • v) (baseAut g a)).symm
-  show IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _) = IsLocalRing.residue _ _
+  change IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _) = IsLocalRing.residue _ _
   rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
   exact congrArg _ h3
 
@@ -329,13 +329,13 @@ instance : DistribMulAction (SemilinearAut K F) (Pic0 K F) where
     rw [pic0_smul_mk, pic0_smul_mk, pic0_smul_mk]
     exact congrArg Pic0.mk (Subtype.ext (by simp only [coe_degZeroSMulHom]; rw [mul_smul]))
   smul_zero g := by
-    show g • Pic0.mk 0 = Pic0.mk 0
+    change g • Pic0.mk 0 = Pic0.mk 0
     rw [pic0_smul_mk]
     exact congrArg Pic0.mk (map_zero _)
   smul_add g x y := by
     obtain ⟨D, rfl⟩ := Pic0.mk_surjective x
     obtain ⟨E, rfl⟩ := Pic0.mk_surjective y
-    show g • Pic0.mk (D + E) = Pic0.mk (degZeroSMulHom g D) + Pic0.mk (degZeroSMulHom g E)
+    change g • Pic0.mk (D + E) = Pic0.mk (degZeroSMulHom g D) + Pic0.mk (degZeroSMulHom g E)
     rw [pic0_smul_mk]
     exact congrArg Pic0.mk (map_add _ _ _)
 
@@ -366,7 +366,8 @@ instance instSMulTorsion (n : ℕ) : SMul (SemilinearAut K F) (Pic0.torsion K F 
 theorem coe_torsion_smul {n : ℕ} (g : SemilinearAut K F) (x : Pic0.torsion K F n) :
     ((g • x : Pic0.torsion K F n) : Pic0 K F) = g • (x : Pic0 K F) := rfl
 
-instance instDistribMulActionTorsion (n : ℕ) : DistribMulAction (SemilinearAut K F) (Pic0.torsion K F n) where
+instance instDistribMulActionTorsion (n : ℕ) :
+    DistribMulAction (SemilinearAut K F) (Pic0.torsion K F n) where
   one_smul x := Subtype.ext <| one_smul _ (x : Pic0 K F)
   mul_smul g h x := Subtype.ext <| mul_smul g h (x : Pic0 K F)
   smul_zero g := Subtype.ext <| smul_zero (A := Pic0 K F) g
@@ -397,7 +398,6 @@ instance instSMulCommClassZModTorsion (n : ℕ) :
     ZMod.map_smul (DistribSMul.toAddMonoidHom (Pic0.torsion K F n) g) c x
 
 variable (K F) in
-
 def torsionRep (n : ℕ) : SemilinearAut K F →* Module.End (ZMod n) (Pic0.torsion K F n) :=
   DistribMulAction.toModuleEnd (ZMod n) (Pic0.torsion K F n)
 

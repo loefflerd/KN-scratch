@@ -58,18 +58,31 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.Point \
+  P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero b₂ Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.some.inj reduction toAffine Affine.Point Affine.addX Affine.nonsingular_neg b₆ Δ Affine.equation_iff Affine.Point.neg_some j b₄ Δ' veluX veluGx veluGy veluT veluU oddOrderSummingSet mem_oddOrderSummingSet"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map \
+  Affine.equation_iff_nonsingular_of_Δ_ne_zero b₂ Ψ₂Sq a₄ a₂ a₆ Affine.Point.some \
+  Affine.Point.some.injEq Affine.Point.some.inj reduction toAffine Affine.Point Affine.addX \
+  Affine.nonsingular_neg b₆ Δ Affine.equation_iff Affine.Point.neg_some j b₄ Δ' veluX veluGx \
+  veluGy veluT veluU oddOrderSummingSet mem_oddOrderSummingSet"
 p2m_open "WeierstrassCurve"
 
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne equation_iff_nonsingular_of_Δ_ne_zero slope map Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj Point addX nonsingular_neg Point.some_ne_zero Point.add_of_X_ne equation_iff polynomial Point.neg_some"
+p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne \
+  equation_iff_nonsingular_of_Δ_ne_zero slope map Point.some Point.some.injEq Point.X_eq_iff \
+  Nonsingular Point.some.inj Point addX nonsingular_neg Point.some_ne_zero Point.add_of_X_ne \
+  equation_iff polynomial Point.neg_some"
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "some some.injEq neg_zero X_eq_iff some.inj map some_ne_zero add_of_X_ne zero neg_some coordsOrZero"
+p2m_export "WeierstrassCurve.Affine.Point" "some some.injEq neg_zero X_eq_iff some.inj map \
+  some_ne_zero add_of_X_ne zero neg_some coordsOrZero"
 p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine"
 
 variable {R : Type*} [CommRing R] {W : Affine R}
@@ -329,7 +342,8 @@ theorem s18_veluX_eq_add_sum_singleton (S : Finset (F × F)) (x : F) :
   classical
   simp only [veluX, Finset.sum_singleton, add_sub_cancel_left]
 
-private theorem _root_.WeierstrassCurve.s18_veluX_eq_orbitSum {S : Finset (F × F)} {x y : F} (hP : W.toAffine.Equation x y)
+private theorem _root_.WeierstrassCurve.s18_veluX_eq_orbitSum {S : Finset (F × F)} {x y : F}
+    (hP : W.toAffine.Equation x y)
     (hSeq : ∀ A ∈ S, W.toAffine.Equation A.1 A.2) (hx : ∀ A ∈ S, x ≠ A.1) :
     W.veluX S x = x + ∑ A ∈ S,
       (W.toAffine.addX x A.1 (W.toAffine.slope x A.1 y A.2)
@@ -375,7 +389,7 @@ theorem s18_veluX_oddOrderSummingSet_eq_sum_Icc (hp3 : 3 ≤ p) (hpodd : Odd p)
   have hIcc : (Finset.Icc 1 d).card = d := by rw [Nat.card_Icc]; omega
   have hinj : Set.InjOn (fun k : ℕ => (k • Q).coordsOrZero) (Finset.Icc 1 d) := by
     rw [← Finset.card_image_iff]; exact hcard.trans hIcc.symm
-  show ∑ A ∈ W.oddOrderSummingSet Q d, _ = _
+  change ∑ A ∈ W.oddOrderSummingSet Q d, _ = _
   rw [oddOrderSummingSet, Finset.sum_image (fun a ha b hb => hinj ha hb)]
   refine Finset.sum_congr rfl fun k hk => ?_
   rw [Finset.mem_Icc] at hk
@@ -560,9 +574,11 @@ theorem s18veluXClearedPoly_monic (S : Finset (F × F)) :
     natDegree_add_eq_left_of_degree_lt hlt
   rw [hdegeq, hleaddeg]
 
+omit [DecidableEq F] in
 theorem s18_card_roots_veluX_eq_le (S : Finset (F × F)) (c : F) (T : Finset F)
     (hTx : ∀ x ∈ T, ∀ P ∈ S, x ≠ P.1) (hTeq : ∀ x ∈ T, W.veluX S x = c) :
     T.card ≤ 2 * S.card + 1 := by
+  classical
   set Φ := s18veluXClearedPoly W S - C c * (s18veluXDenomPoly S) ^ 2
   have hD : (s18veluXDenomPoly (F := F) S).Monic := s18veluXDenomPoly_monic S
   obtain ⟨hNmon, hNdeg⟩ := s18veluXClearedPoly_monic W S
@@ -579,7 +595,7 @@ theorem s18_card_roots_veluX_eq_le (S : Finset (F × F)) (c : F) (T : Finset F)
     exact lt_of_le_of_lt hsubdeg (hNdeg ▸ Nat.lt_succ_self _)
   have hroot : ∀ x ∈ T, Φ.IsRoot x := by
     intro x hxT
-    show Φ.eval x = 0
+    change Φ.eval x = 0
     rw [eval_sub, eval_mul, eval_pow, eval_C, s18_eval_veluXClearedPoly W S (hTx x hxT),
       hTeq x hxT, mul_comm, sub_self]
   calc T.card = T.val.card := rfl
@@ -596,7 +612,6 @@ section TwoTorsion
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F}
 
 variable (W) in
-
 private def _root_.WeierstrassCurve.s18twoTorsionY (x : F) : F := -(W.a₁ * x + W.a₃) / 2
 
 p2m_export "WeierstrassCurve" "s18twoTorsionY"
@@ -835,6 +850,7 @@ theorem WeierstrassCurve.veluX_oddOrderSummingSet_injOn_psi2Sq_roots
     (hQ : addOrderOf Q = 2 * n + 1) {r r' : L}
     (hr : W.Ψ₂Sq.eval r = 0) (hr' : W.Ψ₂Sq.eval r' = 0)
     (heq : W.veluX (W.oddOrderSummingSet Q n) r = W.veluX (W.oddOrderSummingSet Q n) r') :
-    r = r' := _root_.P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.solution h2 W n Q hQ hr hr' heq
+    r = r' :=
+  solution h2 W n Q hQ hr hr' heq
 
 end publicSection

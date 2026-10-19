@@ -149,7 +149,8 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     intro τ
     have hq : Function.Periodic.qParam (1 : ℝ) (τ : ℂ) = Complex.exp (2 * π * Complex.I * τ) := by
       simp [Function.Periodic.qParam]
-    have hqn : ‖Complex.exp (2 * π * Complex.I * τ)‖ < 1 := UpperHalfPlane.norm_exp_two_pi_I_lt_one τ
+    have hqn : ‖Complex.exp (2 * π * Complex.I * τ)‖ < 1 :=
+      UpperHalfPlane.norm_exp_two_pi_I_lt_one τ
     have hsum : Summable fun m : ℕ => T m * Complex.exp (2 * π * Complex.I * τ) ^ m := by
       have hg : Summable fun m : ℕ => 2 * ((m : ℝ) ^ 4 * ‖Complex.exp (2 * π * Complex.I * τ)‖ ^ m) :=
         (summable_pow_mul_geometric_of_norm_lt_one (R := ℝ)
@@ -180,7 +181,6 @@ open Matrix
 open scoped Real
 
 open scoped MatrixGroups ModularForm in
-
 theorem solution
     (M : ℕ) [NeZero M] (hM : 3 ≤ M) :
     ∃ R : (ZMod M)ˣ → ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 4,
@@ -225,7 +225,7 @@ theorem solution
     intro c e γ
     ext i
     fin_cases i <;>
-      simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two,         ]
+      simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two, ]
   have hrow_slash : ∀ (c : ZMod M) (γ : SL(2, ℤ)), γ ∈ CongruenceSubgroup.Gamma0 M →
       S c ∣[(4 : ℤ)] γ = S (c * ((γ 0 0 : ℤ) : ZMod M)) := by
     intro c γ hγ
@@ -242,10 +242,10 @@ theorem solution
       { toFun := fun e => c * ((γ 0 1 : ℤ) : ZMod M) + e * ((γ 1 1 : ℤ) : ZMod M)
         invFun := fun e' => (e' - c * ((γ 0 1 : ℤ) : ZMod M)) * ((γ 0 0 : ℤ) : ZMod M)
         left_inv := fun e => by
-          show (c * _ + e * _ - c * _) * _ = e
+          change (c * _ + e * _ - c * _) * _ = e
           rw [add_sub_cancel_left, mul_assoc, mul_comm ((γ 1 1 : ℤ) : ZMod M), hdet, mul_one]
         right_inv := fun e' => by
-          show c * _ + (e' - c * _) * _ * _ = e'
+          change c * _ + (e' - c * _) * _ * _ = e'
           rw [mul_assoc, hdet, mul_one, add_sub_cancel] }
     exact (Fintype.sum_equiv σ _ _ fun e => rfl)
   have hcusp : ∀ {x : OnePoint ℝ},
@@ -300,6 +300,7 @@ theorem ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_s
             then (d : ℤ) ^ 3 else 0)) ∧
       (∀ (c : (ZMod M)ˣ) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M),
         ((⇑(R c) : UpperHalfPlane → ℂ) ∣[(4 : ℤ)] (γ : GL (Fin 2) ℝ)) =
-          ⇑(R (c * (CohCarrier.gamma0Units M ⟨γ, hγ⟩)⁻¹))) := _root_.P2MW.S_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq.solution M hM
+          ⇑(R (c * (CohCarrier.gamma0Units M ⟨γ, hγ⟩)⁻¹))) :=
+  solution M hM
 
 end publicSection

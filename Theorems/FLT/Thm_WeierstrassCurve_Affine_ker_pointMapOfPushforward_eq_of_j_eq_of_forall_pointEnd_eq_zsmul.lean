@@ -137,9 +137,19 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
 end ModularCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map exists_variableChange_of_j_eq IsIntegral toAffine Affine.Point j Affine.pointMapOfPushforward Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.Point.exists_zsmul_eq_of_isAlgClosed card_torsionBy_eq_sq_of_isAlgClosed nonempty_functionField_algEquiv_of_variableChange"
+p2m_export "WeierstrassCurve" "Affine map exists_variableChange_of_j_eq IsIntegral toAffine \
+  Affine.Point j Affine.pointMapOfPushforward Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred \
+  Affine.Point.exists_zsmul_eq_of_isAlgClosed card_torsionBy_eq_sq_of_isAlgClosed \
+  nonempty_functionField_algEquiv_of_variableChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map FunctionField Point pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyHomDatum IsogenyHomDatum.ofEndDatum GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred natCard_ker_pointMapOfPushforward_eq_finrankAlong pointMapOfPushforward_surjective Point.exists_zsmul_eq_of_isAlgClosed IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve.Affine" "map FunctionField Point pointMapOfPushforward \
+  pointMapOfPushforward_apply IsogenyEndDatum IsogenyHomDatum IsogenyHomDatum.ofEndDatum \
+  GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply \
+  GenusOnePlaceGate.IsCentred IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred \
+  natCard_ker_pointMapOfPushforward_eq_finrankAlong pointMapOfPushforward_surjective \
+  Point.exists_zsmul_eq_of_isAlgClosed IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring \
+  hasPrincipalDivisors_functionField"
 p2m_open "WeierstrassCurve.Affine~pointHom WeierstrassCurve"
 
 open AlgebraicCurve
@@ -153,15 +163,17 @@ section AutoNorm
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
+omit [DecidableEq F] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -208,8 +220,9 @@ theorem intCast_addMonoidEnd_point_injective :
   Int.cast_injective
 
 variable {W} in
-
+omit [DecidableEq F] in
 theorem kw_point_infinite : Infinite W.Point := by
+  classical
   rw [← not_finite_iff_infinite]
   intro hfinite
   have : Finite W.Point := hfinite
@@ -236,7 +249,6 @@ theorem kw_point_infinite : Infinite W.Point := by
   exact hNpos.ne' (pow_eq_zero_iff (n := 2) (by norm_num) |>.mp h4)
 
 variable {W} in
-
 theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
     (hN : N ≠ 0) (hf : ∀ P, f P = N • P) : Nat.card f.ker = N.natAbs ^ 2 := by
   have hsets : ∀ P : W.Point,
@@ -257,7 +269,6 @@ theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
     (Nat.cast_ne_zero.mpr (Int.natAbs_ne_zero.mpr hN))
 
 variable {W} in
-
 theorem kw_eq_zero_of_zsmul_eq_zero {N : ℤ} (hN : N ≠ 0) {G : Type*} [AddCommGroup G]
     (δ : W.Point →+ G) (hδ : ∀ P, N • δ P = 0) : δ = 0 := by
   refine AddMonoidHom.ext fun P => ?_
@@ -327,11 +338,11 @@ theorem finrankAlong_eq_one_of_bijective (τ : B.FunctionField →ₐ[F] A.Funct
   let e : A.FunctionField ≃ₗ[B.FunctionField] B.FunctionField :=
     { σ.symm.toAddEquiv with
       map_smul' := fun b x => by
-        show σ.symm (b • x) = b * σ.symm x
+        change σ.symm (b • x) = b * σ.symm x
         rw [Algebra.smul_def, map_mul]
         congr 1
         exact σ.symm_apply_apply b }
-  show Module.finrank B.FunctionField A.FunctionField = 1
+  change Module.finrank B.FunctionField A.FunctionField = 1
   rw [e.finrank_eq, Module.finrank_self]
 
 theorem pointMapOfPushforward_injective_of_bijective
@@ -352,9 +363,19 @@ end IsoInjective
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map exists_variableChange_of_j_eq IsIntegral toAffine Affine.Point j Affine.pointMapOfPushforward Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.Point.exists_zsmul_eq_of_isAlgClosed card_torsionBy_eq_sq_of_isAlgClosed nonempty_functionField_algEquiv_of_variableChange"
+p2m_export "WeierstrassCurve" "Affine map exists_variableChange_of_j_eq IsIntegral toAffine \
+  Affine.Point j Affine.pointMapOfPushforward Affine.IsogenyEndDatum Affine.GenusOnePlaceGate \
+  Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred \
+  Affine.Point.exists_zsmul_eq_of_isAlgClosed card_torsionBy_eq_sq_of_isAlgClosed \
+  nonempty_functionField_algEquiv_of_variableChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map FunctionField Point pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyHomDatum IsogenyHomDatum.ofEndDatum GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred natCard_ker_pointMapOfPushforward_eq_finrankAlong pointMapOfPushforward_surjective Point.exists_zsmul_eq_of_isAlgClosed IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve.Affine" "map FunctionField Point pointMapOfPushforward \
+  pointMapOfPushforward_apply IsogenyEndDatum IsogenyHomDatum IsogenyHomDatum.ofEndDatum \
+  GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply \
+  GenusOnePlaceGate.IsCentred IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred \
+  natCard_ker_pointMapOfPushforward_eq_finrankAlong pointMapOfPushforward_surjective \
+  Point.exists_zsmul_eq_of_isAlgClosed IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring \
+  hasPrincipalDivisors_functionField"
 p2m_open "WeierstrassCurve.Affine~pointHom WeierstrassCurve"
 
 open AlgebraicCurve
@@ -415,7 +436,7 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
       ι' hι' hfin' hN']
     let := algebraAlong ι'
     have : Module.Finite V'.toAffine.FunctionField W.toAffine.FunctionField := hfin'
-    show 0 < Module.finrank V'.toAffine.FunctionField W.toAffine.FunctionField
+    change 0 < Module.finrank V'.toAffine.FunctionField W.toAffine.FunctionField
     exact Module.finrank_pos
   have hd0 : d ≠ 0 := hdpos.ne'
   have hfinker : Finite φ'.ker := Nat.finite_of_card_ne_zero (hd_def ▸ hd0)
@@ -438,7 +459,7 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     exact hx'
   obtain ⟨χ, hNχ, hχ⟩ := IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred φ'D hN'
     (IsogenyHomDatum.ofEndDatum M) (hNs M) (fun P hP => by
-      show M.pointEnd (hNs M) P = 0
+      change M.pointEnd (hNs M) P = 0
       rw [hMapp]; exact hmem_of_ker P hP)
   set ψ' := χ.pointHom hNχ with hψ'_def
   have hdual₁ : ∀ P, ψ' (φ' P) = (d : ℤ) • P := fun P => by
@@ -457,7 +478,7 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
   obtain ⟨m, hm⟩ := hEnd D
   set θ := ψ'.comp β with hθ_def
   have hθm : ∀ P, θ P = m • P := fun P => by
-    show ψ' (β P) = m • P
+    change ψ' (β P) = m • P
     rw [← hD P]; exact hm P
   have hkerψ' : Nat.card ψ'.ker = d := by
     have hcomp : Nat.card (ψ'.comp φ').ker = d ^ 2 := by
@@ -577,6 +598,7 @@ theorem WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_p
       = Nat.card (WeierstrassCurve.Affine.pointMapOfPushforward ι' hι' hfin' hN').ker)
     (hj : V.j = V'.j) :
     (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
-      = (WeierstrassCurve.Affine.pointMapOfPushforward ι' hι' hfin' hN').ker := _root_.P2MW.S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul.solution W hNs hEnd V V' ι hι hfin hN ι' hι' hfin' hN' hcard hj
+      = (WeierstrassCurve.Affine.pointMapOfPushforward ι' hι' hfin' hN').ker :=
+  solution W hNs hEnd V V' ι hι hfin hN ι' hι' hfin' hN' hcard hj
 
 end publicSection

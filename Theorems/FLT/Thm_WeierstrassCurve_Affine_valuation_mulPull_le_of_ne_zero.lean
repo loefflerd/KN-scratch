@@ -70,13 +70,24 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.WeierstrassCurve.Affine Polynomial IsDedekindDomain WithZero"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.WeierstrassCurve.Affine \
+  Polynomial IsDedekindDomain WithZero"
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "baseChange_ΨSq Affine map_map map baseChange_Φ ΨSq map_baseChange Affine.Point baseChange_ψ map_injective baseChange Affine.genericPoint card_torsion_of_isAlgClosed Affine.Point.exists_zsmul_some_eq_some_baseChange Affine.Point.smul_some_eq_zero_iff Affine.evalEval_psi_sq"
+p2m_export "WeierstrassCurve" "baseChange_ΨSq Affine map_map map baseChange_Φ ΨSq map_baseChange \
+  Affine.Point baseChange_ψ map_injective baseChange Affine.genericPoint \
+  card_torsion_of_isAlgClosed Affine.Point.exists_zsmul_some_eq_some_baseChange \
+  Affine.Point.smul_some_eq_zero_iff Affine.evalEval_psi_sq"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.map_baseChange CoordinateRing map baseChange Point.some Point.map_injective FunctionField Point map_baseChange Point.map polynomial Point.xc_some Point.yc_some genericX genericY generic_nonsingular genericPoint transPull map_transPull_genericPoint MulGood mulPull infinite_point placeOf valuation_mulPull_le Point.exists_zsmul_some_eq_some_baseChange Point.smul_some_eq_zero_iff evalEval_psi_sq"
+p2m_export "WeierstrassCurve.Affine" "Point.map_baseChange CoordinateRing map baseChange \
+  Point.some Point.map_injective FunctionField Point map_baseChange Point.map polynomial \
+  Point.xc_some Point.yc_some genericX genericY generic_nonsingular genericPoint transPull \
+  map_transPull_genericPoint MulGood mulPull infinite_point placeOf valuation_mulPull_le \
+  Point.exists_zsmul_some_eq_some_baseChange Point.smul_some_eq_zero_iff evalEval_psi_sq"
 namespace PullEasy
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
@@ -112,7 +123,8 @@ theorem zsmul_genericPoint_good {n : ℤ} (hn : (n : K) ≠ 0) : MulGood W K n :
     apply not_forall_zsmul_eq_zero W hn
     intro S
     have := congrArg (Point.map (transPull W K S)) h0
-    rw [map_zsmul, map_transPull_genericPoint, map_zero, smul_add, h0, zero_add, ← map_zsmul] at this
+    rw [map_zsmul, map_transPull_genericPoint, map_zero, smul_add, h0, zero_add, ←
+      map_zsmul] at this
     exact Point.map_injective _ (this.trans (map_zero _).symm)
   · intro P hP
     apply not_forall_zsmul_eq_zero W hn
@@ -125,19 +137,27 @@ theorem zsmul_genericPoint_good {n : ℤ} (hn : (n : K) ≠ 0) : MulGood W K n :
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
 theorem evalEval_map_mapRingHom {L : Type*} [CommRing L] (g : K →+* L) (q : K[X][Y]) (a b : L) :
     (q.map (mapRingHom g)).evalEval a b = q.eval₂ (eval₂RingHom g a) b := by
-  have hφ : (evalEvalRingHom a b).comp (mapRingHom (mapRingHom g)) = eval₂RingHom (eval₂RingHom g a) b := by
+  have hφ : (evalEvalRingHom a b).comp (mapRingHom (mapRingHom g)) = eval₂RingHom (eval₂RingHom g a) b :=
+    by
     apply Polynomial.ringHom_ext
     · intro p
-      simp only [RingHom.coe_comp, Function.comp_apply, coe_mapRingHom, map_C, coe_evalRingHom, eval_C,
+      simp only [RingHom.coe_comp, Function.comp_apply, coe_mapRingHom, map_C, coe_evalRingHom,
+        eval_C,
         eval_map, coe_eval₂RingHom, eval₂_C]
-    · simp only [RingHom.coe_comp, Function.comp_apply, coe_mapRingHom, map_X, coe_evalRingHom, eval_X,
+    · simp only [RingHom.coe_comp, Function.comp_apply, coe_mapRingHom, map_X, coe_evalRingHom,
+        eval_X,
         eval_C, coe_eval₂RingHom, eval₂_X]
   exact RingHom.congr_fun hφ q
 
 end WeierstrassCurve.Affine.PullEasy
 
 open WeierstrassCurve.Affine.PullEasy in
-theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (P : (W⁄K).Point) (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ) (hh : (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) : (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ exp (-(k : ℤ)) := by
+theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
+    [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+    {n : ℕ} (hn : (n : K) ≠ 0) (P : (W⁄K).Point) (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0)
+    (h : (W⁄K).FunctionField) (k : ℕ)
+    (hh : (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ exp (-(k : ℤ)) := by
   have hnK : ((n : ℤ) : K) ≠ 0 := by rwa [Int.cast_natCast]
   have hgood := zsmul_genericPoint_good (K := K) W hnK
   obtain ⟨ω, hω⟩ := WeierstrassCurve.Affine.Point.exists_zsmul_some_eq_some_baseChange W (n : ℤ)
@@ -146,7 +166,6 @@ theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [Deci
     fun h0 => hgood.1 ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff
       (W.baseChange (W⁄K).FunctionField) hγns n).mpr h0)
   obtain ⟨hγ', hγeq⟩ := hω hγns hψγ
-
   rcases P with _ | ⟨a, b, hab⟩
   · exact absurd rfl hP
   have hψP : ((W.baseChange K).ψ n).evalEval a b ≠ 0 :=
@@ -155,7 +174,6 @@ theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [Deci
   have hΨP : ((W.baseChange K).ΨSq n).eval a ≠ 0 := by
     rw [← WeierstrassCurve.Affine.evalEval_psi_sq (W.baseChange K) hab.left n]
     exact pow_ne_zero 2 hψP
-
   have eΦ : (W.baseChange (W⁄K).FunctionField).Φ n = ((W.baseChange K).Φ n).map (algebraMap K (W⁄K).FunctionField) :=
     baseChange_Φ (W := W) (Algebra.ofId K (W⁄K).FunctionField) n
   have eΨ : (W.baseChange (W⁄K).FunctionField).ΨSq n = ((W.baseChange K).ΨSq n).map (algebraMap K (W⁄K).FunctionField) :=
@@ -185,6 +203,12 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (P : (W⁄K).Point) (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ) (hh : (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) : (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ exp (-(k : ℤ)) := _root_.P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.solution W hn P hP hnP h k hh
+theorem WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero {F : Type*} {K : Type*} [Field F]
+    [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (P : (W⁄K).Point)
+    (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ)
+    (hh : (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ exp (-(k : ℤ)) :=
+  solution W hn P hP hnP h k hh
 
 end publicSection

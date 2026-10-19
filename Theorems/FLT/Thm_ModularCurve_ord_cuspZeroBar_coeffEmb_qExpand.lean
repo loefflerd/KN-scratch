@@ -64,9 +64,11 @@ namespace P2MW.S_ModularCurve_ord_cuspZeroBar_coeffEmb_qExpand
 open ModularCurve AlgebraicCurve
 open scoped Pointwise
 
-theorem solution (N : ℕ) [NeZero N] (h : IsFrickeAutFull N (frickeInvolutionFull N)) (a b : ℕ) (hab : a * b = N) [NeZero a] [NeZero b] :
+theorem solution (N : ℕ) [NeZero N] (h : IsFrickeAutFull N (frickeInvolutionFull N)) (a b : ℕ)
+    (hab : a * b = N) [NeZero a] [NeZero b] :
     (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ = -a := by
-  rw [cuspZeroBar_def, ← ModularCurve.frickeInvolutionBar_coeffEmb_qExpand N h a b hab, Place.ord_smul]
+  rw [cuspZeroBar_def, ← ModularCurve.frickeInvolutionBar_coeffEmb_qExpand N h a b hab,
+    Place.ord_smul]
   exact ModularCurve.ord_cuspInftyBar_coeffEmb_qExpand N a (Dvd.intro b hab)
 
 end S_ModularCurve_ord_cuspZeroBar_coeffEmb_qExpand
@@ -79,6 +81,10 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.ord_cuspZeroBar_coeffEmb_qExpand (N : ℕ) [NeZero N] (h : IsFrickeAutFull N (frickeInvolutionFull N)) (a b : ℕ) (hab : a * b = N) [NeZero a] [NeZero b] : (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ = -a := _root_.P2MW.S_ModularCurve_ord_cuspZeroBar_coeffEmb_qExpand.solution N h a b hab
+theorem ModularCurve.ord_cuspZeroBar_coeffEmb_qExpand (N : ℕ) [NeZero N]
+    (h : IsFrickeAutFull N (frickeInvolutionFull N)) (a b : ℕ) (hab : a * b = N) [NeZero a]
+    [NeZero b] :
+    (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ = -a :=
+  solution N h a b hab
 
 end publicSection

@@ -355,14 +355,14 @@ theorem symbol_closed (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
 end SymbolClosed
 
 private lemma symbol_vertical (f : UpperHalfPlane → ℂ) (a m : ℚ) (hm : m ≠ 0) (j : ℕ) :
-    modularSymbol f j a m = (2*Real.pi : ℂ) * ((m : ℂ)*Complex.I)^j *
+    modularSymbol f j a m = (2*Real.pi : ℂ) * ((m : ℂ)*Complex.I) ^ j *
       verticalMoment f (-a/m) j := by
   unfold modularSymbol modularIntegral verticalMoment
   have hm' : (m : ℂ) ≠ 0 := by exact_mod_cast hm
   have heq (t : ℝ) :
-      ((((m : ℂ) • Polynomial.X + Polynomial.C (a : ℂ))^j).eval
+      ((((m : ℂ) • Polynomial.X + Polynomial.C (a : ℂ)) ^ j).eval
         (((-a/m : ℚ) : ℂ) + Complex.I*t)) =
-      ((m : ℂ)*Complex.I)^j * (t : ℂ)^j := by
+      ((m : ℂ)*Complex.I) ^ j * (t : ℂ) ^ j := by
     simp only [Polynomial.eval_pow, Polynomial.eval_add, Polynomial.eval_smul,
       Polynomial.eval_X, Polynomial.eval_C, smul_eq_mul, Rat.cast_div, Rat.cast_neg]
     rw [← mul_pow]
@@ -371,9 +371,9 @@ private lemma symbol_vertical (f : UpperHalfPlane → ℂ) (a m : ℚ) (hm : m �
     ring
   simp_rw [heq]
   rw [show (fun t : ℝ => f (ofComplex (((-a/m : ℚ) : ℂ) + Complex.I*t)) *
-      (((m : ℂ)*Complex.I)^j * (t : ℂ)^j)) =
-    (fun t : ℝ => ((m : ℂ)*Complex.I)^j *
-      (f (ofComplex (((-a/m : ℚ) : ℂ) + Complex.I*t)) * (t : ℂ)^j)) by
+      (((m : ℂ)*Complex.I) ^ j * (t : ℂ) ^ j)) =
+    (fun t : ℝ => ((m : ℂ)*Complex.I) ^ j *
+      (f (ofComplex (((-a/m : ℚ) : ℂ) + Complex.I*t)) * (t : ℂ) ^ j)) by
         funext t; ring, integral_const_mul]
   ring
 
@@ -473,7 +473,7 @@ private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
     (P : Periods k ι f.form) (s : Bool) (χ : DirichletCharacter Qbar m)
     (j : ℕ) (hj : j ≤ k - 2) :
     2 * P.omega s * ι (∑ a : ZMod m, χ a * algebraicSymbol P s j a.val m) =
-      (1 + (MTT.sign s : ℂ) * (-1 : ℂ)^j * ι (χ (-1))) *
+      (1 + (MTT.sign s : ℂ) * (-1 : ℂ) ^ j * ι (χ (-1))) *
         ∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m := by
   have hm : (m : ℚ) ≠ 0 := by exact_mod_cast NeZero.ne m
   have hc : ι (χ (-1)) ^ 2 = 1 := by
@@ -481,12 +481,12 @@ private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
     norm_num
   let W := ∑ a : ZMod m, ι (χ a) * verticalMoment f.form ((a.val : ℚ)/m) j
   have hA : P.omega s * ι (∑ a : ZMod m, χ a * algebraicSymbol P s j a.val m) =
-      (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j *
-        ((ι (χ (-1)) + (MTT.sign s : ℂ) * (-1 : ℂ)^j) * W) := by
+      (Real.pi : ℂ) * (Complex.I * (m : ℂ)) ^ j *
+        ((ι (χ (-1)) + (MTT.sign s : ℂ) * (-1 : ℂ) ^ j) * W) := by
     calc
-      _ = (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j *
+      _ = (Real.pi : ℂ) * (Complex.I * (m : ℂ)) ^ j *
           ((∑ a : ZMod m, ι (χ a) * verticalMoment f.form (-(a.val : ℚ)/m) j) +
-            (MTT.sign s : ℂ) * (-1 : ℂ)^j * W) := by
+            (MTT.sign s : ℂ) * (-1 : ℂ) ^ j * W) := by
         simp only [map_sum,map_mul,Finset.mul_sum,W,← Finset.sum_add_distrib]
         apply Finset.sum_congr rfl
         intro a _
@@ -495,9 +495,9 @@ private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
         linear_combination ι (χ a) * h
       _ = _ := by rw [weighted_moment_neg]; dsimp [W]; ring
   have hS : (∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m) =
-      2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j * (ι (χ (-1)) * W) := by
+      2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ)) ^ j * (ι (χ (-1)) * W) := by
     calc
-      _ = 2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j *
+      _ = 2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ)) ^ j *
           ∑ a : ZMod m, ι (χ a) * verticalMoment f.form (-(a.val : ℚ)/m) j := by
         rw [Finset.mul_sum]
         apply Finset.sum_congr rfl
@@ -510,8 +510,8 @@ private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
     _ = 2 * (P.omega s * ι (∑ a : ZMod m, χ a * algebraicSymbol P s j a.val m)) := by ring
     _ = _ := by
       rw [hA,hS]
-      linear_combination -(2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j *
-        (MTT.sign s : ℂ) * (-1 : ℂ)^j * W) * hc
+      linear_combination -(2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ)) ^ j *
+        (MTT.sign s : ℂ) * (-1 : ℂ) ^ j * W) * hc
 
 private lemma signed_sum_period {N k m : ℕ} [NeZero m]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
@@ -525,10 +525,10 @@ private lemma signed_sum_period {N k m : ℕ} [NeZero m]
   let B := ∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m
   have hp := weighted_signed_comparison hN hk f P true χ j hj
   have hm := weighted_signed_comparison hN hk f P false χ j hj
-  have heq : χ (-1) * (-1 : Qbar)^j = 1 ∨ χ (-1) * (-1 : Qbar)^j = -1 := by
+  have heq : χ (-1) * (-1 : Qbar) ^ j = 1 ∨ χ (-1) * (-1 : Qbar) ^ j = -1 := by
     apply sq_eq_one_iff.mp
-    have hx : χ (-1)^2 = 1 := by rw [← map_pow]; norm_num
-    have hy : ((-1 : Qbar)^j)^2 = 1 := by rw [pow_right_comm]; norm_num
+    have hx : χ (-1) ^ 2 = 1 := by rw [← map_pow]; norm_num
+    have hy : ((-1 : Qbar) ^ j) ^ 2 = 1 := by rw [pow_right_comm]; norm_num
     rw [mul_pow,hx,hy,mul_one]
   have hsum : ι (∑ a : ZMod m, χ a *
       (algebraicSymbol P true j a.val m + algebraicSymbol P false j a.val m)) =
@@ -536,7 +536,7 @@ private lemma signed_sum_period {N k m : ℕ} [NeZero m]
     simp only [A,map_sum,map_mul,map_add,mul_add,Finset.sum_add_distrib]
   rw [hsum]
   rcases heq with heq | heq
-  · have heC : (-1 : ℂ)^j * ι (χ (-1)) = 1 := by
+  · have heC : (-1 : ℂ) ^ j * ι (χ (-1)) = 1 := by
       simpa only [map_mul,map_pow,map_neg,map_one,mul_comm] using congrArg ι heq
     have hp' : 2 * P.omega true * ι (A true) = 2 * B := by
       simpa [A,B,MTT.sign,mul_assoc,heC,one_add_one_eq_two] using hp
@@ -549,7 +549,7 @@ private lemma signed_sum_period {N k m : ℕ} [NeZero m]
       apply mul_left_cancel₀ (mul_ne_zero (by norm_num : (2 : ℂ) ≠ 0) (P.omega_ne false))
       simpa only [mul_zero] using hm'
     simp [hpA,hmA,criticalSign,heq,B]
-  · have heC : (-1 : ℂ)^j * ι (χ (-1)) = -1 := by
+  · have heC : (-1 : ℂ) ^ j * ι (χ (-1)) = -1 := by
       simpa only [map_mul,map_pow,map_neg,map_one,mul_comm] using congrArg ι heq
     have hp' : 2 * P.omega true * ι (A true) = 0 := by
       simpa [A,B,MTT.sign,mul_assoc,heC,one_add_one_eq_two] using hp
@@ -561,7 +561,7 @@ private lemma signed_sum_period {N k m : ℕ} [NeZero m]
     have hmA : ι (A false) = B / P.omega false := by
       apply (eq_div_iff (P.omega_ne false)).mpr
       linear_combination (1/2 : ℂ) * hm'
-    have hne : χ (-1) * (-1 : Qbar)^j ≠ 1 := by rw [heq]; norm_num
+    have hne : χ (-1) * (-1 : Qbar) ^ j ≠ 1 := by rw [heq]; norm_num
     simp [hpA,hmA,criticalSign,hne,B]
 
 private lemma gauss_ne_zero {m : ℕ} [NeZero m] (ι : Qbar →+* ℂ)
@@ -579,15 +579,15 @@ private lemma gauss_ne_zero {m : ℕ} [NeZero m] (ι : Qbar →+* ℂ)
 
 private lemma complex_interpolation_sum {p N k : ℕ} [Fact p.Prime]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
-    (P : Periods k ι f.form) (n : ℕ) (χ : DirichletCharacter Qbar (p^n))
+    (P : Periods k ι f.form) (n : ℕ) (χ : DirichletCharacter Qbar (p ^ n))
     (hχ : χ.IsPrimitive) (j : ℕ) (hj : j ≤ k - 2) :
-    ι (∑ a : ZMod (p^n), χ a *
-      (algebraicSymbol P true j a.val (p^n) + algebraicSymbol P false j a.val (p^n))) =
+    ι (∑ a : ZMod (p ^ n), χ a *
+      (algebraicSymbol P true j a.val (p ^ n) + algebraicSymbol P false j a.val (p ^ n))) =
       normalizedCriticalValue f P.omega n χ j := by
   simp only [← Nat.cast_pow]
   rw [signed_sum_period hN hk f P χ j hj,normalizedCriticalValue,
     MTT.birch_mellin_formula hN hk ι f χ hχ j hj]
-  have hm : ((p^n : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (NeZero.ne (p^n))
+  have hm : ((p ^ n : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (NeZero.ne (p ^ n))
   have hfac : (j.factorial : ℂ) ≠ 0 := by exact_mod_cast j.factorial_ne_zero
   have hpi : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
   have hg := gauss_ne_zero ι χ hχ
@@ -665,26 +665,26 @@ private lemma sum_units_eq_sum {R : Type*} [Field R] {m : ℕ} [NeZero m]
 private lemma correction_sum_zero {p N k : ℕ} [Fact p.Prime]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
     (P : Periods k ι f.form) (s : Bool) (n : ℕ) (hn : 0 < n)
-    (χ : DirichletCharacter Qbar (p^n)) (hχ : χ.IsPrimitive)
+    (χ : DirichletCharacter Qbar (p ^ n)) (hχ : χ.IsPrimitive)
     (j : ℕ) (hj : j ≤ k - 2) :
-    (∑ a : (ZMod (p^n))ˣ, χ a *
-      algebraicSymbol P s j (a : ZMod (p^n)).val ((p^(n-1) : ℕ) : ℚ)) = 0 := by
-  let d := p^(n-1)
-  have hd : d ∣ p^n := pow_dvd_pow p (Nat.sub_le n 1)
-  have hdm : d < p^n := pow_lt_pow_right₀ (Fact.out : p.Prime).one_lt (by omega)
+    (∑ a : (ZMod (p ^ n))ˣ, χ a *
+      algebraicSymbol P s j (a : ZMod (p ^ n)).val ((p ^ (n-1) : ℕ) : ℚ)) = 0 := by
+  let d := p ^ (n-1)
+  have hd : d ∣ p ^ n := pow_dvd_pow p (Nat.sub_le n 1)
+  have hdm : d < p ^ n := pow_lt_pow_right₀ (Fact.out : p.Prime).one_lt (by omega)
   let F : (ZMod d)ˣ → Qbar := fun a => algebraicSymbol P s j (a : ZMod d).val d
   have hdp : (d : ℚ) ≠ 0 := by exact_mod_cast (NeZero.ne d)
   have hper := algebraic_symbol_periodic hN hk f P s j hj (d : ℚ) hdp
-  have heq (a : (ZMod (p^n))ˣ) :
-      algebraicSymbol P s j (a : ZMod (p^n)).val (d : ℚ) = F (ZMod.unitsMap hd a) := by
-    have hval : (((a : ZMod (p^n)).val : ℤ) : ZMod d) =
+  have heq (a : (ZMod (p ^ n))ˣ) :
+      algebraicSymbol P s j (a : ZMod (p ^ n)).val (d : ℚ) = F (ZMod.unitsMap hd a) := by
+    have hval : (((a : ZMod (p ^ n)).val : ℤ) : ZMod d) =
         ((((ZMod.unitsMap hd a : (ZMod d)ˣ) : ZMod d).val : ℤ) : ZMod d) := by
       push_cast
       rw [ZMod.natCast_zmod_val,ZMod.unitsMap_val,ZMod.natCast_val]
     exact periodic_rat_congr_int (fun a => algebraicSymbol P s j a (d : ℚ)) hper hval
-  rw [show (∑ a : (ZMod (p^n))ˣ, χ a *
-      algebraicSymbol P s j (a : ZMod (p^n)).val (d : ℚ)) =
-      ∑ a : (ZMod (p^n))ˣ, χ a * F (ZMod.unitsMap hd a) from
+  rw [show (∑ a : (ZMod (p ^ n))ˣ, χ a *
+      algebraicSymbol P s j (a : ZMod (p ^ n)).val (d : ℚ)) =
+      ∑ a : (ZMod (p ^ n))ˣ, χ a * F (ZMod.unitsMap hd a) from
         Finset.sum_congr rfl (fun a _ => congrArg (fun z => χ a * z) (heq a))]
   exact primitive_character_fiber_cancellation hd hdm χ hχ F
 
@@ -692,24 +692,24 @@ private lemma character_disk_sum {p N k : ℕ} [Fact p.Prime]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k)
     (ιp : Qbar →+* ℂ_[p]) (f : Eigenform N k ι)
     (P : Periods k ι f.form) (α : ℂ_[p]) (s : Bool)
-    (n : ℕ) (hn : 0 < n) (χ : DirichletCharacter Qbar (p^n))
+    (n : ℕ) (hn : 0 < n) (χ : DirichletCharacter Qbar (p ^ n))
     (hχ : χ.IsPrimitive) (j : ℕ) (hj : j ≤ k - 2) :
-    (∑ a : (ZMod (p^n))ˣ, ιp (χ a) *
-      diskMoment f ιp P α s j n ((a : ZMod (p^n)).val : ℤ)) =
-    (α^n)⁻¹ * ιp (∑ a : (ZMod (p^n))ˣ, χ a *
-      algebraicSymbol P s j (a : ZMod (p^n)).val (p^n)) := by
+    (∑ a : (ZMod (p ^ n))ˣ, ιp (χ a) *
+      diskMoment f ιp P α s j n ((a : ZMod (p ^ n)).val : ℤ)) =
+    (α ^ n)⁻¹ * ιp (∑ a : (ZMod (p ^ n))ˣ, χ a *
+      algebraicSymbol P s j (a : ZMod (p ^ n)).val (p ^ n)) := by
   classical
   have hc := correction_sum_zero hN hk f P s n hn χ hχ j hj
-  have hc' : (∑ a : (ZMod (p^n))ˣ, ιp (χ a) *
-      ιp (algebraicSymbol P s j (a : ZMod (p^n)).val (p^(n-1)))) = 0 := by
+  have hc' : (∑ a : (ZMod (p ^ n))ˣ, ιp (χ a) *
+      ιp (algebraicSymbol P s j (a : ZMod (p ^ n)).val (p ^ (n-1)))) = 0 := by
     simpa only [map_sum,map_mul,map_zero,Nat.cast_pow] using congrArg ιp hc
   simp only [diskMoment,Int.cast_natCast,map_sum,map_mul,Finset.mul_sum]
   calc
-    _ = (∑ a : (ZMod (p^n))ˣ, (α^n)⁻¹ * (ιp (χ a) *
-          ιp (algebraicSymbol P s j (a : ZMod (p^n)).val (p^n)))) -
-        (ιp (f.epsilon p) * (p : ℂ_[p])^(k-2) / α^(n+1)) *
-          (∑ a : (ZMod (p^n))ˣ, ιp (χ a) *
-            ιp (algebraicSymbol P s j (a : ZMod (p^n)).val (p^(n-1)))) := by
+    _ = (∑ a : (ZMod (p ^ n))ˣ, (α ^ n)⁻¹ * (ιp (χ a) *
+          ιp (algebraicSymbol P s j (a : ZMod (p ^ n)).val (p ^ n)))) -
+        (ιp (f.epsilon p) * (p : ℂ_[p]) ^ (k - 2) / α ^ (n+1)) *
+          (∑ a : (ZMod (p ^ n))ˣ, ιp (χ a) *
+            ιp (algebraicSymbol P s j (a : ZMod (p ^ n)).val (p ^ (n-1)))) := by
       rw [Finset.mul_sum,← Finset.sum_sub_distrib]
       apply Finset.sum_congr rfl
       intro a _
@@ -719,9 +719,9 @@ private lemma character_disk_sum {p N k : ℕ} [Fact p.Prime]
 private lemma euler_positive {p N k : ℕ} [Fact p.Prime]
     {ι : Qbar →+* ℂ} (f : Eigenform N k ι) (ιp : Qbar →+* ℂ_[p])
     (α : ℂ_[p]) (n : ℕ) (hn : 0 < n)
-    (χ : DirichletCharacter Qbar (p^n)) (j : ℕ) :
-    eulerMultiplier f ιp α n χ j = (α^n)⁻¹ := by
-  have hpnu : ¬ IsUnit (p : ZMod (p^n)) := by
+    (χ : DirichletCharacter Qbar (p ^ n)) (j : ℕ) :
+    eulerMultiplier f ιp α n χ j = (α ^ n)⁻¹ := by
+  have hpnu : ¬ IsUnit (p : ZMod (p ^ n)) := by
     rw [ZMod.isUnit_iff_coprime,Nat.coprime_pow_right_iff hn]
     simpa using (Fact.out : p.Prime).ne_one
   simp [eulerMultiplier,χ.map_nonunit hpnu,(χ⁻¹).map_nonunit hpnu]
@@ -741,8 +741,8 @@ theorem solution {p N k : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
       ι v = normalizedCriticalValue f P.omega n χ j ∧
       (μ true + μ false) g = eulerMultiplier f ιp α n χ j * ιp v := by
   classical
-  let V (s : Bool) := ∑ a : (ZMod (p^n))ˣ, χ a *
-    algebraicSymbol P s j (a : ZMod (p^n)).val (p^n)
+  let V (s : Bool) := ∑ a : (ZMod (p ^ n))ˣ, χ a *
+    algebraicSymbol P s j (a : ZMod (p ^ n)).val (p ^ n)
   let v := V true + V false
   obtain ⟨g,hg,hgt⟩ := MTT.character_integral_of_disk_moments ιp f P α true
     (μ true) (hμ true) n hn χ j hj
@@ -751,14 +751,14 @@ theorem solution {p N k : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
   have hgg : g' = g := ContinuousMap.ext (fun x => (hg' x).trans (hg x).symm)
   subst g'
   refine ⟨g,v,hg,?_,?_⟩
-  · have hv : v = ∑ a : ZMod (p^n), χ a *
-        (algebraicSymbol P true j a.val (p^n) +
-          algebraicSymbol P false j a.val (p^n)) := by
+  · have hv : v = ∑ a : ZMod (p ^ n), χ a *
+        (algebraicSymbol P true j a.val (p ^ n) +
+          algebraicSymbol P false j a.val (p ^ n)) := by
       dsimp [v,V]
       rw [← Finset.sum_add_distrib]
       simp_rw [← mul_add]
       exact sum_units_eq_sum χ (fun a =>
-        algebraicSymbol P true j a.val (p^n) + algebraicSymbol P false j a.val (p^n))
+        algebraicSymbol P true j a.val (p ^ n) + algebraicSymbol P false j a.val (p ^ n))
     rw [hv]
     exact complex_interpolation_sum hN hk f P n χ hχ j hj
   · change μ true g + μ false g = _

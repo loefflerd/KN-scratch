@@ -73,7 +73,8 @@ variable {K : Type*} [Field K]
 theorem vcX_injective (C : VariableChange K) : Function.Injective (vcX C) := fun a b h => by
   simpa using congrArg (vcXInv C) h
 
-theorem vcY_injective (C : VariableChange K) (x' : K) : Function.Injective (vcY C x') := fun a b h => by
+theorem vcY_injective (C : VariableChange K) (x' : K) :
+    Function.Injective (vcY C x') := fun a b h => by
   simpa using congrArg (vcYInv C (vcX C x')) h
 
 theorem vcX_mul (γ₁ γ₂ : VariableChange K) (x : K) :
@@ -106,9 +107,11 @@ theorem vcYInv_one (x y : K) : vcYInv (1 : VariableChange K) x y = y := by
 variable [DecidableEq K]
 
 omit [DecidableEq K] in
-theorem vcInvFun_some (γ : VariableChange K) (W : WeierstrassCurve.Affine K) {x y : K} (h : W.Nonsingular x y) :
+theorem vcInvFun_some (γ : VariableChange K) (W : WeierstrassCurve.Affine K) {x y : K}
+    (h : W.Nonsingular x y) :
     Point.vcInvFun γ W (Point.some x y h) = Point.some (vcXInv γ x) (vcYInv γ x y)
-      ((nonsingular_variableChange_iff (vcXInv γ x) (vcYInv γ x y)).mpr (by rwa [vcX_vcXInv, vcY_vcYInv])) := rfl
+      ((nonsingular_variableChange_iff (vcXInv γ x) (vcYInv γ x y)).mpr (by rwa [vcX_vcXInv,
+        vcY_vcYInv])) := rfl
 
 omit [DecidableEq K] in
 theorem Point.heq_vcInvFun (γ : VariableChange K) {V V' : WeierstrassCurve.Affine K}
@@ -117,7 +120,8 @@ theorem Point.heq_vcInvFun (γ : VariableChange K) {V V' : WeierstrassCurve.Affi
   subst hV
   rw [eq_of_heq h]
 
-noncomputable def vcInvHom (γ : VariableChange K) (W : WeierstrassCurve.Affine K) : W.Point →+ (γ • W).toAffine.Point :=
+noncomputable def vcInvHom (γ : VariableChange K) (W : WeierstrassCurve.Affine K) :
+    W.Point →+ (γ • W).toAffine.Point :=
   AddMonoidHom.mk' (Point.vcInvFun γ W) (WeierstrassCurve.Affine.Point.vcInvFun_add γ W)
 
 omit [DecidableEq K] in
@@ -129,7 +133,8 @@ theorem addOrderOf_vcInvFun (γ : VariableChange K) (W : WeierstrassCurve.Affine
     addOrderOf (Point.vcInvFun γ W P) = addOrderOf P :=
   addOrderOf_injective (vcInvHom γ W) (vcInvFun_injective γ W) P
 
-theorem vcInvFun_nsmul (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (k : ℕ) (P : W.Point) :
+theorem vcInvFun_nsmul (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (k : ℕ) (P : W.Point)
+    :
     Point.vcInvFun γ W (k • P) = k • Point.vcInvFun γ W P :=
   map_nsmul (vcInvHom γ W) k P
 
@@ -205,7 +210,7 @@ theorem step_symm {P Q : Gamma0Pair N K} (h : Gamma0Pair.Step P Q) : Gamma0Pair.
   have hg : Qgen = k • Point.vcInvFun γ P.toCurve.toAffine P.gen := eq_of_heq hgen
   obtain ⟨m, hm, hmx⟩ := exists_nsmul_nsmul_eq_self hk P.addOrderOf_gen
   refine ⟨γ⁻¹, inv_smul_smul γ P.toCurve, m, hm, ?_⟩
-  show HEq P.gen (m • Point.vcInvFun γ⁻¹ (γ • P.toCurve).toAffine Qgen)
+  change HEq P.gen (m • Point.vcInvFun γ⁻¹ (γ • P.toCurve).toAffine Qgen)
   rw [hg, vcInvFun_nsmul]
   refine (heq_of_eq hmx.symm).trans ?_
   exact ModularCurve.Point.heq_nsmul (inv_smul_smul γ P.toCurve).symm m
@@ -272,7 +277,7 @@ theorem solution
     let T : (γ • E).toAffine.Point := Point.vcInvFun γ E.toAffine gen
     have hT : addOrderOf T = N := by rw [addOrderOf_vcInvFun]; exact hord
     refine ⟨Quot.mk _ ⟨T, hT⟩, Subtype.ext ?_⟩
-    show (Quot.mk _ (mkP ⟨T, hT⟩) : ModuliPoint N L) = Quot.mk _ ⟨E, hE, gen, hord⟩
+    change (Quot.mk _ (mkP ⟨T, hT⟩) : ModuliPoint N L) = Quot.mk _ ⟨E, hE, gen, hord⟩
     refine (Quot.sound (?_ : Gamma0Pair.Step ⟨E, hE, gen, hord⟩ (mkP ⟨T, hT⟩))).symm
     exact ⟨γ, rfl, 1, Nat.coprime_one_left N, heq_of_eq (one_nsmul _).symm⟩
 
@@ -292,6 +297,7 @@ theorem ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq
     Nat.card {x : ModuliPoint N L // ModuliPoint.j x = W.j}
       = Nat.card (Quot (fun (T T' : {T : W.toAffine.Point // addOrderOf T = N}) =>
           ∃ γ : VariableChange L, ∃ _ : γ • W = W, ∃ k : ℕ, k.Coprime N ∧
-            HEq T'.1 (k • Point.vcInvFun γ W.toAffine T.1))) := _root_.P2MW.S_ModularCurve_natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq.solution N L W
+            HEq T'.1 (k • Point.vcInvFun γ W.toAffine T.1))) :=
+  solution N L W
 
 end publicSection

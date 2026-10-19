@@ -71,7 +71,8 @@ namespace P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.ModularCurve Polynomial"
+p2m_open "AlgebraicCurve ModularCurve \
+  P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.ModularCurve Polynomial"
 
 namespace B2Deg
 
@@ -105,7 +106,7 @@ theorem surjective_algebraMap_residueField {K F : Type*} [Field K] [Field F] [Al
       IsLocalRing.maximalIdeal w.toValuationSubring by
     obtain ⟨c, hc⟩ := h
     refine ⟨c, ?_⟩
-    show IsLocalRing.residue _ (algebraMap K w.toValuationSubring c) = IsLocalRing.residue _ y
+    change IsLocalRing.residue _ (algebraMap K w.toValuationSubring c) = IsLocalRing.residue _ y
     rw [eq_comm, ← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff]
     exact hc
   by_cases halg : IsAlgebraic K (y : F)
@@ -137,7 +138,8 @@ theorem surjective_algebraMap_residueField {K F : Type*} [Field K] [Field F] [Al
       · simp [hr]
       by_cases hs : s = 0
       · simp [hs]
-      simp only [valuation_aeval_eq_one w y hunit r hr, valuation_aeval_eq_one w y hunit s hs, div_one,
+      simp only [valuation_aeval_eq_one w y hunit r hr, valuation_aeval_eq_one w y hunit s hs,
+        div_one,
         le_refl]
     apply (w.restrict (IntermediateField.adjoin K ({(y : F)} : Set F))).ne_top'
     refine SetLike.ext fun z => ⟨fun _ => ValuationSubring.mem_top z, fun _ => ?_⟩
@@ -193,10 +195,11 @@ theorem finiteDimensional_adjoin_jBar (M : ℕ) [NeZero M] :
 end B2Deg
 
 namespace ModularCurve
-p2m_export "ModularCurve" "modularFunctionFieldBar jq dedekindPsi coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos"
+p2m_export "ModularCurve" "modularFunctionFieldBar jq dedekindPsi coeffEmb laurentBaseChange \
+  coeffEmb_mem_laurentBaseChange jq_mem_full relfinrank_laurentBaseChange_modularFunctionFieldFull \
+  relfinrank_full_eq_dedekindPsi dedekindPsi_pos"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZero M]
     (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) : w.deg = 1 := by
@@ -209,8 +212,8 @@ private theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZer
 end
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.ModularCurve in
-
-theorem solution (M : ℕ) [NeZero M] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) : w.deg = 1 :=
+theorem solution (M : ℕ) [NeZero M] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) :
+    w.deg = 1 :=
   ModularCurve.deg_eq_one_modularFunctionFieldBar M w
 
 end S_ModularCurve_deg_eq_one_modularFunctionFieldBar
@@ -223,6 +226,9 @@ public section publicSection
 
 
 open AlgebraicCurve ModularCurve
-theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZero M] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) : w.deg = 1 := _root_.P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.solution M w
+theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZero M]
+    (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) :
+    w.deg = 1 :=
+  solution M w
 
 end publicSection

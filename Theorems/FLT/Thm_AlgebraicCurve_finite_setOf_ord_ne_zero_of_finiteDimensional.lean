@@ -65,11 +65,13 @@ noncomputable section
 open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.finite_setOf_restrict_eq Place RationalFunctionField.finite_setOf_ord_ne_zero"
+p2m_export "AlgebraicCurve" "Place.finite_setOf_restrict_eq Place \
+  RationalFunctionField.finite_setOf_ord_ne_zero"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero finite_setOf_restrict_eq restrict ord_restrict ord ord_mul toValuationSubring ord_nonneg_of_mem mem_of_ord_nonneg"
+p2m_export "AlgebraicCurve.Place" "ord_neg mem_of_eval_monic_eq_zero finite_setOf_restrict_eq \
+  restrict ord_restrict ord ord_mul toValuationSubring ord_nonneg_of_mem mem_of_ord_nonneg"
 p2m_open "AlgebraicCurve.Place~ord_eq_zero_iff_adicValuation_eq_one~exists_ord_pos"
 
 section SupportTransfer
@@ -82,7 +84,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F'] [Algebra
 variable (w : Place K F')
 
 omit [FiniteDimensional F F'] in
-
 private theorem _root_.AlgebraicCurve.Place.aeval_mem {Q : Polynomial F} {x : F'}
     (hcoeff : ∀ i, algebraMap F F' (Q.coeff i) ∈ w.toValuationSubring)
     (hx : x ∈ w.toValuationSubring) :
@@ -92,7 +93,8 @@ private theorem _root_.AlgebraicCurve.Place.aeval_mem {Q : Polynomial F} {x : F'
 
 p2m_export "AlgebraicCurve.Place" "aeval_mem"
 
-private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (hf : f ≠ 0) (hford : w.ord f ≠ 0) :
+private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (hf : f ≠ 0)
+    (hford : w.ord f ≠ 0) :
     ∃ i < (minpoly F f).natDegree, (minpoly F f).coeff i ≠ 0 ∧
       w.ord (algebraMap F F' ((minpoly F f).coeff i)) ≠ 0 := by
   by_contra hcon
@@ -143,10 +145,12 @@ end AlgebraicCurve
 
 end
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional.AlgebraicCurve"
 
 theorem solution {K F' : Type*} [Field K] [Field F'] [Algebra K F']
-    [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F'] [FiniteDimensional (RatFunc K) F'] [Algebra.IsSeparable (RatFunc K) F']
+    [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F'] [FiniteDimensional (RatFunc K) F']
+    [Algebra.IsSeparable (RatFunc K) F']
     {f : F'} (hf : f ≠ 0) : {w : Place K F' | w.ord f ≠ 0}.Finite := by
   classical
   set P := minpoly (RatFunc K) f with hPdef
@@ -174,8 +178,12 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.finite_setOf_ord_ne_zero_of_finiteDimensional {K F' : Type*} [Field K] [Field F'] [Algebra K F']
-    [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F'] [FiniteDimensional (RatFunc K) F'] [Algebra.IsSeparable (RatFunc K) F']
-    {f : F'} (hf : f ≠ 0) : {w : Place K F' | w.ord f ≠ 0}.Finite := _root_.P2MW.S_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional.solution hf
+theorem AlgebraicCurve.finite_setOf_ord_ne_zero_of_finiteDimensional {K F' : Type*} [Field K]
+    [Field F'] [Algebra K F']
+    [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F'] [FiniteDimensional (RatFunc K) F']
+    [Algebra.IsSeparable (RatFunc K) F']
+    {f : F'} (hf : f ≠ 0)
+    : {w : Place K F' | w.ord f ≠ 0}.Finite :=
+  solution hf
 
 end publicSection

@@ -69,7 +69,9 @@ noncomputable section
 open IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "modularFunctionFieldFull laurentBaseChange jqModC jqNModC jqNModC_one ModularPolynomialFamily isIntegral_jqNModC_all_of_modularPolynomialFamily laurentBaseChange_modularFunctionFieldFull transcendental_jqModC"
+p2m_export "ModularCurve" "modularFunctionFieldFull laurentBaseChange jqModC jqNModC jqNModC_one \
+  ModularPolynomialFamily isIntegral_jqNModC_all_of_modularPolynomialFamily \
+  laurentBaseChange_modularFunctionFieldFull transcendental_jqModC"
 p2m_open "ModularCurve"
 namespace R8
 
@@ -102,7 +104,9 @@ theorem insert_gens (L : Type*) [Field L] (N : ℕ) [NeZero N] :
 end R8
 end ModularCurve
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull.ModularCurve AlgebraicCurve"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull.ModularCurve \
+  AlgebraicCurve"
 
 theorem solution (L : Type*) [Field L] [Algebra ℚ L]
     (hΦ : ModularPolynomialFamily) (N : ℕ) [NeZero N] :
@@ -127,8 +131,10 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull (L : Type*) [Field L] [Algebra ℚ L]
+theorem ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull (L : Type*)
+    [Field L] [Algebra ℚ L]
     (hΦ : ModularPolynomialFamily) (N : ℕ) [NeZero N] :
-    HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) := _root_.P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull.solution L hΦ N
+    HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) :=
+  solution L hΦ N
 
 end publicSection

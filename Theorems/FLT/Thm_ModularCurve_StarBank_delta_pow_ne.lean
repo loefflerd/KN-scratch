@@ -66,7 +66,9 @@ open scoped PowerSeries.WithPiTopology
 p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_delta_pow_ne.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single qExpand_one_apply qExpand_congr qExpand_qExpand etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg map_intCast_pow_char_eq_qExpand"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single \
+  qExpand_one_apply qExpand_congr qExpand_qExpand etaProd constantCoeff_etaProd \
+  ofPowerSeries_coeff_of_neg map_intCast_pow_char_eq_qExpand"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -178,10 +180,11 @@ theorem etaC_pow_char_pow (K : Type*) [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] 
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single qExpand_one_apply qExpand_congr qExpand_qExpand etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg map_intCast_pow_char_eq_qExpand"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single \
+  qExpand_one_apply qExpand_congr qExpand_qExpand etaProd constantCoeff_etaProd \
+  ofPowerSeries_coeff_of_neg map_intCast_pow_char_eq_qExpand"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 theorem ModularCurve.StarBank.etaProd_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] (p : ℕ) [NeZero p] (hp : (p : K) ≠ 0) (hp1 : p ≠ 1) (γ : K) :
     HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ (24 * p) ≠
@@ -229,7 +232,6 @@ theorem ModularCurve.StarBank.etaProd_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ
   · exact hℓp h2
 
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.delta_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) (γ : K) :
     (HahnSeries.single (1 : ℤ) (1 : K) *
@@ -295,7 +297,6 @@ end Falsifier
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_delta_pow_ne.ModularCurve in
-
 theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) (γ : K) :
     (HahnSeries.single (1 : ℤ) (1 : K) *
@@ -319,6 +320,7 @@ theorem ModularCurve.StarBank.delta_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ} 
     (HahnSeries.single (1 : ℤ) (1 : K) *
         HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ p ≠
       HahnSeries.C γ * qExpand K p (HahnSeries.single (1 : ℤ) (1 : K) *
-        HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) := _root_.P2MW.S_ModularCurve_StarBank_delta_pow_ne.solution K hpℓ γ
+        HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) :=
+  solution K hpℓ γ
 
 end publicSection

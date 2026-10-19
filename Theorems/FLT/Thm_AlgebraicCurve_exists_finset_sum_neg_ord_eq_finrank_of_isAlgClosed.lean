@@ -77,7 +77,8 @@ theorem solution
     constructor
     · intro h; by_contra h'; exact h (max_eq_left (by omega))
     · intro h; rw [max_eq_right (by omega)]; omega
-  · have hdeg := AlgebraicCurve.degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental x hx D hD
+  · have hdeg :=
+      AlgebraicCurve.degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental x hx D hD
     rw [AlgebraicCurve.Divisor.degree_eq_sum_support] at hdeg
     rw [← hdeg]
     refine Finset.sum_congr rfl fun P hP => ?_
@@ -101,6 +102,7 @@ theorem AlgebraicCurve.exists_finset_sum_neg_ord_eq_finrank_of_isAlgClosed
     (x : F) (hx : Transcendental k x)
     (hfin : FiniteDimensional (IntermediateField.adjoin k ({x} : Set F)) F) :
     ∃ S : Finset (Place k F), (∀ P, P ∈ S ↔ P.ord x < 0) ∧
-      ∑ P ∈ S, (-P.ord x) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_exists_finset_sum_neg_ord_eq_finrank_of_isAlgClosed.solution k x hx hfin
+      ∑ P ∈ S, (-P.ord x) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) :=
+  solution k x hx hfin
 
 end publicSection

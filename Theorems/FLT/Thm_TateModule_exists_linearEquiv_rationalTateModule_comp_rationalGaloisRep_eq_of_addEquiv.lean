@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node TateModule.exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_eq_of_addEquiv
+Based on Prove2Me node
+TateModule.exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_eq_of_addEquiv
 (64daf8fe-6f13-5b0e-94db-45282c874d70) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 66603ac4-11de-59a7-8c10-7ec507634ff6
@@ -48,7 +49,8 @@ T_p$ for an isomorphism of the underlying abelian groups, together with the stat
 induced isomorphism intertwines operators corresponding under $\Psi$; the pinning on pure tensors
 identifies $\Theta$ as the map induced levelwise by $\Psi$. It is used to transport representations
 on Tate modules of Jacobians along an isomorphism of the groups carrying them, for instance in
-[`DrinfeldCurve.exists_linearEquiv_tateProd_comp_tateProdRep_eq_of_algEquiv`](thm.html#DrinfeldCurve.exists_linearEquiv_tateProd_comp_tateProdRep_eq_of_algEquiv).
+[`DrinfeldCurve.exists_linearEquiv_tateProd_comp_tateProdRep_eq_of_algEquiv`]
+(thm.html#DrinfeldCurve.exists_linearEquiv_tateProd_comp_tateProdRep_eq_of_algEquiv).
 
 ## Explanation of the source proof
 
@@ -59,8 +61,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 -/
 
 section privateSection
-
-namespace P2MW.S_TateModule_exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_eq_of_addEquiv
 
 open scoped TensorProduct
 
@@ -75,7 +75,8 @@ theorem solution
         (Θ : ModularCurve.RationalTateModule p J →ₗ[ℚ_[p]] ModularCurve.RationalTateModule p J') ∘ₗ
             ModularCurve.rationalGaloisRep p J G g =
           ModularCurve.rationalGaloisRep p J' G' g' ∘ₗ
-            (Θ : ModularCurve.RationalTateModule p J →ₗ[ℚ_[p]] ModularCurve.RationalTateModule p J') := by
+            (Θ : ModularCurve.RationalTateModule p J →ₗ[ℚ_[p]]
+              ModularCurve.RationalTateModule p J') := by
   classical
   obtain ⟨P, hP, -⟩ := TateModule.exists_linearMap_apply_eq_of_addMonoidHom p (Ψ : J →+ J')
   obtain ⟨Q, hQ, -⟩ := TateModule.exists_linearMap_apply_eq_of_addMonoidHom p (Ψ.symm : J' →+ J)
@@ -87,27 +88,28 @@ theorem solution
     apply LinearMap.ext; intro y; apply Subtype.ext; funext n
     rw [LinearMap.comp_apply, hP, hQ, LinearMap.id_apply]
     exact Ψ.apply_symm_apply _
-
   set P' := P.baseChange ℚ_[p] with hP'
   set Q' := Q.baseChange ℚ_[p] with hQ'
   have hQP' : Q' ∘ₗ P' = LinearMap.id := by
     rw [hP', hQ', ← LinearMap.baseChange_comp, hQP, LinearMap.baseChange_id]
   have hPQ' : P' ∘ₗ Q' = LinearMap.id := by
     rw [hP', hQ', ← LinearMap.baseChange_comp, hPQ, LinearMap.baseChange_id]
-  refine ⟨LinearEquiv.ofLinearMap P' Q' hPQ' hQP', fun x => ⟨P x, ?_, fun n => ?_⟩, fun g g' hgg' => ?_⟩
-  · show P' ((1 : ℚ_[p]) ⊗ₜ[ℤ_[p]] x) = (1 : ℚ_[p]) ⊗ₜ[ℤ_[p]] P x
+  refine ⟨LinearEquiv.ofLinearMap P' Q' hPQ' hQP', fun x => ⟨P x, ?_, fun n => ?_⟩,
+      fun g g' hgg' => ?_⟩
+  · change P' ((1 : ℚ_[p]) ⊗ₜ[ℤ_[p]] x) = (1 : ℚ_[p]) ⊗ₜ[ℤ_[p]] P x
     rw [hP', LinearMap.baseChange_tmul]
-  · show ((P x : TateModule p J') : ℕ → J') n = Ψ ((x : ℕ → J) n)
+  · change ((P x : TateModule p J') : ℕ → J') n = Ψ ((x : ℕ → J) n)
     exact hP x n
   have hnat : P ∘ₗ TateModule.rep p J G g = TateModule.rep p J' G' g' ∘ₗ P := by
     apply LinearMap.ext; intro x; apply Subtype.ext; funext n
-    rw [LinearMap.comp_apply, LinearMap.comp_apply, hP, TateModule.rep_apply, TateModule.rep_apply, hP]
+    rw [LinearMap.comp_apply, LinearMap.comp_apply, hP, TateModule.rep_apply, TateModule.rep_apply,
+      hP]
     exact hgg' _
-  show P' ∘ₗ ModularCurve.rationalGaloisRep p J G g = ModularCurve.rationalGaloisRep p J' G' g' ∘ₗ P'
-  rw [ModularCurve.rationalGaloisRep_apply, ModularCurve.rationalGaloisRep_apply, hP', ← LinearMap.baseChange_comp,
+  change P' ∘ₗ ModularCurve.rationalGaloisRep p J G g =
+    ModularCurve.rationalGaloisRep p J' G' g' ∘ₗ P'
+  rw [ModularCurve.rationalGaloisRep_apply, ModularCurve.rationalGaloisRep_apply, hP', ←
+    LinearMap.baseChange_comp,
     ← LinearMap.baseChange_comp, hnat]
-end S_TateModule_exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_eq_of_addEquiv
-end P2MW
 
 end privateSection
 
@@ -128,6 +130,8 @@ theorem TateModule.exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_
         (Θ : ModularCurve.RationalTateModule p J →ₗ[ℚ_[p]] ModularCurve.RationalTateModule p J') ∘ₗ
             ModularCurve.rationalGaloisRep p J G g =
           ModularCurve.rationalGaloisRep p J' G' g' ∘ₗ
-            (Θ : ModularCurve.RationalTateModule p J →ₗ[ℚ_[p]] ModularCurve.RationalTateModule p J') := _root_.P2MW.S_TateModule_exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_eq_of_addEquiv.solution p Ψ G G'
+            (Θ : ModularCurve.RationalTateModule p J →ₗ[ℚ_[p]]
+              ModularCurve.RationalTateModule p J') :=
+  solution p Ψ G G'
 
 end publicSection

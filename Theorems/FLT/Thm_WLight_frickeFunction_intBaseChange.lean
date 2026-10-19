@@ -90,7 +90,8 @@ p2m_open "Complex Real UpperHalfPlane ModularForm Polynomial Real.Polynomial"
 open scoped Topology Manifold MatrixGroups ModularForm
 
 namespace WLight
-p2m_export "WLight" "frickeFunction_modularity_package frickeFunction_orbit_package exists_mdifferentiable_div_of_monicRel"
+p2m_export "WLight" "frickeFunction_modularity_package frickeFunction_orbit_package \
+  exists_mdifferentiable_div_of_monicRel"
 p2m_open "WLight"
 namespace R8b
 
@@ -435,7 +436,8 @@ end QKit
 
 section RatCoeff
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm EisensteinSeries"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm EisensteinSeries"
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 private lemma ratCoeff_mul {p q : PowerSeries ℂ}
@@ -787,7 +789,8 @@ lemma combo_props {ι : Type} [Fintype ι] (c : ι → ℂ) (e : ι → ℍ → 
     rw [show e i (UpperHalfPlane.ofComplex (w + N)) = e i (UpperHalfPlane.ofComplex w) from
       periodic_of_kPoleAt (hm i) w]
   · rw [hshape]
-    have : ∀ s : Finset ι, IsBoundedAtImInfty (∑ i ∈ s, c i • (e i * ⇑CuspForm.discriminant ^ m)) := by
+    have : ∀ s : Finset ι, IsBoundedAtImInfty (∑ i ∈ s, c i • (e i * ⇑CuspForm.discriminant ^ m)) :=
+      by
       intro s
       induction s using Finset.induction_on with
       | empty => (have h__af := (Filter.const_boundedAtFilter atImInfty (0 : ℂ)); simp at h__af; exact h__af)
@@ -814,7 +817,8 @@ theorem eq_zero_of_const_relation (hg : GenMD jf fricke)
       (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 := by
     intro n
     rw [← qExpansion_sum_smul _ _ han, ← hshape, hrel, zero_mul, qExpansion_zero, map_zero]
-  have hcoeff0 : ∀ (i : Fin d) (n : ℕ), (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 := by
+  have hcoeff0 : ∀ (i : Fin d) (n : ℕ), (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 :=
+    by
     intro i n
     set z : Fin d → ↥F := fun i' => ⟨(qExpansion N (a i' * ⇑CuspForm.discriminant ^ M)).coeff n,
       (hpad i').2.2 n⟩ with hz
@@ -829,7 +833,8 @@ theorem eq_zero_of_const_relation (hg : GenMD jf fricke)
       rw [hP, Polynomial.finsetSum_coeff, Finset.sum_eq_single i]
       · rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_left rfl, mul_one]
       · intro i' _ hne
-        rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_right (fun h => hne (Fin.ext h).symm),
+        rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_right (fun h => hne (Fin.ext
+          h).symm),
           mul_zero]
       · intro h; exact absurd (Finset.mem_univ i) h
     have hzi : z i = 0 := by rw [← hcoeffP, hP0, Polynomial.coeff_zero]
@@ -970,7 +975,8 @@ theorem aeval_jf_eq_zero_imp (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 
     refine Finset.sum_congr rfl fun k hk => ?_
     have hkm : k ≤ m := Nat.lt_succ_iff.mp (Finset.mem_range.mp hk)
     rw [hjf τ, div_pow, ← pow_mul]
-    have hΔ0 : ModularForm.discriminant τ ^ k ≠ 0 := pow_ne_zero _ (ModularForm.discriminant_ne_zero τ)
+    have hΔ0 : ModularForm.discriminant τ ^ k ≠ 0 :=
+      pow_ne_zero _ (ModularForm.discriminant_ne_zero τ)
     rw [show ModularForm.discriminant τ ^ m = ModularForm.discriminant τ ^ k *
       ModularForm.discriminant τ ^ (m - k) by rw [← pow_add, Nat.add_sub_cancel' hkm]]
     field_simp
@@ -1069,7 +1075,6 @@ lemma Gch_le_append_right (l₁ l₂ : List ℂ) : Gch K l₂ ≤ Gch K (l₁ ++
   Gch_le K (K_le_Gch K _) fun _ hc ↦ mem_Gch_of_mem K (List.mem_append_right l₁ hc)
 
 omit [NeZero N] in
-
 lemma adjoin_subfield_mono {F F' : IntermediateField ℚ ℂ} (h : F ≤ F') (T : Set (ℍ → ℂ))
     {y : ℍ → ℂ} (hy : y ∈ Algebra.adjoin ↥F T) : y ∈ Algebra.adjoin ↥F' T := by
   induction hy using Algebra.adjoin_induction with
@@ -1108,7 +1113,6 @@ def RS (F : IntermediateField ℚ ℂ) : Set KK :=
 variable {K hg}
 
 omit [NeZero N] in
-
 lemma isIntegral_closureT_of_monicRel (F : IntermediateField ℚ ℂ) {f : ℍ → ℂ}
     (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) {d : ℕ} (p : Fin d → Polynomial ℂ)
     (hpF : ∀ (i : Fin d) (n : ℕ), (p i).coeff n ∈ F)
@@ -1124,7 +1128,8 @@ lemma isIntegral_closureT_of_monicRel (F : IntermediateField ℚ ℂ) {f : ℍ �
       (Polynomial.aeval_mem_adjoin_singleton ↥F jf)
   have hcT : ∀ i : Fin d, ι ⟨_, hcmem i⟩ ∈ T := fun i =>
     (mem_closureT_iff F hg _).mpr ⟨⟨_, hcmem i⟩, Polynomial.aeval_mem_adjoin_singleton ↥F jf, rfl⟩
-  have hcval : ∀ (i : Fin d) (τ : ℍ), (Polynomial.aeval jf (q i) : ℍ → ℂ) τ = (p i).eval (jf τ) := by
+  have hcval : ∀ (i : Fin d) (τ : ℍ), (Polynomial.aeval jf (q i) : ℍ → ℂ) τ = (p i).eval (jf τ) :=
+    by
     intro i τ
     rw [Polynomial.aeval_def,
       show (Polynomial.eval₂ (algebraMap ↥F (ℍ → ℂ)) jf (q i)) τ =
@@ -1137,7 +1142,8 @@ lemma isIntegral_closureT_of_monicRel (F : IntermediateField ℚ ℂ) {f : ℍ �
     Polynomial.monic_X_pow_add (Polynomial.degree_sum_fin_lt _), ?_⟩
   rw [Polynomial.eval₂_add, Polynomial.eval₂_X_pow, Polynomial.eval₂_finsetSum]
   simp only [Polynomial.eval₂_mul, Polynomial.eval₂_C, Polynomial.eval₂_X_pow]
-  have hrelH : (⟨f, hf⟩ : ↥holSub) ^ d + ∑ i : Fin d, ⟨_, hcmem i⟩ * (⟨f, hf⟩ : ↥holSub) ^ (i : ℕ) = 0 := by
+  have hrelH : (⟨f, hf⟩ : ↥holSub) ^ d + ∑ i : Fin d, ⟨_, hcmem i⟩ * (⟨f, hf⟩ : ↥holSub) ^ (i : ℕ) = 0 :=
+    by
     apply Subtype.ext
     simp only [AddMemClass.coe_add, SubmonoidClass.coe_pow, AddSubmonoidClass.coe_finsetSum,
       MulMemClass.coe_mul, ZeroMemClass.coe_zero]
@@ -1154,7 +1160,6 @@ lemma isIntegral_closureT_of_monicRel (F : IntermediateField ℚ ℂ) {f : ℍ �
     ← map_add ι (a ^ d) (∑ x : Fin d, ⟨_, hcmem x⟩ * a ^ (x : ℕ)), hrelH, map_zero ι]
 
 omit [NeZero N] in
-
 lemma isIntegral_SK {F : IntermediateField ℚ ℂ} (hKF : K ≤ F)
     (hint : ∀ v : Fin 2 → ZMod N, v ≠ 0 → ∃ (d : ℕ) (p : Fin d → Polynomial ℂ),
       (∀ (i : Fin d) (n : ℕ), (p i).coeff n ∈ K) ∧
@@ -1217,7 +1222,6 @@ theorem RS_Gch_subset_span (l : List ℂ) :
     exact (RS_cons_subset_span hjf hkp hint h7 h8 c l).trans (Submodule.span_le.mpr ih)
 
 omit [NeZero N] hjf hkp hint h7 h8 in
-
 theorem exists_list_mem_RS {G a b : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G)
     (ha : a ∈ Algebra.adjoin ℂ (Set.range (gen jf fricke)))
     (hb : b ∈ Algebra.adjoin ℂ (Set.range (gen jf fricke))) (hb0 : b ≠ 0) (hGb : G * b = a)
@@ -1243,7 +1247,8 @@ theorem exists_list_mem_RS {G a b : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ)
   have hbmd : b ∈ holSub := adjoin_le_holSub (range_gen_subset_holSub hg) hb
   have haS := (mem_closureS_iff (Gch K L) hg _).mpr ⟨⟨a, hamd⟩, adjoin_subfield_mono hLa _ hla, rfl⟩
   have hbS := (mem_closureS_iff (Gch K L) hg _).mpr ⟨⟨b, hbmd⟩, adjoin_subfield_mono hLb _ hlb, rfl⟩
-  have hb0' : ι ⟨b, hbmd⟩ ≠ 0 := fun h => hb0 (congrArg Subtype.val ((map_eq_zero_iff ι ι_injective).mp h))
+  have hb0' : ι ⟨b, hbmd⟩ ≠ 0 :=
+    fun h => hb0 (congrArg Subtype.val ((map_eq_zero_iff ι ι_injective).mp h))
   refine ⟨L, ?_, isIntegral_closureT_of_monicRel (Gch K L) hG p hLc hprel⟩
   have hGab : ι ⟨G, hG⟩ = ι ⟨a, hamd⟩ / ι ⟨b, hbmd⟩ :=
     eq_div_of_mul_eq hb0' ((map_mul ι ⟨G, hG⟩ ⟨b, hbmd⟩).symm.trans (congrArg ι (Subtype.ext hGb)))
@@ -1277,7 +1282,6 @@ lemma aeval_pi_apply (q : Polynomial ↥K) (τ : ℍ) :
   rfl
 
 omit [NeZero N] in
-
 theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
     ∃ (Gf u w : ℍ → ℂ) (hGf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) Gf),
       u ∈ Algebra.adjoin ↥K (Set.range (gen jf fricke)) ∧
@@ -1320,7 +1324,8 @@ theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
     exact h1
   have hrelH : uH ^ D + ∑ k ∈ Finset.range D, cH k * wH ^ (D - k) * uH ^ k = 0 := by
     apply ι_injective
-    rw [map_zero ι, ← hrelK, map_add ι (uH ^ D) (∑ k ∈ Finset.range D, cH k * wH ^ (D - k) * uH ^ k),
+    rw [map_zero ι, ← hrelK, map_add ι (uH ^ D) (∑ k ∈ Finset.range D, cH k * wH ^ (D - k) * uH ^
+      k),
       map_pow ι, map_sum ι]
     refine congrArg _ (Finset.sum_congr rfl fun k _ => ?_)
     rw [map_mul ι, map_mul ι, map_pow ι, map_pow ι]
@@ -1357,7 +1362,6 @@ theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
   rw [← aeval_pi_apply, hq k]
 
 include hg in
-
 theorem main (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ)
     (hkp : ∀ v : Fin 2 → ZMod N, v ≠ 0 → KPoleAt K N 1 (fricke v))
     (hint : ∀ v : Fin 2 → ZMod N, v ≠ 0 → ∃ (d : ℕ) (p : Fin d → Polynomial ℂ),
@@ -1592,6 +1596,7 @@ theorem WLight.frickeFunction_intBaseChange
         Qi i ≠ 0 ∧ Gi i * Qi i = Pi i) ∧
       (∀ i k m, (pi i k).coeff m ∈ kN) ∧
       (∀ i τ, Gi i τ ^ di i +
-        ∑ k : Fin (di i), (pi i k).eval (jf τ) * Gi i τ ^ (k : ℕ) = 0) := _root_.P2MW.S_WLight_frickeFunction_intBaseChange.solution N L hL W hW fricke hfricke jf hjf hG ha hb hb0 hGb p hprel
+        ∑ k : Fin (di i), (pi i k).eval (jf τ) * Gi i τ ^ (k : ℕ) = 0) :=
+  solution N L hL W hW fricke hfricke jf hjf hG ha hb hb0 hGb p hprel
 
 end publicSection

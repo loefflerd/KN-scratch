@@ -59,7 +59,10 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve.Affine IsDedekindDomain WithZero"
+p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve.Affine IsDedekindDomain \
+  WithZero"
 open Polynomial
 open scoped Polynomial.Bivariate
 
@@ -116,7 +119,8 @@ theorem galRing_map_XYIdeal (σ : K ≃ₐ[F] K) (φ : (W⁄K).CoordinateRing �
     (CoordinateRing.XYIdeal (W⁄K) x (C y)).map φ = CoordinateRing.XYIdeal (W⁄K) (σ x) (C (σ y)) := by
   rw [CoordinateRing.XYIdeal, Ideal.map_span, Set.image_pair, CoordinateRing.XClass,
     CoordinateRing.YClass, hφ, hφ]
-  simp only [Polynomial.map_sub, Polynomial.map_C, Polynomial.map_X, coe_mapRingHom, RingHom.coe_coe]
+  simp only [Polynomial.map_sub, Polynomial.map_C, Polynomial.map_X, coe_mapRingHom,
+    RingHom.coe_coe]
   rfl
 
 theorem galFunctionField_exists (σ : K ≃ₐ[F] K) :
@@ -133,7 +137,12 @@ end GalRing
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk map_id Affine.Point baseChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing.XYIdeal CoordinateRing Point.baseChange map baseChange CoordinateRing.YClass FunctionField Point CoordinateRing.mk Point.map CoordinateRing.XClass baseChange_polynomial Point.map_some polynomial exists_transEquiv_weilFun_eq weilFun weilPairing0 transEquiv_weilFun genericX genericY genericPoint pointHom_mk Point.xc_map Point.yc_map transEquiv transEquiv_algebraMap weilFun_ne_zero exists_map_weilFun_eq_mul_weilFun_smul Point.algEquiv_smul_def"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing.XYIdeal CoordinateRing Point.baseChange map \
+  baseChange CoordinateRing.YClass FunctionField Point CoordinateRing.mk Point.map \
+  CoordinateRing.XClass baseChange_polynomial Point.map_some polynomial \
+  exists_transEquiv_weilFun_eq weilFun weilPairing0 transEquiv_weilFun genericX genericY \
+  genericPoint pointHom_mk Point.xc_map Point.yc_map transEquiv transEquiv_algebraMap \
+  weilFun_ne_zero exists_map_weilFun_eq_mul_weilFun_smul Point.algEquiv_smul_def"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 section GalA
@@ -147,7 +156,6 @@ variable {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : We
 include hΦ
 
 omit [DecidableEq K] in
-
 theorem gal_algebraMap (c : K) :
     Φ (algebraMap K (W⁄K).FunctionField c) = algebraMap K (W⁄K).FunctionField (σ c) := by
   have h := hΦ (C (C c))
@@ -157,7 +165,6 @@ theorem gal_algebraMap (c : K) :
   exact h
 
 omit [DecidableEq K] in
-
 theorem gal_algebraMap_base (c : F) :
     Φ (algebraMap F (W⁄K).FunctionField c) = algebraMap F (W⁄K).FunctionField c := by
   rw [IsScalarTower.algebraMap_apply F K (W⁄K).FunctionField c, gal_algebraMap W σ Φ hΦ,
@@ -180,7 +187,6 @@ omit [DecidableEq K] in
 @[scoped simp] theorem galAlgHom_apply (h : (W⁄K).FunctionField) : galAlgHom W σ Φ hΦ h = Φ h := rfl
 
 omit [DecidableEq K] in
-
 theorem map_galAlgHom_genericPoint [W.IsElliptic] :
     Point.map (galAlgHom W σ Φ hΦ) (genericPoint W K) = genericPoint W K := by
   rw [genericPoint, Point.map_some]
@@ -241,20 +247,30 @@ end WeierstrassCurve.Affine
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk map_id Affine.Point baseChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing.XYIdeal CoordinateRing Point.baseChange map baseChange CoordinateRing.YClass FunctionField Point CoordinateRing.mk Point.map CoordinateRing.XClass baseChange_polynomial Point.map_some polynomial exists_transEquiv_weilFun_eq weilFun weilPairing0 transEquiv_weilFun genericX genericY genericPoint pointHom_mk Point.xc_map Point.yc_map transEquiv transEquiv_algebraMap weilFun_ne_zero exists_map_weilFun_eq_mul_weilFun_smul Point.algEquiv_smul_def"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing.XYIdeal CoordinateRing Point.baseChange map \
+  baseChange CoordinateRing.YClass FunctionField Point CoordinateRing.mk Point.map \
+  CoordinateRing.XClass baseChange_polynomial Point.map_some polynomial \
+  exists_transEquiv_weilFun_eq weilFun weilPairing0 transEquiv_weilFun genericX genericY \
+  genericPoint pointHom_mk Point.xc_map Point.yc_map transEquiv transEquiv_algebraMap \
+  weilFun_ne_zero exists_map_weilFun_eq_mul_weilFun_smul Point.algEquiv_smul_def"
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "map_id baseChange map_map map map_some mk xc yc xc_map yc_map algEquiv_smul_def"
+p2m_export "WeierstrassCurve.Affine.Point" "map_id baseChange map_map map map_some mk xc yc xc_map \
+  yc_map algEquiv_smul_def"
 end Point
 end Affine
 end WeierstrassCurve
 p2m_open_scoped "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point" in
-
-theorem WeierstrassCurve.Affine.Point.smul_zsmul_comm {F K : Type*} [Field F] [Field K] [Algebra F K]
+theorem WeierstrassCurve.Affine.Point.smul_zsmul_comm {F K : Type*} [Field F] [Field K]
+    [Algebra F K]
     [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (m : ℤ) (P : (W⁄K).Point) :
     σ • (m • P) = m • (σ • P) :=
   map_zsmul (DistribSMul.toAddMonoidHom (W⁄K).Point σ) m P
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) : ((weilPairing0 W K n (σ • S) (σ • T) : Kˣ) : K) = σ (weilPairing0 W K n S T) := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
+    (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0)
+    (hT : (n : ℤ) • T = 0) :
+    ((weilPairing0 W K n (σ • S) (σ • T) : Kˣ) : K) = σ (weilPairing0 W K n S T) := by
   obtain ⟨Φe, hΦe⟩ := galFunctionField_exists W σ
   set Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField := Φe.toRingHom with hΦdef
   have hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) =
@@ -263,10 +279,10 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have hσS : (n : ℤ) • (σ • S) = 0 := by rw [← Point.smul_zsmul_comm W σ, hS, smul_zero]
   have hσT : (n : ℤ) • (σ • T) = 0 := by rw [← Point.smul_zsmul_comm W σ, hT, smul_zero]
   have key := transEquiv_weilFun W K (exists_transEquiv_weilFun_eq W hn S T hS hT)
-
   obtain ⟨c, hc⟩ := exists_map_weilFun_eq_mul_weilFun_smul W hn σ Φ hΦ hT
   have h1 := congrArg Φ key
-  rw [gal_transEquiv W σ Φ hΦ, map_mul, hc, gal_algebraMap W σ Φ hΦ, map_mul, AlgEquiv.commutes] at h1
+  rw [gal_transEquiv W σ Φ hΦ, map_mul, hc, gal_algebraMap W σ Φ hΦ, map_mul,
+    AlgEquiv.commutes] at h1
   have hc0 : algebraMap K (W⁄K).FunctionField (c : K) ≠ 0 :=
     (map_ne_zero_iff _ (algebraMap K (W⁄K).FunctionField).injective).mpr c.ne_zero
   have h2 : transEquiv W K (σ • S) (weilFun W K n (σ • T)) =
@@ -295,6 +311,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.weilPairing0_galois {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K) (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) : ((weilPairing0 W K n (σ • S) (σ • T) : Kˣ) : K) = σ (weilPairing0 W K n S T) := _root_.P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.solution W hn σ S T hS hT
+theorem WeierstrassCurve.Affine.weilPairing0_galois {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (σ : K ≃ₐ[F] K)
+    (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) :
+    ((weilPairing0 W K n (σ • S) (σ • T) : Kˣ) : K) = σ (weilPairing0 W K n S T) :=
+  solution W hn σ S T hS hT
 
 end publicSection

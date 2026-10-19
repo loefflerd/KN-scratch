@@ -76,6 +76,7 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.isIntegral_jqNModC_all (K : Type*) [Field K] (N : ℕ) [NeZero N] :
-    IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) := _root_.P2MW.S_ModularCurve_isIntegral_jqNModC_all.solution K N
+    IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) :=
+  solution K N
 
 end publicSection

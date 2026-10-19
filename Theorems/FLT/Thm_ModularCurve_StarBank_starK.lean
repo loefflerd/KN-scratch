@@ -72,7 +72,8 @@ namespace P2MW.S_ModularCurve_StarBank_starK
 open HahnSeries PowerSeries
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC map_jqModC eisenstein4 etaProd dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "jqModC map_jqModC eisenstein4 etaProd dedekindEtaUnit \
+  dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum ofPowerSeries_coeff_of_neg"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -186,13 +187,14 @@ theorem jqModC_mul_Dseries_of_240 {K : Type*} [CommRing K] (h240 : (240 : K) = 0
 
 end ModularCurve.W1
 
-p2m_open "P2MW.S_ModularCurve_StarBank_starK.ModularCurve.W1 ModularCurve P2MW.S_ModularCurve_StarBank_starK.ModularCurve"
+p2m_open "P2MW.S_ModularCurve_StarBank_starK.ModularCurve.W1 ModularCurve \
+  P2MW.S_ModularCurve_StarBank_starK.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC map_jqModC eisenstein4 etaProd dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "jqModC map_jqModC eisenstein4 etaProd dedekindEtaUnit \
+  dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum ofPowerSeries_coeff_of_neg"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.starK_of_240 (K : Type*) [Field K] (h240 : (240 : K) = 0) :
     ∃ M : ℕ, 1 ≤ M ∧ (M : K) ≠ 0 ∧ ∃ G : Polynomial K, G.natDegree = M
       ∧ Polynomial.aeval (jqModC K) G
@@ -205,7 +207,6 @@ private theorem ModularCurve.StarBank.starK_of_240 (K : Type*) [Field K] (h240 :
     exact ModularCurve.W1.jqModC_mul_Dseries_of_240 h240
 
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.starK (K : Type*) [Field K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
     (hHasse : 5 ≤ ℓ → ∃ (T : PowerSeries ℤ) (G : Polynomial ℤ),
         (∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m) ∧ ¬ (ℓ : ℤ) ∣ PowerSeries.constantCoeff T
@@ -249,7 +250,6 @@ private theorem ModularCurve.StarBank.starK (K : Type*) [Field K] {ℓ : ℕ} [F
 example : ((720 : ℤ) : ℚ) ≠ 0 := by decide
 
 open HahnSeries PowerSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_starK.ModularCurve in
-
 theorem solution (K : Type*) [Field K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
     (hHasse : 5 ≤ ℓ → ∃ (T : PowerSeries ℤ) (G : Polynomial ℤ),
         (∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m) ∧ ¬ (ℓ : ℤ) ∣ PowerSeries.constantCoeff T
@@ -287,6 +287,7 @@ theorem ModularCurve.StarBank.starK (K : Type*) [Field K] {ℓ : ℕ} [Fact ℓ.
       ∧ Polynomial.aeval (jqModC K) G
           * (HahnSeries.single (1 : ℤ) (1 : K)
               * HahnSeries.ofPowerSeries ℤ K
-                  (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ M = 1 := _root_.P2MW.S_ModularCurve_StarBank_starK.solution K hHasse
+                  (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ M = 1 :=
+  solution K hHasse
 
 end publicSection

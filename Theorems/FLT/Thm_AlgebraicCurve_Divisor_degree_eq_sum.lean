@@ -74,7 +74,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Divisor.degree_eq_sum {K F : Type*} [Field K] [Field F] [Algebra K F] (D : Divisor K F) :
-    Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := _root_.P2MW.S_AlgebraicCurve_Divisor_degree_eq_sum.solution D
+theorem AlgebraicCurve.Divisor.degree_eq_sum {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (D : Divisor K F) :
+    Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) :=
+  solution D
 
 end publicSection

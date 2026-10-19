@@ -63,7 +63,8 @@ open ModularCurve AlgebraicCurve IntermediateField
 
 noncomputable section
 
-theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ σ : modularFunctionField ℓ ≃ₐ[ℚ] modularFunctionField ℓ, IsFrickeAut ℓ σ := by
+theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    ∃ σ : modularFunctionField ℓ ≃ₐ[ℚ] modularFunctionField ℓ, IsFrickeAut ℓ σ := by
   obtain ⟨data, hirr, hsymm⟩ := ModularCurve.exists_phiIrreducible_evalSymm ℓ
   exact ModularCurve.exists_isFrickeAut_of_modularPolynomialData data hsymm hirr
 
@@ -79,6 +80,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve IntermediateField
-theorem ModularCurve.exists_isFrickeAut (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ σ : modularFunctionField ℓ ≃ₐ[ℚ] modularFunctionField ℓ, IsFrickeAut ℓ σ := _root_.P2MW.S_ModularCurve_exists_isFrickeAut.solution ℓ
+theorem ModularCurve.exists_isFrickeAut (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    ∃ σ : modularFunctionField ℓ ≃ₐ[ℚ] modularFunctionField ℓ, IsFrickeAut ℓ σ :=
+  solution ℓ
 
 end publicSection

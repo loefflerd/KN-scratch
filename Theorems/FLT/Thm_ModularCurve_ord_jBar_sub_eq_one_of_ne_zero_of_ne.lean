@@ -127,6 +127,7 @@ theorem ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
     (c : AlgebraicClosure ℚ) (hc0 : c ≠ 0) (hc1728 : c ≠ 1728)
     (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c)) :
-    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 := _root_.P2MW.S_ModularCurve_ord_jBar_sub_eq_one_of_ne_zero_of_ne.solution N v c hc0 hc1728 hpos
+    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 :=
+  solution N v c hc0 hc1728 hpos
 
 end publicSection

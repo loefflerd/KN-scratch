@@ -59,7 +59,8 @@ namespace P2MW.S_ModularCurve_order_coeffEmb
 
 open ModularCurve
 
-theorem solution (L : Type*) [Field L] [Algebra ℚ L] (x : LaurentSeries ℚ) : (coeffEmb L x).order = x.order := by
+theorem solution (L : Type*) [Field L] [Algebra ℚ L] (x : LaurentSeries ℚ) :
+    (coeffEmb L x).order = x.order := by
   rcases eq_or_ne x 0 with rfl | hx
   · rw [map_zero, HahnSeries.order_zero, HahnSeries.order_zero]
   have hLx : coeffEmb L x ≠ 0 := by
@@ -85,6 +86,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.order_coeffEmb (L : Type*) [Field L] [Algebra ℚ L] (x : LaurentSeries ℚ) : (coeffEmb L x).order = x.order := _root_.P2MW.S_ModularCurve_order_coeffEmb.solution L x
+theorem ModularCurve.order_coeffEmb (L : Type*) [Field L] [Algebra ℚ L] (x : LaurentSeries ℚ) :
+    (coeffEmb L x).order = x.order :=
+  solution L x
 
 end publicSection

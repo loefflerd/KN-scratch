@@ -102,9 +102,10 @@ theorem π_one : π Γ 1 = 0 := by
   have : π Γ 1 + π Γ 1 = π Γ 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
-theorem π_eq_zero_of_trace (γ : ↥Γ) (hγ : ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4) :
+theorem π_eq_zero_of_trace (γ : ↥Γ) (hγ : ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4)
+    :
     π Γ γ = 0 := by
-  show ((cls Γ γ : A Γ) : Q Γ) = 0
+  change ((cls Γ γ : A Γ) : Q Γ) = 0
   rw [QuotientAddGroup.eq_zero_iff]
   exact AddSubgroup.subset_closure ⟨γ, hγ, rfl⟩
 
@@ -129,7 +130,7 @@ theorem liftA_cls (φ : Additive ↥Γ →+ R) (γ : ↥Γ) : liftA φ (cls Γ �
 theorem P_le_ker (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) : P Γ ≤ (liftA φ).ker := by
   rw [P, AddSubgroup.closure_le]
   rintro a ⟨γ, hγ, rfl⟩
-  show liftA φ (cls Γ γ) = 0
+  change liftA φ (cls Γ γ) = 0
   rw [liftA_cls]
   exact hφ γ hγ
 
@@ -138,7 +139,7 @@ def liftQ (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) : Q Γ →+ 
 
 theorem liftQ_π (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) (γ : ↥Γ) :
     liftQ φ hφ (π Γ γ) = φ (Additive.ofMul γ) := by
-  show QuotientAddGroup.lift (P Γ) (liftA φ) (P_le_ker φ hφ) ((cls Γ γ : A Γ) : Q Γ) = _
+  change QuotientAddGroup.lift (P Γ) (liftA φ) (P_le_ker φ hφ) ((cls Γ γ : A Γ) : Q Γ) = _
   rw [QuotientAddGroup.lift_mk, liftA_cls]
 
 theorem apply_eq_zero_of_isOfFinAddOrder [IsAddTorsionFree R] {G : Type*} [AddCommGroup G]
@@ -208,13 +209,14 @@ variable {Γ} (D : Decomp Γ) (R : Type*) [CommRing R]
 noncomputable def chi (i : Fin D.n) : Additive ↥Γ →+ R where
   toFun x := (coord D i (π Γ (Additive.toMul x)) : R)
   map_zero' := by
-    show ((coord D i (π Γ 1) : ℤ) : R) = 0
+    change ((coord D i (π Γ 1) : ℤ) : R) = 0
     rw [π_one, map_zero, Int.cast_zero]
   map_add' x y := by
-    show ((coord D i (π Γ (Additive.toMul x * Additive.toMul y)) : ℤ) : R) = _
+    change ((coord D i (π Γ (Additive.toMul x * Additive.toMul y)) : ℤ) : R) = _
     rw [π_mul, map_add, Int.cast_add]
 
-theorem chi_apply (i : Fin D.n) (γ : ↥Γ) : chi D R i (Additive.ofMul γ) = (coord D i (π Γ γ) : R) := rfl
+theorem chi_apply (i : Fin D.n) (γ : ↥Γ) :
+    chi D R i (Additive.ofMul γ) = (coord D i (π Γ γ) : R) := rfl
 
 theorem chi_mem (i : Fin D.n) : chi D R i ∈ parabolicHoms R Γ R := by
   intro γ hγ
@@ -289,7 +291,8 @@ theorem Θ_surjective [IsAddTorsionFree R] : Function.Surjective (Θ D R) := by
     conv_lhs => rw [← Finsupp.univ_sum_single (D.E q).1]
     rw [show sect D (∑ i, Finsupp.single i ((D.E q).1 i)) =
         ∑ i, sect D (Finsupp.single i ((D.E q).1 i)) from map_sum
-          (⟨⟨sect D, by unfold sect; rw [← map_zero D.E.symm]; rfl⟩, hsect⟩ : (Fin D.n →₀ ℤ) →+ Q Γ) _ _]
+          (⟨⟨sect D, by
+            unfold sect; rw [← map_zero D.E.symm]; rfl⟩, hsect⟩ : (Fin D.n →₀ ℤ) →+ Q Γ) _ _]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [← hsmul, Finsupp.smul_single, smul_eq_mul, mul_one]
   rw [hv, map_sum]
@@ -340,6 +343,7 @@ theorem ModularCurve.Period.exists_basis_parabolicHoms_of_isAddTorsionFree
     ∃ (n : ℕ) (b : Module.Basis (Fin n) ℤ (ModularCurve.Period.parabolicHoms ℤ Γ ℤ)),
       ∀ (R : Type*) [CommRing R] [IsAddTorsionFree R],
         ∃ bR : Module.Basis (Fin n) R (ModularCurve.Period.parabolicHoms R Γ R),
-          ∀ i, (bR i : Additive Γ →+ R) = (Int.castAddHom R).comp (b i : Additive Γ →+ ℤ) := _root_.P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree.solution Γ
+          ∀ i, (bR i : Additive Γ →+ R) = (Int.castAddHom R).comp (b i : Additive Γ →+ ℤ) :=
+  solution Γ
 
 end publicSection

@@ -205,7 +205,7 @@ def cycOfTorsionBy (A : Type*) [AddCommGroup A] (N : ℕ) :
   left_inv G := by
     apply Subtype.ext
     obtain ⟨g, hg, hG⟩ := G.2
-    show (G.1.comap _).map _ = G.1
+    change (G.1.comap _).map _ = G.1
     apply AddSubgroup.map_comap_eq_self
     rw [hG, AddSubgroup.zmultiples_le]
     exact AddMonoidHom.mem_range.mpr ⟨⟨g, mem_torsionBy_of_addOrderOf_eq hg⟩, rfl⟩

@@ -65,10 +65,12 @@ namespace P2MW.S_ModularCurve_thetaL_jq_mul_deltaSeries
 p2m_open "ModularCurve P2MW.S_ModularCurve_thetaL_jq_mul_deltaSeries.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "eisenstein6 laurentOfInt laurentOfInt_apply eisenstein4 dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq dedekindEtaUnitQ deltaSeries deltaSeries_ne_zero thetaL thetaL_apply eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta theta_mul"
+p2m_export "ModularCurve" "eisenstein6 laurentOfInt laurentOfInt_apply eisenstein4 dedekindEtaUnit \
+  dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq dedekindEtaUnitQ deltaSeries \
+  deltaSeries_ne_zero thetaL thetaL_apply \
+  eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta theta_mul"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 theorem ModularCurve.RC18C3.jq_mul_deltaSeries :
     jq * deltaSeries = laurentOfInt ℚ (eisenstein4 ^ 3) := by
   have hι : ∀ f : PowerSeries ℤ,
@@ -78,10 +80,10 @@ theorem ModularCurve.RC18C3.jq_mul_deltaSeries :
     show (-1 : ℤ) + 1 = 0 by norm_num, HahnSeries.single_zero_one, one_mul]
 
 p2m_open_scoped "ModularCurve" in
-
 theorem ModularCurve.RC18C3.deltaSeries_eq_laurentOfInt :
     deltaSeries = laurentOfInt ℚ (PowerSeries.X * dedekindEtaUnit) := by
-  rw [deltaSeries, dedekindEtaUnitQ, map_mul, laurentOfInt_apply, laurentOfInt_apply, PowerSeries.map_X,
+  rw [deltaSeries, dedekindEtaUnitQ, map_mul, laurentOfInt_apply, laurentOfInt_apply,
+    PowerSeries.map_X,
     HahnSeries.ofPowerSeries_X]
 
 theorem solution :
@@ -116,6 +118,7 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.thetaL_jq_mul_deltaSeries :
     thetaL ℚ jq * deltaSeries =
-      -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 * eisenstein6))) := _root_.P2MW.S_ModularCurve_thetaL_jq_mul_deltaSeries.solution
+      -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 * eisenstein6))) :=
+  solution
 
 end publicSection

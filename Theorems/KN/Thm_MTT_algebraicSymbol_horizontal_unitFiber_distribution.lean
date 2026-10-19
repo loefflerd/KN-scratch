@@ -72,16 +72,16 @@ theorem _root_.solution
   have hlK : (ℓ : Qbar) ≠ 0 := by exact_mod_cast hℓ.ne_zero
   have hqK : (q : Qbar) ≠ 0 := by exact_mod_cast hq.ne'
   have hscale : algebraicSymbol P s j ((ℓ : ℚ) * c) ((ℓ : ℚ) * q) =
-      (ℓ : Qbar)^j * algebraicSymbol P s j (c : ℚ) (q : ℚ) := by
+      (ℓ : Qbar) ^ j * algebraicSymbol P s j (c : ℚ) (q : ℚ) := by
     have harg : -((ℓ : ℚ) * c) / ((ℓ : ℚ) * q) = -(c : ℚ) / q := by
       field_simp
     simp only [algebraicSymbol, harg, Finset.mul_sum, Rat.cast_mul, Rat.cast_natCast,
       mul_pow]
     refine Finset.sum_congr rfl fun t ht => ?_
     have htj : t ≤ j := Nat.lt_succ_iff.mp (Finset.mem_range.mp ht)
-    have hexp : (ℓ : Qbar)^t * (ℓ : Qbar)^(j-t) = (ℓ : Qbar)^j := by
+    have hexp : (ℓ : Qbar) ^ t * (ℓ : Qbar) ^ (j-t) = (ℓ : Qbar) ^ j := by
       rw [← pow_add, Nat.add_sub_of_le htj]
-    linear_combination (j.choose t : Qbar) * (q : Qbar)^t * (c : Qbar)^(j-t) *
+    linear_combination (j.choose t : Qbar) * (q : Qbar) ^ t * (c : Qbar) ^ (j-t) *
       P.value s t (-(c : ℚ) / q) * hexp
   have hliftQ : (a : ℚ) + (b₀ : ℚ) * q = (ℓ : ℚ) * c := by
     exact_mod_cast hlift

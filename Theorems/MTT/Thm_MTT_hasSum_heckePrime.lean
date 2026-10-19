@@ -146,7 +146,7 @@ theorem hasSum_heckePrime_upper {p : ℕ} (hp : Nat.Prime p) (f : ℍ → ℂ) (
   have hqσ : ∀ (b n : ℕ),
       Function.Periodic.qParam (1 : ℝ) ↑(σ b) ^ n = w ^ n * ζ ^ (n * b) := by
     intro b n
-    show Function.Periodic.qParam (1 : ℝ) (((τ : ℂ) + (b : ℂ)) / (p : ℂ)) ^ n = _
+    change Function.Periodic.qParam (1 : ℝ) (((τ : ℂ) + (b : ℂ)) / (p : ℂ)) ^ n = _
     rw [add_div, qParam_add, show (↑b : ℂ) / ↑p = ↑b * (1 / ↑p) from by ring, qParam_mul_nat,
       mul_pow, ← pow_mul, mul_comm b n]
   have h_rewritten : HasSum (fun n ↦ a n * (w ^ n * ∑ b ∈ Finset.range p, ζ ^ (n * b)))
@@ -195,7 +195,7 @@ theorem hasSum_heckePrime_lower {p : ℕ} (hp : Nat.Prime p) (f : ℍ → ℂ) (
     convert this using 1
     funext n
     simp only [Function.comp_def, dvd_mul_right, ite_true, Nat.mul_div_cancel_left _ hp.pos]
-    show a n • q ^ (p * n) = a n • Function.Periodic.qParam (1 : ℝ) ((p : ℂ) * (τ : ℂ)) ^ n
+    change a n • q ^ (p * n) = a n • Function.Periodic.qParam (1 : ℝ) ((p : ℂ) * (τ : ℂ)) ^ n
     rw [qParam_mul_nat, ← pow_mul]
 
 end MTT

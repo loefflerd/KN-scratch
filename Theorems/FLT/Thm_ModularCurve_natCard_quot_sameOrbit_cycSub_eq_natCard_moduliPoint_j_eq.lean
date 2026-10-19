@@ -105,7 +105,8 @@ theorem addOrderOf_vcInvFun (γ : VariableChange K) (W : WeierstrassCurve.Affine
     addOrderOf (Point.vcInvFun γ W P) = addOrderOf P :=
   addOrderOf_injective (vcInvHom γ W) (vcInvFun_injective γ W) P
 
-theorem vcInvFun_nsmul (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (k : ℕ) (P : W.Point) :
+theorem vcInvFun_nsmul (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (k : ℕ) (P : W.Point)
+    :
     Point.vcInvFun γ W (k • P) = k • Point.vcInvFun γ W P :=
   map_nsmul (vcInvHom γ W) k P
 
@@ -190,17 +191,19 @@ theorem solution (N : ℕ) [NeZero N]
   have hf : ∀ T T' : A, R T T' → Quot.mk S (toCyc T) = Quot.mk S (toCyc T') := by
     rintro T T' ⟨γ, hγ, k, hk, hheq⟩
     obtain ⟨g', hg'⟩ := exists_heq (V' := E₀.toAffine) hγ.symm (Point.vcInvFun γ E₀.toAffine T.1)
-    have hT' : T'.1 = k • g' := eq_of_heq (hheq.trans (ModularCurve.Point.heq_nsmul hγ.symm k hg').symm)
+    have hT' : T'.1 = k • g' :=
+      eq_of_heq (hheq.trans (ModularCurve.Point.heq_nsmul hγ.symm k hg').symm)
     have hord : addOrderOf g' = N :=
       (addOrderOf_eq_of_heq hγ.symm hg').trans ((addOrderOf_vcInvFun γ _ T.1).trans T.2)
     refine Quot.sound ⟨γ, hγ, T.1, g', rfl, ?_, hg'⟩
-    show AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples g'
+    change AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples g'
     rw [hT']
     exact zmultiples_nsmul_eq_of_coprime hord hk
   have hg : ∀ H H' : CycSub E₀ N, S H H' → Quot.mk R (gen H) = Quot.mk R (gen H') := by
     rintro H H' ⟨γ, hγ, a, a', hH, hH', hheq⟩
     have ha : AddSubgroup.zmultiples a = AddSubgroup.zmultiples (gen H).1 := hH.symm.trans (hgen H)
-    have ha' : AddSubgroup.zmultiples a' = AddSubgroup.zmultiples (gen H').1 := hH'.symm.trans (hgen H')
+    have ha' : AddSubgroup.zmultiples a' = AddSubgroup.zmultiples (gen H').1 :=
+      hH'.symm.trans (hgen H')
     have horda : addOrderOf a = N := (addOrderOf_eq_of_zmultiples_eq ha).trans (gen H).2
     have horda' : addOrderOf a' = N := (addOrderOf_eq_of_zmultiples_eq ha').trans (gen H').2
     obtain ⟨m, hm, hma⟩ := exists_coprime_nsmul_of_mem_zmultiples hN (gen H).2 horda
@@ -219,18 +222,19 @@ theorem solution (N : ℕ) [NeZero N]
   · intro q
     induction q using Quot.ind with
     | _ H =>
-      show Quot.mk S (toCyc (gen H)) = Quot.mk S H
+      change Quot.mk S (toCyc (gen H)) = Quot.mk S H
       congr 1
       exact Subtype.ext (hgen H).symm
   · intro q
     induction q using Quot.ind with
     | _ T =>
-      show Quot.mk R (gen (toCyc T)) = Quot.mk R T
-      have hc : AddSubgroup.zmultiples T.1 = AddSubgroup.zmultiples (gen (toCyc T)).1 := hgen (toCyc T)
+      change Quot.mk R (gen (toCyc T)) = Quot.mk R T
+      have hc : AddSubgroup.zmultiples T.1 = AddSubgroup.zmultiples (gen (toCyc T)).1 :=
+        hgen (toCyc T)
       obtain ⟨m, hm, hmT⟩ := exists_coprime_nsmul_of_mem_zmultiples hN T.2 (gen (toCyc T)).2
         (hc.ge (AddSubgroup.mem_zmultiples (gen (toCyc T)).1))
       refine (Quot.sound ⟨1, one_smul _ E₀, m, hm, ?_⟩).symm
-      show HEq (gen (toCyc T)).1 (m • Point.vcInvFun 1 E₀.toAffine T.1)
+      change HEq (gen (toCyc T)).1 (m • Point.vcInvFun 1 E₀.toAffine T.1)
       rw [hmT]
       exact ModularCurve.Point.heq_nsmul (one_smul _ E₀).symm m (vcInvFun_one_heq E₀.toAffine T.1).symm
 
@@ -245,6 +249,7 @@ public section publicSection
 theorem ModularCurve.natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq (N : ℕ) [NeZero N]
     (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) [E₀.IsElliptic] :
     Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1 H'.1))
-      = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j x = E₀.j} := _root_.P2MW.S_ModularCurve_natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq.solution N E₀
+      = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j x = E₀.j} :=
+  solution N E₀
 
 end publicSection

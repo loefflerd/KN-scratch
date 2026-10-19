@@ -89,7 +89,8 @@ theorem torsion_finite {n : ℕ} (hn : (n : K) ≠ 0) :
 
 theorem card_torsion_toFinset {n : ℕ} (hn : (n : K) ≠ 0) :
     (torsion_finite W hn).toFinset.card = n ^ 2 := by
-  rw [← WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hn, ← Nat.card_eq_card_finite_toFinset]
+  rw [← WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hn, ←
+    Nat.card_eq_card_finite_toFinset]
   have hset : {S : (W⁄K).Point | (n : ℤ) • S = 0} =
       ((Submodule.torsionBy ℤ (W⁄K).Point n : Submodule ℤ (W⁄K).Point) : Set (W⁄K).Point) := by
     ext S
@@ -120,7 +121,9 @@ theorem card_fibSet_toFinset {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) 
 
 end WeilDiv
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) : (fibSet W K n Q).ncard = n ^ 2 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) :
+    (fibSet W K n Q).ncard = n ^ 2 := by
   rw [Set.ncard_eq_toFinset_card _ (WeierstrassCurve.Affine.fibSet_finite W hn Q)]
   exact WeilDiv.card_fibSet_toFinset W hn Q
 
@@ -135,6 +138,10 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.ncard_fibSet {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) : (fibSet W K n Q).ncard = n ^ 2 := _root_.P2MW.S_WeierstrassCurve_Affine_ncard_fibSet.solution W hn Q
+theorem WeierstrassCurve.Affine.ncard_fibSet {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ}
+    (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) :
+    (fibSet W K n Q).ncard = n ^ 2 :=
+  solution W hn Q
 
 end publicSection

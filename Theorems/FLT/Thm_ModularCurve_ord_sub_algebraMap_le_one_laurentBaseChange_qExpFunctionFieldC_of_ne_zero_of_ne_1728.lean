@@ -82,7 +82,12 @@ open UpperHalfPlane Filter
 open scoped MatrixGroups Topology Manifold IntermediateField.algebraAdjoinAdjoin
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intFormRatiosC qExpFunctionFieldC ofPowerSeries_coeff_of_neg coeffEmb coeffEmb_coeff laurentBaseChange jqModC isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder laurentBaseChange_adjoin jqModC_eq_qExpansion_E4_cube_div_discriminant meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two transcendental_jqModC JOneES.exists_transcendental_finiteDimensional_laurentBaseChange"
+p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intFormRatiosC qExpFunctionFieldC \
+  ofPowerSeries_coeff_of_neg coeffEmb coeffEmb_coeff laurentBaseChange jqModC \
+  isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder laurentBaseChange_adjoin \
+  jqModC_eq_qExpansion_E4_cube_div_discriminant \
+  meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two transcendental_jqModC \
+  JOneES.exists_transcendental_finiteDimensional_laurentBaseChange"
 namespace UnramifiedGamma
 p2m_open "ModularCurve"
 
@@ -162,7 +167,8 @@ theorem exists_apply_ne_zero {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 
     (hf : f ≠ 0) : ∃ w : ℍ, (f : ℍ → ℂ) w ≠ 0 :=
   (eventually_ne_zero f hf UpperHalfPlane.I).exists
 
-theorem qL_ne_zero (hT : ModularGroup.T ∈ Γ) {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+theorem qL_ne_zero (hT : ModularGroup.T ∈ Γ) {k : ℤ}
+    (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
     (hf : f ≠ 0) : qL f ≠ 0 := by
   intro h
   apply hf
@@ -181,7 +187,8 @@ theorem qL_mul (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (Γ : S
   simp only [qL, ModularForm.coe_mul,
     ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods hT), PowerSeries.coe_mul]
 
-theorem qL_add (hT : ModularGroup.T ∈ Γ) {a : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a) :
+theorem qL_add (hT : ModularGroup.T ∈ Γ) {a : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a)
+    :
     qL (f + g) = qL f + qL g := by
   simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT), PowerSeries.coe_add]
@@ -208,7 +215,8 @@ theorem mul_ne_zero_of_ne_zero {a b : ℤ} (f : ModularForm (Γ : Subgroup (GL (
 
 theorem one_ne_zero' : (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) ≠ 0 := by
   intro h
-  have := congrArg (fun F : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0 => (F : ℍ → ℂ) UpperHalfPlane.I) h
+  have :=
+    congrArg (fun F : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0 => (F : ℍ → ℂ) UpperHalfPlane.I) h
   simp [ModularForm.one_coe_eq_one] at this
 
 theorem algebraMap_laurentSeries_eq_C (c : ℂ) :
@@ -286,7 +294,6 @@ abbrev Pres.inv {x : LaurentSeries ℂ} (P : Pres Γ x) (hx : x ≠ 0) : Pres Γ
     rw [inv_mul_eq_iff_eq_mul₀ hx, P.eq]
 
 omit hT in
-
 def realizeG (x : LaurentSeries ℂ) (τ : ℍ) : ℂ := by
   classical
   exact
@@ -297,7 +304,6 @@ def realizeG (x : LaurentSeries ℂ) (τ : ℍ) : ℂ := by
     else 0
 
 include hT in
-
 theorem realizeG_eq_div {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
     (x : LaurentSeries ℂ) (hx : x * qL h = qL g) (τ : ℍ) (hτ : (h : ℍ → ℂ) τ ≠ 0) :
     realizeG (Γ := Γ) x τ = (g : ℍ → ℂ) τ / (h : ℍ → ℂ) τ := by
@@ -314,7 +320,8 @@ theorem realizeG_eq_div {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) 
   set p := H.choose with hp
   obtain ⟨k', g', h'⟩ := p
   simp only at hτ' hx' ⊢
-  have hq : qExpansion 1 ((g' : ℍ → ℂ) * (h : ℍ → ℂ)) = qExpansion 1 ((g : ℍ → ℂ) * (h' : ℍ → ℂ)) := by
+  have hq : qExpansion 1 ((g' : ℍ → ℂ) * (h : ℍ → ℂ)) = qExpansion 1 ((g : ℍ → ℂ) * (h' : ℍ → ℂ)) :=
+    by
     apply (HahnSeries.ofPowerSeries_injective (Γ := ℤ) (R := ℂ))
     rw [ModularForm.qExpansion_mul_coe one_pos h1, ModularForm.qExpansion_mul_coe one_pos h1,
       PowerSeries.coe_mul, PowerSeries.coe_mul]
@@ -333,7 +340,6 @@ theorem realizeG_eq_div {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) 
   rw [div_eq_div_iff hτ' hτ, hτeq]
 
 include hT in
-
 theorem realize_eventuallyEq {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) :
     (fun z : ℂ => realizeG (Γ := Γ) x (ofComplex z)) =ᶠ[𝓝[≠] (τ : ℂ)]
       fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z) / (P.h : ℍ → ℂ) (ofComplex z) := by
@@ -341,7 +347,6 @@ theorem realize_eventuallyEq {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) 
   exact realizeG_eq_div hT P.g P.h x P.eq (ofComplex z) hz
 
 include hT in
-
 theorem realize_eventuallyEq' {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) :
     (fun w : ℍ => realizeG (Γ := Γ) x w) =ᶠ[𝓝[≠] τ]
       fun w : ℍ => (P.g : ℍ → ℂ) w / (P.h : ℍ → ℂ) w := by
@@ -360,7 +365,6 @@ theorem meromorphicAt_realize {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ)
   (meromorphicAt_div x P τ).congr (realize_eventuallyEq hT P τ).symm
 
 include hT in
-
 theorem meromorphicOrderAt_realize_eq {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) :
     ∃ m : ℤ, 0 ≤ m ∧
       meromorphicOrderAt (fun z : ℂ => (P.h : ℍ → ℂ) (ofComplex z)) (τ : ℂ) = m ∧
@@ -459,10 +463,10 @@ def presSubfield : Subfield (LaurentSeries ℂ) where
       exact ⟨h⟩
     · exact ⟨P.inv hT hx⟩
 
-theorem mem_presSubfield {x : LaurentSeries ℂ} : x ∈ presSubfield hT ↔ Nonempty (Pres Γ x) := Iff.rfl
+theorem mem_presSubfield {x : LaurentSeries ℂ} :
+    x ∈ presSubfield hT ↔ Nonempty (Pres Γ x) := Iff.rfl
 
 include hT in
-
 theorem exists_pres (x : LaurentSeries ℂ) (hx : x ∈ laurentBaseChange ℂ (qExpFunctionFieldC ℚ Γ)) :
     Nonempty (Pres Γ x) := by
   rw [qExpFunctionFieldC, laurentBaseChange_adjoin] at hx
@@ -505,7 +509,7 @@ theorem meromorphicAt_realize' (x : CF Γ) (τ : ℍ) :
 
 include hT in
 theorem mu_mul (τ : ℍ) (x y : CF Γ) : mu τ (x * y) = mu τ x + mu τ y := by
-  show meromorphicOrderAt
+  change meromorphicOrderAt
       (fun z : ℂ => realizeG (Γ := Γ) ((x : LaurentSeries ℂ) * (y : LaurentSeries ℂ)) (ofComplex z)) (τ : ℂ) = _
   rw [meromorphicOrderAt_congr (realize_mul_eventuallyEq hT (pres hT x) (pres hT y) τ),
     meromorphicOrderAt_mul (meromorphicAt_realize' hT x τ) (meromorphicAt_realize' hT y τ)]
@@ -513,15 +517,16 @@ theorem mu_mul (τ : ℍ) (x y : CF Γ) : mu τ (x * y) = mu τ x + mu τ y := b
 
 include hT in
 theorem mu_add (τ : ℍ) (x y : CF Γ) : min (mu τ x) (mu τ y) ≤ mu τ (x + y) := by
-  show _ ≤ meromorphicOrderAt
-      (fun z : ℂ => realizeG (Γ := Γ) ((x : LaurentSeries ℂ) + (y : LaurentSeries ℂ)) (ofComplex z)) (τ : ℂ)
+  change _ ≤ meromorphicOrderAt
+      (fun z : ℂ => realizeG (Γ := Γ) ((x : LaurentSeries ℂ) + (y : LaurentSeries ℂ)) (ofComplex z))
+      (τ : ℂ)
   rw [meromorphicOrderAt_congr (realize_add_eventuallyEq hT (pres hT x) (pres hT y) τ)]
   exact meromorphicOrderAt_add (meromorphicAt_realize' hT x τ) (meromorphicAt_realize' hT y τ)
 
 include hT in
 theorem mu_algebraMap (τ : ℍ) (c : ℂ) (hc : c ≠ 0) : mu τ (algebraMap ℂ (CF Γ) c) = 0 := by
   classical
-  show meromorphicOrderAt
+  change meromorphicOrderAt
       (fun z : ℂ => realizeG (Γ := Γ) (algebraMap ℂ (LaurentSeries ℂ) c) (ofComplex z)) (τ : ℂ) = 0
   rw [meromorphicOrderAt_congr (realize_const_eventuallyEq hT c τ), meromorphicOrderAt_const,
     ite_eq_right hc]
@@ -533,7 +538,8 @@ theorem mu_eq_top_iff (τ : ℍ) (x : CF Γ) : mu τ x = ⊤ ↔ x = 0 := by
   · intro hx
     unfold mu at hx
     rw [hx] at hmu
-    have hg : meromorphicOrderAt (fun z : ℂ => ((pres hT x).g : ℍ → ℂ) (ofComplex z)) (τ : ℂ) = ⊤ := by
+    have hg : meromorphicOrderAt (fun z : ℂ => ((pres hT x).g : ℍ → ℂ) (ofComplex z)) (τ : ℂ) = ⊤ :=
+      by
       rcases WithTop.add_eq_top.mp hmu.symm with h | h
       · exact h
       · exact absurd h WithTop.coe_ne_top
@@ -571,7 +577,6 @@ theorem mu_one (τ : ℍ) : mu τ (1 : CF Γ) = 0 := by
   exact mu_algebraMap hT τ 1 one_ne_zero
 
 include hT in
-
 theorem exists_mu_pos (τ : ℍ) (X : CF Γ) (hX : ∀ c : ℂ, X ≠ algebraMap ℂ (CF Γ) c) :
     ∃ x : CF Γ, 0 < mu τ x ∧ mu τ x ≠ ⊤ := by
   have hX0 : X ≠ 0 := by simpa using hX 0
@@ -605,7 +610,6 @@ theorem exists_mu_pos (τ : ℍ) (X : CF Γ) (hX : ∀ c : ℂ, X ≠ algebraMap
       (EventuallyEq.rfl.add (realize_const_eventuallyEq hT (-c) τ))).symm
 
 include hT in
-
 theorem mu_nonneg_iff (τ : ℍ) (x : CF Γ) :
     0 ≤ mu τ x ↔
       IsBoundedUnder (· ≤ ·) (𝓝[≠] τ) (fun z : ℍ => ‖realizeG (Γ := Γ) (x : LaurentSeries ℂ) z‖) := by
@@ -620,12 +624,12 @@ theorem mu_nonneg_iff (τ : ℍ) (x : CF Γ) :
         (fun z : ℂ => realizeG (Γ := Γ) (x : LaurentSeries ℂ) (ofComplex z)) (τ : ℂ) < 0 := by
       rw [tendsto_nhds_iff_meromorphicOrderAt_nonneg (meromorphicAt_realize' hT x τ), not_le] at hno
       exact hno
-    have hcob := (tendsto_cobounded_iff_meromorphicOrderAt_neg (meromorphicAt_realize' hT x τ)).mpr hneg
+    have hcob :=
+      (tendsto_cobounded_iff_meromorphicOrderAt_neg (meromorphicAt_realize' hT x τ)).mpr hneg
     rw [← tendsto_norm_atTop_iff_cobounded] at hcob
     exact Filter.not_isBoundedUnder_of_tendsto_atTop hcob hb
 
 include hT in
-
 theorem exists_place (τ : ℍ) (X : CF Γ) (hX : ∀ c : ℂ, X ≠ algebraMap ℂ (CF Γ) c) :
     ∃ (P : AlgebraicCurve.Place ℂ (CF Γ)) (e : ℕ), 0 < e ∧
       (∀ x, x ∈ P.toValuationSubring ↔ 0 ≤ mu τ x) ∧
@@ -827,18 +831,18 @@ theorem qL_GG : qL (GG : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12) =
   rw [qL, h, PowerSeries.coe_pow]
 
 include hT hy in
-
-theorem y_mul_qL_HH : (y : LaurentSeries ℂ) * qL (HH : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12) =
+theorem y_mul_qL_HH :
+    (y : LaurentSeries ℂ) * qL (HH : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12) =
     qL (GG : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12) := by
   have hH : qL (HH : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 12) =
       ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := rfl
-  have hne : ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ≠ 0 := by
+  have hne : ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ≠ 0 :=
+    by
     rw [← hH]; exact qL_ne_zero hT _ HH_ne_zero
   rw [hy, jqModC_eq_qExpansion_E4_cube_div_discriminant, qL_GG, hH]
   exact div_mul_cancel₀ _ hne
 
 include hT hy in
-
 theorem realizeG_y (z : ℍ) : realizeG (Γ := Γ) (y : LaurentSeries ℂ) z = jf z := by
   rw [realizeG_eq_div hT GG HH _ (y_mul_qL_HH hT y hy) z (HH_apply_ne_zero z), GG_div_HH]
 
@@ -909,7 +913,6 @@ scoped instance instIsScalarTowerAKjCF : IsScalarTower (A y) (Kj y) (CF Γ) :=
     (IntermediateField.algebra_adjoin_le_adjoin ℂ ({y} : Set (CF Γ))) _
 
 include hT hy hΓ in
-
 theorem finiteDimensional_Kj : FiniteDimensional (Kj y) (CF Γ) := by
   have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   obtain ⟨x, hx, hfin⟩ := JOneES.exists_transcendental_finiteDimensional_laurentBaseChange ℂ Γ hT
@@ -977,8 +980,8 @@ theorem forall_algebraMap_B_mem {Q : AlgebraicCurve.Place ℂ (CF Γ)}
     exact hpb
 
 include hΓ in
-
-theorem isIntegral_of_forall_mem_pt (x : CF Γ) (hx : ∀ τ : ℍ, x ∈ (pt hT y hy τ).toValuationSubring) :
+theorem isIntegral_of_forall_mem_pt (x : CF Γ) (hx : ∀ τ : ℍ, x ∈ (pt hT y hy τ).toValuationSubring)
+    :
     IsIntegral (A y) x := by
   set P := pres hT x with hP
   have hb : ∀ τ : ℍ, IsBoundedUnder (· ≤ ·) (𝓝[≠] τ)
@@ -991,7 +994,8 @@ theorem isIntegral_of_forall_mem_pt (x : CF Γ) (hx : ∀ τ : ℍ, x ∈ (pt hT
     have hz'' : realizeG (Γ := Γ) (x : LaurentSeries ℂ) z = (P.g : ℍ → ℂ) z / (P.h : ℍ → ℂ) z := hz'
     rw [← hz'']
     exact hz
-  have hint := isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder M Γ hΓ P.g P.h P.h_ne hb
+  have hint :=
+    isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder M Γ hΓ P.g P.h P.h_ne hb
   have hxeq : HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 ⇑P.g) /
       HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 ⇑P.h) = (x : LaurentSeries ℂ) := by
     change qL P.g / qL P.h = (x : LaurentSeries ℂ)
@@ -1014,7 +1018,8 @@ theorem exists_pt_eq (P : Place ℂ (CF Γ)) (hP : y ∈ P.toValuationSubring) :
       Place.center (B y) Q hQ = Place.center (B y) Q' hQ' → Q = Q' := by
     intro Q Q' hQ hQ' h
     apply Place.ext
-    rw [Place.toValuationSubring_eq_of_forall_mem Q hQ, Place.toValuationSubring_eq_of_forall_mem Q' hQ']
+    rw [Place.toValuationSubring_eq_of_forall_mem Q hQ, Place.toValuationSubring_eq_of_forall_mem Q'
+      hQ']
     have hc : Place.centerHeightOneSpectrum (B y) Q hQ = Place.centerHeightOneSpectrum (B y) Q' hQ' :=
       IsDedekindDomain.HeightOneSpectrum.ext h
     rw [hc]
@@ -1075,8 +1080,8 @@ theorem mem_of_ord_nonneg (v : AlgebraicCurve.Place ℂ (CF Γ)) {f : CF Γ} (h 
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem π.2 n)
 
 include hT hy hΓ in
-
-theorem ord_sub_le_one (a : ℂ) (ha₀ : a ≠ 0) (ha₁₇₂₈ : a ≠ 1728) (P : AlgebraicCurve.Place ℂ (CF Γ)) :
+theorem ord_sub_le_one (a : ℂ) (ha₀ : a ≠ 0) (ha₁₇₂₈ : a ≠ 1728) (P : AlgebraicCurve.Place ℂ (CF Γ))
+    :
     P.ord (y - algebraMap ℂ (CF Γ) a) ≤ 1 := by
   by_contra hgt
   push Not at hgt
@@ -1168,6 +1173,7 @@ theorem ModularCurve.ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFie
     (P : AlgebraicCurve.Place ℂ
       (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ))) :
     P.ord (y - algebraMap ℂ
-        (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) ≤ 1 := _root_.P2MW.S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728.solution M Γ hΓ y hy a ha₀ ha₁₇₂₈ P
+        (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) ≤ 1 :=
+  solution M Γ hΓ y hy a ha₀ ha₁₇₂₈ P
 
 end publicSection

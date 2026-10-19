@@ -59,7 +59,8 @@ namespace P2MW.S_ModularCurve_isCusp_iff_ord_neg
 
 open ModularCurve AlgebraicCurve
 
-theorem solution {K : Type*} {E : Type*} [Field K] [Field E] [Algebra K E] (j : E) (v : Place K E) : IsCusp j v ↔ v.ord j < 0 := by
+theorem solution {K : Type*} {E : Type*} [Field K] [Field E] [Algebra K E] (j : E) (v : Place K E) :
+    IsCusp j v ↔ v.ord j < 0 := by
   rcases eq_or_ne j 0 with rfl | hj
   · rw [isCusp_iff, Place.ord_zero]
     exact ⟨fun h => (h (zero_mem _)).elim, fun h => (lt_irrefl _ h).elim⟩
@@ -75,6 +76,9 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.isCusp_iff_ord_neg {K : Type*} {E : Type*} [Field K] [Field E] [Algebra K E] (j : E) (v : Place K E) : IsCusp j v ↔ v.ord j < 0 := _root_.P2MW.S_ModularCurve_isCusp_iff_ord_neg.solution j v
+theorem ModularCurve.isCusp_iff_ord_neg {K : Type*} {E : Type*} [Field K] [Field E] [Algebra K E]
+    (j : E) (v : Place K E) :
+    IsCusp j v ↔ v.ord j < 0 :=
+  solution j v
 
 end publicSection

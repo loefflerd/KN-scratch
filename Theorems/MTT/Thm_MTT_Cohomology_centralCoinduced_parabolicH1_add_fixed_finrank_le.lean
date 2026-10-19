@@ -704,7 +704,8 @@ end privateSection
 
 public section publicSection
 
-theorem MTT.Cohomology.centralCoinduced_parabolicH1_add_fixed_finrank_le {N n : ℕ} (hN : 0 < N) (hn : 0 < n) :
+theorem MTT.Cohomology.centralCoinduced_parabolicH1_add_fixed_finrank_le {N n : ℕ} (hN : 0 < N)
+    (hn : 0 < n) :
     Module.finrank ℂ (MTT.Cohomology.FullParabolicH1 (MTT.Cohomology.centralCoinduced N n)) +
         Module.finrank ℂ ((MTT.Cohomology.centralCoinduced N n).ρ
           ModularGroup.S - LinearMap.id).ker +

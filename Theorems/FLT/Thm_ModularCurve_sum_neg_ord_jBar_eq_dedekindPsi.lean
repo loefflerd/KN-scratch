@@ -75,19 +75,21 @@ theorem solution (N : ℕ) [NeZero N]
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
     ∑ v ∈ S, -v.ord (ModularCurve.jBar N) = ModularCurve.dedekindPsi N := by
   classical
-  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+    isCurveOver_modularFunctionFieldBar N
   have hHPD : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     IsCurveOver.hasPrincipalDivisors
   have hdeg : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.deg = 1 :=
     IsCurveOver.forall_deg_eq_one_of_isAlgClosed
   have hne : jBar N ≠ 0 := by
     intro h
-    have h1 := congrArg (fun f : ↥(modularFunctionFieldBar N) => (f : LaurentSeries (AlgebraicClosure ℚ))) h
+    have h1 :=
+      congrArg (fun f : ↥(modularFunctionFieldBar N) => (f : LaurentSeries (AlgebraicClosure ℚ))) h
     simp only [ZeroMemClass.coe_zero] at h1
     exact jq_ne_zero ((map_eq_zero_iff _ (coeffEmb (AlgebraicClosure ℚ)).injective).mp h1)
   obtain ⟨D, hD, hdeg0⟩ := hHPD.exists_divisor (jBar N) hne
   have hdegD : Divisor.degree D = ∑ v ∈ D.support, v.ord (jBar N) := by
-    show Finsupp.liftAddHom (fun v : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) =>
+    change Finsupp.liftAddHom (fun v : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) =>
         AddMonoidHom.mulRight (v.deg : ℤ)) D = _
     rw [Finsupp.liftAddHom_apply, Finsupp.sum]
     refine Finset.sum_congr rfl fun v _ => ?_
@@ -127,6 +129,7 @@ open ModularCurve AlgebraicCurve
 theorem ModularCurve.sum_neg_ord_jBar_eq_dedekindPsi (N : ℕ) [NeZero N]
     (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
-    ∑ v ∈ S, -v.ord (ModularCurve.jBar N) = ModularCurve.dedekindPsi N := _root_.P2MW.S_ModularCurve_sum_neg_ord_jBar_eq_dedekindPsi.solution N S hS
+    ∑ v ∈ S, -v.ord (ModularCurve.jBar N) = ModularCurve.dedekindPsi N :=
+  solution N S hS
 
 end publicSection

@@ -9,6 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_WeierstrassCurve_Velu
+public import Mathlib.AlgebraicGeometry.EllipticCurve.VariableChange
 
 /-!
 # Vélu quotient by an order-two point; quadratic cofactor discriminant
@@ -43,6 +44,12 @@ $(b_2+4x_0)^2 - 16\,(4x_0^2 + b_2x_0 + 2b_4)$, i.e. as the discriminant of the q
 polynomial $4X^3 + b_2X^2 + 2b_4X + b_6$ when $x_0$ is a root of the latter. Finally,
 `map_velu2QuadDisc` states compatibility with base change: for a ring homomorphism $f \colon R \to
 S$, the invariant of $W.\mathrm{map}\,f$ at $f(x_0)$ is $f(d(x_0))$.
+
+Translating an order-two point $(x_0,y_0)$ to the origin gives the normal form
+$(a_1,a_2+3x_0,0,g_x,0)$. The same translation gives the quotient coefficients
+$(a_1,a_2+3x_0,0,-4g_x,-Bg_x)$, where $B=a_1^2+4(a_2+3x_0)$.
+The quadratic cofactor discriminant becomes $B^2-64g_x$. These identities use no division
+and support the discriminant formulas via Mathlib's invariance under variable changes.
 
 **Relation to Mathlib.** Mathlib supplies `WeierstrassCurve`, the invariants $b_2,b_4$, the
 $2$-division polynomial and base change along a ring homomorphism; the Vélu quotient curves and the
@@ -100,6 +107,48 @@ lemma velu2QuadDisc_eq_disc_cofactor (x₀ : R) :
 lemma map_velu2QuadDisc {S : Type*} [CommRing S] (f : R →+* S) (x₀ : R) :
     (W.map f).velu2QuadDisc (f x₀) = f (W.velu2QuadDisc x₀) := by
   simp only [velu2QuadDisc, map_b₂, map_b₄, map_sub, map_mul, map_pow, map_ofNat]
+
+variable {x₀ y₀}
+
+/-- Translate an order-two point to the origin without dividing by two. -/
+lemma velu2_variableChange (hQ : W.toAffine.Equation x₀ y₀)
+    (hgy : W.veluGy x₀ y₀ = 0) :
+    (⟨1, x₀, 0, y₀⟩ : VariableChange R) • W =
+      ⟨W.a₁, W.a₂ + 3 * x₀, 0, W.veluGx x₀ y₀, 0⟩ := by
+  have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
+    simpa only [veluGy, neg_eq_zero] using hgy
+  rw [Affine.equation_iff] at hQ
+  rw [variableChange_def]
+  ext <;> simp only [inv_one, Units.val_one, one_pow, one_mul, zero_mul, mul_zero,
+    add_zero, sub_zero, zero_pow (by decide : (2 : ℕ) ≠ 0), veluGx]
+  · linear_combination hord
+  · ring
+  · linear_combination -hQ
+
+/-- The same translation puts the order-two quotient in its small normal form. -/
+lemma veluQuotient2_variableChange (hQ : W.toAffine.Equation x₀ y₀)
+    (hgy : W.veluGy x₀ y₀ = 0) :
+    (⟨1, x₀, 0, y₀⟩ : VariableChange R) • W.veluQuotient2 x₀ y₀ =
+      ⟨W.a₁, W.a₂ + 3 * x₀, 0, -4 * W.veluGx x₀ y₀,
+        -(W.a₁ ^ 2 + 4 * (W.a₂ + 3 * x₀)) * W.veluGx x₀ y₀⟩ := by
+  have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
+    simpa only [veluGy, neg_eq_zero] using hgy
+  rw [Affine.equation_iff] at hQ
+  rw [variableChange_def]
+  ext <;> simp only [inv_one, Units.val_one, one_pow, one_mul, zero_mul, mul_zero,
+    add_zero, sub_zero, zero_pow (by decide : (2 : ℕ) ≠ 0), veluQuotient2, b₂, veluGx]
+  · linear_combination hord
+  · ring
+  · linear_combination -hQ
+
+/-- The quadratic cofactor discriminant in coordinates centred at the order-two point. -/
+lemma velu2QuadDisc_eq_shifted (hgy : W.veluGy x₀ y₀ = 0) :
+    W.velu2QuadDisc x₀ =
+      (W.a₁ ^ 2 + 4 * (W.a₂ + 3 * x₀)) ^ 2 - 64 * W.veluGx x₀ y₀ := by
+  have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
+    simpa only [veluGy, neg_eq_zero] using hgy
+  simp only [velu2QuadDisc, b₂, b₄, veluGx]
+  linear_combination -32 * W.a₁ * hord
 
 end CommRing
 

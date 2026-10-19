@@ -67,7 +67,11 @@ p2m_export "AlgebraicCurve" "Place.fiberCenter_liesOver Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "mem_maximalIdeal_iff_ord_pos center integralClosureAt forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq fiberCenter_liesOver restrict restrictInclusion restrictResidueMap inertiaDeg ext ResidueField ord ord_mul ord_inv toValuationSubring mk ord_nonneg_of_mem"
+p2m_export "AlgebraicCurve.Place" "mem_maximalIdeal_iff_ord_pos center integralClosureAt \
+  forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos \
+  toValuationSubring_eq_of_restrict_eq fiberCenter_liesOver restrict restrictInclusion \
+  restrictResidueMap inertiaDeg ext ResidueField ord ord_mul ord_inv toValuationSubring mk \
+  ord_nonneg_of_mem"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
@@ -175,7 +179,7 @@ private def residueFieldEquivQuotientCenter (hw : w.restrict F = v) :
 private theorem residueFieldEquivQuotientCenter_mk (hw : w.restrict F = v)
     (c : integralClosureAt F' v) :
     residueFieldEquivQuotientCenter hw (Ideal.Quotient.mk _ c) = residueOfCenter hw c := by
-  show ((residueOfCenter hw).quotientKerEquivOfSurjective (surjective_residueOfCenter hw))
+  change ((residueOfCenter hw).quotientKerEquivOfSurjective (surjective_residueOfCenter hw))
     ((Ideal.quotEquivOfEq (ker_residueOfCenter hw).symm) (Ideal.Quotient.mk _ c))
       = residueOfCenter hw c
   rw [Ideal.quotEquivOfEq_mk]
@@ -212,7 +216,7 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
     (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
+  change Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
   ext a
@@ -221,12 +225,12 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     RingHom.coe_coe]
   apply (residueFieldEquivQuotientCenter hw).injective
   rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
+  change IsLocalRing.residue w.toValuationSubring
       (toValuationSubringOfRestrictEq hw
         (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
     = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
+  change algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
     = algebraMap F F' (a : F)
   rw [← IsScalarTower.algebraMap_apply,
@@ -241,7 +245,10 @@ end
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve"
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (w : Place K F') : 0 < w.inertiaDeg F := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
+    (w : Place K F') :
+    0 < w.inertiaDeg F := by
   have := Place.fiberCenter_liesOver (F' := F') (v := w.restrict F) rfl
   rw [Place.inertiaDeg_eq_inertiaDeg_fiberCenter rfl]
   exact Ideal.inertiaDeg_pos _ _
@@ -256,6 +263,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.inertiaDeg_pos {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (w : Place K F') : 0 < w.inertiaDeg F := _root_.P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.solution w
+theorem AlgebraicCurve.Place.inertiaDeg_pos {K F F' : Type*} [Field K] [Field F] [Field F']
+    [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F']
+    [Algebra.IsSeparable F F'] (w : Place K F') :
+    0 < w.inertiaDeg F :=
+  solution w
 
 end publicSection

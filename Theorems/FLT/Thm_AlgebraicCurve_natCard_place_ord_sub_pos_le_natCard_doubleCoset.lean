@@ -64,11 +64,13 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.AlgebraicCurve"
 open scoped IntermediateField
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois"
+p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut \
+  Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois"
 namespace PlacesLeDoubleCoset
 p2m_open "AlgebraicCurve"
 
@@ -143,7 +145,10 @@ theorem finite_doubleCosetQuotient {Γ₀ : Type*} [Group Γ₀] (Γ Kst : Subgr
 
 end AlgebraicCurve.PlacesLeDoubleCoset
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.AlgebraicCurve P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.AlgebraicCurve.PlacesLeDoubleCoset"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.AlgebraicCurve.PlacesLeDou\
+  bleCoset"
 open scoped IntermediateField
 
 set_option synthInstance.maxHeartbeats 1600000 in
@@ -216,7 +221,8 @@ theorem solution
     apply AlgHom.ext
     intro e
     change ψ (a * γ * b) e = σ b⁻¹ (ψ γ e)
-    rw [hψapply, hψapply, mul_inv_rev, mul_inv_rev, map_mul, map_mul, AlgEquiv.mul_apply, AlgEquiv.mul_apply,
+    rw [hψapply, hψapply, mul_inv_rev, mul_inv_rev, map_mul, map_mul, AlgEquiv.mul_apply,
+      AlgEquiv.mul_apply,
       hE a⁻¹ (Γ.inv_mem ha) e]
   let fbar : DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀) → T :=
     Quotient.lift f (by
@@ -227,7 +233,8 @@ theorem solution
     intro p
     obtain ⟨γ, rfl⟩ := hsurj p
     exact ⟨DoubleCoset.mk Γ Kst γ, rfl⟩
-  have : Finite (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := finite_doubleCosetQuotient Γ Kst
+  have : Finite (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) :=
+    finite_doubleCosetQuotient Γ Kst
   exact Nat.card_le_card_of_surjective fbar hfbar
 
 end S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset
@@ -251,6 +258,7 @@ theorem AlgebraicCurve.natCard_place_ord_sub_pos_le_natCard_doubleCoset
     (hD : ∀ k ∈ Kst, AlgebraicCurve.SemilinearAut.ofAlgAut ((σ k).restrictScalars K) • W = W)
     (x : E) (hx : (x : L) = t) :
     Nat.card {P : AlgebraicCurve.Place K E // 0 < P.ord (x - algebraMap K E c)} ≤
-      Nat.card (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := _root_.P2MW.S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.solution K t hfin hgal σ hσ Γ Kst E hE c W hW hD x hx
+      Nat.card (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) :=
+  solution K t hfin hgal σ hσ Γ Kst E hE c W hW hD x hx
 
 end publicSection

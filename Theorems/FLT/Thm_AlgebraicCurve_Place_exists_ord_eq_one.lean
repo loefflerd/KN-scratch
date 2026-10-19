@@ -69,7 +69,9 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.exists_ord_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) :
-    ∃ t : F, v.ord t = 1 := _root_.P2MW.S_AlgebraicCurve_Place_exists_ord_eq_one.solution v
+theorem AlgebraicCurve.Place.exists_ord_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : AlgebraicCurve.Place K F) :
+    ∃ t : F, v.ord t = 1 :=
+  solution v
 
 end publicSection

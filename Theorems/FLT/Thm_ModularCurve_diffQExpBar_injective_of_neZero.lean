@@ -60,14 +60,16 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero
 
-p2m_open "KaehlerDifferential ModularCurve P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero.ModularCurve"
+p2m_open "KaehlerDifferential ModularCurve \
+  P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero.ModularCurve"
 
 section Engine
 
 private theorem qEuler_coeffEmb_jq_ne_zero_aux :
     qEuler (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq) ≠ 0 := by
   intro h
-  have h1 : (qEuler (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq)).coeff (-1 : ℤ) = -1 := by
+  have h1 : (qEuler (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq)).coeff (-1 : ℤ) = -1 :=
+    by
     simp [qEuler_coeff, coeffEmb_coeff, coeff_jq_neg_one]
   rw [h] at h1
   simp at h1
@@ -88,7 +90,8 @@ private theorem exists_smul_D_jBar_aux (N : ℕ) [NeZero N]
         ⟨coeffEmb (AlgebraicClosure ℚ) jq,
           coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩)} :
         Set (KaehlerDifferential (AlgebraicClosure ℚ) (modularFunctionFieldBar N))) := by
-    rw [span_D_eq_top_of_transcendental (AlgebraicClosure ℚ) _ (transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N)]
+    rw [span_D_eq_top_of_transcendental (AlgebraicClosure ℚ) _ (transcendental_coeffEmb_jq
+      (AlgebraicClosure ℚ) N)]
     exact Submodule.mem_top
   obtain ⟨c, hc⟩ := Submodule.mem_span_singleton.mp hmem
   exact ⟨c, hc.symm⟩
@@ -103,10 +106,11 @@ private theorem diffQExpBar_smul_D_jBar_aux (N : ℕ) [NeZero N] (x : modularFun
 end Engine
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qEuler qEuler_coeff diffQExp_smul_D diffQExpBar modularFunctionFieldBar jq coeff_jq_neg_one coeffEmb coeffEmb_coeff coeffEmb_mem_laurentBaseChange transcendental_coeffEmb_jq jq_mem_full isSeparable_adjoin_coeffEmb_jq_full"
+p2m_export "ModularCurve" "qEuler qEuler_coeff diffQExp_smul_D diffQExpBar modularFunctionFieldBar \
+  jq coeff_jq_neg_one coeffEmb coeffEmb_coeff coeffEmb_mem_laurentBaseChange \
+  transcendental_coeffEmb_jq jq_mem_full isSeparable_adjoin_coeffEmb_jq_full"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.diffQExpBar_injective_of_neZero (N : ℕ) [NeZero N] :
     Function.Injective (diffQExpBar N) := by
   intro ω₁ ω₂ h
@@ -119,13 +123,11 @@ private theorem ModularCurve.diffQExpBar_injective_of_neZero (N : ℕ) [NeZero N
   rw [hx]
 
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.diffQExpBar_injective (ℓ : ℕ) [Fact ℓ.Prime] :
     Function.Injective (diffQExpBar ℓ) :=
   ModularCurve.diffQExpBar_injective_of_neZero ℓ
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero.ModularCurve in
-
 theorem solution (N : ℕ) [NeZero N] :
     Function.Injective (diffQExpBar N) :=
   ModularCurve.diffQExpBar_injective_of_neZero N
@@ -141,6 +143,7 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.diffQExpBar_injective_of_neZero (N : ℕ) [NeZero N] :
-    Function.Injective (diffQExpBar N) := _root_.P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero.solution N
+    Function.Injective (diffQExpBar N) :=
+  solution N
 
 end publicSection

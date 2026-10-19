@@ -69,7 +69,8 @@ namespace P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex Matrix.SpecialLinearGroup OnePoint"
+p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex \
+  Matrix.SpecialLinearGroup OnePoint"
 open scoped MatrixGroups Topology CongruenceSubgroup Pointwise Manifold
 
 noncomputable section
@@ -275,7 +276,7 @@ theorem eventually_apply_smul_ne_zero {k : ℤ}
   rw [SL_slash_apply, hc, zero_mul]
 
 theorem continuous_sl_smul : Continuous fun τ : ℍ => σ • τ := by
-  show Continuous fun τ : ℍ => ((σ : GL (Fin 2) ℝ) • τ)
+  change Continuous fun τ : ℍ => ((σ : GL (Fin 2) ℝ) • τ)
   exact continuous_const_smul _
 
 theorem punctured_nhds_neBot (τ : ℍ) : (𝓝[≠] τ).NeBot := by
@@ -320,7 +321,8 @@ theorem solution
   obtain ⟨L, hL, hF⟩ := hcusp σ
   refine ⟨L, hL, ?_⟩
   set G : UpperHalfPlane → ℂ := fun τ => (g : ℍ → ℂ) (σ • τ) / (h : ℍ → ℂ) (σ • τ) with hGdef
-  have hne : ∀ᶠ τ in atImInfty, (h : ℍ → ℂ) (σ • τ) ≠ 0 := Glue.eventually_apply_smul_ne_zero Γ σ h hh
+  have hne : ∀ᶠ τ in atImInfty, (h : ℍ → ℂ) (σ • τ) ≠ 0 :=
+    Glue.eventually_apply_smul_ne_zero Γ σ h hh
   have hloc : ∀ τ : ℍ, ∀ᶠ w in 𝓝[≠] τ, F (σ • w) = ModularCurve.realizeOf Γ x (σ • w) := by
     intro τ
     have h1 := (Glue.tendsto_coe_smul_punctured σ τ).eventually (hFx (σ • τ))
@@ -328,7 +330,8 @@ theorem solution
     simpa only [ofComplex_apply] using hw
   rw [Metric.tendsto_nhds]
   intro ε hε
-  have hFε : ∀ᶠ τ in atImInfty, dist (F (σ • τ)) L < ε / 2 := Metric.tendsto_nhds.mp hF (ε / 2) (half_pos hε)
+  have hFε : ∀ᶠ τ in atImInfty, dist (F (σ • τ)) L < ε / 2 :=
+    Metric.tendsto_nhds.mp hF (ε / 2) (half_pos hε)
   obtain ⟨A, hA⟩ := (atImInfty_mem _).mp (hFε.and hne)
   have hmem : {τ : ℍ | dist (G τ) L < ε} ∈ atImInfty := by
     rw [atImInfty_mem]
@@ -353,7 +356,7 @@ theorem solution
       exact (hA w (le_of_lt hw)).1.le
     have := Glue.punctured_nhds_neBot τ
     have hle : dist (G τ) L ≤ ε / 2 := le_of_tendsto (ht.dist tendsto_const_nhds) hev
-    show dist (G τ) L < ε
+    change dist (G τ) L < ε
     linarith
   exact hmem
 
@@ -381,6 +384,7 @@ theorem ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendst
     (σ : SL(2, ℤ)) :
     ∃ L : ℂ, L ≠ 0 ∧
       Filter.Tendsto (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (σ • τ) / (h : UpperHalfPlane → ℂ) (σ • τ))
-        atImInfty (𝓝 L) := _root_.P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.solution Γ hT g h hh x hx F hFx hcusp σ
+        atImInfty (𝓝 L) :=
+  solution Γ hT g h hh x hx F hFx hcusp σ
 
 end publicSection

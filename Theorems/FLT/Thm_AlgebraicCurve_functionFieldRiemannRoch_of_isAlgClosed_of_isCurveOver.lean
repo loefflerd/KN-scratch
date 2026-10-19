@@ -70,7 +70,7 @@ namespace P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed_of_isCur
 open AlgebraicCurve
 
 theorem solution
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -84,6 +84,7 @@ theorem solution
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] :
     AlgebraicCurve.FunctionFieldRiemannRoch K F := by
+  classical
   have : HasCanonicalLocalResidueKStar K F := instHasCanonicalLocalResidueKStar
   have : HasSeparableResidue K F := HasSeparableResidue.of_perfectField_of_isCurveOver
   intro _i1 _i2 _i3 ω hω D
@@ -98,7 +99,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
@@ -112,6 +113,7 @@ theorem AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] :
     AlgebraicCurve.FunctionFieldRiemannRoch K F := by
+  classical
   exact solution
 
 end publicSection

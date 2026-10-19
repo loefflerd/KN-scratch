@@ -467,7 +467,8 @@ def ν (τ₀ : ℍ) (k : K) : WithTop ℤ := meromorphicOrderAt (real N K k) τ
 
 variable (τ₀ : ℍ)
 
-theorem ν_congr {k : K} {g : ℂ → ℂ} (h : real N K k =ᶠ[𝓕] g) : ν N K τ₀ k = meromorphicOrderAt g τ₀ :=
+theorem ν_congr {k : K} {g : ℂ → ℂ} (h : real N K k =ᶠ[𝓕] g) :
+    ν N K τ₀ k = meromorphicOrderAt g τ₀ :=
   meromorphicOrderAt_congr (eventually_nhdsNE_of_𝓕 h (coe_mem_𝕌 τ₀))
 
 theorem ν_mul (x y : K) : ν N K τ₀ (x * y) = ν N K τ₀ x + ν N K τ₀ y := by
@@ -622,7 +623,6 @@ theorem value_unique {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g₁ G₁ g₂ G�
 variable (K)
 
 open Classical in
-
 def glue (m : Gm N K) (z : ℂ) : ℂ :=
   if h : z ∈ 𝕌 ∧ ∃ g G : ℂ → ℂ, germ N K g = m ∧ AnalyticAt ℂ G z ∧ g =ᶠ[𝓝[≠] z] G then
     h.2.choose_spec.choose z
@@ -651,7 +651,8 @@ theorem glue_eventuallyEq {m : Gm N K} (hm : LocAnalytic N K m) {z : ℂ} (hz : 
   · rw [hwz, h0]
   · exact hw hwz
 
-theorem analyticOnNhd_glue {m : Gm N K} (hm : LocAnalytic N K m) : AnalyticOnNhd ℂ (glue N K m) 𝕌 := by
+theorem analyticOnNhd_glue {m : Gm N K} (hm : LocAnalytic N K m) :
+    AnalyticOnNhd ℂ (glue N K m) 𝕌 := by
   intro z hz
   obtain ⟨g, G, hg, hG, hgG⟩ := hm z hz
   exact hG.congr (glue_eventuallyEq N K hm hz hg hG hgG).symm
@@ -682,10 +683,12 @@ theorem locAnalytic_add {m₁ m₂ : Gm N K} (h₁ : LocAnalytic N K m₁) (h₂
   filter_upwards [e₁, e₂] with w h1 h2
   simp [h1, h2]
 
-theorem locAnalytic_smul (c : ℂ) {m : Gm N K} (h : LocAnalytic N K m) : LocAnalytic N K (c • m) := by
+theorem locAnalytic_smul (c : ℂ) {m : Gm N K} (h : LocAnalytic N K m) :
+    LocAnalytic N K (c • m) := by
   intro z hz
   obtain ⟨g, G, hg, hG, e⟩ := h z hz
-  refine ⟨fun w => c * g w, fun w => c * G w, by rw [← hg, smul_germ_C], analyticAt_const.mul hG, ?_⟩
+  refine ⟨fun w => c * g w, fun w => c * G w, by rw [← hg,
+    smul_germ_C], analyticAt_const.mul hG, ?_⟩
   filter_upwards [e] with w hw
   rw [hw]
 
@@ -907,6 +910,7 @@ theorem ModularCurve.LevelN.exists_linearMap_regularDifferentials_mdifferentiabl
               algebraMap (ModularCurve.LevelN.ring N) K ⟨e, he⟩) →
         ∀ τ : UpperHalfPlane, Ψ ω τ * b τ * e τ ^ 2 =
           a τ * (e τ * deriv (c ∘ UpperHalfPlane.ofComplex) τ -
-            c τ * deriv (e ∘ UpperHalfPlane.ofComplex) τ) := _root_.P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.solution N K
+            c τ * deriv (e ∘ UpperHalfPlane.ofComplex) τ) :=
+  solution N K
 
 end publicSection

@@ -53,7 +53,8 @@ section privateSection
 -- From Solutions/MatchingSignSymbol.lean
 /-! The periodicity argument and period comparison adapt the accepted Prove2Me
 proof by David Loeffler of `even_algebraicSymbol_sum_ne_zero_iff_modularSymbol_sum`
-(submission `c7ded6e4-1fd6-48e2-aace-74f735a344a9`), archived in `submission/continuation/even-symbol-sum-source.lean`.
+(submission `c7ded6e4-1fd6-48e2-aace-74f735a344a9`), archived in
+`submission/continuation/even-symbol-sum-source.lean`.
 The reflection identity here retains the character value at -1, allowing
 either parity when the modular-symbol sign matches the twisting character. -/
 
@@ -334,7 +335,7 @@ variable {p : ℕ} [Fact p.Prime]
 
 lemma mem_integers_iff (x : ℂ_[p]) : x ∈ 𝓞_ℂ_[p] ↔ ‖x‖ ≤ 1 := by
   rw [PadicComplex.norm_eq_norm]
-  show (PadicComplex.valued p).v x ≤ 1 ↔ _
+  change (PadicComplex.valued p).v x ≤ 1 ↔ _
   rw [Valuation.norm_def]
   simp [PadicComplex.RankOne.hom_eq_embedding]
 
@@ -538,19 +539,19 @@ theorem HorizontalPadicL.seededInverseThetaSystem_exists_forSign
     rw [norm_pow, norm_natCast_eq_one (key n).1, one_pow]
   have m1 : ∀ n, ιp (f.coeff (L.primeAt n)) / (L.primeAt n : ℂ_[p]) ^ (k / 2 - 1) ∈ O p :=
     fun n => by
-      show _ ∈ 𝓞_ℂ_[p]
+      change _ ∈ 𝓞_ℂ_[p]
       rw [mem_integers_iff, norm_div, hj, div_one]; exact (key n).2.2.2.2
   have m2 : ∀ n, ιp (η.2 (L.primeAt n)) ∈ O p := fun n => by
-    show _ ∈ 𝓞_ℂ_[p]
+    change _ ∈ 𝓞_ℂ_[p]
     rw [mem_integers_iff, (key n).2.2.1]
   have m3 : ∀ n, ιp (f.epsilon (L.primeAt n) * (η.2 (L.primeAt n))⁻¹) ∈ O p := fun n => by
-    show _ ∈ 𝓞_ℂ_[p]
+    change _ ∈ 𝓞_ℂ_[p]
     rw [mem_integers_iff, map_mul, map_inv₀, norm_mul, norm_inv, (key n).2.2.1,
       (key n).2.2.2.1]
     norm_num
   have m4 : ∀ n, ιp (η.2 (L.primeAt n) * f.coeff (L.primeAt n) -
       (η.2 (L.primeAt n)) ^ 2 - f.epsilon (L.primeAt n)) ∈ O p := fun n => by
-    show _ ∈ 𝓞_ℂ_[p]
+    change _ ∈ 𝓞_ℂ_[p]
     rw [mem_integers_iff, (L.primeAt_orderly n).2.2.2]
   let E : ∀ (A : Finset ℕ) (n : ℕ), HorizontalGroupAlgebra (O p) p L.exponent A :=
     fun A n =>
@@ -606,7 +607,8 @@ theorem HorizontalPadicL.seededInverseThetaSystem_exists_forSign
     push_cast [apply_ite]
     simp only [summand, Nat.cast_mul]
   · intro A n hn
-    simp only [E, dite_eq_left hn, map_sub, MonoidAlgebra.mapRingHom_single, inverseSeedEulerFactorCp, Subring.subtype_apply]
+    simp only [E, dite_eq_left hn, map_sub, MonoidAlgebra.mapRingHom_single,
+      inverseSeedEulerFactorCp, Subring.subtype_apply]
 
 open scoped BigOperators
 
@@ -651,11 +653,12 @@ private theorem horizontalRestrictionHom_surjective
 
 private theorem mapDomain_coefficient_of_formula
     {R S H K U : Type*} [AddCommMonoid R] [AddCommMonoid S]
-    [Fintype H] [Fintype U] [DecidableEq H] [DecidableEq K]
+    [Finite H] [Fintype U] [DecidableEq H] [DecidableEq K]
     (φ : R →+ S) (x : H →₀ R) (π : U → H) (r : H → K) (g : K)
     (w : U → S) (hx : ∀ h, φ (x h) = ∑ u, if π u = h then w u else 0) :
     φ ((Finsupp.mapDomain r x) g) = ∑ u, if r (π u) = g then w u else 0 := by
   classical
+  have : Fintype H := Fintype.ofFinite _
   have hcoeff : (Finsupp.mapDomain r x) g =
       ∑ a : H, if r a = g then x a else 0 := by
     rw [Finsupp.mapDomain, Finsupp.sum_apply]
@@ -1054,9 +1057,9 @@ theorem projection_relation
     (horizontalRestrictionHom (Finset.subset_insert n A))
     ((horizontalRestrictionHom (Finset.subset_insert n A)) G) w'
     (htheta (insert n A))
-  simp only [MonoidAlgebra.coeff_mapRingHom]
-  simp only [inverseSeedEulerFactorCp, sub_mul]
-  simp [MonoidAlgebra.coeff_single_mul_apply]
+  simp only [MonoidAlgebra.coeff_mapRingHom, Subring.subtype_apply, inverseSeedEulerFactorCp,
+    map_mul, map_inv₀, sub_mul, MonoidAlgebra.coeff_sub, Finsupp.coe_sub, Pi.sub_apply,
+    MonoidAlgebra.coeff_single_mul_apply, inv_one, one_mul, inv_inv]
   rw [htheta A ((horizontalRestrictionHom (Finset.subset_insert n A)) G),
     htheta A ((Θ.characters.horizontalPrimeElement A n hn)⁻¹ *
       (horizontalRestrictionHom (Finset.subset_insert n A)) G),
@@ -1461,7 +1464,7 @@ lemma sum_units_congr_level_aux {c q : ℕ} [NeZero c] [NeZero q] (h : c = q)
 
 /-- Evaluation of an inverse-seed theta element at a full-support horizontal
 character has the same zero set as the corresponding algebraic modular-symbol
-sum.  The supplied equality is the small level-change bridge identifying the
+sum. The supplied equality is the small level-change bridge identifying the
 full-level character with its primitive realization. -/
 theorem eval_ne_zero_iff
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]

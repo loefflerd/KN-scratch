@@ -205,7 +205,8 @@ example : addOrderOf (AddMonoidHom.mulLeft (2 : ZMod 4) 1) = 2 :=
 
 example : ((AddMonoidHom.mulLeft (2 : ZMod 4)).comp (AddMonoidHom.mulLeft (2 : ZMod 4))).ker =
     AddSubgroup.zmultiples (1 : ZMod 4) := by
-  have hker : (AddMonoidHom.mulLeft (2 : ZMod 4)).ker = AddSubgroup.zmultiples (2 • (1 : ZMod 4)) := by
+  have hker : (AddMonoidHom.mulLeft (2 : ZMod 4)).ker = AddSubgroup.zmultiples (2 • (1 : ZMod 4)) :=
+    by
     ext x
     rw [AddMonoidHom.mem_ker, AddMonoidHom.coe_mulLeft,
       mem_zmultiples_iff_of_two_nsmul_eq_zero (by decide)]
@@ -218,7 +219,22 @@ example : ((AddMonoidHom.mulLeft (2 : ZMod 4)).comp (AddMonoidHom.mulLeft (2 : Z
 end KernelTower
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd isElliptic_veluQuotient2_of_isElliptic exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk \
+  Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX \
+  Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j \
+  Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate \
+  Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient \
+  Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ \
+  veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 \
+  veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ \
+  veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq \
+  veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd \
+  isElliptic_veluQuotient2_of_isElliptic \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 namespace VeluTwoKernel
 p2m_open "WeierstrassCurve"
 
@@ -280,7 +296,22 @@ theorem ker_eq_zmultiples {F : Type*} [Field F] [DecidableEq F] {W : Weierstrass
 end WeierstrassCurve.VeluTwoKernel
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd isElliptic_veluQuotient2_of_isElliptic exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk \
+  Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX \
+  Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j \
+  Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate \
+  Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient \
+  Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ \
+  veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 \
+  veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ \
+  veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq \
+  veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd \
+  isElliptic_veluQuotient2_of_isElliptic \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 p2m_open "WeierstrassCurve"
 
 section FiberField
@@ -306,7 +337,8 @@ private theorem _root_.WeierstrassCurve.ynum_eq {x y x₀ y₀ l x' y' : F}
     - (l + W.a₁) * (x - x₀) * hXn
 
 p2m_export "WeierstrassCurve" "ynum_eq"
-private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l x' y' : F}
+private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) ≠ 0)
+    {x y x₀ y₀ l x' y' : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀)
     (hl : l * (x - x₀) = y - y₀)
@@ -321,7 +353,8 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
     exact h
   have hXn := W.xnum_eq hl hx'd
   have hYn := W.ynum_eq hl hx'd hy'd
-  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ := by field_simp
+  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ :=
+    by field_simp
   have hYd : (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2
       = y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) := by field_simp
   refine mul_right_cancel₀ (mul_ne_zero h4 (pow_ne_zero 4 hd)) ?_
@@ -340,15 +373,20 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
         ring
 
 p2m_export "WeierstrassCurve" "fiberAdd_veluGx_field"
-private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l x' y' : F}
+private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l
+    x' y' : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀)
     (hl : l * (x - x₀) = y - y₀)
     (hx'd : x' = l ^ 2 + W.a₁ * l - W.a₂ - x - x₀)
     (hy'd : y' = l * (x - x') - y - W.a₁ * x' - W.a₃) :
     (x * W.veluGx x y - y * W.veluGy x y) + (x' * W.veluGx x' y' - y' * W.veluGy x' y')
-      = (x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
-        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀)) + W.a₃)) := by
+      = (x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x +
+          W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ *
+          (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀
+            y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀))
+            + W.a₃)) := by
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   have h16 : (16 : F) ≠ 0 := by
     have h := pow_ne_zero 4 hchar
@@ -356,25 +394,61 @@ private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : 
     exact h
   have hXn := W.xnum_eq hl hx'd
   have hYn := W.ynum_eq hl hx'd hy'd
-  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ := by field_simp
+  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ :=
+    by field_simp
   have hYd : (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2
       = y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) := by field_simp
   refine mul_right_cancel₀ (mul_ne_zero h16 (pow_ne_zero 6 hd)) ?_
   calc ((x * W.veluGx x y - y * W.veluGy x y)
         + (x' * W.veluGx x' y' - y' * W.veluGy x' y')) * (16 * (x - x₀) ^ 6)
-      = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + ((x' * (x - x₀) ^ 2) * (3 * (x' * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀)) - (y' * (x - x₀) ^ 3) * (-(2 * (y' * (x - x₀) ^ 3) + W.a₁ * (x' * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by simp only [veluGx, veluGy]; ring
-    _ = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by rw [hXn, hYn]
-    _ = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := W.fiberAdd_asymWeight_cleared_sixteen x y x₀ y₀ hP hQ hgy
-    _ = ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
-        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀)) + W.a₃))) * (16 * (x - x₀) ^ 6) := by
-        rw [show ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
-            - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀)) + W.a₃))) * (16 * (x - x₀) ^ 6)
+      = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + ((x' * (x - x₀) ^ 2) * (3 * (x'
+          * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4
+          - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀)) - (y' * (x - x₀) ^ 3) * (-(2 * (y' * (x - x₀) ^
+          3) + W.a₁ * (x' * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by
+        simp only [veluGx, veluGy]; ring
+    _ = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y -
+        y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x
+        - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) *
+        (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y
+        - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) *
+        (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) -
+        (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) *
+        (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀)
+        ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+        x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2
+        - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x -
+        x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^
+        2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) -
+        (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by
+      rw [hXn, hYn]
+    _ = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂
+        * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 -
+        W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y
+        * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 -
+        W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x -
+        x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := W.fiberAdd_asymWeight_cleared_sixteen x y x₀
+        y₀ hP hQ hgy
+    _ = ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x
+        + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ *
+        (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀
+            y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀))
+            + W.a₃))) * (16 * (x - x₀) ^ 6) := by
+        rw [show ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 *
+            W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y -
+            W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+            - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y -
+                W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx
+                x₀ y₀ / (x - x₀)) + W.a₃))) * (16 * (x - x₀) ^ 6)
           = 16 * (((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀))
-              * (3 * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) ^ 2 + 2 * W.a₂ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
-                + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2))
+              * (3 * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) ^ 2 + 2 * W.a₂ * ((x + W.veluGx x₀
+                  y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
+                + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * ((y - W.veluGx x₀ y₀ * (W.a₁ *
+                    (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2))
               * (x - x₀) ^ 3
             - ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2)
-              * (-(2 * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2) + W.a₁ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
+              * (-(2 * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀)
+                  ^ 2) + W.a₁ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
                 + W.a₃ * (x - x₀) ^ 2))
               * (x - x₀) ^ 2) from by ring, hXd, hYd]
 
@@ -406,7 +480,6 @@ private theorem nsmul_injOn {Q : W.toAffine.Point} {N : ℕ} (hQ : addOrderOf Q 
   exact nsmul_ne_zero hQ (by omega) (by omega) hzero
 
 omit [DecidableEq F] in
-
 private theorem exists_some_of_ne_zero {P : W.toAffine.Point} (h : P ≠ 0) :
     ∃ x y hns, P = Affine.Point.some x y hns := by
   cases P with
@@ -627,7 +700,22 @@ theorem fullKernelQuotient_eq_fullKernelQuotient_veluPointMap2
 end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd isElliptic_veluQuotient2_of_isElliptic exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk \
+  Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX \
+  Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j \
+  Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate \
+  Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient \
+  Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ \
+  veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 \
+  veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ \
+  veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq \
+  veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd \
+  isElliptic_veluQuotient2_of_isElliptic \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 namespace VeluTwoKernel
 p2m_open "WeierstrassCurve"
 
@@ -674,11 +762,33 @@ section
 open Polynomial
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd isElliptic_veluQuotient2_of_isElliptic exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk \
+  Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX \
+  Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j \
+  Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate \
+  Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient \
+  Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ \
+  veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 \
+  veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ \
+  veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq \
+  veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd \
+  isElliptic_veluQuotient2_of_isElliptic \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Nonsingular negAddY FunctionField Point addX Point.some_ne_zero addY Y_eq_of_X_eq Point.add_of_X_ne Point.zero pointMapOfPushforward pointMapOfPushforward_apply pointMapOfPushforward_eq_of_seam GenusOnePlaceGate placeOfPoint pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred Point.coordsOrZero_some exists_genusOnePlaceGate_isCentred_abelTheorem hasPrincipalDivisors_of_isAlgClosed Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Nonsingular \
+  negAddY FunctionField Point addX Point.some_ne_zero addY Y_eq_of_X_eq Point.add_of_X_ne \
+  Point.zero pointMapOfPushforward pointMapOfPushforward_apply pointMapOfPushforward_eq_of_seam \
+  GenusOnePlaceGate placeOfPoint pointClass AbelTheorem genusOnePic0Equiv \
+  genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred Point.coordsOrZero_some \
+  exists_genusOnePlaceGate_isCentred_abelTheorem hasPrincipalDivisors_of_isAlgClosed \
+  Point.two_smul_some_eq_zero_iff"
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "some map some_ne_zero add_of_X_ne zero mk coordsOrZero coordsOrZero_some two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve.Affine.Point" "some map some_ne_zero add_of_X_ne zero mk coordsOrZero \
+  coordsOrZero_some two_smul_some_eq_zero_iff"
 p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve"
 
 theorem exists_veluGy_eq_zero_of_addOrderOf_eq_two
@@ -701,10 +811,12 @@ theorem exists_veluGy_eq_zero_of_addOrderOf_eq_two
     exact pow_eq_zero_iff two_ne_zero |>.mp hGy2
 
 theorem veluQuotient2_Delta_ne_zero_of_veluGy_eq_zero
-    {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} [W.IsElliptic]
+    {F : Type*} [Field F] {W : WeierstrassCurve F} [W.IsElliptic]
     {x₀ y₀ : F} (h₀ : W.toAffine.Nonsingular x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
-    (W.veluQuotient2 x₀ y₀).Δ ≠ 0 :=
-  (WeierstrassCurve.isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy).isUnit.ne_zero
+    (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := by
+  classical
+  exact
+    (WeierstrassCurve.isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy).isUnit.ne_zero
 
 end WeierstrassCurve.Affine.Point
 
@@ -712,15 +824,37 @@ end
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_z\
+  multiples.AlgebraicCurve"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd isElliptic_veluQuotient2_of_isElliptic exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk \
+  Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX \
+  Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j \
+  Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate \
+  Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient \
+  Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ \
+  veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 \
+  veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ \
+  veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq \
+  veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd \
+  isElliptic_veluQuotient2_of_isElliptic \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Nonsingular negAddY FunctionField Point addX Point.some_ne_zero addY Y_eq_of_X_eq Point.add_of_X_ne Point.zero pointMapOfPushforward pointMapOfPushforward_apply pointMapOfPushforward_eq_of_seam GenusOnePlaceGate placeOfPoint pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred Point.coordsOrZero_some exists_genusOnePlaceGate_isCentred_abelTheorem hasPrincipalDivisors_of_isAlgClosed Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Nonsingular \
+  negAddY FunctionField Point addX Point.some_ne_zero addY Y_eq_of_X_eq Point.add_of_X_ne \
+  Point.zero pointMapOfPushforward pointMapOfPushforward_apply pointMapOfPushforward_eq_of_seam \
+  GenusOnePlaceGate placeOfPoint pointClass AbelTheorem genusOnePic0Equiv \
+  genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred Point.coordsOrZero_some \
+  exists_genusOnePlaceGate_isCentred_abelTheorem hasPrincipalDivisors_of_isAlgClosed \
+  Point.two_smul_some_eq_zero_iff"
 end WeierstrassCurve.Affine
 p2m_open_scoped "WeierstrassCurve WeierstrassCurve.Affine" in
-
 private theorem WeierstrassCurve.Affine.pointClass_genusOnePic0Equiv
     {F : Type*} [Field F] [DecidableEq F] {W : Affine F}
     [GenusOnePlaceGate W] [AbelTheorem W] (c : AlgebraicCurve.Pic0 F W.FunctionField) :
@@ -728,12 +862,14 @@ private theorem WeierstrassCurve.Affine.pointClass_genusOnePic0Equiv
   rw [← genusOnePic0Equiv_symm_apply, AddEquiv.symm_apply_apply]
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "FiniteAlong NormFormulaAlong Divisor HasPrincipalDivisors Pic Pic0 Pic0.mk Pic0.mk_surjective finiteAlong_comp normFormulaAlong separableAlong_of_charZero Divisor.pushforwardAlong_pushforwardAlong"
+p2m_export "AlgebraicCurve" "FiniteAlong NormFormulaAlong Divisor HasPrincipalDivisors Pic Pic0 \
+  Pic0.mk Pic0.mk_surjective finiteAlong_comp normFormulaAlong separableAlong_of_charZero \
+  Divisor.pushforwardAlong_pushforwardAlong"
 namespace Pic0
-p2m_export "AlgebraicCurve.Pic0" "coe_pushforwardAlongDegZero pushforwardAlongHom pushforwardAlongHom_mk mk mk_surjective torsion"
+p2m_export "AlgebraicCurve.Pic0" "coe_pushforwardAlongDegZero pushforwardAlongHom \
+  pushforwardAlongHom_mk mk mk_surjective torsion"
 end AlgebraicCurve.Pic0
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Pic0" in
-
 private theorem AlgebraicCurve.Pic0.pushforwardAlongHom_comp
     {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F'']
     [Algebra K F] [Algebra K F'] [Algebra K F'']
@@ -753,7 +889,6 @@ private theorem AlgebraicCurve.Pic0.pushforwardAlongHom_comp
     ((Divisor.pushforwardAlong_pushforwardAlong φ χ hφ hχ hχφ (D : Divisor K F'')).symm))
 
 p2m_open_scoped "WeierstrassCurve WeierstrassCurve.Affine" in
-
 theorem WeierstrassCurve.Affine.pointMapOfPushforward_comp
     {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
     {U V W : Affine F} [U.IsElliptic] [V.IsElliptic] [W.IsElliptic]
@@ -772,7 +907,6 @@ theorem WeierstrassCurve.Affine.pointMapOfPushforward_comp
     Pic0.pushforwardAlongHom_comp φ χ hφ hχ hχφ hfinφ hfinχ hfinχφ hNφ hNχ hNχφ]
 
 p2m_open_scoped "WeierstrassCurve WeierstrassCurve.Affine" in
-
 theorem WeierstrassCurve.Affine.ker_pointMapOfPushforward_comp
     {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
     {U V W : Affine F} [U.IsElliptic] [V.IsElliptic] [W.IsElliptic]
@@ -792,7 +926,22 @@ theorem WeierstrassCurve.Affine.ker_pointMapOfPushforward_comp
 end
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd isElliptic_veluQuotient2_of_isElliptic exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk \
+  Ψ₂Sq a₄ a₂ Affine.Point.some Affine.negAddY IsIntegral toAffine Affine.Point Affine.addX \
+  Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne j \
+  Affine.pointMapOfPushforward Affine.pointMapOfPushforward_eq_of_seam Affine.GenusOnePlaceGate \
+  Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred fullKernelQuotient \
+  Affine.Point.coordsOrZero_some oddOrderSummingSet veluQuotientOfSums veluQuotientOfSums_a₄ \
+  veluQuotientOfSums_a₆ veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval veluQuotient veluQuotient2 \
+  veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ \
+  veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq \
+  veluPointMap2_some_of_ne fullKernelQuotient_eq_veluQuotient_of_odd \
+  isElliptic_veluQuotient2_of_isElliptic \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.exists_genusOnePlaceGate_isCentred_abelTheorem Affine.hasPrincipalDivisors_of_isAlgClosed \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 end WeierstrassCurve
 p2m_open_scoped "WeierstrassCurve" in
 private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux
@@ -857,7 +1006,8 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
           have h := addOrderOf_nsmul_eq_zero (M • Q)
           rwa [h1, one_nsmul] at h
         · exact h2
-      obtain ⟨x₀, y₀, h₀, hMQ, hgy⟩ := Affine.Point.exists_veluGy_eq_zero_of_addOrderOf_eq_two (M • Q) hord2
+      obtain ⟨x₀, y₀, h₀, hMQ, hgy⟩ :=
+        Affine.Point.exists_veluGy_eq_zero_of_addOrderOf_eq_two (M • Q) hord2
       have instWbare : W.IsElliptic := ‹W.toAffine.IsElliptic›
       have hW1ell : (W.veluQuotient2 x₀ y₀).IsElliptic :=
         isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy
@@ -887,7 +1037,7 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
       obtain ⟨ι₂, hι₂, hfin₂, hseam⟩ :=
         exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 h₀.1 hgy hΔ₂
       have hιc : (ι₂.comp ιM).toRingHom.IsIntegral := by
-        show (ι₂.toRingHom.comp ιM.toRingHom).IsIntegral
+        change (ι₂.toRingHom.comp ιM.toRingHom).IsIntegral
         exact RingHom.IsIntegral.trans _ _ hιM hι₂
       have hfinc : AlgebraicCurve.FiniteAlong F (ι₂.comp ιM) :=
         AlgebraicCurve.finiteAlong_comp ιM ι₂ hfinM hfin₂
@@ -914,7 +1064,8 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
         Affine.pointMapOfPushforward_comp ιM ι₂ hιM hι₂ hιc hfinM hfin₂ hfinc hNM hN₂ hNc
       rw [hmapeq]
       refine KernelTower.ker_comp_eq_zmultiples _ _ ?_ ?_
-      · rw [VeluTwoKernel.ker_pointMapOfPushforward_eq_zmultiples two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂ hfin₂ hN₂ hseam h₀, ← hMQ]
+      · rw [VeluTwoKernel.ker_pointMapOfPushforward_eq_zmultiples two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂
+          hfin₂ hN₂ hseam h₀, ← hMQ]
         exact AddSubgroup.zmultiples_le.mpr
           (AddSubgroup.nsmul_mem _ (AddSubgroup.mem_zmultiples Q) M)
       · have hQimg : WeierstrassCurve.Affine.pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂ Q
@@ -933,7 +1084,6 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
         hord' hΔV
 
 open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples.WeierstrassCurve in
-
 theorem solution {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {N : ℕ} [NeZero N] (hord : addOrderOf Q = N)
@@ -983,6 +1133,7 @@ theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPu
       (hι : ι.toRingHom.IsIntegral) (hfin : AlgebraicCurve.FiniteAlong F ι),
       ∀ hN : AlgebraicCurve.NormFormulaAlong F ι hfin,
         (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
-          = AddSubgroup.zmultiples Q := _root_.P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples.solution hord hΔ'
+          = AddSubgroup.zmultiples Q :=
+  solution hord hΔ'
 
 end publicSection

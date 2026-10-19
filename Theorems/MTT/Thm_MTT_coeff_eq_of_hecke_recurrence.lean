@@ -109,10 +109,12 @@ theorem solution (k : ℕ) (e a b c : ℕ → ℂ)
         have hlt' : m' / p < p * m' := lt_of_le_of_lt (Nat.div_le_self _ _) hlt
         exact ih _ hlt' hpos
       · simp
-    have : b (p * m') = a p * b m' - e p * (p : ℂ) ^ (k - 1) * (if p ∣ m' then b (m' / p) else 0) := by
+    have : b (p * m') = a p * b m' - e p * (p : ℂ) ^ (k - 1) * (if p ∣ m' then b (m' / p) else 0) :=
+      by
       rw [← key_b]; ring
     rw [this, ihm', hcorr]
-    have : c (p * m') = a p * c m' - e p * (p : ℂ) ^ (k - 1) * (if p ∣ m' then c (m' / p) else 0) := by
+    have : c (p * m') = a p * c m' - e p * (p : ℂ) ^ (k - 1) * (if p ∣ m' then c (m' / p) else 0) :=
+      by
       rw [← key_c]; ring
     rw [this]; ring
 

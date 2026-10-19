@@ -239,7 +239,7 @@ theorem solution
       fun hmem => ?_⟩
     have hgval : (⟨(g:F), hmem⟩ : v.toValuationSubring) * ⟨_, hms⟩ = ⟨_, hmr⟩ := by
       refine Subtype.ext ?_
-      show (g:F) * (aeval x s * x ^ (-(s.natDegree:ℤ))) = aeval x r * x ^ (-(r.natDegree:ℤ))
+      change (g:F) * (aeval x s * x ^ (-(s.natDegree:ℤ))) = aeval x r * x ^ (-(r.natDegree:ℤ))
       rw [hgrs, div_mul_eq_mul_div, mul_div_assoc,
           mul_div_cancel_left₀ _ (haeval_ne_zero s hs0),
           show (r.natDegree:ℤ) = s.natDegree from hdeg]
@@ -510,10 +510,10 @@ theorem solution
       have hxcan : x ^ Q * x ^ q₂ = x ^ (q₂ + Q) := by rw [← zpow_add₀ hx0]; ring_nf
       have htcan : (t vv) ^ (a₃+1) * (t vv) ^ (-(a₃+1)) = 1 := by
         rw [← zpow_add₀ (ht0 vv hv₀), add_neg_cancel, zpow_zero]
-      calc x ^ Q * (t vv)^(a₃+1) * (x^q₂ * ((φ (j k):E):F) * (z vv i₃.1.2 k * (t vv)^(-(a₃+1))))
-          = (x^Q * x^q₂) * ((φ (j k):E):F) * z vv i₃.1.2 k *
-            ((t vv)^(a₃+1) * (t vv)^(-(a₃+1))) := by ring
-        _ = x^(q₂+Q) * ((φ (j k):E):F) * z vv i₃.1.2 k := by rw [hxcan, htcan, mul_one]
+      calc x ^ Q * (t vv) ^ (a₃+1) * (x ^ q₂ * ((φ (j k):E):F) * (z vv i₃.1.2 k * (t vv) ^ (-(a₃+1))))
+          = (x ^ Q * x ^ q₂) * ((φ (j k):E):F) * z vv i₃.1.2 k *
+            ((t vv) ^ (a₃+1) * (t vv) ^ (-(a₃+1))) := by ring
+        _ = x ^ (q₂+Q) * ((φ (j k):E):F) * z vv i₃.1.2 k := by rw [hxcan, htcan, mul_one]
     have hxEpow : ∀ (r : ℤ), ((xE ^ r : E) : F) = x ^ r := fun r => by
       rw [show ((xE ^ r : E) : F) = E.val (xE ^ r) from rfl, map_zpow₀]; rfl
     have hEgk : ∀ k (hjk : j k ∈ supp),
@@ -540,7 +540,7 @@ theorem solution
         have hsplit : (⟨_, hμψT_mem (j k)⟩ : vv.toValuationSubring)
             = ⟨_, hgmem⟩ * ⟨z vv i₃.1.2 k, hz_reg vv i₃.1.2 k vv hv₀⟩ := by
           refine Subtype.ext ?_
-          show μ * (x ^ q₂ * ((φ (j k):E):F) * T (j k))
+          change μ * (x ^ q₂ * ((φ (j k):E):F) * T (j k))
             = ((xE ^ (q (j k) hjk.1) * φ (j k) : E) : F) * z vv i₃.1.2 k
           rw [hjk_simp k hjk.1 hjk.2, hEgk k hjk.1]
         rw [hsplit, map_mul]
@@ -586,6 +586,7 @@ theorem AlgebraicCurve.Divisor.degree_le_finrank_adjoin_of_eq_max_neg_ord
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (-v.ord x)) :
-    Divisor.degree D ≤ (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_Divisor_degree_le_finrank_adjoin_of_eq_max_neg_ord.solution x hx D hD
+    Divisor.degree D ≤ (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) :=
+  solution x hx D hD
 
 end publicSection

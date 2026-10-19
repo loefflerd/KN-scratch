@@ -100,9 +100,9 @@ def ProjectiveLine.map (f : R →+* S) : ProjectiveLine R → ProjectiveLine S :
     refine Quotient.sound ⟨⟨f u, f ↑u⁻¹, ?_, ?_⟩, ?_, ?_⟩
     · rw [← map_mul, Units.mul_inv, map_one]
     · rw [← map_mul, Units.inv_mul, map_one]
-    · show f ↑u * f v.1.1 = f w.1.1
+    · change f ↑u * f v.1.1 = f w.1.1
       rw [← map_mul, h1]
-    · show f ↑u * f v.1.2 = f w.1.2
+    · change f ↑u * f v.1.2 = f w.1.2
       rw [← map_mul, h2]
 
 @[simp]
@@ -119,18 +119,18 @@ variable {R : Type*} [CommRing R]
 def borel (R : Type*) [CommRing R] : Subgroup (SpecialLinearGroup (Fin 2) R) where
   carrier := { M | M.1 1 0 = 0 }
   one_mem' := by
-    show (1 : SpecialLinearGroup (Fin 2) R).1 1 0 = 0
+    change (1 : SpecialLinearGroup (Fin 2) R).1 1 0 = 0
     simp
   mul_mem' := by
     intro A B hA hB
     simp only [Set.mem_ofPred_eq] at *
-    show (A * B).1 1 0 = 0
+    change (A * B).1 1 0 = 0
     rw [SpecialLinearGroup.coe_mul, (Matrix.two_mul_expl A.1 B.1).2.2.1, hA, hB]
     ring
   inv_mem' := by
     intro A hA
     simp only [Set.mem_ofPred_eq] at *
-    show (A⁻¹).1 1 0 = 0
+    change (A⁻¹).1 1 0 = 0
     rw [SpecialLinearGroup.SL2_inv_expl A]
     simp only [Matrix.cons_val_one, Matrix.cons_val_zero, neg_eq_zero]
     exact hA

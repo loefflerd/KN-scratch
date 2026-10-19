@@ -67,7 +67,9 @@ namespace P2MW.S_ModularCurve_modularPolynomialFamily
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq ModularPolynomialData EvalSymm ModularPolynomialFamily PhiGen.IntCoeffs PhiGen.exists_phiGenDescends PhiGen.mem_adjoin_jq_of_phiGenDescends PhiGen.exists_modularPolynomialData_coeff_eq PhiGen.evalSymm_of_coeff_evalAtJ_eq"
+p2m_export "ModularCurve" "jq ModularPolynomialData EvalSymm ModularPolynomialFamily \
+  PhiGen.IntCoeffs PhiGen.exists_phiGenDescends PhiGen.mem_adjoin_jq_of_phiGenDescends \
+  PhiGen.exists_modularPolynomialData_coeff_eq PhiGen.evalSymm_of_coeff_evalAtJ_eq"
 p2m_open "ModularCurve"
 
 theorem exists_modularPolynomialData_evalSymm' (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
@@ -115,6 +117,8 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.modularPolynomialFamily : ModularPolynomialFamily := _root_.P2MW.S_ModularCurve_modularPolynomialFamily.solution
+theorem ModularCurve.modularPolynomialFamily :
+    ModularPolynomialFamily :=
+  solution
 
 end publicSection

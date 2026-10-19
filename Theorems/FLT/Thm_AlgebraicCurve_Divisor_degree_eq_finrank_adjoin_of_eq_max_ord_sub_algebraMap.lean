@@ -71,7 +71,8 @@ theorem adicValuation_eq_exp (v : Place K F) {f : F} (hf : f ≠ 0) :
     v.adicValuation f = WithZero.exp (-v.ord f) := by
   rw [Place.ord, neg_neg, WithZero.exp_log (v.adicValuation_ne_zero hf)]
 
-theorem ord_sub_algebraMap_of_neg (v : Place K F) {x : F} (hx : x ≠ 0) (a : K) (hxa : x - algebraMap K F a ≠ 0)
+theorem ord_sub_algebraMap_of_neg (v : Place K F) {x : F} (hx : x ≠ 0) (a : K)
+    (hxa : x - algebraMap K F a ≠ 0)
     (h : v.ord x < 0) : v.ord (x - algebraMap K F a) = v.ord x := by
   have hc : v.adicValuation (algebraMap K F a) ≤ 1 := v.adicValuation_algebraMap_le_one a
   have hxv : 1 < v.adicValuation x := by
@@ -84,7 +85,8 @@ theorem ord_sub_algebraMap_of_neg (v : Place K F) {x : F} (hx : x ≠ 0) (a : K)
   have := WithZero.exp_injective heq
   omega
 
-theorem ord_sub_algebraMap_nonneg (v : Place K F) {x : F} (hx : x ≠ 0) (a : K) (hxa : x - algebraMap K F a ≠ 0)
+theorem ord_sub_algebraMap_nonneg (v : Place K F) {x : F} (hx : x ≠ 0) (a : K)
+    (hxa : x - algebraMap K F a ≠ 0)
     (h : 0 ≤ v.ord x) : 0 ≤ v.ord (x - algebraMap K F a) := by
   have hc : v.adicValuation (algebraMap K F a) ≤ 1 := v.adicValuation_algebraMap_le_one a
   have hxv : v.adicValuation x ≤ 1 := by
@@ -116,7 +118,7 @@ theorem solution
   let Dinf : Divisor K F := P.mapRange (fun n => max 0 (-n)) (by simp)
   have hDinf : ∀ v : Place K F, Dinf v = max 0 (-v.ord x) := by
     intro v
-    show max 0 (-P v) = _
+    change max 0 (-P v) = _
     rw [hP v]
     rcases lt_or_ge (v.ord x) 0 with h | h
     · rw [FibreDegE96.ord_sub_algebraMap_of_neg v hx0 a hxa h]
@@ -125,7 +127,7 @@ theorem solution
   have hsplit : D - Dinf = P := by
     ext v
     rw [Finsupp.sub_apply, hD v]
-    show max 0 (v.ord (x - algebraMap K F a)) - max 0 (-P v) = P v
+    change max 0 (v.ord (x - algebraMap K F a)) - max 0 (-P v) = P v
     rw [hP v]
     omega
   have hdeg : Divisor.degree D = Divisor.degree Dinf := by
@@ -151,6 +153,7 @@ theorem AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebr
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (a : K) (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (v.ord (x - algebraMap K F a))) :
-    Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap.solution x hx a D hD
+    Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) :=
+  solution x hx a D hD
 
 end publicSection

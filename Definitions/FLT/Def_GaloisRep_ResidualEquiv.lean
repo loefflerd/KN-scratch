@@ -95,7 +95,7 @@ noncomputable def baseChangeAlong {k' : Type} [Field k'] (ψ : k →+* k')
   letI : Algebra k k' := ψ.toAlgebra
   { toLinearEquiv := e.toLinearEquiv.baseChange k k' ρ₁.V ρ₂.V
     map_apply := fun σ x => by
-      show e.toLinearEquiv.baseChange k k' ρ₁.V ρ₂.V ((ρ₁.ρ σ).baseChange k' x) =
+      change e.toLinearEquiv.baseChange k k' ρ₁.V ρ₂.V ((ρ₁.ρ σ).baseChange k' x) =
         (ρ₂.ρ σ).baseChange k' (e.toLinearEquiv.baseChange k k' ρ₁.V ρ₂.V x)
       induction x using TensorProduct.inductionOn with
       | tmul b v =>

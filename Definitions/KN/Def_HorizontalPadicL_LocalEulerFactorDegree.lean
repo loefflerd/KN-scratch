@@ -30,7 +30,7 @@ a_{p^{r+1}}-p a_{p^r}$.
 namespace HorizontalPadicL
 
 /-- Coefficient-side formulation that the local Euler polynomial of `E` at `p`
-has degree strictly below two.  For an elliptic curve the reciprocal local Euler
+has degree strictly below two. For an elliptic curve the reciprocal local Euler
 factor then has the linear recurrence displayed here (including the degree-zero
 case, when `E.LFunction p = 0`). -/
 def LocalEulerFactorDegreeBelowTwo (E : WeierstrassCurve ℚ) (p : ℕ) : Prop :=

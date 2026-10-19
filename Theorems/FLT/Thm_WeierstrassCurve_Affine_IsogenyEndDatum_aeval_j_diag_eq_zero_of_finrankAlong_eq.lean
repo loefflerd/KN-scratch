@@ -89,7 +89,8 @@ noncomputable section
 universe u
 
 namespace ModularCurve
-p2m_export "ModularCurve" "ModularPolynomialData ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic"
+p2m_export "ModularCurve" "ModularPolynomialData \
+  ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic"
 p2m_open "ModularCurve"
 open Cardinal IntermediateField
 
@@ -145,9 +146,22 @@ theorem kw_nonempty_ringHom_algebraicClosure_complex (K₀ : Type u) [Field K₀
 end ModularCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY variableChange_j a₃ a₁ map Affine.CoordinateRing coe_Δ' map_j mk Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine Affine.Point Δ Affine.Point.neg_some baseChange j exists_intermediateField_countable_map_eq_and_finrankAlong_eq Affine.exists_algHom_functionField_baseChange_finrankAlong_eq Affine.natCard_ker_pointMapOfPushforward_eq_finrankAlong nonempty_functionField_algEquiv_of_variableChange Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve" "Affine Affine.negY variableChange_j a₃ a₁ map Affine.CoordinateRing \
+  coe_Δ' map_j mk Affine.Point.some Affine.Point.some.injEq reduction IsIntegral toAffine \
+  Affine.Point Δ Affine.Point.neg_some baseChange j \
+  exists_intermediateField_countable_map_eq_and_finrankAlong_eq \
+  Affine.exists_algHom_functionField_baseChange_finrankAlong_eq \
+  Affine.natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  nonempty_functionField_algEquiv_of_variableChange \
+  Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem Affine.CoordinateRing.isDedekindDomain \
+  Affine.hasPrincipalDivisors_functionField"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "negY CoordinateRing map baseChange Point.some Point.some.injEq FunctionField Point polynomial Point.neg_some pointMapOfPushforward IsogenyEndDatum exists_algHom_functionField_baseChange_finrankAlong_eq natCard_ker_pointMapOfPushforward_eq_finrankAlong exists_genusOnePlaceGate_isCentred_and_abelTheorem CoordinateRing.isDedekindDomain hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve.Affine" "negY CoordinateRing map baseChange Point.some \
+  Point.some.injEq FunctionField Point polynomial Point.neg_some pointMapOfPushforward \
+  IsogenyEndDatum exists_algHom_functionField_baseChange_finrankAlong_eq \
+  natCard_ker_pointMapOfPushforward_eq_finrankAlong \
+  exists_genusOnePlaceGate_isCentred_and_abelTheorem CoordinateRing.isDedekindDomain \
+  hasPrincipalDivisors_functionField"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 open AlgebraicCurve
@@ -160,8 +174,10 @@ section AutoNorm
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
+omit [DecidableEq F] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
@@ -169,7 +185,7 @@ theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionF
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -178,9 +194,14 @@ end AutoNorm
 end WeierstrassCurve.Affine
 
 namespace ModularCurve
-p2m_export "ModularCurve" "ModularPolynomialData ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic"
+p2m_export "ModularCurve" "ModularPolynomialData \
+  ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic"
 p2m_open "ModularCurve"
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine AlgebraicCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.Weierstras\
+  sCurve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.Weierstras\
+  sCurve.Affine AlgebraicCurve"
 
 section ConjHelpers
 
@@ -229,7 +250,7 @@ theorem kw_fdn2_qephod_hend21_finrankAlong_conj
     (algebraAlong (kw_fdn2_qephod_hend21_conjSeam eE eE' ι))
     E'.FunctionField E.FunctionField _ _ (algebraAlong ι)
     eE'.toRingEquiv eE.toRingEquiv (RingHom.ext fun x => ?_)
-  show ι (eE' x) = eE (eE.symm (ι (eE' x)))
+  change ι (eE' x) = eE (eE.symm (ι (eE' x)))
   exact (eE.apply_symm_apply _).symm
 
 end ConjHelpers
@@ -241,19 +262,28 @@ set_option linter.unusedVariables false
 section
 open Complex Filter Set
 
-p2m_open_scoped "PeriodPair P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.PeriodPair"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe lattice_eq_span_range_basis ω₁ mk g₃ ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₃ DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ scale_indep scale discriminant_ne_zero isUniformization_toPoint exists_variableChange_smul_weierstrassCurve_eq exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient"
+p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe \
+  lattice_eq_span_range_basis ω₁ mk g₃ ω₂ derivWeierstrassP_add_coe mem_lattice G g₂ \
+  weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₃ DiscriminantNeZero toPoint \
+  toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice \
+  jLattice_eq_c₄_pow_three_div_Δ scale_indep scale discriminant_ne_zero isUniformization_toPoint \
+  exists_variableChange_smul_weierstrassCurve_eq \
+  exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-private theorem _root_.PeriodPair.kw_discriminantNeZero : L.DiscriminantNeZero := L.discriminant_ne_zero
+private theorem _root_.PeriodPair.kw_discriminantNeZero :
+    L.DiscriminantNeZero := L.discriminant_ne_zero
 
 p2m_export "PeriodPair" "kw_discriminantNeZero"
 
-private theorem _root_.PeriodPair.kw_isUniformization : L.IsUniformization L.kw_discriminantNeZero :=
+private theorem _root_.PeriodPair.kw_isUniformization :
+    L.IsUniformization L.kw_discriminantNeZero :=
   L.isUniformization_toPoint _
 
 p2m_export "PeriodPair" "kw_isUniformization"
@@ -276,7 +306,8 @@ scoped instance kw_instIsElliptic : L.weierstrassCurve.IsElliptic :=
 
 section Liouville
 
-private theorem _root_.PeriodPair.sub_fract_mem_lattice (z : ℂ) : z - ZSpan.fract L.basis z ∈ L.lattice := by
+private theorem _root_.PeriodPair.sub_fract_mem_lattice (z : ℂ) :
+    z - ZSpan.fract L.basis z ∈ L.lattice := by
   rw [L.lattice_eq_span_range_basis]
   have h := (ZSpan.fract_eq_fract L.basis (ZSpan.fract L.basis z) z).mp
     (by rw [ZSpan.fract_eq_self.mpr (ZSpan.fract_mem_fundamentalDomain L.basis z)])
@@ -333,7 +364,8 @@ end ToPointLemmas
 
 section Isogeny
 
-private theorem _root_.PeriodPair.apply_eq_apply_of_continuous_of_mapsTo_lattice {f : ℂ → ℂ} (hf : Continuous f)
+private theorem _root_.PeriodPair.apply_eq_apply_of_continuous_of_mapsTo_lattice {f : ℂ → ℂ}
+    (hf : Continuous f)
     (hmem : ∀ z, f z ∈ L.lattice) (z w : ℂ) : f z = f w := by
   refine IsPreconnected.constant_of_mapsTo (isPreconnected_univ) ?_
     hf.continuousOn (fun u _ => hmem u) (mem_univ z) (mem_univ w)
@@ -416,7 +448,8 @@ private def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictSca
 
 @[scoped simp] private theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
+private theorem _root_.PeriodPair.scale_lattice :
+    (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
   congr 1
@@ -544,7 +577,8 @@ private theorem _root_.PeriodPair.kw_ker_toPointHom :
 
 p2m_export "PeriodPair" "kw_ker_toPointHom"
 
-private def _root_.PeriodPair.kw_toPointAddEquiv : (ℂ ⧸ L.lattice.toAddSubgroup) ≃+ (L.weierstrassCurve.toAffine).Point :=
+private def _root_.PeriodPair.kw_toPointAddEquiv :
+    (ℂ ⧸ L.lattice.toAddSubgroup) ≃+ (L.weierstrassCurve.toAffine).Point :=
   QuotientAddGroup.liftEquiv L.lattice.toAddSubgroup (φ := L.kw_toPointHom)
     (L.kw_isUniformization).2.1 L.kw_ker_toPointHom.symm
 
@@ -570,7 +604,8 @@ scoped instance kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :
 end PeriodPair
 end
 
-theorem s13_aeval_diag_eq_eval_map {R : Type*} [CommRing R] (Φ : Polynomial (Polynomial ℤ)) (a : R) :
+theorem s13_aeval_diag_eq_eval_map {R : Type*} [CommRing R] (Φ : Polynomial (Polynomial ℤ)) (a : R)
+    :
     Polynomial.aeval a (Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X)
       = (Φ.map (Polynomial.eval₂RingHom (Int.castRingHom R) a)).eval a := by
   let lhs : Polynomial (Polynomial ℤ) →+* R :=
@@ -579,7 +614,8 @@ theorem s13_aeval_diag_eq_eval_map {R : Type*} [CommRing R] (Φ : Polynomial (Po
     (Polynomial.evalRingHom a).comp (Polynomial.mapRingHom (Polynomial.eval₂RingHom (Int.castRingHom R) a))
   have h : lhs = rhs := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
-    · simp only [lhs, rhs, RingHom.comp_apply, Polynomial.coe_eval₂RingHom,         RingHom.id_apply, Polynomial.coe_mapRingHom, Polynomial.map_C, Polynomial.coe_evalRingHom,
+    · simp only [lhs, rhs, RingHom.comp_apply, Polynomial.coe_eval₂RingHom, RingHom.id_apply,
+        Polynomial.coe_mapRingHom, Polynomial.map_C, Polynomial.coe_evalRingHom,
         Polynomial.eval_C, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Polynomial.aeval_def,
         Polynomial.eval₂_eq_eval_map]
       simp []
@@ -593,7 +629,7 @@ theorem s13_j_weierstrassCurve_eq_jLattice (L : PeriodPair) [L.weierstrassCurve.
 
 open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.ModularCurve in
 theorem solution
-    {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+    {K : Type u} [Field K] [IsAlgClosed K] [CharZero K]
     (W : WeierstrassCurve K) [W.IsElliptic]
     {N : ℕ} [NeZero N] (hN : Squarefree N) (data : ModularCurve.ModularPolynomialData N)
     (D : IsogenyEndDatum W.toAffine) (hdeg : finrankAlong K D.ι = N) :
@@ -641,7 +677,8 @@ theorem solution
   let := g
   have := hgc
   have := hga
-  obtain ⟨eE⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
+  obtain ⟨eE⟩ :=
+    WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
   let ι₂ := kw_fdn2_qephod_hend21_conjSeam eE eE ι₁
   have hι₂ : ι₂.toRingHom.IsIntegral := kw_fdn2_qephod_hend21_conjSeam_isIntegral eE eE ι₁ hι₁
   have hfin₂ : FiniteAlong ℂ ι₂ := kw_fdn2_qephod_hend21_conjSeam_finiteAlong eE eE ι₁ hfin₁
@@ -654,10 +691,12 @@ theorem solution
   obtain ⟨β, hsub, hidx, hcq⟩ :=
     PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
       L L ι₂ hι₂ hfin₂ hN₂ N hcyc hcard
-  have hroot := ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic N data L (L.scale β)
+  have hroot :=
+    ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic N data L (L.scale β)
     hsub hidx hcq
   rw [PeriodPair.jLattice_scale] at hroot
-  rw [WeierstrassCurve.variableChange_j, s13_j_weierstrassCurve_eq_jLattice, s13_aeval_diag_eq_eval_map]
+  rw [WeierstrassCurve.variableChange_j, s13_j_weierstrassCurve_eq_jLattice,
+    s13_aeval_diag_eq_eval_map]
   exact hroot
 
 end
@@ -674,10 +713,13 @@ open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u
 theorem WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq
-    {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+    {K : Type u} [Field K] [IsAlgClosed K] [CharZero K]
     (W : WeierstrassCurve K) [W.IsElliptic]
     {N : ℕ} [NeZero N] (hN : Squarefree N) (data : ModularCurve.ModularPolynomialData N)
     (D : IsogenyEndDatum W.toAffine) (hdeg : finrankAlong K D.ι = N) :
-    Polynomial.aeval W.j (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X) = 0 := _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.solution W hN data D hdeg
+    Polynomial.aeval W.j (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X) = 0 := by
+  classical
+  exact
+    solution W hN data D hdeg
 
 end publicSection

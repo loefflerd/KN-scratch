@@ -97,11 +97,11 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
   have : IsScalarTower (RatFunc k) k⟮x⟯ F := IsScalarTower.of_algebraMap_eq fun _ => rfl
   have : IsScalarTower k (RatFunc k) k⟮x⟯ :=
     IsScalarTower.of_algebraMap_eq fun r => by
-      show algebraMap k k⟮x⟯ r = e (algebraMap k (RatFunc k) r)
+      change algebraMap k k⟮x⟯ r = e (algebraMap k (RatFunc k) r)
       rw [AlgEquiv.commutes]
   have : IsScalarTower k (RatFunc k) F :=
     IsScalarTower.of_algebraMap_eq fun r => by
-      show algebraMap k F r = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) r))
+      change algebraMap k F r = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) r))
       rw [AlgEquiv.commutes]
       exact IsScalarTower.algebraMap_apply k k⟮x⟯ F r
   have : Module.Finite (RatFunc k) k⟮x⟯ :=
@@ -114,12 +114,13 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
     Algebra.IsSeparable.of_algHom (RatFunc k) (RatFunc k)
       { e.symm.toRingEquiv.toRingHom with
         commutes' := fun r => by
-          show e.symm (algebraMap (RatFunc k) k⟮x⟯ r) = r
+          change e.symm (algebraMap (RatFunc k) k⟮x⟯ r) = r
           exact e.symm_apply_apply r }
   have : Algebra.IsSeparable (RatFunc k) F := Algebra.IsSeparable.trans (RatFunc k) k⟮x⟯ F
   have : Algebra.EssFiniteType (Polynomial k) (RatFunc k) :=
     Algebra.EssFiniteType.of_isLocalization (RatFunc k) (nonZeroDivisors (Polynomial k))
-  have : Algebra.EssFiniteType k (RatFunc k) := Algebra.EssFiniteType.comp k (Polynomial k) (RatFunc k)
+  have : Algebra.EssFiniteType k (RatFunc k) :=
+    Algebra.EssFiniteType.comp k (Polynomial k) (RatFunc k)
   have : Algebra.EssFiniteType (RatFunc k) F := inferInstance
   have : Algebra.EssFiniteType k F := Algebra.EssFiniteType.comp k (RatFunc k) F
   have hHCD : HasCanonicalDivisor (K := k) (F := F) := hasCanonicalDivisor_of_isCurveOver
@@ -131,7 +132,8 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
   have : FiniteDimensional k (LSpace (0 : Divisor k F)) :=
     RationalFunctionField.finiteDimensional_lSpace_zero_of_constantsAreBase k F hC
   have : Nonempty (Place k F) := RationalFunctionField.nonempty_place_of_ratFunc_tower k F
-  have hSG : StichtenothGenusExists k F := RationalFunctionField.stichtenothGenusExists_of_ratFunc_tower k F
+  have hSG : StichtenothGenusExists k F :=
+    RationalFunctionField.stichtenothGenusExists_of_ratFunc_tower k F
   have hWDA : WeilDualityAdelic k F :=
     weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists hRR hSG
   have hg : genus k F = genusFF k F := genus_eq_genusFF hRR hWDA hC
@@ -145,7 +147,7 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
     have : Divisor.degree D = D.degree := rfl
     linarith
   have hell0 : ell (canonicalDivisorOf hω - D) = 0 := by
-    show Module.finrank k ↥(LSpace (canonicalDivisorOf hω - D)) = 0
+    change Module.finrank k ↥(LSpace (canonicalDivisorOf hω - D)) = 0
     rw [lSpace_eq_bot_of_degree_neg hneg, finrank_bot]
   rw [hell0, hg, Nat.cast_zero, sub_zero] at hRRD
   exact hRRD
@@ -182,6 +184,7 @@ theorem AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSep
     (hfin : FiniteDimensional (IntermediateField.adjoin k ({x} : Set F)) F)
     (hsep : Algebra.IsSeparable (IntermediateField.adjoin k ({x} : Set F)) F)
     (D : Divisor k F) (hD : 2 * (genusFF k F : ℤ) - 1 ≤ D.degree) :
-    (ell D : ℤ) = D.degree + 1 - (genusFF k F : ℤ) := _root_.P2MW.S_AlgebraicCurve_ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable.solution k x hx hfin hsep D hD
+    (ell D : ℤ) = D.degree + 1 - (genusFF k F : ℤ) :=
+  solution k x hx hfin hsep D hD
 
 end publicSection

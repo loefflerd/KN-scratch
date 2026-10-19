@@ -153,7 +153,7 @@ theorem _root_.solution
     have hact := IsCyclotomicExtension.Rat.galEquivZMod_apply_of_pow_eq
       t L tau hroot_t
     rw [hact]
-    apply pow_eq_pow_of_modEq
+    refine pow_eq_pow_of_modEq ?_ hroot.pow_eq_one
     rw [← ZMod.natCast_eq_natCast_iff]
     change ((gal tau).val.val : ZMod q) =
       (((toCyclo (gal tau) : ZMod q).val : ℕ) : ZMod q)
@@ -162,7 +162,6 @@ theorem _root_.solution
         rw [ZMod.cast_eq_val]
       _ = (toCyclo (gal tau) : ZMod q) := (ZMod.unitsMap_val hq_dvd (gal tau)).symm
       _ = ((toCyclo (gal tau) : ZMod q).val : ZMod q) := (ZMod.natCast_zmod_val _).symm
-    exact hroot.pow_eq_one
   · intro b
     obtain ⟨d, hd⟩ := ZMod.unitsMap_surjective hn_dvd b
     refine ⟨gal.symm d, ?_⟩

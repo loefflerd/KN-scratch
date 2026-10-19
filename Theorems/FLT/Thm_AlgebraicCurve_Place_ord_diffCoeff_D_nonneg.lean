@@ -78,7 +78,9 @@ open IsDedekindDomain WithZero IsLocalRing KaehlerDifferential
 open scoped TensorProduct
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.mem_maximalIdeal_iff_ord_pos' Place.restrict Place Place.coe_algebraMap Place.ord_zero Place.diffCoeff Place.diffCoeff_smul_D_eq finiteDimensional_adjoin_of_transcendental"
+p2m_export "AlgebraicCurve" "Place.mem_maximalIdeal_iff_ord_pos' Place.restrict Place \
+  Place.coe_algebraMap Place.ord_zero Place.diffCoeff Place.diffCoeff_smul_D_eq \
+  finiteDimensional_adjoin_of_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace FF2R4
@@ -120,7 +122,7 @@ private theorem isLocalization_valuationSubring {K Φ : Type*} [Field K] [Field 
       w.mem_of_ord_nonneg (inv_ne_zero hsΦ) (by rw [w.ord_inv, hord0]; omega)
     refine isUnit_iff_exists_inv.mpr ⟨⟨(algebraMap R Φ s)⁻¹, hinv⟩, ?_⟩
     apply Subtype.ext
-    show (algebraMap R w.toValuationSubring s : Φ) * (algebraMap R Φ s)⁻¹ = 1
+    change (algebraMap R w.toValuationSubring s : Φ) * (algebraMap R Φ s)⁻¹ = 1
     rw [halg, mul_inv_cancel₀ hsΦ]
   · intro z
     have hz : (z : Φ) ∈ HeightOneSpectrum.valuationSubringAtPrime Φ P := heq ▸ z.2
@@ -135,7 +137,7 @@ private theorem isLocalization_valuationSubring {K Φ : Type*} [Field K] [Field 
       (Subtype.val : (HeightOneSpectrum.valuationSubringAtPrime Φ P) → Φ) hfrac
     refine ⟨⟨a, s⟩, ?_⟩
     apply Subtype.ext
-    show (z : Φ) * (algebraMap R w.toValuationSubring (s : R) : Φ)
+    change (z : Φ) * (algebraMap R w.toValuationSubring (s : R) : Φ)
       = (algebraMap R w.toValuationSubring a : Φ)
     rw [halg, halg, ← hWcoe (s : R), ← hWcoe a]
     exact hfrac'
@@ -300,7 +302,7 @@ private theorem engine {K : Type*} [Field K] [CharZero K] {F : Type*} [Field F] 
       (algebraMap u.toValuationSubring v.toValuationSubring g : F)
         = algebraMap (RatFunc K) F (g : RatFunc K) := by
     intro g
-    show (algebraMap (integralClosureAt F u) v.toValuationSubring
+    change (algebraMap (integralClosureAt F u) v.toValuationSubring
       (algebraMap u.toValuationSubring (integralClosureAt F u) g) : F) = _
     rw [halgC, ← IsScalarTower.algebraMap_apply u.toValuationSubring (integralClosureAt F u) F,
       IsScalarTower.algebraMap_apply u.toValuationSubring (RatFunc K) F]
@@ -310,7 +312,7 @@ private theorem engine {K : Type*} [Field K] [CharZero K] {F : Type*} [Field F] 
         = algebraMap u.toValuationSubring F := by
     apply RingHom.ext
     intro g
-    show (algebraMap u.toValuationSubring v.toValuationSubring g : F) = _
+    change (algebraMap u.toValuationSubring v.toValuationSubring g : F) = _
     rw [halgOuOv g, IsScalarTower.algebraMap_apply u.toValuationSubring (RatFunc K) F]
     rfl
   have instEFT : Algebra.EssFiniteType u.toValuationSubring v.toValuationSubring := by
@@ -387,10 +389,10 @@ private theorem engine {K : Type*} [Field K] [CharZero K] {F : Type*} [Field F] 
       have hfact : z = algebraMap u.toValuationSubring v.toValuationSubring ⟨RatFunc.X, hXmem⟩
           * ⟨(z : F) * (algebraMap (RatFunc K) F RatFunc.X)⁻¹, hymem⟩ := by
         apply Subtype.ext
-        show (z : F) = (algebraMap u.toValuationSubring v.toValuationSubring
+        change (z : F) = (algebraMap u.toValuationSubring v.toValuationSubring
           ⟨RatFunc.X, hXmem⟩ : F) * ((z : F) * (algebraMap (RatFunc K) F RatFunc.X)⁻¹)
         rw [halgOuOv]
-        show (z : F) = algebraMap (RatFunc K) F RatFunc.X
+        change (z : F) = algebraMap (RatFunc K) F RatFunc.X
           * ((z : F) * (algebraMap (RatFunc K) F RatFunc.X)⁻¹)
         rw [mul_comm (z : F) _, ← mul_assoc, mul_inv_cancel₀ htne, one_mul]
       rw [hfact]
@@ -428,7 +430,7 @@ private theorem engine {K : Type*} [Field K] [CharZero K] {F : Type*} [Field F] 
     intro a
     apply Subtype.ext
     rw [Place.coe_algebraMap]
-    show algebraMap K F a = (algebraMap u.toValuationSubring v.toValuationSubring
+    change algebraMap K F a = (algebraMap u.toValuationSubring v.toValuationSubring
       (algebraMap (Polynomial K) u.toValuationSubring (algebraMap K (Polynomial K) a)) : F)
     rw [halgOuOv, halgKXOu, ← IsScalarTower.algebraMap_apply K (Polynomial K) (RatFunc K),
       ← IsScalarTower.algebraMap_apply K (RatFunc K) F]
@@ -472,7 +474,7 @@ private theorem engine {K : Type*} [Field K] [CharZero K] {F : Type*} [Field F] 
   have hXOvF : algebraMap v.toValuationSubring F
       (algebraMap (Polynomial K) v.toValuationSubring Polynomial.X)
         = algebraMap (RatFunc K) F RatFunc.X := by
-    show (algebraMap u.toValuationSubring v.toValuationSubring
+    change (algebraMap u.toValuationSubring v.toValuationSubring
       (algebraMap (Polynomial K) u.toValuationSubring Polynomial.X) : F) = _
     rw [halgOuOv, halgKXOu, RatFunc.algebraMap_X]
   have hfOvF : algebraMap v.toValuationSubring F (⟨f, hfmem⟩ : v.toValuationSubring) = f := rfl
@@ -502,7 +504,7 @@ theorem ord_diffCoeff_D_nonneg {K F : Type*} [Field K] [Field F] [Algebra K F] [
   have : IsScalarTower (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) F :=
     IsScalarTower.of_algebraMap_eq fun q => rfl
   have : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq fun r => by
-    show algebraMap K F r
+    change algebraMap K F r
       = algebraMap (↥(IntermediateField.adjoin K ({t} : Set F))) F (e (algebraMap K (RatFunc K) r))
     rw [AlgEquiv.commutes]
     exact IsScalarTower.algebraMap_apply K (↥(IntermediateField.adjoin K ({t} : Set F))) F r
@@ -526,7 +528,8 @@ end AlgebraicCurve
 end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {t : F}
     (ht : v.ord t = 1) {f : F} (hf : 0 ≤ v.ord f) :
     0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) :=
   AlgebraicCurve.FF2R4.ord_diffCoeff_D_nonneg x v ht hf
@@ -539,9 +542,12 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ord_diffCoeff_D_nonneg {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
+theorem AlgebraicCurve.Place.ord_diffCoeff_D_nonneg {K F : Type*} [Field K] [Field F] [Algebra K F]
+    [CharZero K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {t : F}
     (ht : v.ord t = 1) {f : F} (hf : 0 ≤ v.ord f) :
-    0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) := _root_.P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.solution x v ht hf
+    0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) :=
+  solution x v ht hf
 
 end publicSection

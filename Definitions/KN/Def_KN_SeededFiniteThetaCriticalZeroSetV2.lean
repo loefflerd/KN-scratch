@@ -41,7 +41,7 @@ def SeededFiniteThetaDataV2.eval
     (a : ℂ_[p]) * χ.toMonoidHom g
 
 /-- The finite theta elements have the same character zeroes as the seeded
-central critical values.  This is the zero-set consequence of the explicit
+central critical values. This is the zero-set consequence of the explicit
 Birch--Stevens evaluation formula; it is recorded for the very same theta
 elements that occur in the norm relations. -/
 def SeededFiniteThetaDataV2.HasSeededCriticalZeroSet

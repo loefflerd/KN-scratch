@@ -91,18 +91,18 @@ lemma exists_cocycle_rescale (hdRM : d * R ∣ M) {γ : SL(2, ℤ)} (hγ : γ �
   have hdetδ : Matrix.det !![a, (d : ℤ) * b; (R : ℤ) * c', e] = 1 := by
     rw [Matrix.det_fin_two_of]; linear_combination hdet + b * hc'
   refine ⟨⟨_, hdetδ⟩, Gamma0_mem.mpr ?_, ?_⟩
-  · show ((R * c' : ℤ) : ZMod R) = 0
+  · change ((R * c' : ℤ) : ZMod R) = 0
     push_cast; rw [ZMod.natCast_self, zero_mul]
-  · show diagMatInt d * (γ : Matrix (Fin 2) (Fin 2) ℤ)
+  · change diagMatInt d * (γ : Matrix (Fin 2) (Fin 2) ℤ)
       = !![a, (d : ℤ) * b; (R : ℤ) * c', e] * diagMatInt d
     rw [hγmat]; unfold diagMatInt
     rw [Matrix.mul_fin_two, Matrix.mul_fin_two]
     refine Matrix.ext fun i j => ?_
     fin_cases i <;> fin_cases j
-    · show ((d : ℤ) * a + 0 * c : ℤ) = a * (d : ℤ) + (d : ℤ) * b * 0; ring
-    · show ((d : ℤ) * b + 0 * e : ℤ) = a * 0 + (d : ℤ) * b * 1; ring
-    · show (0 * a + 1 * c : ℤ) = (R : ℤ) * c' * (d : ℤ) + e * 0; linear_combination hc'
-    · show (0 * b + 1 * e : ℤ) = (R : ℤ) * c' * 0 + e * 1; ring
+    · change ((d : ℤ) * a + 0 * c : ℤ) = a * (d : ℤ) + (d : ℤ) * b * 0; ring
+    · change ((d : ℤ) * b + 0 * e : ℤ) = a * 0 + (d : ℤ) * b * 1; ring
+    · change (0 * a + 1 * c : ℤ) = (R : ℤ) * c' * (d : ℤ) + e * 0; linear_combination hc'
+    · change (0 * b + 1 * e : ℤ) = (R : ℤ) * c' * 0 + e * 1; ring
 
 private lemma mapGL_coe_eq (s : SL(2, ℤ)) :
     ((Matrix.SpecialLinearGroup.mapGL ℝ s : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ)
@@ -131,7 +131,7 @@ lemma rescaleSlash_slash [NeZero M] (hdRM : d * R ∣ M) (k : ℤ) {f : ℍ → 
       = Matrix.SpecialLinearGroup.mapGL ℝ δ * heckeDiagMatrix d := by
     apply Units.ext
     rw [Units.val_mul, Units.val_mul]
-    show (heckeDiagMatrix d : Matrix (Fin 2) (Fin 2) ℝ) *
+    change (heckeDiagMatrix d : Matrix (Fin 2) (Fin 2) ℝ) *
         ((Matrix.SpecialLinearGroup.mapGL ℝ g : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ)
       = ((Matrix.SpecialLinearGroup.mapGL ℝ δ : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) *
         (heckeDiagMatrix d : Matrix (Fin 2) (Fin 2) ℝ)
@@ -159,7 +159,7 @@ lemma heckeDiagMatrixQ_map (hd : d ≠ 0) :
     (heckeDiagMatrixQ hd).map (Rat.castHom ℝ) = heckeDiagMatrix d := by
   apply Units.ext
   rw [val_heckeDiagMatrix hd]
-  show (heckeDiagMatrixQ hd : Matrix (Fin 2) (Fin 2) ℚ).map (Rat.castHom ℝ) = _
+  change (heckeDiagMatrixQ hd : Matrix (Fin 2) (Fin 2) ℚ).map (Rat.castHom ℝ) = _
   unfold heckeDiagMatrixQ
   ext i j; fin_cases i <;> fin_cases j <;> simp
 
@@ -203,11 +203,11 @@ def rescaleLin (hdRM : d * R ∣ M) (k : ℤ) :
       zero_at_cusps' := fun {c} hc => rescaleSlash_isZeroAt (by exact aux_neZero_d hdRM) k
         (fun c' hc' => CuspFormClass.zero_at_cusps f hc') hc }
   map_add' f g := DFunLike.coe_injective <| by
-    show (⇑(f + g)) ∣[k] heckeDiagMatrix d
+    change (⇑(f + g)) ∣[k] heckeDiagMatrix d
       = (⇑f ∣[k] heckeDiagMatrix d) + (⇑g ∣[k] heckeDiagMatrix d)
     rw [FunLike.coe_add, SlashAction.add_slash]
   map_smul' c f := DFunLike.coe_injective <| by
-    show (⇑(c • f)) ∣[k] heckeDiagMatrix d = c • (⇑f ∣[k] heckeDiagMatrix d)
+    change (⇑(c • f)) ∣[k] heckeDiagMatrix d = c • (⇑f ∣[k] heckeDiagMatrix d)
     rw [FunLike.coe_smul]
     simp only [ModularForm.smul_slash, σ_heckeDiagMatrix, ContinuousAlgEquiv.refl_apply]
 

@@ -100,7 +100,8 @@ theorem algebraMap_pow_ne_zero (ϖ : C) (hϖ : Irreducible ϖ) (m : ℕ) :
   have h3 : (1 : C) = ϖ * c := mul_left_cancel₀ (pow_ne_zero m hϖ0) h2
   exact hϖ.not_isUnit (isUnit_iff_exists_inv.mpr ⟨c, h3.symm⟩)
 
-theorem exists_eq_unit_mul_pow (ϖ : C) (hϖ : Irreducible ϖ) (x : AdicCompletion (maximalIdeal C) C) (hx : x ≠ 0) :
+theorem exists_eq_unit_mul_pow (ϖ : C) (hϖ : Irreducible ϖ) (x : AdicCompletion (maximalIdeal C) C)
+    (hx : x ≠ 0) :
     ∃ (n : ℕ) (v : (AdicCompletion (maximalIdeal C) C)ˣ),
       x = (v : AdicCompletion (maximalIdeal C) C) * algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ ^ n := by
   classical
@@ -126,7 +127,8 @@ theorem exists_eq_unit_mul_pow (ϖ : C) (hϖ : Irreducible ϖ) (x : AdicCompleti
     by_contra hnu
     apply hN
     rw [hn, maximalIdeal_pow_eq_span ϖ hϖ, Ideal.mem_span_singleton, hx']
-    have hmem : x' ∈ maximalIdeal (AdicCompletion (maximalIdeal C) C) := (mem_maximalIdeal x').mpr hnu
+    have hmem : x' ∈ maximalIdeal (AdicCompletion (maximalIdeal C) C) :=
+      (mem_maximalIdeal x').mpr hnu
     rw [maximalIdeal_eq_span ϖ hϖ, Ideal.mem_span_singleton] at hmem
     obtain ⟨x'', rfl⟩ := hmem
     exact ⟨x'', by rw [Nat.succ_eq_add_one, pow_succ]; ring⟩
@@ -143,7 +145,8 @@ theorem isDomain (ϖ : C) (hϖ : Irreducible ϖ) : IsDomain (AdicCompletion (max
     have h : (v : AdicCompletion (maximalIdeal C) C) * w * algebraMap C _ ϖ ^ (m + n) = 0 := by
       rw [← hab, hv, hw]; ring
     have h' : algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ ^ (m + n) = 0 := by
-      have hu : IsUnit ((v : AdicCompletion (maximalIdeal C) C) * w) := (Units.isUnit v).mul (Units.isUnit w)
+      have hu : IsUnit ((v : AdicCompletion (maximalIdeal C) C) * w) :=
+        (Units.isUnit v).mul (Units.isUnit w)
       exact (hu.mul_right_eq_zero).mp h
     exact algebraMap_pow_ne_zero ϖ hϖ (m + n) h'
   exact NoZeroDivisors.to_isDomain _
@@ -213,9 +216,9 @@ theorem isAdicComplete_maximalIdeal :
 end ADICDVRe133
 
 open ADICDVRe133 in
-
 theorem solution
-    (C : Type u) [CommRing C] [IsDomain C] [IsDiscreteValuationRing C] (ϖ : C) (hϖ : Irreducible ϖ) :
+    (C : Type u) [CommRing C] [IsDomain C] [IsDiscreteValuationRing C] (ϖ : C) (hϖ : Irreducible ϖ)
+    :
     ∃ (_ : IsDomain (AdicCompletion (IsLocalRing.maximalIdeal C) C))
       (_ : IsDiscreteValuationRing (AdicCompletion (IsLocalRing.maximalIdeal C) C))
       (_ : IsAdicComplete (IsLocalRing.maximalIdeal (AdicCompletion (IsLocalRing.maximalIdeal C) C)) (AdicCompletion (IsLocalRing.maximalIdeal C) C)),
@@ -229,14 +232,16 @@ theorem solution
   have := isDiscreteValuationRing ϖ hϖ
   refine ⟨inferInstance, inferInstance, isAdicComplete_maximalIdeal, irreducible_algebraMap ϖ hϖ, fun n c hc => ?_,
     fun n w => ?_⟩
-  · rw [← maximalIdeal_pow_eq_span ϖ hϖ n, AdicCompletion.maximalIdeal_pow_eq_ker_evalₐ, RingHom.mem_ker,
+  · rw [← maximalIdeal_pow_eq_span ϖ hϖ n, AdicCompletion.maximalIdeal_pow_eq_ker_evalₐ,
+      RingHom.mem_ker,
       AdicCompletion.evalₐ_algebraMap, Ideal.Quotient.eq_zero_iff_mem, hϖ.maximalIdeal_eq,
       Ideal.span_singleton_pow] at hc
     exact hc
   · obtain ⟨a, y, hy, hw⟩ :=
       AdicCompletion.exists_eq_algebraMap_add (maximalIdeal C) AdicCompletion.maximalIdeal_fg n w
     refine ⟨a, ?_⟩
-    rw [hw, add_sub_cancel_left, ← maximalIdeal_pow_eq_span ϖ hϖ n, AdicCompletion.maximalIdeal_pow_eq_ker_evalₐ,
+    rw [hw, add_sub_cancel_left, ← maximalIdeal_pow_eq_span ϖ hϖ n,
+      AdicCompletion.maximalIdeal_pow_eq_ker_evalₐ,
       AdicCompletion.ker_evalₐ_eq_map_pow _ AdicCompletion.maximalIdeal_fg]
     exact hy
 
@@ -254,7 +259,8 @@ universe u
 open IsLocalRing
 
 theorem IsDiscreteValuationRing.adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
-    (C : Type u) [CommRing C] [IsDomain C] [IsDiscreteValuationRing C] (ϖ : C) (hϖ : Irreducible ϖ) :
+    (C : Type u) [CommRing C] [IsDomain C] [IsDiscreteValuationRing C] (ϖ : C) (hϖ : Irreducible ϖ)
+    :
     ∃ (_ : IsDomain (AdicCompletion (IsLocalRing.maximalIdeal C) C))
       (_ : IsDiscreteValuationRing (AdicCompletion (IsLocalRing.maximalIdeal C) C))
       (_ : IsAdicComplete (IsLocalRing.maximalIdeal (AdicCompletion (IsLocalRing.maximalIdeal C) C)) (AdicCompletion (IsLocalRing.maximalIdeal C) C)),
@@ -263,6 +269,7 @@ theorem IsDiscreteValuationRing.adicCompletion_isDomain_isDiscreteValuationRing_
           Ideal.span {algebraMap C (AdicCompletion (IsLocalRing.maximalIdeal C) C) ϖ ^ n} → c ∈ Ideal.span {ϖ ^ n}) ∧
       (∀ (n : ℕ) (w : AdicCompletion (IsLocalRing.maximalIdeal C) C), ∃ c : C,
           w - algebraMap C (AdicCompletion (IsLocalRing.maximalIdeal C) C) c ∈
-            Ideal.span {algebraMap C (AdicCompletion (IsLocalRing.maximalIdeal C) C) ϖ ^ n}) := _root_.P2MW.S_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete.solution C ϖ hϖ
+            Ideal.span {algebraMap C (AdicCompletion (IsLocalRing.maximalIdeal C) C) ϖ ^ n}) :=
+  solution C ϖ hϖ
 
 end publicSection

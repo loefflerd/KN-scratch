@@ -27,7 +27,7 @@ by cbirkbeck, 2026-09-06.
 Proof: submission `4cbcd0f1-213e-46a6-a004-2fba9e9768e3`, by cbirkbeck, 2026-09-07 (ACCEPTED);
 locally adapted.
 
-Let $N>0$, $k\ge2$, $n=k-2$, and let
+Let $N>0$, $k\ge2$, $n=k - 2$, and let
 $H_c=\operatorname{Hom}_{\Gamma_1(N)}(\operatorname{Div}^0(\mathbf P^1(\mathbf
 Q)),\operatorname{Sym}^n\mathbf C^2)$ be the space of $\operatorname{Sym}^n$-valued modular symbols.
 Let $I:S_k(\Gamma_1(N))\to H_c$ be the cusp-to-cusp integration map, characterised by its
@@ -347,10 +347,10 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.eichler_shimura_span
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
-    (hI : ∀ f, IntegralClass f (I f)) (φ : Hc N (k-2) ℂ) :
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
+    (hI : ∀ f, IntegralClass f (I f)) (φ : Hc N (k - 2) ℂ) :
     ∃ (g h : CuspForm (MTT.GammaOne N) (k : ℤ)) (Φ : Cusp → Binary ℂ),
-      IsBoundaryDatum N (k-2) Φ ∧
+      IsBoundaryDatum N (k - 2) Φ ∧
       φ.val = (I g).val + reflection (I h).val + boundaryCochain Φ := _root_.solution hN hk I hI φ
 end
 

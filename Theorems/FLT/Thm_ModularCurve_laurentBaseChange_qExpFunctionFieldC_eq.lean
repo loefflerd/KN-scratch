@@ -66,7 +66,9 @@ open scoped MatrixGroups
 p2m_open "ModularCurve P2MW.S_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange"
+p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset \
+  coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single coeffEmb \
+  laurentBaseChange coeffEmb_mem_laurentBaseChange"
 namespace BCEqProof
 p2m_open "ModularCurve"
 
@@ -84,7 +86,7 @@ theorem ofPowerSeries_coeff_int {A : Type*} [CommRing A] (x : PowerSeries A) (k 
 theorem coeffMap_intSeriesC {R S : Type*} [Field R] [Field S] (f : R →+* S) (x : PowerSeries ℤ) :
     coeffMap f (intSeriesC R x) = intSeriesC S x := by
   ext k
-  show (coeffMap f (HahnSeries.ofPowerSeries ℤ R (x.map (Int.castRingHom R)))).coeff k =
+  change (coeffMap f (HahnSeries.ofPowerSeries ℤ R (x.map (Int.castRingHom R)))).coeff k =
     (HahnSeries.ofPowerSeries ℤ S (x.map (Int.castRingHom S))).coeff k
   rw [coeffMap_coeff, ofPowerSeries_coeff_int, ofPowerSeries_coeff_int]
   split_ifs
@@ -119,7 +121,8 @@ theorem coeffEmb_mem_adjoin (S : Set (LaurentSeries ℚ)) {x : LaurentSeries ℚ
   | mem x hx => exact IntermediateField.subset_adjoin L _ ⟨x, hx, rfl⟩
   | algebraMap c =>
     rw [algebraMap_laurentSeries_eq_single, show coeffEmb L (HahnSeries.single 0 c) =
-      HahnSeries.single 0 (algebraMap ℚ L c) from coeffMap_single _ _ _, ← algebraMap_laurentSeries_eq_single]
+      HahnSeries.single 0 (algebraMap ℚ L c) from coeffMap_single _ _ _, ←
+      algebraMap_laurentSeries_eq_single]
     exact IntermediateField.algebraMap_mem _ _
   | add x y _ _ hx hy => rw [map_add]; exact add_mem hx hy
   | inv x _ hx => rw [map_inv₀]; exact inv_mem hx
@@ -127,13 +130,13 @@ theorem coeffEmb_mem_adjoin (S : Set (LaurentSeries ℚ)) {x : LaurentSeries ℚ
 
 theorem main : laurentBaseChange L (qExpFunctionFieldC ℚ Γ) = qExpFunctionFieldC L Γ := by
   apply le_antisymm
-  · show IntermediateField.adjoin L (⇑(coeffEmb L) '' (qExpFunctionFieldC ℚ Γ : Set (LaurentSeries ℚ))) ≤ _
+  · change IntermediateField.adjoin L (⇑(coeffEmb L) '' (qExpFunctionFieldC ℚ Γ : Set (LaurentSeries ℚ))) ≤ _
     rw [IntermediateField.adjoin_le_iff]
     rintro _ ⟨x, hx, rfl⟩
     have h := coeffEmb_mem_adjoin L (intFormRatiosC ℚ Γ) hx
     rw [image_intFormRatiosC] at h
     exact h
-  · show IntermediateField.adjoin L (intFormRatiosC L Γ) ≤ _
+  · change IntermediateField.adjoin L (intFormRatiosC L Γ) ≤ _
     rw [IntermediateField.adjoin_le_iff, ← image_intFormRatiosC L Γ]
     rintro _ ⟨x, hx, rfl⟩
     exact coeffEmb_mem_laurentBaseChange L (intFormRatiosC_subset ℚ Γ hx)
@@ -158,6 +161,7 @@ open scoped MatrixGroups
 open ModularCurve
 theorem ModularCurve.laurentBaseChange_qExpFunctionFieldC_eq
     (L : Type*) [Field L] [Algebra ℚ L] (Γ : Subgroup SL(2, ℤ)) :
-    ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) = ModularCurve.qExpFunctionFieldC L Γ := _root_.P2MW.S_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq.solution L Γ
+    ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) = ModularCurve.qExpFunctionFieldC L Γ :=
+  solution L Γ
 
 end publicSection

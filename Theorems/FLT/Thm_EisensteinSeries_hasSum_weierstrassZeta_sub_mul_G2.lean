@@ -610,6 +610,7 @@ theorem EisensteinSeries.hasSum_weierstrassZeta_sub_mul_G2 (τ : UpperHalfPlane)
     HasSum (fun m : ℕ => π * Complex.cot (π * (z + ((m : ℂ) + 1) * τ)) +
         π * Complex.cot (π * (z - ((m : ℂ) + 1) * τ)))
       (EisensteinSeries.weierstrassZeta τ z - z * EisensteinSeries.G2 τ -
-        π * Complex.cot (π * z)) := _root_.P2MW.S_EisensteinSeries_hasSum_weierstrassZeta_sub_mul_G2.solution τ z hz
+        π * Complex.cot (π * z)) :=
+  solution τ z hz
 
 end publicSection

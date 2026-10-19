@@ -235,7 +235,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
       rw [ValuationSubring.ofPrime_top] at h3
       have hAv : A = v.toValuationSubring := h3.symm.trans hSP
       refine (AlgebraicCurve.Place.ext ?_).symm
-      show (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
+      change (AlgebraicCurve.Place.ofHeightOneSpectrum w).toValuationSubring = v.toValuationSubring
       rw [AlgebraicCurve.Place.ofHeightOneSpectrum_toValuationSubring,
         ← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
       exact hAv
@@ -250,23 +250,32 @@ section CentredGate
 
 variable [DecidableEq F] [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
+omit [DecidableEq F] in
 @[scoped simp]
 public theorem placeOfPoint_some {x y : F} (h : W.Nonsingular x y) :
-    placeOfPoint (.some x y h) = placeOfEquation h.left :=
-  placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
+    placeOfPoint (.some x y h) = placeOfEquation h.left := by
+  classical
+  exact
+    placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
 
 namespace InfinitePlace
 
 @[expose] public def place : AlgebraicCurve.Place F W.FunctionField := placeOfPoint (0 : W.Point)
 
 
+omit [DecidableEq F] in
 public theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
-    ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := fun h =>
-  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
+    ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := by
+  classical
+  exact
+    fun h =>
+     algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
 
+omit [DecidableEq F] in
 theorem eq_of_not_isFinitePlace
     (v : AlgebraicCurve.Place F W.FunctionField) (hv : ¬ IsFinitePlace v) :
     v = place := by
+  classical
   obtain ⟨P, rfl⟩ : ∃ P : W.Point, placeOfPoint P = v :=
     ⟨(pointEquivPlace (W := W)).symm v, (pointEquivPlace (W := W)).apply_symm_apply v⟩
   cases P with
@@ -276,15 +285,26 @@ theorem eq_of_not_isFinitePlace
 
 end InfinitePlace
 
+omit [DecidableEq F] in
 @[scoped simp]
-theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := rfl
+theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := by
+  classical
+  exact
+    rfl
 
 
-public theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).injective
+omit [DecidableEq F] in
+public theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).injective
 
-public theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) : Function.Surjective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).surjective
+omit [DecidableEq F] in
+public theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) :
+    Function.Surjective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).surjective
 
 
 end CentredGate
@@ -298,8 +318,10 @@ section AutoNorm
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
+omit [DecidableEq F] in
 public theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
@@ -307,7 +329,7 @@ public theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.Fu
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -319,10 +341,12 @@ open WeierstrassCurve.Affine.IsogenyEndDatum
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) : NormFormulaAlong F D.ι D.hfin :=
+public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+    NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
-@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) : AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
+@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) :
+    AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
 
 
 public theorem pointEnd'_apply (D : IsogenyEndDatum W) (P : W.Point) :
@@ -379,10 +403,12 @@ public theorem _root_.AlgebraicCurve.Place.evalAt_add (hv : v.IsRational) {f g :
     v.algebraMap_evalAt hv hg, ← map_add]
   rfl
 
-theorem _root_.AlgebraicCurve.Place.evalAt_neg (hv : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring) :
+theorem _root_.AlgebraicCurve.Place.evalAt_neg (hv : v.IsRational) {f : F}
+    (hf : f ∈ v.toValuationSubring) :
     v.evalAt (-f) = -v.evalAt f := by
   apply v.algebraMap_residueField_injective
-  rw [_root_.map_neg, v.algebraMap_evalAt hv (neg_mem hf), v.algebraMap_evalAt hv hf, ← _root_.map_neg]
+  rw [_root_.map_neg, v.algebraMap_evalAt hv (neg_mem hf), v.algebraMap_evalAt hv hf, ←
+    _root_.map_neg]
   rfl
 
 public theorem _root_.AlgebraicCurve.Place.evalAt_sub (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
@@ -405,7 +431,8 @@ universe u
 section Foundation
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public abbrev KwIsogenyEndAddDatumSupply : Prop :=
   ∀ D₁ D₂ : IsogenyEndDatum W, D₁.pointEnd' + D₂.pointEnd' ≠ 0 →
@@ -425,7 +452,8 @@ namespace Affine
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] {W : Affine F}
-variable [IsAlgClosed F] [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable [IsAlgClosed F] [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 theorem isElliptic_Δ_ne_zero : W.Δ ≠ 0 := W.coe_Δ' ▸ W.Δ'.ne_zero
 
@@ -441,7 +469,8 @@ namespace Affine
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public theorem Δ_ne_zero_of_isElliptic : W.Δ ≠ 0 := W.isUnit_Δ.ne_zero
 
@@ -458,7 +487,8 @@ open WeierstrassCurve.Affine.IsogenyEndDatum
 
 variable {W}
 
-@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.geomMorph (D : IsogenyEndDatum W) : W.Point → W.Point :=
+@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.geomMorph (D : IsogenyEndDatum W) :
+    W.Point → W.Point :=
   fun P => (placeOfPointEquiv W).symm ((placeOfPoint P).restrictAlong D.ι D.hι)
 
 public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.placeOfPoint_geomMorph (D : IsogenyEndDatum W) (P : W.Point) :
@@ -540,7 +570,7 @@ theorem mmr72_pp_end_eq_zero_of_cofinite_const {M : Type*} [AddCommGroup M]
     Set.mem_preimage, not_or, not_not] at hQ'
   have hadd : S (P + Q') = S P + S Q' := map_add S P Q'
   rw [hQ'.2, hQ'.1] at hadd
-  show S P = 0
+  change S P = 0
   grind
 
 end CofiniteEngine
@@ -560,7 +590,8 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-public theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg = 1) : v.IsRational := by
+public theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg = 1) :
+    v.IsRational := by
   intro x
   have hbot : (⊥ : Subalgebra K v.ResidueField) = ⊤ :=
     Subalgebra.bot_eq_top_iff_finrank_eq_one.mpr h
@@ -582,7 +613,8 @@ namespace Affine
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 namespace IsogenyEndDatum
 open WeierstrassCurve.Affine.IsogenyEndDatum
@@ -604,7 +636,7 @@ theorem pushforwardAlongHom_pointClass_eq_sub (D : IsogenyEndDatum W) (P : W.Poi
     Pic0.pushforwardAlongHom D.ι D.hι D.hfin (normFormulaAlong_of_elliptic D.ι D.hfin)
         (pointClass P)
       = pointClass (D.geomMorph P) - pointClass (D.geomMorph 0) := by
-  show Pic0.pushforwardAlongHom D.ι D.hι D.hfin _ (Pic0.mk (pointDivisor P))
+  change Pic0.pushforwardAlongHom D.ι D.hι D.hfin _ (Pic0.mk (pointDivisor P))
       = Pic0.mk (pointDivisor (D.geomMorph P)) - Pic0.mk (pointDivisor (D.geomMorph 0))
   rw [Pic0.pushforwardAlongHom_mk, pushforwardAlongDegZero_pointDivisor_geomMorph D P]
   rfl
@@ -726,7 +758,8 @@ universe u
 section GeomMorphWire
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public abbrev KwIsogenyEndAddGeomMorphSupply : Prop :=
   ∀ D₁ D₂ : IsogenyEndDatum W, D₁.pointEnd' + D₂.pointEnd' ≠ 0 →
@@ -739,7 +772,7 @@ theorem kw_isogenyEndAddDatumSupply_of_addGeomMorphSupply
   intro D₁ D₂ h0
   obtain ⟨D₃, hD₃⟩ := hgm D₁ D₂ h0
   refine ⟨D₃, AddMonoidHom.ext fun P => ?_⟩
-  show D₃.pointEnd' P = D₁.pointEnd' P + D₂.pointEnd' P
+  change D₃.pointEnd' P = D₁.pointEnd' P + D₂.pointEnd' P
   rw [D₃.pointEnd_eq_geomMorph_sub_geomMorph_zero P,
     D₁.pointEnd_eq_geomMorph_sub_geomMorph_zero P,
     D₂.pointEnd_eq_geomMorph_sub_geomMorph_zero P, hD₃ P, hD₃ 0]
@@ -907,12 +940,13 @@ universe u r s v
 namespace WeierstrassCurve
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W] {p : ℕ}
+variable {W : WeierstrassCurve F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+    {p : ℕ}
 
 section Preliminaries
 
 variable (W) in
-
 public lemma point_infinite : Infinite W.toAffine.Point := by
   refine Infinite.of_injective
     (fun x : F => Affine.Point.some x (WeierstrassCurve.Affine.exists_equation W x).choose
@@ -933,7 +967,8 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring)
+theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRational) {f : F}
+    (hf : f ∈ v.toValuationSubring)
     (hne : f - algebraMap K F (v.evalAt f) ≠ 0) :
     0 < v.ord (f - algebraMap K F (v.evalAt f)) := by
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
@@ -947,7 +982,7 @@ theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRational) {f 
       have hcoe : (⟨f - algebraMap K F (v.evalAt f), hmem⟩ : v.toValuationSubring)
           = ⟨f, hf⟩ - algebraMap K v.toValuationSubring (v.evalAt f) := by
         refine Subtype.ext ?_
-        show f - algebraMap K F (v.evalAt f)
+        change f - algebraMap K F (v.evalAt f)
           = f - (algebraMap K v.toValuationSubring (v.evalAt f) : F)
         rw [Place.coe_algebraMap]
       rw [hcoe, map_sub, sub_eq_zero, ← v.algebraMap_evalAt hrat hf,
@@ -996,7 +1031,7 @@ public theorem eval₂_polynomial_of_equation_map {xP yP : W.FunctionField}
     (Polynomial.aeval xP : F[X] →ₐ[F] W.FunctionField).toRingHom
     yP (eval₂_polynomial_of_equation_map h)
   commutes' c := by
-    show AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map h) (algebraMap F _ c)
+    change AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map h) (algebraMap F _ c)
       = algebraMap F W.FunctionField c
     rw [CoordinateRing.algebraMap_eq_mk_C_C, AdjoinRoot.lift_mk, eval₂_C]
     exact Polynomial.aeval_C _ c
@@ -1012,7 +1047,7 @@ theorem pointPullbackCoordHom_comp_algebraMap {xP yP : W.FunctionField}
     (pointPullbackCoordHom h).toRingHom.comp (algebraMap F[X] W.CoordinateRing)
       = (Polynomial.aeval xP : F[X] →ₐ[F] W.FunctionField).toRingHom := by
   refine RingHom.ext fun p => ?_
-  show pointPullbackCoordHom h (algebraMap F[X] _ p) = _
+  change pointPullbackCoordHom h (algebraMap F[X] _ p) = _
   rw [algebraMap_polynomial_eq_mk_C, pointPullbackCoordHom_mk, eval₂_C]
 
 public theorem pointPullbackCoordHom_injective {xP yP : W.FunctionField}
@@ -1053,7 +1088,7 @@ theorem pointPullbackHom_yGen {xP yP : W.FunctionField}
     (h : (W.map ι).toAffine.Equation xP yP)
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     pointPullbackHom h hx (yGen W) = yP := by
-  show pointPullbackHom h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
+  change pointPullbackHom h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
   rw [pointPullbackHom_algebraMap, pointPullbackCoordHom_mk]
   exact eval₂_X _ _
 
@@ -1129,7 +1164,6 @@ variable (ι : V.FunctionField →ₐ[F] W.FunctionField)
   (hY : ι (yGen V) = η)
 
 include hX in
-
 theorem map_XClass (c : F) :
     ι (algebraMap V.CoordinateRing V.FunctionField (XClass V c))
       = ξ - algebraMap F W.FunctionField c := by
@@ -1140,7 +1174,6 @@ theorem map_XClass (c : F) :
   rw [h1, map_sub, hX, AlgHom.commutes]
 
 include hY in
-
 theorem map_YClass (c : F) :
     ι (algebraMap V.CoordinateRing V.FunctionField (YClass V (C c)))
       = η - algebraMap F W.FunctionField c := by
@@ -1152,11 +1185,13 @@ theorem map_YClass (c : F) :
 
 section Cases
 
-variable [DecidableEq F] [IsAlgClosed F] [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
-variable [IsDedekindDomain V.CoordinateRing] [WeierstrassCurve.Affine.GenusOnePlaceGate V] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred V] [WeierstrassCurve.Affine.AbelTheorem V]
+variable [DecidableEq F] [IsAlgClosed F] [W.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable [IsDedekindDomain V.CoordinateRing] [WeierstrassCurve.Affine.GenusOnePlaceGate V]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred V] [WeierstrassCurve.Affine.AbelTheorem V]
 
 include hX hY in
-
 theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
     (h' : V.Equation a b)
     (hreg : ξ ∈ (placeOfEquation h).toValuationSubring)
@@ -1180,7 +1215,6 @@ theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
     omega
 
 include hX in
-
 theorem restrictAlong_eq_infinitePlace (v : AlgebraicCurve.Place F W.FunctionField)
     (hpole : ξ ∉ v.toValuationSubring) :
     v.restrictAlong ι hι = InfinitePlace.place := by
@@ -1209,7 +1243,9 @@ universe u
 section CoordSeamPbd
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 def es1a8_coordSeamDataAt_pbd (φ : W.FunctionField →ₐ[F] W.FunctionField)
     (v : AlgebraicCurve.Place F W.FunctionField) : W.Point → Prop
@@ -1523,11 +1559,13 @@ public theorem es1a6_add_equation (φ : W.FunctionField →ₐ[F] W.FunctionFiel
       (φ (polyToFunctionField W X)) (φ (yGen W)) := by
   have h := equation_map_polyToFunctionField_yGen (W := W)
   rw [equation_iff'] at h
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆] at h
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆] at h
   have h2 := congrArg φ h
   simp only [map_add, map_sub, map_mul, map_pow, _root_.map_zero, AlgHom.commutes] at h2
   rw [equation_iff']
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆]
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆]
   linear_combination h2
 
 
@@ -1590,7 +1628,8 @@ theorem es1a6_add_sumX_isAlgebraic_constant_point [IsAlgClosed F]
   obtain ⟨c, hc⟩ := exists_algebraMap_eq_of_isAlgebraic halg
   have heq := es1a6_addSum_equation W φ₁ φ₂ hcol
   rw [equation_iff'] at heq
-  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+  simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] at heq
   rw [← hc] at heq
   have hq0 : (X ^ 2 + C (W.a₁ * c + W.a₃) * X
@@ -1676,7 +1715,9 @@ theorem es1a6_addSeam_restrictAlong_eq_placeOfEquation [IsAlgClosed F]
     omega
 
 variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public local instance instDecEqFunctionFieldEs1a6AddSeam :
     DecidableEq W.FunctionField :=
@@ -1761,7 +1802,9 @@ universe u
 section CoordSeamEs1a11
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 @[expose] public def es1a11_coordSeamDataAt (φ : W.FunctionField →ₐ[F] W.FunctionField)
     (v : AlgebraicCurve.Place F W.FunctionField) : W.Point → Prop
@@ -1876,12 +1919,16 @@ universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 
-def es1a4_negDatum (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W] : IsogenyEndDatum W where
+def es1a4_negDatum (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+    :
+    IsogenyEndDatum W where
   ι := es1a4_negPullbackHom W
   hι := es1a4_negPullbackHom_isIntegral W
   hfin := es1a4_negPullbackHom_finiteAlong W
 
-variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 theorem es1a4_negDatum_seam_some {x₀ y₀ : F} (h : W.Nonsingular x₀ y₀) :
     (placeOfEquation h.left).restrictAlong (es1a4_negPullbackHom W)
@@ -1993,7 +2040,9 @@ universe u
 section VerticalCaseEngines
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public local instance instDecEqFunctionFieldEs1a10NcVertical :
     DecidableEq W.FunctionField :=
@@ -2116,7 +2165,8 @@ section EvaluationSeam
 attribute [local instance] ModularCurve.Es1a1.instDecEqFunctionFieldEs1a6Add
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public theorem mmr73_cs_iota_ne_zero (D : IsogenyEndDatum W) {f : W.FunctionField}
     (hf : f ≠ 0) : D.ι f ≠ 0 := by
@@ -2412,7 +2462,8 @@ end EvaluationSeam
 section CofiniteEngine
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 theorem mmr73_cs_finite_setOf_placeOfPoint_ord_ne_zero
     [HasPrincipalDivisors F W.FunctionField] {f : W.FunctionField} (hf : f ≠ 0) :
@@ -2446,7 +2497,8 @@ universe u
 section InputSeam
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public theorem kw_coordSeamDataAt_geomMorph (D : IsogenyEndDatum W) (P : W.Point) :
     es1a11_coordSeamDataAt D.ι (placeOfPoint P) (D.geomMorph P) :=
@@ -2541,7 +2593,9 @@ end HomExtCmp
 section CollapseHalfCmp
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 theorem es1a8_addCollapse_geomMorph_eq_neg_cmp (D₁ D₂ : IsogenyEndDatum W)
     (hcol : es1a8_addCollapse_cmp W D₁.ι D₂.ι) (P : W.Point) :
@@ -2569,7 +2623,7 @@ public theorem es1a8_addCollapse_pointEnd_add_eq_zero_cmp (D₁ D₂ : IsogenyEn
     (hcol : es1a8_addCollapse_cmp W D₁.ι D₂.ι) :
     D₁.pointEnd' + D₂.pointEnd' = 0 := by
   refine AddMonoidHom.ext fun P => ?_
-  show D₁.pointEnd' P + D₂.pointEnd' P = 0
+  change D₁.pointEnd' P + D₂.pointEnd' P = 0
   rw [D₁.pointEnd_eq_geomMorph_sub_geomMorph_zero P,
     D₂.pointEnd_eq_geomMorph_sub_geomMorph_zero P,
     es1a8_addCollapse_geomMorph_eq_neg_cmp D₁ D₂ hcol P,
@@ -2707,7 +2761,7 @@ theorem es1a8_addInt_selfHom_finiteAlong_cmp (ι : W.FunctionField →ₐ[F] W.F
   have hint := es1a8_addInt_selfHom_isIntegral_cmp ι htr
   let : Algebra W.FunctionField W.FunctionField := ι.toRingHom.toAlgebra
   let : Module W.FunctionField W.FunctionField := Algebra.toModule
-  show Module.Finite W.FunctionField W.FunctionField
+  change Module.Finite W.FunctionField W.FunctionField
   have hadj : IntermediateField.adjoin W.FunctionField
       ({polyToFunctionField W X, yGen W} : Set W.FunctionField) = ⊤ := by
     rw [eq_top_iff]
@@ -2762,7 +2816,8 @@ namespace Es1a1
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public abbrev kw_hk5f_addSumXNonConstGuardAt : Prop :=
   ∀ D₁ D₂ : IsogenyEndDatum W, D₁.pointEnd' + D₂.pointEnd' ≠ 0 →
@@ -2852,7 +2907,8 @@ theorem mmr62_cd_phi_yGen_ne_negY [CharZero F]
         (polyToFunctionField W X) (yGen W))
       = (W.map (algebraMap F W.FunctionField)).toAffine.negY
           (φ (polyToFunctionField W X)) (φ (yGen W)) := by
-    simp only [negY, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₃, map_sub, _root_.map_neg, map_mul,
+    simp only [negY, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₃, map_sub, _root_.map_neg,
+      map_mul,
       AlgHom.commutes]
   intro hcon
   have h2 : φ (yGen W)
@@ -2872,7 +2928,8 @@ theorem mmr62_cd_map_dupSlope_eq_slope [CharZero F]
   have _pin := Classical.em True
   rw [endst20_ps_dupSlope_eq_div W,
     slope_of_Y_ne rfl (mmr62_cd_phi_yGen_ne_negY W φ)]
-  simp only [negY, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
+  simp only [negY, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,
+    WeierstrassCurve.map_a₄,
     map_div₀, map_add, map_sub, map_mul, map_pow, _root_.map_neg, map_ofNat,
     AlgHom.commutes]
 
@@ -2943,7 +3000,8 @@ namespace Es1a1
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public theorem kw_hk5f_addIntegralFiniteDataAt_proved : kw_hk5f_addIntegralFiniteDataAt W := by
   intro D₁ D₂ hcol htr
@@ -2991,7 +3049,8 @@ open ModularCurve.Mmr46 ModularCurve.Mmr62 ModularCurve.Mmr72 ModularCurve.Mmr73
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 theorem kw_hk5f_two_datum_pointEnd_add_eq_geomMorph
     (D₁ D₂ : IsogenyEndDatum W) (Q : W.Point) :
@@ -3084,7 +3143,8 @@ namespace Es1a1
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 public theorem kw_hk5f_addGeomMorphSupply_proved :
     KwIsogenyEndAddGeomMorphSupply W :=

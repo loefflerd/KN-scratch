@@ -112,7 +112,7 @@ def qTwist (u : Rˣ) : LaurentSeries R →+* LaurentSeries R where
   map_add' f g := by
     ext k
     rw [HahnSeries.coeff_add]
-    show (qTwistFun u (f + g)).coeff k = (qTwistFun u f).coeff k + (qTwistFun u g).coeff k
+    change (qTwistFun u (f + g)).coeff k = (qTwistFun u f).coeff k + (qTwistFun u g).coeff k
     rw [qTwistFun_coeff, qTwistFun_coeff, qTwistFun_coeff, HahnSeries.coeff_add, mul_add]
 
 @[simp]
@@ -241,7 +241,7 @@ theorem swapBivar_X : swapBivar Polynomial.X = Polynomial.C Polynomial.X :=
 
 @[simp]
 theorem swapBivar_C_X : swapBivar (Polynomial.C Polynomial.X) = Polynomial.X := by
-  show Polynomial.eval₂ swapInner (Polynomial.C Polynomial.X) (Polynomial.C Polynomial.X)
+  change Polynomial.eval₂ swapInner (Polynomial.C Polynomial.X) (Polynomial.C Polynomial.X)
     = Polynomial.X
   rw [Polynomial.eval₂_C]
   exact Polynomial.aeval_X _

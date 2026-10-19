@@ -74,7 +74,8 @@ abbrev jLineBar : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFi
     {(⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :
       ↥(modularFunctionFieldBar N))}
 
-instance instAlgebraJLineBar : Algebra (AlgebraicClosure ℚ) ↥(jLineBar N) := IntermediateField.algebra' (jLineBar N)
+instance instAlgebraJLineBar :
+    Algebra (AlgebraicClosure ℚ) ↥(jLineBar N) := IntermediateField.algebra' (jLineBar N)
 
 instance instModuleJLineBar : Module (AlgebraicClosure ℚ) ↥(jLineBar N) := Algebra.toModule
 
@@ -101,7 +102,8 @@ theorem jLineBarRingEquiv_X :
       = ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :=
   RatFunc.algEquivOfTranscendental_X _ (transcendental_jLineBar_gen N)
 
-@[reducible] def instDecidableEqRatFuncAlgebraicClosure : DecidableEq (RatFunc (AlgebraicClosure ℚ)) := Classical.decEq _
+@[reducible] def instDecidableEqRatFuncAlgebraicClosure :
+    DecidableEq (RatFunc (AlgebraicClosure ℚ)) := Classical.decEq _
 
 attribute [local instance] instDecidableEqRatFuncAlgebraicClosure
 

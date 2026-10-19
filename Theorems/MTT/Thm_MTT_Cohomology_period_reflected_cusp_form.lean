@@ -112,9 +112,8 @@ private lemma reflection_level_eq (N : ℕ) :
     simpa only [he] using hh
   · exact reflection_level N a
 
-set_option linter.unusedVariables false in
- theorem solution
-    {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
+theorem solution
+    {N k : ℕ} (_hN : 0 < N) (_hk : 2 ≤ k)
     (h : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     ∃ v : CuspForm (MTT.GammaOne N) (k : ℤ),
       (∀ z : UpperHalfPlane, conj (v z) = h (periodReflect z)) ∧
@@ -135,7 +134,7 @@ set_option linter.unusedVariables false in
       apply UpperHalfPlane.ext
       simp [periodReflect]
     have hh := hv (periodReflect z)
-    simp [he, hz] at hh
+    simp only [he, zero_apply, hz] at hh
     have hh' := congrArg (starRingEnd ℂ) hh
     simpa using hh'.symm
   · intro he
@@ -156,7 +155,9 @@ theorem MTT.Cohomology.period_reflected_cusp_form
     (h : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     ∃ v : CuspForm (MTT.GammaOne N) (k : ℤ),
       (∀ z : UpperHalfPlane, conj (v z) = h (periodReflect z)) ∧
-      (v = 0 ↔ h = 0) := _root_.solution hN hk h
+      (v = 0 ↔ h = 0) :=
+  solution hN hk h
+
 end
 
 end publicSection

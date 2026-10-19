@@ -132,7 +132,8 @@ theorem eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq (M : ℕ) (hM : 4 ≤ M) (
         rw [Gamma1_mem] at h
         have h0 : (((-γ) 0 0 : ℤ) : ZMod M) = 1 := h.1
         have h1 : (((-γ) 1 1 : ℤ) : ZMod M) = 1 := h.2.1
-        rw [Matrix.SpecialLinearGroup.coe_neg, Matrix.neg_apply, Int.cast_neg, neg_eq_iff_eq_neg] at h0 h1
+        rw [Matrix.SpecialLinearGroup.coe_neg, Matrix.neg_apply, Int.cast_neg,
+          neg_eq_iff_eq_neg] at h0 h1
         rw [← ZMod.intCast_zmod_eq_zero_iff_dvd, ht]
         push_cast
         rw [h0, h1]
@@ -166,6 +167,8 @@ public section publicSection
 open scoped MatrixGroups
 theorem CongruenceSubgroup.eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq (M : ℕ) (hM : 4 ≤ M)
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma1 M ∨ -γ ∈ CongruenceSubgroup.Gamma1 M)
-    (τ : UpperHalfPlane) (hτ : γ • τ = τ) : γ = 1 ∨ γ = -1 := _root_.P2MW.S_CongruenceSubgroup_eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq.solution M hM γ hγ τ hτ
+    (τ : UpperHalfPlane) (hτ : γ • τ = τ)
+    : γ = 1 ∨ γ = -1 :=
+  solution M hM γ hγ τ hτ
 
 end publicSection

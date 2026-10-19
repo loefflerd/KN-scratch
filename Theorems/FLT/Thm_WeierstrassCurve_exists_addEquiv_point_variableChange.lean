@@ -58,10 +58,17 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange.WeierstrassCurve \
+  WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Equation Affine.negY Affine.evalEval_polynomial Affine.Y_eq_of_Y_ne Affine.slope_of_X_ne Affine.Point.add_of_Y_eq map variableChange_a₃ Affine.evalEval_polynomialX Affine.Point.some Affine.Point.some.injEq Affine.Nonsingular variableChange_a₆ Affine.negAddY Affine.slope_of_Y_ne_eq_evalEval variableChange_a₂ toAffine Affine.Point Affine.evalEval_polynomialY Affine.addX Affine.Point.add_some variableChange_a₁ variableChange_a₄ VariableChange Affine.addY exists_addEquiv_point_variableChange_dev"
+p2m_export "WeierstrassCurve" "Affine Affine.Equation Affine.negY Affine.evalEval_polynomial \
+  Affine.Y_eq_of_Y_ne Affine.slope_of_X_ne Affine.Point.add_of_Y_eq map variableChange_a₃ \
+  Affine.evalEval_polynomialX Affine.Point.some Affine.Point.some.injEq Affine.Nonsingular \
+  variableChange_a₆ Affine.negAddY Affine.slope_of_Y_ne_eq_evalEval variableChange_a₂ toAffine \
+  Affine.Point Affine.evalEval_polynomialY Affine.addX Affine.Point.add_some variableChange_a₁ \
+  variableChange_a₄ VariableChange Affine.addY exists_addEquiv_point_variableChange_dev"
 p2m_open "WeierstrassCurve"
 
 namespace VariableChange
@@ -76,7 +83,8 @@ private def _root_.WeierstrassCurve.VariableChange.ptX (x : R) : R := (↑C.u⁻
 
 p2m_export "WeierstrassCurve.VariableChange" "ptX"
 
-private def _root_.WeierstrassCurve.VariableChange.ptY (x y : R) : R := (↑C.u⁻¹ : R) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))
+private def _root_.WeierstrassCurve.VariableChange.ptY (x y : R) :
+    R := (↑C.u⁻¹ : R) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))
 
 p2m_export "WeierstrassCurve.VariableChange" "ptY"
 
@@ -84,7 +92,8 @@ private def _root_.WeierstrassCurve.VariableChange.invX (X : R) : R := (C.u : R)
 
 p2m_export "WeierstrassCurve.VariableChange" "invX"
 
-private def _root_.WeierstrassCurve.VariableChange.invY (X Y : R) : R := (C.u : R) ^ 3 * Y + (C.u : R) ^ 2 * C.s * X + C.t
+private def _root_.WeierstrassCurve.VariableChange.invY (X Y : R) :
+    R := (C.u : R) ^ 3 * Y + (C.u : R) ^ 2 * C.s * X + C.t
 
 p2m_export "WeierstrassCurve.VariableChange" "invY"
 lemma invX_ptX (x : R) : C.invX (C.ptX x) = x := by
@@ -104,11 +113,13 @@ lemma ptY_invY (X Y : R) : C.ptY (C.invX X) (C.invY X Y) = Y := by
   simp only [invX, invY, ptY]
   linear_combination Y * pow_mul_pow_eq_one 3 C.u.inv_mul
 
-private lemma _root_.WeierstrassCurve.VariableChange.ptX_injective : Function.Injective C.ptX := fun x₁ x₂ h => by
+private lemma _root_.WeierstrassCurve.VariableChange.ptX_injective :
+    Function.Injective C.ptX := fun x₁ x₂ h => by
   simpa only [invX_ptX] using congr_arg C.invX h
 
 p2m_export "WeierstrassCurve.VariableChange" "ptX_injective"
-private lemma _root_.WeierstrassCurve.VariableChange.ptY_injective (x : R) : Function.Injective (C.ptY x) := fun y₁ y₂ h => by
+private lemma _root_.WeierstrassCurve.VariableChange.ptY_injective (x : R) :
+    Function.Injective (C.ptY x) := fun y₁ y₂ h => by
   simpa only [invY_ptY] using congr_arg (C.invY (C.ptX x)) h
 
 p2m_export "WeierstrassCurve.VariableChange" "ptY_injective"
@@ -276,7 +287,9 @@ end VariableChange
 
 end WeierstrassCurve
 
-theorem solution {K : Type*} [Field K] [DecidableEq K] (W : WeierstrassCurve K) (C : VariableChange K) : ∃ e : W.toAffine.Point ≃+ (C • W).toAffine.Point, ∀ (x y : K) (h : W.toAffine.Nonsingular x y), ∃ h' : (C • W).toAffine.Nonsingular ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))), e (WeierstrassCurve.Affine.Point.some x y h) = WeierstrassCurve.Affine.Point.some ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))) h' :=
+theorem solution {K : Type*} [Field K] [DecidableEq K] (W : WeierstrassCurve K)
+    (C : VariableChange K) :
+    ∃ e : W.toAffine.Point ≃+ (C • W).toAffine.Point, ∀ (x y : K) (h : W.toAffine.Nonsingular x y), ∃ h' : (C • W).toAffine.Nonsingular ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))), e (WeierstrassCurve.Affine.Point.some x y h) = WeierstrassCurve.Affine.Point.some ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))) h' :=
   ⟨WeierstrassCurve.VariableChange.pointEquiv₀ W C, fun x y h =>
     ⟨(WeierstrassCurve.VariableChange.nonsingular_pt_iff C W x y).mpr h, rfl⟩⟩
 
@@ -290,6 +303,9 @@ public section publicSection
 
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
-theorem WeierstrassCurve.exists_addEquiv_point_variableChange {K : Type*} [Field K] [DecidableEq K] (W : WeierstrassCurve K) (C : VariableChange K) : ∃ e : W.toAffine.Point ≃+ (C • W).toAffine.Point, ∀ (x y : K) (h : W.toAffine.Nonsingular x y), ∃ h' : (C • W).toAffine.Nonsingular ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))), e (WeierstrassCurve.Affine.Point.some x y h) = WeierstrassCurve.Affine.Point.some ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))) h' := _root_.P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange.solution W C
+theorem WeierstrassCurve.exists_addEquiv_point_variableChange {K : Type*} [Field K] [DecidableEq K]
+    (W : WeierstrassCurve K) (C : VariableChange K) :
+    ∃ e : W.toAffine.Point ≃+ (C • W).toAffine.Point, ∀ (x y : K) (h : W.toAffine.Nonsingular x y), ∃ h' : (C • W).toAffine.Nonsingular ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))), e (WeierstrassCurve.Affine.Point.some x y h) = WeierstrassCurve.Affine.Point.some ((↑C.u⁻¹ : K) ^ 2 * (x - C.r)) ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))) h' :=
+  solution W C
 
 end publicSection

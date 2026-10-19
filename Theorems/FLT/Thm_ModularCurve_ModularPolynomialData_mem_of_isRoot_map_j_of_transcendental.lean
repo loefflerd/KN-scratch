@@ -88,9 +88,30 @@ noncomputable section
 open AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map b₂ a₄ a₂ a₆ Affine.Point.some Affine.Point.zero_def IsIntegral toAffine Affine.Point Δ Affine.Y_eq_of_X_eq Affine.Point.neg_some j veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient oddOrderSummingSet mem_oddOrderSummingSet veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples veluQuotient_oddOrderSummingSet_discriminant_ne_zero veluQuotient_j_mem_of_mem veluQuotient2_Delta_ne_zero isElliptic_veluQuotient2_of_isElliptic natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed"
+p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map b₂ a₄ a₂ a₆ Affine.Point.some \
+  Affine.Point.zero_def IsIntegral toAffine Affine.Point Δ Affine.Y_eq_of_X_eq \
+  Affine.Point.neg_some j veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient oddOrderSummingSet \
+  mem_oddOrderSummingSet veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ \
+  veluQuotient2_a₄ veluQuotient2_a₆ velu2X velu2Y veluPointMap2 veluPointMap2_zero \
+  veluPointMap2_some_of_eq veluPointMap2_some_of_ne \
+  Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward \
+  exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 \
+  Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples \
+  veluQuotient_oddOrderSummingSet_discriminant_ne_zero veluQuotient_j_mem_of_mem \
+  veluQuotient2_Delta_ne_zero isElliptic_veluQuotient2_of_isElliptic \
+  natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map Point.some Nonsingular Point.zero_def FunctionField Point Y_eq_of_X_eq Point.neg_some pointMapOfPushforward pointMapOfPushforward_apply pointMapOfPushforward_eq_of_seam IsogenyEndDatum GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j exists_genusOnePlaceGate_isCentred_and_abelTheorem CoordinateRing.isDedekindDomain hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map Point.some Nonsingular \
+  Point.zero_def FunctionField Point Y_eq_of_X_eq Point.neg_some pointMapOfPushforward \
+  pointMapOfPushforward_apply pointMapOfPushforward_eq_of_seam IsogenyEndDatum GenusOnePlaceGate \
+  pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply \
+  GenusOnePlaceGate.IsCentred \
+  eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward \
+  ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul \
+  IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j \
+  exists_genusOnePlaceGate_isCentred_and_abelTheorem CoordinateRing.isDedekindDomain \
+  hasPrincipalDivisors_functionField"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 scoped instance instHasPrincipalDivisorsFunctionField_a68p {F : Type*} [Field F] [CharZero F]
@@ -102,15 +123,17 @@ section AutoNorm
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
+omit [DecidableEq F] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -164,7 +187,11 @@ end WeierstrassCurve.Affine
 
 namespace A68
 
-p2m_open "WeierstrassCurve P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.Affine AlgebraicCurve Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.\
+  Affine AlgebraicCurve Polynomial"
 
 attribute [local instance] Classical.propDecidable
 
@@ -242,9 +269,11 @@ theorem isoTarget_odd (n : ℕ) (W : WeierstrassCurve F) [W.IsElliptic]
   exact ⟨{ V := W.veluQuotient (W.oddOrderSummingSet g n), ι := ι, hι := hι, hfin := hfin,
            j_mem := hj, ker_eq := hker }⟩
 
+omit [DecidableEq F] in
 theorem veluGx_mem (W : WeierstrassCurve F) (L : Subfield F)
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₄ : W.a₄ ∈ L) {x₀ y₀ : F} (hx : x₀ ∈ L) (hy : y₀ ∈ L) :
     W.veluGx x₀ y₀ ∈ L := by
+  classical
   unfold WeierstrassCurve.veluGx
   have h3 : (3 : F) ∈ L := by simp
   have h2' : (2 : F) ∈ L := by simp
@@ -284,7 +313,8 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
   have hQeq : W.toAffine.Equation x₀ y₀ := hns.1
   obtain ⟨hx₀L, hy₀L⟩ := hcoord M x₀ y₀ hns hQ
   have hΔW : W.Δ ≠ 0 := W.isUnit_Δ.ne_zero
-  have hΔ₁ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := WeierstrassCurve.veluQuotient2_Delta_ne_zero hΔW hQeq hgy
+  have hΔ₁ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 :=
+    WeierstrassCurve.veluQuotient2_Delta_ne_zero hΔW hQeq hgy
   have : (W.veluQuotient2 x₀ y₀).IsElliptic :=
     WeierstrassCurve.isElliptic_veluQuotient2_of_isElliptic hQeq hgy
   have : IsDedekindDomain (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
@@ -505,7 +535,8 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     have hcard : Nat.card (pointMapOfPushforward (T H).ι (T H).hι (T H).hfin hN₁).ker
         = Nat.card (pointMapOfPushforward (T H').ι (T H').hι (T H').hfin hN₂).ker := by
       rw [hker, hker', Nat.card_zmultiples, Nat.card_zmultiples, hgenord, hgenord]
-    have heq := WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
+    have heq :=
+      WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
       W hNs hEnd (T H).V (T H').V (T H).ι (T H).hι (T H).hfin hN₁ (T H').ι (T H').hι (T H').hfin
       hN₂ hcard hjeq
     rw [hker, hker'] at heq
@@ -538,7 +569,8 @@ end
 theorem solution
     {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))]
-    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic] (ht : Transcendental ℚ W.j)
+    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
+    (ht : Transcendental ℚ W.j)
     (L : Subfield (HahnSeries ℚ (AlgebraicClosure ℚ)))
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₃ : W.a₃ ∈ L) (h₄ : W.a₄ ∈ L) (h₆ : W.a₆ ∈ L)
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
@@ -569,13 +601,15 @@ public section publicSection
 theorem ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental
     {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))]
-    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic] (ht : Transcendental ℚ W.j)
+    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
+    (ht : Transcendental ℚ W.j)
     (L : Subfield (HahnSeries ℚ (AlgebraicClosure ℚ)))
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₃ : W.a₃ ∈ L) (h₄ : W.a₄ ∈ L) (h₆ : W.a₆ ∈ L)
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
       N • (WeierstrassCurve.Affine.Point.some x y h : W.toAffine.Point) = 0 → x ∈ L ∧ y ∈ L)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
     (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
-    r ∈ L := _root_.P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.solution data W ht L h₁ h₂ h₃ h₄ h₆ htors r hr
+    r ∈ L :=
+  solution data W ht L h₁ h₂ h₃ h₄ h₆ htors r hr
 
 end publicSection

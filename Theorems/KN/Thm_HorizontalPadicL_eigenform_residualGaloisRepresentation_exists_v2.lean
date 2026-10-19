@@ -259,7 +259,7 @@ theorem exists_faithful_finiteGalois_descent_of_continuous
   exact (isOpen_discrete ({1} : Set G)).preimage hρ
 
 /-- A finite-level representation with values in any monoid descends faithfully
-to a finite Galois number field.  In particular this applies to matrix monoids. -/
+to a finite Galois number field. In particular this applies to matrix monoids. -/
 theorem exists_faithful_finiteGalois_descent_of_finiteLevel
     {M : Type*} [Monoid M]
     (ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* M)
@@ -430,7 +430,7 @@ namespace HorizontalPadicL
 low-priority.**
 
 Deligne's residual Galois representation attached to a normalized
-eigenform and a chosen `p`-adic embedding.  Its coefficient field is
+eigenform and a chosen `p`-adic embedding. Its coefficient field is
 `f.coefficientField`, its prime is the canonically defined
 `f.coefficientPrime ιp`, and its target is the resulting finite residue field
 `EigenformResidueField f ιp`; none of these are auxiliary choices in

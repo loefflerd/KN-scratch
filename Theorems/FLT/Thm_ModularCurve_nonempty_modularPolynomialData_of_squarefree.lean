@@ -68,7 +68,8 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData modularPolynomialFamily"
+p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN dedekindPsi evalAtJ evalAtJ_X \
+  ModularPolynomialData modularPolynomialFamily"
 p2m_open "ModularCurve"
 
 section DedekindPsi
@@ -424,7 +425,6 @@ p2m_export "ModularCurve.ModularPolynomialData" "monic eval_eq_zero natDegree_eq
 end ModularPolynomialData
 namespace ModularPolynomialData
 p2m_open_scoped "ModularCurve.ModularPolynomialData" in
-
 private theorem _root_.ModularCurve.ModularPolynomialData.eval₂_qExpand_eq_zero {N : ℕ} [NeZero N]
     (data : ModularPolynomialData N) (ℓ : ℕ) [NeZero ℓ] :
     data.Φ.eval₂ ((qExpand ℚ ℓ).comp evalAtJ) (jqN (ℓ * N)) = 0 := by
@@ -451,8 +451,8 @@ private theorem qExpand_comp_evalAtJ_eq_eval₂RingHom (m : ℕ) [NeZero m] :
 
 namespace ModularPolynomialData
 p2m_open_scoped "ModularCurve.ModularPolynomialData" in
-
-private theorem _root_.ModularCurve.ModularPolynomialData.eval₂_biResultant_eq_zero {m n : ℕ} [NeZero m]
+private theorem _root_.ModularCurve.ModularPolynomialData.eval₂_biResultant_eq_zero {m n : ℕ}
+    [NeZero m]
     [NeZero n] (data : ModularPolynomialData m) (data' : ModularPolynomialData n) :
     (biResultant data.Φ data'.Φ).eval₂ evalAtJ (jqN (m * n)) = 0 := by
   rw [evalAtJ_eq_eval₂RingHom_intCast_jq,
@@ -464,11 +464,11 @@ private theorem _root_.ModularCurve.ModularPolynomialData.eval₂_biResultant_eq
     exact (dedekindPsi_pos m (NeZero.ne m)).ne'
   refine evalModularPair_biResultant_eq_zero_of_common data.monic hmpos
     (b := jqN m) ?_ ?_
-  · show data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) jq)
+  · change data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) jq)
         (jqN m) = 0
     rw [← evalAtJ_eq_eval₂RingHom_intCast_jq]
     exact data.eval_eq_zero
-  · show data'.Φ.eval₂
+  · change data'.Φ.eval₂
         (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) (jqN m))
         (jqN (m * n)) = 0
     rw [← qExpand_comp_evalAtJ_eq_eval₂RingHom]
@@ -480,8 +480,8 @@ end QExpansion
 
 namespace ModularPolynomialData
 p2m_open_scoped "ModularCurve.ModularPolynomialData" in
-
-private def _root_.ModularCurve.ModularPolynomialData.biResultantPacket {m n : ℕ} [NeZero m] [NeZero n]
+private def _root_.ModularCurve.ModularPolynomialData.biResultantPacket {m n : ℕ} [NeZero m]
+    [NeZero n]
     (data : ModularPolynomialData m) (data' : ModularPolynomialData n)
     (hmn : Nat.Coprime m n) :
     ModularPolynomialData (m * n) where
@@ -544,8 +544,8 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve ModularCurve.PhiGen in
-
-theorem solution (N : ℕ) [NeZero N] (hsf : Squarefree N) (hN : 1 < N) : Nonempty (ModularPolynomialData N) :=
+theorem solution (N : ℕ) [NeZero N] (hsf : Squarefree N) (hN : 1 < N) :
+    Nonempty (ModularPolynomialData N) :=
   ModularCurve.nonempty_modularPolynomialData_of_squarefree N hsf hN
 
 end S_ModularCurve_nonempty_modularPolynomialData_of_squarefree
@@ -558,6 +558,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.nonempty_modularPolynomialData_of_squarefree (N : ℕ) [NeZero N] (hsf : Squarefree N) (hN : 1 < N) : Nonempty (ModularPolynomialData N) := _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.solution N hsf hN
+theorem ModularCurve.nonempty_modularPolynomialData_of_squarefree (N : ℕ) [NeZero N]
+    (hsf : Squarefree N) (hN : 1 < N) :
+    Nonempty (ModularPolynomialData N) :=
+  solution N hsf hN
 
 end publicSection

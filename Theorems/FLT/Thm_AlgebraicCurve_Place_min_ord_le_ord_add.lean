@@ -78,7 +78,8 @@ theorem le_ord_add (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg 
 
 end AlgebraicCurve.FF2S
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F)
+    {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
     min (v.ord f) (v.ord g) ≤ v.ord (f + g) :=
   AlgebraicCurve.FF2S.le_ord_add v hf hg hfg
 
@@ -90,7 +91,9 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.min_ord_le_ord_add {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
-    min (v.ord f) (v.ord g) ≤ v.ord (f + g) := _root_.P2MW.S_AlgebraicCurve_Place_min_ord_le_ord_add.solution v hf hg hfg
+theorem AlgebraicCurve.Place.min_ord_le_ord_add {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
+    min (v.ord f) (v.ord g) ≤ v.ord (f + g) :=
+  solution v hf hg hfg
 
 end publicSection

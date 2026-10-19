@@ -87,6 +87,8 @@ end privateSection
 public section publicSection
 
 
-theorem ModularCurve.LevelN.isDomain_ring (M : ℕ) [NeZero M] : IsDomain (ModularCurve.LevelN.ring M) := _root_.P2MW.S_ModularCurve_LevelN_isDomain_ring.solution M
+theorem ModularCurve.LevelN.isDomain_ring (M : ℕ) [NeZero M] :
+    IsDomain (ModularCurve.LevelN.ring M) :=
+  solution M
 
 end publicSection

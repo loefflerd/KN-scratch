@@ -672,7 +672,7 @@ theorem solution
             Matrix.det (ρ σ) =
               algebraMap (𝓞 f.coefficientField) (f.coefficientCompletion ιp)
                 (f.integralNebentype (l : ZMod N) *
-                  (l : 𝓞 f.coefficientField) ^ (k - 1)))  := by
+                  (l : 𝓞 f.coefficientField) ^ (k - 1))) := by
   let R := f.coefficientCompletion ιp
   let K := f.coefficientLocalField ιp
   let := f.coefficientCompletion_isDomain hN hk ιp

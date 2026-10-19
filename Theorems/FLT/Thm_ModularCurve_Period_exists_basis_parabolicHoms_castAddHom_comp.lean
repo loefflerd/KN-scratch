@@ -89,7 +89,8 @@ private theorem trace_ne_of_mem_Gamma_two {γ : SL(2, ℤ)} (h : γ ∈ Congruen
   rw [Matrix.det_fin_two] at hdet
   rw [Matrix.trace_fin_two]
   have dvd_of_one : ∀ x : ℤ, (x : ZMod 2) = 1 → (2 : ℤ) ∣ x - 1 := fun x hx =>
-    (ZMod.intCast_zmod_eq_zero_iff_dvd (x - 1) 2).1 (by rw [Int.cast_sub, Int.cast_one, hx, sub_self])
+    (ZMod.intCast_zmod_eq_zero_iff_dvd (x - 1) 2).1 (by rw [Int.cast_sub, Int.cast_one, hx,
+      sub_self])
   have dvd_of_zero : ∀ x : ℤ, (x : ZMod 2) = 0 → (2 : ℤ) ∣ x := fun x hx =>
     (ZMod.intCast_zmod_eq_zero_iff_dvd x 2).1 hx
   obtain ⟨a', ha'⟩ := dvd_of_one _ ha
@@ -153,7 +154,8 @@ variable {Γ : Subgroup SL(2, ℤ)} {n : ℕ} (g : Fin n → Γ)
 
 private def π : FreeGroup (Fin n) →* Γ := FreeGroup.lift g
 
-private theorem π_surjective (hg : Subgroup.closure (Set.range g) = ⊤) : Function.Surjective (π g) := by
+private theorem π_surjective (hg : Subgroup.closure (Set.range g) = ⊤) :
+    Function.Surjective (π g) := by
   rw [← MonoidHom.range_eq_top, π, FreeGroup.range_lift_eq_closure, hg]
 
 private def abHom : FreeGroup (Fin n) →* Multiplicative (Fin n → ℤ) :=
@@ -204,8 +206,8 @@ private theorem toAdd_Lz (z : Fin n → A) (w : FreeGroup (Fin n)) :
   have key : Lz z = (AddMonoidHom.toMultiplicative (pairHom z)).comp abHom := by
     refine FreeGroup.ext_hom _ _ fun i => ?_
     simp only [Lz, FreeGroup.lift_apply_of, MonoidHom.coe_comp, Function.comp_apply]
-    show Multiplicative.ofAdd (z i) = Multiplicative.ofAdd (pairHom z (ab (FreeGroup.of i)))
-    rw [ab_of]; show _ = Multiplicative.ofAdd (pair (Pi.single i 1) z); rw [pair_single]
+    change Multiplicative.ofAdd (z i) = Multiplicative.ofAdd (pairHom z (ab (FreeGroup.of i)))
+    rw [ab_of]; change _ = Multiplicative.ofAdd (pair (Pi.single i 1) z); rw [pair_single]
   rw [key]; rfl
 
 private theorem apply_π (φ : Additive Γ →+ A) (w : FreeGroup (Fin n)) :
@@ -239,7 +241,7 @@ private theorem ev_perp {φ : Additive Γ →+ A} (hφ : φ ∈ ModularCurve.Per
   induction hc using Submodule.span_induction with
   | mem c hc =>
     obtain ⟨w, hw, rfl⟩ := hc
-    show pair (ab w) (fun i => φ (Additive.ofMul (g i))) = 0
+    change pair (ab w) (fun i => φ (Additive.ofMul (g i))) = 0
     rw [← apply_π]; exact hφ _ hw
   | zero => exact pair_zero_left _
   | add c c' _ _ hc hc' => rw [pair_add_left, hc, hc', add_zero]
@@ -272,7 +274,9 @@ private theorem Lz_eq_of_π_eq {z : Fin n → A} (hz : ∀ c ∈ R g, pair c z =
 
 variable (g)
 
-private noncomputable def liftFun (hg : Subgroup.closure (Set.range g) = ⊤) (z : Fin n → A) (γ : Γ) : A :=
+private noncomputable def liftFun (hg : Subgroup.closure (Set.range g) = ⊤) (z : Fin n → A) (γ : Γ)
+    :
+    A :=
   Multiplicative.toAdd (Lz z (Function.surjInv (π_surjective g hg) γ))
 
 private theorem liftFun_π (hg : Subgroup.closure (Set.range g) = ⊤) {z : Fin n → A}
@@ -285,12 +289,12 @@ private noncomputable def liftHom (hg : Subgroup.closure (Set.range g) = ⊤) (z
     (hz : ∀ c ∈ R g, pair c z = 0) : Additive Γ →+ A where
   toFun x := liftFun g hg z (Additive.toMul x)
   map_zero' := by
-    show liftFun g hg z 1 = 0
+    change liftFun g hg z 1 = 0
     rw [← map_one (π g), liftFun_π g hg hz, ← toAdd_Lz, map_one, toAdd_one]
   map_add' x y := by
     obtain ⟨w₁, h₁⟩ := π_surjective g hg (Additive.toMul x)
     obtain ⟨w₂, h₂⟩ := π_surjective g hg (Additive.toMul y)
-    show liftFun g hg z (Additive.toMul x * Additive.toMul y) = _
+    change liftFun g hg z (Additive.toMul x * Additive.toMul y) = _
     rw [← h₁, ← h₂, ← map_mul, liftFun_π g hg hz, liftFun_π g hg hz, liftFun_π g hg hz,
       ← toAdd_Lz, ← toAdd_Lz, ← toAdd_Lz, map_mul, toAdd_mul]
 
@@ -335,7 +339,8 @@ private noncomputable def t : ℕ := Module.finrank ℤ (Qf g)
 
 private noncomputable def ε : Module.Basis (Fin (t g)) ℤ (Qf g) := Module.finBasis ℤ (Qf g)
 
-private noncomputable def cLift (k : Fin (t g)) : Fin n → ℤ := Function.surjInv (proj_surjective g) (ε g k)
+private noncomputable def cLift (k : Fin (t g)) :
+    Fin n → ℤ := Function.surjInv (proj_surjective g) (ε g k)
 
 private theorem proj_cLift (k : Fin (t g)) : proj g (cLift g k) = ε g k :=
   Function.surjInv_eq (proj_surjective g) _
@@ -361,7 +366,7 @@ private noncomputable def descend (hA : ∀ (a : ℤ) (x : A), a ≠ 0 → a •
 private theorem descend_proj (hA : ∀ (a : ℤ) (x : A), a ≠ 0 → a • x = 0 → x = 0)
     (z : Fin n → A) (hz : ∀ c ∈ R g, pair c z = 0) (c : Fin n → ℤ) :
     descend g hA z hz (proj g c) = pair c z := by
-  show (Submodule.torsion ℤ (Q g)).liftQ _ _
+  change (Submodule.torsion ℤ (Q g)).liftQ _ _
     (Submodule.Quotient.mk (Submodule.Quotient.mk c)) = _
   rw [Submodule.liftQ_apply]
   erw [Submodule.liftQ_apply]
@@ -403,11 +408,11 @@ private theorem Λ_surjective (y : Fin (t g) → A) :
     rw [h1]
     have : proj g c = 0 := by
       have h0 : (R g).mkQ c = 0 := (Submodule.Quotient.mk_eq_zero (R g)).2 hc
-      show (Submodule.torsion ℤ (Q g)).mkQ ((R g).mkQ c) = 0
+      change (Submodule.torsion ℤ (Q g)).mkQ ((R g).mkQ c) = 0
       rw [h0, map_zero]
     rw [this, map_zero]
   · funext k
-    show pair (cLift g k) _ = y k
+    change pair (cLift g k) _ = y k
     have h1 := pair_stdBasis (F ∘ₗ proj g) (cLift g k)
     simp only [LinearMap.coe_comp, Function.comp_apply] at h1
     rw [h1, proj_cLift]
@@ -429,7 +434,8 @@ section Main
 
 variable {Γ : Subgroup SL(2, ℤ)} {n : ℕ} (g : Fin n → Γ)
 
-private theorem mem_parabolicHoms_iff {R' : Type*} [Semiring R'] {A : Type*} [AddCommGroup A] [Module R' A]
+private theorem mem_parabolicHoms_iff {R' : Type*} [Semiring R'] {A : Type*} [AddCommGroup A]
+    [Module R' A]
     (φ : Additive Γ →+ A) :
     φ ∈ ModularCurve.Period.parabolicHoms R' Γ A ↔ ModularCurve.Period.IsParabolicHom Γ φ :=
   Iff.rfl
@@ -438,13 +444,15 @@ private theorem pair_add_right {A : Type*} [AddCommGroup A] (c : Fin n → ℤ) 
     pair c (z + z') = pair c z + pair c z' := by
   simp [pair, Finset.sum_add_distrib]
 
-private theorem pair_smul_right {A : Type*} [AddCommGroup A] {S : Type*} [Monoid S] [DistribMulAction S A]
+private theorem pair_smul_right {A : Type*} [AddCommGroup A] {S : Type*} [Monoid S]
+    [DistribMulAction S A]
     [SMulCommClass ℤ S A] (c : Fin n → ℤ) (r : S) (z : Fin n → A) :
     pair c (r • z) = r • pair c z := by
   simp only [pair, Pi.smul_apply, Finset.smul_sum]
   exact Finset.sum_congr rfl fun i _ => smul_comm (c i) r (z i)
 
-private theorem Λ_add {A : Type*} [AddCommGroup A] (z z' : Fin n → A) : Λ g (z + z') = Λ g z + Λ g z' := by
+private theorem Λ_add {A : Type*} [AddCommGroup A] (z z' : Fin n → A) :
+    Λ g (z + z') = Λ g z + Λ g z' := by
   funext k; exact pair_add_right _ _ _
 
 private theorem Λ_smul {A : Type*} [AddCommGroup A] {S : Type*} [Monoid S] [DistribMulAction S A]
@@ -462,10 +470,10 @@ private noncomputable def coordZlin :
     ModularCurve.Period.parabolicHoms ℤ Γ ℤ →ₗ[ℤ] (Fin (t g) → ℤ) where
   toFun φ := Λ g (ev g (φ : Additive Γ →+ ℤ))
   map_add' φ ψ := by
-    show Λ g (ev g ((φ : Additive Γ →+ ℤ) + (ψ : Additive Γ →+ ℤ))) = _
+    change Λ g (ev g ((φ : Additive Γ →+ ℤ) + (ψ : Additive Γ →+ ℤ))) = _
     rw [← Λ_add]; rfl
   map_smul' m φ := by
-    show Λ g (ev g (m • (φ : Additive Γ →+ ℤ))) = m • Λ g (ev g (φ : Additive Γ →+ ℤ))
+    change Λ g (ev g (m • (φ : Additive Γ →+ ℤ))) = m • Λ g (ev g (φ : Additive Γ →+ ℤ))
     rw [← Λ_smul]; rfl
 
 private noncomputable def coordZ (hg : Subgroup.closure (Set.range g) = ⊤) :
@@ -480,13 +488,14 @@ private noncomputable def coordKlin (K : Type*) [Field K] :
     ModularCurve.Period.parabolicHoms K Γ K →ₗ[K] (Fin (t g) → K) where
   toFun φ := Λ g (ev g (φ : Additive Γ →+ K))
   map_add' φ ψ := by
-    show Λ g (ev g ((φ : Additive Γ →+ K) + (ψ : Additive Γ →+ K))) = _
+    change Λ g (ev g ((φ : Additive Γ →+ K) + (ψ : Additive Γ →+ K))) = _
     rw [← Λ_add]; rfl
   map_smul' r φ := by
-    show Λ g (ev g (r • (φ : Additive Γ →+ K))) = r • Λ g (ev g (φ : Additive Γ →+ K))
+    change Λ g (ev g (r • (φ : Additive Γ →+ K))) = r • Λ g (ev g (φ : Additive Γ →+ K))
     rw [← Λ_smul]; rfl
 
-private theorem coordK_bijective (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K] [CharZero K] :
+private theorem coordK_bijective (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K]
+    [CharZero K] :
     Function.Bijective (coordKlin g K) := by
   have hb := coord_bijective g hg (field_tf K)
   refine ⟨fun φ ψ h => ?_, fun y => ?_⟩
@@ -497,11 +506,13 @@ private theorem coordK_bijective (hg : Subgroup.closure (Set.range g) = ⊤) (K 
   · obtain ⟨φ, hφ⟩ := hb.2 y
     exact ⟨⟨(φ : Additive Γ →+ K), (mem_parabolicHoms_iff _).2 ((mem_parabolicHoms_iff _).1 φ.2)⟩, hφ⟩
 
-private noncomputable def coordK (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K] [CharZero K] :
+private noncomputable def coordK (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K]
+    [CharZero K] :
     ModularCurve.Period.parabolicHoms K Γ K ≃ₗ[K] (Fin (t g) → K) :=
   LinearEquiv.ofBijective (coordKlin g K) (coordK_bijective g hg K)
 
-private theorem coordK_apply (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K] [CharZero K]
+private theorem coordK_apply (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K]
+    [CharZero K]
     (φ : ModularCurve.Period.parabolicHoms K Γ K) :
     coordK g hg K φ = Λ g (ev g (φ : Additive Γ →+ K)) := rfl
 
@@ -509,7 +520,7 @@ private theorem castAddHom_comp_mem (K : Type*) [Field K] {φ : Additive Γ →+
     (hφ : φ ∈ ModularCurve.Period.parabolicHoms ℤ Γ ℤ) :
     (Int.castAddHom K).comp φ ∈ ModularCurve.Period.parabolicHoms K Γ K := by
   intro γ hγ
-  show ((φ (Additive.ofMul γ) : ℤ) : K) = 0
+  change ((φ (Additive.ofMul γ) : ℤ) : K) = 0
   rw [hφ γ hγ, Int.cast_zero]
 
 private theorem main (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] :
@@ -527,7 +538,7 @@ private theorem main (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] :
   have hcoord : coordK g hg K ⟨_, hmem⟩ = Pi.single i 1 := by
     funext k
     rw [coordK_apply]
-    show pair (cLift g k) ((Int.castAddHom K) ∘ ev g
+    change pair (cLift g k) ((Int.castAddHom K) ∘ ev g
       ((Module.Basis.ofEquivFun (coordZ g hg) i : ModularCurve.Period.parabolicHoms ℤ Γ ℤ) :
         Additive Γ →+ ℤ)) = _
     rw [← pair_map]
@@ -571,6 +582,7 @@ theorem ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp
     ∃ (n : ℕ) (b : Module.Basis (Fin n) ℤ (ModularCurve.Period.parabolicHoms ℤ Γ ℤ)),
       ∀ (K : Type*) [Field K] [CharZero K],
         ∃ bK : Module.Basis (Fin n) K (ModularCurve.Period.parabolicHoms K Γ K),
-          ∀ i, (bK i : Additive Γ →+ K) = (Int.castAddHom K).comp (b i : Additive Γ →+ ℤ) := _root_.P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp.solution Γ
+          ∀ i, (bK i : Additive Γ →+ K) = (Int.castAddHom K).comp (b i : Additive Γ →+ ℤ) :=
+  solution Γ
 
 end publicSection

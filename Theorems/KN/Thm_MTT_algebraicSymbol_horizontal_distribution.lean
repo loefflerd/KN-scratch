@@ -178,7 +178,7 @@ theorem vm_shrink_integrable (r : ℚ) (j : ℕ) {c : ℕ} (hc : 0 < c) :
       (fun y : ℝ => f (ofComplex (((r / c : ℚ) : ℂ) + Complex.I * y)) * (y : ℂ) ^ j) 0
       (inv_pos.mpr hcR)).2 (by simpa using hbase)
     exact this
-  show Integrable _ (volume.restrict (Set.Ioi 0))
+  change Integrable _ (volume.restrict (Set.Ioi 0))
   simpa only [← vm_shrink_pt f r j hc] using hcomp.const_mul ((c : ℂ) ^ j)
 
 include hN hk in
@@ -194,7 +194,7 @@ theorem vm_stretch_integrable (r : ℚ) (j : ℕ) {c : ℕ} (hc : 0 < c) :
       (fun y : ℝ => f (ofComplex (((c * r : ℚ) : ℂ) + Complex.I * y)) * (y : ℂ) ^ j) 0
       hcR).2 (by simpa using hbase)
     exact this
-  show Integrable _ (volume.restrict (Set.Ioi 0))
+  change Integrable _ (volume.restrict (Set.Ioi 0))
   simpa only [← vm_stretch_pt f r j hc] using hcomp.const_mul (((c : ℂ) ^ j)⁻¹)
 
 end Integrability
@@ -546,7 +546,7 @@ end Periodic
 
 open MTT in
 /-- The arbitrary-denominator form of the Hecke distribution relation for
-algebraic modular symbols.  This is the part of the proof of
+algebraic modular symbols. This is the part of the proof of
 `MTT.distribution_relation` before ordinary-root stabilization. -/
 theorem _root_.solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
@@ -607,7 +607,7 @@ theorem _root_.solution
   simp only [mul_sub, Finset.mul_sum]
   have he1 : ∀ b : ℕ,
       P.omega s * ι (algebraicSymbol P s j ((a : ℚ) + b * q) ((ℓ : ℚ) * q)) =
-      (Real.pi : ℂ) * Complex.I ^ j * (ℓ : ℂ)^j * (q : ℂ)^j *
+      (Real.pi : ℂ) * Complex.I ^ j * (ℓ : ℂ) ^ j * (q : ℂ) ^ j *
         W (((a : ℚ) / q + b) / ℓ) := by
     intro b
     rw [hc _ _ (mul_ne_zero hpQ hqQ), harg]
@@ -624,9 +624,9 @@ theorem _root_.solution
   apply mul_left_cancel₀ hpC
   rw [← Finset.mul_sum]
   linear_combination
-    ((Real.pi : ℂ) * Complex.I ^ j * (q : ℂ)^j) * H -
+    ((Real.pi : ℂ) * Complex.I ^ j * (q : ℂ) ^ j) * H -
       (ℓ : ℂ) * ι (f.coeff ℓ) * hc1 +
-      (ℓ : ℂ) * ι (f.epsilon ℓ) * (ℓ : ℂ)^(k - 2 - j) * hc2
+      (ℓ : ℂ) * ι (f.epsilon ℓ) * (ℓ : ℂ) ^ (k - 2 - j) * hc2
 
 end HorizontalDistributionProof
 end
@@ -640,7 +640,7 @@ open scoped BigOperators
 
 open MTT in
 /-- The arbitrary-denominator form of the Hecke distribution relation for
-algebraic modular symbols.  This is the part of the proof of
+algebraic modular symbols. This is the part of the proof of
 `MTT.distribution_relation` before ordinary-root stabilization. -/
 theorem MTT.algebraicSymbol_horizontal_distribution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)

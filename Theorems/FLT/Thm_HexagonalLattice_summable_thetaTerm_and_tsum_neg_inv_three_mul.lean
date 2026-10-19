@@ -470,6 +470,7 @@ theorem HexagonalLattice.summable_thetaTerm_and_tsum_neg_inv_three_mul (σ : ℂ
         ((p.1 : ℂ) ^ 2 + (p.1 : ℂ) * (p.2 : ℂ) + (p.2 : ℂ) ^ 2))) =
       -Complex.I * (Real.sqrt 3 : ℂ) * σ *
         ∑' p : ℤ × ℤ, Complex.exp (2 * (Real.pi : ℂ) * Complex.I * σ *
-          ((p.1 : ℂ) ^ 2 + (p.1 : ℂ) * (p.2 : ℂ) + (p.2 : ℂ) ^ 2)) := _root_.P2MW.S_HexagonalLattice_summable_thetaTerm_and_tsum_neg_inv_three_mul.solution σ hσ
+          ((p.1 : ℂ) ^ 2 + (p.1 : ℂ) * (p.2 : ℂ) + (p.2 : ℂ) ^ 2)) :=
+  solution σ hσ
 
 end publicSection

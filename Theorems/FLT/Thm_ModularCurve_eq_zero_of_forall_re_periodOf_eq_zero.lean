@@ -65,7 +65,8 @@ open scoped MatrixGroups Real Manifold ModularForm
 open UpperHalfPlane Filter Topology Complex Function Metric
 
 namespace ModularCurve
-p2m_export "ModularCurve" "periodOf HasEquivariantPrimitiveOf period exists_hasEquivariantPrimitiveOf periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf"
+p2m_export "ModularCurve" "periodOf HasEquivariantPrimitiveOf period \
+  exists_hasEquivariantPrimitiveOf periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf"
 namespace PeriodRealInjectivityOf
 p2m_open "ModularCurve"
 
@@ -240,7 +241,8 @@ theorem qParam_mem_ball' (w : ℍ) : 𝕢 (M : ℝ) ↑w ∈ ball (0 : ℂ) 1 :=
 include hM in
 theorem qParam_mem_closedBall {w : ℍ} (hw : 1 / 2 ≤ w.im) :
     𝕢 (M : ℝ) ↑w ∈ closedBall (0 : ℂ) (Real.exp (-π / M)) := by
-  rw [mem_closedBall_zero_iff, Function.Periodic.norm_qParam, Real.exp_le_exp, UpperHalfPlane.coe_im]
+  rw [mem_closedBall_zero_iff, Function.Periodic.norm_qParam, Real.exp_le_exp,
+    UpperHalfPlane.coe_im]
   rw [div_le_div_iff_of_pos_right (hNpos hM)]
   nlinarith [Real.pi_pos]
 
@@ -369,6 +371,7 @@ public section publicSection
 open scoped MatrixGroups
 theorem ModularCurve.eq_zero_of_forall_re_periodOf_eq_zero (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (f : CuspForm Γ 2)
-    (h : ∀ γ : Γ, (ModularCurve.periodOf Γ γ f).re = 0) : f = 0 := _root_.P2MW.S_ModularCurve_eq_zero_of_forall_re_periodOf_eq_zero.solution Γ f h
+    (h : ∀ γ : Γ, (ModularCurve.periodOf Γ γ f).re = 0) : f = 0 :=
+  solution Γ f h
 
 end publicSection

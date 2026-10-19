@@ -96,11 +96,30 @@ private theorem fiberAdd_coordinates {R : Type*} [CommRing R]
   rw [hn]
   linear_combination (x - x₀) ^ 3 * hgy
 
-private theorem fiberAdd_asymWeight_cleared_sixteen_aux {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
+private theorem fiberAdd_asymWeight_cleared_sixteen_aux {R : Type*} [CommRing R] (W :
+    WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
-    16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3))))
-      = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := by
+    16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) *
+        (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀)
+        - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x -
+        x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y -
+        y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x
+        - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ +
+        x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x
+        - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) -
+        y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x
+        - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y -
+        y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 -
+        W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x -
+        x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+        x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3))))
+      = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂
+          * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2
+          - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3
+          - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀)
+          ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀
+          y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := by
   obtain ⟨hn, hm⟩ := fiberAdd_coordinates W x y x₀ y₀ hP hQ hgy
   rw [hm, hn]
   rw [Affine.equation_iff] at hP hQ
@@ -116,13 +135,31 @@ private theorem fiberAdd_asymWeight_cleared_sixteen_aux {R : Type*} [CommRing R]
 
 end WeierstrassCurve
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen.WeierstrassCurve in
-
+open _root_.WeierstrassCurve
+    _root_.P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen.WeierstrassCurve in
 theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
-    16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3))))
-      = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) :=
+    16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) *
+        (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀)
+        - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x -
+        x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y -
+        y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x
+        - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ +
+        x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x
+        - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) -
+        y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x
+        - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y -
+        y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 -
+        W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x -
+        x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+        x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3))))
+      = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂
+          * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2
+          - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3
+          - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀)
+          ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀
+          y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) :=
   WeierstrassCurve.fiberAdd_asymWeight_cleared_sixteen_aux W x y x₀ y₀ hP hQ hgy
 
 end S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen
@@ -133,10 +170,31 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.fiberAdd_asymWeight_cleared_sixteen {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
+theorem WeierstrassCurve.fiberAdd_asymWeight_cleared_sixteen {R : Type*} [CommRing R] (W :
+    WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
-    16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3))))
-      = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := _root_.P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen.solution W x y x₀ y₀ hP hQ hgy
+    16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) *
+        (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀)
+        - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x -
+        x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y -
+        y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x
+        - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ +
+        x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x
+        - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) -
+        y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x
+        - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y -
+        y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 -
+        W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x -
+        x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+        x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3))))
+      = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂
+          * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2
+          - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3
+          - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀)
+          ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀
+          y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) :=
+          _root_.P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen.solution W x y x₀ y₀ hP
+          hQ hgy
 
 end publicSection

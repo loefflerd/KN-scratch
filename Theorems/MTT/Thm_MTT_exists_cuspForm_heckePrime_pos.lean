@@ -523,7 +523,8 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
           first | ring1 | linear_combination hld' | linear_combination -hld')]
       simp only [cx_none, cx_some, smul_smul, mul_one]
       congr 1
-      simp only [γ', mkGamma0_coe, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_one, Matrix.empty_val',
+      simp only [γ', mkGamma0_coe, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_one,
+        Matrix.empty_val',
         Matrix.cons_val_fin_one]
       rw [← map_mul]
       congr 1
@@ -549,7 +550,8 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
           first | ring1 | linear_combination hlu | linear_combination -hlu)]
       simp only [cx_none, cx_some, smul_smul, one_mul]
       congr 1
-      simp only [γ', mkGamma0_coe, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_one, Matrix.empty_val',
+      simp only [γ', mkGamma0_coe, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_one,
+        Matrix.empty_val',
         Matrix.cons_val_fin_one]
       push_cast
       rw [map_mul, mul_comm]
@@ -580,7 +582,8 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
           first | ring1 | linear_combination hlq | linear_combination -hlq)]
       simp only [cx_some, smul_smul, one_mul, mul_one]
       congr 1
-      simp only [γ', mkGamma0_coe, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_one, Matrix.empty_val',
+      simp only [γ', mkGamma0_coe, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_one,
+        Matrix.empty_val',
         Matrix.cons_val_fin_one]
       push_cast
       simp [hcN]

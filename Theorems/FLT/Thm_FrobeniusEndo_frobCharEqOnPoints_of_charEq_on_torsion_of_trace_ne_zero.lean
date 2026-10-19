@@ -91,7 +91,13 @@ section PortCardMulX
 
 namespace PortCard
 
-p2m_open "WeierstrassCurve P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Af\
+  fine WeierstrassCurve.Affine.Point \
+  P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Af\
+  fine.Point Polynomial"
 open scoped Polynomial.Bivariate
 
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
@@ -120,10 +126,10 @@ theorem zsmul_some_eq_some_of_evalEval_ψ_ne_zero {x y : F} (h : W.toAffine.Nons
       _ = _ := by
           rw [hQeq, Jacobian.Point.toAffineAddEquiv_apply]
           exact Jacobian.Point.toAffineLift_of_Z_ne_zero hVz
-  · show (W.φ n).evalEval x y / (W.ψ n).evalEval x y ^ 2 * (W.ψ n).evalEval x y ^ 2 =
+  · change (W.φ n).evalEval x y / (W.ψ n).evalEval x y ^ 2 * (W.ψ n).evalEval x y ^ 2 =
         (W.φ n).evalEval x y
     rw [div_mul_cancel₀ _ (pow_ne_zero 2 hψ)]
-  · show (W.φ n).evalEval x y / (W.ψ n).evalEval x y ^ 2 * (W.ΨSq n).eval x = (W.Φ n).eval x
+  · change (W.φ n).evalEval x y / (W.ψ n).evalEval x y ^ 2 * (W.ΨSq n).eval x = (W.Φ n).eval x
     rw [← hψsq, div_mul_cancel₀ _ (pow_ne_zero 2 hψ), W.evalEval_φ heq]
 
 theorem zsmul_some_eq_some_of_eval_ΨSq_ne_zero {x y : F} (h : W.toAffine.Nonsingular x y)
@@ -159,13 +165,23 @@ open Polynomial
 universe u
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ map b₂ Jacobian.nonsingular_of_Z_ne_zero Jacobian.Point.toAffineAddEquiv_symm_apply natDegree_ΨSq_le mk a₄ Jacobian a₂ a₆ Affine.Point.some Affine.Point.X_eq_iff Affine.Point.map_injective Jacobian.Point.ext Jacobian.Point.fromAffine Jacobian.Point.toAffineAddEquiv_apply ΨSq toAffine Affine.Point map_injective Jacobian.Point.toAffineAddEquiv b₆ b₈ Affine.Point.some_ne_zero Δ Affine.Point.add_of_X_ne Jacobian.Point Affine.Point.neg_some j b₄ natDegree_Φ_le Jacobian.Point.toAffineLift_of_Z_ne_zero Jacobian.Point.mk smulEval zsmul_eq_smulEval evalEval_ψ_sq evalEval_φ smul_eq_zero_iff_evalEval_ψ"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ map b₂ Jacobian.nonsingular_of_Z_ne_zero \
+  Jacobian.Point.toAffineAddEquiv_symm_apply natDegree_ΨSq_le mk a₄ Jacobian a₂ a₆ \
+  Affine.Point.some Affine.Point.X_eq_iff Affine.Point.map_injective Jacobian.Point.ext \
+  Jacobian.Point.fromAffine Jacobian.Point.toAffineAddEquiv_apply ΨSq toAffine Affine.Point \
+  map_injective Jacobian.Point.toAffineAddEquiv b₆ b₈ Affine.Point.some_ne_zero Δ \
+  Affine.Point.add_of_X_ne Jacobian.Point Affine.Point.neg_some j b₄ natDegree_Φ_le \
+  Jacobian.Point.toAffineLift_of_Z_ne_zero Jacobian.Point.mk smulEval zsmul_eq_smulEval \
+  evalEval_ψ_sq evalEval_φ smul_eq_zero_iff_evalEval_ψ"
 p2m_open "WeierstrassCurve"
 
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Point.X_eq_iff Nonsingular Point.map_injective Point addX Point.some_ne_zero Point.add_of_X_ne equation_iff polynomial Point.neg_some Point.mk"
+p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some \
+  Point.X_eq_iff Nonsingular Point.map_injective Point addX Point.some_ne_zero Point.add_of_X_ne \
+  equation_iff polynomial Point.neg_some Point.mk"
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "some neg_zero X_eq_iff map_injective map_zero map some_ne_zero add_of_X_ne zero neg_some mk"
+p2m_export "WeierstrassCurve.Affine.Point" "some neg_zero X_eq_iff map_injective map_zero map \
+  some_ne_zero add_of_X_ne zero neg_some mk"
 p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine"
 
 variable {R : Type u} [CommRing R] {W : Affine R}
@@ -201,7 +217,9 @@ lemma addQuad_def (a b c : R) :
 end AddQuad
 
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Point.X_eq_iff Nonsingular Point.map_injective Point addX Point.some_ne_zero Point.add_of_X_ne equation_iff polynomial Point.neg_some Point.mk"
+p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some \
+  Point.X_eq_iff Nonsingular Point.map_injective Point addX Point.some_ne_zero Point.add_of_X_ne \
+  equation_iff polynomial Point.neg_some Point.mk"
 p2m_open "WeierstrassCurve.Affine"
 
 variable {F : Type u} [Field F] {W : Affine F}
@@ -448,7 +466,6 @@ private lemma natDegree_charEqQuad_le :
     (natDegree_add_le _ _).trans (max_le (natDegree_two_block_le_aux a q hSN hTD)
       (natDegree_two_block_le_aux a q hTN hSD))
   have hDelta := natDegree_charEqDelta_le W a q
-
   have h1 : ((charEqSNum W a q * charEqTNum W q) ^ 2).natDegree
       ≤ 6 * charEqBlockBound a q := by
     refine le_six_blocks_of_le_four a q (natDegree_pow_le.trans ?_)
@@ -515,7 +532,6 @@ private lemma natDegree_charEqQuad_le :
     calc ((X ^ q ^ 2 : Polynomial k) ^ 2).natDegree + (charEqDelta W a q ^ 2).natDegree
         ≤ 2 * charEqBlockBound a q + 4 * charEqBlockBound a q := Nat.add_le_add hX2 hD2
       _ = 6 * charEqBlockBound a q := by ring
-
   unfold charEqQuad
   exact (natDegree_add_le _ _).trans (max_le ((natDegree_sub_le _ _).trans (max_le
     ((natDegree_sub_le _ _).trans (max_le ((natDegree_sub_le _ _).trans (max_le
@@ -543,11 +559,12 @@ private lemma some_congr_charEq {V : WeierstrassCurve k} {x₁ x₂ y₁ y₂ : 
     Affine.Point.some x₁ y₁ h₁ = Affine.Point.some x₂ y₂ h₂ := by
   subst hx; subst hy; rfl
 
-private lemma xOrZero_neg_charEq [DecidableEq k] {V : WeierstrassCurve k}
+private lemma xOrZero_neg_charEq {V : WeierstrassCurve k}
     (P : V.toAffine.Point) : (-P).xOrZero = P.xOrZero := by
+  classical
   cases P with
   | zero =>
-      show (-(0 : V.toAffine.Point)).xOrZero = (0 : V.toAffine.Point).xOrZero
+      change (-(0 : V.toAffine.Point)).xOrZero = (0 : V.toAffine.Point).xOrZero
       rw [neg_zero]
   | some x y h =>
       rw [Affine.Point.neg_some, Affine.Point.xOrZero_some, Affine.Point.xOrZero_some]
@@ -592,7 +609,6 @@ variable {k : Type*} [Field k] [DecidableEq k] {V : WeierstrassCurve k} {q : ℕ
   (hinj : Function.Injective Fr)
 
 include hFr hinj in
-
 theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
     {a : ℤ} (ha : a ≠ 0) {r : ℕ} (hr : r.Prime)
     (hq_lt : q < r) (ha_lt : a.natAbs < r)
@@ -600,18 +616,14 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
     (hkill : Fr (Fr P) - a • Fr P + (q : ℤ) • P = 0) :
     (charEqPoly V a q).eval P.xOrZero = 0 := by
   classical
-
   obtain ⟨x, y, h, rfl⟩ := exists_some_of_ne_zero_charEq hP0
   rw [Affine.Point.xOrZero_some]
   have ha1 : 1 ≤ a.natAbs := Int.natAbs_pos.mpr ha
   have hfree := lowTorsionFree_of_prime_torsion (Affine.Point.some_ne_zero h) hr hPr
-
   have hT0 : q • (Affine.Point.some x y h : V.toAffine.Point) ≠ 0 :=
     hfree q hq1 (by omega)
-
   have hMT := Affine.mfred h q hT0
   obtain ⟨hns', hFP⟩ := hFr h
-
   have hS0 : a.natAbs • (Affine.Point.some (x ^ q) (y ^ q) hns' : V.toAffine.Point) ≠ 0 := by
     intro hcontra
     apply hfree a.natAbs ha1 (by omega)
@@ -620,7 +632,6 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
   have hMS := Affine.mfred hns' a.natAbs hS0
   obtain ⟨xT, yT, hTns, hTpt⟩ := exists_some_of_ne_zero_charEq hT0
   obtain ⟨xS, yS, hSns, hSpt⟩ := exists_some_of_ne_zero_charEq hS0
-
   have hTclear : (V.Φ ((q : ℕ) : ℤ)).eval x = xT * (V.ΨSq ((q : ℕ) : ℤ)).eval x := by
     rw [← hMT.2, hTpt, Affine.Point.xOrZero_some]
   have hSclear : (V.Φ ((a.natAbs : ℕ) : ℤ)).eval (x ^ q) =
@@ -643,7 +654,6 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
       have h0 := hkill
       rw [sub_add_eq_add_sub, sub_eq_zero] at h0
       exact eq_sub_of_add_eq h0
-
     obtain ⟨hns₂, hFP₂⟩ := hFr hns'
     have hns'' : V.toAffine.Nonsingular (x ^ q ^ 2) (y ^ q ^ 2) := by
       have h2 := hns₂
@@ -652,12 +662,10 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
         Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' := by
       rw [hFP, hFP₂]
       exact some_congr_charEq (by rw [← pow_mul, ← pow_two]) (by rw [← pow_mul, ← pow_two]) _ _
-
     have hxF2 : (x : k) ^ q ^ 2 =
         (a • Fr (Affine.Point.some x y h)
           - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point)).xOrZero := by
       rw [← hkill', hF2, Affine.Point.xOrZero_some]
-
     have hquadzero : V.addQuad xS xT (x ^ q ^ 2) = 0 := by
       have haddq :
           (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS yT) - x ^ q ^ 2) *
@@ -690,7 +698,6 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
         rw [show (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS yT) - x ^ q ^ 2) = 0 from by
           rw [hx2]; ring]
         ring
-
     calc (charEqPoly V a q).eval x
         = (charEqDelta V a q).eval x * (charEqQuad V a q).eval x := by
           unfold charEqPoly
@@ -713,7 +720,6 @@ variable {k : Type*} [Field k] [DecidableEq k] {V : WeierstrassCurve k} {q : ℕ
   (hinj : Function.Injective Fr)
 
 include hFr hinj in
-
 theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
     {a : ℤ} (ha : a ≠ 0) {r : ℕ} (hr : r.Prime)
     (hrB : charEqPrimeBound a q < r)
@@ -724,12 +730,12 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
   classical
   have hq_lt : q < r := by
     have hb : q ≤ charEqPrimeBound a q := by
-      show q ≤ 2 * charEqDegBound a q + a.natAbs + q + 2
+      change q ≤ 2 * charEqDegBound a q + a.natAbs + q + 2
       omega
     omega
   have ha_lt : a.natAbs < r := by
     have hb : a.natAbs ≤ charEqPrimeBound a q := by
-      show a.natAbs ≤ 2 * charEqDegBound a q + a.natAbs + q + 2
+      change a.natAbs ≤ 2 * charEqDegBound a q + a.natAbs + q + 2
       omega
     omega
   have hfin : Finite (Submodule.torsionBy ℤ V.toAffine.Point r) := by
@@ -743,7 +749,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
   have hs₀card : (Finset.univ.erase
       (0 : Submodule.torsionBy ℤ V.toAffine.Point r)).card + 1 = r ^ 2 := by
     rw [Finset.card_erase_add_one (Finset.mem_univ 0), Finset.card_univ, hcardT]
-
   have hcount : (Finset.univ.erase
         (0 : Submodule.torsionBy ℤ V.toAffine.Point r)).card
       ≤ 2 * ((Finset.univ.erase
@@ -824,7 +829,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
       _ ≤ (charEqPoly V a q).natDegree :=
           Polynomial.card_roots' _
   have hdegle := natDegree_charEqPoly_le V a q
-
   have hbig : 2 * charEqDegBound a q + 4 ≤ r := by
     have heq : charEqPrimeBound a q
         = 2 * charEqDegBound a q + a.natAbs + q + 2 := rfl
@@ -867,7 +871,6 @@ private lemma frob_eq_zero_of {P : V.toAffine.Point} (h : Fr P = 0) : P = 0 :=
   hinj (by rw [h, map_zero])
 
 include hFr hinj in
-
 theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠ 0)
     (hpoly : charEqPoly V a q = 0)
     {Q : V.toAffine.Point}
@@ -887,7 +890,6 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
   have hT0 : q • (Affine.Point.some x y h : V.toAffine.Point) ≠ 0 :=
     hQ q hq1 (Nat.le_add_right _ _)
   have hMT := Affine.mfred h q hT0
-
   obtain ⟨hns', hFP⟩ := hFr h
   have hS0 : a.natAbs • (Affine.Point.some (x ^ q) (y ^ q) hns' : V.toAffine.Point) ≠ 0 := by
     intro hcontra
@@ -898,7 +900,6 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
   have hMS := Affine.mfred hns' a.natAbs hS0
   obtain ⟨xT, yT, hTns, hTpt⟩ := exists_some_of_ne_zero_charEq hT0
   obtain ⟨xS, yS, hSns, hSpt⟩ := exists_some_of_ne_zero_charEq hS0
-
   have hTclear : (V.Φ ((q : ℕ) : ℤ)).eval x = xT * (V.ΨSq ((q : ℕ) : ℤ)).eval x := by
     rw [← hMT.2, hTpt, Affine.Point.xOrZero_some]
   have hSclear : (V.Φ ((a.natAbs : ℕ) : ℤ)).eval (x ^ q) =
@@ -923,7 +924,6 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
       _ = (0 : Polynomial k).eval x := by rw [h0]
       _ = 0 := eval_zero
   rw [charEqDelta_eval V a q hSnum hTnum, charEqQuad_eval V a q hSnum hTnum] at hzero
-
   have hkey : xS = xT ∨ V.addQuad xS xT (x ^ q ^ 2) = 0 := by
     rcases mul_eq_zero.mp hzero with h1 | h2
     · rcases mul_eq_zero.mp h1 with h1a | h1b
@@ -960,7 +960,6 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
         rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hrel]
         abel
   · have hquad : V.addQuad xS xT (x ^ q ^ 2) = 0 := hkey.resolve_left hxx
-
     have hfact : (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS yT) - x ^ q ^ 2)
         * (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS (V.toAffine.negY xT yT))
           - x ^ q ^ 2)
@@ -981,7 +980,6 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
       rcases mul_eq_zero.mp h2 with hgood | hgood
       · exact Or.inl (sub_eq_zero.mp hgood)
       · exact Or.inr (sub_eq_zero.mp hgood)
-
     obtain ⟨hns₂, hFP₂⟩ := hFr hns'
     have hns'' : V.toAffine.Nonsingular (x ^ q ^ 2) (y ^ q ^ 2) := by
       have h2 := hns₂
@@ -1125,7 +1123,6 @@ section Elim
 variable {a : ℤ} {r : ℕ}
 
 include hinj in
-
 private lemma charEq_elim_two (hr : r.Prime) (h2r : 2 < r)
     {D : V.toAffine.Point} (hDr : (r : ℤ) • D = 0)
     (h₁ : Fr (Fr D) - a • Fr D + (q : ℤ) • D = 0)
@@ -1163,7 +1160,6 @@ private lemma charEq_elim_three (hq1 : 1 ≤ q) (hr : r.Prime) (h2q : 2 * q < r)
   exact eq_zero_of_nsmul_eq_zero_of_lt_prime hr (by omega) h2q hDr' h2qD
 
 include hinj in
-
 private lemma charEq_elim_four (ha : a ≠ 0) (hr : r.Prime) (h2a : 2 * a.natAbs < r)
     {D : V.toAffine.Point} (hDr : (r : ℤ) • D = 0)
     (h₁ : Fr (Fr D) - a • Fr D + (q : ℤ) • D = 0)
@@ -1189,7 +1185,6 @@ private lemma charEq_elim_four (ha : a ≠ 0) (hr : r.Prime) (h2a : 2 * a.natAbs
   exact eq_zero_of_nsmul_eq_zero_of_lt_prime hr hpos hlt hDr' haaD'
 
 include hinj in
-
 private lemma charEq_elim_five
     {D : V.toAffine.Point}
     (h₁ : Fr (Fr D) - a • Fr D + (q : ℤ) • D = 0)
@@ -1203,7 +1198,6 @@ private lemma charEq_elim_five
   exact frob_eq_zero_of Fr hinj (frob_eq_zero_of Fr hinj hF2)
 
 include hinj in
-
 private lemma charEq_elim_six (ha : a ≠ 0) (hr : r.Prime)
     (h6lt : 2 * (a.natAbs * a.natAbs) + q < r)
     {D : V.toAffine.Point} (hDr : (r : ℤ) • D = 0)
@@ -1254,7 +1248,6 @@ private lemma charEq_elim_six (ha : a ≠ 0) (hr : r.Prime)
 end Elim
 
 include hFr hinj in
-
 theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
     {a : ℤ} (ha : a ≠ 0) {r : ℕ} (hr : r.Prime)
     (hrB : charEqPrimeBound a q < r)
@@ -1268,7 +1261,7 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
   have ha1 : 1 ≤ a.natAbs := Int.natAbs_pos.mpr ha
   have hPBmul : charEqPrimeBound a q
       = 16 * (a.natAbs * a.natAbs * q + q * q) + a.natAbs + q + 2 := by
-    show 2 * (8 * (a.natAbs ^ 2 * q + q ^ 2)) + a.natAbs + q + 2 = _
+    change 2 * (8 * (a.natAbs ^ 2 * q + q ^ 2)) + a.natAbs + q + 2 = _
     rw [pow_two, pow_two]
     ring
   have hf2 : q ≤ q * q := le_mul_of_one_le_right (Nat.zero_le _) hq1
@@ -1330,7 +1323,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
     Finset.univ.filter (fun T =>
       a • Fr (P + (T : V.toAffine.Point)) + (q : ℤ) • (P + (T : V.toAffine.Point)) = 0)
     with hS6_def
-
   have htorsub : ∀ T₁ T₂ : Submodule.torsionBy ℤ V.toAffine.Point r,
       (r : ℤ) • ((T₁ : V.toAffine.Point) - (T₂ : V.toAffine.Point)) = 0 := by
     intro T₁ T₂
@@ -1341,7 +1333,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
         = (T₁ : V.toAffine.Point) - (T₂ : V.toAffine.Point) := by
     intro T₁ T₂
     abel
-
   have hSdeg_card : Sdeg.card ≤ q + a.natAbs := by
     have hsubset : Sdeg ⊆ (Finset.Icc 1 (q + a.natAbs)).biUnion (fun j =>
         Finset.univ.filter
@@ -1452,14 +1443,12 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
   obtain ⟨T, hT⟩ := hexistsT
   simp only [Finset.mem_union, not_or] at hT
   obtain ⟨⟨⟨⟨⟨hTdeg, hT2⟩, hT3⟩, hT4⟩, hT5⟩, hT6⟩ := hT
-
   have hgood : ∀ j : ℕ, 1 ≤ j → j ≤ q + a.natAbs →
       j • (P + (T : V.toAffine.Point)) ≠ 0 := by
     intro j hj1 hjM hcontra
     exact hTdeg (by
       rw [hSdeg_def]
       exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, ⟨j, hj1, hjM, hcontra⟩⟩)
-
   rcases charEq_cases_of_charEqPoly_eq_zero Fr hFr hinj hq1 ha hpoly hgood
     with h1 | h2 | h3 | h4 | h5 | h6
   · have hTr : (r : ℤ) • (T : V.toAffine.Point) = 0 :=
@@ -1486,10 +1475,16 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
 end Endgame
 end WeierstrassCurve
 
-p2m_open "WeierstrassCurve P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point FrobeniusEndo"
+p2m_open "WeierstrassCurve \
+  P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Af\
+  fine WeierstrassCurve.Affine.Point \
+  P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Af\
+  fine.Point FrobeniusEndo"
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0) : FrobCharEqOnPoints W σ a (Fintype.card F) := by
-
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
+    FrobCharEqOnPoints W σ a (Fintype.card F) := by
   have hinj : Function.Injective (frobEnd W σ) := Affine.Point.map_injective σ.toAlgHom
   have hFr : ∀ {x y : k} (h : (W⁄k).Nonsingular x y),
       ∃ h' : (W⁄k).Nonsingular (x ^ Fintype.card F) (y ^ Fintype.card F),
@@ -1520,6 +1515,8 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0) : FrobCharEqOnPoints W σ a (Fintype.card F) := _root_.P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.solution W σ hσ ha hkill
+theorem FrobeniusEndo.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
+    FrobCharEqOnPoints W σ a (Fintype.card F) :=
+  solution W σ hσ ha hkill
 
 end publicSection

@@ -70,7 +70,10 @@ p2m_export "AlgebraicCurve" "Place.fiberCenter Place"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "center integralClosureAt fiberCenter toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt ramificationIndex ramificationIndex_pos restrict ord ord_mul ord_inv ord_coe_irreducible ord_zpow toValuationSubring mem_iff_ord_nonneg"
+p2m_export "AlgebraicCurve.Place" "center integralClosureAt fiberCenter \
+  toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero \
+  ord_algebraMap_integralClosureAt ramificationIndex ramificationIndex_pos restrict ord ord_mul \
+  ord_inv ord_coe_irreducible ord_zpow toValuationSubring mem_iff_ord_nonneg"
 p2m_open "AlgebraicCurve.Place"
 
 section Uniqueness
@@ -172,7 +175,7 @@ private theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x 
       ring
   · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
-    show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
+    change 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
       rw [toValuationSubring_eq_of_restrict_eq hw,
         HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
@@ -248,9 +251,12 @@ end AlgebraicCurve
 
 end
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter.AlgebraicCurve"
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) {w : Place K F'}
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
+    (v : Place K F) {w : Place K F'}
     (hw : w.restrict F = v) :
     w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx' (Place.fiberCenter F' v hw).asIdeal :=
   Place.ramificationIndex_eq_ramificationIdx_fiberCenter hw
@@ -265,8 +271,12 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.ramificationIndex_eq_ramificationIdx_fiberCenter {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) {w : Place K F'}
+theorem AlgebraicCurve.Place.ramificationIndex_eq_ramificationIdx_fiberCenter {K F F' : Type*}
+    [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F']
+    [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F)
+    {w : Place K F'}
     (hw : w.restrict F = v) :
-    w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx' (Place.fiberCenter F' v hw).asIdeal := _root_.P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter.solution v hw
+    w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx' (Place.fiberCenter F' v hw).asIdeal :=
+  solution v hw
 
 end publicSection

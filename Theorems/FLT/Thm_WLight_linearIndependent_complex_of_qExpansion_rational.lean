@@ -377,6 +377,7 @@ theorem WLight.linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZer
       IsBoundedAtImInfty (f * ModularForm.discriminant ^ m) ∧
       ∀ n : ℕ, (UpperHalfPlane.qExpansion N (f * ModularForm.discriminant ^ m)).coeff n ∈ K)
     (hind : LinearIndependent ↥K (fun w : ↥(↑s : Set (ℍ → ℂ)) => (w : ℍ → ℂ))) :
-    LinearIndependent ℂ (fun w : ↥(↑s : Set (ℍ → ℂ)) => (w : ℍ → ℂ)) := _root_.P2MW.S_WLight_linearIndependent_complex_of_qExpansion_rational.solution N K s m hdata hind
+    LinearIndependent ℂ (fun w : ↥(↑s : Set (ℍ → ℂ)) => (w : ℍ → ℂ)) :=
+  solution N K s m hdata hind
 
 end publicSection

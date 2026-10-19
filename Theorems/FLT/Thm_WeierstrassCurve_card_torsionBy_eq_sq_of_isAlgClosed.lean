@@ -77,6 +77,7 @@ public section publicSection
 theorem WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed
     {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
     (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : F) ≠ 0) :
-    Nat.card (Submodule.torsionBy ℤ W.toAffine.Point n) = n ^ 2 := _root_.P2MW.S_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed.solution W hn
+    Nat.card (Submodule.torsionBy ℤ W.toAffine.Point n) = n ^ 2 :=
+  solution W hn
 
 end publicSection

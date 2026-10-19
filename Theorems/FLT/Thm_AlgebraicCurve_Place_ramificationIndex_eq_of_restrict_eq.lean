@@ -60,14 +60,18 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq
 
 noncomputable section
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.AlgebraicCurve IsDedekindDomain"
 open scoped Pointwise
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "SemilinearAut.IntertwinesAlong Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul Place.exists_algEquiv_smul_eq_of_restrict_eq SemilinearAut.ramificationIndex_smul"
+p2m_export "AlgebraicCurve" "SemilinearAut.IntertwinesAlong Place SemilinearAut \
+  SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul Place.exists_algEquiv_smul_eq_of_restrict_eq \
+  SemilinearAut.ramificationIndex_smul"
 p2m_open "AlgebraicCurve"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ramificationIndex restrict exists_algEquiv_smul_eq_of_restrict_eq"
+p2m_export "AlgebraicCurve.Place" "ramificationIndex restrict \
+  exists_algEquiv_smul_eq_of_restrict_eq"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F' M : Type*} [Field K] [Field F'] [Field M] [Algebra K F'] [Algebra K M]
@@ -104,10 +108,12 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.ramificationIndex_eq_of_restrict_eq {K F' M : Type*} [Field K] [Field F'] [Field M]
+theorem AlgebraicCurve.Place.ramificationIndex_eq_of_restrict_eq {K F' M : Type*} [Field K]
+    [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (W W' : Place K M)
     (h : W'.restrict F' = W.restrict F') :
-    W'.ramificationIndex F' = W.ramificationIndex F' := _root_.P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.solution W W' h
+    W'.ramificationIndex F' = W.ramificationIndex F' :=
+  solution W W' h
 
 end publicSection

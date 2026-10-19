@@ -67,11 +67,15 @@ namespace P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminan
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero.ModularCurve UpperHalfPlane Polynomial"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero.ModularCurv\
+  e UpperHalfPlane Polynomial"
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective jNum constantCoeff_jNum jq jqN evalAtJ evalAtJ_X ModularPolynomialData jqModC jqModC_rat map_jqModC coeffMap coeffMap_coeff jqModC_eq_qExpansion_E4_cube_div_discriminant"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
+  jNum constantCoeff_jNum jq jqN evalAtJ evalAtJ_X ModularPolynomialData jqModC jqModC_rat \
+  map_jqModC coeffMap coeffMap_coeff jqModC_eq_qExpansion_E4_cube_div_discriminant"
 namespace DeepCosetAux
 p2m_open "ModularCurve"
 
@@ -97,7 +101,7 @@ def e4cubeSL : ModularForm 𝒮ℒ 12 :=
 
 theorem coe_e4cubeSL : ⇑e4cubeSL = fun τ => (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 := by
   funext τ
-  show (((ModularForm.E₄.mul ModularForm.E₄).mul ModularForm.E₄ : ModularForm 𝒮ℒ _) : ℍ → ℂ) τ = _
+  change (((ModularForm.E₄.mul ModularForm.E₄).mul ModularForm.E₄ : ModularForm 𝒮ℒ _) : ℍ → ℂ) τ = _
   rw [ModularForm.coe_mul, ModularForm.coe_mul]
   simp only [Pi.mul_apply]
   ring
@@ -105,12 +109,14 @@ theorem coe_e4cubeSL : ⇑e4cubeSL = fun τ => (ModularForm.E₄ : ℍ → ℂ) 
 def deltaSL : ModularForm 𝒮ℒ 12 := CuspForm.toModularFormₗ CuspForm.discriminant
 
 theorem coe_deltaSL : ⇑deltaSL = ModularForm.discriminant := by
-  show ⇑(CuspForm.toModularFormₗ CuspForm.discriminant) = _
+  change ⇑(CuspForm.toModularFormₗ CuspForm.discriminant) = _
   rw [← CuspForm.coe_discriminant]
   rfl
 
-def e4cube1 : ModularForm (CongruenceSubgroup.Gamma0 1) 12 := ModularForm.mcast rfl e4cubeSL gamma0_one_coe
-def delta1 : ModularForm (CongruenceSubgroup.Gamma0 1) 12 := ModularForm.mcast rfl deltaSL gamma0_one_coe
+def e4cube1 :
+    ModularForm (CongruenceSubgroup.Gamma0 1) 12 := ModularForm.mcast rfl e4cubeSL gamma0_one_coe
+def delta1 :
+    ModularForm (CongruenceSubgroup.Gamma0 1) 12 := ModularForm.mcast rfl deltaSL gamma0_one_coe
 theorem coe_e4cube1 : ⇑e4cube1 = ⇑e4cubeSL := rfl
 theorem coe_delta1 : ⇑delta1 = ⇑deltaSL := rfl
 
@@ -189,7 +195,8 @@ def mono (e δ eN δN : ModularForm Γ 12) (m n i k : ℕ) : ModularForm Γ (12 
 
 theorem prod_ite_pow {M : Type*} [CommMonoid M] (p q : ℕ) (hpq : q ≤ p) (x y : M) :
     (∏ l : Fin p, if (l : ℕ) < q then x else y) = x ^ q * y ^ (p - q) := by
-  rw [Fin.prod_univ_eq_prod_range (fun l => if l < q then x else y) p, Finset.prod_ite, Finset.prod_const,
+  rw [Fin.prod_univ_eq_prod_range (fun l => if l < q then x else y) p, Finset.prod_ite,
+    Finset.prod_const,
     Finset.prod_const]
   congr 2
   · rw [show (Finset.range p).filter (fun l => l < q) = Finset.range q from by
@@ -201,7 +208,7 @@ theorem prod_ite_pow {M : Type*} [CommMonoid M] (p q : ℕ) (hpq : q ≤ p) (x y
 
 theorem coe_mono (e δ eN δN : ModularForm Γ 12) {m n i k : ℕ} (hi : i ≤ n) (hk : k ≤ m) :
     ⇑(mono e δ eN δN m n i k) = (⇑e) ^ k * (⇑δ) ^ (m - k) * ((⇑eN) ^ i * (⇑δN) ^ (n - i)) := by
-  show ⇑(ModularForm.prodEqualWeights (s := Finset.univ) (fam e δ eN δN m n i k)) = _
+  change ⇑(ModularForm.prodEqualWeights (s := Finset.univ) (fam e δ eN δN m n i k)) = _
   rw [ModularForm.coe_prodEqualWeights, Fintype.prod_sum_type]
   simp only [fam, Sum.elim_inl, Sum.elim_inr]
   rw [show (∏ l : Fin m, ⇑(if (l : ℕ) < k then e else δ)) = ∏ l : Fin m, (if (l : ℕ) < k then (⇑e) else (⇑δ)) from
@@ -253,30 +260,40 @@ theorem solution (N : ℕ) [NeZero N]
       rw [h]
       have h0' := HahnSeries.ofPowerSeries_apply_coeff (Γ := ℤ) (jNum.map (Int.castRingHom ℂ)) 0
       rw [Nat.cast_zero] at h0'
-      rw [h0', PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff_apply, constantCoeff_jNum, map_one]
+      rw [h0', PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff_apply,
+        constantCoeff_jNum, map_one]
     rw [this, HahnSeries.coeff_zero] at h1
     exact zero_ne_one h1
   have hΓ := one_mem_sp N
-  have hAn4 : An (ModularForm.E₄ : ℍ → ℂ) := an_of_modularForm one_mem_strictPeriods_SL ModularForm.E₄
-  have hqe4cube : ((qExpansion 1 (e4cubeSL : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = A ^ 3 := by
-    have h3 : (e4cubeSL : ℍ → ℂ) = (ModularForm.E₄ : ℍ → ℂ) * (ModularForm.E₄ : ℍ → ℂ) * (ModularForm.E₄ : ℍ → ℂ) := by
+  have hAn4 : An (ModularForm.E₄ : ℍ → ℂ) :=
+    an_of_modularForm one_mem_strictPeriods_SL ModularForm.E₄
+  have hqe4cube : ((qExpansion 1 (e4cubeSL : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = A ^ 3 :=
+    by
+    have h3 : (e4cubeSL : ℍ → ℂ) = (ModularForm.E₄ : ℍ → ℂ) * (ModularForm.E₄ : ℍ → ℂ) * (ModularForm.E₄ : ℍ → ℂ) :=
+      by
       rw [coe_e4cubeSL]; funext τ; simp [pow_succ]
-    rw [h3, UpperHalfPlane.qExpansion_mul (hAn4.mul hAn4) hAn4, UpperHalfPlane.qExpansion_mul hAn4 hAn4, hA]
+    rw [h3, UpperHalfPlane.qExpansion_mul (hAn4.mul hAn4) hAn4, UpperHalfPlane.qExpansion_mul hAn4
+      hAn4, hA]
     simp [pow_succ, PowerSeries.coe_mul]
   have hqe : ((qExpansion 1 (e : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = A ^ 3 := by
     rw [show (e : ℍ → ℂ) = (e4cubeSL : ℍ → ℂ) from by rw [he', coe_e4cubeSL], hqe4cube]
   have hqδ : ((qExpansion 1 (δ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = D := by rw [hδ']
-  have hqeN : ((qExpansion 1 (eN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = qExpand ℂ N (A ^ 3) := by
-    rw [heN', ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne N e4cubeSL, hqe4cube]
+  have hqeN : ((qExpansion 1 (eN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = qExpand ℂ N (A ^ 3) :=
+    by
+    rw [heN', ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne N e4cubeSL,
+      hqe4cube]
   have hqδN : ((qExpansion 1 (δN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = qExpand ℂ N D := by
-    rw [hδN', ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne N deltaSL, coe_deltaSL]
+    rw [hδN', ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne N deltaSL,
+      coe_deltaSL]
   set n : ℕ := data.Φ.natDegree with hn
   set m : ℕ := (Finset.range (n + 1)).sup (fun i => (data.Φ.coeff i).natDegree) with hm
   have hmi : ∀ i ∈ Finset.range (n + 1), (data.Φ.coeff i).natDegree ≤ m := fun i hi =>
     Finset.le_sup (f := fun i => (data.Φ.coeff i).natDegree) hi
   set c : ℕ → ℕ → ℝ := fun i k => (((data.Φ.coeff i).coeff k : ℤ) : ℝ) with hc
-  have an_mf : ∀ f : ModularForm (CongruenceSubgroup.Gamma0 N) 12, An ⇑f := fun f => an_of_modularForm hΓ f
-  have qexp_pow : ∀ (f : ℍ → ℂ) (hf : An f) (p : ℕ), An (f ^ p) ∧ qExpansion 1 (f ^ p) = qExpansion 1 f ^ p := by
+  have an_mf : ∀ f : ModularForm (CongruenceSubgroup.Gamma0 N) 12, An ⇑f :=
+    fun f => an_of_modularForm hΓ f
+  have qexp_pow : ∀ (f : ℍ → ℂ) (hf : An f) (p : ℕ), An (f ^ p) ∧ qExpansion 1 (f ^ p) = qExpansion 1 f ^ p :=
+    by
     intro f hf p
     have := qExpansion_finset_prod (Finset.range p) (fun _ => f) (fun _ _ => hf)
       (by simpa [ModularForm.one_coe_eq_one] using
@@ -305,32 +322,36 @@ theorem solution (N : ℕ) [NeZero N]
     intro p hp
     simp only [idx, Finset.mem_product, Finset.mem_range] at hp
     omega
-  have hHcoe : (H : ℍ → ℂ) = ∑ p ∈ idx, ((c p.1 p.2 : ℝ) : ℂ) • ((mono e δ eN δN m n p.1 p.2) : ℍ → ℂ) := by
-    show coeAddHom _ H = _
+  have hHcoe : (H : ℍ → ℂ) = ∑ p ∈ idx, ((c p.1 p.2 : ℝ) : ℂ) • ((mono e δ eN δN m n p.1 p.2) : ℍ → ℂ) :=
+    by
+    change coeAddHom _ H = _
     rw [map_sum]
     refine Finset.sum_congr rfl (fun p _ => ?_)
-    show ⇑(c p.1 p.2 • mono e δ eN δN m n p.1 p.2) = _
+    change ⇑(c p.1 p.2 • mono e δ eN δN m n p.1 p.2) = _
     rw [FunLike.coe_smul]
     funext τ
     simp only [Pi.smul_apply, Complex.real_smul, smul_eq_mul]
-  have hformal : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℂ)) J)).eval (qExpand ℂ N J) = 0 := by
+  have hformal : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℂ)) J)).eval (qExpand ℂ N J) = 0 :=
+    by
     have h0 := data.eval_eq_zero
     have h1 := congrArg (coeffMap (algebraMap ℚ ℂ)) h0
     rw [map_zero, Polynomial.hom_eval₂] at h1
     have hcomp : (coeffMap (algebraMap ℚ ℂ)).comp evalAtJ
         = Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℂ)) J := by
       refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-      rw [RingHom.coe_comp, Function.comp_apply, evalAtJ_X, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X,
+      rw [RingHom.coe_comp, Function.comp_apply, evalAtJ_X, Polynomial.coe_eval₂RingHom,
+        Polynomial.eval₂_X,
         hJ, ← jqModC_rat]
       exact map_jqModC (algebraMap ℚ ℂ)
     have hjN : coeffMap (algebraMap ℚ ℂ) (jqN N) = qExpand ℂ N J := by
       rw [hJ, ← map_jqModC (algebraMap ℚ ℂ) (K := ℚ), jqModC_rat]
-      show coeffMap (algebraMap ℚ ℂ) (qExpand ℚ N jq) = qExpand ℂ N (coeffMap (algebraMap ℚ ℂ) jq)
+      change coeffMap (algebraMap ℚ ℂ) (qExpand ℚ N jq) = qExpand ℂ N (coeffMap (algebraMap ℚ ℂ) jq)
       ext k
       by_cases hk : (N : ℤ) ∣ k
       · obtain ⟨r, rfl⟩ := hk
         rw [coeffMap_coeff, qExpand_coeff_mul, qExpand_coeff_mul, coeffMap_coeff]
-      · rw [coeffMap_coeff, qExpand_coeff_of_not_dvd N _ hk, qExpand_coeff_of_not_dvd N _ hk, map_zero]
+      · rw [coeffMap_coeff, qExpand_coeff_of_not_dvd N _ hk, qExpand_coeff_of_not_dvd N _ hk,
+          map_zero]
     rw [hcomp, hjN] at h1
     rw [Polynomial.eval_map]
     first
@@ -361,9 +382,11 @@ theorem solution (N : ℕ) [NeZero N]
     rw [Finset.sum_congr rfl hterm, ← Finset.mul_sum]
     suffices hsum : ∑ p ∈ idx, HahnSeries.C ((c p.1 p.2 : ℝ) : ℂ) * J ^ p.2 * (qExpand ℂ N J) ^ p.1 = 0 by
       rw [hsum, mul_zero]
-    rw [← hformal, Polynomial.eval_map, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_self _), Finset.sum_product]
+    rw [← hformal, Polynomial.eval_map, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_self _),
+      Finset.sum_product]
     refine Finset.sum_congr rfl (fun i hi => ?_)
-    rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_of_le (hmi i hi)), Finset.sum_mul]
+    rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_of_le (hmi i
+      hi)), Finset.sum_mul]
     refine Finset.sum_congr rfl (fun k _ => ?_)
     simp only [hc, eq_intCast, Complex.ofReal_intCast]
     rw [← map_intCast (HahnSeries.C : ℂ →+* LaurentSeries ℂ)]
@@ -399,7 +422,8 @@ theorem solution (N : ℕ) [NeZero N]
   rw [Finset.sum_product] at hsum0
   rw [← hsum0]
   refine Finset.sum_congr rfl (fun i hi => ?_)
-  rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_of_le (hmi i hi)), Finset.sum_mul]
+  rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_of_le (hmi i hi)),
+    Finset.sum_mul]
   refine Finset.sum_congr rfl (fun k _ => ?_)
   simp only [hc, eq_intCast, Complex.ofReal_intCast]
 
@@ -415,10 +439,12 @@ public section publicSection
 
 
 open UpperHalfPlane
-theorem ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_smul_eq_zero (N : ℕ) [NeZero N]
+theorem ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_smul_eq_zero (N : ℕ)
+    [NeZero N]
     (data : ModularCurve.ModularPolynomialData N) (σ σ' : ℍ) (hσ' : (σ' : ℂ) = (N : ℂ) * σ) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ)
         ((ModularForm.E₄ : ℍ → ℂ) σ ^ 3 / ModularForm.discriminant σ))).eval
-      ((ModularForm.E₄ : ℍ → ℂ) σ' ^ 3 / ModularForm.discriminant σ') = 0 := _root_.P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero.solution N data σ σ' hσ'
+      ((ModularForm.E₄ : ℍ → ℂ) σ' ^ 3 / ModularForm.discriminant σ') = 0 :=
+  solution N data σ σ' hσ'
 
 end publicSection

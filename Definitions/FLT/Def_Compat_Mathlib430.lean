@@ -99,7 +99,8 @@ noncomputable abbrev diagonalFinsupp (n : ℕ) := ofMulActionFinsupp k G (Fin n 
 
 variable {k G H}
 
-theorem ofMulActionFinsupp_def (g : G) : ofMulActionFinsupp k G H g = Finsupp.lmapDomain k k (g • ·) :=
+theorem ofMulActionFinsupp_def (g : G) :
+    ofMulActionFinsupp k G H g = Finsupp.lmapDomain k k (g • ·) :=
   rfl
 
 @[simp]
@@ -157,7 +158,8 @@ section DL_exclusive
 
 variable (k G)
 
-noncomputable abbrev ofMulActionFinsupp (H : Type w') [MulAction G H] : Rep k G := -- [port] `noncomputable` added (4.30 file had a noncomputable section)
+noncomputable abbrev ofMulActionFinsupp (H : Type w') [MulAction G H] :
+    Rep k G := -- [port] `noncomputable` added (4.30 file had a noncomputable section)
   of <| Representation.ofMulActionFinsupp k G H
 
 noncomputable abbrev leftRegularFinsupp : Rep k G := -- [port] noncomputable
@@ -172,7 +174,8 @@ noncomputable def ofMulActionFinsuppIso (H : Type w') [MulAction G H] :
 
 end DL_exclusive
 
-noncomputable abbrev leftRegularHomFinsupp (A : Rep k G) (x : A) : leftRegularFinsupp k G ⟶ A := -- [port] noncomputable
+noncomputable abbrev leftRegularHomFinsupp (A : Rep k G) (x : A) :
+    leftRegularFinsupp k G ⟶ A := -- [port] noncomputable
   Rep.ofHom ⟨Finsupp.lift A k G fun g ↦ A.ρ g x, fun g ↦ by ext; simp⟩
 
 theorem leftRegularHomFinsupp_hom_single {A : Rep k G} (g : G) (x : A) (r : k) :
@@ -275,7 +278,8 @@ instance applyDistribMulAction' {A : Type*} [AddMonoid A] : DistribMulAction (Ad
   smul_zero := AddEquiv.map_zero
   smul_add := AddEquiv.map_add
 
-@[simp] protected theorem smul_def' {A : Type*} [AddMonoid A] (f : AddAut A) (a : A) : f • a = f a := rfl
+@[simp] protected theorem smul_def' {A : Type*} [AddMonoid A] (f : AddAut A) (a : A) :
+    f • a = f a := rfl
 
 instance apply_faithfulSMul' {A : Type*} [AddMonoid A] : FaithfulSMul (AddAut A) A :=
   ⟨fun h => AddEquiv.ext h⟩

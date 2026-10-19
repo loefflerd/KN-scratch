@@ -71,7 +71,7 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 universe u
 
 theorem solution
-    {F : Type u} [Field F] [DecidableEq F] {W : WeierstrassCurve.Affine F}
+    {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [IsDedekindDomain W.CoordinateRing]
     {x y : F} (h : W.Nonsingular x y) (v : AlgebraicCurve.Place F W.FunctionField)
     (hX : algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.XClass W x)
@@ -79,11 +79,13 @@ theorem solution
     (hY : algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.YClass W (Polynomial.C y))
       ∈ v.toValuationSubring.nonunits) :
     v = placeOfPoint (Point.some x y h) := by
+  classical
   let w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing :=
     ⟨CoordinateRing.XYIdeal W x (Polynomial.C y), (CoordinateRing.XYIdeal_isMaximal h.left).isPrime,
       CoordinateRing.XYIdeal_ne_bot x (Polynomial.C y)⟩
   have hw : w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y) := rfl
-  rw [AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits v hX hY w hw,
+  rw [AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits v hX
+    hY w hw,
     WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum h w hw]
 
 end S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
@@ -99,13 +101,16 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
 universe u
 theorem WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
-    {F : Type u} [Field F] [DecidableEq F] {W : WeierstrassCurve.Affine F}
+    {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [IsDedekindDomain W.CoordinateRing]
     {x y : F} (h : W.Nonsingular x y) (v : AlgebraicCurve.Place F W.FunctionField)
     (hX : algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.XClass W x)
       ∈ v.toValuationSubring.nonunits)
     (hY : algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.YClass W (Polynomial.C y))
       ∈ v.toValuationSubring.nonunits) :
-    v = placeOfPoint (Point.some x y h) := _root_.P2MW.S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits.solution h v hX hY
+    v = placeOfPoint (Point.some x y h) := by
+  classical
+  exact
+    solution h v hX hY
 
 end publicSection

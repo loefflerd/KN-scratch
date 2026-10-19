@@ -87,12 +87,17 @@ noncomputable section
 
 open scoped Classical
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_exists_elliptic_cycSub_orbitMap_of_props.ModularCurve ModularCurve.TatePoint AlgebraicCurve WeierstrassCurve Polynomial"
+p2m_open "ModularCurve P2MW.S_ModularCurve_exists_elliptic_cycSub_orbitMap_of_props.ModularCurve \
+  ModularCurve.TatePoint AlgebraicCurve WeierstrassCurve Polynomial"
 
 attribute [local instance] ModularCurve.TatePoint.isAlgClosed_H ModularCurve.TatePoint.charZero_H
 
 namespace ModularCurve
-p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar jpBar modularFunctionFieldBar ModularPolynomialData TatePoint.dictN TatePoint.isAlgClosed_H TatePoint.charZero_H B3.nearTransport B3.b3Act exists_place_of_emb samePlace_iff_exists_monodromy natCard_normalized_algHom_jBar_eq_toNat_ord place_eq_of_induces exists_emb_equiv_rootsAt nonempty_modularPolynomialData B3.specialisationEquivariance_level"
+p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar jpBar \
+  modularFunctionFieldBar ModularPolynomialData TatePoint.dictN TatePoint.isAlgClosed_H \
+  TatePoint.charZero_H B3.nearTransport B3.b3Act exists_place_of_emb \
+  samePlace_iff_exists_monodromy natCard_normalized_algHom_jBar_eq_toNat_ord place_eq_of_induces \
+  exists_emb_equiv_rootsAt nonempty_modularPolynomialData B3.specialisationEquivariance_level"
 namespace WiringB2
 p2m_open "ModularCurve"
 
@@ -173,10 +178,13 @@ theorem emd_of_alphaN (p : ℕ) [NeZero p] (data : ModularPolynomialData p)
 end ModularCurve.WiringB2
 
 namespace ModularCurve
-p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar jpBar modularFunctionFieldBar ModularPolynomialData TatePoint.dictN TatePoint.isAlgClosed_H TatePoint.charZero_H B3.nearTransport B3.b3Act exists_place_of_emb samePlace_iff_exists_monodromy natCard_normalized_algHom_jBar_eq_toNat_ord place_eq_of_induces exists_emb_equiv_rootsAt nonempty_modularPolynomialData B3.specialisationEquivariance_level"
+p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar jpBar \
+  modularFunctionFieldBar ModularPolynomialData TatePoint.dictN TatePoint.isAlgClosed_H \
+  TatePoint.charZero_H B3.nearTransport B3.b3Act exists_place_of_emb \
+  samePlace_iff_exists_monodromy natCard_normalized_algHom_jBar_eq_toNat_ord place_eq_of_induces \
+  exists_emb_equiv_rootsAt nonempty_modularPolynomialData B3.specialisationEquivariance_level"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
     (hEP : ∀ ψ : {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ]
           HahnSeries ℚ (AlgebraicClosure ℚ) //
@@ -351,6 +359,7 @@ theorem ModularCurve.exists_elliptic_cycSub_orbitMap_of_props (N : ℕ) [NeZero 
             0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)},
           ((w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)).ord
               (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat =
-            Nat.card {H : CycSub E₀ N // f H = w} := _root_.P2MW.S_ModularCurve_exists_elliptic_cycSub_orbitMap_of_props.solution N j₀ hW1 hW2 hW3 hequivN
+            Nat.card {H : CycSub E₀ N // f H = w} :=
+  solution N j₀ hW1 hW2 hW3 hequivN
 
 end publicSection

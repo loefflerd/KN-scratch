@@ -154,11 +154,11 @@ theorem transcendental_single_one : Transcendental K (HahnSeries.single (1 : ℚ
   have heq : (Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K))).toRingHom
       = (HahnSeries.ofPowerSeries ℚ K).comp (Polynomial.coeToPowerSeries.ringHom (R := K)) := by
     refine Polynomial.ringHom_ext (fun a => ?_) ?_
-    · show Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) (Polynomial.C a) = _
+    · change Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) (Polynomial.C a) = _
       rw [Polynomial.aeval_C, algebraMap_eq_C,
         RingHom.coe_comp, Function.comp_apply, Polynomial.coeToPowerSeries.ringHom_apply,
         Polynomial.coe_C, HahnSeries.ofPowerSeries_C]
-    · show Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) Polynomial.X = _
+    · change Polynomial.aeval (R := K) (HahnSeries.single (1:ℚ) (1:K)) Polynomial.X = _
       rw [Polynomial.aeval_X, RingHom.coe_comp, Function.comp_apply,
         Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_X, HahnSeries.ofPowerSeries_X]
   intro p q hpq
@@ -180,7 +180,8 @@ theorem transcendental_rat_of_qbar (x : 𝕂) (h : Transcendental ℚ̄ x) : Tra
     ← Polynomial.aeval_def]
   exact hpx
 
-theorem transcendental_single_three : Transcendental ℚ (HahnSeries.single (3 : ℚ) (1 : ℚ̄) : 𝕂) := by
+theorem transcendental_single_three :
+    Transcendental ℚ (HahnSeries.single (3 : ℚ) (1 : ℚ̄) : 𝕂) := by
   refine transcendental_rat_of_qbar _ (fun halg => ?_)
   refine transcendental_single_one (K := ℚ̄) (IsAlgebraic.of_pow (n := 3) (by norm_num) ?_)
   rw [HahnSeries.single_pow, one_pow]
@@ -251,8 +252,8 @@ theorem j_eq_1728_add_single_two_one (𝓔 : WeierstrassCurve (PowerSeries K)) (
 end P2MWs13.Wire
 end
 
-p2m_open "WeierstrassCurve~specialize" in open P2MWs13.Wire HahnSeries Polynomial  in
-
+p2m_open "WeierstrassCurve~specialize" in
+open P2MWs13.Wire HahnSeries Polynomial in
 theorem solution
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
@@ -260,7 +261,8 @@ theorem solution
       (HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 3 r := by
   classical
-  obtain ⟨𝓔, hΔ, hc⟩ := WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
+  obtain ⟨𝓔, hΔ, hc⟩ :=
+    WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
   have h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
   have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = HahnSeries.single (3 : ℚ) (1 : ℚ̄) :=
     j_eq_single_three_one 𝓔 hΔ hc
@@ -273,8 +275,9 @@ theorem solution
   have hτroot : (spec data.Φ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j).IsRoot
       (hahnExpMul 3 (by norm_num) r) := by
     rw [← hτj, spec_hahnExpMul]
-    show Polynomial.eval _ _ = 0
-    rw [Polynomial.eval_map, Polynomial.eval₂_hom, show Polynomial.eval r (spec data.Φ _) = 0 from hroot, map_zero]
+    change Polynomial.eval _ _ = 0
+    rw [Polynomial.eval_map, Polynomial.eval₂_hom, show Polynomial.eval r (spec data.Φ _) = 0 from
+      hroot, map_zero]
   have hmemL : ∀ y : 𝕂, y ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos ↔ HasRamBound 1 y :=
     fun y => HahnSeries.mem_puiseuxRamSubfield_iff Nat.one_pos
   have hτrL : hahnExpMul 3 (by norm_num) r ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos := by
@@ -287,7 +290,8 @@ theorem solution
     · rw [WeierstrassCurve.map_a₄, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · rw [WeierstrassCurve.map_a₆, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · intro x y hns hd
-      have h := WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries 𝓔 hΔ (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
+      have h :=
+        WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries 𝓔 hΔ (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
       exact ⟨(hmemL x).mpr h.1, (hmemL y).mpr h.2⟩
   exact (hasRamBound_one_hahnExpMul_iff 3 (by norm_num) r).mp ((hmemL _).mp hτrL)
 
@@ -304,6 +308,7 @@ theorem ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_o
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
     (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
       (HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
-    HahnSeries.HasRamBound 3 r := _root_.P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd.solution hN data r hroot
+    HahnSeries.HasRamBound 3 r :=
+  solution hN data r hroot
 
 end publicSection

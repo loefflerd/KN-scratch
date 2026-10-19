@@ -81,7 +81,9 @@ namespace P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosur
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve ModularCurve \
+  P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve \
+  IsDedekindDomain"
 
 namespace B2Places
 
@@ -90,7 +92,6 @@ section General
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 variable (K) in
-
 abbrev normalization (t : F) : Subalgebra (Algebra.adjoin K ({t} : Set F)) F :=
   integralClosure (Algebra.adjoin K ({t} : Set F)) F
 
@@ -166,7 +167,7 @@ def evalHom (t : F) (w : Place K F) (hrat : w.IsRational) (ht : t ∈ w.toValuat
     normalization K t →ₐ[K] K where
   toFun a := w.evalAt (a : F)
   map_one' := by
-    show w.evalAt (1 : F) = 1
+    change w.evalAt (1 : F) = 1
     exact w.evalAt_one
   map_mul' a b := by
     apply w.algebraMap_residueField_injective
@@ -187,7 +188,7 @@ def evalHom (t : F) (w : Place K F) (hrat : w.IsRational) (ht : t ∈ w.toValuat
   commutes' c := by
     apply w.algebraMap_residueField_injective
     rw [w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht _)]
-    show IsLocalRing.residue w.toValuationSubring _ =
+    change IsLocalRing.residue w.toValuationSubring _ =
       IsLocalRing.residue w.toValuationSubring (algebraMap K w.toValuationSubring c)
     congr 1
 
@@ -245,7 +246,6 @@ section Injective
 variable [CharZero K] (t : F) [FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F]
 
 omit [CharZero K] [FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F] in
-
 theorem mem_center_iff_evalHom_eq_zero (w : Place K F) (hrat : w.IsRational)
     (ht : t ∈ w.toValuationSubring) (r : normalization K t) :
     r ∈ Place.center (normalization K t) w (forall_mem_of_mem t w ht) ↔
@@ -259,7 +259,7 @@ theorem eq_of_evalHom_eq {w₁ w₂ : Place K F} (h₁ : w₁.IsRational) (h₂ 
   have hc : Place.centerHeightOneSpectrum (normalization K t) w₁ (forall_mem_of_mem t w₁ ht₁) =
       Place.centerHeightOneSpectrum (normalization K t) w₂ (forall_mem_of_mem t w₂ ht₂) := by
     refine HeightOneSpectrum.ext (Ideal.ext fun r => ?_)
-    show r ∈ Place.center (normalization K t) w₁ (forall_mem_of_mem t w₁ ht₁) ↔
+    change r ∈ Place.center (normalization K t) w₁ (forall_mem_of_mem t w₁ ht₁) ↔
       r ∈ Place.center (normalization K t) w₂ (forall_mem_of_mem t w₂ ht₂)
     rw [mem_center_iff_evalHom_eq_zero t w₁ h₁ ht₁, mem_center_iff_evalHom_eq_zero t w₂ h₂ ht₂,
       h]
@@ -279,7 +279,6 @@ variable [CharZero K] (t : F) (htr : Transcendental K t)
 
 omit [CharZero K] [FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F] in
 include htr in
-
 theorem ker_ne_bot (ψ : normalization K t →ₐ[K] K) : RingHom.ker ψ ≠ ⊥ := by
   intro hbot
   have hmem : gen t - algebraMap K (normalization K t) (ψ (gen t)) ∈ RingHom.ker ψ := by
@@ -303,7 +302,7 @@ def placeOfHom (ψ : normalization K t →ₐ[K] K) : Place K F :=
 
 theorem coe_mem_placeOfHom (ψ : normalization K t →ₐ[K] K) (a : normalization K t) :
     (a : F) ∈ (placeOfHom t htr ψ).toValuationSubring := by
-  show (a : F) ∈ ((kerSpectrum t htr ψ).valuation F).valuationSubring
+  change (a : F) ∈ ((kerSpectrum t htr ψ).valuation F).valuationSubring
   rw [Valuation.mem_valuationSubring_iff]
   exact (kerSpectrum t htr ψ).valuation_le_one a
 
@@ -317,10 +316,12 @@ theorem mem_maximalIdeal_placeOfHom (ψ : normalization K t →ₐ[K] K) {r : no
       IsLocalRing.maximalIdeal (placeOfHom t htr ψ).toValuationSubring := by
   have hlt : (kerSpectrum t htr ψ).valuation F (r : F) < 1 :=
     ((kerSpectrum t htr ψ).valuation_lt_one_iff_mem r).mpr hr
-  have hlt' := ((kerSpectrum t htr ψ).valuation F).isEquiv_valuation_valuationSubring.lt_one_iff_lt_one.mp hlt
+  have hlt' :=
+    ((kerSpectrum t htr ψ).valuation F).isEquiv_valuation_valuationSubring.lt_one_iff_lt_one.mp hlt
   exact (ValuationSubring.valuation_lt_one_iff _ _).mpr hlt'
 
-theorem evalHom_placeOfHom (ψ : normalization K t →ₐ[K] K) (hrat : (placeOfHom t htr ψ).IsRational) :
+theorem evalHom_placeOfHom (ψ : normalization K t →ₐ[K] K) (hrat : (placeOfHom t htr ψ).IsRational)
+    :
     evalHom t (placeOfHom t htr ψ) hrat (mem_placeOfHom t htr ψ) = ψ := by
   ext a
   rw [evalHom_eq_iff]
@@ -340,7 +341,7 @@ end Surjective
 theorem isRational_of_deg_eq_one [IsAlgClosed K] (w : Place K F) (h : w.deg = 1) :
     w.IsRational := by
   have : Module.Finite K w.ResidueField := Module.finite_of_finrank_pos (by
-    show 0 < w.deg
+    change 0 < w.deg
     omega)
   have : Algebra.IsIntegral K w.ResidueField := Algebra.IsIntegral.of_finite K w.ResidueField
   exact (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := K) (K := w.ResidueField)).2
@@ -424,11 +425,12 @@ scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
 end B2Places
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq"
+p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi \
+  relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi \
+  dedekindPsi_pos transcendental_coeffEmb_jq"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open B2Places in
-
 def ModularCurve.placesOverEquivAlgHom (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1) :
     {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) //
@@ -441,7 +443,6 @@ def ModularCurve.placesOverEquivAlgHom (N : ℕ) [NeZero N] (j₀ : AlgebraicClo
 
 p2m_open_scoped "ModularCurve" in
 open B2Places in
-
 theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_normalization (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1) :
@@ -454,7 +455,6 @@ theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_normalization (N : ℕ)
 
 p2m_open_scoped "ModularCurve" in
 open B2Places in
-
 private theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1) :
@@ -478,7 +478,6 @@ private theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure
 end
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve in
-
 theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1) :
@@ -527,6 +526,7 @@ theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure (N : �
                 ({(jBar N : modularFunctionFieldBar N)} : Set (modularFunctionFieldBar N)))
               (modularFunctionFieldBar N))
             ⟨jBar N, Algebra.self_mem_adjoin_singleton (AlgebraicClosure ℚ)
-              (jBar N : modularFunctionFieldBar N)⟩) = j₀}) := _root_.P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.solution N j₀ hdeg
+              (jBar N : modularFunctionFieldBar N)⟩) = j₀}) :=
+  solution N j₀ hdeg
 
 end publicSection

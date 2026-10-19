@@ -100,7 +100,7 @@ theorem deg_eq_one_of_isAlgClosed_of_finite [IsAlgClosed K] (v : Place K F)
   have : Algebra.IsIntegral K v.ResidueField := Algebra.IsIntegral.of_finite K v.ResidueField
   have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
-  show Module.finrank K v.ResidueField = 1
+  change Module.finrank K v.ResidueField = 1
   rw [← Module.finrank_self K]
   exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
 

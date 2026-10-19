@@ -76,12 +76,12 @@ theorem solution
       = WeierstrassCurve.reducePoint_alt R W P + WeierstrassCurve.reducePoint_alt R W Q := by
   cases P with
   | zero =>
-    show reducePoint_alt R W (0 + Q) = reducePoint_alt R W 0 + reducePoint_alt R W Q
+    change reducePoint_alt R W (0 + Q) = reducePoint_alt R W 0 + reducePoint_alt R W Q
     rw [zero_add, show reducePoint_alt R W (0 : W.toAffine.Point) = 0 from rfl, zero_add]
   | some x₁ y₁ h₁ =>
     cases Q with
     | zero =>
-      show reducePoint_alt R W (_ + 0) = _ + reducePoint_alt R W 0
+      change reducePoint_alt R W (_ + 0) = _ + reducePoint_alt R W 0
       rw [add_zero, show reducePoint_alt R W (0 : W.toAffine.Point) = 0 from rfl, add_zero]
     | some x₂ y₂ h₂ =>
       by_cases hx₁ : valuation K (IsDiscreteValuationRing.maximalIdeal R) x₁ ≤ 1
@@ -121,7 +121,8 @@ theorem solution
                 rw [← hQ'.1]
                 exact hx₁
               have h0 := congrArg (reducePoint_alt R W) hQeq
-              rw [WeierstrassCurve.reducePoint_some_add_some_of_not_le_one R W h₃ hn hx₃ hpole_n] at h0
+              rw [WeierstrassCurve.reducePoint_some_add_some_of_not_le_one R W h₃ hn hx₃
+                hpole_n] at h0
               obtain ⟨h₃'', hrS⟩ := WeierstrassCurve.reducePoint_some R W h₃ hx₃ hy₃
               rw [hrS, (WeierstrassCurve.reducePoint_some_eq_zero_iff R W h₂).mpr hx₂] at h0
               exact Affine.Point.some_ne_zero h₃'' h0.symm
@@ -140,6 +141,7 @@ theorem WeierstrassCurve.reducePoint_add
     [DecidableEq (IsLocalRing.ResidueField R)]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] (P Q : W.toAffine.Point) :
     WeierstrassCurve.reducePoint_alt R W (P + Q)
-      = WeierstrassCurve.reducePoint_alt R W P + WeierstrassCurve.reducePoint_alt R W Q := _root_.P2MW.S_WeierstrassCurve_reducePoint_add.solution R W P Q
+      = WeierstrassCurve.reducePoint_alt R W P + WeierstrassCurve.reducePoint_alt R W Q :=
+  solution R W P Q
 
 end publicSection

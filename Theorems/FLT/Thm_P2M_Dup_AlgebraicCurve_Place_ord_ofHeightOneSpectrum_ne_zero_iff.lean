@@ -66,7 +66,8 @@ p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_ne_zero ord ofHeightOneSpectrum toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_ne_zero ord \
+  ofHeightOneSpectrum toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -102,8 +103,10 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_ord_ofHeightOneSpectrum_ne_zero_iff.AlgebraicCurve in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
-    [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) {q : R} (hq : q ≠ 0) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R]
+    [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
+    [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) {q : R}
+    (hq : q ≠ 0) :
     (Place.ofHeightOneSpectrum (K := K) (F := F) w).ord (algebraMap R F q) ≠ 0 ↔ q ∈ w.asIdeal :=
   AlgebraicCurve.Place.rowMain (K := K) (F := F) w hq
 

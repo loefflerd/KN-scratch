@@ -96,6 +96,7 @@ public section publicSection
 theorem ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [CharZero K] :
     (Module.finrank K (ModularCurve.Period.parabolicHoms K (CongruenceSubgroup.Gamma0 N) K) : ℚ) ≤
-      2 * ModularCurve.genusFormula N := _root_.P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_genusFormula.solution N K
+      2 * ModularCurve.genusFormula N :=
+  solution N K
 
 end publicSection

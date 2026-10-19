@@ -104,7 +104,6 @@ variable (X : FD N)
 def genSet : Set (ℍ → ℂ) := insert X.jf {g : ℍ → ℂ | ∃ v : Fin 2 → ZMod N, v ≠ 0 ∧ g = X.fricke v}
 
 variable (N) in
-
 abbrev Idx : Type := Option {v : Fin 2 → ZMod N // v ≠ 0}
 
 def gen : Idx N → ℍ → ℂ := fun o => o.elim X.jf fun v => X.fricke v.1
@@ -119,7 +118,8 @@ theorem mdifferentiable_disc : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (Δ : ℍ →
   rw [← CuspForm.coe_discriminant]; exact CuspForm.discriminant.holo'
 
 theorem periodic_disc_one : Periodic ((Δ : ℍ → ℂ) ∘ ofComplex) 1 := by
-  have := SlashInvariantFormClass.periodic_comp_ofComplex CuspForm.discriminant one_mem_strictPeriods_SL
+  have :=
+    SlashInvariantFormClass.periodic_comp_ofComplex CuspForm.discriminant one_mem_strictPeriods_SL
   rwa [CuspForm.coe_discriminant] at this
 
 theorem isBoundedAtImInfty_disc : IsBoundedAtImInfty (Δ : ℍ → ℂ) := by
@@ -229,7 +229,8 @@ theorem qExpansion_widthOne_rat {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ
     Nat.mul_div_cancel_left _ (NeZero.pos N)] at hr
   exact ⟨r, hr⟩
 
-theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ → ℂ)).coeff n = (r : ℂ) := by
+theorem qExpansion_disc_rat_one (n : ℕ) :
+    ∃ r : ℚ, (qExpansion 1 (Δ : ℍ → ℂ)).coeff n = (r : ℂ) := by
   let A : ModularForm 𝒮ℒ 12 := (E₄.pow 3).mcast (by norm_num)
   let B : ModularForm 𝒮ℒ 12 := (E₆.pow 2).mcast (by norm_num)
   have hfun : (Δ : ℍ → ℂ) = ⇑((1728 : ℂ)⁻¹ • (A - B)) := by
@@ -422,7 +423,8 @@ variable {N : ℕ} [NeZero N] (X : FD N)
 
 local notation "Δ" => ModularForm.discriminant
 
-theorem smul_eq_coe_smul (K : IntermediateField ℚ ℂ) (κ : K) (f : ℍ → ℂ) : κ • f = (κ : ℂ) • f := rfl
+theorem smul_eq_coe_smul (K : IntermediateField ℚ ℂ) (κ : K) (f : ℍ → ℂ) :
+    κ • f = (κ : ℂ) • f := rfl
 
 theorem exists_rat_combination (K : IntermediateField ℚ ℂ) {n M : ℕ} {Gi : Fin n → ℍ → ℂ}
     {G : ℍ → ℂ} (hGi : ∀ i, RatAt N K M (Gi i)) (hG : RatAt N K M G)
@@ -556,7 +558,8 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     rw [hκ, hev_prod, Finset.sum_mul]
     simp only [ev, map_sum, map_mul, MvPolynomial.map_C, MvPolynomial.aeval_C, map_prod]
     refine Finset.sum_congr rfl fun i _ => ?_
-    have h1 : (MvPolynomial.aeval (gen X)) (MvPolynomial.map (algebraMap (kN N) ℂ) (Ph i)) = Pi i := hPh i
+    have h1 : (MvPolynomial.aeval (gen X)) (MvPolynomial.map (algebraMap (kN N) ℂ) (Ph i)) = Pi i :=
+      hPh i
     have h2 : ∀ j, (MvPolynomial.aeval (gen X)) (MvPolynomial.map (algebraMap (kN N) ℂ) (Qh j)) = Qi j :=
       hQh
     simp only [h1, h2]
@@ -675,6 +678,7 @@ theorem ModularCurve.exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff
       G * MvPolynomial.aeval (fun o : Option {v : Fin 2 → ZMod N // v ≠ 0} =>
           o.elim jf fun v => fricke v.1) (Q.map (algebraMap ↥K ℂ)) =
         MvPolynomial.aeval (fun o : Option {v : Fin 2 → ZMod N // v ≠ 0} =>
-          o.elim jf fun v => fricke v.1) (P.map (algebraMap ↥K ℂ)) := _root_.P2MW.S_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem.solution N L hL W hW fricke hfricke jf hjf K hK m G hG hinv hbd hcoeff
+          o.elim jf fun v => fricke v.1) (P.map (algebraMap ↥K ℂ)) :=
+  solution N L hL W hW fricke hfricke jf hjf K hK m G hG hinv hbd hcoeff
 
 end publicSection

@@ -73,23 +73,30 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HeckeEis_eichlerShimuraMap_injective
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL mem_coeffCoboundaries_iff coeffH1parMk_eq_zero_iff jFactor_eq_denom IsEichlerIntegral eichlerShimuraMap jFactor_pow_mul_eval_binaryFormRepSL exists_isEichlerIntegral_isParabolicCocycle eichlerShimuraMap_eq_coeffH1parMk existsEichlerShimuraMapLinear"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL mem_coeffCoboundaries_iff \
+  coeffH1parMk_eq_zero_iff jFactor_eq_denom IsEichlerIntegral eichlerShimuraMap \
+  jFactor_pow_mul_eval_binaryFormRepSL exists_isEichlerIntegral_isParabolicCocycle \
+  eichlerShimuraMap_eq_coeffH1parMk existsEichlerShimuraMapLinear"
 namespace MainAux
 p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial CongruenceSubgroup Filter Function
 open scoped MatrixGroups Manifold Topology ModularForm Pointwise
 
-theorem periodic_slash_comp_ofComplex_of_conj_T_zpow_mem {k : ℤ} {Γ : Subgroup SL(2, ℤ)} {F' : Type*}
-    [FunLike F' ℍ ℂ] [SlashInvariantFormClass F' (Γ : Subgroup (GL (Fin 2) ℝ)) k] (f : F') (δ : SL(2, ℤ)) {h : ℤ}
+theorem periodic_slash_comp_ofComplex_of_conj_T_zpow_mem {k : ℤ} {Γ : Subgroup SL(2, ℤ)}
+    {F' : Type*}
+    [FunLike F' ℍ ℂ] [SlashInvariantFormClass F' (Γ : Subgroup (GL (Fin 2) ℝ)) k] (f : F')
+    (δ : SL(2, ℤ)) {h : ℤ}
     (hmem : δ * ModularGroup.T ^ h * δ⁻¹ ∈ Γ) :
     Function.Periodic (((f : ℍ → ℂ) ∣[k] δ) ∘ ofComplex) ((h : ℝ) : ℂ) := by
   refine SlashInvariantFormClass.periodic_comp_ofComplex
     (SlashInvariantForm.translate f (Matrix.SpecialLinearGroup.mapGL ℝ δ)) ?_
-  rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff, ConjAct.toConjAct_smul]
+  rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff,
+    ConjAct.toConjAct_smul]
   have hTh : Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ h)
       = Matrix.GeneralLinearGroup.upperRightHom (h : ℝ) := by
-    rw [Units.ext_iff, Matrix.SpecialLinearGroup.mapGL_coe_matrix, Matrix.SpecialLinearGroup.map_apply_coe,
+    rw [Units.ext_iff, Matrix.SpecialLinearGroup.mapGL_coe_matrix,
+      Matrix.SpecialLinearGroup.map_apply_coe,
       ModularGroup.coe_T_zpow, Matrix.GeneralLinearGroup.upperRightHom_apply]
     ext i j
     fin_cases i <;> fin_cases j <;> simp
@@ -106,7 +113,8 @@ theorem conj_T_zpow_mem_Gamma0 (N : ℕ) (δ : SL(2, ℤ)) :
     simpa using this
   exact Gamma_le_Gamma0 N ((CongruenceSubgroup.Gamma_normal N).conj_mem _ hTN δ)
 
-theorem mdifferentiable_eval {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)} (hG : IsEichlerIntegral n g G) :
+theorem mdifferentiable_eval {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
+    (hG : IsEichlerIntegral n g G) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ)
       (fun τ : ℍ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) := by
   rw [UpperHalfPlane.mdifferentiable_iff]
@@ -118,7 +126,8 @@ theorem mdifferentiable_eval {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(Binary
   simp only [Function.comp_apply]
   rw [ofComplex_apply_of_im_pos hw]
 
-theorem exists_eq_const_of_slash_invariant {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex] {k : ℤ} (hk : k ≤ 0)
+theorem exists_eq_const_of_slash_invariant {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex] {k : ℤ}
+    (hk : k ≤ 0)
     {F : ℍ → ℂ} (hinv : ∀ γ ∈ Γ, F ∣[k] γ = F) (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)
     (hbdd : ∀ δ : SL(2, ℤ), IsBoundedAtImInfty (F ∣[k] δ)) : ∃ c : ℂ, ∀ τ : ℍ, F τ = c := by
   let M : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k :=
@@ -187,7 +196,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
   set P : ℍ → ℂ := fun τ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((F₁ τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
     with hP
   set Gδ : SL(2, ℤ) → ℍ → ↥(BinaryForm ℂ n) := fun δ τ => R δ⁻¹ (F₁ (δ • τ)) with hGδ
-  have hGδEI : ∀ δ : SL(2, ℤ), IsEichlerIntegral n (⇑f ∣[((n : ℤ) + 2)] δ) (Gδ δ) := fun δ => hEI₁.slash δ
+  have hGδEI : ∀ δ : SL(2, ℤ), IsEichlerIntegral n (⇑f ∣[((n : ℤ) + 2)] δ) (Gδ δ) :=
+    fun δ => hEI₁.slash δ
   have hRR : ∀ (δ : SL(2, ℤ)) (τ : ℍ), R δ (Gδ δ τ) = F₁ (δ • τ) := fun δ τ => by
     simp only [hGδ]
     rw [← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
@@ -205,7 +215,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     funext τ
     rw [hslash γ τ, hP]
     simp only [hGδ]
-    rw [hEq γ hγ τ, ← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
+    rw [hEq γ hγ τ, ← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one,
+      Module.End.one_apply]
   have hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) P := mdifferentiable_eval hEI₁
   have hNpos : (0 : ℤ) < (N : ℤ) := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   have hbdd : ∀ δ : SL(2, ℤ), IsBoundedAtImInfty (P ∣[-(n : ℤ)] δ) := by
@@ -217,13 +228,16 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     have hσ : δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ ∈ Gamma0 N := conj_T_zpow_mem_Gamma0 N δ
     have hgper : Function.Periodic ((⇑f ∣[((n : ℤ) + 2)] δ) ∘ ofComplex) (((N : ℤ) : ℝ) : ℂ) :=
       periodic_slash_comp_ofComplex_of_conj_T_zpow_mem f δ hσ
-    have hghol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (⇑f ∣[((n : ℤ) + 2)] δ) := (CuspFormClass.holo f).slash _ _
-    have hgbdd : IsBoundedAtImInfty (⇑f ∣[((n : ℤ) + 2)] δ) := ModularFormClass.bdd_at_infty_slash f δ
+    have hghol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (⇑f ∣[((n : ℤ) + 2)] δ) :=
+      (CuspFormClass.holo f).slash _ _
+    have hgbdd : IsBoundedAtImInfty (⇑f ∣[((n : ℤ) + 2)] δ) :=
+      ModularFormClass.bdd_at_infty_slash f δ
     have hT : ∀ τ : ℍ, Gδ δ ((((N : ℤ) : ℝ)) +ᵥ τ) = R (ModularGroup.T ^ (N : ℤ)) (Gδ δ τ) := by
       intro τ
       simp only [hGδ]
       have h1 := hEq _ hσ (δ • τ)
-      have hpt : ((δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ : SL(2, ℤ)) • δ • τ) = δ • ((((N : ℤ) : ℝ)) +ᵥ τ) := by
+      have hpt : ((δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ : SL(2, ℤ)) • δ • τ) = δ • ((((N : ℤ) : ℝ)) +ᵥ τ) :=
+        by
         rw [← UpperHalfPlane.modular_T_zpow_smul, smul_smul, smul_smul]
         congr 1
         group
@@ -232,7 +246,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
       congr 2
       group
     exact (hGδEI δ).isBoundedAtImInfty_eval hNpos hgper hghol hgbdd hT
-  obtain ⟨c, hc⟩ := exists_eq_const_of_slash_invariant (Γ := Gamma0 N) (k := -(n : ℤ)) (by omega) hinv hhol hbdd
+  obtain ⟨c, hc⟩ :=
+    exists_eq_const_of_slash_invariant (Γ := Gamma0 N) (k := -(n : ℤ)) (by omega) hinv hhol hbdd
   have hzero : (⇑f : ℍ → ℂ) = 0 := hEI₁.eq_zero_of_eval_eq_const hc
   exact DFunLike.ext f 0 fun τ => by rw [congrFun hzero τ]; rfl
 
@@ -248,6 +263,7 @@ public section publicSection
 open scoped Manifold MatrixGroups ModularForm
 theorem HeckeEis.eichlerShimuraMap_injective (N : ℕ) [NeZero N] (n : ℕ) :
     Function.Injective
-      (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N f) := _root_.P2MW.S_HeckeEis_eichlerShimuraMap_injective.solution N n
+      (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N f) :=
+  solution N n
 
 end publicSection

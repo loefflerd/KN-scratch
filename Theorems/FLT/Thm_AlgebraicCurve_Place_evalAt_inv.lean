@@ -59,7 +59,9 @@ namespace P2MW.S_AlgebraicCurve_Place_evalAt_inv
 
 open AlgebraicCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) : v.evalAt f⁻¹ = (v.evalAt f)⁻¹ := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational)
+    {f : F} (hf : f ≠ 0) (h : v.ord f = 0) :
+    v.evalAt f⁻¹ = (v.evalAt f)⁻¹ := by
   have hfi : f⁻¹ ≠ 0 := inv_ne_zero hf
   have hi : v.ord f⁻¹ = 0 := by rw [v.ord_inv, h, neg_zero]
   have hmul := v.evalAt_mul hv (v.mem_of_ord_nonneg hf h.ge) (v.mem_of_ord_nonneg hfi hi.ge)
@@ -76,6 +78,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.evalAt_inv {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) : v.evalAt f⁻¹ = (v.evalAt f)⁻¹ := _root_.P2MW.S_AlgebraicCurve_Place_evalAt_inv.solution v hv hf h
+theorem AlgebraicCurve.Place.evalAt_inv {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) :
+    v.evalAt f⁻¹ = (v.evalAt f)⁻¹ :=
+  solution v hv hf h
 
 end publicSection

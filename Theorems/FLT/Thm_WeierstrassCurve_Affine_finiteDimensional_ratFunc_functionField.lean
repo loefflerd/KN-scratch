@@ -75,7 +75,9 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.finiteDimensional_ratFunc_functionField {F : Type*} [Field F] (W : WeierstrassCurve.Affine F) :
-    FiniteDimensional (RatFunc F) W.FunctionField := _root_.P2MW.S_WeierstrassCurve_Affine_finiteDimensional_ratFunc_functionField.solution W
+theorem WeierstrassCurve.Affine.finiteDimensional_ratFunc_functionField {F : Type*} [Field F]
+    (W : WeierstrassCurve.Affine F) :
+    FiniteDimensional (RatFunc F) W.FunctionField :=
+  solution W
 
 end publicSection

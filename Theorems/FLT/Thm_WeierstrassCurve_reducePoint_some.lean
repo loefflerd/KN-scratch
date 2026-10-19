@@ -66,8 +66,10 @@ open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.Heigh
 namespace ReduceSome
 
 theorem reducePoint_some' (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
-    {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (W : WeierstrassCurve K) [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y)
-    (hx : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1) (hy : valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1) :
+    {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K] (W : WeierstrassCurve K)
+    [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y)
+    (hx : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1)
+    (hy : valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1) :
     ∃ h', reducePoint_alt R W (.some x y h) = .some (reduceCoord R x) (reduceCoord R y) h' := by
   obtain ⟨rx, hrx⟩ := exists_lift_of_le_one hx
   obtain ⟨ry, hry⟩ := exists_lift_of_le_one hy
@@ -86,16 +88,15 @@ theorem reducePoint_some' (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValua
     exact h.1
   have heqR : (integralModel R W).toAffine.Equation rx ry :=
     (Affine.map_equation _ (IsFractionRing.injective R K) _ _).mp heqK
-
   have heqk : (reduction R W).toAffine.Equation (residue R rx) (residue R ry) :=
     heqR.map (residue R)
-
   have hell : (reduction R W).IsElliptic :=
     (hasGoodReduction_iff_isElliptic_reduction R).mp ‹W.HasGoodReduction R›
   have hns : (reduction R W).toAffine.Nonsingular (reduceCoord R x) (reduceCoord R y) := by
     rw [hcx, hcy]
     exact Affine.equation_iff_nonsingular.mp heqk
-  have hxy : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 ∧ valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1 := ⟨hx, hy⟩
+  have hxy : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 ∧ valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1 :=
+    ⟨hx, hy⟩
   refine ⟨hns, ?_⟩
   simp only [reducePoint_alt, dite_eq_left hxy, dite_eq_left hns]
 
@@ -126,6 +127,7 @@ theorem WeierstrassCurve.reducePoint_some
     (hx : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1)
     (hy : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1) :
     ∃ h', WeierstrassCurve.reducePoint_alt R W (.some x y h)
-      = .some (WeierstrassCurve.reduceCoord R x) (WeierstrassCurve.reduceCoord R y) h' := _root_.P2MW.S_WeierstrassCurve_reducePoint_some.solution R W h hx hy
+      = .some (WeierstrassCurve.reduceCoord R x) (WeierstrassCurve.reduceCoord R y) h' :=
+  solution R W h hx hy
 
 end publicSection

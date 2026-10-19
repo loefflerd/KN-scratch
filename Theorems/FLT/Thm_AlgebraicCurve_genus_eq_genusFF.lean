@@ -66,12 +66,14 @@ theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ v : AlgebraicCurve.Place K F, v.DCoordGenerates]
-    (hRR : AlgebraicCurve.FunctionFieldRiemannRoch K F) (hWDA : AlgebraicCurve.WeilDualityAdelic K F)
+    (hRR : AlgebraicCurve.FunctionFieldRiemannRoch K F)
+    (hWDA : AlgebraicCurve.WeilDualityAdelic K F)
     (hC : AlgebraicCurve.ConstantsAreBase K F) :
     AlgebraicCurve.genus K F = AlgebraicCurve.genusFF K F := by
   have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
   obtain ⟨ω, hω⟩ := exists_ne (0 : Ω[F⁄K])
-  have h1 : (indexOfSpecialty (0 : Divisor K F) : ℤ) = (ell (canonicalDivisorOf hω - 0) : ℤ) := hWDA hω 0
+  have h1 : (indexOfSpecialty (0 : Divisor K F) : ℤ) = (ell (canonicalDivisorOf hω - 0) : ℤ) :=
+    hWDA hω 0
   rw [sub_zero] at h1
   have h2 : (ell (canonicalDivisorOf hω) : ℤ) = (genus K F : ℤ) :=
     ell_canonicalDivisor_eq_genus_of_riemannRoch hRR hC hω
@@ -95,8 +97,10 @@ theorem AlgebraicCurve.genus_eq_genusFF
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ v : AlgebraicCurve.Place K F, v.DCoordGenerates]
-    (hRR : AlgebraicCurve.FunctionFieldRiemannRoch K F) (hWDA : AlgebraicCurve.WeilDualityAdelic K F)
+    (hRR : AlgebraicCurve.FunctionFieldRiemannRoch K F)
+    (hWDA : AlgebraicCurve.WeilDualityAdelic K F)
     (hC : AlgebraicCurve.ConstantsAreBase K F) :
-    AlgebraicCurve.genus K F = AlgebraicCurve.genusFF K F := _root_.P2MW.S_AlgebraicCurve_genus_eq_genusFF.solution hRR hWDA hC
+    AlgebraicCurve.genus K F = AlgebraicCurve.genusFF K F :=
+  solution hRR hWDA hC
 
 end publicSection

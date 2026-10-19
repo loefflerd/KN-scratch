@@ -65,7 +65,8 @@ open Polynomial
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place.mem_of_eval_monic_eq_zero Place"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "mem_of_eval_monic_eq_zero ext ord ord_zero ord_coe_unit algebraMap_mem' toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "mem_of_eval_monic_eq_zero ext ord ord_zero ord_coe_unit \
+  algebraMap_mem' toValuationSubring"
 namespace FF2R0
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
@@ -90,7 +91,8 @@ theorem ord_eq_zero_of_isAlgebraic' {x : F} (hx : IsAlgebraic K x) : v.ord x = 0
 
 end AlgebraicCurve.Place.FF2R0
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F)
+    {t : F} (ht : v.ord t ≠ 0) :
     Transcendental K t :=
   fun h => ht (AlgebraicCurve.Place.FF2R0.ord_eq_zero_of_isAlgebraic' v h)
 
@@ -104,7 +106,9 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.transcendental_of_ord_ne_zero {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) :
-    Transcendental K t := _root_.P2MW.S_AlgebraicCurve_Place_transcendental_of_ord_ne_zero.solution v ht
+theorem AlgebraicCurve.Place.transcendental_of_ord_ne_zero {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t ≠ 0) :
+    Transcendental K t :=
+  solution v ht
 
 end publicSection

@@ -79,13 +79,15 @@ theorem one_mem_strictPeriods_gamma1 (M : ℕ) :
   rw [CongruenceSubgroup.strictPeriods_Gamma1]
   exact AddSubgroup.mem_zmultiples 1
 
-theorem analyticAt_comp_ofComplex {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : ModularForm Γ k) (τ : ℍ) :
+theorem analyticAt_comp_ofComplex {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : ModularForm Γ k)
+    (τ : ℍ) :
     AnalyticAt ℂ ((f : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
   have hd : DifferentiableOn ℂ ((f : ℍ → ℂ) ∘ ofComplex) {z : ℂ | 0 < z.im} :=
     UpperHalfPlane.mdifferentiable_iff.mp f.holo'
   exact hd.analyticAt ((isOpen_lt continuous_const Complex.continuous_im).mem_nhds τ.im_pos)
 
-theorem coe_eq_of_qExpansion_eq {M : ℕ} {a b : ℤ} (f : ModularForm (Gamma1 M) a) (g : ModularForm (Gamma1 M) b)
+theorem coe_eq_of_qExpansion_eq {M : ℕ} {a b : ℤ} (f : ModularForm (Gamma1 M) a)
+    (g : ModularForm (Gamma1 M) b)
     (h : qExpansion 1 (f : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ)) : (f : ℍ → ℂ) = g := by
   have h1 := one_mem_strictPeriods_gamma1 M
   have : Fact (IsCusp OnePoint.infty (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1 M))) :=
@@ -136,15 +138,20 @@ theorem solution
   obtain ⟨a, g, h, hh, hXh⟩ :=
     ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
       (CongruenceSubgroup.Gamma1 M) hT X hX
-  obtain ⟨Φ, hΦdef⟩ : ∃ Φ : ModularForm (Gamma1 M) (a + (k : ℤ) * 1), Φ = g.mul (w.pow k) := ⟨_, rfl⟩
+  obtain ⟨Φ, hΦdef⟩ : ∃ Φ : ModularForm (Gamma1 M) (a + (k : ℤ) * 1), Φ = g.mul (w.pow k) :=
+    ⟨_, rfl⟩
   have hΦcoe : (Φ : ℍ → ℂ) = fun z => g z * w z ^ k := by
     funext z
     rw [hΦdef, ModularForm.coe_mul, ModularForm.coe_pow, Pi.mul_apply, Pi.pow_apply]
-  have hqΦ : qExpansion 1 (Φ : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) * qExpansion 1 (w : ℍ → ℂ) ^ k := by
+  have hqΦ : qExpansion 1 (Φ : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) * qExpansion 1 (w : ℍ → ℂ) ^ k :=
+    by
     rw [hΦdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_pow one_pos h1]
-  obtain ⟨L, hLdef⟩ : ∃ L : ModularForm (Gamma1 M) (2 * (k : ℤ) + (a + a)), L = F₂.mul (h.mul h) := ⟨_, rfl⟩
-  obtain ⟨R, hRdef⟩ : ∃ R : ModularForm (Gamma1 M) ((a + (k : ℤ) * 1) + (a + (k : ℤ) * 1)), R = Φ.mul Φ := ⟨_, rfl⟩
-  have hqL : qExpansion 1 (L : ℍ → ℂ) = qExpansion 1 (F₂ : ℍ → ℂ) * (qExpansion 1 (h : ℍ → ℂ) * qExpansion 1 (h : ℍ → ℂ)) := by
+  obtain ⟨L, hLdef⟩ : ∃ L : ModularForm (Gamma1 M) (2 * (k : ℤ) + (a + a)), L = F₂.mul (h.mul h) :=
+    ⟨_, rfl⟩
+  obtain ⟨R, hRdef⟩ : ∃ R : ModularForm (Gamma1 M) ((a + (k : ℤ) * 1) + (a + (k : ℤ) * 1)), R = Φ.mul Φ :=
+    ⟨_, rfl⟩
+  have hqL : qExpansion 1 (L : ℍ → ℂ) = qExpansion 1 (F₂ : ℍ → ℂ) * (qExpansion 1 (h : ℍ → ℂ) * qExpansion 1 (h : ℍ → ℂ)) :=
+    by
     rw [hLdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1]
   have hqR : qExpansion 1 (R : ℍ → ℂ) = qExpansion 1 (Φ : ℍ → ℂ) * qExpansion 1 (Φ : ℍ → ℂ) := by
     rw [hRdef, ModularForm.qExpansion_mul one_pos h1]
@@ -169,7 +176,8 @@ theorem solution
       funext c
       exact hfun (ofComplex c)
     have e := congrArg (fun F : ℂ → ℂ => analyticOrderAt F (τ : ℂ)) hid
-    rw [analyticOrderAt_mul hc (ha.mul ha), analyticOrderAt_mul ha ha, analyticOrderAt_mul hb hb] at e
+    rw [analyticOrderAt_mul hc (ha.mul ha), analyticOrderAt_mul ha ha, analyticOrderAt_mul hb
+      hb] at e
     exact le_of_add_eq_two e
   have hcusp : ∀ A : SL(2, ℤ), ∃ C : ℝ, ∀ᶠ τ : ℍ in atImInfty,
       ‖((Φ : ℍ → ℂ) ∣[a + (k : ℤ) * 1] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((h : ℍ → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ := by
@@ -249,6 +257,7 @@ theorem ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansi
       (X * HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ k) ^ 2) :
     ∃ f : ModularForm (Gamma1 M) (k : ℤ),
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
-        X * HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ k := _root_.P2MW.S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq.solution M k w X hX F₂ hF₂
+        X * HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ k :=
+  solution M k w X hX F₂ hF₂
 
 end publicSection

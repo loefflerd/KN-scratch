@@ -62,12 +62,13 @@ open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point Frob
 namespace M4Wiles
 namespace T2
 
-variable {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k]
+variable {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+    [DecidableEq k]
   [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k]
 
 omit [CommRing R] [Algebra R F] [Algebra R k] [IsScalarTower R F k] in
 open Polynomial in
-
+omit [DecidableEq k] in
 theorem pow_card_eq_self_iff (x : k) : x ^ Fintype.card F = x ↔ x ∈ Set.range (algebraMap F k) := by
   classical
   constructor
@@ -90,7 +91,8 @@ theorem pow_card_eq_self_iff (x : k) : x ^ Fintype.card F = x ↔ x ∈ Set.rang
     have heq : T = f.roots.toFinset :=
       Finset.eq_of_subset_of_card_le hTroots (hle.trans_eq hTcard.symm)
     have hxroot : x ∈ f.roots.toFinset := by
-      rw [Multiset.mem_toFinset, mem_roots hf0, IsRoot, hf, eval_sub, eval_pow, eval_X, hx, sub_self]
+      rw [Multiset.mem_toFinset, mem_roots hf0, IsRoot, hf, eval_sub, eval_pow, eval_X, hx,
+        sub_self]
     rw [← heq, hT, Finset.mem_image] at hxroot
     obtain ⟨a, -, ha⟩ := hxroot
     exact ⟨a, ha⟩
@@ -100,8 +102,8 @@ theorem pow_card_eq_self_iff (x : k) : x ^ Fintype.card F = x ↔ x ∈ Set.rang
 variable [DecidableEq F] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k)
 
 omit [Fintype F] in
-
-lemma smul_baseChange (P : (W⁄F).Point) : σ • (Point.baseChange F k P) = Point.baseChange F k P := by
+lemma smul_baseChange (P : (W⁄F).Point) :
+    σ • (Point.baseChange F k P) = Point.baseChange F k P := by
   rw [algEquiv_smul_def]
   exact map_baseChange (W' := W) σ.toAlgHom P
 
@@ -125,7 +127,6 @@ lemma exists_baseChange_eq_of_smul_eq (hσ : ∀ x : k, σ x = x ^ Fintype.card 
 variable (W σ)
 
 omit [DecidableEq F] in
-
 theorem kerDeg_one_one (hσ : ∀ x : k, σ x = x ^ Fintype.card F) :
     kerDeg (frobEnd W σ) 1 1 = Nat.card (W⁄F).Point := by
   classical
@@ -146,7 +147,10 @@ end M4Wiles.T2
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) : kerDeg (frobEnd W σ) 1 1 = Nat.card (W⁄F).Point :=
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+    [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k]
+    (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) :
+    kerDeg (frobEnd W σ) 1 1 = Nat.card (W⁄F).Point :=
   M4Wiles.T2.kerDeg_one_one W σ hσ
 
 end S_FrobeniusEndo_kerDeg_frobEnd_one_one
@@ -160,6 +164,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.kerDeg_frobEnd_one_one {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) : kerDeg (frobEnd W σ) 1 1 = Nat.card (W⁄F).Point := _root_.P2MW.S_FrobeniusEndo_kerDeg_frobEnd_one_one.solution W σ hσ
+theorem FrobeniusEndo.kerDeg_frobEnd_one_one {R : Type*} [CommRing R] {F : Type*} [Field F]
+    [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k]
+    [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k)
+    (hσ : ∀ x : k, σ x = x ^ Fintype.card F) :
+    kerDeg (frobEnd W σ) 1 1 = Nat.card (W⁄F).Point :=
+  solution W σ hσ
 
 end publicSection

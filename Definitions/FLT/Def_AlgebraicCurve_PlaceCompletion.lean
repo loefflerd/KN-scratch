@@ -196,7 +196,6 @@ theorem kw_ffgc_adicCompletionComap_coe
     (kw_ffgc_uniformContinuous_withValMapAlgebraMap F W).continuous x
 
 open WithZeroTopology in
-
 theorem kw_ffgc_valued_adicCompletionComap (x : (W.restrict F).adicCompletion) :
     Valued.v (kw_ffgc_adicCompletionComap F W x)
       = Valued.v x ^ W.ramificationIndex F := by
@@ -505,7 +504,7 @@ theorem kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff (v : Place K E) (x :
     refine v.mem_of_ord_nonneg_placeCompletionAux hx0 (neg_nonneg.mpr ?_)
     exact hlog_iff.mpr (hval ▸ h)
   · intro h
-    show Valued.v (algebraMap E v.adicCompletion x) ≤ 1
+    change Valued.v (algebraMap E v.adicCompletion x) ≤ 1
     rw [hval]
     exact hlog_iff.mp (neg_nonneg.mp (v.ord_nonneg_of_mem_placeCompletionAux h))
 

@@ -70,12 +70,13 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 universe u
 
 theorem solution
-    {F : Type u} [Field F] [DecidableEq F] {W : WeierstrassCurve.Affine F}
+    {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
     [IsDedekindDomain W.CoordinateRing]
     (g₁ g₂ : WeierstrassCurve.Affine.GenusOnePlaceGate W)
     (h₁ : @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g₁)
     (h₂ : @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g₂) :
     g₁ = g₂ := by
+  classical
   have hw : ∀ {x y : F} (h : W.Nonsingular x y),
       ∃ w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing,
         w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y) := fun {x y} h =>
@@ -86,8 +87,8 @@ theorem solution
       g₁.pointEquivPlace (Point.some x y h) = g₂.pointEquivPlace (Point.some x y h) := by
     intro x y h
     obtain ⟨w, hw⟩ := hw h
-    have e1 := @placeOfPoint_some_eq_ofHeightOneSpectrum F _ _ W g₁ h₁ _ x y h w hw
-    have e2 := @placeOfPoint_some_eq_ofHeightOneSpectrum F _ _ W g₂ h₂ _ x y h w hw
+    have e1 := @placeOfPoint_some_eq_ofHeightOneSpectrum F _ W g₁ h₁ _ x y h w hw
+    have e2 := @placeOfPoint_some_eq_ofHeightOneSpectrum F _ W g₂ h₂ _ x y h w hw
     exact e1.trans e2.symm
   have hall : ∀ P : W.Point, g₁.pointEquivPlace P = g₂.pointEquivPlace P := by
     intro P
@@ -127,11 +128,14 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
 universe u
 theorem WeierstrassCurve.Affine.GenusOnePlaceGate.ext_of_isCentred
-    {F : Type u} [Field F] [DecidableEq F] {W : WeierstrassCurve.Affine F}
+    {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
     [IsDedekindDomain W.CoordinateRing]
     (g₁ g₂ : WeierstrassCurve.Affine.GenusOnePlaceGate W)
     (h₁ : @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g₁)
     (h₂ : @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g₂) :
-    g₁ = g₂ := _root_.P2MW.S_WeierstrassCurve_Affine_GenusOnePlaceGate_ext_of_isCentred.solution g₁ g₂ h₁ h₂
+    g₁ = g₂ := by
+  classical
+  exact
+    solution g₁ g₂ h₁ h₂
 
 end publicSection

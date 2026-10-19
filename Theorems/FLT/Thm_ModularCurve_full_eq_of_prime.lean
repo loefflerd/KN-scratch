@@ -62,7 +62,8 @@ open ModularCurve IntermediateField
 
 noncomputable section
 
-theorem solution {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) : modularFunctionFieldFull ℓ = modularFunctionField ℓ :=
+theorem solution {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) :
+    modularFunctionFieldFull ℓ = modularFunctionField ℓ :=
   (ModularCurve.functionFieldGeneration_iff_full_eq ℓ).mp (ModularCurve.functionFieldGeneration_of_prime hℓ)
 
 end
@@ -77,6 +78,8 @@ public section publicSection
 
 
 open ModularCurve IntermediateField
-theorem ModularCurve.full_eq_of_prime {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) : modularFunctionFieldFull ℓ = modularFunctionField ℓ := _root_.P2MW.S_ModularCurve_full_eq_of_prime.solution hℓ
+theorem ModularCurve.full_eq_of_prime {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) :
+    modularFunctionFieldFull ℓ = modularFunctionField ℓ :=
+  solution hℓ
 
 end publicSection

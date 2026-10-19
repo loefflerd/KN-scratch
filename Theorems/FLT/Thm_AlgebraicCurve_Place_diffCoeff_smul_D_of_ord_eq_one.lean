@@ -91,8 +91,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.diffCoeff_smul_D_of_ord_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t = 1) (ω : Ω[F⁄K]) :
-    AlgebraicCurve.Place.diffCoeff t ω • KaehlerDifferential.D K F t = ω := _root_.P2MW.S_AlgebraicCurve_Place_diffCoeff_smul_D_of_ord_eq_one.solution x v ht ω
+theorem AlgebraicCurve.Place.diffCoeff_smul_D_of_ord_eq_one {K F : Type*} [Field K] [Field F]
+    [Algebra K F] [PerfectField K] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {t : F} (ht : v.ord t = 1) (ω : Ω[F⁄K]) :
+    AlgebraicCurve.Place.diffCoeff t ω • KaehlerDifferential.D K F t = ω :=
+  solution x v ht ω
 
 end publicSection

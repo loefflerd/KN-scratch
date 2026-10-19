@@ -61,17 +61,20 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_isFrickeAutFull
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_exists_isFrickeAutFull.ModularCurve AlgebraicCurve IntermediateField"
+p2m_open "ModularCurve P2MW.S_ModularCurve_exists_isFrickeAutFull.ModularCurve AlgebraicCurve \
+  IntermediateField"
 
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsFrickeAutFull qExpand qExpand_one_apply jq jqN modularFunctionField modularFunctionFieldFull exists_isFrickeAut full_eq_of_prime"
+p2m_export "ModularCurve" "IsFrickeAutFull qExpand qExpand_one_apply jq jqN modularFunctionField \
+  modularFunctionFieldFull exists_isFrickeAut full_eq_of_prime"
 p2m_open "ModularCurve"
 
 namespace W2B
 
-theorem cast_algEquiv_exists {E E' : IntermediateField ℚ (LaurentSeries ℚ)} (h : E = E') (σ : E ≃ₐ[ℚ] E) :
+theorem cast_algEquiv_exists {E E' : IntermediateField ℚ (LaurentSeries ℚ)} (h : E = E')
+    (σ : E ≃ₐ[ℚ] E) :
     ∃ σ' : E' ≃ₐ[ℚ] E', ∀ x : E', ((σ' x : E') : LaurentSeries ℚ) = σ ⟨x, h ▸ x.2⟩ := by
   subst h
   exact ⟨σ, fun _ => rfl⟩
@@ -80,9 +83,11 @@ end W2B
 
 end ModularCurve
 
-theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ σ : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ, IsFrickeAutFull ℓ σ := by
+theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    ∃ σ : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ, IsFrickeAutFull ℓ σ := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
-  have hfull : modularFunctionFieldFull ℓ = modularFunctionField ℓ := ModularCurve.full_eq_of_prime hℓ.out
+  have hfull : modularFunctionFieldFull ℓ = modularFunctionField ℓ :=
+    ModularCurve.full_eq_of_prime hℓ.out
   obtain ⟨σ, hσ⟩ := ModularCurve.exists_isFrickeAut ℓ
   obtain ⟨σ', hσ'⟩ := ModularCurve.W2B.cast_algEquiv_exists hfull.symm σ
   refine ⟨σ', ?_⟩
@@ -120,6 +125,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve IntermediateField
-theorem ModularCurve.exists_isFrickeAutFull (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ σ : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ, IsFrickeAutFull ℓ σ := _root_.P2MW.S_ModularCurve_exists_isFrickeAutFull.solution ℓ
+theorem ModularCurve.exists_isFrickeAutFull (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    ∃ σ : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ, IsFrickeAutFull ℓ σ :=
+  solution ℓ
 
 end publicSection

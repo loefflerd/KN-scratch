@@ -82,7 +82,6 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
   have hta : a < t := by
     have := le_abs_self a
     omega
-
   set h : ℤ := q * (P : ℤ) ^ 2 * t ^ 2 - a * (P : ℤ) * t + 1 with hhdef
   have hmodP : h - (P : ℤ) * (q * (P : ℤ) * t ^ 2 - a * t) = 1 := by
     rw [hhdef]; ring
@@ -107,10 +106,8 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
     have h2 : (P : ℤ) ≤ 2 := Int.le_of_dvd (by norm_num) hdvd2
     have h6 : (6 : ℤ) ≤ (P : ℤ) := by exact_mod_cast hP6
     omega
-
   have habs : h.natAbs ≠ 1 := by omega
   obtain ⟨r, hrprime, hrdvd⟩ := Nat.exists_prime_and_dvd habs
-
   have hrdvdh : (r : ℤ) ∣ h :=
     (Int.natCast_dvd_natCast.mpr hrdvd).trans (Int.natAbs_dvd.mpr dvd_rfl)
   refine ⟨r, ?_, hrprime, ?_⟩
@@ -137,7 +134,8 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
 
 end FrobeniusEndo
 
-theorem solution (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) : ∃ r : ℕ, N < r ∧ r.Prime ∧ ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 :=
+theorem solution (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) :
+    ∃ r : ℕ, N < r ∧ r.Prime ∧ ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 :=
   FrobeniusEndo.exists_prime_gt_and_quadratic_root a q hq N
 
 end S_FrobeniusEndo_exists_prime_gt_and_quadratic_root
@@ -149,6 +147,8 @@ end privateSection
 public section publicSection
 
 
-theorem FrobeniusEndo.exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) : ∃ r : ℕ, N < r ∧ r.Prime ∧ ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 := _root_.P2MW.S_FrobeniusEndo_exists_prime_gt_and_quadratic_root.solution a q hq N
+theorem FrobeniusEndo.exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) :
+    ∃ r : ℕ, N < r ∧ r.Prime ∧ ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 :=
+  solution a q hq N
 
 end publicSection

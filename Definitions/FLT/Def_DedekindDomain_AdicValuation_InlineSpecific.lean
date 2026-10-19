@@ -93,7 +93,8 @@ private lemma intValuation_eq_coe_neg_multiplicity {A : Type*} [CommRing A] [IsD
 
 end IsDedekindDomain.HeightOneSpectrum
 
-private theorem IsLocalRing.maximalIdeal_le {R : Type*} [CommSemiring R] [IsLocalRing R] {J : Ideal R}
+private theorem IsLocalRing.maximalIdeal_le {R : Type*} [CommSemiring R] [IsLocalRing R]
+    {J : Ideal R}
     (hJ : J ≠ ⊤) (h : IsLocalRing.maximalIdeal R ≤ J) :
     J.IsMaximal :=
   (IsLocalRing.maximalIdeal.isMaximal R).eq_of_le hJ h ▸ IsLocalRing.maximalIdeal.isMaximal R
@@ -124,7 +125,7 @@ private theorem ValuationSubring.isUnit_of_valued_eq_one {K : Type*} [Field K] {
   have hu_inv_le : Valued.v u⁻¹.val ≤ 1 := by
     rw [← one_mul (Valued.v _), ← hx, ← hu, ← Valued.v.map_mul, u.mul_inv, hu, hx, Valued.v.map_one]
   rw [isUnit_iff_exists]
-  exact ⟨⟨u⁻¹.val, hu_inv_le⟩,  ⟨by aesop, by aesop⟩⟩
+  exact ⟨⟨u⁻¹.val, hu_inv_le⟩, ⟨by aesop, by aesop⟩⟩
 
 private theorem ValuationSubring.isUnit_iff_valued_eq_one {K : Type*} [Field K] {Γ₀ : Type*}
     [LinearOrderedCommGroupWithZero Γ₀] [hv : Valued K Γ₀] (x : hv.v.valuationSubring) :
@@ -309,7 +310,6 @@ theorem denseRange_of_integerAlgebraMap :
   rfl
 
 open Valuation.IsRankOneDiscrete in
-
 theorem exists_adicValued_sub_lt_of_adicCompletionInteger
     (x : v.adicCompletionIntegers K) (γ : ℤᵐ⁰ˣ) :
     ∃a, Valued.v ((algebraMap A K a) - (x : v.adicCompletion K)) < γ.val := by
@@ -317,7 +317,7 @@ theorem exists_adicValued_sub_lt_of_adicCompletionInteger
   rw [Set.ext_iff] at h
   specialize h x
   simp_rw [RingHom.coe_range, Subtype.coe_prop, iff_true, mem_closure_iff_nhds] at h
-  specialize h { y | Valued.v (y  - (x : v.adicCompletion K)) < γ.val }
+  specialize h { y | Valued.v (y - (x : v.adicCompletion K)) < γ.val }
   have hn : {y | Valued.v (y - (x : v.adicCompletion K)) < γ.val} ∈ nhds x.val := by
     rw [Valued.mem_nhds]
     use (Units.mapEquiv (valueGroup₀_equiv_withZeroMulInt vK).toMulEquiv).symm γ
@@ -350,7 +350,6 @@ instance : (v.completionIdeal K).LiesOver v.asIdeal := ⟨by
       valuedAdicCompletion_eq_valuation, valuation_lt_one_iff_mem]⟩
 
 open IsLocalRing in
-
 noncomputable def ResidueFieldToCompletionResidueField :
     A ⧸ v.asIdeal →+* ResidueField (v.adicCompletionIntegers K) :=
   Ideal.quotientMap _ (algebraMap _ _) <| le_of_eq Ideal.LiesOver.over

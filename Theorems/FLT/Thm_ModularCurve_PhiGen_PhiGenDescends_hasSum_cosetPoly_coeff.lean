@@ -88,7 +88,10 @@ open scoped MatrixGroups
 local notation "𝕢" => Function.Periodic.qParam
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist_coeff PhiGen.conj PhiGen.conj_zero PhiGen.conj_succ PhiGen.phiProd PhiGen.PhiGenDescends coeffMap coeffMap_coeff coeffEmb coeffEmb_coeff coeffMap_qExpand hasSum_jq_qParam hasSum_qParam_mul_laurent hasSum_qParam_heckeMatrix_smul hasSum_qParam_heckeDiagMatrix_smul"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist_coeff \
+  PhiGen.conj PhiGen.conj_zero PhiGen.conj_succ PhiGen.phiProd PhiGen.PhiGenDescends coeffMap \
+  coeffMap_coeff coeffEmb coeffEmb_coeff coeffMap_qExpand hasSum_jq_qParam \
+  hasSum_qParam_mul_laurent hasSum_qParam_heckeMatrix_smul hasSum_qParam_heckeDiagMatrix_smul"
 p2m_open "ModularCurve"
 
 def RealL (h : ℝ) (A : LaurentSeries ℂ) (F : ℍ → ℂ) : Prop :=
@@ -127,7 +130,8 @@ lemma one (h : ℝ) : RealL h 1 1 := by
 
 lemma zero (h : ℝ) : RealL h 0 0 := fun τ => by simp [hasSum_zero]
 
-lemma congr {A' : LaurentSeries ℂ} {F' : ℍ → ℂ} (hA : RealL h A F) (h1 : A = A') (h2 : ∀ τ, F τ = F' τ) :
+lemma congr {A' : LaurentSeries ℂ} {F' : ℍ → ℂ} (hA : RealL h A F) (h1 : A = A')
+    (h2 : ∀ τ, F τ = F' τ) :
     RealL h A' F' := fun τ => by rw [← h1, ← h2]; exact hA τ
 
 lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries ℂ} {F : ι → ℍ → ℂ}
@@ -136,7 +140,8 @@ lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries �
   induction s using Finset.induction_on with
   | empty => (have h__af := one h; simp at h__af ⊢; exact h__af)
   | insert a s ha ih =>
-    have h1 := (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
+    have h1 :=
+      (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
     refine h1.congr (Finset.prod_insert ha).symm fun τ => ?_
     simp [Finset.prod_insert ha]
 
@@ -168,7 +173,8 @@ lemma coeff_prod_X_sub_C (hh : 0 < h) {ι : Type} (s : Finset ι) {a : ι → La
       · rw [hA, Polynomial.mul_coeff_zero, Polynomial.coeff_sub, Polynomial.coeff_X_zero,
           Polynomial.coeff_C_zero, zero_sub]
         exact (mul_neg (α := LaurentSeries ℂ) _ _).symm
-      · simp only [hfun τ, Polynomial.mul_coeff_zero, Pi.neg_apply, Pi.mul_apply, Polynomial.coeff_sub,
+      · simp only [hfun τ, Polynomial.mul_coeff_zero, Pi.neg_apply, Pi.mul_apply,
+          Polynomial.coeff_sub,
           Polynomial.coeff_X_zero, Polynomial.coeff_C_zero, zero_sub, mul_neg]
     | succ k =>
       refine ((ih' k).sub ((ih' (k + 1)).mul hh hb')).congr ?_ fun τ => ?_
@@ -201,14 +207,16 @@ lemma sigma_zeta : sigma ℓ ζ hζ (ζ : CyclotomicField ℓ ℚ) = expRoot ℓ
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   have := CyclotomicField.isCyclotomicExtension ℓ ℚ
   let e := hζ.embeddingsEquivPrimitiveRoots ℂ (Polynomial.cyclotomic.irreducible_rat hℓ.out.pos)
-  let r : primitiveRoots ℓ ℂ := ⟨expRoot ℓ, (mem_primitiveRoots hℓ.out.pos).mpr (isPrimitiveRoot_expRoot ℓ)⟩
+  let r : primitiveRoots ℓ ℂ :=
+    ⟨expRoot ℓ, (mem_primitiveRoots hℓ.out.pos).mpr (isPrimitiveRoot_expRoot ℓ)⟩
   have h := IsPrimitiveRoot.embeddingsEquivPrimitiveRoots_apply_coe hζ ℂ
     (Polynomial.cyclotomic.irreducible_rat hℓ.out.pos) (e.symm r)
   rw [Equiv.apply_symm_apply] at h
   exact h.symm
 
 omit hℓ in
-lemma sigma_ratCast' (σ : CyclotomicField ℓ ℚ →+* ℂ) (q : ℚ) : σ (q : CyclotomicField ℓ ℚ) = (q : ℂ) :=
+lemma sigma_ratCast' (σ : CyclotomicField ℓ ℚ →+* ℂ) (q : ℚ) :
+    σ (q : CyclotomicField ℓ ℚ) = (q : ℂ) :=
   map_ratCast σ q
 
 end Sigma
@@ -240,9 +248,11 @@ def rep (i : Fin (ℓ + 1)) : GL (Fin 2) ℝ :=
 omit hℓ in
 @[scoped simp] lemma rep_zero : rep ℓ 0 = ModularForm.heckeDiagMatrix ℓ := by simp [rep]
 omit hℓ in
-@[scoped simp] lemma rep_succ (b : Fin ℓ) : rep ℓ b.succ = ModularForm.heckeMatrix ℓ (b : ℕ) := by simp [rep]
+@[scoped simp] lemma rep_succ (b : Fin ℓ) :
+    rep ℓ b.succ = ModularForm.heckeMatrix ℓ (b : ℕ) := by simp [rep]
 
-lemma realL_conjC_zero : RealL ℓ (conjC ℓ ζ hζ 0) (fun τ => jt (ModularForm.heckeDiagMatrix ℓ • τ)) := by
+lemma realL_conjC_zero :
+    RealL ℓ (conjC ℓ ζ hζ 0) (fun τ => jt (ModularForm.heckeDiagMatrix ℓ • τ)) := by
   intro τ
   have h := ModularCurve.hasSum_qParam_heckeDiagMatrix_smul ℓ jqC jt realL_jqC τ
   have hconj : conjC ℓ ζ hζ 0 = qExpand ℂ (ℓ * ℓ) jqC := by
@@ -289,7 +299,8 @@ lemma realL_phiProd_coeff (k : ℕ) :
   exact RealL.coeff_prod_X_sub_C (by exact_mod_cast hℓ.out.pos) Finset.univ
     (fun i _ => realL_conjC ℓ ζ hζ i) k
 
-lemma realL_one_of_realL_qExpand (x : LaurentSeries ℂ) (F : ℍ → ℂ) (hx : RealL ℓ (qExpand ℂ ℓ x) F) :
+lemma realL_one_of_realL_qExpand (x : LaurentSeries ℂ) (F : ℍ → ℂ) (hx : RealL ℓ (qExpand ℂ ℓ x) F)
+    :
     RealL 1 x F := by
   intro τ
   have hinj : Function.Injective (fun n : ℤ => (ℓ : ℤ) * n) :=
@@ -315,7 +326,6 @@ lemma coeffMap_sigma_coeffEmb (x : LaurentSeries ℚ) :
   rfl
 
 include hζ in
-
 theorem hasSum_coeff_of_phiGenDescends (c : ℕ → LaurentSeries ℚ) (hc : PhiGen.PhiGenDescends ℓ ζ c)
     (k : ℕ) (τ : ℍ) :
     HasSum (fun m : ℤ => (((c k).coeff m : ℚ) : ℂ) * 𝕢 1 (τ : ℂ) ^ m)
@@ -337,7 +347,10 @@ end Translates
 
 end ModularCurve
 
-theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : (CyclotomicField ℓ ℚ)ˣ) (hζ : IsPrimitiveRoot (ζ : CyclotomicField ℓ ℚ) ℓ) (c : ℕ → LaurentSeries ℚ) (hc : ModularCurve.PhiGen.PhiGenDescends ℓ ζ c) (k : ℕ) (τ : UpperHalfPlane) : HasSum (fun m : ℤ => (((c k).coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (((Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeDiagMatrix ℓ • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeMatrix ℓ (b : ℕ) • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeMatrix ℓ (b : ℕ) • τ)))).coeff k) :=
+theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : (CyclotomicField ℓ ℚ)ˣ)
+    (hζ : IsPrimitiveRoot (ζ : CyclotomicField ℓ ℚ) ℓ) (c : ℕ → LaurentSeries ℚ)
+    (hc : ModularCurve.PhiGen.PhiGenDescends ℓ ζ c) (k : ℕ) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (((c k).coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (((Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeDiagMatrix ℓ • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeMatrix ℓ (b : ℕ) • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeMatrix ℓ (b : ℕ) • τ)))).coeff k) :=
   ModularCurve.hasSum_coeff_of_phiGenDescends ℓ ζ hζ c hc k τ
 
 end
@@ -349,6 +362,11 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.PhiGen.PhiGenDescends.hasSum_cosetPoly_coeff (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : (CyclotomicField ℓ ℚ)ˣ) (hζ : IsPrimitiveRoot (ζ : CyclotomicField ℓ ℚ) ℓ) (c : ℕ → LaurentSeries ℚ) (hc : ModularCurve.PhiGen.PhiGenDescends ℓ ζ c) (k : ℕ) (τ : UpperHalfPlane) : HasSum (fun m : ℤ => (((c k).coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (((Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeDiagMatrix ℓ • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeMatrix ℓ (b : ℕ) • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeMatrix ℓ (b : ℕ) • τ)))).coeff k) := _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_hasSum_cosetPoly_coeff.solution ℓ ζ hζ c hc k τ
+theorem ModularCurve.PhiGen.PhiGenDescends.hasSum_cosetPoly_coeff (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)]
+    (ζ : (CyclotomicField ℓ ℚ)ˣ) (hζ : IsPrimitiveRoot (ζ : CyclotomicField ℓ ℚ) ℓ)
+    (c : ℕ → LaurentSeries ℚ) (hc : ModularCurve.PhiGen.PhiGenDescends ℓ ζ c) (k : ℕ)
+    (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (((c k).coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (((Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeDiagMatrix ℓ • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (ModularForm.E₄ (ModularForm.heckeMatrix ℓ (b : ℕ) • τ) ^ 3 / ModularForm.discriminant (ModularForm.heckeMatrix ℓ (b : ℕ) • τ)))).coeff k) :=
+  solution ℓ ζ hζ c hc k τ
 
 end publicSection

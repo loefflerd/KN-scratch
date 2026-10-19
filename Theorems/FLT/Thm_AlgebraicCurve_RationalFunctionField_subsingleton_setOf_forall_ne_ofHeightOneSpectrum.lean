@@ -69,11 +69,14 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_ne_zero ord ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing'"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_ne_zero ord \
+  ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' \
+  toValuationSubring isPrincipalIdealRing'"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -96,11 +99,13 @@ private theorem _root_.AlgebraicCurve.Place.mem_iff_adicValuation_le_one' {f : F
   exact Valuation.mem_valuationSubring_iff _ _
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_adicValuation_le_one'"
-private theorem _root_.AlgebraicCurve.Place.adicValuation_isRankOneDiscrete' : v.adicValuation.IsRankOneDiscrete :=
+private theorem _root_.AlgebraicCurve.Place.adicValuation_isRankOneDiscrete' :
+    v.adicValuation.IsRankOneDiscrete :=
   IsDiscreteValuationRing.isRankOneDiscrete v.toValuationSubring F
 
 p2m_export "AlgebraicCurve.Place" "adicValuation_isRankOneDiscrete'"
-private theorem _root_.AlgebraicCurve.Place.adicValuation_isTrivialOn' : v.adicValuation.IsTrivialOn K :=
+private theorem _root_.AlgebraicCurve.Place.adicValuation_isTrivialOn' :
+    v.adicValuation.IsTrivialOn K :=
   Valuation.IsTrivialOn.of_le_one v.adicValuation fun a =>
     v.mem_iff_adicValuation_le_one'.mp (v.algebraMap_mem' a)
 
@@ -224,6 +229,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.subsingleton_setOf_forall_ne_ofHeightOneSpectrum {K : Type*} [Field K] : {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w}.Subsingleton := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum.solution
+theorem AlgebraicCurve.RationalFunctionField.subsingleton_setOf_forall_ne_ofHeightOneSpectrum
+    {K : Type*} [Field K] :
+    {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w}.Subsingleton :=
+  solution
 
 end publicSection

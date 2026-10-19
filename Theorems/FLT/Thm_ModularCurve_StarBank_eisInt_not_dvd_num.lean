@@ -192,7 +192,6 @@ example : ¬ (7 : ℤ) ∣ (-240 : ℤ) := by decide
 
 open scoped ArithmeticFunction.sigma
 open Finset in
-
 theorem solution {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     ¬ (ℓ : ℤ) ∣ (bernoulli (ℓ - 1)).num :=
   ModularCurve.StarBank.eisInt_not_dvd_num hℓ5
@@ -209,6 +208,7 @@ public section publicSection
 open scoped ArithmeticFunction.sigma
 open Finset
 theorem ModularCurve.StarBank.eisInt_not_dvd_num {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
-    ¬ (ℓ : ℤ) ∣ (bernoulli (ℓ - 1)).num := _root_.P2MW.S_ModularCurve_StarBank_eisInt_not_dvd_num.solution hℓ5
+    ¬ (ℓ : ℤ) ∣ (bernoulli (ℓ - 1)).num :=
+  solution hℓ5
 
 end publicSection

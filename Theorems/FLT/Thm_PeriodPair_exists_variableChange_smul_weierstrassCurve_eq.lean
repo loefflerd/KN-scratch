@@ -76,7 +76,9 @@ end privateSection
 
 public section publicSection
 
-theorem PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E : WeierstrassCurve ℂ) [E.IsElliptic] :
-    ∃ (L : PeriodPair) (C : WeierstrassCurve.VariableChange ℂ), C • L.weierstrassCurve = E := _root_.P2MW.S_PeriodPair_exists_variableChange_smul_weierstrassCurve_eq.solution E
+theorem PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E : WeierstrassCurve ℂ)
+    [E.IsElliptic] :
+    ∃ (L : PeriodPair) (C : WeierstrassCurve.VariableChange ℂ), C • L.weierstrassCurve = E :=
+  solution E
 
 end publicSection

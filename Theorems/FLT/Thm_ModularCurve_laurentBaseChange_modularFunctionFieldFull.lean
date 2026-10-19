@@ -67,7 +67,8 @@ namespace P2MW.S_ModularCurve_laurentBaseChange_modularFunctionFieldFull
 
 open ModularCurve IntermediateField Polynomial
 
-theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N) = IntermediateField.adjoin L {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = ModularCurve.jqNModC L d} := by
+theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
+    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N) = IntermediateField.adjoin L {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = ModularCurve.jqNModC L d} := by
   rw [modularFunctionFieldFull, laurentBaseChange_adjoin]
   congr 1
   ext x
@@ -86,6 +87,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.laurentBaseChange_modularFunctionFieldFull (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N) = IntermediateField.adjoin L {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = ModularCurve.jqNModC L d} := _root_.P2MW.S_ModularCurve_laurentBaseChange_modularFunctionFieldFull.solution L N
+theorem ModularCurve.laurentBaseChange_modularFunctionFieldFull (L : Type*) [Field L] [Algebra ℚ L]
+    (N : ℕ) [NeZero N] :
+    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N) = IntermediateField.adjoin L {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = ModularCurve.jqNModC L d} :=
+  solution L N
 
 end publicSection

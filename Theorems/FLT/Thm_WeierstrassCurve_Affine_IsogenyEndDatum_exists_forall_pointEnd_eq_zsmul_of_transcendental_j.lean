@@ -103,7 +103,7 @@ theorem solution
         (ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag N h2 hNns data) with h1 | h1
     · exact ⟨data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X, h1, hjroot⟩
     · refine ⟨-(data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X), ?_, ?_⟩
-      · show (-(data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X)).leadingCoeff = 1
+      · change (-(data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X)).leadingCoeff = 1
         rw [Polynomial.leadingCoeff_neg, h1]; ring
       · rw [Polynomial.eval₂_neg, neg_eq_zero]; exact hjroot
   obtain ⟨p, hpm, hpe⟩ := hint
@@ -130,6 +130,7 @@ theorem WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_
     [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine] [AbelTheorem W.toAffine]
     (hNs : ∀ D : IsogenyEndDatum W.toAffine, NormFormulaAlong F D.ι D.hfin)
     (ht : Transcendental ℚ W.j) (D₀ : IsogenyEndDatum W.toAffine) :
-    ∃ m : ℤ, ∀ P : W.toAffine.Point, D₀.pointEnd (hNs D₀) P = m • P := _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j.solution W hNs ht D₀
+    ∃ m : ℤ, ∀ P : W.toAffine.Point, D₀.pointEnd (hNs D₀) P = m • P :=
+  solution W hNs ht D₀
 
 end publicSection

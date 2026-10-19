@@ -139,6 +139,7 @@ theorem ModularCurve.dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0
       Module.finrank
         (IntermediateField.adjoin K
           ({x} : Set (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M))))
-        (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) := _root_.P2MW.S_ModularCurve_dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0.solution K M hM x hx
+        (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) :=
+  solution K M hM x hx
 
 end publicSection

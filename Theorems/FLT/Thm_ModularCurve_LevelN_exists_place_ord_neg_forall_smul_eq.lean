@@ -271,7 +271,8 @@ theorem ordB_comp_T_inv (hh : 0 < h) (hG : Good h G)
     show (fun q => cuspFunction h G (zetaInv h * q)) = cuspFunction h G ∘ (fun q => zetaInv h * q)
       from rfl,
     analyticOrderAt_comp_of_deriv_ne_zero (analyticAt_const.mul analyticAt_id) (by
-      rw [show (fun q : ℂ => zetaInv h * q) = fun q => q * zetaInv h from funext fun q => mul_comm _ _,
+      rw [show (fun q : ℂ => zetaInv h * q) = fun q => q * zetaInv h from funext fun q => mul_comm _
+        _,
         deriv_mul_const_field, deriv_id'', one_mul]
       exact zetaInv_ne_zero h),
     mul_zero]
@@ -328,7 +329,8 @@ theorem mul_discriminant_pow_eq_zero_iff (F : ℍ → ℂ) (m : ℕ) :
 theorem cuspFunction_discriminant_zero (N : ℕ) [NeZero N] :
     cuspFunction N Δ 0 = 0 := by
   have hN : (0 : ℝ) < N := Nat.cast_pos.mpr (NeZero.pos N)
-  rw [cuspFunction_apply_zero hN ((good_discriminant N).analyticAt hN) (good_discriminant N).periodic]
+  rw [cuspFunction_apply_zero hN ((good_discriminant N).analyticAt hN) (good_discriminant
+    N).periodic]
   exact ModularForm.discriminant_isZeroAtImInfty.valueAtInfty_eq_zero
 
 theorem ordB_discriminant_pos (N : ℕ) [NeZero N] : 0 < ordB N Δ := by
@@ -401,7 +403,6 @@ theorem fricke_smul_of_mem (v : Fin 2 → ZMod N) {γ : SL(2, ℤ)}
     v γ hγ τ
 
 omit [NeZero N] in
-
 theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jAnalytic τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have h4 : (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • τ) =
@@ -510,7 +511,8 @@ theorem PB.add_right {F : ℍ → ℂ} {m : ℕ} (hm : PB F m) (k : ℕ) : PB F 
 theorem good_of_PB {F : ℍ → ℂ} (hF : F ∈ ring N) {m : ℕ} (hm : PB F m) :
     Good N (F * (Δ : ℍ → ℂ) ^ m) where
   periodic := by
-    have : (F * (Δ : ℍ → ℂ) ^ m) ∘ ofComplex = (F ∘ ofComplex) * (((Δ : ℍ → ℂ) ^ m) ∘ ofComplex) := rfl
+    have : (F * (Δ : ℍ → ℂ) ^ m) ∘ ofComplex = (F ∘ ofComplex) * (((Δ : ℍ → ℂ) ^ m) ∘ ofComplex) :=
+      rfl
     rw [this]
     exact (periodic_of_mem N hF).mul ((good_discriminant N).pow m).periodic
   mdiff := (mdifferentiable_of_mem N hF).mul ((good_discriminant N).pow m).mdiff
@@ -550,7 +552,6 @@ theorem ordAux_eq_ordAux {F : ℍ → ℂ} (hF : F ∈ ring N) (hF0 : F ≠ 0) {
   rw [← ordAux_add_right N hF hF0 hm m', ← ordAux_add_right N hF hF0 hm' m, add_comm]
 
 open Classical in
-
 def ordInf (F : ℍ → ℂ) : ℤ :=
   if hex : ∃ m : ℕ, PB F m then ordAux N F (Nat.find hex) else 0
 
@@ -589,7 +590,8 @@ theorem min_ordInf_le_ordInf_add {F G : ℍ → ℂ} (hF : F ∈ ring N) (hG : G
   obtain ⟨n, hn⟩ := exists_isBoundedAtImInfty_mul_pow N hG
   have hmM : PB F (m + n) := PB.add_right hm n
   have hnM : PB G (m + n) := by rw [add_comm]; exact PB.add_right hn m
-  have hsum : (F + G) * (Δ : ℍ → ℂ) ^ (m + n) = F * (Δ : ℍ → ℂ) ^ (m + n) + G * (Δ : ℍ → ℂ) ^ (m + n) := by
+  have hsum : (F + G) * (Δ : ℍ → ℂ) ^ (m + n) = F * (Δ : ℍ → ℂ) ^ (m + n) + G * (Δ : ℍ → ℂ) ^ (m + n) :=
+    by
     ring
   have hM : PB (F + G) (m + n) := by
     unfold PB
@@ -683,7 +685,6 @@ local notation "Δ" => ModularForm.discriminant
 variable (N : ℕ) [NeZero N]
 
 open Classical in
-
 def ordFun (F : ring N) : WithZero (Multiplicative ℤ) :=
   if (F : ℍ → ℂ) = 0 then 0 else WithZero.exp (-ordInf N (F : ℍ → ℂ))
 
@@ -801,7 +802,8 @@ theorem nontrivial_valueGroup :
   refine ⟨Units.mk0 _ hne, ?_, ?_⟩
   · exact MonoidWithZeroHom.mem_valueGroup _ ⟨_, rfl⟩
   · intro h
-    have h' := congrArg (fun u : (WithZero (Multiplicative ℤ))ˣ => (u : WithZero (Multiplicative ℤ))) h
+    have h' :=
+      congrArg (fun u : (WithZero (Multiplicative ℤ))ˣ => (u : WithZero (Multiplicative ℤ))) h
     simp only [Units.val_mk0, Units.val_one] at h'
     exact (one_lt_ordValuationK_jK N K).ne' h'
 
@@ -961,6 +963,7 @@ theorem ModularCurve.LevelN.exists_place_ord_neg_forall_smul_eq (N : ℕ) [NeZer
             φ (algebraMap (ModularCurve.LevelN.ring N) K ⟨F, hF⟩) =
               algebraMap (ModularCurve.LevelN.ring N) K
                 ⟨fun τ : UpperHalfPlane => F (ModularGroup.T⁻¹ • τ), hst F hF⟩) →
-        AlgebraicCurve.SemilinearAut.ofAlgAut φ • W = W := _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.solution N K hst
+        AlgebraicCurve.SemilinearAut.ofAlgAut φ • W = W :=
+  solution N K hst
 
 end publicSection

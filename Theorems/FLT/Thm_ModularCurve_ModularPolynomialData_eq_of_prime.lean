@@ -64,11 +64,14 @@ namespace P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime.ModularCurve ModularCurve.PhiGen"
+p2m_open "ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime.ModularCurve \
+  ModularCurve.PhiGen"
 open scoped IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm"
+p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData evalAtJGen \
+  algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible \
+  finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -79,7 +82,8 @@ theorem evalAtJGen_injective : Function.Injective evalAtJGen := by
 
 theorem aeval_jqN_toAdjoin {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
     Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
-  rw [ModularPolynomialData.toAdjoin, Polynomial.aeval_def, Polynomial.eval₂_map, algebraMap_comp_evalAtJGen]
+  rw [ModularPolynomialData.toAdjoin, Polynomial.aeval_def, Polynomial.eval₂_map,
+    algebraMap_comp_evalAtJGen]
   exact data.eval_eq_zero
 
 theorem natDegree_toAdjoin {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
@@ -100,13 +104,18 @@ theorem toAdjoin_eq_minpoly (p : ℕ) [hp : Fact p.Prime] (data : ModularPolynom
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm"
+p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData evalAtJGen \
+  algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible \
+  finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm"
 namespace ModularPolynomialData
-p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero natDegree_eq Φ"
+p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero \
+  natDegree_eq Φ"
 end ModularCurve.ModularPolynomialData
 p2m_open_scoped "ModularCurve ModularCurve.ModularPolynomialData" in
 open ModularCurve.W1 in
-private theorem ModularCurve.ModularPolynomialData.eq_of_prime (p : ℕ) [hp : Fact (Nat.Prime p)] (d d' : ModularPolynomialData p) : d = d' := by
+private theorem ModularCurve.ModularPolynomialData.eq_of_prime (p : ℕ) [hp : Fact (Nat.Prime p)]
+    (d d' : ModularPolynomialData p) :
+    d = d' := by
   have h : d.Φ = d'.Φ := by
     apply Polynomial.map_injective evalAtJGen evalAtJGen_injective
     change d.toAdjoin = d'.toAdjoin
@@ -116,15 +125,18 @@ private theorem ModularCurve.ModularPolynomialData.eq_of_prime (p : ℕ) [hp : F
   rfl
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm"
+p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData evalAtJGen \
+  algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible \
+  finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.phiIrreducible_of_prime (p : ℕ) [hp : Fact (Nat.Prime p)] (data : ModularPolynomialData p) : PhiIrreducible data := by
+private theorem ModularCurve.phiIrreducible_of_prime (p : ℕ) [hp : Fact (Nat.Prime p)]
+    (data : ModularPolynomialData p) :
+    PhiIrreducible data := by
   obtain ⟨d₀, h, -⟩ := exists_phiIrreducible_evalSymm p
   rwa [ModularCurve.ModularPolynomialData.eq_of_prime p data d₀]
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime.ModularCurve in
-
 theorem solution (p : ℕ) [hp : Fact (Nat.Prime p)] (d d' : ModularPolynomialData p) : d = d' :=
   ModularCurve.ModularPolynomialData.eq_of_prime p d d'
 
@@ -139,6 +151,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.ModularPolynomialData.eq_of_prime (p : ℕ) [hp : Fact (Nat.Prime p)] (d d' : ModularPolynomialData p) : d = d' := _root_.P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime.solution p d d'
+theorem ModularCurve.ModularPolynomialData.eq_of_prime (p : ℕ) [hp : Fact (Nat.Prime p)]
+    (d d' : ModularPolynomialData p) :
+    d = d' :=
+  solution p d d'
 
 end publicSection

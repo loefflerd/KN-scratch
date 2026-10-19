@@ -467,16 +467,16 @@ theorem slash_eq_chi3_smul
     intro g; rw [closure_T_U_neg_one_eq]
   refine Subgroup.closure_induction (k := gens) (p := p) ?_ ?_ ?_ ?_ (hmem_iff.mpr hγ)
   · rintro x (rfl | rfl | rfl)
-    · show F ∣[(1 : ℤ)] ModularGroup.T = (chi3 ModularGroup.T : ℂ) • F
+    · change F ∣[(1 : ℤ)] ModularGroup.T = (chi3 ModularGroup.T : ℂ) • F
       rw [hT, chi3_T]; simp
-    · show F ∣[(1 : ℤ)] U₃ = (chi3 U₃ : ℂ) • F
+    · change F ∣[(1 : ℤ)] U₃ = (chi3 U₃ : ℂ) • F
       rw [hU, chi3_U₃]; simp
     · exact slash_neg_one F
-  · show F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
+  · change F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
     rw [SlashAction.slash_one, chi3_one]
     simp
   · intro x y hx hy hpx hpy
-    show F ∣[(1 : ℤ)] (x * y) = (chi3 (x * y) : ℂ) • F
+    change F ∣[(1 : ℤ)] (x * y) = (chi3 (x * y) : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hy' : y ∈ Gamma0 3 := hmem_iff.mp hy
     calc F ∣[(1 : ℤ)] (x * y) = (F ∣[(1 : ℤ)] x) ∣[(1 : ℤ)] y := by
@@ -487,7 +487,7 @@ theorem slash_eq_chi3_smul
       _ = ((chi3 x * chi3 y : ℤ) : ℂ) • F := by rw [smul_smul]; norm_num
       _ = (chi3 (x * y) : ℂ) • F := by rw [← chi3_mul hx' hy']
   · intro x hx hpx
-    show F ∣[(1 : ℤ)] x⁻¹ = (chi3 x⁻¹ : ℂ) • F
+    change F ∣[(1 : ℤ)] x⁻¹ = (chi3 x⁻¹ : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hxinv : x⁻¹ ∈ Gamma0 3 := inv_mem hx'
     have hchi : chi3 x⁻¹ = chi3 x := by
@@ -581,7 +581,7 @@ theorem hexThetaH_slash_T : hexThetaH ∣[(1 : ℤ)] ModularGroup.T = hexThetaH 
   rw [show ModularGroup.T 1 0 = 0 from rfl, show ModularGroup.T 1 1 = 1 from rfl,
     modular_T_smul]
   simp only [Int.cast_zero, Int.cast_one, zero_mul, zero_add, zpow_one, one_mul]
-  show latticeSum (((1 : ℝ) +ᵥ z : ℍ) : ℂ) = latticeSum (z : ℂ)
+  change latticeSum (((1 : ℝ) +ᵥ z : ℍ) : ℂ) = latticeSum (z : ℂ)
   rw [UpperHalfPlane.coe_vadd, latticeSum_eq_hexTheta, latticeSum_eq_hexTheta,
     Complex.ofReal_one, add_comm, hexTheta_add_one]
 
@@ -660,7 +660,7 @@ theorem hexThetaH_slash_U : hexThetaH ∣[(1 : ℤ)] U₃ = hexThetaH := by
   rw [U₃_one_zero, U₃_one_one]
   push_cast
   rw [zpow_one]
-  show latticeSum ((U₃ • z : ℍ) : ℂ) = _ * latticeSum (z : ℂ)
+  change latticeSum ((U₃ • z : ℍ) : ℂ) = _ * latticeSum (z : ℂ)
   rw [coe_U_smul, latticeSum_eq_hexTheta, latticeSum_eq_hexTheta, hexTheta_U_law hz]
 
 def thetaBound : ℝ :=
@@ -747,7 +747,7 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
       sqrt_three_mul_sqrt_three, mul_inv_cancel₀ hden_ne]
     ring
   rw [ModularForm.SL_slash_apply, hdenom, _root_.zpow_neg, zpow_one]
-  show latticeSum ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ) * _ = _
+  change latticeSum ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ) * _ = _
   rw [hsmul, latticeSum_eq_hexTheta, hfricke]
   linear_combination (hexTheta (((z : ℂ) + (k.val : ℂ)) / 3)) * hmul
 
@@ -894,7 +894,8 @@ theorem qExpansion_coeff_thetaForm (n : ℕ) :
   push_cast
   ring_nf
 
-theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ) (hW : (W : Matrix (Fin 2) (Fin 2) ℝ) = !![(0 : ℝ), -1; 3, 0]) :
+theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ)
+    (hW : (W : Matrix (Fin 2) (Fin 2) ℝ) = !![(0 : ℝ), -1; 3, 0]) :
     (⇑thetaForm : ℍ → ℂ) ∣[(1 : ℤ)] W = (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑thetaForm : ℍ → ℂ) := by
   funext τ
   have hdet : (W.det : ℝ) = 3 := by
@@ -908,7 +909,8 @@ theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ) (hW : (W : Matrix (Fin 2) (F
     rw [coe_smul_of_det_pos hdetpos]
     simp [num, denom, hW]
   have hden : denom W τ = 3 * (τ : ℂ) := by simp [denom, hW]
-  rw [hσ, ContinuousAlgEquiv.refl_apply, hdet, coe_thetaForm, hexThetaH_eq_hexTheta, hexThetaH_eq_hexTheta, hsm,
+  rw [hσ, ContinuousAlgEquiv.refl_apply, hdet, coe_thetaForm, hexThetaH_eq_hexTheta,
+    hexThetaH_eq_hexTheta, hsm,
     hexTheta_fricke hτ, hden]
   have hs0 : ((Real.sqrt 3 : ℝ) : ℂ) ≠ 0 := sqrt_three_ne_zero
   have hs3 : ((Real.sqrt 3 : ℝ) : ℂ) ^ 2 = 3 := by
@@ -949,6 +951,7 @@ theorem ModularForm.exists_weight_one_gamma1_three_slash_fricke_eq_smul :
       (UpperHalfPlane.qExpansion 1 g).coeff 0 = 1 ∧
       ∀ W : GL (Fin 2) ℝ, (W : Matrix (Fin 2) (Fin 2) ℝ) = !![(0 : ℝ), -1; 3, 0] →
         (⇑g : UpperHalfPlane → ℂ) ∣[(1 : ℤ)] W =
-          (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑g : UpperHalfPlane → ℂ) := _root_.P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.solution
+          (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑g : UpperHalfPlane → ℂ) :=
+  solution
 
 end publicSection

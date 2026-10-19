@@ -197,7 +197,7 @@ instance : (volume : Measure ℍ).IsOpenPosMeasure := by
     (lt_of_lt_of_le hpos (measure_mono fun z hz => ?_))).ne'
   refine ⟨?_, hz⟩
   obtain ⟨w, -, rfl⟩ := hz
-  show (((1 / ‖(w : ℂ).im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) ≠ 0
+  change (((1 / ‖(w : ℂ).im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) ≠ 0
   simp [w.im_ne_zero]
 
 lemma coe_fd_subset :
@@ -208,7 +208,7 @@ lemma coe_fd_subset :
   have him : 0 < (z : ℂ).im := z.im_pos
   rw [Complex.normSq_apply] at h1
   refine ⟨⟨hre.1, hre.2⟩, ?_⟩
-  show (1 / 2 : ℝ) < (z : ℂ).im
+  change (1 / 2 : ℝ) < (z : ℂ).im
   nlinarith
 
 lemma nnnorm_sq_eq_ofReal (y : ℝ) (hy : 0 < y) :
@@ -292,12 +292,12 @@ lemma eq_zero_of_forall_fdo (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (σ : SL(2
   let z₀ : ℍ := ⟨2 * Complex.I, by simp⟩
   have hz₀ : z₀ ∈ (𝒟ᵒ : Set ℍ) := by
     refine ⟨?_, ?_⟩
-    · show 1 < Complex.normSq (2 * Complex.I)
+    · change 1 < Complex.normSq (2 * Complex.I)
       rw [Complex.normSq_apply]; simp; norm_num
-    · show |(2 * Complex.I).re| < 1 / 2
+    · change |(2 * Complex.I).re| < 1 / 2
       simp
   have hw₀ : σ • z₀ ∈ V := by
-    show σ⁻¹ • (σ • z₀) ∈ (𝒟ᵒ : Set ℍ)
+    change σ⁻¹ • (σ • z₀) ∈ (𝒟ᵒ : Set ℍ)
     rwa [inv_smul_smul]
   set F : ℂ → ℂ := f ∘ ofComplex with hFdef
   have hF : DifferentiableOn ℂ F {z : ℂ | 0 < z.im} :=

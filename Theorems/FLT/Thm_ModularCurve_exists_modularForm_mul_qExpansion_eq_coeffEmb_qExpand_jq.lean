@@ -69,7 +69,8 @@ open UpperHalfPlane
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq coeffEmb coeffEmb_coeff jqModC jqNModC jqModC_rat map_jqModC exists_gamma0_qExpansion_div_eq_jqNModC"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq coeffEmb \
+  coeffEmb_coeff jqModC jqNModC jqModC_rat map_jqModC exists_gamma0_qExpansion_div_eq_jqNModC"
 namespace JqdRatioOfLevel
 p2m_open "ModularCurve"
 
@@ -166,6 +167,7 @@ theorem ModularCurve.exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq (N
     ∃ (k : ℤ) (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k), h ≠ 0 ∧
       ModularCurve.coeffEmb ℂ (ModularCurve.qExpand ℚ d ModularCurve.jq) *
           ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-        ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := _root_.P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq.solution N d hd
+        ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+  solution N d hd
 
 end publicSection

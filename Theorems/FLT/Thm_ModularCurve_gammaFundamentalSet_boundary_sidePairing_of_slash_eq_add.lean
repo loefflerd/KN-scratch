@@ -249,7 +249,6 @@ theorem slash2_eq_of_twist {φ ψ : ℍ → ℂ} {c : SL(2, ℤ) → ℂ}
 end ModularCurve.GammaSidePairing
 
 open ModularCurve.GammaSidePairing in
-
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Fintype (SL(2, ℤ) ⧸ Γ)]
     (φ ψ : ℍ → ℂ) (c : SL(2, ℤ) → ℂ)
@@ -371,6 +370,7 @@ theorem ModularCurve.gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add
           c ((Quotient.out (ModularGroup.S • q))⁻¹ * ModularGroup.S * Quotient.out q) *
             ∫ θ in (Real.pi / 3)..(2 * Real.pi / 3),
               Ψ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) *
-                (Complex.I * Complex.exp (θ * Complex.I)) := _root_.P2MW.S_ModularCurve_gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add.solution Γ φ ψ c hφ Φ Ψ hΦ hΨ s hs hs0 hΦs hΨs hΦarc hΨarc
+                (Complex.I * Complex.exp (θ * Complex.I)) :=
+  solution Γ φ ψ c hφ Φ Ψ hΦ hΨ s hs hs0 hΦs hΨs hΦarc hΨarc
 
 end publicSection

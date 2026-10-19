@@ -251,7 +251,7 @@ theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
   refine ⟨x.num * t, ?_⟩
   rw [residueOfHeightOneSpectrum_apply, ← sub_eq_zero, ← map_sub,
     IsLocalRing.residue_eq_zero_iff, Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-  show (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).adicValuation
+  change (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).adicValuation
     (algebraMap K[X] (RatFunc K) (x.num * t) - x) < 1
   rw [← (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
       (F := RatFunc K) w).lt_one_iff_lt_one]
@@ -333,7 +333,7 @@ def comapSymmRingEquiv (V : ValuationSubring F) :
     V ≃+* (V.comap (e.symm : F' →+* F)) where
   toFun x := ⟨e x, by
     rw [ValuationSubring.mem_comap]
-    show e.symm (e x) ∈ V
+    change e.symm (e x) ∈ V
     rw [e.symm_apply_apply]
     exact x.2⟩
   invFun y := ⟨e.symm y, y.2⟩
@@ -364,7 +364,7 @@ def congrRingEquiv (v : Place K F) : Place K F' where
   toValuationSubring := v.toValuationSubring.comap (e.symm : F' →+* F)
   algebraMap_mem' a := by
     rw [ValuationSubring.mem_comap]
-    show e.symm (algebraMap K F' a) ∈ v.toValuationSubring
+    change e.symm (algebraMap K F' a) ∈ v.toValuationSubring
     rw [symm_algebraMap_comm e he a]
     exact v.algebraMap_mem' a
   ne_top' := fun h =>
@@ -416,7 +416,7 @@ def congrResidueAlgEquiv (v : Place K F) :
     ext
     change e (algebraMap K F a) = algebraMap K F' a
     exact he a
-  show IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _)
+  change IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _)
     = IsLocalRing.residue _ _
   rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
   exact congrArg _ h3
@@ -430,12 +430,12 @@ def congrEquiv : Place K F ≃ Place K F' where
   left_inv v := by
     ext1
     refine SetLike.ext fun x => ?_
-    show e.symm (e.symm.symm x) ∈ v.toValuationSubring ↔ x ∈ v.toValuationSubring
+    change e.symm (e.symm.symm x) ∈ v.toValuationSubring ↔ x ∈ v.toValuationSubring
     rw [RingEquiv.symm_symm, e.symm_apply_apply]
   right_inv v := by
     ext1
     refine SetLike.ext fun x => ?_
-    show e.symm.symm (e.symm x) ∈ v.toValuationSubring ↔ x ∈ v.toValuationSubring
+    change e.symm.symm (e.symm x) ∈ v.toValuationSubring ↔ x ∈ v.toValuationSubring
     rw [RingEquiv.symm_symm, e.apply_symm_apply]
 
 @[simp]

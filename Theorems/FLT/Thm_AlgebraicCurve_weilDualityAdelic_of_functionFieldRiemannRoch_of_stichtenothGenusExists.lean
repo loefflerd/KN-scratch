@@ -119,6 +119,7 @@ theorem AlgebraicCurve.weilDualityAdelic_of_functionFieldRiemannRoch_of_stichten
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     (hRR : AlgebraicCurve.FunctionFieldRiemannRoch K F)
     (hSG : AlgebraicCurve.StichtenothGenusExists K F) :
-    AlgebraicCurve.WeilDualityAdelic K F := _root_.P2MW.S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists.solution hRR hSG
+    AlgebraicCurve.WeilDualityAdelic K F :=
+  solution hRR hSG
 
 end publicSection

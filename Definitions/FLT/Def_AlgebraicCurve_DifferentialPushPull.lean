@@ -80,12 +80,11 @@ theorem pullbackAlong_smul (φ : F →ₐ[K] F') (f : F) (ω : Ω[F⁄K]) :
     pullbackAlong φ (f • ω) = φ f • pullbackAlong φ ω := by
   let := algebraAlong φ
   have := isScalarTower_along φ
-  show KaehlerDifferential.map K K F F' (f • ω) = _
+  change KaehlerDifferential.map K K F F' (f • ω) = _
   rw [LinearMap.map_smul_of_tower]
   rfl
 
 open Classical in
-
 def traceAlong (φ : F →ₐ[K] F') : Ω[F'⁄K] →ₗ[K] Ω[F⁄K] :=
   if h : SeparableAlong K φ then
     letI := algebraAlong φ

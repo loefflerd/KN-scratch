@@ -73,7 +73,9 @@ namespace P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stab
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "UpperHalfPlane AlgebraicCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.AlgebraicCurve"
+p2m_open "UpperHalfPlane AlgebraicCurve \
+  P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.Algeb\
+  raicCurve"
 open scoped MatrixGroups IntermediateField Manifold
 
 open ModularGroup Filter Topology
@@ -118,7 +120,8 @@ theorem S_mul_T_pow_three : (S * T) ^ 3 = (-1 : SL(2, ℤ)) := by
   ext i j
   rw [pow_three]
   fin_cases i <;> fin_cases j <;>
-    simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two]
+    simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T,
+      Matrix.mul_apply, Fin.sum_univ_two]
 
 theorem S_sq : S ^ 2 = (-1 : SL(2, ℤ)) := by
   ext i j
@@ -126,12 +129,14 @@ theorem S_sq : S ^ 2 = (-1 : SL(2, ℤ)) := by
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, Matrix.mul_apply, Fin.sum_univ_two]
 
-theorem S_mul_T_notMem (M : ℕ) (hM : 2 ≤ M) : S * T ∉ Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
+theorem S_mul_T_notMem (M : ℕ) (hM : 2 ≤ M) :
+    S * T ∉ Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
   rw [mem_sup_zpowers_neg_one_iff]
   have : Fact (1 < M) := ⟨hM⟩
   rintro (h | h)
   · have h10 := (Gamma_mem.mp h).2.2.1
-    simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two] at h10
+    simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T,
+      Matrix.mul_apply, Fin.sum_univ_two] at h10
   · have h10 := (Gamma_mem.mp h).2.2.1
     simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T] at h10
 
@@ -173,14 +178,20 @@ theorem orderOf_map_S {G : Type*} [Group G] (M : ℕ) (hM : 2 ≤ M) (σ : SL(2,
 end CongruenceSubgroup
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.smul_toValuationSubring Place.ord_smul SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.smul_toValuationSubring Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.smul_toValuationSubring Place.ord_smul \
+  SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.smul_toValuationSubring \
+  Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow smul_toValuationSubring ord_smul toValuationSubring ord_restrictAlong_eq_natCard_algHom_of_isGalois"
+p2m_export "AlgebraicCurve.Place" "ext ord ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow \
+  smul_toValuationSubring ord_smul toValuationSubring \
+  ord_restrictAlong_eq_natCard_algHom_of_isGalois"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F}
+    (hf : f ∈ v.toValuationSubring) :
+    0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -196,7 +207,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem' {f : F} (hf : f �
   exact Int.natCast_nonneg n
 
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem'"
-private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg' {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg' {f : F} (hf : f ≠ 0)
+    (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -211,7 +223,8 @@ private theorem _root_.AlgebraicCurve.Place.mem_iff_ord_nonneg' {f : F} (hf : f 
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg'"
 
-theorem eq_of_ord_algebraMap_eq {A : Type*} [CommRing A] [IsDomain A] [Algebra A F] [IsFractionRing A F]
+theorem eq_of_ord_algebraMap_eq {A : Type*} [CommRing A] [IsDomain A] [Algebra A F]
+    [IsFractionRing A F]
     (v w : Place K F)
     (h : ∀ a : A, algebraMap A F a ≠ 0 → v.ord (algebraMap A F a) = w.ord (algebraMap A F a)) : v = w := by
   have hall : ∀ x : F, x ≠ 0 → v.ord x = w.ord x := by
@@ -221,7 +234,8 @@ theorem eq_of_ord_algebraMap_eq {A : Type*} [CommRing A] [IsDomain A] [Algebra A
       intro h0; apply hx; rw [h0, zero_div]
     have hb0 : algebraMap A F b ≠ 0 :=
       IsFractionRing.to_map_ne_zero_of_mem_nonZeroDivisors hb
-    rw [div_eq_mul_inv, v.ord_mul ha0 (inv_ne_zero hb0), w.ord_mul ha0 (inv_ne_zero hb0), v.ord_inv, w.ord_inv,
+    rw [div_eq_mul_inv, v.ord_mul ha0 (inv_ne_zero hb0), w.ord_mul ha0 (inv_ne_zero hb0), v.ord_inv,
+      w.ord_inv,
       h a ha0, h b hb0]
   apply Place.ext
   ext x
@@ -234,9 +248,12 @@ end AlgebraicCurve.Place
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.coe_jGen LevelN.exists_place_analyticOrderAt_eq_mul_ord meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two"
+p2m_export "ModularCurve" "LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.coe_jGen \
+  LevelN.exists_place_analyticOrderAt_eq_mul_ord \
+  meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen exists_place_analyticOrderAt_eq_mul_ord"
+p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen \
+  exists_place_analyticOrderAt_eq_mul_ord"
 namespace PlaceTransport
 p2m_open "ModularCurve.LevelN ModularCurve~jGen"
 
@@ -305,7 +322,8 @@ theorem analyticOrderAt_comp_smul (F : ℍ → ℂ) (τ₀ : ℍ) :
     simp only [Function.comp_apply]
     have hm : moeb γ z = ((γ • (⟨z, hz⟩ : ℍ) : ℍ) : ℂ) := moeb_coe γ ⟨z, hz⟩
     rw [ofComplex_apply_of_im_pos hz, hm, ofComplex_apply]
-  rw [analyticOrderAt_congr heq, analyticOrderAt_comp_of_deriv_ne_zero (analyticAt_moeb γ τ₀) (deriv_moeb_ne_zero γ τ₀),
+  rw [analyticOrderAt_congr heq, analyticOrderAt_comp_of_deriv_ne_zero (analyticAt_moeb γ τ₀)
+    (deriv_moeb_ne_zero γ τ₀),
     moeb_coe]
 
 end Moebius
@@ -377,9 +395,12 @@ end Places
 end ModularCurve.LevelN.PlaceTransport
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.coe_jGen LevelN.exists_place_analyticOrderAt_eq_mul_ord meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two"
+p2m_export "ModularCurve" "LevelN.jAnalytic LevelN.ring LevelN.jGen LevelN.coe_jGen \
+  LevelN.exists_place_analyticOrderAt_eq_mul_ord \
+  meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two"
 namespace LevelN
-p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen exists_place_analyticOrderAt_eq_mul_ord"
+p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen \
+  exists_place_analyticOrderAt_eq_mul_ord"
 namespace Wall
 p2m_open "ModularCurve.LevelN ModularCurve~jGen"
 
@@ -470,7 +491,8 @@ theorem jAnalytic_sub_ne_zero (c : ℂ) : (fun τ : ℍ => LevelN.jAnalytic τ -
   have : (1728 : ℂ) = 0 := by linear_combination h2 - h1
   norm_num at this
 
-theorem natCard_stabilizer_I_le : Nat.card (MulAction.stabilizer SL(2, ℤ) UpperHalfPlane.I) ≤ 4 := by
+theorem natCard_stabilizer_I_le :
+    Nat.card (MulAction.stabilizer SL(2, ℤ) UpperHalfPlane.I) ≤ 4 := by
   classical
   rw [Nat.card_congr (Equiv.subtypeEquivRight
     (q := fun g => g ∈ ({1, -1, ModularGroup.S, -ModularGroup.S} : Finset SL(2, ℤ)))
@@ -511,13 +533,15 @@ theorem analyticAt_comp_ofComplex {G : ℍ → ℂ} (hG : MDiff G) (τ : ℍ) :
     UpperHalfPlane.mdifferentiable_iff.mp hG
   exact (hd.analyticOnNhd isOpen_upperHalfPlaneSet) τ τ.im_pos
 
-@[scoped simp] theorem comp_ofComplex_apply_coe (G : ℍ → ℂ) (τ : ℍ) : (G ∘ ofComplex) (τ : ℂ) = G τ := by
+@[scoped simp] theorem comp_ofComplex_apply_coe (G : ℍ → ℂ) (τ : ℍ) :
+    (G ∘ ofComplex) (τ : ℂ) = G τ := by
   simp [Function.comp_apply, ofComplex_apply]
 
 theorem analyticOrderAt_jsub (τ₀ : ℍ) :
     analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) (τ₀ : ℂ) =
       ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) : ℕ∞) := by
-  have hmero := ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ₀
+  have hmero :=
+    ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ₀
   have hfun : (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 / ModularForm.discriminant (ofComplex z)
       - (ModularForm.E₄ : ℍ → ℂ) τ₀ ^ 3 / ModularForm.discriminant τ₀) =
       ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) := by
@@ -564,13 +588,15 @@ theorem ord_jsub_bounds (τ₀ : ℍ) (W : Place ℂ K) (e : ℕ) (he : 0 < e)
     0 < W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) ∧
       (e : ℤ) * W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) =
         (Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) := by
-  obtain ⟨hfin, hord⟩ := hW (fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) (jsub_mem M _) (jAnalytic_sub_ne_zero _)
+  obtain ⟨hfin, hord⟩ :=
+    hW (fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) (jsub_mem M _) (jAnalytic_sub_ne_zero _)
   rw [algebraMap_jsub] at hord
   rw [analyticOrderAt_jsub] at hord
   simp only [ENat.toNat_natCast] at hord
   have hpos : 0 < (Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) := by
     have h := analyticOrderAt_jsub τ₀
-    have hne : analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) (τ₀ : ℂ) ≠ 0 := by
+    have hne : analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) (τ₀ : ℂ) ≠ 0 :=
+      by
       rw [analyticOrderAt_ne_zero]
       exact ⟨analyticAt_comp_ofComplex ((mdifferentiable_jAnalytic).sub mdifferentiable_const) τ₀, by simp⟩
     rw [h] at hne
@@ -579,7 +605,8 @@ theorem ord_jsub_bounds (τ₀ : ℍ) (W : Place ℂ K) (e : ℕ) (he : 0 < e)
   have he1 : (1 : ℤ) ≤ e := by exact_mod_cast he
   by_contra hle
   push Not at hle
-  have : (e : ℤ) * W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) ≤ 0 := mul_nonpos_of_nonneg_of_nonpos (by omega) hle
+  have : (e : ℤ) * W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) ≤ 0 :=
+    mul_nonpos_of_nonneg_of_nonpos (by omega) hle
   omega
 
 end Analytic
@@ -590,21 +617,25 @@ variable (M : ℕ) [NeZero M]
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (LevelN.ring M) K]
   [IsScalarTower ℂ (LevelN.ring M) K] [IsFractionRing (LevelN.ring M) K]
 
-theorem isDomain_ring (K' : Type*) [Field K'] [Algebra (LevelN.ring M) K'] [IsFractionRing (LevelN.ring M) K'] :
+theorem isDomain_ring (K' : Type*) [Field K'] [Algebra (LevelN.ring M) K']
+    [IsFractionRing (LevelN.ring M) K'] :
     IsDomain (LevelN.ring M) :=
   (IsFractionRing.injective (LevelN.ring M) K').isDomain (algebraMap (LevelN.ring M) K')
 
-theorem apply_eq_self_of_mem_adjoin (t : K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = t) (z : K) (hz : z ∈ ℂ⟮t⟯) : ψ z = z := by
-  let S : IntermediateField ℂ K := (AlgHom.equalizer ψ (AlgHom.id ℂ K)).toIntermediateField (fun x hx => by
+theorem apply_eq_self_of_mem_adjoin (t : K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = t) (z : K) (hz : z ∈ ℂ⟮t⟯) :
+    ψ z = z := by
+  let S : IntermediateField ℂ K :=
+    (AlgHom.equalizer ψ (AlgHom.id ℂ K)).toIntermediateField (fun x hx => by
     simp only [AlgHom.mem_equalizer, AlgHom.coe_id, id_eq] at hx ⊢
     rw [map_inv₀, hx])
   have hle : ℂ⟮t⟯ ≤ S := by
     rw [IntermediateField.adjoin_le_iff, Set.singleton_subset_iff]
-    show ψ t = AlgHom.id ℂ K t
+    change ψ t = AlgHom.id ℂ K t
     rw [ht]; rfl
   exact hle hz
 
-theorem isIntegral_of_apply_eq (t : K) (hfin : FiniteDimensional ℂ⟮t⟯ K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = t) :
+theorem isIntegral_of_apply_eq (t : K) (hfin : FiniteDimensional ℂ⟮t⟯ K) (ψ : K →ₐ[ℂ] K)
+    (ht : ψ t = t) :
     ψ.toRingHom.IsIntegral := by
   intro y
   have : Algebra.IsIntegral ℂ⟮t⟯ K := Algebra.IsIntegral.of_finite ℂ⟮t⟯ K
@@ -619,7 +650,8 @@ theorem isIntegral_of_apply_eq (t : K) (hfin : FiniteDimensional ℂ⟮t⟯ K) (
 def liftGal (t : K) (φ : K ≃ₐ[ℂ] K) (hφ : ∀ z ∈ ℂ⟮t⟯, φ z = z) : K ≃ₐ[ℂ⟮t⟯] K :=
   { φ.toRingEquiv with commutes' := fun z => hφ z z.2 }
 
-theorem liftGal_apply (t : K) (φ : K ≃ₐ[ℂ] K) (hφ : ∀ z ∈ ℂ⟮t⟯, φ z = z) (y : K) : liftGal K t φ hφ y = φ y := rfl
+theorem liftGal_apply (t : K) (φ : K ≃ₐ[ℂ] K) (hφ : ∀ z ∈ ℂ⟮t⟯, φ z = z) (y : K) :
+    liftGal K t φ hφ y = φ y := rfl
 
 theorem restrictScalars_liftGal (t : K) (φ : K ≃ₐ[ℂ] K) (hφ : ∀ z ∈ ℂ⟮t⟯, φ z = z) :
     (liftGal K t φ hφ).restrictScalars ℂ = φ := AlgEquiv.ext fun _ => rfl
@@ -638,23 +670,27 @@ theorem ofAlgAut_smul (φ : K ≃ₐ[ℂ] K) (W : Place ℂ K) : SemilinearAut.o
   apply Place.ext
   ext y
   rw [SemilinearAut.smul_toValuationSubring, Place.smul_toValuationSubring,
-    ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
+    ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem,
+    ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
   rfl
 
 def decomp (t : K) (W : Place ℂ K) : Subgroup (K ≃ₐ[ℂ⟮t⟯] K) where
   carrier := {g | SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W = W}
   one_mem' := by
-    show SemilinearAut.ofAlgAut ((1 : K ≃ₐ[ℂ⟮t⟯] K).restrictScalars ℂ) • W = W
-    rw [show ((1 : K ≃ₐ[ℂ⟮t⟯] K).restrictScalars ℂ) = 1 from AlgEquiv.ext fun _ => rfl, map_one, one_smul]
+    change SemilinearAut.ofAlgAut ((1 : K ≃ₐ[ℂ⟮t⟯] K).restrictScalars ℂ) • W = W
+    rw [show ((1 : K ≃ₐ[ℂ⟮t⟯] K).restrictScalars ℂ) = 1 from AlgEquiv.ext fun _ => rfl, map_one,
+      one_smul]
   mul_mem' {g h} hg hh := by
-    show SemilinearAut.ofAlgAut ((g * h).restrictScalars ℂ) • W = W
-    rw [show (g * h).restrictScalars ℂ = g.restrictScalars ℂ * h.restrictScalars ℂ from AlgEquiv.ext fun _ => rfl,
+    change SemilinearAut.ofAlgAut ((g * h).restrictScalars ℂ) • W = W
+    rw [show (g * h).restrictScalars ℂ = g.restrictScalars ℂ * h.restrictScalars ℂ from AlgEquiv.ext
+      fun _ => rfl,
       map_mul, mul_smul]
     rw [Set.mem_ofPred_eq] at hg hh
     rw [hh, hg]
   inv_mem' {g} hg := by
-    show SemilinearAut.ofAlgAut (g⁻¹.restrictScalars ℂ) • W = W
-    rw [show g⁻¹.restrictScalars ℂ = (g.restrictScalars ℂ)⁻¹ from AlgEquiv.ext fun _ => rfl, map_inv, inv_smul_eq_iff]
+    change SemilinearAut.ofAlgAut (g⁻¹.restrictScalars ℂ) • W = W
+    rw [show g⁻¹.restrictScalars ℂ = (g.restrictScalars ℂ)⁻¹ from AlgEquiv.ext fun _ => rfl,
+      map_inv, inv_smul_eq_iff]
     rw [Set.mem_ofPred_eq] at hg
     exact hg.symm
 
@@ -669,7 +705,8 @@ theorem core
         algebraMap (LevelN.ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst γ⁻¹ G hG⟩)
     (hfixed : IntermediateField.fixedField σhom.range = ℂ⟮jK M K⟯)
     (hfin : FiniteDimensional ℂ⟮jK M K⟯ K) (hgal : IsGalois ℂ⟮jK M K⟯ K)
-    (τ₀ : ℍ) (γ₀ : SL(2, ℤ)) (hγ₀ : γ₀ • τ₀ = τ₀) (p : ℕ) (hp : p.Prime) (hordp : orderOf (σhom γ₀) = p)
+    (τ₀ : ℍ) (γ₀ : SL(2, ℤ)) (hγ₀ : γ₀ • τ₀ = τ₀) (p : ℕ) (hp : p.Prime)
+    (hordp : orderOf (σhom γ₀) = p)
     (hstab : Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 ≤ p) :
     ∃ W : Place ℂ K, W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) = p ∧
       ∀ g : K ≃ₐ[ℂ⟮jK M K⟯] K, SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W = W →
@@ -695,9 +732,10 @@ theorem core
     rw [mem_decomp, restrictScalars_liftGal, ofAlgAut_smul, hfixW]
   have hordg₀ : orderOf g₀ = p := by
     rw [← orderOf_injective (rS K (jK M K)) (rS_injective K (jK M K)) g₀]
-    show orderOf ((liftGal K (jK M K) (σhom γ₀) hφfix).restrictScalars ℂ) = p
+    change orderOf ((liftGal K (jK M K) (σhom γ₀) hφfix).restrictScalars ℂ) = p
     rw [restrictScalars_liftGal, hordp]
-  have hDH := (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ (jK M K) (jK M K)
+  have hDH :=
+    (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ (jK M K) (jK M K)
     (LevelN.jAnalytic τ₀) (AlgHom.id ℂ K) rfl hfin hgal (isIntegral_of_apply_eq K (jK M K) hfin) W hpos).1
   have hcardD : Nat.card (decomp K (jK M K) W) = Nat.card {σ : K ≃ₐ[ℂ⟮jK M K⟯] K //
       SemilinearAut.ofAlgAut (σ.restrictScalars ℂ) • W = W} :=
@@ -708,7 +746,8 @@ theorem core
   have hle : a ≤ p := by
     have he1 : (1 : ℤ) ≤ e := by exact_mod_cast he
     have h1 : a ≤ (e : ℤ) * a := le_mul_of_one_le_left hpos.le he1
-    have h2 : ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) : ℤ) ≤ p := by exact_mod_cast hstab
+    have h2 : ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) : ℤ) ≤ p :=
+      by exact_mod_cast hstab
     omega
   have hpa : (p : ℤ) ≤ a := Int.le_of_dvd hpos hdvd
   have hap : a = p := le_antisymm hle hpa
@@ -719,7 +758,8 @@ theorem core
     have h1 : ((Nat.card (decomp K (jK M K) W) : ℕ) : ℤ) = a := by rw [hcardD, ha]; exact hDH.symm
     have h2 : ((Nat.card (decomp K (jK M K) W) : ℕ) : ℤ) = p := by rw [h1, hap]
     exact_mod_cast h2
-  have : Finite (decomp K (jK M K) W) := Nat.finite_of_card_ne_zero (by rw [hcardDp]; exact hp.ne_zero)
+  have : Finite (decomp K (jK M K) W) :=
+    Nat.finite_of_card_ne_zero (by rw [hcardDp]; exact hp.ne_zero)
   have hDeq : Subgroup.zpowers g₀ = decomp K (jK M K) W :=
     Subgroup.eq_of_le_of_card_ge hzle (by rw [hcardz, hcardDp])
   have hg' : g ∈ Subgroup.zpowers g₀ := by rw [hDeq]; exact hg
@@ -727,9 +767,9 @@ theorem core
   obtain ⟨k, hk⟩ := (hfo.mem_powers_iff_mem_zpowers).mpr hg'
   refine ⟨k, ?_⟩
   rw [← hk]
-  show rS K (jK M K) (g₀ ^ k) = σhom γ₀ ^ k
+  change rS K (jK M K) (g₀ ^ k) = σhom γ₀ ^ k
   rw [map_pow]
-  show ((liftGal K (jK M K) (σhom γ₀) hφfix).restrictScalars ℂ) ^ k = σhom γ₀ ^ k
+  change ((liftGal K (jK M K) (σhom γ₀) hφfix).restrictScalars ℂ) ^ k = σhom γ₀ ^ k
   rw [restrictScalars_liftGal]
 
 theorem main (hM : 2 ≤ M)
@@ -748,12 +788,14 @@ theorem main (hM : 2 ≤ M)
       ∀ g : K ≃ₐ[ℂ⟮jK M K⟯] K, SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W = W →
         ∃ k : ℕ, g.restrictScalars ℂ = σhom ModularGroup.S ^ k) := by
   constructor
-  · obtain ⟨W, h1, h2⟩ := core M K hst σhom hσ hfixed hfin hgal ρ (ModularGroup.S * ModularGroup.T) ST_smul_ρ 3
+  · obtain ⟨W, h1, h2⟩ :=
+      core M K hst σhom hσ hfixed hfin hgal ρ (ModularGroup.S * ModularGroup.T) ST_smul_ρ 3
       Nat.prime_three (CongruenceSubgroup.orderOf_map_S_mul_T M hM σhom hker)
       (by have := natCard_stabilizer_ρ_le; omega)
     rw [jAnalytic_ρ, map_zero, sub_zero] at h1
     exact ⟨W, h1, h2⟩
-  · obtain ⟨W, h1, h2⟩ := core M K hst σhom hσ hfixed hfin hgal UpperHalfPlane.I ModularGroup.S S_smul_I 2
+  · obtain ⟨W, h1, h2⟩ :=
+      core M K hst σhom hσ hfixed hfin hgal UpperHalfPlane.I ModularGroup.S S_smul_I 2
       Nat.prime_two (CongruenceSubgroup.orderOf_map_S M hM σhom hker)
       (by have := natCard_stabilizer_I_le; omega)
     rw [jAnalytic_I, map_ofNat] at h1
@@ -825,6 +867,7 @@ theorem ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_su
       W.ord (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M) - 1728) = 2 ∧
       ∀ g : K ≃ₐ[ℂ⟮algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M)⟯] K,
         AlgebraicCurve.SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W = W →
-        ∃ k : ℕ, g.restrictScalars ℂ = σ ModularGroup.S ^ k) := _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.solution M hM K hst σ hσ hker hfixed hfin hgal
+        ∃ k : ℕ, g.restrictScalars ℂ = σ ModularGroup.S ^ k) :=
+  solution M hM K hst σ hσ hker hfixed hfin hgal
 
 end publicSection

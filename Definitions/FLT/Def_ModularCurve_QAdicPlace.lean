@@ -146,7 +146,7 @@ variable {L F}
 
 theorem qSeriesBar_zpow (f : F) (n : ℤ) :
     qSeriesBar L F (f ^ n) = (qSeriesBar L F f) ^ n := by
-  show ((f ^ n : F) : LaurentSeries L) = ((f : LaurentSeries L)) ^ n
+  change ((f ^ n : F) : LaurentSeries L) = ((f : LaurentSeries L)) ^ n
   rw [← IntermediateField.algebraMap_apply (x := f ^ n),
     ← IntermediateField.algebraMap_apply (x := f), map_zpow₀]
 
@@ -162,7 +162,7 @@ theorem qSeriesBar_algebraMap (c : L) :
       = algebraMap F (LaurentSeries L) (algebraMap L F c) :=
     IsScalarTower.algebraMap_apply L F (LaurentSeries L) c
   rw [IntermediateField.algebraMap_apply] at h
-  show ((algebraMap L F c : F) : LaurentSeries L) = _
+  change ((algebraMap L F c : F) : LaurentSeries L) = _
   rw [← h, HahnSeries.algebraMap_apply', show algebraMap L (PowerSeries L) c = PowerSeries.C c by simp,
     HahnSeries.ofPowerSeries_C]
   rfl
@@ -226,7 +226,6 @@ theorem mem_qIntegersBar_iff {f : F} :
     f ∈ qIntegersBar L F ↔ 0 ≤ (qSeriesBar L F f).order := Iff.rfl
 
 variable {L} in
-
 theorem isUnit_qIntegersBar_iff {x : qIntegersBar L F} (hx : (x : F) ≠ 0) :
     IsUnit x ↔ (qSeriesBar L F (x : F)).order = 0 := by
   constructor
@@ -272,7 +271,8 @@ theorem qIntegersBar_ne_top : qIntegersBar L F ≠ ⊤ := fun h =>
   notMem_qIntegersBar_of_order_eq_neg_one hj (h ▸ ValuationSubring.mem_top _)
 
 theorem order_inv_of_order_eq_neg_one : (qSeriesBar L F j⁻¹).order = 1 := by
-  rw [qSeriesBar_inv, order_inv_of_ne_zero_bar (qSeriesBar_ne_zero (ne_zero_of_order_eq_neg_one hj)), hj]
+  rw [qSeriesBar_inv, order_inv_of_ne_zero_bar (qSeriesBar_ne_zero (ne_zero_of_order_eq_neg_one
+    hj)), hj]
   omega
 
 theorem inv_mem_qIntegersBar_of_order_eq_neg_one : j⁻¹ ∈ qIntegersBar L F := by
@@ -348,7 +348,6 @@ theorem qIntegersBar_isPrincipalIdealRing : IsPrincipalIdealRing (qIntegersBar L
 end Witness
 
 variable (F) in
-
 def qInftyPlaceBar (h : ∃ j : F, (qSeriesBar L F j).order = -1) : Place L F where
   toValuationSubring := qIntegersBar L F
   algebraMap_mem' := fun a => by
@@ -373,7 +372,8 @@ def qInftyPlaceRat (h : ∃ j : F, (qSeriesBar ℚ F j).order = -1) : Place ℚ 
   toValuationSubring := qIntegersBar ℚ F
   algebraMap_mem' a := by
     have h' := @Place.algebraMap_mem' ℚ F _ _ (SubalgebraClass.toAlgebra F) (qInftyPlaceBar ℚ F h) a
-    have hi : (DivisionRing.toRatAlgebra : Algebra ℚ F) = SubalgebraClass.toAlgebra F := Subsingleton.elim _ _
+    have hi : (DivisionRing.toRatAlgebra : Algebra ℚ F) = SubalgebraClass.toAlgebra F :=
+      Subsingleton.elim _ _
     rw [hi]
     exact h'
   ne_top' := qIntegersBar_ne_top h.choose_spec
@@ -412,15 +412,18 @@ theorem isCusp_iff (j : E) (v : Place K E) : IsCusp j v ↔ j ∉ v.toValuationS
 
 end IsCusp
 
-theorem isCusp_qInftyPlaceBar {F : IntermediateField L (LaurentSeries L)} (h : ∃ j : F, (qSeriesBar L F j).order = -1)
+theorem isCusp_qInftyPlaceBar {F : IntermediateField L (LaurentSeries L)}
+    (h : ∃ j : F, (qSeriesBar L F j).order = -1)
     {j : F} (hj : (qSeriesBar L F j).order = -1) : IsCusp j (qInftyPlaceBar L F h) :=
   notMem_qIntegersBar_of_order_eq_neg_one hj
 
-theorem isCusp_qInftyPlaceRat {F : IntermediateField ℚ (LaurentSeries ℚ)} (h : ∃ j : F, (qSeriesBar ℚ F j).order = -1)
+theorem isCusp_qInftyPlaceRat {F : IntermediateField ℚ (LaurentSeries ℚ)}
+    (h : ∃ j : F, (qSeriesBar ℚ F j).order = -1)
     {j : F} (hj : (qSeriesBar ℚ F j).order = -1) : IsCusp j (qInftyPlaceRat F h) :=
   notMem_qIntegersBar_of_order_eq_neg_one hj
 
-theorem isCusp_cuspInfty (N : ℕ) [NeZero N] : IsCusp (⟨jq, jq_mem N⟩ : modularFunctionField N) (cuspInfty N) :=
+theorem isCusp_cuspInfty (N : ℕ) [NeZero N] :
+    IsCusp (⟨jq, jq_mem N⟩ : modularFunctionField N) (cuspInfty N) :=
   notMem_qIntegersBar_of_order_eq_neg_one order_jq
 
 theorem isCusp_cuspInftyFull (N : ℕ) [NeZero N] :

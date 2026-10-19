@@ -68,7 +68,9 @@ noncomputable section
 open PowerSeries HahnSeries Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap coeffMap_coeff coeffEmb coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist \
+  qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap coeffMap_coeff coeffEmb \
+  coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand"
 p2m_open "ModularCurve"
 
 namespace PhiGen
@@ -292,7 +294,7 @@ private theorem exists_galoisPerm (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K �
   set e₀ : Fin ℓ → Fin ℓ := fun b => ⟨(a * (b : ℕ)) % ℓ, Nat.mod_lt _ hℓ.out.pos⟩
   have hkey : ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e₀ b : Fin ℓ) : ℕ) := by
     intro b
-    show σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((a * (b : ℕ)) % ℓ)
+    change σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((a * (b : ℕ)) % ℓ)
     rw [map_pow, ← ha, ← pow_mul]
     exact pow_eq_pow_mod _ hζ.pow_eq_one
   have hinj : Function.Injective e₀ := by
@@ -347,8 +349,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) : ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) :=
+theorem solution {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
+    (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) :
+    ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) :=
   ModularCurve.PhiGen.exists_galoisPerm hζ σ
 
 end S_ModularCurve_PhiGen_exists_galoisPerm
@@ -361,6 +364,9 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.exists_galoisPerm {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) : ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) := _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.solution hζ σ
+theorem ModularCurve.PhiGen.exists_galoisPerm {K : Type*} [Field K] {ℓ : ℕ}
+    [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) :
+    ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) :=
+  solution hζ σ
 
 end publicSection

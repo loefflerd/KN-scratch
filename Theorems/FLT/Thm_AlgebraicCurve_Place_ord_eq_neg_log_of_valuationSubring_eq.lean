@@ -57,7 +57,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq.AlgebraicCurve"
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
@@ -77,7 +78,10 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
 end AlgebraicCurve.WFa
 
 open AlgebraicCurve.WFa in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (w : Valuation F (WithZero (Multiplicative ℤ))) (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = WithZero.exp (-1 : ℤ)) {f : F} (hf : f ≠ 0) : v.ord f = -WithZero.log (w f) := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
+    (w : Valuation F (WithZero (Multiplicative ℤ))) (hw : w.valuationSubring = v.toValuationSubring)
+    {π : F} (hπ : w π = WithZero.exp (-1 : ℤ)) {f : F} (hf : f ≠ 0) :
+    v.ord f = -WithZero.log (w f) := by
   have hequiv : w.IsEquiv v.adicValuation :=
     v.isEquiv_adicValuation_of_valuationSubring_eq hw
   have hexp_lt : (exp (-1 : ℤ) : ℤᵐ⁰) < 1 := by
@@ -112,6 +116,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_eq {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (w : Valuation F (WithZero (Multiplicative ℤ))) (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = WithZero.exp (-1 : ℤ)) {f : F} (hf : f ≠ 0) : v.ord f = -WithZero.log (w f) := _root_.P2MW.S_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq.solution v w hw hπ hf
+theorem AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_eq {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (v : Place K F) (w : Valuation F (WithZero (Multiplicative ℤ)))
+    (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = WithZero.exp (-1 : ℤ))
+    {f : F} (hf : f ≠ 0) :
+    v.ord f = -WithZero.log (w f) :=
+  solution v w hw hπ hf
 
 end publicSection

@@ -165,6 +165,7 @@ theorem ModularForm.qExpansion_E4_mul_theta_discriminant_sub :
       - 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * (UpperHalfPlane.qExpansion 1 (⇑ModularForm.E₄ : UpperHalfPlane → ℂ)).coeff n)
         * UpperHalfPlane.qExpansion 1 ModularForm.discriminant
       = UpperHalfPlane.qExpansion 1 (⇑ModularForm.E₆ : UpperHalfPlane → ℂ) *
-        UpperHalfPlane.qExpansion 1 ModularForm.discriminant := _root_.P2MW.S_ModularForm_qExpansion_E4_mul_theta_discriminant_sub.solution
+        UpperHalfPlane.qExpansion 1 ModularForm.discriminant :=
+  solution
 
 end publicSection

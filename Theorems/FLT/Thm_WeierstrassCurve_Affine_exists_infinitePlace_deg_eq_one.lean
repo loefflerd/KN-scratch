@@ -98,7 +98,7 @@ theorem two_nsmul_le_coe_iff {d : WithBot ℕ} {n : ℕ} :
   induction d using WithBot.recBotCoe with
   | bot => exact iff_of_true (by simp) (WithBot.bot_lt_coe _)
   | coe k =>
-    show 2 • ((k : ℕ) : WithBot ℕ) ≤ (n : WithBot ℕ) ↔
+    change 2 • ((k : ℕ) : WithBot ℕ) ≤ (n : WithBot ℕ) ↔
       ((k : ℕ) : WithBot ℕ) < ((n / 2 + 1 : ℕ) : WithBot ℕ)
     rw [two_nsmul, ← Nat.cast_add]
     exact_mod_cast (by omega : k + k ≤ n ↔ k < n / 2 + 1)
@@ -108,7 +108,7 @@ theorem two_nsmul_add_three_le_coe_iff {d : WithBot ℕ} {n : ℕ} :
   induction d using WithBot.recBotCoe with
   | bot => exact iff_of_true (by simp) (WithBot.bot_lt_coe _)
   | coe k =>
-    show 2 • ((k : ℕ) : WithBot ℕ) + 3 ≤ (n : WithBot ℕ) ↔
+    change 2 • ((k : ℕ) : WithBot ℕ) + 3 ≤ (n : WithBot ℕ) ↔
       ((k : ℕ) : WithBot ℕ) < (((n - 1) / 2 : ℕ) : WithBot ℕ)
     rw [two_nsmul, ← Nat.cast_add, show (3 : WithBot ℕ) = ((3 : ℕ) : WithBot ℕ) by norm_cast,
       ← Nat.cast_add]
@@ -118,7 +118,6 @@ theorem xCount_add_yCount (n : ℕ) (hn : 1 ≤ n) : n / 2 + 1 + (n - 1) / 2 = n
   omega
 
 variable (W) in
-
 def rrParam (n : ℕ) :
     (degreeLT F (n / 2 + 1) × degreeLT F ((n - 1) / 2)) →ₗ[F] W.CoordinateRing :=
   LinearMap.coprod
@@ -140,7 +139,6 @@ theorem rrParam_injective (n : ℕ) : Function.Injective (rrParam W n) := by
   exact Prod.ext (Subtype.ext hp) (Subtype.ext hq)
 
 variable (W) in
-
 def RRSpace (n : ℕ) : Submodule F W.CoordinateRing :=
   LinearMap.range (rrParam W n)
 
@@ -196,7 +194,6 @@ theorem one_le_RRSpace (n : ℕ) : (1 : Submodule F W.CoordinateRing) ≤ RRSpac
 namespace RRSpace
 
 variable (W) in
-
 def basisAux (n : ℕ) :
     Basis (Fin (n / 2 + 1 + (n - 1) / 2)) F (RRSpace W n) :=
   (degreeLT.basisProd F (n / 2 + 1) ((n - 1) / 2)).map
@@ -207,7 +204,6 @@ theorem finrank_eq (n : ℕ) (hn : 1 ≤ n) : finrank F (RRSpace W n) = n := by
   exact xCount_add_yCount n hn
 
 variable (W) in
-
 def finBasis (n : ℕ) (hn : 1 ≤ n) : Basis (Fin n) F (RRSpace W n) :=
   (basisAux W n).reindex (finCongr (xCount_add_yCount n hn))
 
@@ -287,11 +283,9 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
     omega
 
 variable (W) in
-
 def xF : W.FunctionField := algebraMap W.CoordinateRing W.FunctionField (mk W (C X))
 
 variable (W) in
-
 def infVal : Valuation W.FunctionField ℤᵐ⁰ :=
   (WeierstrassCurve.Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm W).choose
 
@@ -306,7 +300,8 @@ theorem mk_C_X_ne_zero : (mk W (C X) : W.CoordinateRing) ≠ 0 := by
   rw [XClass, map_zero, sub_zero] at h1
   exact h1
 
-theorem natDegree_norm_mk_C_X : (Algebra.norm F[X] (mk W (C X) : W.CoordinateRing)).natDegree = 2 := by
+theorem natDegree_norm_mk_C_X :
+    (Algebra.norm F[X] (mk W (C X) : W.CoordinateRing)).natDegree = 2 := by
   have hX : (X : F[X]) • (1 : W.CoordinateRing) + (0 : F[X]) • mk W Y = mk W (C X) := by
     rw [zero_smul, add_zero, smul, mul_one]
   have hdeg := degree_norm_smul_basis (W' := W) (X : F[X]) 0
@@ -347,7 +342,6 @@ scoped instance infVal_isNontrivial : (infVal W).IsNontrivial :=
   ⟨xF W, by rw [infVal_xF]; exact exp_ne_zero, (one_lt_infVal_xF (W := W)).ne'⟩
 
 variable (W) in
-
 def infPlace : AlgebraicCurve.Place F W.FunctionField where
   toValuationSubring := (infVal W).valuationSubring
   algebraMap_mem' c := (Valuation.mem_valuationSubring_iff _ _).mpr (infVal_algebraMap_le c)
@@ -446,7 +440,7 @@ theorem deg_eq_one_of_surjective (v : AlgebraicCurve.Place F W.FunctionField)
     (h : Function.Surjective (algebraMap F v.ResidueField)) : v.deg = 1 := by
   have hbij : Function.Bijective (algebraMap F v.ResidueField) :=
     ⟨(algebraMap F v.ResidueField).injective, h⟩
-  show Module.finrank F v.ResidueField = 1
+  change Module.finrank F v.ResidueField = 1
   rw [← Module.finrank_self F]
   exact ((AlgEquiv.ofBijective (Algebra.ofId F v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
 
@@ -542,6 +536,9 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one {F : Type*} [Field F] (W : WeierstrassCurve.Affine F) : ∃ vInf : AlgebraicCurve.Place F W.FunctionField, vInf.deg = 1 ∧ (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ vInf.toValuationSubring) ∧ ∀ v : AlgebraicCurve.Place F W.FunctionField, (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf := _root_.P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one.solution W
+theorem WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one {F : Type*} [Field F]
+    (W : WeierstrassCurve.Affine F) :
+    ∃ vInf : AlgebraicCurve.Place F W.FunctionField, vInf.deg = 1 ∧ (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ vInf.toValuationSubring) ∧ ∀ v : AlgebraicCurve.Place F W.FunctionField, (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
+  solution W
 
 end publicSection

@@ -47,7 +47,7 @@ theorem horizontalFiniteGroup_pow_eq_one (p : ℕ) (m : ℕ → ℕ) (A : Finset
   funext i
   have hle : m i.1 ≤ A.sup m := Finset.le_sup (f := m) i.2
   obtain ⟨c, hc⟩ := Nat.exists_eq_add_of_le hle
-  show (g i) ^ (p ^ A.sup m) = 1
+  change (g i) ^ (p ^ A.sup m) = 1
   apply Multiplicative.toAdd.injective
   rw [toAdd_pow, toAdd_one, hc, pow_add, mul_comm, mul_nsmul, nsmul_eq_mul]
   simp

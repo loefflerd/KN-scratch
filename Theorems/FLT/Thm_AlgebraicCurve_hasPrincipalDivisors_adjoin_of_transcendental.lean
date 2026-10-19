@@ -106,7 +106,7 @@ theorem hasPrincipalDivisors_adjoin (x : LF) (hx : Transcendental K x) (T : Fins
       rw [lift_top, lift_adjoin]
       apply le_antisymm (adjoin_le_iff.mpr ?_) ?_
       · rintro _ ⟨y, hy, rfl⟩; exact y.2
-      · show IntermediateField.adjoin K (insert x (T : Set LF)) ≤ _
+      · change IntermediateField.adjoin K (insert x (T : Set LF)) ≤ _
         apply adjoin.mono
         intro z hz
         rcases hz with rfl | hz
@@ -119,7 +119,8 @@ theorem hasPrincipalDivisors_adjoin (x : LF) (hx : Transcendental K x) (T : Fins
 end W2
 end AlgebraicCurve
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental.AlgebraicCurve"
 
 theorem solution (K : Type*) [Field K] [CharZero K] {LF : Type*} [Field LF] [Algebra K LF]
     (x : LF) (hx : Transcendental K x) (T : Finset LF)
@@ -139,9 +140,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.hasPrincipalDivisors_adjoin_of_transcendental (K : Type*) [Field K] [CharZero K] {LF : Type*} [Field LF] [Algebra K LF]
+theorem AlgebraicCurve.hasPrincipalDivisors_adjoin_of_transcendental (K : Type*) [Field K]
+    [CharZero K] {LF : Type*} [Field LF] [Algebra K LF]
     (x : LF) (hx : Transcendental K x) (T : Finset LF)
     (hT : ∀ t ∈ T, IsIntegral (IntermediateField.adjoin K ({x} : Set LF)) t) :
-    HasPrincipalDivisors K (IntermediateField.adjoin K (insert x (T : Set LF))) := _root_.P2MW.S_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental.solution K x hx T hT
+    HasPrincipalDivisors K (IntermediateField.adjoin K (insert x (T : Set LF))) :=
+  solution K x hx T hT
 
 end publicSection

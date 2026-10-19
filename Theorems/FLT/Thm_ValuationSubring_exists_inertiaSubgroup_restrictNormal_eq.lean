@@ -80,7 +80,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
   obtain ⟨⟨σ₀, hσdec⟩, hσin⟩ := σ
   set S : ValuationSubring L := A.comap (algebraMap L Qb) with hS
   set τ₀ : L ≃ₐ[ℚ] L := AlgEquiv.restrictNormalHom L σ₀ with hτ₀
-
   have hσA : σ₀ • A = A := hσdec
   have hcomm : ∀ x : L, algebraMap L Qb (τ₀ x) = σ₀ (algebraMap L Qb x) := fun x =>
     AlgEquiv.restrictNormal_commutes σ₀ L x
@@ -97,7 +96,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
       ValuationSubring.mem_comap]
     have hx : algebraMap L Qb (τ₀⁻¹ • x) = σ₀⁻¹ • (algebraMap L Qb x) := hcomm_inv x
     rw [hx, ← ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, hσA]
-
   set ι : S →+* A :=
     RingHom.codRestrict ((algebraMap L Qb).comp S.subtype) A.toSubring
       (fun x => ValuationSubring.mem_comap.mp x.2) with hι
@@ -114,7 +112,7 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
     apply RingEquiv.ext
     intro r
     obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective r
-    show (⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) • IsLocalRing.residue S y
+    change (⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) • IsLocalRing.residue S y
       = IsLocalRing.residue S y
     rw [← IsLocalRing.ResidueField.residue_smul]
     have key : (⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) • y - y ∈ IsLocalRing.maximalIdeal S := by
@@ -157,6 +155,7 @@ theorem ValuationSubring.exists_inertiaSubgroup_restrictNormal_eq
     ∃ τ : (A.comap (algebraMap L (AlgebraicClosure ℚ))).inertiaSubgroup ℚ,
       ((τ : (A.comap (algebraMap L (AlgebraicClosure ℚ))).decompositionSubgroup ℚ) : L ≃ₐ[ℚ] L)
         = AlgEquiv.restrictNormalHom L
-            ((σ : A.decompositionSubgroup ℚ) : (AlgebraicClosure ℚ) ≃ₐ[ℚ] (AlgebraicClosure ℚ)) := _root_.P2MW.S_ValuationSubring_exists_inertiaSubgroup_restrictNormal_eq.solution L A σ
+            ((σ : A.decompositionSubgroup ℚ) : (AlgebraicClosure ℚ) ≃ₐ[ℚ] (AlgebraicClosure ℚ)) :=
+  solution L A σ
 
 end publicSection

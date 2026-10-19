@@ -88,13 +88,13 @@ def lTransl (g : CoprodI G) : (CoprodI G →₀ ℤ) →+ (CoprodI G →₀ ℤ)
   Finsupp.mapDomain_single
 
 @[scoped simp] theorem lTransl_one_apply (f : CoprodI G →₀ ℤ) : lTransl 1 f = f := by
-  show Finsupp.mapDomain (1 * ·) f = f
+  change Finsupp.mapDomain (1 * ·) f = f
   rw [show ((1 : CoprodI G) * ·) = id from funext fun x => one_mul x]
   exact Finsupp.mapDomain_id
 
 theorem lTransl_mul_apply (g₁ g₂ : CoprodI G) (f : CoprodI G →₀ ℤ) :
     lTransl (g₁ * g₂) f = lTransl g₁ (lTransl g₂ f) := by
-  show Finsupp.mapDomain (g₁ * g₂ * ·) f
+  change Finsupp.mapDomain (g₁ * g₂ * ·) f
       = Finsupp.mapDomain (g₁ * ·) (Finsupp.mapDomain (g₂ * ·) f)
   rw [← Finsupp.mapDomain_comp]
   simp only [Function.comp_def, mul_assoc]
@@ -126,12 +126,12 @@ def factorOneSect : G 1 →* ChainCarrier G where
     CoprodI.of a⟩
   map_one' := by
     refine SemidirectProduct.ext ?_ ?_
-    · show Multiplicative.ofAdd (Finsupp.single 1 1 - Finsupp.single (of (1 : G 1)) 1) = 1
+    · change Multiplicative.ofAdd (Finsupp.single 1 1 - Finsupp.single (of (1 : G 1)) 1) = 1
       rw [map_one, sub_self]; rfl
     · exact map_one _
   map_mul' a b := by
     refine SemidirectProduct.ext ?_ (map_mul CoprodI.of a b)
-    show Multiplicative.ofAdd
+    change Multiplicative.ofAdd
         (Finsupp.single 1 1 - Finsupp.single (of (a * b)) 1 : CoprodI G →₀ ℤ) =
       Multiplicative.ofAdd (Finsupp.single 1 1 - Finsupp.single (of a) 1) *
         lTranslMulAut (of a)
@@ -202,21 +202,21 @@ def projChain : (CoprodI G →₀ ℤ) →+ (CoprodI G ⧸ H →₀ ℤ) :=
 
 theorem projChain_lTransl_of_mem (h : CoprodI G) (hh : h ∈ H) (f : CoprodI G →₀ ℤ) :
     projChain H (lTransl h f) = projChain H f := by
-  show Finsupp.mapDomain _ (Finsupp.mapDomain _ f) = Finsupp.mapDomain _ f
+  change Finsupp.mapDomain _ (Finsupp.mapDomain _ f) = Finsupp.mapDomain _ f
   rw [← Finsupp.mapDomain_comp]
   congr 1
   ext x
-  show (QuotientGroup.mk (h * x)⁻¹ : CoprodI G ⧸ H) = QuotientGroup.mk x⁻¹
+  change (QuotientGroup.mk (h * x)⁻¹ : CoprodI G ⧸ H) = QuotientGroup.mk x⁻¹
   rw [eq_comm, QuotientGroup.eq, mul_inv_rev, inv_inv, ← mul_assoc, mul_inv_cancel, one_mul]
   exact inv_mem hh
 
 def edgeChainHom : Additive H →+ (CoprodI G ⧸ H →₀ ℤ) where
   toFun h := projChain H (edgeChain ((Additive.toMul h : H) : CoprodI G))
   map_zero' := by
-    show projChain H (edgeChain ((1 : H) : CoprodI G)) = 0
+    change projChain H (edgeChain ((1 : H) : CoprodI G)) = 0
     rw [OneMemClass.coe_one, edgeChain_one, map_zero]
   map_add' h₁ h₂ := by
-    show projChain H (edgeChain ((Additive.toMul h₁ * Additive.toMul h₂ : H) : CoprodI G)) = _
+    change projChain H (edgeChain ((Additive.toMul h₁ * Additive.toMul h₂ : H) : CoprodI G)) = _
     rw [Subgroup.coe_mul, edgeChain_mul, map_add,
       projChain_lTransl_of_mem H _ (Additive.toMul h₁).2]
 
@@ -234,7 +234,7 @@ theorem edgeChainHom_conj (σ η : CoprodI G) (hmem : σ * η * σ⁻¹ ∈ H) :
     edgeChainHom H (Additive.ofMul ⟨σ * η * σ⁻¹, hmem⟩)
       = projChain H (lTransl σ (edgeChain η)) := by
   rw [edgeChainHom_apply]
-  show projChain H (edgeChain (σ * η * σ⁻¹)) = projChain H (lTransl σ (edgeChain η))
+  change projChain H (edgeChain (σ * η * σ⁻¹)) = projChain H (lTransl σ (edgeChain η))
   rw [edgeChain_conj_expand, map_sub, map_add,
     projChain_lTransl_of_mem H _ hmem, add_sub_cancel_left]
 
@@ -429,12 +429,12 @@ theorem exists_enum_eq_of_cusp_eq (g : Gp) {y : X H} (hy : cusp H y = cusp H (g 
     have h1 : (-n) % (w : ℤ) < w := Int.emod_lt_of_pos _ hwpos
     omega
   · rw [enum_eq_zpow_smul]
-    show τ ^ (-((((-n) % (w : ℤ)).toNat : ℕ) : ℤ)) • (g : X H) = τ ^ n • (g : X H)
+    change τ ^ (-((((-n) % (w : ℤ)).toNat : ℕ) : ℤ)) • (g : X H) = τ ^ n • (g : X H)
     have h0 : 0 ≤ (-n) % (w : ℤ) := Int.emod_nonneg _ hwpos.ne'
     rw [Int.toNat_of_nonneg h0, ← MulAction.zpow_smul_mod_minimalPeriod τ (g : X H) n,
       ← MulAction.zpow_smul_mod_minimalPeriod τ (g : X H) (-((-n) % (w : ℤ)))]
     congr 2
-    show -(-n % (w : ℤ)) % (w : ℤ) = n % (w : ℤ)
+    change -(-n % (w : ℤ)) % (w : ℤ) = n % (w : ℤ)
     exact (Int.mod_modEq (-n) (w : ℤ)).neg.trans (by rw [neg_neg])
 
 end Cosets
@@ -486,7 +486,7 @@ def edgeChar (e : X H) : Additive H →+ ℤ := (Finsupp.applyAddHom e).comp (ed
 
 theorem edgeChar_genAt (e : X H) (g : Gp) :
     edgeChar H e (Additive.ofMul (genAt H g)) = cuspDiffAt H e (cusp H (g : X H)) := by
-  show edgeChainHom H (Additive.ofMul (genAt H g)) e = _
+  change edgeChainHom H (Additive.ofMul (genAt H g)) e = _
   rw [edgeChainHom_genAt_apply, cuspDiffAt, Pi.sub_apply, Pi.single_apply, Pi.single_apply]
   simp only [@eq_comm _ (cusp H (g : X H))]
 
@@ -525,7 +525,7 @@ theorem single_sub_single_mem_span_cuspDiffAt (c c' : Cu H) :
   induction e using QuotientGroup.induction_on with | H k =>
   induction e' using QuotientGroup.induction_on with | H k' =>
   have heq : ((k' : Gp) : X H) = (k' * k⁻¹) • ((k : Gp) : X H) := by
-    show QuotientGroup.mk k' = QuotientGroup.mk ((k' * k⁻¹) * k)
+    change QuotientGroup.mk k' = QuotientGroup.mk ((k' * k⁻¹) * k)
     rw [mul_assoc, inv_mul_cancel, mul_one]
   rw [heq]
   exact single_sub_single_mem_span_of_smul H (k' * k⁻¹) _
@@ -628,6 +628,7 @@ theorem Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_e
                 (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H) * g ∈ H),
         φ (Additive.ofMul ⟨_, hg⟩)
           = a (Quotient.mk (MulAction.orbitRel (Subgroup.zpowers t) _)
-              (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H)) := _root_.P2MW.S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero.solution t ht H R a ha
+              (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H)) :=
+  solution t ht H R a ha
 
 end publicSection

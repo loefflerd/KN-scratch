@@ -68,7 +68,8 @@ end privateSection
 public section publicSection
 
 open scoped MatrixGroups
-theorem HeckeEis.IsEichlerIntegral.smul {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+theorem HeckeEis.IsEichlerIntegral.smul {n : ℕ} {f : UpperHalfPlane → ℂ}
+    {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (c : ℂ) :
     HeckeEis.IsEichlerIntegral n (c • f) (c • F) := _root_.solution hF c
 

@@ -118,10 +118,10 @@ theorem solution
         have h : (⟨((k • f : LSpace (0 : Divisor K F)) : F), hmem (k • f)⟩ :
             v₀.toValuationSubring) = algebraMap K v₀.toValuationSubring k * ⟨f, hmem f⟩ := by
           apply Subtype.ext
-          show (k • (f : F)) = _
+          change (k • (f : F)) = _
           rw [Algebra.smul_def]; rfl
         rw [h, map_mul]
-        show algebraMap K v₀.ResidueField k * _ = k • _
+        change algebraMap K v₀.ResidueField k * _ = k • _
         rw [Algebra.smul_def] }
   have hker : ∀ f : LSpace (0 : Divisor K F), φ f = 0 → f = 0 := by
     intro f hφf
@@ -133,7 +133,7 @@ theorem solution
     have huf : (⟨f, hmem f⟩ : v₀.toValuationSubring) = (u : v₀.toValuationSubring) :=
       Subtype.ext hu
     have : IsUnit (φ f) := by
-      show IsUnit (IsLocalRing.residue _ (⟨f, hmem f⟩ : v₀.toValuationSubring))
+      change IsUnit (IsLocalRing.residue _ (⟨f, hmem f⟩ : v₀.toValuationSubring))
       rw [huf]
       exact (IsLocalRing.residue _).isUnit_map u.isUnit
     rw [hφf] at this
@@ -157,7 +157,8 @@ universe u v
 theorem AlgebraicCurve.finiteDimensional_lSpace_zero
     (K : Type u) (F : Type v) [Field K] [Field F] [Algebra K F]
     [IsCurveOver K F] [Algebra.EssFiniteType K F] [Nonempty (Place K F)] :
-    FiniteDimensional K (LSpace (0 : Divisor K F)) := _root_.P2MW.S_AlgebraicCurve_finiteDimensional_lSpace_zero.solution K F
+    FiniteDimensional K (LSpace (0 : Divisor K F)) :=
+  solution K F
 end
 
 end publicSection

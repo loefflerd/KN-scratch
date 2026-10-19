@@ -125,7 +125,7 @@ theorem solution (W : WeierstrassCurve H)
         ((liftModel W hW).map valuationSubringH.subtype).toAffine.Point) := hP
     rw [← this]; exact hPt
   refine ⟨nonsingular_specialFibre_coeff_zero W hW hΔ' h hx, ?_⟩
-  show specialise W hW hΔ' (P : W.toAffine.Point) = _
+  change specialise W hW hΔ' (P : W.toAffine.Point) = _
   rw [hP, specialise_some_of_nonneg W hW hΔ' h hx]
 
 end
@@ -151,6 +151,7 @@ theorem ModularCurve.B3.exists_torsionBy_reduction_addEquiv (W : WeierstrassCurv
           ∃ h₀ : (specialFibre W).toAffine.Nonsingular (x.coeff 0) (y.coeff 0),
             ((e P : Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ)) :
                 (specialFibre W).toAffine.Point) =
-              WeierstrassCurve.Affine.Point.some (x.coeff 0) (y.coeff 0) h₀ := _root_.P2MW.S_ModularCurve_B3_exists_torsionBy_reduction_addEquiv.solution W hW hΔ p
+              WeierstrassCurve.Affine.Point.some (x.coeff 0) (y.coeff 0) h₀ :=
+  solution W hW hΔ p
 
 end publicSection

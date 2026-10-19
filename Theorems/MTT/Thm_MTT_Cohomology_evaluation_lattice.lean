@@ -34,10 +34,10 @@ binomial denominators.
 Formal argument, taking the two hard inputs as hypotheses.
 
 Write `e` for the base-change isomorphism `Qbar ⊗_Z Hc(N,n,Z) ≃ Hc(N,n,Qbar)` supplied
-by `hQ`.  Each class `ψ s` is `e` applied to some tensor, and every element of a tensor
+by `hQ`. Each class `ψ s` is `e` applied to some tensor, and every element of a tensor
 product is a *finite* sum of pure tensors, so
 
-    ψ s = Σ_{i ∈ S s} c_i • e (1 ⊗ φ_i),   c_i ∈ Qbar,  φ_i ∈ Hc(N,n,Z),
+    ψ s = Σ_{i ∈ S s} c_i • e (1 ⊗ φ_i), c_i ∈ Qbar, φ_i ∈ Hc(N,n,Z),
 
 using `c ⊗ φ = c • (1 ⊗ φ)` for the left Qbar-action.
 
@@ -47,13 +47,13 @@ Since `evaluation j r` is the `X^j Y^{n-j}`-coefficient at `[∞] − [r]`, and
 
     evaluation j r (e (1 ⊗ φ)) = (evaluation j r φ : Z) in Qbar,
 
-i.e. the evaluations of the base-changed integral classes are *integers*.  This is the
+i.e. the evaluations of the base-changed integral classes are *integers*. This is the
 point where the varying rational cusp `r` is harmless: `r` moves the integer, never the
 denominator.
 
 By Qbar-linearity of `evaluation j r`,
 
-    evaluation j r (ψ s) = Σ_i c_i · m_{i,j,r},   m_{i,j,r} ∈ Z,
+    evaluation j r (ψ s) = Σ_i c_i · m_{i,j,r}, m_{i,j,r} ∈ Z,
 
 hence
 
@@ -91,7 +91,7 @@ theorem evaluation_extends {R : Type*} [CommRing R]
     (φ : Hc N n ℤ) (Φ : Hc N n R) (h : Extends (Int.castRingHom R) φ Φ)
     (j : ℕ) (r : ℚ) :
     evaluation j r Φ = ((evaluation j r φ : ℤ) : R) := by
-  show AddMonoidAlgebra.coeff (Φ.val (OnePoint.infty, (r : Cusp))) _ =
+  change AddMonoidAlgebra.coeff (Φ.val (OnePoint.infty, (r : Cusp))) _ =
     Int.castRingHom R (AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _)
   rw [h OnePoint.infty (r : Cusp)]
   exact MvPolynomial.coeff_map _ _ _

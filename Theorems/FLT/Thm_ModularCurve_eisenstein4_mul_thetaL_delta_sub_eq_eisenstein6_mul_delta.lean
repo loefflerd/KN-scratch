@@ -66,10 +66,13 @@ namespace P2MW.S_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mu
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta.ModularCurve"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "eisenstein6 eisenstein4 dedekindEtaUnit ofPowerSeries_coeff_of_neg thetaL thetaL_apply qExpansion_E4_eq_map_eisenstein4 qExpansion_E6_eq_map_mk qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit theta_coeff"
+p2m_export "ModularCurve" "eisenstein6 eisenstein4 dedekindEtaUnit ofPowerSeries_coeff_of_neg \
+  thetaL thetaL_apply qExpansion_E4_eq_map_eisenstein4 qExpansion_E6_eq_map_mk \
+  qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit theta_coeff"
 namespace RC18Transfer
 p2m_open "ModularCurve"
 
@@ -153,6 +156,7 @@ theorem ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta :
       - 3 * thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4)) *
         HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit))
       = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6) *
-        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)) := _root_.P2MW.S_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta.solution
+        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)) :=
+  solution
 
 end publicSection

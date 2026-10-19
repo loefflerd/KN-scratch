@@ -74,6 +74,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.le_dedekindPsi (N : ℕ) (hN : N ≠ 0) : N ≤ dedekindPsi N := _root_.P2MW.S_ModularCurve_le_dedekindPsi.solution N hN
+theorem ModularCurve.le_dedekindPsi (N : ℕ) (hN : N ≠ 0) :
+    N ≤ dedekindPsi N :=
+  solution N hN
 
 end publicSection

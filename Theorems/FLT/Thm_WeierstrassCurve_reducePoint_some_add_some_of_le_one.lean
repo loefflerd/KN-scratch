@@ -65,7 +65,15 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_WeierstrassCurve_reducePoint_some_add_some_of_le_one
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "integralModel_a₂_eq Affine Affine.negY HasGoodReduction Affine.Y_eq_of_Y_ne Affine.slope_of_X_ne hasGoodReduction_iff_isElliptic_reduction a₃ Affine.Point.add_of_Y_eq a₁ map a₄ a₂ Affine.map_equation a₆ Affine.Point.some Affine.nonsingular_iff' Affine.Point.some.injEq integralModel_a₃_eq integralModel_a₁_eq reduction Affine.map_addY integralModel integralModel_a₆_eq Affine.map_addX Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point baseChange_integralModel_eq Affine.addX Affine.Point.add_some map_a₆ map_a₁ Affine.equation_iff_nonsingular map_a₄ Affine.equation_iff integralModel_a₄_eq map_a₂ map_a₃ reduceCoord reducePoint_alt valuation_le_one_of_equation reducePoint_some reducePoint_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "integralModel_a₂_eq Affine Affine.negY HasGoodReduction \
+  Affine.Y_eq_of_Y_ne Affine.slope_of_X_ne hasGoodReduction_iff_isElliptic_reduction a₃ \
+  Affine.Point.add_of_Y_eq a₁ map a₄ a₂ Affine.map_equation a₆ Affine.Point.some \
+  Affine.nonsingular_iff' Affine.Point.some.injEq integralModel_a₃_eq integralModel_a₁_eq \
+  reduction Affine.map_addY integralModel integralModel_a₆_eq Affine.map_addX \
+  Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point baseChange_integralModel_eq \
+  Affine.addX Affine.Point.add_some map_a₆ map_a₁ Affine.equation_iff_nonsingular map_a₄ \
+  Affine.equation_iff integralModel_a₄_eq map_a₂ map_a₃ reduceCoord reducePoint_alt \
+  valuation_le_one_of_equation reducePoint_some reducePoint_some_eq_zero_iff"
 p2m_open "WeierstrassCurve"
 
 namespace ReducePointAddPort
@@ -190,7 +198,6 @@ theorem slope_spec [DecidableEq K] [DecidableEq (ResidueField R)]
       · exact heq
     have hd0 : y₁ - W.toAffine.negY x₁ y₁ ≠ 0 :=
       (Valuation.ne_zero_iff _).mp (by rw [hvd_one]; exact one_ne_zero)
-
     have hnK : 3 * x₁ ^ 2 + 2 * W.toAffine.a₂ * x₁ + W.toAffine.a₄ - W.toAffine.a₁ * y₁
         = algebraMap R K (3 * r1x ^ 2 + 2 * (integralModel R W).a₂ * r1x
             + (integralModel R W).a₄ - (integralModel R W).a₁ * r1y) := by
@@ -479,7 +486,6 @@ theorem slope_pole [DecidableEq K]
           (y₁ + y₂ + W.toAffine.a₁ * x₁ + W.toAffine.a₃) < 1 := by
         refine (reduceCoord_eq_zero_iff_lt R hvd₂_le).mp ?_
         rw [hd₂K, reduceCoord_algebraMap, hd₂bar, hd₂bar0]
-
       have hNK : x₁ ^ 2 + x₁ * x₂ + x₂ ^ 2 + W.toAffine.a₂ * (x₁ + x₂) + W.toAffine.a₄
               - W.toAffine.a₁ * y₂
           = algebraMap R K (r1x ^ 2 + r1x * r2x + r2x ^ 2
@@ -753,6 +759,7 @@ theorem WeierstrassCurve.reducePoint_some_add_some_of_le_one
     (hx₂ : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x₂ ≤ 1) :
     WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁ + .some x₂ y₂ h₂)
       = WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁)
-        + WeierstrassCurve.reducePoint_alt R W (.some x₂ y₂ h₂) := _root_.P2MW.S_WeierstrassCurve_reducePoint_some_add_some_of_le_one.solution R W h₁ h₂ hx₁ hx₂
+        + WeierstrassCurve.reducePoint_alt R W (.some x₂ y₂ h₂) :=
+  solution R W h₁ h₂ hx₁ hx₂
 
 end publicSection

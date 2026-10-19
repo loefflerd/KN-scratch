@@ -74,7 +74,9 @@ namespace P2MW.S_WeierstrassCurve_Affine_finrank_fieldRange_mulPull_le
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 open Polynomial IntermediateField
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℤ} (hgood : MulGood W K n) : FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] {n : ℤ} (hgood : MulGood W K n) :
+    FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 := by
   classical
   have hEK : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
@@ -102,7 +104,7 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     WeierstrassCurve.Affine.Point.zsmul_some_eq_some_div (W⁄L) (generic_nonsingular W K) hψ
   have hxn : mulPull W K n gX = ((W⁄L).Φ n).eval gX / ((W⁄L).ΨSq n).eval gX := by
     rw [hXdef, mulPull_genericX' W K hgood]
-    show (n • Point.some _ _ (generic_nonsingular W K)).xc = _
+    change (n • Point.some _ _ (generic_nonsingular W K)).xc = _
     rw [hmul, Point.xc_some]
   set A : L := (W⁄L).a₁ * gX + (W⁄L).a₃ with hA
   set B : L := -(gX ^ 3 + (W⁄L).a₂ * gX ^ 2 + (W⁄L).a₄ * gX + (W⁄L).a₆) with hB
@@ -128,7 +130,7 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     linear_combination h
   have hιX : (negEquiv W K : L →ₐ[K] L) gX = gX := negEquiv_genericX W K
   have hιY' : (negEquiv W K : L →ₐ[K] L) gY = -gY - A := by
-    show negEquiv W K (genericY W K) = _
+    change negEquiv W K (genericY W K) = _
     rw [negEquiv_genericY, WeierstrassCurve.Affine.negY, hA]
     ring
   have hιY : ((negEquiv W K : L →ₐ[K] L) gY) ^ 2 + A * (negEquiv W K : L →ₐ[K] L) gY + B = 0 := by
@@ -147,12 +149,11 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
       exact heq.symm
     rw [hP, WeierstrassCurve.Affine.Point.two_smul_some_eq_zero_iff (W⁄L), hΨ₂Sq,
       eval_map_algebraMap] at h2
-
     apply not_isIntegral_xc_of_ne_baseChange (n • genericPoint W K) hgood.1 hgood.2
     exact IsAlgebraic.isIntegral ⟨(W⁄K).Ψ₂Sq, WeierstrassCurve.Psi2Sq_ne_zero_of_isElliptic (W⁄K), h2⟩
-
   have hgen : IntermediateField.adjoin K {gX, gY} = ⊤ := FunctionField.adjoin_X_Y_eq_top (W⁄K)
-  have key := IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top gX gY hgen A B hAmem hBmem hYq (mulPull W K n)
+  have key :=
+    IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top gX gY hgen A B hAmem hBmem hYq (mulPull W K n)
     (negEquiv W K : L →ₐ[K] L) hιX hιY hιμ ((W⁄K).Φ n) ((W⁄K).ΨSq n)
     (d := n.natAbs ^ 2) (pow_pos (Int.natAbs_pos.mpr hn0) 2) ?_ ?_
   · exact key
@@ -172,6 +173,10 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℤ} (hgood : MulGood W K n) : FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 := _root_.P2MW.S_WeierstrassCurve_Affine_finrank_fieldRange_mulPull_le.solution W hgood
+theorem WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le {F K : Type*} [Field F] [Field K]
+    [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℤ}
+    (hgood : MulGood W K n) :
+    FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 :=
+  solution W hgood
 
 end publicSection

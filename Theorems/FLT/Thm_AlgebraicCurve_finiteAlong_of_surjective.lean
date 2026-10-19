@@ -57,7 +57,9 @@ namespace P2MW.S_AlgebraicCurve_finiteAlong_of_surjective
 
 open AlgebraicCurve
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hφ : Function.Surjective φ) : FiniteAlong K φ := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    (φ : F →ₐ[K] F') (hφ : Function.Surjective φ) :
+    FiniteAlong K φ := by
   let := algebraAlong φ
   exact Module.Finite.of_surjective (Algebra.linearMap F F') hφ
 
@@ -71,6 +73,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.finiteAlong_of_surjective {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hφ : Function.Surjective φ) : FiniteAlong K φ := _root_.P2MW.S_AlgebraicCurve_finiteAlong_of_surjective.solution φ hφ
+theorem AlgebraicCurve.finiteAlong_of_surjective {K F F' : Type*} [Field K] [Field F] [Field F']
+    [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hφ : Function.Surjective φ) :
+    FiniteAlong K φ :=
+  solution φ hφ
 
 end publicSection

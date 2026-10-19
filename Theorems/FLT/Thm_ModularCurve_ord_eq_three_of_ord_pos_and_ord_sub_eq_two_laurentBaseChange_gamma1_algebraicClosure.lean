@@ -166,7 +166,8 @@ private theorem ModularCurve.NoEllAux.keyEQ
   have := hfd
   have := hgal
   intro j₀ W₀ γ₀ τ₀ hγτ hW₀ hD w hw
-  obtain ⟨h1, -, h3, h4, h5⟩ := Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ (v) t j₀ E.val hv
+  obtain ⟨h1, -, h3, h4, h5⟩ :=
+    Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ (v) t j₀ E.val hv
     hfd hgal hint W₀ hW₀
   obtain ⟨ψ, hψ, rfl⟩ := h3 w hw
   rw [h5 ψ hψ, h1]
@@ -212,12 +213,13 @@ private theorem ModularCurve.NoEllAux.keyEQ
     obtain ⟨k, hk⟩ := hD g hgW
     have hψfix : ∀ (z : K) (hz : z ∈ ℂ⟮t⟯), ψ ⟨z, hle' hz⟩ = z := by
       intro z hz
-      let T : IntermediateField ℂ ↥E := (AlgHom.equalizer ψ E.val).toIntermediateField (fun x hx => by
+      let T : IntermediateField ℂ ↥E :=
+        (AlgHom.equalizer ψ E.val).toIntermediateField (fun x hx => by
         rw [AlgHom.mem_equalizer] at hx ⊢
         rw [map_inv₀, map_inv₀, hx])
       have hTle : ℂ⟮v⟯ ≤ T := by
         rw [adjoin_simple_le_iff]
-        show ψ (v) = E.val (v)
+        change ψ (v) = E.val (v)
         rw [hψ, hv]
       have hzmem : (⟨z, hle' hz⟩ : E) ∈ ℂ⟮v⟯ := by
         rw [← mem_lift (⟨z, hle' hz⟩ : E), lift_adjoin_simple]
@@ -253,11 +255,13 @@ private theorem ModularCurve.NoEllAux.keyEQ
       | succ n ih => rw [pow_succ, mul_smul, hγτ, ih]
     have hηpt : η • (δ'⁻¹ • τ₀) = δ'⁻¹ • τ₀ := by
       rw [hη, mul_smul, mul_smul, smul_inv_smul, hγpow k]
-    have hη1 := CongruenceSubgroup.eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq M hM η hηmem (δ'⁻¹ • τ₀) hηpt
+    have hη1 :=
+      CongruenceSubgroup.eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq M hM η hηmem (δ'⁻¹ • τ₀) hηpt
     have hγk1 : σ (γ₀ ^ k) = 1 := by
       have hconj : γ₀ ^ k = δ' * η * δ'⁻¹ := by rw [hη]; group
       have hneg1 : σ (-1) = 1 := by
-        have : (-1 : SL(2, ℤ)) ∈ σ.ker := by rw [hker]; exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
+        have : (-1 : SL(2, ℤ)) ∈ σ.ker :=
+          by rw [hker]; exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
         exact this
       rcases hη1 with h | h
       · rw [hconj, h, mul_one, mul_inv_cancel, map_one]
@@ -272,7 +276,8 @@ private theorem ModularCurve.NoEllAux.keyEQ
       congrArg (fun e => e.1.1) heq
     have hg : g₂⁻¹ * g₁ = 1 := by
       refine hclaim (g₂⁻¹ * g₁) ?_ ?_
-      · rw [show (g₂⁻¹ * g₁).restrictScalars ℂ = (g₂.restrictScalars ℂ)⁻¹ * g₁.restrictScalars ℂ from
+      · rw [show (g₂⁻¹ * g₁).restrictScalars ℂ = (g₂.restrictScalars ℂ)⁻¹ * g₁.restrictScalars ℂ
+          from
           AlgEquiv.ext fun _ => rfl, map_mul, map_inv, mul_smul, hg₁, inv_smul_eq_iff, hg₂]
       · intro e
         have h12 : g₁ (ψ e) = g₂ (ψ e) := by
@@ -327,13 +332,15 @@ theorem ModularCurve.NoEllAux.main
   let algQC : Algebra ℚ̄ ℂ := ι.toAlgebra
   let algQE : Algebra ℚ̄ ↥E := ((algebraMap ℂ ↥E).comp ι).toAlgebra
   have : IsScalarTower ℚ̄ ℂ ↥E := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  have : IsScalarTower ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E := IsScalarTower.of_algebraMap_eq fun c =>
+  have : IsScalarTower ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E :=
+    IsScalarTower.of_algebraMap_eq fun c =>
     Subtype.ext (by
       change ((algebraMap ℂ ↥E (ι c) : ↥E) : K) = ((ΦE (algebraMap ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) c) : ↥E) : K)
       rw [hcoeC, hΦE, hΦc])
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange ℚ̄ (Gamma1 M) hT
-  have : IsCurveOver ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) := isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
+  have : IsCurveOver ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) :=
+    isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
   have htr' : Transcendental ℂ (ΦE y) := fun h => htr (by
     have h' := isAlgebraic_iff.mp h
     rwa [hΦE, hΦy'] at h')
@@ -348,14 +355,17 @@ theorem ModularCurve.NoEllAux.main
     let e₂ : ↥E₂ ≃+* ↥E := RingEquiv.refl _
     exact Module.Finite.of_equiv_equiv e₁.symm.toRingEquiv e₂ (by
       refine RingHom.ext fun w => Subtype.ext ?_
-      have h1 : ∀ v : ↥(adjoin ℂ ({ΦE y} : Set ↥E)), ((e₁ v : ℂ⟮t⟯) : K) = ((v : ↥E) : K) := fun v => rfl
+      have h1 : ∀ v : ↥(adjoin ℂ ({ΦE y} : Set ↥E)), ((e₁ v : ℂ⟮t⟯) : K) = ((v : ↥E) : K) :=
+        fun v => rfl
       have h2 := congrArg (fun u : ℂ⟮t⟯ => (u : K)) (e₁.apply_symm_apply w)
       simp only [h1] at h2
       exact h2)
-  have hgen : adjoin ℂ (Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E)) = ⊤ := by
+  have hgen : adjoin ℂ (Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E)) = ⊤ :=
+    by
     apply lift_injective
     rw [lift_adjoin, lift_top]
-    have : Subtype.val '' Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E) = Set.range Φ := by
+    have : Subtype.val '' Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E) = Set.range Φ :=
+      by
       ext w
       constructor
       · rintro ⟨_, ⟨f, rfl⟩, rfl⟩; exact ⟨f, (hΦE f).symm⟩
@@ -394,7 +404,8 @@ theorem ModularCurve.NoEllAux.main
   have keyEQ := ModularCurve.NoEllAux.keyEQ M hM t E (ΦE y) σ hvaly hfd hgal
     hker hfix hdeg hint hfixer
   have h0E : P'.ord (ΦE y) = P.ord y := by rw [← hP'ord y]; rfl
-  have h1728E : P'.ord (ΦE y - 1728) = P.ord (y - 1728) := by rw [← hP'ord (y - 1728), map_sub, map_ofNat]; rfl
+  have h1728E : P'.ord (ΦE y - 1728) = P.ord (y - 1728) :=
+    by rw [← hP'ord (y - 1728), map_sub, map_ofNat]; rfl
   refine ⟨fun hpos => ?_, fun hpos => ?_⟩
   · have hk := keyEQ 0 W0 (ModularGroup.S * ModularGroup.T) UpperHalfPlane.ρ ST_smul_ρ
       (by rw [map_zero, sub_zero, hW0]; norm_num) hD0 P'

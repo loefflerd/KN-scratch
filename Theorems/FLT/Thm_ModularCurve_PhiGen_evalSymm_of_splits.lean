@@ -80,7 +80,14 @@ noncomputable section
 p2m_open "Polynomial IntermediateField IntermediateField.algebraAdjoinAdjoin"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_qExpand algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData jGen evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin qTwist qTwist_coeff qTwist_one_apply qTwist_qExpand evalAtJqN evalAtJqN_X evalAtJqN_def evalAtJ_def EvalSymm aeval_toRingHom_X PhiIrreducible adjoinJq jAdj evalAtJAdj swapInner swapBivar swapBivar_X swapBivar_C_X coeffMap coeffEmb coeffEmb_coeff one_le_coeff_jq coeffMap_qExpand coeffEmb_qExpand transcendental_jq dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_qExpand \
+  algebraMap_apply_eq_single jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one \
+  coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData jGen evalAtJGen \
+  algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin qTwist qTwist_coeff qTwist_one_apply \
+  qTwist_qExpand evalAtJqN evalAtJqN_X evalAtJqN_def evalAtJ_def EvalSymm aeval_toRingHom_X \
+  PhiIrreducible adjoinJq jAdj evalAtJAdj swapInner swapBivar swapBivar_X swapBivar_C_X coeffMap \
+  coeffEmb coeffEmb_coeff one_le_coeff_jq coeffMap_qExpand coeffEmb_qExpand transcendental_jq \
+  dedekindPsi_prime"
 p2m_open "ModularCurve"
 
 section JqNLead
@@ -250,7 +257,7 @@ private theorem monic_of_aeval_jq_eq_jqN (h : Polynomial.aeval jq P = jqN ℓ) :
   have hd := natDegree_eq_of_aeval_jq_eq_jqN ℓ h
   have h1 := coeff_aeval_jq_neg_natDegree P
   rw [h, hd, coeff_jqN_self] at h1
-  show P.coeff P.natDegree = 1
+  change P.coeff P.natDegree = 1
   rw [hd]
   exact h1.symm
 
@@ -261,12 +268,10 @@ section Transfer
 variable {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
 
 omit [Algebra ℚ K] hℓ in
-
 private theorem zeta_pow_eq_one (hζ : IsPrimitiveRoot (ζ : K) ℓ) : ζ ^ ℓ = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 omit [Algebra ℚ K] hℓ in
-
 private theorem zeta_pow_zpow_eq_one (hζ : IsPrimitiveRoot (ζ : K) ℓ) (b : ℕ) :
     (ζ ^ b) ^ ((ℓ : ℕ) : ℤ) = (1 : Kˣ) := by
   rw [zpow_natCast, ← pow_mul, mul_comm, pow_mul, zeta_pow_eq_one ℓ ζ hζ, one_pow]
@@ -426,18 +431,20 @@ private scoped instance instUFMAdjoinJq : UniqueFactorizationMonoid adjoinJq :=
 private theorem algebraMap_comp_evalAtJAdj :
     (algebraMap adjoinJq ℚ⟮jq⟯).comp evalAtJAdj = evalAtJGen := by
   refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-  show algebraMap adjoinJq ℚ⟮jq⟯ (evalAtJAdj Polynomial.X) = evalAtJGen Polynomial.X
+  change algebraMap adjoinJq ℚ⟮jq⟯ (evalAtJAdj Polynomial.X) = evalAtJGen Polynomial.X
   rw [show evalAtJAdj Polynomial.X = jAdj from Polynomial.eval₂_X _ _,
     show evalAtJGen Polynomial.X = jGen from Polynomial.eval₂_X _ _]
   exact Subtype.ext rfl
 
 namespace ModularPolynomialData
-p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero natDegree_eq Φ"
+p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero \
+  natDegree_eq Φ"
 p2m_open "ModularCurve.ModularPolynomialData"
 
 variable {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
 
-private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_toAdjoin : Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
+private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_toAdjoin :
+    Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
   rw [Polynomial.aeval_def, toAdjoin, Polynomial.eval₂_map, algebraMap_comp_evalAtJGen]
   exact data.eval_eq_zero
 
@@ -519,7 +526,7 @@ private theorem adjoinEmbedT_injective : Function.Injective (adjoinEmbedT K ℓ)
 private theorem adjoinEmbedT_comp_evalAtJAdj :
     (adjoinEmbedT K ℓ).comp evalAtJAdj = (qEmbedT K ℓ).comp evalAtJ := by
   refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-  show adjoinEmbedT K ℓ (evalAtJAdj Polynomial.X) = qEmbedT K ℓ (evalAtJ Polynomial.X)
+  change adjoinEmbedT K ℓ (evalAtJAdj Polynomial.X) = qEmbedT K ℓ (evalAtJ Polynomial.X)
   rw [show evalAtJAdj Polynomial.X = jAdj from Polynomial.eval₂_X _ _, evalAtJ_X]
   rfl
 
@@ -656,7 +663,7 @@ theorem phiIrreducible_of_splits
       = phiProd ℓ (conj ℓ ζ) := by
     rw [Polynomial.map_map, adjoinEmbedT_comp_evalAtJAdj]
     exact hsplit
-  show Irreducible data.toAdjoin
+  change Irreducible data.toAdjoin
   rw [toAdjoin_eq_map_evalAtJAdj]
   exact ((data.monic.map evalAtJAdj).irreducible_iff_irreducible_map_fraction_map).mp
     (irreducible_map_evalAtJAdj_of_splits ℓ ζ hpos hζ data hsplit')
@@ -678,9 +685,9 @@ private theorem swapBivar_eval₂ (Φ : Polynomial (Polynomial ℤ)) (x y : Laur
     rw [hh, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C, aeval_toRingHom_X]
   have hcomp : h.comp swapInner = (Polynomial.aeval (R := ℤ) y).toRingHom := by
     refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-    show h (swapInner Polynomial.X) = (Polynomial.aeval (R := ℤ) y).toRingHom Polynomial.X
+    change h (swapInner Polynomial.X) = (Polynomial.aeval (R := ℤ) y).toRingHom Polynomial.X
     rw [aeval_toRingHom_X]
-    show h ((Polynomial.aeval (R := ℤ)
+    change h ((Polynomial.aeval (R := ℤ)
       (Polynomial.X : Polynomial (Polynomial ℤ))) Polynomial.X) = y
     rw [Polynomial.aeval_X, hh, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X]
   calc (swapBivar Φ).eval₂ (Polynomial.aeval (R := ℤ) x).toRingHom y
@@ -696,7 +703,8 @@ theorem evalSymm_of_swapBivar_eq {Φ : Polynomial (Polynomial ℤ)} (h : swapBiv
 end SwapBivarEval
 
 namespace ModularPolynomialData
-p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero natDegree_eq Φ"
+p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero \
+  natDegree_eq Φ"
 p2m_open "ModularCurve.ModularPolynomialData"
 
 variable {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
@@ -715,7 +723,7 @@ private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irredu
     (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi N) :
     swapBivar data.Φ = data.Φ := by
   apply Polynomial.map_injective evalAtJGen evalAtJGen_injective
-  show (swapBivar data.Φ).map evalAtJGen = data.toAdjoin
+  change (swapBivar data.Φ).map evalAtJGen = data.toAdjoin
   have hdvd : data.toAdjoin ∣ (swapBivar data.Φ).map evalAtJGen := by
     rw [← data.minpoly_jqN_eq hirr]
     exact minpoly.dvd _ _ (data.aeval_jqN_transposeToAdjoin hswap)
@@ -742,7 +750,7 @@ private theorem swapBivar_C (c : Polynomial ℤ) :
   have hext : swapBivar.comp (Polynomial.C : Polynomial ℤ →+* Polynomial (Polynomial ℤ))
       = Polynomial.mapRingHom (Polynomial.C : ℤ →+* Polynomial ℤ) := by
     refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-    show swapBivar (Polynomial.C Polynomial.X)
+    change swapBivar (Polynomial.C Polynomial.X)
       = Polynomial.mapRingHom (Polynomial.C : ℤ →+* Polynomial ℤ) Polynomial.X
     rw [swapBivar_C_X, Polynomial.coe_mapRingHom, Polynomial.map_X]
   calc swapBivar (Polynomial.C c)
@@ -862,7 +870,8 @@ private theorem natDegree_le_of_evalAtJ_coeff_eq_zero {P : Polynomial ℤ} {D : 
 end Dictionary
 
 namespace ModularPolynomialData
-p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero natDegree_eq Φ"
+p2m_export "ModularCurve.ModularPolynomialData" "toAdjoin toAdjoin_monic monic eval_eq_zero \
+  natDegree_eq Φ"
 p2m_open "ModularCurve.ModularPolynomialData"
 
 variable {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
@@ -917,7 +926,7 @@ theorem eval_swap_eq_zero_of_splits (data : ModularPolynomialData ℓ)
   have hhom : (qEmbedT K ℓ).comp (evalAtJqN ℓ)
       = (qExpand K ℓ).comp ((qEmbedT K ℓ).comp evalAtJ) := by
     refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-    show qEmbedT K ℓ (evalAtJqN ℓ Polynomial.X)
+    change qEmbedT K ℓ (evalAtJqN ℓ Polynomial.X)
       = qExpand K ℓ (qEmbedT K ℓ (evalAtJ Polynomial.X))
     rw [evalAtJqN_X, evalAtJ_X, qEmbedT_jq, qEmbedT_jqN K ℓ ζ, conj_zero, qExpand_qExpand]
   rw [hhom]
@@ -943,8 +952,12 @@ end
 
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_splits.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_splits.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (data : ModularPolynomialData ℓ) (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ)) (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic) (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi ℓ) : EvalSymm data.Φ :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) ℓ) (data : ModularPolynomialData ℓ)
+    (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ))
+    (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic)
+    (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi ℓ) :
+    EvalSymm data.Φ :=
   ModularCurve.PhiGen.evalSymm_of_splits ℓ ζ ModularCurve.one_le_coeff_jq hζ data hsplit hTmonic hTdeg
 
 end S_ModularCurve_PhiGen_evalSymm_of_splits
@@ -957,6 +970,13 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.evalSymm_of_splits {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (data : ModularPolynomialData ℓ) (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ)) (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic) (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi ℓ) : EvalSymm data.Φ := _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_splits.solution ℓ ζ hζ data hsplit hTmonic hTdeg
+theorem ModularCurve.PhiGen.evalSymm_of_splits {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ)
+    [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ)
+    (data : ModularPolynomialData ℓ)
+    (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ))
+    (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic)
+    (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi ℓ) :
+    EvalSymm data.Φ :=
+  solution ℓ ζ hζ data hsplit hTmonic hTdeg
 
 end publicSection

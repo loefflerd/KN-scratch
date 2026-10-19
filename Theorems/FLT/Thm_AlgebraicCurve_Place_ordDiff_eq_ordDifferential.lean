@@ -87,7 +87,7 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
       ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F) := by
     rw [← hd, v.differentialCoeff_smul_dCoord]
   rw [AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff x v hπ₀ ω]
-  show _ = v.ord (v.differentialCoeff ω)
+  change _ = v.ord (v.differentialCoeff ω)
   conv_lhs => rw [hω]
   rw [AlgebraicCurve.Place.diffCoeff_smul_D_eq x v (by rw [hπ₀]; exact one_ne_zero)]
 
@@ -99,9 +99,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ordDiff_eq_ordDifferential {K F : Type*} [Field K] [Field F] [Algebra K F]
+theorem AlgebraicCurve.Place.ordDiff_eq_ordDifferential {K F : Type*} [Field K] [Field F]
+    [Algebra K F]
     [CharZero K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F]
     (v : AlgebraicCurve.Place K F) (ω : Ω[F⁄K]) :
-    v.ordDiff ω = v.ordDifferential ω := _root_.P2MW.S_AlgebraicCurve_Place_ordDiff_eq_ordDifferential.solution v ω
+    v.ordDiff ω = v.ordDifferential ω :=
+  solution v ω
 
 end publicSection

@@ -100,7 +100,8 @@ theorem IsRat.pow {q : PowerSeries ℂ} (h : IsRat q) (n : ℕ) : IsRat (q ^ n) 
   exact ⟨p ^ n, by rw [map_pow]⟩
 
 theorem isRat_of_int {q : PowerSeries ℂ} (P : PowerSeries ℤ) (h : P.map (Int.castRingHom ℂ) = q) :
-    IsRat q := fun n => ⟨((PowerSeries.coeff n P : ℤ) : ℚ), by rw [← h, PowerSeries.coeff_map]; simp⟩
+    IsRat q := fun n => ⟨((PowerSeries.coeff n P : ℤ) : ℚ), by
+      rw [← h, PowerSeries.coeff_map]; simp⟩
 
 theorem isBdd_iff {q : PowerSeries ℂ} :
     IsBdd q ↔ ∃ D : ℤ, D ≠ 0 ∧ ∀ n, ∃ z : ℤ, (D : ℂ) * q.coeff n = (z : ℂ) := by
@@ -117,7 +118,8 @@ theorem isBdd_iff {q : PowerSeries ℂ} :
     rw [PowerSeries.coeff_map, PowerSeries.coeff_smul, PowerSeries.coeff_mk, smul_eq_mul, hz n]
     simp
 
-theorem IsBdd.of_mul_eq {q p : PowerSeries ℂ} {U : PowerSeries ℤ} (hU : PowerSeries.constantCoeff U = 1)
+theorem IsBdd.of_mul_eq {q p : PowerSeries ℂ} {U : PowerSeries ℤ}
+    (hU : PowerSeries.constantCoeff U = 1)
     (hp : IsBdd p) (h : q * U.map (Int.castRingHom ℂ) = p) : IsBdd q := by
   obtain ⟨D, P, hD, hP⟩ := hp
   have hUunit : IsUnit U := by
@@ -160,19 +162,22 @@ theorem isBoundedAtImInfty_slash [NeZero M] (f : ModularForm Γ₁(M) k) (γ : S
   rw [Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z]
   exact isCusp_SL2Z_iff'.mpr ⟨γ, rfl⟩
 
-private theorem _root_.X1BoundedDenominators.Gamma1_le_of_dvd {M' : ℕ} (h : M ∣ M') : Gamma1 M' ≤ Gamma1 M := ModularCurve.Gamma1_le_of_dvd h
+private theorem _root_.X1BoundedDenominators.Gamma1_le_of_dvd {M' : ℕ} (h : M ∣ M') :
+    Gamma1 M' ≤ Gamma1 M := ModularCurve.Gamma1_le_of_dvd h
 
 p2m_export "X1BoundedDenominators" "Gamma1_le_of_dvd"
 
 def res {M' : ℕ} (h : M ∣ M') (f : ModularForm Γ₁(M) k) : ModularForm Γ₁(M') k :=
   restrictForm (Subgroup.map_mono (Gamma1_le_of_dvd h)) f
 
-@[scoped simp] theorem coe_res {M' : ℕ} (h : M ∣ M') (f : ModularForm Γ₁(M) k) : (⇑(res h f) : ℍ → ℂ) = f := rfl
+@[scoped simp] theorem coe_res {M' : ℕ} (h : M ∣ M') (f : ModularForm Γ₁(M) k) :
+    (⇑(res h f) : ℍ → ℂ) = f := rfl
 
 def resSL (M : ℕ) {k : ℤ} (f : ModularForm 𝒮ℒ k) : ModularForm Γ₁(M) k :=
   restrictForm (Subgroup.map_le_range _ _) f
 
-@[scoped simp] theorem coe_resSL (M : ℕ) {k : ℤ} (f : ModularForm 𝒮ℒ k) : (⇑(resSL M f) : ℍ → ℂ) = f := rfl
+@[scoped simp] theorem coe_resSL (M : ℕ) {k : ℤ} (f : ModularForm 𝒮ℒ k) :
+    (⇑(resSL M f) : ℍ → ℂ) = f := rfl
 
 end Level
 
@@ -267,7 +272,8 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
   have hHF_coe : (⇑HF : ℍ → ℂ) = H := by rw [hHF, coe_mul, coe_resSL]
   have hmdH : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) H := f.holo'.mul E.holo'
   have hperH : Periodic (H ∘ ofComplex) 1 := by
-    rw [← hHF_coe]; exact SlashInvariantFormClass.periodic_comp_ofComplex HF (one_mem_strictPeriods M)
+    rw [←
+      hHF_coe]; exact SlashInvariantFormClass.periodic_comp_ofComplex HF (one_mem_strictPeriods M)
   have hbdH : IsBoundedAtImInfty H := by
     have := (isBoundedAtImInfty_slash f 1).mul (ModularFormClass.bdd_at_infty E)
     simpa only [SlashAction.slash_one, IsBoundedAtImInfty] using this
@@ -307,7 +313,8 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
   have hrat1 : IsRat (qExpansion 1 H) := by
     rw [hH]
     have : qExpansion 1 ((⇑f : ℍ → ℂ) * ⇑E) = qExpansion 1 ⇑f * qExpansion 1 ⇑(resSL M E) := by
-      rw [← coe_resSL M E, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods M) f (resSL M E)]
+      rw [← coe_resSL M E, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods M) f (resSL
+        M E)]
     rw [this]
     exact hf.mul hE
   have hratM : ∀ n, ∃ r : ℚ, (qExpansion M (G * Δ ^ m)).coeff n = (r : ℂ) := by
@@ -380,7 +387,8 @@ theorem qExpansion_Eaux (a b : ℕ) :
     qExpansion 1 (⇑(Eaux a b)) = (P4 ^ a * P6 ^ b).map (Int.castRingHom ℂ) := by
   rw [Eaux, coe_mul, ModularForm.qExpansion_mul_coe one_pos one_mem_strictPeriods_SL,
     ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL,
-    ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL, map_mul, map_pow, map_pow, map_P4, map_P6]
+    ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL, map_mul, map_pow, map_pow, map_P4,
+    map_P6]
 
 theorem isRat_Eaux (a b : ℕ) : IsRat (qExpansion 1 (⇑(Eaux a b))) :=
   isRat_of_int _ (qExpansion_Eaux a b).symm
@@ -464,8 +472,10 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
       ring
     have hS : Summable (fun n : ℕ => ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n) := by
       apply Summable.of_norm_bounded (g := fun n : ℕ => (6 * n + 1) * ‖Periodic.qParam 1 z‖ ^ n)
-      · have h1 := summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by simpa using hq)
-        have h2 := summable_geometric_of_norm_lt_one (R := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
+      · have h1 :=
+          summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by simpa using hq)
+        have h2 :=
+          summable_geometric_of_norm_lt_one (R := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
         have := (h1.mul_left 6).add h2
         refine this.congr fun n => ?_
         simp only [pow_one]; ring
@@ -493,7 +503,8 @@ theorem isBdd_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat (qExp
   set F : ModularForm Γ₁(3 * M) (k + 1) := f3.mul E3 with hF
   have hprod : qExpansion 1 (F : ℍ → ℂ) = qExpansion 1 (f : ℍ → ℂ) *
       EisensteinWeightOne.e1Chi3.map (Int.castRingHom ℂ) := by
-    rw [hF, coe_mul, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods (3 * M)) f3 E3, hE]
+    rw [hF, coe_mul, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods (3 * M)) f3 E3,
+      hE]
     rfl
   have hFrat : IsRat (qExpansion 1 F) := by
     rw [hprod]
@@ -504,7 +515,8 @@ theorem isBdd_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat (qExp
 
 end Odd
 
-theorem isBdd_of_isRat {M : ℕ} [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k) (hf : IsRat (qExpansion 1 f)) :
+theorem isBdd_of_isRat {M : ℕ} [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k)
+    (hf : IsRat (qExpansion 1 f)) :
     IsBdd (qExpansion 1 f) := by
   rcases Int.even_or_odd k with hk | hk
   · exact isBdd_of_even hk f hf
@@ -541,6 +553,7 @@ theorem ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion (M : ℕ) 
     (f : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)
     (hf : ∀ n : ℕ, ∃ r : ℚ, (UpperHalfPlane.qExpansion 1 f).coeff n = (r : ℂ)) :
     ∃ (D : ℤ) (p : PowerSeries ℤ), D ≠ 0 ∧
-      ModularCurve.IsIntegralQExp ((D : ℂ) • (⇑f : UpperHalfPlane → ℂ)) p := _root_.P2MW.S_ModularCurve_exists_isIntegralQExp_smul_of_ratCast_qExpansion.solution M f hf
+      ModularCurve.IsIntegralQExp ((D : ℂ) • (⇑f : UpperHalfPlane → ℂ)) p :=
+  solution M f hf
 
 end publicSection

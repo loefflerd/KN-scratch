@@ -604,7 +604,8 @@ theorem solution (K F K' F' : Type*)
     have ha' : Psi F' B P w * algebraMap F F' (π : F) = 1 := by
       have := congrArg Subtype.val ha
       simpa [hw] using this
-    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F)) := by
+    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F)) :=
+      by
       let OK : Submodule K F :=
         { carrier := P.toValuationSubring
           add_mem' := fun ha hb => add_mem ha hb
@@ -693,6 +694,7 @@ theorem AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtensio
       P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring ∧
       (∀ f : F, P'.ord (algebraMap F F' f) = P.ord f) ∧
       ∀ Q' : Place K' F',
-        Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring → Q' = P' := _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension.solution K F K' F' hfg hfg' hgen P
+        Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring → Q' = P' :=
+  solution K F K' F' hfg hfg' hgen P
 
 end publicSection

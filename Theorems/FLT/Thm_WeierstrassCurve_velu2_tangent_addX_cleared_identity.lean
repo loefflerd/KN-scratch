@@ -131,6 +131,7 @@ theorem WeierstrassCurve.velu2_tangent_addX_cleared_identity
               * ((3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) ^ 2
                   + W.a₁ * (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y)
                     * (2 * y + W.a₁ * x + W.a₃)
-                  - (W.a₂ + 2 * x + x₀) * (2 * y + W.a₁ * x + W.a₃) ^ 2)) := _root_.P2MW.S_WeierstrassCurve_velu2_tangent_addX_cleared_identity.solution hP hQ hord
+                  - (W.a₂ + 2 * x + x₀) * (2 * y + W.a₁ * x + W.a₃) ^ 2)) :=
+  solution hP hQ hord
 
 end publicSection

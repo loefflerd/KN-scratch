@@ -113,7 +113,8 @@ theorem eisensteinG_slash_apply (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) (γ :
   congr 1
   exact (congrSetEquiv a γ).tsum_eq (fun v => eisSummand k v z)
 
-noncomputable def eisensteinGSIF (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) : SlashInvariantForm Γ(N) k where
+noncomputable def eisensteinGSIF (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
+    SlashInvariantForm Γ(N) k where
   toFun := EisensteinSeries.eisensteinG N k a
   slash_action_eq' A hA := by
     obtain ⟨A, (hA : A ∈ Γ(N)), rfl⟩ := hA
@@ -188,7 +189,8 @@ theorem isBoundedAtImInfty_eisensteinGSIF_slash [NeZero N] (a : Fin 2 → ZMod N
       summand_bound_of_mem_verticalStrip (lt_trans two_pos hk').le x two_pos
       (verticalStrip_anti_right N hz hn)
 
-noncomputable def eisensteinGMF [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N) : ModularForm Γ(N) k where
+noncomputable def eisensteinGMF [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
+    ModularForm Γ(N) k where
   toFun := eisensteinGSIF N k a
   slash_action_eq' := (eisensteinGSIF N k a).slash_action_eq'
   holo' := eisensteinGSIF_mdifferentiable hk a
@@ -223,6 +225,7 @@ theorem EisensteinSeries.exists_modularForm_coe_eq_eisensteinG
     (N : ℕ) [NeZero N] (k : ℤ) (hk : 3 ≤ k) (a : Fin 2 → ZMod N) :
     (∃ F : ModularForm Γ(N) k, ⇑F = EisensteinSeries.eisensteinG N k a) ∧
       ∀ γ : SL(2, ℤ), EisensteinSeries.eisensteinG N k a ∣[k] γ =
-        EisensteinSeries.eisensteinG N k (a ᵥ* γ) := _root_.P2MW.S_EisensteinSeries_exists_modularForm_coe_eq_eisensteinG.solution N k hk a
+        EisensteinSeries.eisensteinG N k (a ᵥ* γ) :=
+  solution N k hk a
 
 end publicSection

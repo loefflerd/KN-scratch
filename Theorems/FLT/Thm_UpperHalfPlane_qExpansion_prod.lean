@@ -65,7 +65,9 @@ open Complex Filter Function UpperHalfPlane ModularForm SlashInvariantFormClass 
 
 open scoped Real MatrixGroups Topology Manifold
 
-theorem solution {h : ℝ} {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (hF : ∀ i ∈ s, AnalyticAt ℂ (cuspFunction h (F i)) 0) : qExpansion h (∏ i ∈ s, F i) = ∏ i ∈ s, qExpansion h (F i) := by
+theorem solution {h : ℝ} {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ}
+    (hF : ∀ i ∈ s, AnalyticAt ℂ (cuspFunction h (F i)) 0) :
+    qExpansion h (∏ i ∈ s, F i) = ∏ i ∈ s, qExpansion h (F i) := by
   suffices H : qExpansion h (∏ i ∈ s, F i) = ∏ i ∈ s, qExpansion h (F i) ∧
       AnalyticAt ℂ (cuspFunction h (∏ i ∈ s, F i)) 0 from H.1
   induction s using Finset.cons_induction with
@@ -100,6 +102,9 @@ public section publicSection
 
 open UpperHalfPlane
 open scoped Manifold
-theorem UpperHalfPlane.qExpansion_prod {h : ℝ} {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (hF : ∀ i ∈ s, AnalyticAt ℂ (cuspFunction h (F i)) 0) : qExpansion h (∏ i ∈ s, F i) = ∏ i ∈ s, qExpansion h (F i) := _root_.P2MW.S_UpperHalfPlane_qExpansion_prod.solution s hF
+theorem UpperHalfPlane.qExpansion_prod {h : ℝ} {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ}
+    (hF : ∀ i ∈ s, AnalyticAt ℂ (cuspFunction h (F i)) 0) :
+    qExpansion h (∏ i ∈ s, F i) = ∏ i ∈ s, qExpansion h (F i) :=
+  solution s hF
 
 end publicSection

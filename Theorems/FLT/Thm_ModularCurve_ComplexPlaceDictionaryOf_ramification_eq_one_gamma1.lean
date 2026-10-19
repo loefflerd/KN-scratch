@@ -81,7 +81,12 @@ open UpperHalfPlane ModularForm Complex SlashInvariantForm Filter ModularGroup
 open scoped MatrixGroups Real Topology ModularForm Manifold Modular
 
 namespace ModularCurve
-p2m_export "ModularCurve" "mem_intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jqModC map_jqModC realizeOf ComplexPlaceDictionaryOf realizeOf_eq_div jqModC_eq_qExpansion_E4_cube_div_discriminant meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 jqModC_mem_intFormRatiosC"
+p2m_export "ModularCurve" "mem_intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset jNum \
+  constantCoeff_jNum ofPowerSeries_coeff_of_neg algebraMap_laurentSeries_eq_single coeffEmb \
+  laurentBaseChange coeffEmb_mem_laurentBaseChange jqModC map_jqModC realizeOf \
+  ComplexPlaceDictionaryOf realizeOf_eq_div jqModC_eq_qExpansion_E4_cube_div_discriminant \
+  meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two \
+  ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 jqModC_mem_intFormRatiosC"
 namespace RamOne
 p2m_open "ModularCurve"
 
@@ -376,13 +381,15 @@ theorem order_jqModC' (κ : Type) [Field κ] : (jqModC κ).order = -1 := by
     intro h
     have := congrArg (fun x : LaurentSeries κ => x.coeff 0) h
     simp only [HahnSeries.coeff_zero] at this
-    rw [show (0:ℤ) = ((0:ℕ):ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map,
+    rw [show (0:ℤ) = ((0:ℕ):ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
+      PowerSeries.coeff_map,
       PowerSeries.coeff_zero_eq_constantCoeff, constantCoeff_jNum] at this
     simp at this
   have hu0 : (HahnSeries.ofPowerSeries ℤ κ (jNum.map (Int.castRingHom κ))).order = 0 := by
     apply le_antisymm
     · apply HahnSeries.order_le_of_coeff_ne_zero
-      rw [show (0:ℤ) = ((0:ℕ):ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map,
+      rw [show (0:ℤ) = ((0:ℕ):ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
+        PowerSeries.coeff_map,
         PowerSeries.coeff_zero_eq_constantCoeff, constantCoeff_jNum]
       simp
     · rw [HahnSeries.le_order_iff_forall hu]
@@ -399,12 +406,13 @@ omit [NeZero M] in
 theorem exists_coe_eq_jqModC :
     ∃ y : laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)),
       (y : LaurentSeries ℂ) = jqModC ℂ := by
-  obtain ⟨k, A, B, pA, pB, hA, hB, hB0, hjq⟩ := ModularCurve.jqModC_mem_intFormRatiosC ℚ (CongruenceSubgroup.Gamma1 M)
+  obtain ⟨k, A, B, pA, pB, hA, hB, hB0, hjq⟩ :=
+    ModularCurve.jqModC_mem_intFormRatiosC ℚ (CongruenceSubgroup.Gamma1 M)
   have hmem : jqModC ℚ ∈ qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M) := by
     rw [hjq]
     exact intFormRatiosC_subset ℚ _ (mem_intFormRatiosC A B hA hB hB0)
   refine ⟨⟨coeffEmb ℂ (jqModC ℚ), coeffEmb_mem_laurentBaseChange ℂ hmem⟩, ?_⟩
-  show coeffEmb ℂ (jqModC ℚ) = jqModC ℂ
+  change coeffEmb ℂ (jqModC ℚ) = jqModC ℂ
   rw [coeffEmb]
   exact map_jqModC (algebraMap ℚ ℂ)
 
@@ -419,7 +427,8 @@ theorem solution
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
     (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
-    (D : ModularCurve.ComplexPlaceDictionaryOf (CongruenceSubgroup.Gamma1 M) F₀) (τ : UpperHalfPlane) :
+    (D : ModularCurve.ComplexPlaceDictionaryOf (CongruenceSubgroup.Gamma1 M) F₀)
+    (τ : UpperHalfPlane) :
     D.ramification τ = 1 := by
   classical
   subst hF
@@ -429,8 +438,10 @@ theorem solution
   set x := y - algebraMap ℂ _ c with hxdef
   have hxcoe : (x : LaurentSeries ℂ) = jqModC ℂ - HahnSeries.C c := by
     rw [hxdef, AddSubgroupClass.coe_sub, hy,
-      show ((algebraMap ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) c :
-          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) =
+      show ((algebraMap ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+      M))) c :
+          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+      LaurentSeries ℂ) =
         algebraMap ℂ (LaurentSeries ℂ) c from rfl,
       algebraMap_laurentSeries_eq_single, HahnSeries.C_apply]
   have hx0 : x ≠ 0 := by
@@ -453,7 +464,9 @@ theorem solution
           - (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ) := by
       funext z
       rw [hxcoe, realizeOf_jqModC_sub]
-    rw [hfun, ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ] at h
+    rw [hfun,
+      ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
+      τ] at h
     exact_mod_cast h.symm
   have he : 0 < D.ramification τ := D.ramification_pos τ
   rcases orbit_trichotomy τ with ⟨γ, rfl⟩ | ⟨γ, rfl⟩ | hgen
@@ -468,7 +481,8 @@ theorem solution
     have hpos : 0 < (D.pt (γ • UpperHalfPlane.I)).ord (y - 1728) :=
       (mul_pos_iff_of_pos_left (show (0 : ℤ) < D.ramification (γ • UpperHalfPlane.I) by exact_mod_cast he)).mp
         (by rw [hkey]; norm_num)
-    have h2 := (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy).2
+    have h2 :=
+      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy).2
       _ hpos
     rw [h2] at hkey
     norm_num at hkey
@@ -482,7 +496,8 @@ theorem solution
     have hpos : 0 < (D.pt (γ • ρ)).ord y :=
       (mul_pos_iff_of_pos_left (show (0 : ℤ) < D.ramification (γ • ρ) by exact_mod_cast he)).mp
         (by rw [hkey]; norm_num)
-    have h3 := (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy).1
+    have h3 :=
+      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy).1
       _ hpos
     rw [h3] at hkey
     norm_num at hkey
@@ -505,7 +520,9 @@ theorem ModularCurve.ComplexPlaceDictionaryOf.ramification_eq_one_gamma1
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
     (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
-    (D : ModularCurve.ComplexPlaceDictionaryOf (CongruenceSubgroup.Gamma1 M) F₀) (τ : UpperHalfPlane) :
-    D.ramification τ = 1 := _root_.P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.solution M hM F₀ hF D τ
+    (D : ModularCurve.ComplexPlaceDictionaryOf (CongruenceSubgroup.Gamma1 M) F₀)
+    (τ : UpperHalfPlane) :
+    D.ramification τ = 1 :=
+  solution M hM F₀ hF D τ
 
 end publicSection

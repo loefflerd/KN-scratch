@@ -81,7 +81,8 @@ variable (n : ℕ)
 theorem isHomogeneous_line (τ : ℂ) : (C τ * X 0 + X 1 : MvPolynomial (Fin 2) ℂ).IsHomogeneous 1 :=
   ((isHomogeneous_X ℂ 0).C_mul τ).add (isHomogeneous_X ℂ 1)
 
-theorem isHomogeneous_linePow (τ : ℂ) : ((C τ * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n).IsHomogeneous n := by
+theorem isHomogeneous_linePow (τ : ℂ) :
+    ((C τ * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n).IsHomogeneous n := by
   simpa using (isHomogeneous_line τ).pow n
 
 def linePow (τ : ℂ) : ↥(BinaryForm ℂ n) :=
@@ -90,7 +91,8 @@ def linePow (τ : ℂ) : ↥(BinaryForm ℂ n) :=
 @[simp] theorem coe_linePow (τ : ℂ) :
     ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = (C τ * X 0 + X 1) ^ n := rfl
 
-def jFactor (g : SL(2, ℤ)) (τ : ℍ) : ℂ := ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
+def jFactor (g : SL(2, ℤ)) (τ : ℍ) :
+    ℂ := ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
 
 theorem jFactor_eq_denom (g : SL(2, ℤ)) (τ : ℍ) :
     jFactor g τ = denom (Matrix.SpecialLinearGroup.mapGL ℝ g) (τ : ℂ) := by
@@ -118,7 +120,8 @@ theorem binarySubst_line (M : Matrix (Fin 2) (Fin 2) ℤ) (τ : ℂ) :
 theorem binaryFormRepSL_linePow (g : SL(2, ℤ)) (τ : ℍ) :
     binaryFormRepSL ℂ n g (linePow n (τ : ℂ)) = (jFactor g τ) ^ n • linePow n ((g • τ : ℍ) : ℂ) := by
   apply Subtype.ext
-  rw [binaryFormRepSL_apply_coe, Submodule.coe_smul, coe_linePow, coe_linePow, map_pow, binarySubst_line,
+  rw [binaryFormRepSL_apply_coe, Submodule.coe_smul, coe_linePow, coe_linePow, map_pow,
+    binarySubst_line,
     smul_eq_C_mul, map_pow, ← mul_pow]
   congr 1
   rw [mul_add, ← mul_assoc, ← map_mul, mul_comm (jFactor g τ), coe_smul_mul_jFactor]
@@ -149,10 +152,12 @@ theorem apply_smul (hF : IsEquivariantPrimitiveWith ρ F) (γ : Γ) (τ : ℍ) :
     F ((γ : SL(2, ℤ)) • τ) = hF.cocycle γ + ρ γ (F τ) := by
   rw [← hF.sub_eq_cocycle γ τ, sub_add_cancel]
 
-theorem cocycle_mem_coeffCocycles (hF : IsEquivariantPrimitiveWith ρ F) : hF.cocycle ∈ coeffCocycles ρ := by
+theorem cocycle_mem_coeffCocycles (hF : IsEquivariantPrimitiveWith ρ F) :
+    hF.cocycle ∈ coeffCocycles ρ := by
   intro γ δ
   have h := hF.apply_smul (γ * δ) I
-  rw [Subgroup.coe_mul, mul_smul, hF.apply_smul γ, hF.apply_smul δ, map_add, map_mul, Module.End.mul_apply] at h
+  rw [Subgroup.coe_mul, mul_smul, hF.apply_smul γ, hF.apply_smul δ, map_add, map_mul,
+    Module.End.mul_apply] at h
   have := congrArg (fun v => v - ρ γ (ρ δ (F I))) h
   simp only [add_sub_cancel_right] at this
   rw [← this]
@@ -174,7 +179,6 @@ def IsEichlerIntegral (f : ℍ → ℂ) (F : ℍ → ↥(BinaryForm ℂ n)) : Pr
 variable (N : ℕ)
 
 open Classical in
-
 def eichlerShimuraMap (f : ℍ → ℂ) :
     coeffH1par ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) :=
   if h : ∃ F : ℍ → ↥(BinaryForm ℂ n), IsEichlerIntegral n f F ∧

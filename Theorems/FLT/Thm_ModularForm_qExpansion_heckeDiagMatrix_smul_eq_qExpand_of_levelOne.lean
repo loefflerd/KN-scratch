@@ -177,6 +177,9 @@ public section publicSection
 
 open UpperHalfPlane
 open scoped MatrixGroups
-theorem ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne (N : ℕ) [NeZero N] {k : ℤ} (F : ModularForm 𝒮ℒ k) : ((qExpansion 1 (fun τ : ℍ => (F : ℍ → ℂ) (ModularForm.heckeDiagMatrix N • τ)) : PowerSeries ℂ) : LaurentSeries ℂ) = ModularCurve.qExpand ℂ N ((qExpansion 1 (F : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := _root_.P2MW.S_ModularForm_qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne.solution N F
+theorem ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne (N : ℕ) [NeZero N]
+    {k : ℤ} (F : ModularForm 𝒮ℒ k) :
+    ((qExpansion 1 (fun τ : ℍ => (F : ℍ → ℂ) (ModularForm.heckeDiagMatrix N • τ)) : PowerSeries ℂ) : LaurentSeries ℂ) = ModularCurve.qExpand ℂ N ((qExpansion 1 (F : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+  solution N F
 
 end publicSection

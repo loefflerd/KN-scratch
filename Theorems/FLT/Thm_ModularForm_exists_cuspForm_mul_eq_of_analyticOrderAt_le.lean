@@ -118,7 +118,8 @@ theorem analyticAt_of_mdiff {P : ℍ → ℂ} (hP : MDifferentiable 𝓘(ℂ) �
 
 theorem vanish {P : ℍ → ℂ} (hP : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) P) {W : Set ℍ} (hW : IsOpen W) {τ₀ : ℍ}
     (hτ₀ : τ₀ ∈ W) (h0 : ∀ τ ∈ W, P τ = 0) : ∀ τ, P τ = 0 := by
-  have hPa : AnalyticOnNhd ℂ (P ∘ ofComplex) {z : ℂ | 0 < z.im} := fun z hz => analyticAt_of_mdiff hP hz
+  have hPa : AnalyticOnNhd ℂ (P ∘ ofComplex) {z : ℂ | 0 < z.im} :=
+    fun z hz => analyticAt_of_mdiff hP hz
   have hconn : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected
   have hW' : IsOpen (((↑) : ℍ → ℂ) '' W) := isOpenEmbedding_coe.isOpenMap _ hW
   have hnhds : (P ∘ ofComplex) =ᶠ[𝓝 (τ₀ : ℂ)] 0 := by
@@ -133,7 +134,8 @@ theorem vanish {P : ℍ → ℂ} (hP : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) P) {W
 end ANa
 
 theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
-    (Φ : ModularForm (CongruenceSubgroup.Gamma0 N) a) (Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) b) (hΨ : Ψ ≠ 0)
+    (Φ : ModularForm (CongruenceSubgroup.Gamma0 N) a)
+    (Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) b) (hΨ : Ψ ≠ 0)
     (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ))
     (hcusp : ∀ (A : Matrix.SpecialLinearGroup (Fin 2) ℤ) (ε : ℝ), 0 < ε →
@@ -145,8 +147,10 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
   set Ψ' : ℂ → ℂ := (Ψ : ℍ → ℂ) ∘ ofComplex with hΨ'
   have hUo : IsOpen {z : ℂ | 0 < z.im} := isOpen_lt continuous_const Complex.continuous_im
   have hUconn : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected
-  have hΦa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Φ' z := fun z hz => ANa.analyticAt_of_mdiff Φ.holo' hz
-  have hΨa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Ψ' z := fun z hz => ANa.analyticAt_of_mdiff Ψ.holo' hz
+  have hΦa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Φ' z :=
+    fun z hz => ANa.analyticAt_of_mdiff Φ.holo' hz
+  have hΨa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Ψ' z :=
+    fun z hz => ANa.analyticAt_of_mdiff Ψ.holo' hz
   have hΨ0 : ∀ z ∈ {z : ℂ | 0 < z.im}, ¬ (∀ᶠ w in 𝓝 z, Ψ' w = 0) := by
     intro z hz hloc
     apply hΨ
@@ -197,7 +201,8 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
       by_contra hall
       exact hne (sub_eq_zero.mp (funext fun τ => not_not.mp (not_exists.mp hall τ)))
     obtain ⟨τ₀, hτ₀⟩ := hex
-    have hWo : IsOpen {τ : ℍ | (f ∣[c] γ₀ - f) τ ≠ 0} := isOpen_ne_fun hDm.continuous continuous_const
+    have hWo : IsOpen {τ : ℍ | (f ∣[c] γ₀ - f) τ ≠ 0} :=
+      isOpen_ne_fun hDm.continuous continuous_const
     have hΨW : ∀ τ ∈ {τ : ℍ | (f ∣[c] γ₀ - f) τ ≠ 0}, Ψ τ = 0 := fun τ hτ =>
       (mul_eq_zero.mp (hD τ)).resolve_left hτ
     have hall := ANa.vanish Ψ.holo' hWo hτ₀ hΨW
@@ -237,7 +242,8 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
     rfl
   refine ⟨{ toFun := f, slash_action_eq' := hf_slash, holo' := hf_mdiff,
             zero_at_cusps' := fun {cc} hc => ?_ }, hfΨ⟩
-  have hc' : IsCusp cc (Matrix.SpecialLinearGroup.mapGL ℝ).range := hc.mono (Subgroup.map_le_range _ _)
+  have hc' : IsCusp cc (Matrix.SpecialLinearGroup.mapGL ℝ).range :=
+    hc.mono (Subgroup.map_le_range _ _)
   exact (OnePoint.isZeroAt_iff_forall_SL2Z hc').mpr fun γ _ => hcusp' γ
 
 end
@@ -251,13 +257,16 @@ public section publicSection
 
 
 open scoped MatrixGroups ModularForm
-theorem ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
-    (Φ : ModularForm (CongruenceSubgroup.Gamma0 N) a) (Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) b) (hΨ : Ψ ≠ 0)
+theorem ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le (N : ℕ) {a b : ℤ} (c : ℤ)
+    (habc : b + c = a)
+    (Φ : ModularForm (CongruenceSubgroup.Gamma0 N) a)
+    (Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) b) (hΨ : Ψ ≠ 0)
     (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ))
     (hcusp : ∀ (A : Matrix.SpecialLinearGroup (Fin 2) ℤ) (ε : ℝ), 0 < ε →
       ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
         ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
-    ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ := _root_.P2MW.S_ModularForm_exists_cuspForm_mul_eq_of_analyticOrderAt_le.solution N c habc Φ Ψ hΨ hord hcusp
+    ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ :=
+  solution N c habc Φ Ψ hΨ hord hcusp
 
 end publicSection

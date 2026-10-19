@@ -419,7 +419,8 @@ theorem sum_ne_of_not_mem_span
     rw [Set.range_comp, Submodule.span_image, bM.span_eq, Submodule.map_top,
       Submodule.range_subtype]
   have hyv : y ∉ Submodule.span K (Set.range v) := by rwa [hspan]
-  have hLI := AlgebraicCurve.linearIndependent_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen
+  have hLI :=
+    AlgebraicCurve.linearIndependent_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen
     (hv.option hyv)
   have ho : ∀ j, o j ∈ M := fun j => Submodule.subset_span ⟨j, rfl⟩
   let R : ι → (Module.Basis.ofVectorSpaceIndex K M →₀ K) := fun j => bM.repr ⟨o j, ho j⟩
@@ -596,7 +597,8 @@ theorem solution (K F K' F' : Type*)
     have ha' : Psi F' B P w * algebraMap F F' (π : F) = 1 := by
       have := congrArg Subtype.val ha
       simpa [hw] using this
-    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F)) := by
+    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F)) :=
+      by
       let OK : Submodule K F :=
         { carrier := P.toValuationSubring
           add_mem' := fun ha hb => add_mem ha hb
@@ -687,6 +689,7 @@ theorem AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtensio
       P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring ∧
       (∀ f : F, P'.ord (algebraMap F F' f) = P.ord f) ∧
       ∀ Q' : Place K' F',
-        Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring → Q' = P' := _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hfg' hgen P
+        Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring → Q' = P' :=
+  solution K F K' F' hfg hfg' hgen P
 
 end publicSection

@@ -228,7 +228,7 @@ lemma exists_reduce (v : Fin 2 → ℤ) (hv : ¬ ∀ i, (N : ℤ) ∣ v i) :
   funext i
   rw [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   fin_cases i
-  · show v 0 = v 0 % N + N * (v 0 / N)
+  · change v 0 = v 0 % N + N * (v 0 / N)
     linarith [Int.mul_ediv_add_emod (v 0) N]
   · simp
 
@@ -568,7 +568,7 @@ theorem hasSum_eisensteinG1 (b : ℤ) (hb : ¬ (N : ℤ) ∣ b) :
   have htot := htail'.zero_add
   have hf0 : f 0 = π / N * Complex.cot (π * b / N) := by simp [hf]
   rw [hf0] at htot
-  show HasSum f (eisensteinG1 N ![0, b] τ)
+  change HasSum f (eisensteinG1 N ![0, b] τ)
   rw [hg]
   convert htot using 1
   rw [show π * ((b : ℂ) / N) = π * b / N by ring]
@@ -601,7 +601,8 @@ public section publicSection
 
 
 open scoped Real
-theorem EisensteinSeries.isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1 (N : ℕ) [NeZero N] :
+theorem EisensteinSeries.isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1 (N : ℕ) [NeZero N]
+    :
     (∀ v : Fin 2 → ℤ, (¬ ∀ i, (N : ℤ) ∣ v i) →
         UpperHalfPlane.IsBoundedAtImInfty (EisensteinSeries.eisensteinG1 N v)) ∧
     (∀ (b : ℤ), ¬ (N : ℤ) ∣ b → ∀ τ : UpperHalfPlane,
@@ -610,6 +611,7 @@ theorem EisensteinSeries.isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1
               (Complex.exp (2 * π * Complex.I * b * k / N) -
                 Complex.exp (-(2 * π * Complex.I * b * k / N)))) *
             Complex.exp (2 * π * Complex.I * τ) ^ n)
-          (EisensteinSeries.eisensteinG1 N ![0, b] τ)) := _root_.P2MW.S_EisensteinSeries_isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1.solution N
+          (EisensteinSeries.eisensteinG1 N ![0, b] τ)) :=
+  solution N
 
 end publicSection

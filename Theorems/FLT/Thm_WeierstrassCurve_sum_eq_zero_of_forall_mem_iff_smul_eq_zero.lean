@@ -59,8 +59,9 @@ namespace P2MW.S_WeierstrassCurve_sum_eq_zero_of_forall_mem_iff_smul_eq_zero
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem sum_eq_zero_of_two_torsion_card_four {M : Type*} [AddCommGroup M] [DecidableEq M]
+theorem sum_eq_zero_of_two_torsion_card_four {M : Type*} [AddCommGroup M]
     (T : Finset M) (hT : ∀ P, P ∈ T ↔ 2 • P = 0) (hcard : T.card = 4) : ∑ P ∈ T, P = 0 := by
+  classical
   obtain ⟨A, hA, hA0⟩ : ∃ A ∈ T, A ≠ 0 := by
     by_contra! hall
     have hsub : T ⊆ {0} := fun P hP => Finset.mem_singleton.mpr (hall P hP)
@@ -106,10 +107,12 @@ theorem sum_eq_zero_of_two_torsion_card_four {M : Type*} [AddCommGroup M] [Decid
   · simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
     exact ⟨hA0.symm, hB0.symm, hAB0.symm⟩
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hnK : (n : K) ≠ 0) (s : Finset (W⁄K).Point) (hs : ∀ P, P ∈ s ↔ n • P = 0) : ∑ P ∈ s, P = 0 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K]
+    (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hnK : (n : K) ≠ 0) (s : Finset (W⁄K).Point)
+    (hs : ∀ P, P ∈ s ↔ n • P = 0) :
+    ∑ P ∈ s, P = 0 := by
   classical
   rw [← Finset.sum_filter_add_sum_filter_not s (fun P => 2 • P = 0)]
-
   have hrest : ∑ P ∈ s.filter (fun P => ¬2 • P = 0), P = 0 := by
     refine Finset.sum_involution (fun P _ => -P) (fun P _ => add_neg_cancel P)
       (fun P hP _ => ?_) (fun P hP => ?_) (fun P _ => neg_neg P)
@@ -162,6 +165,10 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.sum_eq_zero_of_forall_mem_iff_smul_eq_zero {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hnK : (n : K) ≠ 0) (s : Finset (W⁄K).Point) (hs : ∀ P, P ∈ s ↔ n • P = 0) : ∑ P ∈ s, P = 0 := _root_.P2MW.S_WeierstrassCurve_sum_eq_zero_of_forall_mem_iff_smul_eq_zero.solution W hnK s hs
+theorem WeierstrassCurve.sum_eq_zero_of_forall_mem_iff_smul_eq_zero {F K : Type*} [Field F]
+    [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic]
+    {n : ℕ} (hnK : (n : K) ≠ 0) (s : Finset (W⁄K).Point) (hs : ∀ P, P ∈ s ↔ n • P = 0) :
+    ∑ P ∈ s, P = 0 :=
+  solution W hnK s hs
 
 end publicSection

@@ -62,10 +62,13 @@ namespace P2MW.S_AlgebraicCurve_lSpace_eq_bot_of_degree_neg
 
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver LSpace ell mem_lSpace_iff_ord WeilDifferentialRankOne StichtenothGenusExists"
+p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor IsCurveOver LSpace ell mem_lSpace_iff_ord \
+  WeilDifferentialRankOne StichtenothGenusExists"
 p2m_open "AlgebraicCurve"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "deg ord ord_unit_smul_zpow exists_unit_mul_zpow toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "deg ord ord_unit_smul_zpow exists_unit_mul_zpow \
+  toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem"
@@ -77,7 +80,9 @@ end Place
 end AlgebraicCurve
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver LSpace ell mem_lSpace_iff_ord WeilDifferentialRankOne StichtenothGenusExists"
+p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor IsCurveOver LSpace ell mem_lSpace_iff_ord \
+  WeilDifferentialRankOne StichtenothGenusExists"
 p2m_open "AlgebraicCurve"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 namespace Divisor
@@ -85,7 +90,6 @@ p2m_export "AlgebraicCurve.Divisor" "degree"
 end Divisor
 variable {D : Divisor K F}
 p2m_open_scoped "AlgebraicCurve.Divisor" in
-
 theorem Divisor.degree_nonneg_of_nonneg [IsCurveOver K F]
     {D : Divisor K F} (hD : ∀ v, 0 ≤ D v) : 0 ≤ Divisor.degree D := by
   rw [Divisor.degree_eq_sum_support]
@@ -123,8 +127,10 @@ public section publicSection
 
 
 namespace AlgebraicCurve
-theorem lSpace_eq_bot_of_degree_neg {K F : Type*} [Field K] [Field F] [Algebra K F] {D : Divisor K F} [IsCurveOver K F]
-    (hD : Divisor.degree D < 0) : LSpace D = ⊥ := _root_.P2MW.S_AlgebraicCurve_lSpace_eq_bot_of_degree_neg.solution hD
+theorem lSpace_eq_bot_of_degree_neg {K F : Type*} [Field K] [Field F] [Algebra K F]
+    {D : Divisor K F} [IsCurveOver K F]
+    (hD : Divisor.degree D < 0) : LSpace D = ⊥ :=
+  solution hD
 end AlgebraicCurve
 
 end publicSection

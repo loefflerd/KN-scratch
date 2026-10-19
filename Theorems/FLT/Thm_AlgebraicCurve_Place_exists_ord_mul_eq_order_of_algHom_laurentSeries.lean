@@ -107,7 +107,7 @@ def liftToHahn (ι : F →ₐ[K] LaurentSeries K) : F →ₐ[K] HahnSeries ℚ K
   toRingHom := (HahnSeries.puiseuxRamEmb one_pos).comp ι.toRingHom
   commutes' := by
     intro c
-    show HahnSeries.puiseuxRamEmb one_pos (ι (algebraMap K F c))
+    change HahnSeries.puiseuxRamEmb one_pos (ι (algebraMap K F c))
         = algebraMap K (HahnSeries ℚ K) c
     rw [ι.commutes c, laurentAlgebraMap_eq_C, hahnQAlgebraMap_eq_C]
     exact HahnSeries.embDomainRingHom_C
@@ -126,7 +126,8 @@ section Generic
 
 variable (K : Type*) [Field K]
 
-private theorem _root_.AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries' {F : Type*} [Field F] [Algebra K F] (ι : F →ₐ[K] LaurentSeries K)
+private theorem _root_.AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries'
+    {F : Type*} [Field F] [Algebra K F] (ι : F →ₐ[K] LaurentSeries K)
     (h : ∃ x : F, (ι x).order ≠ 0) :
     ∃ (w : Place K F) (γ : ℕ), 0 < γ ∧ ∀ x : F, w.ord x * (γ : ℤ) = (ι x).order := by
   obtain ⟨x₀, hx₀⟩ := h
@@ -158,7 +159,8 @@ end CD
 
 open AlgebraicCurve.Place
 
-theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (ι : F →ₐ[K] LaurentSeries K)
+theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F]
+    (ι : F →ₐ[K] LaurentSeries K)
     (h : ∃ x : F, (ι x).order ≠ 0) :
     ∃ (w : Place K F) (γ : ℕ), 0 < γ ∧ ∀ x : F, w.ord x * (γ : ℤ) = (ι x).order :=
   AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries' K ι h
@@ -171,7 +173,8 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (ι : F →ₐ[K] LaurentSeries K)
+theorem AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries (K : Type*) [Field K]
+    {F : Type*} [Field F] [Algebra K F] (ι : F →ₐ[K] LaurentSeries K)
     (h : ∃ x : F, (ι x).order ≠ 0) :
     ∃ (w : Place K F) (γ : ℕ), 0 < γ ∧ ∀ x : F, w.ord x * (γ : ℤ) = (ι x).order := _root_.solution K ι h
 

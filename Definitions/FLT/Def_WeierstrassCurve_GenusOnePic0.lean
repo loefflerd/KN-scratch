@@ -67,7 +67,6 @@ universe u
 variable {F : Type u} [Field F]
 
 variable (W : Affine F) in
-
 class GenusOnePlaceGate : Type u where
   pointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField
   deg_eq_one : ∀ v : AlgebraicCurve.Place F W.FunctionField, v.deg = 1
@@ -112,7 +111,7 @@ theorem divisorSum_single [DecidableEq F]
     divisorSum (Finsupp.single v n) = n • (pointEquivPlace (W := W)).symm v :=
   Finsupp.liftAddHom_apply_single _ v n
 
-theorem divisorSum_single_placeOfPoint  [DecidableEq F]
+theorem divisorSum_single_placeOfPoint [DecidableEq F]
     (P : W.Point) (n : ℤ) :
     divisorSum (Finsupp.single (placeOfPoint P) n) = n • P := by
   rw [divisorSum_single, pointEquivPlace_symm_placeOfPoint]
@@ -197,7 +196,6 @@ theorem pic0ToPoint_injective : Function.Injective (pic0ToPoint (W := W)) := by
       (isPrincipal_of_divisorSum_eq_zero (Divisor.mem_degZero.mp hD0) hD)
 
 variable (W) in
-
 def genusOnePic0Equiv : AlgebraicCurve.Pic0 F W.FunctionField ≃+ W.Point :=
   AddEquiv.ofBijective pic0ToPoint ⟨pic0ToPoint_injective, pic0ToPoint_surjective⟩
 

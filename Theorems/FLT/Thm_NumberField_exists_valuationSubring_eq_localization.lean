@@ -77,9 +77,11 @@ variable (Qt : Ideal (𝓞 ℚ̄)) [Qt.IsMaximal]
 def carrier : Set ℚ̄ := {x | ∃ s : 𝓞 ℚ̄, s ∉ Qt ∧ ∃ a : 𝓞 ℚ̄, (s : ℚ̄) * x = a}
 
 omit [Qt.IsMaximal] in
-theorem mem_carrier {x : ℚ̄} : x ∈ carrier Qt ↔ ∃ s : 𝓞 ℚ̄, s ∉ Qt ∧ ∃ a : 𝓞 ℚ̄, (s : ℚ̄) * x = a := Iff.rfl
+theorem mem_carrier {x : ℚ̄} :
+    x ∈ carrier Qt ↔ ∃ s : 𝓞 ℚ̄, s ∉ Qt ∧ ∃ a : 𝓞 ℚ̄, (s : ℚ̄) * x = a := Iff.rfl
 
-theorem one_notMem : (1 : 𝓞 ℚ̄) ∉ Qt := fun h => Ideal.IsPrime.ne_top' ((Ideal.eq_top_iff_one Qt).mpr h)
+theorem one_notMem :
+    (1 : 𝓞 ℚ̄) ∉ Qt := fun h => Ideal.IsPrime.ne_top' ((Ideal.eq_top_iff_one Qt).mpr h)
 
 noncomputable def subring : Subring ℚ̄ where
   carrier := carrier Qt
@@ -122,7 +124,8 @@ theorem mem_or_inv_mem (x : ℚ̄) : x ∈ carrier Qt ∨ x⁻¹ ∈ carrier Qt 
   have hxK : x ∈ K := IntermediateField.mem_adjoin_simple_self ℚ x
   let v : IsDedekindDomain.HeightOneSpectrum (𝓞 K) :=
     ⟨Qt.comap (algebraMap (𝓞 K) (𝓞 ℚ̄)), Ideal.IsPrime.comap _, comap_ne_bot Qt K⟩
-  obtain ⟨n, d, hnd⟩ := IsDedekindDomain.HeightOneSpectrum.exists_primeCompl_mul_eq_or_mul_eq (K := K) v ⟨x, hxK⟩
+  obtain ⟨n, d, hnd⟩ :=
+    IsDedekindDomain.HeightOneSpectrum.exists_primeCompl_mul_eq_or_mul_eq (K := K) v ⟨x, hxK⟩
   have hd : algebraMap (𝓞 K) (𝓞 ℚ̄) d ∉ Qt := fun h => d.2 (Ideal.mem_comap.mpr h)
   have coe_alg : ∀ a : 𝓞 K, ((algebraMap (𝓞 K) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((algebraMap (𝓞 K) K a : K) : ℚ̄) :=
     fun _ => rfl
@@ -173,6 +176,7 @@ open scoped NumberField Pointwise
 theorem NumberField.exists_valuationSubring_eq_localization
     (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) [Qt.IsMaximal] :
     ∃ A : ValuationSubring (AlgebraicClosure ℚ), ∀ x : AlgebraicClosure ℚ,
-      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a := _root_.P2MW.S_NumberField_exists_valuationSubring_eq_localization.solution Qt
+      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a :=
+  solution Qt
 
 end publicSection

@@ -113,7 +113,8 @@ open S13K2 in
 theorem solution
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))]
-    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic] (ht : Transcendental ℚ W.j)
+    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
+    (ht : Transcendental ℚ W.j)
     (L : Subfield (HahnSeries ℚ (AlgebraicClosure ℚ)))
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₃ : W.a₃ ∈ L) (h₄ : W.a₄ ∈ L) (h₆ : W.a₆ ∈ L)
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
@@ -126,7 +127,8 @@ theorem solution
     (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
   obtain ⟨n, rfl⟩ := hN
   have h2 : (2 : HahnSeries ℚ (AlgebraicClosure ℚ)) ≠ 0 := two_ne_zero
-  have hNK : ((2 * n + 1 : ℕ) : HahnSeries ℚ (AlgebraicClosure ℚ)) ≠ 0 := Nat.cast_ne_zero.mpr (by omega)
+  have hNK : ((2 * n + 1 : ℕ) : HahnSeries ℚ (AlgebraicClosure ℚ)) ≠ 0 :=
+    Nat.cast_ne_zero.mpr (by omega)
   set Φj := data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)
     with hΦj
   have hΦjm : Φj.Monic := data.monic.map _
@@ -158,11 +160,13 @@ theorem solution
       (hΔgen H) data
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq
-    have hz := WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental W ht n (gen H) (gen H')
+    have hz :=
+      WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental W ht n (gen H) (gen H')
       (hgenord H) (hgenord H') (hΔgen H) (hΔgen H') hjeq
     exact Subtype.ext ((hgenH H).symm.trans (hz.trans (hgenH H')))
   have hJcard : (Finset.univ.image jH).card = ModularCurve.dedekindPsi (2 * n + 1) := by
-    rw [Finset.card_image_of_injective _ hjHinj, Finset.card_univ, ← Nat.card_eq_fintype_card, hBcard]
+    rw [Finset.card_image_of_injective _ hjHinj, Finset.card_univ, ← Nat.card_eq_fintype_card,
+      hBcard]
   have hJsub : Finset.univ.image jH ⊆ Φj.roots.toFinset := by
     intro x hx
     obtain ⟨H, -, rfl⟩ := Finset.mem_image.mp hx
@@ -192,13 +196,15 @@ public section publicSection
 theorem ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))]
-    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic] (ht : Transcendental ℚ W.j)
+    (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
+    (ht : Transcendental ℚ W.j)
     (L : Subfield (HahnSeries ℚ (AlgebraicClosure ℚ)))
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₃ : W.a₃ ∈ L) (h₄ : W.a₄ ∈ L) (h₆ : W.a₆ ∈ L)
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
       N • (WeierstrassCurve.Affine.Point.some x y h : W.toAffine.Point) = 0 → x ∈ L ∧ y ∈ L)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
     (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
-    r ∈ L := _root_.P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd.solution hN data W ht L h₁ h₂ h₃ h₄ h₆ htors r hr
+    r ∈ L :=
+  solution hN data W ht L h₁ h₂ h₃ h₄ h₆ htors r hr
 
 end publicSection

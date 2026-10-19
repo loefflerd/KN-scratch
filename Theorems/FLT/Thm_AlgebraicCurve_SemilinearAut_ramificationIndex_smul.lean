@@ -63,7 +63,10 @@ open scoped Pointwise
 
 noncomputable section
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') : (g' • w).ramificationIndex F = w.ramificationIndex F := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'}
+    (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') :
+    (g' • w).ramificationIndex F = w.ramificationIndex F := by
   unfold Place.ramificationIndex
   congr 1
   ext n
@@ -87,6 +90,10 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.SemilinearAut
-theorem AlgebraicCurve.SemilinearAut.ramificationIndex_smul {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') : (g' • w).ramificationIndex F = w.ramificationIndex F := _root_.P2MW.S_AlgebraicCurve_SemilinearAut_ramificationIndex_smul.solution hgg' w
+theorem AlgebraicCurve.SemilinearAut.ramificationIndex_smul {K F F' : Type*} [Field K] [Field F]
+    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] {g : SemilinearAut K F}
+    {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') :
+    (g' • w).ramificationIndex F = w.ramificationIndex F :=
+  solution hgg' w
 
 end publicSection

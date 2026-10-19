@@ -82,6 +82,9 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.cuspZeroBar_ne_cuspInftyBar (N : ℕ) [NeZero N] (h : IsFrickeAutFull N (frickeInvolutionFull N)) (hN : 1 < N) : cuspZeroBar N ≠ cuspInftyBar N := _root_.P2MW.S_ModularCurve_cuspZeroBar_ne_cuspInftyBar.solution N h hN
+theorem ModularCurve.cuspZeroBar_ne_cuspInftyBar (N : ℕ) [NeZero N]
+    (h : IsFrickeAutFull N (frickeInvolutionFull N)) (hN : 1 < N) :
+    cuspZeroBar N ≠ cuspInftyBar N :=
+  solution N h hN
 
 end publicSection

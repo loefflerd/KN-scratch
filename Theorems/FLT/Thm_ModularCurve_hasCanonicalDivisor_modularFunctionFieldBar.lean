@@ -85,6 +85,7 @@ public section publicSection
 
 open AlgebraicCurve ModularCurve
 theorem ModularCurve.hasCanonicalDivisor_modularFunctionFieldBar (N : ℕ) [NeZero N] :
-    HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) := _root_.P2MW.S_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar.solution N
+    HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) :=
+  solution N
 
 end publicSection

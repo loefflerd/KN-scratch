@@ -186,7 +186,7 @@ theorem eval₂_minpoly_slot (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveR
         ((coeffEmb K).comp (qExpand ℚ N)).comp
           (algebraMap (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
             (LaurentSeries ℚ)) from RingHom.ext fun y => by
-      show qExpand K N (coeffEmb K (y : LaurentSeries ℚ)) =
+      change qExpand K N (coeffEmb K (y : LaurentSeries ℚ)) =
         coeffEmb K (qExpand ℚ N (y : LaurentSeries ℚ))
       exact qExpand_coeffEmb K N _,
     ← eval_map,
@@ -216,21 +216,21 @@ private theorem cd1_slotEmbedding (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hφalg : ∀ x : K⟮coeffEmb K jq⟯,
       φ (algebraMap K⟮coeffEmb K jq⟯ K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯ x) =
         qExpand K N x := fun x => by
-    show L (e.symm (algebraMap _ _ x)) = _
+    change L (e.symm (algebraMap _ _ x)) = _
     rw [AlgEquiv.commutes, AdjoinRoot.algebraMap_eq, AdjoinRoot.lift_of]
     rfl
   have hφgen : φ (AdjoinSimple.gen K⟮coeffEmb K jq⟯ (coeffEmb K (jqN N))) =
       qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) := by
-    show L (e.symm (AdjoinSimple.gen _ _)) = _
+    change L (e.symm (AdjoinSimple.gen _ _)) = _
     rw [adjoinRootEquivAdjoin_symm_apply_gen, AdjoinRoot.lift_root]
   have hF := laurentBaseChange_full_eq_adjoin_adjoin K N
   let ι' : (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯).restrictScalars K →ₐ[K] LaurentSeries K :=
     { toRingHom := φ
       commutes' := fun c => by
-        show φ (algebraMap K⟮coeffEmb K jq⟯ K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯
+        change φ (algebraMap K⟮coeffEmb K jq⟯ K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯
           (algebraMap K K⟮coeffEmb K jq⟯ c)) = _
         rw [hφalg]
-        show qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+        change qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
         rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero] }
   refine ⟨ι'.comp (inclusion hF.le), ?_, ?_⟩
   · exact hφalg ⟨coeffEmb K jq, mem_adjoin_simple_self K _⟩
@@ -295,7 +295,7 @@ def liftToHahn (ι : F →ₐ[K] LaurentSeries K) : F →ₐ[K] HahnSeries ℚ K
   toRingHom := (HahnSeries.puiseuxRamEmb one_pos).comp ι.toRingHom
   commutes' := by
     intro c
-    show HahnSeries.puiseuxRamEmb one_pos (ι (algebraMap K F c))
+    change HahnSeries.puiseuxRamEmb one_pos (ι (algebraMap K F c))
         = algebraMap K (HahnSeries ℚ K) c
     rw [ι.commutes c, laurentAlgebraMap_eq_C, hahnQAlgebraMap_eq_C]
     exact HahnSeries.embDomainRingHom_C
@@ -394,7 +394,7 @@ theorem order_qTwist (u : Kˣ) (f : LaurentSeries K) : (qTwist u f).order = f.or
 noncomputable def qExpandAlgK (M : ℕ) [NeZero M] : LaurentSeries K →ₐ[K] LaurentSeries K where
   __ := qExpand K M
   commutes' r := by
-    show qExpand K M (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
+    change qExpand K M (algebraMap K (LaurentSeries K) r) = algebraMap K (LaurentSeries K) r
     rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero]
 
 @[scoped simp]
@@ -407,7 +407,7 @@ theorem qExpand_mem_range_of_dvd (M P : ℕ) [NeZero M] [NeZero P] (h : M ∣ P)
   have : NeZero (P / M) :=
     ⟨Nat.div_ne_zero_iff.mpr ⟨NeZero.ne M, Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne P)) h⟩⟩
   refine ⟨qExpand K (P / M) f, ?_⟩
-  show qExpand K M (qExpand K (P / M) f) = qExpand K P f
+  change qExpand K M (qExpand K (P / M) f) = qExpand K P f
   rw [qExpand_qExpand]
   exact qExpand_congr (Nat.mul_div_cancel' h) f
 
@@ -468,7 +468,7 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
         _ = IntermediateField.adjoin K ({jqModC K, jqNModC K N} : Set (LaurentSeries K)) := by
             congr 1
             rw [Set.image_insert_eq, Set.image_singleton]
-            show ({coeffEmb K jq, coeffEmb K (jqN N)} : Set (LaurentSeries K)) = _
+            change ({coeffEmb K jq, coeffEmb K (jqN N)} : Set (LaurentSeries K)) = _
             rw [coeffEmb_jq K, coeffEmb_jqN K N]
         _ = F := hadj.symm
         _ = (⊤ : IntermediateField K F).map F.val :=
@@ -498,7 +498,7 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
     exact this
   have hagdvdγ : ((a * g : ℕ) : ℤ) ∣ γ := by
     rw [hγeq, ← hfπ]
-    show ((a * g : ℕ) : ℤ) ∣ (qExpandAlgK (a * g) f).order
+    change ((a * g : ℕ) : ℤ) ∣ (qExpandAlgK (a * g) f).order
     rw [qExpandAlgK_apply, order_qExpand]
     exact Dvd.intro _ rfl
   have hagpos : 0 < ((a * g : ℕ) : ℤ) := by
@@ -701,8 +701,9 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     let T : LaurentSeries K →ₐ[K] LaurentSeries K :=
       { toRingHom := qTwist (ζ ^ k)
         commutes' := fun c => by
-          show qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
-          rw [algebraMap_laurentSeries_eq_single, qTwist_single, zpow_zero, Units.val_one, one_mul] }
+          change qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+          rw [algebraMap_laurentSeries_eq_single, qTwist_single, zpow_zero, Units.val_one,
+            one_mul] }
     have hFeq : laurentBaseChange K (modularFunctionFieldFull (a * d)) =
         IntermediateField.adjoin K {coeffEmb K jq, coeffEmb K (jqN (a * d))} := by
       rw [laurentBaseChange_adjoin_pair K (a * d) (functionFieldGeneration (a * d)), ← coeffEmb_jq,
@@ -710,10 +711,11 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     have hT : ι' = T.comp ι := by
       refine algHom_ext_of_eq_adjoin K hFeq fun x hx => ?_
       rcases hx with rfl | rfl
-      · show ι' jb = qTwist (ζ ^ k) (ι jb)
-        rw [hι'₁, hι₁, qTwist_qExpand, ← zpow_mul, zpow_mul', zpow_natCast, hζu.pow_eq_one, one_zpow,
+      · change ι' jb = qTwist (ζ ^ k) (ι jb)
+        rw [hι'₁, hι₁, qTwist_qExpand, ← zpow_mul, zpow_mul', zpow_natCast, hζu.pow_eq_one,
+          one_zpow,
           qTwist_one_apply]
-      · show ι' jbN = qTwist (ζ ^ k) (ι jbN)
+      · change ι' jbN = qTwist (ζ ^ k) (ι jbN)
         rw [hι'₂, hι₂, qTwist_qExpand, qTwist_qTwist, hk]
     have hordeq : ∀ x, (ι' x).order = (ι x).order := fun x => by
       rw [hT]
@@ -925,7 +927,7 @@ theorem he_compat :
           (algebraMap (K⟮coeffEmb K jq⟯) (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯)) := by
   apply RingHom.ext
   intro y
-  show phiRF K N ((sigmaA K).symm y) = jTr K N (algebraMap _ _ y)
+  change phiRF K N ((sigmaA K).symm y) = jTr K N (algebraMap _ _ y)
   rw [phiRF_apply, AlgEquiv.apply_symm_apply]
 
 theorem finite_ratFunc :
@@ -1132,7 +1134,8 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
         _ = ∑ u ∈ PS, (((slotFinset N).filter (fun s => f s = u)).card : ℤ) := by
             rw [hcount0]; push_cast; rfl
         _ ≤ _ := Finset.sum_le_sum hperu
-    have hw1 : (1 : ℤ) ≤ (w.ramificationIndex (RatFunc K) : ℤ) * (w.inertiaDeg (RatFunc K) : ℤ) := by
+    have hw1 : (1 : ℤ) ≤ (w.ramificationIndex (RatFunc K) : ℤ) * (w.inertiaDeg (RatFunc K) : ℤ) :=
+      by
       have e1 : (1 : ℤ) ≤ (w.ramificationIndex (RatFunc K) : ℤ) := by
         exact_mod_cast w.ramificationIndex_pos (F := RatFunc K)
       have f1 : (1 : ℤ) ≤ (w.inertiaDeg (RatFunc K) : ℤ) := by
@@ -1151,7 +1154,8 @@ end Tower
 
 variable (K : Type*) [Field K] [Algebra ℚ K]
 
-private theorem _root_.ModularCurve.exists_slot_of_isCusp' (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+private theorem _root_.ModularCurve.exists_slot_of_isCusp' (N : ℕ) [NeZero N] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) N)
     (w : Place K (laurentBaseChange K (modularFunctionFieldFull N)))
     (hc : IsCusp (⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ :
         laurentBaseChange K (modularFunctionFieldFull N)) w) :
@@ -1168,8 +1172,8 @@ end CD
 
 
 open ModularCurve AlgebraicCurve in
-
-theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) N)
     (w : Place K (laurentBaseChange K (modularFunctionFieldFull N)))
     (hc : IsCusp (⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ :
         laurentBaseChange K (modularFunctionFieldFull N)) w) :
@@ -1193,7 +1197,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.exists_slot_of_isCusp (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
+theorem ModularCurve.exists_slot_of_isCusp (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N]
+    (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     (w : Place K (laurentBaseChange K (modularFunctionFieldFull N)))
     (hc : IsCusp (⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ :
         laurentBaseChange K (modularFunctionFieldFull N)) w) :
@@ -1203,6 +1208,7 @@ theorem ModularCurve.exists_slot_of_isCusp (K : Type*) [Field K] [Algebra ℚ K]
             qExpand K N (coeffEmb K jq) ∧
         ι ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
             qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) ∧
-        ∀ x, w.ord x * ((a * Nat.gcd a (N / a) : ℕ) : ℤ) = (ι x).order := _root_.P2MW.S_ModularCurve_exists_slot_of_isCusp.solution K N ζ hζ w hc
+        ∀ x, w.ord x * ((a * Nat.gcd a (N / a) : ℕ) : ℤ) = (ι x).order :=
+  solution K N ζ hζ w hc
 
 end publicSection

@@ -107,7 +107,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
   have hmem : ∀ r : R, algebraMap ℚ L (algebraMap R ℚ r) ∈ S := by
     intro r
     set x : ℚ := algebraMap R ℚ r with hxdef
-
     have hden_unit : IsUnit ((x.den : ℤ) : R) := by
       have hv : (IsDiscreteValuationRing.maximalIdeal R).valuation ℚ x ≤ 1 := by
         rw [hxdef]
@@ -136,10 +135,8 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
       ring
     rw [← S.valuation_le_one_iff, himg, map_div₀, hdenS, div_one]
     exact hnum
-
   set φ : R →+* S :=
     RingHom.codRestrict ((algebraMap ℚ L).comp (algebraMap R ℚ)) S hmem with hφ
-
   have hInt : WeierstrassCurve.IsIntegral S (W.baseChange L) := by
     refine ⟨(integralModel R W).map φ, ?_⟩
     have h1 : W.baseChange L
@@ -160,7 +157,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
         (K := L) s |>.mp h) (fun hm => (mem_nonunits_iff.mp
           ((IsLocalRing.mem_maximalIdeal s).mp hm)) hs)
     · exact h
-
   have hΔR : IsUnit (integralModel R W).Δ := by
     have hgood : (IsDiscreteValuationRing.maximalIdeal R).valuation ℚ W.Δ = 1 :=
       HasGoodReduction.goodReduction (R := R)
@@ -171,10 +167,9 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
     have hlt := ((IsDiscreteValuationRing.maximalIdeal R).valuation_lt_one_iff_mem
       (K := ℚ) (integralModel R W).Δ).mpr hmemΔ
     exact hlt.ne hgood
-
   have hΔ : (IsDiscreteValuationRing.maximalIdeal S).valuation L (W.baseChange L).Δ = 1 := by
     have h1 : (W.baseChange L).Δ = algebraMap S L (φ (integralModel R W).Δ) := by
-      show (W.map (algebraMap ℚ L)).Δ = _
+      change (W.map (algebraMap ℚ L)).Δ = _
       rw [map_Δ, ← integralModel_Δ_eq R W]
       rfl
     rw [h1]
@@ -193,7 +188,8 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
 end GoodReductionUp
 
 theorem solution
-    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ] [IsFractionRing R ℚ]
+    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ]
+    [IsFractionRing R ℚ]
     (E : WeierstrassCurve ℚ) [E.HasGoodReduction R]
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L]
     (S : ValuationSubring L) [IsDiscreteValuationRing S]
@@ -210,11 +206,13 @@ end privateSection
 public section publicSection
 
 theorem WeierstrassCurve.hasGoodReduction_baseChange_of_valuation_lt_one
-    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ] [IsFractionRing R ℚ]
+    (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Algebra R ℚ]
+    [IsFractionRing R ℚ]
     (E : WeierstrassCurve ℚ) [E.HasGoodReduction R]
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L]
     (S : ValuationSubring L) [IsDiscreteValuationRing S]
     {q : ℕ} (hq : q.Prime) (hqR : Irreducible (q : R)) (hS : S.valuation (q : L) < 1) :
-    (E.baseChange L).HasGoodReduction S := _root_.P2MW.S_WeierstrassCurve_hasGoodReduction_baseChange_of_valuation_lt_one.solution R E L S hq hqR hS
+    (E.baseChange L).HasGoodReduction S :=
+  solution R E L S hq hqR hS
 
 end publicSection

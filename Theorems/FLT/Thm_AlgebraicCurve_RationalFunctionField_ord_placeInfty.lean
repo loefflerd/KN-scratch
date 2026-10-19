@@ -63,7 +63,8 @@ namespace P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty
 
 open IsDedekindDomain AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
-theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] {f : RatFunc K} (hf : f ≠ 0) : (placeInfty K).ord f = -f.intDegree :=
+theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] {f : RatFunc K} (hf : f ≠ 0) :
+    (placeInfty K).ord f = -f.intDegree :=
   AlgebraicCurve.RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum (placeInfty K)
     (AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum K) hf
 
@@ -77,6 +78,9 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
-theorem AlgebraicCurve.RationalFunctionField.ord_placeInfty {K : Type*} [Field K] [DecidableEq (RatFunc K)] {f : RatFunc K} (hf : f ≠ 0) : (placeInfty K).ord f = -f.intDegree := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty.solution hf
+theorem AlgebraicCurve.RationalFunctionField.ord_placeInfty {K : Type*} [Field K]
+    [DecidableEq (RatFunc K)] {f : RatFunc K} (hf : f ≠ 0) :
+    (placeInfty K).ord f = -f.intDegree :=
+  solution hf
 
 end publicSection

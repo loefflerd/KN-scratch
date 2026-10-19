@@ -71,7 +71,7 @@ theorem solution
   have hx0 : x ≠ 0 := fun h => hx (h ▸ isAlgebraic_zero)
   obtain ⟨P, hP, -⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := F) x hx0
   refine ⟨(-P) ⊔ 0, fun v => ?_⟩
-  show max ((-P) v) ((0 : Divisor K F) v) = max 0 (-v.ord x)
+  change max ((-P) v) ((0 : Divisor K F) v) = max 0 (-v.ord x)
   rw [Finsupp.neg_apply, hP v, Finsupp.coe_zero, Pi.zero_apply, max_comm]
 
 end S_AlgebraicCurve_exists_poleDivisor_of_transcendental
@@ -88,6 +88,7 @@ theorem AlgebraicCurve.exists_poleDivisor_of_transcendental
     {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] :
-    ∃ D : Divisor K F, ∀ v : Place K F, D v = max 0 (-v.ord x) := _root_.P2MW.S_AlgebraicCurve_exists_poleDivisor_of_transcendental.solution x hx
+    ∃ D : Divisor K F, ∀ v : Place K F, D v = max 0 (-v.ord x) :=
+  solution x hx
 
 end publicSection

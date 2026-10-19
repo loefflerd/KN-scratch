@@ -59,19 +59,24 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.WeierstrassCurve.Affine IsDedekindDomain WithZero"
+p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.WeierstrassCurve.Affine IsDedekindDomain \
+  WithZero"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing FunctionField Point weilFun weilPairing0 transEquiv_weilFun transEquiv transEquiv_add exists_transEquiv_weilFun_eq weilFun_ne_zero"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing FunctionField Point weilFun weilPairing0 \
+  transEquiv_weilFun transEquiv transEquiv_add exists_transEquiv_weilFun_eq weilFun_ne_zero"
 namespace LawAddL
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
   (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
 
-theorem weilPairing0_eq {n : ℕ} (hn : (n : K) ≠ 0) {S T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) {c : Kˣ}
+theorem weilPairing0_eq {n : ℕ} (hn : (n : K) ≠ 0) {S T : (W⁄K).Point} (hT : (n : ℤ) • T = 0)
+    {c : Kˣ}
     (h : transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n T) :
     weilPairing0 W K n S T = c := by
   have h' := transEquiv_weilFun W K ⟨c, h⟩
@@ -82,11 +87,16 @@ theorem weilPairing0_eq {n : ℕ} (hn : (n : K) ≠ 0) {S T : (W⁄K).Point} (hT
 end WeierstrassCurve.Affine.LawAddL
 
 open WeierstrassCurve.Affine.LawAddL in
-theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S S' T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hS' : (n : ℤ) • S' = 0) (hT : (n : ℤ) • T = 0) : weilPairing0 W K n (S + S') T = weilPairing0 W K n S T * weilPairing0 W K n S' T := by
+theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
+    [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+    {n : ℕ} (hn : (n : K) ≠ 0) (S S' T : (W⁄K).Point) (hS : (n : ℤ) • S = 0)
+    (hS' : (n : ℤ) • S' = 0) (hT : (n : ℤ) • T = 0) :
+    weilPairing0 W K n (S + S') T = weilPairing0 W K n S T * weilPairing0 W K n S' T := by
   have h1 := transEquiv_weilFun W K (exists_transEquiv_weilFun_eq W hn S T hS hT)
   have h2 := transEquiv_weilFun W K (exists_transEquiv_weilFun_eq W hn S' T hS' hT)
   apply weilPairing0_eq W hn hT
-  rw [transEquiv_add, AlgEquiv.trans_apply, h2, map_mul, AlgEquiv.commutes, h1, Units.val_mul, map_mul]
+  rw [transEquiv_add, AlgEquiv.trans_apply, h2, map_mul, AlgEquiv.commutes, h1, Units.val_mul,
+    map_mul]
   ring
 
 end S_WeierstrassCurve_Affine_weilPairing0_add_left
@@ -100,6 +110,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.weilPairing0_add_left {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S S' T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hS' : (n : ℤ) • S' = 0) (hT : (n : ℤ) • T = 0) : weilPairing0 W K n (S + S') T = weilPairing0 W K n S T * weilPairing0 W K n S' T := _root_.P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.solution W hn S S' T hS hS' hT
+theorem WeierstrassCurve.Affine.weilPairing0_add_left {F : Type*} {K : Type*} [Field F] [Field K]
+    [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S S' T : (W⁄K).Point)
+    (hS : (n : ℤ) • S = 0) (hS' : (n : ℤ) • S' = 0) (hT : (n : ℤ) • T = 0) :
+    weilPairing0 W K n (S + S') T = weilPairing0 W K n S T * weilPairing0 W K n S' T :=
+  solution W hn S S' T hS hS' hT
 
 end publicSection

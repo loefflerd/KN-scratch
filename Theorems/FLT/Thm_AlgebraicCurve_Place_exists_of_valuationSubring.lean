@@ -65,7 +65,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring.AlgebraicCurve \
+  IsDedekindDomain"
 open scoped IntermediateField.algebraAdjoinAdjoin
 
 section Crux
@@ -205,13 +206,18 @@ end Crux
 section Roots
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring"
+p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ord ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring \
+  toValuationSubring"
 end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
-
-private theorem AlgebraicCurve.Place.exists_of_valuationSubring {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := by
+private theorem AlgebraicCurve.Place.exists_of_valuationSubring {K F : Type*} [Field K] [Field F]
+    [Algebra K F] [CharZero K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F)
+    (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) :
+    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := by
   by_cases hx : Transcendental K x
   · rcases A.mem_or_inv_mem x with hxA | hxiA
     · exact exists_place_of_mem x A hAK hA hx hxA
@@ -250,8 +256,11 @@ private theorem AlgebraicCurve.Place.exists_of_valuationSubring {K F : Type*} [F
     exact hz ▸ z.2
 
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
-
-private theorem AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (φ : F →+* F') (w : ValuationSubring F') (hwK : ∀ a : K, φ (algebraMap K F a) ∈ w) (hwx : ∃ y : F, φ y ∉ w) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = w.comap φ := by
+private theorem AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom {K F F' : Type*}
+    [Field K] [Field F] [Field F'] [Algebra K F] [CharZero K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (φ : F →+* F')
+    (w : ValuationSubring F') (hwK : ∀ a : K, φ (algebraMap K F a) ∈ w) (hwx : ∃ y : F, φ y ∉ w) :
+    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = w.comap φ := by
   refine AlgebraicCurve.Place.exists_of_valuationSubring x (w.comap φ)
     (fun a => hwK a) ?_
   intro h
@@ -260,7 +269,10 @@ private theorem AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom 
 
 end Roots
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A :=
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F)
+    (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) :
+    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A :=
   AlgebraicCurve.Place.exists_of_valuationSubring x A hAK hA
 
 end S_AlgebraicCurve_Place_exists_of_valuationSubring
@@ -271,6 +283,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.exists_of_valuationSubring {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := _root_.P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring.solution x A hAK hA
+theorem AlgebraicCurve.Place.exists_of_valuationSubring {K F : Type*} [Field K] [Field F]
+    [Algebra K F] [CharZero K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F)
+    (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) :
+    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A :=
+  solution x A hAK hA
 
 end publicSection

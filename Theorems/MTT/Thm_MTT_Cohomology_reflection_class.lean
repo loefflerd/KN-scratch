@@ -347,7 +347,7 @@ theorem conjJ_val (g : SL2) :
 theorem frac_J_cuspAct (g : SL2) (x : Cusp) :
     fractional Jm (cuspAct g x) = cuspAct (conjJ g) (fractional Jm x) := by
   rw [← frac_eq_cuspAct, ← frac_eq_cuspAct, conjJ_val]
-  show fractional !![(-1 : ℤ), 0; 0, 1] (fractional (g : Matrix (Fin 2) (Fin 2) ℤ) x) = _
+  change fractional !![(-1 : ℤ), 0; 0, 1] (fractional (g : Matrix (Fin 2) (Fin 2) ℤ) x) = _
   rw [frac_upper_comp, frac_comp_J, mul_assoc, mul_assoc, Jm_mul_Jm, mul_one]
 
 /-! ### The reflection preserves the space of classes -/
@@ -413,10 +413,10 @@ theorem act_conj (g : SL2) (P : Binary R) :
 theorem reflection_mem (φ : Hc N n R) : reflection φ.val ∈ Hc N n R := by
   refine ⟨fun x y => ?_, fun x y z => ?_, fun γ x y => ?_⟩
   · exact act_mem_sym _ (φ.2.1 _ _)
-  · show act Jm _ + act Jm _ = act Jm _
+  · change act Jm _ + act Jm _ = act Jm _
     rw [← map_add]
     exact congrArg _ (φ.2.2.1 _ _ _)
-  · show act Jm (φ.val (fractional Jm (cuspAct γ.val x), fractional Jm (cuspAct γ.val y)))
+  · change act Jm (φ.val (fractional Jm (cuspAct γ.val x), fractional Jm (cuspAct γ.val y)))
       = act (γ.val : Matrix (Fin 2) (Fin 2) ℤ)
           (act Jm (φ.val (fractional Jm x, fractional Jm y)))
     rw [frac_J_cuspAct, frac_J_cuspAct,
@@ -434,7 +434,7 @@ theorem reflection_char (φ : Hc N n R) (e : ZMod N → R)
       = e ((γ.val : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ZMod N) •
         act (γ.val : Matrix (Fin 2) (Fin 2) ℤ) (reflection φ.val (x, y)) := by
   obtain ⟨-, -, h11⟩ := conjJ_entries γ.val
-  show act Jm (φ.val (fractional Jm (cuspAct γ.val x), fractional Jm (cuspAct γ.val y)))
+  change act Jm (φ.val (fractional Jm (cuspAct γ.val x), fractional Jm (cuspAct γ.val y)))
     = _ • act (γ.val : Matrix (Fin 2) (Fin 2) ℤ)
         (act Jm (φ.val (fractional Jm x, fractional Jm y)))
   rw [frac_J_cuspAct, frac_J_cuspAct,
@@ -479,12 +479,12 @@ theorem slash_refl_key (φ : Hc N n R) (t : ℤ) (A A' : Matrix (Fin 2) (Fin 2) 
       = cuspAct (USL t) (fractional (Jm * A') x) := by
     intro x
     rw [frac_comp_J, h1, ← frac_U_comp, ← frac_eq_cuspAct, USL_val]
-  show act Jm (act A.adjugate (φ.val (fractional A (fractional Jm D.1),
+  change act Jm (act A.adjugate (φ.val (fractional A (fractional Jm D.1),
       fractional A (fractional Jm D.2))))
     = act A'.adjugate (act Jm (φ.val (fractional Jm (fractional A' D.1),
       fractional Jm (fractional A' D.2))))
   rw [hcusp, hcusp, φ.2.2.2 ⟨USL t, USL_mem N t⟩ _ _]
-  show act Jm (act A.adjugate (act (Um t) _)) = _
+  change act Jm (act A.adjugate (act (Um t) _)) = _
   rw [← act_mul, ← act_mul, h2, act_mul, frac_J_comp, frac_J_comp]
 
 /-! ### The reindexing of the Hecke coset representatives -/
@@ -519,7 +519,7 @@ open MvPolynomial P2MSE
 variable {R : Type*} [CommRing R] {N n : ℕ}
 
 theorem reflection_zero : reflection (0 : (Cusp × Cusp) → Binary R) = 0 := by
-  funext D; show act Jm 0 = 0; rw [map_zero]
+  funext D; change act Jm 0 = 0; rw [map_zero]
 
 theorem reflection_sum {ι : Type*} (s : Finset ι) (f : ι → (Cusp × Cusp) → Binary R) :
     reflection (∑ b ∈ s, f b) = ∑ b ∈ s, reflection (f b) := by

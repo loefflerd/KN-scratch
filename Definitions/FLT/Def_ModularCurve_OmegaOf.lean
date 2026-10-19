@@ -68,7 +68,6 @@ namespace ModularCurve
 variable (N : ℕ) [NeZero N]
 
 open scoped Classical in
-
 def omegaOf (f : ℍ → ℂ) (σ : AlgebraicClosure ℚ →+* ℂ) :
     Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] :=
   if h : ∃ x : modularFunctionFieldBar N,
@@ -96,7 +95,6 @@ private theorem thetaL_coeffEmb_jq_ne_zero :
   simp at h
 
 omit [NeZero N] in
-
 theorem omegaOf_witness_unique (f : ℍ → ℂ)
     (σ : AlgebraicClosure ℚ →+* ℂ) {x y : modularFunctionFieldBar N}
     (hx : coeffMap σ ((x : LaurentSeries (AlgebraicClosure ℚ)) *

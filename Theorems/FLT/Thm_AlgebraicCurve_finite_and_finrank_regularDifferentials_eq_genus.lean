@@ -74,10 +74,19 @@ namespace P2MW.S_AlgebraicCurve_finite_and_finrank_regularDifferentials_eq_genus
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_finite_and_finrank_regularDifferentials_eq_genus.AlgebraicCurve KaehlerDifferential IntermediateField"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_finite_and_finrank_regularDifferentials_eq_genus.AlgebraicCurve \
+  KaehlerDifferential IntermediateField"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver IsCurveOver.finrank_kaehler Place Divisor HasCanonicalDivisor canonicalDivisorOf canonicalDivisorOf_apply genus Place.ordDifferential regularDifferentials mem_regularDifferentials_iff FunctionFieldRiemannRoch LSpace ell mem_lSpace_iff_ord ConstantsAreBase ell_zero_eq_one_of_constantsAreBase dCoordGenerates_of_isCurveOver IsCurveOver.exists_separating_transcendental isCurveOver_ratFunc essFiniteType_of_transcendental_of_finiteDimensional functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver constantsAreBase_of_isAlgClosed finiteDimensional_lSpace"
+p2m_export "AlgebraicCurve" "IsCurveOver IsCurveOver.finrank_kaehler Place Divisor \
+  HasCanonicalDivisor canonicalDivisorOf canonicalDivisorOf_apply genus Place.ordDifferential \
+  regularDifferentials mem_regularDifferentials_iff FunctionFieldRiemannRoch LSpace ell \
+  mem_lSpace_iff_ord ConstantsAreBase ell_zero_eq_one_of_constantsAreBase \
+  dCoordGenerates_of_isCurveOver IsCurveOver.exists_separating_transcendental isCurveOver_ratFunc \
+  essFiniteType_of_transcendental_of_finiteDimensional \
+  functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver constantsAreBase_of_isAlgClosed \
+  finiteDimensional_lSpace"
 p2m_open "AlgebraicCurve"
 
 namespace RegularDifferentialsFinrank
@@ -206,11 +215,11 @@ theorem riemannRoch_and_constantsAreBase [IsAlgClosed K] [Algebra.EssFiniteType 
         (e.symm.toRingEquiv : K⟮t⟯ →+* RatFunc K)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap K⟮t⟯ F) := by
     refine RingHom.ext fun a => ?_
-    show algebraMap K⟮t⟯ F (e (e.symm a)) = algebraMap K⟮t⟯ F a
+    change algebraMap K⟮t⟯ F (e (e.symm a)) = algebraMap K⟮t⟯ F a
     rw [e.apply_symm_apply]
   have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun a => by
-      show algebraMap K F a = algebraMap K⟮t⟯ F (e (algebraMap K (RatFunc K) a))
+      change algebraMap K F a = algebraMap K⟮t⟯ F (e (algebraMap K (RatFunc K) a))
       rw [e.commutes, ← IsScalarTower.algebraMap_apply]
   have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
@@ -276,6 +285,7 @@ theorem AlgebraicCurve.finite_and_finrank_regularDifferentials_eq_genus {K F : T
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)] :
     Module.Finite K ↥(AlgebraicCurve.regularDifferentials K F) ∧
       Module.finrank K ↥(AlgebraicCurve.regularDifferentials K F) =
-        AlgebraicCurve.genus K F := _root_.P2MW.S_AlgebraicCurve_finite_and_finrank_regularDifferentials_eq_genus.solution
+        AlgebraicCurve.genus K F :=
+  solution
 
 end publicSection

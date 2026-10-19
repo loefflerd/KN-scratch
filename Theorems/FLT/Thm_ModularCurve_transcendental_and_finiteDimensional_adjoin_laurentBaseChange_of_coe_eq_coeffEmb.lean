@@ -170,7 +170,8 @@ private theorem finiteDimensional_adjoin_emb [Algebra.IsAlgebraic ℚ L] (j : �
     rw [← span_range_emb_eq_top L F₀, Submodule.span_le]
     rintro _ ⟨f, rfl⟩
     exact key f
-  have hW : W = ⊤ := Submodule.restrictScalars_injective L _ _ (by rw [htop, Submodule.restrictScalars_top])
+  have hW : W = ⊤ :=
+    Submodule.restrictScalars_injective L _ _ (by rw [htop, Submodule.restrictScalars_top])
   exact ⟨by rw [← hW]; exact Submodule.fg_span (Set.finite_range _)⟩
 
 end CC2B01K4
@@ -207,6 +208,7 @@ theorem ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChan
     (hjb : (jb : LaurentSeries L) = coeffEmb L ((j : ↥F₀) : LaurentSeries ℚ)) :
     Transcendental L jb ∧
       FiniteDimensional ↥(IntermediateField.adjoin L ({jb} : Set ↥(laurentBaseChange L F₀)))
-        ↥(laurentBaseChange L F₀) := _root_.P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb.solution L F₀ j hj jb hjb
+        ↥(laurentBaseChange L F₀) :=
+  solution L F₀ j hj jb hjb
 
 end publicSection

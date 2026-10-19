@@ -66,7 +66,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_modularUnitSeries_mem_modularFunctionField
 
-theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionField ℓ := by
+theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] :
+    ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionField ℓ := by
   have : NeZero ℓ := ⟨(Fact.out : Nat.Prime ℓ).ne_zero⟩
   exact ModularCurve.mem_modularFunctionField_of_hasSum_of_gamma0_invariant ℓ
     (ModularCurve.modularUnitSeries ℓ) ((ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹)
@@ -84,6 +85,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.modularUnitSeries_mem_modularFunctionField (ℓ : ℕ) [Fact (Nat.Prime ℓ)] : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionField ℓ := _root_.P2MW.S_ModularCurve_modularUnitSeries_mem_modularFunctionField.solution ℓ
+theorem ModularCurve.modularUnitSeries_mem_modularFunctionField (ℓ : ℕ) [Fact (Nat.Prime ℓ)] :
+    ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionField ℓ :=
+  solution ℓ
 
 end publicSection

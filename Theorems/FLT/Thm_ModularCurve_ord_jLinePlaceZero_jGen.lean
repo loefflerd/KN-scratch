@@ -70,7 +70,8 @@ attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 attribute [local instance] ModularCurve.instDecidableEqRatFuncRat
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jLineRingEquiv jLineRingEquiv_X instDecidableEqRatFuncRat jLinePlaceZero jq jGen"
+p2m_export "ModularCurve" "jLineRingEquiv jLineRingEquiv_X instDecidableEqRatFuncRat \
+  jLinePlaceZero jq jGen"
 namespace JLineOrdAux
 p2m_open "ModularCurve"
 
@@ -123,6 +124,8 @@ public section publicSection
 
 
 open IntermediateField AlgebraicCurve
-theorem ModularCurve.ord_jLinePlaceZero_jGen : ModularCurve.jLinePlaceZero.ord ModularCurve.jGen = 1 := _root_.P2MW.S_ModularCurve_ord_jLinePlaceZero_jGen.solution
+theorem ModularCurve.ord_jLinePlaceZero_jGen :
+    ModularCurve.jLinePlaceZero.ord ModularCurve.jGen = 1 :=
+  solution
 
 end publicSection

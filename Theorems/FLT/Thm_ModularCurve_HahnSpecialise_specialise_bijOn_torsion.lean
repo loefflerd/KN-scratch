@@ -63,14 +63,17 @@ namespace P2MW.S_ModularCurve_HahnSpecialise_specialise_bijOn_torsion
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_HahnSpecialise_specialise_bijOn_torsion.ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise P2MW.S_ModularCurve_HahnSpecialise_specialise_bijOn_torsion.ModularCurve.HahnSpecialise"
+p2m_open "ModularCurve P2MW.S_ModularCurve_HahnSpecialise_specialise_bijOn_torsion.ModularCurve \
+  ModularCurve.B3 ModularCurve.HahnSpecialise \
+  P2MW.S_ModularCurve_HahnSpecialise_specialise_bijOn_torsion.ModularCurve.HahnSpecialise"
 open IsLocalRing
 open ModularCurve.TatePoint (Qbar H CycSubH)
 open scoped Classical
 
 namespace ModularCurve
 namespace HahnSpecialise
-p2m_export "ModularCurve.HahnSpecialise" "valuationSubringH liftModel liftModel_map_subtype map_residue_Δ_ne_zero_of_specialFibre specialise specialise_injOn_nsmul_eq_zero"
+p2m_export "ModularCurve.HahnSpecialise" "valuationSubringH liftModel liftModel_map_subtype \
+  map_residue_Δ_ne_zero_of_specialFibre specialise specialise_injOn_nsmul_eq_zero"
 p2m_open "ModularCurve.HahnSpecialise ModularCurve"
 
 open ModularCurve.B3
@@ -153,7 +156,7 @@ theorem solution (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
   have hN : N ≠ 0 := NeZero.ne N
   refine ⟨fun P hP => ?_, fun P hP Q hQ h => specialise_injOn_nsmul_eq_zero E hE hΔ hN hP hQ h,
     fun Q hQ => ?_⟩
-  · show N • specialise E hE hΔ P = 0
+  · change N • specialise E hE hΔ P = 0
     rw [← map_nsmul, show N • P = 0 from hP, map_zero]
   · obtain ⟨P, hP⟩ := (ModularCurve.HahnSpecialise.specialiseTorsion_bijective E hE hΔ hN).2
       ⟨Q, ModularCurve.HahnSpecialise.mem_torsionBy_of_nsmul_eq_zero hQ⟩
@@ -173,8 +176,10 @@ public section publicSection
 open ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise
 open ModularCurve.TatePoint (Qbar H CycSubH)
 open scoped Classical
-theorem ModularCurve.HahnSpecialise.specialise_bijOn_torsion (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
+theorem ModularCurve.HahnSpecialise.specialise_bijOn_torsion (E : WeierstrassCurve H)
+    (hE : IntegralCoeffs E)
     (hΔ : (specialFibre E).Δ ≠ 0) (N : ℕ) [NeZero N] :
-    Set.BijOn (specialise E hE hΔ) {P | N • P = 0} {Q | N • Q = 0} := _root_.P2MW.S_ModularCurve_HahnSpecialise_specialise_bijOn_torsion.solution E hE hΔ N
+    Set.BijOn (specialise E hE hΔ) {P | N • P = 0} {Q | N • Q = 0} :=
+  solution E hE hΔ N
 
 end publicSection

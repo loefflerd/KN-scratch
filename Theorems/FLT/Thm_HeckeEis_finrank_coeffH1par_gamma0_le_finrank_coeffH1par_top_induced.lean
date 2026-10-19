@@ -70,13 +70,16 @@ namespace P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_in
 
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff BinaryForm binaryFormRepSL"
+p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff \
+  coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff \
+  BinaryForm binaryFormRepSL"
 namespace UBSol
 p2m_open "HeckeEis"
 
 open Polynomial
 
-theorem mem_range_of_geomSum_eq_zero {V : Type*} [AddCommGroup V] [Module ℂ V] (A : Module.End ℂ V) {M : ℕ} (hM : 0 < M)
+theorem mem_range_of_geomSum_eq_zero {V : Type*} [AddCommGroup V] [Module ℂ V] (A : Module.End ℂ V)
+    {M : ℕ} (hM : 0 < M)
     (v : V) (hv : aeval A (∑ i ∈ Finset.range M, (X : ℂ[X]) ^ i) v = 0) :
     v ∈ LinearMap.range (A - 1) := by
   set Φ : ℂ[X] := ∑ i ∈ Finset.range M, X ^ i with hΦ
@@ -84,20 +87,25 @@ theorem mem_range_of_geomSum_eq_zero {V : Type*} [AddCommGroup V] [Module ℂ V]
     intro hdvd
     have h1 : Φ.IsRoot 1 := (Polynomial.dvd_iff_isRoot).mp hdvd
     rw [Polynomial.IsRoot, hΦ, Polynomial.eval_finsetSum] at h1
-    simp only [Polynomial.eval_pow, Polynomial.eval_X, one_pow, Finset.sum_const, Finset.card_range, nsmul_eq_mul,
+    simp only [Polynomial.eval_pow, Polynomial.eval_X, one_pow, Finset.sum_const, Finset.card_range,
+      nsmul_eq_mul,
       mul_one] at h1
     exact (Nat.cast_ne_zero.mpr hM.ne') h1
-  have hcop : IsCoprime (X - C (1 : ℂ)) Φ := (Polynomial.irreducible_X_sub_C (1 : ℂ)).coprime_iff_not_dvd.mpr hndvd
+  have hcop : IsCoprime (X - C (1 : ℂ)) Φ :=
+    (Polynomial.irreducible_X_sub_C (1 : ℂ)).coprime_iff_not_dvd.mpr hndvd
   obtain ⟨a, b, hab⟩ := hcop
   have key : v = aeval A (a * (X - C 1)) v := by
     have := congrArg (fun p => aeval A p v) hab
-    simp only [map_add, map_mul, map_one, LinearMap.add_apply, Module.End.mul_apply, Module.End.one_apply] at this
+    simp only [map_add, map_mul, map_one, LinearMap.add_apply, Module.End.mul_apply,
+      Module.End.one_apply] at this
     rw [show aeval A Φ v = 0 from hv, map_zero, add_zero] at this
     rw [map_mul, Module.End.mul_apply]; exact this.symm
-  rw [key, mul_comm, map_mul, Module.End.mul_apply, map_sub, aeval_X, aeval_C, Algebra.algebraMap_eq_smul_one, one_smul]
+  rw [key, mul_comm, map_mul, Module.End.mul_apply, map_sub, aeval_X, aeval_C,
+    Algebra.algebraMap_eq_smul_one, one_smul]
   exact LinearMap.mem_range_self _ _
 
-theorem mem_range_of_sum_pow_apply_eq_zero {V : Type*} [AddCommGroup V] [Module ℂ V] (A : Module.End ℂ V) {M : ℕ} (hM : 0 < M)
+theorem mem_range_of_sum_pow_apply_eq_zero {V : Type*} [AddCommGroup V] [Module ℂ V]
+    (A : Module.End ℂ V) {M : ℕ} (hM : 0 < M)
     (v : V) (hv : ∑ i ∈ Finset.range M, (A ^ i) v = 0) : v ∈ LinearMap.range (A - 1) := by
   apply mem_range_of_geomSum_eq_zero A hM
   rw [map_sum, LinearMap.coe_sum, Finset.sum_apply]
@@ -108,7 +116,9 @@ end HeckeEis.UBSol
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff BinaryForm binaryFormRepSL"
+p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff \
+  coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff \
+  BinaryForm binaryFormRepSL"
 namespace UBSol
 p2m_open "HeckeEis"
 
@@ -130,18 +140,21 @@ section Cosets
 variable {N}
 
 theorem transfer_mem (g : SL(2, ℤ)) (x : X0 N) : (x.out)⁻¹ * (g * (g⁻¹ • x).out) ∈ Γ0 N := by
-  rw [← QuotientGroup.eq, QuotientGroup.out_eq', ← smul_eq_mul, MulAction.Quotient.coe_smul_out, smul_inv_smul]
+  rw [← QuotientGroup.eq, QuotientGroup.out_eq', ← smul_eq_mul, MulAction.Quotient.coe_smul_out,
+    smul_inv_smul]
 
 def tr (g : SL(2, ℤ)) (x : X0 N) : ↥(Γ0 N) := ⟨(x.out)⁻¹ * (g * (g⁻¹ • x).out), transfer_mem g x⟩
 
-@[scoped simp] theorem coe_tr (g : SL(2, ℤ)) (x : X0 N) : ((tr g x : ↥(Γ0 N)) : SL(2, ℤ)) = (x.out)⁻¹ * (g * (g⁻¹ • x).out) := rfl
+@[scoped simp] theorem coe_tr (g : SL(2, ℤ)) (x : X0 N) :
+    ((tr g x : ↥(Γ0 N)) : SL(2, ℤ)) = (x.out)⁻¹ * (g * (g⁻¹ • x).out) := rfl
 
 theorem tr_mul (g h : SL(2, ℤ)) (x : X0 N) : tr (g * h) x = tr g x * tr h (g⁻¹ • x) := by
   apply Subtype.ext
   simp only [coe_tr, Subgroup.coe_mul, mul_inv_rev, mul_smul]
   group
 
-theorem out_mul_tr (g : SL(2, ℤ)) (x : X0 N) : x.out * ((tr g x : ↥(Γ0 N)) : SL(2, ℤ)) = g * (g⁻¹ • x).out := by
+theorem out_mul_tr (g : SL(2, ℤ)) (x : X0 N) :
+    x.out * ((tr g x : ↥(Γ0 N)) : SL(2, ℤ)) = g * (g⁻¹ • x).out := by
   rw [coe_tr, mul_inv_cancel_left]
 
 theorem tr_one (x : X0 N) : tr 1 x = 1 := by
@@ -160,7 +173,8 @@ include hW
 def Sh (z : ↥(Γ0 N) → Vn n) : ↥Gt → X0 N → Vn n := fun g x => ρ n x.out (z (tr (g : SL(2, ℤ)) x))
 
 omit hW in
-@[scoped simp] theorem Sh_apply (z : ↥(Γ0 N) → Vn n) (g : ↥Gt) (x : X0 N) : Sh z g x = ρ n x.out (z (tr (g : SL(2, ℤ)) x)) := rfl
+@[scoped simp] theorem Sh_apply (z : ↥(Γ0 N) → Vn n) (g : ↥Gt) (x : X0 N) :
+    Sh z g x = ρ n x.out (z (tr (g : SL(2, ℤ)) x)) := rfl
 
 omit hW in
 theorem Sh_add (z w : ↥(Γ0 N) → Vn n) : Sh (z + w) = Sh z + Sh w := by
@@ -174,23 +188,25 @@ omit hW in
 theorem Sh_smul (c : ℂ) (z : ↥(Γ0 N) → Vn n) : Sh (c • z) = c • Sh z := by
   funext g x; simp
 
-theorem Sh_mem_coeffCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCocycles (ρΓ N n)) : Sh z ∈ coeffCocycles W := by
+theorem Sh_mem_coeffCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCocycles (ρΓ N n)) :
+    Sh z ∈ coeffCocycles W := by
   intro g h
   funext x
   rw [Pi.add_apply, hW, Sh_apply, Sh_apply, Sh_apply]
   rw [show ((g * h : ↥Gt) : SL(2, ℤ)) = (g : SL(2, ℤ)) * (h : SL(2, ℤ)) from rfl, tr_mul, hz]
   rw [map_add]
   rw [add_right_inj]
-  show ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) (z (tr (h : SL(2, ℤ)) ((g : SL(2, ℤ))⁻¹ • x)))) = _
+  change ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) (z (tr (h : SL(2, ℤ)) ((g : SL(2, ℤ))⁻¹ • x)))) = _
   rw [← Module.End.mul_apply, ← map_mul, out_mul_tr, map_mul, Module.End.mul_apply]
 
-theorem Sh_mem_coeffCoboundaries {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCoboundaries (ρΓ N n)) : Sh z ∈ coeffCoboundaries W := by
+theorem Sh_mem_coeffCoboundaries {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCoboundaries (ρΓ N n)) :
+    Sh z ∈ coeffCoboundaries W := by
   rw [mem_coeffCoboundaries_iff] at hz ⊢
   obtain ⟨v, rfl⟩ := hz
   refine ⟨fun x => ρ n x.out v, funext fun g => funext fun x => ?_⟩
   rw [Pi.sub_apply, hW, Sh_apply, map_sub]
   rw [sub_left_inj]
-  show _ = ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) v)
+  change _ = ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) v)
   rw [← Module.End.mul_apply (ρ n x.out), ← map_mul, out_mul_tr, map_mul, Module.End.mul_apply]
 
 theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
@@ -207,7 +223,8 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
     intro γ
     rw [hx0, MulAction.Quotient.smul_coe, QuotientGroup.eq]
     simp
-  have key : ∀ γ : ↥(Γ0 N), ρ n x0.out (z (tr (γ : SL(2, ℤ)) x0)) = ρ n (γ : SL(2, ℤ)) (F x0) - F x0 := by
+  have key : ∀ γ : ↥(Γ0 N), ρ n x0.out (z (tr (γ : SL(2, ℤ)) x0)) = ρ n (γ : SL(2, ℤ)) (F x0) - F x0 :=
+    by
     intro γ
     have := congrFun (congrFun hF ⟨(γ : SL(2, ℤ)), Subgroup.mem_top _⟩) x0
     rw [Pi.sub_apply, hW, Sh_apply] at this
@@ -221,13 +238,14 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
   refine ⟨ρΓ N n σ0⁻¹ (F x0), funext fun δ => ?_⟩
   have hk := key (σ0 * δ * σ0⁻¹)
   rw [htr, show σ0⁻¹ * (σ0 * δ * σ0⁻¹) * σ0 = δ by group] at hk
-  have : z δ = ρ n ((σ0 : ↥(Γ0 N)) : SL(2, ℤ))⁻¹ (ρ n (((σ0 * δ * σ0⁻¹ : ↥(Γ0 N))) : SL(2, ℤ)) (F x0) - F x0) := by
+  have : z δ = ρ n ((σ0 : ↥(Γ0 N)) : SL(2, ℤ))⁻¹ (ρ n (((σ0 * δ * σ0⁻¹ : ↥(Γ0 N))) : SL(2, ℤ)) (F x0) - F x0) :=
+    by
     rw [← hk, ← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
   rw [this, map_sub, ← Module.End.mul_apply, ← map_mul]
   refine congrArg₂ (· - ·) ?_ ?_
   swap
   · simp only [MonoidHom.coe_comp, Function.comp_apply, Subgroup.coe_subtype, Subgroup.coe_inv]
-  show ρ n ((δ * σ0⁻¹ : ↥(Γ0 N)) : SL(2, ℤ)) (F x0) = _
+  change ρ n ((δ * σ0⁻¹ : ↥(Γ0 N)) : SL(2, ℤ)) (F x0) = _
   rw [← Module.End.mul_apply (ρ n _), ← map_mul]
   congr 2
   rw [Subgroup.coe_mul, Subgroup.coe_mul, Subgroup.coe_mul, Subgroup.coe_inv]
@@ -241,7 +259,9 @@ end
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff BinaryForm binaryFormRepSL"
+p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff \
+  coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff \
+  BinaryForm binaryFormRepSL"
 namespace UBSol
 p2m_open "HeckeEis"
 
@@ -255,19 +275,22 @@ theorem trace_sq_eq_four_iff_exists (g : SL(2, ℤ)) :
       → ∃ (ε δ : SL(2, ℤ)) (h : ℤ), (ε = 1 ∨ ε = -1) ∧ g = ε * (δ * ModularGroup.T ^ h * δ⁻¹) :=
   ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four g
 
-theorem trace_T_zpow (h : ℤ) : ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = 2 := by
+theorem trace_T_zpow (h : ℤ) :
+    ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = 2 := by
   rw [ModularGroup.coe_T_zpow, Matrix.trace_fin_two_of]; ring
 
 theorem trace_conj (δ g : SL(2, ℤ)) :
     ((δ * g * δ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = ((g : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace := by
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, Matrix.trace_mul_cycle,
-    ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one, Matrix.one_mul]
+    ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one,
+    Matrix.one_mul]
 
 theorem trace_sq_of_shape (ε δ : SL(2, ℤ)) (h : ℤ) (hε : ε = 1 ∨ ε = -1) :
     (((ε * (δ * ModularGroup.T ^ h * δ⁻¹) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4 := by
   rcases hε with rfl | rfl
   · rw [one_mul, trace_conj, trace_T_zpow]; norm_num
-  · rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_neg, Matrix.SpecialLinearGroup.coe_one, neg_mul,
+  · rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_neg,
+      Matrix.SpecialLinearGroup.coe_one, neg_mul,
       one_mul, Matrix.trace_neg, trace_conj, trace_T_zpow]; norm_num
 
 theorem trace_sq_pow (g : SL(2, ℤ)) (hg : ((g : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4) (M : ℕ) :
@@ -303,7 +326,8 @@ noncomputable scoped instance fintypeX0 : Fintype (X0 N) := (CongruenceSubgroup.
 theorem exists_pow_smul_eq (g : SL(2, ℤ)) : ∃ M : ℕ, 0 < M ∧ ∀ x : X0 N, g ^ M • x = x := by
   classical
   refine ⟨Fintype.card (Equiv.Perm (X0 N)), Fintype.card_pos, fun x => ?_⟩
-  have h : (MulAction.toPermHom SL(2, ℤ) (X0 N) g) ^ Fintype.card (Equiv.Perm (X0 N)) = 1 := pow_card_eq_one
+  have h : (MulAction.toPermHom SL(2, ℤ) (X0 N) g) ^ Fintype.card (Equiv.Perm (X0 N)) = 1 :=
+    pow_card_eq_one
   rw [← map_pow] at h
   have := Equiv.congr_fun h x
   simpa using this
@@ -323,7 +347,8 @@ theorem cocycle_pow {Z : ↥Gt → X0 N → Vn n} (hZ : Z ∈ coeffCocycles W) (
     rw [mul_one, map_one, Module.End.one_apply] at h
     simpa using h
   | succ M ih =>
-    rw [pow_succ', hZ, ih, Finset.sum_range_succ', pow_zero, Module.End.one_apply, add_comm, map_sum]
+    rw [pow_succ', hZ, ih, Finset.sum_range_succ', pow_zero, Module.End.one_apply, add_comm,
+      map_sum]
     congr 1
     exact Finset.sum_congr rfl fun i _ => by rw [pow_succ', Module.End.mul_apply]
 
@@ -336,7 +361,8 @@ variable (W : Representation ℂ ↥Gt (X0 N → Vn n))
   (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x)))
 include hW
 
-theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffParabolicCocycles (ρΓ N n)) :
+theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n}
+    (hz : z ∈ coeffParabolicCocycles (ρΓ N n)) :
     Sh z ∈ coeffParabolicCocycles W := by
   classical
   refine ⟨Sh_mem_coeffCocycles W hW hz.1, fun g hg => ?_⟩
@@ -344,7 +370,8 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coef
   have hfix' : ∀ x : X0 N, ((g : SL(2, ℤ)) ^ M)⁻¹ • x = x := fun x => by
     conv_lhs => rw [← hfix x]
     rw [inv_smul_smul]
-  have hγ : ∀ x : X0 N, (((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
+  have hγ : ∀ x : X0 N, (((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 :=
+    by
     intro x
     rw [coe_tr, hfix']
     exact trace_sq_conj' _ _ (trace_sq_pow _ hg M)
@@ -359,8 +386,9 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coef
     rw [LinearMap.sub_apply, Module.End.one_apply] at hx
     rw [← hx, map_sub]
     refine congrArg₂ (· - ·) ?_ rfl
-    show ρ n x.out (ρ n ((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) (u x)) = _
-    rw [← Module.End.mul_apply (ρ n x.out), ← map_mul, out_mul_tr, hfix', map_mul, Module.End.mul_apply]
+    change ρ n x.out (ρ n ((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) (u x)) = _
+    rw [← Module.End.mul_apply (ρ n x.out), ← map_mul, out_mul_tr, hfix', map_mul,
+      Module.End.mul_apply]
   have h2 := cocycle_pow (Sh_mem_coeffCocycles W hW hz.1) g M
   have h3 : (A ^ M - 1) F = ∑ i ∈ Finset.range M, (A ^ i) ((A - 1) F) := by
     rw [← geom_sum_mul A M, Module.End.mul_apply, LinearMap.coe_sum, Finset.sum_apply]
@@ -377,7 +405,9 @@ end
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff BinaryForm binaryFormRepSL"
+p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff \
+  coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff \
+  BinaryForm binaryFormRepSL"
 namespace UBSol
 p2m_open "HeckeEis"
 
@@ -392,9 +422,9 @@ variable (W : Representation ℂ ↥Gt (X0 N → Vn n))
 include hW
 
 omit [NeZero N] hW in
-
 theorem eq_zero_of_apply_S_T {Z : ↥Gt → X0 N → Vn n} (hZ : Z ∈ coeffCocycles W)
-    (hS : Z ⟨ModularGroup.S, Subgroup.mem_top _⟩ = 0) (hT : Z ⟨ModularGroup.T, Subgroup.mem_top _⟩ = 0) : Z = 0 := by
+    (hS : Z ⟨ModularGroup.S, Subgroup.mem_top _⟩ = 0)
+    (hT : Z ⟨ModularGroup.T, Subgroup.mem_top _⟩ = 0) : Z = 0 := by
   have z1 : Z 1 = 0 := by
     have h := hZ 1 1
     rw [mul_one, map_one, Module.End.one_apply] at h
@@ -404,9 +434,11 @@ theorem eq_zero_of_apply_S_T {Z : ↥Gt → X0 N → Vn n} (hZ : Z ∈ coeffCocy
     rw [inv_mul_cancel, z1] at h
     exact eq_neg_of_add_eq_zero_left h.symm
   funext g
-  have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ)) := by
+  have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ)) :=
+    by
     rw [SpecialLinearGroup.SL2Z_generators]; trivial
-  have key : ∀ x (hx : x ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ))), Z ⟨x, Subgroup.mem_top _⟩ = 0 := by
+  have key : ∀ x (hx : x ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ))), Z ⟨x, Subgroup.mem_top _⟩ = 0 :=
+    by
     intro x hx
     induction hx using Subgroup.closure_induction with
     | mem x hx =>
@@ -425,18 +457,19 @@ theorem eq_zero_of_apply_S_T {Z : ↥Gt → X0 N → Vn n} (hZ : Z ∈ coeffCocy
   rw [key g hg]; rfl
 
 omit hW in
-
 theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
   classical
-  rw [Module.Finite.iff_fg, show (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) = MvPolynomial.homogeneousSubmodule (Fin 2) ℂ n from rfl,
-    MvPolynomial.homogeneousSubmodule_eq_finsupp_supported, AddMonoidAlgebra.supported_eq_span_single]
+  rw [Module.Finite.iff_fg, show (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) =
+    MvPolynomial.homogeneousSubmodule (Fin 2) ℂ n from rfl,
+    MvPolynomial.homogeneousSubmodule_eq_finsupp_supported,
+    AddMonoidAlgebra.supported_eq_span_single]
   refine Submodule.fg_span (Set.Finite.image _ ?_)
   refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i + Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
   intro d hd
   have hsum : d 0 + d 1 = n := by
     have : d.degree = n := hd
     rw [← this, Finsupp.degree_eq_sum, Fin.sum_univ_two]
-  refine ⟨d 0, (by show d 0 ≤ n; omega), ?_⟩
+  refine ⟨d 0, (by change d 0 ≤ n; omega), ?_⟩
   ext j; fin_cases j
   · simp
   · simp; omega
@@ -455,29 +488,30 @@ theorem finite_coeffParabolicCocycles : Module.Finite ℂ ↥(coeffParabolicCocy
   have h1 := congrArg Prod.fst h
   have h2 := congrArg Prod.snd h
   refine eq_zero_of_apply_S_T W (Z - Z').2.1 ?_ ?_
-  · show (Z : ↥Gt → X0 N → Vn n) _ - (Z' : ↥Gt → X0 N → Vn n) _ = 0
+  · change (Z : ↥Gt → X0 N → Vn n) _ - (Z' : ↥Gt → X0 N → Vn n) _ = 0
     exact sub_eq_zero.mpr h1
-  · show (Z : ↥Gt → X0 N → Vn n) _ - (Z' : ↥Gt → X0 N → Vn n) _ = 0
+  · change (Z : ↥Gt → X0 N → Vn n) _ - (Z' : ↥Gt → X0 N → Vn n) _ = 0
     exact sub_eq_zero.mpr h2
 
 def ShPC : ↥(coeffParabolicCocycles (ρΓ N n)) →ₗ[ℂ] ↥(coeffParabolicCocycles W) where
   toFun z := ⟨Sh (z : ↥(Γ0 N) → Vn n), Sh_mem_coeffParabolicCocycles W hW z.2⟩
   map_add' z w := by
     apply Subtype.ext
-    show Sh ((z : ↥(Γ0 N) → Vn n) + (w : ↥(Γ0 N) → Vn n)) = Sh (z : ↥(Γ0 N) → Vn n) + Sh (w : ↥(Γ0 N) → Vn n)
+    change Sh ((z : ↥(Γ0 N) → Vn n) + (w : ↥(Γ0 N) → Vn n)) = Sh (z : ↥(Γ0 N) → Vn n) + Sh (w : ↥(Γ0 N) → Vn n)
     exact Sh_add _ _
   map_smul' c z := by
     apply Subtype.ext
-    show Sh (c • (z : ↥(Γ0 N) → Vn n)) = c • Sh (z : ↥(Γ0 N) → Vn n)
+    change Sh (c • (z : ↥(Γ0 N) → Vn n)) = c • Sh (z : ↥(Γ0 N) → Vn n)
     exact Sh_smul _ _
 
 @[scoped simp] theorem coe_ShPC (z : ↥(coeffParabolicCocycles (ρΓ N n))) :
     ((ShPC W hW z : ↥(coeffParabolicCocycles W)) : ↥Gt → X0 N → Vn n) = Sh (z : ↥(Γ0 N) → Vn n) := rfl
 
-theorem mk_ShPC_congr {a b : ↥(coeffParabolicCocycles (ρΓ N n))} (h : coeffH1parMk _ a = coeffH1parMk _ b) :
+theorem mk_ShPC_congr {a b : ↥(coeffParabolicCocycles (ρΓ N n))}
+    (h : coeffH1parMk _ a = coeffH1parMk _ b) :
     coeffH1parMk _ (ShPC W hW a) = coeffH1parMk _ (ShPC W hW b) := by
   rw [← sub_eq_zero, ← map_sub, coeffH1parMk_eq_zero_iff] at h ⊢
-  show Sh (a : ↥(Γ0 N) → Vn n) - Sh (b : ↥(Γ0 N) → Vn n) ∈ coeffCoboundaries W
+  change Sh (a : ↥(Γ0 N) → Vn n) - Sh (b : ↥(Γ0 N) → Vn n) ∈ coeffCoboundaries W
   rw [← Sh_sub]
   exact Sh_mem_coeffCoboundaries W hW h
 
@@ -486,15 +520,18 @@ def Ψ : coeffH1par (ρΓ N n) →ₗ[ℂ] coeffH1par W where
   map_add' x y := by
     rw [← map_add, ← map_add]
     apply mk_ShPC_congr
-    rw [map_add, Function.surjInv_eq (coeffH1parMk_surjective _), Function.surjInv_eq (coeffH1parMk_surjective _),
+    rw [map_add, Function.surjInv_eq (coeffH1parMk_surjective _), Function.surjInv_eq
+      (coeffH1parMk_surjective _),
       Function.surjInv_eq (coeffH1parMk_surjective _)]
   map_smul' c x := by
     rw [RingHom.id_apply, ← map_smul, ← map_smul]
     apply mk_ShPC_congr
-    rw [map_smul, Function.surjInv_eq (coeffH1parMk_surjective _), Function.surjInv_eq (coeffH1parMk_surjective _)]
+    rw [map_smul, Function.surjInv_eq (coeffH1parMk_surjective _), Function.surjInv_eq
+      (coeffH1parMk_surjective _)]
 
-theorem Ψ_mk (z : ↥(coeffParabolicCocycles (ρΓ N n))) : Ψ W hW (coeffH1parMk _ z) = coeffH1parMk _ (ShPC W hW z) := by
-  show coeffH1parMk _ (ShPC W hW (Function.surjInv (coeffH1parMk_surjective _) (coeffH1parMk _ z))) = _
+theorem Ψ_mk (z : ↥(coeffParabolicCocycles (ρΓ N n))) :
+    Ψ W hW (coeffH1parMk _ z) = coeffH1parMk _ (ShPC W hW z) := by
+  change coeffH1parMk _ (ShPC W hW (Function.surjInv (coeffH1parMk_surjective _) (coeffH1parMk _ z))) = _
   apply mk_ShPC_congr
   rw [Function.surjInv_eq (coeffH1parMk_surjective _)]
 
@@ -509,7 +546,8 @@ theorem Ψ_injective : Function.Injective (Ψ W hW) := by
 theorem main :
     Module.finrank ℂ (coeffH1par (ρΓ N n)) ≤ Module.finrank ℂ (coeffH1par W) := by
   have := finite_coeffParabolicCocycles W
-  have : Module.Finite ℂ (coeffH1par W) := Module.Finite.of_surjective (coeffH1parMk W) (coeffH1parMk_surjective W)
+  have : Module.Finite ℂ (coeffH1par W) :=
+    Module.Finite.of_surjective (coeffH1parMk W) (coeffH1parMk_surjective W)
   exact LinearMap.finrank_le_finrank_of_injective (Ψ_injective W hW)
 
 end Final
@@ -535,11 +573,13 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced (N : ℕ) [NeZero N] (n : ℕ)
+theorem HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced (N : ℕ) [NeZero N]
+    (n : ℕ)
     (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)))
     (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
       W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) :
     Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
-      ≤ Module.finrank ℂ (HeckeEis.coeffH1par W) := _root_.P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.solution N n W hW
+      ≤ Module.finrank ℂ (HeckeEis.coeffH1par W) :=
+  solution N n W hW
 
 end publicSection

@@ -67,7 +67,8 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand_coeff_mul qExpand_coeff_of_not_dvd jq coeff_jq_neg_one qTwist_coeff cosetSubst coeffEmb coeffEmb_coeff"
+p2m_export "ModularCurve" "qExpand_coeff_mul qExpand_coeff_of_not_dvd jq coeff_jq_neg_one \
+  qTwist_coeff cosetSubst coeffEmb coeffEmb_coeff"
 p2m_open "ModularCurve"
 namespace PhiGen
 p2m_export "ModularCurve.PhiGen" "cosetA conj conj_zero conj_succ"
@@ -138,8 +139,9 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) : Function.Injective (conj ℓ ζ (K := K)) :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
+    (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
+    Function.Injective (conj ℓ ζ (K := K)) :=
   ModularCurve.PhiGen.conj_injective ℓ ζ hζ
 
 end S_ModularCurve_PhiGen_conj_injective
@@ -152,6 +154,9 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.conj_injective {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) : Function.Injective (conj ℓ ζ (K := K)) := _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.solution ℓ ζ hζ
+theorem ModularCurve.PhiGen.conj_injective {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ)
+    [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
+    Function.Injective (conj ℓ ζ (K := K)) :=
+  solution ℓ ζ hζ
 
 end publicSection

@@ -89,12 +89,14 @@ def realOfSemilinear {S H : Type*} [AddCommGroup S] [Module ℂ S] [AddCommGroup
   toFun := T
   map_add' := map_add T
   map_smul' r f := by
-    rw [RingHom.id_apply, ← Complex.coe_smul, LinearMap.map_smulₛₗ, Complex.conj_ofReal, Complex.coe_smul]
+    rw [RingHom.id_apply, ← Complex.coe_smul, LinearMap.map_smulₛₗ, Complex.conj_ofReal,
+      Complex.coe_smul]
 
 @[scoped simp] theorem realOfSemilinear_apply {S H : Type*} [AddCommGroup S] [Module ℂ S] [AddCommGroup H] [Module ℂ H]
     (T : S →ₛₗ[starRingEnd ℂ] H) (f : S) : realOfSemilinear T f = T f := rfl
 
-theorem isCompl_range_of_finrank_le {S H : Type*} [AddCommGroup S] [Module ℂ S] [FiniteDimensional ℂ S]
+theorem isCompl_range_of_finrank_le {S H : Type*} [AddCommGroup S] [Module ℂ S]
+    [FiniteDimensional ℂ S]
     [AddCommGroup H] [Module ℂ H] [FiniteDimensional ℂ H]
     (ES : S →ₗ[ℂ] H) (ESbar : S →ₛₗ[starRingEnd ℂ] H)
     (hinj : Function.Injective ES) (hinjb : Function.Injective ESbar)
@@ -110,13 +112,14 @@ theorem isCompl_range_of_finrank_le {S H : Type*} [AddCommGroup S] [Module ℂ S
     rw [Submodule.disjoint_def]
     rintro x ⟨f, rfl⟩ ⟨g, hg⟩
     have hf : f = 0 := hdisj f g hg.symm
-    show ESR f = 0
+    change ESR f = 0
     rw [hf, map_zero]
   have hS : finrank ℝ S = 2 * finrank ℂ S := finrank_real_of_complex S
   have hH : finrank ℝ H = 2 * finrank ℂ H := finrank_real_of_complex H
   have hp : finrank ℝ (LinearMap.range ESR) = finrank ℝ S := LinearMap.finrank_range_of_inj hinjR
   have hq : finrank ℝ (LinearMap.range EBR) = finrank ℝ S := LinearMap.finrank_range_of_inj hinjbR
-  have hsup : finrank ℝ ↥(LinearMap.range ESR ⊔ LinearMap.range EBR) = finrank ℝ S + finrank ℝ S := by
+  have hsup : finrank ℝ ↥(LinearMap.range ESR ⊔ LinearMap.range EBR) = finrank ℝ S + finrank ℝ S :=
+    by
     have h := Submodule.finrank_sup_add_finrank_inf_eq (LinearMap.range ESR) (LinearMap.range EBR)
     rw [disjoint_iff.mp hdisjR, finrank_bot, add_zero, hp, hq] at h
     exact h
@@ -138,7 +141,8 @@ theorem isCompl_range_of_finrank_le {S H : Type*} [AddCommGroup S] [Module ℂ S
     obtain ⟨g, rfl⟩ := hb
     exact Submodule.add_mem_sup ⟨f, rfl⟩ ⟨g, rfl⟩
 
-theorem isCompl_of_forall_eq_zero {S H : Type*} [AddCommGroup S] [Module ℂ S] [AddCommGroup H] [Module ℂ H]
+theorem isCompl_of_forall_eq_zero {S H : Type*} [AddCommGroup S] [Module ℂ S] [AddCommGroup H]
+    [Module ℂ H]
     (ES : S →ₗ[ℂ] H) (ESbar : S →ₛₗ[starRingEnd ℂ] H) (h0 : ∀ x : H, x = 0) :
     IsCompl (LinearMap.range ES) (LinearMap.range ESbar) := by
   have : Subsingleton H := ⟨fun a b => by rw [h0 a, h0 b]⟩
@@ -165,19 +169,24 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     (hESbar : ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ESbar f = Φ (ES f)) :
     IsCompl (LinearMap.range ES) (LinearMap.range ESbar) := by
   classical
-  obtain ⟨ΦZ, hΦZ⟩ := HeckeEis.exists_coeffH1par_map_ringHom (Int.castRingHom ℂ) n (CongruenceSubgroup.Gamma0 N)
+  obtain ⟨ΦZ, hΦZ⟩ :=
+    HeckeEis.exists_coeffH1par_map_ringHom (Int.castRingHom ℂ) n (CongruenceSubgroup.Gamma0 N)
   obtain ⟨t, b, c, -⟩ := HeckeEis.exists_basis_coeffH1par_int_complex n N ΦZ hΦZ
-  have : FiniteDimensional ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) := Module.Finite.of_basis c
+  have : FiniteDimensional ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) :=
+    Module.Finite.of_basis c
   rcases Nat.even_or_odd n with hne | hno
   swap
   · exact ISCAsm.isCompl_of_forall_eq_zero ES ESbar
       (HeckeEis.coeffH1par_binaryFormRepSL_eq_zero_of_odd ℂ two_ne_zero N n hno)
   have hESinj : Function.Injective ES := by
     intro a b h
-    have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b := by rw [← hES, ← hES, h]
+    have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b :=
+      by rw [← hES, ← hES, h]
     exact HeckeEis.eichlerShimuraMap_injective N n h'
-  have : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) := Module.Finite.of_injective ES hESinj
-  obtain ⟨Φ', hΦ', hΦ'Φ'⟩ := HeckeEis.exists_coeffH1par_semilinearMap_starRingEnd n (CongruenceSubgroup.Gamma0 N)
+  have : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :=
+    Module.Finite.of_injective ES hESinj
+  obtain ⟨Φ', hΦ', hΦ'Φ'⟩ :=
+    HeckeEis.exists_coeffH1par_semilinearMap_starRingEnd n (CongruenceSubgroup.Gamma0 N)
   have hΦeq : ∀ x, Φ x = Φ' x := by
     intro x
     obtain ⟨z, rfl⟩ := HeckeEis.coeffH1parMk_surjective _ x
@@ -196,11 +205,13 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     intro a b h
     rw [hESbar, hESbar] at h
     exact hESinj (hΦinj h)
-  have hdisj : ∀ f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = ESbar g → f = 0 := by
+  have hdisj : ∀ f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = ESbar g → f = 0 :=
+    by
     intro f g h
     rw [hESbar] at h
     exact HeckeEis.range_eichlerShimuraMap_inf_range_conj_eq_bot N n ES hES Φ hΦ f g h
-  have hdim : Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) ≤ 2 * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) := by
+  have hdim : Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) ≤ 2 * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :=
+    by
     rcases Nat.eq_zero_or_pos n with rfl | hpos
     · have hU := HeckeEis.finrank_coeffH1par_zero_le_two_mul_genusFormula N
       have hL := CuspForm.genusFormula_le_finrank_gamma0_weight_two N
@@ -214,7 +225,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
       have hU := HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula N n hn2 hne
       have hL := CuspForm.dimFormula_le_finrank_gamma0 N (n + 2) (by omega) (hne.add even_two)
       rw [ISCAsm.finrank_cuspForm_congr N (show ((n + 2 : ℕ) : ℤ) = (n : ℤ) + 2 by push_cast; ring)] at hL
-      have : (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ) ≤ 2 * (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) : ℚ) := by
+      have : (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ) ≤ 2 * (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) : ℚ) :=
+        by
         push_cast at hU hL ⊢
         linarith
       exact_mod_cast this
@@ -242,6 +254,7 @@ theorem HeckeEis.isCompl_range_eichlerShimuraMap_range_conj (N : ℕ) [NeZero N]
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
     (ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hESbar : ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ESbar f = Φ (ES f)) :
-    IsCompl (LinearMap.range ES) (LinearMap.range ESbar) := _root_.P2MW.S_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj.solution N n ES hES Φ hΦ ESbar hESbar
+    IsCompl (LinearMap.range ES) (LinearMap.range ESbar) :=
+  solution N n ES hES Φ hΦ ESbar hESbar
 
 end publicSection

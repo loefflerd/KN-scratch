@@ -187,7 +187,8 @@ example : addOrderOf (AddMonoidHom.mulLeft (2 : ZMod 4) 1) = 2 :=
 
 example : ((AddMonoidHom.mulLeft (2 : ZMod 4)).comp (AddMonoidHom.mulLeft (2 : ZMod 4))).ker =
     AddSubgroup.zmultiples (1 : ZMod 4) := by
-  have hker : (AddMonoidHom.mulLeft (2 : ZMod 4)).ker = AddSubgroup.zmultiples (2 • (1 : ZMod 4)) := by
+  have hker : (AddMonoidHom.mulLeft (2 : ZMod 4)).ker = AddSubgroup.zmultiples (2 • (1 : ZMod 4)) :=
+    by
     ext x
     rw [AddMonoidHom.mem_ker, AddMonoidHom.coe_mulLeft,
       mem_zmultiples_iff_of_two_nsmul_eq_zero (by decide)]
@@ -200,7 +201,16 @@ example : ((AddMonoidHom.mulLeft (2 : ZMod 4)).comp (AddMonoidHom.mulLeft (2 : Z
 end KernelTower
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk a₄ a₂ Affine.Point.some Affine.negAddY toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.Point.zero j veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval Affine.Point.coordsOrZero_some oddOrderSummingSet fullKernelQuotient veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen isElliptic_veluQuotient2_of_isElliptic Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk a₄ \
+  a₂ Affine.Point.some Affine.negAddY toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero \
+  Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.Point.zero j veluGx veluGy \
+  veluU veluU_eq_Ψ₂Sq_eval Affine.Point.coordsOrZero_some oddOrderSummingSet fullKernelQuotient \
+  veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluQuotient2 veluQuotient2_a₁ \
+  veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X \
+  velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen isElliptic_veluQuotient2_of_isElliptic \
+  Affine.Point.two_smul_some_eq_zero_iff"
 namespace VeluTwoKernel
 p2m_open "WeierstrassCurve"
 
@@ -262,7 +272,16 @@ theorem ker_eq_zmultiples {F : Type*} [Field F] [DecidableEq F] {W : Weierstrass
 end WeierstrassCurve.VeluTwoKernel
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk a₄ a₂ Affine.Point.some Affine.negAddY toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.Point.zero j veluGx veluGy veluU veluU_eq_Ψ₂Sq_eval Affine.Point.coordsOrZero_some oddOrderSummingSet fullKernelQuotient veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four fiberAdd_asymWeight_cleared_sixteen isElliptic_veluQuotient2_of_isElliptic Affine.Point.two_smul_some_eq_zero_iff"
+p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk a₄ \
+  a₂ Affine.Point.some Affine.negAddY toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero \
+  Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.Point.zero j veluGx veluGy \
+  veluU veluU_eq_Ψ₂Sq_eval Affine.Point.coordsOrZero_some oddOrderSummingSet fullKernelQuotient \
+  veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluQuotient2 veluQuotient2_a₁ \
+  veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X \
+  velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne \
+  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
+  fiberAdd_asymWeight_cleared_sixteen isElliptic_veluQuotient2_of_isElliptic \
+  Affine.Point.two_smul_some_eq_zero_iff"
 p2m_open "WeierstrassCurve"
 
 section FiberField
@@ -288,7 +307,8 @@ private theorem _root_.WeierstrassCurve.ynum_eq {x y x₀ y₀ l x' y' : F}
     - (l + W.a₁) * (x - x₀) * hXn
 
 p2m_export "WeierstrassCurve" "ynum_eq"
-private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l x' y' : F}
+private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) ≠ 0)
+    {x y x₀ y₀ l x' y' : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀)
     (hl : l * (x - x₀) = y - y₀)
@@ -303,7 +323,8 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
     exact h
   have hXn := W.xnum_eq hl hx'd
   have hYn := W.ynum_eq hl hx'd hy'd
-  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ := by field_simp
+  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ :=
+    by field_simp
   have hYd : (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2
       = y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) := by field_simp
   refine mul_right_cancel₀ (mul_ne_zero h4 (pow_ne_zero 4 hd)) ?_
@@ -322,15 +343,20 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
         ring
 
 p2m_export "WeierstrassCurve" "fiberAdd_veluGx_field"
-private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l x' y' : F}
+private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l
+    x' y' : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀)
     (hl : l * (x - x₀) = y - y₀)
     (hx'd : x' = l ^ 2 + W.a₁ * l - W.a₂ - x - x₀)
     (hy'd : y' = l * (x - x') - y - W.a₁ * x' - W.a₃) :
     (x * W.veluGx x y - y * W.veluGy x y) + (x' * W.veluGx x' y' - y' * W.veluGy x' y')
-      = (x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
-        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀)) + W.a₃)) := by
+      = (x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x +
+          W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ *
+          (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀
+            y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀))
+            + W.a₃)) := by
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   have h16 : (16 : F) ≠ 0 := by
     have h := pow_ne_zero 4 hchar
@@ -338,25 +364,61 @@ private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : 
     exact h
   have hXn := W.xnum_eq hl hx'd
   have hYn := W.ynum_eq hl hx'd hy'd
-  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ := by field_simp
+  have hXd : (x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀) = x * (x - x₀) + W.veluGx x₀ y₀ :=
+    by field_simp
   have hYd : (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2
       = y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) := by field_simp
   refine mul_right_cancel₀ (mul_ne_zero h16 (pow_ne_zero 6 hd)) ?_
   calc ((x * W.veluGx x y - y * W.veluGy x y)
         + (x' * W.veluGx x' y' - y' * W.veluGy x' y')) * (16 * (x - x₀) ^ 6)
-      = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + ((x' * (x - x₀) ^ 2) * (3 * (x' * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀)) - (y' * (x - x₀) ^ 3) * (-(2 * (y' * (x - x₀) ^ 3) + W.a₁ * (x' * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by simp only [veluGx, veluGy]; ring
-    _ = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by rw [hXn, hYn]
-    _ = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := W.fiberAdd_asymWeight_cleared_sixteen x y x₀ y₀ hP hQ hgy
-    _ = ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
-        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀)) + W.a₃))) * (16 * (x - x₀) ^ 6) := by
-        rw [show ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
-            - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀)) + W.a₃))) * (16 * (x - x₀) ^ 6)
+      = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + ((x' * (x - x₀) ^ 2) * (3 * (x'
+          * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4
+          - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀)) - (y' * (x - x₀) ^ 3) * (-(2 * (y' * (x - x₀) ^
+          3) + W.a₁ * (x' * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by
+        simp only [veluGx, veluGy]; ring
+    _ = 16 * ((x * W.veluGx x y - y * W.veluGy x y) * (x - x₀) ^ 6 + (((y - y₀) ^ 2 + W.a₁ * (y -
+        y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x
+        - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) *
+        (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y
+        - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) *
+        (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) -
+        (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)) - ((y - y₀) *
+        (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀)
+        ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+        x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (-(2 * ((y - y₀) * (x * (x - x₀) ^ 2
+        - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x -
+        x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^
+        2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) + W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) -
+        (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) + W.a₃ * (x - x₀) ^ 3)))) := by
+      rw [hXn, hYn]
+    _ = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂
+        * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 -
+        W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y
+        * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 -
+        W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x -
+        x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) := W.fiberAdd_asymWeight_cleared_sixteen x y x₀
+        y₀ hP hQ hgy
+    _ = ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x
+        + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ *
+        (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+        - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y - W.veluGx x₀
+            y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx x₀ y₀ / (x - x₀))
+            + W.a₃))) * (16 * (x - x₀) ^ 6) := by
+        rw [show ((x + W.veluGx x₀ y₀ / (x - x₀)) * (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 *
+            W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y -
+            W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+            - (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (-(2 * (y -
+                W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) + W.a₁ * (x + W.veluGx
+                x₀ y₀ / (x - x₀)) + W.a₃))) * (16 * (x - x₀) ^ 6)
           = 16 * (((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀))
-              * (3 * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) ^ 2 + 2 * W.a₂ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
-                + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2))
+              * (3 * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) ^ 2 + 2 * W.a₂ * ((x + W.veluGx x₀
+                  y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
+                + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * ((y - W.veluGx x₀ y₀ * (W.a₁ *
+                    (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2))
               * (x - x₀) ^ 3
             - ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2)
-              * (-(2 * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2) + W.a₁ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
+              * (-(2 * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀)
+                  ^ 2) + W.a₁ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀)
                 + W.a₃ * (x - x₀) ^ 2))
               * (x - x₀) ^ 2) from by ring, hXd, hYd]
 
@@ -388,7 +450,6 @@ private theorem nsmul_injOn {Q : W.toAffine.Point} {N : ℕ} (hQ : addOrderOf Q 
   exact nsmul_ne_zero hQ (by omega) (by omega) hzero
 
 omit [DecidableEq F] in
-
 private theorem exists_some_of_ne_zero {P : W.toAffine.Point} (h : P ≠ 0) :
     ∃ x y hns, P = Affine.Point.some x y hns := by
   cases P with
@@ -608,7 +669,8 @@ theorem fullKernelQuotient_eq_fullKernelQuotient_veluPointMap2
 
 end WeierstrassCurve
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.WeierstrassCurve"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.WeierstrassCurve"
 
 open scoped Classical
 
@@ -637,10 +699,12 @@ private theorem c4_entry
     exact pow_eq_zero_iff two_ne_zero |>.mp hGy2
 
 private theorem c4_stageDelta
-    {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} [W.IsElliptic]
+    {F : Type*} [Field F] {W : WeierstrassCurve F} [W.IsElliptic]
     {x₀ y₀ : F} (h₀ : W.toAffine.Nonsingular x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
-    (W.veluQuotient2 x₀ y₀).Δ ≠ 0 :=
-  (WeierstrassCurve.isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy).isUnit.ne_zero
+    (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := by
+  classical
+  exact
+    (WeierstrassCurve.isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy).isUnit.ne_zero
 
 private theorem addOrderOf_nsmul_half {A : Type*} [AddGroup A] {Q : A} {M : ℕ}
     (hM : M ≠ 0) (hQ : addOrderOf Q = 2 * M) : addOrderOf (M • Q) = 2 := by
@@ -693,7 +757,6 @@ p2m_export "ModularCurve.TatePoint" "FullKernelDiscAt fullKernelDiscAt_of_odd"
 end ModularCurve.TatePoint
 namespace ModularCurve.TatePoint
 p2m_open_scoped "ModularCurve ModularCurve.TatePoint" in
-
 private theorem _root_.ModularCurve.TatePoint.fullKernelDiscAt_of_even
     (N : ℕ) [NeZero N] (hE : Even N) :
     ModularCurve.TatePoint.FullKernelDiscAt N :=
@@ -721,7 +784,6 @@ private theorem ModularCurve.TatePoint.fullKernelDiscAt_aux
 
 open scoped Classical
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.ModularCurve _root_.ModularCurve.TatePoint _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.ModularCurve.TatePoint in
-
 theorem solution (N : ℕ) [NeZero N] : FullKernelDiscAt N :=
   ModularCurve.TatePoint.fullKernelDiscAt_aux N
 
@@ -735,6 +797,8 @@ public section publicSection
 
 
 open scoped Classical
-theorem ModularCurve.TatePoint.fullKernelDiscAt (N : ℕ) [NeZero N] : FullKernelDiscAt N := _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.solution N
+theorem ModularCurve.TatePoint.fullKernelDiscAt (N : ℕ) [NeZero N] :
+    FullKernelDiscAt N :=
+  solution N
 
 end publicSection

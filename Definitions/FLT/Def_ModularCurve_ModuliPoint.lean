@@ -85,7 +85,6 @@ def Gamma0Pair.Step (P Q : Gamma0Pair N L) : Prop :=
     HEq Q.gen (k • Point.vcInvFun γ P.toCurve.toAffine P.gen)
 
 variable (N L) in
-
 def ModuliPoint : Type _ := Quot (Gamma0Pair.Step (N := N) (L := L))
 
 noncomputable def ModuliPoint.j : ModuliPoint N L → L :=
@@ -138,19 +137,16 @@ theorem ratPointMap_nsmul (σ : L →+* L') (V : WeierstrassCurve L) (k : ℕ) (
   map_nsmul (WeierstrassCurve.ratPointHom σ (W₀ := V)) k P
 
 omit [DecidableEq L] [DecidableEq L'] in
-
 theorem map_vcXInv (σ : L →+* L') (γ : VariableChange L) (x : L) :
     σ (vcXInv γ x) = vcXInv (γ.map σ) (σ x) := by
   simp [vcXInv, map_mul, map_pow, map_sub]
 
 omit [DecidableEq L] [DecidableEq L'] in
-
 theorem map_vcYInv (σ : L →+* L') (γ : VariableChange L) (x y : L) :
     σ (vcYInv γ x y) = vcYInv (γ.map σ) (σ x) (σ y) := by
   simp [vcYInv, map_mul, map_pow, map_sub]
 
 omit [DecidableEq L] [DecidableEq L'] in
-
 theorem ratPointMap_vcInvFun_heq (σ : L →+* L') (γ : VariableChange L) (V : WeierstrassCurve L)
     (P : V.toAffine.Point) :
     HEq (WeierstrassCurve.ratPointMap σ (W₀ := γ • V) (Point.vcInvFun γ V.toAffine P))
@@ -186,9 +182,9 @@ theorem gamma0PairStep_map (σ : L →+* L') {P Q : Gamma0Pair N L}
   change HEq gQ (k • Point.vcInvFun γ WP.toAffine gP) at hgen
   have hgen' : gQ = k • Point.vcInvFun γ WP.toAffine gP := eq_of_heq hgen
   refine ⟨γ.map σ, ?_, k, hk, ?_⟩
-  · show γ.map σ • WP.map σ = (γ • WP).map σ
+  · change γ.map σ • WP.map σ = (γ • WP).map σ
     exact WeierstrassCurve.map_variableChange WP γ σ
-  · show HEq (WeierstrassCurve.ratPointMap σ (W₀ := γ • WP) gQ)
+  · change HEq (WeierstrassCurve.ratPointMap σ (W₀ := γ • WP) gQ)
       (k • Point.vcInvFun (γ.map σ) (WP.map σ).toAffine (WeierstrassCurve.ratPointMap σ (W₀ := WP) gP))
     rw [hgen']
     refine HEq.trans (heq_of_eq (ratPointMap_nsmul σ (γ • WP) k

@@ -94,7 +94,6 @@ theorem isMulCommutative_adjoin_heckeOperatorBar (h : HeckeOperatorsCommuteBar N
     exact h ℓ ℓ')
 
 open scoped IsMulCommutative in
-
 def heckeEvalBarAux (h : HeckeOperatorsCommuteBar N) :
     HeckeAlg →ₐ[ℤ] (Algebra.adjoin ℤ (Set.range (heckeOperatorBar N)) :
       Subalgebra ℤ (Module.End ℤ (JZero N))) :=
@@ -132,7 +131,6 @@ section TheModule
 variable (N : ℕ) [NeZero N]
 
 open Classical in
-
 @[implicit_reducible]
 def heckeModuleBar : Module HeckeAlg (JZero N) :=
   if h : HeckeOperatorsCommuteBar N then Module.compHom (JZero N) (heckeEvalBar h)
@@ -157,7 +155,7 @@ theorem heckeModuleBar_smul_of_not (h : ¬ HeckeOperatorsCommuteBar N) (t : Heck
         (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ)) :=
     dite_eq_right h
   rw [e]
-  show (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ) t) • x = _
+  change (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ) t) • x = _
   rw [MvPolynomial.eval₂Hom_zero_apply, eq_intCast, Int.cast_id]
 
 theorem heckeModuleBar_heckeGen_smul_of_not (h : ¬ HeckeOperatorsCommuteBar N) (ℓ : Nat.Primes)

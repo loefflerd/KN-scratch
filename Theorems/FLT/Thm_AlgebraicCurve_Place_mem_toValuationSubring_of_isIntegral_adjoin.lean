@@ -100,7 +100,9 @@ end QexpN
 
 end ModularCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {j x : F} (hj : j ∈ v.toValuationSubring) (hx : IsIntegral (Algebra.adjoin K {j}) x) : x ∈ v.toValuationSubring :=
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {j x : F}
+    (hj : j ∈ v.toValuationSubring) (hx : IsIntegral (Algebra.adjoin K {j}) x) :
+    x ∈ v.toValuationSubring :=
   ModularCurve.QexpN.mem_of_isIntegral_adjoin v hj hx
 
 end S_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegral_adjoin
@@ -113,6 +115,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.mem_toValuationSubring_of_isIntegral_adjoin {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {j x : F} (hj : j ∈ v.toValuationSubring) (hx : IsIntegral (Algebra.adjoin K {j}) x) : x ∈ v.toValuationSubring := _root_.P2MW.S_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegral_adjoin.solution v hj hx
+theorem AlgebraicCurve.Place.mem_toValuationSubring_of_isIntegral_adjoin {K F : Type*} [Field K]
+    [Field F] [Algebra K F] (v : Place K F) {j x : F} (hj : j ∈ v.toValuationSubring)
+    (hx : IsIntegral (Algebra.adjoin K {j}) x) :
+    x ∈ v.toValuationSubring :=
+  solution v hj hx
 
 end publicSection

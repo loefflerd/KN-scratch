@@ -162,19 +162,19 @@ theorem exists_inv_cocycle {q R : ℕ} {γ : SL(2, ℤ)}
     rw [Matrix.det_fin_two_of]; linear_combination hdet + c * hb₁
   refine ⟨⟨_, hdetδ⟩, ?_, ?_⟩
   · rw [CongruenceSubgroup.Gamma0_mem]
-    show ((c * (q : ℤ) : ℤ) : ZMod (q * R)) = 0
+    change ((c * (q : ℤ) : ℤ) : ZMod (q * R)) = 0
     rw [ZMod.intCast_zmod_eq_zero_iff_dvd, hc₁]
     exact ⟨c₁, by push_cast; ring⟩
-  · show (γ : Matrix (Fin 2) (Fin 2) ℤ) * FreyPackage.ModMCarrier.diagMatInt q
+  · change (γ : Matrix (Fin 2) (Fin 2) ℤ) * FreyPackage.ModMCarrier.diagMatInt q
       = FreyPackage.ModMCarrier.diagMatInt q * !![a, b₁; c * (q : ℤ), e]
     rw [hγmat]; unfold FreyPackage.ModMCarrier.diagMatInt
     rw [Matrix.mul_fin_two, Matrix.mul_fin_two]
     refine Matrix.ext fun i j => ?_
     fin_cases i <;> fin_cases j
-    · show (a * (q : ℤ) + b * 0 : ℤ) = (q : ℤ) * a + 0 * (c * (q : ℤ)); ring
-    · show (a * 0 + b * 1 : ℤ) = (q : ℤ) * b₁ + 0 * e; linear_combination hb₁
-    · show (c * (q : ℤ) + e * 0 : ℤ) = 0 * a + 1 * (c * (q : ℤ)); ring
-    · show (c * 0 + e * 1 : ℤ) = 0 * b₁ + 1 * e; ring
+    · change (a * (q : ℤ) + b * 0 : ℤ) = (q : ℤ) * a + 0 * (c * (q : ℤ)); ring
+    · change (a * 0 + b * 1 : ℤ) = (q : ℤ) * b₁ + 0 * e; linear_combination hb₁
+    · change (c * (q : ℤ) + e * 0 : ℤ) = 0 * a + 1 * (c * (q : ℤ)); ring
+    · change (c * 0 + e * 1 : ℤ) = 0 * b₁ + 1 * e; ring
 
 theorem map_int_mul_eq (A C : Matrix (Fin 2) (Fin 2) ℤ) :
     (A * C).map (algebraMap ℤ ℝ) = A.map (algebraMap ℤ ℝ) * C.map (algebraMap ℤ ℝ) := by
@@ -202,15 +202,15 @@ theorem Binv_mul_mapGL {q R : ℕ} (hq : q ≠ 0) {γ : SL(2, ℤ)}
 def stab (f : ℍ → ℂ) (k : ℤ) : Subgroup SL(2, ℤ) where
   carrier := {g | f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ g : GL (Fin 2) ℝ) = f}
   one_mem' := by
-    show f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (1 : SL(2, ℤ)) : GL (Fin 2) ℝ) = f
+    change f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (1 : SL(2, ℤ)) : GL (Fin 2) ℝ) = f
     rw [map_one, SlashAction.slash_one]
   mul_mem' := by
     intro a b ha hb
-    show f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (a * b) : GL (Fin 2) ℝ) = f
+    change f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ (a * b) : GL (Fin 2) ℝ) = f
     rw [map_mul, SlashAction.slash_mul, ha, hb]
   inv_mem' := by
     intro a ha
-    show f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ) = f
+    change f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ) = f
     calc f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ)
         = (f ∣[k] (Matrix.SpecialLinearGroup.mapGL ℝ a : GL (Fin 2) ℝ)) ∣[k]
             (Matrix.SpecialLinearGroup.mapGL ℝ a⁻¹ : GL (Fin 2) ℝ) := by rw [ha]
@@ -423,13 +423,13 @@ def qCoeffLin (m n : ℕ) [NeZero m] : CuspForm (CongruenceSubgroup.Gamma0 m) 2 
   map_add' f g := by
     have hΓ : (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 m : Subgroup SL(2, ℤ)) :
         Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
-    show ModularFormClass.qCoeff (⇑(f + g)) n = _
+    change ModularFormClass.qCoeff (⇑(f + g)) n = _
     unfold ModularFormClass.qCoeff
     rw [FunLike.coe_add, ModularForm.qExpansion_add one_pos hΓ f g, map_add]
   map_smul' c f := by
     have hΓ : (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 m : Subgroup SL(2, ℤ)) :
         Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
-    show ModularFormClass.qCoeff (⇑(c • f)) n = _
+    change ModularFormClass.qCoeff (⇑(c • f)) n = _
     unfold ModularFormClass.qCoeff
     rw [FunLike.coe_smul, ModularForm.qExpansion_smul one_pos hΓ, _root_.map_smul]
     rfl
@@ -478,7 +478,8 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
     intro a b
     rcases lt_trichotomy b a with hlt | rfl | hgt
     · rw [ite_eq_right hlt.ne, ite_eq_left hlt]
-    · rw [ite_eq_left rfl, qCoeff_iter, ite_eq_left (dvd_mul_left _ _), Nat.mul_div_cancel _ (pow_pos hp.pos _)]
+    · rw [ite_eq_left rfl, qCoeff_iter, ite_eq_left (dvd_mul_left _ _), Nat.mul_div_cancel _
+        (pow_pos hp.pos _)]
     · rw [ite_eq_right hgt.ne', ite_eq_right (not_lt.mpr hgt.le), qCoeff_iter]
       split_ifs with hdvd
       · have hq : n₀ * p ^ a / p ^ b < n₀ := by
@@ -527,6 +528,7 @@ public section publicSection
 theorem CuspForm.eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero
     {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
     (F : CuspForm (CongruenceSubgroup.Gamma0 m) 2)
-    (hF : ∀ n : ℕ, ¬ p ∣ n → ModularFormClass.qCoeff F n = 0) : F = 0 := _root_.P2MW.S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero.solution hp hpm F hF
+    (hF : ∀ n : ℕ, ¬ p ∣ n → ModularFormClass.qCoeff F n = 0) : F = 0 :=
+  solution hp hpm F hF
 
 end publicSection

@@ -76,12 +76,16 @@ namespace P2MW.S_AlgebraicCurve_Place_ord_dvd_of_forall_hahnSeries_embedding_has
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_ord_dvd_of_forall_hahnSeries_embedding_hasRamBound.AlgebraicCurve Polynomial"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_ord_dvd_of_forall_hahnSeries_embedding_hasRamBound.AlgebraicCurve \
+  Polynomial"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ord_dvd_of_hahnSeries_embedding_of_isGalois Place.exists_restrict_eq"
+p2m_export "AlgebraicCurve" "Place Place.ord_dvd_of_hahnSeries_embedding_of_isGalois \
+  Place.exists_restrict_eq"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord ramificationIndex_pos ord_restrict ord_dvd_of_hahnSeries_embedding_of_isGalois exists_restrict_eq"
+p2m_export "AlgebraicCurve.Place" "ord ramificationIndex_pos ord_restrict \
+  ord_dvd_of_hahnSeries_embedding_of_isGalois exists_restrict_eq"
 namespace HahnUnramDescentAux
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
@@ -147,7 +151,6 @@ theorem aeval_C_add_single_injective {K L : Type*} [Field K] [Field L] [Algebra 
 end AlgebraicCurve.Place.HahnUnramDescentAux
 
 open AlgebraicCurve.Place.HahnUnramDescentAux in
-
 theorem solution
     {K L F : Type*} [Field K] [CharZero K] [Field L] [Algebra K L] [IsAlgClosed L]
     [Field F] [Algebra K F] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
@@ -194,7 +197,7 @@ theorem solution
   let ψ : M →ₐ[K] HahnSeries ℚ L :=
     { toRingHom := ψM.toRingHom
       commutes' := fun c => by
-        show ψM (algebraMap K M c) = algebraMap K (HahnSeries ℚ L) c
+        change ψM (algebraMap K M c) = algebraMap K (HahnSeries ℚ L) c
         rw [IsScalarTower.algebraMap_apply K (RatFunc K) M, ψM.commutes, hτalg, τ.commutes] }
   have hψapply : ∀ m : M, ψ m = ψM m := fun m => rfl
   have hψX : ψ (algebraMap (RatFunc K) M X₀)
@@ -216,18 +219,18 @@ theorem solution
     intro r
     refine RatFunc.induction_on (P := fun r => τ r ∈ HahnSeries.puiseuxRamSubfield L hd)
       r (fun p₁ q₁ _ => ?_)
-    show τ (algebraMap K[X] (RatFunc K) p₁ / algebraMap K[X] (RatFunc K) q₁) ∈ _
+    change τ (algebraMap K[X] (RatFunc K) p₁ / algebraMap K[X] (RatFunc K) q₁) ∈ _
     rw [map_div₀, hτp, hτp]
     refine div_mem ?_ ?_ <;>
     · rw [hLaurent]
       apply hmono
-      show HahnSeries.HasRamBound 1 (Polynomial.aeval (R := K) t _)
+      change HahnSeries.HasRamBound 1 (Polynomial.aeval (R := K) t _)
       rw [ht, aeval_C_add_single]
       exact hasRamBound_one_ofPowerSeries _
   let T : Subfield (HahnSeries ℚ L) := HahnSeries.puiseuxRamSubfield L hd
   let S : IntermediateField (RatFunc K) M :=
     (T.comap ψM.toRingHom).toIntermediateField (fun r => by
-      show ψM (algebraMap (RatFunc K) M r) ∈ T
+      change ψM (algebraMap (RatFunc K) M r) ∈ T
       rw [ψM.commutes]
       exact hτmem r)
   have hmemS : ∀ m : M, m ∈ S ↔ ψM m ∈ T := fun m => Iff.rfl
@@ -235,18 +238,18 @@ theorem solution
     apply IntermediateField.lift_injective M
     rw [IntermediateField.lift_top]
     refine le_antisymm (IntermediateField.lift_le S) ?_
-    show IntermediateField.normalClosure (RatFunc K) F E ≤ IntermediateField.lift S
+    change IntermediateField.normalClosure (RatFunc K) F E ≤ IntermediateField.lift S
     unfold IntermediateField.normalClosure
     refine iSup_le (fun g => ?_)
     rintro x ⟨y, rfl⟩
     have hgy : ∀ y : F, g y ∈ M := fun y => AlgHom.fieldRange_le_normalClosure g ⟨y, rfl⟩
     let g' : F →ₐ[RatFunc K] M := g.codRestrict M.toSubalgebra hgy
-    show ((g' y : M) : E) ∈ IntermediateField.lift S
+    change ((g' y : M) : E) ∈ IntermediateField.lift S
     rw [IntermediateField.mem_lift, hmemS, hLaurent]
     let ψF : F →ₐ[K] HahnSeries ℚ L :=
       { toRingHom := (ψM.comp g').toRingHom
         commutes' := fun c => by
-          show ψM (g' (algebraMap K F c)) = algebraMap K (HahnSeries ℚ L) c
+          change ψM (g' (algebraMap K F c)) = algebraMap K (HahnSeries ℚ L) c
           rw [IsScalarTower.algebraMap_apply K (RatFunc K) F, g'.commutes, ψM.commutes, hτalg,
             τ.commutes] }
     have hψFapply : ∀ x : F, ψF x = ψM (g' x) := fun x => rfl
@@ -295,6 +298,7 @@ theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound
         ∀ x : F, HahnSeries.HasRamBound d (ψ x))
     (w : AlgebraicCurve.Place K F)
     (hw : 0 < w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p))) :
-    w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) := _root_.P2MW.S_AlgebraicCurve_Place_ord_dvd_of_forall_hahnSeries_embedding_hasRamBound.solution p hp a ha ha' hd hF w hw
+    w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) :=
+  solution p hp a ha ha' hd hF w hw
 
 end publicSection

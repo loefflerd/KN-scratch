@@ -113,7 +113,6 @@ theorem solution
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (hσ : A.IsFrobeniusAt σ ℓ) :
     LinearMap.charpoly (((W.map (Int.castRingHom ℚ)).tateModuleRep p hcard).ρ σ)
       = X ^ 2 - C ((W.apOfModel ℓ : ℤ) : ℤ_[p]) * X + C ((ℓ : ℕ) : ℤ_[p]) := by
-
   have : Module.Free ℤ_[p] (TateModule p (MPoint W)) := TateModule.free hcard
   have : Module.Finite ℤ_[p] (TateModule p (MPoint W)) := TateModule.finite hcard
   have hrank : Module.finrank ℤ_[p] (TateModule p (MPoint W)) = 2 := TateModule.finrank_eq_two hcard
@@ -126,7 +125,6 @@ theorem solution
   have hdet : LinearMap.det f = ((ℓ : ℕ) : ℤ_[p]) :=
     WeierstrassCurve.tateModuleRep_det_frobenius (W.map (Int.castRingHom ℚ)) p hΔℚ hcard ℓ hℓ hℓp A hA σ hσ
   have hd : ((ℓ : ℕ) : ℤ_[p]) ≠ 0 := by exact_mod_cast hℓ.pos.ne'
-
   have hendo : f * f - ((W.apOfModel ℓ : ℤ) : ℤ_[p]) • f
       + ((ℓ : ℕ) : ℤ_[p]) • (1 : Module.End ℤ_[p] (TateModule p (MPoint W))) = 0 := by
     refine LinearMap.ext fun x => ?_
@@ -138,12 +136,11 @@ theorem solution
     rw [hx, LinearMap.zero_apply]
     rw [show ((ℓ : ℕ) : ℤ_[p]) = ((ℓ : ℤ) : ℤ_[p]) by push_cast; ring]
     refine Subtype.ext (funext fun k => ?_)
-    show ((f (f x) - ((W.apOfModel ℓ : ℤ) : ℤ_[p]) • (f x)
+    change ((f (f x) - ((W.apOfModel ℓ : ℤ) : ℤ_[p]) • (f x)
         + ((ℓ : ℤ) : ℤ_[p]) • x : TateModule p (MPoint W)) : ℕ → MPoint W) k
       = (((0 : TateModule p (MPoint W)) : ℕ → MPoint W)) k
     rw [TateModule.coe_add, TateModule.coe_sub, TateModule.coe_zero, Pi.add_apply, Pi.sub_apply,
       Pi.zero_apply, intCast_padicInt_smul_apply, intCast_padicInt_smul_apply]
-
     exact tateModule_frobenius_endoIdentity W p ℓ hℓ hgood hℓp A hA σ hσ x k
   exact (LinearMap.charpoly_eq_iff_of_finrank_eq_two hrank f
       ((W.apOfModel ℓ : ℤ) : ℤ_[p]) ((ℓ : ℕ) : ℤ_[p])).mpr
@@ -168,6 +165,7 @@ theorem WeierstrassCurve.tateModuleRep_charpoly_frobenius
     (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime ℓ)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (hσ : A.IsFrobeniusAt σ ℓ) :
     LinearMap.charpoly (((W.map (Int.castRingHom ℚ)).tateModuleRep p hcard).ρ σ)
-      = X ^ 2 - C ((W.apOfModel ℓ : ℤ) : ℤ_[p]) * X + C ((ℓ : ℕ) : ℤ_[p]) := _root_.P2MW.S_WeierstrassCurve_tateModuleRep_charpoly_frobenius.solution W p hcard ℓ hℓ hgood hℓp A hA σ hσ
+      = X ^ 2 - C ((W.apOfModel ℓ : ℤ) : ℤ_[p]) * X + C ((ℓ : ℕ) : ℤ_[p]) :=
+  solution W p hcard ℓ hℓ hgood hℓp A hA σ hσ
 
 end publicSection

@@ -74,17 +74,14 @@ variable {L : Type*} [Field L] (A : ValuationSubring L)
 instance instIsAlgClosedResidueField [IsAlgClosed L] :
     IsAlgClosed (ResidueField A) := by
   refine IsAlgClosed.of_exists_root _ (fun f hf_monic hf_irr => ?_)
-
   have hf_lifts : f ∈ lifts (residue A) := by
     rw [lifts_iff_coeff_lifts]
     exact fun n => residue_surjective (f.coeff n)
   obtain ⟨g, hg_map, -, hg_monic⟩ := lifts_and_degree_eq_and_monic hf_lifts hf_monic
-
   have hgL_monic : (g.map (algebraMap A L)).Monic := hg_monic.map _
   have hgL_deg : (g.map (algebraMap A L)).degree ≠ 0 := by
     rw [hg_monic.degree_map]
     intro h0
-
     have hg_nat : g.natDegree = 0 := natDegree_eq_zero_iff_degree_le_zero.mpr (le_of_eq h0)
     have hf_deg : f.natDegree = 0 := by
       rw [← hg_map, hg_monic.natDegree_map]
@@ -137,12 +134,10 @@ variable {A : ValuationSubring L} {ℓ : ℕ}
 theorem intCast_isUnit_of_not_dvd (hℓ : ℓ.Prime) (hA : A.LiesOverPrime ℓ) {n : ℤ}
     (hn : ¬(ℓ : ℤ) ∣ n) : IsUnit ((n : ℤ) : A) := by
   by_contra hunit
-
   have hnmem : ((n : ℤ) : A) ∈ maximalIdeal A := by
     rw [IsLocalRing.mem_maximalIdeal]
     exact hunit
   have hℓmem : ((ℓ : ℕ) : A) ∈ maximalIdeal A := natCast_mem_maximalIdeal_of_liesOverPrime hA
-
   obtain ⟨u, v, huv⟩ := (Nat.prime_iff_prime_int.mp hℓ).coprime_iff_not_dvd.mpr hn
   have h1 : (1 : A) ∈ maximalIdeal A := by
     have h := congrArg (fun z : ℤ => ((z : ℤ) : A)) huv
@@ -178,7 +173,6 @@ theorem isAlgebraic_residue [CharZero L] [Algebra ℚ L]
     [Algebra (ZMod ℓ) (ResidueField A)] (a : A) :
     IsAlgebraic (ZMod ℓ) (residue A a) := by
   obtain ⟨p, hp0, hpa⟩ := Algebra.IsAlgebraic.isAlgebraic (R := ℚ) (a : L)
-
   set P₀ : ℤ[X] := IsLocalization.integerNormalization (nonZeroDivisors ℤ) p with hP₀def
   have hP₀a : aeval (a : L) P₀ = 0 :=
     IsLocalization.integerNormalization_aeval_eq_zero (nonZeroDivisors ℤ) p hpa
@@ -195,7 +189,6 @@ theorem isAlgebraic_residue [CharZero L] [Algebra ℚ L]
     rw [Int.isUnit_iff] at hu
     have h2 := hℓ.two_le
     omega
-
   have hPaA : aeval a P = 0 := by
     have hmap : algebraMap A L (aeval a P) = 0 := by
       rw [← Polynomial.aeval_algebraMap_apply]
@@ -247,7 +240,6 @@ noncomputable def residueFieldEquivAlgebraicClosure [IsAlgClosed L] [CharZero L]
     ResidueField A ≃+* AlgebraicClosure (ZMod ℓ) := by
   haveI hchar : CharP (ResidueField A) ℓ := charP_residueField_of_liesOverPrime_def Fact.out hA
   letI halg : Algebra (ZMod ℓ) (ResidueField A) := ZMod.algebra (ResidueField A) ℓ
-
   haveI htf : Module.IsTorsionFree (ZMod ℓ) (ResidueField A) := by
     refine Module.IsTorsionFree.of_smul_eq_zero (fun r m h => ?_)
     rw [Algebra.smul_def] at h
@@ -267,7 +259,6 @@ variable (A : ValuationSubring L) [IsAlgClosed L] [CharZero L] [Algebra ℚ L]
 variable (hA : A.LiesOverPrime ℓ)
 
 open Classical in
-
 noncomputable def reduceAt (a : L) : AlgebraicClosure (ZMod ℓ) :=
   if h : a ∈ A then residueFieldEquivAlgebraicClosure A hA (residue A ⟨a, h⟩) else 0
 

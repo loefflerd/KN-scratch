@@ -134,7 +134,7 @@ instance instIsLocalHom_restrictSubringHom : IsLocalHom (w.restrictSubringHom (F
     rw [map_inv₀]
     exact eq_inv_of_mul_eq_one_right (by linear_combination hb')
   have hmem : (a : F)⁻¹ ∈ (w.restrict F).toValuationSubring := by
-    show algebraMap F F' (a : F)⁻¹ ∈ w.toValuationSubring
+    change algebraMap F F' (a : F)⁻¹ ∈ w.toValuationSubring
     exact hbeq ▸ b.2
   exact isUnit_iff_exists_inv.mpr
     ⟨⟨(a : F)⁻¹, hmem⟩, Subtype.ext (mul_inv_cancel₀ ha0)⟩
@@ -151,15 +151,16 @@ theorem algebraMap_residueField_residue (x : (w.restrict F).toValuationSubring) 
       = IsLocalRing.residue _ (w.restrictSubringHom x) :=
   IsLocalRing.ResidueField.map_residue _ _
 
-instance instIsScalarTower_restrictResidueField : IsScalarTower K (w.restrict F).ResidueField w.ResidueField := by
+instance instIsScalarTower_restrictResidueField :
+    IsScalarTower K (w.restrict F).ResidueField w.ResidueField := by
   refine IsScalarTower.of_algebraMap_eq fun a => ?_
-  show IsLocalRing.residue _ (algebraMap K w.toValuationSubring a)
+  change IsLocalRing.residue _ (algebraMap K w.toValuationSubring a)
       = algebraMap (w.restrict F).ResidueField w.ResidueField
           (IsLocalRing.residue _ (algebraMap K (w.restrict F).toValuationSubring a))
   rw [algebraMap_residueField_residue]
   congr 1
   ext
-  show algebraMap K F' a = algebraMap F F' (algebraMap K F a)
+  change algebraMap K F' a = algebraMap F F' (algebraMap K F a)
   rw [IsScalarTower.algebraMap_apply K F F']
 
 end Restrict
@@ -203,7 +204,7 @@ def simplePoleSubmodule : Submodule K F where
     simpa only [Set.mem_ofPred_eq, mul_add] using add_mem hf hg
   zero_mem' := by simpa only [Set.mem_ofPred_eq, mul_zero] using zero_mem _
   smul_mem' c f hf := by
-    show v.uniformizer * (c • f) ∈ v.toValuationSubring
+    change v.uniformizer * (c • f) ∈ v.toValuationSubring
     rw [Algebra.smul_def, mul_left_comm]
     exact mul_mem (v.algebraMap_mem' c) hf
 
@@ -219,7 +220,7 @@ def simplePoleMulUniformizer : v.simplePoleSubmodule →ₗ[K] v.toValuationSubr
   toFun f := ⟨v.uniformizer * f.1, f.2⟩
   map_add' f g := Subtype.ext (mul_add _ _ _)
   map_smul' c f := Subtype.ext <| by
-    show v.uniformizer * ((c • f : v.simplePoleSubmodule) : F)
+    change v.uniformizer * ((c • f : v.simplePoleSubmodule) : F)
         = ((c • ⟨v.uniformizer * f.1, f.2⟩ : v.toValuationSubring) : F)
     simp only [Algebra.smul_def, MulMemClass.coe_mul, v.coe_algebraMap, Submodule.coe_smul,
       mul_left_comm]
@@ -299,7 +300,7 @@ def poleSubmodule (n : ℕ) : Submodule K F where
     simpa only [Set.mem_ofPred_eq, mul_add] using add_mem hf hg
   zero_mem' := by simpa only [Set.mem_ofPred_eq, mul_zero] using zero_mem _
   smul_mem' c f hf := by
-    show v.uniformizer ^ n * (c • f) ∈ v.toValuationSubring
+    change v.uniformizer ^ n * (c • f) ∈ v.toValuationSubring
     rw [Algebra.smul_def, mul_left_comm]
     exact mul_mem (v.algebraMap_mem' c) hf
 
@@ -350,7 +351,7 @@ def poleMulUniformizerPow (n : ℕ) : v.poleSubmodule n →ₗ[K] v.toValuationS
   toFun f := ⟨v.uniformizer ^ n * f.1, f.2⟩
   map_add' f g := Subtype.ext (mul_add _ _ _)
   map_smul' c f := Subtype.ext <| by
-    show v.uniformizer ^ n * ((c • f : v.poleSubmodule n) : F)
+    change v.uniformizer ^ n * ((c • f : v.poleSubmodule n) : F)
         = ((c • ⟨v.uniformizer ^ n * f.1, f.2⟩ : v.toValuationSubring) : F)
     simp only [Algebra.smul_def, MulMemClass.coe_mul, v.coe_algebraMap, Submodule.coe_smul,
       mul_left_comm]
@@ -443,7 +444,7 @@ theorem laurentTailCoeff_coe_mul_uniformizer_pow_inv {n : ℕ} (c : v.toValuatio
   rw [laurentTailCoeff_apply]
   congr 1
   exact Subtype.ext <| by
-    show v.uniformizer ^ (n + 1) * ((c : F) * (v.uniformizer ^ (n + 1))⁻¹) = (c : F)
+    change v.uniformizer ^ (n + 1) * ((c : F) * (v.uniformizer ^ (n + 1))⁻¹) = (c : F)
     rw [mul_left_comm, mul_inv_cancel₀ (v.uniformizer_pow_ne_zero (n + 1)), mul_one]
 
 end Place
@@ -699,7 +700,7 @@ def coefficientFieldSectionOfBijective
   residue_lift a := by
     simp only [AlgHom.coe_comp, Function.comp_apply]
     set c : K := (AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).symm a with hc_def
-    show IsLocalRing.residue _ (algebraMap K v.toValuationSubring c) = a
+    change IsLocalRing.residue _ (algebraMap K v.toValuationSubring c) = a
     rw [show IsLocalRing.residue _ (algebraMap K v.toValuationSubring c)
           = algebraMap K v.ResidueField c from by
         rw [IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField,
@@ -941,7 +942,7 @@ theorem mp72a102_t3_residueHat_congr_of_depth_one (v : Place K F)
     (h : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 x
         = AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 y) :
     lg37_residueHat v x = lg37_residueHat v y := by
-  show AdicCompletion.evalOneₐ (maximalIdeal v.toValuationSubring) x
+  change AdicCompletion.evalOneₐ (maximalIdeal v.toValuationSubring) x
       = AdicCompletion.evalOneₐ (maximalIdeal v.toValuationSubring) y
   rw [← AdicCompletion.factorₐ_evalₐ_one, ← AdicCompletion.factorₐ_evalₐ_one, h]
 
@@ -998,7 +999,7 @@ theorem mp72a102_t3_sigma_taylor_expansion (v : Place K F)
     refine ⟨fun i => Nat.rec (motive := fun _ => v.ResidueField)
       (lg37_residueHat v x) (fun j _ => a j) i, ?_⟩
     rw [Finset.sum_range_succ']
-    show AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
+    change AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
         (x - ((∑ i ∈ Finset.range n, S.lift (a i)
             * algebraMap v.toValuationSubring (lg37_completion v)
                 v.uniformizerSubring ^ (i + 1))
@@ -1852,7 +1853,7 @@ theorem localResidue_eq_resStar [IsCurveOver K F] [PerfectField K] (v : Place K 
   have : FiniteDimensional K v.ResidueField := Place.FiniteResidue.finite
   have : Algebra.IsSeparable K v.ResidueField :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
-  show resStar v (Classical.choice (completionSection_nonempty_generic v)) f = resStar v S f
+  change resStar v (Classical.choice (completionSection_nonempty_generic v)) f = resStar v S f
   unfold resStar
   exact aCoeff_section_indep v _ S _ _
 

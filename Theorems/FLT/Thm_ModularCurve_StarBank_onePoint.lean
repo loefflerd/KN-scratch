@@ -195,7 +195,6 @@ namespace ModularCurve
 p2m_export "ModularCurve" "jqModC etaProd"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.onePoint {K : Type*} [Field K] {M : ℕ}
     (hM : (M : K) ≠ 0) {c : K} (hc : c ≠ 0) {β₀ : K}
     (hstar : Polynomial.aeval (ModularCurve.jqModC K)
@@ -243,7 +242,6 @@ example : (((1 : LaurentSeries (ZMod 2)) + HahnSeries.single (1 : ℤ) 1) - 1).c
   decide
 
 open Polynomial HahnSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve in
-
 theorem solution {K : Type*} [Field K] {M : ℕ}
     (hM : (M : K) ≠ 0) {c : K} (hc : c ≠ 0) {β₀ : K}
     (hstar : Polynomial.aeval (ModularCurve.jqModC K)
@@ -283,6 +281,7 @@ theorem ModularCurve.StarBank.onePoint {K : Type*} [Field K] {M : ℕ}
         * (HahnSeries.single (1 : ℤ) 1
             * HahnSeries.ofPowerSeries ℤ K
                 (PowerSeries.map (Int.castRingHom K) ModularCurve.etaProd) ^ 24)
-        = HahnSeries.C γ := _root_.P2MW.S_ModularCurve_StarBank_onePoint.solution hM hc hstar
+        = HahnSeries.C γ :=
+  solution hM hc hstar
 
 end publicSection

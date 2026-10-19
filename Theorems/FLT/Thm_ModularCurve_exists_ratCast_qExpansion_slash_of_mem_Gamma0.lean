@@ -105,7 +105,8 @@ theorem IsRat.neg {q : PowerSeries ℂ} (h : IsRat q) : IsRat (-q) := by
   obtain ⟨s, hs⟩ := h n
   exact ⟨-s, by simp [hs]⟩
 
-theorem IsRat.of_mul_eq {q u p : PowerSeries ℂ} (hu : IsRat u) (hu0 : PowerSeries.constantCoeff u = 1)
+theorem IsRat.of_mul_eq {q u p : PowerSeries ℂ} (hu : IsRat u)
+    (hu0 : PowerSeries.constantCoeff u = 1)
     (hp : IsRat p) (h : q * u = p) : IsRat q := by
   rw [isRat_iff_exists_map] at hu hp ⊢
   obtain ⟨U, rfl⟩ := hu
@@ -208,7 +209,8 @@ theorem mul_inv_mem_Gamma1 {γ γ' : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) (hγ' :
     rw [hc', mul_zero, sub_zero] at this
     exact this
   have h00 : ((γ 0 0 : ℤ) : ZMod M) = ((γ' 0 0 : ℤ) : ZMod M) := by
-    have hu : IsUnit ((γ 1 1 : ℤ) : ZMod M) := isUnit_iff_exists_inv.mpr ⟨_, by rw [mul_comm]; exact hdet⟩
+    have hu : IsUnit ((γ 1 1 : ℤ) : ZMod M) :=
+      isUnit_iff_exists_inv.mpr ⟨_, by rw [mul_comm]; exact hdet⟩
     apply hu.mul_right_cancel
     rw [hdet, h, hdet']
   have hinv : (γ'⁻¹ : SL(2, ℤ)) = ⟨!![γ' 1 1, -(γ' 0 1); -(γ' 1 0), γ' 0 0], by
@@ -236,7 +238,8 @@ theorem slash_eq_of_apply_eq [NeZero M] (f : ModularForm Γ₁(M) k) {γ γ' : S
     _ = ((⇑f : ℍ → ℂ) ∣[k] (γ * γ'⁻¹)) ∣[k] γ' := SlashAction.slash_mul _ _ _ _
     _ = (⇑f : ℍ → ℂ) ∣[k] γ' := by rw [hinv]
 
-private theorem _root_.X1DiamondRationalForms.Gamma1_le_of_dvd {M' : ℕ} (h : M ∣ M') : Gamma1 M' ≤ Gamma1 M := ModularCurve.Gamma1_le_of_dvd h
+private theorem _root_.X1DiamondRationalForms.Gamma1_le_of_dvd {M' : ℕ} (h : M ∣ M') :
+    Gamma1 M' ≤ Gamma1 M := ModularCurve.Gamma1_le_of_dvd h
 
 p2m_export "X1DiamondRationalForms" "Gamma1_le_of_dvd"
 theorem Gamma0_le_of_dvd {M' : ℕ} (h : M ∣ M') : Gamma0 M' ≤ Gamma0 M := by
@@ -248,12 +251,14 @@ theorem Gamma0_le_of_dvd {M' : ℕ} (h : M ∣ M') : Gamma0 M' ≤ Gamma0 M := b
 def res {M' : ℕ} (h : M ∣ M') (f : ModularForm Γ₁(M) k) : ModularForm Γ₁(M') k :=
   restrictForm (Subgroup.map_mono (Gamma1_le_of_dvd h)) f
 
-@[scoped simp] theorem coe_res {M' : ℕ} (h : M ∣ M') (f : ModularForm Γ₁(M) k) : (⇑(res h f) : ℍ → ℂ) = f := rfl
+@[scoped simp] theorem coe_res {M' : ℕ} (h : M ∣ M') (f : ModularForm Γ₁(M) k) :
+    (⇑(res h f) : ℍ → ℂ) = f := rfl
 
 def resSL (M : ℕ) {k : ℤ} (f : ModularForm 𝒮ℒ k) : ModularForm Γ₁(M) k :=
   restrictForm (Subgroup.map_le_range _ _) f
 
-@[scoped simp] theorem coe_resSL (M : ℕ) {k : ℤ} (f : ModularForm 𝒮ℒ k) : (⇑(resSL M f) : ℍ → ℂ) = f := rfl
+@[scoped simp] theorem coe_resSL (M : ℕ) {k : ℤ} (f : ModularForm 𝒮ℒ k) :
+    (⇑(resSL M f) : ℍ → ℂ) = f := rfl
 
 end Level
 
@@ -264,7 +269,8 @@ variable {M : ℕ} [NeZero M] {k : ℤ}
 omit [NeZero M] in
 theorem apply_smul (f : ModularForm Γ₁(M) k) {g : SL(2, ℤ)} (hg : g ∈ Gamma1 M) (τ : ℍ) :
     f (g • τ) = denom (g : GL (Fin 2) ℝ) τ ^ k * f τ := by
-  have := SlashInvariantForm.slash_action_eqn'' f (Subgroup.mem_map_of_mem (Matrix.SpecialLinearGroup.mapGL ℝ) hg) τ
+  have :=
+    SlashInvariantForm.slash_action_eqn'' f (Subgroup.mem_map_of_mem (Matrix.SpecialLinearGroup.mapGL ℝ) hg) τ
   rw [ModularGroup.sl_moeb]
   exact this
 
@@ -330,10 +336,12 @@ theorem isRat_slash_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : M
   have hrat : ∀ n, ∃ r : ℚ, (qExpansion 1 (G * Δ ^ m)).coeff n = (r : ℂ) := by
     rw [hGΔ, hH]
     have : qExpansion 1 ((⇑f : ℍ → ℂ) * ⇑E) = qExpansion 1 ⇑f * qExpansion 1 ⇑(resSL M E) := by
-      rw [← coe_resSL M E, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods M) f (resSL M E)]
+      rw [← coe_resSL M E, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods M) f (resSL
+        M E)]
     rw [this]
     exact hf.mul hE
-  have key := ModularCurve.exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0 M m G hmdG hinv hbd hrat γ hγ
+  have key :=
+    ModularCurve.exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0 M m G hmdG hinv hbd hrat γ hγ
   rw [hcw γ] at key
   exact key
 
@@ -379,8 +387,10 @@ theorem qExpansion_Eaux (a b : ℕ) :
 theorem isRat_Eaux (a b : ℕ) : IsRat (qExpansion 1 (⇑(Eaux a b))) := by
   rw [qExpansion_Eaux]; exact (isRat_E4.pow a).mul (isRat_E6.pow b)
 
-theorem constantCoeff_Eaux (a b : ℕ) : PowerSeries.constantCoeff (qExpansion 1 (⇑(Eaux a b))) = 1 := by
-  rw [qExpansion_Eaux, map_mul, map_pow, map_pow, constantCoeff_E4, constantCoeff_E6, one_pow, one_pow,
+theorem constantCoeff_Eaux (a b : ℕ) :
+    PowerSeries.constantCoeff (qExpansion 1 (⇑(Eaux a b))) = 1 := by
+  rw [qExpansion_Eaux, map_mul, map_pow, map_pow, constantCoeff_E4, constantCoeff_E6, one_pow,
+    one_pow,
     one_mul]
 
 theorem exists_weights (hk : Even k) : ∃ (m a b : ℕ), k + (a * 4 + b * 6 : ℕ) = 12 * (m : ℤ) := by
@@ -459,8 +469,10 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
       ring
     have hS : Summable (fun n : ℕ => ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n) := by
       apply Summable.of_norm_bounded (g := fun n : ℕ => (6 * n + 1) * ‖Periodic.qParam 1 z‖ ^ n)
-      · have h1 := summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by simpa using hq)
-        have h2 := summable_geometric_of_norm_lt_one (R := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
+      · have h1 :=
+          summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by simpa using hq)
+        have h2 :=
+          summable_geometric_of_norm_lt_one (R := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
         have := (h1.mul_left 6).add h2
         refine this.congr fun n => ?_
         simp only [pow_one]; ring
@@ -494,7 +506,8 @@ theorem slash_of_neg_mem {L : ℕ} {w : ℤ} (F : ModularForm Γ₁(L) w) {g : S
     rw [hτ, hd, mul_comm]
     congr 1
     rw [zpow_neg, ← inv_zpow, inv_neg, inv_one]
-  calc (⇑F : ℍ → ℂ) ∣[w] g = (⇑F : ℍ → ℂ) ∣[w] ((-1 : SL(2, ℤ)) * (-g)) := by rw [neg_one_mul, neg_neg]
+  calc (⇑F : ℍ → ℂ) ∣[w] g = (⇑F : ℍ → ℂ) ∣[w] ((-1 : SL(2, ℤ)) * (-g)) := by rw [neg_one_mul,
+    neg_neg]
     _ = ((⇑F : ℍ → ℂ) ∣[w] (-1 : SL(2, ℤ))) ∣[w] (-g) := SlashAction.slash_mul _ _ _ _
     _ = (((-1 : ℂ) ^ w) • (⇑F : ℍ → ℂ)) ∣[w] (-g) := by rw [hneg]
     _ = ((-1 : ℂ) ^ w) • ((⇑F : ℍ → ℂ) ∣[w] (-g)) := by rw [ModularForm.SL_smul_slash]
@@ -547,7 +560,8 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
   have hentry : ((γ 1 1 : ℤ) : ZMod M) = ((γ' 1 1 : ℤ) : ZMod M) := by
     rw [hγ'11, ht]; push_cast; simp
   have hfγ : (⇑f : ℍ → ℂ) ∣[k] γ = (⇑f : ℍ → ℂ) ∣[k] γ' := slash_eq_of_apply_eq f hγ hγ'M hentry
-  obtain ⟨ε, hε, hEγ⟩ : ∃ ε : ℚ, ε * ε = 1 ∧ (⇑E : ℍ → ℂ) ∣[(1 : ℤ)] γ' = (ε : ℂ) • (⇑E : ℍ → ℂ) := by
+  obtain ⟨ε, hε, hEγ⟩ : ∃ ε : ℚ, ε * ε = 1 ∧ (⇑E : ℍ → ℂ) ∣[(1 : ℤ)] γ' = (ε : ℂ) • (⇑E : ℍ → ℂ) :=
+    by
     have h3z : (3 : ZMod 3) = 0 := by decide
     have hxd : ((x : ℤ) : ZMod 3) * ((d' : ℤ) : ZMod 3) = 1 := by
       have := congrArg (Int.cast : ℤ → ZMod 3) hxy
@@ -572,7 +586,8 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
       · refine ⟨-1, by norm_num, ?_⟩
         have hmem : -γ' ∈ Gamma1 3 := by
           rw [Gamma1_mem]
-          simp only [Matrix.SpecialLinearGroup.coe_neg, Matrix.neg_apply, Int.cast_neg, hγ'11, hγ'00, hγ'10]
+          simp only [Matrix.SpecialLinearGroup.coe_neg, Matrix.neg_apply, Int.cast_neg, hγ'11,
+            hγ'00, hγ'10]
           refine ⟨?_, by rw [hd3, neg_neg], by push_cast; rw [h3z, zero_mul, neg_zero]⟩
           rw [hd3, mul_neg, mul_one] at hxd
           exact hxd
@@ -600,7 +615,8 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
   have hk1 : Even (k + 1) := hk.add_one
   have key := isRat_slash_of_even hk1 F hFrat hγ'3M
   have hFγ : (⇑F : ℍ → ℂ) ∣[k + 1] γ' = ⇑(diamondSlash γ' hγ'3M f3) * ⇑(((ε : ℂ)) • E3) := by
-    rw [hF, coe_mul, ModularForm.mul_slash_SL2, coe_diamondSlash, FunLike.coe_smul, coe_res, coe_res, hEγ]
+    rw [hF, coe_mul, ModularForm.mul_slash_SL2, coe_diamondSlash, FunLike.coe_smul, coe_res,
+      coe_res, hEγ]
   rw [hFγ, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods (3 * M)),
     FunLike.coe_smul, ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods (3 * M)),
     coe_diamondSlash, coe_res, coe_res, ← hfγ] at key
@@ -614,7 +630,8 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
 
 end Odd
 
-theorem isRat_slash {M : ℕ} [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k) (hf : IsRat (qExpansion 1 f))
+theorem isRat_slash {M : ℕ} [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k)
+    (hf : IsRat (qExpansion 1 f))
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsRat (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ)) := by
   rcases Int.even_or_odd k with hk | hk
   · exact isRat_slash_of_even hk f hf hγ
@@ -644,6 +661,7 @@ theorem ModularCurve.exists_ratCast_qExpansion_slash_of_mem_Gamma0 (M : ℕ) [Ne
     (f : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)
     (hf : ∀ n : ℕ, ∃ r : ℚ, (UpperHalfPlane.qExpansion 1 f).coeff n = (r : ℂ))
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M) (n : ℕ) :
-    ∃ r : ℚ, (UpperHalfPlane.qExpansion 1 ((⇑f : UpperHalfPlane → ℂ) ∣[k] γ)).coeff n = (r : ℂ) := _root_.P2MW.S_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0.solution M f hf γ hγ n
+    ∃ r : ℚ, (UpperHalfPlane.qExpansion 1 ((⇑f : UpperHalfPlane → ℂ) ∣[k] γ)).coeff n = (r : ℂ) :=
+  solution M f hf γ hγ n
 
 end publicSection

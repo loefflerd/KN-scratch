@@ -122,7 +122,7 @@ theorem gate_rho_mem_fd : UpperHalfPlane.ρ ∈ 𝒟 := by
       show ((UpperHalfPlane.ρ : ℂ)).re = -1 / 2 from rfl,
       show ((UpperHalfPlane.ρ : ℂ)).im = Real.sqrt 3 / 2 from rfl]
     nlinarith
-  · show |(UpperHalfPlane.ρ).re| ≤ (1 : ℝ) / 2
+  · change |(UpperHalfPlane.ρ).re| ≤ (1 : ℝ) / 2
     rw [show (UpperHalfPlane.ρ).re = -1 / 2 from rfl]
     rw [abs_le]
     norm_num

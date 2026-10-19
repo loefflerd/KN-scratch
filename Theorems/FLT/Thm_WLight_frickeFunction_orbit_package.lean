@@ -79,7 +79,8 @@ p2m_open "WLight"
 section R4bFloor
 open scoped UpperHalfPlane Manifold MatrixGroups
 p2m_open "UpperHalfPlane~I"
-p2m_open "ModularForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "ModularForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial \
+  Filter"
 variable {N : ℕ}
 
 def periodPairOfTau (τ : ℍ) : PeriodPair where
@@ -289,7 +290,7 @@ private lemma cuspFunction_const (N : ℕ) (c : ℂ) :
     cuspFunction N (fun _ : ℍ => c) = fun _ => c := by
   funext q
   rcases eq_or_ne q 0 with rfl | hq
-  · show Function.Periodic.cuspFunction N ((fun _ : ℍ => c) ∘ ofComplex) 0 = c
+  · change Function.Periodic.cuspFunction N ((fun _ : ℍ => c) ∘ ofComplex) 0 = c
     rw [Function.Periodic.cuspFunction_zero_eq_limUnder_nhds_ne]
     refine Filter.Tendsto.limUnder_eq ?_
     refine Filter.Tendsto.congr' ?_ (tendsto_const_nhds :
@@ -297,7 +298,7 @@ private lemma cuspFunction_const (N : ℕ) (c : ℂ) :
     filter_upwards [self_mem_nhdsWithin] with q hq
     exact (Function.Periodic.cuspFunction_eq_of_nonzero (N : ℝ)
       ((fun _ : ℍ => (c : ℂ)) ∘ ofComplex) hq).symm
-  · show Function.Periodic.cuspFunction N ((fun _ : ℍ => c) ∘ ofComplex) q = c
+  · change Function.Periodic.cuspFunction N ((fun _ : ℍ => c) ∘ ofComplex) q = c
     rw [Function.Periodic.cuspFunction_eq_of_nonzero _ _ hq]
     rfl
 
@@ -413,7 +414,8 @@ end R4bFloor
 
 section B6Engine
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm Polynomial Real.Polynomial"
 open scoped MatrixGroups Manifold
 
 variable {I : Type*} [Fintype I] (h : I → ℍ → ℂ) (m : ℕ)
@@ -434,7 +436,7 @@ theorem orbitCoeff_slash_invariant
   obtain ⟨σ, hσ⟩ := hperm γ
   funext τ
   simp only [SL_slash_apply, neg_zero, zpow_zero, mul_one]
-  show (∏ i, (X - C (h i (γ • τ)))).coeff k = (∏ i, (X - C (h i τ))).coeff k
+  change (∏ i, (X - C (h i (γ • τ)))).coeff k = (∏ i, (X - C (h i τ))).coeff k
   congr 2
   calc ∏ i, (X - C (h i (γ • τ)))
     _ = ∏ i, (X - C (h (σ i) τ)) := by
@@ -446,7 +448,8 @@ end B6Engine
 
 section B6Ring
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
+p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
+  ModularForm.CuspForm Polynomial Real.Polynomial Filter"
 open scoped MatrixGroups Manifold
 
 def PoleBounded (f : ℍ → ℂ) : Prop :=
@@ -694,6 +697,7 @@ theorem WLight.frickeFunction_orbit_package
         IntermediateField.adjoin ℚ {Complex.exp (2 * (Real.pi : ℂ) * Complex.I / N)}) ∧
       ∀ v : Fin 2 → ZMod N, v ≠ 0 → ∀ τ : ℍ,
         fricke v τ ^ (N ^ 2 - 1) + ∑ k ∈ Finset.range (N ^ 2 - 1),
-          (P k).eval (jf τ) * fricke v τ ^ k = 0) := _root_.P2MW.S_WLight_frickeFunction_orbit_package.solution N L hL W hW fricke hfricke jf hjf
+          (P k).eval (jf τ) * fricke v τ ^ k = 0) :=
+  solution N L hL W hW fricke hfricke jf hjf
 
 end publicSection

@@ -73,7 +73,8 @@ open UpperHalfPlane
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intFormRatiosC qExpFunctionFieldC laurentBaseChange laurentBaseChange_qExpFunctionFieldC_eq"
+p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intFormRatiosC qExpFunctionFieldC \
+  laurentBaseChange laurentBaseChange_qExpFunctionFieldC_eq"
 namespace RatioFieldOfLevelG
 p2m_open "ModularCurve"
 
@@ -87,7 +88,8 @@ theorem one_mem_strictPeriods (hT : ModularGroup.T ∈ Γ) :
   rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem hT]
   exact AddSubgroup.mem_zmultiples 1
 
-theorem qL_ne_zero (hT : ModularGroup.T ∈ Γ) {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hf : f ≠ 0) :
+theorem qL_ne_zero (hT : ModularGroup.T ∈ Γ) {k : ℤ}
+    (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hf : f ≠ 0) :
     qL f ≠ 0 := by
   intro h
   apply hf
@@ -100,7 +102,8 @@ theorem qL_mul (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (Γ : S
   simp only [qL, ModularForm.coe_mul,
     ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods hT), PowerSeries.coe_mul]
 
-theorem qL_add (hT : ModularGroup.T ∈ Γ) {a : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a) :
+theorem qL_add (hT : ModularGroup.T ∈ Γ) {a : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a)
+    :
     qL (f + g) = qL f + qL g := by
   simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT), PowerSeries.coe_add]
@@ -121,7 +124,8 @@ theorem one_ne_zero' : (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) ≠ 
     (fun F : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0 => (F : ℍ → ℂ) UpperHalfPlane.I) h
   simp [ModularForm.one_coe_eq_one] at this
 
-theorem mul_ne_zero' (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a)
+theorem mul_ne_zero' (hT : ModularGroup.T ∈ Γ) {a b : ℤ}
+    (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a)
     (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) b) (hf : f ≠ 0) (hg : g ≠ 0) :
     f.mul g ≠ 0 := by
   intro hfg
@@ -133,24 +137,26 @@ theorem mul_ne_zero' (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (
   exact (mul_ne_zero (qL_ne_zero hT f hf) (qL_ne_zero hT g hg)) h
 
 variable (Γ) in
-
 def IsRatio (x : LaurentSeries ℂ) : Prop :=
   ∃ (k : ℤ) (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 ∧ x * qL h = qL g
 
-theorem isRatio_algebraMap (hT : ModularGroup.T ∈ Γ) (c : ℂ) : IsRatio Γ (algebraMap ℂ (LaurentSeries ℂ) c) :=
+theorem isRatio_algebraMap (hT : ModularGroup.T ∈ Γ) (c : ℂ) :
+    IsRatio Γ (algebraMap ℂ (LaurentSeries ℂ) c) :=
   ⟨0, c • 1, 1, one_ne_zero', by rw [qL_one, mul_one, qL_const hT]⟩
 
 theorem isRatio_one (hT : ModularGroup.T ∈ Γ) : IsRatio Γ 1 := by
   simpa using isRatio_algebraMap hT 1
 
-theorem IsRatio.mul (hT : ModularGroup.T ∈ Γ) {x y : LaurentSeries ℂ} (hx : IsRatio Γ x) (hy : IsRatio Γ y) :
+theorem IsRatio.mul (hT : ModularGroup.T ∈ Γ) {x y : LaurentSeries ℂ} (hx : IsRatio Γ x)
+    (hy : IsRatio Γ y) :
     IsRatio Γ (x * y) := by
   obtain ⟨a, g, h, hh, hxe⟩ := hx
   obtain ⟨b, g', h', hh', hye⟩ := hy
   refine ⟨a + b, g.mul g', h.mul h', mul_ne_zero' hT h h' hh hh', ?_⟩
   rw [qL_mul hT, qL_mul hT, ← hxe, ← hye]; ring
 
-theorem IsRatio.add (hT : ModularGroup.T ∈ Γ) {x y : LaurentSeries ℂ} (hx : IsRatio Γ x) (hy : IsRatio Γ y) :
+theorem IsRatio.add (hT : ModularGroup.T ∈ Γ) {x y : LaurentSeries ℂ} (hx : IsRatio Γ x)
+    (hy : IsRatio Γ y) :
     IsRatio Γ (x + y) := by
   obtain ⟨a, g, h, hh, hxe⟩ := hx
   obtain ⟨b, g', h', hh', hye⟩ := hy
@@ -160,12 +166,14 @@ theorem IsRatio.add (hT : ModularGroup.T ∈ Γ) {x y : LaurentSeries ℂ} (hx :
     rw [← qL_mul hT]; simp only [qL, ModularForm.coe_mcast]
   rw [qL_add hT, qL_mul hT, qL_mul hT, hc, ← hxe, ← hye]; ring
 
-theorem IsRatio.neg (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : IsRatio Γ x) : IsRatio Γ (-x) := by
+theorem IsRatio.neg (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : IsRatio Γ x) :
+    IsRatio Γ (-x) := by
   have : -x = algebraMap ℂ (LaurentSeries ℂ) (-1) * x := by rw [map_neg, map_one]; ring
   rw [this]
   exact (isRatio_algebraMap hT (-1)).mul hT hx
 
-theorem IsRatio.inv (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : IsRatio Γ x) : IsRatio Γ x⁻¹ := by
+theorem IsRatio.inv (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : IsRatio Γ x) :
+    IsRatio Γ x⁻¹ := by
   rcases eq_or_ne x 0 with rfl | hx0
   · simpa using isRatio_algebraMap hT 0
   obtain ⟨a, g, h, hh, hxe⟩ := hx
@@ -179,12 +187,14 @@ theorem IsRatio.inv (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : I
   refine ⟨a, h, g, hg, ?_⟩
   rw [← hxe, mul_comm x, mul_comm x⁻¹, mul_assoc, mul_inv_cancel₀ hx0, mul_one]
 
-theorem intSeriesC_eq_qL {k : ℤ} {f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k} {p : PowerSeries ℤ}
+theorem intSeriesC_eq_qL {k : ℤ} {f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k}
+    {p : PowerSeries ℤ}
     (hp : IsIntegralQExp (f : ℍ → ℂ) p) : intSeriesC ℂ p = qL f := by
   rw [intSeriesC, qL]
   exact congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hp
 
-theorem isRatio_of_mem_intFormRatiosC (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : x ∈ intFormRatiosC ℂ Γ) :
+theorem isRatio_of_mem_intFormRatiosC (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ}
+    (hx : x ∈ intFormRatiosC ℂ Γ) :
     IsRatio Γ x := by
   obtain ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩ := hx
   have hg' : g ≠ 0 := by
@@ -215,7 +225,8 @@ end ModularCurve.RatioFieldOfLevelG
 end
 
 open UpperHalfPlane in
-theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
+theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
+    (hT : ModularGroup.T ∈ Γ)
     (x : LaurentSeries ℂ)
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) :
     ∃ (k : ℤ) (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 ∧
@@ -239,6 +250,7 @@ theorem ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChan
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) :
     ∃ (k : ℤ) (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 ∧
       x * ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-        ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := _root_.P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC.solution Γ hT x hx
+        ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+  solution Γ hT x hx
 
 end publicSection

@@ -107,6 +107,7 @@ theorem WeierstrassCurve.tateModuleRep_det_frobenius
     (ℓ : ℕ) (hℓ : ℓ.Prime) (hℓp : ℓ ≠ p)
     (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime ℓ)
     (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (hσ : A.IsFrobeniusAt σ ℓ) :
-    LinearMap.det ((W.tateModuleRep p hcard).ρ σ) = (ℓ : ℤ_[p]) := _root_.P2MW.S_WeierstrassCurve_tateModuleRep_det_frobenius.solution W p hΔ hcard ℓ hℓ hℓp A hA σ hσ
+    LinearMap.det ((W.tateModuleRep p hcard).ρ σ) = (ℓ : ℤ_[p]) :=
+  solution W p hΔ hcard ℓ hℓ hℓp A hA σ hσ
 
 end publicSection

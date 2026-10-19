@@ -58,7 +58,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_modularUnitSeries_mem_modularFunctionFieldFull
 
-theorem solution (N : ℕ) [NeZero N] : ModularCurve.modularUnitSeries N ∈ ModularCurve.modularFunctionFieldFull N := by
+theorem solution (N : ℕ) [NeZero N] :
+    ModularCurve.modularUnitSeries N ∈ ModularCurve.modularFunctionFieldFull N := by
   suffices H : ∀ n : ℕ, ∀ _ : NeZero n,
       ModularCurve.modularUnitSeries n ∈ ModularCurve.modularFunctionFieldFull n from
     H N ‹NeZero N›
@@ -102,6 +103,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.modularUnitSeries_mem_modularFunctionFieldFull (N : ℕ) [NeZero N] : ModularCurve.modularUnitSeries N ∈ ModularCurve.modularFunctionFieldFull N := _root_.P2MW.S_ModularCurve_modularUnitSeries_mem_modularFunctionFieldFull.solution N
+theorem ModularCurve.modularUnitSeries_mem_modularFunctionFieldFull (N : ℕ) [NeZero N] :
+    ModularCurve.modularUnitSeries N ∈ ModularCurve.modularFunctionFieldFull N :=
+  solution N
 
 end publicSection

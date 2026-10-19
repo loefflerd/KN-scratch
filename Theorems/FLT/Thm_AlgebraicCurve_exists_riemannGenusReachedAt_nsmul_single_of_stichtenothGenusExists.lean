@@ -98,6 +98,7 @@ theorem AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothG
     {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]
     [Nonempty (Place K F)] [FiniteDimensional K ↥(LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (Q : Place K F) :
-    ∃ n : ℕ, RiemannGenusReachedAt γ ((n : ℤ) • Finsupp.single Q 1) := _root_.P2MW.S_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists.solution h Q
+    ∃ n : ℕ, RiemannGenusReachedAt γ ((n : ℤ) • Finsupp.single Q 1) :=
+  solution h Q
 
 end publicSection

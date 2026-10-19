@@ -67,7 +67,8 @@ namespace P2MW.S_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN jqN_one dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData exists_phiIrreducible_evalSymm coeffEmb"
+p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN jqN_one dedekindPsi evalAtJ evalAtJ_X \
+  ModularPolynomialData exists_phiIrreducible_evalSymm coeffEmb"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -94,10 +95,10 @@ theorem jqN_congr {n m : ℕ} [NeZero n] [NeZero m] (h : n = m) : jqN n = jqN m 
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN jqN_one dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData exists_phiIrreducible_evalSymm coeffEmb"
+p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN jqN_one dedekindPsi evalAtJ evalAtJ_X \
+  ModularPolynomialData exists_phiIrreducible_evalSymm coeffEmb"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero N] :
     ∃ P : Polynomial (Polynomial ℤ), P.Monic ∧ P.eval₂ evalAtJ (jqN N) = 0 := by
   let : Algebra (Polynomial ℤ) (LaurentSeries ℚ) := evalAtJ.toAlgebra
@@ -139,8 +140,8 @@ private theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero 
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero.ModularCurve in
-
-theorem solution (N : ℕ) [NeZero N] : ∃ P : Polynomial (Polynomial ℤ), P.Monic ∧ P.eval₂ evalAtJ (jqN N) = 0 :=
+theorem solution (N : ℕ) [NeZero N] :
+    ∃ P : Polynomial (Polynomial ℤ), P.Monic ∧ P.eval₂ evalAtJ (jqN N) = 0 :=
   ModularCurve.exists_monic_evalAtJ_jqN_eq_zero N
 
 end S_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero
@@ -153,6 +154,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero N] : ∃ P : Polynomial (Polynomial ℤ), P.Monic ∧ P.eval₂ evalAtJ (jqN N) = 0 := _root_.P2MW.S_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero.solution N
+theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero N] :
+    ∃ P : Polynomial (Polynomial ℤ), P.Monic ∧ P.eval₂ evalAtJ (jqN N) = 0 :=
+  solution N
 
 end publicSection

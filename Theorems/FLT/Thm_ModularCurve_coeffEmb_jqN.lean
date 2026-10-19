@@ -63,16 +63,18 @@ noncomputable section
 open HahnSeries
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqModC jqNModC jqModC_rat map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq jqN coeffMap coeffEmb"
+p2m_export "ModularCurve" "jqModC jqNModC jqModC_rat map_jqModC qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd jq jqN coeffMap coeffEmb"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-theorem ModularCurve.CharLRows.coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ L] : coeffEmb L jq = jqModC L := by
+theorem ModularCurve.CharLRows.coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ L] :
+    coeffEmb L jq = jqModC L := by
   rw [← jqModC_rat]
   exact map_jqModC (algebraMap ℚ L)
 
 p2m_open_scoped "ModularCurve" in
-
-theorem ModularCurve.CharLRows.map_qExpand_aux {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (N : ℕ) [NeZero N]
+theorem ModularCurve.CharLRows.map_qExpand_aux {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
+    (N : ℕ) [NeZero N]
     (x : LaurentSeries R) : (qExpand R N x).map f = qExpand S N (x.map f) := by
   ext k
   rw [HahnSeries.map_coeff]
@@ -105,6 +107,7 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.coeffEmb_jqN (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
-    coeffEmb L (jqN N) = jqNModC L N := _root_.P2MW.S_ModularCurve_coeffEmb_jqN.solution L N
+    coeffEmb L (jqN N) = jqNModC L N :=
+  solution L N
 
 end publicSection

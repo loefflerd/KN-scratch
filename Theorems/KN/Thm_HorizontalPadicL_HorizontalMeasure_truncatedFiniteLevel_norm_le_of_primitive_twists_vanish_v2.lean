@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.HorizontalMeasure.truncatedFiniteLevel_norm_le_of_primitive_twists_vanish_v2
+Based on Prove2Me node
+HorizontalPadicL.HorizontalMeasure.truncatedFiniteLevel_norm_le_of_primitive_twists_vanish_v2
 (be50b64a-1666-417b-91b5-aa377801e379) by davidloeffler (2026-09-25).
 
 Proof based on Prove2Me submission de7853fc-b7af-4d6d-8d51-4d85fd94b6b7
@@ -77,10 +78,12 @@ def truncateHorizontalCoordinatesHom {p : ℕ} {e : ℕ → ℕ} (m : ℕ)
   toFun := truncateHorizontalCoordinates m he A
   map_one' := by
     funext i
-    exact congrArg Multiplicative.ofAdd (map_zero (ZMod.castHom (pow_dvd_pow p (he i.1)) (ZMod (p ^ m))))
+    exact congrArg Multiplicative.ofAdd
+      (map_zero (ZMod.castHom (pow_dvd_pow p (he i.1)) (ZMod (p ^ m))))
   map_mul' x y := by
     funext i
-    exact congrArg Multiplicative.ofAdd (map_add (ZMod.castHom (pow_dvd_pow p (he i.1)) (ZMod (p ^ m))) _ _)
+    exact congrArg Multiplicative.ofAdd
+      (map_add (ZMod.castHom (pow_dvd_pow p (he i.1)) (ZMod (p ^ m))) _ _)
 
 @[simp] theorem truncateHorizontalCoordinatesHom_apply {p : ℕ} {e : ℕ → ℕ} (m : ℕ)
     (he : ∀ n, m ≤ e n) (A : Finset ℕ) (x : HorizontalFiniteGroup p e A) :
@@ -247,10 +250,11 @@ theorem norm_mapDomain_apply_le
   split_ifs <;> simp_all
 
 theorem mapDomain_fst_apply
-    {R : Type*} [AddCommMonoid R] {α β : Type*} [Fintype α] [Fintype β]
+    {R : Type*} [AddCommMonoid R] {α β : Type*} [Finite α] [Fintype β]
     (l : α × β →₀ R) (a : α) :
     Finsupp.mapDomain Prod.fst l a = ∑ b, l (a, b) := by
   classical
+  have := Fintype.ofFinite α
   simp only [Finsupp.mapDomain, Finsupp.sum_apply]
   rw [Finsupp.sum_fintype _ _ (by simp)]
   simp only [Fintype.sum_prod_type, Finsupp.single_apply]
@@ -277,7 +281,9 @@ open scoped BigOperators
 
 namespace HorizontalPadicL
 
-/-- Sum a function constant on right subgroup translates by choosing one representative per coset. -/
+/--
+Sum a function constant on right subgroup translates by choosing one representative per coset.
+-/
 lemma sum_eq_card_mul_quotient_sum {G : Type*} [Group G] [Fintype G]
     (S : Subgroup G) [Fintype S] [Fintype (G ⧸ S)] {K : Type*} [CommRing K] (f : G → K)
     (hf : ∀ g (h : S), f (g * h) = f g) :
@@ -348,12 +354,12 @@ noncomputable section
 open scoped BigOperators
 namespace HorizontalPadicL.FiniteFourier
 
-variable {G K : Type*} [CommGroup G] [Fintype G] [Field K] [CharZero K]
-  [HasEnoughRootsOfUnity K (Monoid.exponent G)] [Fintype (G →* Kˣ)]
+variable {G K : Type*} [CommGroup G] [Field K] [CharZero K]
+  [HasEnoughRootsOfUnity K (Monoid.exponent G)]
 
 omit [CharZero K] in
 /-- Orthogonality of all characters of a finite abelian group. -/
-lemma sum_characters [DecidableEq G] (x : G) :
+lemma sum_characters [Finite G] [DecidableEq G] [Fintype (G →* Kˣ)] (x : G) :
     ∑ χ : G →* Kˣ, (χ x : K) = if x = 1 then (Fintype.card (G →* Kˣ) : K) else 0 := by
   classical
   split_ifs with hx
@@ -366,7 +372,7 @@ lemma sum_characters [DecidableEq G] (x : G) :
 
 omit [CharZero K] in
 /-- Finite Fourier inversion without dividing by the order of the dual group. -/
-lemma inversion (f : G → K) (x : G) :
+lemma inversion [Fintype G] [Fintype (G →* Kˣ)] (f : G → K) (x : G) :
     ∑ χ : G →* Kˣ, (∑ y, f y * (χ y : K)) * (χ x⁻¹ : K) =
       f x * Fintype.card (G →* Kˣ) := by
   classical
@@ -376,8 +382,9 @@ lemma inversion (f : G → K) (x : G) :
   simp [mul_inv_eq_one]
 
 /-- A function is determined by its character sums. -/
-lemma injective (f g : G → K)
+lemma injective [Fintype G] (f g : G → K)
     (h : ∀ χ : G →* Kˣ, (∑ x, f x * (χ x : K)) = ∑ x, g x * (χ x : K)) : f = g := by
+  have : Fintype (G →* Kˣ) := Fintype.ofFinite _
   funext x
   have hf := inversion f x
   have hg := inversion g x
@@ -387,7 +394,7 @@ lemma injective (f g : G → K)
   simp_rw [h]
 
 /-- Fourier support on characters trivial on `k` implies translation invariance by `k`. -/
-lemma invariant_of_vanish (f : G → K) (k : G)
+lemma invariant_of_vanish [Fintype G] (f : G → K) (k : G)
     (h : ∀ χ : G →* Kˣ, χ k ≠ 1 → ∑ x, f x * (χ x : K) = 0) :
     ∀ x, f (k * x) = f x := by
   suffices (fun x ↦ f (k * x)) = f by exact fun x ↦ congrFun this x
@@ -426,9 +433,9 @@ lemma roots_character_eq_pow {q : ℕ} [NeZero q] [HasEnoughRootsOfUnity K q]
   rw [← heh, map_pow, Units.val_pow_eq_pow_val, ← hea]
   simp [z, ← pow_mul, Nat.mul_comm]
 
-omit [HasEnoughRootsOfUnity K (Monoid.exponent G)] [Fintype (G →* Kˣ)] in
+omit [HasEnoughRootsOfUnity K (Monoid.exponent G)] in
 /-- Vanishing of the primitive cyclic frequencies implies invariance by all `p`-torsion. -/
-lemma invariant_of_primitive_vanish [IsAlgClosed K] {p m : ℕ} [Fact p.Prime]
+lemma invariant_of_primitive_vanish [Fintype G] [IsAlgClosed K] {p m : ℕ} [Fact p.Prime]
     [Fintype (rootsOfUnity (p ^ m) K)]
     (f : G × rootsOfUnity (p ^ m) K → K)
     (hvanish : ∀ a : ℕ, a < p ^ m → Nat.Coprime a p →
@@ -468,7 +475,7 @@ lemma invariant_of_primitive_vanish [IsAlgClosed K] {p m : ℕ} [Fact p.Prime]
   simpa [mul_comm h k] using hinv (g, h)
 
 /-- The finite Fourier estimate: primitive vanishing saves a factor of `p` in a marginal. -/
-lemma marginal_norm_le_of_primitive_vanish {p m : ℕ} [Fact p.Prime]
+lemma marginal_norm_le_of_primitive_vanish {p m : ℕ} [Fintype G] [Fact p.Prime]
     [Fintype (rootsOfUnity (p ^ m) ℂ_[p])]
     (hm : 0 < m) (f : G × rootsOfUnity (p ^ m) ℂ_[p] → ℂ_[p])
     {B : ℝ} (hB : 0 ≤ B) (hbound : ∀ x, ‖f x‖ ≤ B)
@@ -623,7 +630,8 @@ theorem HorizontalMeasure.truncatedFiniteLevel_norm_le_of_primitive_twists_vanis
         orderOf ξ.toMonoidHom ∣ p ^ m →
         μ.eval ((χ.powerOnSupport a).mulOnUnion ξ) = 0) :
     ∀ x : HorizontalFiniteGroup p (fun _ ↦ m) A,
-      ‖(μ.truncatedFiniteLevel m he A x : ℂ_[p])‖ ≤ B / (p : ℝ) := _root_.solution μ m hm he A χ horder hdisjoint B hB hbound hvanish
+      ‖(μ.truncatedFiniteLevel m he A x : ℂ_[p])‖ ≤ B / (p : ℝ) :=
+  solution μ m hm he A χ horder hdisjoint B hB hbound hvanish
 
 end HorizontalPadicL
 end

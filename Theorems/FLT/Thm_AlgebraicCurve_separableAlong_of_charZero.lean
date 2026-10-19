@@ -57,7 +57,9 @@ namespace P2MW.S_AlgebraicCurve_separableAlong_of_charZero
 
 open AlgebraicCurve
 
-theorem solution {K F F₁ : Type*} [Field K] [Field F] [Field F₁] [Algebra K F] [Algebra K F₁] [CharZero F] (φ : F →ₐ[K] F₁) (hφ : φ.toRingHom.IsIntegral) : SeparableAlong K φ := by
+theorem solution {K F F₁ : Type*} [Field K] [Field F] [Field F₁] [Algebra K F] [Algebra K F₁]
+    [CharZero F] (φ : F →ₐ[K] F₁) (hφ : φ.toRingHom.IsIntegral) :
+    SeparableAlong K φ := by
   let := algebraAlong φ
   have := isIntegral_along φ hφ
   exact Algebra.IsSeparable.of_integral F F₁
@@ -72,6 +74,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.separableAlong_of_charZero {K F F₁ : Type*} [Field K] [Field F] [Field F₁] [Algebra K F] [Algebra K F₁] [CharZero F] (φ : F →ₐ[K] F₁) (hφ : φ.toRingHom.IsIntegral) : SeparableAlong K φ := _root_.P2MW.S_AlgebraicCurve_separableAlong_of_charZero.solution φ hφ
+theorem AlgebraicCurve.separableAlong_of_charZero {K F F₁ : Type*} [Field K] [Field F] [Field F₁]
+    [Algebra K F] [Algebra K F₁] [CharZero F] (φ : F →ₐ[K] F₁) (hφ : φ.toRingHom.IsIntegral) :
+    SeparableAlong K φ :=
+  solution φ hφ
 
 end publicSection

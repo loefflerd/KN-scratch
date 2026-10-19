@@ -63,7 +63,8 @@ theorem two_mul_pred_div_two_add_one_of_odd {N : ℕ} (hN : Odd N) : 2 * ((N - 1
   obtain ⟨m, rfl⟩ := hN
   omega
 
-theorem isElliptic_veluQuotient_cycSubSummingSet_of_odd (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ}
+theorem isElliptic_veluQuotient_cycSubSummingSet_of_odd (E : WeierstrassCurve H) [E.IsElliptic]
+    {N : ℕ}
     (hN : Odd N) (G : CycSubH E N) :
     (E.veluQuotient (cycSubSummingSet E G)).IsElliptic :=
   ⟨isUnit_iff_ne_zero.mpr
@@ -85,7 +86,8 @@ theorem cycSubRootOdd_coe (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZ
       @WeierstrassCurve.j H _ (E.veluQuotient (cycSubSummingSet E G))
         (isElliptic_veluQuotient_cycSubSummingSet_of_odd E hN G) := rfl
 
-theorem cycSubRootOdd_injective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N] (hN : Odd N)
+theorem cycSubRootOdd_injective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
+    (hN : Odd N)
     (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) :
     Function.Injective (cycSubRootOdd E hN data) := by
   intro G G' h
@@ -100,7 +102,8 @@ theorem cycSubRootOdd_injective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ
     (isElliptic_veluQuotient_cycSubSummingSet_of_odd E hN G).isUnit.ne_zero
     (isElliptic_veluQuotient_cycSubSummingSet_of_odd E hN G').isUnit.ne_zero hjj
 
-theorem cycSubRootOdd_bijective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N] (hN : Odd N)
+theorem cycSubRootOdd_bijective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
+    (hN : Odd N)
     (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) :
     Function.Bijective (cycSubRootOdd E hN data) := by
   have := finite_rootsAt data E.j
@@ -109,7 +112,8 @@ theorem cycSubRootOdd_bijective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ
   exact natCard_rootsAt_le data E.j
 
 def rootsEquivCycSubHOdd (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N] (hN : Odd N)
-    (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) : RootsAt data E.j ≃ CycSubH E N :=
+    (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j)
+    : RootsAt data E.j ≃ CycSubH E N :=
   (Equiv.ofBijective (cycSubRootOdd E hN data) (cycSubRootOdd_bijective E hN data hj)).symm
 
 theorem rootsEquivCycSubHOdd_symm_apply (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
@@ -117,7 +121,8 @@ theorem rootsEquivCycSubHOdd_symm_apply (E : WeierstrassCurve H) [E.IsElliptic] 
     (rootsEquivCycSubHOdd E hN data hj).symm G = cycSubRootOdd E hN data G := rfl
 
 theorem rootsEquivCycSubHOdd_apply_eq_iff (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
-    (hN : Odd N) (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) (r : RootsAt data E.j)
+    (hN : Odd N) (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j)
+    (r : RootsAt data E.j)
     (G : CycSubH E N) :
     rootsEquivCycSubHOdd E hN data hj r = G ↔ r = cycSubRootOdd E hN data G := by
   rw [← rootsEquivCycSubHOdd_symm_apply E hN data hj G, Equiv.eq_symm_apply]

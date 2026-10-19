@@ -154,7 +154,8 @@ theorem not_mem_Gamma1_of_trace {M : ℕ} (hM : 5 ≤ M) {γ : SL(2, ℤ)} (t : 
 
 theorem neg_one_not_mem_Gamma1 {M : ℕ} (hM : 5 ≤ M) : (-1 : SL(2, ℤ)) ∉ Gamma1 M :=
   not_mem_Gamma1_of_trace hM (-2)
-    (by rw [coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.trace_neg, Matrix.trace_one, Fintype.card_fin]; norm_num)
+    (by rw [coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.trace_neg, Matrix.trace_one,
+      Fintype.card_fin]; norm_num)
     (by norm_num)
 
 theorem S_sq : ModularGroup.S ^ 2 = (-1 : SL(2, ℤ)) :=
@@ -168,14 +169,16 @@ theorem coe_ST : ((ModularGroup.S * ModularGroup.T : SL(2, ℤ)) : Matrix (Fin 2
   rw [coe_mul, coe_S, coe_T, Matrix.mul_fin_two]
   norm_num
 
-theorem coe_ST_sq : (((ModularGroup.S * ModularGroup.T) ^ 2 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
+theorem coe_ST_sq :
+    (((ModularGroup.S * ModularGroup.T) ^ 2 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
     !![-1, -1; 1, 0] := by
   rw [coe_pow, coe_ST, pow_two, Matrix.mul_fin_two]
   norm_num
 
 theorem ST_pow_three : (ModularGroup.S * ModularGroup.T) ^ 3 = (-1 : SL(2, ℤ)) := by
   apply Subtype.ext
-  rw [pow_succ, coe_mul, coe_ST_sq, coe_ST, coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.mul_fin_two, Matrix.one_fin_two]
+  rw [pow_succ, coe_mul, coe_ST_sq, coe_ST, coe_neg, Matrix.SpecialLinearGroup.coe_one,
+    Matrix.mul_fin_two, Matrix.one_fin_two]
   ext i j
   fin_cases i <;> fin_cases j <;> norm_num
 
@@ -214,7 +217,8 @@ theorem relIndex_Gamma1_sup {M : ℕ} (hM : 5 ≤ M) :
   · refine Or.inr ⟨by rwa [mul_one], fun h => neg_one_not_mem_Gamma1 hM ?_⟩
     have := (Gamma1 M).mul_mem ((Gamma1 M).inv_mem hγ) h
     rwa [mul_one, inv_mul_cancel_left] at this
-  · refine Or.inl ⟨by rwa [mul_neg_one, mul_neg_one, neg_neg], fun h => neg_one_not_mem_Gamma1 hM ?_⟩
+  · refine Or.inl ⟨by rwa [mul_neg_one, mul_neg_one,
+      neg_neg], fun h => neg_one_not_mem_Gamma1 hM ?_⟩
     have := (Gamma1 M).mul_mem ((Gamma1 M).inv_mem hγ) h
     rwa [inv_mul_cancel_left] at this
 
@@ -233,7 +237,8 @@ theorem free_S {M : ℕ} (hM : 5 ≤ M) (g : SL(2, ℤ)) (k : SL(2, ℤ))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM 0
       (by rw [trace_conj, pow_one, coe_S, Matrix.trace_fin_two_of]; norm_num) (by norm_num))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM (-2)
-      (by rw [trace_conj, S_sq, coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.trace_neg, Matrix.trace_one, Fintype.card_fin]
+      (by rw [trace_conj, S_sq, coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.trace_neg,
+        Matrix.trace_one, Fintype.card_fin]
           norm_num) (by norm_num))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM 0
       (by rw [trace_conj, pow_succ, S_sq, neg_one_mul, coe_neg, Matrix.trace_neg, coe_S,
@@ -250,13 +255,15 @@ theorem free_ST {M : ℕ} (hM : 5 ≤ M) (g : SL(2, ℤ)) (k : SL(2, ℤ))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM (-1)
       (by rw [trace_conj, coe_ST_sq, Matrix.trace_fin_two_of]; norm_num) (by norm_num))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM (-2)
-      (by rw [trace_conj, ST_pow_three, coe_neg, Matrix.SpecialLinearGroup.coe_one, Matrix.trace_neg, Matrix.trace_one,
+      (by rw [trace_conj, ST_pow_three, coe_neg, Matrix.SpecialLinearGroup.coe_one,
+        Matrix.trace_neg, Matrix.trace_one,
             Fintype.card_fin]; norm_num) (by norm_num))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM (-1)
       (by rw [trace_conj, pow_succ, ST_pow_three, neg_one_mul, coe_neg, Matrix.trace_neg, coe_ST,
             Matrix.trace_fin_two_of]; norm_num) (by norm_num))
   · exact absurd hmem (not_mem_Gamma1_of_trace hM 1
-      (by rw [trace_conj, show (5 : ℕ) = 3 + 2 from rfl, pow_add, ST_pow_three, neg_one_mul, coe_neg,
+      (by rw [trace_conj, show (5 : ℕ) = 3 + 2 from rfl, pow_add, ST_pow_three, neg_one_mul,
+        coe_neg,
             Matrix.trace_neg, coe_ST_sq, Matrix.trace_fin_two_of]; norm_num) (by norm_num))
 
 theorem natCard_zpowers_S : Nat.card (Subgroup.zpowers ModularGroup.S) = 4 := by
@@ -287,10 +294,12 @@ theorem natCard_zpowers_ST : Nat.card (Subgroup.zpowers (ModularGroup.S * Modula
     rw [ST_pow_three, coe_neg, Matrix.SpecialLinearGroup.coe_one] at h'
     norm_num at h'
   · have h' := congrArg (fun A : SL(2, ℤ) => (A : Matrix (Fin 2) (Fin 2) ℤ) 0 0) h
-    rw [pow_succ, ST_pow_three, neg_one_mul, coe_neg, coe_ST, Matrix.SpecialLinearGroup.coe_one] at h'
+    rw [pow_succ, ST_pow_three, neg_one_mul, coe_neg, coe_ST,
+      Matrix.SpecialLinearGroup.coe_one] at h'
     norm_num at h'
   · have h' := congrArg (fun A : SL(2, ℤ) => (A : Matrix (Fin 2) (Fin 2) ℤ) 1 1) h
-    rw [show (5 : ℕ) = 3 + 2 from rfl, pow_add, ST_pow_three, neg_one_mul, coe_neg, coe_ST_sq, Matrix.SpecialLinearGroup.coe_one] at h'
+    rw [show (5 : ℕ) = 3 + 2 from rfl, pow_add, ST_pow_three, neg_one_mul, coe_neg, coe_ST_sq,
+      Matrix.SpecialLinearGroup.coe_one] at h'
     norm_num at h'
 
 end DCCount
@@ -334,6 +343,7 @@ theorem CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index =
         2 * Nat.card (DoubleCoset.Quotient
           (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-          (Subgroup.zpowers ModularGroup.S : Set SL(2, ℤ))) := _root_.P2MW.S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul.solution M hM
+          (Subgroup.zpowers ModularGroup.S : Set SL(2, ℤ))) :=
+  solution M hM
 
 end publicSection

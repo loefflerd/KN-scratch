@@ -79,6 +79,9 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
-theorem AlgebraicCurve.RationalFunctionField.deg_placeInfty (K : Type*) [Field K] [DecidableEq (RatFunc K)] : (placeInfty K).deg = 1 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_placeInfty.solution K
+theorem AlgebraicCurve.RationalFunctionField.deg_placeInfty (K : Type*) [Field K]
+    [DecidableEq (RatFunc K)] :
+    (placeInfty K).deg = 1 :=
+  solution K
 
 end publicSection

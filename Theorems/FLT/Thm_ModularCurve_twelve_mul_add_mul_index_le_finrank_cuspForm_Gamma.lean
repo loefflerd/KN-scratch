@@ -82,7 +82,9 @@ namespace P2MW.S_ModularCurve_twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma
 open scoped MatrixGroups IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.ring LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin LevelN.twelve_mul_add_mul_index_le_genusFF LevelN.exists_linearMap_regularDifferentials_cuspForm_injective"
+p2m_export "ModularCurve" "LevelN.ring LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin \
+  LevelN.twelve_mul_add_mul_index_le_genusFF \
+  LevelN.exists_linearMap_regularDifferentials_cuspForm_injective"
 namespace GenusBoundAssembly
 p2m_open "ModularCurve"
 
@@ -113,11 +115,11 @@ theorem curve_package {x : F} (htr : Transcendental K x)
   have hsq : RingHom.comp (algebraMap (RatFunc K) F) (e.symm.toRingEquiv : K⟮t⟯ →+* RatFunc K)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap K⟮t⟯ F) := by
     refine RingHom.ext fun a => ?_
-    show algebraMap K⟮t⟯ F (e (e.symm a)) = algebraMap K⟮t⟯ F a
+    change algebraMap K⟮t⟯ F (e (e.symm a)) = algebraMap K⟮t⟯ F a
     rw [e.apply_symm_apply]
   have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun a => by
-      show algebraMap K F a = algebraMap K⟮t⟯ F (e (algebraMap K (RatFunc K) a))
+      change algebraMap K F a = algebraMap K⟮t⟯ F (e (algebraMap K (RatFunc K) a))
       rw [e.commutes, ← IsScalarTower.algebraMap_apply]
   have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
@@ -220,6 +222,7 @@ open scoped MatrixGroups
 theorem ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma (N : ℕ) (hN : 2 ≤ N) :
     12 * N + N * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index ≤
       12 * N * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) +
-        6 * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := _root_.P2MW.S_ModularCurve_twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma.solution N hN
+        6 * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
+  solution N hN
 
 end publicSection

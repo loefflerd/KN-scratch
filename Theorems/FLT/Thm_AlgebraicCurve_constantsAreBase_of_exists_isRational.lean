@@ -67,18 +67,22 @@ namespace P2MW.S_AlgebraicCurve_constantsAreBase_of_exists_isRational
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_constantsAreBase_of_exists_isRational.AlgebraicCurve"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "mem_lSpace_iff_ord algebraMap_mem_lSpace_zero ConstantsAreBase Place Place.coe_algebraMap Divisor Divisor.degree HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Divisor.degree_eq_sum_support"
+p2m_export "AlgebraicCurve" "mem_lSpace_iff_ord algebraMap_mem_lSpace_zero ConstantsAreBase Place \
+  Place.coe_algebraMap Divisor Divisor.degree HasPrincipalDivisors \
+  HasPrincipalDivisors.exists_divisor Divisor.degree_eq_sum_support"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord algebraMap_mem' toValuationSubring IsRational evalAt algebraMap_evalAt mem_of_ord_nonneg ord_nonneg_of_mem evalAt_ne_zero"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord algebraMap_mem' \
+  toValuationSubring IsRational evalAt algebraMap_evalAt mem_of_ord_nonneg ord_nonneg_of_mem \
+  evalAt_ne_zero"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
 open IsLocalRing in
-
-private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos_s17 (hrat : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring)
+private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos_s17 (hrat : v.IsRational) {f : F}
+    (hf : f ∈ v.toValuationSubring)
     (hne : f - algebraMap K F (v.evalAt f) ≠ 0) :
     0 < v.ord (f - algebraMap K F (v.evalAt f)) := by
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
@@ -92,7 +96,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos_s17 (hrat : v.IsR
       have hcoe : (⟨f - algebraMap K F (v.evalAt f), hmem⟩ : v.toValuationSubring)
           = ⟨f, hf⟩ - algebraMap K v.toValuationSubring (v.evalAt f) := by
         refine Subtype.ext ?_
-        show f - algebraMap K F (v.evalAt f)
+        change f - algebraMap K F (v.evalAt f)
           = f - (algebraMap K v.toValuationSubring (v.evalAt f) : F)
         rw [Place.coe_algebraMap]
       rw [hcoe, map_sub, sub_eq_zero, ← v.algebraMap_evalAt hrat hf,
@@ -160,9 +164,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.constantsAreBase_of_exists_isRational {K F : Type*} [Field K] [Field F] [Algebra K F]
+theorem AlgebraicCurve.constantsAreBase_of_exists_isRational {K F : Type*} [Field K] [Field F]
+    [Algebra K F]
     [AlgebraicCurve.HasPrincipalDivisors K F]
     (v₀ : AlgebraicCurve.Place K F) (hrat : v₀.IsRational) (hdeg : v₀.deg ≠ 0) :
-    AlgebraicCurve.ConstantsAreBase K F := _root_.P2MW.S_AlgebraicCurve_constantsAreBase_of_exists_isRational.solution v₀ hrat hdeg
+    AlgebraicCurve.ConstantsAreBase K F :=
+  solution v₀ hrat hdeg
 
 end publicSection

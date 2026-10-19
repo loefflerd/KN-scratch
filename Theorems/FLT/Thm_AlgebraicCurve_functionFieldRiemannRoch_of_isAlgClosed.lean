@@ -69,7 +69,7 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
 
 theorem solution
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [Algebra.IsIntegral (RatFunc K) F]
@@ -82,9 +82,11 @@ theorem solution
     [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F] :
-    AlgebraicCurve.FunctionFieldRiemannRoch K F :=
-  AlgebraicCurve.functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed
-    (hRTK := AlgebraicCurve.residueTheoremK_of_isAlgClosed)
+    AlgebraicCurve.FunctionFieldRiemannRoch K F := by
+  classical
+  exact
+    AlgebraicCurve.functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed
+      (hRTK := AlgebraicCurve.residueTheoremK_of_isAlgClosed)
 
 end S_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
 end P2MW
@@ -95,7 +97,7 @@ end privateSection
 public section publicSection
 
 theorem AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed
-    {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
+    {K F : Type*} [Field K] [IsAlgClosed K]
     [Field F] [Algebra K F]
     [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
     [Algebra.IsIntegral (RatFunc K) F]
@@ -108,6 +110,9 @@ theorem AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed
     [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F] :
-    AlgebraicCurve.FunctionFieldRiemannRoch K F := _root_.P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed.solution
+    AlgebraicCurve.FunctionFieldRiemannRoch K F := by
+  classical
+  exact
+    solution
 
 end publicSection

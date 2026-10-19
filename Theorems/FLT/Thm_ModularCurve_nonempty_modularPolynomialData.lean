@@ -108,16 +108,19 @@ theorem exists_eq_div (z : K) :
   have hS' : S.map (Int.castRingHom ℚ) = dS • s := hS
   refine ⟨Polynomial.C dS * R, Polynomial.C dR * S, ?_⟩
   apply Subtype.ext
-  show z.1 = algebraMap K LS (evalAtJGen (Polynomial.C dS * R) / evalAtJGen (Polynomial.C dR * S))
+  change z.1 = algebraMap K LS (evalAtJGen (Polynomial.C dS * R) / evalAtJGen (Polynomial.C dR * S))
   rw [map_div₀, algebraMap_evalAtJGen, algebraMap_evalAtJGen, map_mul, map_mul, Polynomial.aeval_C,
     Polynomial.aeval_C, aeval_jq_of_map_eq hR', aeval_jq_of_map_eq hS', hrs]
   have hinj : Function.Injective (algebraMap ℚ LS) := (algebraMap ℚ LS).injective
   have hdS : (dS : LS) ≠ 0 := by
-    rw [← map_intCast (algebraMap ℚ LS), map_ne_zero_iff _ hinj]; exact_mod_cast nonZeroDivisors.ne_zero hdS0
+    rw [← map_intCast (algebraMap ℚ LS), map_ne_zero_iff _
+      hinj]; exact_mod_cast nonZeroDivisors.ne_zero hdS0
   have hdR : (dR : LS) ≠ 0 := by
-    rw [← map_intCast (algebraMap ℚ LS), map_ne_zero_iff _ hinj]; exact_mod_cast nonZeroDivisors.ne_zero hdR0
+    rw [← map_intCast (algebraMap ℚ LS), map_ne_zero_iff _
+      hinj]; exact_mod_cast nonZeroDivisors.ne_zero hdR0
   have hd : ((dS : LS) * (dR : LS)) ≠ 0 := mul_ne_zero hdS hdR
-  have e : ∀ X Y : LS, (dS : LS) * ((dR : LS) * X) / ((dR : LS) * ((dS : LS) * Y)) = X / Y := fun X Y => by
+  have e : ∀ X Y : LS, (dS : LS) * ((dR : LS) * X) / ((dR : LS) * ((dS : LS) * Y)) = X / Y :=
+    fun X Y => by
     rw [← mul_assoc, ← mul_assoc, mul_comm (dR : LS) (dS : LS), mul_div_mul_left _ _ hd]
   rw [eq_intCast, eq_intCast, e]
 
@@ -130,7 +133,8 @@ variable (N : ℕ) [NeZero N]
 
 def jN : modularFunctionField N := ⟨jqN N, jqN_mem N⟩
 
-theorem hcomp : (algebraMap (modularFunctionField N) LS).comp (algebraMap (Polynomial ℤ) (modularFunctionField N))
+theorem hcomp :
+    (algebraMap (modularFunctionField N) LS).comp (algebraMap (Polynomial ℤ) (modularFunctionField N))
     = evalAtJ := RingHom.ext fun P => by
   rw [RingHom.comp_apply, ← algebraMap_comp_evalAtJGen]; rfl
 
@@ -152,7 +156,8 @@ theorem main : Nonempty (ModularPolynomialData N) := by
       minpoly.isIntegrallyClosed_eq_field_fractions' K hint
     have h2 : (minpoly (Polynomial ℤ) (jN N)).natDegree = (minpoly K (jN N)).natDegree := by
       rw [h1, (minpoly.monic hint).natDegree_map]
-    have hintK' : IsIntegral K (jqN N) := hintK.map (IsScalarTower.toAlgHom K (modularFunctionField N) LS)
+    have hintK' : IsIntegral K (jqN N) :=
+      hintK.map (IsScalarTower.toAlgHom K (modularFunctionField N) LS)
     have hmin : minpoly K (jqN N) = minpoly K (jN N) :=
       minpoly.algHom_eq _ (IsScalarTower.toAlgHom K (modularFunctionField N) LS).toRingHom.injective (jN N)
     rw [h2, ← hmin, ← IntermediateField.adjoin.finrank hintK']
@@ -178,6 +183,7 @@ end privateSection
 public section publicSection
 
 theorem ModularCurve.nonempty_modularPolynomialData (N : ℕ) [NeZero N] :
-    Nonempty (ModularCurve.ModularPolynomialData N) := _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData.solution N
+    Nonempty (ModularCurve.ModularPolynomialData N) :=
+  solution N
 
 end publicSection

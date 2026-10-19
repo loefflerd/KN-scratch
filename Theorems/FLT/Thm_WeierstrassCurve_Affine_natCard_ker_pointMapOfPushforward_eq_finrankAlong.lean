@@ -81,13 +81,27 @@ set_option linter.unusedSimpArgs false
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra Place.sum_ramificationIndex_mul_inertiaDeg"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong \
+  Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk \
+  HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra \
+  Place.sum_ramificationIndex_mul_inertiaDeg"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndex restrict inertiaDeg deg_restrict_mul_inertiaDeg fiber mem_fiber ext deg ord exists_unit_mul_zpow toValuationSubring mk center valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective fiberCenter mem_fiberCenter_iff_ord_pos fiberCenter_liesOver sum_ramificationIndex_mul_inertiaDeg ramificationIndex_eq_ramificationIdx_fiberCenter"
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndex restrict inertiaDeg \
+  deg_restrict_mul_inertiaDeg fiber mem_fiber ext deg ord exists_unit_mul_zpow toValuationSubring \
+  mk center valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective \
+  fiberCenter mem_fiberCenter_iff_ord_pos fiberCenter_liesOver \
+  sum_ramificationIndex_mul_inertiaDeg ramificationIndex_eq_ramificationIdx_fiberCenter"
 end AlgebraicCurve.Place
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra Place.sum_ramificationIndex_mul_inertiaDeg"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong \
+  Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk \
+  HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra \
+  Place.sum_ramificationIndex_mul_inertiaDeg"
 p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg"
 
 section Producer
@@ -130,9 +144,18 @@ end PolarLocus
 end AlgebraicCurve
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra Place.sum_ramificationIndex_mul_inertiaDeg"
+p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
+  Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along \
+  isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong \
+  Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk \
+  HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra \
+  Place.sum_ramificationIndex_mul_inertiaDeg"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndex restrict inertiaDeg deg_restrict_mul_inertiaDeg fiber mem_fiber ext deg ord exists_unit_mul_zpow toValuationSubring mk center valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective fiberCenter mem_fiberCenter_iff_ord_pos fiberCenter_liesOver sum_ramificationIndex_mul_inertiaDeg ramificationIndex_eq_ramificationIdx_fiberCenter"
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndex restrict inertiaDeg \
+  deg_restrict_mul_inertiaDeg fiber mem_fiber ext deg ord exists_unit_mul_zpow toValuationSubring \
+  mk center valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective \
+  fiberCenter mem_fiberCenter_iff_ord_pos fiberCenter_liesOver \
+  sum_ramificationIndex_mul_inertiaDeg ramificationIndex_eq_ramificationIdx_fiberCenter"
 p2m_open "AlgebraicCurve.Place~mem_of_ord_nonneg AlgebraicCurve~Place.mem_of_ord_nonneg"
 
 open Polynomial IsDedekindDomain
@@ -212,12 +235,18 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
 end AlgebraicCurve.Place
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map mk IsIntegral minimal Affine.deg_eq_one card_torsionBy_eq_sq_of_isAlgClosed"
+p2m_export "WeierstrassCurve" "Affine map mk IsIntegral minimal Affine.deg_eq_one \
+  card_torsionBy_eq_sq_of_isAlgClosed"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map FunctionField Point polynomial pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one pointDivisor coe_pointDivisor pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply hasPrincipalDivisors_functionField pointMapOfPushforward_surjective"
+p2m_export "WeierstrassCurve.Affine" "map FunctionField Point polynomial \
+  pushforwardAlong_single_eq pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum \
+  GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one pointDivisor coe_pointDivisor \
+  pointClass AbelTheorem pic0ToPoint_pointClass genusOnePic0Equiv genusOnePic0Equiv_apply \
+  hasPrincipalDivisors_functionField pointMapOfPushforward_surjective"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve"
+p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg \
+  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve"
 
 section Gate
 
@@ -226,21 +255,30 @@ universe u
 variable {F : Type u} [Field F] [DecidableEq F]
 variable {W : Affine F} [GenusOnePlaceGate W]
 
-theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).injective
+omit [DecidableEq F] in
+theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) := by
+  classical
+  exact
+    (pointEquivPlace (W := W)).injective
 
 variable (W)
 
 def placeOfPointEquiv : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
   pointEquivPlace (W := W)
 
+omit [DecidableEq F] in
 @[scoped simp] theorem placeOfPointEquiv_symm_placeOfPoint (P : W.Point) :
-    (placeOfPointEquiv W).symm (placeOfPoint P) = P :=
-  (placeOfPointEquiv W).symm_apply_apply P
+    (placeOfPointEquiv W).symm (placeOfPoint P) = P := by
+  classical
+  exact
+    (placeOfPointEquiv W).symm_apply_apply P
 
+omit [DecidableEq F] in
 theorem placeOfPoint_placeOfPointEquiv_symm (w : AlgebraicCurve.Place F W.FunctionField) :
-    placeOfPoint ((placeOfPointEquiv W).symm w) = w :=
-  (placeOfPointEquiv W).apply_symm_apply w
+    placeOfPoint ((placeOfPointEquiv W).symm w) = w := by
+  classical
+  exact
+    (placeOfPointEquiv W).apply_symm_apply w
 
 end Gate
 
@@ -251,7 +289,9 @@ universe u
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic]
 
+omit [DecidableEq F] in
 theorem kw_point_infinite : Infinite W.Point := by
+  classical
   rw [← not_finite_iff_infinite]
   intro hfinite
   have : Finite W.Point := hfinite
@@ -283,7 +323,12 @@ end WeierstrassCurve.Affine
 
 namespace ModularCurve
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine Polynomial AlgebraicCurve~Place.mem_of_ord_nonneg P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurv\
+  e WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve\
+  .Affine Polynomial AlgebraicCurve~Place.mem_of_ord_nonneg \
+  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve"
 
 universe u
 
@@ -377,7 +422,7 @@ theorem kw_fdn2_qephod_hend5_pmopKerCard_of_twoAtoms
     have : Module.Finite E'.FunctionField E.FunctionField := hfin
     have : CharZero E'.FunctionField :=
       charZero_of_injective_algebraMap (algebraMap K E'.FunctionField).injective
-    show Algebra.IsSeparable E'.FunctionField E.FunctionField
+    change Algebra.IsSeparable E'.FunctionField E.FunctionField
     infer_instance
   have h0 := kw_fdn2_qephod_hend5_natCard_fiber_eq_finrank_of_unramified ι hι hfin hsep
     (fun v' => WeierstrassCurve.Affine.deg_eq_one (W := E') v')
@@ -471,19 +516,17 @@ theorem kw_fdn2_qephod_hend7_pushforwardDegZero_pointDivisor_geomMorphBC (P : E.
   rw [coe_pointDivisor, coe_pointDivisor, sub_sub_sub_cancel_right]
 
 include hfin in
-
 theorem kw_fdn2_qephod_hend7_pushforwardHom_pointClass_eq_sub (P : E.Point) :
     Pic0.pushforwardAlongHom ι hι hfin hN
         (pointClass P)
       = pointClass (gBC P) - pointClass (gBC 0) := by
-  show Pic0.pushforwardAlongHom ι hι hfin _ (Pic0.mk (pointDivisor P))
+  change Pic0.pushforwardAlongHom ι hι hfin _ (Pic0.mk (pointDivisor P))
       = Pic0.mk (pointDivisor (gBC P)) - Pic0.mk (pointDivisor (gBC 0))
   rw [Pic0.pushforwardAlongHom_mk,
     kw_fdn2_qephod_hend7_pushforwardDegZero_pointDivisor_geomMorphBC ι hι P]
   rfl
 
 include hfin in
-
 theorem kw_fdn2_qephod_hend7_pmop_eq_geomMorphBC_sub (P : E.Point) :
     pointMapOfPushforward ι hι hfin hN P
       = gBC P - gBC 0 := by
@@ -525,10 +568,10 @@ def kw_fdn2_qephod_hend7_pmop_fiber_equiv_ker (R : E'.Point) :
   let P₀ : E.Point := (hsurj R).choose
   have hP₀ : φ P₀ = R := (hsurj R).choose_spec
   { toFun := fun ⟨P, hP⟩ => ⟨P - P₀, by
-      show φ (P - P₀) = 0
+      change φ (P - P₀) = 0
       rw [map_sub, hP, hP₀, sub_self]⟩
     invFun := fun ⟨Q, hQ⟩ => ⟨Q + P₀, by
-      show φ (Q + P₀) = R
+      change φ (Q + P₀) = R
       have hQ' : φ Q = 0 := hQ
       rw [map_add, hQ', zero_add, hP₀]⟩
     left_inv := fun ⟨P, _⟩ => Subtype.ext (sub_add_cancel P P₀)
@@ -552,7 +595,9 @@ theorem kw_fdn2_qephod_hend7_pmopKerCard_proved :
 end ModularCurve
 end
 
-p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg" in open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve in
+p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg\
+  " in
+open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve in
 universe u in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
@@ -581,6 +626,7 @@ theorem WeierstrassCurve.Affine.natCard_ker_pointMapOfPushforward_eq_finrankAlon
     [E'.IsElliptic] [GenusOnePlaceGate E'] [AbelTheorem E']
     (ι : E'.FunctionField →ₐ[F] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
     (hfin : FiniteAlong F ι) (hN : NormFormulaAlong F ι hfin) :
-    Nat.card (pointMapOfPushforward ι hι hfin hN).ker = finrankAlong F ι := _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.solution E E' ι hι hfin hN
+    Nat.card (pointMapOfPushforward ι hι hfin hN).ker = finrankAlong F ι :=
+  solution E E' ι hι hfin hN
 
 end publicSection

@@ -68,7 +68,8 @@ open scoped PowerSeries.WithPiTopology
 p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_deltaNorm.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -213,7 +214,8 @@ theorem prod_twist_factor {K : Type*} [Field K] {p : ℕ} [Fact p.Prime] {ζ : K
       hζ.pow_of_coprime m (Nat.coprime_comm.1 ((Nat.Prime.coprime_iff_not_dvd hp).2 hd))
     rw [Finset.prod_congr rfl fun b _ => show
         (1 : PowerSeries K) - PowerSeries.C ((ζ ^ b) ^ m) * PowerSeries.X ^ m =
-          1 - PowerSeries.C ((ζ ^ m) ^ b) * PowerSeries.X ^ m by rw [← pow_mul, mul_comm b m, pow_mul],
+          1 - PowerSeries.C ((ζ ^ m) ^ b) * PowerSeries.X ^ m by rw [← pow_mul, mul_comm b m,
+            pow_mul],
       prod_one_sub_root_mul hμ, ← pow_mul, mul_comm m p]
 
 def uFam (K : Type*) [CommRing K] (k n : ℕ) : PowerSeries K := 1 - PowerSeries.X ^ (k * (n + 1))
@@ -306,12 +308,11 @@ theorem tprod_gFam {p : ℕ} (hp : 0 < p) : ∏' n, gFam K p n = (∏' n, uFam K
     unfold gFam; rw [ite_eq_right hd]
   rw [← (index_injective hp).tprod_eq hsupp, ← (multipliable_uFam K hp).tprod_pow]
   exact tprod_congr fun m => by
-    show gFam K p (p * (m + 1) - 1) = uFam K p m ^ p
+    change gFam K p (p * (m + 1) - 1) = uFam K p m ^ p
     unfold gFam uFam
     rw [Nat.sub_add_cancel (one_le_index hp m), ite_eq_left (dvd_mul_right p (m + 1))]
 
 omit [DiscreteTopology K] in
-
 theorem tprod_g'Fam {p : ℕ} (hp : 0 < p) : ∏' n, g'Fam K p n = ∏' n, uFam K (p * p) n := by
   have hsupp := mulSupport_subset_range (g'Fam K p) fun n hd => by
     unfold g'Fam; rw [ite_eq_right hd]
@@ -357,10 +358,10 @@ theorem etaNorm_powerSeries {K : Type*} [Field K] {p : ℕ} [Fact p.Prime] {ζ :
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.StarBank.etaNorm {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) :
     (∏ b ∈ Finset.range p,
@@ -375,7 +376,8 @@ private theorem ModularCurve.StarBank.etaNorm {K : Type*} [Field K] (p : ℕ) [F
   exact congrArg _ (ModularCurve.W1.etaNorm_powerSeries hζ)
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -408,8 +410,8 @@ theorem delta_bookkeeping {K : Type*} [Field K] (p : ℕ) (ε : K) (PT V1 V2 : L
 end ModularCurve.W1
 
 p2m_open_scoped "ModularCurve" in
-
-private theorem ModularCurve.StarBank.deltaNorm {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
+private theorem ModularCurve.StarBank.deltaNorm {K : Type*} [Field K] (p : ℕ) [Fact p.Prime]
+    (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) :
     (∏ b ∈ Finset.range p, qTwist (ζ ^ b)
         (HahnSeries.single (1 : ℤ) (1 : K) *
@@ -434,7 +436,8 @@ private theorem ModularCurve.StarBank.deltaNorm {K : Type*} [Field K] (p : ℕ) 
   exact ModularCurve.W1.delta_bookkeeping p _ _ _ _ hN
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd qExpand_single etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -510,7 +513,6 @@ example :
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_deltaNorm.ModularCurve in
-
 theorem solution {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) :
     (∏ b ∈ Finset.range p, qTwist (ζ ^ b)
@@ -544,6 +546,7 @@ theorem ModularCurve.StarBank.deltaNorm {K : Type*} [Field K] (p : ℕ) [Fact p.
     HahnSeries.C (((∏ b ∈ Finset.range p, ζ ^ b : Kˣ) : K)) *
       qExpand K p (HahnSeries.single (1 : ℤ) (1 : K) *
           HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^
-        (p + 1) := _root_.P2MW.S_ModularCurve_StarBank_deltaNorm.solution p ζ hζ
+        (p + 1) :=
+  solution p ζ hζ
 
 end publicSection

@@ -167,8 +167,10 @@ theorem isUnit_of_counit_not_mem (hp : (p : 𝒪) ∈ maximalIdeal 𝒪) (hG : I
     by_contra h
     exact hx ((mem_maximalIdeal _).mpr h)
   obtain ⟨u, hu⟩ := hc
-  have hdecomp : x = algebraMap 𝒪 Λ c * (1 + algebraMap 𝒪 Λ (↑u⁻¹ : 𝒪) * (x - algebraMap 𝒪 Λ c)) := by
-    rw [mul_add, mul_one, ← mul_assoc, ← map_mul, ← hu, Units.mul_inv, map_one, one_mul, add_sub_cancel]
+  have hdecomp : x = algebraMap 𝒪 Λ c * (1 + algebraMap 𝒪 Λ (↑u⁻¹ : 𝒪) * (x - algebraMap 𝒪 Λ c)) :=
+    by
+    rw [mul_add, mul_one, ← mul_assoc, ← map_mul, ← hu, Units.mul_inv, map_one, one_mul,
+      add_sub_cancel]
   rw [hdecomp]
   refine ((hu ▸ Units.isUnit u).map (algebraMap 𝒪 Λ)).mul ?_
   exact isUnit_one_add_of_mem_augIdeal hp hG (Ideal.mul_mem_left _ _ (sub_algebraMap_counit_mem x))

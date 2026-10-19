@@ -65,7 +65,8 @@ open scoped PowerSeries.WithPiTopology
 open PowerSeries HahnSeries
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single ofPowerSeries_coeff_of_neg"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single \
+  ofPowerSeries_coeff_of_neg"
 p2m_open "ModularCurve"
 
 namespace CharL
@@ -80,11 +81,11 @@ def laurentMap (f : R →+* S) : LaurentSeries R →+* LaurentSeries S where
   map_mul' _ _ := HahnSeries.map_mul (R := R) (S := S) f.toNonUnitalRingHom
   map_zero' := by
     ext k
-    show f ((0 : LaurentSeries R).coeff k) = (0 : LaurentSeries S).coeff k
+    change f ((0 : LaurentSeries R).coeff k) = (0 : LaurentSeries S).coeff k
     rw [HahnSeries.coeff_zero, HahnSeries.coeff_zero, map_zero]
   map_add' x y := by
     ext k
-    show f ((x + y).coeff k) = (x.map f + y.map f).coeff k
+    change f ((x + y).coeff k) = (x.map f + y.map f).coeff k
     rw [HahnSeries.coeff_add, HahnSeries.coeff_add, map_add]
     rfl
 
@@ -235,8 +236,10 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.map_intCast_pow_char_eq_qExpand {K : Type*} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
+theorem ModularCurve.map_intCast_pow_char_eq_qExpand {K : Type*} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime]
+    [CharP K ℓ]
     (s : LaurentSeries ℤ) :
-    (s.map (Int.castRingHom K)) ^ ℓ = qExpand K ℓ (s.map (Int.castRingHom K)) := _root_.P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.solution ℓ s
+    (s.map (Int.castRingHom K)) ^ ℓ = qExpand K ℓ (s.map (Int.castRingHom K)) :=
+  solution ℓ s
 
 end publicSection

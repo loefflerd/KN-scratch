@@ -86,7 +86,6 @@ theorem residueInv_algebraMap (a : K) : v.residueInv (algebraMap K v.ResidueFiel
   Function.leftInverse_invFun v.algebraMap_residueField_injective a
 
 open Classical in
-
 def evalAt (f : F) : K :=
   if hf : f ∈ v.toValuationSubring then
     v.residueInv (residue v.toValuationSubring ⟨f, hf⟩)
@@ -129,7 +128,6 @@ theorem evalFun_single (f : F) (v : Place K F) (n : ℤ) :
 end Divisor
 
 variable (K F) in
-
 def WeilReciprocity : Prop :=
   ∀ (f g : F) (Df Dg : Divisor K F), f ≠ 0 → g ≠ 0 →
     (∀ v : Place K F, Df v = v.ord f) → (∀ v : Place K F, Dg v = v.ord g) →

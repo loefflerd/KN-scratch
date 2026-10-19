@@ -101,9 +101,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem P2M.Dup.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {Γ : Type*}
+theorem P2M.Dup.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq {K F : Type*}
+    [Field K] [Field F] [Algebra K F] (v : Place K F) {Γ : Type*}
     [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
     (h : w.valuationSubring = v.toValuationSubring) :
-    w.IsEquiv v.adicValuation := _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_of_valuationSubring_eq.solution v h
+    w.IsEquiv v.adicValuation :=
+  solution v h
 
 end publicSection

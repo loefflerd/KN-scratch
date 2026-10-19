@@ -71,11 +71,17 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree \
+  Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic \
+  Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one \
+  Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
 p2m_open "AlgebraicCurve"
 
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def deg_ofHeightOneSpectrum deg_finitePlace"
+p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum \
+  eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible \
+  heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def \
+  deg_ofHeightOneSpectrum deg_finitePlace"
 p2m_open "AlgebraicCurve.RationalFunctionField"
 
 variable (K : Type*) [Field K]
@@ -206,10 +212,10 @@ theorem deg_placeInfty : (placeInfty K).deg = 1 := by
       obtain ⟨c, hc⟩ := exists_sub_algebraMap_intDegree_neg K
         ((Valuation.mem_valuationSubring_iff _ _).mp hx)
       refine ⟨c, ?_⟩
-      show IsLocalRing.residue _ (algebraMap K (placeInfty K).toValuationSubring c) = _
+      change IsLocalRing.residue _ (algebraMap K (placeInfty K).toValuationSubring c) = _
       rw [← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff,
         Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-      show (placeInfty K).adicValuation (algebraMap K (RatFunc K) c - x) < 1
+      change (placeInfty K).adicValuation (algebraMap K (RatFunc K) c - x) < 1
       rw [← (inftyValuation_isEquiv_adicValuation K).lt_one_iff_lt_one,
         show algebraMap K (RatFunc K) c - x = -(x - algebraMap K (RatFunc K) c) from
           (neg_sub _ _).symm, Valuation.map_neg]
@@ -234,7 +240,10 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree \
+  Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic \
+  Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one \
+  Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
 p2m_open "AlgebraicCurve"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
@@ -246,7 +255,12 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
     omega
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation adicValuation_coe_eq_one_iff adicValuation_coe_irreducible ord ord_zero ord_mul exists_unit_mul_zpow ofHeightOneSpectrum FiniteResidue.finite toValuationSubring isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one ord_eq_zero_iff_adicValuation_eq_one isEquiv_adicValuation_ofHeightOneSpectrum ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation \
+  adicValuation_coe_eq_one_iff adicValuation_coe_irreducible ord ord_zero ord_mul \
+  exists_unit_mul_zpow ofHeightOneSpectrum FiniteResidue.finite toValuationSubring \
+  isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one \
+  ord_eq_zero_iff_adicValuation_eq_one isEquiv_adicValuation_ofHeightOneSpectrum \
+  ord_ofHeightOneSpectrum_ne_zero_iff"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -297,7 +311,10 @@ p2m_export "AlgebraicCurve.Place" "ord_eq_neg_log_of_valuationSubring_eq"
 end Place
 
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def deg_ofHeightOneSpectrum deg_finitePlace"
+p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum \
+  eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible \
+  heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def \
+  deg_ofHeightOneSpectrum deg_finitePlace"
 p2m_open "AlgebraicCurve.RationalFunctionField"
 
 variable {K : Type*} [Field K]
@@ -503,11 +520,19 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree \
+  Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic \
+  Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one \
+  Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation adicValuation_coe_eq_one_iff adicValuation_coe_irreducible ord ord_zero ord_mul exists_unit_mul_zpow ofHeightOneSpectrum FiniteResidue.finite toValuationSubring isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one ord_eq_zero_iff_adicValuation_eq_one isEquiv_adicValuation_ofHeightOneSpectrum ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation \
+  adicValuation_coe_eq_one_iff adicValuation_coe_irreducible ord ord_zero ord_mul \
+  exists_unit_mul_zpow ofHeightOneSpectrum FiniteResidue.finite toValuationSubring \
+  isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one \
+  ord_eq_zero_iff_adicValuation_eq_one isEquiv_adicValuation_ofHeightOneSpectrum \
+  ord_ofHeightOneSpectrum_ne_zero_iff"
 p2m_open "AlgebraicCurve.Place"
 
 section DegPos
@@ -530,7 +555,10 @@ end DegPos
 end Place
 
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def deg_ofHeightOneSpectrum deg_finitePlace"
+p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum \
+  eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible \
+  heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def \
+  deg_ofHeightOneSpectrum deg_finitePlace"
 p2m_open "AlgebraicCurve.RationalFunctionField"
 
 variable (K : Type*) [Field K]
@@ -547,7 +575,6 @@ scoped instance instFiniteResiduePlaceInfty [DecidableEq (RatFunc K)] :
   Place.finiteResidue_of_deg_pos _ (by rw [deg_placeInfty K]; exact one_pos)
 
 variable {K} in
-
 scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue := by
   classical
   rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, rfl⟩ | rfl
@@ -562,7 +589,10 @@ section Kaehler
 open Polynomial TensorProduct Module
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
+p2m_export "AlgebraicCurve" "IsCurveOver Place Place.deg Divisor Divisor.degree \
+  Divisor.degree_single Divisor.degZero Divisor.principal HasPrincipalDivisors Pic \
+  Place.ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one \
+  Place.isEquiv_adicValuation_ofHeightOneSpectrum Place.ord_ofHeightOneSpectrum_ne_zero_iff"
 p2m_open "AlgebraicCurve"
 
 variable (K : Type*) [Field K]
@@ -587,7 +617,6 @@ end Kaehler
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve in
-
 theorem solution (K : Type*) [Field K] : IsCurveOver K (RatFunc K) :=
   { toHasPrincipalDivisors := RationalFunctionField.instHasPrincipalDivisors
     finiteResidue := fun v => (RationalFunctionField.instFiniteResidue v).finite
@@ -604,6 +633,7 @@ public section publicSection
 
 open AlgebraicCurve
 theorem AlgebraicCurve.isCurveOver_ratFunc (K : Type*) [Field K] :
-    IsCurveOver K (RatFunc K) := _root_.P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.solution K
+    IsCurveOver K (RatFunc K) :=
+  solution K
 
 end publicSection

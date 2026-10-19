@@ -105,6 +105,9 @@ end privateSection
 public section publicSection
 
 
-theorem WeierstrassCurve.Psi2Sq_ne_zero_of_isElliptic {F : Type*} [Field F] (W : WeierstrassCurve F) [W.IsElliptic] : W.Ψ₂Sq ≠ 0 := _root_.P2MW.S_WeierstrassCurve_Psi2Sq_ne_zero_of_isElliptic.solution W
+theorem WeierstrassCurve.Psi2Sq_ne_zero_of_isElliptic {F : Type*} [Field F] (W : WeierstrassCurve F)
+    [W.IsElliptic] :
+    W.Ψ₂Sq ≠ 0 :=
+  solution W
 
 end publicSection

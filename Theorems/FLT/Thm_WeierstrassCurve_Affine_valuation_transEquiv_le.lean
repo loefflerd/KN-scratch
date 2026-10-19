@@ -63,7 +63,11 @@ namespace P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine a₃ a₁ mk a₄ a₂ a₆ baseChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "negY slope_of_X_ne CoordinateRing.XClass_ne_zero slope CoordinateRing Point.baseChange baseChange negAddY FunctionField Point CoordinateRing.mk addX CoordinateRing.XClass addY Point.add_of_X_ne Point.map_some Point.xc_some Point.yc_some genericX genericY genericPoint transPull transEquiv transEquiv_apply placeOf valuation_algebraMap_le_one valuation_algebraMap_eq_one cong_genericX cong_genericY valuation_pointPull_le"
+p2m_export "WeierstrassCurve.Affine" "negY slope_of_X_ne CoordinateRing.XClass_ne_zero slope \
+  CoordinateRing Point.baseChange baseChange negAddY FunctionField Point CoordinateRing.mk addX \
+  CoordinateRing.XClass addY Point.add_of_X_ne Point.map_some Point.xc_some Point.yc_some genericX \
+  genericY genericPoint transPull transEquiv transEquiv_apply placeOf valuation_algebraMap_le_one \
+  valuation_algebraMap_eq_one cong_genericX cong_genericY valuation_pointPull_le"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero Polynomial
@@ -75,7 +79,6 @@ variable {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [A
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic]
   [IsDedekindDomain (W⁄K).CoordinateRing] in
-
 theorem genericX_ne_algebraMap (c : K) : genericX W K ≠ algebraMap K (W⁄K).FunctionField c := by
   intro h
   apply CoordinateRing.XClass_ne_zero (W' := W⁄K) c
@@ -97,7 +100,6 @@ theorem baseChange_a_eq :
 
 variable {W K} in
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
-
 theorem cong_addX_addY {P : (W⁄K).Point} (hP : P ≠ 0) {x₁ x₂ y₁ ℓ : (W⁄K).FunctionField}
     {x₁' x₂' y₁' ℓ' : K}
     (h₁ : ((placeOf W K P hP).valuation _).Cong x₁ (algebraMap K _ x₁'))
@@ -111,7 +113,8 @@ theorem cong_addX_addY {P : (W⁄K).Point} (hP : P ≠ 0) {x₁ x₂ y₁ ℓ : 
   set v := (placeOf W K P hP).valuation (W⁄K).FunctionField
   have hc := valuation_algebraMap_le_one W K P hP
   obtain ⟨e1, e2, e3, -, -⟩ := baseChange_a_eq W K
-  have hX : v.Cong ((W⁄(W⁄K).FunctionField).addX x₁ x₂ ℓ) (algebraMap K _ ((W⁄K).addX x₁' x₂' ℓ')) := by
+  have hX : v.Cong ((W⁄(W⁄K).FunctionField).addX x₁ x₂ ℓ) (algebraMap K _ ((W⁄K).addX x₁' x₂' ℓ')) :=
+    by
     simp only [addX, map_sub, map_add, map_mul, map_pow, e1, e2]
     exact ((((h₄.pow (hc _) 2).add ((Valuation.Cong.refl _).mul h₄ (hc _) (hc _))).sub
       (Valuation.Cong.refl _)).sub h₁).sub h₂
@@ -146,7 +149,6 @@ theorem valuation_transEquiv_le' {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S �
       (W⁄(W⁄K).FunctionField).addY (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K)
         ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
     rw [genericPoint, Point.baseChange, Point.map_some, Point.add_of_X_ne hγx', Point.yc_some]; rfl
-
   have hX := cong_genericX W K (.some a b hab) hP
   have hY := cong_genericY W K (.some a b hab) hP
   simp only [Point.xc_some, Point.yc_some] at hX hY
@@ -159,7 +161,6 @@ theorem valuation_transEquiv_le' {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S �
     exact valuation_algebraMap_eq_one W K _ hP (sub_ne_zero.mpr hx)
   obtain ⟨hcx, hcy⟩ := cong_addX_addY (P := .some a b hab) hP (x₂' := xS) hX
     (Valuation.Cong.refl (algebraMap K (W⁄K).FunctionField xS)) hY hslope
-
   rw [transEquiv_apply, transPull]
   refine valuation_pointPull_le W K _ _ _ hP hPS ?_ ?_ h k hh
   · rw [hQx, Point.add_of_X_ne hx, Point.xc_some]
@@ -172,7 +173,12 @@ end TransportTau
 end WeierstrassCurve.Affine
 
 open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.WeierstrassCurve.Affine IsDedekindDomain WithZero in
-theorem solution {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K] [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S ≠ 0) (hx : P.xc ≠ S.xc) (hPS : P + S ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ) (hh : (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) : (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S h) ≤ exp (-(k : ℤ)) :=
+theorem solution {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K]
+    [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+    {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S ≠ 0) (hx : P.xc ≠ S.xc) (hPS : P + S ≠ 0)
+    (h : (W⁄K).FunctionField) (k : ℕ)
+    (hh : (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S h) ≤ exp (-(k : ℤ)) :=
   valuation_transEquiv_le' W K hP hS hx hPS h k hh
 
 end S_WeierstrassCurve_Affine_valuation_transEquiv_le
@@ -186,6 +192,12 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.valuation_transEquiv_le {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K] [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S ≠ 0) (hx : P.xc ≠ S.xc) (hPS : P + S ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ) (hh : (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) : (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S h) ≤ exp (-(k : ℤ)) := _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.solution W K hP hS hx hPS h k hh
+theorem WeierstrassCurve.Affine.valuation_transEquiv_le {R : Type*} [Field R]
+    (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K] [DecidableEq K] [IsAlgClosed K]
+    [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {P S : (W⁄K).Point} (hP : P ≠ 0)
+    (hS : S ≠ 0) (hx : P.xc ≠ S.xc) (hPS : P + S ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ)
+    (hh : (placeOf W K (P + S) hPS).valuation (W⁄K).FunctionField h ≤ exp (-(k : ℤ))) :
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S h) ≤ exp (-(k : ℤ)) :=
+  solution W K hP hS hx hPS h k hh
 
 end publicSection

@@ -243,7 +243,7 @@ theorem isogenyEndSubring_mul_left_cancel
   have h := DFunLike.congr_fun hNψ Q
   change (DD.norm : AddMonoid.End W.Point) (ψ Q) = 0 at h
   rw [AddMonoid.End.intCast_apply] at h
-  show ψ (DD.norm • Q) = 0
+  change ψ (DD.norm • Q) = 0
   rw [map_zsmul ψ DD.norm Q, h]
 
 end Curve
@@ -569,6 +569,7 @@ theorem WeierstrassCurve.Affine.IsogenyEndDatum.exists_sq_lt_four_mul_and_forall
     (D₀ : IsogenyEndDatum W) (hD₀ : ¬ ∃ m : ℤ, ∀ P : W.Point, D₀.pointEnd (hNs D₀) P = m • P) :
     ∃ t n : ℤ, t ^ 2 < 4 * n ∧
       ∀ a b : ℤ, b ≠ 0 → ∃ D : IsogenyEndDatum W,
-        (finrankAlong F D.ι : ℤ) = a ^ 2 + t * a * b + n * b ^ 2 := _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq.solution W hNs D₀ hD₀
+        (finrankAlong F D.ι : ℤ) = a ^ 2 + t * a * b + n * b ^ 2 :=
+  solution W hNs D₀ hD₀
 
 end publicSection

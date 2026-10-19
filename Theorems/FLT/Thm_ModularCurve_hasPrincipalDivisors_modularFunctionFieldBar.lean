@@ -84,7 +84,9 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.hasPrincipalDivisors_modularFunctionFieldBar (hΦ : ModularPolynomialFamily) (N : ℕ) [NeZero N] :
-    HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := _root_.P2MW.S_ModularCurve_hasPrincipalDivisors_modularFunctionFieldBar.solution hΦ N
+theorem ModularCurve.hasPrincipalDivisors_modularFunctionFieldBar (hΦ : ModularPolynomialFamily)
+    (N : ℕ) [NeZero N] :
+    HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+  solution hΦ N
 
 end publicSection

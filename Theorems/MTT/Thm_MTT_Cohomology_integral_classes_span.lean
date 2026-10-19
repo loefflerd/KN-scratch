@@ -264,7 +264,7 @@ theorem coeff_mem [NeZero N] (Φ : Hc N n R) (D : Cusp × Cusp) : Φ.val D ∈ C
     QuotientGroup.rightRel_apply.mp (Quotient.exact hmk)
   obtain ⟨γ, hγ⟩ : ∃ γ : CongruenceSubgroup.Gamma1 N, g = γ.val * q.out :=
     ⟨⟨g * (q.out)⁻¹, hrel⟩, by simp⟩
-  show Φ.val _ ∈ CIn (Acoef Φ)
+  change Φ.val _ ∈ CIn (Acoef Φ)
   rw [hγ, cuspAct_mul, cuspAct_mul, Φ.2.2.2 γ]
   exact CIn_act _ _ (coeff_rep_mem Φ q)
 

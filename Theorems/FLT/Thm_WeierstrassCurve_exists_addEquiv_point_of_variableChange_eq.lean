@@ -38,9 +38,11 @@ This is the standard fact that $F$-isomorphic Weierstrass models have isomorphic
 $K$-points, compatibly with the action of $\mathrm{Aut}(K/F)$, since the coordinate change has
 coefficients in the base field. It is the transport mechanism used to move Galois-module data
 between models of a curve, and is cited by
-[`WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv`](thm.html#WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv)
+[`WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv`]
+(thm.html#WeierstrassCurve.exists_addEquiv_point_baseChange_variableChange_smul_algEquiv)
 and by
-[`WeierstrassCurve.exists_linearEquiv_torsionBy_of_variableChange_eq`](thm.html#WeierstrassCurve.exists_linearEquiv_torsionBy_of_variableChange_eq),
+[`WeierstrassCurve.exists_linearEquiv_torsionBy_of_variableChange_eq`]
+(thm.html#WeierstrassCurve.exists_linearEquiv_torsionBy_of_variableChange_eq),
 the latter transferring the $n$-torsion as a Galois module.
 
 ## Explanation of the source proof
@@ -55,10 +57,18 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve \
+  WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Equation Affine.negY Affine.evalEval_polynomial Affine.Y_eq_of_Y_ne Affine.slope_of_X_ne VariableChange.map Affine.Point.add_of_Y_eq map variableChange_a₃ Affine.evalEval_polynomialX Affine.Point.some Affine.Point.some.injEq Affine.Nonsingular variableChange_a₆ VariableChange.baseChange Affine.negAddY Affine.slope_of_Y_ne_eq_evalEval variableChange_a₂ toAffine Affine.Point Affine.evalEval_polynomialY Affine.addX Affine.Point.add_some variableChange_a₁ variableChange_a₄ VariableChange Affine.addY Affine.Point.map_some map_variableChange baseChange"
+p2m_export "WeierstrassCurve" "Affine Affine.Equation Affine.negY Affine.evalEval_polynomial \
+  Affine.Y_eq_of_Y_ne Affine.slope_of_X_ne VariableChange.map Affine.Point.add_of_Y_eq map \
+  variableChange_a₃ Affine.evalEval_polynomialX Affine.Point.some Affine.Point.some.injEq \
+  Affine.Nonsingular variableChange_a₆ VariableChange.baseChange Affine.negAddY \
+  Affine.slope_of_Y_ne_eq_evalEval variableChange_a₂ toAffine Affine.Point \
+  Affine.evalEval_polynomialY Affine.addX Affine.Point.add_some variableChange_a₁ \
+  variableChange_a₄ VariableChange Affine.addY Affine.Point.map_some map_variableChange baseChange"
 p2m_open "WeierstrassCurve"
 
 namespace VariableChange
@@ -73,7 +83,8 @@ private def _root_.WeierstrassCurve.VariableChange.ptX (x : R) : R := (↑C.u⁻
 
 p2m_export "WeierstrassCurve.VariableChange" "ptX"
 
-private def _root_.WeierstrassCurve.VariableChange.ptY (x y : R) : R := (↑C.u⁻¹ : R) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))
+private def _root_.WeierstrassCurve.VariableChange.ptY (x y : R) :
+    R := (↑C.u⁻¹ : R) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))
 
 p2m_export "WeierstrassCurve.VariableChange" "ptY"
 
@@ -81,7 +92,8 @@ private def _root_.WeierstrassCurve.VariableChange.invX (X : R) : R := (C.u : R)
 
 p2m_export "WeierstrassCurve.VariableChange" "invX"
 
-private def _root_.WeierstrassCurve.VariableChange.invY (X Y : R) : R := (C.u : R) ^ 3 * Y + (C.u : R) ^ 2 * C.s * X + C.t
+private def _root_.WeierstrassCurve.VariableChange.invY (X Y : R) :
+    R := (C.u : R) ^ 3 * Y + (C.u : R) ^ 2 * C.s * X + C.t
 
 p2m_export "WeierstrassCurve.VariableChange" "invY"
 lemma invX_ptX (x : R) : C.invX (C.ptX x) = x := by
@@ -101,11 +113,13 @@ lemma ptY_invY (X Y : R) : C.ptY (C.invX X) (C.invY X Y) = Y := by
   simp only [invX, invY, ptY]
   linear_combination Y * pow_mul_pow_eq_one 3 C.u.inv_mul
 
-private lemma _root_.WeierstrassCurve.VariableChange.ptX_injective : Function.Injective C.ptX := fun x₁ x₂ h => by
+private lemma _root_.WeierstrassCurve.VariableChange.ptX_injective :
+    Function.Injective C.ptX := fun x₁ x₂ h => by
   simpa only [invX_ptX] using congr_arg C.invX h
 
 p2m_export "WeierstrassCurve.VariableChange" "ptX_injective"
-private lemma _root_.WeierstrassCurve.VariableChange.ptY_injective (x : R) : Function.Injective (C.ptY x) := fun y₁ y₂ h => by
+private lemma _root_.WeierstrassCurve.VariableChange.ptY_injective (x : R) :
+    Function.Injective (C.ptY x) := fun y₁ y₂ h => by
   simpa only [invY_ptY] using congr_arg (C.invY (C.ptX x)) h
 
 p2m_export "WeierstrassCurve.VariableChange" "ptY_injective"
@@ -223,7 +237,8 @@ namespace VariableChange
 p2m_export "WeierstrassCurve.VariableChange" "map u baseChange t s r"
 p2m_open "WeierstrassCurve.VariableChange"
 
-@[scoped simp] lemma coe_baseChange_u_inv : (↑(C.baseChange K).u⁻¹ : K) = algebraMap F K ↑C.u⁻¹ := by
+@[scoped simp] lemma coe_baseChange_u_inv :
+    (↑(C.baseChange K).u⁻¹ : K) = algebraMap F K ↑C.u⁻¹ := by
   simp [VariableChange.baseChange, VariableChange.map]
 
 @[scoped simp] lemma baseChange_r : (C.baseChange K).r = algebraMap F K C.r := rfl
@@ -235,24 +250,27 @@ lemma bc_nonsingular_iff (X Y : K) :
   rw [baseChange_variableChange_smul]
 
 lemma bc_negY (x y : K) :
-    ((C • E)⁄K).negY ((C.baseChange K).ptX x) ((C.baseChange K).ptY x y) = (C.baseChange K).ptY x ((E⁄K).negY x y) := by
+    ((C • E)⁄K).negY ((C.baseChange K).ptX x) ((C.baseChange K).ptY x y) =
+      (C.baseChange K).ptY x ((E⁄K).negY x y) := by
   rw [← baseChange_variableChange_smul]; exact negY_pt (C.baseChange K) (E⁄K) x y
 
 lemma bc_addX (x₁ x₂ ℓ : K) :
-    ((C • E)⁄K).addX ((C.baseChange K).ptX x₁) ((C.baseChange K).ptX x₂) (↑(C.baseChange K).u⁻¹ * (ℓ - (C.baseChange K).s)) =
+    ((C • E)⁄K).addX ((C.baseChange K).ptX x₁) ((C.baseChange K).ptX x₂) (↑(C.baseChange K).u⁻¹
+      * (ℓ - (C.baseChange K).s)) =
       (C.baseChange K).ptX ((E⁄K).addX x₁ x₂ ℓ) := by
   rw [← baseChange_variableChange_smul]; exact addX_pt (C.baseChange K) (E⁄K) x₁ x₂ ℓ
 
 lemma bc_addY (x₁ x₂ y₁ ℓ : K) :
-    ((C • E)⁄K).addY ((C.baseChange K).ptX x₁) ((C.baseChange K).ptX x₂) ((C.baseChange K).ptY x₁ y₁)
-        (↑(C.baseChange K).u⁻¹ * (ℓ - (C.baseChange K).s)) =
+    ((C • E)⁄K).addY ((C.baseChange K).ptX x₁) ((C.baseChange K).ptX x₂)
+      ((C.baseChange K).ptY x₁ y₁) (↑(C.baseChange K).u⁻¹ * (ℓ - (C.baseChange K).s)) =
       (C.baseChange K).ptY ((E⁄K).addX x₁ x₂ ℓ) ((E⁄K).addY x₁ x₂ y₁ ℓ) := by
   rw [← baseChange_variableChange_smul]; exact addY_pt (C.baseChange K) (E⁄K) x₁ x₂ y₁ ℓ
 
 lemma bc_slope [DecidableEq K] {x₁ x₂ y₁ y₂ : K} (h₁ : (E⁄K).Equation x₁ y₁)
     (h₂ : (E⁄K).Equation x₂ y₂)
     (hxy : ¬(x₁ = x₂ ∧ y₁ = (E⁄K).negY x₂ y₂)) :
-    ((C • E)⁄K).slope ((C.baseChange K).ptX x₁) ((C.baseChange K).ptX x₂) ((C.baseChange K).ptY x₁ y₁) ((C.baseChange K).ptY x₂ y₂) =
+    ((C • E)⁄K).slope ((C.baseChange K).ptX x₁) ((C.baseChange K).ptX x₂)
+        ((C.baseChange K).ptY x₁ y₁) ((C.baseChange K).ptY x₂ y₂) =
       ↑(C.baseChange K).u⁻¹ * ((E⁄K).slope x₁ x₂ y₁ y₂ - (C.baseChange K).s) := by
   rw [← baseChange_variableChange_smul]; exact slope_pt (C.baseChange K) (E⁄K) h₁ h₂ hxy
 
@@ -289,7 +307,8 @@ noncomputable def pointEquiv : (E⁄K).Point ≃+ ((C • E)⁄K).Point where
         rw [Affine.Point.add_of_Y_eq rfl rfl]
         simp only [pointFun]
         exact (Affine.Point.add_of_Y_eq rfl (bc_negY E C x₁ y₂).symm).symm
-      · have hxy' : ¬((C.baseChange K).ptX x₁ = (C.baseChange K).ptX x₂ ∧ (C.baseChange K).ptY x₁ y₁ =
+      · have hxy' : ¬((C.baseChange K).ptX x₁ = (C.baseChange K).ptX x₂ ∧
+          (C.baseChange K).ptY x₁ y₁ =
             ((C • E)⁄K).negY ((C.baseChange K).ptX x₂) ((C.baseChange K).ptY x₂ y₂)) := by
           rintro ⟨hx, hy⟩
           obtain rfl := (C.baseChange K).ptX_injective hx
@@ -305,7 +324,8 @@ noncomputable def pointEquiv : (E⁄K).Point ≃+ ((C • E)⁄K).Point where
 
 @[scoped simp] lemma pointEquiv_some {x y : K} (h : (E⁄K).Nonsingular x y) :
     pointEquiv E C (.some x y h) = .some ((C.baseChange K).ptX x) ((C.baseChange K).ptY x y)
-      ((bc_nonsingular_iff E C _ _).mp <| (nonsingular_pt_iff (C.baseChange K) (E⁄K) x y).mpr h) := rfl
+      ((bc_nonsingular_iff E C _ _).mp <| (nonsingular_pt_iff (C.baseChange K) (E⁄K) x y).mpr h) :=
+    rfl
 
 lemma pointEquiv_smul (σ : K ≃ₐ[F] K) (P : (E⁄K).Point) :
     pointEquiv E C (σ • P) = σ • pointEquiv E C P := by
@@ -319,17 +339,27 @@ end VariableChange
 end PointEquiv
 end WeierstrassCurve
 
-theorem solution {F : Type*} [Field F] (K : Type*) [Field K] [Algebra F K] [DecidableEq K] {E E' : WeierstrassCurve F} (C : VariableChange F) (hC : C • E = E') : ∃ e : (E⁄K).Point ≃+ (E'⁄K).Point, ∀ (σ : K ≃ₐ[F] K) (P : (E⁄K).Point), e (σ • P) = σ • e P := by
+theorem solution {F : Type*} [Field F] (K : Type*) [Field K] [Algebra F K] [DecidableEq K]
+    {E E' : WeierstrassCurve F} (C : VariableChange F) (hC : C • E = E') :
+    ∃ e : (E⁄K).Point ≃+ (E'⁄K).Point,
+      ∀ (σ : K ≃ₐ[F] K) (P : (E⁄K).Point), e (σ • P) = σ • e P := by
   subst hC
-  exact ⟨WeierstrassCurve.VariableChange.pointEquiv E C, WeierstrassCurve.VariableChange.pointEquiv_smul E C⟩
+  exact ⟨WeierstrassCurve.VariableChange.pointEquiv E C,
+    WeierstrassCurve.VariableChange.pointEquiv_smul E C⟩
+
 end S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq
 end P2MW
+export P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq (solution)
 
 end privateSection
 
 public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
-theorem WeierstrassCurve.exists_addEquiv_point_of_variableChange_eq {F : Type*} [Field F] (K : Type*) [Field K] [Algebra F K] [DecidableEq K] {E E' : WeierstrassCurve F} (C : VariableChange F) (hC : C • E = E') : ∃ e : (E⁄K).Point ≃+ (E'⁄K).Point, ∀ (σ : K ≃ₐ[F] K) (P : (E⁄K).Point), e (σ • P) = σ • e P := _root_.P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.solution K C hC
+theorem WeierstrassCurve.exists_addEquiv_point_of_variableChange_eq {F : Type*} [Field F]
+    (K : Type*) [Field K] [Algebra F K] [DecidableEq K] {E E' : WeierstrassCurve F}
+    (C : VariableChange F) (hC : C • E = E') :
+    ∃ e : (E⁄K).Point ≃+ (E'⁄K).Point, ∀ (σ : K ≃ₐ[F] K) (P : (E⁄K).Point), e (σ • P) = σ • e P :=
+  solution K C hC
 
 end publicSection

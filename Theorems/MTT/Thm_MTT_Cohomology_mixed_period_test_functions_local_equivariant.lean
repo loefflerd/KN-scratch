@@ -237,8 +237,10 @@ lemma coeff_primitive_contDiff {N k : ℕ}
     ContDiffOn ℝ 1 (fun w => AddMonoidAlgebra.coeff (U w) (binaryExponent (k - 2) j))
       upperHalfPlaneSet := by
   let e := binaryExponent (k - 2) j
-  let a := fun w : ℂ => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => g τ)) w) • periodPower (k - 2) w) e
-  let b := fun w : ℂ => -AddMonoidAlgebra.coeff (conj ((↑ₕ(fun τ : ℍ => v τ)) w) • periodPower (k - 2) (conj w)) e
+  let a :=
+    fun w : ℂ => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => g τ)) w) • periodPower (k - 2) w) e
+  let b :=
+    fun w : ℂ => -AddMonoidAlgebra.coeff (conj ((↑ₕ(fun τ : ℍ => v τ)) w) • periodPower (k - 2) (conj w)) e
   have ha : ContinuousOn a upperHalfPlaneSet :=
     (coeff_cusp_holomorphic g (k - 2) j hj).continuousOn
   have hb : ContinuousOn b upperHalfPlaneSet := by
@@ -486,9 +488,11 @@ lemma first_test_derivative {N k : ℕ}
       periodContraction (k - 2) (g z • periodPower (k - 2) z)
         (conj (q z) • periodPower (k - 2) (conj (z : ℂ))) := by
   let n := k - 2
-  let H := fun j w => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n (n - j))
+  let H :=
+    fun j w => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n (n - j))
   let a := fun j => AddMonoidAlgebra.coeff (g z • periodPower n z) (binaryExponent n j)
-  let b := fun j => -AddMonoidAlgebra.coeff (conj (v z) • periodPower n (conj (z : ℂ))) (binaryExponent n j)
+  let b :=
+    fun j => -AddMonoidAlgebra.coeff (conj (v z) • periodPower n (conj (z : ℂ))) (binaryExponent n j)
   let c := fun j => (-1 : ℂ) ^ (n - j) / (n.choose j : ℂ)
   let F := fun j w => c j * (AddMonoidAlgebra.coeff (U w) (binaryExponent n j) * conj (H j w))
   have hH (j : ℕ) : HasDerivAt (H j) (deriv (H j) z) z :=
@@ -533,9 +537,11 @@ lemma second_test_derivative {N k : ℕ}
       -conj (periodContraction (k - 2) (q z • periodPower (k - 2) z)
         (conj (v z) • periodPower (k - 2) (conj (z : ℂ)))) := by
   let n := k - 2
-  let H := fun j w => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j)
+  let H :=
+    fun j w => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j)
   let a := fun j => AddMonoidAlgebra.coeff (g z • periodPower n z) (binaryExponent n (n - j))
-  let b := fun j => -AddMonoidAlgebra.coeff (conj (v z) • periodPower n (conj (z : ℂ))) (binaryExponent n (n - j))
+  let b :=
+    fun j => -AddMonoidAlgebra.coeff (conj (v z) • periodPower n (conj (z : ℂ))) (binaryExponent n (n - j))
   let c := fun j => (-1 : ℂ) ^ (n - j) / (n.choose j : ℂ)
   let F := fun j w => c j * (H j w * AddMonoidAlgebra.coeff (U w) (binaryExponent n (n - j)))
   have hH (j : ℕ) (hj : j ∈ Finset.range (n + 1)) : HasDerivAt (H j) (deriv (H j) z) z :=
@@ -688,7 +694,7 @@ theorem solution
           (fderiv ℝ A₂ z 1 - Complex.I * fderiv ℝ A₂ z Complex.I) =
         -conj (periodContraction (k - 2)
           (q z • periodPower (k - 2) (z : ℂ))
-          (conj (v z) • periodPower (k - 2) (conj (z : ℂ)))))  := by
+          (conj (v z) • periodPower (k - 2) (conj (z : ℂ))))) := by
   refine ⟨MTT.LocalPeriod.first_test_contDiff g v q U hU, ?_,
     MTT.LocalPeriod.first_test_derivative g v q U hU,
     MTT.LocalPeriod.second_test_contDiff g v q U hU, ?_,

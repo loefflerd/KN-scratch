@@ -60,12 +60,15 @@ namespace P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.AlgebraicCurve IsLocalRing ModularCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.AlgebraicCurve IsLocalRing \
+  ModularCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord ord_coe_unit exists_unit_mul_zpow toValuationSubring mk"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord ord_coe_unit \
+  exists_unit_mul_zpow toValuationSubring mk"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -144,7 +147,7 @@ private theorem remSeq_shift (w : Place K F) (hw : w.deg = 1) {π : w.toValuatio
     ∀ n : ℕ, remSeq w hw hπ y (n + 1) = remSeq w hw hπ (remSeq w hw hπ y 1) n
   | 0 => rfl
   | n + 1 => by
-      show (exists_sub_resCoeff_eq_mul w hw hπ (remSeq w hw hπ y (n + 1))).choose
+      change (exists_sub_resCoeff_eq_mul w hw hπ (remSeq w hw hπ y (n + 1))).choose
         = remSeq w hw hπ (remSeq w hw hπ y 1) (n + 1)
       rw [remSeq_shift w hw hπ y n]
       rfl
@@ -178,7 +181,7 @@ private theorem expCoeff_eq_of_eq_sum (w : Place K F) (hw : w.deg = 1)
       have hres : residue w.toValuationSubring y = algebraMap K w.ResidueField (b 0) := by
         rw [hS, map_add, map_mul, hπ0, zero_mul, add_zero, residue_algebraMap]
       have h0 : expCoeff w hw hπ y 0 = b 0 := by
-        show (resEquiv w hw).symm (residue w.toValuationSubring y) = b 0
+        change (resEquiv w hw).symm (residue w.toValuationSubring y) = b 0
         rw [hres, ← resEquiv_apply w hw, RingEquiv.symm_apply_apply]
       have hspec : y - algebraMap K w.toValuationSubring (resCoeff w hw y)
           = π * remSeq w hw hπ y 1 := remSeq_spec w hw hπ y 0
@@ -193,7 +196,7 @@ private theorem expCoeff_eq_of_eq_sum (w : Place K F) (hw : w.deg = 1)
       · exact h0
       · have hshift : expCoeff w hw hπ y (k + 1)
             = expCoeff w hw hπ (remSeq w hw hπ y 1) k := by
-          show resCoeff w hw (remSeq w hw hπ y (k + 1))
+          change resCoeff w hw (remSeq w hw hπ y (k + 1))
             = resCoeff w hw (remSeq w hw hπ (remSeq w hw hπ y 1) k)
           rw [remSeq_shift]
         rw [hshift]
@@ -433,7 +436,7 @@ private theorem expCoeff_ord_toNat_ne_zero (w : Place K F) (hw : w.deg = 1)
     rw [← hsum]
     conv_lhs => rw [hu]
     exact mul_comm _ _
-  show resCoeff w hw (remSeq w hw hπ y ((w.ord (y : F)).toNat)) ≠ 0
+  change resCoeff w hw (remSeq w hw hπ y ((w.ord (y : F)).toNat)) ≠ 0
   rw [hrem]
   have hres : residue w.toValuationSubring (u : w.toValuationSubring) ≠ 0 :=
     (residue_ne_zero_iff_isUnit _).mpr u.isUnit
@@ -544,7 +547,8 @@ end AlgebraicCurve.Place
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord ord_coe_unit exists_unit_mul_zpow toValuationSubring mk"
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord ord_coe_unit \
+  exists_unit_mul_zpow toValuationSubring mk"
 end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
 private theorem AlgebraicCurve.Place.exists_algHom_laurentSeries_of_deg_eq_one
@@ -566,7 +570,6 @@ private theorem AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord
 end
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.AlgebraicCurve ModularCurve in
-
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1) :
     ∃ φ : F →ₐ[K] LaurentSeries K, ∀ x : F, (φ x).order = w.ord x :=
   AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord w hw
@@ -581,7 +584,9 @@ public section publicSection
 
 
 open AlgebraicCurve ModularCurve
-theorem AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1) :
-    ∃ φ : F →ₐ[K] LaurentSeries K, ∀ x : F, (φ x).order = w.ord x := _root_.P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.solution w hw
+theorem AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord {K F : Type*} [Field K]
+    [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1) :
+    ∃ φ : F →ₐ[K] LaurentSeries K, ∀ x : F, (φ x).order = w.ord x :=
+  solution w hw
 
 end publicSection

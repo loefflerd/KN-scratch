@@ -304,7 +304,8 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have hj' := Finset.mem_range.mp hj
   rw [monomial_binaryExponent, act_eq_actAlg, map_mul, map_mul, map_pow, map_pow, actAlg_C,
     MvPolynomial.mem_homogeneousSubmodule]
-  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
+  have :=
+    ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
     ((actAlg_X_isHomogeneous γ 0).pow j)).mul ((actAlg_X_isHomogeneous γ 1).pow (n - j))
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
@@ -334,7 +335,7 @@ lemma cuspOf_vecOf (x : Cusp) : cuspOf (vecOf x) = x := by
   rcases x with _ | r
   · rfl
   · have hd : (r.den : ℤ) ≠ 0 := by exact_mod_cast r.den_ne_zero
-    show cuspOf ![r.num, (r.den : ℤ)] = ((r : ℚ) : Cusp)
+    change cuspOf ![r.num, (r.den : ℤ)] = ((r : ℚ) : Cusp)
     unfold cuspOf
     split_ifs with h
     · simp at h
@@ -422,7 +423,8 @@ lemma act_X0_pow (A : Matrix (Fin 2) (Fin 2) ℤ) (n : ℕ) :
     act A (MvPolynomial.X 0 ^ n) = lin (A.mulVec ![1, 0]) ^ n := by
   rw [act_eq_actAlg, map_pow, ← act_eq_actAlg, ← lin_e0, act_lin]
 
-lemma act_C (γ : Matrix (Fin 2) (Fin 2) ℤ) (c : ℂ) : act γ (MvPolynomial.C c) = MvPolynomial.C c := by
+lemma act_C (γ : Matrix (Fin 2) (Fin 2) ℤ) (c : ℂ) :
+    act γ (MvPolynomial.C c) = MvPolynomial.C c := by
   rw [act_eq_actAlg]; simp [actAlg]
 
 /-- Evaluation of `act A P`. -/
@@ -473,7 +475,8 @@ theorem invariant_eq_smul_X_pow {N n : ℕ} (hN : 0 < N) {P : Binary ℂ} (hP : 
     (h : act !![1, (N : ℤ); 0, 1] P = P) :
     P = MvPolynomial.eval ![1, 0] P • MvPolynomial.X 0 ^ n := by
   -- periodicity of `P(1, ·)`
-  have hper : ∀ x y : ℂ, MvPolynomial.eval ![x, (N : ℂ) * x + y] P = MvPolynomial.eval ![x, y] P := by
+  have hper : ∀ x y : ℂ, MvPolynomial.eval ![x, (N : ℂ) * x + y] P = MvPolynomial.eval ![x, y] P :=
+    by
     intro x y
     have hv : (fun i => ∑ a : Fin 2, ((!![1, (N : ℤ); 0, 1] a i : ℤ) : ℂ) * ![x, y] a) =
         ![x, (N : ℂ) * x + y] := by
@@ -884,7 +887,7 @@ theorem boundary_hecke_cusp_sum_at_one_proof {N n : ℕ} (hN : 0 < N)
     (∑ b : Fin l, act (Matrix.adjugate !![1, (b.val : ℤ); 0, (l : ℤ)])
         (Φ (fractional !![1, (b.val : ℤ); 0, (l : ℤ)] x))) +
       act (Matrix.adjugate !![(l : ℤ), 0; 0, 1]) (Φ (fractional !![(l : ℤ), 0; 0, 1] x)) =
-      ((1 + l^(n+1) : ℕ) : ℂ) • Φ x := by
+      ((1 + l ^ (n+1) : ℕ) : ℂ) • Φ x := by
   rw [Finset.sum_congr rfl (fun b _ => term_β hN hΦ hl hlN x (b.val : ℤ)), term_α hN hΦ hl hlN x,
     ← Finset.sum_smul, ← add_smul, count_sum hl (vecOf_isCoprime x) n]
 
@@ -901,7 +904,7 @@ theorem solution
         (Φ (fractional !![1, (b.val : ℤ); 0, (l : ℤ)] x))) +
       act (Matrix.adjugate !![(l : ℤ), 0; 0, 1])
         (Φ (fractional !![(l : ℤ), 0; 0, 1] x)) =
-      ((1 + l^(n+1) : ℕ) : ℂ) • Φ x :=
+      ((1 + l ^ (n+1) : ℕ) : ℂ) • Φ x :=
   MTT.Cohomology.boundary_hecke_cusp_sum_at_one_proof hN Φ hΦ l hl hlN x
 end
 
@@ -921,7 +924,7 @@ theorem MTT.Cohomology.boundary_hecke_cusp_sum_at_one
         (Φ (fractional !![1, (b.val : ℤ); 0, (l : ℤ)] x))) +
       act (Matrix.adjugate !![(l : ℤ), 0; 0, 1])
         (Φ (fractional !![(l : ℤ), 0; 0, 1] x)) =
-      ((1 + l^(n+1) : ℕ) : ℂ) • Φ x := _root_.solution hN Φ hΦ l hl hlN x
+      ((1 + l ^ (n+1) : ℕ) : ℂ) • Φ x := _root_.solution hN Φ hΦ l hl hlN x
 end
 
 end publicSection

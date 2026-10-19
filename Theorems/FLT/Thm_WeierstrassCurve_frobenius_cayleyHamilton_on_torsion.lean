@@ -206,26 +206,23 @@ theorem solution
   have : Fact ℓ.Prime := ⟨hℓ⟩
   have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   have hCharP : CharP (ResidueField A) ℓ := charP_residueField_of_liesOverPrime_def hℓ hA
-
   let algZk : Algebra (ZMod ℓ) (ResidueField A) := ZMod.algebra _ ℓ
   let algIntZMod : Algebra ℤ (ZMod ℓ) := inferInstance
   let algIntK : Algebra ℤ (ResidueField A) := inferInstance
   let tower := IsScalarTower.of_algebraMap_eq' (R := ℤ) (S := ZMod ℓ)
     (A := ResidueField A) (Subsingleton.elim _ _)
   let ddk : DecidableEq (ResidueField A) := Classical.decEq _
-
   have hΔres : ((W.map (Int.castRingHom A)).map (residue A)).Δ ≠ 0 := by
     rw [map_Δ, map_Δ]
     exact residue_intCast_ne_zero hℓ hA hgood
   have e₁ : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ) : Affine (AlgebraicClosure ℚ))
       = (W.map (Int.castRingHom A)).map A.subtype := by
-    show W.map ((algebraMap ℚ (AlgebraicClosure ℚ)).comp (Int.castRingHom ℚ))
+    change W.map ((algebraMap ℚ (AlgebraicClosure ℚ)).comp (Int.castRingHom ℚ))
         = W.map (A.subtype.comp (Int.castRingHom A))
     congr 1
-
   have e₂ : (W.map (Int.castRingHom A)).map (residue A)
       = (W⁄(ResidueField A) : WeierstrassCurve (ResidueField A)) := by
-    show W.map ((residue A).comp (Int.castRingHom A))
+    change W.map ((residue A).comp (Int.castRingHom A))
         = W.map (algebraMap ℤ (ResidueField A))
     congr 1
   have : ((W⁄(ResidueField A)) : WeierstrassCurve (ResidueField A)).IsElliptic := by
@@ -233,18 +230,16 @@ theorem solution
     have h := hΔres
     rw [e₂] at h
     exact h
-
   have hfrob : ∀ {u v : ResidueField A},
       ((W.map (Int.castRingHom A)).map (residue A)).toAffine.Nonsingular u v →
       ((W.map (Int.castRingHom A)).map (residue A)).toAffine.Nonsingular (u ^ ℓ) (v ^ ℓ) := by
     intro u v hw
     refine nonsingular_pow_of_map_frobenius_eq' ?_ hw
-    show W.map ((frobenius (ResidueField A) ℓ).comp ((residue A).comp (Int.castRingHom A)))
+    change W.map ((frobenius (ResidueField A) ℓ).comp ((residue A).comp (Int.castRingHom A)))
         = W.map ((residue A).comp (Int.castRingHom A))
     congr 1
     exact Subsingleton.elim _ _
   obtain ⟨σ', hσ'x⟩ := exists_frobAlgEquiv (L := AlgebraicClosure ℚ) hℓ hA
-
   have ch := FrobeniusEndo.frobCharEqOnPoints_of_frobenius (F := ZMod ℓ)
     (k := ResidueField A) W σ'
     (fun z => by rw [ZMod.card]; exact hσ'x z)
@@ -275,7 +270,6 @@ theorem solution
             rw [reducePoint_smul_eq_frobPt hΔres hσ hfrob (e₁ ▸ hns) (e₁ ▸ hns')]
         _ = σ' • (cgPoint e₂ (reducePoint hΔres (Point.some x' y' (e₁ ▸ hns)))) := hE' _
         _ = σ' • (red (Point.some x' y' hns)) := rfl
-
   have hnk : ((n : ℕ) : ResidueField A) ≠ 0 := by
     intro h0
     exact hℓn ((CharP.cast_eq_zero_iff (ResidueField A) ℓ n).mp h0)
@@ -300,7 +294,6 @@ theorem solution
       have hz' : cgPoint e₂ (reducePoint hΔres (Point.some x' y' (e₁ ▸ hns))) = 0 := hz
       rw [hred, cgPoint_eq_zero_iff] at hz'
       exact some_ne_zero _ hz'
-
   have hsm : ∀ P : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point,
       n • P = 0 → n • (σ • P) = 0 := by
     intro P hP
@@ -309,7 +302,6 @@ theorem solution
     rw [← h2, hP]
     exact _root_.map_zero (DistribSMul.toAddMonoidHom
       (((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point) σ)
-
   set a : ℤ := (ℓ : ℤ) + 1 - (Nat.card (W⁄(ZMod ℓ)).Point : ℤ) with ha
   set z : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point :=
     σ • σ • y + (ℓ : ℤ) • y - a • (σ • y) with hzdef
@@ -349,6 +341,7 @@ theorem WeierstrassCurve.frobenius_cayleyHamilton_on_torsion
     (n : ℕ) (hn : 0 < n) (hℓn : ¬ ℓ ∣ n)
     (y : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point) (hy : n • y = 0) :
     σ • σ • y + (ℓ : ℤ) • y =
-      ((ℓ : ℤ) + 1 - (Nat.card (W⁄(ZMod ℓ)).Point : ℤ)) • (σ • y) := _root_.P2MW.S_WeierstrassCurve_frobenius_cayleyHamilton_on_torsion.solution W ℓ hℓ hgood A hA σ hσ n hn hℓn y hy
+      ((ℓ : ℤ) + 1 - (Nat.card (W⁄(ZMod ℓ)).Point : ℤ)) • (σ • y) :=
+  solution W ℓ hℓ hgood A hA σ hσ n hn hℓn y hy
 
 end publicSection

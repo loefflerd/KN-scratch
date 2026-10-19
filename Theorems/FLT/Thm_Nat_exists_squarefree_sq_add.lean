@@ -75,7 +75,7 @@ section Sieve
 p2m_open "Finset Nat Finset.Nat Real Filter"
 
 lemma kw_psq_dvd_of_not_dvd {p : ℕ} (hp : p.Prime) {a b : ℤ}
-    (ha : ¬ (p : ℤ) ∣ a) (hab : (p : ℤ)^2 ∣ a * b) : (p : ℤ)^2 ∣ b := by
+    (ha : ¬ (p : ℤ) ∣ a) (hab : (p : ℤ) ^ 2 ∣ a * b) : (p : ℤ) ^ 2 ∣ b := by
   have hpZ : Prime (p : ℤ) := Nat.prime_iff_prime_int.mp hp
   have hpb : (p : ℤ) ∣ b :=
     (hpZ.dvd_mul.mp (dvd_trans ⟨(p : ℤ), (sq (p : ℤ))⟩ hab)).resolve_left ha
@@ -87,15 +87,15 @@ lemma kw_psq_dvd_of_not_dvd {p : ℕ} (hp : p.Prime) {a b : ℤ}
   exact ⟨d, by ring⟩
 
 lemma kw_sqAdd_pm_congr {p D : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) (hpD : ¬ p ∣ D)
-    {x y : ℤ} (hx : (p : ℤ)^2 ∣ x^2 + D) (hy : (p : ℤ)^2 ∣ y^2 + D) :
-    (p : ℤ)^2 ∣ (x - y) ∨ (p : ℤ)^2 ∣ (x + y) := by
+    {x y : ℤ} (hx : (p : ℤ) ^ 2 ∣ x ^ 2 + D) (hy : (p : ℤ) ^ 2 ∣ y ^ 2 + D) :
+    (p : ℤ) ^ 2 ∣ (x - y) ∨ (p : ℤ) ^ 2 ∣ (x + y) := by
   have hpZ : Prime (p : ℤ) := Nat.prime_iff_prime_int.mp hp
-  have hdiff : (p : ℤ)^2 ∣ (x - y) * (x + y) := by
+  have hdiff : (p : ℤ) ^ 2 ∣ (x - y) * (x + y) := by
     have h := dvd_sub hx hy
-    have heq : x^2 + (D : ℤ) - (y^2 + D) = (x - y) * (x + y) := by ring
+    have heq : x ^ 2 + (D : ℤ) - (y ^ 2 + D) = (x - y) * (x + y) := by ring
     rwa [heq] at h
   have hnx : ¬ (p : ℤ) ∣ x := fun hd => hpD <| by
-    have hpxD : (p : ℤ) ∣ x^2 + D := dvd_trans ⟨(p : ℤ), (sq (p : ℤ))⟩ hx
+    have hpxD : (p : ℤ) ∣ x ^ 2 + D := dvd_trans ⟨(p : ℤ), (sq (p : ℤ))⟩ hx
     have hpD' : (p : ℤ) ∣ (D : ℤ) := by
       have := dvd_sub hpxD (dvd_pow hd two_ne_zero); simpa using this
     exact_mod_cast hpD'
@@ -112,26 +112,26 @@ lemma kw_sqAdd_pm_congr {p D : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) (hpD : ¬ p �
 
 lemma kw_perPrime_count {D K p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p)
     (hpD : ¬ p ∣ D) :
-    ((Finset.range K).filter (fun k => p^2 ∣ (2*D*k + D + 1)^2 + D)).card
-      ≤ 2 * (K / p^2 + 1) := by
+    ((Finset.range K).filter (fun k => p ^ 2 ∣ (2*D*k + D + 1) ^ 2 + D)).card
+      ≤ 2 * (K / p ^ 2 + 1) := by
   classical
   set c : ℕ → ℤ := fun k => (2*D*k + D + 1 : ℤ) with hc_def
-  set Bad := (Finset.range K).filter (fun k => p^2 ∣ (2*D*k + D + 1)^2 + D) with hBad_def
+  set Bad := (Finset.range K).filter (fun k => p ^ 2 ∣ (2*D*k + D + 1) ^ 2 + D) with hBad_def
   rcases Bad.eq_empty_or_nonempty with hemp | ⟨k₀, hk₀⟩
   · rw [hemp]; simp
-  have hp2pos : 0 < p^2 := by positivity
+  have hp2pos : 0 < p ^ 2 := by positivity
   have hp2 : p ≠ 2 := by omega
   have hp2D : ¬ (p : ℤ) ∣ (2 * D : ℤ) := fun h => by
     rcases (Nat.prime_iff_prime_int.mp hp).dvd_mul.mp h with h2 | hd
     · exact hp2 ((Nat.prime_dvd_prime_iff_eq hp Nat.prime_two).mp (by exact_mod_cast h2))
     · exact hpD (by exact_mod_cast hd)
-  have hceq : ∀ k, (c k)^2 + (D:ℤ) = (((2*D*k + D + 1)^2 + D : ℕ) : ℤ) := fun k => by
+  have hceq : ∀ k, (c k) ^ 2 + (D:ℤ) = (((2*D*k + D + 1) ^ 2 + D : ℕ) : ℤ) := fun k => by
     simp only [c]; push_cast; ring
-  have hfc : ∀ k, p^2 ∣ (2*D*k + D + 1)^2 + D ↔ (p:ℤ)^2 ∣ (c k)^2 + D := fun k => by
-    rw [hceq, show ((p:ℤ)^2) = ((p^2:ℕ):ℤ) by push_cast; ring]
+  have hfc : ∀ k, p ^ 2 ∣ (2*D*k + D + 1) ^ 2 + D ↔ (p:ℤ) ^ 2 ∣ (c k) ^ 2 + D := fun k => by
+    rw [hceq, show ((p:ℤ) ^ 2) = ((p ^ 2:ℕ):ℤ) by push_cast; ring]
     exact Int.natCast_dvd_natCast.symm
-  have hk₀' : (p:ℤ)^2 ∣ (c k₀)^2 + D := (hfc k₀).mp (Finset.mem_filter.mp hk₀).2
-  let g : ℕ → Bool × ℕ := fun k => (decide ((p:ℤ)^2 ∣ c k - c k₀), k / p^2)
+  have hk₀' : (p:ℤ) ^ 2 ∣ (c k₀) ^ 2 + D := (hfc k₀).mp (Finset.mem_filter.mp hk₀).2
+  let g : ℕ → Bool × ℕ := fun k => (decide ((p:ℤ) ^ 2 ∣ c k - c k₀), k / p ^ 2)
   have hinj : Set.InjOn g Bad := by
     intro a haB b hbB hab
     simp only [g, Prod.mk.injEq, decide_eq_decide] at hab
@@ -140,67 +140,68 @@ lemma kw_perPrime_count {D K p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p)
     have hb' := (hfc b).mp (Finset.mem_filter.mp hbB).2
     have hda := kw_sqAdd_pm_congr hp hp2 hpD ha' hk₀'
     have hdb := kw_sqAdd_pm_congr hp hp2 hpD hb' hk₀'
-    have hcab : (p:ℤ)^2 ∣ c a - c b := by
-      by_cases hca : (p:ℤ)^2 ∣ c a - c k₀
-      · have hcb : (p:ℤ)^2 ∣ c b - c k₀ := hd.mp hca
+    have hcab : (p:ℤ) ^ 2 ∣ c a - c b := by
+      by_cases hca : (p:ℤ) ^ 2 ∣ c a - c k₀
+      · have hcb : (p:ℤ) ^ 2 ∣ c b - c k₀ := hd.mp hca
         have := dvd_sub hca hcb; simpa using this
-      · have hca' : (p:ℤ)^2 ∣ c a + c k₀ := hda.resolve_left hca
-        have hcb' : (p:ℤ)^2 ∣ c b + c k₀ := hdb.resolve_left (fun h => hca (hd.mpr h))
+      · have hca' : (p:ℤ) ^ 2 ∣ c a + c k₀ := hda.resolve_left hca
+        have hcb' : (p:ℤ) ^ 2 ∣ c b + c k₀ := hdb.resolve_left (fun h => hca (hd.mpr h))
         have := dvd_sub hca' hcb'; simpa using this
     have hcabeq : c a - c b = (2*D : ℤ) * ((a:ℤ) - b) := by
       simp only [c]; ring
     rw [hcabeq] at hcab
-    have hkab : (p:ℤ)^2 ∣ ((a:ℤ) - b) := kw_psq_dvd_of_not_dvd hp hp2D hcab
-    have h1 := Nat.div_add_mod a (p^2)
-    have h2 := Nat.div_add_mod b (p^2)
-    have heq : (a:ℤ) - b = ((a % p^2 : ℕ) : ℤ) - ((b % p^2 : ℕ) : ℤ) := by
-      set Q : ℕ := p^2 * (a / p^2) with hQ
-      have hQb : p^2 * (b / p^2) = Q := by rw [hQ, hq]
-      have hZ1 : (a:ℤ) = (Q:ℤ) + ((a % p^2 : ℕ):ℤ) := by exact_mod_cast h1.symm
-      have hZ2 : (b:ℤ) = (Q:ℤ) + ((b % p^2 : ℕ):ℤ) := by
+    have hkab : (p:ℤ) ^ 2 ∣ ((a:ℤ) - b) := kw_psq_dvd_of_not_dvd hp hp2D hcab
+    have h1 := Nat.div_add_mod a (p ^ 2)
+    have h2 := Nat.div_add_mod b (p ^ 2)
+    have heq : (a:ℤ) - b = ((a % p ^ 2 : ℕ) : ℤ) - ((b % p ^ 2 : ℕ) : ℤ) := by
+      set Q : ℕ := p ^ 2 * (a / p ^ 2) with hQ
+      have hQb : p ^ 2 * (b / p ^ 2) = Q := by rw [hQ, hq]
+      have hZ1 : (a:ℤ) = (Q:ℤ) + ((a % p ^ 2 : ℕ):ℤ) := by exact_mod_cast h1.symm
+      have hZ2 : (b:ℤ) = (Q:ℤ) + ((b % p ^ 2 : ℕ):ℤ) := by
         rw [← hQb] at hQ ⊢; exact_mod_cast h2.symm
       linarith
     rw [heq] at hkab
     obtain ⟨m, hm⟩ := hkab
-    have ha' : ((a % p^2 : ℕ):ℤ) < ((p^2:ℕ):ℤ) := by exact_mod_cast Nat.mod_lt a hp2pos
-    have hb' : ((b % p^2 : ℕ):ℤ) < ((p^2:ℕ):ℤ) := by exact_mod_cast Nat.mod_lt b hp2pos
-    have ha0 : (0:ℤ) ≤ ((a % p^2 : ℕ):ℤ) := Int.natCast_nonneg _
-    have hb0 : (0:ℤ) ≤ ((b % p^2 : ℕ):ℤ) := Int.natCast_nonneg _
-    have hpc : ((p^2:ℕ):ℤ) = (p:ℤ)^2 := by push_cast; ring
+    have ha' : ((a % p ^ 2 : ℕ):ℤ) < ((p ^ 2:ℕ):ℤ) := by exact_mod_cast Nat.mod_lt a hp2pos
+    have hb' : ((b % p ^ 2 : ℕ):ℤ) < ((p ^ 2:ℕ):ℤ) := by exact_mod_cast Nat.mod_lt b hp2pos
+    have ha0 : (0:ℤ) ≤ ((a % p ^ 2 : ℕ):ℤ) := Int.natCast_nonneg _
+    have hb0 : (0:ℤ) ≤ ((b % p ^ 2 : ℕ):ℤ) := Int.natCast_nonneg _
+    have hpc : ((p ^ 2:ℕ):ℤ) = (p:ℤ) ^ 2 := by push_cast; ring
     have hm0 : m = 0 := by
       rcases lt_trichotomy m 0 with hneg | h0 | hpos
       · exfalso; nlinarith [hm, hpc]
       · exact h0
       · exfalso; nlinarith [hm, hpc]
-    have hmodeq : a % p^2 = b % p^2 := by
-      have : ((a % p^2 : ℕ):ℤ) = ((b % p^2 : ℕ):ℤ) := by rw [hm0, mul_zero] at hm; linarith
+    have hmodeq : a % p ^ 2 = b % p ^ 2 := by
+      have : ((a % p ^ 2 : ℕ):ℤ) = ((b % p ^ 2 : ℕ):ℤ) := by rw [hm0, mul_zero] at hm; linarith
       exact_mod_cast this
     omega
   calc Bad.card
-      ≤ ((Finset.univ : Finset Bool) ×ˢ Finset.range (K / p^2 + 1)).card := by
+      ≤ ((Finset.univ : Finset Bool) ×ˢ Finset.range (K / p ^ 2 + 1)).card := by
         apply Finset.card_le_card_of_injOn g ?_ hinj
         intro k hk
         have hkK : k < K := Finset.mem_range.mp (Finset.mem_filter.mp hk).1
-        have hdiv : k / p^2 ≤ K / p^2 := Nat.div_le_div_right (le_of_lt hkK)
+        have hdiv : k / p ^ 2 ≤ K / p ^ 2 := Nat.div_le_div_right (le_of_lt hkK)
         refine Finset.mem_product.mpr ⟨Finset.mem_univ _, ?_⟩
         simp only [g, Finset.mem_range]; omega
-    _ = 2 * (K / p^2 + 1) := by
+    _ = 2 * (K / p ^ 2 + 1) := by
         rw [Finset.card_product, Finset.card_range, Finset.card_univ, Fintype.card_bool]
 
-lemma kw_four_not_dvd_f (D k : ℕ) : ¬ (4 : ℕ) ∣ ((2*D*k + D + 1)^2 + D) := by
-  have hexp : (2*D*k + D + 1)^2 + D = 4*(D^2*k^2 + D^2*k + D*k) + (D^2 + 3*D + 1) := by ring
+lemma kw_four_not_dvd_f (D k : ℕ) : ¬ (4 : ℕ) ∣ ((2*D*k + D + 1) ^ 2 + D) := by
+  have hexp : (2*D*k + D + 1) ^ 2 + D = 4*(D ^ 2*k ^ 2 + D ^ 2*k + D*k) + (D ^ 2 + 3*D + 1) :=
+    by ring
   intro h; rw [hexp] at h
-  have h4 : (4 : ℕ) ∣ (D^2 + 3*D + 1) := (Nat.dvd_add_right ⟨_, rfl⟩).mp h
-  have hZ : ((D:ZMod 4)^2 + 3*(D:ZMod 4) + 1 : ZMod 4) = 0 := by
-    have := (ZMod.natCast_eq_zero_iff (D^2 + 3*D + 1) 4).mpr h4
+  have h4 : (4 : ℕ) ∣ (D ^ 2 + 3*D + 1) := (Nat.dvd_add_right ⟨_, rfl⟩).mp h
+  have hZ : ((D:ZMod 4) ^ 2 + 3*(D:ZMod 4) + 1 : ZMod 4) = 0 := by
+    have := (ZMod.natCast_eq_zero_iff (D ^ 2 + 3*D + 1) 4).mpr h4
     push_cast at this; linear_combination this
-  exact (by decide : ∀ d : ZMod 4, d^2 + 3*d + 1 ≠ 0) _ hZ
+  exact (by decide : ∀ d : ZMod 4, d ^ 2 + 3*d + 1 ≠ 0) _ hZ
 
 lemma kw_primeDvdD_not_dvd_f {D p : ℕ} (k : ℕ) (hp : p.Prime) (hpD : p ∣ D) :
-    ¬ p ∣ ((2*D*k + D + 1)^2 + D) := by
+    ¬ p ∣ ((2*D*k + D + 1) ^ 2 + D) := by
   have := Fact.mk hp
   intro h
-  have hZ : (((2*D*k + D + 1)^2 + D : ℕ) : ZMod p) = 0 := (ZMod.natCast_eq_zero_iff _ p).mpr h
+  have hZ : (((2*D*k + D + 1) ^ 2 + D : ℕ) : ZMod p) = 0 := (ZMod.natCast_eq_zero_iff _ p).mpr h
   have hDZ : ((D : ℕ) : ZMod p) = 0 := (ZMod.natCast_eq_zero_iff _ p).mpr hpD
   push_cast at hZ
   rw [hDZ] at hZ; ring_nf at hZ
@@ -208,7 +209,7 @@ lemma kw_primeDvdD_not_dvd_f {D p : ℕ} (k : ℕ) (hp : p.Prime) (hpD : p ∣ D
 
 theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
   intro D hD
-  set f : ℕ → ℕ := fun k => (2*D*k + D + 1)^2 + D with hf_def
+  set f : ℕ → ℕ := fun k => (2*D*k + D + 1) ^ 2 + D with hf_def
   suffices h : ∃ k, Squarefree (f k) by
     obtain ⟨k, hk⟩ := h; exact ⟨2*D*k + D + 1, by omega, hk⟩
   by_contra hcon; push Not at hcon
@@ -230,7 +231,7 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
   have hlogP : 0 < Real.log P := Real.log_pos (by linarith)
   rw [← hPR] at hKlog
   set S := (Finset.range P).filter (fun p => p.Prime ∧ 3 ≤ p ∧ ¬ p ∣ D) with hS_def
-  have hcov : Finset.range K ⊆ S.biUnion fun p => (Finset.range K).filter (p^2 ∣ f ·) := by
+  have hcov : Finset.range K ⊆ S.biUnion fun p => (Finset.range K).filter (p ^ 2 ∣ f ·) := by
     intro k hkK
     have hns := hcon k
     rw [Nat.squarefree_iff_prime_squarefree] at hns; push Not at hns
@@ -246,49 +247,49 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
       kw_primeDvdD_not_dvd_f k hp hpD (dvd_trans (dvd_pow_self p two_ne_zero) hdvd)
     have hpP : p < P := by
       have hfpos : 0 < f k := by simp only [hf_def]; positivity
-      have hple : p^2 ≤ f k := Nat.le_of_dvd hfpos hdvd
+      have hple : p ^ 2 ≤ f k := Nat.le_of_dvd hfpos hdvd
       have hkK' : k + 1 ≤ K := Finset.mem_range.mp hkK
       have hck : 2*D*k + D + 2 ≤ P := by nlinarith
-      have hfk : f k < P^2 := by
+      have hfk : f k < P ^ 2 := by
         simp only [hf_def]
-        calc (2*D*k+D+1)^2 + D
-            < (2*D*k+D+1)^2 + (2*(2*D*k+D+1) + 1) := by omega
-          _ = (2*D*k+D+2)^2 := by ring
-          _ ≤ P^2 := Nat.pow_le_pow_left hck 2
+        calc (2*D*k+D+1) ^ 2 + D
+            < (2*D*k+D+1) ^ 2 + (2*(2*D*k+D+1) + 1) := by omega
+          _ = (2*D*k+D+2) ^ 2 := by ring
+          _ ≤ P ^ 2 := Nat.pow_le_pow_left hck 2
       nlinarith [hp.two_le]
     exact Finset.mem_biUnion.mpr ⟨p,
       by simp only [S, Finset.mem_filter, Finset.mem_range]; exact ⟨hpP, hp, hp3, hpnD⟩,
       Finset.mem_filter.mpr ⟨hkK, hdvd⟩⟩
-  have hKle : (K : ℝ) ≤ ∑ p ∈ S, (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ) := by
-    have h1 : K ≤ ∑ p ∈ S, ((Finset.range K).filter (p^2 ∣ f ·)).card :=
+  have hKle : (K : ℝ) ≤ ∑ p ∈ S, (((Finset.range K).filter (p ^ 2 ∣ f ·)).card : ℝ) := by
+    have h1 : K ≤ ∑ p ∈ S, ((Finset.range K).filter (p ^ 2 ∣ f ·)).card :=
       calc K = (Finset.range K).card := (Finset.card_range K).symm
-        _ ≤ (S.biUnion fun p => (Finset.range K).filter (p^2 ∣ f ·)).card :=
+        _ ≤ (S.biUnion fun p => (Finset.range K).filter (p ^ 2 ∣ f ·)).card :=
             Finset.card_le_card hcov
         _ ≤ _ := Finset.card_biUnion_le
     exact_mod_cast h1
-  have hper : ∀ p ∈ S, (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ)
-      ≤ 2 * K * ((p:ℝ)^2)⁻¹ + 2 := by
+  have hper : ∀ p ∈ S, (((Finset.range K).filter (p ^ 2 ∣ f ·)).card : ℝ)
+      ≤ 2 * K * ((p:ℝ) ^ 2)⁻¹ + 2 := by
     intro p hpS
     simp only [S, Finset.mem_filter, Finset.mem_range] at hpS
     obtain ⟨_, hp, hp3, hpnD⟩ := hpS
-    have hNat : ((Finset.range K).filter (p^2 ∣ f ·)).card ≤ 2 * (K / p^2 + 1) := by
+    have hNat : ((Finset.range K).filter (p ^ 2 ∣ f ·)).card ≤ 2 * (K / p ^ 2 + 1) := by
       simp only [hf_def]; exact kw_perPrime_count hp hp3 hpnD
-    calc (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ)
-        ≤ (2 * (K / p^2 + 1) : ℕ) := by exact_mod_cast hNat
-      _ = 2 * ((K / p^2 : ℕ) : ℝ) + 2 := by push_cast; ring
-      _ ≤ 2 * ((K : ℝ) / (p^2 : ℕ)) + 2 := by
+    calc (((Finset.range K).filter (p ^ 2 ∣ f ·)).card : ℝ)
+        ≤ (2 * (K / p ^ 2 + 1) : ℕ) := by exact_mod_cast hNat
+      _ = 2 * ((K / p ^ 2 : ℕ) : ℝ) + 2 := by push_cast; ring
+      _ ≤ 2 * ((K : ℝ) / (p ^ 2 : ℕ)) + 2 := by
           gcongr; exact Nat.cast_div_le
-      _ = 2 * K * ((p:ℝ)^2)⁻¹ + 2 := by push_cast; ring
+      _ = 2 * K * ((p:ℝ) ^ 2)⁻¹ + 2 := by push_cast; ring
   have hSsub : S ⊆ Finset.Ioc 2 P := by
     intro p hp
     simp only [S, Finset.mem_filter, Finset.mem_range] at hp
     simp only [Finset.mem_Ioc]; omega
-  have hsumInv : ∑ p ∈ S, ((p:ℝ)^2)⁻¹ ≤ 4/9 := by
-    calc ∑ p ∈ S, ((p:ℝ)^2)⁻¹
-        ≤ ∑ p ∈ Finset.Ioc 2 P, ((p:ℝ)^2)⁻¹ := by
+  have hsumInv : ∑ p ∈ S, ((p:ℝ) ^ 2)⁻¹ ≤ 4/9 := by
+    calc ∑ p ∈ S, ((p:ℝ) ^ 2)⁻¹
+        ≤ ∑ p ∈ Finset.Ioc 2 P, ((p:ℝ) ^ 2)⁻¹ := by
           apply Finset.sum_le_sum_of_subset_of_nonneg hSsub
           intros; positivity
-      _ = ((3:ℝ)^2)⁻¹ + ∑ p ∈ Finset.Ioc 3 P, ((p:ℝ)^2)⁻¹ := by
+      _ = ((3:ℝ) ^ 2)⁻¹ + ∑ p ∈ Finset.Ioc 3 P, ((p:ℝ) ^ 2)⁻¹ := by
           rw [show Finset.Ioc 2 P = insert 3 (Finset.Ioc 3 P) by
             ext x; simp only [Finset.mem_Ioc, Finset.mem_insert]; omega]
           rw [Finset.sum_insert (by simp)]; norm_num
@@ -324,9 +325,9 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
             (sub_pos.mpr hKlog)]
   have hcontra : (K : ℝ) < K := by
     calc (K : ℝ)
-        ≤ ∑ p ∈ S, (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ) := hKle
-      _ ≤ ∑ p ∈ S, (2 * K * ((p:ℝ)^2)⁻¹ + 2) := Finset.sum_le_sum hper
-      _ = 2 * K * ∑ p ∈ S, ((p:ℝ)^2)⁻¹ + 2 * S.card := by
+        ≤ ∑ p ∈ S, (((Finset.range K).filter (p ^ 2 ∣ f ·)).card : ℝ) := hKle
+      _ ≤ ∑ p ∈ S, (2 * K * ((p:ℝ) ^ 2)⁻¹ + 2) := Finset.sum_le_sum hper
+      _ = 2 * K * ∑ p ∈ S, ((p:ℝ) ^ 2)⁻¹ + 2 * S.card := by
           rw [Finset.sum_add_distrib, ← Finset.mul_sum, Finset.sum_const, nsmul_eq_mul]
           ring
       _ ≤ 2 * K * (4/9) + 2 * S.card := by gcongr
@@ -352,6 +353,7 @@ end privateSection
 public section publicSection
 
 theorem Nat.exists_squarefree_sq_add (D : ℕ) (hD : 1 ≤ D) :
-    ∃ c : ℕ, 1 ≤ c ∧ Squarefree (c ^ 2 + D) := _root_.P2MW.S_Nat_exists_squarefree_sq_add.solution D hD
+    ∃ c : ℕ, 1 ≤ c ∧ Squarefree (c ^ 2 + D) :=
+  solution D hD
 
 end publicSection

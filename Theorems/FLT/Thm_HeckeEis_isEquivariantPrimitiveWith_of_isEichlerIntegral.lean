@@ -67,7 +67,8 @@ namespace P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL IsEquivariantPrimitiveWith IsEichlerIntegral IsEichlerIntegral.slash IsEichlerIntegral.exists_sub_eq_const"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL IsEquivariantPrimitiveWith IsEichlerIntegral \
+  IsEichlerIntegral.slash IsEichlerIntegral.exists_sub_eq_const"
 p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial ModularForm CongruenceSubgroup
@@ -84,7 +85,8 @@ theorem SolMain.p1b
   obtain ⟨v, hv⟩ := hslash.exists_sub_eq_const hF
   refine ⟨binaryFormRepSL ℂ n (γ : SL(2, ℤ)) v, fun τ => ?_⟩
   change F ((γ : SL(2, ℤ)) • τ) - binaryFormRepSL ℂ n (γ : SL(2, ℤ)) (F τ) = _
-  rw [← hv τ, map_sub, ← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
+  rw [← hv τ, map_sub, ← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one,
+    Module.End.one_apply]
 
 end HeckeEis
 
@@ -92,7 +94,8 @@ end
 
 open scoped MatrixGroups ModularForm in
 theorem solution
-    {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ}
+    {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F)
     (hf : ∀ γ ∈ Γ, (f ∣[((n : ℤ) + 2)] γ) = f) :
     HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F :=
@@ -109,9 +112,11 @@ public section publicSection
 
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral
-    {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ}
+    {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F)
     (hf : ∀ γ ∈ Γ, (f ∣[((n : ℤ) + 2)] γ) = f) :
-    HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F := _root_.P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral.solution hF hf
+    HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F :=
+  solution hF hf
 
 end publicSection

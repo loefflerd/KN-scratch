@@ -68,7 +68,8 @@ namespace P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyc
 
 
 namespace ModularCurve
-p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
+p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \
+  ModularPolynomialData.eval_eq_zero"
 end ModularCurve
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine mk.injEq map mk reduction Δ j"
@@ -79,10 +80,13 @@ end WeierstrassCurve.Affine
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply mk.injEq G g₂ DiscriminantNeZero jLattice ofTau ofTau_ω₁ ofTau_ω₂ scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex sublatticeQuotient"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply \
+  mk.injEq G g₂ DiscriminantNeZero jLattice ofTau ofTau_ω₁ ofTau_ω₂ scale_indep scale scale_ω₁ \
+  scale_ω₂ sublatticeIndex sublatticeQuotient"
 p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
@@ -101,7 +105,8 @@ private def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictSca
 
 @[scoped simp] private theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
+private theorem _root_.PeriodPair.scale_lattice :
+    (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
   congr 1
@@ -194,7 +199,9 @@ noncomputable section
 open UpperHalfPlane Complex
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply mk.injEq G g₂ DiscriminantNeZero jLattice ofTau ofTau_ω₁ ofTau_ω₂ scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex sublatticeQuotient"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply \
+  mk.injEq G g₂ DiscriminantNeZero jLattice ofTau ofTau_ω₁ ofTau_ω₂ scale_indep scale scale_ω₁ \
+  scale_ω₂ sublatticeIndex sublatticeQuotient"
 p2m_open "PeriodPair"
 
 theorem kw_linearIndependent_tau_one (τ : ℍ) :
@@ -226,7 +233,9 @@ open scoped UpperHalfPlane Real
 open Complex UpperHalfPlane ModularForm
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply mk.injEq G g₂ DiscriminantNeZero jLattice ofTau ofTau_ω₁ ofTau_ω₂ scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex sublatticeQuotient"
+p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply \
+  mk.injEq G g₂ DiscriminantNeZero jLattice ofTau ofTau_ω₁ ofTau_ω₂ scale_indep scale scale_ω₁ \
+  scale_ω₂ sublatticeIndex sublatticeQuotient"
 p2m_open "PeriodPair"
 
 theorem kw_im_div_ne_zero (L : PeriodPair) : (L.ω₁ / L.ω₂).im ≠ 0 := by
@@ -424,11 +433,15 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair UpperHalfPlane"
-p2m_open "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair \
+  UpperHalfPlane"
+p2m_open "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
+p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \
+  ModularPolynomialData.eval_eq_zero"
 p2m_open "ModularCurve"
 
 theorem kw_scale_lattice_toAddSubgroup (L : PeriodPair) (α : ℂˣ) :
@@ -473,11 +486,17 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair UpperHalfPlane"
-p2m_open "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial QuaternionAlgebra P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair \
+  UpperHalfPlane"
+p2m_open "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial \
+  QuaternionAlgebra \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
+p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \
+  ModularPolynomialData.eval_eq_zero"
 p2m_open "ModularCurve"
 
 def kw_phiTau (τ : ℍ) : ℤ × ℤ →+ ℂ :=
@@ -555,12 +574,26 @@ section
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair UpperHalfPlane MatrixGroups P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.MatrixGroups"
-p2m_open "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial QuaternionAlgebra P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra ModularCurve P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-p2m_open "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.AlgebraicCurve WeierstrassCurve P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve.Affine Matrix"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair \
+  UpperHalfPlane MatrixGroups \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.MatrixGroups"
+p2m_open "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial \
+  QuaternionAlgebra \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra \
+  ModularCurve \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
+p2m_open "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.AlgebraicCurve \
+  WeierstrassCurve \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve.Affin\
+  e Matrix"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
+p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \
+  ModularPolynomialData.eval_eq_zero"
 p2m_open "ModularCurve"
 
 theorem kw_surgehgf4_hu5c_not_isAddCyclic_zmod_prod {p : ℕ} (hp : 1 < p) :
@@ -569,7 +602,7 @@ theorem kw_surgehgf4_hu5c_not_isAddCyclic_zmod_prod {p : ℕ} (hp : 1 < p) :
   have : NeZero p := ⟨by omega⟩
   have hord : addOrderOf g ∣ p := by
     rw [addOrderOf_dvd_iff_nsmul_eq_zero]
-    show ((p • g.1, p • g.2) : ZMod p × ZMod p) = 0
+    change ((p • g.1, p • g.2) : ZMod p × ZMod p) = 0
     simp [nsmul_eq_mul]
   have hcard : Nat.card (ZMod p × ZMod p) = p * p := by
     simp only [Nat.card_prod, Nat.card_zmod]
@@ -611,11 +644,11 @@ theorem kw_surgehgf4_hu5c_gcd_eq_one_of_isAddCyclic
   have hHker : H ≤ π.ker := by
     rw [← latticeOf_canonical_eq H, latticeOf, AddSubgroup.closure_le]
     rintro z (rfl | rfl)
-    · show π ((aOf H : ℤ), bOf H) = 0
+    · change π ((aOf H : ℤ), bOf H) = 0
       rw [hπapply]
       exact Prod.ext ((ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hpa)
         ((ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hpb)
-    · show π (0, (dOf H : ℤ)) = 0
+    · change π (0, (dOf H : ℤ)) = 0
       rw [hπapply]
       exact Prod.ext (by simp) ((ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hpd)
   have hmapsurj : Function.Surjective
@@ -649,11 +682,17 @@ section
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair UpperHalfPlane"
-p2m_open "PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial ModularCurve P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
+p2m_open_scoped "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair \
+  UpperHalfPlane"
+p2m_open "PeriodPair \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial \
+  ModularCurve \
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
+p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \
+  ModularPolynomialData.eval_eq_zero"
 p2m_open "ModularCurve"
 
 section Psi
@@ -793,6 +832,7 @@ theorem PeriodPair.exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic
     (hcyc : IsAddCyclic (PeriodPair.sublatticeQuotient L L')) :
     ∃ (a b d : ℕ) (τ σ : ℍ), (a, b, d) ∈ ModularCurve.primCosetReps N ∧
       (σ : ℂ) = ((a : ℂ) * τ + b) / d ∧
-      L.jLattice = (PeriodPair.ofTau τ).jLattice ∧ L'.jLattice = (PeriodPair.ofTau σ).jLattice := _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.solution L L' hsub hidx hcyc
+      L.jLattice = (PeriodPair.ofTau τ).jLattice ∧ L'.jLattice = (PeriodPair.ofTau σ).jLattice :=
+  solution L L' hsub hidx hcyc
 
 end publicSection

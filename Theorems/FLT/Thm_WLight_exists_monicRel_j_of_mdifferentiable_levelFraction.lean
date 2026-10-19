@@ -142,7 +142,6 @@ section AdjoinFacts
 variable {N : ℕ} [NeZero N] {jf : ℍ → ℂ} {fricke : (Fin 2 → ZMod N) → ℍ → ℂ}
 
 omit [NeZero N] in
-
 lemma map_castRingHom_eq_one {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ}
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) :
     ((Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod N)) γ :
@@ -151,7 +150,6 @@ lemma map_castRingHom_eq_one {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ}
   rw [hγ, Matrix.SpecialLinearGroup.coe_one]
 
 omit [NeZero N] in
-
 lemma mdiff_of_mem_adjoin
     (hjmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) jf)
     (hfmd : ∀ v : Fin 2 → ZMod N, v ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (fricke v))
@@ -169,7 +167,6 @@ lemma mdiff_of_mem_adjoin
   | mul x y _ _ ihx ihy => exact ihx.mul ihy
 
 omit [NeZero N] in
-
 lemma invariant_of_mem_adjoin
     (hjinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : ℍ), jf (γ • τ) = jf τ)
     (hfslash : ∀ (v : Fin 2 → ZMod N) (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : ℍ),
@@ -207,7 +204,6 @@ lemma mdiff_comp_smul {F : ℍ → ℂ} (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ
   rwa [h2] at h1
 
 variable (N) in
-
 def gammaOrbit (F : ℍ → ℂ)
     (hFinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, F ∘ (γ • ·) = F) :
     (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) → ℍ → ℂ :=
@@ -238,7 +234,6 @@ lemma gammaOrbit_one (F : ℍ → ℂ)
   simp [one_smul]
 
 variable (N) in
-
 def orbitPerm (γ₀ : Matrix.SpecialLinearGroup (Fin 2) ℤ) :
     Equiv.Perm (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) where
   toFun := Quotient.map (· * γ₀) (by
@@ -390,7 +385,7 @@ theorem orbitCoeff_slash_invariant
   obtain ⟨σ, hσ⟩ := hperm γ
   funext τ
   simp only [ModularForm.SL_slash_apply, neg_zero, zpow_zero, mul_one]
-  show (∏ i, (X - C (h i (γ • τ)))).coeff k = (∏ i, (X - C (h i τ))).coeff k
+  change (∏ i, (X - C (h i (γ • τ)))).coeff k = (∏ i, (X - C (h i τ))).coeff k
   congr 2
   calc ∏ i, (X - C (h i (γ • τ)))
       = ∏ i, (X - C (h (σ i) τ)) := by
@@ -523,7 +518,8 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
       have := congrFun h τ
       simpa [sub_eq_zero] using this
     · exact absurd h hb0
-  have : Fintype (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) := Fintype.ofFinite _
+  have : Fintype (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) :=
+    Fintype.ofFinite _
   set orb := gammaOrbit N F (fun γ hγ => hFinv γ hγ) with horb
   have hperm : ∀ γ : Matrix.SpecialLinearGroup (Fin 2) ℤ,
       ∃ σ : Equiv.Perm (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N),
@@ -643,6 +639,7 @@ theorem WLight.exists_monicRel_j_of_mdifferentiable_levelFraction
     (hpb : ∀ γ : SL(2, ℤ), ∃ m : ℕ,
       IsBoundedAtImInfty ((F ∘ (γ • ·)) * ModularForm.discriminant ^ m)) :
     ∃ (d : ℕ) (p : Fin d → Polynomial ℂ), ∀ τ : ℍ,
-      F τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * F τ ^ (i : ℕ) = 0 := _root_.P2MW.S_WLight_exists_monicRel_j_of_mdifferentiable_levelFraction.solution N L hL W hW fricke hfricke jf hjf ha hb hb0 hF hFb hpb
+      F τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * F τ ^ (i : ℕ) = 0 :=
+  solution N L hL W hW fricke hfricke jf hjf ha hb hb0 hF hFb hpb
 
 end publicSection

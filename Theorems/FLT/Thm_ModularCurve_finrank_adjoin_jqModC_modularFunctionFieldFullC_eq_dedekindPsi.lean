@@ -311,6 +311,7 @@ theorem ModularCurve.finrank_adjoin_jqModC_modularFunctionFieldFullC_eq_dedekind
     Module.finrank
         (IntermediateField.adjoin K
           ({⟨jqModC K, jqModC_mem_full K N⟩} : Set (modularFunctionFieldFullC K N)))
-        (modularFunctionFieldFullC K N) = dedekindPsi N := _root_.P2MW.S_ModularCurve_finrank_adjoin_jqModC_modularFunctionFieldFullC_eq_dedekindPsi.solution K N hN
+        (modularFunctionFieldFullC K N) = dedekindPsi N :=
+  solution K N hN
 
 end publicSection

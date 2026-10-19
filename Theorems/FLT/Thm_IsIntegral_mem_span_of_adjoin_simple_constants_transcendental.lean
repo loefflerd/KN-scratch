@@ -76,7 +76,6 @@ namespace WLightR8a
 variable {K : Type*} [Field K] [Algebra ℂ K]
 
 omit [Algebra ℂ K] in
-
 theorem isIntegral_subring_iff (T : Subring K) (y : K) :
     IsIntegral ↥T y ↔ ∃ p : K[X], p.Monic ∧ (∀ n, p.coeff n ∈ T) ∧ p.eval y = 0 := by
   constructor
@@ -93,7 +92,6 @@ theorem isIntegral_subring_iff (T : Subring K) (y : K) :
     rw [← Polynomial.eval_map, hq, hp]
 
 omit [Algebra ℂ K] in
-
 theorem isIntegral_subalgebra_iff {R₀ : Type*} [CommRing R₀] [Algebra R₀ K]
     (T : Subalgebra R₀ K) (y : K) :
     IsIntegral ↥T y ↔ ∃ p : K[X], p.Monic ∧ (∀ n, p.coeff n ∈ T) ∧ p.eval y = 0 := by
@@ -111,15 +109,14 @@ theorem isIntegral_subalgebra_iff {R₀ : Type*} [CommRing R₀] [Algebra R₀ K
     rw [← Polynomial.eval_map, hq, hp]
 
 omit [Algebra ℂ K] in
-
-theorem isIntegral_adjoin_iff_closure {R₀ : Type*} [CommRing R₀] [Algebra R₀ K] (B : Set K) (y : K) :
+theorem isIntegral_adjoin_iff_closure {R₀ : Type*} [CommRing R₀] [Algebra R₀ K] (B : Set K) (y : K)
+    :
     IsIntegral ↥(Algebra.adjoin R₀ B) y ↔
       IsIntegral ↥(Subring.closure (Set.range (algebraMap R₀ K) ∪ B)) y := by
   rw [isIntegral_subalgebra_iff, isIntegral_subring_iff]
   simp only [Algebra.mem_adjoin_iff]
 
 omit [Algebra ℂ K] in
-
 theorem isIntegral_of_isIntegral_adjoin_singleton {A : Type*} [CommRing A] [Algebra A K] {r z : K}
     (hr : IsIntegral A r) (hz : IsIntegral ↥(Algebra.adjoin A {r}) z) : IsIntegral A z := by
   have : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
@@ -241,7 +238,6 @@ theorem isFractionRing_RFa (ht : Transcendental ℂ t) (hSfin : S.Finite)
 end instances
 
 set_option synthInstance.maxHeartbeats 3200000 in
-
 theorem isIntegrallyClosed_RFa_polynomial (ht : Transcendental ℂ t) (hSfin : S.Finite)
     (hSint : ∀ s ∈ S, IsIntegral ↥(TRng F t) s) :
     IsIntegrallyClosed (Polynomial ↥(RFa F t S)) := by
@@ -282,7 +278,6 @@ theorem algebraMap_mem_RSet (z : ↥F) : algebraMap ↥F K z ∈ RSet F t S :=
 variable (c : ℂ)
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 def rfPolyEval : (↥(RFa F t S))[X] →+* K :=
   Polynomial.eval₂RingHom ((algebraMap ↥(KFldT F t S) K).comp (RFa F t S).val.toRingHom)
     (algebraMap ℂ K c)
@@ -307,7 +302,6 @@ theorem rfPolyEval_injective
   rw [hcomp]; exact h1.comp h2
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem isIntegral_KFldT_of (htS : t ∈ S) {y : K} (hyK : y ∈ KFld F S)
     (hyI : IsIntegral ↥(TRng F t) y) :
     IsIntegral ↥(TRng F t) (⟨y, (mem_KFldT_iff F t S htS y).mpr hyK⟩ : ↥(KFldT F t S)) := by
@@ -371,7 +365,6 @@ theorem range_rfPolyEval_subset_span (htS : t ∈ S) :
       exact (z.2 : IsIntegral ↥(TRng F t) (z : ↥(KFldT F t S))).algebraMap
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem exists_clear_denominator (htS : t ∈ S) {a : K}
     (ha : a ∈ Algebra.adjoin ↥(IntermediateField.adjoin ↥F {c}) ({t} : Set K)) :
     ∃ q : (↥F)[X], q ≠ 0 ∧
@@ -413,7 +406,6 @@ variable {F t}
 
 set_option synthInstance.maxHeartbeats 4000000 in
 set_option maxSynthPendingDepth 3 in
-
 theorem mem_span_RSet_of_adjoin_simple_transcendental
     (ht : Transcendental ℂ t) (htS : t ∈ S) (hSfin : S.Finite)
     (hSint : ∀ s ∈ S, IsIntegral ↥(TRng F t) s)
@@ -658,6 +650,7 @@ theorem IsIntegral.mem_span_of_adjoin_simple_constants_transcendental {K : Type*
     (hyB : IsIntegral ↥(Subring.closure
       (⇑(algebraMap ℂ K) '' (IntermediateField.adjoin ↥F {c} : Set ℂ) ∪ {t})) y) :
     y ∈ Submodule.span ℂ {z : K | z ∈ Subfield.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ S) ∧
-      IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ {t})) z} := _root_.P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental.solution F t ht S htS hSfin hSint c hc htc y hyS hyB
+      IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ K) '' (F : Set ℂ) ∪ {t})) z} :=
+  solution F t ht S htS hSfin hSint c hc htc y hyS hyB
 
 end publicSection

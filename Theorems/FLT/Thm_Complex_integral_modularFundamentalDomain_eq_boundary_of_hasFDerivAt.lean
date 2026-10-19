@@ -75,7 +75,12 @@ open MeasureTheory Set Filter Topology
 noncomputable section
 
 namespace Complex
-p2m_export "Complex" "re sqrt sin_pi_div_two real_smul hasDerivAt_cos im ofRealCLM mk_eq_add_mul_I sin measurableEquivRealProd_symm_apply norm_def sin_pi_sub volume_preserving_equiv_real_prod norm_I cos_pi_sub exp sin_sq cos_sq' exp_ofReal_mul_I_im integral_boundary_rect_of_hasFDerivAt_real_off_countable measurableEquivRealProd exp_ofReal_mul_I_re normSq_mk hasDerivAt_sin continuous_ofReal ext I continuous_sin I_mul_I cos continuous_cos"
+p2m_export "Complex" "re sqrt sin_pi_div_two real_smul hasDerivAt_cos im ofRealCLM mk_eq_add_mul_I \
+  sin measurableEquivRealProd_symm_apply norm_def sin_pi_sub volume_preserving_equiv_real_prod \
+  norm_I cos_pi_sub exp sin_sq cos_sq' exp_ofReal_mul_I_im \
+  integral_boundary_rect_of_hasFDerivAt_real_off_countable measurableEquivRealProd \
+  exp_ofReal_mul_I_re normSq_mk hasDerivAt_sin continuous_ofReal ext I continuous_sin I_mul_I cos \
+  continuous_cos"
 namespace GreenFD
 p2m_open "Complex"
 
@@ -256,7 +261,6 @@ lemma tendsto_const_mul_exp {δ : ℝ} (hδ : 0 < δ) (C : ℝ) :
   simpa using h1.const_mul C
 
 include hδ hDU hd hc hΦ hΦ' in
-
 lemma integral_vert {x : ℝ} (hx : |x| ≤ 1 / 2) :
     ∫ y in Ioi (h x), Φ' ⟨x, y⟩ I = -Φ ⟨x, h x⟩ := by
   obtain ⟨C, hC⟩ := hΦ
@@ -284,7 +288,6 @@ lemma integral_vert {x : ℝ} (hx : |x| ≤ 1 / 2) :
   rw [integral_Ioi_of_hasDerivAt_of_tendsto' hderiv hint hlim, zero_sub]
 
 include hd in
-
 lemma integral_horiz {a b y : ℝ} (hab : a ≤ b) (hmem : ∀ t ∈ Icc a b, (⟨t, y⟩ : ℂ) ∈ U)
     (hc : ContinuousOn Φ' U) :
     ∫ t in a..b, Φ' ⟨t, y⟩ 1 = Φ ⟨b, y⟩ - Φ ⟨a, y⟩ := by
@@ -370,7 +373,8 @@ lemma mem_D_neg_r {y : ℝ} (hy : Real.sqrt 3 / 2 ≤ y) (hy1 : y ≤ 1) : (⟨-
   refine mk_mem_D ?_ (by rw [h_neg]; exact (h_r hy0 hy1).le)
   rw [abs_neg, abs_of_nonneg (r_nonneg y)]; exact r_le_half hy
 
-lemma continuous_r : Continuous r := Real.continuous_sqrt.comp (continuous_const.sub (continuous_id.pow 2))
+lemma continuous_r :
+    Continuous r := Real.continuous_sqrt.comp (continuous_const.sub (continuous_id.pow 2))
 
 lemma continuous_mk2 : Continuous fun p : ℝ × ℝ => (⟨p.1, p.2⟩ : ℂ) := by
   simp [mk_eq]
@@ -389,7 +393,6 @@ lemma continuousOn_corr : ContinuousOn (corr Φ) (Icc (Real.sqrt 3 / 2) 1) := by
     exact fun y hy => hDU (mem_D_r hy.1 hy.2)
 
 include hδ hd hDU hΦ in
-
 lemma integrableOn_vert {x : ℝ} (hx : |x| ≤ 1 / 2) :
     IntegrableOn (fun y : ℝ => Φ ⟨x, y⟩) (Ioi (h x)) := by
   obtain ⟨C, hC⟩ := hΦ
@@ -403,7 +406,6 @@ lemma integrableOn_vert {x : ℝ} (hx : |x| ≤ 1 / 2) :
   exact (ae_restrict_iff' measurableSet_Ioi).mpr (Eventually.of_forall fun t ht => hC _ (hmem t ht))
 
 include hd hDU hc in
-
 lemma sliceIntegral {y : ℝ} (hy : Real.sqrt 3 / 2 < y) :
     ∫ x in {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y}, Φ' ⟨x, y⟩ 1 =
       (Φ ⟨1 / 2, y⟩ - Φ ⟨-(1 / 2), y⟩) + (Iic (1 : ℝ)).indicator (corr Φ) y := by
@@ -438,7 +440,6 @@ lemma sliceIntegral {y : ℝ} (hy : Real.sqrt 3 / 2 < y) :
     · simp [corr, r_one]
 
 include hδ hDU hd hc hΦ hΦ' in
-
 lemma integral_T_horiz :
     ∫ p in T, Φ' ⟨p.1, p.2⟩ 1 =
       ((∫ y in Ioi (Real.sqrt 3 / 2), Φ ⟨1 / 2, y⟩) - ∫ y in Ioi (Real.sqrt 3 / 2), Φ ⟨-(1 / 2), y⟩)
@@ -496,7 +497,6 @@ lemma integrableOn_T_apply (v : ℂ) : IntegrableOn (fun p : ℝ × ℝ => Φ' �
       _ = C' * ‖v‖ * Real.exp (-δ * p.2) := by ring
 
 include hδ hDU hd hc hΦ hΦ' in
-
 lemma integral_T_vert :
     ∫ p in T, Φ' ⟨p.1, p.2⟩ I = -∫ x in (-(1 / 2 : ℝ))..(1 / 2), Φ ⟨x, h x⟩ := by
   rw [setIntegral_T_eq_x_y (integrableOn_T_apply Φ' U δ hδ hDU hc hΦ' I),
@@ -577,7 +577,6 @@ lemma arc_sin :
     _ = _ := by rw [intervalIntegral.integral_neg, key, neg_neg]
 
 include hd hDU in
-
 lemma arc_cos :
     ∫ θ in (Real.pi / 3)..(2 * Real.pi / 3), Real.cos θ • Φ (γ θ) =
       -∫ y in (Real.sqrt 3 / 2)..1, corr Φ y := by
@@ -661,7 +660,6 @@ lemma arc_split :
   exact intervalIntegral.integral_congr fun θ _ => arc_integrand Φ θ
 
 include hδ hDU hd hc hΦ hΦ' in
-
 theorem main :
     (∫ z in D, (I • Φ' z 1 - Φ' z I)) =
       I • (∫ y in Ioi (Real.sqrt 3 / 2), Φ (1 / 2 + y * I))
@@ -725,6 +723,7 @@ theorem Complex.integral_modularFundamentalDomain_eq_boundary_of_hasFDerivAt
       Complex.I • (∫ y in Set.Ioi (Real.sqrt 3 / 2), Φ (1 / 2 + y * Complex.I))
         - Complex.I • (∫ y in Set.Ioi (Real.sqrt 3 / 2), Φ (-(1 / 2) + y * Complex.I))
         - ∫ θ in (Real.pi / 3)..(2 * Real.pi / 3),
-            Φ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ * Complex.I)) := _root_.P2MW.S_Complex_integral_modularFundamentalDomain_eq_boundary_of_hasFDerivAt.solution Φ Φ' U δ hδ hDU hd hc hΦ hΦ'
+            Φ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ * Complex.I)) :=
+  solution Φ Φ' U δ hδ hDU hd hc hΦ hΦ'
 
 end publicSection

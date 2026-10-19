@@ -73,22 +73,38 @@ namespace P2MW.S_AlgebraicCurve_tateAgreement
 
 section
 namespace IsLocalRing
-p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal residue_surjective of_injective residue"
+p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal \
+  residue_surjective of_injective residue"
 end IsLocalRing
 
 end
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion completionSection_nonempty_generic localResidue_eq_resStar"
+p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 \
+  Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion \
+  completionSection_nonempty_generic localResidue_eq_resStar"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum \
+  heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul \
+  ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring \
+  mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue \
+  localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers \
+  uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem \
+  poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 end Place
-p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion completionSection_nonempty_generic localResidue_eq_resStar"
+p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 \
+  Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion \
+  completionSection_nonempty_generic localResidue_eq_resStar"
 end AlgebraicCurve
 namespace AlgebraicGeometry
 p2m_export "AlgebraicGeometry" "Surjective IsIntegral"
 end AlgebraicGeometry
 namespace CategoryTheory
-p2m_export "CategoryTheory" "inclusion Quotient Injective exp Quotient.equiv comp_apply id_apply sum Quotient.mk"
+p2m_export "CategoryTheory" "inclusion Quotient Injective exp Quotient.equiv comp_apply id_apply \
+  sum Quotient.mk"
 namespace Limits
 p2m_export "CategoryTheory.Limits" "span ker"
 end Limits
@@ -97,49 +113,68 @@ namespace Classical
 p2m_export "Classical" "choose_spec em choose"
 end Classical
 namespace Filter
-p2m_export "Filter" "mem_bot ker eventually_atTop mk mem_comap map_top atTop mem_ker mem_sup mem_top comap unique map_mono map"
+p2m_export "Filter" "mem_bot ker eventually_atTop mk mem_comap map_top atTop mem_ker mem_sup \
+  mem_top comap unique map_mono map"
 end Filter
 namespace IntermediateField
-p2m_export "IntermediateField" "mk val lift inclusion ext algebraMap_apply smul_def mem_inf finiteDimensional_sup comap mem_top restrictScalars restrictScalars_top mem_bot map_mono restrict map"
+p2m_export "IntermediateField" "mk val lift inclusion ext algebraMap_apply smul_def mem_inf \
+  finiteDimensional_sup comap mem_top restrictScalars restrictScalars_top mem_bot map_mono \
+  restrict map"
 end IntermediateField
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.ext mk HeightOneSpectrum"
 namespace HeightOneSpectrum
-p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap intValuation_le_pow_iff_mem isMaximal mk mem_adicCompletionIntegers comap valuedAdicCompletion_eq_valuation' adicCompletion valuation adicCompletionIntegers valuedAdicCompletion_surjective mem_integers_of_valuation_le_one denseRange_algebraMap intValuation exists_ofAdd_natCast_lt completionIdeal adicCompletion.maximalIdeal_eq_span_uniformizer adicCompletion.mem_completionIdeal_pow"
+p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap \
+  intValuation_le_pow_iff_mem isMaximal mk mem_adicCompletionIntegers comap \
+  valuedAdicCompletion_eq_valuation' adicCompletion valuation adicCompletionIntegers \
+  valuedAdicCompletion_surjective mem_integers_of_valuation_le_one denseRange_algebraMap \
+  intValuation exists_ofAdd_natCast_lt completionIdeal \
+  adicCompletion.maximalIdeal_eq_span_uniformizer adicCompletion.mem_completionIdeal_pow"
 end HeightOneSpectrum
 end IsDedekindDomain
 namespace IsLocalRing
-p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal residue_surjective of_injective residue"
+p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal \
+  residue_surjective of_injective residue"
 end IsLocalRing
 namespace KaehlerDifferential
 p2m_export "KaehlerDifferential" "finite D map"
 end KaehlerDifferential
 namespace LinearMap
-p2m_export "LinearMap" "mulLeft_apply mem_range range sub_apply ker_eq_bot id range_comp codRestrict inr mulLeft ker_comp trace_comp_comm' mk coe_coe id_apply finiteDimensional_range ext comp trace quotKerEquivRange finiteDimensional range_comp_le_range single lsum restrictScalars ker mem_ker comp_apply trace_conj' mem_range_self restrict"
+p2m_export "LinearMap" "mulLeft_apply mem_range range sub_apply ker_eq_bot id range_comp \
+  codRestrict inr mulLeft ker_comp trace_comp_comm' mk coe_coe id_apply finiteDimensional_range \
+  ext comp trace quotKerEquivRange finiteDimensional range_comp_le_range single lsum \
+  restrictScalars ker mem_ker comp_apply trace_conj' mem_range_self restrict"
 end LinearMap
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 end KwF4gRRTate
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwNo6Pin
-p2m_export "ModularCurve.KwNo6Pin" "aCoeff aCoeff_zero aCoeff_add aCoeff_shift aCoeff_shift_pow clearedHat resStar aCoeff_clearedHat_of_le resStar_simplePole resStar_higherPoleMonomial"
+p2m_export "ModularCurve.KwNo6Pin" "aCoeff aCoeff_zero aCoeff_add aCoeff_shift aCoeff_shift_pow \
+  clearedHat resStar aCoeff_clearedHat_of_le resStar_simplePole resStar_higherPoleMonomial"
 end KwNo6Pin
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace Lg37
-p2m_export "ModularCurve.Lg37" "lg37_completion lg37_residueHat lg37_residueHat_algebraMap Lg37CompletionSection"
+p2m_export "ModularCurve.Lg37" "lg37_completion lg37_residueHat lg37_residueHat_algebraMap \
+  Lg37CompletionSection"
 end Lg37
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace Mp72a102T3
-p2m_export "ModularCurve.Mp72a102T3" "mp72a102_t3_evalₐ_zero_depth mp72a102_t3_evalₐ_factor mp72a102_t3_evalₐ_succ_mul_eq_zero mp72a102_t3_evalDepth_mul mp72a102_t3_sigma_taylor_expansion"
+p2m_export "ModularCurve.Mp72a102T3" "mp72a102_t3_evalₐ_zero_depth mp72a102_t3_evalₐ_factor \
+  mp72a102_t3_evalₐ_succ_mul_eq_zero mp72a102_t3_evalDepth_mul mp72a102_t3_sigma_taylor_expansion"
 end Mp72a102T3
 end ModularCurve
 namespace Module
-p2m_export "Module" "Injective support equiv Finite.equiv mk restrictScalars Finite.of_submodule_quotient mem_support_iff notMem_support_iff"
+p2m_export "Module" "Injective support equiv Finite.equiv mk restrictScalars \
+  Finite.of_submodule_quotient mem_support_iff notMem_support_iff"
 end Module
 namespace MonoidWithZeroHom
-p2m_export "MonoidWithZeroHom" "id_apply id ext mk ValueGroup₀ coe_coe comp_apply ValueGroup₀.embedding ValueGroup₀.embedding_strictMono comp inr"
+p2m_export "MonoidWithZeroHom" "id_apply id ext mk ValueGroup₀ coe_coe comp_apply \
+  ValueGroup₀.embedding ValueGroup₀.embedding_strictMono comp inr"
 end MonoidWithZeroHom
 namespace Mp72a103T2
 p2m_export "Mp72a103T2" "mp72a103_t2_taylor_coeff_eq_zero_of_depth"
@@ -157,30 +192,43 @@ namespace PadicInt
 p2m_export "PadicInt" "lift valuation coe_sub ext algebraMap_apply"
 end PadicInt
 namespace Polynomial
-p2m_export "Polynomial" "C support algebraMap_eq unique lsum ext_iff map comp sum coe_sub mem_support_iff notMem_support_iff erase algebraMap_apply ext ring"
+p2m_export "Polynomial" "C support algebraMap_eq unique lsum ext_iff map comp sum coe_sub \
+  mem_support_iff notMem_support_iff erase algebraMap_apply ext ring"
 end Polynomial
 namespace Submodule
-p2m_export "Submodule" "quotEquivOfEq inclusion mem_sup_right map_top smul_mem' mk mem_bot coe_mem Quotient.mk span restrictScalars projectionOnto_apply_left restrictScalars_top mem_closure_iff Quotient.restrictScalarsEquiv mem_comap injective_subtype mem_top Quotient.equiv mem_span_singleton mkQ map_mono map_smul' equivMapOfInjective zero map_add_le quotientQuotientEquivQuotient range_subtype disjoint_def Quotient.mk_surjective restrictScalars_mono map mem_inf inclusion_apply mem_sup Quotient.mk_eq_zero exists_isCompl projectionOnto finiteDimensional_of_le smul_def mk_eq_zero restrictScalarsEquiv mkQ_apply ext factor_mk subtype_apply ker_mkQ comap factorPow finiteDimensional_sup projectionOnto_apply_right liftQ mem_sup_left restrictScalars_mem"
+p2m_export "Submodule" "quotEquivOfEq inclusion mem_sup_right map_top smul_mem' mk mem_bot coe_mem \
+  Quotient.mk span restrictScalars projectionOnto_apply_left restrictScalars_top mem_closure_iff \
+  Quotient.restrictScalarsEquiv mem_comap injective_subtype mem_top Quotient.equiv \
+  mem_span_singleton mkQ map_mono map_smul' equivMapOfInjective zero map_add_le \
+  quotientQuotientEquivQuotient range_subtype disjoint_def Quotient.mk_surjective \
+  restrictScalars_mono map mem_inf inclusion_apply mem_sup Quotient.mk_eq_zero exists_isCompl \
+  projectionOnto finiteDimensional_of_le smul_def mk_eq_zero restrictScalarsEquiv mkQ_apply ext \
+  factor_mk subtype_apply ker_mkQ comap factorPow finiteDimensional_sup projectionOnto_apply_right \
+  liftQ mem_sup_left restrictScalars_mem"
 end Submodule
 namespace TensorProduct
 p2m_export "TensorProduct" "congr lift mk ext map Algebra.smul_def mk_surjective"
 end TensorProduct
 namespace WithZero
-p2m_export "WithZero" "map exp_lt_exp exp_eq_coe_ofAdd exp_neg coe exp_ne_zero exp exp_zero exp_add lift le exp_nsmul exp_le_exp exp_log"
+p2m_export "WithZero" "map exp_lt_exp exp_eq_coe_ofAdd exp_neg coe exp_ne_zero exp exp_zero \
+  exp_add lift le exp_nsmul exp_le_exp exp_log"
 end WithZero
 
 section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 
 noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 end KwF4gRRTate
 end ModularCurve
 
@@ -190,16 +238,28 @@ end
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion completionSection_nonempty_generic localResidue_eq_resStar"
+p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 \
+  Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion \
+  completionSection_nonempty_generic localResidue_eq_resStar"
 p2m_open "AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum \
+  heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul \
+  ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring \
+  mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue \
+  localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers \
+  uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem \
+  poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 end Place
 
 namespace Divisor
@@ -211,7 +271,13 @@ p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
 end Pic0
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum \
+  heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul \
+  ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring \
+  mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue \
+  localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers \
+  uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem \
+  poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 end Place
 
 namespace Divisor
@@ -223,7 +289,13 @@ p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
 end Pic0
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum \
+  heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul \
+  ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring \
+  mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue \
+  localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers \
+  uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem \
+  poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 end Place
 
 end AlgebraicCurve
@@ -232,14 +304,26 @@ end
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion completionSection_nonempty_generic localResidue_eq_resStar"
+p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 \
+  Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion \
+  completionSection_nonempty_generic localResidue_eq_resStar"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum \
+  heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul \
+  ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring \
+  mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue \
+  localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers \
+  uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem \
+  poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 p2m_open "AlgebraicCurve.Place"
 
 section SinglePlace
@@ -259,9 +343,13 @@ end
 
 section
 
-p2m_open_scoped "Multiplicative P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
+p2m_open_scoped "Multiplicative P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum MonoidWithZeroHom P2MW.S_AlgebraicCurve_tateAgreement.MonoidWithZeroHom"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum MonoidWithZeroHom \
+  P2MW.S_AlgebraicCurve_tateAgreement.MonoidWithZeroHom"
 
 namespace MazurTorsion
 
@@ -282,7 +370,6 @@ theorem isClosed_setOf_valued_le (γ : ℤᵐ⁰) :
   rw [Valuation.restrict_le_iff, hz]
 
 set_option synthInstance.maxHeartbeats 1600000 in
-
 scoped instance instIsAdicCompleteCompletionIdealAdicCompletionIntegers :
     IsAdicComplete (v.completionIdeal K) (v.adicCompletionIntegers K) where
   haus' x hx := by
@@ -328,7 +415,7 @@ scoped instance instIsAdicCompleteCompletionIdealAdicCompletionIntegers :
           rw [WithZero.exp_le_exp]
           omega
         exact lt_of_le_of_lt (h1.trans h2) hk
-      show ((Valued.v : Valuation (v.adicCompletion K) ℤᵐ⁰).restrict
+      change ((Valued.v : Valuation (v.adicCompletion K) ℤᵐ⁰).restrict
         ((f n).val - (f m).val)) < γ.val
       rw [Valuation.restrict_lt_iff_lt_embedding]
       rcases le_total m n with hmn | hnm
@@ -384,12 +471,27 @@ section
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero MonoidWithZeroHom P2MW.S_AlgebraicCurve_tateAgreement.MonoidWithZeroHom"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero MonoidWithZeroHom \
+  P2MW.S_AlgebraicCurve_tateAgreement.MonoidWithZeroHom"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion completionSection_nonempty_generic localResidue_eq_resStar"
+p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 \
+  Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion \
+  completionSection_nonempty_generic localResidue_eq_resStar"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum \
+  heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul \
+  ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring \
+  mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue \
+  localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers \
+  uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem \
+  poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 section Henselian
@@ -413,12 +515,15 @@ section
 set_option linter.unusedSectionVars false
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero Module P2MW.S_AlgebraicCurve_tateAgreement.Module IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero Module P2MW.S_AlgebraicCurve_tateAgreement.Module \
+  IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace Lg37
-p2m_export "ModularCurve.Lg37" "lg37_completion lg37_residueHat lg37_residueHat_algebraMap Lg37CompletionSection"
+p2m_export "ModularCurve.Lg37" "lg37_completion lg37_residueHat lg37_residueHat_algebraMap \
+  Lg37CompletionSection"
 end Lg37
 end ModularCurve
 end
@@ -429,7 +534,9 @@ section
 set_option linter.unusedSectionVars false
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Polynomial \
+  P2MW.S_AlgebraicCurve_tateAgreement.Polynomial"
 
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial"
 
@@ -437,8 +544,11 @@ namespace Mp72a103T2
 p2m_export "Mp72a103T2" "mp72a103_t2_taylor_coeff_eq_zero_of_depth"
 p2m_open "Mp72a103T2"
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
-p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.RationalFunctionField AlgebraicCurve.RationalFunctionField \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
+p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3"
 p2m_open "Mp72a102T2 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a102T2"
 
 section Calculus
@@ -475,12 +585,19 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.GF24a9RRDx AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.GF24a9RRDx AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place IsDedekindDomain \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain"
 
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion completionSection_nonempty_generic localResidue_eq_resStar"
+p2m_export "AlgebraicCurve" "Place Place.FiniteResidue Place.ord Divisor HasPrincipalDivisors Pic0 \
+  Place.FiniteResidue.finite IsCurveOver HasCanonicalLocalResidueKStar \
+  kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kwHgfV352_localResidueCompletion \
+  completionSection_nonempty_generic localResidue_eq_resStar"
 p2m_open "AlgebraicCurve"
 
 section LocalResidueCompletion
@@ -545,7 +662,10 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -553,7 +673,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section TateProj
@@ -600,16 +722,24 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
 
 noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section PoleWindow
@@ -618,7 +748,7 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
 
 def poleWindowKSubmod (πh : u.adicCompletionIntegers) (M : ℕ) :
     Submodule K u.adicCompletion where
-  carrier := {x | (πh : u.adicCompletion)^M * x ∈ u.adicCompletionIntegers}
+  carrier := {x | (πh : u.adicCompletion) ^ M * x ∈ u.adicCompletionIntegers}
   add_mem' {a b} ha hb := by
     simp only [Set.mem_ofPred_eq, mul_add] at ha hb ⊢; exact add_mem ha hb
   zero_mem' := by simp only [Set.mem_ofPred_eq, mul_zero]; exact zero_mem _
@@ -630,7 +760,7 @@ def poleWindowKSubmod (πh : u.adicCompletionIntegers) (M : ℕ) :
 
 theorem mem_poleWindowKSubmod_iff (πh : u.adicCompletionIntegers) (M : ℕ)
     (x : u.adicCompletion) :
-    x ∈ poleWindowKSubmod u πh M ↔ (πh : u.adicCompletion)^M * x ∈ u.adicCompletionIntegers :=
+    x ∈ poleWindowKSubmod u πh M ↔ (πh : u.adicCompletion) ^ M * x ∈ u.adicCompletionIntegers :=
   Iff.rfl
 
 theorem adicIntegersKSubmod_le_poleWindowKSubmod (πh : u.adicCompletionIntegers) (M : ℕ) :
@@ -639,7 +769,7 @@ theorem adicIntegersKSubmod_le_poleWindowKSubmod (πh : u.adicCompletionIntegers
 
 theorem kwF4gRRTate_clearPole (πh : u.adicCompletionIntegers) (hπh : Irreducible πh)
     (fh : u.adicCompletion) :
-    ∃ M : ℕ, (πh : u.adicCompletion)^M * fh ∈ u.adicCompletionIntegers := by
+    ∃ M : ℕ, (πh : u.adicCompletion) ^ M * fh ∈ u.adicCompletionIntegers := by
   obtain ⟨a, b, hb, hfh⟩ := IsFractionRing.div_surjective
     (A := u.adicCompletionIntegers) (K := u.adicCompletion) fh
   have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
@@ -655,7 +785,7 @@ theorem kwF4gRRTate_clearPole (πh : u.adicCompletionIntegers) (hπh : Irreducib
     rw [hbeq, ← mul_assoc, ← Units.val_mul, inv_mul_cancel, Units.val_one, one_mul]
   have hπheqK : ((((ub⁻¹ : u.adicCompletionIntegersˣ) : u.adicCompletionIntegers)
         : u.adicCompletion)) * (b : u.adicCompletion)
-      = (πh : u.adicCompletion)^M := by
+      = (πh : u.adicCompletion) ^ M := by
     have := congrArg (algebraMap u.adicCompletionIntegers u.adicCompletion) hπheq
     simp only [map_mul, map_pow] at this
     exact this
@@ -663,7 +793,6 @@ theorem kwF4gRRTate_clearPole (πh : u.adicCompletionIntegers) (hπh : Irreducib
   exact mul_mem (Subtype.coe_prop _) a.2
 
 variable (K L) in
-
 def KwF4gRRTatePoleWindowFinite : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue] (πh : u.adicCompletionIntegers) (_ : Irreducible πh)
     (M : ℕ),
@@ -679,20 +808,28 @@ end
 
 section
 
-p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero Multiplicative P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
+p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero Multiplicative \
+  P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative Topology \
+  P2MW.S_AlgebraicCurve_tateAgreement.Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateAgreement.Filter"
 
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.ext mk HeightOneSpectrum"
 namespace HeightOneSpectrum
-p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap intValuation_le_pow_iff_mem isMaximal mk mem_adicCompletionIntegers comap valuedAdicCompletion_eq_valuation' adicCompletion valuation adicCompletionIntegers valuedAdicCompletion_surjective mem_integers_of_valuation_le_one denseRange_algebraMap intValuation exists_ofAdd_natCast_lt completionIdeal adicCompletion.maximalIdeal_eq_span_uniformizer adicCompletion.mem_completionIdeal_pow"
+p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap \
+  intValuation_le_pow_iff_mem isMaximal mk mem_adicCompletionIntegers comap \
+  valuedAdicCompletion_eq_valuation' adicCompletion valuation adicCompletionIntegers \
+  valuedAdicCompletion_surjective mem_integers_of_valuation_le_one denseRange_algebraMap \
+  intValuation exists_ofAdd_natCast_lt completionIdeal \
+  adicCompletion.maximalIdeal_eq_span_uniformizer adicCompletion.mem_completionIdeal_pow"
 p2m_open "IsDedekindDomain.HeightOneSpectrum IsDedekindDomain"
 
 variable {A : Type*} (K : Type*) [CommRing A] [Field K] [Algebra A K] [IsFractionRing A K]
     [IsDedekindDomain A] (v : HeightOneSpectrum A)
 
 namespace adicCompletion
-p2m_export "IsDedekindDomain.HeightOneSpectrum.adicCompletion" "uniformizer_ne_zero maximalIdeal_eq_span_uniformizer mem_completionIdeal_pow"
+p2m_export "IsDedekindDomain.HeightOneSpectrum.adicCompletion" "uniformizer_ne_zero \
+  maximalIdeal_eq_span_uniformizer mem_completionIdeal_pow"
 p2m_open "IsDedekindDomain.HeightOneSpectrum.adicCompletion"
 
 local notation "vK" => (Valued.v : Valuation (v.adicCompletion K) ℤᵐ⁰)
@@ -721,8 +858,14 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
-p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
+p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
@@ -835,7 +978,7 @@ theorem kwF4R1V410a_quotientEquiv_factorPow {m n : ℕ} (hle : m ≤ n)
     kwF4R1V410a_quotientEquiv_mk]
 
 def kwF4R1V410a_forwardFamily (n : ℕ) :
-    lg37_completion w →+* (O_W) ⧸ (𝔪_W)^n :=
+    lg37_completion w →+* (O_W) ⧸ (𝔪_W) ^ n :=
   RingHom.comp ((kwF4R1V410a_quotientEquiv w n).toRingHom)
     ((AdicCompletion.evalₐ (𝔪_w) n).toRingHom)
 
@@ -843,7 +986,7 @@ theorem kwF4R1V410a_forwardFamily_compat {m n : ℕ} (hle : m ≤ n) :
     (Ideal.Quotient.factorPow (𝔪_W) hle).comp (kwF4R1V410a_forwardFamily w n)
       = kwF4R1V410a_forwardFamily w m := by
   refine RingHom.ext fun z => ?_
-  show Ideal.Quotient.factorPow (𝔪_W) hle
+  change Ideal.Quotient.factorPow (𝔪_W) hle
       (kwF4R1V410a_quotientEquiv w n (AdicCompletion.evalₐ (𝔪_w) n z))
     = kwF4R1V410a_quotientEquiv w m (AdicCompletion.evalₐ (𝔪_w) m z)
   rw [kwF4R1V410a_quotientEquiv_factorPow w hle, kwF4R1V410a_factorPow_evalₐ hle z]
@@ -854,23 +997,23 @@ def kwF4R1V410a_forward : lg37_completion w →+* (O_W) :=
     (kwF4R1V410a_forwardFamily_compat w)
 
 theorem kwF4R1V410a_mk_forward (n : ℕ) (z : lg37_completion w) :
-    Ideal.Quotient.mk ((𝔪_W)^n) (kwF4R1V410a_forward w z)
+    Ideal.Quotient.mk ((𝔪_W) ^ n) (kwF4R1V410a_forward w z)
       = kwF4R1V410a_quotientEquiv w n (AdicCompletion.evalₐ (𝔪_w) n z) := by
   have := kw_ffgc_isAdicComplete_placeAdicCompletionIntegers w
   exact IsAdicComplete.mk_liftRingHom (𝔪_W) (kwF4R1V410a_forwardFamily w)
     (kwF4R1V410a_forwardFamily_compat w) n z
 
-def kwF4R1V410a_backwardFamily (n : ℕ) : (O_W) →+* (O_w) ⧸ (𝔪_w)^n :=
+def kwF4R1V410a_backwardFamily (n : ℕ) : (O_W) →+* (O_w) ⧸ (𝔪_w) ^ n :=
   RingHom.comp ((kwF4R1V410a_quotientEquiv w n).symm.toRingHom)
-    (Ideal.Quotient.mk ((𝔪_W)^n))
+    (Ideal.Quotient.mk ((𝔪_W) ^ n))
 
 theorem kwF4R1V410a_backwardFamily_compat {m n : ℕ} (hle : m ≤ n) :
     (Ideal.Quotient.factorPow (𝔪_w) hle).comp (kwF4R1V410a_backwardFamily w n)
       = kwF4R1V410a_backwardFamily w m := by
   refine RingHom.ext fun y => ?_
-  show Ideal.Quotient.factorPow (𝔪_w) hle
-      ((kwF4R1V410a_quotientEquiv w n).symm (Ideal.Quotient.mk ((𝔪_W)^n) y))
-    = (kwF4R1V410a_quotientEquiv w m).symm (Ideal.Quotient.mk ((𝔪_W)^m) y)
+  change Ideal.Quotient.factorPow (𝔪_w) hle
+      ((kwF4R1V410a_quotientEquiv w n).symm (Ideal.Quotient.mk ((𝔪_W) ^ n) y))
+    = (kwF4R1V410a_quotientEquiv w m).symm (Ideal.Quotient.mk ((𝔪_W) ^ m) y)
   apply (kwF4R1V410a_quotientEquiv w m).injective
   rw [RingEquiv.apply_symm_apply, ← kwF4R1V410a_quotientEquiv_factorPow w hle,
     RingEquiv.apply_symm_apply, Ideal.Quotient.factor_mk]
@@ -881,7 +1024,7 @@ def kwF4R1V410a_backward : (O_W) →+* lg37_completion w :=
 
 theorem kwF4R1V410a_evalₐ_backward (n : ℕ) (y : O_W) :
     AdicCompletion.evalₐ (𝔪_w) n (kwF4R1V410a_backward w y)
-      = (kwF4R1V410a_quotientEquiv w n).symm (Ideal.Quotient.mk ((𝔪_W)^n) y) :=
+      = (kwF4R1V410a_quotientEquiv w n).symm (Ideal.Quotient.mk ((𝔪_W) ^ n) y) :=
   AdicCompletion.evalₐ_liftRingHom (𝔪_w) (kwF4R1V410a_backwardFamily w)
     (kwF4R1V410a_backwardFamily_compat w) n y
 
@@ -930,16 +1073,25 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
 
 noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section PoleWindowShift
@@ -953,13 +1105,13 @@ theorem coe_smul_K (c : K) (x : u.adicCompletionIntegers) :
 
 def poleWindowShift (πh : u.adicCompletionIntegers) (M : ℕ) :
     poleWindowKSubmod u πh M →ₗ[K] u.adicCompletionIntegers where
-  toFun x := ⟨(πh : u.adicCompletion)^M * (x : u.adicCompletion), x.2⟩
+  toFun x := ⟨(πh : u.adicCompletion) ^ M * (x : u.adicCompletion), x.2⟩
   map_add' x y := by apply Subtype.ext; push_cast; ring
   map_smul' c x := by
     apply Subtype.ext
     rw [coe_smul_K]
-    show (πh : u.adicCompletion)^M * (c • (x : u.adicCompletion))
-        = c • ((πh : u.adicCompletion)^M * (x : u.adicCompletion))
+    change (πh : u.adicCompletion) ^ M * (c • (x : u.adicCompletion))
+        = c • ((πh : u.adicCompletion) ^ M * (x : u.adicCompletion))
     rw [mul_smul_comm]
 
 theorem poleWindowShift_injective (πh : u.adicCompletionIntegers) (hπh : Irreducible πh)
@@ -967,7 +1119,7 @@ theorem poleWindowShift_injective (πh : u.adicCompletionIntegers) (hπh : Irred
   rw [← LinearMap.ker_eq_bot, eq_bot_iff]
   intro x hx
   rw [LinearMap.mem_ker] at hx
-  have hπhM0 : (πh : u.adicCompletion)^M ≠ 0 := by
+  have hπhM0 : (πh : u.adicCompletion) ^ M ≠ 0 := by
     refine pow_ne_zero M ?_
     intro hz
     exact hπh.ne_zero (Subtype.ext hz)
@@ -980,13 +1132,13 @@ theorem poleWindowShift_injective (πh : u.adicCompletionIntegers) (hπh : Irred
 theorem poleWindowShift_surjective (πh : u.adicCompletionIntegers) (hπh : Irreducible πh)
     (M : ℕ) : Function.Surjective (poleWindowShift u πh M) := by
   intro y
-  have hπhM0 : (πh : u.adicCompletion)^M ≠ 0 := by
+  have hπhM0 : (πh : u.adicCompletion) ^ M ≠ 0 := by
     refine pow_ne_zero M ?_
     intro hz; exact hπh.ne_zero (Subtype.ext hz)
-  refine ⟨⟨(y : u.adicCompletion) / (πh : u.adicCompletion)^M, ?_⟩, ?_⟩
+  refine ⟨⟨(y : u.adicCompletion) / (πh : u.adicCompletion) ^ M, ?_⟩, ?_⟩
   · rw [mem_poleWindowKSubmod_iff, mul_div_cancel₀ _ hπhM0]; exact y.2
   · apply Subtype.ext
-    show (πh : u.adicCompletion)^M * ((y : u.adicCompletion) / (πh : u.adicCompletion)^M)
+    change (πh : u.adicCompletion) ^ M * ((y : u.adicCompletion) / (πh : u.adicCompletion) ^ M)
         = (y : u.adicCompletion)
     rw [mul_div_cancel₀ _ hπhM0]
 
@@ -997,7 +1149,7 @@ def poleWindowShiftEquiv (πh : u.adicCompletionIntegers) (hπh : Irreducible π
 
 def piPowKSubmod (πh : u.adicCompletionIntegers) (M : ℕ) :
     Submodule K u.adicCompletionIntegers where
-  carrier := {y | ∃ x : u.adicCompletionIntegers, y = πh^M * x}
+  carrier := {y | ∃ x : u.adicCompletionIntegers, y = πh ^ M * x}
   add_mem' := by rintro a b ⟨xa, rfl⟩ ⟨xb, rfl⟩; exact ⟨xa + xb, by ring⟩
   zero_mem' := ⟨0, by ring⟩
   smul_mem' c y := by
@@ -1019,7 +1171,6 @@ theorem poleWindowShift_image_integers (πh : u.adicCompletionIntegers) (M : ℕ
     apply Subtype.ext; push_cast; rfl
 
 variable (K L) in
-
 def KwF4gRRTateDVRQuotPowKFinite : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue] (πh : u.adicCompletionIntegers) (_ : Irreducible πh)
     (M : ℕ),
@@ -1048,7 +1199,10 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1056,7 +1210,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section AgreementReduce
@@ -1078,9 +1234,9 @@ theorem tateCommRestrict_single_term
   have haInt : (a : u.adicCompletion) ∈ u.adicCompletionIntegers :=
     (range_tateProj u ▸ a.2 : (a : u.adicCompletion) ∈ adicIntegersKSubmod u)
   have hcomm : lmulK u fh ∘ₗ lmulK u gh = lmulK u gh ∘ₗ lmulK u fh := by
-    refine LinearMap.ext fun x => ?_; show fh * (gh * x) = gh * (fh * x); ring
+    refine LinearMap.ext fun x => ?_; change fh * (gh * x) = gh * (fh * x); ring
   rw [tateCommRestrict_apply, tateComm_eq_of_commute hcomm]
-  show tateProj u (gh * (fh * ↑a - tateProj u (fh * ↑a)))
+  change tateProj u (gh * (fh * ↑a - tateProj u (fh * ↑a)))
       - tateProj u (fh * (gh * ↑a - tateProj u (gh * ↑a)))
     = tateProj u (gh * (fh * ↑a - tateProj u (fh * ↑a)))
   rw [principalPart_mul_zero_of_mem_integers u hgh haInt, mul_zero, _root_.map_zero, sub_zero]
@@ -1095,7 +1251,10 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1103,7 +1262,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section FinrankTraceCyclicity
@@ -1140,7 +1301,10 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1148,7 +1312,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section DeltaLemmas
@@ -1227,7 +1393,7 @@ theorem tateCommRestrict_diff
     rw [range_tateProj u]; exact hx
   rw [tateCommRestrict_single_term u hgh fh a]
   have hcomm : lmulK u fh ∘ₗ lmulK u gh = lmulK u gh ∘ₗ lmulK u fh := by
-    refine LinearMap.ext fun x => ?_; show fh * (gh * x) = gh * (fh * x); ring
+    refine LinearMap.ext fun x => ?_; change fh * (gh * x) = gh * (fh * x); ring
   have hghaP : gh * (a : u.adicCompletion) ∈ LinearMap.range (tateProj u) :=
     hmemP_of_O (mul_mem hgh haO)
   have hpA'_gha : pA' (gh * (a : u.adicCompletion)) = gh * (a : u.adicCompletion) :=
@@ -1237,7 +1403,7 @@ theorem tateCommRestrict_diff
       = pA' (gh * (fh * (a : u.adicCompletion)
           - pA' (fh * (a : u.adicCompletion)))) := by
     rw [tateComm_eq_of_commute hcomm]
-    show pA' (gh * (fh * ↑a - pA' (fh * ↑a)))
+    change pA' (gh * (fh * ↑a - pA' (fh * ↑a)))
         - pA' (fh * (gh * ↑a - pA' (gh * ↑a)))
       = pA' (gh * (fh * ↑a - pA' (fh * ↑a)))
     rw [hpA'_gha, sub_self, mul_zero, _root_.map_zero, sub_zero]
@@ -1267,7 +1433,10 @@ section
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1275,7 +1444,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section TraceOnSuperspace
@@ -1343,16 +1514,24 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
 
 noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section DVRQuotDischarge
@@ -1361,19 +1540,18 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
 
 theorem piPowKSubmod_eq_restrictScalars (πh : u.adicCompletionIntegers) (M : ℕ) :
     piPowKSubmod u πh M
-      = (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers).restrictScalars K := by
+      = (Ideal.span {πh ^ M} : Ideal u.adicCompletionIntegers).restrictScalars K := by
   ext y
   rw [Submodule.restrictScalars_mem, Ideal.mem_span_singleton]
   exact ⟨fun ⟨x, h⟩ => ⟨x, h⟩, fun ⟨x, h⟩ => ⟨x, h⟩⟩
 
 def quotPiPowEquivIdealQuot (πh : u.adicCompletionIntegers) (M : ℕ) :
     (u.adicCompletionIntegers ⧸ piPowKSubmod u πh M)
-      ≃ₗ[K] (u.adicCompletionIntegers ⧸ (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers)) :=
+      ≃ₗ[K] (u.adicCompletionIntegers ⧸ (Ideal.span {πh ^ M} : Ideal u.adicCompletionIntegers)) :=
   (Submodule.quotEquivOfEq _ _ (piPowKSubmod_eq_restrictScalars u πh M)).trans
     (Submodule.Quotient.restrictScalarsEquiv K _)
 
 variable (K L) in
-
 def KwF4gRRTateDVRCotangentKFinite : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue] (πh : u.adicCompletionIntegers) (_ : Irreducible πh),
     FiniteDimensional K
@@ -1391,34 +1569,34 @@ theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
     (hCot : KwF4gRRTateDVRCotangentKFinite K L)
     (πh : u.adicCompletionIntegers) (hπh : Irreducible πh) (M : ℕ) :
     FiniteDimensional K (u.adicCompletionIntegers ⧸
-      (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers).restrictScalars K) := by
+      (Ideal.span {πh ^ M} : Ideal u.adicCompletionIntegers).restrictScalars K) := by
   induction M with
   | zero =>
     rw [pow_zero, Ideal.span_singleton_one, Submodule.restrictScalars_top]
     infer_instance
   | succ M ih =>
-    have hle : (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers)
-        ≤ Ideal.span {πh^M} := by
+    have hle : (Ideal.span {πh ^ (M+1)} : Ideal u.adicCompletionIntegers)
+        ≤ Ideal.span {πh ^ M} := by
       rw [Ideal.span_singleton_le_span_singleton, pow_succ]; exact ⟨πh, rfl⟩
-    have hle' : (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K
-        ≤ (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers).restrictScalars K :=
+    have hle' : (Ideal.span {πh ^ (M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K
+        ≤ (Ideal.span {πh ^ M} : Ideal u.adicCompletionIntegers).restrictScalars K :=
       Submodule.restrictScalars_mono K hle
     set N : Submodule K (u.adicCompletionIntegers ⧸
-        (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
-      (Submodule.restrictScalars K (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers)).map
-        (Submodule.restrictScalars K (Ideal.span {πh^(M+1)} : Ideal _)).mkQ with hN_def
+        (Ideal.span {πh ^ (M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
+      (Submodule.restrictScalars K (Ideal.span {πh ^ M} : Ideal u.adicCompletionIntegers)).map
+        (Submodule.restrictScalars K (Ideal.span {πh ^ (M+1)} : Ideal _)).mkQ with hN_def
     have hquot : FiniteDimensional K
         ((u.adicCompletionIntegers ⧸
-          (Ideal.span {πh^(M+1)} : Ideal _).restrictScalars K) ⧸ N) := by
+          (Ideal.span {πh ^ (M+1)} : Ideal _).restrictScalars K) ⧸ N) := by
       have := ih
       exact Module.Finite.equiv
         (Submodule.quotientQuotientEquivQuotient _ _ hle').symm
     have hN : FiniteDimensional K N := by
       set φ : u.adicCompletionIntegers →ₗ[K] (u.adicCompletionIntegers ⧸
-          (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
+          (Ideal.span {πh ^ (M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
         (Submodule.restrictScalars K
-            (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers)).mkQ ∘ₗ
-          LinearMap.mulLeft K (πh^M) with hφ_def
+            (Ideal.span {πh ^ (M+1)} : Ideal u.adicCompletionIntegers)).mkQ ∘ₗ
+          LinearMap.mulLeft K (πh ^ M) with hφ_def
       have hrange : LinearMap.range φ = N := by
         rw [hφ_def, LinearMap.range_comp, range_mulLeft_eq_restrictScalars_span, hN_def]
       have hker : LinearMap.ker φ
@@ -1427,7 +1605,7 @@ theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
         ext x
         simp only [Submodule.mem_comap, LinearMap.mulLeft_apply, Submodule.restrictScalars_mem,
           Ideal.mem_span_singleton]
-        have hπM : (πh : u.adicCompletionIntegers)^M ≠ 0 := pow_ne_zero M hπh.ne_zero
+        have hπM : (πh : u.adicCompletionIntegers) ^ M ≠ 0 := pow_ne_zero M hπh.ne_zero
         constructor
         · rintro ⟨c, hc⟩
           exact ⟨c, mul_left_cancel₀ hπM (by rw [hc, pow_succ, mul_assoc])⟩
@@ -1453,7 +1631,7 @@ theorem finiteDimensional_idealQuot_pow [u.FiniteResidue]
     (hCot : KwF4gRRTateDVRCotangentKFinite K L)
     (πh : u.adicCompletionIntegers) (hπh : Irreducible πh) (M : ℕ) :
     FiniteDimensional K
-      (u.adicCompletionIntegers ⧸ (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers)) := by
+      (u.adicCompletionIntegers ⧸ (Ideal.span {πh ^ M} : Ideal u.adicCompletionIntegers)) := by
   have := finiteDimensional_restrictScalarsQuot_pow u hCot πh hπh M
   exact Module.Finite.equiv (Submodule.Quotient.restrictScalarsEquiv K _)
 
@@ -1474,16 +1652,25 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
 
 noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section DVRCotangentDischarge
@@ -1494,7 +1681,7 @@ scoped instance instIsScalarTower_K_toValuationSubring_adicCompletionIntegers :
     IsScalarTower K u.toValuationSubring u.adicCompletionIntegers := by
   refine IsScalarTower.of_algebraMap_eq fun k => ?_
   apply Subtype.ext
-  show algebraMap K u.adicCompletion k
+  change algebraMap K u.adicCompletion k
     = (algebraMap u.toValuationSubring u.adicCompletionIntegers (algebraMap K _ k)).val
   rw [IsScalarTower.algebraMap_apply K L u.adicCompletion]
   rfl
@@ -1510,7 +1697,7 @@ def quotientEquivKAlg (n : ℕ) :
       ≃ₐ[K] (u.adicCompletionIntegers ⧸ (u.heightOneSpectrum.completionIdeal L) ^ n) :=
   { kwF4R1V410a_quotientEquiv u n with
     commutes' := fun k => by
-      show kwF4R1V410a_quotientEquiv u n (algebraMap K _ k) = algebraMap K _ k
+      change kwF4R1V410a_quotientEquiv u n (algebraMap K _ k) = algebraMap K _ k
       rw [IsScalarTower.algebraMap_apply K u.toValuationSubring
           (u.toValuationSubring ⧸ (IsLocalRing.maximalIdeal u.toValuationSubring) ^ n),
         Ideal.Quotient.algebraMap_eq, kwF4R1V410a_quotientEquiv_mk,
@@ -1545,7 +1732,10 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1553,7 +1743,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section DeltaQuotFactor
@@ -1607,7 +1799,10 @@ section
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1615,7 +1810,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section Composite
@@ -1635,11 +1832,11 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
 
 theorem lmul_adicIntegers_subset_poleWindow (fh : u.adicCompletion)
     (πh : u.adicCompletionIntegers) (M : ℕ)
-    (hfhM : (πh : u.adicCompletion)^M * fh ∈ u.adicCompletionIntegers) :
+    (hfhM : (πh : u.adicCompletion) ^ M * fh ∈ u.adicCompletionIntegers) :
     Submodule.map (lmulK u fh) (adicIntegersKSubmod u) ≤ poleWindowKSubmod u πh M := by
   rintro x ⟨a, ha, rfl⟩
   rw [mem_poleWindowKSubmod_iff]
-  show (πh : u.adicCompletion)^M * (lmulK u fh) a ∈ u.adicCompletionIntegers
+  show (πh : u.adicCompletion) ^ M * (lmulK u fh) a ∈ u.adicCompletionIntegers
   have : (lmulK u fh) a = fh * a := rfl
   rw [this, ← mul_assoc]
   exact mul_mem hfhM (show a ∈ u.adicCompletionIntegers from ha)
@@ -1686,7 +1883,10 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1694,7 +1894,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section KerInf
@@ -1800,8 +2002,8 @@ theorem kwF4gRRTate_commFiniteGen :
   have haO : (a : u.adicCompletion) ∈ adicIntegersKSubmod u := heq.le a.2
   set aO : adicIntegersKSubmod u := ⟨(a : u.adicCompletion), haO⟩
   have hcomm : lmulK u fh ∘ₗ lmulK u gh = lmulK u gh ∘ₗ lmulK u fh := by
-    refine LinearMap.ext fun y' => ?_; show fh * (gh * y') = gh * (fh * y'); ring
-  show (tateCommRestrict pA' (lmulK u fh) (lmulK u gh) a : u.adicCompletion) ∈ S₂
+    refine LinearMap.ext fun y' => ?_; change fh * (gh * y') = gh * (fh * y'); ring
+  change (tateCommRestrict pA' (lmulK u fh) (lmulK u gh) a : u.adicCompletion) ∈ S₂
   rw [show (tateCommRestrict pA' (lmulK u fh) (lmulK u gh) a : u.adicCompletion)
       = tateComm pA' (lmulK u fh) (lmulK u gh) (a : u.adicCompletion) from rfl,
     tateComm_eq_of_commute hcomm]
@@ -1821,7 +2023,10 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -1829,7 +2034,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section Additivity
@@ -2011,7 +2218,7 @@ theorem finrankTrace_term_eq (h : SameRangeIdemProjectors (tateProj u) pA')
     rw [alphaMap_apply, alphaMap_apply, mulOnRange_apply]
     congr 1
     ring
-  show finrankTrace (dQ ∘ₗ α₁) = finrankTrace ((β ∘ₗ dQ) ∘ₗ α₂)
+  change finrankTrace (dQ ∘ₗ α₁) = finrankTrace ((β ∘ₗ dQ) ∘ₗ α₂)
   rw [hcyc₁, hcyc₂]
   exact finrankTrace_congr hSeq
 
@@ -2033,7 +2240,7 @@ theorem kwF4gRRTate_projectorIndep : KwF4gRRTateProjectorIndep K L := by
     rw [hΨdef, range_conj_eq_map]
     infer_instance
   have hΨeq : finrankTrace Ψ = finrankTrace Ψ' := finrankTrace_conj e Ψ'
-  show finrankTrace Φ = finrankTrace Ψ'
+  change finrankTrace Φ = finrankTrace Ψ'
   rw [← hΨeq]
   set dQ := deltaQuotFactor h
   set T₁ := dQ ∘ₗ alphaMap u (gh * fh) with hT₁def
@@ -2047,7 +2254,7 @@ theorem kwF4gRRTate_projectorIndep : KwF4gRRTateProjectorIndep K L := by
       rfl
     have hΨv : (Ψ a : u.adicCompletion) = tateComm pA' (lmulK u fh) (lmulK u gh)
         (a : u.adicCompletion) := by
-      show ((e.conj Ψ') a : u.adicCompletion) = _
+      change ((e.conj Ψ') a : u.adicCompletion) = _
       simp only [LinearEquiv.conj_apply, LinearMap.comp_apply, LinearEquiv.coe_coe]
       have he_coe : ∀ (x : LinearMap.range pA'), ((e x : LinearMap.range (tateProj u)) :
           u.adicCompletion) = (x : u.adicCompletion) := fun x => rfl
@@ -2087,7 +2294,10 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -2095,7 +2305,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section CohenMint
@@ -2135,7 +2347,7 @@ theorem kwF4gRRTate_agreement_of_cohenTateAgreement
   have hF2 : FiniteDimensional K (LinearMap.range
       (tateCommRestrict pC (lmulK u fh) (lmulK u ghπ))) :=
     kwF4gRRTate_commFiniteGen u pC hpC fh ghπ
-  show tateRes u fh ghπ = Algebra.trace K u.ResidueField
+  change tateRes u fh ghπ = Algebra.trace K u.ResidueField
     (kwHgfV352_localResidueCompletion u fh)
   unfold tateRes
   rw [kwF4gRRTate_projectorIndep u pC hpC fh ghπ hgh]
@@ -2153,7 +2365,10 @@ set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
 p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 noncomputable section
@@ -2161,7 +2376,9 @@ noncomputable section
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
 namespace KwF4gRRTate
-p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
+p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict \
+  tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK \
+  tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
 section CohenKernelData
@@ -2292,8 +2509,12 @@ section
 
 set_option linter.unusedSectionVars false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place FunctionField P2MW.S_AlgebraicCurve_tateAgreement.FunctionField KaehlerDifferential P2MW.S_AlgebraicCurve_tateAgreement.KaehlerDifferential"
-p2m_open "ModularCurve.KwF4R1V391a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V391a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V392a"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place FunctionField \
+  P2MW.S_AlgebraicCurve_tateAgreement.FunctionField KaehlerDifferential \
+  P2MW.S_AlgebraicCurve_tateAgreement.KaehlerDifferential"
+p2m_open "ModularCurve.KwF4R1V391a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V391a \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V392a"
 
 noncomputable section
 
@@ -2341,8 +2562,14 @@ section
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate \
+  ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 noncomputable section
 
@@ -2361,7 +2588,7 @@ def cohenSectionHat (u : Place K L) (S : Lg37CompletionSection u) :
     (u.adicCompletionIntegers.subtype).comp
       ((kwF4R1V410a_ringEquiv u).toRingHom.comp S.lift.toRingHom)
   commutes' c := by
-    show ((kwF4R1V410a_ringEquiv u (S.lift (algebraMap K u.ResidueField c))
+    change ((kwF4R1V410a_ringEquiv u (S.lift (algebraMap K u.ResidueField c))
         : u.adicCompletionIntegers) : u.adicCompletion)
       = algebraMap K u.adicCompletion c
     rw [S.lift.commutes c,
@@ -2464,14 +2691,15 @@ theorem cohenTateCommRestrict_single_term (fh : u.adicCompletion)
   have hcomm : lmulK u fh ∘ₗ lmulK u (algebraMap L u.adicCompletion u.uniformizer)
       = lmulK u (algebraMap L u.adicCompletion u.uniformizer) ∘ₗ lmulK u fh := by
     refine LinearMap.ext fun x => ?_
-    show fh * (algebraMap L u.adicCompletion u.uniformizer * x) =
+    change fh * (algebraMap L u.adicCompletion u.uniformizer * x) =
       algebraMap L u.adicCompletion u.uniformizer * (fh * x)
     ring
   rw [tateCommRestrict_apply, tateComm_eq_of_commute hcomm]
-  show cohenProjC u B hcompl (_ * (fh * ↑a - cohenProjC u B hcompl (fh * ↑a)))
+  change cohenProjC u B hcompl (_ * (fh * ↑a - cohenProjC u B hcompl (fh * ↑a)))
       - cohenProjC u B hcompl (fh * (_ * ↑a - cohenProjC u B hcompl (_ * ↑a)))
     = cohenProjC u B hcompl (_ * (fh * ↑a - cohenProjC u B hcompl (fh * ↑a)))
-  rw [cohenProjC_of_mem u B hcompl (mul_mem hπ haInt), sub_self, mul_zero, _root_.map_zero, sub_zero]
+  rw [cohenProjC_of_mem u B hcompl (mul_mem hπ haInt), sub_self, mul_zero, _root_.map_zero,
+    sub_zero]
 
 end SingleTerm
 
@@ -2587,8 +2815,13 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve KaehlerDifferential P2MW.S_AlgebraicCurve_tateAgreement.KaehlerDifferential"
-p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
+p2m_open "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve KaehlerDifferential \
+  P2MW.S_AlgebraicCurve_tateAgreement.KaehlerDifferential"
+p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin \
+  ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
 p2m_open "ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3"
 
 noncomputable section
@@ -2617,7 +2850,7 @@ theorem aCoeff_uniformizerHat_pow_mul_eq_zero_of_lt (v : Place K F)
       v.uniformizerSubring) ^ (j + 1) * x)
   rw [Nat.zero_add] at hsh
   rw [hsh, aCoeff_zero]
-  show lg37_residueHat v _ = 0
+  change lg37_residueHat v _ = 0
   rw [pow_succ', mul_assoc, map_mul, lg37_residueHat_algebraMap,
     (IsLocalRing.residue_eq_zero_iff _).mpr v.uniformizerSubring_mem_maximalIdeal, zero_mul]
 
@@ -2732,21 +2965,38 @@ end
 
 section
 
-p2m_open_scoped "PadicInt P2MW.S_AlgebraicCurve_tateAgreement.PadicInt AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry"
-p2m_open "BigOperators P2MW.S_AlgebraicCurve_tateAgreement.BigOperators CategoryTheory P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve"
-p2m_open "CategoryTheory P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory CategoryTheory.Limits P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory.Limits AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.NeronModelInfra"
-p2m_open "ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwOdaDHDR Order P2MW.S_AlgebraicCurve_tateAgreement.Order Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve Module P2MW.S_AlgebraicCurve_tateAgreement.Module CongruenceSubgroup P2MW.S_AlgebraicCurve_tateAgreement.CongruenceSubgroup"
-p2m_open "AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
+p2m_open_scoped "PadicInt P2MW.S_AlgebraicCurve_tateAgreement.PadicInt AlgebraicGeometry \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry"
+p2m_open "BigOperators P2MW.S_AlgebraicCurve_tateAgreement.BigOperators CategoryTheory \
+  P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve"
+p2m_open "CategoryTheory P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory CategoryTheory.Limits \
+  P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory.Limits AlgebraicGeometry \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry \
+  P2MW.S_AlgebraicCurve_tateAgreement.NeronModelInfra"
+p2m_open "ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwOdaDHDR Order \
+  P2MW.S_AlgebraicCurve_tateAgreement.Order Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve Module \
+  P2MW.S_AlgebraicCurve_tateAgreement.Module CongruenceSubgroup \
+  P2MW.S_AlgebraicCurve_tateAgreement.CongruenceSubgroup"
+p2m_open "AlgebraicCurve.RationalFunctionField \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
 p2m_open_scoped "TensorProduct P2MW.S_AlgebraicCurve_tateAgreement.TensorProduct"
-p2m_open "IntermediateField P2MW.S_AlgebraicCurve_tateAgreement.IntermediateField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
+p2m_open "IntermediateField P2MW.S_AlgebraicCurve_tateAgreement.IntermediateField \
+  AlgebraicCurve.RationalFunctionField \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
 p2m_open "AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 p2m_open "ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin"
 open ModularCurve.KwNo6HrouteR
-p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3 Mp72a103T2 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a103T2 Mp72a102T1 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a102T1"
+p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3 Mp72a103T2 \
+  P2MW.S_AlgebraicCurve_tateAgreement.Mp72a103T2 Mp72a102T1 \
+  P2MW.S_AlgebraicCurve_tateAgreement.Mp72a102T1"
 p2m_open "ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial AlgebraicGeometry.Polynomial"
+p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial \
+  AlgebraicGeometry.Polynomial"
 
 noncomputable section
 
@@ -2825,21 +3075,38 @@ end
 
 section
 
-p2m_open_scoped "PadicInt P2MW.S_AlgebraicCurve_tateAgreement.PadicInt AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry"
-p2m_open "BigOperators P2MW.S_AlgebraicCurve_tateAgreement.BigOperators CategoryTheory P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve"
-p2m_open "CategoryTheory P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory CategoryTheory.Limits P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory.Limits AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.NeronModelInfra"
-p2m_open "ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwOdaDHDR Order P2MW.S_AlgebraicCurve_tateAgreement.Order Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve Module P2MW.S_AlgebraicCurve_tateAgreement.Module CongruenceSubgroup P2MW.S_AlgebraicCurve_tateAgreement.CongruenceSubgroup"
-p2m_open "AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
+p2m_open_scoped "PadicInt P2MW.S_AlgebraicCurve_tateAgreement.PadicInt AlgebraicGeometry \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry"
+p2m_open "BigOperators P2MW.S_AlgebraicCurve_tateAgreement.BigOperators CategoryTheory \
+  P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve"
+p2m_open "CategoryTheory P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory CategoryTheory.Limits \
+  P2MW.S_AlgebraicCurve_tateAgreement.CategoryTheory.Limits AlgebraicGeometry \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry \
+  P2MW.S_AlgebraicCurve_tateAgreement.NeronModelInfra"
+p2m_open "ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwOdaDHDR Order \
+  P2MW.S_AlgebraicCurve_tateAgreement.Order Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve Module \
+  P2MW.S_AlgebraicCurve_tateAgreement.Module CongruenceSubgroup \
+  P2MW.S_AlgebraicCurve_tateAgreement.CongruenceSubgroup"
+p2m_open "AlgebraicCurve.RationalFunctionField \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
 p2m_open_scoped "TensorProduct P2MW.S_AlgebraicCurve_tateAgreement.TensorProduct"
-p2m_open "IntermediateField P2MW.S_AlgebraicCurve_tateAgreement.IntermediateField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
+p2m_open "IntermediateField P2MW.S_AlgebraicCurve_tateAgreement.IntermediateField \
+  AlgebraicCurve.RationalFunctionField \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.RationalFunctionField"
 p2m_open "AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 p2m_open "ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin"
 open ModularCurve.KwNo6HrouteR
-p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3 Mp72a103T2 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a103T2 Mp72a102T1 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a102T1"
+p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3 Mp72a103T2 \
+  P2MW.S_AlgebraicCurve_tateAgreement.Mp72a103T2 Mp72a102T1 \
+  P2MW.S_AlgebraicCurve_tateAgreement.Mp72a102T1"
 p2m_open "ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial AlgebraicGeometry.Polynomial"
+p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial \
+  AlgebraicGeometry.Polynomial"
 
 noncomputable section
 
@@ -2977,11 +3244,24 @@ section
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
-p2m_open "P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwTateRR3 ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6HrouteR"
-p2m_open "ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwOdaDHDR P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V394a"
-p2m_open "Mp72a103T2 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a103T2 IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate \
+  ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
+p2m_open "P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwTateRR3 ModularCurve.KwNo6Pin \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6HrouteR"
+p2m_open "ModularCurve.Mp72a102T3 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Mp72a102T3 \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwOdaDHDR \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V394a"
+p2m_open "Mp72a103T2 P2MW.S_AlgebraicCurve_tateAgreement.Mp72a103T2 IsDedekindDomain \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
 
 noncomputable section
 
@@ -3052,7 +3332,7 @@ theorem valued_algebraMap_uniformizer :
 theorem v410a_evalDepth_mul_mem_integers (n : ℕ) (z : lg37_completion u)
     (hz : AdicCompletion.evalₐ (maximalIdeal u.toValuationSubring) n z = 0)
     (fh : u.adicCompletion)
-    (hfh : (algebraMap L u.adicCompletion u.uniformizer)^n * fh ∈ u.adicCompletionIntegers) :
+    (hfh : (algebraMap L u.adicCompletion u.uniformizer) ^ n * fh ∈ u.adicCompletionIntegers) :
     ((kwF4R1V410a_ringEquiv u z : u.adicCompletionIntegers) : u.adicCompletion) * fh
       ∈ u.adicCompletionIntegers := by
   rw [mem_adicCompletionIntegers, map_mul]
@@ -3063,12 +3343,12 @@ theorem v410a_evalDepth_mul_mem_integers (n : ℕ) (z : lg37_completion u)
     rw [WithZero.exp_eq_coe_ofAdd]
     exact (adicCompletion.mem_completionIdeal_pow L u.heightOneSpectrum
       (kwF4R1V410a_ringEquiv u z)).mp hzmem
-  have hπval : Valued.v ((algebraMap L u.adicCompletion u.uniformizer)^n)
+  have hπval : Valued.v ((algebraMap L u.adicCompletion u.uniformizer) ^ n)
       = WithZero.exp (-(n : ℤ)) := by
     rw [map_pow, valued_algebraMap_uniformizer u, ← WithZero.exp_nsmul]
     congr 1; ring
   have hfhval : Valued.v fh ≤ WithZero.exp (n : ℤ) := by
-    have h1 : Valued.v ((algebraMap L u.adicCompletion u.uniformizer)^n * fh) ≤ 1 := hfh
+    have h1 : Valued.v ((algebraMap L u.adicCompletion u.uniformizer) ^ n * fh) ≤ 1 := hfh
     rw [map_mul, hπval] at h1
     calc Valued.v fh
         = WithZero.exp (n : ℤ) * (WithZero.exp (-(n : ℤ)) * Valued.v fh) := by
@@ -3193,7 +3473,6 @@ structure KwTateRR3CohenLaurentCompl (u : Place K L) [u.FiniteResidue] where
       - cohenSectionHat u S (kwHgfV352_localResidueCompletion u (z : u.adicCompletion)) ∈ B
 
 variable (K L) in
-
 def KwTateRR3CohenLaurentComplExists : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue], Nonempty (KwTateRR3CohenLaurentCompl u)
 
@@ -3219,7 +3498,7 @@ def cohenLaurentSpec_of_compl (C : KwTateRR3CohenLaurentCompl u) :
   ε := (localResidueCompletionₗ u).comp C.B.subtype
   shift_sub_mem z := C.shift_sub_mem z
   ε_principalPart_mul_sectionHat fh c := by
-    show kwHgfV352_localResidueCompletion u
+    change kwHgfV352_localResidueCompletion u
         (fh * cohenSectionHat u C.S c
           - cohenProjC u C.B C.hcompl (fh * cohenSectionHat u C.S c))
       = kwHgfV352_localResidueCompletion u fh * c
@@ -3257,10 +3536,21 @@ section
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
-p2m_open "P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwTateRR3 ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6HrouteR"
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
+  P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
+  P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
+  P2MW.S_AlgebraicCurve_tateAgreement.Submodule IsLocalRing \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
+p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate \
+  ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
+p2m_open "P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwTateRR3 ModularCurve.KwNo6Pin \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin \
+  P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6HrouteR"
+p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum \
+  P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain.HeightOneSpectrum WithZero \
+  P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
 
 noncomputable section
 
@@ -3356,13 +3646,13 @@ theorem locResCompl_cohenΦ (δ : ℕ →₀ u.ResidueField) :
       = localResidueCompletionₗ u (cohenΦ u S δ) from rfl,
     cohenΦ_apply, map_finsuppSum]
   refine (Finsupp.sum_eq_single 0 (fun j _ hj0 => ?_) (fun _ => ?_)).trans ?_
-  · show kwHgfV352_localResidueCompletion u _ = 0
+  · change kwHgfV352_localResidueCompletion u _ = 0
     rw [localResidueCompletion_mul_cohenSectionHat u S,
       locResCompl_uniformizerHat_inv_pow_succ u S (Nat.one_le_iff_ne_zero.mpr hj0), zero_mul]
-  · show kwHgfV352_localResidueCompletion u _ = 0
+  · change kwHgfV352_localResidueCompletion u _ = 0
     rw [_root_.map_zero, mul_zero]
     exact _root_.map_zero (localResidueCompletionₗ u)
-  · show kwHgfV352_localResidueCompletion u _ = _
+  · change kwHgfV352_localResidueCompletion u _ = _
     rw [zero_add, pow_one, localResidueCompletion_mul_cohenSectionHat u S,
       locResCompl_uniformizerHat_inv u S, one_mul]
 
@@ -3458,11 +3748,11 @@ theorem cohenΦ_mem_integers_iff_zero (δ : ℕ →₀ u.ResidueField) :
     refine Finset.sum_induction _ (fun x => Valued.v x ≤ WithZero.exp (-1 : ℤ))
       (fun a b ha hb => (Valued.v.map_add a b).trans (max_le ha hb))
       ?_ fun j hj => ?_
-    · show Valued.v (0 : u.adicCompletion) ≤ _
+    · change Valued.v (0 : u.adicCompletion) ≤ _
       rw [_root_.map_zero]; exact zero_le
     · have hjJ : j < J := lt_of_le_of_ne
         (δ.support.le_max' j (Finset.mem_of_mem_erase hj)) (Finset.ne_of_mem_erase hj)
-      show Valued.v (_ * _) ≤ _
+      change Valued.v (_ * _) ≤ _
       rw [map_mul, map_pow, valued_algebraMap_uniformizer u, ← WithZero.exp_nsmul]
       calc WithZero.exp ((J - j) • (-1 : ℤ)) * Valued.v (cohenSectionHat u S (δ j))
           ≤ WithZero.exp ((J - j) • (-1 : ℤ)) * 1 :=
@@ -3496,7 +3786,7 @@ variable (S : Lg37CompletionSection u)
 theorem uniformizerHat_inv_mul_mem_integers_of_valued_le
     {y : u.adicCompletion} (hy : Valued.v y ≤ WithZero.exp (-1 : ℤ)) :
     (uniformizerHat u)⁻¹ * y ∈ u.adicCompletionIntegers := by
-  show Valued.v ((uniformizerHat u)⁻¹ * y) ≤ 1
+  change Valued.v ((uniformizerHat u)⁻¹ * y) ≤ 1
   rw [map_mul, map_inv₀, valued_algebraMap_uniformizer u, ← WithZero.exp_neg, neg_neg]
   calc WithZero.exp (1 : ℤ) * Valued.v y
       ≤ WithZero.exp (1 : ℤ) * WithZero.exp (-1 : ℤ) := mul_le_mul_right hy _
@@ -3549,12 +3839,12 @@ theorem mem_sup_of_uniformizerHat_pow_mul_mem_integers (M : ℕ) :
         ∈ u.adicCompletionIntegers := by
       have heq : (uniformizerHat u) ^ M * (x
             - (uniformizerHat u)⁻¹ ^ (M + 1) * cohenSectionHat u S c)
-          = (uniformizerHat u)⁻¹ * ((uniformizerHat u)^(M+1)*x - cohenSectionHat u S c) := by
+          = (uniformizerHat u)⁻¹ * ((uniformizerHat u) ^ (M+1)*x - cohenSectionHat u S c) := by
         rw [mul_sub, mul_sub,
-          show (uniformizerHat u)⁻¹ * ((uniformizerHat u)^(M+1) * x)
-              = (uniformizerHat u)^M * x by
+          show (uniformizerHat u)⁻¹ * ((uniformizerHat u) ^ (M+1) * x)
+              = (uniformizerHat u) ^ M * x by
             rw [← mul_assoc, pow_succ', ← mul_assoc, inv_mul_cancel₀ hne, one_mul],
-          show (uniformizerHat u)^M * ((uniformizerHat u)⁻¹^(M+1) * cohenSectionHat u S c)
+          show (uniformizerHat u) ^ M * ((uniformizerHat u)⁻¹ ^ (M+1) * cohenSectionHat u S c)
               = (uniformizerHat u)⁻¹ * cohenSectionHat u S c by
             rw [← mul_assoc, pow_succ, ← mul_assoc, ← mul_pow,
               mul_inv_cancel₀ hne, one_pow, one_mul]]
@@ -3639,6 +3929,7 @@ theorem AlgebraicCurve.tateAgreement
     [AlgebraicCurve.IsCurveOver K L] [PerfectField K]
     [∀ u : AlgebraicCurve.Place K L, u.FiniteResidue]
     (hfin : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K L) :
-    ModularCurve.KwF4gRRTate.KwF4gRRTateAgreement K L hfin := _root_.P2MW.S_AlgebraicCurve_tateAgreement.solution hfin
+    ModularCurve.KwF4gRRTate.KwF4gRRTateAgreement K L hfin :=
+  solution hfin
 
 end publicSection

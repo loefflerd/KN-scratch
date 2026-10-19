@@ -83,7 +83,8 @@ end ModularCurve
 
 end
 
-theorem solution (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) : ModularForm.E₄ (γ • τ) ^ 3 / ModularForm.discriminant (γ • τ) = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ :=
+theorem solution (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) :
+    ModularForm.E₄ (γ • τ) ^ 3 / ModularForm.discriminant (γ • τ) = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ :=
   ModularCurve.E4_cube_div_discriminant_smul' γ τ
 
 end S_ModularCurve_E4_cube_div_discriminant_smul
@@ -94,6 +95,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.E4_cube_div_discriminant_smul (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) : ModularForm.E₄ (γ • τ) ^ 3 / ModularForm.discriminant (γ • τ) = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ := _root_.P2MW.S_ModularCurve_E4_cube_div_discriminant_smul.solution γ τ
+theorem ModularCurve.E4_cube_div_discriminant_smul (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ)
+    (τ : UpperHalfPlane) :
+    ModularForm.E₄ (γ • τ) ^ 3 / ModularForm.discriminant (γ • τ) = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ :=
+  solution γ τ
 
 end publicSection

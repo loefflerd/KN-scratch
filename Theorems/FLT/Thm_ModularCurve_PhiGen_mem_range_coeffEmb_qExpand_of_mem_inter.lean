@@ -64,7 +64,9 @@ noncomputable section
 open PowerSeries HahnSeries Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap coeffMap_coeff coeffEmb coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist \
+  qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap coeffMap_coeff coeffEmb \
+  coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand"
 p2m_open "ModularCurve"
 
 namespace PhiGen
@@ -288,7 +290,7 @@ theorem exists_galoisPerm (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) 
   set e₀ : Fin ℓ → Fin ℓ := fun b => ⟨(a * (b : ℕ)) % ℓ, Nat.mod_lt _ hℓ.out.pos⟩
   have hkey : ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e₀ b : Fin ℓ) : ℕ) := by
     intro b
-    show σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((a * (b : ℕ)) % ℓ)
+    change σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((a * (b : ℕ)) % ℓ)
     rw [map_pow, ← ha, ← pow_mul]
     exact pow_eq_pow_mod _ hζ.pow_eq_one
   have hinj : Function.Injective e₀ := by
@@ -343,8 +345,10 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {f : LaurentSeries K} (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ)) (h2 : f ∈ Set.range (coeffEmb K)) : ∃ g : LaurentSeries ℚ, f = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)]
+    {f : LaurentSeries K} (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ))
+    (h2 : f ∈ Set.range (coeffEmb K)) :
+    ∃ g : LaurentSeries ℚ, f = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) :=
   ModularCurve.PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter h1 h2
 
 end S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter
@@ -357,6 +361,10 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {f : LaurentSeries K} (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ)) (h2 : f ∈ Set.range (coeffEmb K)) : ∃ g : LaurentSeries ℚ, f = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) := _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.solution h1 h2
+theorem ModularCurve.PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter {K : Type*} [Field K]
+    [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {f : LaurentSeries K}
+    (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ)) (h2 : f ∈ Set.range (coeffEmb K)) :
+    ∃ g : LaurentSeries ℚ, f = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) :=
+  solution h1 h2
 
 end publicSection

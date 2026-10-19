@@ -43,18 +43,18 @@ $$
 $$
 
 For a cusp $z$, let $S_\ell\Phi(z)$ denote the sum of the $\ell+1$ adjugate-normalized cusp
-transforms occurring in the definition of $T_\ell$.  The primitive-vector calculation, isolated as
+transforms occurring in the definition of $T_\ell$. The primitive-vector calculation, isolated as
 `boundary_hecke_cusp_sum_at_one`, gives
 
 $$
 S_\ell\Phi(z)=(1+\ell^{n+1})\Phi(z)
 $$
 
-when $\ell$ is prime and $\ell\equiv1\pmod N$.  Indeed, among the standard Hecke representatives
+when $\ell$ is prime and $\ell\equiv1\pmod N$. Indeed, among the standard Hecke representatives
 exactly one sends a primitive cusp representative to a vector of content $\ell$; the other $\ell$
 terms have content one, and homogeneity of degree $n$ produces the stated scalar.
 
-It remains only to commute the Hecke sum with the endpoint difference.  Expanding `primeHecke`,
+It remains only to commute the Hecke sum with the endpoint difference. Expanding `primeHecke`,
 `slash`, and `boundaryCochain`, additivity of the polynomial action and `Finset.sum_sub_distrib`
 identify the left side at $(x,y)$ with
 
@@ -86,7 +86,7 @@ theorem solution
     (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N n Φ)
     (l : ℕ) (hl : l.Prime) (hlN : (l : ZMod N) = 1) :
     primeHecke (1 : ℂ) l (boundaryCochain Φ) =
-      ((1 + l^(n+1) : ℕ) : ℂ) • boundaryCochain Φ := by
+      ((1 + l ^ (n+1) : ℕ) : ℂ) • boundaryCochain Φ := by
   classical
   funext D
   simp only [primeHecke, Pi.add_apply, Finset.sum_apply, one_smul,
@@ -117,9 +117,9 @@ theorem solution
             (Φ (fractional !![1, (x.val : ℤ); 0, (l : ℤ)] D.1))) +
           act (Matrix.adjugate !![(l : ℤ), 0; 0, 1])
             (Φ (fractional !![(l : ℤ), 0; 0, 1] D.1))) := by abel
-    _ = ((1 + l^(n+1) : ℕ) : ℂ) • Φ D.2 -
-        ((1 + l^(n+1) : ℕ) : ℂ) • Φ D.1 := by rw [hy, hx]
-    _ = ((1 + l^(n+1) : ℕ) : ℂ) • (Φ D.2 - Φ D.1) := by
+    _ = ((1 + l ^ (n+1) : ℕ) : ℂ) • Φ D.2 -
+        ((1 + l ^ (n+1) : ℕ) : ℂ) • Φ D.1 := by rw [hy, hx]
+    _ = ((1 + l ^ (n+1) : ℕ) : ℂ) • (Φ D.2 - Φ D.1) := by
       rw [smul_sub]
 end
 
@@ -136,7 +136,7 @@ theorem MTT.Cohomology.boundary_hecke_scalar_at_one
     (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N n Φ)
     (l : ℕ) (hl : l.Prime) (hlN : (l : ZMod N) = 1) :
     primeHecke (1 : ℂ) l (boundaryCochain Φ) =
-      ((1 + l^(n+1) : ℕ) : ℂ) • boundaryCochain Φ := _root_.solution hN Φ hΦ l hl hlN
+      ((1 + l ^ (n+1) : ℕ) : ℂ) • boundaryCochain Φ := _root_.solution hN Φ hΦ l hl hlN
 end
 
 end publicSection

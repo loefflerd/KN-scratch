@@ -87,7 +87,7 @@ open scoped BigOperators
 
 private lemma integral_zero_periodic {N k : ℕ}
     (f : CuspForm (GammaOne N) (k : ℤ)) (r : ℚ) (z : ℤ) :
-    modularIntegral f (Polynomial.X^0) (r+z) = modularIntegral f (Polynomial.X^0) r := by
+    modularIntegral f (Polynomial.X ^ 0) (r+z) = modularIntegral f (Polynomial.X ^ 0) r := by
   have hp := SlashInvariantFormClass.periodic_comp_ofComplex f
     (show (1 : ℝ) ∈ (GammaOne N).strictPeriods by
       simp [GammaOne, CongruenceSubgroup.strictPeriods_Gamma1])
@@ -117,15 +117,15 @@ private lemma mtt_mass_residue_invariance
     (n : ℕ) (hn : 0 < n) (a b : ℤ)
     (hab : (a : ZMod (p ^ n)) = (b : ZMod (p ^ n))) :
     diskMoment f ιp P α s 0 n a = diskMoment f ιp P α s 0 n b := by
-  have hd : ((p^n : ℕ) : ℤ) ∣ a-b := (ZMod.intCast_eq_intCast_iff_dvd_sub _ _ _).mp hab.symm
+  have hd : ((p ^ n : ℕ) : ℤ) ∣ a-b := (ZMod.intCast_eq_intCast_iff_dvd_sub _ _ _).mp hab.symm
   have hval (l : ℕ) (hl : l ≤ n) :
-      P.value s 0 (-(a : ℚ)/(p : ℚ)^l) = P.value s 0 (-(b : ℚ)/(p : ℚ)^l) := by
-    have hdiv : ((p^l : ℕ) : ℤ) ∣ a-b :=
+      P.value s 0 (-(a : ℚ)/(p : ℚ) ^ l) = P.value s 0 (-(b : ℚ)/(p : ℚ) ^ l) := by
+    have hdiv : ((p ^ l : ℕ) : ℤ) ∣ a-b :=
       dvd_trans (by exact_mod_cast (pow_dvd_pow p hl)) hd
     obtain ⟨z,hz⟩ := hdiv
-    have he : -(a : ℚ)/(p : ℚ)^l = -(b : ℚ)/(p : ℚ)^l + (-z : ℤ) := by
-      have hz' : (a : ℚ)-b = (p : ℚ)^l*z := by exact_mod_cast hz
-      have hpn : (p : ℚ)^l ≠ 0 := pow_ne_zero _ (by exact_mod_cast (Fact.out : p.Prime).ne_zero)
+    have he : -(a : ℚ)/(p : ℚ) ^ l = -(b : ℚ)/(p : ℚ) ^ l + (-z : ℤ) := by
+      have hz' : (a : ℚ)-b = (p : ℚ) ^ l*z := by exact_mod_cast hz
+      have hpn : (p : ℚ) ^ l ≠ 0 := pow_ne_zero _ (by exact_mod_cast (Fact.out : p.Prime).ne_zero)
       push_cast
       field_simp
       linear_combination -hz'
@@ -144,17 +144,17 @@ theorem solution
   obtain ⟨C, hC, hbound⟩ := ordinary_centered_disk_bound hN hk ι ιp f P α hα
   have hres : ∀ (n : ℕ), 0 < n → ∀ (a b : ℤ),
       IsCoprime a (p : ℤ) → IsCoprime b (p : ℤ) →
-      (a : ZMod (p^n)) = (b : ZMod (p^n)) →
+      (a : ZMod (p ^ n)) = (b : ZMod (p ^ n)) →
       diskMoment f ιp P α s 0 n a = diskMoment f ιp P α s 0 n b := by
     intro n hn a b _ _ hab
     exact mtt_mass_residue_invariance hk ι ιp f P α s n hn a b hab
-  have hadd : ∀ (j : ℕ), j ≤ k-2 → ∀ (n : ℕ), 0 < n →
+  have hadd : ∀ (j : ℕ), j ≤ k - 2 → ∀ (n : ℕ), 0 < n →
       ∀ (a : ℤ), IsCoprime a (p : ℤ) →
         (∑ b ∈ Finset.range p, diskMoment f ιp P α s j (n+1)
-          (a+(b : ℤ)*(p : ℤ)^n)) = diskMoment f ιp P α s j n a := by
+          (a+(b : ℤ)*(p : ℤ) ^ n)) = diskMoment f ιp P α s j n a := by
     intro j hj n hn a _
     exact distribution_relation hN hk ι ιp f P α hα s j hj n hn a
-  have h := PadicMeasure.colmez_r0_moment_extension (k-2)
+  have h := PadicMeasure.colmez_r0_moment_extension (k - 2)
     (diskMoment f ιp P α s) hres hadd ⟨C, hC, fun n hn a _ j hj => hbound s n hn a j hj⟩
   simpa only [RealizesMoments, diskFunction, coordinate, UnitMeasure] using h
 end

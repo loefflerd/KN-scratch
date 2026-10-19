@@ -74,10 +74,12 @@ noncomputable section
 open Polynomial
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand qExpand_coeff_mul dedekindPsi evalAtJ ModularPolynomialData EvalSymm coeffEmb coeffEmb_coeff dedekindPsi_prime"
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul dedekindPsi evalAtJ ModularPolynomialData \
+  EvalSymm coeffEmb coeffEmb_coeff dedekindPsi_prime"
 p2m_open "ModularCurve"
 namespace PhiGen
-p2m_export "ModularCurve.PhiGen" "conj phiProd PhiGenDescends phiProd_conj_coeff_zero_lead phiProd_conj_coeff_eq_zero_of_le splits_of_coeff_evalAtJ_eq evalSymm_of_splits"
+p2m_export "ModularCurve.PhiGen" "conj phiProd PhiGenDescends phiProd_conj_coeff_zero_lead \
+  phiProd_conj_coeff_eq_zero_of_le splits_of_coeff_evalAtJ_eq evalSymm_of_splits"
 p2m_open "ModularCurve.PhiGen"
 
 section Seam
@@ -90,8 +92,8 @@ p2m_export "ModularCurve.PhiGen.PhiGenDescends" "poleOrderLE"
 end PhiGenDescends
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-
-private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.coeff_phiProd_coeff (hc : PhiGenDescends ℓ ζ c) (k : ℕ) (m : ℤ) :
+private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.coeff_phiProd_coeff
+    (hc : PhiGenDescends ℓ ζ c) (k : ℕ) (m : ℤ) :
     ((phiProd ℓ (conj ℓ ζ)).coeff k).coeff ((ℓ : ℤ) * m) = algebraMap ℚ K ((c k).coeff m) := by
   rw [hc k, coeffEmb_coeff, qExpand_coeff_mul]
 
@@ -99,7 +101,6 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.coeff_phiProd_coeff"
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-
 private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_zero_coeff_lead (hc : PhiGenDescends ℓ ζ c)
     (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
     (c 0).coeff (-((ℓ + 1 : ℕ) : ℤ)) = 1 := by
@@ -113,7 +114,6 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.c_zero_coeff_lead"
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-
 private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_coeff_eq_zero_of_ne_zero (hc : PhiGenDescends ℓ ζ c)
     (k : ℕ) (hk : k ≠ 0) (m : ℕ) (hm : ℓ + 1 ≤ m) :
     (c k).coeff (-(m : ℤ)) = 0 := by
@@ -127,7 +127,6 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.c_coeff_eq_zero_of_ne_zero"
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-
 private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_zero_coeff_eq_zero_of_lt (hc : PhiGenDescends ℓ ζ c)
     (m : ℕ) (hm : ℓ + 1 < m) :
     (c 0).coeff (-(m : ℤ)) = 0 :=
@@ -172,8 +171,10 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.ModularCurve.PhiGen in
-
-theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) : EvalSymm data.Φ :=
+theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
+    {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (hc : PhiGenDescends ℓ ζ c)
+    (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :
+    EvalSymm data.Φ :=
   ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq hζ hc data hcoeff
 
 end S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq
@@ -186,6 +187,11 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) : EvalSymm data.Φ := _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.solution hζ hc data hcoeff
+theorem ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ}
+    [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ)
+    (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ)
+    (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :
+    EvalSymm data.Φ :=
+  solution hζ hc data hcoeff
 
 end publicSection

@@ -82,7 +82,6 @@ lemma norm_ne_zero {f : W.CoordinateRing} (hf : f ≠ 0) : Algebra.norm K[X] f �
   (Algebra.norm_ne_zero_iff_of_basis (CoordinateRing.basis W)).mpr hf
 
 open scoped Classical in
-
 noncomputable def valuationInftyDef (f : W.CoordinateRing) : ℤᵐ⁰ :=
   if f = 0 then 0 else WithZero.exp ((Algebra.norm K[X] f).natDegree : ℤ)
 
@@ -116,7 +115,8 @@ noncomputable def valuationInftyInt : Valuation W.CoordinateRing ℤᵐ⁰ where
     · simp [valuationInftyDef, hf]
     by_cases hg : g = 0
     · simp [valuationInftyDef, hg]
-    simp only [valuationInftyDef, ite_eq_right hf, ite_eq_right hg, ite_eq_right (mul_ne_zero hf hg), map_mul,
+    simp only [valuationInftyDef, ite_eq_right hf, ite_eq_right hg, ite_eq_right (mul_ne_zero hf
+      hg), map_mul,
       natDegree_mul (norm_ne_zero W hf) (norm_ne_zero W hg), Nat.cast_add, WithZero.exp_add]
   map_add_le_max' f g := by
     classical
@@ -160,7 +160,8 @@ lemma valuationInfty_algebraMap_of_ne_zero {f : W.CoordinateRing} (hf : f ≠ 0)
 
 end WeierstrassCurve.Affine
 
-theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) : ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
+theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) :
+    ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
   ⟨WeierstrassCurve.Affine.valuationInfty W.toAffine, fun _ hf =>
     WeierstrassCurve.Affine.valuationInfty_algebraMap_of_ne_zero W.toAffine hf⟩
 
@@ -172,6 +173,9 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm {K : Type*} [Field K] (W : WeierstrassCurve K) : ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) := _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm.solution W
+theorem WeierstrassCurve.Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm {K : Type*}
+    [Field K] (W : WeierstrassCurve K) :
+    ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
+  solution W
 
 end publicSection

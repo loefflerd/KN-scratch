@@ -101,6 +101,7 @@ theorem ModularCurve.samePlace_iff_exists_monodromy (N : ℕ) [NeZero N] (j₀ :
     SamePlace ψ.1 ψ'.1 ↔
       ∃ m ∈ monodromy (AlgebraicClosure ℚ),
         (↑m : HahnSeries ℚ (AlgebraicClosure ℚ) →ₐ[AlgebraicClosure ℚ]
-          HahnSeries ℚ (AlgebraicClosure ℚ)).comp ψ.1 = ψ'.1 := _root_.P2MW.S_ModularCurve_samePlace_iff_exists_monodromy.solution N j₀ ψ ψ'
+          HahnSeries ℚ (AlgebraicClosure ℚ)).comp ψ.1 = ψ'.1 :=
+  solution N j₀ ψ ψ'
 
 end publicSection

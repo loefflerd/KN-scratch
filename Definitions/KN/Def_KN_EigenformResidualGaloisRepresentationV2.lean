@@ -75,7 +75,7 @@ namespace HorizontalPadicL
 open NumberField Ideal FrobeniusDensity
 
 /-- The residue field of the coefficient field at the place selected by
-`ιp`.  Both the coefficient ring and its prime ideal are canonical. -/
+`ιp`. Both the coefficient ring and its prime ideal are canonical. -/
 abbrev EigenformResidueField
     {N k p : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     (f : MTT.Eigenform N k ι) (ιp : MTT.Qbar →+* ℂ_[p]) :=
@@ -85,9 +85,9 @@ abbrev EigenformResidueField
 eigenform at a chosen `p`-adic place.
 
 The coefficient ring is canonically the integer ring of the coefficient
-field.  The prime is `f.coefficientPrime ιp`, selected by the chosen
+field. The prime is `f.coefficientPrime ιp`, selected by the chosen
 embedding into `ℂ_[p]`, and the representation takes values in the canonical
-residue ring `EigenformResidueField f ιp`.  Its field and finiteness
+residue ring `EigenformResidueField f ιp`. Its field and finiteness
 structures are derived from the coefficient-field and coefficient-prime
 theorems, so finiteness of the image is a theorem rather than additional
 data. -/

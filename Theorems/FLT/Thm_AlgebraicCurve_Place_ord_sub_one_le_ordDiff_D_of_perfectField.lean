@@ -70,19 +70,24 @@ namespace P2MW.S_AlgebraicCurve_Place_ord_sub_one_le_ordDiff_D_of_perfectField
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "diffCoeff ordDiff ordDiff_def ord_uniformizer_alt uniformizer_alt ord ord_zero ord_mul ord_inv ord_zpow diffCoeff_smul_D_of_ord_eq_one diffCoeff_smul_D_eq_of_ord_eq_one ord_diffCoeff_D_nonneg_of_perfectField exists_ord_eq_one min_ord_le_ord_add ord_algebraMap"
+p2m_export "AlgebraicCurve.Place" "diffCoeff ordDiff ordDiff_def ord_uniformizer_alt \
+  uniformizer_alt ord ord_zero ord_mul ord_inv ord_zpow diffCoeff_smul_D_of_ord_eq_one \
+  diffCoeff_smul_D_eq_of_ord_eq_one ord_diffCoeff_D_nonneg_of_perfectField exists_ord_eq_one \
+  min_ord_le_ord_add ord_algebraMap"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 private theorem _root_.AlgebraicCurve.Place.ordDiff_smul_impl [PerfectField K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F)
     {g : F} (hg : g ≠ 0) {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
     v.ordDiff (g • ω) = v.ord g + v.ordDiff ω := by
   have ht : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
   have hrep : diffCoeff v.uniformizer_alt ω • KaehlerDifferential.D K F v.uniformizer_alt = ω :=
     v.diffCoeff_smul_D_of_ord_eq_one x ht ω
-  have hgo : g • ω = (g * diffCoeff v.uniformizer_alt ω) • KaehlerDifferential.D K F v.uniformizer_alt := by
+  have hgo : g • ω = (g * diffCoeff v.uniformizer_alt ω) • KaehlerDifferential.D K F v.uniformizer_alt :=
+    by
     conv_lhs => rw [← hrep]
     rw [smul_smul]
   have hco : diffCoeff v.uniformizer_alt (g • ω) = g * diffCoeff v.uniformizer_alt ω := by
@@ -226,7 +231,8 @@ private theorem H2_impl [PerfectField K] (x : F)
 end AlgebraicCurve.Place
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {f : F}
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {f : F}
     (hD : KaehlerDifferential.D K F f ≠ 0) :
     v.ord f - 1 ≤ v.ordDiff (KaehlerDifferential.D K F f) :=
   AlgebraicCurve.Place.H2_impl x v hD
@@ -239,9 +245,12 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ord_sub_one_le_ordDiff_D_of_perfectField {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {f : F}
+theorem AlgebraicCurve.Place.ord_sub_one_le_ordDiff_D_of_perfectField {K F : Type*} [Field K]
+    [Field F] [Algebra K F] [PerfectField K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {f : F}
     (hD : KaehlerDifferential.D K F f ≠ 0) :
-    v.ord f - 1 ≤ v.ordDiff (KaehlerDifferential.D K F f) := _root_.P2MW.S_AlgebraicCurve_Place_ord_sub_one_le_ordDiff_D_of_perfectField.solution x v hD
+    v.ord f - 1 ≤ v.ordDiff (KaehlerDifferential.D K F f) :=
+  solution x v hD
 
 end publicSection

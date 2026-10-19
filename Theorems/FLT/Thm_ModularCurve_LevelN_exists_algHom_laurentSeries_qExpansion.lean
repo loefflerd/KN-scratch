@@ -80,7 +80,9 @@ open scoped MatrixGroups Manifold Real
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "LevelN.ring LevelN.jGen jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd ofPowerSeries_coeff_of_neg jGen jqModC_eq_qExpansion_E4_cube_div_discriminant"
+p2m_export "ModularCurve" "LevelN.ring LevelN.jGen jqModC qExpand qExpand_coeff_mul \
+  qExpand_coeff_of_not_dvd ofPowerSeries_coeff_of_neg jGen \
+  jqModC_eq_qExpansion_E4_cube_div_discriminant"
 namespace LevelN
 p2m_export "ModularCurve.LevelN" "wp fricke jAnalytic generators ring jAnalytic_mem jGen"
 namespace QExpEmbedding
@@ -158,7 +160,8 @@ theorem qExpansion_pow_of_good (hh : 0 < h) (hG : Good h G) :
   | n + 1 => by rw [pow_succ, pow_succ, qExpansion_mul_of_good hh (hG.pow n) hG,
       qExpansion_pow_of_good hh hG n]
 
-theorem qExpansion_const (hh : 0 < h) (c : ℂ) : qExpansion h (fun _ : ℍ => c) = PowerSeries.C c := by
+theorem qExpansion_const (hh : 0 < h) (c : ℂ) :
+    qExpansion h (fun _ : ℍ => c) = PowerSeries.C c := by
   have h1 : (fun _ : ℍ => c) = c • (1 : ℍ → ℂ) := by funext τ; simp
   rw [h1, qExpansion_smul ((Good.one h).analyticAt hh), qExpansion_one, Algebra.smul_def, mul_one]
   simp
@@ -275,7 +278,6 @@ theorem fricke_smul_of_mem (v : Fin 2 → ZMod N) {γ : SL(2, ℤ)}
     v γ hγ τ
 
 omit [NeZero N] in
-
 theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jAnalytic τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have h4 : (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • τ) =
@@ -383,14 +385,14 @@ theorem PB.add_right {F : ℍ → ℂ} {m : ℕ} (hm : PB F m) (k : ℕ) : PB F 
 theorem good_of_PB {F : ℍ → ℂ} (hF : F ∈ ring N) {m : ℕ} (hm : PB F m) :
     Good N (F * (Δ : ℍ → ℂ) ^ m) where
   periodic := by
-    have : (F * (Δ : ℍ → ℂ) ^ m) ∘ ofComplex = (F ∘ ofComplex) * (((Δ : ℍ → ℂ) ^ m) ∘ ofComplex) := rfl
+    have : (F * (Δ : ℍ → ℂ) ^ m) ∘ ofComplex = (F ∘ ofComplex) * (((Δ : ℍ → ℂ) ^ m) ∘ ofComplex) :=
+      rfl
     rw [this]
     exact (periodic_of_mem N hF).mul ((good_discriminant N).pow m).periodic
   mdiff := (mdifferentiable_of_mem N hF).mul ((good_discriminant N).pow m).mdiff
   bdd := hm
 
 open Classical in
-
 def poleOrder (F : ring N) : ℕ := Nat.find (exists_isBoundedAtImInfty_mul_pow N F.2)
 
 theorem poleOrder_spec (F : ring N) : PB (F : ℍ → ℂ) (poleOrder N F) := by
@@ -411,7 +413,8 @@ theorem qexpFun_mul_pow (F : ring N) {m : ℕ} (hm : PB (F : ℍ → ℂ) m) :
   have hkey : Q N ((F : ℍ → ℂ) * (Δ : ℍ → ℂ) ^ m₀) * Q N (Δ : ℍ → ℂ) ^ m =
       Q N ((F : ℍ → ℂ) * (Δ : ℍ → ℂ) ^ m) * Q N (Δ : ℍ → ℂ) ^ m₀ := by
     rw [← Q_pow hN (good_discriminant N), ← Q_pow hN (good_discriminant N),
-      ← Q_mul hN hgood₀ ((good_discriminant N).pow m), ← Q_mul hN hgoodm ((good_discriminant N).pow m₀)]
+      ← Q_mul hN hgood₀ ((good_discriminant N).pow m), ← Q_mul hN hgoodm ((good_discriminant N).pow
+      m₀)]
     congr 1
     ring
   rw [qexpFun, div_mul_eq_mul_div, div_eq_iff (pow_ne_zero _ hΔ0), hkey]
@@ -474,7 +477,8 @@ def qexpA : ring N →+* LaurentSeries ℂ where
 
 theorem qexpA_apply (F : ring N) : qexpA N F = qexpFun N F := rfl
 
-theorem qexpA_mul_pow (F : ℍ → ℂ) (hF : F ∈ ring N) {m : ℕ} (hm : IsBoundedAtImInfty (F * (Δ : ℍ → ℂ) ^ m)) :
+theorem qexpA_mul_pow (F : ℍ → ℂ) (hF : F ∈ ring N) {m : ℕ}
+    (hm : IsBoundedAtImInfty (F * (Δ : ℍ → ℂ) ^ m)) :
     qexpA N ⟨F, hF⟩ * Q N (Δ : ℍ → ℂ) ^ m = Q N (F * (Δ : ℍ → ℂ) ^ m) :=
   qexpFun_mul_pow N ⟨F, hF⟩ hm
 
@@ -484,7 +488,8 @@ theorem qexpA_algebraMap (c : ℂ) : qexpA N (algebraMap ℂ (ring N) c) = HahnS
   have h := qexpA_mul_pow N (fun _ : ℍ => c) (by rw [← hcoe]; exact (algebraMap ℂ (ring N) c).2)
     (m := 0) (by rw [pow_zero, mul_one]; exact (Good.const (N : ℝ) c).bdd)
   rw [pow_zero, mul_one, pow_zero, mul_one, Q_const (castN_pos N)] at h
-  have hc : algebraMap ℂ (ring N) c = ⟨fun _ : ℍ => c, by rw [← hcoe]; exact (algebraMap ℂ (ring N) c).2⟩ :=
+  have hc : algebraMap ℂ (ring N) c = ⟨fun _ : ℍ => c, by
+    rw [← hcoe]; exact (algebraMap ℂ (ring N) c).2⟩ :=
     Subtype.ext hcoe
   rw [hc]
   exact h
@@ -567,8 +572,10 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
   have hcoeff : ∀ m, c m = (qExpansion N f).coeff m := by
     have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ) (τ : ℂ) ^ m) (f τ) :=
       fun τ => hasSum_qExpansion hNpos hgoodN.periodic hgoodN.mdiff hgoodN.bdd τ
-    have h1 := (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN).hasFPowerSeriesAt
-    have h2 := (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN').hasFPowerSeriesAt
+    have h1 :=
+      (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN).hasFPowerSeriesAt
+    have h2 :=
+      (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN').hasFPowerSeriesAt
     have heq := h1.eq_formalMultilinearSeries h2
     have := (FormalMultilinearSeries.ofScalars_series_eq_iff (E := ℂ) c _).mp heq
     exact fun m => congrFun this m
@@ -614,7 +621,8 @@ theorem isBoundedAtImInfty_jAnalytic_mul :
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring N) K] [IsScalarTower ℂ (ring N) K]
   [IsFractionRing (ring N) K]
 
-theorem qexpK_jGen : qexpK N K (algebraMap (ring N) K (jGen N)) = ModularCurve.qExpand ℂ N (jqModC ℂ) := by
+theorem qexpK_jGen :
+    qexpK N K (algebraMap (ring N) K (jGen N)) = ModularCurve.qExpand ℂ N (jqModC ℂ) := by
   have hN := castN_pos N
   have hΔ0 : Q N (Δ : ℍ → ℂ) ≠ 0 := Q_discriminant_ne_zero N
   rw [qexpK_algebraMap]
@@ -675,6 +683,7 @@ theorem ModularCurve.LevelN.exists_algHom_laurentSeries_qExpansion (N : ℕ) [Ne
             HahnSeries.ofPowerSeries ℤ ℂ
               (UpperHalfPlane.qExpansion N (ModularForm.discriminant : UpperHalfPlane → ℂ)) ^ m =
           HahnSeries.ofPowerSeries ℤ ℂ
-            (UpperHalfPlane.qExpansion N (F * ModularForm.discriminant ^ m)) := _root_.P2MW.S_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion.solution N K
+            (UpperHalfPlane.qExpansion N (F * ModularForm.discriminant ^ m)) :=
+  solution N K
 
 end publicSection

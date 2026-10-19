@@ -78,7 +78,8 @@ variable {κ M}
 def IntegralWeightOneForm.hasseRootFn (w : IntegralWeightOneForm κ M) : LaurentSeries κ :=
   (intSeriesC κ w.series)⁻¹
 
-theorem IntegralWeightOneForm.hasseRootFn_ne_zero (w : IntegralWeightOneForm κ M) : w.hasseRootFn ≠ 0 :=
+theorem IntegralWeightOneForm.hasseRootFn_ne_zero (w : IntegralWeightOneForm κ M) :
+    w.hasseRootFn ≠ 0 :=
   inv_ne_zero w.intSeriesC_ne_zero
 
 variable (κ M)

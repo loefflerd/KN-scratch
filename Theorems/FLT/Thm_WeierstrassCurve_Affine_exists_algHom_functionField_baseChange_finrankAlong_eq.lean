@@ -71,13 +71,21 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 namespace IsogenyEndDatum
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "hfin hι mk ι"
 p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum WeierstrassCurve.Affine WeierstrassCurve"
-private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.degree {F : Type*} [Field F] {W : WeierstrassCurve.Affine F} (D : IsogenyEndDatum W) : ℕ :=
+private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.degree {F : Type*} [Field F]
+    {W : WeierstrassCurve.Affine F} (D : IsogenyEndDatum W) :
+    ℕ :=
   AlgebraicCurve.finrankAlong F D.ι
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "degree"
 end WeierstrassCurve.Affine.IsogenyEndDatum
@@ -87,29 +95,52 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
 end AlgebraicCurve
 namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk HeightOneSpectrum"
+p2m_export "IsDedekindDomain" "HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk \
+  HeightOneSpectrum"
 end IsDedekindDomain
 namespace Polynomial
-p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext ring ringHom_ext transcendental"
+p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial \
+  basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra \
+  eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add \
+  flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext \
+  ring ringHom_ext transcendental"
 end Polynomial
 namespace Polynomial
-p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext ring ringHom_ext transcendental"
+p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial \
+  basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra \
+  eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add \
+  flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext \
+  ring ringHom_ext transcendental"
 end Polynomial
 namespace TensorProduct
-p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk ext tmul map Algebra.smul_def comm_tmul mk_surjective"
+p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk \
+  ext tmul map Algebra.smul_def comm_tmul mk_surjective"
 end TensorProduct
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 end WeierstrassCurve.Affine
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add baseChange map_map map_zero map zero mk"
 end WeierstrassCurve.Affine.Point
@@ -122,9 +153,19 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProduct Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurv\
+  e"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open_scoped "TensorProduct \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProdu\
+  ct Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
 
 namespace ModularCurve
 
@@ -155,9 +196,14 @@ end
 
 section
 
-p2m_open "IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.IsDedekindDomain Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open "IsDedekindDomain \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.IsDedekindD\
+  omain Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
@@ -166,9 +212,15 @@ p2m_export "AlgebraicCurve.Place" "ext deg ofHeightOneSpectrum toValuationSubrin
 end AlgebraicCurve.Place
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -193,21 +245,37 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.IsDedekindDomain"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial \
+  IsDedekindDomain \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.IsDedekindD\
+  omain"
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
 end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine.CoordinateRing AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -218,12 +286,22 @@ theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine.CoordinateRing AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
 
 variable {F : Type*} [Field F] (W : Affine F)
 
@@ -235,9 +313,15 @@ def yGen (W : Affine F) : W.FunctionField :=
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 end WeierstrassCurve.Affine
 
 end
@@ -249,14 +333,33 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProduct Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurv\
+  e AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open_scoped "TensorProduct \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProdu\
+  ct Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {F : Type u} [Field F] {W : Affine F}
@@ -322,17 +425,33 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial \
+  WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine"
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine.CoordinateRing"
 
 variable {F : Type u} [Field F]
 
@@ -358,7 +477,7 @@ def pointPullbackCoordHomTo {xP yP : L}
     (Polynomial.aeval xP : F[X] →ₐ[F] L).toRingHom
     yP (eval₂_polynomial_of_equation_map_target h)
   commutes' c := by
-    show AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map_target h) (algebraMap F _ c)
+    change AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map_target h) (algebraMap F _ c)
       = algebraMap F L c
     rw [CoordinateRing.algebraMap_eq_mk_C_C, AdjoinRoot.lift_mk, eval₂_C]
     exact Polynomial.aeval_C _ c
@@ -374,7 +493,7 @@ theorem pointPullbackCoordHomTo_comp_algebraMap {xP yP : L}
     (pointPullbackCoordHomTo h).toRingHom.comp (algebraMap F[X] W.CoordinateRing)
       = (Polynomial.aeval xP : F[X] →ₐ[F] L).toRingHom := by
   refine RingHom.ext fun p => ?_
-  show pointPullbackCoordHomTo h (algebraMap F[X] _ p) = _
+  change pointPullbackCoordHomTo h (algebraMap F[X] _ p) = _
   rw [algebraMap_polynomial_eq_mk_C, pointPullbackCoordHomTo_mk, eval₂_C]
 
 theorem pointPullbackCoordHomTo_injective {xP yP : L}
@@ -415,7 +534,7 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
     (h : (W.map (algebraMap F L)).toAffine.Equation xP yP)
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     pointPullbackHomTo h hx (yGen W) = yP := by
-  show pointPullbackHomTo h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
+  change pointPullbackHomTo h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
   rw [pointPullbackHomTo_algebraMap, pointPullbackCoordHomTo_mk]
   exact eval₂_X _ _
 
@@ -431,17 +550,33 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.IsDedekindDomain"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial \
+  IsDedekindDomain \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.IsDedekindD\
+  omain"
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine.CoordinateRing AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
 
 variable {F : Type u} [Field F]
 
@@ -485,19 +620,39 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.Point"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine WeierstrassCurve.Affine.Point \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine.Point"
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open_scoped "WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
+p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point \
+  map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
+p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing \
+  map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX \
+  map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul \
+  CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField \
+  polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C \
+  algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
+p2m_open "WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine.CoordinateRing AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
 
 variable {F : Type u} [Field F]
 
@@ -544,9 +699,22 @@ set_option linter.unusedSectionVars false
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProduct Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.Bivariate"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurv\
+  e AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open_scoped "TensorProduct \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProdu\
+  ct Polynomial.Bivariate \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial.\
+  Bivariate"
 
 namespace ModularCurve
 
@@ -558,17 +726,22 @@ variable (F : Type v) [Field F] [Algebra R₀ F] [DecidableEq F] [IsAlgClosed F]
 variable (F' : Type w) [Field F'] [Algebra R₀ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
 variable [Algebra F F'] [IsScalarTower R₀ F F']
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_transcendental_polyToFunctionField_X_over_baseGeneral :
-    Transcendental F (polyToFunctionField (W⁄F') X) :=
-  Transcendental.of_tower_top F (L := F')
-    (transcendental_polyToFunctionField_X (W := (W⁄F')))
+    Transcendental F (polyToFunctionField (W⁄F') X) := by
+  classical
+  exact
+    Transcendental.of_tower_top F (L := F')
+      (transcendental_polyToFunctionField_X (W := (W⁄F')))
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_equation_map_polyToFunctionField_yGen_over_baseGeneral :
     ((W⁄F).map (algebraMap F (W⁄F').FunctionField)).toAffine.Equation
       (polyToFunctionField (W⁄F') X) (yGen (W⁄F')) := by
+  classical
   have hcurve : (W⁄F).map (algebraMap F (W⁄F').FunctionField)
       = (W⁄F').map (algebraMap F' (W⁄F').FunctionField) := by
-    show (W.map _).map _ = (W.map _).map _
+    change (W.map _).map _ = (W.map _).map _
     rw [WeierstrassCurve.map_map, WeierstrassCurve.map_map]
     congr 1
     exact ((IsScalarTower.algebraMap_eq R₀ F (W⁄F').FunctionField).symm).trans
@@ -582,14 +755,20 @@ def kw_functionFieldMapAlongGeneral : (W⁄F).FunctionField →ₐ[F] (W⁄F').F
       transcendental_iff.mp (kw_transcendental_polyToFunctionField_X_over_baseGeneral W F F') p
         hp)
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldMapAlongGeneral_polyToFunctionField_X :
     kw_functionFieldMapAlongGeneral W F F' (polyToFunctionField (W⁄F) X)
-      = polyToFunctionField (W⁄F') X :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+      = polyToFunctionField (W⁄F') X := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldMapAlongGeneral_yGen :
-    kw_functionFieldMapAlongGeneral W F F' (yGen (W⁄F)) = yGen (W⁄F') :=
-  pointPullbackHomTo_yGen _ _
+    kw_functionFieldMapAlongGeneral W F F' (yGen (W⁄F)) = yGen (W⁄F') := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
 def KwFunctionFieldTensorIsDomainGeneral : Prop :=
   IsDomain ((W⁄F).FunctionField ⊗[F] F')
@@ -622,15 +801,17 @@ scoped instance kw_isScalarTower_base_right_fracTensorGeneral :
       (IsScalarTower.algebraMap_apply F' ((W⁄F).FunctionField ⊗[F] F')
         (FractionRing ((W⁄F).FunctionField ⊗[F] F')) (algebraMap R₀ F' r)).symm
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_equation_tensorFracXYGeneral :
     ((W⁄F').map (algebraMap F' (FractionRing ((W⁄F).FunctionField ⊗[F] F')))).toAffine.Equation
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')))
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((yGen (W⁄F)) ⊗ₜ[F] (1 : F'))) := by
+  classical
   have hcurve : (W⁄F').map (algebraMap F' (FractionRing ((W⁄F).FunctionField ⊗[F] F')))
       = W⁄(FractionRing ((W⁄F).FunctionField ⊗[F] F')) := by
-    show (W.map _).map _ = W.map _
+    change (W.map _).map _ = W.map _
     rw [WeierstrassCurve.map_map]; congr 1
     exact (IsScalarTower.algebraMap_eq R₀ F'
       (FractionRing ((W⁄F).FunctionField ⊗[F] F'))).symm
@@ -641,10 +822,12 @@ theorem kw_equation_tensorFracXYGeneral :
           (Algebra.TensorProduct.includeLeft (R := F) (S := R₀)))
     (equation_map_polyToFunctionField_yGen (W := (W⁄F)))
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_transcendental_tensorFracXGeneral :
     Function.Injective (Polynomial.aeval (R := F')
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')))) := by
+  classical
   rw [show algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
         ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F'))
       = IsScalarTower.toAlgHom F' ((W⁄F).FunctionField ⊗[F] F')
@@ -662,13 +845,13 @@ theorem kw_transcendental_tensorFracXGeneral :
           (Algebra.TensorProduct.comm F F' F[X]).toAlgHom.toRingHom).comp
           (polyEquivTensor' F F').toAlgHom.toRingHom := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
-    · show aeval _ (C c) = Algebra.TensorProduct.map _ _
+    · change aeval _ (C c) = Algebra.TensorProduct.map _ _
           (Algebra.TensorProduct.comm F F' F[X] (polyEquivTensor' F F' (C c)))
       rw [show (polyEquivTensor' F F') (C c) = c ⊗ₜ[F] (1 : F[X]) from by
             rw [coe_polyEquivTensor', polyEquivTensor_apply, eval₂_C]; rfl,
         Algebra.TensorProduct.comm_tmul, Algebra.TensorProduct.map_tmul, Polynomial.aeval_C,
         Algebra.TensorProduct.right_algebraMap_apply, AlgHom.coe_id, id_eq, map_one]
-    · show aeval _ (X : F'[X]) = Algebra.TensorProduct.map _ _
+    · change aeval _ (X : F'[X]) = Algebra.TensorProduct.map _ _
           (Algebra.TensorProduct.comm F F' F[X] (polyEquivTensor' F F' X))
       rw [show (polyEquivTensor' F F') X = (1:F') ⊗ₜ[F] (X : F[X]) from by
             rw [coe_polyEquivTensor', polyEquivTensor_apply, eval₂_X],
@@ -696,19 +879,27 @@ def kw_functionFieldTensorFracHomGeneral :
   pointPullbackHomTo (kw_equation_tensorFracXYGeneral W F F')
     (kw_transcendental_tensorFracXGeneral W F F')
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorFracHomGeneral_X :
     kw_functionFieldTensorFracHomGeneral W F F' (polyToFunctionField (W⁄F') X)
       = algebraMap ((W⁄F).FunctionField ⊗[F] F') _
-          ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')) :=
-  pointPullbackHomTo_polyToFunctionField_X _ _
+          ((polyToFunctionField (W⁄F) X) ⊗ₜ[F] (1 : F')) := by
+  classical
+  exact
+    pointPullbackHomTo_polyToFunctionField_X _ _
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorFracHomGeneral_yGen :
     kw_functionFieldTensorFracHomGeneral W F F' (yGen (W⁄F'))
-      = algebraMap ((W⁄F).FunctionField ⊗[F] F') _ ((yGen (W⁄F)) ⊗ₜ[F] (1 : F')) :=
-  pointPullbackHomTo_yGen _ _
+      = algebraMap ((W⁄F).FunctionField ⊗[F] F') _ ((yGen (W⁄F)) ⊗ₜ[F] (1 : F')) := by
+  classical
+  exact
+    pointPullbackHomTo_yGen _ _
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorFracHomGeneral_bijective :
     Function.Bijective (kw_functionFieldTensorFracHomGeneral W F F') := by
+  classical
   refine ⟨(kw_functionFieldTensorFracHomGeneral W F F').injective, ?_⟩
   set ψ := kw_functionFieldTensorFracHomGeneral W F F'
   have hκ : (ψ.restrictScalars F).comp (kw_functionFieldMapAlongGeneral W F F')
@@ -716,11 +907,11 @@ theorem kw_functionFieldTensorFracHomGeneral_bijective :
           (FractionRing ((W⁄F).FunctionField ⊗[F] F'))).comp
           (Algebra.TensorProduct.includeLeft (R := F)) := by
     refine kw_functionField_algHom_ext ?_ ?_
-    · show ψ (kw_functionFieldMapAlongGeneral W F F' (polyToFunctionField (W⁄F) X)) = _
+    · change ψ (kw_functionFieldMapAlongGeneral W F F' (polyToFunctionField (W⁄F) X)) = _
       rw [kw_functionFieldMapAlongGeneral_polyToFunctionField_X,
         kw_functionFieldTensorFracHomGeneral_X]
       rfl
-    · show ψ (kw_functionFieldMapAlongGeneral W F F' (yGen (W⁄F))) = _
+    · change ψ (kw_functionFieldMapAlongGeneral W F F' (yGen (W⁄F))) = _
       rw [kw_functionFieldMapAlongGeneral_yGen, kw_functionFieldTensorFracHomGeneral_yGen]
       rfl
   have hT_sub : ∀ t : (W⁄F).FunctionField ⊗[F] F',
@@ -751,13 +942,18 @@ def kw_tensorIotaRingHomGeneral (D : IsogenyEndDatum (W⁄F)) :
     (W⁄F).FunctionField ⊗[F] F' →+* (W⁄F).FunctionField ⊗[F] F' :=
   (Algebra.TensorProduct.map D.ι (AlgHom.id F F')).toRingHom
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_tensorIotaRingHomGeneral_tmul (D : IsogenyEndDatum (W⁄F)) (a : (W⁄F).FunctionField)
     (c : F') : kw_tensorIotaRingHomGeneral W F F' D (a ⊗ₜ[F] c) = (D.ι a) ⊗ₜ[F] c := by
+  classical
   simp [kw_tensorIotaRingHomGeneral, Algebra.TensorProduct.map_tmul]
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_tensorIotaRingHomGeneral_injective (D : IsogenyEndDatum (W⁄F)) :
-    Function.Injective (kw_tensorIotaRingHomGeneral W F F' D) :=
-  Module.Flat.rTensor_preserves_injective_linearMap (M := F') D.ι.toLinearMap D.ι.injective
+    Function.Injective (kw_tensorIotaRingHomGeneral W F F' D) := by
+  classical
+  exact
+    Module.Flat.rTensor_preserves_injective_linearMap (M := F') D.ι.toLinearMap D.ι.injective
 
 def kw_tensorFracIotaRingHomGeneral (D : IsogenyEndDatum (W⁄F)) :
     FractionRing ((W⁄F).FunctionField ⊗[F] F')
@@ -766,6 +962,7 @@ def kw_tensorFracIotaRingHomGeneral (D : IsogenyEndDatum (W⁄F)) :
     (L := FractionRing ((W⁄F).FunctionField ⊗[F] F'))
     (kw_tensorIotaRingHomGeneral_injective W F F' D)
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_tensorFracIotaRingHomGeneral_algebraMap (D : IsogenyEndDatum (W⁄F))
     (t : (W⁄F).FunctionField ⊗[F] F') :
     kw_tensorFracIotaRingHomGeneral W F F' D
@@ -773,6 +970,7 @@ theorem kw_tensorFracIotaRingHomGeneral_algebraMap (D : IsogenyEndDatum (W⁄F))
           (FractionRing ((W⁄F).FunctionField ⊗[F] F')) t)
       = algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
           (kw_tensorIotaRingHomGeneral W F F' D t) := by
+  classical
   unfold kw_tensorFracIotaRingHomGeneral IsFractionRing.map
   exact IsLocalization.map_eq (T := nonZeroDivisors ((W⁄F).FunctionField ⊗[F] F')) _ t
 
@@ -796,7 +994,7 @@ def kw_isogenyEndDatumBaseChangeIotaGeneral (D : IsogenyEndDatum (W⁄F)) :
         rw [AlgEquiv.commutes, IsScalarTower.algebraMap_apply F' ((W⁄F).FunctionField ⊗[F] F')
           (FractionRing ((W⁄F).FunctionField ⊗[F] F')),
           Algebra.TensorProduct.right_algebraMap_apply]
-      show ψ.symm (kw_tensorFracIotaRingHomGeneral W F F' D (ψ (algebraMap F' _ c)))
+      change ψ.symm (kw_tensorFracIotaRingHomGeneral W F F' D (ψ (algebraMap F' _ c)))
           = algebraMap F' _ c
       rw [hc, kw_tensorFracIotaRingHomGeneral_algebraMap, kw_tensorIotaRingHomGeneral_tmul,
         map_one, ← hc]
@@ -806,9 +1004,11 @@ def KwIsogenyEndDatumBaseChangeAlongGeneral (_σ : F →ₐ[R₀] F') (N : ℕ) 
   (∃ D : IsogenyEndDatum (W⁄F), D.degree = N) →
     ∃ D' : IsogenyEndDatum (W⁄F'), D'.degree = N
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneral
     (hseam : KwTensorFracIotaFinrankSeamGeneral W F F')
     (σ : F →ₐ[R₀] F') (N : ℕ) : KwIsogenyEndDatumBaseChangeAlongGeneral W F F' σ N := by
+  classical
   intro ⟨D, hD⟩
   let ψ := kw_functionFieldTensorFracEquivGeneral W F F'
   let ιFr := kw_tensorFracIotaRingHomGeneral W F F' D
@@ -833,14 +1033,17 @@ theorem kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneral
 
 end FracHom
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_isogenyEndDatumBaseChangeAlong_of_tensorIsDomainGeneral
     (htens : KwFunctionFieldTensorIsDomainGeneral W F F')
     (hseam : haveI : IsDomain ((W⁄F).FunctionField ⊗[F] F') := htens
              KwTensorFracIotaFinrankSeamGeneral W F F')
     (σ : F →ₐ[R₀] F') (N : ℕ) :
-    KwIsogenyEndDatumBaseChangeAlongGeneral W F F' σ N :=
-  haveI : IsDomain ((W⁄F).FunctionField ⊗[F] F') := htens
-  kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneral W F F' hseam σ N
+    KwIsogenyEndDatumBaseChangeAlongGeneral W F F' σ N := by
+  classical
+  exact
+    haveI : IsDomain ((W⁄F).FunctionField ⊗[F] F') := htens
+    kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneral W F F' hseam σ N
 
 end Setup
 
@@ -855,9 +1058,21 @@ set_option linter.unusedSimpArgs false
 
 section
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProduct Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Weierstrass\
+  Curve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurv\
+  e AlgebraicCurve \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCu\
+  rve"
+p2m_open "Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
+p2m_open_scoped "TensorProduct \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.TensorProdu\
+  ct Polynomial \
+  P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial"
 
 namespace ModularCurve
 
@@ -876,10 +1091,12 @@ section FFDomain
 local notation3 "CR" => (W⁄F).toAffine.CoordinateRing
 local notation3 "FFₗ" => (W⁄F).FunctionField
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_coordinateRingMap_basisGeneral (i : ℕ × Fin 2) :
     CoordinateRing.map (W⁄F).toAffine (algebraMap F F')
         (kw_coordinateRingBasis (W⁄F).toAffine i)
       = kw_coordinateRingBasis ((W⁄F).toAffine.map (algebraMap F F')) i := by
+  classical
   obtain ⟨n, j⟩ := i
   simp only [kw_coordinateRingBasis, Module.Basis.smulTower_apply,
     Polynomial.coe_basisMonomials, CoordinateRing.map_smul]
@@ -896,7 +1113,7 @@ def kw_coordinateRingMapAlongGeneral :
   commutes' r := by
     simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
       MonoidHom.coe_ofClass]
-    show CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
+    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
     rw [IsScalarTower.algebraMap_apply F F[X] CR,
       show (algebraMap F F[X] r) = Polynomial.C r from rfl,
       show (algebraMap F[X] CR) (C r) = (C r : F[X]) • (1 : CR) by
@@ -909,7 +1126,9 @@ def kw_coordinateRingMapAlongGeneral :
         from rfl,
       Algebra.smul_def, mul_one]
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_coordinateRingTensor_isDomainGeneral : IsDomain (CR ⊗[F] F') := by
+  classical
   suffices h : IsDomain (F' ⊗[F] CR) by
     have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
@@ -930,16 +1149,18 @@ theorem kw_coordinateRingTensor_isDomainGeneral : IsDomain (CR ⊗[F] F') := by
     exact heq ▸ (bT.equiv bD (Equiv.refl _)).injective
   exact Function.Injective.isDomain θ.toRingHom hθ
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_functionFieldTensorIsDomain_dischargeGeneral :
     KwFunctionFieldTensorIsDomainGeneral W F F' := by
-  show IsDomain (FFₗ ⊗[F] F')
+  classical
+  change IsDomain (FFₗ ⊗[F] F')
   have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneral W F F'
   let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
   have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
-      show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
+      change Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
   have hloc : IsLocalization
@@ -962,10 +1183,14 @@ section Seam
 
 variable [IsDomain ((W⁄F).FunctionField ⊗[F] F')]
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_tensorIotaRingHom_finiteGeneral (D : IsogenyEndDatum (W⁄F)) :
-    (kw_tensorIotaRingHomGeneral W F F' D).Finite :=
-  RingHom.Finite.tensorProductMap (f := D.ι) D.hfin (g := AlgHom.id F F') (RingHom.Finite.id F')
+    (kw_tensorIotaRingHomGeneral W F F' D).Finite := by
+  classical
+  exact
+    RingHom.Finite.tensorProductMap (f := D.ι) D.hfin (g := AlgHom.id F F') (RingHom.Finite.id F')
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_tensorFracIotaFinrankSeam_dischargeGeneral :
     KwTensorFracIotaFinrankSeamGeneral W F F' := by
   classical
@@ -1032,12 +1257,12 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneral :
         rw [show ιT ((x : FF) ⊗ₜ[F] c') = (D.ι x) ⊗ₜ[F] c' from
               kw_tensorIotaRingHomGeneral_tmul W F F' D _ _,
             Algebra.TensorProduct.tmul_mul_tmul, mul_one]
-        show (pj (D.ι x * b i)) ⊗ₜ[F] c' = if i = j then (x : FF) ⊗ₜ[F] c' else 0
+        change (pj (D.ι x * b i)) ⊗ₜ[F] c' = if i = j then (x : FF) ⊗ₜ[F] c' else 0
         rw [show pj (D.ι x * b i) = if i = j then x else 0 from ?_]
         · split_ifs with h
           · rfl
           · exact TensorProduct.zero_tmul _ c'
-        · show b.repr (D.ι x * b i) j = if i = j then x else 0
+        · change b.repr (D.ι x * b i) j = if i = j then x else 0
           rw [hrepr_mul, b.repr_self, Finsupp.single_apply]
           split_ifs with h <;> simp [h]
     have hc' : Ej (∑ i, ιT (c i) * e i) = 0 := by rw [hc, _root_.map_zero]
@@ -1115,18 +1340,21 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneral :
       Submodule.smul_mem _ (d i) (Submodule.subset_span ⟨i, rfl⟩)
   let bFr' : Module.Basis (Fin D.degree) FrT FrT := .mk hli_modFr hsp_modFr
   refine ⟨Module.Finite.of_basis bFr', ?_⟩
-  show Module.finrank FrT FrT = D.degree
+  change Module.finrank FrT FrT = D.degree
   rw [Module.finrank_eq_card_basis bFr', Fintype.card_fin]
 
 end Seam
 
+omit [DecidableEq F] [DecidableEq F'] in
 theorem kw_isogenyEndDatumBaseChangeAlong_dischargeGeneral (σ : F →ₐ[R₀] F') (N : ℕ) :
-    KwIsogenyEndDatumBaseChangeAlongGeneral W F F' σ N :=
-  haveI : IsDomain ((W⁄F).FunctionField ⊗[F] F') :=
-    kw_functionFieldTensorIsDomain_dischargeGeneral W F F'
-  kw_isogenyEndDatumBaseChangeAlong_of_tensorIsDomainGeneral W F F'
-    (kw_functionFieldTensorIsDomain_dischargeGeneral W F F')
-    (kw_tensorFracIotaFinrankSeam_dischargeGeneral W F F') σ N
+    KwIsogenyEndDatumBaseChangeAlongGeneral W F F' σ N := by
+  classical
+  exact
+    haveI : IsDomain ((W⁄F).FunctionField ⊗[F] F') :=
+      kw_functionFieldTensorIsDomain_dischargeGeneral W F F'
+    kw_isogenyEndDatumBaseChangeAlong_of_tensorIsDomainGeneral W F F'
+      (kw_functionFieldTensorIsDomain_dischargeGeneral W F F')
+      (kw_tensorFracIotaFinrankSeam_dischargeGeneral W F F') σ N
 
 end Setup
 
@@ -1147,13 +1375,14 @@ end
 open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve in
 theorem solution
     {R₀ : Type u} [Field R₀] (W : WeierstrassCurve R₀) [W.IsElliptic]
-    (F : Type v) [Field F] [Algebra R₀ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-    (F' : Type w) [Field F'] [Algebra R₀ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
+    (F : Type v) [Field F] [Algebra R₀ F] [IsAlgClosed F] [CharZero F]
+    (F' : Type w) [Field F'] [Algebra R₀ F'] [IsAlgClosed F'] [CharZero F']
     [Algebra F F'] [IsScalarTower R₀ F F']
     (ι : (W.baseChange F).toAffine.FunctionField →ₐ[F] (W.baseChange F).toAffine.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong F ι) :
     ∃ ι' : (W.baseChange F').toAffine.FunctionField →ₐ[F'] (W.baseChange F').toAffine.FunctionField,
       ι'.toRingHom.IsIntegral ∧ ∃ hfin' : FiniteAlong F' ι', finrankAlong F' ι' = finrankAlong F ι := by
+  classical
   obtain ⟨D', hD'⟩ := ModularCurve.kw_isogenyEndDatumBaseChangeAlong_dischargeGeneral W F F'
     (IsScalarTower.toAlgHom R₀ F F') (finrankAlong F ι) ⟨⟨ι, hι, hfin⟩, rfl⟩
   exact ⟨D'.ι, D'.hι, D'.hfin, hD'⟩
@@ -1173,13 +1402,16 @@ open AlgebraicCurve
 universe u v w
 theorem WeierstrassCurve.Affine.exists_algHom_functionField_baseChange_finrankAlong_eq
     {R₀ : Type u} [Field R₀] (W : WeierstrassCurve R₀) [W.IsElliptic]
-    (F : Type v) [Field F] [Algebra R₀ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-    (F' : Type w) [Field F'] [Algebra R₀ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
+    (F : Type v) [Field F] [Algebra R₀ F] [IsAlgClosed F] [CharZero F]
+    (F' : Type w) [Field F'] [Algebra R₀ F'] [IsAlgClosed F'] [CharZero F']
     [Algebra F F'] [IsScalarTower R₀ F F']
     (ι : (W.baseChange F).toAffine.FunctionField →ₐ[F] (W.baseChange F).toAffine.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong F ι) :
     ∃ ι' : (W.baseChange F').toAffine.FunctionField →ₐ[F'] (W.baseChange F').toAffine.FunctionField,
-      ι'.toRingHom.IsIntegral ∧ ∃ _hfin' : FiniteAlong F' ι', finrankAlong F' ι' = finrankAlong F ι :=
-  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.solution W F F' ι hι hfin
+      ι'.toRingHom.IsIntegral ∧ ∃ _hfin' : FiniteAlong F' ι', finrankAlong F' ι' = finrankAlong F ι
+          := by
+  classical
+  exact
+    _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.solution W F F' ι hι hfin
 
 end publicSection

@@ -58,14 +58,16 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_exists_restrict_eq
 
 noncomputable section
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_restrict_eq.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_restrict_eq.AlgebraicCurve \
+  IsDedekindDomain"
 open scoped Pointwise
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver restrict sum_ramificationIndex_mul_inertiaDeg_fiberOver"
+p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver restrict \
+  sum_ramificationIndex_mul_inertiaDeg_fiberOver"
 end Place
 end AlgebraicCurve
 
@@ -98,6 +100,7 @@ open AlgebraicCurve
 theorem AlgebraicCurve.Place.exists_restrict_eq {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [Algebra.IsSeparable F' M] (w : Place K F') :
-    ∃ W : Place K M, W.restrict F' = w := _root_.P2MW.S_AlgebraicCurve_Place_exists_restrict_eq.solution w
+    ∃ W : Place K M, W.restrict F' = w :=
+  solution w
 
 end publicSection

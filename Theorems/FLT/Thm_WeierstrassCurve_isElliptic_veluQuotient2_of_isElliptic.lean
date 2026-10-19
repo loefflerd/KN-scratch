@@ -77,7 +77,8 @@ namespace WeierstrassCurve
 variable {F : Type*} [Field F] {W : WeierstrassCurve F} [W.IsElliptic] {x₀ y₀ : F}
 theorem isElliptic_veluQuotient2_of_isElliptic
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) :
-    (W.veluQuotient2 x₀ y₀).IsElliptic := _root_.P2MW.S_WeierstrassCurve_isElliptic_veluQuotient2_of_isElliptic.solution hQ hgy
+    (W.veluQuotient2 x₀ y₀).IsElliptic :=
+  solution hQ hgy
 end WeierstrassCurve
 
 end publicSection

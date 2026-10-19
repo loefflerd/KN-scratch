@@ -88,7 +88,8 @@ namespace P2MW.S_ModularCurve_ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex Matrix.SpecialLinearGroup"
+p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex \
+  Matrix.SpecialLinearGroup"
 open scoped MatrixGroups Topology Pointwise Manifold ModularForm
 
 noncomputable section
@@ -109,7 +110,6 @@ theorem exists_pos_conj_pow_mem (H : Subgroup G) [H.FiniteIndex] (σ t : G) :
   exact H.normalCore_le (Subgroup.pow_index_mem H.normalCore (σ * t * σ⁻¹))
 
 open scoped Classical in
-
 noncomputable def width (H : Subgroup G) [H.FiniteIndex] (σ t : G) : ℕ :=
   Nat.find (exists_pos_conj_pow_mem H σ t)
 
@@ -217,7 +217,8 @@ theorem mem_KT_iff {k : SL(2, ℤ)} :
     k ∈ KT ↔ ∃ m : ℤ, k = ModularGroup.T ^ m ∨ k = -ModularGroup.T ^ m := by
   constructor
   · intro hk
-    have hset := Subgroup.mul_normal (Subgroup.zpowers ModularGroup.T) (Subgroup.zpowers (-1 : SL(2, ℤ)))
+    have hset :=
+      Subgroup.mul_normal (Subgroup.zpowers ModularGroup.T) (Subgroup.zpowers (-1 : SL(2, ℤ)))
     have hk' : k ∈ ((Subgroup.zpowers ModularGroup.T : Set SL(2, ℤ)) *
         (Subgroup.zpowers (-1 : SL(2, ℤ)) : Set SL(2, ℤ))) := by
       rw [← hset]; exact hk
@@ -262,7 +263,8 @@ theorem mk_mul_T_zpow_eq_iff (a : SL(2, ℤ)) (m n : ℤ) :
     (Quotient.mk'' (a * ModularGroup.T ^ m) : RC Γ) = Quotient.mk'' (a * ModularGroup.T ^ n) ↔
       (cw Γ a : ℤ) ∣ n - m := by
   rw [Quotient.eq'', QuotientGroup.rightRel_apply, ← conj_zpow_mem_iff_dvd]
-  have : a * ModularGroup.T ^ n * (a * ModularGroup.T ^ m)⁻¹ = a * ModularGroup.T ^ (n - m) * a⁻¹ := by
+  have : a * ModularGroup.T ^ n * (a * ModularGroup.T ^ m)⁻¹ = a * ModularGroup.T ^ (n - m) * a⁻¹ :=
+    by
     rw [mul_inv_rev, zpow_sub]; group
   rw [this]
 
@@ -459,7 +461,8 @@ theorem dvd_order_Lq_of_periodic {f : ℍ → ℂ} (h m' : ℕ) (hh : 0 < h) (hm
   have hne' : qExpansion ((m' : ℝ) * h) f ≠ 0 := (Lq_ne_zero_iff _ _).mp hne
   rw [Lq, order_ofPowerSeries hne']
   have hc := PowerSeries.coeff_order hne'
-  have h35 := UpperHalfPlane.qExpansion_coeff_mul_width f (h : ℝ) (by exact_mod_cast hh) hper hhol hbdd
+  have h35 :=
+    UpperHalfPlane.qExpansion_coeff_mul_width f (h : ℝ) (by exact_mod_cast hh) hper hhol hbdd
     m' hm' (qExpansion ((m' : ℝ) * h) f).order.toNat
   by_contra hnd
   have hnd' : ¬ m' ∣ (qExpansion ((m' : ℝ) * h) f).order.toNat := by
@@ -522,7 +525,8 @@ theorem neg_ord_dvd_of_readout (hT : ModularGroup.T ∈ Γ) (σ : SL(2, ℤ)) (h
     have hLg : Lq (N : ℝ) (⇑g ∣[k] σ) ≠ 0 := by
       change Φ x * Lq (N : ℝ) (⇑hf ∣[k] σ) = Lq (N : ℝ) (⇑g ∣[k] σ) at hp
       rw [← hp]; exact mul_ne_zero hΦx hLf
-    have hordmul : (Φ x).order + (Lq (N : ℝ) (⇑hf ∣[k] σ)).order = (Lq (N : ℝ) (⇑g ∣[k] σ)).order := by
+    have hordmul : (Φ x).order + (Lq (N : ℝ) (⇑hf ∣[k] σ)).order = (Lq (N : ℝ) (⇑g ∣[k] σ)).order :=
+      by
       rw [← HahnSeries.order_mul hΦx hLf]
       exact congrArg HahnSeries.order hp
     have hdf : (m' : ℤ) ∣ (Lq (N : ℝ) (⇑hf ∣[k] σ)).order := by
@@ -533,7 +537,8 @@ theorem neg_ord_dvd_of_readout (hT : ModularGroup.T ∈ Γ) (σ : SL(2, ℤ)) (h
       rw [hNreal]
       refine dvd_order_Lq_of_periodic h m' hh hm'pos hper_g (slash_mdiff g σ) (slash_bddAtImInfty g σ) ?_
       rw [← hNreal]; exact hLg
-    have : (Φ x).order = (Lq (N : ℝ) (⇑g ∣[k] σ)).order - (Lq (N : ℝ) (⇑hf ∣[k] σ)).order := by omega
+    have : (Φ x).order = (Lq (N : ℝ) (⇑g ∣[k] σ)).order - (Lq (N : ℝ) (⇑hf ∣[k] σ)).order :=
+      by omega
     rw [this]; exact dvd_sub hdg hdf
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible P.toValuationSubring
   have hπ1 : P.ord (π : CF Γ) = 1 := AlgebraicCurve.Place.ord_coe_irreducible P hπ
@@ -571,7 +576,8 @@ theorem KT_cases {k : SL(2, ℤ)}
     · rw [hj.neg_one_zpow]
       have : g * -1 * g⁻¹ = (-1 : SL(2, ℤ)) := by simp
       rw [this]; exact Subgroup.mem_zpowers _
-  have hset := Subgroup.mul_normal (Subgroup.zpowers ModularGroup.T) (Subgroup.zpowers (-1 : SL(2, ℤ)))
+  have hset :=
+    Subgroup.mul_normal (Subgroup.zpowers ModularGroup.T) (Subgroup.zpowers (-1 : SL(2, ℤ)))
   have hk' : k ∈ ((Subgroup.zpowers ModularGroup.T : Set SL(2, ℤ)) *
       (Subgroup.zpowers (-1 : SL(2, ℤ)) : Set SL(2, ℤ))) := by
     rw [← hset]; exact hk
@@ -596,7 +602,6 @@ theorem modularForm_apply_smul_ne_zero_iff {k : ℤ} (h : ModularForm Γ k) {γ 
   exact ⟨fun H => H.2, fun H => ⟨zpow_ne_zero _ (denom_ne_zero _ z), H⟩⟩
 
 include hT in
-
 theorem realizeOf_smul_of_mem {γ : SL(2, ℤ)} (hγ : γ ∈ Γ) (x : LaurentSeries ℂ) (z : ℍ) :
     ModularCurve.realizeOf Γ x (γ • z) = ModularCurve.realizeOf Γ x z := by
   by_cases H : ∃ p : (k : ℤ) × (ModularForm Γ k × ModularForm Γ k),
@@ -630,7 +635,6 @@ theorem exists_tendsto_comp_T_zpow_iff (f : ℍ → ℂ) (m : ℤ) :
     exact ⟨L, hL.comp (tendsto_T_zpow_smul_atImInfty m)⟩
 
 include hT in
-
 theorem place_eq_of_doubleCoset {F₀ : IntermediateField ℚ (LaurentSeries ℚ)}
     (Pl : SL(2, ℤ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hE2 : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)),
@@ -684,7 +688,6 @@ theorem cw_mul_mul_eq {σ h k : SL(2, ℤ)} (hh : h ∈ Γ) (hk : k ∈ KT) :
     (fun n hn hmem => width_le _ _ _ hn ((key n).mp hmem))
 
 open AlgebraicCurve in
-
 theorem ord_eq_neg_cw_of_squeeze
     {F : Type*} [Field F] [Algebra ℂ F]
     (y : F) (htr : Transcendental ℂ y)
@@ -797,7 +800,8 @@ lemma Pl_spec (σ : SL(2, ℤ)) :
     (Gamma1 M) (T_mem_Gamma1 M) (ModularCurve.qExpFunctionFieldC ℚ (Gamma1 M))
       rfl σ).choose_spec.choose_spec
 
-theorem not_mem_of_ord_neg {F : Type*} [Field F] [Algebra ℂ F] (P : AlgebraicCurve.Place ℂ F) {x : F}
+theorem not_mem_of_ord_neg {F : Type*} [Field F] [Algebra ℂ F] (P : AlgebraicCurve.Place ℂ F)
+    {x : F}
     (hx : P.ord x < 0) : x ∉ P.toValuationSubring := fun hmem =>
   ((P.not_adicValuation_le_one_iff).mpr hx) (P.adicValuation_le_one_of_mem hmem)
 
@@ -812,8 +816,10 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ (Gamma1 M) hT y hy
   have := hfin
-  have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
-  have hcard := ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset ℂ M y hy
+  have hfull :=
+    ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
+  have hcard :=
+    ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset ℂ M y hy
   have hE2 : ∀ (σ : SL(2, ℤ)) (x : CF (Gamma1 M)), x ∈ (Pl M σ).toValuationSubring ↔
       ∃ L : ℂ, Tendsto (fun τ : ℍ => ModularCurve.realizeOf (Gamma1 M) (x : LaurentSeries ℂ) (σ • τ))
         atImInfty (𝓝 L) := by
@@ -843,13 +849,15 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
     have hwpos := width_pos (pm (Gamma1 M)) σ ModularGroup.T
     have hmem_pm : σ * ModularGroup.T ^ (cw (Gamma1 M) σ : ℤ) * σ⁻¹ ∈ pm (Gamma1 M) := by
       rw [zpow_natCast]; exact conj_pow_width_mem (pm (Gamma1 M)) σ ModularGroup.T
-    have hreg := CongruenceSubgroup.conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one M (four_not_dvd M hM) σ _ hmem_pm
+    have hreg :=
+      CongruenceSubgroup.conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one M (four_not_dvd M hM) σ _ hmem_pm
     have hdvd : cw (Gamma1 M) σ ∣ (Gamma1 M).normalCore.index := by
       have h1 : σ * ModularGroup.T ^ ((Gamma1 M).normalCore.index : ℤ) * σ⁻¹ ∈ pm (Gamma1 M) :=
         Subgroup.mem_sup_left (conj_T_zpow_index_mem σ)
       rw [conj_zpow_mem_iff_dvd] at h1
       exact_mod_cast h1
-    obtain ⟨hneg, hdv⟩ := neg_ord_dvd_of_readout (Gamma1 M) hT σ (cw (Gamma1 M) σ) hwpos hreg hdvd _ (Pl M σ)
+    obtain ⟨hneg, hdv⟩ :=
+      neg_ord_dvd_of_readout (Gamma1 M) hT σ (cw (Gamma1 M) σ) hwpos hreg hdvd _ (Pl M σ)
       e he hpres hord y hey
     refine ⟨hneg, Int.le_of_dvd (by exact_mod_cast hwpos) hdv⟩
   exact ord_eq_neg_cw_of_squeeze (Gamma1 M) y htr hfin hfull hcard (Pl M) hinv hsurj hbound σ
@@ -861,7 +869,6 @@ section squeeze2
 variable (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
 
 open AlgebraicCurve in
-
 theorem ord_eq_neg_cw_of_squeeze'
     {F : Type*} [Field F] [Algebra ℂ F]
     (y : F) (htr : Transcendental ℂ y)
@@ -966,7 +973,6 @@ theorem mem_toValuationSubring_iff_ord {F : Type*} [Field F] [Algebra ℂ F]
 variable (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
 
 include hT in
-
 theorem place_eq_of_readouts (σ : SL(2, ℤ))
     (hB : ∀ (k : ℤ) (hf : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), hf ≠ 0 →
       ((qExpansion (Γ.normalCore.index : ℝ) ((hf : ℍ → ℂ) ∣[k] σ) : PowerSeries ℂ) :
@@ -1150,7 +1156,8 @@ theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (σ : SL(2, ℤ))
     (Φ : ModularCurve.laurentBaseChange ℂ F₀ →+* LaurentSeries ℂ)
     (P : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ F₀)) (e : ℕ) (he : 0 < e)
@@ -1169,7 +1176,8 @@ theorem solution
         ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(ModularCurve.laurentBaseChange ℂ F₀)))
         ↥(ModularCurve.laurentBaseChange ℂ F₀) =
       (Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
-    (h : ℕ) (hh : 0 < h) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
+    (h : ℕ) (hh : 0 < h)
+    (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hmin : ∀ k : ℕ, 0 < k → σ * ModularGroup.T ^ k * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) → h ≤ k) :
     P.ord y = -(h : ℤ) := by
   subst hF
@@ -1196,7 +1204,8 @@ theorem ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (σ : SL(2, ℤ))
     (Φ : ModularCurve.laurentBaseChange ℂ F₀ →+* LaurentSeries ℂ)
     (P : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ F₀)) (e : ℕ) (he : 0 < e)
@@ -1215,8 +1224,10 @@ theorem ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash
         ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(ModularCurve.laurentBaseChange ℂ F₀)))
         ↥(ModularCurve.laurentBaseChange ℂ F₀) =
       (Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
-    (h : ℕ) (hh : 0 < h) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
+    (h : ℕ) (hh : 0 < h)
+    (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hmin : ∀ k : ℕ, 0 < k → σ * ModularGroup.T ^ k * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) → h ≤ k) :
-    P.ord y = -(h : ℤ) := _root_.P2MW.S_ModularCurve_ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash.solution Γ hT hΓ F₀ hF y hy σ Φ P e he hpres hord hyo hdeg h hh hmem hmin
+    P.ord y = -(h : ℤ) :=
+  solution Γ hT hΓ F₀ hF y hy σ Φ P e he hpres hord hyo hdeg h hh hmem hmin
 
 end publicSection

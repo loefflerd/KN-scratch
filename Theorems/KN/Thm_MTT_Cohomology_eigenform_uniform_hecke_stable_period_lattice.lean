@@ -77,7 +77,7 @@ theorem act_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     act A (MvPolynomial.map f P) = MvPolynomial.map f (act A P) := by
   unfold act
   simp only [AlgHom.toLinearMap_apply]
-  show MvPolynomial.bind₁ (fun i : Fin 2 => ∑ a : Fin 2,
+  change MvPolynomial.bind₁ (fun i : Fin 2 => ∑ a : Fin 2,
       (A a i : S) • MvPolynomial.X a) (MvPolynomial.map f P) =
     MvPolynomial.map f (MvPolynomial.bind₁
       (fun i : Fin 2 => ∑ a : Fin 2, (A a i : R) • MvPolynomial.X a) P)
@@ -130,11 +130,11 @@ theorem evaluation_extends {N n : ℕ} {R S : Type*} [CommRing R] [CommRing S]
     (f : R →+* S) (ψ : Hc N n R) (φ : Hc N n S) (h : Extends f ψ φ)
     (j : ℕ) (r : ℚ) :
     evaluation j r φ = f (evaluation j r ψ) := by
-  show AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _ = _
+  change AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _ = _
   rw [h OnePoint.infty ((r : ℚ) : Cusp), MvPolynomial.coeff_map]
   rfl
 
-/-- The exponent vector of `X^j Y^(n-j)`.  This is definitionally the exponent
+/-- The exponent vector of `X^j Y^(n-j)`. This is definitionally the exponent
 used by `MTT.Cohomology.evaluation`; the source definition is internal to the
 integration node, so we name it locally here. -/
 def binaryExponent (n j : ℕ) : Fin 2 →₀ ℕ :=

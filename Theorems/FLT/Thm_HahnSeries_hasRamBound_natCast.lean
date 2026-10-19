@@ -63,7 +63,9 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HahnSeries_hasRamBound_natCast
 
 namespace HahnSeries
-p2m_export "HahnSeries" "support C_apply support_single_subset support_one single support_zero support_mul_subset support_add_subset C support_neg ramScale puiseuxRamEmb HasRamBound puiseuxRamSubfield mem_puiseuxRamSubfield_iff"
+p2m_export "HahnSeries" "support C_apply support_single_subset support_one single support_zero \
+  support_mul_subset support_add_subset C support_neg ramScale puiseuxRamEmb HasRamBound \
+  puiseuxRamSubfield mem_puiseuxRamSubfield_iff"
 p2m_open "HahnSeries"
 
 variable {K : Type*} [Field K] {e : ℕ}
@@ -189,7 +191,6 @@ private theorem HasRamBound.div (he : 0 < e) {x y : HahnSeries ℚ K}
 end HahnSeries
 
 open _root_.HahnSeries _root_.P2MW.S_HahnSeries_hasRamBound_natCast.HahnSeries in
-
 theorem solution {K : Type*} [Field K] {e : ℕ} (n : ℕ) : HasRamBound e ((n : HahnSeries ℚ K)) :=
   HahnSeries.hasRamBound_natCast n
 
@@ -203,6 +204,8 @@ public section publicSection
 
 
 open HahnSeries
-theorem HahnSeries.hasRamBound_natCast {K : Type*} [Field K] {e : ℕ} (n : ℕ) : HasRamBound e ((n : HahnSeries ℚ K)) := _root_.P2MW.S_HahnSeries_hasRamBound_natCast.solution n
+theorem HahnSeries.hasRamBound_natCast {K : Type*} [Field K] {e : ℕ} (n : ℕ) :
+    HasRamBound e ((n : HahnSeries ℚ K)) :=
+  solution n
 
 end publicSection

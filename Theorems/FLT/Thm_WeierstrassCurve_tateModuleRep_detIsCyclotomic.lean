@@ -313,17 +313,14 @@ theorem solution (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime] (hΔ : W.Δ
   have : W.IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   refine ⟨PadicInt.natCast_mem_maximalIdeal p, fun k σ a ha => ?_⟩
   have hp : p.Prime := Fact.out
-
   have hpk : ((p ^ k : ℕ) : AlgebraicClosure ℚ) ≠ 0 :=
     Nat.cast_ne_zero.mpr (pow_ne_zero k hp.ne_zero)
   obtain ⟨e, hl, hr, halt, hgal, hnd⟩ :=
     W.exists_pairing_torsionBy (K := AlgebraicClosure ℚ) hpk
-
   set mZp := LinearMap.toMatrix (TateModule.basisOfCard hcard) (TateModule.basisOfCard hcard)
     (TateModule.rep p (W⁄(AlgebraicClosure ℚ)).Point
       (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) σ) with hmZp
   set cZ : Matrix (Fin 2) (Fin 2) ℤ := Matrix.of fun i j => ((mZp i j).appr k : ℤ) with hcZ
-
   have hprim : IsPrimitiveRoot (e (basisLevel hcard k 0) (basisLevel hcard k 1)) (p ^ k) :=
     ep1 e hl hr halt hnd _ _
       (natCast_pow_smul_basisLevel hcard k 0)
@@ -334,7 +331,6 @@ theorem solution (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime] (hΔ : W.Δ
     ep2 e hl hr halt cZ
       (smul_torsionBy_basisOfCard_level hcard σ k 0)
       (smul_torsionBy_basisOfCard_level hcard σ k 1)
-
   have hξ : e (σ • basisLevel hcard k 0) (σ • basisLevel hcard k 1)
       = e (basisLevel hcard k 0) (basisLevel hcard k 1) ^ a :=
     units_eq_pow_of_apply_eq_pow σ _ (hgal σ _ _) ha hprim.pow_eq_one
@@ -380,6 +376,7 @@ theorem WeierstrassCurve.tateModuleRep_detIsCyclotomic (W : WeierstrassCurve ℚ
     (hcard : ∀ n : ℕ,
       Nat.card (Submodule.torsionBy ℤ (W⁄(AlgebraicClosure ℚ)).Point ((p ^ n : ℕ) : ℤ))
         = (p ^ n) ^ 2) :
-    (W.tateModuleRep p hcard).DetIsCyclotomic p := _root_.P2MW.S_WeierstrassCurve_tateModuleRep_detIsCyclotomic.solution W p hΔ hcard
+    (W.tateModuleRep p hcard).DetIsCyclotomic p :=
+  solution W p hΔ hcard
 
 end publicSection

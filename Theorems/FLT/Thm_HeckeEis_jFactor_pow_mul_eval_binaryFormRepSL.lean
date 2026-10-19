@@ -62,7 +62,8 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL
 
 namespace HeckeEis
-p2m_export "HeckeEis" "eval_smul_of_isHomogeneous BinaryForm binarySubst binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe jFactor jFactor_ne_zero coe_smul_mul_jFactor"
+p2m_export "HeckeEis" "eval_smul_of_isHomogeneous BinaryForm binarySubst binarySubst_X \
+  binaryFormRepSL binaryFormRepSL_apply_coe jFactor jFactor_ne_zero coe_smul_mul_jFactor"
 namespace PeriodFnAux
 p2m_open "HeckeEis"
 
@@ -85,24 +86,28 @@ theorem det_entries (g : SL(2, ℤ)) :
   rw [Matrix.det_fin_two] at h
   exact_mod_cast h
 
-theorem jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : ℍ) (P : ↥(BinaryForm ℂ n)) :
+theorem jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : ℍ) (P : ↥(BinaryForm ℂ n))
+    :
     jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : ℍ)) : ℂ)]
         ((binaryFormRepSL ℂ n g P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
       = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] (P : MvPolynomial (Fin 2) ℂ) := by
   rw [binaryFormRepSL_apply_coe, eval_binarySubst]
   have hj : jFactor g τ ≠ 0 := jFactor_ne_zero g τ
-  have hJ : jFactor g τ = ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ) := rfl
+  have hJ : jFactor g τ = ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ) :=
+    rfl
   have hmul := coe_smul_mul_jFactor g τ
   have hdet := det_entries g
   have hrow : ∀ j : Fin 2, jFactor g τ * (∑ i : Fin 2, (((g : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ)
         * (![(1 : ℂ), -(((g • τ : ℍ)) : ℂ)]) i) = (![(1 : ℂ), -(τ : ℂ)]) j := by
     intro j
     fin_cases j
-    · simp only [Fin.sum_univ_two, Fin.isValue, Fin.zero_eta, Matrix.cons_val_zero, Matrix.cons_val_one,
+    · simp only [Fin.sum_univ_two, Fin.isValue, Fin.zero_eta, Matrix.cons_val_zero,
+        Matrix.cons_val_one,
         Matrix.cons_val_fin_one, mul_one]
       linear_combination (-(((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ℂ)) * hmul
         + (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℤ) : ℂ) * hJ + hdet
-    · simp only [Fin.sum_univ_two, Fin.isValue, Fin.mk_one, Matrix.cons_val_zero, Matrix.cons_val_one,
+    · simp only [Fin.sum_univ_two, Fin.isValue, Fin.mk_one, Matrix.cons_val_zero,
+        Matrix.cons_val_one,
         Matrix.cons_val_fin_one, mul_one]
       linear_combination (-(((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℤ) : ℂ)) * hmul
         + (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℤ) : ℂ) * hJ - (τ : ℂ) * hdet
@@ -111,13 +116,13 @@ theorem jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : �
       = (jFactor g τ)⁻¹ • ![(1 : ℂ), -(τ : ℂ)] := by
     funext j
     rw [Pi.smul_apply, smul_eq_mul, ← hrow j, ← mul_assoc, inv_mul_cancel₀ hj, one_mul]
-  rw [hpt, eval_smul_of_isHomogeneous ((mem_homogeneousSubmodule n _).mp P.2), ← mul_assoc, ← mul_pow,
+  rw [hpt, eval_smul_of_isHomogeneous ((mem_homogeneousSubmodule n _).mp P.2), ← mul_assoc, ←
+    mul_pow,
     mul_inv_cancel₀ hj, one_pow, one_mul]
 
 end HeckeEis.PeriodFnAux
 
 open scoped MatrixGroups in
-
 theorem solution (n : ℕ) (g : SL(2, ℤ)) (τ : UpperHalfPlane)
     (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     HeckeEis.jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : UpperHalfPlane)) : ℂ)]
@@ -138,6 +143,7 @@ theorem HeckeEis.jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ))
     (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     HeckeEis.jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : UpperHalfPlane)) : ℂ)]
         ((HeckeEis.binaryFormRepSL ℂ n g P : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
-      = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] (P : MvPolynomial (Fin 2) ℂ) := _root_.P2MW.S_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL.solution n g τ P
+      = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] (P : MvPolynomial (Fin 2) ℂ) :=
+  solution n g τ P
 
 end publicSection

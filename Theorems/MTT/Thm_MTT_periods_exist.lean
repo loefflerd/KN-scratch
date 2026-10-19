@@ -148,7 +148,7 @@ functionals along the coefficient homomorphism. -/
 theorem evaluation_extends {N n : ℕ} {R S : Type*} [CommRing R] [CommRing S]
     (ι : R →+* S) (ψ : Hc N n R) (φ : Hc N n S) (h : Extends ι ψ φ) (j : ℕ) (r : ℚ) :
     evaluation j r φ = ι (evaluation j r ψ) := by
-  show AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _
+  change AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _
       = ι (AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, (r : Cusp))) _)
   rw [h OnePoint.infty ((r : ℚ) : Cusp)]
   exact MvPolynomial.coeff_map _ _ _

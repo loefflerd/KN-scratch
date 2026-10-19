@@ -110,6 +110,7 @@ theorem WeierstrassCurve.Affine.IsogenyHomDatum.pointHom_apply_eq_sub
     (φ : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F φ.ι φ.hfin) (P : V₀.Point) :
     φ.pointHom hN P
       = (pointEquivPlace (W := V₁)).symm ((placeOfPoint P).restrictAlong φ.ι φ.hι)
-        - (pointEquivPlace (W := V₁)).symm ((placeOfPoint (0 : V₀.Point)).restrictAlong φ.ι φ.hι) := _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_pointHom_apply_eq_sub.solution φ hN P
+        - (pointEquivPlace (W := V₁)).symm ((placeOfPoint (0 : V₀.Point)).restrictAlong φ.ι φ.hι) :=
+  solution φ hN P
 
 end publicSection

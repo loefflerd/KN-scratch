@@ -86,7 +86,7 @@ theorem prim_eq_zero (hk : 2 ≤ k) (F : CuspForm (MTT.GammaOne N) (k : ℤ))
   induction x using OnePoint.rec with
   | infty => rfl
   | coe r =>
-      show cuspPeriodPolynomial F r = 0
+      change cuspPeriodPolynomial F r = 0
       rw [cuspPeriodPolynomial]
       refine Finset.sum_eq_zero fun j hj => ?_
       have hjle : j ≤ k - 2 := by

@@ -70,7 +70,6 @@ theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
 noncomputable def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 open scoped WeierstrassCurve.Affine.CoordinateRing in
-
 theorem CoordinateRing.algebraMap_eq_mk_C_C (a : F) :
     algebraMap F W.CoordinateRing a = CoordinateRing.mk W (C (C a)) := by
   rw [AdjoinRoot.algebraMap_eq', RingHom.comp_apply, Polynomial.algebraMap_apply,
@@ -117,7 +116,7 @@ def pointPullbackCoordHomTo {xP yP : L}
     (Polynomial.aeval xP : F[X] →ₐ[F] L).toRingHom
     yP (eval₂_polynomial_of_equation_map_target h)
   commutes' c := by
-    show AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map_target h) (algebraMap F _ c)
+    change AdjoinRoot.lift _ _ (eval₂_polynomial_of_equation_map_target h) (algebraMap F _ c)
       = algebraMap F L c
     rw [CoordinateRing.algebraMap_eq_mk_C_C, AdjoinRoot.lift_mk, eval₂_C]
     exact Polynomial.aeval_C _ c
@@ -133,7 +132,7 @@ theorem pointPullbackCoordHomTo_comp_algebraMap {xP yP : L}
     (pointPullbackCoordHomTo h).toRingHom.comp (algebraMap F[X] W.CoordinateRing)
       = (Polynomial.aeval xP : F[X] →ₐ[F] L).toRingHom := by
   refine RingHom.ext fun p => ?_
-  show pointPullbackCoordHomTo h (algebraMap F[X] _ p) = _
+  change pointPullbackCoordHomTo h (algebraMap F[X] _ p) = _
   rw [algebraMap_polynomial_eq_mk_C, pointPullbackCoordHomTo_mk, eval₂_C]
 
 theorem pointPullbackCoordHomTo_injective {xP yP : L}
@@ -174,7 +173,7 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
     (h : (W.map (algebraMap F L)).toAffine.Equation xP yP)
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     pointPullbackHomTo h hx (yGen W) = yP := by
-  show pointPullbackHomTo h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
+  change pointPullbackHomTo h hx (algebraMap _ _ (CoordinateRing.mk W Y)) = _
   rw [pointPullbackHomTo_algebraMap, pointPullbackCoordHomTo_mk]
   exact eval₂_X _ _
 
@@ -389,7 +388,6 @@ theorem mrtw60a_transcendental_affine {L : Type u} [Field L] [Algebra F L] {z : 
   exact hlc (by rw [h0, Polynomial.leadingCoeff_zero])
 
 variable (C) (V : Affine F) in
-
 theorem mrtw60a_transcendental_xFwd : Transcendental F (mrtw60a_xFwd C V) := by
   rw [mrtw60a_xFwd_shape]
   exact mrtw60a_transcendental_affine (L := V.FunctionField)
@@ -397,7 +395,6 @@ theorem mrtw60a_transcendental_xFwd : Transcendental F (mrtw60a_xFwd C V) := by
     (transcendental_polyToFunctionField_X (W := V)) (pow_ne_zero 2 C.u.ne_zero)
 
 variable (C) (V : Affine F) in
-
 theorem mrtw60a_aeval_xFwd_injective :
     Function.Injective (Polynomial.aeval (R := F) (mrtw60a_xFwd C V)) :=
   (injective_iff_map_eq_zero _).mpr fun p hp =>
@@ -413,7 +410,7 @@ theorem mrtw60a_coordHom_ext {W : Affine F} {S : Type u} [CommRing S] [Algebra F
     have hC : (φ.toRingHom.comp (CoordinateRing.mk W)).comp (Polynomial.C : F[X] →+* F[X][Y])
         = (ψ.toRingHom.comp (CoordinateRing.mk W)).comp (Polynomial.C : F[X] →+* F[X][Y]) := by
       refine Polynomial.ringHom_ext (fun c => ?_) hX
-      show φ (CoordinateRing.mk W (Polynomial.C (Polynomial.C c)))
+      change φ (CoordinateRing.mk W (Polynomial.C (Polynomial.C c)))
         = ψ (CoordinateRing.mk W (Polynomial.C (Polynomial.C c)))
       rw [← CoordinateRing.algebraMap_eq_mk_C_C, φ.commutes, ψ.commutes]
     exact DFunLike.congr_fun hC p
@@ -548,7 +545,8 @@ end FLT
 end
 
 universe u in
-theorem solution {F : Type u} [Field F] (W : WeierstrassCurve F) (C : WeierstrassCurve.VariableChange F) :
+theorem solution {F : Type u} [Field F] (W : WeierstrassCurve F)
+    (C : WeierstrassCurve.VariableChange F) :
     Nonempty (W.toAffine.FunctionField ≃ₐ[F] (C • W).toAffine.FunctionField) :=
   ⟨(FLT.Mrtw60aVCPlaceSeamS3.mrtw60aVCPlaceSeamAlgEquiv (C := C) (W := W.toAffine) (V := (C • W).toAffine) rfl).symm⟩
 

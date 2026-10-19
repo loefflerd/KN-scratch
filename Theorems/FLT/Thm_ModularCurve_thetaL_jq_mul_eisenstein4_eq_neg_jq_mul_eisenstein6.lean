@@ -59,13 +59,15 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6.ModularCurve"
+p2m_open "ModularCurve \
+  P2MW.S_ModularCurve_thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "eisenstein6 laurentOfInt eisenstein4 dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq thetaL dedekindEtaUnitQ deltaSeries deltaSeries_ne_zero thetaL_jq_mul_deltaSeries"
+p2m_export "ModularCurve" "eisenstein6 laurentOfInt eisenstein4 dedekindEtaUnitInv \
+  dedekindEtaUnit_mul_inv jNum jNumQ jq thetaL dedekindEtaUnitQ deltaSeries deltaSeries_ne_zero \
+  thetaL_jq_mul_deltaSeries"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 theorem ModularCurve.RC18Face.jq_mul_deltaSeries :
     jq * deltaSeries = laurentOfInt ℚ (eisenstein4 ^ 3) := by
   have hι : ∀ f : PowerSeries ℤ,
@@ -99,6 +101,7 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6 :
     thetaL ℚ jq * HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4) =
-      -(jq * HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6)) := _root_.P2MW.S_ModularCurve_thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6.solution
+      -(jq * HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6)) :=
+  solution
 
 end publicSection

@@ -110,7 +110,7 @@ theorem D_jB_ne_zero : D 𝕂 𝔽 (jB N) ≠ 0 := by
   simp only at h2
   rw [qEuler_coeff] at h2
   have h3 : ((jB N : 𝔽) : LaurentSeries 𝕂).coeff (-1) = 1 := by
-    show (coeffEmb 𝕂 jq).coeff (-1) = 1
+    change (coeffEmb 𝕂 jq).coeff (-1) = 1
     rw [coeffEmb_coeff, coeff_jq_neg_one, map_one]
   rw [h3, HahnSeries.coeff_zero] at h2
   norm_num at h2
@@ -147,7 +147,8 @@ theorem ord_neg (v : Place K F) (f : F) : v.ord (-f) = v.ord f := by
   rw [h1, h2, zero_add]
 
 theorem ord_pos_of_mem_maximalIdeal (v : Place K F) {a : v.toValuationSubring}
-    (ha : a ∈ IsLocalRing.maximalIdeal v.toValuationSubring) (ha0 : (a : F) ≠ 0) : 0 < v.ord (a : F) := by
+    (ha : a ∈ IsLocalRing.maximalIdeal v.toValuationSubring) (ha0 : (a : F) ≠ 0)
+    : 0 < v.ord (a : F) := by
   by_contra hle
   push Not at hle
   have h0 : 0 ≤ v.ord (a : F) := v.ord_nonneg_of_mem a.2
@@ -238,7 +239,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     intro v hv
     rw [← hsum]
     exact Finset.single_le_sum (f := fun w => -w.ord J)
-      (fun w hw => by have := (hS w).mp hw; show (0 : ℤ) ≤ -w.ord J; omega) ((hS v).mpr hv)
+      (fun w hw => by have := (hS w).mp hw; change (0 : ℤ) ≤ -w.ord J; omega) ((hS v).mpr hv)
   have hpole : ∃ v₀ : Place 𝕂 𝔽, v₀.ord J < 0 := by
     by_contra hno
     push Not at hno
@@ -256,7 +257,8 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     have hint : IsIntegral 𝕂 J := halg.isIntegral
     have hint' : IsIntegral v₀.toValuationSubring J := hint.tower_top
     have hmem : J ∈ v₀.toValuationSubring := by
-      obtain ⟨y, hy⟩ := (IsIntegrallyClosed.isIntegral_iff (R := v₀.toValuationSubring) (K := 𝔽)).mp hint'
+      obtain ⟨y, hy⟩ :=
+        (IsIntegrallyClosed.isIntegral_iff (R := v₀.toValuationSubring) (K := 𝔽)).mp hint'
       rw [← hy]
       exact y.2
     have := v₀.ord_nonneg_of_mem hmem
@@ -275,7 +277,8 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       (neg_ne_zero.mpr (by rw [Ne, map_eq_zero]; norm_num)) hJ0 (by rw [hc]; exact hv)
     rw [hc] at this
     rwa [sub_eq_add_neg, add_comm]
-  have hordJsub_of_neg : ∀ v : Place 𝕂 𝔽, v.ord J < 0 → v.ord (J - algebraMap 𝕂 𝔽 1728) = v.ord J := by
+  have hordJsub_of_neg : ∀ v : Place 𝕂 𝔽, v.ord J < 0 → v.ord (J - algebraMap 𝕂 𝔽 1728) = v.ord J :=
+    by
     intro v hv
     have hc : v.ord (-(algebraMap 𝕂 𝔽 1728)) = 0 := by rw [ord_neg]; exact ord_algebraMap v
     have := v.ord_add_eq_of_lt (f := J) (g := -(algebraMap 𝕂 𝔽 1728)) hJ0
@@ -322,13 +325,15 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     · left
       have h1 : v.ord (J - algebraMap 𝕂 𝔽 c) = 1 :=
         ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne N v c hc0 hc1728 hcpos
-      have hb := ord_bound N x hx0 hreg v (g := J - algebraMap 𝕂 𝔽 c) (by rw [h1]; norm_num) (hDsub c)
+      have hb :=
+        ord_bound N x hx0 hreg v (g := J - algebraMap 𝕂 𝔽 c) (by rw [h1]; norm_num) (hDsub c)
       rw [h1] at hb
       refine ⟨by omega, ?_⟩
       have hcc : v.ord (algebraMap 𝕂 𝔽 (c - 1728)) = 0 := ord_algebraMap v
       have := v.ord_add_eq_of_lt (f := algebraMap 𝕂 𝔽 (c - 1728)) (g := J - algebraMap 𝕂 𝔽 c)
         (by rw [Ne, map_eq_zero]; exact sub_ne_zero.mpr hc1728)
-        (by intro h; rw [h, v.ord_zero] at hcpos; exact lt_irrefl _ hcpos) (by rw [hcc]; exact hcpos)
+        (by intro h; rw [h,
+          v.ord_zero] at hcpos; exact lt_irrefl _ hcpos) (by rw [hcc]; exact hcpos)
       rw [hcc] at this
       rw [← this, map_sub]
       congr 1
@@ -353,7 +358,8 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
   · have htr' : Transcendental 𝕂 J⁻¹ := by
       intro halg
       exact htr (by simpa using halg.inv)
-    have hadj : IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽) = IntermediateField.adjoin 𝕂 ({J} : Set 𝔽) := by
+    have hadj : IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽) = IntermediateField.adjoin 𝕂 ({J} : Set 𝔽) :=
+      by
       apply le_antisymm
       · rw [IntermediateField.adjoin_simple_le_iff]
         exact inv_mem (IntermediateField.mem_adjoin_simple_self 𝕂 J)
@@ -404,7 +410,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar (N : ℕ) [NeZero N]
+theorem ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar (N : ℕ)
+    [NeZero N]
     (x : ModularCurve.modularFunctionFieldBar N)
     (hx : x • KaehlerDifferential.D (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N)
         (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ∈ ModularCurve.regularDifferentialsBar N) :
@@ -412,6 +419,7 @@ theorem ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferential
         (x ^ 6 * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ^ 4 * ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ 3) ∧
       IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N)⁻¹} : Set (ModularCurve.modularFunctionFieldBar N)))
         (x ^ (2 * ModularCurve.dedekindPsi N) * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ^ (ModularCurve.dedekindPsi N + 1) *
-          ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ ModularCurve.dedekindPsi N) := _root_.P2MW.S_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar.solution N x hx
+          ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ ModularCurve.dedekindPsi N) :=
+  solution N x hx
 
 end publicSection

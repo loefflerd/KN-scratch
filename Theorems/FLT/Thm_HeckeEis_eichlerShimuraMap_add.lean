@@ -70,7 +70,9 @@ namespace P2MW.S_HeckeEis_eichlerShimuraMap_add
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "binaryFormRepSL IsParabolicCocycle IsEquivariantPrimitiveWith IsEichlerIntegral eichlerShimuraMap exists_isEichlerIntegral_isParabolicCocycle eichlerShimuraMap_eq_coeffH1parMk IsEichlerIntegral.add"
+p2m_export "HeckeEis" "binaryFormRepSL IsParabolicCocycle IsEquivariantPrimitiveWith \
+  IsEichlerIntegral eichlerShimuraMap exists_isEichlerIntegral_isParabolicCocycle \
+  eichlerShimuraMap_eq_coeffH1parMk IsEichlerIntegral.add"
 p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial CongruenceSubgroup
@@ -81,10 +83,12 @@ namespace EichlerLinAux
 variable {K : Type*} [CommRing K] {Γ : Subgroup SL(2, ℤ)} {V : Type*} [AddCommGroup V] [Module K V]
   {ρ : Representation K Γ V} {F G : ℍ → V}
 
-private theorem _root_.HeckeEis.EichlerLinAux.add (hF : IsEquivariantPrimitiveWith ρ F) (hG : IsEquivariantPrimitiveWith ρ G) :
+private theorem _root_.HeckeEis.EichlerLinAux.add (hF : IsEquivariantPrimitiveWith ρ F)
+    (hG : IsEquivariantPrimitiveWith ρ G) :
     IsEquivariantPrimitiveWith ρ (F + G) := fun γ =>
   ⟨hF.cocycle γ + hG.cocycle γ, fun τ => by
-    rw [Pi.add_apply, Pi.add_apply, map_add, ← hF.sub_eq_cocycle γ τ, ← hG.sub_eq_cocycle γ τ]; abel⟩
+    rw [Pi.add_apply, Pi.add_apply, map_add, ← hF.sub_eq_cocycle γ τ, ← hG.sub_eq_cocycle γ
+      τ]; abel⟩
 
 p2m_export "HeckeEis.EichlerLinAux" "add"
 theorem cocycle_add (hF : IsEquivariantPrimitiveWith ρ F) (hG : IsEquivariantPrimitiveWith ρ G) :
@@ -108,19 +112,20 @@ theorem cocycle_smul (hF : IsEquivariantPrimitiveWith ρ F) (c : K) :
 end EichlerLinAux
 
 open EichlerLinAux in
-
 theorem SolMain.esadd (n N : ℕ) [NeZero N] (f g : CuspForm (Gamma0 N) ((n : ℤ) + 2)) :
     eichlerShimuraMap n N ⇑(f + g) = eichlerShimuraMap n N f + eichlerShimuraMap n N g := by
   obtain ⟨F, hEF, hF, hpF⟩ := exists_isEichlerIntegral_isParabolicCocycle N n f
   obtain ⟨G, hEG, hG, hpG⟩ := exists_isEichlerIntegral_isParabolicCocycle N n g
   have hEFG : IsEichlerIntegral n (⇑(f + g)) (F + G) := by
     rw [FunLike.coe_add]; exact hEF.add hEG
-  have hpFG : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (add hF hG).cocycle := by
+  have hpFG : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (add hF hG).cocycle :=
+    by
     intro γ hγ
     rw [cocycle_add hF hG, Pi.add_apply]
     exact add_mem (hpF γ hγ) (hpG γ hγ)
   rw [eichlerShimuraMap_eq_coeffH1parMk n N _ hEFG (add hF hG) hpFG,
-    eichlerShimuraMap_eq_coeffH1parMk n N _ hEF hF hpF, eichlerShimuraMap_eq_coeffH1parMk n N _ hEG hG hpG,
+    eichlerShimuraMap_eq_coeffH1parMk n N _ hEF hF hpF, eichlerShimuraMap_eq_coeffH1parMk n N _ hEG
+    hG hpG,
     ← map_add]
   congr 1
   exact Subtype.ext (cocycle_add hF hG)
@@ -147,6 +152,7 @@ public section publicSection
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.eichlerShimuraMap_add (n N : ℕ) [NeZero N]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
-    HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f + HeckeEis.eichlerShimuraMap n N g := _root_.P2MW.S_HeckeEis_eichlerShimuraMap_add.solution n N f g
+    HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f + HeckeEis.eichlerShimuraMap n N g :=
+  solution n N f g
 
 end publicSection

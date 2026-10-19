@@ -93,6 +93,7 @@ theorem WeierstrassCurve.Affine.forall_normFormulaAlong_of_isAlgClosed_of_charZe
     {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
     (W : WeierstrassCurve.Affine F) [W.IsElliptic]
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [AbelTheorem W] :
-    ∀ D : IsogenyEndDatum W, NormFormulaAlong F D.ι D.hfin := _root_.P2MW.S_WeierstrassCurve_Affine_forall_normFormulaAlong_of_isAlgClosed_of_charZero.solution W
+    ∀ D : IsogenyEndDatum W, NormFormulaAlong F D.ι D.hfin :=
+  solution W
 
 end publicSection

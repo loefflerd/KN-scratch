@@ -63,7 +63,8 @@ open ModularCurve AlgebraicCurve IntermediateField
 
 noncomputable section
 
-theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : IsFrickeAutFull ℓ (frickeInvolutionFull ℓ) := by
+theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    IsFrickeAutFull ℓ (frickeInvolutionFull ℓ) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   exact ModularCurve.isFrickeAutFull_frickeInvolutionFull ℓ (ModularCurve.exists_isFrickeAutFull ℓ)
 
@@ -79,6 +80,8 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve IntermediateField
-theorem ModularCurve.isFrickeAutFull_frickeInvolutionFull_prime (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : IsFrickeAutFull ℓ (frickeInvolutionFull ℓ) := _root_.P2MW.S_ModularCurve_isFrickeAutFull_frickeInvolutionFull_prime.solution ℓ
+theorem ModularCurve.isFrickeAutFull_frickeInvolutionFull_prime (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    IsFrickeAutFull ℓ (frickeInvolutionFull ℓ) :=
+  solution ℓ
 
 end publicSection

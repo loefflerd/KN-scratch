@@ -63,7 +63,10 @@ namespace P2MW.S_AlgebraicCurve_Place_isRational_of_isAlgClosed
 
 open AlgebraicCurve Polynomial
 
-theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F] (v : Place K F) : v.IsRational := by
+theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
+    [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F]
+    (v : Place K F) :
+    v.IsRational := by
   classical
   intro y
   obtain ⟨x, rfl⟩ := IsLocalRing.residue_surjective y
@@ -166,6 +169,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.isRational_of_isAlgClosed {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F] (v : Place K F) : v.IsRational := _root_.P2MW.S_AlgebraicCurve_Place_isRational_of_isAlgClosed.solution v
+theorem AlgebraicCurve.Place.isRational_of_isAlgClosed {K F : Type*} [Field K] [IsAlgClosed K]
+    [Field F] [Algebra K F] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
+    [FiniteDimensional (RatFunc K) F] (v : Place K F) :
+    v.IsRational :=
+  solution v
 
 end publicSection

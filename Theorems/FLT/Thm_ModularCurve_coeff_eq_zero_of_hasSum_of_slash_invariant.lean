@@ -117,7 +117,8 @@ lemma hasSum_discFun (hh : 0 < h) (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m
   rw [zero_add] at h
   simpa [discFun, mul_comm] using h
 
-lemma apply_eq_discFun (hh : 0 < h) (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
+lemma apply_eq_discFun (hh : 0 < h)
+    (hF : ∀ τ : ℍ, HasSum (fun m : ℕ => c m * 𝕢 h (τ : ℂ) ^ m) (F τ))
     (τ : ℍ) : F τ = discFun h F c (𝕢 h (τ : ℂ)) :=
   (hF τ).unique (hasSum_discFun hh hF (norm_qParam_lt_one_of_pos hh τ))
 
@@ -195,7 +196,8 @@ theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
     refine h1.congr' ?_
     filter_upwards [self_mem_nhdsWithin] with z hz using update_of_ne hz ..
   have h0 : c 0 = d 0 := tendsto_nhds_unique (hlim hc) (hlim hd)
-  have hd' : HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (c 0)) (.ofScalars ℂ d) 0 1 := h0 ▸ hd
+  have hd' : HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (c 0)) (.ofScalars ℂ d) 0 1 :=
+    h0 ▸ hd
   have heq := hc.hasFPowerSeriesAt.eq_formalMultilinearSeries hd'.hasFPowerSeriesAt
   funext m
   simpa using congr_arg (FormalMultilinearSeries.coeff · m) heq
@@ -205,7 +207,8 @@ end Realized
 end ModularCurve
 
 open ModularCurve in
-theorem solution {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) {m : ℕ} (hm : m ≠ 0) : c m = 0 := by
+theorem solution {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) {m : ℕ} (hm : m ≠ 0) :
+    c m = 0 := by
   have hslash : ∀ γ : SL(2, ℤ), F ∣[(0 : ℤ)] γ = F := fun γ => by
     funext τ
     rw [ModularForm.SL_slash_apply, hinv, neg_zero, zpow_zero, mul_one]
@@ -223,7 +226,8 @@ theorem solution {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : U
   obtain ⟨κ, hκ⟩ := ModularForm.eq_const_of_weight_zero f
   have hFκ : ∀ τ : ℍ, F τ = κ := fun τ => by
     exact congr_fun hκ τ
-  have hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => (Pi.single (M := fun _ => ℂ) 0 κ m) * 𝕢 1 (τ : ℂ) ^ m) (F τ) := by
+  have hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => (Pi.single (M := fun _ => ℂ) 0 κ m) * 𝕢 1 (τ : ℂ) ^ m) (F τ) :=
+    by
     intro τ
     rw [hFκ τ]
     have := hasSum_ite_eq 0 κ
@@ -244,6 +248,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.coeff_eq_zero_of_hasSum_of_slash_invariant {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) {m : ℕ} (hm : m ≠ 0) : c m = 0 := _root_.P2MW.S_ModularCurve_coeff_eq_zero_of_hasSum_of_slash_invariant.solution hF hinv hm
+theorem ModularCurve.coeff_eq_zero_of_hasSum_of_slash_invariant {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) {m : ℕ} (hm : m ≠ 0) :
+    c m = 0 :=
+  solution hF hinv hm
 
 end publicSection

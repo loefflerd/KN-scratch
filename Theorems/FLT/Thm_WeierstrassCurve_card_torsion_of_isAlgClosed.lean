@@ -97,7 +97,6 @@ section Engine
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve.Affine F)
 
 omit [DecidableEq F] in
-
 theorem sub_negY_sq_eq_Ψ₂Sq_eval {x y : F} (e : W.Equation x y) :
     (y - W.negY x y) ^ 2 = (WeierstrassCurve.Ψ₂Sq W).eval x := by
   rw [equation_iff] at e
@@ -129,8 +128,10 @@ theorem ΨSq_eval_eq_zero_of_preΨ {m : ℕ} {x₀ : K}
 
 variable [IsAlgClosed K] [DecidableEq K]
 
+omit [DecidableEq K] in
 theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     IsCoprime ((W.baseChange K).ΨSq n) ((W.baseChange K).ΨSq (n + 1)) := by
+  classical
   rw [Polynomial.isCoprime_iff_aeval_ne_zero_of_isAlgClosed (k := K) (K := K)]
   intro x₀
   by_contra hcon
@@ -215,7 +216,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
         _ = _ := by
             rw [hQeq, Jacobian.Point.toAffineAddEquiv_apply]
             exact Jacobian.Point.toAffineLift_of_Z_ne_zero hVz
-    · show ((W.baseChange K).φ (n : ℤ)).evalEval x₀ y₀ /
+    · change ((W.baseChange K).φ (n : ℤ)).evalEval x₀ y₀ /
           ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ ^ 2 *
           ((W.baseChange K).ΨSq (n : ℤ)).eval x₀ =
           ((W.baseChange K).Φ (n : ℤ)).eval x₀
@@ -252,7 +253,6 @@ theorem smul_x_eq [W.IsElliptic] {n : ℕ} (hn : 0 < n) {x₀ y₀ : K}
   (smul_formula_or_zero W hn h).1 hns
 
 omit [DecidableEq K] in
-
 private lemma eval_ne_of_isCoprime {f g : Polynomial K} (h : IsCoprime f g) {x₀ : K}
     (hf : f.eval x₀ = 0) (hg : g.eval x₀ = 0) : False := by
   obtain ⟨a, b, hab⟩ := h
@@ -260,8 +260,10 @@ private lemma eval_ne_of_isCoprime {f g : Polynomial K} (h : IsCoprime f g) {x�
   simp only [eval_add, eval_mul, hf, hg, mul_zero, add_zero, eval_one] at h1
   exact zero_ne_one h1
 
+omit [DecidableEq K] in
 theorem isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n) :
     IsCoprime ((W.baseChange K).Φ n) ((W.baseChange K).ΨSq n) := by
+  classical
   rw [Polynomial.isCoprime_iff_aeval_ne_zero_of_isAlgClosed (k := K) (K := K)]
   intro x₀
   by_contra hcon
@@ -312,7 +314,6 @@ theorem smul_eq_zero_of_ΨSq_eval_eq_zero [W.IsElliptic] {n : ℕ} (hn : 0 < n)
   (smul_formula_or_zero W hn h).2 hz
 
 omit [DecidableEq K] in
-
 theorem ΨSq_odd_eq_sq {n : ℕ} (hodd : Odd n) :
     (W.baseChange K).ΨSq n = ((W.baseChange K).preΨ' n) ^ 2 := by
   rw [ΨSq_ofNat, ite_eq_right (Nat.not_even_iff_odd.mpr hodd), mul_one]
@@ -358,12 +359,12 @@ def nTorsion (n : ℕ) : AddSubgroup W.toAffine⟮K⟯ where
   add_mem' {P Q} hP hQ := by
     have hP' : n • P = 0 := hP
     have hQ' : n • Q = 0 := hQ
-    show n • (P + Q) = 0
+    change n • (P + Q) = 0
     calc n • (P + Q) = n • P + n • Q := smul_add n P Q
     _ = 0 := by rw [hP', hQ', add_zero]
   neg_mem' {P} hP := by
     have hP' : n • P = 0 := hP
-    show n • (-P) = 0
+    change n • (-P) = 0
     calc n • (-P) = -(n • P) := smul_neg n P
     _ = 0 := by rw [hP', neg_zero]
 
@@ -386,7 +387,6 @@ theorem separable_of_splits_of_squarefree {L : Type*} [Field L] {p : L[X]}
   (nodup_roots_iff_of_splits hp hs).mp (squarefree_roots_nodup hsq)
 
 omit [DecidableEq K] in
-
 theorem wronskian_Φ_ΨSq_ne_zero [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
     derivative ((W.baseChange K).Φ n) * (W.baseChange K).ΨSq n -
       (W.baseChange K).Φ n * derivative ((W.baseChange K).ΨSq n) ≠ 0 := by
@@ -439,10 +439,12 @@ theorem wronskian_Φ_ΨSq_ne_zero [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) 
     rw [c1, c2] at hco
     exact pow_ne_zero 2 hnQ (by linear_combination hco)
 
+omit [DecidableEq K] in
 theorem finite_not_squarefree_fiber [IsAlgClosed K] [W.IsElliptic] {n : ℕ}
     (hn : (n : K) ≠ 0) :
     {c : K | ¬ Squarefree
       ((W.baseChange K).Φ n - C c * (W.baseChange K).ΨSq n)}.Finite := by
+  classical
   have hpos : 0 < n := Nat.pos_of_ne_zero (by rintro rfl; simp at hn)
   set F' := (W.baseChange K).Φ n with hFdef
   set G := (W.baseChange K).ΨSq n with hGdef
@@ -483,11 +485,11 @@ theorem finite_not_squarefree_fiber [IsAlgClosed K] [W.IsElliptic] {n : ℕ}
       add_zero] at h1
     exact zero_ne_one h1
   refine ⟨x, ?_, ?_⟩
-  · show (derivative F' * G - F' * derivative G).IsRoot x
+  · change (derivative F' * G - F' * derivative G).IsRoot x
     simp only [IsRoot, eval_sub, eval_mul]
     rw [hFx, hF'x]
     ring
-  · show F'.eval x / G.eval x = c
+  · change F'.eval x / G.eval x = c
     rw [hFx, mul_div_assoc, div_self hGx, mul_one]
 
 section AlgClosed
@@ -500,7 +502,7 @@ theorem smul_surjective [W.IsElliptic] {n : ℕ} (hodd : Odd n) (hn : (n : K) �
   intro Q
   rcases Q with _ | ⟨xQ, yQ, hQ⟩
   · refine ⟨0, ?_⟩
-    show n • (0 : W.toAffine⟮K⟯) = Point.zero
+    change n • (0 : W.toAffine⟮K⟯) = Point.zero
     rw [nsmul_zero]
     exact Point.zero_def
   set F' := (W.baseChange K).Φ n with hFdef
@@ -571,7 +573,7 @@ theorem smul_surjective [W.IsElliptic] {n : ℕ} (hodd : Odd n) (hn : (n : K) �
         -(n • (Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯)) :=
       neg_nsmul (Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) n
     refine ⟨-(Point.some x₀ y₀ h₀), ?_⟩
-    show n • -(Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) = Point.some x' yQ hQ
+    change n • -(Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) = Point.some x' yQ hQ
     rw [hsn, hprev, neg_neg]
 
 theorem card_smul_fiber [W.IsElliptic] {n : ℕ} (hodd : Odd n) (hn : (n : K) ≠ 0)
@@ -581,7 +583,7 @@ theorem card_smul_fiber [W.IsElliptic] {n : ℕ} (hodd : Odd n) (hn : (n : K) �
   have hP₀' : n • P₀ = Q := hP₀
   have e : nTorsion W (K := K) n ≃ {P : W.toAffine⟮K⟯ // n • P = Q} := by
     refine Equiv.subtypeEquiv (Equiv.addRight P₀) fun P => ?_
-    show (P ∈ nTorsion W n) ↔ n • (P + P₀) = Q
+    change (P ∈ nTorsion W n) ↔ n • (P + P₀) = Q
     have hsa : n • (P + P₀) = n • P + n • P₀ := nsmul_add P P₀ n
     rw [hsa, hP₀']
     constructor
@@ -589,7 +591,7 @@ theorem card_smul_fiber [W.IsElliptic] {n : ℕ} (hodd : Odd n) (hn : (n : K) �
       have h' : n • P = 0 := h
       rw [h', zero_add]
     · intro h
-      show n • P = 0
+      change n • P = 0
       exact add_right_cancel (h.trans (zero_add Q).symm)
   exact (Nat.card_congr e).symm
 
@@ -637,7 +639,6 @@ private noncomputable def coords : W.toAffine⟮K⟯ → K × K
   | .some x y _ => (x, y)
 
 omit [DecidableEq K] [IsAlgClosed K] in
-
 theorem Ψ₂Sq_ne_zero_of_isElliptic [W.IsElliptic] : (W.baseChange K).Ψ₂Sq ≠ 0 := by
   intro h0
   set E := W.baseChange K with hE
@@ -730,7 +731,7 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
   have key_Ψ₂ : ∀ x : K, p.eval x = 0 → (W.baseChange K).Ψ₂Sq.eval x ≠ 0 := by
     intro x hx h2
     refine hcB' ⟨x, h2, ?_⟩
-    show F'.eval x / G.eval x = c
+    change F'.eval x / G.eval x = c
     rw [key_F x hx, mul_div_assoc, div_self (key_G x hx), mul_one]
   set R2fin : Finset (K × K) := p.roots.toFinset.biUnion
     (fun x => (qpoly W x).roots.toFinset.image (fun y => (x, y))) with hR2def
@@ -955,7 +956,7 @@ variable (W : WeierstrassCurve F)
 theorem mem_nTorsion_two_iff {x y : K} (h : (W.baseChange K).toAffine.Nonsingular x y) :
     (Point.some x y h : W.toAffine⟮K⟯) ∈ nTorsion W 2 ↔
       y = (W.baseChange K).toAffine.negY x y := by
-  show 2 • (Point.some x y h : W.toAffine⟮K⟯) = 0 ↔ _
+  change 2 • (Point.some x y h : W.toAffine⟮K⟯) = 0 ↔ _
   rw [two_nsmul, add_eq_zero_iff_eq_neg, Point.neg_some, Point.some.injEq]
   simp
 
@@ -989,7 +990,7 @@ theorem smul_surjective_all [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
   intro Q
   rcases Q with _ | ⟨xQ, yQ, hQ⟩
   · refine ⟨0, ?_⟩
-    show n • (0 : W.toAffine⟮K⟯) = Point.zero
+    change n • (0 : W.toAffine⟮K⟯) = Point.zero
     rw [nsmul_zero]
     exact Point.zero_def
   set F' := (W.baseChange K).Φ n with hFdef
@@ -1060,7 +1061,7 @@ theorem smul_surjective_all [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
         -(n • (Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯)) :=
       neg_nsmul (Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) n
     refine ⟨-(Point.some x₀ y₀ h₀), ?_⟩
-    show n • -(Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) = Point.some x' yQ hQ
+    change n • -(Point.some x₀ y₀ h₀ : W.toAffine⟮K⟯) = Point.some x' yQ hQ
     rw [hsn, hprev, neg_neg]
 
 theorem card_smul_fiber_all [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0)
@@ -1070,7 +1071,7 @@ theorem card_smul_fiber_all [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0)
   have hP₀' : n • P₀ = Q := hP₀
   have e : nTorsion W (K := K) n ≃ {P : W.toAffine⟮K⟯ // n • P = Q} := by
     refine Equiv.subtypeEquiv (Equiv.addRight P₀) fun P => ?_
-    show (P ∈ nTorsion W n) ↔ n • (P + P₀) = Q
+    change (P ∈ nTorsion W n) ↔ n • (P + P₀) = Q
     have hsa : n • (P + P₀) = n • P + n • P₀ := nsmul_add P P₀ n
     rw [hsa, hP₀']
     constructor
@@ -1078,7 +1079,7 @@ theorem card_smul_fiber_all [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0)
       have h' : n • P = 0 := h
       rw [h', zero_add]
     · intro h
-      show n • P = 0
+      change n • P = 0
       exact add_right_cancel (h.trans (zero_add Q).symm)
   exact (Nat.card_congr e).symm
 
@@ -1087,7 +1088,7 @@ theorem card_nTorsion_two [W.IsElliptic] (h2 : (2 : K) ≠ 0) :
   classical
   set E := W.baseChange K with hE
   have ha : E.twoTorsionPolynomial.a ≠ 0 := by
-    show (4 : K) ≠ 0
+    change (4 : K) ≠ 0
     rw [show (4 : K) = 2 * 2 by norm_num]
     exact mul_ne_zero h2 h2
   have hd : E.twoTorsionPolynomial.discr ≠ 0 :=
@@ -1172,12 +1173,11 @@ theorem card_nTorsion_two [W.IsElliptic] (h2 : (2 : K) ≠ 0) :
   exact Subtype.ext hpq.left
 
 omit [IsAlgClosed K] in
-
 theorem card_nTorsion_one : Nat.card (nTorsion W (K := K) 1) = 1 := by
   have hbot : nTorsion W (K := K) 1 = ⊥ := by
     ext P
     rw [AddSubgroup.mem_bot]
-    show 1 • P = 0 ↔ P = 0
+    change 1 • P = 0 ↔ P = 0
     rw [one_nsmul]
   rw [hbot]
   exact AddSubgroup.card_bot
@@ -1214,10 +1214,10 @@ theorem card_nTorsion_prime_pow [W.IsElliptic] {p : ℕ} (hp : p.Prime)
           {P : W.toAffine⟮K⟯ // p ^ k • P = (Q : W.toAffine⟮K⟯)} := by
       refine ⟨fun P => ⟨⟨p ^ k • (P : W.toAffine⟮K⟯), ?_⟩, ⟨(P : W.toAffine⟮K⟯), rfl⟩⟩,
         fun x => ⟨x.2.1, ?_⟩, fun P => ?_, fun x => ?_⟩
-      · show p • (p ^ k • (P : W.toAffine⟮K⟯)) = 0
+      · change p • (p ^ k • (P : W.toAffine⟮K⟯)) = 0
         rw [smul_smul, ← pow_succ']
         exact P.2
-      · show p ^ (k + 1) • (x.2.1 : W.toAffine⟮K⟯) = 0
+      · change p ^ (k + 1) • (x.2.1 : W.toAffine⟮K⟯) = 0
         rw [pow_succ', ← smul_smul, x.2.2]
         exact x.1.2
       · exact Subtype.ext rfl
@@ -1252,17 +1252,17 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
         ⟨((m : ℤ) * a) • (P : W.toAffine⟮K⟯), ?_⟩),
       fun x => ⟨(x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯), ?_⟩,
       fun P => ?_, fun x => ?_⟩
-    · show m • (((n : ℤ) * b) • (P : W.toAffine⟮K⟯)) = 0
+    · change m • (((n : ℤ) * b) • (P : W.toAffine⟮K⟯)) = 0
       have hP : ((m : ℤ) * (n : ℤ)) • (P : W.toAffine⟮K⟯) = 0 := by
         have h := P.2
-        show _ = _
+        change _ = _
         rw [show (m : ℤ) * (n : ℤ) = ((m * n : ℕ) : ℤ) by push_cast; ring,
           natCast_zsmul]
         exact h
       rw [← natCast_zsmul, smul_smul,
         show (m : ℤ) * ((n : ℤ) * b) = b * ((m : ℤ) * (n : ℤ)) by ring,
         ← smul_smul, hP, smul_zero]
-    · show n • (((m : ℤ) * a) • (P : W.toAffine⟮K⟯)) = 0
+    · change n • (((m : ℤ) * a) • (P : W.toAffine⟮K⟯)) = 0
       have hP : ((m : ℤ) * (n : ℤ)) • (P : W.toAffine⟮K⟯) = 0 := by
         have h := P.2
         rw [show (m : ℤ) * (n : ℤ) = ((m * n : ℕ) : ℤ) by push_cast; ring,
@@ -1271,7 +1271,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
       rw [← natCast_zsmul, smul_smul,
         show (n : ℤ) * ((m : ℤ) * a) = a * ((m : ℤ) * (n : ℤ)) by ring,
         ← smul_smul, hP, smul_zero]
-    · show (m * n) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) = 0
+    · change (m * n) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) = 0
       have hx1 : m • (x.1 : W.toAffine⟮K⟯) = 0 := x.1.2
       have hx2 : n • (x.2 : W.toAffine⟮K⟯) = 0 := x.2.2
       rw [smul_add]
@@ -1281,7 +1281,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
         rw [← smul_smul, hx2, smul_zero]
       rw [h1, h2, add_zero]
     · apply Subtype.ext
-      show ((n : ℤ) * b) • (P : W.toAffine⟮K⟯) + ((m : ℤ) * a) • (P : W.toAffine⟮K⟯) =
+      change ((n : ℤ) * b) • (P : W.toAffine⟮K⟯) + ((m : ℤ) * a) • (P : W.toAffine⟮K⟯) =
         (P : W.toAffine⟮K⟯)
       rw [← add_zsmul, show (n : ℤ) * b + (m : ℤ) * a = 1 by linarith [hBez], one_zsmul]
     · have hm1 : (m : ℤ) • (x.1 : W.toAffine⟮K⟯) = 0 := by
@@ -1289,7 +1289,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
       have hn2 : (n : ℤ) • (x.2 : W.toAffine⟮K⟯) = 0 := by
         rw [natCast_zsmul]; exact x.2.2
       refine Prod.ext (Subtype.ext ?_) (Subtype.ext ?_)
-      · show ((n : ℤ) * b) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) =
+      · change ((n : ℤ) * b) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) =
           (x.1 : W.toAffine⟮K⟯)
         rw [smul_add]
         have e2 : ((n : ℤ) * b) • (x.2 : W.toAffine⟮K⟯) = 0 := by
@@ -1298,7 +1298,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
           rw [show (n : ℤ) * b = 1 - (m : ℤ) * a by linarith [hBez], sub_smul, one_zsmul,
             show (m : ℤ) * a = a * (m : ℤ) by ring, ← smul_smul, hm1, smul_zero, sub_zero]
         rw [e1, e2, add_zero]
-      · show ((m : ℤ) * a) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) =
+      · change ((m : ℤ) * a) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) =
           (x.2 : W.toAffine⟮K⟯)
         rw [smul_add]
         have e1 : ((m : ℤ) * a) • (x.1 : W.toAffine⟮K⟯) = 0 := by
@@ -1345,7 +1345,9 @@ end PortGenCardAll
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 := by
+theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K]
+    [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
+    Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 := by
   rw [← Deep.Gen.card_nTorsion W (K := K) n hn]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun P => ?_)
   change P ∈ Submodule.torsionBy ℤ (W⁄K).Point (n : ℤ) ↔ P ∈ Deep.Gen.nTorsion W (K := K) n
@@ -1362,6 +1364,10 @@ public section publicSection
 
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
-theorem WeierstrassCurve.card_torsion_of_isAlgClosed {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 := _root_.P2MW.S_WeierstrassCurve_card_torsion_of_isAlgClosed.solution W hn
+theorem WeierstrassCurve.card_torsion_of_isAlgClosed {F : Type*} {K : Type*} [Field F] [Field K]
+    [Algebra F K] [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ}
+    (hn : (n : K) ≠ 0) :
+    Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 :=
+  solution W hn
 
 end publicSection

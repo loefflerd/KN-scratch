@@ -80,14 +80,12 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
   have hu : σ ζ ∈ A :=
     ((⟨σ, hσ.mem_decompositionSubgroup⟩ : A.decompositionSubgroup ℚ) • (⟨ζ, hζA⟩ : A)).2
   have hw : ζ ^ q ∈ A := pow_mem hζA q
-
   have hap : (⟨σ ζ, hu⟩ : A) ^ n = 1 := by
     have h1 : (σ ζ) ^ n = 1 := by rw [← map_pow, hζ, map_one]
     exact Subtype.ext (by push_cast; exact h1)
   have hbp : (⟨ζ ^ q, hw⟩ : A) ^ n = 1 := by
     have h1 : (ζ ^ q) ^ n = 1 := by rw [← pow_mul, mul_comm q n, pow_mul, hζ, one_pow]
     exact Subtype.ext (by push_cast; exact h1)
-
   have hres : IsLocalRing.residue A (⟨σ ζ, hu⟩ : A) =
       IsLocalRing.residue A (⟨ζ ^ q, hw⟩ : A) := by
     have h1 := hσ.smul_residue_eq (IsLocalRing.residue A (⟨ζ, hζA⟩ : A))
@@ -106,7 +104,6 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
     rw [geom_sum₂_mul, hap, hbp, sub_self]
   have hS : (∑ i ∈ Finset.range n, (⟨σ ζ, hu⟩ : A) ^ i * (⟨ζ ^ q, hw⟩ : A) ^ (n - 1 - i)) = 0 :=
     (mul_eq_zero.mp key).resolve_right hab
-
   have hsum : (n : IsLocalRing.ResidueField A) *
       IsLocalRing.residue A (⟨ζ ^ q, hw⟩ : A) ^ (n - 1) = 0 := by
     have h0 := congrArg (IsLocalRing.residue A) hS
@@ -121,7 +118,6 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
       rw [map_mul, map_pow, map_pow, hres, ← pow_add, hip]
     rw [Finset.sum_congr rfl h1, Finset.sum_const, Finset.card_range, nsmul_eq_mul] at h0
     exact h0
-
   have htne : IsLocalRing.residue A (⟨ζ ^ q, hw⟩ : A) ^ (n - 1) ≠ 0 := by
     apply pow_ne_zero
     intro h0
@@ -163,6 +159,7 @@ theorem ValuationSubring.IsFrobeniusAt.apply_eq_pow_of_pow_prime_pow_eq_one
     (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime q)
     {σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ} (hσ : A.IsFrobeniusAt σ q)
     (k : ℕ) (ζ : AlgebraicClosure ℚ) (hζ : ζ ^ p ^ k = 1) :
-    σ ζ = ζ ^ q := _root_.P2MW.S_ValuationSubring_IsFrobeniusAt_apply_eq_pow_of_pow_prime_pow_eq_one.solution hp hq hqp A hA hσ k ζ hζ
+    σ ζ = ζ ^ q :=
+  solution hp hq hqp A hA hσ k ζ hζ
 
 end publicSection

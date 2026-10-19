@@ -136,19 +136,19 @@ def Packet {N n : ℕ} {R : Type*} [CommRing R]
 
 /-- Integration is normalized by −2πi; the coefficient functional has a binomial factor. -/
 def IntegralClass {N k : ℕ} (f : CuspForm (MTT.GammaOne N) (k : ℤ))
-    (φ : Hc N (k-2) ℂ) : Prop :=
-  ∀ j r, j ≤ k-2 → evaluation j r φ =
-    ((k-2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r
+    (φ : Hc N (k - 2) ℂ) : Prop :=
+  ∀ j r, j ≤ k - 2 → evaluation j r φ =
+    ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r
 
 /-- Both signs retain the half in the analytic normalization. -/
 def SignedClass {N k : ℕ} (f : CuspForm (MTT.GammaOne N) (k : ℤ))
-    (s : Bool) (φ : Hc N (k-2) ℂ) : Prop :=
-  ∀ j r, j ≤ k-2 → evaluation j r φ =
-    ((k-2).choose j : ℂ) * MTT.signedIntegral f s j r
+    (s : Bool) (φ : Hc N (k - 2) ℂ) : Prop :=
+  ∀ j r, j ≤ k - 2 → evaluation j r φ =
+    ((k - 2).choose j : ℂ) * MTT.signedIntegral f s j r
 
 /-- Precise Hecke-equivariance, using the analytic normalization already in MTT. -/
 def HeckeEquivariant {N k : ℕ}
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ) : Prop :=
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ) : Prop :=
   ∀ (e : DirichletCharacter ℂ N) (l : ℕ), l.Prime →
   ∀ f g : CuspForm (MTT.GammaOne N) (k : ℤ),
     (∀ z, g z = MTT.heckePrime k (e l) l f z) →

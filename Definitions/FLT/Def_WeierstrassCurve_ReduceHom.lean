@@ -483,13 +483,13 @@ theorem reducePoint_add_def (P Q : (W.map A.subtype).toAffine.Point) :
     reducePoint hΔ (P + Q) = reducePoint hΔ P + reducePoint hΔ Q := by
   cases P with
   | zero =>
-    show reducePoint hΔ ((0 : (W.map A.subtype).toAffine.Point) + Q) =
+    change reducePoint hΔ ((0 : (W.map A.subtype).toAffine.Point) + Q) =
       reducePoint hΔ (0 : (W.map A.subtype).toAffine.Point) + reducePoint hΔ Q
     rw [zero_add, reducePoint_zero, zero_add]
   | some x₁ y₁ h₁ =>
     cases Q with
     | zero =>
-      show reducePoint hΔ (.some x₁ y₁ h₁ + (0 : (W.map A.subtype).toAffine.Point)) =
+      change reducePoint hΔ (.some x₁ y₁ h₁ + (0 : (W.map A.subtype).toAffine.Point)) =
         reducePoint hΔ (.some x₁ y₁ h₁) + reducePoint hΔ (0 : (W.map A.subtype).toAffine.Point)
       rw [add_zero, reducePoint_zero, add_zero]
     | some x₂ y₂ h₂ =>

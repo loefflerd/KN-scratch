@@ -71,7 +71,9 @@ open UpperHalfPlane
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "divisorExpansions modularFunctionFieldFull coeffMap_single algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange mem_laurentBaseChange_iff exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq"
+p2m_export "ModularCurve" "divisorExpansions modularFunctionFieldFull coeffMap_single \
+  algebraMap_laurentSeries_eq_single coeffEmb laurentBaseChange mem_laurentBaseChange_iff \
+  exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq"
 namespace RatioFieldOfLevel
 p2m_open "ModularCurve"
 
@@ -130,7 +132,6 @@ theorem mul_ne_zero' {a b : ℤ} (f : ModularForm (CongruenceSubgroup.Gamma0 N) 
   exact (mul_ne_zero (qL_ne_zero f hf) (qL_ne_zero g hg)) h
 
 variable (N) in
-
 def IsRatio (x : LaurentSeries ℂ) : Prop :=
   ∃ (k : ℤ) (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k), h ≠ 0 ∧ x * qL h = qL g
 
@@ -183,7 +184,6 @@ theorem coeffEmb_algebraMap (r : ℚ) :
   simp
 
 variable (N) in
-
 theorem isRatio_coeffEmb [NeZero N] {y : LaurentSeries ℚ} (hy : y ∈ modularFunctionFieldFull N) :
     IsRatio N (coeffEmb ℂ y) := by
   change y ∈ Subfield.closure (Set.range (algebraMap ℚ (LaurentSeries ℚ)) ∪ divisorExpansions N)
@@ -245,6 +245,7 @@ theorem ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChan
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.modularFunctionFieldFull N)) :
     ∃ (k : ℤ) (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k), h ≠ 0 ∧
       x * ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-        ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := _root_.P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange.solution N x hx
+        ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+  solution N x hx
 
 end publicSection

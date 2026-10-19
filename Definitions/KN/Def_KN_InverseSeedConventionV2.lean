@@ -162,7 +162,7 @@ def SeededHorizontalProjectionSystemV3.supportProjection
 /-- A faithful realization of horizontal characters as Dirichlet characters.
 
 The character `atLevel χ` is allowed to be imprimitive at the full product
-modulus.  The compatibility equation says that, after applying the fixed
+modulus. The compatibility equation says that, after applying the fixed
 embedding into `ℂ_[p]`, it is exactly the pullback of the horizontal character
 along the product of the quotient maps from equation (5.1). -/
 structure SeededHorizontalCharacterRealizationV3
@@ -225,7 +225,7 @@ theorem SeededHorizontalCharacterRealizationV3.realized_conductor_dvd
     _ ∣ L.supportModulus χ.support :=
       DirichletCharacter.conductor_dvd_level _
 
-/-- The properties needed later for interpolation and counting.  Unlike the
+/-- The properties needed later for interpolation and counting. Unlike the
 old structure, these are conclusions to be proved from the pullback equation,
 not unconstrained fields in the realization data. -/
 def SeededHorizontalCharacterRealizationV3.HasExpectedProperties
@@ -244,7 +244,7 @@ def SeededHorizontalCharacterRealizationV3.HasExpectedProperties
     ∃ χ : HorizontalCharacter p L.exponent, R.realized χ = ψ
 
 /-- The faithful interpolation contract for a seeded horizontal `p`-adic
-L-function.  The Dirichlet characters are obtained from the actual quotient
+L-function. The Dirichlet characters are obtained from the actual quotient
 maps used to push forward the theta elements. -/
 def SeededHorizontalPadicLFunctionV4.InterpolatesSeededCriticalValuesV4
     {N k B p : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
@@ -258,7 +258,7 @@ def SeededHorizontalPadicLFunctionV4.InterpolatesSeededCriticalValuesV4
       @MTT.criticalLValue ι f.form
         θ.1.1 ⟨Nat.ne_of_gt θ.1.2⟩ θ.2 (k / 2 - 1) ≠ 0
 
-/-- The one-sign seeded construction needed for Corollary 5.17.  The prime
+/-- The one-sign seeded construction needed for Corollary 5.17. The prime
 `p` is required to be odd, so every horizontal character of `p`-power order
 is even and the appropriately signed theta measure interpolates every character in the
 horizontal family. -/
@@ -356,7 +356,7 @@ def SeededFiniteThetaDataV3.eval
     (a : ℂ_[p]) * χ.toMonoidHom g
 
 /-- The finite theta elements have the same character zeroes as the seeded
-central critical values.  This is the zero-set consequence of the explicit
+central critical values. This is the zero-set consequence of the explicit
 Birch--Stevens evaluation formula; it is recorded for the very same theta
 elements that occur in the norm relations. -/
 def SeededFiniteThetaDataV3.HasSeededCriticalZeroSet

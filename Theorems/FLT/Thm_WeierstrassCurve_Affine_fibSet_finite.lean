@@ -82,7 +82,8 @@ theorem torsion_finite {n : ℕ} (hn : (n : K) ≠ 0) :
 
 theorem card_torsion_toFinset {n : ℕ} (hn : (n : K) ≠ 0) :
     (torsion_finite W hn).toFinset.card = n ^ 2 := by
-  rw [← WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hn, ← Nat.card_eq_card_finite_toFinset]
+  rw [← WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hn, ←
+    Nat.card_eq_card_finite_toFinset]
   have hset : {S : (W⁄K).Point | (n : ℤ) • S = 0} =
       ((Submodule.torsionBy ℤ (W⁄K).Point n : Submodule ℤ (W⁄K).Point) : Set (W⁄K).Point) := by
     ext S
@@ -97,13 +98,15 @@ theorem fibSet_finite' {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) : (fib
     intro P hP
     rw [mem_fibSet] at hP
     refine ⟨P - P₀, ?_, sub_add_cancel P P₀⟩
-    show (n : ℤ) • (P - P₀) = 0
+    change (n : ℤ) • (P - P₀) = 0
     rw [smul_sub, hP, hP₀, sub_self]
   · exact Set.finite_empty.subset fun P hP => (hne ⟨P, hP⟩).elim
 
 end WeilDiv
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) : (fibSet W K n Q).Finite := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) :
+    (fibSet W K n Q).Finite := by
   exact WeilDiv.fibSet_finite' W hn Q
 
 end S_WeierstrassCurve_Affine_fibSet_finite
@@ -117,6 +120,10 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.fibSet_finite {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) : (fibSet W K n Q).Finite := _root_.P2MW.S_WeierstrassCurve_Affine_fibSet_finite.solution W hn Q
+theorem WeierstrassCurve.Affine.fibSet_finite {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ}
+    (hn : (n : K) ≠ 0) (Q : (W⁄K).Point) :
+    (fibSet W K n Q).Finite :=
+  solution W hn Q
 
 end publicSection

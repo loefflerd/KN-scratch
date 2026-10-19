@@ -341,7 +341,8 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have hj' := Finset.mem_range.mp hj
   rw [monomial_binaryExponent, act_eq_actAlg, map_mul, map_mul, map_pow, map_pow, actAlg_C,
     MvPolynomial.mem_homogeneousSubmodule]
-  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
+  have :=
+    ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
     ((actAlg_X_isHomogeneous γ 0).pow j)).mul ((actAlg_X_isHomogeneous γ 1).pow (n - j))
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
@@ -768,7 +769,8 @@ def Mstd (σ : Gamma0 N) : Option (ZMod l) → Matrix (Fin 2) (Fin 2) ℤ
   | some b => β l b.val
 
 omit hl in
-@[simp] lemma Mstd_none (σ : Gamma0 N) : Mstd (l := l) σ none = (σ.val : Matrix (Fin 2) (Fin 2) ℤ) * α l := rfl
+@[simp] lemma Mstd_none (σ : Gamma0 N) :
+    Mstd (l := l) σ none = (σ.val : Matrix (Fin 2) (Fin 2) ℤ) * α l := rfl
 omit hl in
 @[simp] lemma Mstd_some (σ : Gamma0 N) (b : ZMod l) : Mstd σ (some b) = β l b.val := rfl
 
@@ -1034,7 +1036,8 @@ theorem heckeDatum_equivariant_of_dvd (_hN : 0 < N) (hlN : l ∣ N) (e : Dirichl
   set δ₀ : Gamma0 N := ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ with hδ₀
   obtain ⟨ha, hd, hc⟩ := (Gamma1_mem N δ.val).mp δ.2
   have hlN' : (l : ℤ) ∣ N := Int.natCast_dvd_natCast.mpr hlN
-  have hmodl : ∀ z : ℤ, ((z : ZMod N) = 1 → (z : ZMod l) = 1) ∧ ((z : ZMod N) = 0 → (z : ZMod l) = 0) := by
+  have hmodl : ∀ z : ℤ, ((z : ZMod N) = 1 → (z : ZMod l) = 1) ∧ ((z : ZMod N) = 0 → (z : ZMod l) = 0) :=
+    by
     intro z
     constructor
     · intro h
@@ -1081,7 +1084,8 @@ theorem heckeDatum_equivariant_of_dvd (_hN : 0 < N) (hlN : l ∣ N) (e : Dirichl
       have hγ₀det : ((γ₀.val : Matrix (Fin 2) (Fin 2) ℤ)).det ≠ 0 := by simp
       have hΦ' := hΦ ⟨γ₀.val, hγ₀1⟩ (fractional (Mx l (some b')) y)
       simp only at hΦ'
-      rw [cx_some, cx_some, one_smul, one_smul, ← fractional_SL, ← fractional_mul det_Mx_ne hδdet, hfac,
+      rw [cx_some, cx_some, one_smul, one_smul, ← fractional_SL, ← fractional_mul det_Mx_ne hδdet,
+        hfac,
         fractional_mul hγ₀det det_Mx_ne, fractional_SL, hΦ', act_act,
         adj_mul_of_factor δ₀ γ₀ (some b₀) (some b') hfac, ← act_act]
   rw [Finset.sum_congr rfl (fun z (_ : z ∈ (Finset.univ : Finset (Option (ZMod l)))) => hterm z)]
@@ -1092,7 +1096,7 @@ end std
 /-- **Hecke operators preserve boundary classes with a nebentype law.** -/
 theorem primeHecke_boundary_datum_proof
     {N k : ℕ} (hN : 0 < N) (_hk : 2 ≤ k) (e : DirichletCharacter ℂ N)
-    (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N (k-2) Φ)
+    (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N (k - 2) Φ)
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       boundaryCochain Φ (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y)))
@@ -1119,7 +1123,7 @@ open MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) (e : DirichletCharacter ℂ N)
-    (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N (k-2) Φ)
+    (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N (k - 2) Φ)
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       boundaryCochain Φ (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y)))
@@ -1139,7 +1143,7 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.primeHecke_boundary_datum
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) (e : DirichletCharacter ℂ N)
-    (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N (k-2) Φ)
+    (Φ : Cusp → Binary ℂ) (hΦ : IsBoundaryDatum N (k - 2) Φ)
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       boundaryCochain Φ (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y)))

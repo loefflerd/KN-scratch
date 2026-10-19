@@ -61,11 +61,15 @@ section privateSection
 namespace P2MW.S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic
 
 namespace UpperHalfPlane
-p2m_export "UpperHalfPlane" "cuspFunction isOpen_upperHalfPlaneSet ofComplex_apply_of_im_pos σ differentiableOn_cuspFunction_ball I ofComplex_apply im_pos isBoundedAtImInfty_iff eq_cuspFunction IsBoundedAtImInfty im coe_vadd ofComplex"
+p2m_export "UpperHalfPlane" "cuspFunction isOpen_upperHalfPlaneSet ofComplex_apply_of_im_pos σ \
+  differentiableOn_cuspFunction_ball I ofComplex_apply im_pos isBoundedAtImInfty_iff \
+  eq_cuspFunction IsBoundedAtImInfty im coe_vadd ofComplex"
 namespace PrimBddAux
 p2m_open "UpperHalfPlane"
 
-p2m_open "UpperHalfPlane P2MW.S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic.UpperHalfPlane Filter Topology Complex Function Metric"
+p2m_open "UpperHalfPlane \
+  P2MW.S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic.UpperHalfPlane Filter \
+  Topology Complex Function Metric"
 open scoped Real Manifold
 
 local notation "𝕢" => Function.Periodic.qParam
@@ -212,9 +216,9 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
 end UpperHalfPlane.PrimBddAux
 
 open scoped Manifold in
-
 theorem solution {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
-    (hu_per : Function.Periodic (u ∘ UpperHalfPlane.ofComplex) h) (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
+    (hu_per : Function.Periodic (u ∘ UpperHalfPlane.ofComplex) h)
+    (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
     (hu_bdd : UpperHalfPlane.IsBoundedAtImInfty u)
     (hv : ∀ τ : UpperHalfPlane, HasDerivAt (v ∘ UpperHalfPlane.ofComplex) (u τ) ↑τ)
     (hv_per : Function.Periodic (v ∘ UpperHalfPlane.ofComplex) h) :
@@ -231,11 +235,14 @@ public section publicSection
 
 
 open scoped Manifold
-theorem UpperHalfPlane.isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
-    (hu_per : Function.Periodic (u ∘ UpperHalfPlane.ofComplex) h) (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
+theorem UpperHalfPlane.isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h)
+    {u v : UpperHalfPlane → ℂ}
+    (hu_per : Function.Periodic (u ∘ UpperHalfPlane.ofComplex) h)
+    (hu_hol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) u)
     (hu_bdd : UpperHalfPlane.IsBoundedAtImInfty u)
     (hv : ∀ τ : UpperHalfPlane, HasDerivAt (v ∘ UpperHalfPlane.ofComplex) (u τ) ↑τ)
     (hv_per : Function.Periodic (v ∘ UpperHalfPlane.ofComplex) h) :
-    UpperHalfPlane.IsBoundedAtImInfty v := _root_.P2MW.S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic.solution hh hu_per hu_hol hu_bdd hv hv_per
+    UpperHalfPlane.IsBoundedAtImInfty v :=
+  solution hh hu_per hu_hol hu_bdd hv hv_per
 
 end publicSection

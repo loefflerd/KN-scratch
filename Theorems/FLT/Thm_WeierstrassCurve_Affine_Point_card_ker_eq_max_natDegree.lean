@@ -85,7 +85,8 @@ def xc : W.toAffine.Point → k
   | .zero => 0
   | .some x _ _ => x
 
-@[scoped simp] lemma xc_some {x y : k} (h : W.toAffine.Nonsingular x y) : xc (Point.some x y h) = x :=
+@[scoped simp] lemma xc_some {x y : k} (h : W.toAffine.Nonsingular x y) :
+    xc (Point.some x y h) = x :=
   rfl
 
 lemma eval_Ψ₂Sq (x : k) :
@@ -163,7 +164,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
     refine le_antisymm ((natDegree_sub_le _ _).trans ?_) (le_natDegree_of_ne_zero ?_)
     · exact (max_le_max le_rfl (natDegree_C_mul_le a h)).trans (le_of_eq hd.symm)
     · rwa [coeff_sub, coeff_C_mul]
-
   have hnotboth : ¬ (g.coeff d = 0 ∧ h.coeff d = 0) := by
     rintro ⟨hgc, hhc⟩
     by_cases hcase : g.natDegree ≤ h.natDegree
@@ -178,7 +178,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
         omega
       have hcoe : g.coeff d = g.leadingCoeff := by rw [hdg, coeff_natDegree]
       exact (Polynomial.leadingCoeff_ne_zero.mpr hg0) (hcoe ▸ hgc)
-
   have hbadfin : ((({g.coeff d / h.coeff d} : Set k) ∪
       ↑(((derivative g * h - g * derivative h).roots.toFinset).image
         fun t => g.eval t / h.eval t) ∪ ↑(W.Ψ₂Sq.roots.toFinset)) ∪
@@ -189,7 +188,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
   obtain ⟨a, ha⟩ := hbadfin.infinite_compl.nonempty
   simp only [Set.mem_compl_iff, Set.mem_union, not_or] at ha
   obtain ⟨⟨⟨⟨ha₁, ha₂⟩, ha₃⟩, ha₄⟩, ha₅⟩ := ha
-
   have hcoeffa : g.coeff d - a * h.coeff d ≠ 0 := by
     intro hca
     rcases eq_or_ne (h.coeff d) 0 with hcd | hcd
@@ -218,7 +216,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
   have hB_image : ∀ P ∈ B, xc (ψ P) ≠ a := fun P hP hPa => ha₄ ⟨P, hP, hPa⟩
   have hB_xmap : ∀ P ∈ B, g.eval (xc P) / h.eval (xc P) ≠ a := fun P hP hPa =>
     ha₅ ⟨P, hP, hPa⟩
-
   have htf : (g - C a * h).roots.toFinset.card = d := by
     rw [Multiset.toFinset_card_of_nodup hanodup,
       splits_iff_card_roots.mp (IsAlgClosed.splits (g - C a * h)), hadeg]
@@ -231,7 +228,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
   have hQ₀neg : Q₀ ≠ -Q₀ := by
     rw [hQ₀, Point.neg_some, ne_eq, Point.some.injEq, not_and]
     exact fun _ => hbne
-
   have hdichot : ∀ T : W.toAffine.Point, T ≠ 0 → xc T = a → T = Q₀ ∨ T = -Q₀ := by
     rintro (_ | ⟨xT, yT, hT⟩) hT0 hxT
     · exact absurd rfl hT0
@@ -240,7 +236,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
       rcases Y_eq_of_X_eq hT.left hb rfl with hy | hy
       · left; rw [hQ₀, Point.some.injEq]; exact ⟨rfl, hy⟩
       · right; rw [hQ₀, Point.neg_some, Point.some.injEq]; exact ⟨rfl, hy⟩
-
   have hnotB : ∀ P : W.toAffine.Point, ψ P = Q₀ → P ∉ B := by
     intro P hPQ hPB
     refine hB_image P hPB ?_
@@ -304,7 +299,7 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
       · refine ⟨⟨-(Point.some x₀ y₀ hns₀), ?_⟩, ?_⟩
         · rw [_root_.map_neg, hQ, neg_neg]
         · refine Subtype.ext ?_
-          show xc (-(Point.some x₀ y₀ hns₀)) = x₀
+          change xc (-(Point.some x₀ y₀ hns₀)) = x₀
           rw [Point.neg_some, xc_some]
   have hroot_ex : ∃ x : k, (g - C a * h).eval x = 0 := by
     have hpos : 0 < (g - C a * h).roots.toFinset.card := by rw [htf]; omega
@@ -349,6 +344,8 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.Point.card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] (ψ : W.toAffine.Point →+ W.toAffine.Point) {B : Set W.toAffine.Point} (hB : B.Finite) {g h : Polynomial k} (hgh : IsCoprime g h) (hsep : Polynomial.derivative g * h - g * Polynomial.derivative h ≠ 0) (hker : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y), Point.some x y hP ∉ B → h.eval x ≠ 0 → ψ (Point.some x y hP) ≠ 0) (hx : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y) {x' y' : k} (hP' : W.toAffine.Nonsingular x' y'), Point.some x y hP ∉ B → ψ (Point.some x y hP) = Point.some x' y' hP' → x' * h.eval x = g.eval x) : Nat.card ψ.ker = max g.natDegree h.natDegree := _root_.P2MW.S_WeierstrassCurve_Affine_Point_card_ker_eq_max_natDegree.solution W ψ hB hgh hsep hker hx
+theorem WeierstrassCurve.Affine.Point.card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] (ψ : W.toAffine.Point →+ W.toAffine.Point) {B : Set W.toAffine.Point} (hB : B.Finite) {g h : Polynomial k} (hgh : IsCoprime g h) (hsep : Polynomial.derivative g * h - g * Polynomial.derivative h ≠ 0) (hker : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y), Point.some x y hP ∉ B → h.eval x ≠ 0 → ψ (Point.some x y hP) ≠ 0) (hx : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y) {x' y' : k} (hP' : W.toAffine.Nonsingular x' y'), Point.some x y hP ∉ B → ψ (Point.some x y hP) = Point.some x' y' hP' → x' * h.eval x = g.eval x) :
+    Nat.card ψ.ker = max g.natDegree h.natDegree :=
+  solution W ψ hB hgh hsep hker hx
 
 end publicSection

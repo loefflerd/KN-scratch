@@ -72,11 +72,15 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
 
 namespace ModularCurve
-p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset coeffMap_single coeffEmb coeffEmb_coeff laurentBaseChange jqModC coeffMap_ofPowerSeries finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index transcendental_jqModC"
+p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset \
+  coeffMap_single coeffEmb coeffEmb_coeff laurentBaseChange jqModC coeffMap_ofPowerSeries \
+  finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index transcendental_jqModC"
 namespace FullnessGamma1
 p2m_open "ModularCurve~coeffEmb_injective"
 
-p2m_open "ModularCurve~coeffEmb_injective P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC.ModularCurve IntermediateField"
+p2m_open "ModularCurve~coeffEmb_injective \
+  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFie\
+  ldC_of_coe_eq_jqModC.ModularCurve IntermediateField"
 
 theorem finrank_adjoin_eq_relfinrank {K E : Type*} [Field K] [Field E] [Algebra K E]
     (F : IntermediateField K E) (x : F) :
@@ -125,7 +129,8 @@ theorem algebraMap_laurentSeries_eq_C {L : Type*} [Field L] (a : L) :
 
 theorem coeffEmb_algebraMap (a : ℚ) :
     coeffEmb K (algebraMap ℚ (LaurentSeries ℚ) a) = algebraMap K (LaurentSeries K) (algebraMap ℚ K a) := by
-  rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply, HahnSeries.C_apply,
+  rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply,
+    HahnSeries.C_apply,
     coeffEmb, coeffMap_single]
 
 variable (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
@@ -144,7 +149,8 @@ theorem image_intFormRatiosC : (coeffEmb K) '' intFormRatiosC ℚ Γ = intFormRa
 
 variable {Γ}
 
-theorem coeffEmb_mem_adjoin {S : Set (LaurentSeries ℚ)} {y : LaurentSeries ℚ} (hy : y ∈ adjoin ℚ S) :
+theorem coeffEmb_mem_adjoin {S : Set (LaurentSeries ℚ)} {y : LaurentSeries ℚ} (hy : y ∈ adjoin ℚ S)
+    :
     coeffEmb K y ∈ adjoin K ((coeffEmb K) '' S) := by
   have hy' : y ∈ (adjoin ℚ S).toSubfield := hy
   rw [adjoin_toSubfield] at hy'
@@ -175,7 +181,9 @@ end BaseChange
 
 end ModularCurve.FullnessGamma1
 
-p2m_open "ModularCurve~coeffEmb_injective P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC.ModularCurve CongruenceSubgroup AlgebraicCurve"
+p2m_open "ModularCurve~coeffEmb_injective \
+  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFie\
+  ldC_of_coe_eq_jqModC.ModularCurve CongruenceSubgroup AlgebraicCurve"
 open scoped MatrixGroups
 
 open ModularCurve.FullnessGamma1 IntermediateField in
@@ -202,7 +210,8 @@ theorem solution
       laurentBaseChange_qExpFunctionFieldC_eq K Γ
     have hjE' : jqModC K ∈ laurentBaseChange K (qExpFunctionFieldC ℚ Γ) := hy ▸ y.2
     have hjE : jqModC K ∈ qExpFunctionFieldC K Γ := hEE ▸ hjE'
-    obtain ⟨hfin, -⟩ := ModularCurve.finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index K
+    obtain ⟨hfin, -⟩ :=
+      ModularCurve.finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index K
       Γ hT Γ le_rfl (fun γ hγ => Or.inl hγ) ⟨jqModC K, hjE⟩ rfl
     have := hfin
     have hpos : 0 < Module.finrank
@@ -244,6 +253,7 @@ theorem ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChan
     Transcendental K y ∧
       FiniteDimensional
         ↥(IntermediateField.adjoin K ({y} : Set ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-        ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := _root_.P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC.solution K Γ hT y hy
+        ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+  solution K Γ hT y hy
 
 end publicSection

@@ -101,6 +101,7 @@ theorem AlgebraicCurve.nonempty_place_of_transcendental_of_finiteDimensional
     (k : Type*) [Field k] {F : Type*} [Field F] [Algebra k F] (x : F) (hx : Transcendental k x)
     (hfin : FiniteDimensional ↥(IntermediateField.adjoin k ({x} : Set F)) F)
     [Algebra.IsSeparable ↥(IntermediateField.adjoin k ({x} : Set F)) F] :
-    Nonempty (AlgebraicCurve.Place k F) := _root_.P2MW.S_AlgebraicCurve_nonempty_place_of_transcendental_of_finiteDimensional.solution k x hx hfin
+    Nonempty (AlgebraicCurve.Place k F) :=
+  solution k x hx hfin
 
 end publicSection

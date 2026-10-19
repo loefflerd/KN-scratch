@@ -322,7 +322,8 @@ end WC1bSolAW
 end AlgebraicCurve
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset.AlgebraicCurve in
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (S : Finset (AlgebraicCurve.Place K F)) (n : AlgebraicCurve.Place K F → ℤ) :
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (S : Finset (AlgebraicCurve.Place K F)) (n : AlgebraicCurve.Place K F → ℤ) :
     ∃ g : F, g ≠ 0 ∧ ∀ v ∈ S, v.ord g = n v :=
   AlgebraicCurve.WC1bSolAW.exists_forall_ord_eq_finset S n
 
@@ -336,7 +337,9 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.exists_forall_ord_eq_finset {K F : Type*} [Field K] [Field F] [Algebra K F] (S : Finset (AlgebraicCurve.Place K F)) (n : AlgebraicCurve.Place K F → ℤ) :
-    ∃ g : F, g ≠ 0 ∧ ∀ v ∈ S, v.ord g = n v := _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset.solution S n
+theorem AlgebraicCurve.Place.exists_forall_ord_eq_finset {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (S : Finset (AlgebraicCurve.Place K F)) (n : AlgebraicCurve.Place K F → ℤ) :
+    ∃ g : F, g ≠ 0 ∧ ∀ v ∈ S, v.ord g = n v :=
+  solution S n
 
 end publicSection

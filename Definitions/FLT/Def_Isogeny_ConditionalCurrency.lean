@@ -160,7 +160,7 @@ theorem pushforwardAlongHom_pointClass {P : W.Point} {Q : V.Point}
     (hP : (placeOfPoint P).restrictAlong ι hι = placeOfPoint Q)
     (h0 : (placeOfPoint (0 : W.Point)).restrictAlong ι hι = placeOfPoint (0 : V.Point)) :
     Pic0.pushforwardAlongHom ι hι hfin hN (pointClass P) = pointClass Q := by
-  show Pic0.pushforwardAlongHom ι hι hfin hN (Pic0.mk (pointDivisor P))
+  change Pic0.pushforwardAlongHom ι hι hfin hN (Pic0.mk (pointDivisor P))
       = Pic0.mk (pointDivisor Q)
   rw [Pic0.pushforwardAlongHom_mk, pushforwardAlongDegZero_pointDivisor ι hι hP h0]
 

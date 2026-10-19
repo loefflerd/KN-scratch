@@ -127,6 +127,7 @@ theorem HeckeEis.exists_eichlerShimura_coeffH1par_binaryFormRepSL (N : ℕ) [NeZ
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ES f) = ES (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f)) ∧
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
-            T (ESbar f) = ESbar (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f)) := _root_.P2MW.S_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL.solution N n
+            T (ESbar f) = ESbar (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f)) :=
+  solution N n
 
 end publicSection

@@ -95,7 +95,8 @@ noncomputable def e : Monoid.CoprodI G23 ≃* PSL :=
 theorem e_of_zero : e (Monoid.CoprodI.of (i := 0) (Multiplicative.ofAdd 1)) = QuotientGroup.mk S :=
   ModularGroup.exists_mulEquiv_freeProduct_quotient_center.choose_spec.1
 
-theorem e_of_one : e (Monoid.CoprodI.of (i := 1) (Multiplicative.ofAdd 1)) = QuotientGroup.mk (S * T) :=
+theorem e_of_one :
+    e (Monoid.CoprodI.of (i := 1) (Multiplicative.ofAdd 1)) = QuotientGroup.mk (S * T) :=
   ModularGroup.exists_mulEquiv_freeProduct_quotient_center.choose_spec.2
 
 theorem exists_trace_of_ne_one {i : Fin 2} (x : G23 i) (hx : x ≠ 1) :
@@ -253,6 +254,7 @@ theorem Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of
     (hΓ : ∀ γ ∈ Γ, (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ 0 ∧
       (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ 1 ∧ (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ -1) :
     Nonempty (FreeGroupBasis (Fin (1 + Γ.index / 6))
-      (Γ.map (QuotientGroup.mk' (Subgroup.center (Matrix.SpecialLinearGroup (Fin 2) ℤ))))) := _root_.P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne.solution Γ hneg hΓ
+      (Γ.map (QuotientGroup.mk' (Subgroup.center (Matrix.SpecialLinearGroup (Fin 2) ℤ))))) :=
+  solution Γ hneg hΓ
 
 end publicSection

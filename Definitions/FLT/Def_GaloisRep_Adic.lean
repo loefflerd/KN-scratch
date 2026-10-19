@@ -206,7 +206,7 @@ noncomputable def baseChangeAlong {B : Type} [CommRing B] [IsLocalRing B] (φ : 
   letI : Algebra A B := φ.toAlgebra
   { toLinearEquiv := e.toLinearEquiv.baseChange A B ρ₁.V ρ₂.V
     map_apply := fun σ x => by
-      show e.toLinearEquiv.baseChange A B ρ₁.V ρ₂.V ((ρ₁.ρ σ).baseChange B x) =
+      change e.toLinearEquiv.baseChange A B ρ₁.V ρ₂.V ((ρ₁.ρ σ).baseChange B x) =
         (ρ₂.ρ σ).baseChange B (e.toLinearEquiv.baseChange A B ρ₁.V ρ₂.V x)
       induction x using TensorProduct.inductionOn with
       | tmul b v =>
@@ -227,7 +227,7 @@ noncomputable def Equiv.residual {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ�
   { toLinearEquiv :=
       e.toLinearEquiv.baseChange A (IsLocalRing.ResidueField A) ρ₁.V ρ₂.V
     map_apply := fun σ x => by
-      show e.toLinearEquiv.baseChange A (IsLocalRing.ResidueField A) ρ₁.V ρ₂.V
+      change e.toLinearEquiv.baseChange A (IsLocalRing.ResidueField A) ρ₁.V ρ₂.V
           ((ρ₁.ρ σ).baseChange (IsLocalRing.ResidueField A) x) =
         (ρ₂.ρ σ).baseChange (IsLocalRing.ResidueField A)
           (e.toLinearEquiv.baseChange A (IsLocalRing.ResidueField A) ρ₁.V ρ₂.V x)

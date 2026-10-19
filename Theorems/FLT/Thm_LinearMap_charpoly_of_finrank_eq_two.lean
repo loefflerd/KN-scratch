@@ -60,7 +60,9 @@ namespace P2MW.S_LinearMap_charpoly_of_finrank_eq_two
 
 open Polynomial
 
-theorem solution {R : Type*} {M : Type*} [CommRing R] [Nontrivial R] [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M] (h : Module.finrank R M = 2) (f : M →ₗ[R] M) : f.charpoly = X ^ 2 - C (LinearMap.trace R M f) * X + C (LinearMap.det f) := by
+theorem solution {R : Type*} {M : Type*} [CommRing R] [Nontrivial R] [AddCommGroup M] [Module R M]
+    [Module.Free R M] [Module.Finite R M] (h : Module.finrank R M = 2) (f : M →ₗ[R] M) :
+    f.charpoly = X ^ 2 - C (LinearMap.trace R M f) * X + C (LinearMap.det f) := by
   let b := Module.finBasisOfFinrankEq R M h
   rw [← f.charpoly_toMatrix b, Matrix.charpoly_fin_two, ← LinearMap.trace_eq_matrix_trace R b f,
     LinearMap.det_toMatrix b f]
@@ -76,6 +78,10 @@ public section publicSection
 
 open Polynomial
 
-theorem LinearMap.charpoly_of_finrank_eq_two {R : Type*} {M : Type*} [CommRing R] [Nontrivial R] [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M] (h : Module.finrank R M = 2) (f : M →ₗ[R] M) : f.charpoly = X ^ 2 - C (LinearMap.trace R M f) * X + C (LinearMap.det f) := _root_.P2MW.S_LinearMap_charpoly_of_finrank_eq_two.solution h f
+theorem LinearMap.charpoly_of_finrank_eq_two {R : Type*} {M : Type*} [CommRing R] [Nontrivial R]
+    [AddCommGroup M] [Module R M] [Module.Free R M] [Module.Finite R M] (h : Module.finrank R M = 2)
+    (f : M →ₗ[R] M) :
+    f.charpoly = X ^ 2 - C (LinearMap.trace R M f) * X + C (LinearMap.det f) :=
+  solution h f
 
 end publicSection

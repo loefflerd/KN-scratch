@@ -106,7 +106,8 @@ theorem coordsOrZero_nearTransport (P : (nearCurve j₀).toAffine.Point) :
     (nearTransport j₀ m P).coordsOrZero =
       Prod.map ((m : H ≃ₐ[Qbar] H) : H →+* H) ((m : H ≃ₐ[Qbar] H) : H →+* H) P.coordsOrZero := by
   rcases P with _ | ⟨x, y, h⟩
-  · have h0 : nearTransport j₀ m (Affine.Point.zero) = Affine.Point.zero := map_zero (nearTransport j₀ m)
+  · have h0 : nearTransport j₀ m (Affine.Point.zero) = Affine.Point.zero :=
+      map_zero (nearTransport j₀ m)
     rw [h0, Affine.Point.coordsOrZero_zero]
     ext <;> simp
   · rw [nearTransport_some]
@@ -158,7 +159,7 @@ theorem fullKernelQuotient_nearTransport (Q : (nearCurve j₀).toAffine.Point) (
     exact hgx x y
   · refine Finset.sum_congr rfl fun P _ => ?_
     obtain ⟨x, y⟩ := P
-    show (m : H ≃ₐ[Qbar] H) x * (nearCurve j₀).veluGx ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H) y) -
+    change (m : H ≃ₐ[Qbar] H) x * (nearCurve j₀).veluGx ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H) y) -
         (m : H ≃ₐ[Qbar] H) y * (nearCurve j₀).veluGy ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H) y) =
       (m : H ≃ₐ[Qbar] H) (x * (nearCurve j₀).veluGx x y - y * (nearCurve j₀).veluGy x y)
     rw [map_sub, map_mul, map_mul, hgx, hgy]
@@ -222,7 +223,6 @@ theorem b3Act_dictN_of_monodromy (N : ℕ) [NeZero N] (j₀ : Qbar)
 end S15CycSubN
 
 open ModularCurve ModularCurve.TatePoint in
-
 theorem solution (N : ℕ) [NeZero N] (j₀ : Qbar)
     (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N) :
     ∀ (data : ModularPolynomialData N) (m : HahnSeries.monodromy Qbar)
@@ -250,6 +250,7 @@ theorem ModularCurve.TatePoint.b3Act_dictN_of_monodromy (N : ℕ) [NeZero N] (j�
       (r r' : RootsAt data (nearCurve j₀).j),
       r'.1 = (↑m : H ≃ₐ[Qbar] H) r.1 →
         B3.b3Act j₀ m (dictN N data j₀ hW1 hW2 hW3 r).1 =
-          (dictN N data j₀ hW1 hW2 hW3 r').1 := _root_.P2MW.S_ModularCurve_TatePoint_b3Act_dictN_of_monodromy.solution N j₀ hW1 hW2 hW3
+          (dictN N data j₀ hW1 hW2 hW3 r').1 :=
+  solution N j₀ hW1 hW2 hW3
 
 end publicSection

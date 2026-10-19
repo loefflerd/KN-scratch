@@ -79,7 +79,8 @@ noncomputable section
 
 namespace WidthLE
 
-p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex Matrix.SpecialLinearGroup OnePoint"
+p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex \
+  Matrix.SpecialLinearGroup OnePoint"
 open scoped Topology Pointwise Manifold
 
 theorem coe_eq_mapGL (γ : SL(2, ℤ)) : (γ : GL (Fin 2) ℝ) = mapGL ℝ γ := rfl
@@ -123,14 +124,14 @@ def stab (k : ℤ) (F : ℍ → ℂ) : Subgroup SL(2, ℤ) where
   carrier := {γ | F ∣[k] γ = F}
   mul_mem' := by
     intro a b ha hb
-    show F ∣[k] (a * b) = F
+    change F ∣[k] (a * b) = F
     rw [SlashAction.slash_mul, ha, hb]
   one_mem' := by
-    show F ∣[k] (1 : SL(2, ℤ)) = F
+    change F ∣[k] (1 : SL(2, ℤ)) = F
     exact SlashAction.slash_one k F
   inv_mem' := by
     intro a ha
-    show F ∣[k] a⁻¹ = F
+    change F ∣[k] a⁻¹ = F
     have h := congrArg (fun G : ℍ → ℂ => G ∣[k] a⁻¹) ha
     simpa only [← SlashAction.slash_mul, mul_inv_cancel, SlashAction.slash_one] using h.symm
 
@@ -188,7 +189,8 @@ theorem coe_translate_SL {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) �
   rw [SL_slash]
   exact ModularForm.coe_translate g _
 
-theorem slash_periodic_index {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
+theorem slash_periodic_index {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
+    (σ : SL(2, ℤ)) :
     Periodic ((⇑g ∣[k] σ) ∘ ofComplex) (Γ.normalCore.index : ℝ) := by
   rw [← coe_translate_SL g σ]
   exact SlashInvariantFormClass.periodic_comp_ofComplex
@@ -204,7 +206,8 @@ theorem slash_mdiff {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 
 theorem index_pos : (0 : ℝ) < (Γ.normalCore.index : ℝ) := by
   exact_mod_cast Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
 
-theorem slash_bddAtImInfty {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
+theorem slash_bddAtImInfty {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ))
+    :
     IsBoundedAtImInfty (⇑g ∣[k] σ) := by
   have hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
       ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)))) :=
@@ -272,14 +275,16 @@ theorem dvd_order_qExpansion {F : ℍ → ℂ} {N : ℕ} (hN : 0 < N) (h : ℕ) 
     exact p1
   apply dvd_order_coe hF0 m
   intro i hi
-  have key := UpperHalfPlane.qExpansion_coeff_mul_width F (d : ℝ) (by exact_mod_cast hdpos) pd dF bF m hmpos i
+  have key :=
+    UpperHalfPlane.qExpansion_coeff_mul_width F (d : ℝ) (by exact_mod_cast hdpos) pd dF bF m hmpos i
   rw [hmd] at key
   rw [key, ite_eq_right hi]
 
 theorem dvd_order_qExpansion_slash {k : ℤ} (hk : Even k)
     (G : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ))
     (hG : qExpansion (Γ.normalCore.index : ℝ) (⇑G ∣[k] σ) ≠ 0)
-    (h : ℕ) (hh : 0 < h) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
+    (h : ℕ) (hh : 0 < h)
+    (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
     ((Γ.normalCore.index / Nat.gcd h Γ.normalCore.index : ℕ) : ℤ) ∣
       ((qExpansion (Γ.normalCore.index : ℝ) (⇑G ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ).order := by
   have ph : Periodic ((⇑G ∣[k] σ) ∘ ofComplex) (h : ℝ) :=
@@ -310,7 +315,8 @@ theorem solution
               ((g : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (hord : ∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ≠ 0 → (Φ x).order = e * P.ord x)
     (hyo : (Φ y).order = -(Γ.normalCore.index : ℤ))
-    (h : ℕ) (hh : 0 < h) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
+    (h : ℕ) (hh : 0 < h)
+    (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
     -(h : ℤ) ≤ P.ord y := by
   classical
   set N : ℕ := Γ.normalCore.index with hNdef
@@ -341,12 +347,14 @@ theorem solution
     have hxGH : (x : LaurentSeries ℂ) *
         ((qExpansion 1 (⇑(h₁.mul h₁)) : PowerSeries ℂ) : LaurentSeries ℂ) =
         ((qExpansion 1 (⇑(g.mul h₁)) : PowerSeries ℂ) : LaurentSeries ℂ) := by
-      rw [ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, map_mul, map_mul,
+      rw [ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, map_mul,
+        map_mul,
         ← mul_assoc, hxgh]
     have e1 := hpres x (k + k) (g.mul h₁) (h₁.mul h₁) hH hxGH
     set A := ((qExpansion (N : ℝ) (⇑(g.mul h₁) ∣[k + k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) with hA
     set B := ((qExpansion (N : ℝ) (⇑(h₁.mul h₁) ∣[k + k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) with hB
-    have hBq : qExpansion (N : ℝ) (⇑(h₁.mul h₁) ∣[k + k] σ) ≠ 0 := qExpansion_slash_ne_zero (h₁.mul h₁) σ hH
+    have hBq : qExpansion (N : ℝ) (⇑(h₁.mul h₁) ∣[k + k] σ) ≠ 0 :=
+      qExpansion_slash_ne_zero (h₁.mul h₁) σ hH
     have hB0 : B ≠ 0 := by
       intro h0
       exact hBq (HahnSeries.ofPowerSeries_injective
@@ -366,7 +374,8 @@ theorem solution
       linarith
     rw [hord']
     exact dvd_sub dA dB
-  obtain ⟨g₀, hg₀, hg₀1⟩ := AlgebraicCurve.Place.exists_forall_ord_eq_finset ({P} : Finset _) (fun _ => (1 : ℤ))
+  obtain ⟨g₀, hg₀, hg₀1⟩ :=
+    AlgebraicCurve.Place.exists_forall_ord_eq_finset ({P} : Finset _) (fun _ => (1 : ℤ))
   have hP1 : P.ord g₀ = 1 := hg₀1 P (Finset.mem_singleton_self P)
   have dme : (m : ℤ) ∣ (e : ℤ) := by
     have := key g₀ hg₀
@@ -420,7 +429,9 @@ theorem ModularCurve.neg_width_le_ord_of_order_eq_mul_ord_of_qExpansion_slash
               ((g : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (hord : ∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ≠ 0 → (Φ x).order = e * P.ord x)
     (hyo : (Φ y).order = -(Γ.normalCore.index : ℤ))
-    (h : ℕ) (hh : 0 < h) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
-    -(h : ℤ) ≤ P.ord y := _root_.P2MW.S_ModularCurve_neg_width_le_ord_of_order_eq_mul_ord_of_qExpansion_slash.solution Γ hT F₀ hF y σ Φ P e he hpres hord hyo h hh hmem
+    (h : ℕ) (hh : 0 < h)
+    (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
+    -(h : ℤ) ≤ P.ord y :=
+  solution Γ hT F₀ hF y σ Φ P e he hpres hord hyo h hh hmem
 
 end publicSection

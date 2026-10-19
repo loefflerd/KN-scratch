@@ -157,7 +157,7 @@ theorem act_map {S : Type*} [CommRing S] (f : R →+* S)
     act A (MvPolynomial.map f P) = MvPolynomial.map f (act A P) := by
   unfold act
   simp only [AlgHom.toLinearMap_apply]
-  show MvPolynomial.bind₁ (fun i : Fin 2 => ∑ a : Fin 2, (A a i : S) • MvPolynomial.X a)
+  change MvPolynomial.bind₁ (fun i : Fin 2 => ∑ a : Fin 2, (A a i : S) • MvPolynomial.X a)
       (MvPolynomial.map f P)
     = MvPolynomial.map f (MvPolynomial.bind₁
         (fun i : Fin 2 => ∑ a : Fin 2, (A a i : R) • MvPolynomial.X a) P)
@@ -187,11 +187,11 @@ def extHom (N n : ℕ) (R : Type*) [CommRing R] : Hc N n ℤ →+ Hc N n R where
        exact (act_map (Int.castRingHom R) _ _).symm⟩⟩
   map_zero' := by
     refine Subtype.ext (funext fun D => ?_)
-    show MvPolynomial.map (Int.castRingHom R) (0 : Binary ℤ) = 0
+    change MvPolynomial.map (Int.castRingHom R) (0 : Binary ℤ) = 0
     simp
   map_add' φ ψ := by
     refine Subtype.ext (funext fun D => ?_)
-    show MvPolynomial.map (Int.castRingHom R) (φ.val D + ψ.val D) = _
+    change MvPolynomial.map (Int.castRingHom R) (φ.val D + ψ.val D) = _
     simp [map_add]
 
 /-- Coefficientwise extension, as a `ℤ`-linear map. -/
@@ -278,7 +278,7 @@ def ThetaF (N n : ℕ) [NeZero N] (R : Type*) [CommRing R] :
   map_add' φ ψ := by ext z; simp
   map_smul' c φ := by
     ext z
-    show AddMonoidAlgebra.coeff ((c • φ).val _) _ = c * AddMonoidAlgebra.coeff (φ.val _) _
+    change AddMonoidAlgebra.coeff ((c • φ).val _) _ = c * AddMonoidAlgebra.coeff (φ.val _) _
     exact MvPolynomial.coeff_smul _ _ _
 
 @[simp] theorem ThetaF_apply (φ : Hc N n R) (z : Idx N n) :
@@ -360,7 +360,7 @@ theorem solution {N n : ℕ} (hN : 0 < N) (R : Type*) [CommRing R] [Module.Flat 
   have hbij : Function.Bijective (beta N n R) :=
     ⟨beta_injective, beta_surjective hN⟩
   refine ⟨LinearEquiv.ofBijective (beta N n R) hbij, fun φ x y => ?_⟩
-  show ((beta N n R) (1 ⊗ₜ[ℤ] φ)).val (x, y) = _
+  change ((beta N n R) (1 ⊗ₜ[ℤ] φ)).val (x, y) = _
   rw [LinearMap.liftBaseChange_one_tmul]
   rfl
 end

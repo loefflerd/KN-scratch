@@ -164,6 +164,7 @@ theorem AlgebraicCurve.exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFiel
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
     (lift : Place K F → Place K' F') :
-    ∃ D : Divisor K F, indexOfSpecialty (K := K') (Finsupp.mapDomain lift D) = 0 := _root_.P2MW.S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hfg' lift
+    ∃ D : Divisor K F, indexOfSpecialty (K := K') (Finsupp.mapDomain lift D) = 0 :=
+  solution K F K' F' hfg hfg' lift
 
 end publicSection

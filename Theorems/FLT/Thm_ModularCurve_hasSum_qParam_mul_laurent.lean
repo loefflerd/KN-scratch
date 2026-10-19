@@ -82,7 +82,8 @@ theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : ℂ} (hq 
         (fun n : ℕ => (n : ℤ) + k) = fun n : ℕ => (PowerSeries.coeff n P * q ^ n) * q ^ k := by
       funext n
       simp only [Function.comp_apply]
-      rw [HahnSeries.coeff_single_mul_add, one_mul, LaurentSeries.coeff_coe_powerSeries, zpow_add₀ hq,
+      rw [HahnSeries.coeff_single_mul_add, one_mul, LaurentSeries.coeff_coe_powerSeries, zpow_add₀
+        hq,
         zpow_natCast]
       ring
     rw [hfg]
@@ -92,7 +93,8 @@ theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : ℂ} (hq 
       by_contra hge
       push Not at hge
       exact hm ⟨(m - k).toNat, by simp only; omega⟩
-    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe, ite_eq_left hmk,
+    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe,
+      ite_eq_left hmk,
       zero_mul]
 
 theorem hasSum_qParam_mul_laurent' (h : ℝ) (hh : 0 < h) (A B : LaurentSeries ℂ) (F G : ℍ → ℂ)
@@ -102,14 +104,18 @@ theorem hasSum_qParam_mul_laurent' (h : ℝ) (hh : 0 < h) (A B : LaurentSeries �
   have hq0 : ∀ τ : ℍ, 𝕢 h (τ : ℂ) ≠ 0 := fun τ => Periodic.qParam_ne_zero _
   set F' : ℍ → ℂ := fun τ => F τ * (𝕢 h (τ : ℂ) ^ A.order)⁻¹ with hF'
   set G' : ℍ → ℂ := fun τ => G τ * (𝕢 h (τ : ℂ) ^ B.order)⁻¹ with hG'
-  have hA' : ∀ τ : ℍ, HasSum (fun n : ℕ => PowerSeries.coeff n A.powerSeriesPart * 𝕢 h (τ : ℂ) ^ n) (F' τ) := by
+  have hA' : ∀ τ : ℍ, HasSum (fun n : ℕ => PowerSeries.coeff n A.powerSeriesPart * 𝕢 h (τ : ℂ) ^ n) (F' τ) :=
+    by
     intro τ
-    rw [← hasSum_single_mul_coe_iff A.order A.powerSeriesPart (hq0 τ), A.single_order_mul_powerSeriesPart,
+    rw [← hasSum_single_mul_coe_iff A.order A.powerSeriesPart (hq0 τ),
+      A.single_order_mul_powerSeriesPart,
       hF', inv_mul_cancel_right₀ (zpow_ne_zero _ (hq0 τ))]
     exact hA τ
-  have hB' : ∀ τ : ℍ, HasSum (fun n : ℕ => PowerSeries.coeff n B.powerSeriesPart * 𝕢 h (τ : ℂ) ^ n) (G' τ) := by
+  have hB' : ∀ τ : ℍ, HasSum (fun n : ℕ => PowerSeries.coeff n B.powerSeriesPart * 𝕢 h (τ : ℂ) ^ n) (G' τ) :=
+    by
     intro τ
-    rw [← hasSum_single_mul_coe_iff B.order B.powerSeriesPart (hq0 τ), B.single_order_mul_powerSeriesPart,
+    rw [← hasSum_single_mul_coe_iff B.order B.powerSeriesPart (hq0 τ),
+      B.single_order_mul_powerSeriesPart,
       hG', inv_mul_cancel_right₀ (zpow_ne_zero _ (hq0 τ))]
     exact hB τ
   have H := ModularCurve.hasSum_qParam_mul h hh A.powerSeriesPart B.powerSeriesPart F' G' hA' hB' τ
@@ -132,7 +138,8 @@ end ModularCurve
 
 end
 
-theorem solution (h : ℝ) (hh : 0 < h) (A B : LaurentSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) : HasSum (fun m : ℤ => (A * B).coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) :=
+theorem solution (h : ℝ) (hh : 0 < h) (A B : LaurentSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (A * B).coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) :=
   ModularCurve.Realized.hasSum_qParam_mul_laurent' h hh A B F G hA hB τ
 
 end S_ModularCurve_hasSum_qParam_mul_laurent
@@ -143,6 +150,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.hasSum_qParam_mul_laurent (h : ℝ) (hh : 0 < h) (A B : LaurentSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) : HasSum (fun m : ℤ => (A * B).coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) := _root_.P2MW.S_ModularCurve_hasSum_qParam_mul_laurent.solution h hh A B F G hA hB τ
+theorem ModularCurve.hasSum_qParam_mul_laurent (h : ℝ) (hh : 0 < h) (A B : LaurentSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => B.coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (A * B).coeff m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) :=
+  solution h hh A B F G hA hB τ
 
 end publicSection

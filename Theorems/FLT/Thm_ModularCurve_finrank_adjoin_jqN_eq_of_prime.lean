@@ -71,13 +71,16 @@ noncomputable section
 open Polynomial IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible exists_phiIrreducible_evalSymm dedekindPsi_prime"
+p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData algebraMap_comp_evalAtJGen \
+  ModularPolynomialData.toAdjoin PhiIrreducible exists_phiIrreducible_evalSymm dedekindPsi_prime"
 p2m_open "ModularCurve"
 
 variable {N : ℕ} [NeZero N]
 
-theorem aeval_jqN_toAdjoin (data : ModularPolynomialData N) : Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
-  rw [ModularPolynomialData.toAdjoin, Polynomial.aeval_def, Polynomial.eval₂_map, algebraMap_comp_evalAtJGen]
+theorem aeval_jqN_toAdjoin (data : ModularPolynomialData N) :
+    Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
+  rw [ModularPolynomialData.toAdjoin, Polynomial.aeval_def, Polynomial.eval₂_map,
+    algebraMap_comp_evalAtJGen]
   exact data.eval_eq_zero
 
 theorem minpoly_jqN_eq_toAdjoin (data : ModularPolynomialData N) (h : PhiIrreducible data) :
@@ -88,7 +91,8 @@ theorem finrank_adjoin_jqN_eq (data : ModularPolynomialData N) (h : PhiIrreducib
     Module.finrank ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN N⟯ = dedekindPsi N := by
   have hint : IsIntegral ℚ⟮jq⟯ (jqN N) := ⟨data.toAdjoin, data.toAdjoin_monic, by
     rw [← Polynomial.aeval_def]; exact aeval_jqN_toAdjoin data⟩
-  rw [IntermediateField.adjoin.finrank hint, minpoly_jqN_eq_toAdjoin data h, ModularPolynomialData.toAdjoin,
+  rw [IntermediateField.adjoin.finrank hint, minpoly_jqN_eq_toAdjoin data h,
+    ModularPolynomialData.toAdjoin,
     data.monic.natDegree_map, data.natDegree_eq]
 
 private theorem finrank_adjoin_jqN_eq_of_prime (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
@@ -101,10 +105,9 @@ end ModularCurve
 end
 
 set_option pp.universes true in
-
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime.ModularCurve ModularCurve.PhiGen in
-
-theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
+theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
   ModularCurve.finrank_adjoin_jqN_eq_of_prime ℓ
 
 end S_ModularCurve_finrank_adjoin_jqN_eq_of_prime
@@ -117,6 +120,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.finrank_adjoin_jqN_eq_of_prime (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 := _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime.solution ℓ
+theorem ModularCurve.finrank_adjoin_jqN_eq_of_prime (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
+  solution ℓ
 
 end publicSection

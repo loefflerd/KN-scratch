@@ -127,7 +127,7 @@ theorem one_mem_strictPeriods_gammaOne (N : ℕ) :
 
 /-- Any integration map is injective: this is `period_vanishing` read through `IntegralClass`. -/
 theorem injective_of_integralClass {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) : Function.Injective I := by
   intro f g hfg
   have h0 : I (f - g) = 0 := by rw [map_sub, hfg, sub_self]
@@ -136,7 +136,7 @@ theorem injective_of_integralClass {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
   have hzero : f - g = 0 := MTT.period_vanishing hN hk (f - g) (fun j hj r => by
     have h := hcls j r hj
     rw [map_zero] at h
-    have hch : (((k-2).choose j : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj).ne'
+    have hch : (((k - 2).choose j : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj).ne'
     exact (mul_eq_zero.mp h.symm).resolve_left hch)
   exact sub_eq_zero.mp hzero
 
@@ -144,7 +144,7 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (hT : HeckeEquivariant I)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι) (g : CuspForm (MTT.GammaOne N) (k : ℤ))
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
@@ -234,8 +234,10 @@ theorem solution
       intro τ
       have := (hfa τ).const_smul (ι (f.coeff p))
       simpa [smul_eq_mul, mul_assoc] using this
-    have u1 := ModularFormClass.qExpansion_coeff_unique one_pos h1 (f := ι (f.coeff p) • f.form) hs1 m
-    have u2 := ModularFormClass.qExpansion_coeff_unique one_pos h1 (f := ι (f.coeff p) • f.form) hs2 m
+    have u1 :=
+      ModularFormClass.qExpansion_coeff_unique one_pos h1 (f := ι (f.coeff p) • f.form) hs1 m
+    have u2 :=
+      ModularFormClass.qExpansion_coeff_unique one_pos h1 (f := ι (f.coeff p) • f.form) hs2 m
     exact u1.trans u2.symm
   -- constant terms vanish
   have hb0 : (UpperHalfPlane.qExpansion 1 g).coeff 0 = 0 :=
@@ -271,7 +273,7 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.image_packet_unique
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (hT : HeckeEquivariant I)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι) (g : CuspForm (MTT.GammaOne N) (k : ℤ))
     (hlaw : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,

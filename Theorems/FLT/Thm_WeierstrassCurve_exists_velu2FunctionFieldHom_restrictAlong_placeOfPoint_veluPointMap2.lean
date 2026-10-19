@@ -76,7 +76,9 @@ open scoped Polynomial.Bivariate
 
 namespace Velu2FFPort
 
-p2m_open "WeierstrassCurve WeierstrassCurve.Affine~valuation_algebraMap_eq_one~valuation_algebraMap_le_one WeierstrassCurve.Affine.CoordinateRing~isIntegral"
+p2m_open "WeierstrassCurve \
+  WeierstrassCurve.Affine~valuation_algebraMap_eq_one~valuation_algebraMap_le_one \
+  WeierstrassCurve.Affine.CoordinateRing~isIntegral"
 
 variable {F : Type*} [Field F]
 
@@ -148,7 +150,8 @@ section places
 
 variable {K : Type*} [Field K] [Algebra F K]
 
-private theorem _root_.Velu2FFPort.algebraMap_mem (v : Place F K) (a : F) : algebraMap F K a ∈ v.toValuationSubring :=
+private theorem _root_.Velu2FFPort.algebraMap_mem (v : Place F K) (a : F) :
+    algebraMap F K a ∈ v.toValuationSubring :=
   v.algebraMap_mem' a
 
 p2m_export "Velu2FFPort" "algebraMap_mem"
@@ -225,7 +228,6 @@ variable {W x₀ y₀}
 variable [CharZero F] (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0)
 
 include hQ hgy in
-
 theorem equation_map_veluQuotient2_ξ_η :
     ((W.veluQuotient2 x₀ y₀).map (algebraMap F W.toAffine.FunctionField)).toAffine.Equation
       (ξ W x₀ y₀) (η W x₀ y₀) := by
@@ -237,7 +239,6 @@ theorem equation_map_veluQuotient2_ξ_η :
   rw [map_veluGy, hgy, map_zero]
 
 include hQ hgy in
-
 theorem eval₂_polynomial_ξ_η :
     ((W.veluQuotient2 x₀ y₀).toAffine.polynomial).eval₂
       ((Polynomial.aeval (ξ W x₀ y₀) : F[X] →ₐ[F] W.toAffine.FunctionField) :
@@ -262,13 +263,18 @@ variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
 variable {W : WeierstrassCurve F} [W.IsElliptic] {x₀ y₀ : F}
 variable [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine]
 
+omit [DecidableEq F] in
 theorem xK_notMem_placeOfPoint_zero :
-    xK W.toAffine ∉ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring :=
-  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+    xK W.toAffine ∉ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring := by
+  classical
+  exact
+    algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 
+omit [DecidableEq F] in
 theorem corr_mem_placeOfPoint_zero (x₀ y₀ : F) :
     algebraMap F _ (W.veluGx x₀ y₀) / (xK W.toAffine - algebraMap F _ x₀)
       ∈ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring := by
+  classical
   set O := (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring
   have hx : xK W.toAffine ∉ O := xK_notMem_placeOfPoint_zero
   rw [← O.valuation_le_one_iff] at hx ⊢
@@ -279,14 +285,18 @@ theorem corr_mem_placeOfPoint_zero (x₀ y₀ : F) :
   rw [map_div₀, hsub, div_le_one₀ (lt_trans zero_lt_one hx)]
   exact le_trans (valuation_algebraMap_le_one (placeOfPoint (0 : W.toAffine.Point)) _) hx.le
 
+omit [DecidableEq F] in
 theorem ξ_notMem_placeOfPoint_zero (x₀ y₀ : F) :
     ξ W x₀ y₀ ∉ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring := by
+  classical
   intro h
   apply xK_notMem_placeOfPoint_zero (W := W)
   have := sub_mem h (corr_mem_placeOfPoint_zero (W := W) x₀ y₀)
   rwa [ξ, add_sub_cancel_right] at this
 
+omit [DecidableEq F] in
 theorem transcendental_ξ (x₀ y₀ : F) : Transcendental F (ξ W x₀ y₀) := by
+  classical
   intro halg
   have hint : IsIntegral F (ξ W x₀ y₀) := halg.isIntegral
   have hdeg : (minpoly F (ξ W x₀ y₀)).degree = 1 :=
@@ -296,10 +306,13 @@ theorem transcendental_ξ (x₀ y₀ : F) : Transcendental F (ξ W x₀ y₀) :=
   rw [← hc]
   exact algebraMap_mem _ c
 
+omit [DecidableEq F] in
 theorem aeval_ξ_injective (x₀ y₀ : F) :
-    Function.Injective (Polynomial.aeval (R := F) (ξ W x₀ y₀)) :=
-  (injective_iff_map_eq_zero _).mpr fun p hp =>
-    transcendental_iff.mp (transcendental_ξ (W := W) x₀ y₀) p hp
+    Function.Injective (Polynomial.aeval (R := F) (ξ W x₀ y₀)) := by
+  classical
+  exact
+    (injective_iff_map_eq_zero _).mpr fun p hp =>
+      transcendental_iff.mp (transcendental_ξ (W := W) x₀ y₀) p hp
 
 end transcendence
 
@@ -333,10 +346,12 @@ theorem coordHom_comp_algebraMap :
       = ((Polynomial.aeval (ξ W x₀ y₀) : F[X] →ₐ[F] W.toAffine.FunctionField) :
           F[X] →+* W.toAffine.FunctionField) := by
   refine RingHom.ext fun p => ?_
-  show coordHom hQ hgy (algebraMap F[X] _ p) = _
+  change coordHom hQ hgy (algebraMap F[X] _ p) = _
   rw [algebraMap_polynomial_coordinateRing, coordHom_mk, eval₂_C]
 
+omit [DecidableEq F] in
 theorem coordHom_injective : Function.Injective (coordHom hQ hgy) := by
+  classical
   have hker : RingHom.ker (coordHom hQ hgy).toRingHom = ⊥ := by
     have : Module.Finite F[X] (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis (W.veluQuotient2 x₀ y₀).toAffine)
@@ -350,40 +365,55 @@ noncomputable def ffHom :
     (W.veluQuotient2 x₀ y₀).toAffine.FunctionField →ₐ[F] W.toAffine.FunctionField :=
   IsFractionRing.liftAlgHom (coordHom_injective hQ hgy)
 
+omit [DecidableEq F] in
 theorem ffHom_algebraMap (r : (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing) :
     ffHom hQ hgy (algebraMap _ (W.veluQuotient2 x₀ y₀).toAffine.FunctionField r)
-      = coordHom hQ hgy r :=
-  IsFractionRing.lift_algebraMap (coordHom_injective hQ hgy) r
+      = coordHom hQ hgy r := by
+  classical
+  exact
+    IsFractionRing.lift_algebraMap (coordHom_injective hQ hgy) r
 
+omit [DecidableEq F] in
 theorem ffHom_polyToFunctionField (p : F[X]) :
     ffHom hQ hgy (polyToFunctionField (W.veluQuotient2 x₀ y₀).toAffine p)
       = Polynomial.aeval (ξ W x₀ y₀) p := by
+  classical
   rw [polyToFunctionField_apply, ffHom_algebraMap, algebraMap_polynomial_coordinateRing,
     coordHom_mk, eval₂_C, RingHom.coe_coe]
 
+omit [DecidableEq F] in
 theorem ffHom_xK : ffHom hQ hgy (xK (W.veluQuotient2 x₀ y₀).toAffine) = ξ W x₀ y₀ := by
+  classical
   rw [xK, ffHom_polyToFunctionField, aeval_X]
 
+omit [DecidableEq F] in
 theorem ffHom_yK : ffHom hQ hgy (yK (W.veluQuotient2 x₀ y₀).toAffine) = η W x₀ y₀ := by
-  show ffHom hQ hgy (algebraMap _ _ (CoordinateRing.mk _ Y)) = _
+  classical
+  change ffHom hQ hgy (algebraMap _ _ (CoordinateRing.mk _ Y)) = _
   rw [ffHom_algebraMap, coordHom_mk, eval₂_X]
 
+omit [DecidableEq F] in
 theorem ffHom_XClass (x : F) :
     ffHom hQ hgy (algebraMap _ (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
         (XClass (W.veluQuotient2 x₀ y₀).toAffine x))
       = ξ W x₀ y₀ - algebraMap F _ x := by
+  classical
   rw [algebraMap_XClass, map_sub, ffHom_xK, AlgHom.commutes]
 
+omit [DecidableEq F] in
 theorem ffHom_YClass (y : F) :
     ffHom hQ hgy (algebraMap _ (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
         (YClass (W.veluQuotient2 x₀ y₀).toAffine (C y)))
       = η W x₀ y₀ - algebraMap F _ y := by
+  classical
   rw [algebraMap_YClass, map_sub, ffHom_yK, AlgHom.commutes]
 
+omit [DecidableEq F] in
 theorem adjoin_xK_eq_top :
     letI := algebraAlong (ffHom hQ hgy)
     IntermediateField.adjoin (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
       {xK W.toAffine} = ⊤ := by
+  classical
   let := algebraAlong (ffHom hQ hgy)
   set K' := (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
   have halg : ∀ z : K', algebraMap K' W.toAffine.FunctionField z = ffHom hQ hgy z :=
@@ -435,9 +465,11 @@ theorem adjoin_xK_eq_top :
   rw [← hab]
   exact div_mem (hcr a) (hcr b)
 
+omit [DecidableEq F] in
 theorem isIntegral_xK :
     letI := algebraAlong (ffHom hQ hgy)
     IsIntegral (W.veluQuotient2 x₀ y₀).toAffine.FunctionField (xK W.toAffine) := by
+  classical
   set K' := (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
   have hcomm : ∀ a : F, ffHom hQ hgy (algebraMap F K' a) = algebraMap F _ a :=
     fun a => (ffHom hQ hgy).commutes a
@@ -452,16 +484,20 @@ theorem isIntegral_xK :
   field_simp
   ring
 
+omit [DecidableEq F] in
 theorem finiteAlong_ffHom : FiniteAlong F (ffHom hQ hgy) := by
+  classical
   let := algebraAlong (ffHom hQ hgy)
-  show Module.Finite (W.veluQuotient2 x₀ y₀).toAffine.FunctionField W.toAffine.FunctionField
+  change Module.Finite (W.veluQuotient2 x₀ y₀).toAffine.FunctionField W.toAffine.FunctionField
   have h1 := IntermediateField.adjoin.finiteDimensional (isIntegral_xK hQ hgy)
   rw [adjoin_xK_eq_top hQ hgy] at h1
   exact (IntermediateField.topEquiv
     (F := (W.veluQuotient2 x₀ y₀).toAffine.FunctionField)
     (E := W.toAffine.FunctionField)).toLinearEquiv.finiteDimensional
 
+omit [DecidableEq F] in
 theorem isIntegral_ffHom : (ffHom hQ hgy).toRingHom.IsIntegral := by
+  classical
   let := algebraAlong (ffHom hQ hgy)
   have : Module.Finite (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
       W.toAffine.FunctionField := finiteAlong_ffHom hQ hgy
@@ -538,7 +574,6 @@ variable [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine]
 variable (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0)
 
 omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic] in
-
 theorem val_xK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
     (placeOfPoint (Point.some x y h)).toValuationSubring.valuation
       (xK W.toAffine - algebraMap F _ x) < 1 := by
@@ -546,7 +581,6 @@ theorem val_xK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
   exact GenusOnePlaceGate.IsCentred.algebraMap_XClass_mem_nonunits h
 
 omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic] in
-
 theorem val_yK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
     (placeOfPoint (Point.some x y h)).toValuationSubring.valuation
       (yK W.toAffine - algebraMap F _ y) < 1 := by
@@ -556,10 +590,12 @@ theorem val_yK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
 variable [GenusOnePlaceGate (W.veluQuotient2 x₀ y₀).toAffine]
 variable [GenusOnePlaceGate.IsCentred (W.veluQuotient2 x₀ y₀).toAffine]
 
+omit [DecidableEq F] in
 theorem restrictAlong_eq_placeOfPoint_zero_of_notMem (v : Place F W.toAffine.FunctionField)
     (hv : ξ W x₀ y₀ ∉ v.toValuationSubring) :
     v.restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
       = placeOfPoint (0 : (W.veluQuotient2 x₀ y₀).toAffine.Point) := by
+  classical
   obtain ⟨P', hP'⟩ := (pointEquivPlace (W := (W.veluQuotient2 x₀ y₀).toAffine)).surjective
     (v.restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy))
   rw [pointEquivPlace_apply] at hP'
@@ -572,17 +608,22 @@ theorem restrictAlong_eq_placeOfPoint_zero_of_notMem (v : Place F W.toAffine.Fun
     have := add_mem (ValuationSubring.nonunits_subset hX) (algebraMap_mem v x')
     rwa [sub_add_cancel] at this
 
+omit [DecidableEq F] in
 theorem restrictAlong_placeOfPoint_zero (h2 : (2 : F) ≠ 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) :
     (placeOfPoint (0 : W.toAffine.Point)).restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
-      = placeOfPoint (veluPointMap2 h2 hQ hgy hΔ' 0) :=
-  restrictAlong_eq_placeOfPoint_zero_of_notMem hQ hgy _ (ξ_notMem_placeOfPoint_zero x₀ y₀)
+      = placeOfPoint (veluPointMap2 h2 hQ hgy hΔ' 0) := by
+  classical
+  exact
+    restrictAlong_eq_placeOfPoint_zero_of_notMem hQ hgy _ (ξ_notMem_placeOfPoint_zero x₀ y₀)
 
+omit [DecidableEq F] in
 theorem restrictAlong_placeOfPoint_some_of_eq (h2 : (2 : F) ≠ 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) {x y : F} (h : W.toAffine.Nonsingular x y)
     (hx : x = x₀) :
     (placeOfPoint (Point.some x y h)).restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
       = placeOfPoint (veluPointMap2 h2 hQ hgy hΔ' (Point.some x y h)) := by
+  classical
   rw [veluPointMap2_some_of_eq h2 hQ hgy hΔ' h hx]
   refine restrictAlong_eq_placeOfPoint_zero_of_notMem hQ hgy _ fun hξ => ?_
   subst hx
@@ -603,11 +644,13 @@ theorem restrictAlong_placeOfPoint_some_of_eq (h2 : (2 : F) ≠ 0)
 
 variable [(W.veluQuotient2 x₀ y₀).IsElliptic]
 
+omit [DecidableEq F] in
 theorem restrictAlong_placeOfPoint_some_of_ne (h2 : (2 : F) ≠ 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) {x y : F} (h : W.toAffine.Nonsingular x y)
     (hx : x ≠ x₀) :
     (placeOfPoint (Point.some x y h)).restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
       = placeOfPoint (veluPointMap2 h2 hQ hgy hΔ' (Point.some x y h)) := by
+  classical
   have := CoordinateRing.isDedekindDomain (W.veluQuotient2 x₀ y₀)
   rw [veluPointMap2_some_of_ne h2 hQ hgy hΔ' h hx]
   set O := (placeOfPoint (Point.some x y h)).toValuationSubring with hO
@@ -644,7 +687,7 @@ theorem restrictAlong_placeOfPoint_some_of_ne (h2 : (2 : F) ≠ 0)
 end seam
 
 theorem restrictAlong_placeOfPoint_veluPointMap2
-    {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
+    {F : Type*} [Field F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.IsElliptic]
     {x₀ y₀ : F} (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0)
@@ -656,6 +699,7 @@ theorem restrictAlong_placeOfPoint_veluPointMap2
     (h2 : (2 : F) ≠ 0) (P : W.toAffine.Point) :
     (placeOfPoint P).restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
       = placeOfPoint (veluPointMap2 h2 hQ hgy hΔ' P) := by
+  classical
   rcases P with _ | ⟨x, y, h⟩
   · exact restrictAlong_placeOfPoint_zero hQ hgy h2 hΔ'
   · by_cases hx : x = x₀
@@ -712,6 +756,7 @@ theorem WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint
       ∀ P : W.toAffine.Point,
         (WeierstrassCurve.Affine.placeOfPoint P).restrictAlong ι hι
           = WeierstrassCurve.Affine.placeOfPoint
-              (WeierstrassCurve.veluPointMap2 two_ne_zero hQ hgy hΔ' P) := _root_.P2MW.S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2.solution hQ hgy hΔ'
+              (WeierstrassCurve.veluPointMap2 two_ne_zero hQ hgy hΔ' P) :=
+  solution hQ hgy hΔ'
 
 end publicSection

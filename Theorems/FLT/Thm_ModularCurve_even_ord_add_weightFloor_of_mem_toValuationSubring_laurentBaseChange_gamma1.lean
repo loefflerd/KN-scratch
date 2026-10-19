@@ -97,13 +97,15 @@ theorem thetaL_coeffEmb_jq :
   rw [coeffEmb, ModularCurve.thetaL_coeffMap_eq_coeffMap_single_mul_derivative]
   rfl
 
-theorem analyticAt_comp_ofComplex {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : ModularForm Γ k) (τ : ℍ) :
+theorem analyticAt_comp_ofComplex {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : ModularForm Γ k)
+    (τ : ℍ) :
     AnalyticAt ℂ ((f : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
   have hd : DifferentiableOn ℂ ((f : ℍ → ℂ) ∘ ofComplex) {z : ℂ | 0 < z.im} :=
     UpperHalfPlane.mdifferentiable_iff.mp f.holo'
   exact hd.analyticAt ((isOpen_lt continuous_const Complex.continuous_im).mem_nhds τ.im_pos)
 
-theorem analyticOrderAt_ne_top {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : ModularForm Γ k) (hf : f ≠ 0) (τ : ℍ) :
+theorem analyticOrderAt_ne_top {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : ModularForm Γ k)
+    (hf : f ≠ 0) (τ : ℍ) :
     analyticOrderAt ((f : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) ≠ ⊤ := by
   intro htop
   apply hf
@@ -118,7 +120,8 @@ theorem analyticOrderAt_ne_top {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : M
   have := hzero z.im_pos
   simpa [Function.comp_apply, UpperHalfPlane.ofComplex_apply] using this
 
-theorem exists_nat_meromorphicOrderAt_eq {f : ℂ → ℂ} {x : ℂ} (hf : AnalyticAt ℂ f x) (h : analyticOrderAt f x ≠ ⊤) :
+theorem exists_nat_meromorphicOrderAt_eq {f : ℂ → ℂ} {x : ℂ} (hf : AnalyticAt ℂ f x)
+    (h : analyticOrderAt f x ≠ ⊤) :
     ∃ n : ℕ, analyticOrderAt f x = n ∧ meromorphicOrderAt f x = (n : ℤ) := by
   obtain ⟨n, hn⟩ := ENat.ne_top_iff_exists.mp h
   refine ⟨n, hn.symm, ?_⟩
@@ -150,16 +153,20 @@ theorem solution
   have h1 := one_mem_strictPeriods_gamma1 M
   obtain ⟨D⟩ := ModularCurve.exists_complexPlaceDictionaryOf (CongruenceSubgroup.Gamma1 M) hT
     (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) rfl
-  obtain ⟨τ, rfl⟩ := ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem (CongruenceSubgroup.Gamma1 M) hT
+  obtain ⟨τ, rfl⟩ :=
+    ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem (CongruenceSubgroup.Gamma1 M) hT
     (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) rfl D P y hy hP
   have he : D.ramification τ = 1 :=
     ModularCurve.ComplexPlaceDictionaryOf.ramification_eq_one_gamma1 M hM _ rfl D τ
   obtain ⟨hell1, hell2⟩ :=
     ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy
   have hoy : 0 ≤ (D.pt τ).ord y := AlgebraicCurve.Place.ord_nonneg_of_mem _ hP
-  obtain ⟨a6, n, hoy', hov⟩ : ∃ (a6 : ℕ) (n : ℤ), (D.pt τ).ord (y - 1728) = 2 * a6 ∧ (D.pt τ).ord v + a6 = 2 * n := by
-    obtain ⟨E4N, hE4⟩ := ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₄
-    obtain ⟨E6N, hE6⟩ := ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₆
+  obtain ⟨a6, n, hoy', hov⟩ : ∃ (a6 : ℕ) (n : ℤ), (D.pt τ).ord (y - 1728) = 2 * a6 ∧ (D.pt τ).ord v + a6 = 2 * n :=
+    by
+    obtain ⟨E4N, hE4⟩ :=
+      ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₄
+    obtain ⟨E6N, hE6⟩ :=
+      ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₆
     obtain ⟨DN, hD⟩ := ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M)
       (ModularFormClass.modularForm (CuspForm.discriminant))
     have hDcoe : (DN : ℍ → ℂ) = ModularForm.discriminant := by
@@ -167,21 +174,29 @@ theorem solution
       funext z
       rw [← CuspForm.toModularFormₗ_eq_coe, CuspForm.toModularFormₗ_apply]
       rfl
-    obtain ⟨P4, hP4def⟩ : ∃ P4 : ModularForm (Gamma1 M) 12, P4 = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E4N) := ⟨_, rfl⟩
-    obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E6N) := ⟨_, rfl⟩
-    obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by norm_num) (-((w.mul w).mul DN)) := ⟨_, rfl⟩
-    obtain ⟨P17, hP17def⟩ : ∃ P17 : ModularForm (Gamma1 M) 12, P17 = P4 - (1728 : ℂ) • DN := ⟨_, rfl⟩
+    obtain ⟨P4, hP4def⟩ : ∃ P4 : ModularForm (Gamma1 M) 12, P4 = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E4N) :=
+      ⟨_, rfl⟩
+    obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E6N) :=
+      ⟨_, rfl⟩
+    obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by norm_num) (-((w.mul w).mul DN)) :=
+      ⟨_, rfl⟩
+    obtain ⟨P17, hP17def⟩ : ∃ P17 : ModularForm (Gamma1 M) 12, P17 = P4 - (1728 : ℂ) • DN :=
+      ⟨_, rfl⟩
     have hP4coe : (P4 : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 3 := by
-      funext z; simp only [hP4def, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4]; ring
+      funext z; simp only [hP4def, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply,
+        hE4]; ring
     have hHhcoe : (Hh : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 2 * ModularForm.E₆ z := by
-      funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4, hE6]; ring
+      funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4,
+        hE6]; ring
     have hGvcoe : (Gv : ℍ → ℂ) = fun z => -(w z ^ 2 * ModularForm.discriminant z) := by
       funext z
-      simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply, Pi.mul_apply, hDcoe]
+      simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply,
+        Pi.mul_apply, hDcoe]
       ring
     have hP17coe : (P17 : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 3 - 1728 * ModularForm.discriminant z := by
       funext z
-      rw [hP17def, FunLike.coe_sub, FunLike.coe_smul, Pi.sub_apply, Pi.smul_apply, hP4coe, hDcoe, smul_eq_mul]
+      rw [hP17def, FunLike.coe_sub, FunLike.coe_smul, Pi.sub_apply, Pi.smul_apply, hP4coe, hDcoe,
+        smul_eq_mul]
     have hqE4 : qExpansion 1 (E4N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) := by rw [hE4]
     have hqE6 : qExpansion 1 (E6N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by rw [hE6]
     have hqD : qExpansion 1 (DN : ℍ → ℂ) = qExpansion 1 ModularForm.discriminant := by rw [hDcoe]
@@ -192,8 +207,10 @@ theorem solution
         qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 2 * qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by
       rw [hHhdef, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos h1,
         ModularForm.qExpansion_mul one_pos h1, hqE4, hqE6]; ring
-    have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) := by
-      rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos h1,
+    have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) :=
+      by
+      rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos
+        h1,
         ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, hqD]; ring
     have hqP17 : qExpansion 1 (P17 : ℍ → ℂ) =
         qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 3 - 1728 * qExpansion 1 ModularForm.discriminant := by
@@ -231,23 +248,27 @@ theorem solution
     have pres_y' : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
           LaurentSeries ℂ) * ((qExpansion 1 (DN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
         ((qExpansion 1 (P17 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
-      rw [hcoe17, hqD, hqP17, PowerSeries.coe_sub, PowerSeries.coe_mul, PowerSeries.coe_pow, map_ofNat]
+      rw [hcoe17, hqD, hqP17, PowerSeries.coe_sub, PowerSeries.coe_mul, PowerSeries.coe_pow,
+        map_ofNat]
       linear_combination hY
     have pres_v : (v : LaurentSeries ℂ) * ((qExpansion 1 (Hh : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
         ((qExpansion 1 (Gv : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
-      rw [hqHh, hqGv, PowerSeries.coe_neg, PowerSeries.coe_mul, PowerSeries.coe_mul, PowerSeries.coe_pow, PowerSeries.coe_pow]
+      rw [hqHh, hqGv, PowerSeries.coe_neg, PowerSeries.coe_mul, PowerSeries.coe_mul,
+        PowerSeries.coe_pow, PowerSeries.coe_pow]
       linear_combination (v : LaurentSeries ℂ) * hT2 -
         ofPowerSeries ℤ ℂ (qExpansion 1 ModularForm.discriminant) * hv
     have hW0 : ofPowerSeries ℤ ℂ (qExpansion 1 (w : ℍ → ℂ)) ≠ 0 := by
       intro h0
       apply hw
-      have h0' : qExpansion 1 (w : ℍ → ℂ) = 0 := HahnSeries.ofPowerSeries_injective (by rw [h0, map_zero])
+      have h0' : qExpansion 1 (w : ℍ → ℂ) = 0 :=
+        HahnSeries.ofPowerSeries_injective (by rw [h0, map_zero])
       exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 w).mp h0'
     have hHh0 : Hh ≠ 0 := by
       intro h0
       have hq0 : ofPowerSeries ℤ ℂ (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) ^ 2 *
           ofPowerSeries ℤ ℂ (qExpansion 1 (ModularForm.E₆ : ℍ → ℂ)) = 0 := by
-        have : qExpansion 1 (Hh : ℍ → ℂ) = 0 := (ModularForm.qExpansion_eq_zero_iff one_pos h1 Hh).mpr h0
+        have : qExpansion 1 (Hh : ℍ → ℂ) = 0 :=
+          (ModularForm.qExpansion_eq_zero_iff one_pos h1 Hh).mpr h0
         rw [hqHh] at this
         have := congrArg (ofPowerSeries ℤ ℂ) this
         rwa [map_mul, map_pow, map_zero] at this
@@ -266,7 +287,8 @@ theorem solution
       rw [h0] at this
       simp only [ZeroMemClass.coe_zero, zero_mul] at this
       exact pow_eq_zero_iff two_ne_zero |>.mp this.symm
-    have hy'0 : (y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ≠ 0 := by
+    have hy'0 : (y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ≠ 0 :=
+      by
       intro h0
       have h1' : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
           LaurentSeries ℂ).coeff (-1) = 1 := by
@@ -277,7 +299,8 @@ theorem solution
           have e0 : (HahnSeries.ofPowerSeries ℤ ℂ (jNum.map (Int.castRingHom ℂ))).coeff 0 = 1 := by
             have := HahnSeries.ofPowerSeries_apply_coeff (Γ := ℤ) (jNum.map (Int.castRingHom ℂ)) 0
             rw [Nat.cast_zero] at this
-            rw [this, PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff_apply, ModularCurve.constantCoeff_jNum, map_one]
+            rw [this, PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff_apply,
+              ModularCurve.constantCoeff_jNum, map_one]
           rw [zero_add, one_mul, e0] at e
           rw [jqModC]
           exact e
@@ -313,7 +336,8 @@ theorem solution
     have haH := analyticAt_comp_ofComplex Hh τ
     obtain ⟨aw, haw', hmw⟩ := exists_nat_meromorphicOrderAt_eq haw (analyticOrderAt_ne_top w hw τ)
     have hHtop := analyticOrderAt_ne_top Hh hHh0 τ
-    have hBfun : ((Hh : ℍ → ℂ) ∘ ofComplex) = ((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) ^ 2 * ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex) := by
+    have hBfun : ((Hh : ℍ → ℂ) ∘ ofComplex) = ((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) ^ 2 * ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex) :=
+      by
       funext c; simp only [Function.comp_apply, hHhcoe, Pi.mul_apply, Pi.pow_apply]
     have h4top : analyticOrderAt ((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) ≠ ⊤ := by
       intro ht
@@ -329,7 +353,8 @@ theorem solution
     obtain ⟨a6, ha6', hm6⟩ := exists_nat_meromorphicOrderAt_eq ha6 h6top
     have hmD : meromorphicOrderAt (ModularForm.discriminant ∘ ofComplex) (τ : ℂ) = (0 : ℤ) := by
       rw [haD.meromorphicOrderAt_eq, (haD.analyticOrderAt_eq_zero).mpr (by
-        simp only [Function.comp_apply, UpperHalfPlane.ofComplex_apply]; exact ModularForm.discriminant_ne_zero τ)]
+        simp only [Function.comp_apply,
+          UpperHalfPlane.ofComplex_apply]; exact ModularForm.discriminant_ne_zero τ)]
       rfl
     have hFy' : (fun c : ℂ => ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M)
         ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ)
@@ -338,10 +363,12 @@ theorem solution
       simp only [Pi.div_apply, Pi.pow_apply, Function.comp_apply]
       exact hRy' (ofComplex c)
     have hmy' := D.meromorphicOrderAt_realizeOf τ (y - 1728) hy'0
-    rw [hFy', meromorphicOrderAt_div (ha6.pow 2).meromorphicAt haD.meromorphicAt, meromorphicOrderAt_pow ha6.meromorphicAt,
+    rw [hFy', meromorphicOrderAt_div (ha6.pow 2).meromorphicAt haD.meromorphicAt,
+      meromorphicOrderAt_pow ha6.meromorphicAt,
       hm6, hmD, he] at hmy'
     have hoy' : (D.pt τ).ord (y - 1728) = 2 * a6 := by
-      have : ((2 • (a6 : ℤ) - 0 : ℤ) : WithTop ℤ) = (((1 : ℕ) : ℤ) * (D.pt τ).ord (y - 1728) : ℤ) := by
+      have : ((2 • (a6 : ℤ) - 0 : ℤ) : WithTop ℤ) = (((1 : ℕ) : ℤ) * (D.pt τ).ord (y - 1728) : ℤ) :=
+        by
         rw [← hmy']; push_cast; rfl
       have := WithTop.coe_injective this
       simp at this
@@ -360,13 +387,15 @@ theorem solution
       rw [hRv _ hc', neg_div]
     have hmv := D.meromorphicOrderAt_realizeOf τ v hv0
     rw [meromorphicOrderAt_congr hFv, ← meromorphicOrderAt_neg,
-      meromorphicOrderAt_div ((haw.pow 2).mul haD).meromorphicAt ((ha4.pow 2).mul ha6).meromorphicAt,
+      meromorphicOrderAt_div ((haw.pow 2).mul haD).meromorphicAt ((ha4.pow 2).mul
+      ha6).meromorphicAt,
       meromorphicOrderAt_mul (haw.pow 2).meromorphicAt haD.meromorphicAt,
       meromorphicOrderAt_mul (ha4.pow 2).meromorphicAt ha6.meromorphicAt,
       meromorphicOrderAt_pow haw.meromorphicAt, meromorphicOrderAt_pow ha4.meromorphicAt,
       hmw, hm4, hm6, hmD, he] at hmv
     have hov : (D.pt τ).ord v + a6 = 2 * ((aw : ℤ) - a4) := by
-      have : ((2 • (aw : ℤ) + 0 - (2 • (a4 : ℤ) + a6) : ℤ) : WithTop ℤ) = (((1 : ℕ) : ℤ) * (D.pt τ).ord v : ℤ) := by
+      have : ((2 • (aw : ℤ) + 0 - (2 • (a4 : ℤ) + a6) : ℤ) : WithTop ℤ) = (((1 : ℕ) : ℤ) * (D.pt τ).ord v : ℤ) :=
+        by
         rw [← hmv]; push_cast; rfl
       have := WithTop.coe_injective this
       simp at this
@@ -419,6 +448,7 @@ theorem ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentB
     Even (P.ord v +
           ((if 0 < P.ord y then (2 * P.ord y) / 3 else 0)
             + (if 0 < P.ord (y - 1728) then (P.ord (y - 1728)) / 2 else 0)
-            + (if P.ord y < 0 then P.ord y else 0))) := _root_.P2MW.S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1.solution M hM y hy w hw v hv P hP
+            + (if P.ord y < 0 then P.ord y else 0))) :=
+  solution M hM y hy w hw v hv P hP
 
 end publicSection

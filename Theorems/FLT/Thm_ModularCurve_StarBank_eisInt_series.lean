@@ -193,7 +193,6 @@ example : ¬ (7 : ℤ) ∣ (-240 : ℤ) := by decide
 
 open scoped ArithmeticFunction.sigma
 open Finset in
-
 theorem solution {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ)
     (hk : 3 ≤ ℓ - 1) :
     ∃ T : PowerSeries ℤ,
@@ -220,6 +219,7 @@ theorem ModularCurve.StarBank.eisInt_series {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 
       T.map (Int.castRingHom ℂ)
         = ((bernoulli (ℓ - 1)).num : ℂ) • UpperHalfPlane.qExpansion 1 (⇑(ModularForm.E hk))
       ∧ PowerSeries.constantCoeff T = (bernoulli (ℓ - 1)).num
-      ∧ ∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m := _root_.P2MW.S_ModularCurve_StarBank_eisInt_series.solution hℓ5 hk
+      ∧ ∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m :=
+  solution hℓ5 hk
 
 end publicSection

@@ -81,40 +81,48 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par \
+  coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom \
+  coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat \
+  mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex \
+  coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
 namespace GenAux
 p2m_open "HeckeEis"
 
 variable {G : Type*} [Group G] {K : Type*} [CommRing K] {V : Type*} [AddCommGroup V] [Module K V]
 
-theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0 := by
+theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) :
+    z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
-theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) (g : G) :
+theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ)
+    (g : G) :
     z g⁻¹ = -(ρ g⁻¹ (z g)) := by
   have h := hz g⁻¹ g
   rw [inv_mul_cancel, coeffCocycles_apply_one hz] at h
   exact eq_neg_of_add_eq_zero_left h.symm
 
-theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ)
-    (M : AddSubgroup V) (hM : ∀ (g : G) (v : V), v ∈ M → ρ g v ∈ M) {s : Set G} (hs : Subgroup.closure s = ⊤)
+theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {z : G → V}
+    (hz : z ∈ coeffCocycles ρ)
+    (M : AddSubgroup V) (hM : ∀ (g : G) (v : V), v ∈ M → ρ g v ∈ M) {s : Set G}
+    (hs : Subgroup.closure s = ⊤)
     (h : ∀ g ∈ s, z g ∈ M) (g : G) : z g ∈ M := by
   let H : Subgroup G :=
     { carrier := {g | z g ∈ M}
       one_mem' := by
-        show z 1 ∈ M
+        change z 1 ∈ M
         rw [coeffCocycles_apply_one hz]; exact M.zero_mem
       mul_mem' := by
         intro a b ha hb
-        show z (a * b) ∈ M
+        change z (a * b) ∈ M
         rw [hz a b]
         exact M.add_mem ha (hM a _ hb)
       inv_mem' := by
         intro a ha
-        show z a⁻¹ ∈ M
+        change z a⁻¹ ∈ M
         rw [coeffCocycles_apply_inv hz]
         exact M.neg_mem (hM _ _ ha) }
   have hle : (⊤ : Subgroup G) ≤ H := by
@@ -122,7 +130,8 @@ theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {
     exact h
   exact hle (Subgroup.mem_top g)
 
-theorem coeffCocycles_eq_of_eqOn {ρ : Representation K G V} {z z' : G → V} (hz : z ∈ coeffCocycles ρ) (hz' : z' ∈ coeffCocycles ρ)
+theorem coeffCocycles_eq_of_eqOn {ρ : Representation K G V} {z z' : G → V}
+    (hz : z ∈ coeffCocycles ρ) (hz' : z' ∈ coeffCocycles ρ)
     {s : Set G} (hs : Subgroup.closure s = ⊤) (h : ∀ g ∈ s, z g = z' g) : z = z' := by
   have hd : z - z' ∈ coeffCocycles ρ := Submodule.sub_mem _ hz hz'
   funext g
@@ -135,12 +144,17 @@ theorem coeffCocycles_eq_of_eqOn {ρ : Representation K G V} {z z' : G → V} (h
 end HeckeEis.GenAux
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par \
+  coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom \
+  coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat \
+  mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex \
+  coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
 namespace ZQAux
 p2m_open "HeckeEis"
 open CongruenceSubgroup
 open scoped MatrixGroups
-theorem Gamma_le_Gamma0 (N : ℕ) : Gamma N ≤ Gamma0 N := fun _ hA => Gamma0_mem.mpr (Gamma_mem.mp hA).2.2.1
+theorem Gamma_le_Gamma0 (N : ℕ) :
+    Gamma N ≤ Gamma0 N := fun _ hA => Gamma0_mem.mpr (Gamma_mem.mp hA).2.2.1
 scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
   have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
   have : Group.FG SL(2, ℤ) := Group.fg_iff.mpr
@@ -150,7 +164,11 @@ scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) :=
 end HeckeEis.ZQAux
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par \
+  coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom \
+  coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat \
+  mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex \
+  coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
 namespace RatAux
 p2m_open "HeckeEis"
 theorem exists_common_den (s : Finset ℚ) : ∃ D : ℤ, D ≠ 0 ∧ ∀ x ∈ s, ∃ m : ℤ, (D : ℚ) * x = m := by
@@ -166,7 +184,11 @@ end HeckeEis.RatAux
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par \
+  coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom \
+  coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat \
+  mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex \
+  coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
 namespace C2Aux
 p2m_open "HeckeEis"
 
@@ -225,7 +247,8 @@ theorem isTorsionFree_coeffH1par :
   have h : r • (a - b) = 0 := by rw [smul_sub, sub_eq_zero]; exact hab'
   exact sub_eq_zero.mp (HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero n N r hr0 _ h)
 
-theorem free_coeffH1par : Module.Free ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := by
+theorem free_coeffH1par :
+    Module.Free ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := by
   have := moduleFinite_coeffH1par n N
   have := isTorsionFree_coeffH1par n N
   exact Module.free_of_finite_type_torsion_free'
@@ -258,7 +281,8 @@ theorem comp_eq_of_clauses
   rw [h₃, h₁, h₂]
   congr 1
   apply Subtype.ext; funext g; apply Subtype.ext
-  rw [hw₃ g, hw₂ g, hw₁ g, map_map, RingHom.ext_int ((algebraMap ℚ ℂ).comp (Int.castRingHom ℚ)) (Int.castRingHom ℂ)]
+  rw [hw₃ g, hw₂ g, hw₁ g, map_map, RingHom.ext_int ((algebraMap ℚ ℂ).comp (Int.castRingHom ℚ))
+    (Int.castRingHom ℂ)]
 
 end HeckeEis.C2Aux
 end
@@ -267,7 +291,11 @@ open P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEi
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par \
+  coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom \
+  coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat \
+  mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex \
+  coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
 namespace C2Aux
 p2m_open "HeckeEis"
 
@@ -300,11 +328,13 @@ theorem main (n N : ℕ) [NeZero N]
     choose m hm using fun j (hj : j ∈ s) => hden (r j) (Finset.mem_image_of_mem r hj)
     have h1 : ΦQ (∑ j ∈ s, (if hj : j ∈ s then m j hj else 0) • b j) = 0 := by
       rw [map_sum]
-      have : ∀ j ∈ s, ΦQ ((if hj : j ∈ s then m j hj else 0) • b j) = (D : ℚ) • (r j • ΦQ (b j)) := by
+      have : ∀ j ∈ s, ΦQ ((if hj : j ∈ s then m j hj else 0) • b j) = (D : ℚ) • (r j • ΦQ (b j)) :=
+        by
         intro j hj
         rw [dite_eq_left hj, map_zsmul, ← mul_smul, hm j hj, Int.cast_smul_eq_zsmul]
       rw [Finset.sum_congr rfl this, ← Finset.smul_sum, hr, smul_zero]
-    have h2 : (∑ j ∈ s, (if hj : j ∈ s then m j hj else 0) • b j) = 0 := hinjQ (h1.trans (map_zero ΦQ).symm)
+    have h2 : (∑ j ∈ s, (if hj : j ∈ s then m j hj else 0) • b j) = 0 :=
+      hinjQ (h1.trans (map_zero ΦQ).symm)
     have h3 := (linearIndependent_iff'.mp b.linearIndependent) s _ h2 i hi
     rw [dite_eq_left hi] at h3
     have h4 := hm i hi
@@ -314,7 +344,8 @@ theorem main (n N : ℕ) [NeZero N]
     intro x _
     obtain ⟨m, y, hm, hy⟩ := HeckeEis.exists_ne_zero_smul_eq_coeffH1par_map_int_rat n N ΦQ hΦQ x
     have hx : x = (m : ℚ)⁻¹ • ΦQ y := by
-      rw [hy, ← Int.cast_smul_eq_zsmul ℚ, smul_smul, inv_mul_cancel₀ (Int.cast_ne_zero.mpr hm), one_smul]
+      rw [hy, ← Int.cast_smul_eq_zsmul ℚ, smul_smul, inv_mul_cancel₀ (Int.cast_ne_zero.mpr hm),
+        one_smul]
     rw [hx, ← b.sum_repr y, map_sum]
     refine Submodule.smul_mem _ _ (Submodule.sum_mem _ fun i _ => ?_)
     rw [map_zsmul, ← Int.cast_smul_eq_zsmul ℚ]
@@ -338,7 +369,8 @@ theorem main (n N : ℕ) [NeZero N]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [hbQ, ← Int.cast_smul_eq_zsmul ℚ, smul_smul, hm i, Int.cast_smul_eq_zsmul]
     have hΨx : Ψ x = (D : ℂ)⁻¹ • Ψ (D • x) := by
-      rw [map_zsmul, ← Int.cast_smul_eq_zsmul ℂ, smul_smul, inv_mul_cancel₀ (Int.cast_ne_zero.mpr hD), one_smul]
+      rw [map_zsmul, ← Int.cast_smul_eq_zsmul ℂ, smul_smul, inv_mul_cancel₀ (Int.cast_ne_zero.mpr
+        hD), one_smul]
     rw [SetLike.mem_coe, hΨx, hDx, map_sum]
     refine Submodule.smul_mem _ _ (Submodule.sum_mem _ fun i _ => ?_)
     rw [map_zsmul, ← Int.cast_smul_eq_zsmul ℂ]
@@ -350,7 +382,6 @@ end HeckeEis.C2Aux
 end
 
 open scoped MatrixGroups in
-
 theorem solution (n N : ℕ) [NeZero N]
     (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
@@ -384,6 +415,7 @@ theorem HeckeEis.exists_basis_coeffH1par_int_complex (n N : ℕ) [NeZero N]
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) :
     ∃ (t : ℕ) (b : Module.Basis (Fin t) ℤ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)))
       (c : Module.Basis (Fin t) ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))),
-      ∀ i, c i = Φ (b i) := _root_.P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.solution n N Φ hΦ
+      ∀ i, c i = Φ (b i) :=
+  solution n N Φ hΦ
 
 end publicSection

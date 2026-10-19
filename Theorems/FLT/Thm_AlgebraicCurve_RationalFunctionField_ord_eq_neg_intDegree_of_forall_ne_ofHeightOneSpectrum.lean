@@ -65,7 +65,10 @@ open AlgebraicCurve
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
-theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) {f : RatFunc K} (hf : f ≠ 0) : v.ord f = -f.intDegree := by
+theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K))
+    (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w)
+    {f : RatFunc K} (hf : f ≠ 0) :
+    v.ord f = -f.intDegree := by
   classical
   have hπ : RatFunc.inftyValuation K (RatFunc.X)⁻¹ = exp (-1 : ℤ) := by
     rw [map_inv₀, RatFunc.inftyValuation.X]
@@ -85,6 +88,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum {K : Type*} [Field K] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) {f : RatFunc K} (hf : f ≠ 0) : v.ord f = -f.intDegree := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum.solution v hv hf
+theorem AlgebraicCurve.RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
+    {K : Type*} [Field K] (v : Place K (RatFunc K))
+    (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w)
+    {f : RatFunc K} (hf : f ≠ 0) :
+    v.ord f = -f.intDegree :=
+  solution v hv hf
 
 end publicSection

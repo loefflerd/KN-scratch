@@ -72,10 +72,19 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.AlgebraicCurve Polynomial"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.Algebrai\
+  cCurve Polynomial"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ord Place.ord_zero Divisor Divisor.degree HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver IsCurveOver.deg_eq_one_of_isAlgClosed IsCurveOver.finiteResidue Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable exists_separating_transcendental_of_perfectField Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed linearIndependent_of_constantFieldExtension_of_isAlgClosed"
+p2m_export "AlgebraicCurve" "Place Place.ord Place.ord_zero Divisor Divisor.degree \
+  HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver \
+  IsCurveOver.deg_eq_one_of_isAlgClosed IsCurveOver.finiteResidue \
+  Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed \
+  Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable \
+  exists_separating_transcendental_of_perfectField \
+  Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed \
+  linearIndependent_of_constantFieldExtension_of_isAlgClosed"
 namespace W7XH
 p2m_open "AlgebraicCurve"
 
@@ -227,7 +236,8 @@ theorem linearIndependent_pow_of_transcendental {R A : Type*} [CommRing R] [Ring
   have hinj := transcendental_iff_injective.mp hx
   have h0 : aeval x (Polynomial.ofFinsupp (.ofCoeff l)) = 0 := by
     rw [Finsupp.linearCombination_apply] at hl
-    rw [aeval_def, eval₂_eq_sum, Polynomial.sum, Polynomial.support_ofFinsupp, AddMonoidAlgebra.coeff_ofCoeff]
+    rw [aeval_def, eval₂_eq_sum, Polynomial.sum, Polynomial.support_ofFinsupp,
+      AddMonoidAlgebra.coeff_ofCoeff]
     rw [Finsupp.sum] at hl
     convert hl using 2 with n hn
     rw [Polynomial.coeff_ofFinsupp, Algebra.smul_def]
@@ -267,9 +277,11 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
       refine lt_of_le_of_lt (degree_C_mul_X_pow_le _ _) ?_
       exact_mod_cast Nat.lt_succ_of_le (Nat.sub_le n i)
     refine ⟨X ^ (n + 1) - g, monic_X_pow_sub hgdeg, ?_⟩
-    have hfw : (aeval w⁻¹ f : L) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w⁻¹ ^ i := by
+    have hfw : (aeval w⁻¹ f : L) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w⁻¹ ^ i :=
+      by
       rw [aeval_def, eval₂_eq_sum_range]
-    have hkey : w ^ (n + 1) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w ^ (n - i) := by
+    have hkey : w ^ (n + 1) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w ^ (n - i) :=
+      by
       have h2 : w ^ (n + 1) = w ^ (n + 1) * ((a : L) * w⁻¹) := by rw [haw, mul_one]
       rw [h2, ← hf, show ((aeval w⁻¹).toRingHom f : L) = aeval w⁻¹ f from rfl, hfw,
         Finset.sum_mul, Finset.mul_sum]
@@ -302,7 +314,7 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
   apply h
   intro r
   apply hAB
-  show algebraMap R L r ∈ S
+  change algebraMap R L r ∈ S
   exact S.algebraMap_mem r
 
 end Algebra
@@ -499,7 +511,6 @@ variable {K F K' F' : Type*} [Field K] [Field F] [Field K'] [Field F'] [Algebra 
   [IsScalarTower K F F']
 
 variable (F F') in
-
 theorem span_range_eq_adjoin (R : Type*) [CommSemiring R] [Algebra R F'] :
     Subalgebra.toSubmodule (Algebra.adjoin R (Set.range (algebraMap F F'))) =
       Submodule.span R (Set.range (algebraMap F F')) := by
@@ -643,7 +654,6 @@ variable {K F K' F' : Type*} [Field K] [Field F] [Field K'] [Field F'] [Algebra 
   [IsScalarTower K F F']
 
 variable (K K' F') in
-
 def iota (x : F) :
     IntermediateField.adjoin K ({x} : Set F) →+*
       IntermediateField.adjoin K' ({algebraMap F F' x} : Set F') where
@@ -938,6 +948,7 @@ theorem AlgebraicCurve.mem_span_range_algebraMap_of_constantFieldExtension_of_is
     (hz : ∀ v' : Place K' F',
       (∀ v : Place K F, v'.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring) →
         z ∈ v'.toValuationSubring) :
-    z ∈ Submodule.span K' (Set.range (algebraMap F F')) := _root_.P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.solution K F K' F' hfg hfg' hgen z hz
+    z ∈ Submodule.span K' (Set.range (algebraMap F F')) :=
+  solution K F K' F' hfg hfg' hgen z hz
 
 end publicSection

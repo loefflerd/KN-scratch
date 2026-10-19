@@ -141,7 +141,8 @@ end
 open C6P1T2 in
 theorem solution
     (E : IntermediateField ℚ (AlgebraicClosure ℚ)) [NumberField E] [IsGalois ℚ E]
-    (ℓ : ℕ) (hℓ : ℓ.Prime) (Q : Ideal (𝓞 E)) [Q.IsPrime] [Q.LiesOver (FrobeniusDensity.ratPrimeIdeal ℓ)]
+    (ℓ : ℕ) (hℓ : ℓ.Prime) (Q : Ideal (𝓞 E)) [Q.IsPrime]
+    [Q.LiesOver (FrobeniusDensity.ratPrimeIdeal ℓ)]
     [Finite (𝓞 E ⧸ Q)] :
     ∃ (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) (_ : Qt.IsMaximal)
       (τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ),
@@ -152,26 +153,32 @@ theorem solution
   have : DiscreteTopology (𝓞 ℚ̄) := ⟨rfl⟩
   have hQbot : Q ≠ ⊥ := FrobeniusDensity.ne_bot_of_liesOver_ratPrimeIdeal hℓ
   have hQmax : Q.IsMaximal := Ideal.IsPrime.isMaximal inferInstance hQbot
-  have : Algebra.IsIntegral (𝓞 E) (𝓞 ℚ̄) := IsIntegralClosure.isIntegral_algebra (𝓞 E) (A := 𝓞 ℚ̄) ℚ̄
+  have : Algebra.IsIntegral (𝓞 E) (𝓞 ℚ̄) :=
+    IsIntegralClosure.isIntegral_algebra (𝓞 E) (A := 𝓞 ℚ̄) ℚ̄
   obtain ⟨Qt, hQt, hQtQ⟩ := Ideal.exists_maximal_ideal_liesOver_of_isIntegral (S := 𝓞 ℚ̄) Q
   have := hQt; have := hQtQ
   set φ : E ≃ₐ[ℚ] E := arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q with hφdef
   have hφQ : φ • Q = Q := IsArithFrobAt.arithFrobAt_mem_stabilizer ℤ (E ≃ₐ[ℚ] E) Q
   have coe_smul : ∀ (g : Γℚ) (b : 𝓞 ℚ̄), ((g • b : 𝓞 ℚ̄) : ℚ̄) = g (b : ℚ̄) := fun _ _ => rfl
-  have coe_smul' : ∀ (g : ℚ̄ ≃ₐ[E] ℚ̄) (b : 𝓞 ℚ̄), ((g • b : 𝓞 ℚ̄) : ℚ̄) = g (b : ℚ̄) := fun _ _ => rfl
+  have coe_smul' : ∀ (g : ℚ̄ ≃ₐ[E] ℚ̄) (b : 𝓞 ℚ̄), ((g • b : 𝓞 ℚ̄) : ℚ̄) = g (b : ℚ̄) :=
+    fun _ _ => rfl
   have coe_smulE : ∀ (g : E ≃ₐ[ℚ] E) (a : 𝓞 E), ((g • a : 𝓞 E) : E) = g (a : E) := fun _ _ => rfl
-  have coe_alg : ∀ a : 𝓞 E, ((algebraMap (𝓞 E) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((a : E) : ℚ̄) := fun _ => rfl
+  have coe_alg : ∀ a : 𝓞 E, ((algebraMap (𝓞 E) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((a : E) : ℚ̄) :=
+    fun _ => rfl
   have smul_alg : ∀ (τ : Γℚ) (a : 𝓞 E),
       τ • algebraMap (𝓞 E) (𝓞 ℚ̄) a = algebraMap (𝓞 E) (𝓞 ℚ̄) ((τ.restrictNormal E) • a) := by
     intro τ a
     apply Subtype.ext
     exact (AlgEquiv.restrictNormal_commutes τ E (a : E)).symm
-  have res_scalars : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (b : 𝓞 ℚ̄), (δ.restrictScalars ℚ) • b = δ • b := fun _ _ => rfl
-  have res_scalars_ideal : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (I : Ideal (𝓞 ℚ̄)), (δ.restrictScalars ℚ) • I = δ • I := by
+  have res_scalars : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (b : 𝓞 ℚ̄), (δ.restrictScalars ℚ) • b = δ • b :=
+    fun _ _ => rfl
+  have res_scalars_ideal : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (I : Ideal (𝓞 ℚ̄)), (δ.restrictScalars ℚ) • I = δ • I :=
+    by
     intro δ I
     rw [Ideal.pointwise_smul_def, Ideal.pointwise_smul_def]
     congr 1
-  obtain ⟨τ₀, hτ₀⟩ := AlgEquiv.restrictNormalHom_surjective (F := ℚ) (K₁ := E) (E := AlgebraicClosure ℚ) φ
+  obtain ⟨τ₀, hτ₀⟩ :=
+    AlgEquiv.restrictNormalHom_surjective (F := ℚ) (K₁ := E) (E := AlgebraicClosure ℚ) φ
   have hτ₀' : τ₀.restrictNormal E = φ := hτ₀
   have hunder : (τ₀ • Qt).under (𝓞 E) = Qt.under (𝓞 E) := by
     ext a
@@ -221,7 +228,8 @@ theorem solution
   have hstab₁' : ∀ x : 𝓞 ℚ̄, τ₁⁻¹ • x ∈ Qt ↔ x ∈ Qt := fun x => by
     rw [← hstab₁ (τ₁⁻¹ • x), smul_inv_smul]
   let θinv : 𝓞 ℚ̄ ⧸ Qt →+* 𝓞 ℚ̄ ⧸ Qt := Ideal.quotientMap Qt _ (hle τ₁⁻¹ hstab₁')
-  have hθinv : ∀ x : 𝓞 ℚ̄, θinv (Ideal.Quotient.mk Qt x) = Ideal.Quotient.mk Qt (τ₁⁻¹ • x) := fun x => rfl
+  have hθinv : ∀ x : 𝓞 ℚ̄, θinv (Ideal.Quotient.mk Qt x) = Ideal.Quotient.mk Qt (τ₁⁻¹ • x) :=
+    fun x => rfl
   have hφfrob : ∀ a : 𝓞 E, φ • a - a ^ ℓ ∈ Q := by
     intro a
     have h := (IsArithFrobAt.arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q) a
@@ -251,7 +259,8 @@ theorem solution
     · obtain ⟨x, rfl⟩ := Ideal.Quotient.mk_surjective y
       rw [hθ, hθinv, inv_smul_smul]
   let ψ₀ : 𝓞 ℚ̄ ⧸ Qt →+* 𝓞 ℚ̄ ⧸ Qt := F.comp θinv
-  have hψ₀ : ∀ x : 𝓞 ℚ̄, ψ₀ (Ideal.Quotient.mk Qt x) = F (θinv (Ideal.Quotient.mk Qt x)) := fun _ => rfl
+  have hψ₀ : ∀ x : 𝓞 ℚ̄, ψ₀ (Ideal.Quotient.mk Qt x) = F (θinv (Ideal.Quotient.mk Qt x)) :=
+    fun _ => rfl
   let ψ₁ : (𝓞 ℚ̄ ⧸ Qt) →ₐ[𝓞 E ⧸ Q] (𝓞 ℚ̄ ⧸ Qt) :=
     { ψ₀ with
       commutes' := fun r => by
@@ -259,9 +268,11 @@ theorem solution
         rw [Ideal.Quotient.algebraMap_mk_of_liesOver]
         exact hcomm a }
   let ψ : (𝓞 ℚ̄ ⧸ Qt) ≃ₐ[𝓞 E ⧸ Q] (𝓞 ℚ̄ ⧸ Qt) := AlgEquiv.ofBijective ψ₁ (hFbij.comp hθinv_bij)
-  have hψ : ∀ x : 𝓞 ℚ̄, ψ (Ideal.Quotient.mk Qt x) = F (θinv (Ideal.Quotient.mk Qt x)) := fun _ => rfl
+  have hψ : ∀ x : 𝓞 ℚ̄, ψ (Ideal.Quotient.mk Qt x) = F (θinv (Ideal.Quotient.mk Qt x)) :=
+    fun _ => rfl
   obtain ⟨δ, hδ⟩ := Ideal.Quotient.stabilizerHom_surjective_of_profinite (G := ℚ̄ ≃ₐ[E] ℚ̄) Q Qt ψ
-  have hδ' : ∀ b : 𝓞 ℚ̄, Ideal.Quotient.mk Qt ((δ : ℚ̄ ≃ₐ[E] ℚ̄) • b) = F (θinv (Ideal.Quotient.mk Qt b)) := by
+  have hδ' : ∀ b : 𝓞 ℚ̄, Ideal.Quotient.mk Qt ((δ : ℚ̄ ≃ₐ[E] ℚ̄) • b) = F (θinv (Ideal.Quotient.mk Qt b)) :=
+    by
     intro b
     have := DFunLike.congr_fun hδ (Ideal.Quotient.mk Qt b)
     rw [Ideal.Quotient.stabilizerHom_apply] at this
@@ -279,7 +290,8 @@ theorem solution
   · intro x
     rw [mul_smul, res_scalars, hδQt, hstab₁]
   · intro x
-    rw [← Ideal.Quotient.eq, map_pow, mul_smul, res_scalars, hδ', hθinv, inv_smul_smul, frobenius_def]
+    rw [← Ideal.Quotient.eq, map_pow, mul_smul, res_scalars, hδ', hθinv, inv_smul_smul,
+      frobenius_def]
 
 end S_NumberField_exists_isFrobenius_lift_arithFrobAt
 end P2MW
@@ -294,12 +306,14 @@ open scoped NumberField Pointwise
 
 theorem NumberField.exists_isFrobenius_lift_arithFrobAt
     (E : IntermediateField ℚ (AlgebraicClosure ℚ)) [NumberField E] [IsGalois ℚ E]
-    (ℓ : ℕ) (hℓ : ℓ.Prime) (Q : Ideal (𝓞 E)) [Q.IsPrime] [Q.LiesOver (FrobeniusDensity.ratPrimeIdeal ℓ)]
+    (ℓ : ℕ) (hℓ : ℓ.Prime) (Q : Ideal (𝓞 E)) [Q.IsPrime]
+    [Q.LiesOver (FrobeniusDensity.ratPrimeIdeal ℓ)]
     [Finite (𝓞 E ⧸ Q)] :
     ∃ (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) (_ : Qt.IsMaximal)
       (τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ),
       Qt.LiesOver Q ∧ AlgEquiv.restrictNormal τ E = arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q ∧
       (∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x ∈ Qt ↔ x ∈ Qt) ∧
-      ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x - x ^ ℓ ∈ Qt := _root_.P2MW.S_NumberField_exists_isFrobenius_lift_arithFrobAt.solution E ℓ hℓ Q
+      ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x - x ^ ℓ ∈ Qt :=
+  solution E ℓ hℓ Q
 
 end publicSection

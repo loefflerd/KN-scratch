@@ -59,13 +59,17 @@ namespace P2MW.S_AlgebraicCurve_Divisor_pushforwardAlong_pushforwardAlong
 
 open IsDedekindDomain AlgebraicCurve
 
-theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (D : Divisor K F'') : Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong (χ.comp φ) hχφ D := by
+theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F]
+    [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral)
+    (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (D : Divisor K F'') :
+    Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong (χ.comp φ) hχφ D := by
   have key : (Divisor.pushforwardAlong φ hφ).comp (Divisor.pushforwardAlong χ hχ)
       = Divisor.pushforwardAlong (χ.comp φ) hχφ := by
     refine Finsupp.addHom_ext fun W n => ?_
-    show Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ (Finsupp.single W n))
+    change Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ (Finsupp.single W n))
         = Divisor.pushforwardAlong (χ.comp φ) hχφ (Finsupp.single W n)
-    rw [Divisor.pushforwardAlong_single, Divisor.pushforwardAlong_single, Divisor.pushforwardAlong_single,
+    rw [Divisor.pushforwardAlong_single, Divisor.pushforwardAlong_single,
+      Divisor.pushforwardAlong_single,
       AlgebraicCurve.Place.restrictAlong_restrictAlong φ χ hφ hχ hχφ,
       AlgebraicCurve.Place.inertiaDegAlong_comp φ χ hφ hχ hχφ W]
     refine congrArg (Finsupp.single _) ?_
@@ -83,6 +87,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Divisor.pushforwardAlong_pushforwardAlong {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (D : Divisor K F'') : Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong (χ.comp φ) hχφ D := _root_.P2MW.S_AlgebraicCurve_Divisor_pushforwardAlong_pushforwardAlong.solution φ χ hφ hχ hχφ D
+theorem AlgebraicCurve.Divisor.pushforwardAlong_pushforwardAlong {K F F' F'' : Type*} [Field K]
+    [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F')
+    (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral)
+    (hχφ : (χ.comp φ).toRingHom.IsIntegral) (D : Divisor K F'') :
+    Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong (χ.comp φ) hχφ D :=
+  solution φ χ hφ hχ hχφ D
 
 end publicSection

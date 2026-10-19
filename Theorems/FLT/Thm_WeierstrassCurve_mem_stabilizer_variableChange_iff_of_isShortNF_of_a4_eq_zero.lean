@@ -58,7 +58,9 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "a₃_of_isShortNF variableChange_c₆ VariableChange.ext a₃ a₁ a₁_of_isShortNF IsShortNF variableChange_a₃ a₂_of_isShortNF a₄ a₂ a₆ c₆_of_isShortNF variableChange_a₆ c₆ variableChange_a₂ variableChange_a₁ variableChange_a₄ VariableChange"
+p2m_export "WeierstrassCurve" "a₃_of_isShortNF variableChange_c₆ VariableChange.ext a₃ a₁ \
+  a₁_of_isShortNF IsShortNF variableChange_a₃ a₂_of_isShortNF a₄ a₂ a₆ c₆_of_isShortNF \
+  variableChange_a₆ c₆ variableChange_a₂ variableChange_a₁ variableChange_a₄ VariableChange"
 p2m_open "WeierstrassCurve"
 
 open MulAction
@@ -160,6 +162,7 @@ theorem WeierstrassCurve.mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq
     (E : WeierstrassCurve F) [E.IsShortNF] (ha₄ : E.a₄ = 0) (ha₆ : E.a₆ ≠ 0)
     (C : WeierstrassCurve.VariableChange F) :
     C ∈ MulAction.stabilizer (WeierstrassCurve.VariableChange F) E ↔
-      C.r = 0 ∧ C.s = 0 ∧ C.t = 0 ∧ (C.u : F) ^ 6 = 1 := _root_.P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero.solution h2 h3 E ha₄ ha₆ C
+      C.r = 0 ∧ C.s = 0 ∧ C.t = 0 ∧ (C.u : F) ^ 6 = 1 :=
+  solution h2 h3 E ha₄ ha₆ C
 
 end publicSection

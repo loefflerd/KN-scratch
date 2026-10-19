@@ -126,7 +126,6 @@ variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGen
   [Nontrivial Ω[F⁄K]]
 
 variable (K F) in
-
 def weilOfKaehler {ω : Ω[F⁄K]} (hω : ω ≠ 0) : Module.Dual K (adeleSpace K F) where
   toFun α := ∑ᶠ v, kaehlerResidueTerm ω (α : Place K F → F) v
   map_add' α β := by

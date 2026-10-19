@@ -104,7 +104,7 @@ theorem IsFrobeniusEndo.restrictAlong_injective (h : IsFrobeniusEndo ℓ φ) (h�
       x ∈ w.toValuationSubring ↔ y ∈ (w.restrictAlong φ hφ).toValuationSubring := by
     intro w
     rw [hval, ValuationSubring.mem_comap]
-    show x ∈ w.toValuationSubring ↔ φ y ∈ w.toValuationSubring
+    change x ∈ w.toValuationSubring ↔ φ y ∈ w.toValuationSubring
     rw [hy]
     exact (w.toValuationSubring.pow_mem_iff hℓ x).symm
   rw [key w₁, key w₂, hw]
@@ -113,7 +113,7 @@ theorem IsFrobeniusEndo.ramificationIndexAlong_eq (h : IsFrobeniusEndo ℓ φ)
     (hℓ : ℓ ≠ 0) (w : Place K F) :
     Place.ramificationIndexAlong φ w = ℓ := by
   let := algebraAlong φ
-  show w.ramificationIndex F = ℓ
+  change w.ramificationIndex F = ℓ
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   have hπF : (π : F) ≠ 0 := by
     simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
@@ -123,7 +123,7 @@ theorem IsFrobeniusEndo.ramificationIndexAlong_eq (h : IsFrobeniusEndo ℓ φ)
     rw [h0, map_zero] at hy
     exact pow_ne_zero ℓ hπF hy.symm
   have hyord : w.ord (algebraMap F F y) = (ℓ : ℤ) := by
-    show w.ord (φ y) = (ℓ : ℤ)
+    change w.ord (φ y) = (ℓ : ℤ)
     rw [hy, w.ord_pow, w.ord_coe_irreducible hπ, mul_one]
   have hℓmem : ℓ ∈ {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F f) = n} :=
     ⟨Nat.pos_of_ne_zero hℓ, y, hy0, hyord⟩
@@ -132,7 +132,7 @@ theorem IsFrobeniusEndo.ramificationIndexAlong_eq (h : IsFrobeniusEndo ℓ φ)
     obtain ⟨x, hx⟩ := h.mem_range_pow f
     have hford' : (n : ℤ) = ℓ * w.ord x := by
       rw [← hford]
-      show w.ord (φ f) = ℓ * w.ord x
+      change w.ord (φ f) = ℓ * w.ord x
       rw [hx, w.ord_pow]
     have hxpos : 1 ≤ w.ord x := by
       by_cases hx1 : 1 ≤ w.ord x

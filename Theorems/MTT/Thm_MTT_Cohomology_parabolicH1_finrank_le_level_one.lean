@@ -375,7 +375,8 @@ theorem normalized_eq_zero_of_evalS_eq_zero {n : ℕ} (c : normalizedParabolic 1
     have hg : g ∈ Subgroup.closure {ModularGroup.S, ModularGroup.T} :=
       SpecialLinearGroup.SL2Z_generators.symm ▸ Subgroup.mem_top g
     induction hg using Subgroup.closure_induction with
-    | mem g hg => rcases hg with rfl | rfl; exact hS; exact hT
+    | mem g hg =>
+      rcases hg with rfl | rfl <;> assumption
     | one => exact h0
     | mul g h _ _ hg hh => rw [hc, hg, hh, map_zero, add_zero]
     | inv g _ hg =>
@@ -1338,7 +1339,7 @@ theorem parabolicCocycle_level_one_degree_zero (c : parabolicCocycles 1 0) : c =
     have hg : g ∈ Subgroup.closure {ModularGroup.S, ModularGroup.T} :=
       SpecialLinearGroup.SL2Z_generators.symm ▸ Subgroup.mem_top g
     induction hg using Subgroup.closure_induction with
-    | mem g hg => rcases hg with rfl | rfl; exact hS; exact hT
+    | mem g hg => rcases hg with rfl | rfl <;> assumption
     | one => exact h0
     | mul g h _ _ hg hh => rw [hc, hg, hh, add_zero]
     | inv g _ hg =>

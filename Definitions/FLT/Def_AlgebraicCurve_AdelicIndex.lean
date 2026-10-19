@@ -140,7 +140,6 @@ theorem adeleBdd_mono (hDE : D ≤ E) : adeleBdd D ≤ adeleBdd E := fun _ hα v
   (hα v).trans (WithZero.exp_le_exp.mpr (hDE v))
 
 variable (K F) in
-
 def diagonalHom : F →ₗ[K] (Place K F → F) where
   toFun f := fun _ => f
   map_add' _ _ := rfl
@@ -158,7 +157,6 @@ theorem diagonal_mem_adeleBdd_iff {f : F} :
   simp only [mem_adeleBdd, diagonalHom_apply, mem_lSpace_iff]
 
 variable (K F) in
-
 def adeleSpace : Submodule K (Place K F → F) := ⨆ D : Divisor K F, adeleBdd D
 
 theorem adeleBdd_le_adeleSpace : adeleBdd D ≤ adeleSpace K F := le_iSup adeleBdd D
@@ -175,7 +173,6 @@ theorem diagonal_mem_adeleSpace [HasPrincipalDivisors K F] (f : F) :
     exact le_of_eq (by rw [Place.ord, neg_neg, WithZero.exp_log (v.adicValuation_ne_zero hf)])
 
 variable (K F) in
-
 def globalSub : Submodule K (Place K F → F) := LinearMap.range (diagonalHom K F)
 
 theorem diagonal_mem_globalSub (f : F) : diagonalHom K F f ∈ globalSub K F :=
@@ -217,7 +214,6 @@ theorem mem_adeleSpace_iff {α : Place K F → F} :
   exact Submodule.mem_iSup_of_directed _ adeleBdd_directed
 
 variable (K F) in
-
 abbrev adeleBddPrincipal (D : Divisor K F) : Submodule K (adeleSpace K F) :=
   (adeleBdd D).comap (adeleSpace K F).subtype ⊔
     (globalSub K F).comap (adeleSpace K F).subtype
@@ -253,7 +249,6 @@ theorem finrank_omegaSpace_eq_indexOfSpecialty (D : Divisor K F) :
     Subspace.dual_finrank_eq]
 
 variable (K F) in
-
 def weilDifferentialModule : Submodule K (Module.Dual K (adeleSpace K F)) :=
   ⨆ D : Divisor K F, omegaSpace D
 
@@ -270,7 +265,6 @@ theorem mem_weilDifferentialModule_iff {φ : Module.Dual K (adeleSpace K F)} :
   exact Submodule.mem_iSup_of_directed _ omegaSpace_directed
 
 variable (K) in
-
 def mulAdele (f : F) : (Place K F → F) →ₗ[K] (Place K F → F) where
   toFun α := fun v => f * α v
   map_add' α β := funext fun v => mul_add f (α v) (β v)
@@ -315,7 +309,6 @@ theorem mulAdele_mem_adeleSpace [HasPrincipalDivisors K F] (f : F) {α : Place K
     exact adeleBdd_le_adeleSpace (D := D - P) (mulAdele_mem_adeleBdd_sub hf hP hD)
 
 variable (K F) in
-
 def adeleSpaceMul [HasPrincipalDivisors K F] (f : F) :
     adeleSpace K F →ₗ[K] adeleSpace K F :=
   (mulAdele K f).restrict fun _ => mulAdele_mem_adeleSpace f
@@ -325,7 +318,6 @@ theorem adeleSpaceMul_coe [HasPrincipalDivisors K F] (f : F) (α : adeleSpace K 
     (adeleSpaceMul K F f α : Place K F → F) = mulAdele K f (α : Place K F → F) := rfl
 
 variable (K F) in
-
 def weilSmul [HasPrincipalDivisors K F] (f : F) :
     Module.Dual K (adeleSpace K F) →ₗ[K] Module.Dual K (adeleSpace K F) :=
   (adeleSpaceMul K F f).dualMap
@@ -338,13 +330,13 @@ theorem weilSmul_apply [HasPrincipalDivisors K F] (f : F)
 theorem adeleSpaceMul_one [HasPrincipalDivisors K F] :
     adeleSpaceMul K F (1 : F) = LinearMap.id := by
   refine LinearMap.ext fun α => Subtype.ext ?_
-  show mulAdele K (1 : F) (α : Place K F → F) = (α : Place K F → F)
+  change mulAdele K (1 : F) (α : Place K F → F) = (α : Place K F → F)
   rw [mulAdele_one, LinearMap.id_apply]
 
 theorem adeleSpaceMul_mul [HasPrincipalDivisors K F] (f g : F) :
     adeleSpaceMul K F (f * g) = (adeleSpaceMul K F f).comp (adeleSpaceMul K F g) := by
   refine LinearMap.ext fun α => Subtype.ext ?_
-  show mulAdele K (f * g) (α : Place K F → F) = mulAdele K f (mulAdele K g (α : Place K F → F))
+  change mulAdele K (f * g) (α : Place K F → F) = mulAdele K f (mulAdele K g (α : Place K F → F))
   rw [mulAdele_mul, LinearMap.comp_apply]
 
 @[simp]
@@ -400,21 +392,20 @@ theorem weilSmul_mem_omegaSpace_of_mem_lSpace [HasPrincipalDivisors K F]
     linarith
 
 variable (K F) in
-
 def residuePairing [HasPrincipalDivisors K F] (W D : Divisor K F)
     {φ : Module.Dual K (adeleSpace K F)} (hφ : φ ∈ omegaSpace W) :
     LSpace (W - D) →ₗ[K] omegaSpace D where
   toFun g := ⟨weilSmul K F (g : F) φ, weilSmul_mem_omegaSpace_of_mem_lSpace hφ g.2⟩
   map_add' g₁ g₂ := by
     refine Subtype.ext ?_
-    show weilSmul K F ((g₁ : F) + (g₂ : F)) φ
+    change weilSmul K F ((g₁ : F) + (g₂ : F)) φ
       = weilSmul K F (g₁ : F) φ + weilSmul K F (g₂ : F) φ
     ext α; simp only [weilSmul_apply, LinearMap.add_apply]
     rw [← map_add]; congr 1
     exact Subtype.ext (funext fun v => by simp [add_mul])
   map_smul' c g := by
     refine Subtype.ext ?_
-    show weilSmul K F (c • (g : F)) φ = c • weilSmul K F (g : F) φ
+    change weilSmul K F (c • (g : F)) φ = c • weilSmul K F (g : F) φ
     ext α; simp only [weilSmul_apply, LinearMap.smul_apply]
     rw [← map_smul]; congr 1
     exact Subtype.ext (funext fun v => by simp [Algebra.smul_def]; ring)
@@ -471,24 +462,20 @@ structure RiemannGenusReachedAt (γ : ℤ) (D₀ : Divisor K F) : Prop where
   isMax : ∀ D : Divisor K F, Divisor.degree D - (ell D : ℤ) ≤ γ - 1
 
 variable (K F) in
-
 def RiemannGenusReached (γ : ℤ) : Prop :=
   Nonempty (Place K F) ∧ FiniteDimensional K (LSpace (0 : Divisor K F)) ∧
     ∃ D₀ : Divisor K F, RiemannGenusReachedAt γ D₀
 
 variable (K F) in
-
 def StichtenothGenusExists : Prop :=
   Nonempty (Place K F) ∧ FiniteDimensional K (LSpace (0 : Divisor K F)) ∧
     ∃ (γ : ℤ) (D₀ : Divisor K F), RiemannGenusReachedAt γ D₀
 
 variable (K F) in
-
 def RiemannGenusBounded : Prop :=
   ∃ γ : ℤ, ∀ D : Divisor K F, Divisor.degree D - (ell D : ℤ) ≤ γ
 
 variable (K F) in
-
 def IndexOfSpecialtyFinite : Prop :=
   ∃ D₀ : Divisor K F, Module.Finite K (adeleSpace K F ⧸ adeleBddPrincipal K F D₀)
 

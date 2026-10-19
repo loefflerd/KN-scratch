@@ -59,10 +59,12 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_perfectField
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {t : F}
     (ht : v.ord t = 1) {f : F} (hf : 0 ≤ v.ord f) :
     0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) := by
-  have : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F := Algebra.IsAlgebraic.of_finite _ _
+  have : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F :=
+    Algebra.IsAlgebraic.of_finite _ _
   have := AlgebraicCurve.Place.isSeparable_adjoin_of_ord_eq_one x v ht
   exact AlgebraicCurve.Place.ord_diffCoeff_D_nonneg_of_isSeparable x v ht hf
 
@@ -74,9 +76,12 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ord_diffCoeff_D_nonneg_of_perfectField {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
+theorem AlgebraicCurve.Place.ord_diffCoeff_D_nonneg_of_perfectField {K F : Type*} [Field K]
+    [Field F] [Algebra K F] [PerfectField K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {t : F}
     (ht : v.ord t = 1) {f : F} (hf : 0 ≤ v.ord f) :
-    0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) := _root_.P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_perfectField.solution x v ht hf
+    0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) :=
+  solution x v ht hf
 
 end publicSection

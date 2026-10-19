@@ -225,7 +225,7 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
   let Z : ModularForm 𝒮ℒ 12 := T - U
   have hZ : (Z : ℍ → ℂ) = ((𝔞 * (𝔞 * 𝔞) - 𝔟 * 𝔟 : 𝒩) : ℍ → ℂ) := by
     funext z
-    show (T : ℍ → ℂ) z - (U : ℍ → ℂ) z = _
+    change (T : ℍ → ℂ) z - (U : ℍ → ℂ) z = _
     rfl
   have hZq : qExpansion 1 (Z : ℍ → ℂ) =
       qExpansion 1 ⇑ModularForm.E₄ * (qExpansion 1 ⇑ModularForm.E₄ * qExpansion 1 ⇑ModularForm.E₄) -
@@ -236,10 +236,12 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
     simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_zero_mul', qA0, qB0]
     norm_num
   have h1 : ModularFormClass.qCoeff (Z : ℍ → ℂ) 1 = 1728 := by
-    simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_one_mul, coeff_zero_mul', qA0, qA1, qB0, qB1]
+    simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_one_mul, coeff_zero_mul', qA0, qA1, qB0,
+      qB1]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant := by
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant :=
+    by
     ext n
     rw [PowerSeries.coeff_C_mul]
     have := hW n
@@ -320,7 +322,8 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
       simp only [nsmul_eq_mul]
       push_cast
       ring
-    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
+    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) :=
+      by
       have e : ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) =
           ((6 * i * k + 6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
         simp only [nsmul_eq_mul]
@@ -377,9 +380,11 @@ theorem ofPowerSeries_mk_mul (p : PowerSeries ℂ) :
   rw [ModularCurve.thetaL_apply, ModularCurve.theta_coeff]
   rcases le_or_gt 0 k with hk | hk
   · lift k to ℕ using hk
-    rw [HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_mk,
+    rw [HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff,
+      PowerSeries.coeff_mk,
       zsmul_eq_mul, Int.cast_natCast]
-  · rw [ModularCurve.ofPowerSeries_coeff_of_neg _ hk, ModularCurve.ofPowerSeries_coeff_of_neg _ hk, smul_zero]
+  · rw [ModularCurve.ofPowerSeries_coeff_of_neg _ hk, ModularCurve.ofPowerSeries_coeff_of_neg _ hk,
+      smul_zero]
 
 theorem Gamma0_one_eq_top : CongruenceSubgroup.Gamma0 1 = ⊤ := by
   refine (Subgroup.eq_top_iff' _).mpr fun γ => ?_
@@ -408,13 +413,15 @@ theorem rankinCohen_E4_E6 :
           PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 ⇑ModularForm.E₄).coeff n) *
             qExpansion 1 ⇑ModularForm.E₆ := by
     rw [hZcoe]; exact_mod_cast hRCq
-  have hmk0 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 0 (PowerSeries.mk fun n : ℕ => (n : ℂ) * PowerSeries.coeff n p) = 0 := by
+  have hmk0 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 0 (PowerSeries.mk fun n : ℕ => (n : ℂ) * PowerSeries.coeff n p) = 0 :=
+    by
     intro p; rw [PowerSeries.coeff_mk]; simp
   have hmk1 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 1 (PowerSeries.mk fun n : ℕ => (n : ℂ) * PowerSeries.coeff n p) =
       PowerSeries.coeff 1 p := by
     intro p; rw [PowerSeries.coeff_mk]; simp
   have h0 : ModularFormClass.qCoeff (Z : ℍ → ℂ) 0 = 0 := by
-    simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_zero_mul', hmk0, PowerSeries.coeff_zero_C]
+    simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_zero_mul', hmk0,
+      PowerSeries.coeff_zero_C]
     ring
   have h1 : ModularFormClass.qCoeff (Z : ℍ → ℂ) 1 = -3456 := by
     simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_one_mul, coeff_zero_mul', hmk0, hmk1,
@@ -426,7 +433,8 @@ theorem rankinCohen_E4_E6 :
     rw [hC4, hC6]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C (-3456) * qExpansion 1 ModularForm.discriminant := by
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C (-3456) * qExpansion 1 ModularForm.discriminant :=
+    by
     ext n
     rw [PowerSeries.coeff_C_mul]
     have := hW n
@@ -502,6 +510,7 @@ theorem omegaRow_T2 :
     coeffMap (algebraMap ℚ ℂ) (thetaL ℚ jq) *
         ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
       = -(((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 2 *
-          ((qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) := _root_.P2MW.S_omegaRow_T2.solution
+          ((qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) :=
+  solution
 
 end publicSection

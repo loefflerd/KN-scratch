@@ -96,7 +96,7 @@ private lemma rational_translate_integrable
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (GammaOne N) (k : ℤ)) (r : ℚ) (j : ℕ) :
     IntegrableOn (fun t : ℝ =>
-      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ)^j) (Set.Ioi 0) := by
+      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ) ^ j) (Set.Ioi 0) := by
   let : NeZero N := ⟨by omega⟩
   let g : GL (Fin 2) ℚ := Matrix.GeneralLinearGroup.upperRightHom r
   let gr : GL (Fin 2) ℝ := g.map (Rat.castHom ℝ)
@@ -128,17 +128,17 @@ private lemma rational_translate_integrable
   ring
 
 private def verticalMoment (f : UpperHalfPlane → ℂ) (r : ℚ) (j : ℕ) : ℂ :=
-  ∫ t in Set.Ioi (0 : ℝ), f (ofComplex ((r : ℂ) + Complex.I*t)) * (t : ℂ)^j
+  ∫ t in Set.Ioi (0 : ℝ), f (ofComplex ((r : ℂ) + Complex.I*t)) * (t : ℂ) ^ j
 
 private lemma symbol_vertical (f : UpperHalfPlane → ℂ) (a m : ℚ) (hm : m ≠ 0) (j : ℕ) :
-    modularSymbol f j a m = (2*Real.pi : ℂ) * ((m : ℂ)*Complex.I)^j *
+    modularSymbol f j a m = (2*Real.pi : ℂ) * ((m : ℂ)*Complex.I) ^ j *
       verticalMoment f (-a/m) j := by
   unfold modularSymbol modularIntegral verticalMoment
   have hm' : (m : ℂ) ≠ 0 := by exact_mod_cast hm
   have heq (t : ℝ) :
-      ((((m : ℂ) • Polynomial.X + Polynomial.C (a : ℂ))^j).eval
+      ((((m : ℂ) • Polynomial.X + Polynomial.C (a : ℂ)) ^ j).eval
         (((-a/m : ℚ) : ℂ) + Complex.I*t)) =
-      ((m : ℂ)*Complex.I)^j * (t : ℂ)^j := by
+      ((m : ℂ)*Complex.I) ^ j * (t : ℂ) ^ j := by
     simp only [Polynomial.eval_pow, Polynomial.eval_add, Polynomial.eval_smul,
       Polynomial.eval_X, Polynomial.eval_C, smul_eq_mul, Rat.cast_div, Rat.cast_neg]
     rw [← mul_pow]
@@ -147,9 +147,9 @@ private lemma symbol_vertical (f : UpperHalfPlane → ℂ) (a m : ℚ) (hm : m �
     ring
   simp_rw [heq]
   rw [show (fun t : ℝ => f (ofComplex (((-a/m : ℚ) : ℂ) + Complex.I*t)) *
-      (((m : ℂ)*Complex.I)^j * (t : ℂ)^j)) =
-    (fun t : ℝ => ((m : ℂ)*Complex.I)^j *
-      (f (ofComplex (((-a/m : ℚ) : ℂ) + Complex.I*t)) * (t : ℂ)^j)) by
+      (((m : ℂ)*Complex.I) ^ j * (t : ℂ) ^ j)) =
+    (fun t : ℝ => ((m : ℂ)*Complex.I) ^ j *
+      (f (ofComplex (((-a/m : ℚ) : ℂ) + Complex.I*t)) * (t : ℂ) ^ j)) by
         funext t; ring, integral_const_mul]
   ring
 
@@ -157,14 +157,14 @@ private lemma critical_vertical {N k m : ℕ} [NeZero m] (hN : 0 < N) (hk : 2 �
     (ι : Qbar →+* ℂ) (f : CuspForm (GammaOne N) (k : ℤ))
     (χ : DirichletCharacter Qbar m) (j : ℕ) :
     criticalLValue ι f m χ j =
-      (2*Real.pi : ℂ)^(j+1) / (j.factorial : ℂ) * (MTT.gaussSum ι m χ)⁻¹ *
+      (2*Real.pi : ℂ) ^ (j+1) / (j.factorial : ℂ) * (MTT.gaussSum ι m χ)⁻¹ *
       ∑ a : ZMod m, ι (χ a) * verticalMoment f ((a.val : ℚ)/m) j := by
   unfold criticalLValue inverseTwist
   have heq (t : ℝ) (ht : t ∈ Set.Ioi (0 : ℝ)) :
       (MTT.gaussSum ι m χ)⁻¹ * (∑ a : ZMod m, ι (χ a) *
-        f (ofComplex (↑(ofComplex (Complex.I*t)) + (a.val : ℂ)/m))) * (t : ℂ)^j =
+        f (ofComplex (↑(ofComplex (Complex.I*t)) + (a.val : ℂ)/m))) * (t : ℂ) ^ j =
       (MTT.gaussSum ι m χ)⁻¹ * ∑ a : ZMod m, ι (χ a) *
-        (f (ofComplex ((((a.val : ℚ)/m : ℚ) : ℂ) + Complex.I*t)) * (t : ℂ)^j) := by
+        (f (ofComplex ((((a.val : ℚ)/m : ℚ) : ℂ) + Complex.I*t)) * (t : ℂ) ^ j) := by
     simp only [ofComplex_apply_of_im_pos (show 0 < (Complex.I*(t : ℂ)).im by simpa using ht), Rat.cast_div, Rat.cast_natCast,
       Finset.sum_mul, mul_assoc]
     congr 1
@@ -185,7 +185,7 @@ private lemma moment_periodic {N k : ℕ} (f : CuspForm (GammaOne N) (k : ℤ))
   unfold verticalMoment
   apply setIntegral_congr_fun measurableSet_Ioi
   intro t _
-  apply congrArg (fun z : ℂ => z * (t : ℂ)^j)
+  apply congrArg (fun z : ℂ => z * (t : ℂ) ^ j)
   simpa [Function.comp_def, add_assoc, add_comm, add_left_comm] using
     hp ((r : ℂ) + Complex.I*t)
 
@@ -273,7 +273,7 @@ theorem solution
         ∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m := by
   have hm : (m : ℚ) ≠ 0 := by exact_mod_cast NeZero.ne m
   have hm' : (m : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne m
-  have hc : ι (χ (-1))^2 = 1 := by
+  have hc : ι (χ (-1)) ^ 2 = 1 := by
     rw [← map_pow, ← map_pow]
     norm_num
   have hcne : ι (χ (-1)) ≠ 0 := by intro h; simp [h] at hc
@@ -288,9 +288,9 @@ theorem solution
   rw [critical_vertical hN hk]
   simp_rw [symbol_vertical _ _ _ hm, Rat.cast_natCast]
   have hsum : (∑ a : ZMod m, ι (χ a) *
-      ((2*Real.pi : ℂ) * ((m : ℂ)*Complex.I)^j *
+      ((2*Real.pi : ℂ) * ((m : ℂ)*Complex.I) ^ j *
         verticalMoment f.form (-(a.val : ℚ)/m) j)) =
-      ((2*Real.pi : ℂ) * ((m : ℂ)*Complex.I)^j) *
+      ((2*Real.pi : ℂ) * ((m : ℂ)*Complex.I) ^ j) *
         (ι (χ (-1)) * ∑ a : ZMod m, ι (χ a) *
           verticalMoment f.form ((a.val : ℚ)/m) j) := by
     rw [← weighted_moment_neg ι f.form χ j, Finset.mul_sum]
@@ -298,8 +298,8 @@ theorem solution
     intro a _
     ring
   rw [hsum]
-  have hi : (-2 * (Real.pi : ℂ) * Complex.I)^j * ((m : ℂ)*Complex.I)^j =
-      (2*(Real.pi : ℂ))^j * (m : ℂ)^j := by
+  have hi : (-2 * (Real.pi : ℂ) * Complex.I) ^ j * ((m : ℂ)*Complex.I) ^ j =
+      (2*(Real.pi : ℂ)) ^ j * (m : ℂ) ^ j := by
     rw [← mul_pow, ← mul_pow]
     congr 1
     linear_combination (-2*(Real.pi : ℂ)*(m : ℂ)) * Complex.I_sq
@@ -307,16 +307,16 @@ theorem solution
   have hgc : MTT.gaussSum ι m χ * MTT.gaussSum ι m χ⁻¹ * ι (χ (-1)) = m := by
     rw [hg]
     calc
-      (ι (χ (-1)) * (m : ℂ)) * ι (χ (-1)) = ι (χ (-1))^2 * m := by ring
+      (ι (χ (-1)) * (m : ℂ)) * ι (χ (-1)) = ι (χ (-1)) ^ 2 * m := by ring
       _ = m := by rw [hc, one_mul]
-  have hi' : (-(2 * (Real.pi : ℂ) * Complex.I))^j * (Complex.I * (m : ℂ))^j =
-      (2*(Real.pi : ℂ))^j * (m : ℂ)^j := by
+  have hi' : (-(2 * (Real.pi : ℂ) * Complex.I)) ^ j * (Complex.I * (m : ℂ)) ^ j =
+      (2*(Real.pi : ℂ)) ^ j * (m : ℂ) ^ j := by
     simpa [mul_comm] using hi
   generalize (∑ x : ZMod m, ι (χ x) * verticalMoment f.form ((x.val : ℚ)/m) j) = S
   calc
-    _ = (2*(Real.pi : ℂ))^j * (m : ℂ)^j * m * (2*Real.pi) * S := by
+    _ = (2*(Real.pi : ℂ)) ^ j * (m : ℂ) ^ j * m * (2*Real.pi) * S := by
       rw [pow_succ, pow_succ]; ring
-    _ = ((-(2 * (Real.pi : ℂ) * Complex.I))^j * (Complex.I * (m : ℂ))^j) *
+    _ = ((-(2 * (Real.pi : ℂ) * Complex.I)) ^ j * (Complex.I * (m : ℂ)) ^ j) *
         (MTT.gaussSum ι m χ * MTT.gaussSum ι m χ⁻¹ * ι (χ (-1))) * (2*Real.pi) * S := by
       rw [hi', hgc]
     _ = _ := by ring

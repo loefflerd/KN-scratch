@@ -68,7 +68,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_isIntegral_adjoin_jq_modularUnitSeries_inv
 
-theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] : IsIntegral (Algebra.adjoin ℚ {ModularCurve.jq}) (ModularCurve.modularUnitSeries ℓ)⁻¹ := by
+theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] :
+    IsIntegral (Algebra.adjoin ℚ {ModularCurve.jq}) (ModularCurve.modularUnitSeries ℓ)⁻¹ := by
   have : NeZero ℓ := ⟨(Fact.out : Nat.Prime ℓ).ne_zero⟩
   refine ModularCurve.isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant ℓ
     (ModularCurve.modularUnitSeries ℓ)⁻¹ (((ℓ : ℚ) ^ 12)⁻¹ • ModularCurve.modularUnitSeries ℓ)
@@ -92,6 +93,8 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.isIntegral_adjoin_jq_modularUnitSeries_inv (ℓ : ℕ) [Fact (Nat.Prime ℓ)] : IsIntegral (Algebra.adjoin ℚ {ModularCurve.jq}) (ModularCurve.modularUnitSeries ℓ)⁻¹ := _root_.P2MW.S_ModularCurve_isIntegral_adjoin_jq_modularUnitSeries_inv.solution ℓ
+theorem ModularCurve.isIntegral_adjoin_jq_modularUnitSeries_inv (ℓ : ℕ) [Fact (Nat.Prime ℓ)] :
+    IsIntegral (Algebra.adjoin ℚ {ModularCurve.jq}) (ModularCurve.modularUnitSeries ℓ)⁻¹ :=
+  solution ℓ
 
 end publicSection

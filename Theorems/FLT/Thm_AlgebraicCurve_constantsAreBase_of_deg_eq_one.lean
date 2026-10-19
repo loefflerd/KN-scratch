@@ -66,7 +66,8 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.constantsAreBase_of_deg_eq_one {K F : Type*} [Field K] [Field F] [Algebra K F]
+theorem AlgebraicCurve.constantsAreBase_of_deg_eq_one {K F : Type*} [Field K] [Field F]
+    [Algebra K F]
     [AlgebraicCurve.HasPrincipalDivisors K F]
     (v₀ : AlgebraicCurve.Place K F) (hdeg : v₀.deg = 1) :
     AlgebraicCurve.ConstantsAreBase K F :=

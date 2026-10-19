@@ -82,7 +82,7 @@ theorem deg_eq_one_of_surjective (v : Place K F)
     (h : Function.Surjective (algebraMap K v.ResidueField)) : v.deg = 1 := by
   have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
     ⟨(algebraMap K v.ResidueField).injective, h⟩
-  show Module.finrank K v.ResidueField = 1
+  change Module.finrank K v.ResidueField = 1
   rw [← Module.finrank_self K]
   exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
 
@@ -109,7 +109,7 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
       intro hn
       refine d.2 ?_
       replace hn : n ∈ w.asIdeal := hn
-      show (d : R) ∈ w.asIdeal
+      change (d : R) ∈ w.asIdeal
       rw [← w.valuation_lt_one_iff_mem (K := F)] at hn ⊢
       calc w.valuation F (algebraMap R F (d : R))
           = w.valuation F (a : F) * w.valuation F (algebraMap R F n) := by
@@ -152,7 +152,7 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
     field_simp
     linear_combination (-(algebraMap K F cd)) * hnd
   refine (Valuation.mem_maximalIdeal_iff (v := w.valuation F)).mpr ?_
-  show w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F)) < 1
+  change w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F)) < 1
   calc w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F))
       = w.valuation F ((algebraMap K v.toValuationSubring (cn / cd) : F) - (a : F))
         * (w.valuation F (algebraMap K F cd) * w.valuation F (algebraMap R F d)) := by
@@ -201,6 +201,10 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.deg_ofHeightOneSpectrum_eq_one {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F) [IsDedekindDomain W.CoordinateRing] (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing) : (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w).deg = 1 := _root_.P2MW.S_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one.solution W w
+theorem WeierstrassCurve.Affine.deg_ofHeightOneSpectrum_eq_one {F : Type*} [Field F] [IsAlgClosed F]
+    (W : WeierstrassCurve.Affine F) [IsDedekindDomain W.CoordinateRing]
+    (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing) :
+    (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w).deg = 1 :=
+  solution W w
 
 end publicSection

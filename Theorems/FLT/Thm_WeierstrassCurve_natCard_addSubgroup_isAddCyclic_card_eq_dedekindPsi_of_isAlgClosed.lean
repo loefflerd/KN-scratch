@@ -86,6 +86,7 @@ theorem WeierstrassCurve.natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_
     {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K]
     (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
     Nat.card {G : AddSubgroup (W⁄K).Point // IsAddCyclic G ∧ Nat.card G = n}
-      = ModularCurve.dedekindPsi n := _root_.P2MW.S_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed.solution W hn
+      = ModularCurve.dedekindPsi n :=
+  solution W hn
 
 end publicSection

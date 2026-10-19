@@ -141,15 +141,12 @@ theorem algebraMap_poly_eq (p : F[X]) : algebraMap F[X] W.CoordinateRing p = mk 
   rw [Algebra.algebraMap_eq_smul_one, smul, mul_one]
 
 variable (W) in
-
 def xF : W.FunctionField := algebraMap W.CoordinateRing W.FunctionField (mk W (C X))
 
 variable (W) in
-
 def yF : W.FunctionField := algebraMap W.CoordinateRing W.FunctionField (mk W Y)
 
 variable (W) in
-
 def infVal : Valuation W.FunctionField ℤᵐ⁰ :=
   (WeierstrassCurve.Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm W).choose
 
@@ -262,7 +259,6 @@ theorem forall_mem_of_xF_mem (v : AlgebraicCurve.Place F W.FunctionField)
   exact add_mem (hpoly p) (mul_mem (hpoly q) hy)
 
 variable (W) in
-
 def vInf : AlgebraicCurve.Place F W.FunctionField :=
   (WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one W).choose
 
@@ -361,7 +357,7 @@ theorem divOf_ofHeightOneSpectrum (f : W.FunctionField) (w : HeightOneSpectrum W
       (Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w) = 0 := by
     classical
     rw [Finsupp.single_apply, ite_eq_right (vInf_ne_ofHeightOneSpectrum w)]
-  show ((countFinsupp f).embDomain ofHOSEmb + Finsupp.single (vInf W) ((vInf W).ord f))
+  change ((countFinsupp f).embDomain ofHOSEmb + Finsupp.single (vInf W) ((vInf W).ord f))
     (Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w) = _
   rw [Finsupp.add_apply, h1, h2, add_zero, countFinsupp_apply]
 
@@ -462,6 +458,9 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F) [W.IsElliptic] : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := _root_.P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed.solution W
+theorem WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed {F : Type*} [Field F]
+    [IsAlgClosed F] (W : WeierstrassCurve.Affine F) [W.IsElliptic] :
+    AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
+  solution W
 
 end publicSection

@@ -111,7 +111,6 @@ theorem pos_orderTop_iff {x : HahnSeries ℚ K} :
     exact HahnSeries.coeff_orderTop_ne hg.symm (h g hg0)
 
 variable (K) in
-
 noncomputable def puiseuxVal : ValuationSubring (HahnSeries ℚ K) where
   carrier := {f | 0 ≤ f.orderTop}
   mul_mem' {a b} ha hb := by
@@ -122,7 +121,7 @@ noncomputable def puiseuxVal : ValuationSubring (HahnSeries ℚ K) where
     simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_one]
     exact le_rfl
   add_mem' {a b} ha hb := by
-    show 0 ≤ (a + b).orderTop
+    change 0 ≤ (a + b).orderTop
     exact le_trans (le_min ha hb) HahnSeries.min_orderTop_le_orderTop_add
   zero_mem' := by
     simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_zero]
@@ -137,7 +136,8 @@ noncomputable def puiseuxVal : ValuationSubring (HahnSeries ℚ K) where
       have hprod : a.orderTop + a⁻¹.orderTop = 0 := by
         rw [← HahnSeries.orderTop_mul, mul_inv_cancel₀ ha, HahnSeries.orderTop_one]
       obtain ⟨g, hg⟩ := WithTop.ne_top_iff_exists.mp (orderTop_ne_top_of_ne_zero' ha)
-      obtain ⟨g', hg'⟩ := WithTop.ne_top_iff_exists.mp (orderTop_ne_top_of_ne_zero' (inv_ne_zero ha))
+      obtain ⟨g', hg'⟩ :=
+        WithTop.ne_top_iff_exists.mp (orderTop_ne_top_of_ne_zero' (inv_ne_zero ha))
       rw [← hg, ← hg'] at hprod ⊢
       have hsum : g + g' = 0 := by exact_mod_cast hprod
       by_cases h : 0 ≤ g
@@ -154,7 +154,8 @@ theorem mem_puiseuxVal_iff {f : HahnSeries ℚ K} : f ∈ puiseuxVal K ↔ 0 ≤
 theorem not_isUnit_of_orderTop_pos {z : puiseuxVal K}
     (hz : 0 < (z : HahnSeries ℚ K).orderTop) : ¬ IsUnit z := by
   rintro ⟨u, rfl⟩
-  have h1 : ((u : puiseuxVal K) : HahnSeries ℚ K) * ((u⁻¹ : (puiseuxVal K)ˣ) : puiseuxVal K) = 1 := by
+  have h1 : ((u : puiseuxVal K) : HahnSeries ℚ K) * ((u⁻¹ : (puiseuxVal K)ˣ) : puiseuxVal K) = 1 :=
+    by
     first
       | exact congrArg Subtype.val u.mul_inv
   have h2 := congrArg HahnSeries.orderTop h1
@@ -192,7 +193,7 @@ theorem natCast_residue_ne_zero [CharZero K] {d : ℕ} (hd : d ≠ 0) :
     simp
   refine isUnit_iff_exists_inv.mpr ⟨⟨HahnSeries.C ((d : K)⁻¹), mem_puiseuxVal_iff.mpr (orderTop_C_nonneg _)⟩, ?_⟩
   apply Subtype.ext
-  show ((d : puiseuxVal K) : HahnSeries ℚ K) * HahnSeries.C ((d : K)⁻¹) = 1
+  change ((d : puiseuxVal K) : HahnSeries ℚ K) * HahnSeries.C ((d : K)⁻¹) = 1
   rw [hcoe, ← map_mul, mul_inv_cancel₀ hdK, map_one]
 
 theorem support_ofPowerSeries_subset (f : PowerSeries K) :
@@ -318,7 +319,8 @@ theorem solution
     have hWσ : (E.map ι).map σr.toRingHom = E.map ι := by
       rw [WeierstrassCurve.map_map]
       apply WeierstrassCurve.ext <;> simp only [WeierstrassCurve.map, RingHom.comp_apply,
-        RingEquiv.toRingHom_eq_coe, RingHom.coe_coe] <;> exact hσ1 _ (hasRamBound_one_ofPowerSeries _)
+        RingEquiv.toRingHom_eq_coe,
+        RingHom.coe_coe] <;> exact hσ1 _ (hasRamBound_one_ofPowerSeries _)
     have h' : (E.map ι).toAffine.Nonsingular (σr x) (σr y) := by
       have := (WeierstrassCurve.Affine.map_nonsingular (E.map ι).toAffine (f := σr.toRingHom)
         σr.injective x y).mpr h
@@ -352,6 +354,7 @@ theorem WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant
     (h : (E.map (HahnSeries.ofPowerSeries ℚ (AlgebraicClosure ℚ))).toAffine.Nonsingular x y)
     (htor : d • (WeierstrassCurve.Affine.Point.some x y h :
       (E.map (HahnSeries.ofPowerSeries ℚ (AlgebraicClosure ℚ))).toAffine.Point) = 0) :
-    HahnSeries.HasRamBound 1 x ∧ HahnSeries.HasRamBound 1 y := _root_.P2MW.S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries.solution E hΔ hd x y h htor
+    HahnSeries.HasRamBound 1 x ∧ HahnSeries.HasRamBound 1 y :=
+  solution E hΔ hd x y h htor
 
 end publicSection

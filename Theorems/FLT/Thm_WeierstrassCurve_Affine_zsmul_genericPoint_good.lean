@@ -60,12 +60,16 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_zsmul_genericPoint_good
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_zsmul_genericPoint_good.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_zsmul_genericPoint_good.WeierstrassCurve.Affine"
+p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_zsmul_genericPoint_good.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_zsmul_genericPoint_good.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map map_baseChange map_injective Affine.MulGood card_torsion_of_isAlgClosed"
+p2m_export "WeierstrassCurve" "Affine map map_baseChange map_injective Affine.MulGood \
+  card_torsion_of_isAlgClosed"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.map_baseChange map Point.map_injective Point map_baseChange Point.map transPull map_transPull_genericPoint MulGood infinite_point"
+p2m_export "WeierstrassCurve.Affine" "Point.map_baseChange map Point.map_injective Point \
+  map_baseChange Point.map transPull map_transPull_genericPoint MulGood infinite_point"
 namespace Good
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
@@ -98,13 +102,16 @@ theorem not_forall_zsmul_eq_zero {n : ℤ} (hn : (n : K) ≠ 0) : ¬ ∀ S : (W�
 end WeierstrassCurve.Affine.Good
 
 open WeierstrassCurve.Affine.Good in
-theorem solution {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K] [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] {n : ℤ} (hn : (n : K) ≠ 0) : WeierstrassCurve.Affine.MulGood W K n := by
+theorem solution {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K]
+    [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] {n : ℤ} (hn : (n : K) ≠ 0) :
+    WeierstrassCurve.Affine.MulGood W K n := by
   constructor
   · intro h0
     apply not_forall_zsmul_eq_zero W K hn
     intro S
     have := congrArg (Point.map (transPull W K S)) h0
-    rw [map_zsmul, map_transPull_genericPoint, map_zero, smul_add, h0, zero_add, ← map_zsmul] at this
+    rw [map_zsmul, map_transPull_genericPoint, map_zero, smul_add, h0, zero_add, ←
+      map_zsmul] at this
     exact Point.map_injective _ (this.trans (map_zero _).symm)
   · intro P hP
     apply not_forall_zsmul_eq_zero W K hn
@@ -125,6 +132,10 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.zsmul_genericPoint_good {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K] [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] {n : ℤ} (hn : (n : K) ≠ 0) : WeierstrassCurve.Affine.MulGood W K n := _root_.P2MW.S_WeierstrassCurve_Affine_zsmul_genericPoint_good.solution W K hn
+theorem WeierstrassCurve.Affine.zsmul_genericPoint_good {R : Type*} [Field R]
+    (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K] [DecidableEq K] [IsAlgClosed K]
+    [W.IsElliptic] {n : ℤ} (hn : (n : K) ≠ 0) :
+    WeierstrassCurve.Affine.MulGood W K n :=
+  solution W K hn
 
 end publicSection

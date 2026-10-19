@@ -171,7 +171,8 @@ lemma addMulSub_two_zero : addMulSub W 2 0 = W 1 ^ 2 := (sq _).symm
 lemma addMulSub_three_one : addMulSub W 3 1 = W 2 * W 1 := rfl
 
 lemma addMulSub_even (m n : ℤ) : addMulSub W (2 * m) (2 * n) = W (m + n) * W (m - n) := by
-  simp_rw [addMulSub, ← left_distrib, ← mul_sub_left_distrib, Int.mul_tdiv_cancel_left _ two_ne_zero]
+  simp_rw [addMulSub, ← left_distrib, ← mul_sub_left_distrib,
+    Int.mul_tdiv_cancel_left _ two_ne_zero]
 
 lemma addMulSub_odd (m n : ℤ) :
     addMulSub W (2 * m + 1) (2 * n + 1) = W (m + n + 1) * W (m - n) := by
@@ -254,7 +255,6 @@ lemma six_le_of_strictAnti₄ (anti : StrictAnti₄ a b c d) : 6 ≤ a := by
   exacts [same.1, same.2.1, same.2.2]
 
 variable (W) in
-
 def addMulSub₄ (a b c d : ℤ) : R := W ((a + b).tdiv 2) * W ((c - d).tdiv 2)
 
 lemma addMulSub₄_mul_addMulSub₄ :
@@ -376,7 +376,6 @@ open Int
 section Rel₄OfValid
 
 variable (W) in
-
 def Rel₄OfValid (a b c d : ℤ) : Prop :=
   HaveSameParity₄ a b c d → StrictAnti₄ a b c d → rel₄ W a b c d = 0
 
@@ -384,7 +383,6 @@ variable {a c₀ d₀ : ℤ} (par : c₀.negOnePow = d₀.negOnePow) (le : 0 ≤
   (rel : ∀ {a' b}, a' ≤ a → Rel₄OfValid W a' b c₀ d₀) (mem : addMulSub W c₀ d₀ ∈ R⁰)
 
 include par le lt rel mem in
-
 lemma rel₄_fix₁_of_fix₂ (b c : ℤ) :
     Rel₄OfValid W a b c c₀ ∧ (c₀ < c → Rel₄OfValid W a b c d₀) := by
   refine ⟨fun same anti ↦ (mem_nonZeroDivisors_iff.mp mem).2 _ ?_,
@@ -398,7 +396,6 @@ lemma rel₄_fix₁_of_fix₂ (b c : ℤ) :
       simp only [HaveSameParity₄, par, same.1, same.2.1, same.2.2, true_and]
       refine ⟨le, lt, ?_, ?_⟩ <;> linarith only [_hc, anti.2.1, anti.2.2.1, anti.2.2.2]
 include par le lt rel mem in
-
 lemma rel₄_of_fix₂ (b c d : ℤ) (hc : c₀ < d) (par' : d.negOnePow = d₀.negOnePow) :
     Rel₄OfValid W a b c d := fun same ⟨_, hdc, hcb, hba⟩ ↦
       (mem_nonZeroDivisors_iff.mp mem).2 _ <| by
@@ -481,11 +478,9 @@ lemma rel₄_swap₂₃ {m n r s : ℤ} : rel₄ W m n r s = - rel₄ W m n s r 
 open Equiv
 
 variable (W) in
-
 def relFin4 (t : Fin 4 → ℤ) : R := rel₄ W (t 0) (t 1) (t 2) (t 3)
 
 include neg in
-
 theorem relFin4_perm (σ : Perm (Fin 4)) : ∀ t, relFin4 W (t ∘ σ) = Perm.sign σ • relFin4 W t := by
   have := (Perm.mclosure_swap_castSucc_succ 3).symm ▸ Submonoid.mem_top σ
   refine Submonoid.closure_induction ?_ (by simp) (fun σ τ _ _ hσ hτ t ↦ ?_) this
@@ -514,7 +509,6 @@ variable (one : W 1 ∈ R⁰) (two : W 2 ∈ R⁰)
   (oddRec : ∀ m ≥ 2, OddRec W m) (evenRec : ∀ m ≥ 3, EvenRec W m)
 
 include neg zero one two oddRec evenRec in
-
 theorem rel₄_of_oddRec_evenRec {a b c d : ℤ} (same : HaveSameParity₄ a b c d) :
     rel₄ W a b c d = 0 := by
   let t := ![|a|, |b|, |c|, |d|]
@@ -533,7 +527,6 @@ theorem rel₄_of_oddRec_evenRec {a b c d : ℤ} (same : HaveSameParity₄ a b c
   exact ⟨nonneg _, (anti <| by decide).lt_of_ne h₃₂,
     (anti <| by decide).lt_of_ne h₂₁, (anti <| by decide).lt_of_ne h₁₀⟩
 include neg zero one two oddRec evenRec in
-
 theorem _root_.IsEllSequence'.of_oddRec_evenRec : IsEllSequence' W := by
   rw [isEllSequence_iff_rel₃]
   intro m n r
@@ -573,7 +566,6 @@ lemma zero' [IsReduced R] : W 0 = 0 := by
   simp_rw [add_zero, sub_self, mul_assoc, ← pow_succ'] at this
   exact IsReduced.eq_zero _ ⟨_, this⟩
 include ell in
-
 lemma zero (m : ℤ) (mem : W (2 * m) ∈ R⁰) : W 0 = 0 := by
   have := ell m m (2 * m)
   rw [add_comm, sub_self, sub_self, ← two_mul, mul_comm (W _)] at this
@@ -589,7 +581,6 @@ lemma sub_add_neg_sub_mul_eq_zero (m n r : ℤ) :
 variable (one : W 1 ∈ R⁰) (two : W 2 ∈ R⁰)
 
 include ell one two in
-
 lemma neg (m : ℤ) : W (-m) = - W m := by
   rw [eq_neg_iff_add_eq_zero]
   obtain ⟨m, rfl|rfl⟩ := m.even_or_odd'
@@ -794,7 +785,6 @@ protected lemma IsEllSequence'.normEDS : IsEllSequence' (normEDS b c d) := by
     (normEDS_of_mem_nonZeroDivisors <| mem_nonZeroDivisors_of_ne_zero <| X_ne_zero _)
 
 include ellW ellU in
-
 protected lemma IsEllSequence'.ext (one : W 1 ∈ R⁰) (two : W 2 ∈ R⁰)
     (h1 : W 1 = U 1) (h2 : W 2 = U 2) (h3 : W 3 = U 3) (h4 : W 4 = U 4) : W = U := by
   funext n
@@ -847,7 +837,6 @@ theorem IsEllSequence'.eq_normEDS_of_dvd : ∃ b c d, W = (W 1 * normEDS b c d �
     (by simp [h₁₃]) (by rw [h₂₄, h₁₂, normEDS_four]; ring)⟩
 
 include one two in
-
 theorem IsEllDivSequence'.eq_normEDS (h : IsEllDivSequence' W) :
     ∃ b c d, W = (W 1 * normEDS b c d ·) :=
   h.1.eq_normEDS_of_dvd one two (h.2 _ _ ⟨2, rfl⟩) (h.2 _ _ ⟨3, rfl⟩) (h.2 _ _ ⟨2, rfl⟩)
@@ -858,7 +847,6 @@ variable (W₁ compl₂ : ℤ → R)
   (h₁ : ∀ m, W 1 * W₁ m = W m) (h₂ : ∀ m, W m * compl₂ m = W (2 * m)) (m n : ℤ)
 
 include ellW one two h₁ h₂ in
-
 lemma IsEllSequence'.mul_compl_eq_apply_mul_of_mem_nonZeroDivisors (mem : W m ∈ R⁰) :
     W m * compl W₁ compl₂ m n = W (n * m) := by
   induction n using Int.negInduction with
@@ -942,8 +930,9 @@ lemma invarDenom_eq_redInvarDenom_mul :
   rw [invarDenom, redInvarDenom]; split_ifs with h h h h h h
   · rw [← mul_eq _ h6 _ (Int.dvd_of_emod_eq_zero h), normEDS_six_eq_mul]; ring
   · rw [← mul_eq _ h6 _ (dvd_sub h), normEDS_six_eq_mul]; ring
-  · rw [show m + 1 = m + 6 - 5 by abel, ← mul_eq _ h6, normEDS_six_eq_mul]; ring
-    exact dvd_sub (show (m + 6) % 6 = 5 by omega)
+  · rw [show m + 1 = m + 6 - 5 by abel, ← mul_eq _ h6, normEDS_six_eq_mul]
+    · ring
+    · exact dvd_sub (show (m + 6) % 6 = 5 by omega)
   on_goal 1 => rw [← mul_eq _ h3 _ (hd3 <| by simp [h, Int.add_emod]),
     ← mul_eq _ two_ne_zero m (hd2 <| by simp [h])]
   on_goal 2 => rw [← mul_eq _ h3 (m - 1) (hd3 <| by simp [h, Int.sub_emod]),
@@ -995,7 +984,6 @@ protected theorem IsEllDivSequence'.normEDS : IsEllDivSequence' (normEDS b c d) 
   ⟨IsEllSequence'.normEDS, IsDivSequence'.normEDS⟩
 
 include ellW one two dvd₁₂ dvd₁₃ dvd₂₄ in
-
 lemma IsEllSequence'.isDivSequence_of_dvd : IsDivSequence' W := by
   obtain ⟨b, c, d, h⟩ := ellW.eq_normEDS_of_dvd one two dvd₁₂ dvd₁₃ dvd₂₄
   rw [h]; exact IsDivSequence'.normEDS.smul _
@@ -1086,7 +1074,6 @@ open scoped Polynomial Polynomial.Bivariate
 open Coeff
 
 open MvPolynomial (X) in
-
 def curve : Affine (MvPolynomial Coeff ℤ) :=
   { a₁ := X A₁, a₂ := X A₂, a₃ := X A₃, a₄ := X A₄, a₆ := X A₆ }
 
@@ -1142,7 +1129,6 @@ lemma equation_point : pointedCurve.toAffine.Equation (polyToField (C X)) (polyT
     eval_C_X_eval₂_map_C_X, polyToField_polynomial]
 
 open Polynomial Affine in
-
 def Affine.point : curve⟮Univ.Field⟯ :=
   .some (polyToField (C X)) (polyToField Y)
     ((pointedCurve.toAffine.equation_iff_nonsingular_of_Δ_ne_zero
@@ -1191,7 +1177,6 @@ namespace Univ
 variable (x y : R)
 
 open Polynomial (eval₂RingHom) in
-
 def polyEval : Poly →+* R := eval₂RingHom (eval₂RingHom W.specialize x) y
 
 open Polynomial in
@@ -1202,7 +1187,6 @@ lemma polyEval_apply (p : Poly) :
 variable {W x y} (eqn : Affine.Equation W x y)
 
 open Polynomial in
-
 def ringEval : Univ.Ring →+* R :=
   AdjoinRoot.lift (eval₂RingHom W.specialize x) y <| by
     simp_rw [← coe_eval₂RingHom, eval₂RingHom_eval₂RingHom, RingHom.comp_apply, coe_mapRingHom]
@@ -1359,7 +1343,7 @@ lemma evalEval_ψ : (W.ψ n).evalEval x y = polyEval W x y (curve.ψ n) := by
 lemma evalEval_φ : (W.φ n).evalEval x y = polyEval W x y (curve.φ n) := by
   simp_rw [polyEval_apply, ← map_φ, map_specialize]
 
-lemma evalEval_ωe : (W.ωe n).evalEval x y =  polyEval W x y (curve.ωe n) := by
+lemma evalEval_ωe : (W.ωe n).evalEval x y = polyEval W x y (curve.ωe n) := by
   simp_rw [polyEval_apply, ← map_ωe, map_specialize]
 
 open WeierstrassCurve (ψ φ ωe)
@@ -1525,7 +1509,6 @@ private lemma smulY_neg_aux {F} [Field F] {a₁ a₃ x y z : F} (hz : z ≠ 0) :
   rw [neg_pow]; field_simp; ring
 
 open Polynomial (CC) in
-
 lemma ωe_neg' : curve.ωe (-n) =
     curve.ωe n + CC curve.a₁ * curve.φ n * curve.ψ n + CC curve.a₃ * curve.ψ n ^ 3 := by
   rw [← mul_cancel_left_mem_nonZeroDivisors (mem_nonZeroDivisors_of_ne_zero Poly.two_ne_zero)]
@@ -1585,8 +1568,8 @@ theorem zsmul_point_eq_smulX_smulY : n ≠ 0 →
     · exact (h0 rfl).elim
     · simp_rw [zero_add, Nat.cast_one, one_zsmul, smulX_one, smulY_one]
       exact ⟨(pointedCurve.toAffine.equation_iff_nonsingular_of_Δ_ne_zero
-        (by simpa only [pointedCurve, baseChange, map_Δ, map_ne_zero_iff _ algebraMap_field_injective]
-          using Δ_curve_ne_zero)).mp equation_point, rfl⟩
+        (by simpa only [pointedCurve, baseChange, map_Δ, map_ne_zero_iff _
+              algebraMap_field_injective] using Δ_curve_ne_zero)).mp equation_point, rfl⟩
     all_goals obtain ⟨ns, eq⟩ := ih 1 (by omega) one_ne_zero
     · erw [← addX_smul_one_smul_one, ← addY_smul_one_smul_one, zero_add, add_zsmul _ 1 1, eq]
       exact ⟨Affine.nonsingular_add ns ns fun h ↦ smulY_one_ne_negY h.2,
@@ -1673,7 +1656,8 @@ lemma dblZ_smulPoly : dblZ curvePoly (smulPoly n) = curve.ψ (2 * n) := by
   rw [← ψc_spec _ n]; congr; convert curve.ωe_spec n using 1; ring
 
 lemma nonsingular_smulField : Nonsingular curveField (smulField n) := by
-  simpa only [zsmul_point_eq_smulField, Jacobian.nonsingularLift_iff] using (n • Jacobian.point).nonsingular
+  simpa only [zsmul_point_eq_smulField, Jacobian.nonsingularLift_iff]
+    using (n • Jacobian.point).nonsingular
 
 lemma dblXYZ_smulField : dblXYZ curveField (smulField n) = smulField (2 * n) := by
   obtain rfl | hn := eq_or_ne n 0
@@ -1767,7 +1751,6 @@ end Jacobian
 end Univ
 
 variable (x y) in
-
 abbrev smulEval (n : ℤ) : Fin 3 → R := evalEval x y ∘ ![W.φ n, W.ωe n, W.ψ n]
 
 variable {W} (eqn : W.toAffine.Equation x y)
@@ -1858,14 +1841,13 @@ namespace WeierstrassCurve
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 
 omit [DecidableEq F] in
-
 theorem evalEval_ψ_sq {x y : F} (h : W.toAffine.Equation x y) (n : ℤ) :
     ((W.ψ n).evalEval x y) ^ 2 = (W.ΨSq n).eval x := by
   have h0 : W.toAffine.polynomial.eval₂ (evalRingHom x) y = 0 := by
     rw [eval₂_evalRingHom]; exact h
   let e : W.toAffine.CoordinateRing →+* F := AdjoinRoot.lift (evalRingHom x) y h0
   have he : ∀ p : F[X][Y], e (Affine.CoordinateRing.mk W p) = p.evalEval x y := fun p ↦ by
-    show AdjoinRoot.lift (evalRingHom x) y h0 (AdjoinRoot.mk _ p) = _
+    change AdjoinRoot.lift (evalRingHom x) y h0 (AdjoinRoot.mk _ p) = _
     rw [AdjoinRoot.lift_mk, eval₂_evalRingHom]
   calc ((W.ψ n).evalEval x y) ^ 2
       = e (Affine.CoordinateRing.mk W (W.ψ n)) ^ 2 := by rw [he]
@@ -1876,7 +1858,6 @@ theorem evalEval_ψ_sq {x y : F} (h : W.toAffine.Equation x y) (n : ℤ) :
     _ = (W.ΨSq n).eval x := evalEval_C x y _
 
 omit [DecidableEq F] in
-
 theorem evalEval_φ {x y : F} (h : W.toAffine.Equation x y) (n : ℤ) :
     (W.φ n).evalEval x y = (W.Φ n).eval x := by
   obtain ⟨p, hp⟩ := AdjoinRoot.mk_eq_mk.mp (Affine.CoordinateRing.mk_φ W n)

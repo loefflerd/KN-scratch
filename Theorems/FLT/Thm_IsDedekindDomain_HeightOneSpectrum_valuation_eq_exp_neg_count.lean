@@ -60,7 +60,9 @@ namespace P2MW.S_IsDedekindDomain_HeightOneSpectrum_valuation_eq_exp_neg_count
 
 open scoped nonZeroDivisors
 
-theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K] (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) : v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) := by
+theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K]
+    [IsFractionRing R K] (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) :
+    v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) := by
   classical
   obtain ⟨r, s, rfl⟩ := IsLocalization.exists_mk'_eq R⁰ x
   have hr : r ≠ 0 := by
@@ -99,6 +101,10 @@ public section publicSection
 
 open scoped nonZeroDivisors
 
-theorem IsDedekindDomain.HeightOneSpectrum.valuation_eq_exp_neg_count {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K] (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) : v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) := _root_.P2MW.S_IsDedekindDomain_HeightOneSpectrum_valuation_eq_exp_neg_count.solution K v hx
+theorem IsDedekindDomain.HeightOneSpectrum.valuation_eq_exp_neg_count {R : Type*} [CommRing R]
+    [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]
+    (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) :
+    v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) :=
+  solution K v hx
 
 end publicSection

@@ -99,6 +99,9 @@ public section publicSection
 
 open UpperHalfPlane
 open scoped MatrixGroups
-theorem ModularForm.exists_gamma0_qExpansion_eq_of_levelOne (N : ℕ) [NeZero N] {k : ℤ} (F : ModularForm 𝒮ℒ k) : ∃ G : ModularForm (CongruenceSubgroup.Gamma0 N) k, (G : ℍ → ℂ) = (F : ℍ → ℂ) := _root_.P2MW.S_ModularForm_exists_gamma0_qExpansion_eq_of_levelOne.solution N F
+theorem ModularForm.exists_gamma0_qExpansion_eq_of_levelOne (N : ℕ) [NeZero N] {k : ℤ}
+    (F : ModularForm 𝒮ℒ k) :
+    ∃ G : ModularForm (CongruenceSubgroup.Gamma0 N) k, (G : ℍ → ℂ) = (F : ℍ → ℂ) :=
+  solution N F
 
 end publicSection

@@ -364,7 +364,7 @@ theorem exists_sum_range_norm_sq_qExpansion_coeff_le [NeZero N]
           refine intervalIntegral.integral_mono_on zero_le_one
             (((continuous_horizontal_slice hfhol.continuous hy).norm.pow 2).intervalIntegrable 0 1)
             intervalIntegrable_const fun x _ ↦ key _ ?_
-          show ((x : ℂ) + ((1 / M : ℝ) : ℂ) * I).im = 1 / M
+          change ((x : ℂ) + ((1 / M : ℝ) : ℂ) * I).im = 1 / M
           simp
       _ = C * (M : ℝ) ^ k := by simp
   -- `exp (-4 π n / M) ≥ exp (-4 π)` for `n < M`
@@ -406,8 +406,8 @@ theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     Summable (fun m : ℕ =>
-      ‖(UpperHalfPlane.qExpansion 1 f).coeff m‖^2 * Real.log m /
-        (m : ℝ)^(k+1)) := by
+      ‖(UpperHalfPlane.qExpansion 1 f).coeff m‖ ^ 2 * Real.log m /
+        (m : ℝ) ^ (k+1)) := by
   have : NeZero N := ⟨hN.ne'⟩
   obtain ⟨D, hD⟩ := MTT.exists_sum_range_norm_sq_qExpansion_coeff_le f
   exact MTT.summable_mul_log_div_pow_of_sum_range_le (fun n ↦ by positivity) hD
@@ -425,8 +425,8 @@ theorem MTT.cusp_log_weighted_square_summable
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     Summable (fun m : ℕ =>
-      ‖(UpperHalfPlane.qExpansion 1 f).coeff m‖^2 * Real.log m /
-        (m : ℝ)^(k+1)) := _root_.solution hN hk f
+      ‖(UpperHalfPlane.qExpansion 1 f).coeff m‖ ^ 2 * Real.log m /
+        (m : ℝ) ^ (k+1)) := _root_.solution hN hk f
 end
 
 end publicSection

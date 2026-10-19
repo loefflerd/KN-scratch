@@ -64,11 +64,14 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring"
+p2m_export "AlgebraicCurve" "Place Place.ext Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_ne_zero ord ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing'"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum adicValuation adicValuation_ne_zero ord \
+  ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' \
+  toValuationSubring isPrincipalIdealRing'"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -91,11 +94,13 @@ private theorem _root_.AlgebraicCurve.Place.mem_iff_adicValuation_le_one' {f : F
   exact Valuation.mem_valuationSubring_iff _ _
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_adicValuation_le_one'"
-private theorem _root_.AlgebraicCurve.Place.adicValuation_isRankOneDiscrete' : v.adicValuation.IsRankOneDiscrete :=
+private theorem _root_.AlgebraicCurve.Place.adicValuation_isRankOneDiscrete' :
+    v.adicValuation.IsRankOneDiscrete :=
   IsDiscreteValuationRing.isRankOneDiscrete v.toValuationSubring F
 
 p2m_export "AlgebraicCurve.Place" "adicValuation_isRankOneDiscrete'"
-private theorem _root_.AlgebraicCurve.Place.adicValuation_isTrivialOn' : v.adicValuation.IsTrivialOn K :=
+private theorem _root_.AlgebraicCurve.Place.adicValuation_isTrivialOn' :
+    v.adicValuation.IsTrivialOn K :=
   Valuation.IsTrivialOn.of_le_one v.adicValuation fun a =>
     v.mem_iff_adicValuation_le_one'.mp (v.algebraMap_mem' a)
 
@@ -107,7 +112,8 @@ private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSu
     (h.trans v.adicValuation_valuationSubring'.symm)
 
 p2m_export "AlgebraicCurve.Place" "isEquiv_adicValuation_of_valuationSubring_eq'"
-private theorem _root_.AlgebraicCurve.Place.ord_eq_zero_iff_adicValuation_eq_one' {f : F} (hf : f ≠ 0) :
+private theorem _root_.AlgebraicCurve.Place.ord_eq_zero_iff_adicValuation_eq_one' {f : F}
+    (hf : f ≠ 0) :
     v.ord f = 0 ↔ v.adicValuation f = 1 := by
   simp only [ord, neg_eq_zero]
   constructor
@@ -257,6 +263,9 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.finite_setOf_ord_ne_zero {K : Type*} [Field K] {f : RatFunc K} (hf : f ≠ 0) : {v : Place K (RatFunc K) | v.ord f ≠ 0}.Finite := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero.solution hf
+theorem AlgebraicCurve.RationalFunctionField.finite_setOf_ord_ne_zero {K : Type*} [Field K]
+    {f : RatFunc K} (hf : f ≠ 0) :
+    {v : Place K (RatFunc K) | v.ord f ≠ 0}.Finite :=
+  solution hf
 
 end publicSection

@@ -103,7 +103,7 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, (I f).val = integrationCochain f) :
     Function.Injective I := by
   intro f g hfg
@@ -129,7 +129,7 @@ open scoped BigOperators TensorProduct
 open MTT.Cohomology
 theorem MTT.Cohomology.integration_cochain_injective
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, (I f).val = integrationCochain f) :
     Function.Injective I := _root_.solution hN hk I hI
 end

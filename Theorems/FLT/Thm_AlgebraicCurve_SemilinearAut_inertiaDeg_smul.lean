@@ -67,15 +67,18 @@ open scoped Pointwise
 
 noncomputable section
 
-private def restrictSmulValuationSubringEquiv {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g')
+private def restrictSmulValuationSubringEquiv {K F F' : Type*} [Field K] [Field F] [Field F']
+    [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F']
+    {g : SemilinearAut K F} {g' : SemilinearAut K F'}
+    (hgg' : IntertwinesAlong (algebraMap F F') g g')
     (w : Place K F') :
     (w.restrict F).toValuationSubring ≃+* ((g' • w).restrict F).toValuationSubring where
   toFun x := ⟨g • (x : F), by
-    show algebraMap F F' (g • (x : F)) ∈ (g' • w).toValuationSubring
+    change algebraMap F F' (g • (x : F)) ∈ (g' • w).toValuationSubring
     rw [← hgg' (x : F), smul_toValuationSubring]
     exact ValuationSubring.smul_mem_pointwise_smul g' _ _ x.2⟩
   invFun y := ⟨g⁻¹ • (y : F), by
-    show algebraMap F F' (g⁻¹ • (y : F)) ∈ w.toValuationSubring
+    change algebraMap F F' (g⁻¹ • (y : F)) ∈ w.toValuationSubring
     rw [← hgg'.inv (y : F)]
     have hy : algebraMap F F' (y : F) ∈ (g' • w).toValuationSubring := y.2
     rw [smul_toValuationSubring,
@@ -87,27 +90,32 @@ private def restrictSmulValuationSubringEquiv {K F F' : Type*} [Field K] [Field 
   map_add' x y := by ext; exact smul_add g (x : F) (y : F)
 
 @[scoped simp]
-private theorem coe_restrictSmulValuationSubringEquiv_apply {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'}
+private theorem coe_restrictSmulValuationSubringEquiv_apply {K F F' : Type*} [Field K] [Field F]
+    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
+    [Algebra.IsIntegral F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'}
     (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F')
     (x : (w.restrict F).toValuationSubring) :
     ((restrictSmulValuationSubringEquiv hgg' w x :
       ((g' • w).restrict F).toValuationSubring) : F) = g • (x : F) :=
   rfl
 
-theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') : (g' • w).inertiaDeg F = w.inertiaDeg F := by
+theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+    [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] {g : SemilinearAut K F}
+    {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') :
+    (g' • w).inertiaDeg F = w.inertiaDeg F := by
   refine (Algebra.finrank_eq_of_equiv_equiv
     (IsLocalRing.ResidueField.mapEquiv (restrictSmulValuationSubringEquiv hgg' w))
     (smulResidueRingEquiv g' w) ?_).symm
   ext x
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
-  show (Place.restrictResidueMap F (g' • w))
+  change (Place.restrictResidueMap F (g' • w))
         (IsLocalRing.ResidueField.map _ (IsLocalRing.residue _ a))
       = (smulResidueRingEquiv g' w) ((Place.restrictResidueMap F w) (IsLocalRing.residue _ a))
   rw [IsLocalRing.ResidueField.map_residue, Place.restrictResidueMap_residue,
     Place.restrictResidueMap_residue, smulResidueRingEquiv,
     IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap F F' (g • (a : F)) = g' • (algebraMap F F' (a : F))
+  change algebraMap F F' (g • (a : F)) = g' • (algebraMap F F' (a : F))
   exact (hgg' (a : F)).symm
 
 end
@@ -122,6 +130,11 @@ public section publicSection
 
 
 open AlgebraicCurve AlgebraicCurve.SemilinearAut
-theorem AlgebraicCurve.SemilinearAut.inertiaDeg_smul {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') : (g' • w).inertiaDeg F = w.inertiaDeg F := _root_.P2MW.S_AlgebraicCurve_SemilinearAut_inertiaDeg_smul.solution hgg' w
+theorem AlgebraicCurve.SemilinearAut.inertiaDeg_smul {K F F' : Type*} [Field K] [Field F] [Field F']
+    [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F']
+    {g : SemilinearAut K F} {g' : SemilinearAut K F'}
+    (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') :
+    (g' • w).inertiaDeg F = w.inertiaDeg F :=
+  solution hgg' w
 
 end publicSection

@@ -76,11 +76,20 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index
 
 namespace ModularCurve
-p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset qExpFunctionFieldC_mono dedekindPsi coeffMap_single coeffEmb coeffEmb_coeff laurentBaseChange jqModC translation_mem_GammaH Gamma1_le_GammaH GammaH_bot GammaH_mono coeffMap_ofPowerSeries finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0 finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed Gamma0_index jqModC_mem_intFormRatiosC"
+p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset \
+  qExpFunctionFieldC_mono dedekindPsi coeffMap_single coeffEmb coeffEmb_coeff laurentBaseChange \
+  jqModC translation_mem_GammaH Gamma1_le_GammaH GammaH_bot GammaH_mono coeffMap_ofPowerSeries \
+  finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index \
+  index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero \
+  dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0 \
+  finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed Gamma0_index \
+  jqModC_mem_intFormRatiosC"
 namespace FullnessGamma1
 p2m_open "ModularCurve~coeffEmb_injective"
 
-p2m_open "ModularCurve~coeffEmb_injective P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.ModularCurve IntermediateField"
+p2m_open "ModularCurve~coeffEmb_injective \
+  P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.Mo\
+  dularCurve IntermediateField"
 
 theorem finrank_adjoin_eq_relfinrank {K E : Type*} [Field K] [Field E] [Algebra K E]
     (F : IntermediateField K E) (x : F) :
@@ -129,7 +138,8 @@ theorem algebraMap_laurentSeries_eq_C {L : Type*} [Field L] (a : L) :
 
 theorem coeffEmb_algebraMap (a : ℚ) :
     coeffEmb K (algebraMap ℚ (LaurentSeries ℚ) a) = algebraMap K (LaurentSeries K) (algebraMap ℚ K a) := by
-  rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply, HahnSeries.C_apply,
+  rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply,
+    HahnSeries.C_apply,
     coeffEmb, coeffMap_single]
 
 variable (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
@@ -148,7 +158,8 @@ theorem image_intFormRatiosC : (coeffEmb K) '' intFormRatiosC ℚ Γ = intFormRa
 
 variable {Γ}
 
-theorem coeffEmb_mem_adjoin {S : Set (LaurentSeries ℚ)} {y : LaurentSeries ℚ} (hy : y ∈ adjoin ℚ S) :
+theorem coeffEmb_mem_adjoin {S : Set (LaurentSeries ℚ)} {y : LaurentSeries ℚ} (hy : y ∈ adjoin ℚ S)
+    :
     coeffEmb K y ∈ adjoin K ((coeffEmb K) '' S) := by
   have hy' : y ∈ (adjoin ℚ S).toSubfield := hy
   rw [adjoin_toSubfield] at hy'
@@ -214,7 +225,8 @@ theorem mem_or_neg_mem_gammaH_of_mem_gammaH_sup {M : ℕ} (H : Subgroup (ZMod M)
   obtain ⟨hγ0, hd⟩ := CohCarrier.mem_GammaH_iff.mp hγ
   rcases mem_or_neg_mem_of_mem_sup_zpowers_neg_one H hd with h | h
   · exact Or.inl (CohCarrier.mem_GammaH_iff.mpr ⟨hγ0, h⟩)
-  · exact Or.inr (CohCarrier.mem_GammaH_iff.mpr ⟨neg_mem_Gamma0 hγ0, by rw [gamma0Units_neg hγ0]; exact h⟩)
+  · exact Or.inr (CohCarrier.mem_GammaH_iff.mpr ⟨neg_mem_Gamma0 hγ0, by
+      rw [gamma0Units_neg hγ0]; exact h⟩)
 
 theorem gamma1_sup_zpowers_neg_one_eq (M : ℕ) :
     Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) =
@@ -243,7 +255,9 @@ end Groups
 
 end ModularCurve.FullnessGamma1
 
-p2m_open "ModularCurve~coeffEmb_injective P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.ModularCurve CongruenceSubgroup AlgebraicCurve"
+p2m_open "ModularCurve~coeffEmb_injective \
+  P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.Mo\
+  dularCurve CongruenceSubgroup AlgebraicCurve"
 open scoped MatrixGroups
 
 open ModularCurve.FullnessGamma1 IntermediateField in
@@ -266,7 +280,8 @@ theorem solution
     rw [← ModularCurve.GammaH_bot M]; exact ModularCurve.translation_mem_GammaH M ⊥
   have hT0 : ModularGroup.T ∈ Gamma0 M := by
     rw [← CohCarrier.GammaH_top (M := M)]; exact ModularCurve.translation_mem_GammaH M ⊤
-  have h10 : Gamma1 M ≤ Gamma0 M := (ModularCurve.Gamma1_le_GammaH M ⊥).trans (CohCarrier.GammaH_le_Gamma0 ⊥)
+  have h10 : Gamma1 M ≤ Gamma0 M :=
+    (ModularCurve.Gamma1_le_GammaH M ⊥).trans (CohCarrier.GammaH_le_Gamma0 ⊥)
   have hsup := gamma1_sup_zpowers_neg_one_eq M
   have hneg : ∀ γ ∈ Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)), γ ∈ Gamma1 M ∨ -γ ∈ Gamma1 M := by
     intro γ hγ
@@ -297,10 +312,12 @@ theorem solution
     exact h
   have eJF0 : dedekindPsi M ≤
       (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))).relfinrank (qExpFunctionFieldC K (Gamma0 M)) := by
-    obtain ⟨hfin, -⟩ := ModularCurve.finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed K
+    obtain ⟨hfin, -⟩ :=
+      ModularCurve.finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed K
       (Gamma0 M) hT0 (Gamma0 M) le_rfl (fun γ hγ => Or.inl hγ) ⟨jqModC K, hjF0⟩ rfl
     have := hfin
-    have h := ModularCurve.dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0 K M hMK ⟨jqModC K, hjF0⟩ rfl
+    have h :=
+      ModularCurve.dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0 K M hMK ⟨jqModC K, hjF0⟩ rfl
     have e := finrank_adjoin_eq_relfinrank (qExpFunctionFieldC K (Gamma0 M)) ⟨jqModC K, hjF0⟩
     exact e ▸ h
   have eF0E : (⊥ ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index ≤
@@ -339,6 +356,7 @@ theorem ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_
     Module.finrank
         ↥(IntermediateField.adjoin K ({y} : Set ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
         ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) =
-      (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := _root_.P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.solution K M y hy
+      (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
+  solution K M y hy
 
 end publicSection

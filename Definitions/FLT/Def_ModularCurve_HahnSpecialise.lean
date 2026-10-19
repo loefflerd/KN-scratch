@@ -79,7 +79,6 @@ variable [DecidableEq L] [DecidableEq (ResidueField A)]
 variable (hΔ : (W.map (residue A)).Δ ≠ 0)
 
 omit [DecidableEq (ResidueField A)] in
-
 theorem eq_zero_of_nsmul_eq_zero_of_reducePoint_eq_zero' {N : ℕ} (hN : (N : ResidueField A) ≠ 0)
     (P : (W.map A.subtype).toAffine.Point) (hP : N • P = 0) (h0 : reducePoint hΔ P = 0) :
     P = 0 := by
@@ -96,7 +95,7 @@ theorem reduceHom_injOn_nsmul_eq_zero {N : ℕ} (hN : (N : ResidueField A) ≠ 0
     (h : reduceHom hΔ P = reduceHom hΔ Q) : P = Q := by
   have h1 : N • (P - Q) = 0 := by rw [nsmul_sub, hP, hQ, sub_zero]
   have h2 : reducePoint hΔ (P - Q) = 0 := by
-    show reduceHom hΔ (P - Q) = 0
+    change reduceHom hΔ (P - Q) = 0
     rw [map_sub, h, sub_self]
   exact sub_eq_zero.mp (eq_zero_of_nsmul_eq_zero_of_reducePoint_eq_zero' hΔ hN _ h1 h2)
 
@@ -111,7 +110,6 @@ variable {G G' : Type*} [AddCommGroup G] [AddCommGroup G'] (f : G →+ G') {N : 
 variable (hf : ∀ ⦃P Q : G⦄, N • P = 0 → N • Q = 0 → f P = f Q → P = Q)
 
 include hf in
-
 theorem addOrderOf_map_of_injOn {g : G} (hg : addOrderOf g = N) : addOrderOf (f g) = N := by
   apply Nat.dvd_antisymm
   · apply addOrderOf_dvd_of_nsmul_eq_zero
@@ -145,7 +143,7 @@ def valuationSubringH : ValuationSubring H :=
     rcases le_or_gt 0 x.orderTop with h | h
     · exact Or.inl h
     · right
-      show 0 ≤ x⁻¹.orderTop
+      change 0 ≤ x⁻¹.orderTop
       have hinv : x⁻¹ ≠ 0 := inv_ne_zero hx0
       have h1 : (x * x⁻¹).order = x.order + x⁻¹.order := HahnSeries.order_mul hx0 hinv
       rw [mul_inv_cancel₀ hx0, HahnSeries.order_one] at h1
@@ -172,11 +170,11 @@ theorem resH_eq_resO (x : valuationSubringH) : resH x = resO ⟨(x : H), x.2⟩ 
 
 theorem resH_surjective : Function.Surjective resH := fun c => by
   refine ⟨⟨HahnSeries.C c, ?_⟩, ?_⟩
-  · show 0 ≤ (HahnSeries.C c : H).orderTop
+  · change 0 ≤ (HahnSeries.C c : H).orderTop
     by_cases hc : c = 0
     · simp [hc]
     · rw [HahnSeries.C_apply, HahnSeries.orderTop_single hc]; exact le_rfl
-  · show (HahnSeries.C c : H).coeff 0 = c
+  · change (HahnSeries.C c : H).coeff 0 = c
     simp
 
 theorem ker_resH : RingHom.ker resH = maximalIdeal valuationSubringH :=
@@ -196,7 +194,8 @@ open ModularCurve.B3
 
 open WeierstrassCurve
 
-def liftModel (E : WeierstrassCurve H) (hE : IntegralCoeffs E) : WeierstrassCurve valuationSubringH :=
+def liftModel (E : WeierstrassCurve H) (hE : IntegralCoeffs E) :
+    WeierstrassCurve valuationSubringH :=
   ⟨⟨E.a₁, hE.1⟩, ⟨E.a₂, hE.2.1⟩, ⟨E.a₃, hE.2.2.1⟩, ⟨E.a₄, hE.2.2.2.1⟩, ⟨E.a₆, hE.2.2.2.2⟩⟩
 
 @[simp] theorem liftModel_map_subtype (E : WeierstrassCurve H) (hE : IntegralCoeffs E) :
@@ -300,13 +299,13 @@ def specialFibrePointMap :
 theorem specialFibrePointMap_injective : Function.Injective (specialFibrePointMap E hE) :=
   Affine.Point.map_injective _
 
-def specialise (hΔ : (specialFibre E).Δ ≠ 0) : E.toAffine.Point →+ (specialFibre E).toAffine.Point :=
+def specialise (hΔ : (specialFibre E).Δ ≠ 0) :
+    E.toAffine.Point →+ (specialFibre E).toAffine.Point :=
   (specialFibrePointMap E hE).comp
     ((reduceHom (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ) :
       ((liftModel E hE).map valuationSubringH.subtype).toAffine.Point →+ _) :)
 
 include hE in
-
 theorem nonsingular_specialFibre_coeff_zero (hΔ : (specialFibre E).Δ ≠ 0) {x y : H}
     (h : E.toAffine.Nonsingular x y) (hx : 0 ≤ x.orderTop) :
     (specialFibre E).toAffine.Nonsingular (x.coeff 0) (y.coeff 0) := by
@@ -318,7 +317,8 @@ theorem nonsingular_specialFibre_coeff_zero (hΔ : (specialFibre E).Δ ≠ 0) {x
   have hmap := ((((liftModel E hE).map (residue valuationSubringH)).toAffine.map_nonsingular
     (f := residueFieldEquiv.toRingHom) residueFieldEquiv.injective
     (residue valuationSubringH ⟨x, hx⟩) (residue valuationSubringH ⟨y, hy⟩)).mpr hres)
-  rw [show ((liftModel E hE).map (residue valuationSubringH)).toAffine.map residueFieldEquiv.toRingHom
+  rw [show ((liftModel E hE).map (residue valuationSubringH)).toAffine.map
+    residueFieldEquiv.toRingHom
       = (specialFibre E).toAffine from liftModel_map_residue_map_equiv E hE] at hmap
   exact hmap
 
@@ -331,7 +331,7 @@ theorem specialise_some_of_nonneg (hΔ : (specialFibre E).Δ ≠ 0) {x y : H}
       .some (x.coeff 0) (y.coeff 0) (nonsingular_specialFibre_coeff_zero E hE hΔ h hx) := by
   have h' : ((liftModel E hE).map valuationSubringH.subtype).toAffine.Nonsingular x y := by
     rw [liftModel_map_subtype]; exact h
-  show specialFibrePointMap E hE (reducePoint (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ)
+  change specialFibrePointMap E hE (reducePoint (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ)
     (.some x y h')) = _
   rw [WeierstrassCurve.reducePoint_some_of_mem _ h' hx]
   rfl
@@ -341,7 +341,7 @@ theorem specialise_some_of_neg (hΔ : (specialFibre E).Δ ≠ 0) {x y : H}
     specialise E hE hΔ (.some x y h) = 0 := by
   have h' : ((liftModel E hE).map valuationSubringH.subtype).toAffine.Nonsingular x y := by
     rw [liftModel_map_subtype]; exact h
-  show specialFibrePointMap E hE (reducePoint (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ)
+  change specialFibrePointMap E hE (reducePoint (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ)
     (.some x y h')) = _
   rw [WeierstrassCurve.reducePoint_some_of_notMem _ h' hx, map_zero]
 

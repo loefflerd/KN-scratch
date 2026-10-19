@@ -70,7 +70,8 @@ local notation "𝓓[" K "]" =>
     HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24)
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_single qExpand qExpand_C qExpand_injective qExpand_qExpand etaProd jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jqModC jqNModC"
+p2m_export "ModularCurve" "qTwist qTwist_single qExpand qExpand_C qExpand_injective \
+  qExpand_qExpand etaProd jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jqModC jqNModC"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -87,11 +88,13 @@ theorem jqModC_pow (n : ℕ) :
 theorem coeff_jqModC_pow_self (n : ℕ) : (jqModC K ^ n).coeff (-(n : ℤ)) = 1 := by
   rw [jqModC_pow, HahnSeries.coeff_single_mul, one_mul, sub_neg_eq_add, neg_add_cancel,
     show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
-    PowerSeries.coeff_zero_eq_constantCoeff, map_pow, ← PowerSeries.coeff_zero_eq_constantCoeff_apply,
+    PowerSeries.coeff_zero_eq_constantCoeff, map_pow, ←
+    PowerSeries.coeff_zero_eq_constantCoeff_apply,
     PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff_apply, constantCoeff_jNum,
     map_one, one_pow]
 
-theorem coeff_jqModC_pow_of_lt {n : ℕ} {m : ℤ} (hm : m < -(n : ℤ)) : (jqModC K ^ n).coeff m = 0 := by
+theorem coeff_jqModC_pow_of_lt {n : ℕ} {m : ℤ} (hm : m < -(n : ℤ)) :
+    (jqModC K ^ n).coeff m = 0 := by
   rw [jqModC_pow, HahnSeries.coeff_single_mul, one_mul]
   exact ofPowerSeries_coeff_of_neg _ (by omega)
 
@@ -173,12 +176,13 @@ end Kit
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qTwist qTwist_single qExpand qExpand_C qExpand_injective qExpand_qExpand etaProd jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jqModC jqNModC"
+p2m_export "ModularCurve" "qTwist qTwist_single qExpand qExpand_C qExpand_injective \
+  qExpand_qExpand etaProd jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jqModC jqNModC"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
-
-private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime]
+private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed K] (p : ℕ)
+    [Fact p.Prime]
     (ζ : Kˣ) {M : ℕ} {G R : Polynomial K}
     (hstar : Polynomial.aeval (jqModC K) G *
         (HahnSeries.single (1 : ℤ) (1 : K) *
@@ -303,7 +307,8 @@ private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed
         Polynomial.aeval (jqNModC K p)
           ((G.roots.map fun α => Polynomial.C (R.eval α) - Polynomial.X).prod) *
         Polynomial.aeval (qExpand K (p * p) (jqModC K)) G := by
-    rw [map_mul, map_mul, map_mul, map_mul, Polynomial.aeval_C, Polynomial.aeval_comp, hR, hjp, ← qExpand_aeval, qExpand_qExpand,
+    rw [map_mul, map_mul, map_mul, map_mul, Polynomial.aeval_C, Polynomial.aeval_comp, hR, hjp, ←
+      qExpand_aeval, qExpand_qExpand,
       algebraMap_eq_C, qExpand_C, ← algebraMap_eq_C, hκL, qExpand_aeval, qExpand_aeval]
   have hpoly : G ^ (p + 1) =
       Polynomial.C ((G.leadingCoeff * (-1) ^ Multiset.card G.roots) ^ p *
@@ -328,7 +333,6 @@ example (c : ℚ) (hc : c ≠ 0) :
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_closure.ModularCurve in
-
 theorem solution {K : Type*} [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime]
     (ζ : Kˣ) {M : ℕ} {G R : Polynomial K}
     (hstar : Polynomial.aeval (jqModC K) G *
@@ -376,6 +380,7 @@ theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed K] (p :
       qExpand K p (HahnSeries.single (1 : ℤ) (1 : K) *
           HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^
         (p + 1)) :
-    ∃ c : K, c ≠ 0 ∧ G.comp R ∣ Polynomial.C c * G ^ (p + 1) := _root_.P2MW.S_ModularCurve_StarBank_closure.solution p ζ hstar hR hpress hnorm
+    ∃ c : K, c ≠ 0 ∧ G.comp R ∣ Polynomial.C c * G ^ (p + 1) :=
+  solution p ζ hstar hR hpress hnorm
 
 end publicSection

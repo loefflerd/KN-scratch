@@ -32,7 +32,7 @@ namespace HorizontalPadicL
 /-- At characters which are primitive at the full selected support, evaluation
 of the finite theta element has the same zero set as the complex modular-symbol
 sum occurring in the Birch--Mellin formula for the product of the seed and the
-realized horizontal character.  This isolates the finite theta construction
+realized horizontal character. This isolates the finite theta construction
 from the analytic Birch--Mellin calculation. -/
 def SeededFiniteThetaDataV3.HasFullSupportModularSymbolZeroSet
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]

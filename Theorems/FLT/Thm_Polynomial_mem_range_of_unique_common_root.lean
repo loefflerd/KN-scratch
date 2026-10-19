@@ -59,14 +59,19 @@ namespace P2MW.S_Polynomial_mem_range_of_unique_common_root
 p2m_open "Polynomial P2MW.S_Polynomial_mem_range_of_unique_common_root.Polynomial"
 
 namespace Polynomial
-p2m_export "Polynomial" "C Splits.of_dvd card_roots' coeff_map natDegree_mul coeff unique aeval coeff_C_zero Splits.of_natDegree_eq_one degree factor IsRoot.def map_map Splits map mem_roots eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Monic comp roots natDegree_eq_card_roots roots.le_of_dvd natDegree eval_C natDegree_sub_le eval_sub natDegree_map map_dvd natDegree_C mod eval_map_algebraMap ext roots_map IsRoot ring roots_mul"
+p2m_export "Polynomial" "C Splits.of_dvd card_roots' coeff_map natDegree_mul coeff unique aeval \
+  coeff_C_zero Splits.of_natDegree_eq_one degree factor IsRoot.def map_map Splits map mem_roots \
+  eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Monic comp roots natDegree_eq_card_roots \
+  roots.le_of_dvd natDegree eval_C natDegree_sub_le eval_sub natDegree_map map_dvd natDegree_C mod \
+  eval_map_algebraMap ext roots_map IsRoot ring roots_mul"
 end Polynomial
 p2m_open_scoped "Polynomial" in
-
-private theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field F] [Field L] [Algebra F L]
+private theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field F] [Field L]
+    [Algebra F L]
     (A B : Polynomial F) (hA : A ≠ 0) (hAs : (A.map (algebraMap F L)).Splits)
     (hAnd : (A.map (algebraMap F L)).roots.Nodup) (x : L) (hxA : Polynomial.aeval x A = 0)
-    (hxB : Polynomial.aeval x B = 0) (huniq : ∀ y : L, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 → y = x) :
+    (hxB : Polynomial.aeval x B = 0)
+    (huniq : ∀ y : L, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 → y = x) :
     x ∈ (algebraMap F L).range := by
   classical
   set i := algebraMap F L with hi
@@ -77,7 +82,8 @@ private theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field 
   have hAm0 : A.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hA
   have hgm0 : g.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hg0
   have hxg : Polynomial.aeval x g = 0 := by
-    rw [hg, EuclideanDomain.gcd_eq_gcd_ab A B, map_add, map_mul, map_mul, hxA, hxB, zero_mul, zero_mul,
+    rw [hg, EuclideanDomain.gcd_eq_gcd_ab A B, map_add, map_mul, map_mul, hxA, hxB, zero_mul,
+      zero_mul,
       add_zero]
   have hroot_eq : ∀ y ∈ (g.map i).roots, y = x := by
     intro y hy
@@ -89,7 +95,8 @@ private theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field 
       rw [hc, map_mul, hy, zero_mul]
   have hxmem : x ∈ (g.map i).roots := by
     rw [Polynomial.mem_roots hgm0, Polynomial.IsRoot.def, Polynomial.eval_map_algebraMap]; exact hxg
-  have hle : (g.map i).roots ≤ (A.map i).roots := Polynomial.roots.le_of_dvd hAm0 (Polynomial.map_dvd i hgA)
+  have hle : (g.map i).roots ≤ (A.map i).roots :=
+    Polynomial.roots.le_of_dvd hAm0 (Polynomial.map_dvd i hgA)
   have hnd : (g.map i).roots.Nodup := Multiset.nodup_of_le hle hAnd
   have hcount : (g.map i).roots.count x = Multiset.card (g.map i).roots :=
     Multiset.count_eq_card.mpr fun y hy => (hroot_eq y hy).symm
@@ -104,8 +111,8 @@ private theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field 
   exact hgsF.mem_range_of_isRoot hg0 ((Polynomial.mem_roots hgm0).mp hxmem)
 
 p2m_open_scoped "Polynomial" in
-
-private theorem Polynomial.mem_range_of_eval_eq_const {F L : Type*} [Field F] [Field L] [Algebra F L]
+private theorem Polynomial.mem_range_of_eval_eq_const {F L : Type*} [Field F] [Field L]
+    [Algebra F L]
     (g : Polynomial F) (x : L) (s : Finset L) (hcard : g.natDegree < s.card)
     (hval : ∀ y ∈ s, Polynomial.aeval y g = x) : x ∈ (algebraMap F L).range := by
   classical
@@ -116,15 +123,16 @@ private theorem Polynomial.mem_range_of_eval_eq_const {F L : Type*} [Field F] [F
     rw [Polynomial.natDegree_map, Polynomial.natDegree_C, max_eq_left (Nat.zero_le _)]
   have hQ0 : Q = 0 := by
     refine Polynomial.eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Q s (fun y hy => ?_) (hQdeg.trans_lt hcard)
-    rw [hQ, Polynomial.eval_sub, Polynomial.eval_C, Polynomial.eval_map_algebraMap, hval y hy, sub_self]
+    rw [hQ, Polynomial.eval_sub, Polynomial.eval_C, Polynomial.eval_map_algebraMap, hval y hy,
+      sub_self]
   have hconst : g.map i = Polynomial.C x := sub_eq_zero.mp hQ0
   refine ⟨g.coeff 0, ?_⟩
   have := congrArg (fun P : Polynomial L => P.coeff 0) hconst
   simpa only [Polynomial.coeff_map, Polynomial.coeff_C_zero] using this
 
 p2m_open_scoped "Polynomial" in
-
-private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Field F] [Field L] [Algebra F L]
+private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Field F] [Field L]
+    [Algebra F L]
     (P : Polynomial F) (hP : P.Monic) (hPs : (P.map (algebraMap F L)).Splits) (σ : L ≃+* L)
     (hσ : ∀ a : F, σ (algebraMap F L a) = algebraMap F L a) (y₀ : L) (r : ℕ → L) (n : ℕ)
     (hroots : (P.map (algebraMap F L)).roots = y₀ ::ₘ (Multiset.range n).map r)
@@ -135,13 +143,15 @@ private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Fiel
   have hσi : (σ : L →+* L).comp i = i := RingHom.ext fun a => hσ a
   have hPm0 : P.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hP.ne_zero
   have hPdeg : P.natDegree = n + 1 := by
-    rw [← Polynomial.natDegree_map i, hPs.natDegree_eq_card_roots, hroots, Multiset.card_cons, Multiset.card_map,
+    rw [← Polynomial.natDegree_map i, hPs.natDegree_eq_card_roots, hroots, Multiset.card_cons,
+      Multiset.card_map,
       Multiset.card_range]
   have hy₀_notin : y₀ ∉ (Multiset.range n).map r := by
     rw [hroots] at hnodup; exact (Multiset.nodup_cons.mp hnodup).1
   have hr_nodup : ((Multiset.range n).map r).Nodup := by
     rw [hroots] at hnodup; exact (Multiset.nodup_cons.mp hnodup).2
-  have key : ∀ f g : Polynomial F, f.Monic → g.Monic → f * g = P → y₀ ∈ (f.map i).roots → g.natDegree = 0 := by
+  have key : ∀ f g : Polynomial F, f.Monic → g.Monic → f * g = P → y₀ ∈ (f.map i).roots → g.natDegree = 0 :=
+    by
     intro f g hf hg hfg hyf
     have hfm0 : f.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hf.ne_zero
     have hgm0 : g.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hg.ne_zero
@@ -163,7 +173,8 @@ private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Fiel
       rcases this with rfl | h
       · exact absurd hy hy₀g
       · exact h
-    have hgs : (g.map i).Splits := Polynomial.Splits.of_dvd hPs hPm0 (by rw [← hfg, Polynomial.map_mul]; exact dvd_mul_left _ _)
+    have hgs : (g.map i).Splits :=
+      Polynomial.Splits.of_dvd hPs hPm0 (by rw [← hfg, Polynomial.map_mul]; exact dvd_mul_left _ _)
     have hstable : ((g.map i).roots).map (σ : L →+* L) = (g.map i).roots := by
       rw [← hgs.roots_map (σ : L →+* L), Polynomial.map_map, hσi]
     have hmemσ : ∀ y ∈ (g.map i).roots, σ y ∈ (g.map i).roots := by
@@ -204,7 +215,8 @@ private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Fiel
     have hfdeg_pos : 1 ≤ f.natDegree := by
       rw [← Polynomial.natDegree_map i]
       have := Polynomial.card_roots' (f.map i)
-      have hpos : 0 < Multiset.card (f.map i).roots := Multiset.card_pos_iff_exists_mem.mpr ⟨y₀, hyf⟩
+      have hpos : 0 < Multiset.card (f.map i).roots :=
+        Multiset.card_pos_iff_exists_mem.mpr ⟨y₀, hyf⟩
       omega
     have hfdeg : f.natDegree = 1 := by omega
     have hfs : f.Splits := Polynomial.Splits.of_natDegree_eq_one hfdeg
@@ -214,12 +226,17 @@ private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Fiel
   have hfm0 : f.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hf.ne_zero
   have hgm0 : g.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hg.ne_zero
   have hy₀P : y₀ ∈ (P.map i).roots := by rw [hroots]; exact Multiset.mem_cons_self _ _
-  rw [← hfg, Polynomial.map_mul, Polynomial.roots_mul (mul_ne_zero hfm0 hgm0), Multiset.mem_add] at hy₀P
+  rw [← hfg, Polynomial.map_mul, Polynomial.roots_mul (mul_ne_zero hfm0 hgm0),
+    Multiset.mem_add] at hy₀P
   rcases hy₀P with h | h
   · exact Or.inr (key f g hf hg hfg h)
   · exact Or.inl (key g f hg hf (by rw [mul_comm]; exact hfg) h)
 
-theorem solution {F L : Type*} [Field F] [Field L] [Algebra F L] (A B : Polynomial F) (hA : A ≠ 0) (hAs : (A.map (algebraMap F L)).Splits) (hAnd : (A.map (algebraMap F L)).roots.Nodup) (x : L) (hxA : Polynomial.aeval x A = 0) (hxB : Polynomial.aeval x B = 0) (huniq : ∀ y : L, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 → y = x) : x ∈ (algebraMap F L).range :=
+theorem solution {F L : Type*} [Field F] [Field L] [Algebra F L] (A B : Polynomial F) (hA : A ≠ 0)
+    (hAs : (A.map (algebraMap F L)).Splits) (hAnd : (A.map (algebraMap F L)).roots.Nodup) (x : L)
+    (hxA : Polynomial.aeval x A = 0) (hxB : Polynomial.aeval x B = 0)
+    (huniq : ∀ y : L, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 → y = x) :
+    x ∈ (algebraMap F L).range :=
   Polynomial.mem_range_of_unique_common_root A B hA hAs hAnd x hxA hxB huniq
 
 end S_Polynomial_mem_range_of_unique_common_root
@@ -230,6 +247,12 @@ end privateSection
 
 public section publicSection
 
-theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field F] [Field L] [Algebra F L] (A B : Polynomial F) (hA : A ≠ 0) (hAs : (A.map (algebraMap F L)).Splits) (hAnd : (A.map (algebraMap F L)).roots.Nodup) (x : L) (hxA : Polynomial.aeval x A = 0) (hxB : Polynomial.aeval x B = 0) (huniq : ∀ y : L, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 → y = x) : x ∈ (algebraMap F L).range := _root_.P2MW.S_Polynomial_mem_range_of_unique_common_root.solution A B hA hAs hAnd x hxA hxB huniq
+theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field F] [Field L] [Algebra F L]
+    (A B : Polynomial F) (hA : A ≠ 0) (hAs : (A.map (algebraMap F L)).Splits)
+    (hAnd : (A.map (algebraMap F L)).roots.Nodup) (x : L) (hxA : Polynomial.aeval x A = 0)
+    (hxB : Polynomial.aeval x B = 0)
+    (huniq : ∀ y : L, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 → y = x) :
+    x ∈ (algebraMap F L).range :=
+  solution A B hA hAs hAnd x hxA hxB huniq
 
 end publicSection

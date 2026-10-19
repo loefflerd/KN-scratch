@@ -114,7 +114,6 @@ namespace IsCurveOver
 p2m_export "AlgebraicCurve.IsCurveOver" "finrank_kaehler instNontrivialKaehler"
 end IsCurveOver
 p2m_open_scoped "AlgebraicCurve.IsCurveOver" in
-
 theorem IsCurveOver.trdeg_eq_one [PerfectField K] [IsCurveOver K F]
     (htrdeg : Algebra.trdeg K F ≤ 1) :
     Algebra.trdeg K F = 1 :=
@@ -146,7 +145,7 @@ def kaehlerAdjoinBasis (hv : AlgebraicIndependent K v) :
       (hv.aevalEquiv : MvPolynomial ι K →+* Algebra.adjoin K (Set.range v))).toAlgebra
   haveI : IsScalarTower K (MvPolynomial ι K) Kv :=
     IsScalarTower.of_algebraMap_eq fun a => by
-      show algebraMap K Kv a
+      change algebraMap K Kv a
         = algebraMap (Algebra.adjoin K (Set.range v)) Kv (hv.aevalEquiv (algebraMap K _ a))
       rw [AlgEquiv.commutes]; rfl
   haveI : IsFractionRing (MvPolynomial ι K) Kv :=
@@ -248,7 +247,8 @@ end IsCurveOver
 end AlgebraicCurve
 
 open IntermediateField _root_.Algebra _root_.TensorProduct.Algebra _root_.Algebra.TensorProduct.Algebra in
-theorem _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
+theorem _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.solution
+    {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F] :
     ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F :=
   AlgebraicCurve.IsCurveOver.exists_separating_transcendental_s6
@@ -270,7 +270,8 @@ namespace AlgebraicCurve
 namespace IsCurveOver
 theorem exists_separating_transcendental {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] [IsCurveOver K F] :
-    ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F := _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.solution
+    ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F :=
+  solution
 end IsCurveOver
 end AlgebraicCurve
 

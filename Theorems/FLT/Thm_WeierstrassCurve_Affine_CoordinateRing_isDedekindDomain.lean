@@ -55,18 +55,28 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 
-p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine.CoordinateRing"
+p2m_open "Polynomial WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve \
+  WeierstrassCurve.Affine \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.CoordinateRing \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine.Coordinate\
+  Ring"
 open scoped Polynomial.Bivariate
 
 local macro "C_simp" : tactic =>
   `(tactic| simp only [map_ofNat, C_0, C_1, C_neg, C_add, C_sub, C_mul, C_pow])
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ toAffine Affine.Point Δ"
+p2m_export "WeierstrassCurve" "Affine a₃ a₁ map Affine.CoordinateRing mk a₄ a₂ toAffine \
+  Affine.Point Δ"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map evalEval_polynomialX Nonsingular Point evalEval_polynomialY equation_iff_nonsingular CoordinateRing.basis equation_iff polynomial"
+p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map evalEval_polynomialX \
+  Nonsingular Point evalEval_polynomialY equation_iff_nonsingular CoordinateRing.basis \
+  equation_iff polynomial"
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "XYIdeal quotientXYIdealEquiv XClass_ne_zero YClass mk map XClass"
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "XYIdeal quotientXYIdealEquiv XClass_ne_zero \
+  YClass mk map XClass"
 namespace DetInfra
 p2m_open "WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine WeierstrassCurve"
 
@@ -221,7 +231,8 @@ end WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
 open WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
-theorem solution {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K) [W.IsElliptic] : IsDedekindDomain W.toAffine.CoordinateRing :=
+theorem solution {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K) [W.IsElliptic] :
+    IsDedekindDomain W.toAffine.CoordinateRing :=
   isDedekindDomain_of_isAlgClosed' (W := W.toAffine)
 
 end S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
@@ -235,6 +246,9 @@ public section publicSection
 
 open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing
 open scoped Polynomial.Bivariate
-theorem WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K) [W.IsElliptic] : IsDedekindDomain W.toAffine.CoordinateRing := _root_.P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.solution W
+theorem WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain {K : Type*} [Field K]
+    [IsAlgClosed K] (W : WeierstrassCurve K) [W.IsElliptic] :
+    IsDedekindDomain W.toAffine.CoordinateRing :=
+  solution W
 
 end publicSection

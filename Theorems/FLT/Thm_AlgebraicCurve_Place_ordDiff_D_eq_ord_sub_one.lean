@@ -70,7 +70,9 @@ noncomputable section
 open KaehlerDifferential
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.diffCoeff Place.ordDiff_def Place Place.D_ne_zero_of_ord_ne_zero Place.diffCoeff_smul_D_of_ord_ne_zero Place.diffCoeff_smul_D_eq Place.ord_diffCoeff_D_nonneg Place.ord_add_eq_of_lt"
+p2m_export "AlgebraicCurve" "Place.diffCoeff Place.ordDiff_def Place \
+  Place.D_ne_zero_of_ord_ne_zero Place.diffCoeff_smul_D_of_ord_ne_zero Place.diffCoeff_smul_D_eq \
+  Place.ord_diffCoeff_D_nonneg Place.ord_add_eq_of_lt"
 namespace FF2R4A
 p2m_open "AlgebraicCurve"
 
@@ -97,7 +99,6 @@ section R4grade
 variable [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
 
 include x in
-
 theorem ord_diffCoeff_D_eq_zero (v : Place K F) {t t' : F} (ht : v.ord t = 1) (ht' : v.ord t' = 1) :
     v.ord (Place.diffCoeff t (D K F t')) = 0 := by
   have ht0 : v.ord t ≠ 0 := by rw [ht]; exact one_ne_zero
@@ -118,7 +119,6 @@ theorem ord_diffCoeff_D_eq_zero (v : Place K F) {t t' : F} (ht : v.ord t = 1) (h
   omega
 
 include x in
-
 theorem ordDiff_eq_ord_diffCoeff (v : Place K F) {t : F} (ht : v.ord t = 1) (ω : Ω[F⁄K]) :
     v.ordDiff ω = v.ord (Place.diffCoeff t ω) := by
   have ht0 : v.ord t ≠ 0 := by rw [ht]; exact one_ne_zero
@@ -127,7 +127,8 @@ theorem ordDiff_eq_ord_diffCoeff (v : Place K F) {t : F} (ht : v.ord t = 1) (ω 
   set a := Place.diffCoeff t ω with ha
   set c := Place.diffCoeff v.uniformizer_alt (D K F t) with hc
   have hω : a • D K F t = ω := Place.diffCoeff_smul_D_of_ord_ne_zero x v ht0 ω
-  have hDt : c • D K F v.uniformizer_alt = D K F t := Place.diffCoeff_smul_D_of_ord_ne_zero x v hu0 _
+  have hDt : c • D K F v.uniformizer_alt = D K F t :=
+    Place.diffCoeff_smul_D_of_ord_ne_zero x v hu0 _
   have hc0 : c ≠ 0 := by
     rintro h; rw [h, zero_smul] at hDt; exact Place.D_ne_zero_of_ord_ne_zero x v ht0 hDt.symm
   have hcord : v.ord c = 0 := ord_diffCoeff_D_eq_zero x v hu ht
@@ -137,14 +138,12 @@ theorem ordDiff_eq_ord_diffCoeff (v : Place K F) {t : F} (ht : v.ord t = 1) (ω 
   · rw [v.ord_mul ha0 hc0, hcord, add_zero]
 
 include x in
-
 theorem ordDiff_D_nonneg (v : Place K F) {f : F} (hf : 0 ≤ v.ord f) : 0 ≤ v.ordDiff (D K F f) := by
   obtain ⟨t, ht⟩ := v.exists_ord_eq_one
   rw [ordDiff_eq_ord_diffCoeff x v ht]
   exact Place.ord_diffCoeff_D_nonneg x v ht hf
 
 include x in
-
 theorem ordDiff_D_of_ord_pos (v : Place K F) {f : F} (hf : 0 < v.ord f) :
     v.ordDiff (D K F f) = v.ord f - 1 := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -184,10 +183,10 @@ theorem ordDiff_D_of_ord_pos (v : Place K F) {f : F} (hf : 0 < v.ord f) :
   · rw [hcu0, mul_zero, add_zero, hA, hsub]
   · have hB : v.ord ((π : F) ^ n * cu) = (n : ℤ) + v.ord cu := by
       rw [v.ord_mul (pow_ne_zero _ hπF) hcu0, ← zpow_natCast, v.ord_zpow, hπord, mul_one]
-    rw [Place.ord_add_eq_of_lt v hA0 (mul_ne_zero (pow_ne_zero _ hπF) hcu0) (by rw [hA, hB, hsub]; omega), hA, hsub]
+    rw [Place.ord_add_eq_of_lt v hA0 (mul_ne_zero (pow_ne_zero _ hπF) hcu0) (by
+      rw [hA, hB, hsub]; omega), hA, hsub]
 
 include x in
-
 theorem ordDiff_D_eq_ord_sub_one (v : Place K F) {f : F} (hf : v.ord f ≠ 0) :
     v.ordDiff (D K F f) = v.ord f - 1 := by
   rcases lt_or_gt_of_ne hf with hneg | hpos
@@ -206,7 +205,6 @@ theorem ordDiff_D_eq_ord_sub_one (v : Place K F) {f : F} (hf : v.ord f ≠ 0) :
   · exact ordDiff_D_of_ord_pos x v hpos
 
 include x in
-
 theorem ordDiff_D_eq_ord_sub_algebraMap_sub_one (v : Place K F) {f : F} {c : K}
     (hfc : v.ord (f - algebraMap K F c) ≠ 0) :
     v.ordDiff (D K F f) = v.ord (f - algebraMap K F c) - 1 := by
@@ -221,7 +219,8 @@ end AlgebraicCurve.FF2R4A
 end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {f : F} (hf : v.ord f ≠ 0) :
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {f : F} (hf : v.ord f ≠ 0) :
     v.ordDiff (KaehlerDifferential.D K F f) = v.ord f - 1 :=
   AlgebraicCurve.FF2R4A.ordDiff_D_eq_ord_sub_one x v hf
 
@@ -233,8 +232,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {f : F} (hf : v.ord f ≠ 0) :
-    v.ordDiff (KaehlerDifferential.D K F f) = v.ord f - 1 := _root_.P2MW.S_AlgebraicCurve_Place_ordDiff_D_eq_ord_sub_one.solution x v hf
+theorem AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one {K F : Type*} [Field K] [Field F]
+    [Algebra K F] [CharZero K] (x : F)
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F)
+    {f : F} (hf : v.ord f ≠ 0) :
+    v.ordDiff (KaehlerDifferential.D K F f) = v.ord f - 1 :=
+  solution x v hf
 
 end publicSection

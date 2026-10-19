@@ -77,7 +77,13 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero
 
 namespace ModularCurve
-p2m_export "ModularCurve" "intSeriesC qExpFunctionFieldC intFormRatiosC_subset qExpFunctionFieldC_mono coeffMap coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jqModC map_jqModC exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero exists_intSeriesC_mul_ne_of_gamma0Units_not_mem finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring JOneES.exists_transcendental_finiteDimensional_laurentBaseChange transcendental_jqModC jqModC_mem_intFormRatiosC"
+p2m_export "ModularCurve" "intSeriesC qExpFunctionFieldC intFormRatiosC_subset \
+  qExpFunctionFieldC_mono coeffMap coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange \
+  jqModC map_jqModC exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero \
+  exists_intSeriesC_mul_ne_of_gamma0Units_not_mem \
+  finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring \
+  JOneES.exists_transcendental_finiteDimensional_laurentBaseChange transcendental_jqModC \
+  jqModC_mem_intFormRatiosC"
 namespace IgusaGammaH
 p2m_open "ModularCurve"
 
@@ -122,10 +128,12 @@ open scoped MatrixGroups
 
 theorem gamma0Units_surjective' (M : ℕ) [NeZero M] : Function.Surjective (gamma0Units M) := by
   intro u
-  have hAD : (((((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ) * ((u : ZMod M).val : ℤ) - 1 : ℤ) : ZMod M) = 0 := by
+  have hAD : (((((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ) * ((u : ZMod M).val : ℤ) - 1 : ℤ) : ZMod M) = 0 :=
+    by
     simp
   obtain ⟨k, hk⟩ := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp hAD
-  let γ : SL(2, ℤ) := ⟨!![(((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ), k; (M : ℤ), ((u : ZMod M).val : ℤ)], by
+  let γ : SL(2, ℤ) :=
+    ⟨!![(((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ), k; (M : ℤ), ((u : ZMod M).val : ℤ)], by
     rw [Matrix.det_fin_two_of]
     linarith⟩
   have hγ0 : γ ∈ Gamma0 M := by
@@ -184,7 +192,6 @@ end CohCarrier
 open scoped MatrixGroups in
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero.ModularCurve ModularCurve.IgusaGammaH IntermediateField in
 set_option synthInstance.maxHeartbeats 1600000 in
-
 theorem solution
     (K : Type*) [Field K] [CharZero K] (M : ℕ) [NeZero M] (H : Subgroup (ZMod M)ˣ) :
     (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index ≤
@@ -193,7 +200,8 @@ theorem solution
   classical
   have hMk : (M : K) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne M)
   have hΓ : CohCarrier.GammaH M H ≤ CongruenceSubgroup.Gamma0 M := CohCarrier.GammaH_le_Gamma0 H
-  have hb0H : (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) ≤ (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := ModularCurve.qExpFunctionFieldC_mono K hΓ
+  have hb0H : (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) ≤ (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
+    ModularCurve.qExpFunctionFieldC_mono K hΓ
   obtain ⟨ρ, hρH, hρneg, hρfix, hρslash⟩ :=
     ModularCurve.exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero K M H
   have hker : ρ.ker = (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).comap (CohCarrier.gamma0Units M) := by
@@ -220,7 +228,8 @@ theorem solution
         have hunits : CohCarrier.gamma0Units M ⟨-(γ : SL(2, ℤ)), hneg0⟩ =
             -CohCarrier.gamma0Units M γ := by
           ext
-          simp [CohCarrier.gamma0Units, CongruenceSubgroup.Gamma0Map, Matrix.SpecialLinearGroup.coe_neg]
+          simp [CohCarrier.gamma0Units, CongruenceSubgroup.Gamma0Map,
+            Matrix.SpecialLinearGroup.coe_neg]
         have hnegH : (-(γ : SL(2, ℤ))) ∈ CohCarrier.GammaH M H :=
           CohCarrier.mem_GammaH_iff.mpr ⟨hneg0, by rw [hunits]; exact h⟩
         have hm1 : (-1 : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 M := by
@@ -242,10 +251,12 @@ theorem solution
       Fintype.card ρ.range := FixedPoints.finrank_eq_card _ _
   have hL : IntermediateField.lift (IntermediateField.fixedField ρ.range) ≤ (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
     IntermediateField.lift_le _
-  have h0L : (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) ≤ IntermediateField.lift (IntermediateField.fixedField ρ.range) := by
+  have h0L : (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) ≤ IntermediateField.lift (IntermediateField.fixedField ρ.range) :=
+    by
     intro x hx
     have hxH : x ∈ (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := hb0H hx
-    have hfx : (⟨x, hxH⟩ : (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H))) ∈ IntermediateField.fixedField ρ.range := by
+    have hfx : (⟨x, hxH⟩ : (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H))) ∈ IntermediateField.fixedField ρ.range :=
+      by
       rw [IntermediateField.mem_fixedField_iff]
       rintro _ ⟨γ, rfl⟩
       exact hρfix γ ⟨x, hxH⟩ hx
@@ -264,13 +275,15 @@ theorem solution
   have hfin : FiniteDimensional
       (IntermediateField.adjoin K ({x0} : Set (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H))))
       (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := by
-    obtain ⟨w, fj, gj, a, b, ha, hb, hb0, hj⟩ := ModularCurve.jqModC_mem_intFormRatiosC K (CohCarrier.GammaH M H)
+    obtain ⟨w, fj, gj, a, b, ha, hb, hb0, hj⟩ :=
+      ModularCurve.jqModC_mem_intFormRatiosC K (CohCarrier.GammaH M H)
     have hjQ : ModularCurve.jqModC ℚ ∈ ModularCurve.qExpFunctionFieldC ℚ (CohCarrier.GammaH M H) :=
       ModularCurve.intFormRatiosC_subset ℚ _ (ModularCurve.jqModC_mem_intFormRatiosC ℚ _)
     have hXmem : ModularCurve.jqModC K ∈
         ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CohCarrier.GammaH M H)) := by
       have := ModularCurve.coeffEmb_mem_laurentBaseChange K hjQ
-      rwa [ModularCurve.coeffEmb, show ModularCurve.coeffMap (algebraMap ℚ K) (ModularCurve.jqModC ℚ) =
+      rwa [ModularCurve.coeffEmb, show ModularCurve.coeffMap (algebraMap ℚ K) (ModularCurve.jqModC
+        ℚ) =
         ModularCurve.jqModC K from ModularCurve.map_jqModC (algebraMap ℚ K)] at this
     have htr : Transcendental K x0 := by
       intro halg
@@ -282,12 +295,14 @@ theorem solution
     exact (ModularCurve.finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring
       (⊤ : ValuationSubring K) ((⊤ : ValuationSubring K).subtype) (CohCarrier.GammaH M H) hF a b
       ⟨ModularCurve.jqModC K, hXmem⟩ (by simpa using hj) x0 (by rw [hx0]; exact hj) htr).1
-  have hJH : 0 < (IntermediateField.adjoin K ({ModularCurve.jqModC K} : Set (LaurentSeries K))).relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := by
+  have hJH : 0 < (IntermediateField.adjoin K ({ModularCurve.jqModC K} : Set (LaurentSeries K))).relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
+    by
     have : Module.Finite
         (IntermediateField.adjoin K ({x0} : Set (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)))) (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := hfin
     have hpos : 0 < Module.finrank (IntermediateField.adjoin K ({x0} : Set (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)))) (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
       Module.finrank_pos
-    have e := finrank_adjoin_eq_relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) x0
+    have e :=
+      finrank_adjoin_eq_relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) x0
     rw [hx0] at e
     exact e ▸ hpos
   have hjb0 : ModularCurve.jqModC K ∈ (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) :=
@@ -296,7 +311,8 @@ theorem solution
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr hjb0)
   have t1 := IntermediateField.relfinrank_mul_relfinrank hJ0 hb0H
   have t2 := IntermediateField.relfinrank_mul_relfinrank h0L hL
-  have hne : ((ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M))).relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) ≠ 0 := by
+  have hne : ((ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M))).relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) ≠ 0 :=
+    by
     intro h; rw [h, mul_zero] at t1; omega
   have hne2 : ((ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M))).relfinrank
       (IntermediateField.lift (IntermediateField.fixedField ρ.range)) ≠ 0 := by
@@ -321,6 +337,7 @@ theorem ModularCurve.index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_cha
     (K : Type*) [Field K] [CharZero K] (M : ℕ) [NeZero M] (H : Subgroup (ZMod M)ˣ) :
     (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index ≤
       (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)).relfinrank
-        (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := _root_.P2MW.S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero.solution K M H
+        (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
+  solution K M H
 
 end publicSection

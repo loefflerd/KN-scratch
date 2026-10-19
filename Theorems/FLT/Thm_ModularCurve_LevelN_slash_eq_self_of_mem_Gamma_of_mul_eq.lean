@@ -98,7 +98,6 @@ theorem fricke_smul_of_mem (v : Fin 2 → ZMod N) {γ : SL(2, ℤ)}
     (fun τ => ⟨rfl, rfl⟩)).2.2.2.2.2.2.1 v γ hγ τ
 
 omit [NeZero N] in
-
 theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jAnalytic τ := by
   have hmem : (γ : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨γ, rfl⟩
   have h4 : (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • τ) =
@@ -114,7 +113,6 @@ theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jA
   field_simp
 
 omit [NeZero N] in
-
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
   AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
@@ -328,6 +326,7 @@ theorem ModularCurve.LevelN.slash_eq_self_of_mem_Gamma_of_mul_eq (N : ℕ) [NeZe
       a τ * (e τ * deriv (c ∘ UpperHalfPlane.ofComplex) τ -
         c τ * deriv (e ∘ UpperHalfPlane.ofComplex) τ))
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma N) :
-    F ∣[(2 : ℤ)] γ = F := _root_.P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.solution N F hF a b c e ha hb hc he hb0 he0 h γ hγ
+    F ∣[(2 : ℤ)] γ = F :=
+  solution N F hF a b c e ha hb hc he hb0 he0 h γ hγ
 
 end publicSection

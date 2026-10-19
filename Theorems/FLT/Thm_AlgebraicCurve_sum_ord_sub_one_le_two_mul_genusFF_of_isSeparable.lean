@@ -143,6 +143,7 @@ theorem AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable
     (Tinf : Finset (Place k F)) (hTinf : ∀ P ∈ Tinf, P.ord x < 0) :
     ∑ P ∈ T, (P.ord (x - algebraMap k F (a P)) - 1) + ∑ P ∈ Tinf, (-P.ord x - 1) ≤
       2 * (genusFF k F : ℤ) - 2 +
-        2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable.solution k x hx hfin hsep T a hT Tinf hTinf
+        2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) :=
+  solution k x hx hfin hsep T a hT Tinf hTinf
 
 end publicSection

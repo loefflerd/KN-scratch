@@ -67,7 +67,10 @@ scoped instance : FunLike W26FnLike ℍ ℂ where
   coe f := f
   coe_injective _ _ h := h
 
-theorem W26.qExpansion_coeff_nat_mul {h : ℝ} (hh : 0 < h) {F : ℍ → ℂ} (hper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) h) (hhol : MDiff F) (hbdd : UpperHalfPlane.IsBoundedAtImInfty F) {M : ℕ} (hM : 0 < M) (n : ℕ) : (qExpansion (M * h) F).coeff n = if M ∣ n then (qExpansion h F).coeff (n / M) else 0 := by
+theorem W26.qExpansion_coeff_nat_mul {h : ℝ} (hh : 0 < h) {F : ℍ → ℂ}
+    (hper : Function.Periodic (F ∘ UpperHalfPlane.ofComplex) h) (hhol : MDiff F)
+    (hbdd : UpperHalfPlane.IsBoundedAtImInfty F) {M : ℕ} (hM : 0 < M) (n : ℕ) :
+    (qExpansion (M * h) F).coeff n = if M ∣ n then (qExpansion h F).coeff (n / M) else 0 := by
   have hMh : 0 < (M : ℝ) * h := by positivity
   have hM0 : (M : ℂ) ≠ 0 := by exact_mod_cast hM.ne'
   have hh0 : (h : ℂ) ≠ 0 := by exact_mod_cast hh.ne'
@@ -100,7 +103,9 @@ theorem W26.qExpansion_coeff_nat_mul {h : ℝ} (hh : 0 < h) {F : ℍ → ℂ} (h
   have key := qExpansion_coeff_unique (F := W26FnLike) (show W26FnLike from F) hMh han hsum n
   exact key.symm
 
-theorem solution (M : ℕ) (hM : 0 < M) {k : ℤ} (F : ModularForm 𝒮ℒ k) (h : ((M * (k.toNat / 12) : ℕ) : ℕ∞) < (qExpansion (M : ℝ) F).order) : F = 0 := by
+theorem solution (M : ℕ) (hM : 0 < M) {k : ℤ} (F : ModularForm 𝒮ℒ k)
+    (h : ((M * (k.toNat / 12) : ℕ) : ℕ∞) < (qExpansion (M : ℝ) F).order) :
+    F = 0 := by
   by_contra hF
   have hq1 : qExpansion 1 F ≠ 0 := by
     rwa [Ne, ModularForm.qExpansion_eq_zero_iff one_pos one_mem_strictPeriods_SL]
@@ -139,6 +144,9 @@ public section publicSection
 
 open UpperHalfPlane
 open scoped MatrixGroups Manifold
-theorem ModularForm.levelOne_eq_zero_of_lt_order_qExpansion (M : ℕ) (hM : 0 < M) {k : ℤ} (F : ModularForm 𝒮ℒ k) (h : ((M * (k.toNat / 12) : ℕ) : ℕ∞) < (qExpansion (M : ℝ) F).order) : F = 0 := _root_.P2MW.S_ModularForm_levelOne_eq_zero_of_lt_order_qExpansion.solution M hM F h
+theorem ModularForm.levelOne_eq_zero_of_lt_order_qExpansion (M : ℕ) (hM : 0 < M) {k : ℤ}
+    (F : ModularForm 𝒮ℒ k) (h : ((M * (k.toNat / 12) : ℕ) : ℕ∞) < (qExpansion (M : ℝ) F).order) :
+    F = 0 :=
+  solution M hM F h
 
 end publicSection

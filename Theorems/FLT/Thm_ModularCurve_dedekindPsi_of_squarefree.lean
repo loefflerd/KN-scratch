@@ -116,7 +116,6 @@ private theorem ModularCurve.dedekindPsi_of_squarefree {N : ℕ} (hN : Squarefre
       Finset.prod_union hab.disjoint_primeFactors, iha hsa, ihb hsb]
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_of_squarefree.ModularCurve in
-
 theorem solution {N : ℕ} (hN : Squarefree N) : dedekindPsi N = ∏ p ∈ N.primeFactors, (p + 1) :=
   ModularCurve.dedekindPsi_of_squarefree hN
 
@@ -130,6 +129,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.dedekindPsi_of_squarefree {N : ℕ} (hN : Squarefree N) : dedekindPsi N = ∏ p ∈ N.primeFactors, (p + 1) := _root_.P2MW.S_ModularCurve_dedekindPsi_of_squarefree.solution hN
+theorem ModularCurve.dedekindPsi_of_squarefree {N : ℕ} (hN : Squarefree N) :
+    dedekindPsi N = ∏ p ∈ N.primeFactors, (p + 1) :=
+  solution hN
 
 end publicSection

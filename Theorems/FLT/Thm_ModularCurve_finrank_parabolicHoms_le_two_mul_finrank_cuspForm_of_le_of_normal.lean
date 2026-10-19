@@ -80,7 +80,11 @@ open UpperHalfPlane Filter Topology
 noncomputable section
 
 namespace ModularCurve
-p2m_export "ModularCurve" "Period.IsEquivariantPrimitive Period.IsParabolicHom Period.parabolicHoms periodOf HasEquivariantPrimitiveOf periodMapOf period Period.exists_basis_parabolicHoms_of_isAddTorsionFree eq_zero_of_forall_re_periodOf_eq_zero periodMapOf_mem_parabolicHoms periodMapOf_apply_eq_periodOf exists_hasEquivariantPrimitiveOf periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf"
+p2m_export "ModularCurve" "Period.IsEquivariantPrimitive Period.IsParabolicHom \
+  Period.parabolicHoms periodOf HasEquivariantPrimitiveOf periodMapOf period \
+  Period.exists_basis_parabolicHoms_of_isAddTorsionFree eq_zero_of_forall_re_periodOf_eq_zero \
+  periodMapOf_mem_parabolicHoms periodMapOf_apply_eq_periodOf exists_hasEquivariantPrimitiveOf \
+  periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf"
 namespace ESDescent
 p2m_open "ModularCurve"
 
@@ -193,7 +197,8 @@ def lower (hle : Γ' ≤ Γ) (f : CuspForm Γ 2) : CuspForm Γ' 2 where
   holo' := f.holo'
   zero_at_cusps' hc := CuspFormClass.zero_at_cusps f (hc.mono (map_mono_GL hle))
 
-@[scoped simp] theorem lower_apply (hle : Γ' ≤ Γ) (f : CuspForm Γ 2) (z : ℍ) : lower hle f z = f z := rfl
+@[scoped simp] theorem lower_apply (hle : Γ' ≤ Γ) (f : CuspForm Γ 2) (z : ℍ) :
+    lower hle f z = f z := rfl
 
 theorem coe_lower (hle : Γ' ≤ Γ) (f : CuspForm Γ 2) :
     ((lower hle f : CuspForm Γ' 2) : ℍ → ℂ) = f := rfl
@@ -222,7 +227,8 @@ theorem res_injective [Γ'.FiniteIndex] (hle : Γ' ≤ Γ) : Function.Injective 
   obtain ⟨n, hn, -, hmem⟩ :=
     Subgroup.exists_pow_mem_of_index_ne_zero (Subgroup.FiniteIndex.index_ne_zero (H := Γ'))
       ((Additive.toMul a : Γ) : SL(2, ℤ))
-  have hpow : ((Additive.toMul a ^ n : Γ) : SL(2, ℤ)) = ((Additive.toMul a : Γ) : SL(2, ℤ)) ^ n := by
+  have hpow : ((Additive.toMul a ^ n : Γ) : SL(2, ℤ)) = ((Additive.toMul a : Γ) : SL(2, ℤ)) ^ n :=
+    by
     simp
   have hval : (w : Additive Γ →+ ℝ) (Additive.ofMul (Additive.toMul a ^ n)) = 0 := by
     have := congrArg (fun φ : ModularCurve.Period.parabolicHoms ℝ Γ' ℝ =>
@@ -250,17 +256,18 @@ section Action
 variable {Γ' Γ : Subgroup SL(2, ℤ)} (hle : Γ' ≤ Γ) (hn : (Γ'.subgroupOf Γ).Normal)
 
 include hle hn in
-theorem conj_mem {γ : SL(2, ℤ)} (hγ : γ ∈ Γ') (δ : Γ) : (δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹ ∈ Γ' :=
+theorem conj_mem {γ : SL(2, ℤ)} (hγ : γ ∈ Γ') (δ : Γ) :
+    (δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹ ∈ Γ' :=
   (Subgroup.normal_subgroupOf_iff hle).mp hn γ δ hγ δ.2
 
 include hle hn in
-theorem conj_mem' {γ : SL(2, ℤ)} (hγ : γ ∈ Γ') (δ : Γ) : (δ : SL(2, ℤ))⁻¹ * γ * (δ : SL(2, ℤ)) ∈ Γ' := by
+theorem conj_mem' {γ : SL(2, ℤ)} (hγ : γ ∈ Γ') (δ : Γ) :
+    (δ : SL(2, ℤ))⁻¹ * γ * (δ : SL(2, ℤ)) ∈ Γ' := by
   have := conj_mem hle hn hγ δ⁻¹
   simpa using this
 
 open scoped Pointwise in
 include hle hn in
-
 theorem smul_coe_eq (δ : Γ) :
     ConjAct.toConjAct (Matrix.SpecialLinearGroup.mapGL ℝ (δ : SL(2, ℤ)))⁻¹ •
       (Γ' : Subgroup (GL (Fin 2) ℝ)) = (Γ' : Subgroup (GL (Fin 2) ℝ)) := by
@@ -343,7 +350,7 @@ theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ �
       rw [← mul_smul, ← mul_smul]
       congr 1
       group
-    show G ((δ : SL(2, ℤ)) • ((γ : SL(2, ℤ)) • z)) - L - (G ((δ : SL(2, ℤ)) • z) - L) = _
+    change G ((δ : SL(2, ℤ)) • ((γ : SL(2, ℤ)) • z)) - L - (G ((δ : SL(2, ℤ)) • z) - L) = _
     rw [hz, sub_sub_sub_cancel_right]
     exact hequiv.sub_eq_period ⟨_, conj_mem hle hn γ.2 δ⟩ ((δ : SL(2, ℤ)) • z)
   · intro δ₁
@@ -381,7 +388,8 @@ section Descent
 
 variable {Γ' Γ : Subgroup SL(2, ℤ)} [Γ'.FiniteIndex]
 
-private theorem _root_.ModularCurve.ESDescent.finiteIndex_of_le (hle : Γ' ≤ Γ) : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hle
+private theorem _root_.ModularCurve.ESDescent.finiteIndex_of_le (hle : Γ' ≤ Γ) :
+    Γ.FiniteIndex := Subgroup.finiteIndex_of_le hle
 
 p2m_export "ModularCurve.ESDescent" "finiteIndex_of_le"
 
@@ -475,6 +483,7 @@ theorem ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_
     (h : Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ Γ' ℤ) ≤
       2 * Module.finrank ℂ (CuspForm Γ' 2)) :
     Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ Γ ℤ) ≤
-      2 * Module.finrank ℂ (CuspForm Γ 2) := _root_.P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.solution Γ' Γ hle hn h
+      2 * Module.finrank ℂ (CuspForm Γ 2) :=
+  solution Γ' Γ hle hn h
 
 end publicSection

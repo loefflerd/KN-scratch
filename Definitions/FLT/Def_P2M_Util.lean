@@ -71,7 +71,7 @@ closing tactic; it adds no declarations or axioms.
 --     else
 --       throwError m!"P2M_UNDERGENERAL: the statement's universes {pinned} had to be specialised to match the proof — the proof is less general than the card"
 --   else
---     throwError m!"P2M_TYPE_MISMATCH\n  {a.getId} : {ta}\n  {b.getId} : {tb}"
+--     throwError m!"P2M_TYPE_MISMATCH\n {a.getId} : {ta}\n {b.getId} : {tb}"
 
 -- open Lean Elab Command in
 -- /-- `p2m_ns "N"` registers `N` as a namespace without entering or opening it. -/
@@ -126,7 +126,7 @@ elab "p2m_open " s:str : command => p2mOpenCore s.getString
 --   let ta := ia.type.instantiateLevelParams ia.levelParams la
 --   let tb := ib.type.instantiateLevelParams ib.levelParams lb
 --   if ← isDefEq ta tb then logInfo m!"P2M_TYPE_EQ {a.getId} {b.getId}"
---   else logWarning m!"P2M_DUP_TYPE_MISMATCH (non-fatal)\n  {a.getId} : {ta}\n  {b.getId} : {tb}"
+--   else logWarning m!"P2M_DUP_TYPE_MISMATCH (non-fatal)\n {a.getId} : {ta}\n {b.getId} : {tb}"
 
 -- open Lean Elab Command in
 -- /-- `p2m_alias "a" "N.b"` adds the name-resolution alias `a` for the existing declaration

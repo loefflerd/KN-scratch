@@ -63,7 +63,8 @@ open scoped MatrixGroups ModularForm Topology Manifold Pointwise
 
 noncomputable section
 
-theorem solution (N : ℕ) [NeZero N] (k : ℤ) : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k) := by
+theorem solution (N : ℕ) [NeZero N] (k : ℤ) :
+    FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k) := by
   exact CuspForm.finiteDimensional_of_isArithmetic _ k
 end
 
@@ -78,6 +79,8 @@ public section publicSection
 
 open UpperHalfPlane
 open scoped MatrixGroups
-theorem CuspForm.finiteDimensional_Gamma0 (N : ℕ) [NeZero N] (k : ℤ) : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k) := _root_.P2MW.S_CuspForm_finiteDimensional_Gamma0.solution N k
+theorem CuspForm.finiteDimensional_Gamma0 (N : ℕ) [NeZero N] (k : ℤ) :
+    FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k) :=
+  solution N k
 
 end publicSection

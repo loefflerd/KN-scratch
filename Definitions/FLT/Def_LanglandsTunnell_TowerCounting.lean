@@ -64,7 +64,6 @@ def oddJ : Finset ℕ := {1, 3, 5, 7}
 variable {L : Type*} [Field L] [NumberField L] [IsGalois ℚ L]
 
 open scoped Classical in
-
 noncomputable def labelledCount (σ : L ≃ₐ[ℚ] L) (S₀ : Finset ℕ) (m : Fin 8) (ℓ : ℕ) : ℕ :=
   if ℓ ∈ S₀ then 0 else
   if hℓ : ℓ.Prime then
@@ -85,7 +84,6 @@ theorem labelledCount_of_mem_S₀ (σ : L ≃ₐ[ℚ] L) (S₀ : Finset ℕ) (m 
   simp [labelledCount, h]
 
 open scoped Classical in
-
 noncomputable def classIndicator (σ : L ≃ₐ[ℚ] L) (ℓ : ℕ) : ℕ :=
   if ∃ _ : ℓ.Prime, ∃ (Q : Ideal (𝓞 L)) (_ : Q.IsPrime) (_ : Q.LiesOver (ratPrimeIdeal ℓ))
         (_ : Q.inertia (L ≃ₐ[ℚ] L) = ⊥),

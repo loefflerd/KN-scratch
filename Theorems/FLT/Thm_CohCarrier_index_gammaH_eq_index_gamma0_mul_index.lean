@@ -65,14 +65,15 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_CohCarrier_index_gammaH_eq_index_gamma0_mul_index
 
 open scoped MatrixGroups in
-
 private theorem igIDX_gamma0Units_surjective (M : ℕ) [NeZero M] :
     Function.Surjective (CohCarrier.gamma0Units M) := by
   intro u
-  have hAD : (((((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ) * ((u : ZMod M).val : ℤ) - 1 : ℤ) : ZMod M) = 0 := by
+  have hAD : (((((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ) * ((u : ZMod M).val : ℤ) - 1 : ℤ) : ZMod M) = 0 :=
+    by
     simp
   obtain ⟨k, hk⟩ := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp hAD
-  let γ : SL(2, ℤ) := ⟨!![(((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ), k; (M : ℤ), ((u : ZMod M).val : ℤ)], by
+  let γ : SL(2, ℤ) :=
+    ⟨!![(((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ), k; (M : ℤ), ((u : ZMod M).val : ℤ)], by
     rw [Matrix.det_fin_two_of]
     linarith⟩
   have hγ0 : γ ∈ CongruenceSubgroup.Gamma0 M := by
@@ -83,7 +84,6 @@ private theorem igIDX_gamma0Units_surjective (M : ℕ) [NeZero M] :
   simp [γ]
 
 open scoped MatrixGroups in
-
 theorem solution (M : ℕ) [NeZero M]
     (H : Subgroup (ZMod M)ˣ) :
     (CohCarrier.GammaH M H).index = (CongruenceSubgroup.Gamma0 M).index * H.index := by
@@ -102,6 +102,7 @@ public section publicSection
 open scoped MatrixGroups in
 theorem CohCarrier.index_gammaH_eq_index_gamma0_mul_index (M : ℕ) [NeZero M]
     (H : Subgroup (ZMod M)ˣ) :
-    (CohCarrier.GammaH M H).index = (CongruenceSubgroup.Gamma0 M).index * H.index := _root_.P2MW.S_CohCarrier_index_gammaH_eq_index_gamma0_mul_index.solution M H
+    (CohCarrier.GammaH M H).index = (CongruenceSubgroup.Gamma0 M).index * H.index :=
+  solution M H
 
 end publicSection

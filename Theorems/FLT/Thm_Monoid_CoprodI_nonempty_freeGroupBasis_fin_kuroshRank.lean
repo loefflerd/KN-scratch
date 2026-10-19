@@ -186,7 +186,6 @@ scoped instance finite_range_of (i : Fin 2) : Finite ((Monoid.CoprodI.of (i := i
   Finite.of_equiv (G i) (MonoidHom.ofInjective (Monoid.CoprodI.of_injective i)).toEquiv
 
 omit [∀ i, Finite (G i)] in
-
 theorem card_range_of (i : Fin 2) :
     Nat.card ((Monoid.CoprodI.of (i := i)).range : Subgroup (Monoid.CoprodI G))
       = Nat.card (G i) :=
@@ -214,7 +213,8 @@ end Core
 end Kurosh
 end GroupTheory
 
-p2m_open "Subgroup SimpleGraph P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph"
+p2m_open "Subgroup SimpleGraph \
+  P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph"
 
 namespace GroupTheory
 
@@ -228,7 +228,6 @@ abbrev Vertex : Type _ :=
   (i : ι) × (CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range)
 
 variable {G} in
-
 abbrev Vertex.mk (i : ι) (g : CoprodI G) : Vertex G :=
   ⟨i, QuotientGroup.mk g⟩
 
@@ -276,11 +275,11 @@ theorem smul_mk (g : CoprodI G) (i : ι) (h : CoprodI G) :
 scoped instance : MulAction (CoprodI G) (Vertex G) where
   one_smul := by
     rintro ⟨i, x⟩
-    show (⟨i, (1 : CoprodI G) • x⟩ : Vertex G) = ⟨i, x⟩
+    change (⟨i, (1 : CoprodI G) • x⟩ : Vertex G) = ⟨i, x⟩
     rw [one_smul]
   mul_smul g h := by
     rintro ⟨i, x⟩
-    show (⟨i, (g * h) • x⟩ : Vertex G) = ⟨i, g • h • x⟩
+    change (⟨i, (g * h) • x⟩ : Vertex G) = ⟨i, g • h • x⟩
     rw [mul_smul]
 
 theorem smul_adj {v w : Vertex G} (g : CoprodI G) (h : (graph G).Adj v w) :
@@ -442,7 +441,8 @@ theorem isAcyclic_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsA
 
 end GroupTheory.BassSerre
 
-p2m_open "Subgroup MulAction SimpleGraph P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
+p2m_open "Subgroup MulAction SimpleGraph \
+  P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
 
 namespace GroupTheory
 
@@ -543,7 +543,8 @@ theorem exists_isConnectedTransversal
     (hsmul : ∀ (γ : Γ) {v w : V}, T.Adj v w → T.Adj (γ • v) (γ • w))
     (hpre : T.Preconnected) (v₀ : V) :
     ∃ D : Set V, v₀ ∈ D ∧ IsConnectedTransversal T Γ D := by
-  obtain ⟨D, h0, h1, h2, h3⟩ := SimpleGraph.exists_walkConnected_transversal_of_preconnected hsmul hpre v₀
+  obtain ⟨D, h0, h1, h2, h3⟩ :=
+    SimpleGraph.exists_walkConnected_transversal_of_preconnected hsmul hpre v₀
   exact ⟨D, h0, ⟨h1, h2, h3⟩⟩
 
 variable {D : Set V}
@@ -640,7 +641,7 @@ theorem transl_mk_mul (hD : IsConnectedTransversal (graph G) H D)
 theorem edgeGen_smul (hD : IsConnectedTransversal (graph G) H D)
     (hfree : ∀ (η : H) (v : Vertex G), η • v = v → η = 1) (η : H) (g : CoprodI G) :
     edgeGen hD ((η : CoprodI G) * g) = edgeGen hD g := by
-  show (transl hD (Vertex.mk 0 ((η : CoprodI G) * g)))⁻¹ *
+  change (transl hD (Vertex.mk 0 ((η : CoprodI G) * g)))⁻¹ *
       transl hD (Vertex.mk 1 ((η : CoprodI G) * g)) =
     (transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g)
   rw [transl_mk_mul hD hfree, transl_mk_mul hD hfree]
@@ -663,7 +664,7 @@ theorem edgeGen_eq_one_iff (hD : IsConnectedTransversal (graph G) H D)
     have e0 := transl_eq_one hD hfree h0
     have e1 := transl_eq_one hD hfree h1
     rw [transl_mk_mul hD hfree] at e0 e1
-    show (transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g) = 1
+    change (transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g) = 1
     rw [(inv_eq_of_mul_eq_one_right e0).symm, (inv_eq_of_mul_eq_one_right e1).symm]
     group
 
@@ -679,7 +680,7 @@ theorem inv_mul_transl_mem_closure (hD : IsConnectedTransversal (graph G) H D)
   · rw [h1, h2]
     have hkey : (transl hD (Vertex.mk 1 g))⁻¹ * transl hD (Vertex.mk 0 g) =
         (edgeGen hD g)⁻¹ := by
-      show _ = ((transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g))⁻¹
+      change _ = ((transl hD (Vertex.mk 0 g))⁻¹ * transl hD (Vertex.mk 1 g))⁻¹
       group
     rw [hkey]
     exact (Subgroup.closure _).inv_mem (Subgroup.subset_closure (Set.mem_range_self g))
@@ -768,7 +769,7 @@ def vertexToSigma (H : Subgroup (CoprodI G)) (v : BassSerre.Vertex G) :
 theorem vertexToSigma_smul (H : Subgroup (CoprodI G)) (η : H) (v : BassSerre.Vertex G) :
     vertexToSigma H ((η : CoprodI G) • v) = vertexToSigma H v := by
   obtain ⟨i, x⟩ := v
-  show (⟨i, Quotient.mk'' ((η : CoprodI G) • x)⟩ : Σ i, ComponentOrbits H i)
+  change (⟨i, Quotient.mk'' ((η : CoprodI G) • x)⟩ : Σ i, ComponentOrbits H i)
     = ⟨i, Quotient.mk'' x⟩
   refine congrArg (Sigma.mk i) (Quotient.sound' ?_)
   exact mem_orbit_iff.mpr ⟨η, rfl⟩
@@ -785,7 +786,7 @@ def sigmaToVertexOrbit (H : Subgroup (CoprodI G)) (p : Σ i : Fin 2, ComponentOr
     (fun x => Quotient.mk'' (⟨p.1, x⟩ : BassSerre.Vertex G)) fun x y hxy => by
       obtain ⟨η, hη⟩ : x ∈ orbit H y := hxy
       refine Quotient.sound' (mem_orbit_iff.mpr ⟨η, ?_⟩)
-      show (⟨p.1, (η : CoprodI G) • y⟩ : BassSerre.Vertex G) = ⟨p.1, x⟩
+      change (⟨p.1, (η : CoprodI G) • y⟩ : BassSerre.Vertex G) = ⟨p.1, x⟩
       rw [show (η : CoprodI G) • y = x from hη]
 
 def vertexOrbitEquivSigma (H : Subgroup (CoprodI G)) :
@@ -822,7 +823,6 @@ theorem card_vertexOrbits (H : Subgroup (CoprodI G)) [H.FiniteIndex]
     hcard 1]
 
 omit [∀ i, Finite (G i)] in
-
 theorem finite_vertexOrbits (H : Subgroup (CoprodI G)) [H.FiniteIndex]
     (hCT : ∀ i, Kurosh.ConjTrivial (CoprodI.of (M := G) (i := i)).range H) :
     Finite (orbitRel.Quotient H (BassSerre.Vertex G)) := by
@@ -859,16 +859,23 @@ theorem kuroshRankFormula_of_freeActionRankFormula (hfree : FreeActionRankFormul
 end Residual
 end FreeActionTree
 end GroupTheory
-p2m_open "Subgroup MulAction SimpleGraph P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
+p2m_open "Subgroup MulAction SimpleGraph \
+  P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
 
 namespace SimpleGraph
-p2m_export "SimpleGraph" "IsAcyclic Walk.edges_append induce Walk.support_reverse loopless IsTree.card_edgeFinset connected_iff_exists_forall_reachable edgeSet_deleteEdges Preconnected edgeFinset_card Embedding isAcyclic_iff_forall_adj_isBridge fromRel fromRel_adj IsBridge Walk.support_map Reachable.refl Adj.reachable Walk.support_append Connected Embedding.induce edgeSet support Walk Walk.mem_support_nil_iff mk IsTree symm Walk.support_nil Walk.edges_cons isBridge_iff Walk.cons Walk.edges_nil support_map Walk.support_copy deleteEdges_adj Walk.support_cons Adj connected_iff structure Walk.nil deleteEdges Reachable mk.injEq edge exists_walkConnected_transversal_of_preconnected"
+p2m_export "SimpleGraph" "IsAcyclic Walk.edges_append induce Walk.support_reverse loopless \
+  IsTree.card_edgeFinset connected_iff_exists_forall_reachable edgeSet_deleteEdges Preconnected \
+  edgeFinset_card Embedding isAcyclic_iff_forall_adj_isBridge fromRel fromRel_adj IsBridge \
+  Walk.support_map Reachable.refl Adj.reachable Walk.support_append Connected Embedding.induce \
+  edgeSet support Walk Walk.mem_support_nil_iff mk IsTree symm Walk.support_nil Walk.edges_cons \
+  isBridge_iff Walk.cons Walk.edges_nil support_map Walk.support_copy deleteEdges_adj \
+  Walk.support_cons Adj connected_iff structure Walk.nil deleteEdges Reachable mk.injEq edge \
+  exists_walkConnected_transversal_of_preconnected"
 p2m_open "SimpleGraph"
 
 variable {V : Type*} {G : SimpleGraph V} {a b u v w : V}
 
 variable (G a b) in
-
 private def _root_.SimpleGraph.farSide : Set V :=
   {v | ¬ (G.deleteEdges {s(a, b)}).Reachable a v}
 
@@ -981,20 +988,19 @@ theorem exists_walk_of_transl_eq (hfree : ∀ (η : H) (v : Vertex G), η • v 
   obtain ⟨p₀, hp₀⟩ := hD.walkConnected (orbitRepr hD v) (orbitRepr_mem hD v)
     (orbitRepr hD w) (orbitRepr_mem hD w)
   refine ⟨(p₀.map (smulHom (γ : CoprodI G))).copy ?_ ?_, ?_⟩
-  · show (γ : CoprodI G) • orbitRepr hD v = v
+  · change (γ : CoprodI G) • orbitRepr hD v = v
     rw [← hv]
     exact transl_smul_orbitRepr hD v
-  · show (γ : CoprodI G) • orbitRepr hD w = w
+  · change (γ : CoprodI G) • orbitRepr hD w = w
     rw [← hw]
     exact transl_smul_orbitRepr hD w
   · intro x hx
     rw [Walk.support_copy, Walk.support_map, List.mem_map] at hx
     obtain ⟨d, hd, rfl⟩ := hx
-    show transl hD ((γ : CoprodI G) • d) = γ
+    change transl hD ((γ : CoprodI G) • d) = γ
     rw [transl_coe_smul hD hfree, transl_eq_one hD hfree (hp₀ d hd), mul_one]
 
 include hD in
-
 theorem notMem_farSide_of_mem {p q : Vertex G} (hp : p ∈ D) (hq : q ∉ D) {v : Vertex G}
     (hv : v ∈ D) : v ∉ (graph G).farSide p q := by
   intro hcon
@@ -1015,7 +1021,6 @@ theorem mem_farSide_of_transl_eq (hfree : ∀ (η : H) (v : Vertex G), η • v 
   exact hq (mem_of_transl_eq_one hD h1.symm)
 
 variable (H) in
-
 def nonTreeRep (hD : IsConnectedTransversal (graph G) H D) : Set (CoprodI G) :=
   {g | Vertex.mk 0 g ∈ D ∧ edgeGen hD g ≠ 1}
 
@@ -1028,24 +1033,22 @@ theorem edgeGen_ne_one_of_mem_nonTreeRep {g : CoprodI G} (hg : g ∈ nonTreeRep 
   hg.2
 
 include hD in
-
 theorem eq_of_mk_zero_mem (hfree : ∀ (η : H) (v : Vertex G), η • v = v → η = 1)
     {g g' : CoprodI G} (hg : Vertex.mk 0 g ∈ D) (hg' : Vertex.mk 0 g' ∈ D) (η : H)
     (hη : (η : CoprodI G) * g = g') : g = g' := by
   have horb : Vertex.mk 0 g' ∈ orbit H (Vertex.mk (G := G) 0 g) := by
     refine mem_orbit_iff.mpr ⟨η, ?_⟩
-    show (η : CoprodI G) • Vertex.mk 0 g = Vertex.mk 0 g'
+    change (η : CoprodI G) • Vertex.mk 0 g = Vertex.mk 0 g'
     rw [smul_mk, hη]
   have heq : Vertex.mk (G := G) 0 g' = Vertex.mk 0 g := hD.eq_of_mem_orbit _ hg' _ hg horb
   have hfix : η • Vertex.mk (G := G) 0 g = Vertex.mk 0 g := by
-    show (η : CoprodI G) • Vertex.mk 0 g = Vertex.mk 0 g
+    change (η : CoprodI G) • Vertex.mk 0 g = Vertex.mk 0 g
     rw [smul_mk, hη]
     exact heq
   have hone := hfree η _ hfix
   rw [← hη, hone, OneMemClass.coe_one, one_mul]
 
 variable (H) in
-
 noncomputable def letterImage (hD : IsConnectedTransversal (graph G) H D)
     (x : nonTreeRep H hD × Bool) :
     H :=
@@ -1067,7 +1070,6 @@ theorem letterImage_ne_one (x : nonTreeRep H hD × Bool) : letterImage H hD x �
   · exact g.2.2
 
 variable (H) in
-
 noncomputable def exitSrc (hD : IsConnectedTransversal (graph G) H D) :
     nonTreeRep H hD × Bool → Vertex G
   | (g, true) => Vertex.mk 0 (g : CoprodI G)
@@ -1075,7 +1077,6 @@ noncomputable def exitSrc (hD : IsConnectedTransversal (graph G) H D) :
       Vertex.mk 1 ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G) * (g : CoprodI G))
 
 variable (H) in
-
 noncomputable def exitTgt (hD : IsConnectedTransversal (graph G) H D) :
     nonTreeRep H hD × Bool → Vertex G
   | (g, true) => Vertex.mk 1 (g : CoprodI G)
@@ -1139,10 +1140,10 @@ abbrev revLetter {α : Type*} (x : α × Bool) : α × Bool :=
 theorem letterImage_smul_exitSrc_rev (x : nonTreeRep H hD × Bool) :
     ((letterImage H hD x : H) : CoprodI G) • exitSrc H hD (revLetter x) = exitTgt H hD x := by
   obtain ⟨g, _ | _⟩ := x
-  · show ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G)) • Vertex.mk 0 (g : CoprodI G) = _
+  · change ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G)) • Vertex.mk 0 (g : CoprodI G) = _
     rw [smul_mk]
     rfl
-  · show ((edgeGen hD (g : CoprodI G) : H) : CoprodI G) •
+  · change ((edgeGen hD (g : CoprodI G) : H) : CoprodI G) •
       Vertex.mk 1 ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G) * (g : CoprodI G)) = _
     rw [smul_mk, ← mul_assoc, ← Subgroup.coe_mul, mul_inv_cancel, OneMemClass.coe_one, one_mul]
     rfl
@@ -1150,10 +1151,10 @@ theorem letterImage_smul_exitSrc_rev (x : nonTreeRep H hD × Bool) :
 theorem letterImage_smul_exitTgt_rev (x : nonTreeRep H hD × Bool) :
     ((letterImage H hD x : H) : CoprodI G) • exitTgt H hD (revLetter x) = exitSrc H hD x := by
   obtain ⟨g, _ | _⟩ := x
-  · show ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G)) • Vertex.mk 1 (g : CoprodI G) = _
+  · change ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G)) • Vertex.mk 1 (g : CoprodI G) = _
     rw [smul_mk]
     rfl
-  · show ((edgeGen hD (g : CoprodI G) : H) : CoprodI G) •
+  · change ((edgeGen hD (g : CoprodI G) : H) : CoprodI G) •
       Vertex.mk 0 ((((edgeGen hD (g : CoprodI G))⁻¹ : H) : CoprodI G) * (g : CoprodI G)) = _
     rw [smul_mk, ← mul_assoc, ← Subgroup.coe_mul, mul_inv_cancel, OneMemClass.coe_one, one_mul]
     rfl
@@ -1258,7 +1259,6 @@ variable {G : Fin 2 → Type*} [∀ i, Group (G i)] {H : Subgroup (CoprodI G)}
   {D : Set (Vertex G)} (hD : IsConnectedTransversal (graph G) H D)
 
 variable (H) in
-
 noncomputable def basisFun (hD : IsConnectedTransversal (graph G) H D) (g : nonTreeRep H hD) :
     H :=
   edgeGen hD (g : CoprodI G)
@@ -1351,12 +1351,10 @@ variable {G : Fin 2 → Type*} [∀ i, Group (G i)] {H : Subgroup (CoprodI G)}
   {D : Set (Vertex G)} (hD : IsConnectedTransversal (graph G) H D)
 
 variable (H) in
-
 def baseRep (_hD : IsConnectedTransversal (graph G) H D) : Set (CoprodI G) :=
   {g | Vertex.mk 0 g ∈ D}
 
 variable (H) in
-
 def treeRep (hD : IsConnectedTransversal (graph G) H D) : Set (CoprodI G) :=
   {g | Vertex.mk 0 g ∈ D ∧ edgeGen hD g = 1}
 
@@ -1381,7 +1379,7 @@ noncomputable def baseRepEquivQuotient
     have hH : ((g : CoprodI G)⁻¹)⁻¹ * ((g' : CoprodI G))⁻¹ ∈ H := QuotientGroup.eq.mp hgg'
     rw [inv_inv] at hH
     refine Subtype.ext (eq_of_mk_zero_mem hD hfree g'.2 g.2 ⟨_, hH⟩ ?_).symm
-    show (g : CoprodI G) * (g' : CoprodI G)⁻¹ * (g' : CoprodI G) = (g : CoprodI G)
+    change (g : CoprodI G) * (g' : CoprodI G)⁻¹ * (g' : CoprodI G) = (g : CoprodI G)
     group
   · intro x
     induction x using QuotientGroup.induction_on with
@@ -1390,7 +1388,7 @@ noncomputable def baseRepEquivQuotient
       · refine mem_of_transl_eq_one hD ?_
         rw [transl_mk_mul hD hfree, inv_mul_cancel]
       · refine (QuotientGroup.eq).mpr ?_
-        show (((((transl hD (Vertex.mk 0 y⁻¹))⁻¹ : H) : CoprodI G) * y⁻¹)⁻¹)⁻¹ * y ∈ H
+        change (((((transl hD (Vertex.mk 0 y⁻¹))⁻¹ : H) : CoprodI G) * y⁻¹)⁻¹)⁻¹ * y ∈ H
         rw [inv_inv, mul_assoc, inv_mul_cancel, mul_one]
         exact SetLike.coe_mem _
 
@@ -1404,7 +1402,6 @@ theorem finite_baseRep [H.FiniteIndex]
   Finite.of_equiv _ (baseRepEquivQuotient hD hfree).symm
 
 include hD in
-
 noncomputable def transversalEquivOrbits :
     D ≃ MulAction.orbitRel.Quotient H (Vertex G) := by
   refine Equiv.ofBijective (fun d => Quotient.mk'' (d : Vertex G)) ⟨?_, ?_⟩
@@ -1422,7 +1419,6 @@ theorem nat_card_transversal :
   Nat.card_congr (transversalEquivOrbits hD)
 
 include hD in
-
 theorem connected_induce_transversal : ((graph G).induce D).Connected := by
   obtain ⟨d₀, hd₀, -⟩ := hD.exists_mem_orbit (Vertex.mk 0 1)
   have : Nonempty D := ⟨⟨d₀, hd₀⟩⟩
@@ -1567,10 +1563,12 @@ end privateSection
 public section publicSection
 
 
-theorem Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank {G : Fin 2 → Type*} [∀ i, Group (G i)] [∀ i, Finite (G i)]
+theorem Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank {G : Fin 2 → Type*} [∀ i, Group (G i)]
+    [∀ i, Finite (G i)]
     (H : Subgroup (Monoid.CoprodI G)) [H.FiniteIndex]
     (hH : ∀ (i : Fin 2) (g : Monoid.CoprodI G) (x : G i), g⁻¹ * Monoid.CoprodI.of x * g ∈ H → x = 1) :
     Nonempty (FreeGroupBasis
-      (Fin (1 + H.index - H.index / Nat.card (G 0) - H.index / Nat.card (G 1))) H) := _root_.P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.solution H hH
+      (Fin (1 + H.index - H.index / Nat.card (G 0) - H.index / Nat.card (G 1))) H) :=
+  solution H hH
 
 end publicSection

@@ -86,7 +86,8 @@ theorem solution
     constructor
     · intro h; by_contra h'; exact h (max_eq_left (by omega))
     · intro h; rw [max_eq_right (by omega)]; omega
-  · have hdeg := AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap x hx a D hD
+  · have hdeg :=
+      AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap x hx a D hD
     rw [AlgebraicCurve.Divisor.degree_eq_sum_support] at hdeg
     rw [← hdeg]
     refine Finset.sum_congr rfl fun P hP => ?_
@@ -110,6 +111,7 @@ theorem AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgC
     (x : F) (hx : Transcendental k x)
     (hfin : FiniteDimensional (IntermediateField.adjoin k ({x} : Set F)) F) (a : k) :
     ∃ S : Finset (Place k F), (∀ P, P ∈ S ↔ 0 < P.ord (x - algebraMap k F a)) ∧
-      ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed.solution k x hx hfin a
+      ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) :=
+  solution k x hx hfin a
 
 end publicSection

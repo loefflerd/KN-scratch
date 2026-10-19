@@ -76,7 +76,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
 
-p2m_open "AlgebraicCurve ModularCurve P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.ModularCurve"
+p2m_open "AlgebraicCurve ModularCurve \
+  P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.ModularCurve"
 
 private theorem finrankAdjoinJBar (N : ℕ) [NeZero N] :
     Module.finrank
@@ -108,7 +109,11 @@ private theorem finrankAdjoinJBar (N : ℕ) [NeZero N] :
   exact h1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "dedekindPsi jBar modularFunctionFieldBar sum_ord_jBar_sub_eq_dedekindPsi exists_finset_ord_jBar_sub_pos deg_eq_one_modularFunctionFieldBar dedekindPsi_pos natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi"
+p2m_export "ModularCurve" "dedekindPsi jBar modularFunctionFieldBar \
+  sum_ord_jBar_sub_eq_dedekindPsi exists_finset_ord_jBar_sub_pos \
+  deg_eq_one_modularFunctionFieldBar dedekindPsi_pos \
+  natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord \
+  relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
@@ -145,7 +150,6 @@ private theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : �
     rw [hφ'f, hφ, Int.toNat_of_nonneg hw.le])
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.ModularCurve in
-
 theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ) :
     ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
@@ -175,6 +179,7 @@ theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : ℕ) [NeZe
           HahnSeries ℚ (AlgebraicClosure ℚ) //
         ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ) ∧
         ∃ g : ℚ, 0 < g ∧ ∀ x, (w.ord x : ℚ) * g = (ψ x).order} =
-      (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat := _root_.P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.solution N j₀
+      (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat :=
+  solution N j₀
 
 end publicSection

@@ -63,13 +63,17 @@ namespace P2MW.S_WeierstrassCurve_Affine_exists_transEquiv_weilFun_eq
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) : ∃ c : Kˣ, transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n T := by
+theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
+    [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+    {n : ℕ} (hn : (n : K) ≠ 0) (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) :
+    ∃ c : Kˣ, transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n T := by
   have hg0 := weilFun_ne_zero W hn hT
   have hval : ∀ v : HeightOneSpectrum (W⁄K).CoordinateRing,
       v.valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T) / weilFun W K n T) = 1 := by
     intro v
     obtain ⟨P, hP, rfl⟩ := placeOf_surjective W K v
-    rw [map_div₀, valuation_transEquiv_weilFun W hn S hT P hP, valuation_weilFun W hn hT P hP, smul_add, hS,
+    rw [map_div₀, valuation_transEquiv_weilFun W hn S hT P hP, valuation_weilFun W hn hT P hP,
+      smul_add, hS,
       add_zero, div_self]
     refine div_ne_zero ?_ ?_ <;> split_ifs <;> simp
   obtain ⟨c, hc0, hc⟩ :=
@@ -87,6 +91,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S T : (W⁄K).Point) (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) : ∃ c : Kˣ, transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n T := _root_.P2MW.S_WeierstrassCurve_Affine_exists_transEquiv_weilFun_eq.solution W hn S T hS hT
+theorem WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq {F : Type*} {K : Type*} [Field F]
+    [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S T : (W⁄K).Point)
+    (hS : (n : ℤ) • S = 0) (hT : (n : ℤ) • T = 0) :
+    ∃ c : Kˣ, transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n T :=
+  solution W hn S T hS hT
 
 end publicSection

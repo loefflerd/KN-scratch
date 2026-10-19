@@ -142,9 +142,20 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
 end ModularCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map exists_variableChange_of_j_eq IsIntegral toAffine Affine.Point Δ j veluQuotient oddOrderSummingSet exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples Affine.Point.exists_zsmul_eq_of_isAlgClosed card_torsionBy_eq_sq_of_isAlgClosed nonempty_functionField_algEquiv_of_variableChange"
+p2m_export "WeierstrassCurve" "Affine map exists_variableChange_of_j_eq IsIntegral toAffine \
+  Affine.Point Δ j veluQuotient oddOrderSummingSet \
+  exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples \
+  Affine.Point.exists_zsmul_eq_of_isAlgClosed card_torsionBy_eq_sq_of_isAlgClosed \
+  nonempty_functionField_algEquiv_of_variableChange"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "CoordinateRing map FunctionField Point pointMapOfPushforward pointMapOfPushforward_apply IsogenyEndDatum IsogenyHomDatum IsogenyHomDatum.ofEndDatum GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply GenusOnePlaceGate.IsCentred IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred natCard_ker_pointMapOfPushforward_eq_finrankAlong pointMapOfPushforward_surjective Point.exists_zsmul_eq_of_isAlgClosed IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring exists_genusOnePlaceGate_isCentred_and_abelTheorem CoordinateRing.isDedekindDomain hasPrincipalDivisors_functionField"
+p2m_export "WeierstrassCurve.Affine" "CoordinateRing map FunctionField Point pointMapOfPushforward \
+  pointMapOfPushforward_apply IsogenyEndDatum IsogenyHomDatum IsogenyHomDatum.ofEndDatum \
+  GenusOnePlaceGate pointClass AbelTheorem genusOnePic0Equiv genusOnePic0Equiv_symm_apply \
+  GenusOnePlaceGate.IsCentred IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred \
+  natCard_ker_pointMapOfPushforward_eq_finrankAlong pointMapOfPushforward_surjective \
+  Point.exists_zsmul_eq_of_isAlgClosed IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring \
+  exists_genusOnePlaceGate_isCentred_and_abelTheorem CoordinateRing.isDedekindDomain \
+  hasPrincipalDivisors_functionField"
 p2m_open "WeierstrassCurve.Affine~pointHom WeierstrassCurve"
 
 open AlgebraicCurve
@@ -158,15 +169,17 @@ section AutoNorm
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
+omit [DecidableEq F] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
+  classical
   have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
     let := algebraAlong ι
     have := isScalarTower_along ι
     have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
+    change Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
@@ -213,8 +226,9 @@ theorem intCast_addMonoidEnd_point_injective :
   Int.cast_injective
 
 variable {W} in
-
+omit [DecidableEq F] in
 theorem kw_point_infinite : Infinite W.Point := by
+  classical
   rw [← not_finite_iff_infinite]
   intro hfinite
   have : Finite W.Point := hfinite
@@ -241,7 +255,6 @@ theorem kw_point_infinite : Infinite W.Point := by
   exact hNpos.ne' (pow_eq_zero_iff (n := 2) (by norm_num) |>.mp h4)
 
 variable {W} in
-
 theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
     (hN : N ≠ 0) (hf : ∀ P, f P = N • P) : Nat.card f.ker = N.natAbs ^ 2 := by
   have hsets : ∀ P : W.Point,
@@ -262,7 +275,6 @@ theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
     (Nat.cast_ne_zero.mpr (Int.natAbs_ne_zero.mpr hN))
 
 variable {W} in
-
 theorem kw_eq_zero_of_zsmul_eq_zero {N : ℤ} (hN : N ≠ 0) {G : Type*} [AddCommGroup G]
     (δ : W.Point →+ G) (hδ : ∀ P, N • δ P = 0) : δ = 0 := by
   refine AddMonoidHom.ext fun P => ?_
@@ -332,11 +344,11 @@ theorem finrankAlong_eq_one_of_bijective (τ : B.FunctionField →ₐ[F] A.Funct
   let e : A.FunctionField ≃ₗ[B.FunctionField] B.FunctionField :=
     { σ.symm.toAddEquiv with
       map_smul' := fun b x => by
-        show σ.symm (b • x) = b * σ.symm x
+        change σ.symm (b • x) = b * σ.symm x
         rw [Algebra.smul_def, map_mul]
         congr 1
         exact σ.symm_apply_apply b }
-  show Module.finrank B.FunctionField A.FunctionField = 1
+  change Module.finrank B.FunctionField A.FunctionField = 1
   rw [e.finrank_eq, Module.finrank_self]
 
 theorem pointMapOfPushforward_injective_of_bijective
@@ -358,7 +370,11 @@ end WeierstrassCurve.Affine
 
 namespace ModularCurve
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve WeierstrassCurve.Affine~pointHom P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve.Affine AlgebraicCurve"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.W\
+  eierstrassCurve WeierstrassCurve.Affine~pointHom \
+  P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.W\
+  eierstrassCurve.Affine AlgebraicCurve"
 
 universe u
 
@@ -464,7 +480,7 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
     rw [smul_comm, h21, zsmul_zero]
   obtain ⟨χ, hNχ, hχ⟩ := IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred φ'D hNι'
     (IsogenyHomDatum.ofEndDatum M) (hNs M) (fun P hP => by
-      show M.pointEnd (hNs M) P = 0
+      change M.pointEnd (hNs M) P = 0
       rw [hMapp]; exact hmem_of_ker P hP)
   set ψ' := χ.pointHom hNχ with hψ'_def
   have hdual₁ : ∀ P, ψ' (φ' P) = (2 * n + 1 : ℤ) • P := fun P => by
@@ -483,7 +499,7 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
   obtain ⟨m, hm⟩ := hEnd D
   set θ := ψ'.comp β with hθ_def
   have hθm : ∀ P, θ P = m • P := fun P => by
-    show ψ' (β P) = m • P
+    change ψ' (β P) = m • P
     rw [← hD P]; exact hm P
   have hcardQ' : Nat.card (AddSubgroup.zmultiples Q') = 2 * n + 1 := by
     rw [Nat.card_zmultiples, hQ']
@@ -542,7 +558,9 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
 end ModularCurve
 end
 
-p2m_open "WeierstrassCurve.Affine~pointHom" in open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve.Affine AlgebraicCurve in
+p2m_open "WeierstrassCurve.Affine~pointHom\
+  " in
+open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve.Affine AlgebraicCurve in
 theorem solution
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))] [CharZero (HahnSeries ℚ (AlgebraicClosure ℚ))]
     [IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ))]
@@ -584,6 +602,7 @@ theorem WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEnd
     (hj : haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
       haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
       (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q' n)).j) :
-    AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' := _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.solution W hNs hEnd n Q Q' hQ hQ' hΔ hΔ' hj
+    AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' :=
+  solution W hNs hEnd n Q Q' hQ hQ' hΔ hΔ' hj
 
 end publicSection

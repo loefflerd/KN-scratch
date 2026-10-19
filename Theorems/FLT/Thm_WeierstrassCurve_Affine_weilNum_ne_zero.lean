@@ -62,7 +62,10 @@ namespace P2MW.S_WeierstrassCurve_Affine_weilNum_ne_zero
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero
 open scoped nonZeroDivisors
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) : weilNum W K n T ≠ 0 := by
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
+    (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
+    (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) :
+    weilNum W K n T ≠ 0 := by
   intro h0
   obtain ⟨P, hP, -⟩ := exists_point_xc_eq W K (0 : K)
   have h := WeierstrassCurve.Affine.valuation_weilNum W hn hT P hP
@@ -82,6 +85,11 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 
-theorem WeierstrassCurve.Affine.weilNum_ne_zero {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) : weilNum W K n T ≠ 0 := _root_.P2MW.S_WeierstrassCurve_Affine_weilNum_ne_zero.solution W hn hT
+theorem WeierstrassCurve.Affine.weilNum_ne_zero {F K : Type*} [Field F] [Field K] [Algebra F K]
+    [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+    [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
+    (hT : (n : ℤ) • T = 0) :
+    weilNum W K n T ≠ 0 :=
+  solution W hn hT
 
 end publicSection

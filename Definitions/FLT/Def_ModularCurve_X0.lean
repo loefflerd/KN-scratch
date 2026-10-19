@@ -78,7 +78,6 @@ section QExpand
 variable {R : Type*} [CommRing R]
 
 variable (R) in
-
 def qExpand (N : ℕ) [NeZero N] : LaurentSeries R →+* LaurentSeries R :=
   HahnSeries.embDomainRingHom (AddMonoidHom.mulLeft (N : ℤ))
     (mul_right_injective₀ (by exact_mod_cast NeZero.ne N))
@@ -155,7 +154,7 @@ theorem algebraMap_apply_eq_single (c : ℚ) :
 def qExpandₐ : LaurentSeries ℚ →ₐ[ℚ] LaurentSeries ℚ where
   __ := qExpand ℚ N
   commutes' r := by
-    show qExpand ℚ N (algebraMap ℚ (LaurentSeries ℚ) r) = algebraMap ℚ (LaurentSeries ℚ) r
+    change qExpand ℚ N (algebraMap ℚ (LaurentSeries ℚ) r) = algebraMap ℚ (LaurentSeries ℚ) r
     rw [algebraMap_apply_eq_single, qExpand_single, mul_zero]
 
 @[simp]
@@ -326,9 +325,9 @@ def evalAtJGen : Polynomial ℤ →+* ℚ⟮jq⟯ :=
 theorem algebraMap_comp_evalAtJGen :
     (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ)).comp evalAtJGen = evalAtJ := by
   refine Polynomial.ringHom_ext' (Subsingleton.elim _ _) ?_
-  show algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ) (evalAtJGen Polynomial.X) = evalAtJ Polynomial.X
+  change algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ) (evalAtJGen Polynomial.X) = evalAtJ Polynomial.X
   rw [evalAtJ_X]
-  show algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ)
+  change algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ)
     (Polynomial.eval₂ (Int.castRingHom ℚ⟮jq⟯) jGen Polynomial.X) = jq
   rw [Polynomial.eval₂_X]
   rfl
@@ -379,14 +378,13 @@ theorem full_degeneracy_le {N M : ℕ} [NeZero N] [NeZero M] (h : N ∣ M) :
   exact jqd_mem_full M (hdvd.trans h)
 
 omit [NeZero N] in
-
 theorem full_degeneracy_map_le (ℓ : ℕ) [NeZero ℓ] :
     (modularFunctionFieldFull N).map (qExpandₐ ℓ) ≤ modularFunctionFieldFull (N * ℓ) := by
   rw [modularFunctionFieldFull, adjoin_map, adjoin_le_iff]
   rintro x ⟨y, ⟨d, hne, hdvd, rfl⟩, rfl⟩
   have := hne
   have : NeZero (ℓ * d) := ⟨Nat.mul_ne_zero (NeZero.ne ℓ) (NeZero.ne d)⟩
-  show qExpandₐ ℓ (qExpand ℚ d jq) ∈ _
+  change qExpandₐ ℓ (qExpand ℚ d jq) ∈ _
   rw [qExpandₐ_apply, qExpand_qExpand]
   exact jqd_mem_full (N * ℓ) ((mul_dvd_mul_left ℓ hdvd).trans (dvd_of_eq (mul_comm ℓ N)))
 

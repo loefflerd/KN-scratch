@@ -177,11 +177,12 @@ theorem le_exp_sub {a b : ℤ} {A : WithZero (Multiplicative ℤ)}
   rw [show (b - a : ℤ) = -a + b by omega]
   exact h2
 
-theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
+theorem reducePoint_add_int_pole [DecidableEq K]
     {x₁ y₁ x₂ y₂ : K} (h₁ : W.toAffine.Nonsingular x₁ y₁) (h₂ : W.toAffine.Nonsingular x₂ y₂)
     (hx₁ : valuation K (maximalIdeal R) x₁ ≤ 1) (hx₂ : ¬ valuation K (maximalIdeal R) x₂ ≤ 1) :
     reducePoint_alt R W (.some x₁ y₁ h₁ + .some x₂ y₂ h₂)
       = reducePoint_alt R W (.some x₁ y₁ h₁) := by
+  classical
   obtain ⟨s, hs, hvx₂, hvy₂⟩ := valuation_dichotomy R W h₂.1 hx₂
   have hy₁ : valuation K (maximalIdeal R) y₁ ≤ 1 := valuation_y_le_one R W h₁.1 hx₁
   have hxne : x₁ ≠ x₂ := fun h => hx₂ (h ▸ hx₁)
@@ -218,7 +219,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
   have e₁ := h₁.1
   have e₂ := h₂.1
   rw [Affine.equation_iff] at e₁ e₂
-
   obtain ⟨r1x, h1x⟩ := exists_algebraMap_eq_of_valuation_le_one R hx₁
   obtain ⟨r1y, h1y⟩ := exists_algebraMap_eq_of_valuation_le_one R hy₁
   have hAK : -x₁ ^ 3 + W.toAffine.a₄ * x₁ + 2 * W.toAffine.a₆ + -(W.toAffine.a₃ * y₁)
@@ -245,7 +245,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
   have hvd : valuation K (maximalIdeal R)
       (2 * y₁ + W.toAffine.a₁ * x₁ + W.toAffine.a₃) ≤ 1 := by
     rw [hdK]; exact valuation_le_one _ _
-
   have hM : (x₁ - x₂) ^ 2
         * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁)
       = (-x₁ ^ 3 + W.toAffine.a₄ * x₁ + 2 * W.toAffine.a₆ + -(W.toAffine.a₃ * y₁))
@@ -260,7 +259,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
       ring
     rw [hexp, hℓx]
     linear_combination e₁ + e₂
-
   have hvM : valuation K (maximalIdeal R)
       ((-x₁ ^ 3 + W.toAffine.a₄ * x₁ + 2 * W.toAffine.a₆ + -(W.toAffine.a₃ * y₁))
         + (3 * x₁ ^ 2 + 2 * W.toAffine.a₂ * x₁ + W.toAffine.a₄ - W.toAffine.a₁ * y₁) * x₂
@@ -321,7 +319,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
       ring
     rw [h0, hℓx, hM]
     linear_combination (2 * y₁ + W.toAffine.a₁ * x₁ + W.toAffine.a₃) * e₂
-
   have hvM₂ : valuation K (maximalIdeal R)
       ((-x₁ ^ 3 + W.toAffine.a₄ * x₁ + 2 * W.toAffine.a₆ + -(W.toAffine.a₃ * y₁))
           * (y₁ - y₂)
@@ -448,7 +445,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
           ≤ 1 * WithZero.exp (4 * (s : ℤ)) := mul_le_mul' hvd hinner
         _ = WithZero.exp (4 * (s : ℤ)) := one_mul _
         _ ≤ WithZero.exp (5 * (s : ℤ)) := WithZero.exp_le_exp.mpr (by omega)
-
   have hvly : valuation K (maximalIdeal R)
       (W.toAffine.slope x₁ x₂ y₁ y₂
           * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁)
@@ -465,7 +461,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
     have h1 := le_exp_sub h0
     rw [show (5 * (s : ℤ) - 6 * (s : ℤ)) = -(s : ℤ) by omega] at h1
     exact h1
-
   have hy₃eq : W.toAffine.addY x₁ x₂ y₁ (W.toAffine.slope x₁ x₂ y₁ y₂) - y₁
       = -(W.toAffine.slope x₁ x₂ y₁ y₂
             * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁)
@@ -528,14 +523,15 @@ end Deep
 theorem solution
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [DecidableEq K] [Algebra R K] [IsFractionRing R K]
-    [DecidableEq (IsLocalRing.ResidueField R)]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x₁ y₁ x₂ y₂ : K}
     (h₁ : W.toAffine.Nonsingular x₁ y₁) (h₂ : W.toAffine.Nonsingular x₂ y₂)
     (hx₁ : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x₁ ≤ 1)
     (hx₂ : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x₂ ≤ 1) :
     WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁ + .some x₂ y₂ h₂)
-      = WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁) :=
-  Deep.reducePoint_add_int_pole R W h₁ h₂ hx₁ hx₂
+      = WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁) := by
+  classical
+  exact
+    Deep.reducePoint_add_int_pole R W h₁ h₂ hx₁ hx₂
 
 end S_WeierstrassCurve_reducePoint_some_add_some_of_not_le_one
 end P2MW
@@ -548,12 +544,14 @@ public section publicSection
 theorem WeierstrassCurve.reducePoint_some_add_some_of_not_le_one
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [DecidableEq K] [Algebra R K] [IsFractionRing R K]
-    [DecidableEq (IsLocalRing.ResidueField R)]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x₁ y₁ x₂ y₂ : K}
     (h₁ : W.toAffine.Nonsingular x₁ y₁) (h₂ : W.toAffine.Nonsingular x₂ y₂)
     (hx₁ : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x₁ ≤ 1)
     (hx₂ : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x₂ ≤ 1) :
     WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁ + .some x₂ y₂ h₂)
-      = WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁) := _root_.P2MW.S_WeierstrassCurve_reducePoint_some_add_some_of_not_le_one.solution R W h₁ h₂ hx₁ hx₂
+      = WeierstrassCurve.reducePoint_alt R W (.some x₁ y₁ h₁) := by
+  classical
+  exact
+    solution R W h₁ h₂ hx₁ hx₂
 
 end publicSection

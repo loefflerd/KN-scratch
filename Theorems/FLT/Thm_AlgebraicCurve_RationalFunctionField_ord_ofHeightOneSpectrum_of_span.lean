@@ -63,7 +63,9 @@ open AlgebraicCurve
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
-theorem solution {K : Type*} [Field K] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) {p : Polynomial K} (hp : p ≠ 0) (hw : w.asIdeal = Ideal.span {p}) : (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord (algebraMap (Polynomial K) (RatFunc K) p) = 1 := by
+theorem solution {K : Type*} [Field K] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K))
+    {p : Polynomial K} (hp : p ≠ 0) (hw : w.asIdeal = Ideal.span {p}) :
+    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord (algebraMap (Polynomial K) (RatFunc K) p) = 1 := by
   have hval : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) p) = exp (-1 : ℤ) := by
     have h := w.intValuation_singleton hp hw
     rw [← h]
@@ -82,6 +84,10 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_of_span {K : Type*} [Field K] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) {p : Polynomial K} (hp : p ≠ 0) (hw : w.asIdeal = Ideal.span {p}) : (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord (algebraMap (Polynomial K) (RatFunc K) p) = 1 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_of_span.solution w hp hw
+theorem AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_of_span {K : Type*} [Field K]
+    (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) {p : Polynomial K} (hp : p ≠ 0)
+    (hw : w.asIdeal = Ideal.span {p}) :
+    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord (algebraMap (Polynomial K) (RatFunc K) p) = 1 :=
+  solution w hp hw
 
 end publicSection

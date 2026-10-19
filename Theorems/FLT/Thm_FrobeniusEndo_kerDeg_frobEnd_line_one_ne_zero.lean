@@ -64,7 +64,12 @@ namespace P2MW.S_FrobeniusEndo_kerDeg_frobEnd_line_one_ne_zero
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) : kerDeg (frobEnd W σ) m 1 ≠ 0 :=
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+    [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k]
+    (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
+    (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ) (hm : 1 ≤ m)
+    (hmk : (m : k) ≠ 0) :
+    kerDeg (frobEnd W σ) m 1 ≠ 0 :=
   Nat.pos_iff_ne_zero.mp (FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq W σ hσ hF m hm hmk).1
 
 end S_FrobeniusEndo_kerDeg_frobEnd_line_one_ne_zero
@@ -78,6 +83,12 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) : kerDeg (frobEnd W σ) m 1 ≠ 0 := _root_.P2MW.S_FrobeniusEndo_kerDeg_frobEnd_line_one_ne_zero.solution W σ hσ hF m hm hmk
+theorem FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero {R : Type*} [CommRing R] {F : Type*} [Field F]
+    [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k]
+    [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic]
+    (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ)
+    (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
+    kerDeg (frobEnd W σ) m 1 ≠ 0 :=
+  solution W σ hσ hF m hm hmk
 
 end publicSection

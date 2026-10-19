@@ -92,10 +92,27 @@ namespace P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable.AlgebraicCurve IntermediateField KaehlerDifferential"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable.AlgebraicCurve \
+  IntermediateField KaehlerDifferential"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "genusFF Place Divisor Divisor.degree HasPrincipalDivisors Place.diffCoeff Place.ordDiff Place.ordDiff_def IsCurveOver IsCurveOver.forall_deg_eq_one_of_isAlgClosed HasCanonicalDivisor canonicalDivisorOf canonicalDivisorOf_apply genus Place.ordDifferential WeilDualityAdelic FunctionFieldRiemannRoch ConstantsAreBase StichtenothGenusExists Place.ramificationIndex TranscendenceTower RationalFunctionField.placeInfty isCurveOver_of_transcendental_of_isSeparable isCurveOver_ratFunc hasCanonicalDivisor_of_isCurveOver dCoordGenerates_of_isCurveOver essFiniteType_of_transcendental_of_finiteDimensional functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver constantsAreBase_of_isAlgClosed stichtenothGenusExists_of_isCurveOver weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists genus_eq_genusFF degree_canonicalDivisor_eq_of_riemannRoch Place.D_ne_zero_of_ord_eq_one Place.diffCoeff_smul_D_of_ord_eq_one Place.ord_diffCoeff_D_nonneg_of_perfectField Place.ord_sub_one_le_ordDiff_D_of_perfectField RationalFunctionField.ord_placeInfty_X RationalFunctionField.ord_X_nonneg_of_ne_placeInfty RationalFunctionField.deg_placeInfty linearIndependent_pow_of_transcendental"
+p2m_export "AlgebraicCurve" "genusFF Place Divisor Divisor.degree HasPrincipalDivisors \
+  Place.diffCoeff Place.ordDiff Place.ordDiff_def IsCurveOver \
+  IsCurveOver.forall_deg_eq_one_of_isAlgClosed HasCanonicalDivisor canonicalDivisorOf \
+  canonicalDivisorOf_apply genus Place.ordDifferential WeilDualityAdelic FunctionFieldRiemannRoch \
+  ConstantsAreBase StichtenothGenusExists Place.ramificationIndex TranscendenceTower \
+  RationalFunctionField.placeInfty isCurveOver_of_transcendental_of_isSeparable \
+  isCurveOver_ratFunc hasCanonicalDivisor_of_isCurveOver dCoordGenerates_of_isCurveOver \
+  essFiniteType_of_transcendental_of_finiteDimensional \
+  functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver constantsAreBase_of_isAlgClosed \
+  stichtenothGenusExists_of_isCurveOver \
+  weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists genus_eq_genusFF \
+  degree_canonicalDivisor_eq_of_riemannRoch Place.D_ne_zero_of_ord_eq_one \
+  Place.diffCoeff_smul_D_of_ord_eq_one Place.ord_diffCoeff_D_nonneg_of_perfectField \
+  Place.ord_sub_one_le_ordDiff_D_of_perfectField RationalFunctionField.ord_placeInfty_X \
+  RationalFunctionField.ord_X_nonneg_of_ne_placeInfty RationalFunctionField.deg_placeInfty \
+  linearIndependent_pow_of_transcendental"
 p2m_open "AlgebraicCurve"
 
 namespace HurwitzLineBoundProof
@@ -129,17 +146,17 @@ theorem with_ratFunc {P : Prop}
   have hsq : RingHom.comp (algebraMap (RatFunc k) F) (e.symm.toRingEquiv : k⟮x⟯ →+* RatFunc k)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap k⟮x⟯ F) := by
     ext y
-    show algebraMap k⟮x⟯ F (e (e.symm y)) = algebraMap k⟮x⟯ F y
+    change algebraMap k⟮x⟯ F (e (e.symm y)) = algebraMap k⟮x⟯ F y
     rw [e.apply_symm_apply]
   have : IsScalarTower k (RatFunc k) F := IsScalarTower.of_algebraMap_eq fun a => by
-    show algebraMap k F a = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) a))
+    change algebraMap k F a = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) a))
     rw [e.commutes, ← IsScalarTower.algebraMap_apply]
   have hfd : FiniteDimensional (RatFunc k) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   have : Algebra.IsSeparable (RatFunc k) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   have hX : algebraMap (RatFunc k) F RatFunc.X = x := by
-    show algebraMap k⟮x⟯ F (e RatFunc.X) = x
+    change algebraMap k⟮x⟯ F (e RatFunc.X) = x
     have h := RatFunc.algEquivOfTranscendental_X x hx
     exact h
   have hn : Module.finrank (RatFunc k) F = Module.finrank k⟮x⟯ F :=
@@ -213,14 +230,12 @@ variable {K : Type u} {F : Type v} [Field K] [Field F] [Algebra K F] [PerfectFie
   (x : F) [FiniteDimensional K⟮x⟯ F]
 
 omit [PerfectField K] [FiniteDimensional K⟮x⟯ F] in
-
 theorem exists_dCoord_eq_D (v : Place K F) : ∃ t : F, v.ord t = 1 ∧ v.dCoord = D K F t :=
   ⟨((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F),
     v.ord_coe_irreducible
       (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec, rfl⟩
 
 omit [PerfectField K] [FiniteDimensional K⟮x⟯ F] in
-
 theorem coeff_unique {η : Ω[F⁄K]} (hη : η ≠ 0) {a b : F} (h : a • η = b • η) : a = b := by
   have h0 : (a - b) • η = 0 := by rw [sub_smul, h, sub_self]
   rcases smul_eq_zero.mp h0 with h1 | h1
@@ -228,7 +243,6 @@ theorem coeff_unique {η : Ω[F⁄K]} (hη : η ≠ 0) {a b : F} (h : a • η =
   · exact absurd h1 hη
 
 include x in
-
 theorem ordDiff_eq_ordDifferential (v : Place K F) [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
     (ω : Ω[F⁄K]) : v.ordDiff ω = v.ordDifferential ω := by
   obtain ⟨t₂, ht₂, hdc⟩ := exists_dCoord_eq_D v
@@ -282,7 +296,6 @@ variable (k : Type u) [Field k] {F : Type v} [Field F] [Algebra k F]
 
 omit [FiniteDimensional (RatFunc k) F] [Algebra.IsSeparable (RatFunc k) F]
   [HasPrincipalDivisors k F] in
-
 def towerX : TranscendenceTower k (RatFunc k) F where
   x := RatFunc.X
   hx_indep := AlgebraicCurve.linearIndependent_pow_of_transcendental
@@ -293,7 +306,6 @@ def towerX : TranscendenceTower k (RatFunc k) F where
   hxreg := fun _ hu => RationalFunctionField.ord_X_nonneg_of_ne_placeInfty k hu
 
 omit [FiniteDimensional (RatFunc k) F] in
-
 theorem towerX_poleDivisor_apply (w : Place k F) :
     (towerX k (F := F)).poleDivisor w =
       if w.ord (algebraMap (RatFunc k) F RatFunc.X) < 0 then
@@ -314,11 +326,13 @@ theorem towerX_poleDivisor_apply (w : Place k F) :
     rw [happ, Finsupp.single_eq_of_ne hw, mul_zero, ite_eq_right (not_lt.mpr h0)]
 
 
+omit [DecidableEq (RatFunc k)] in
 theorem sum_poles_eq_finrank (hdeg1 : ∀ w : Place k F, w.deg = 1) :
     ∃ P : Finset (Place k F),
       (∀ w, w ∈ P ↔ w.ord (algebraMap (RatFunc k) F RatFunc.X) < 0) ∧
       ∑ w ∈ P, (-w.ord (algebraMap (RatFunc k) F RatFunc.X)) =
         (Module.finrank (RatFunc k) F : ℤ) := by
+  classical
   have hD := towerX_poleDivisor_apply k (F := F)
   refine ⟨(towerX k (F := F)).poleDivisor.support, fun w => ?_, ?_⟩
   · rw [Finsupp.mem_support_iff, hD]
@@ -335,13 +349,14 @@ theorem sum_poles_eq_finrank (hdeg1 : ∀ w : Place k F, w.deg = 1) :
 
 end Poles
 
-theorem sum_bound {ι : Type*} [DecidableEq ι] (f m : ι → ℤ)
+theorem sum_bound {ι : Type*} (f m : ι → ℤ)
     (S : Finset ι) (hS : ∀ P, P ∉ S → f P = 0) (C : ℤ) (hC : ∑ P ∈ S, f P = C)
     (Poles : Finset ι) (hPoles : ∀ P, P ∈ Poles ↔ m P < 0) (n : ℤ)
     (hn : ∑ P ∈ Poles, (-m P) = n)
     (hreg : ∀ P, 0 ≤ m P → 0 ≤ f P) (hpole : ∀ P, m P - 1 ≤ f P)
     (T : Finset ι) (hT : ∀ P ∈ T, 0 ≤ m P) (Tinf : Finset ι) (hTinf : ∀ P ∈ Tinf, m P < 0) :
     ∑ P ∈ T, f P + ∑ P ∈ Tinf, (-m P - 1) ≤ C + 2 * n := by
+  classical
   set U : Finset ι := S ∪ T ∪ Poles with hU
   have hSU : S ⊆ U := Finset.subset_union_left.trans Finset.subset_union_left
   have hTU : T ⊆ U := Finset.subset_union_right.trans Finset.subset_union_left
@@ -357,14 +372,14 @@ theorem sum_bound {ι : Type*} [DecidableEq ι] (f m : ι → ℤ)
   have hsplit : ∑ P ∈ U \ T, f P + ∑ P ∈ T, f P = ∑ P ∈ U, f P := Finset.sum_sdiff hTU
   let g : ι → ℤ := fun P => if m P < 0 then m P - 1 else 0
   have hfg : ∀ P, g P ≤ f P := fun P => by
-    show (if m P < 0 then m P - 1 else 0) ≤ f P
+    change (if m P < 0 then m P - 1 else 0) ≤ f P
     split_ifs with h
     · exact hpole P
     · exact hreg P (not_lt.mp h)
   have hg1 : ∑ P ∈ U \ T, g P ≤ ∑ P ∈ U \ T, f P := Finset.sum_le_sum fun P _ => hfg P
   have hg2 : ∑ P ∈ Poles, g P = ∑ P ∈ U \ T, g P := by
     refine Finset.sum_subset hPU fun P _ hP => ?_
-    show (if m P < 0 then m P - 1 else 0) = 0
+    change (if m P < 0 then m P - 1 else 0) = 0
     rw [ite_eq_right (fun h => hP ((hPoles P).mpr h))]
   have hg3 : ∑ P ∈ Poles, g P = ∑ P ∈ Poles, (m P - 1) :=
     Finset.sum_congr rfl fun P hP => ite_eq_left ((hPoles P).mp hP)
@@ -432,7 +447,8 @@ end AlgebraicCurve
 
 end
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable.AlgebraicCurve"
 
 theorem solution
     (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebra k F]
@@ -465,6 +481,7 @@ theorem AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable
     (Tinf : Finset (Place k F)) (hTinf : ∀ P ∈ Tinf, P.ord x < 0) :
     ∑ P ∈ T, P.ordDiff (KaehlerDifferential.D k F x) + ∑ P ∈ Tinf, (-P.ord x - 1) ≤
       2 * (genusFF k F : ℤ) - 2 +
-        2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := _root_.P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable.solution k x hx hfin hsep T hT Tinf hTinf
+        2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) :=
+  solution k x hx hfin hsep T hT Tinf hTinf
 
 end publicSection

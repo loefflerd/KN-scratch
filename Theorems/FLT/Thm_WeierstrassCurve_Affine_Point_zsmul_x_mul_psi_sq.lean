@@ -87,7 +87,9 @@ section PortCardMulXY
 
 namespace PortCard
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq.WeierstrassCurve WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.Point Polynomial"
 open scoped Polynomial.Bivariate
 
 theorem zsmul_some_eq_some_jac {F : Type*} [Field F] [DecidableEq F] (V : WeierstrassCurve F)
@@ -117,7 +119,6 @@ theorem some_congr {F : Type*} [CommRing F] {V : Affine F} {x₁ x₂ y₁ y₂ 
   subst ex ey; exact ⟨h₁, rfl⟩
 
 universe u v in
-
 theorem exists_zsmul_some_eq_some_baseChange {R : Type u} [CommRing R] (W : WeierstrassCurve R)
     (n : ℤ) : ∃ ωe : R[X][Y], ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F}
       (h : (W.baseChange F).toAffine.Nonsingular x y),
@@ -154,7 +155,14 @@ universe u v
 section M4WilesOmega
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine map Jacobian.nonsingular_of_Z_ne_zero Jacobian.Point.toAffineAddEquiv_symm_apply mk Jacobian Affine.Point.some Jacobian.Point.ext Jacobian.Point.fromAffine Jacobian.Point.toAffineAddEquiv_apply ΨSq toAffine Affine.Point Jacobian.Point.toAffineAddEquiv Jacobian.Point baseChange Jacobian.Point.toAffineLift_of_Z_ne_zero Jacobian.Point.mk ψDbl twoω Universal.curve Universal.map_specialize ω ω_eq_map_of_twoω_eq two_mul_ω_of_twoω_universal_eq Affine.Point.smul_some_eq_zero_iff map_specialize ψc ωe two_mul_ωe map_ωe smulEval zsmul_eq_smulEval evalEval_ψ_sq evalEval_φ"
+p2m_export "WeierstrassCurve" "Affine map Jacobian.nonsingular_of_Z_ne_zero \
+  Jacobian.Point.toAffineAddEquiv_symm_apply mk Jacobian Affine.Point.some Jacobian.Point.ext \
+  Jacobian.Point.fromAffine Jacobian.Point.toAffineAddEquiv_apply ΨSq toAffine Affine.Point \
+  Jacobian.Point.toAffineAddEquiv Jacobian.Point baseChange \
+  Jacobian.Point.toAffineLift_of_Z_ne_zero Jacobian.Point.mk ψDbl twoω Universal.curve \
+  Universal.map_specialize ω ω_eq_map_of_twoω_eq two_mul_ω_of_twoω_universal_eq \
+  Affine.Point.smul_some_eq_zero_iff map_specialize ψc ωe two_mul_ωe map_ωe smulEval \
+  zsmul_eq_smulEval evalEval_ψ_sq evalEval_φ"
 p2m_open "WeierstrassCurve"
 
 open Polynomial
@@ -172,7 +180,6 @@ namespace Universal
 p2m_export "WeierstrassCurve.Universal" "curve map_specialize"
 end Universal
 p2m_open_scoped "WeierstrassCurve.Universal" in
-
 lemma Universal.twoω_curve_eq (n : ℤ) : Universal.curve.twoω n = 2 * Universal.curve.ωe n :=
   twoω_eq_two_mul_ωe _ n
 
@@ -190,7 +197,9 @@ section M4WilesOmegaXY
 
 namespace M4Wiles
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point Polynomial"
+p2m_open "WeierstrassCurve \
+  P2MW.S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq.WeierstrassCurve WeierstrassCurve.Affine \
+  WeierstrassCurve.Affine.Point Polynomial"
 open scoped Polynomial.Bivariate
 
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
@@ -220,7 +229,8 @@ end M4WilesOmegaXY
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') : x' * ((W.ψ n).evalEval x y) ^ 2 = (W.φ n).evalEval x y :=
+theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
+    x' * ((W.ψ n).evalEval x y) ^ 2 = (W.φ n).evalEval x y :=
   (M4Wiles.zsmul_coords W h h' hn).2.1
 
 end S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq
@@ -235,6 +245,8 @@ public section publicSection
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem WeierstrassCurve.Affine.Point.zsmul_x_mul_psi_sq {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') : x' * ((W.ψ n).evalEval x y) ^ 2 = (W.φ n).evalEval x y := _root_.P2MW.S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq.solution W n h h' hn
+theorem WeierstrassCurve.Affine.Point.zsmul_x_mul_psi_sq {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
+    x' * ((W.ψ n).evalEval x y) ^ 2 = (W.φ n).evalEval x y :=
+  solution W n h h' hn
 
 end publicSection

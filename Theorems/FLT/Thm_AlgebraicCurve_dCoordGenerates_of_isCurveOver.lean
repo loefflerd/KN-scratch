@@ -106,7 +106,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring'' : v.toValuationSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.polynomialAlgebra : Algebra K[X] v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.polynomialAlgebra :
+    Algebra K[X] v.toValuationSubring :=
   (Polynomial.aeval (R := K) v.uniformizerSubring'').toRingHom.toAlgebra
 
 private theorem _root_.AlgebraicCurve.Place.polynomialAlgebra_algebraMap_X :
@@ -119,7 +120,7 @@ private lemma _root_.AlgebraicCurve.Place.polynomialIsScalarTower :
     IsScalarTower K K[X] v.toValuationSubring := by
   let := v.polynomialAlgebra
   refine IsScalarTower.of_algebraMap_eq fun a => ?_
-  show _ = aeval v.uniformizerSubring'' (algebraMap K K[X] a)
+  change _ = aeval v.uniformizerSubring'' (algebraMap K K[X] a)
   simp [Polynomial.algebraMap_eq, aeval_C]
 
 private theorem _root_.AlgebraicCurve.Place.range_mapBaseChange_le_span_D_uniformizer :
@@ -196,10 +197,12 @@ section ResidueEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring''' : v.toValuationSubring :=
+private noncomputable def _root_.AlgebraicCurve.Place.uniformizerSubring''' :
+    v.toValuationSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
-private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring''' : Irreducible v.uniformizerSubring''' :=
+private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring''' :
+    Irreducible v.uniformizerSubring''' :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
 
 private theorem _root_.AlgebraicCurve.Place.maximalIdeal_eq_span_uniformizer :
@@ -412,13 +415,15 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
 variable (A : Subalgebra K F) (hA : (A : Set F) ⊆ (v.toValuationSubring : Set F))
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelInclusion : A →+* v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelInclusion :
+    A →+* v.toValuationSubring :=
   (Subring.inclusion (show A.toSubring ≤ v.toValuationSubring.toSubring from hA))
 
 @[scoped simp] theorem coe_modelInclusion (a : A) :
     ((v.modelInclusion A hA a : v.toValuationSubring) : F) = (a : F) := rfl
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelAlgebra : Algebra A v.toValuationSubring :=
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.modelAlgebra :
+    Algebra A v.toValuationSubring :=
   (v.modelInclusion A hA).toAlgebra
 
 @[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerIdeal : Ideal A :=
@@ -593,11 +598,13 @@ scoped instance centerLocalizationValuationSubring_isDiscreteValuationRing
     IsDiscreteValuationRing (v.centerLocalizationValuationSubring A hA) :=
   v.centerLocalizationSubalgebra_isDiscreteValuationRing A hA
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_le [IsDedekindDomain A] [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_le
+    [IsDedekindDomain A] [IsFractionRing A F] :
     v.centerLocalizationValuationSubring A hA ≤ v.toValuationSubring :=
   v.centerLocalizationSubalgebra_subset A hA
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_eq [IsDedekindDomain A] [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationValuationSubring_eq
+    [IsDedekindDomain A] [IsFractionRing A F] :
     v.centerLocalizationValuationSubring A hA = v.toValuationSubring :=
   ValuationSubring.eq_of_isDiscreteValuationRing_of_le_s12
     (v.centerLocalizationValuationSubring_le A hA) v.ne_top'
@@ -608,7 +615,8 @@ theorem coe_centerLocalizationSubalgebra_eq [IsDedekindDomain A] [IsFractionRing
   rw [← coe_centerLocalizationValuationSubring]
   exact congrArg (SetLike.coe) (v.centerLocalizationValuationSubring_eq A hA)
 
-private theorem _root_.AlgebraicCurve.Place.mem_centerLocalizationSubalgebra_of_mem [IsDedekindDomain A] [IsFractionRing A F]
+private theorem _root_.AlgebraicCurve.Place.mem_centerLocalizationSubalgebra_of_mem
+    [IsDedekindDomain A] [IsFractionRing A F]
     (x : F) (hx : x ∈ v.toValuationSubring) :
     x ∈ (v.centerLocalizationSubalgebra A hA : Subalgebra A F) := by
   rw [← SetLike.mem_coe, coe_centerLocalizationSubalgebra_eq]; exact hx
@@ -625,7 +633,7 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
       v.mem_centerLocalizationSubalgebra_of_mem A hA (x : F) x.2
     obtain ⟨a, s, hs, hxeq⟩ := hxP
     refine ⟨⟨a, ⟨s, hs⟩⟩, Subtype.ext ?_⟩
-    show (x : F) * ((s : A) : F) = ((a : A) : F)
+    change (x : F) * ((s : A) : F) = ((a : A) : F)
     have halg_s : algebraMap A F s = ((s : A) : F) := rfl
     have halg_a : algebraMap A F a = ((a : A) : F) := rfl
     have hs0 : algebraMap A F s ≠ 0 := by
@@ -740,7 +748,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) : Subalgebra K F where
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) :
+    Subalgebra K F where
   __ := v.toValuationSubring.toSubring
   algebraMap_mem' c := v.algebraMap_mem' c
 
@@ -767,23 +776,27 @@ section AdjoinRingProperties
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin_s12 {t : F}
+    (ht : Transcendental K t) :
     IsPrincipalIdealRing ↥(Algebra.adjoin K ({t} : Set F)) :=
   IsPrincipalIdealRing.of_surjective
     (Polynomial.algEquivOfTranscendental K t ht).toRingHom
     (Polynomial.algEquivOfTranscendental K t ht).surjective
 
-private theorem _root_.Transcendental.isDedekindDomain_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isDedekindDomain_adjoin_s12 {t : F} (ht : Transcendental K t)
+    :
     IsDedekindDomain ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isPrincipalIdealRing_adjoin_s12
   inferInstance
 
-private theorem _root_.Transcendental.isIntegrallyClosed_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isIntegrallyClosed_adjoin_s12 {t : F}
+    (ht : Transcendental K t) :
     IsIntegrallyClosed ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isDedekindDomain_adjoin_s12
   inferInstance
 
-private theorem _root_.Transcendental.isNoetherianRing_adjoin_s12 {t : F} (ht : Transcendental K t) :
+private theorem _root_.Transcendental.isNoetherianRing_adjoin_s12 {t : F} (ht : Transcendental K t)
+    :
     IsNoetherianRing ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isPrincipalIdealRing_adjoin_s12
   inferInstance

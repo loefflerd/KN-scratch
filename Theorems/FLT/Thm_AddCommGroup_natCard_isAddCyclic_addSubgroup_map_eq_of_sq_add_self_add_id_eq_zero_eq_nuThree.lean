@@ -128,7 +128,8 @@ theorem solution
     (σ.comp (Submodule.torsionBy ℤ A n).subtype.toAddMonoidHom).codRestrict
       (Submodule.torsionBy ℤ A n) (fun x => σV x.1 x.2)
   have σr_apply : ∀ x, ((σr x : Submodule.torsionBy ℤ A n) : A) = σ x := fun x => rfl
-  let T : ZMod n × ZMod n →+ ZMod n × ZMod n := e.symm.toAddMonoidHom.comp (σr.comp e.toAddMonoidHom)
+  let T : ZMod n × ZMod n →+ ZMod n × ZMod n :=
+    e.symm.toAddMonoidHom.comp (σr.comp e.toAddMonoidHom)
   have T_apply : ∀ m, T m = e.symm (σr (e m)) := fun m => rfl
   have hT : ∀ m, ι (T m) = σ (ι m) := fun m => by
     simp only [T_apply, ι_apply, AddEquiv.apply_symm_apply, σr_apply]
@@ -162,6 +163,7 @@ theorem AddCommGroup.natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_i
     (σ : A →+ A) (hσ : ∀ a : A, σ (σ a) + σ a + a = 0)
     (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ a : A, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a) :
     Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ = H}
-      = nuThree n := _root_.P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree.solution n e σ hσ hns
+      = nuThree n :=
+  solution n e σ hσ hns
 
 end publicSection

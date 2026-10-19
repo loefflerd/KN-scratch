@@ -95,7 +95,6 @@ theorem addX_mul_addX_negY_mul_sq {x₁ x₂ y₁ y₂ : F} (h₁ : W.Equation x
   have hd2 : (x₁ - x₂) ^ 2 ≠ 0 := pow_ne_zero 2 hd
   have e₁ := addX_mul_sq_of_X_ne (W := W) y₁ y₂ hx
   have e₂ := addX_mul_sq_of_X_ne (W := W) y₁ (W.negY x₂ y₂) hx
-
   have key : ((y₁ - y₂) ^ 2 + W.a₁ * (y₁ - y₂) * (x₁ - x₂) -
         (W.a₂ + x₁ + x₂) * (x₁ - x₂) ^ 2) *
       ((y₁ - W.negY x₂ y₂) ^ 2 + W.a₁ * (y₁ - W.negY x₂ y₂) * (x₁ - x₂) -
@@ -132,7 +131,6 @@ theorem X_ne_and_eq_addX_of_add_sub {xa ya xb yb xp yp xm ym : F}
     (hsub : Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm) :
     xa ≠ xb ∧ xp = W.addX xa xb (W.slope xa xb ya yb)
       ∧ xm = W.addX xa xb (W.slope xa xb ya (W.negY xb yb)) := by
-
   have hsub' : Point.some xa ya ha + Point.some xb (W.negY xb yb) ((nonsingular_neg xb yb).mpr hb)
       = Point.some xm ym hm := by
     rw [← hsub, sub_eq_add_neg, neg_some]
@@ -217,7 +215,7 @@ lemma eval_ne_zero_of_isCoprime {u v : K[X]} (hcop : IsCoprime u v) {r : K}
     (hv : v.eval r = 0) : u.eval r ≠ 0 :=
   fun hu => not_isRoot_left_of_isCoprime hcop hv hu
 
-lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
+lemma exists_common_cofactor [IsAlgClosed K]
     {uP vP uM vM Cm A B : K[X]}
     (hcopP : IsCoprime uP vP) (hcopM : IsCoprime uM vM)
     (hup : uP ≠ 0) (hum : uM ≠ 0) (hvp : vP ≠ 0) (hvm : vM ≠ 0) (hCm : Cm ≠ 0)
@@ -225,6 +223,7 @@ lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
     (hS : (uP * vM + uM * vP) * Cm ^ 2 = vP * vM * B) :
     ∃ h : K[X], h ≠ 0 ∧ Cm ^ 2 = vP * vM * h ∧ A = uP * uM * h
       ∧ B = (uP * vM + uM * vP) * h := by
+  classical
   have hCm2 : Cm ^ 2 ≠ 0 := pow_ne_zero 2 hCm
   have hvv : vP * vM ≠ 0 := mul_ne_zero hvp hvm
   have huu : uP * uM ≠ 0 := mul_ne_zero hup hum
@@ -232,7 +231,6 @@ lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
     intro h0
     rw [h0, mul_zero] at hP
     exact mul_ne_zero huu hCm2 hP
-
   have hkey : ∀ r : K, rootMultiplicity r vP + rootMultiplicity r vM
       ≤ rootMultiplicity r (Cm ^ 2) := by
     intro r
@@ -313,7 +311,6 @@ lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
           omega
       · have hvmr : rootMultiplicity r vM = 0 := Polynomial.rootMultiplicity_eq_zero hvmRoot
         omega
-
   have hdvd : vP * vM ∣ Cm ^ 2 := by
     rw [IsAlgClosed.dvd_iff_roots_le_roots hvv hCm2, Multiset.le_iff_count]
     intro a
@@ -355,7 +352,6 @@ lemma natDegree_symProd {u v s t : k[X]} (hu : u ≠ 0) (hs : s ≠ 0)
   have h1 : (u ^ 2 * s ^ 2).natDegree = 2 * (u.natDegree + s.natDegree) := by
     rw [natDegree_mul (pow_ne_zero 2 hu) (pow_ne_zero 2 hs), natDegree_pow, natDegree_pow]
     ring
-
   have h2 : (C W.b₄ * u * s * v * t).natDegree < 2 * (u.natDegree + s.natDegree) := by
     have e1 : (C W.b₄ * u * s * v * t).natDegree ≤ (C W.b₄ * u * s * v).natDegree + t.natDegree :=
       natDegree_mul_le
@@ -386,7 +382,6 @@ lemma natDegree_symProd {u v s t : k[X]} (hu : u ≠ 0) (hs : s ≠ 0)
     have e3 : (v ^ 2).natDegree ≤ 2 * v.natDegree := natDegree_pow_le
     have e4 : (t ^ 2).natDegree ≤ 2 * t.natDegree := natDegree_pow_le
     omega
-
   have d1 : (u ^ 2 * s ^ 2 - C W.b₄ * u * s * v * t).natDegree
       = 2 * (u.natDegree + s.natDegree) := by
     rw [natDegree_sub_eq_left_of_natDegree_lt (by rw [h1]; exact h2), h1]
@@ -469,17 +464,14 @@ end Sym
 end ParallelogramLaw
 
 open ParallelogramLaw in
-
-theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) : u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree + v₂.natDegree = 2 * (u * t - s * v).natDegree := by
-
+theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) :
+    u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree + v₂.natDegree = 2 * (u * t - s * v).natDegree := by
   obtain ⟨-, -⟩ : v ≠ 0 ∧ t ≠ 0 := ⟨hv, ht⟩
   clear hv ht
-
   have hs : s ≠ 0 := by
     rintro rfl
     rw [natDegree_zero] at hts
     exact Nat.not_lt_zero _ hts
-
   have hP : u₁ * u₂ * (u * t - s * v) ^ 2 = v₁ * v₂ * symProd W u v s t := by
     apply Polynomial.eq_of_infinite_eval_eq
     refine Set.Infinite.mono ?_ hS.infinite_compl
@@ -496,7 +488,6 @@ theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : Weie
     obtain ⟨xa, ya, xb, yb, xp, yp, xm, ym, ha, hb, hp, hm, hadd, hsub, hxa, hxb, hxp, hxm⟩ :=
       H x hx
     exact (eval_prod_and_sum W hadd hsub hxa hxb hxp hxm).2
-
   have hAdeg : (symProd W u v s t).natDegree = 2 * (u.natDegree + s.natDegree) :=
     natDegree_symProd W hu hs hvu hts
   have hAne : symProd W u v s t ≠ 0 := by
@@ -549,6 +540,8 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.Point.natDegree_parallelogram_law {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) : u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree + v₂.natDegree = 2 * (u * t - s * v).natDegree := _root_.P2MW.S_WeierstrassCurve_Affine_Point_natDegree_parallelogram_law.solution W hS huv hst huv₁ huv₂ hu hv ht hv₁ hv₂ hvu hts H
+theorem WeierstrassCurve.Affine.Point.natDegree_parallelogram_law {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) :
+    u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree + v₂.natDegree = 2 * (u * t - s * v).natDegree :=
+  solution W hS huv hst huv₁ huv₂ hu hv ht hv₁ hv₂ hvu hts H
 
 end publicSection

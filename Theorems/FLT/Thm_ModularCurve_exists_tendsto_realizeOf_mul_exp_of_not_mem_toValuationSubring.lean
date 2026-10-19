@@ -96,7 +96,8 @@ theorem realizeOf_smul (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (
   · obtain ⟨⟨k, g, h⟩, hτ, hx⟩ := H
     have hγτ : (h : ℍ → ℂ) (γ • τ) ≠ 0 := by
       rw [hden k h]; exact mul_ne_zero (zpow_ne_zero _ hd0) hτ
-    rw [realizeOf_eq_div Γ hT g h x hx (γ • τ) hγτ, realizeOf_eq_div Γ hT g h x hx τ hτ, hden k g, hden k h,
+    rw [realizeOf_eq_div Γ hT g h x hx (γ • τ) hγτ, realizeOf_eq_div Γ hT g h x hx τ hτ, hden k g,
+      hden k h,
       mul_div_mul_left _ _ (zpow_ne_zero _ hd0)]
   · have H' : ¬ ∃ p : (k : ℤ) × (ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k × ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k),
         (p.2.2 : ℍ → ℂ) (γ • τ) ≠ 0 ∧
@@ -106,7 +107,7 @@ theorem realizeOf_smul (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (
       refine H ⟨⟨k, g, h⟩, ?_, hx⟩
       intro h0
       apply hγτ
-      show (h : ℍ → ℂ) (γ • τ) = 0
+      change (h : ℍ → ℂ) (γ • τ) = 0
       rw [hden k h, h0, mul_zero]
     rw [realizeOf_def, realizeOf_def, dite_eq_right H, dite_eq_right H']
 
@@ -117,12 +118,14 @@ theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (hdeg : Module.finrank
         ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(ModularCurve.laurentBaseChange ℂ F₀)))
         ↥(ModularCurve.laurentBaseChange ℂ F₀) =
       (Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
-    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hP : y ∉ P.toValuationSubring) :
+    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hP : y ∉ P.toValuationSubring) :
     ∃ (σ : SL(2, ℤ)) (h : ℕ), 0 < h ∧
       σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ∧
       P.ord y = -(h : ℤ) ∧
@@ -150,11 +153,13 @@ theorem solution
     refine ⟨L, hL, ht.congr fun τ => ?_⟩
     rw [h0]
     simp
-  obtain ⟨σ, hσ⟩ := ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf Γ hT hΓ F₀ hF y hy
+  obtain ⟨σ, hσ⟩ :=
+    ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf Γ hT hΓ F₀ hF y hy
     Pl hΓPl hlim P hP
   subst hσ
   have hN : σ * ModularGroup.T ^ Γ.normalCore.index * σ⁻¹ ∈ Γ := by
-    have h1 : (σ * ModularGroup.T * σ⁻¹) ^ Γ.normalCore.index ∈ Γ.normalCore := Subgroup.pow_index_mem _ _
+    have h1 : (σ * ModularGroup.T * σ⁻¹) ^ Γ.normalCore.index ∈ Γ.normalCore :=
+      Subgroup.pow_index_mem _ _
     rw [conj_pow] at h1
     exact Γ.normalCore_le h1
   have hNpos : 0 < Γ.normalCore.index := Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
@@ -162,7 +167,8 @@ theorem solution
     ⟨_, hNpos, Subgroup.mem_sup_left hN⟩
   set h := Nat.find hex with hh_def
   have hh : 0 < h := (Nat.find_spec hex).1
-  have hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := (Nat.find_spec hex).2
+  have hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) :=
+    (Nat.find_spec hex).2
   have hmin : ∀ k : ℕ, 0 < k → σ * ModularGroup.T ^ k * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) → h ≤ k :=
     fun k hk hk' => Nat.find_min' hex ⟨hk, hk'⟩
   have hyN : (e σ : ℤ) * (Pl σ).ord y = -(Γ.normalCore.index : ℤ) := (hyc σ y hy).2.1
@@ -198,12 +204,14 @@ theorem ModularCurve.exists_tendsto_realizeOf_mul_exp_of_not_mem_toValuationSubr
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (hdeg : Module.finrank
         ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(ModularCurve.laurentBaseChange ℂ F₀)))
         ↥(ModularCurve.laurentBaseChange ℂ F₀) =
       (Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
-    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hP : y ∉ P.toValuationSubring) :
+    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hP : y ∉ P.toValuationSubring) :
     ∃ (σ : SL(2, ℤ)) (h : ℕ), 0 < h ∧
       σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ∧
       P.ord y = -(h : ℤ) ∧
@@ -211,6 +219,7 @@ theorem ModularCurve.exists_tendsto_realizeOf_mul_exp_of_not_mem_toValuationSubr
         Filter.Tendsto
           (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ) *
             Complex.exp (-(2 * Real.pi * Complex.I * (P.ord x : ℂ) * (τ : ℂ) / (h : ℂ))))
-          UpperHalfPlane.atImInfty (nhds L) := _root_.P2MW.S_ModularCurve_exists_tendsto_realizeOf_mul_exp_of_not_mem_toValuationSubring.solution Γ hT hΓ F₀ hF y hy hdeg P hP
+          UpperHalfPlane.atImInfty (nhds L) :=
+  solution Γ hT hΓ F₀ hF y hy hdeg P hP
 
 end publicSection

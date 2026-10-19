@@ -66,16 +66,18 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 universe u
 
 theorem solution
-    {F : Type u} [Field F] [DecidableEq F] {W : WeierstrassCurve.Affine F}
+    {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [IsDedekindDomain W.CoordinateRing]
     {x y : F} (h : W.Nonsingular x y)
     (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing)
     (hw : w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y)) :
-    placeOfPoint (Point.some x y h) = Place.ofHeightOneSpectrum (K := F) w :=
-  AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
-    (placeOfPoint (Point.some x y h))
-    (GenusOnePlaceGate.IsCentred.algebraMap_XClass_mem_nonunits h)
-    (GenusOnePlaceGate.IsCentred.algebraMap_YClass_mem_nonunits h) w hw
+    placeOfPoint (Point.some x y h) = Place.ofHeightOneSpectrum (K := F) w := by
+  classical
+  exact
+    AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+      (placeOfPoint (Point.some x y h))
+      (GenusOnePlaceGate.IsCentred.algebraMap_XClass_mem_nonunits h)
+      (GenusOnePlaceGate.IsCentred.algebraMap_YClass_mem_nonunits h) w hw
 
 end S_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 end P2MW
@@ -90,11 +92,14 @@ open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
 universe u
 theorem WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum
-    {F : Type u} [Field F] [DecidableEq F] {W : WeierstrassCurve.Affine F}
+    {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [IsDedekindDomain W.CoordinateRing]
     {x y : F} (h : W.Nonsingular x y)
     (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing)
     (hw : w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y)) :
-    placeOfPoint (Point.some x y h) = Place.ofHeightOneSpectrum (K := F) w := _root_.P2MW.S_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum.solution h w hw
+    placeOfPoint (Point.some x y h) = Place.ofHeightOneSpectrum (K := F) w := by
+  classical
+  exact
+    solution h w hw
 
 end publicSection

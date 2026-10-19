@@ -76,12 +76,12 @@ open AlgebraicCurve
 
 namespace AlgebraicCurve
 
-theorem finiteDimensional_adjoin_range {ι : Type} [Fintype ι] (x : ι → AlgebraicClosure ℚ) :
+theorem finiteDimensional_adjoin_range {ι : Type} [Finite ι] (x : ι → AlgebraicClosure ℚ) :
     FiniteDimensional ℚ (IntermediateField.adjoin ℚ (Set.range x)) :=
   IntermediateField.finiteDimensional_adjoin fun y _ =>
     ((AlgebraicClosure.isAlgebraic ℚ).isAlgebraic y).isIntegral
 
-def absLogHeight {ι : Type} [Fintype ι] (x : ι → AlgebraicClosure ℚ) : ℝ :=
+def absLogHeight {ι : Type} [Finite ι] (x : ι → AlgebraicClosure ℚ) : ℝ :=
   haveI := finiteDimensional_adjoin_range x
   (Module.finrank ℚ (IntermediateField.adjoin ℚ (Set.range x)) : ℝ)⁻¹ *
     Height.logHeight fun i =>
@@ -91,12 +91,10 @@ def absLogHeight {ι : Type} [Fintype ι] (x : ι → AlgebraicClosure ℚ) : �
 variable {F : Type} [Field F] [Algebra (AlgebraicClosure ℚ) F]
 
 open Classical in
-
 def pivotIndex {r : ℕ} (s : Fin r → F) (v : Place (AlgebraicClosure ℚ) F) (hr : 0 < r) : Fin r :=
   if h : ∃ i : Fin r, ∀ j : Fin r, v.ord (s i) ≤ v.ord (s j) then Classical.choose h else ⟨0, hr⟩
 
 open Classical in
-
 def evalVec {r : ℕ} (s : Fin r → F) (v : Place (AlgebraicClosure ℚ) F) :
     Fin r → AlgebraicClosure ℚ :=
   fun i => if hr : 0 < r then v.evalAt (s i * (s (pivotIndex s v hr))⁻¹) else 0
@@ -112,7 +110,6 @@ def pairHt {r : ℕ} (s : Fin r → F) (v w : Place (AlgebraicClosure ℚ) F) : 
   pointHt s v + pointHt s w - absLogHeight (chordVec s v w)
 
 open Classical in
-
 def baseHt {r : ℕ} (s : Fin r → F) (b v : Place (AlgebraicClosure ℚ) F) : ℝ :=
   if v = b then 0 else pairHt s v b
 
@@ -137,7 +134,8 @@ theorem heightFormAux_two_smul {r : ℕ} (s : Fin r → F) (γ : ℤ) (b : Place
   have h2 : ∑ x ∈ D.support, (2 : ℝ) * (D x : ℝ) * baseHt s b x
       = 2 * ∑ x ∈ D.support, (D x : ℝ) * baseHt s b x := by
     rw [Finset.mul_sum]; exact Finset.sum_congr rfl fun x _ => by ring
-  have h3 : ∑ p ∈ D.support.offDiag, (2 : ℝ) * (D p.1 : ℝ) * ((2 : ℝ) * (D p.2 : ℝ)) * pairHt s p.1 p.2
+  have h3 :
+    ∑ p ∈ D.support.offDiag, (2 : ℝ) * (D p.1 : ℝ) * ((2 : ℝ) * (D p.2 : ℝ)) * pairHt s p.1 p.2
       = 4 * ∑ p ∈ D.support.offDiag, (D p.1 : ℝ) * (D p.2 : ℝ) * pairHt s p.1 p.2 := by
     rw [Finset.mul_sum]; exact Finset.sum_congr rfl fun x _ => by ring
   have h4 : ∑ x ∈ D.support, (2 : ℝ) * (D x : ℝ) * ((2 : ℝ) * (D x : ℝ) - 1) / 2 * baseHt s b x
@@ -155,7 +153,8 @@ theorem heightForm_two_smul {r : ℕ} (s : Fin r → F) (γ : ℤ) (b : Place (A
   rw [two_zsmul, Finsupp.erase_add, ← two_zsmul]
   exact heightFormAux_two_smul s γ b _
 
-theorem heightForm_add_single_base {r : ℕ} (s : Fin r → F) (γ : ℤ) (b : Place (AlgebraicClosure ℚ) F)
+theorem heightForm_add_single_base {r : ℕ} (s : Fin r → F) (γ : ℤ)
+    (b : Place (AlgebraicClosure ℚ) F)
     (D : Divisor (AlgebraicClosure ℚ) F) (m : ℤ) :
     heightForm s γ b (D + Finsupp.single b m) = heightForm s γ b D := by
   unfold heightForm
@@ -194,7 +193,7 @@ theorem JZero.heightForm_add_single_cuspInftyBar {r : ℕ} (s : Fin r → modula
 
 variable (K : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ K]
 
-def JZero.IsRepOf (n : ℕ) (c : ↥(JZero N ^+ ↥K.fixingSubgroup))
+def JZero.IsRepOf (n : ℕ) (c : ↥(JZero N^+↥K.fixingSubgroup))
     (D : Divisor (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) : Prop :=
   ∃ E : Divisor.degZero (K := AlgebraicClosure ℚ) (F := ↥(modularFunctionFieldBar N)),
     (∀ v, 0 ≤ D v) ∧
@@ -204,7 +203,7 @@ def JZero.IsRepOf (n : ℕ) (c : ↥(JZero N ^+ ↥K.fixingSubgroup))
         arithmeticGalois (modularFunctionFieldFull N) σ • D = D) ∧
     Pic0.mk E = (c : JZero N)
 
-theorem JZero.mem_repHeights_iff (n : ℕ) (c : ↥(JZero N ^+ ↥K.fixingSubgroup)) (x : ℝ) :
+theorem JZero.mem_repHeights_iff (n : ℕ) (c : ↥(JZero N^+↥K.fixingSubgroup)) (x : ℝ) :
     x ∈ JZero.repHeights N K n c ↔ ∃ D, JZero.IsRepOf N K n c D ∧ x = divNaiveHeight N K n D := by
   constructor
   · rintro ⟨D, E, h1, h2, h3, h4, h5⟩
@@ -215,8 +214,7 @@ theorem JZero.mem_repHeights_iff (n : ℕ) (c : ↥(JZero N ^+ ↥K.fixingSubgro
 variable {N K}
 
 omit [FiniteDimensional ℚ K] in
-
-theorem JZero.IsRepOf.nsmul {n : ℕ} {c : ↥(JZero N ^+ ↥K.fixingSubgroup)}
+theorem JZero.IsRepOf.nsmul {n : ℕ} {c : ↥(JZero N^+↥K.fixingSubgroup)}
     {D : Divisor (AlgebraicClosure ℚ) (modularFunctionFieldBar N)} (h : JZero.IsRepOf N K n c D)
     (m : ℕ) : JZero.IsRepOf N K (m * n) (m • c) (m • D) := by
   obtain ⟨E, hD, hshape, hstab, hc⟩ := h
@@ -233,8 +231,7 @@ theorem JZero.IsRepOf.nsmul {n : ℕ} {c : ↥(JZero N ^+ ↥K.fixingSubgroup)}
     rw [key, hc, AddSubmonoidClass.coe_nsmul]
 
 omit [FiniteDimensional ℚ K] in
-
-theorem JZero.IsRepOf.add_single {n : ℕ} {c : ↥(JZero N ^+ ↥K.fixingSubgroup)}
+theorem JZero.IsRepOf.add_single {n : ℕ} {c : ↥(JZero N^+↥K.fixingSubgroup)}
     {D : Divisor (AlgebraicClosure ℚ) (modularFunctionFieldBar N)} (h : JZero.IsRepOf N K n c D)
     (p : ℕ)
     (hfix : ∀ σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ, σ ∈ K.fixingSubgroup →

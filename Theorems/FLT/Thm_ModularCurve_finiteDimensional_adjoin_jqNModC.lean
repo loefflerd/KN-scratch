@@ -66,7 +66,8 @@ noncomputable section
 open Polynomial IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap jqModC jqNModC jqModC_rat map_jqModC coeffMap_qExpand coeffMap_injective"
+p2m_export "ModularCurve" "jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap jqModC \
+  jqNModC jqModC_rat map_jqModC coeffMap_qExpand coeffMap_injective"
 p2m_open "ModularCurve"
 
 section Transport
@@ -79,7 +80,8 @@ private def phiAt (Φ : Polynomial (Polynomial ℤ)) : LaurentSeries R :=
 private theorem coeffMap_eq_map {S : Type*} [CommRing S] (f : R →+* S) (x : LaurentSeries R) :
     coeffMap f x = x.map f := rfl
 
-private theorem coeffMap_phiAt {S : Type*} [CommRing S] (f : R →+* S) (Φ : Polynomial (Polynomial ℤ)) :
+private theorem coeffMap_phiAt {S : Type*} [CommRing S] (f : R →+* S)
+    (Φ : Polynomial (Polynomial ℤ)) :
     coeffMap f (phiAt R N Φ) = phiAt S N Φ := by
   unfold phiAt
   rw [Polynomial.hom_eval₂]
@@ -98,7 +100,8 @@ section OverQ
 
 variable (N : ℕ) [NeZero N]
 
-private theorem phiAt_rat (Φ : Polynomial (Polynomial ℤ)) : phiAt ℚ N Φ = Φ.eval₂ evalAtJ (jqN N) := by
+private theorem phiAt_rat (Φ : Polynomial (Polynomial ℤ)) :
+    phiAt ℚ N Φ = Φ.eval₂ evalAtJ (jqN N) := by
   unfold phiAt
   have hN : jqNModC ℚ N = jqN N := rfl
   rw [hN]
@@ -107,7 +110,8 @@ private theorem phiAt_rat (Φ : Polynomial (Polynomial ℤ)) : phiAt ℚ N Φ = 
   · simp [evalAtJ]
   · rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X, jqModC_rat]
 
-private theorem phiAt_eq_zero (K : Type*) [Field K] (data : ModularPolynomialData N) : phiAt K N data.Φ = 0 := by
+private theorem phiAt_eq_zero (K : Type*) [Field K] (data : ModularPolynomialData N) :
+    phiAt K N data.Φ = 0 := by
   have hZ : phiAt ℤ N data.Φ = 0 := by
     apply coeffMap_injective (f := Int.castRingHom ℚ) (RingHom.injective_int (Int.castRingHom ℚ))
     rw [coeffMap_phiAt, map_zero, phiAt_rat, data.eval_eq_zero]
@@ -132,7 +136,8 @@ private theorem aeval_phiOver (Φ : Polynomial (Polynomial ℤ)) :
   congr 1
   refine Polynomial.ringHom_ext (fun a => ?_) ?_
   · simp
-  · simp only [RingHom.coe_comp, Function.comp_apply, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X]
+  · simp only [RingHom.coe_comp, Function.comp_apply, Polynomial.coe_eval₂RingHom,
+      Polynomial.eval₂_X]
     rfl
 
 theorem finrank_adjoin_jqNModC_le (data : ModularPolynomialData N) :
@@ -143,8 +148,10 @@ theorem finrank_adjoin_jqNModC_le (data : ModularPolynomialData N) :
   have hmonic : (phiOver K data.Φ).Monic := data.monic.map _
   have hroot : Polynomial.aeval (jqNModC K N) (phiOver K data.Φ) = 0 := by
     rw [aeval_phiOver, phiAt_eq_zero]
-  have hint : IsIntegral E (jqNModC K N) := ⟨phiOver K data.Φ, hmonic, by rwa [← Polynomial.aeval_def]⟩
-  rw [IntermediateField.adjoin.finrank hint, ← data.natDegree_eq, ← (data.monic.natDegree_map _ : (phiOver K data.Φ).natDegree = _)]
+  have hint : IsIntegral E (jqNModC K N) :=
+    ⟨phiOver K data.Φ, hmonic, by rwa [← Polynomial.aeval_def]⟩
+  rw [IntermediateField.adjoin.finrank hint, ← data.natDegree_eq, ← (data.monic.natDegree_map _ :
+    (phiOver K data.Φ).natDegree = _)]
   exact Polynomial.natDegree_le_of_dvd (minpoly.dvd E _ hroot) hmonic.ne_zero
 
 private theorem finiteDimensional_adjoin_jqNModC (data : ModularPolynomialData N) :
@@ -154,7 +161,8 @@ private theorem finiteDimensional_adjoin_jqNModC (data : ModularPolynomialData N
   have hmonic : (phiOver K data.Φ).Monic := data.monic.map _
   have hroot : Polynomial.aeval (jqNModC K N) (phiOver K data.Φ) = 0 := by
     rw [aeval_phiOver, phiAt_eq_zero]
-  exact IntermediateField.adjoin.finiteDimensional ⟨phiOver K data.Φ, hmonic, by rwa [← Polynomial.aeval_def]⟩
+  exact IntermediateField.adjoin.finiteDimensional ⟨phiOver K data.Φ, hmonic, by rwa [←
+    Polynomial.aeval_def]⟩
 
 end Degree
 
@@ -163,8 +171,8 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_jqNModC.ModularCurve in
-
-theorem solution (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) : FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) :=
+theorem solution (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
+    FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) :=
   ModularCurve.finiteDimensional_adjoin_jqNModC K data
 
 end S_ModularCurve_finiteDimensional_adjoin_jqNModC
@@ -177,6 +185,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.finiteDimensional_adjoin_jqNModC (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) : FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) := _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_jqNModC.solution K data
+theorem ModularCurve.finiteDimensional_adjoin_jqNModC (K : Type*) [Field K] {N : ℕ} [NeZero N]
+    (data : ModularPolynomialData N) :
+    FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) :=
+  solution K data
 
 end publicSection

@@ -136,6 +136,7 @@ theorem PowerSeries.mem_range_map_of_monic_of_mul_mem_range
     (hroot : Polynomial.eval₂ (PowerSeries.map (algebraMap R K)) g Φ = 0)
     (h : PowerSeries R) (h0 : h ≠ 0)
     (hmul : PowerSeries.map (algebraMap R K) h * g ∈ (PowerSeries.map (algebraMap R K)).range) :
-    g ∈ (PowerSeries.map (algebraMap R K)).range := _root_.P2MW.S_PowerSeries_mem_range_map_of_monic_of_mul_mem_range.solution g Φ hΦ hroot h h0 hmul
+    g ∈ (PowerSeries.map (algebraMap R K)).range :=
+  solution g Φ hΦ hroot h h0 hmul
 
 end publicSection

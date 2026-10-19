@@ -115,7 +115,6 @@ theorem hasSubst_rho : PowerSeries.HasSubst (rho σ h1) :=
   PowerSeries.HasSubst.substInvOfIsUnit σ h1
 
 include h0 in
-
 theorem subst_sigma_subst_rho (p : PowerSeries K) :
     PowerSeries.subst σ (PowerSeries.subst (rho σ h1) p) = p := by
   rw [PowerSeries.subst_comp_subst_apply (hasSubst_rho σ h1)
@@ -128,7 +127,6 @@ theorem subst_rho_injective : Function.Injective fun p : PowerSeries K => p.subs
     (subst_sigma_subst_rho σ h0 h1)
 
 include h0 in
-
 theorem order_subst_rho (p : PowerSeries K) :
     PowerSeries.order (PowerSeries.subst (rho σ h1) p) = PowerSeries.order p := by
   refine le_antisymm ?_ (PowerSeries.le_order_subst_left'
@@ -151,7 +149,7 @@ def reparamInt : PowerSeries K →+* LaurentSeries K :=
 
 theorem reparamInt_apply (p : PowerSeries K) :
     reparamInt σ h1 p = ((p.subst (rho σ h1) : PowerSeries K) : LaurentSeries K) := by
-  show algebraMap (PowerSeries K) (LaurentSeries K)
+  change algebraMap (PowerSeries K) (LaurentSeries K)
       (PowerSeries.substAlgHom (hasSubst_rho σ h1) p) = _
   rw [PowerSeries.coe_substAlgHom]
   rfl
@@ -168,7 +166,7 @@ def reparam : LaurentSeries K →+* LaurentSeries K :=
 theorem reparam_coe (p : PowerSeries K) :
     reparam σ h0 h1 (p : LaurentSeries K) =
       ((p.subst (rho σ h1) : PowerSeries K) : LaurentSeries K) := by
-  show IsFractionRing.lift (reparamInt_injective σ h0 h1)
+  change IsFractionRing.lift (reparamInt_injective σ h0 h1)
       (algebraMap (PowerSeries K) (LaurentSeries K) p) = _
   rw [IsFractionRing.lift_algebraMap, reparamInt_apply]
 
@@ -260,7 +258,8 @@ theorem order_reparam (y : LaurentSeries K) : (reparam σ h0 h1 y).order = y.ord
 
 end Reparam
 
-private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single' {K : Type*} [Field K] [IsAlgClosed K] [CharZero K]
+private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single' {K : Type*} [Field K]
+    [IsAlgClosed K] [CharZero K]
     (y : LaurentSeries K) (hy : 0 < y.order) :
     ∃ ρ : LaurentSeries K →ₐ[K] LaurentSeries K,
       (∀ z : LaurentSeries K, (ρ z).order = z.order) ∧ ρ y = single y.order 1 := by
@@ -277,7 +276,8 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single' {K : 
     rw [← hyord, ha, LaurentSeries.single_order_mul_powerSeriesPart]
   set a₀ := PowerSeries.constantCoeff a with ha₀
   have ha₀0 : a₀ ≠ 0 := by
-    rw [ha₀, ← PowerSeries.coeff_zero_eq_constantCoeff_apply, ha, LaurentSeries.powerSeriesPart_coeff,
+    rw [ha₀, ← PowerSeries.coeff_zero_eq_constantCoeff_apply, ha,
+      LaurentSeries.powerSeriesPart_coeff,
       Nat.cast_zero, add_zero]
     exact mt coeff_order_eq_zero.mp hy0
   obtain ⟨b₀, hb₀⟩ := IsAlgClosed.exists_pow_nat_eq a₀ hn0
@@ -311,16 +311,17 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single' {K : 
       single_pow]
     simp
   refine ⟨{ (reparam σ hσ0 hσ1) with commutes' := fun k => ?_ }, fun z => ?_, ?_⟩
-  · show reparam σ hσ0 hσ1 (algebraMap K (LaurentSeries K) k) = algebraMap K (LaurentSeries K) k
+  · change reparam σ hσ0 hσ1 (algebraMap K (LaurentSeries K) k) = algebraMap K (LaurentSeries K) k
     rw [LaurentSeries.algebraMap_apply, reparam_C]
-  · show (reparam σ hσ0 hσ1 z).order = z.order
+  · change (reparam σ hσ0 hσ1 z).order = z.order
     exact order_reparam σ hσ0 hσ1 z
-  · show reparam σ hσ0 hσ1 y = single y.order 1
+  · change reparam σ hσ0 hσ1 y = single y.order 1
     rw [hyord, hyσ, PowerSeries.coe_pow, map_pow, reparam_coe_sigma, single_pow]
     simp
 
 
-private theorem _root_.LaurentSeries.exists_algHom_comp_map_eq_single' {K F : Type*} [Field K] [IsAlgClosed K] [CharZero K]
+private theorem _root_.LaurentSeries.exists_algHom_comp_map_eq_single' {K F : Type*} [Field K]
+    [IsAlgClosed K] [CharZero K]
     [Field F] [Algebra K F] (φ : F →ₐ[K] LaurentSeries K) (f : F) (hf : 0 < (φ f).order) :
     ∃ φ' : F →ₐ[K] LaurentSeries K,
       (∀ x : F, (φ' x).order = (φ x).order) ∧ φ' f = single (φ f).order 1 := by
@@ -331,7 +332,6 @@ end B2P1
 end
 
 open HahnSeries in
-
 theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [CharZero K]
     [Field F] [Algebra K F] (φ : F →ₐ[K] LaurentSeries K) (f : F) (hf : 0 < (φ f).order) :
     ∃ φ' : F →ₐ[K] LaurentSeries K,
@@ -347,9 +347,11 @@ end privateSection
 public section publicSection
 
 open HahnSeries
-theorem LaurentSeries.exists_algHom_comp_map_eq_single {K F : Type*} [Field K] [IsAlgClosed K] [CharZero K]
+theorem LaurentSeries.exists_algHom_comp_map_eq_single {K F : Type*} [Field K] [IsAlgClosed K]
+    [CharZero K]
     [Field F] [Algebra K F] (φ : F →ₐ[K] LaurentSeries K) (f : F) (hf : 0 < (φ f).order) :
     ∃ φ' : F →ₐ[K] LaurentSeries K,
-      (∀ x : F, (φ' x).order = (φ x).order) ∧ φ' f = single (φ f).order 1 := _root_.P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.solution φ f hf
+      (∀ x : F, (φ' x).order = (φ x).order) ∧ φ' f = single (φ f).order 1 :=
+  solution φ f hf
 
 end publicSection

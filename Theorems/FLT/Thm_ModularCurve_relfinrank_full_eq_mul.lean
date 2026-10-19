@@ -65,7 +65,8 @@ noncomputable section
 p2m_open "ModularCurve P2MW.S_ModularCurve_relfinrank_full_eq_mul.ModularCurve"
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand_one_apply jq jqN modularFunctionFieldFull jqd_mem_full finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_pow_succ_of_not_mem"
+p2m_export "ModularCurve" "qExpand_one_apply jq jqN modularFunctionFieldFull jqd_mem_full \
+  finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_pow_succ_of_not_mem"
 namespace W1
 p2m_open "ModularCurve"
 
@@ -95,10 +96,10 @@ private theorem w1_relfinrank_insert (E : IntermediateField ℚ (LaurentSeries �
 end ModularCurve.W1
 
 namespace ModularCurve
-p2m_export "ModularCurve" "qExpand_one_apply jq jqN modularFunctionFieldFull jqd_mem_full finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_pow_succ_of_not_mem"
+p2m_export "ModularCurve" "qExpand_one_apply jq jqN modularFunctionFieldFull jqd_mem_full \
+  finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_pow_succ_of_not_mem"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
 private theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : ℕ)
     [hp : Fact (Nat.Prime p)] (a : ℕ)
     (hup : modularFunctionFieldFull (M * p ^ (a + 1)) =
@@ -127,8 +128,8 @@ private theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : �
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_relfinrank_full_eq_mul.ModularCurve in
-
-theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hup : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ)))) (hnm : jqN (p ^ (a + 1)) ∉ modularFunctionFieldFull (M * p ^ a)) : IntermediateField.relfinrank (modularFunctionFieldFull (M * p ^ a)) (modularFunctionFieldFull (M * p ^ (a + 1))) = if a = 0 then p + 1 else p :=
+theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hup : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ)))) (hnm : jqN (p ^ (a + 1)) ∉ modularFunctionFieldFull (M * p ^ a)) :
+    IntermediateField.relfinrank (modularFunctionFieldFull (M * p ^ a)) (modularFunctionFieldFull (M * p ^ (a + 1))) = if a = 0 then p + 1 else p :=
   ModularCurve.relfinrank_full_eq_mul M p a hup hnm
 
 end S_ModularCurve_relfinrank_full_eq_mul
@@ -141,6 +142,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hup : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ)))) (hnm : jqN (p ^ (a + 1)) ∉ modularFunctionFieldFull (M * p ^ a)) : IntermediateField.relfinrank (modularFunctionFieldFull (M * p ^ a)) (modularFunctionFieldFull (M * p ^ (a + 1))) = if a = 0 then p + 1 else p := _root_.P2MW.S_ModularCurve_relfinrank_full_eq_mul.solution M p a hup hnm
+theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hup : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ)))) (hnm : jqN (p ^ (a + 1)) ∉ modularFunctionFieldFull (M * p ^ a)) :
+    IntermediateField.relfinrank (modularFunctionFieldFull (M * p ^ a)) (modularFunctionFieldFull (M * p ^ (a + 1))) = if a = 0 then p + 1 else p :=
+  solution M p a hup hnm
 
 end publicSection

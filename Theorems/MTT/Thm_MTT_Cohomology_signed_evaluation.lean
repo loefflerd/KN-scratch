@@ -158,7 +158,8 @@ def actAlg (γ : Matrix (Fin 2) (Fin 2) ℤ) : Binary ℂ →ₐ[ℂ] Binary ℂ
 
 lemma act_eq_actAlg (γ : Matrix (Fin 2) (Fin 2) ℤ) (P : Binary ℂ) : act γ P = actAlg γ P := rfl
 
-lemma actAlg_refl_X0 : actAlg !![-1, 0; 0, 1] (MvPolynomial.X 0 : Binary ℂ) = - MvPolynomial.X 0 := by
+lemma actAlg_refl_X0 :
+    actAlg !![-1, 0; 0, 1] (MvPolynomial.X 0 : Binary ℂ) = - MvPolynomial.X 0 := by
   rw [actAlg, MvPolynomial.aeval_X, Fin.sum_univ_two]
   simp
 
@@ -240,13 +241,13 @@ end MTT.Cohomology
 
 theorem solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (hT : HeckeEquivariant I)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι) :
-    ∃ φ : Bool → Hc N (k-2) ℂ, ∀ s,
+    ∃ φ : Bool → Hc N (k - 2) ℂ, ∀ s,
       SignedClass f.form s (φ s) ∧
       Packet (fun d => ι (f.epsilon d)) (fun l => ι (f.coeff l)) s (φ s) := by
-  set Φ : Hc N (k-2) ℂ := I f.form with hΦ
+  set Φ : Hc N (k - 2) ℂ := I f.form with hΦ
   obtain ⟨ψ, hψ⟩ := (MTT.Cohomology.reflection_class Φ).1
   obtain ⟨hsym, -, -⟩ := Φ.2
   -- the nebentype law for `Φ`, then for its reflection
@@ -269,9 +270,9 @@ theorem solution
     rw [← (MTT.Cohomology.reflection_class Φ).2.1, hHΦ l hl, reflection_smul]
   -- the evaluations of the reflection
   have hevψ : ∀ j r, j ≤ k - 2 → evaluation j r ψ =
-      (-1 : ℂ) ^ j * (((k-2).choose j : ℂ) * MTT.modularIntegral f.form (Polynomial.X ^ j) (-r)) := by
+      (-1 : ℂ) ^ j * (((k - 2).choose j : ℂ) * MTT.modularIntegral f.form (Polynomial.X ^ j) (-r)) := by
     intro j r hj
-    change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, (r : Cusp))) (binaryExponent (k-2) j) = _
+    change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, (r : Cusp))) (binaryExponent (k - 2) j) = _
     rw [hψ]
     simp only [reflection]
     rw [fractional_refl_infty, fractional_refl_coe,
@@ -314,10 +315,10 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.signed_evaluation
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
-    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k-2) ℂ)
+    (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, IntegralClass f (I f)) (hT : HeckeEquivariant I)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι) :
-    ∃ φ : Bool → Hc N (k-2) ℂ, ∀ s,
+    ∃ φ : Bool → Hc N (k - 2) ℂ, ∀ s,
       SignedClass f.form s (φ s) ∧
       Packet (fun d => ι (f.epsilon d)) (fun l => ι (f.coeff l)) s (φ s) := _root_.solution hN hk I hI hT ι f
 end

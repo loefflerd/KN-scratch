@@ -81,10 +81,21 @@ open scoped Classical
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve WeierstrassCurve Polynomial"
+p2m_open "ModularCurve P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve \
+  WeierstrassCurve Polynomial"
 
 namespace HahnSeries
-p2m_export "HahnSeries" "support coeff_sub orderTop orderTop_mul algebraMap_apply' ofPowerSeries_C C_apply coeff_sum leadingCoeff_ne_zero orderTop_one coeff_eq_zero_of_lt_orderTop single orderTop_zero le_orderTop_iff_forall order powerSeriesAlgebra min_orderTop_le_orderTop_add coeff ofPowerSeries_X orderTop_add_eq_left order_eq_orderTop_of_ne_zero single_pow single_zero_one coeff_zero pow_add single_zero_intCast orderTop_single C map coeff_neg embDomain_notin_range orderTop_ne_top order_pow coeff_single_same ofPowerSeries_apply_coeff single_ne_zero orderTop_neg single_zero_natCast ofPowerSeries rec coeff_order_eq_zero leadingCoeff coeff_add coeff_single_of_ne ofPowerSeries_apply orderTop_le_of_coeff_ne_zero coeff_single single_mul_single coeff_mul_order_add_order order_mul_of_ne_zero coeff_hahnTwist hahnTwist_single order_hahnTwist MonoChar mem_monoChar_iff hahnTwistHom hahnTwistHom_apply monodromy fixes_single_one_of_mem_monodromy"
+p2m_export "HahnSeries" "support coeff_sub orderTop orderTop_mul algebraMap_apply' ofPowerSeries_C \
+  C_apply coeff_sum leadingCoeff_ne_zero orderTop_one coeff_eq_zero_of_lt_orderTop single \
+  orderTop_zero le_orderTop_iff_forall order powerSeriesAlgebra min_orderTop_le_orderTop_add coeff \
+  ofPowerSeries_X orderTop_add_eq_left order_eq_orderTop_of_ne_zero single_pow single_zero_one \
+  coeff_zero pow_add single_zero_intCast orderTop_single C map coeff_neg embDomain_notin_range \
+  orderTop_ne_top order_pow coeff_single_same ofPowerSeries_apply_coeff single_ne_zero \
+  orderTop_neg single_zero_natCast ofPowerSeries rec coeff_order_eq_zero leadingCoeff coeff_add \
+  coeff_single_of_ne ofPowerSeries_apply orderTop_le_of_coeff_ne_zero coeff_single \
+  single_mul_single coeff_mul_order_add_order order_mul_of_ne_zero coeff_hahnTwist \
+  hahnTwist_single order_hahnTwist MonoChar mem_monoChar_iff hahnTwistHom hahnTwistHom_apply \
+  monodromy fixes_single_one_of_mem_monodromy"
 p2m_open "HahnSeries"
 
 namespace ExtChar
@@ -132,7 +143,7 @@ theorem exists_char_apply_eq (q : ℚ) (hq : q ≠ 0) (u : Kˣ) :
   refine ⟨{ toFun := fun a => (h a.toAdd).toMul
             map_one' := by rw [toAdd_one, map_zero, toMul_zero]
             map_mul' := fun a b => by rw [toAdd_mul, map_add, toMul_add] }, ?_⟩
-  show (h (Multiplicative.ofAdd q).toAdd).toMul = u
+  change (h (Multiplicative.ofAdd q).toAdd).toMul = u
   rw [toAdd_ofAdd]
   have := LinearMap.congr_fun hh ⟨q, Submodule.mem_span_singleton_self q⟩
   rw [LinearMap.comp_apply, Submodule.subtype_apply] at this
@@ -140,7 +151,8 @@ theorem exists_char_apply_eq (q : ℚ) (hq : q ≠ 0) (u : Kˣ) :
 
 end ExtChar
 
-private theorem exists_mem_monodromy_single_eq (K : Type*) [Field K] [IsAlgClosed K] (e : ℕ) (he : 0 < e)
+private theorem exists_mem_monodromy_single_eq (K : Type*) [Field K] [IsAlgClosed K] (e : ℕ)
+    (he : 0 < e)
     (ζ : K) (hζ : ζ ^ e = 1) :
     ∃ m ∈ monodromy K,
       (m : HahnSeries ℚ K ≃ₐ[K] HahnSeries ℚ K) (single ((e : ℚ)⁻¹) (1 : K)) =
@@ -164,7 +176,15 @@ end HahnSeries
 namespace ModularCurve
 p2m_export "ModularCurve" "CycSub SameOrbit HahnSpecialise.specialiseCycSub_bijective"
 namespace B3
-p2m_export "ModularCurve.B3" "map_ofJNe0Or1728 nonsingular_specialFibre redPoint redPoint_zero redPoint_some cycOfCongr mem_torsionBy_of_addOrderOf_eq comap_subtype_zmultiples vcAddEquiv vcAddEquiv_apply pointAddEquivOfEq pointAddEquivOfEq_rfl goodModel_spec fibreVC fibreVC_smul scaleAddEquiv scaleAddEquiv_apply cycScale fibreAddEquiv redTorsionEquiv cycRed bridge3Specialise algebraMap_H_apply nearCurve_map_of_mem_monodromy nearTransport nearTransport_some b3Act b3Act_zmultiples coeff_zero_mul_of_integral orderTop_pow_nonneg integralO mem_integralO resO resO_apply IntegralCoeffs specialFibre val_inv_sU scaleVC goodModel scaleVC_zero scaleVC_1728 scaleVC_of_ne goodModel_eq_nearCurve nearCurve_eq_ofJNe0Or1728 exists_torsionBy_reduction_addEquiv"
+p2m_export "ModularCurve.B3" "map_ofJNe0Or1728 nonsingular_specialFibre redPoint redPoint_zero \
+  redPoint_some cycOfCongr mem_torsionBy_of_addOrderOf_eq comap_subtype_zmultiples vcAddEquiv \
+  vcAddEquiv_apply pointAddEquivOfEq pointAddEquivOfEq_rfl goodModel_spec fibreVC fibreVC_smul \
+  scaleAddEquiv scaleAddEquiv_apply cycScale fibreAddEquiv redTorsionEquiv cycRed \
+  bridge3Specialise algebraMap_H_apply nearCurve_map_of_mem_monodromy nearTransport \
+  nearTransport_some b3Act b3Act_zmultiples coeff_zero_mul_of_integral orderTop_pow_nonneg \
+  integralO mem_integralO resO resO_apply IntegralCoeffs specialFibre val_inv_sU scaleVC goodModel \
+  scaleVC_zero scaleVC_1728 scaleVC_of_ne goodModel_eq_nearCurve nearCurve_eq_ofJNe0Or1728 \
+  exists_torsionBy_reduction_addEquiv"
 p2m_open "ModularCurve.B3 ModularCurve"
 
 open ModularCurve.TatePoint
@@ -417,7 +437,6 @@ theorem specialFibre_goodModel_zero :
   norm_num
 
 open WeierstrassCurve in
-
 theorem eval_ΨSq_eq_zero_of_nsmul_some_eq_zero {F : Type*} [Field F] [DecidableEq F]
     (W : WeierstrassCurve F) {x y : F} (h : W.toAffine.Nonsingular x y)
     {d : ℕ} (htor : d • (Affine.Point.some x y h : W.toAffine.Point) = 0) :
@@ -430,7 +449,6 @@ theorem eval_ΨSq_eq_zero_of_nsmul_some_eq_zero {F : Type*} [Field F] [Decidable
   exact (WeierstrassCurve.Affine.Point.some_ne_zero h') heq.symm
 
 open WeierstrassCurve in
-
 theorem eval_preΨ'_eq_zero_or_eval_Ψ₂Sq_eq_zero_of_nsmul_some_eq_zero
     {F : Type*} [Field F] [DecidableEq F]
     (W : WeierstrassCurve F) {x y : F} (h : W.toAffine.Nonsingular x y)
@@ -614,7 +632,7 @@ theorem redPoint_neg (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
       (orderTop_mul_nonneg hW.1 hx)) hW.2.2.1
   have hcoeff : (W.toAffine.negY x y).coeff 0 =
       (specialFibre W).toAffine.negY (x.coeff 0) (y.coeff 0) := by
-    show (-y - W.a₁ * x - W.a₃).coeff 0 =
+    change (-y - W.a₁ * x - W.a₃).coeff 0 =
       -(y.coeff 0) - W.a₁.coeff 0 * x.coeff 0 - W.a₃.coeff 0
     rw [HahnSeries.coeff_sub, HahnSeries.coeff_sub, HahnSeries.coeff_neg,
       coeff_zero_mul_of_integral hW.1 hx]
@@ -651,7 +669,7 @@ theorem orderTop_addX_neg (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
   have step₂ := hstep _ W.a₂ step₁ hW.2.1
   have step₃ := hstep _ x₁ step₂ hx₁
   have step₄ := hstep _ x₂ step₃ hx₂
-  show (ℓ ^ 2 + W.a₁ * ℓ - W.a₂ - x₁ - x₂).orderTop < 0
+  change (ℓ ^ 2 + W.a₁ * ℓ - W.a₂ - x₁ - x₂).orderTop < 0
   rw [step₄]
   exact lt_trans hqq hq0
 
@@ -664,7 +682,7 @@ theorem coeff_zero_negY (W : WeierstrassCurve H) (hW : IntegralCoeffs W) {x y : 
     (hx : 0 ≤ x.orderTop) :
     (W.toAffine.negY x y).coeff 0 =
       (specialFibre W).toAffine.negY (x.coeff 0) (y.coeff 0) := by
-  show (-y - W.a₁ * x - W.a₃).coeff 0 =
+  change (-y - W.a₁ * x - W.a₃).coeff 0 =
     -(y.coeff 0) - W.a₁.coeff 0 * x.coeff 0 - W.a₃.coeff 0
   rw [HahnSeries.coeff_sub, HahnSeries.coeff_sub, HahnSeries.coeff_neg,
     coeff_zero_mul_of_integral hW.1 hx]
@@ -739,14 +757,14 @@ theorem lift_addX (W : WeierstrassCurve H) (hW : IntegralCoeffs W) {x₁ x₂ �
   have hval : W.toAffine.addX x₁ x₂ ℓ =
       ((⟨ℓ, hℓ⟩ ^ 2 + ⟨W.a₁, h₁⟩ * ⟨ℓ, hℓ⟩ - ⟨W.a₂, h₂⟩ - ⟨x₁, hx₁⟩
         - ⟨x₂, hx₂⟩ : integralO) : H) := by
-    show ℓ ^ 2 + W.a₁ * ℓ - W.a₂ - x₁ - x₂ = _
+    change ℓ ^ 2 + W.a₁ * ℓ - W.a₂ - x₁ - x₂ = _
     push_cast
     rfl
   constructor
   · rw [hval]
     exact mem_integralO.mp (SetLike.coe_mem _)
   · rw [hval, ← resO_apply]
-    show _ = (ℓ.coeff 0) ^ 2 + W.a₁.coeff 0 * (ℓ.coeff 0) - W.a₂.coeff 0
+    change _ = (ℓ.coeff 0) ^ 2 + W.a₁.coeff 0 * (ℓ.coeff 0) - W.a₂.coeff 0
       - x₁.coeff 0 - x₂.coeff 0
     simp only [map_sub, map_add, map_mul, map_pow, resO_apply]
 
@@ -788,7 +806,7 @@ theorem orderTop_slope_neg_of_bar_vertical (W : WeierstrassCurve H) (hW : Integr
       orderTop_sub_nonneg hy₁ (orderTop_negY_nonneg W hW hx₁ hy₁)
     have hdbar : (y₁ - W.toAffine.negY x₁ y₁).coeff 0 = 0 := by
       rw [HahnSeries.coeff_sub, coeff_zero_negY W hW hx₁]
-      show y₁.coeff 0 - (-(y₁.coeff 0) - W.a₁.coeff 0 * x₁.coeff 0 - W.a₃.coeff 0) = 0
+      change y₁.coeff 0 - (-(y₁.coeff 0) - W.a₁.coeff 0 * x₁.coeff 0 - W.a₃.coeff 0) = 0
       linear_combination hdead
     have hdpos : 0 < (y₁ - W.toAffine.negY x₁ y₁).order :=
       order_pos_of_coeff_zero_eq_zero hdne hdint hdbar
@@ -899,7 +917,7 @@ theorem slope_lift (W : WeierstrassCurve H) (hW : IntegralCoeffs W) (hΔ : W.Δ.
         rw [hDcoeff]
         intro h0
         apply hyb
-        show y₁.coeff 0 = -(y₂.coeff 0) - W.a₁.coeff 0 * x₂.coeff 0 - W.a₃.coeff 0
+        change y₁.coeff 0 = -(y₂.coeff 0) - W.a₁.coeff 0 * x₂.coeff 0 - W.a₃.coeff 0
         linear_combination h0 - W.a₁.coeff 0 * hxb
       have hDne : y₁ + y₂ + W.a₁ * x₁ + W.a₃ ≠ 0 :=
         fun h => hDbarne (by rw [h]; exact HahnSeries.coeff_zero)
@@ -912,7 +930,7 @@ theorem slope_lift (W : WeierstrassCurve H) (hW : IntegralCoeffs W) (hΔ : W.Δ.
       obtain ⟨hint, hcoeff⟩ := coeff_zero_div_of_unit hNint hDint hDbarne
       refine ⟨hint, ?_⟩
       rw [hcoeff, hNcoeff, hDcoeff]
-      show _ = (3 * (x₁.coeff 0) ^ 2 + 2 * W.a₂.coeff 0 * (x₁.coeff 0) + W.a₄.coeff 0
+      change _ = (3 * (x₁.coeff 0) ^ 2 + 2 * W.a₂.coeff 0 * (x₁.coeff 0) + W.a₄.coeff 0
           - W.a₁.coeff 0 * (y₁.coeff 0)) /
         (y₁.coeff 0 - (-(y₁.coeff 0) - W.a₁.coeff 0 * (x₁.coeff 0) - W.a₃.coeff 0))
       congr 1
@@ -940,12 +958,12 @@ theorem redPoint_add (W : WeierstrassCurve H) [W.IsElliptic] (hW : IntegralCoeff
     redPoint W hW hΔ (P + Q) = redPoint W hW hΔ P + redPoint W hW hΔ Q := by
   cases P with
   | zero =>
-    show redPoint W hW hΔ (0 + Q) = redPoint W hW hΔ 0 + redPoint W hW hΔ Q
+    change redPoint W hW hΔ (0 + Q) = redPoint W hW hΔ 0 + redPoint W hW hΔ Q
     rw [zero_add, redPoint_zero, zero_add]
   | some x₁ y₁ h₁ =>
     cases Q with
     | zero =>
-      show redPoint W hW hΔ (WeierstrassCurve.Affine.Point.some x₁ y₁ h₁ + 0) =
+      change redPoint W hW hΔ (WeierstrassCurve.Affine.Point.some x₁ y₁ h₁ + 0) =
         redPoint W hW hΔ (WeierstrassCurve.Affine.Point.some x₁ y₁ h₁) + redPoint W hW hΔ 0
       rw [add_zero, redPoint_zero, add_zero]
     | some x₂ y₂ h₂ =>
@@ -970,7 +988,7 @@ theorem redPoint_add (W : WeierstrassCurve H) [W.IsElliptic] (hW : IntegralCoeff
           obtain ⟨hXint, hXcoeff⟩ := lift_addX W hW hx₁ hx₂ hsint
           have hnAYint : 0 ≤ (W.toAffine.negAddY x₁ x₂ y₁
               (W.toAffine.slope x₁ x₂ y₁ y₂)).orderTop := by
-            show 0 ≤ (W.toAffine.slope x₁ x₂ y₁ y₂
+            change 0 ≤ (W.toAffine.slope x₁ x₂ y₁ y₂
               * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁) + y₁).orderTop
             exact orderTop_add_nonneg
               (orderTop_mul_nonneg hsint (orderTop_sub_nonneg hXint hx₁)) hy₁
@@ -978,7 +996,7 @@ theorem redPoint_add (W : WeierstrassCurve H) [W.IsElliptic] (hW : IntegralCoeff
               (W.toAffine.slope x₁ x₂ y₁ y₂)).coeff 0 =
               (specialFibre W).toAffine.negAddY (x₁.coeff 0) (x₂.coeff 0) (y₁.coeff 0)
                 ((W.toAffine.slope x₁ x₂ y₁ y₂).coeff 0) := by
-            show (W.toAffine.slope x₁ x₂ y₁ y₂
+            change (W.toAffine.slope x₁ x₂ y₁ y₂
               * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁) + y₁).coeff 0 = _
             rw [HahnSeries.coeff_add,
               coeff_zero_mul_of_integral hsint (orderTop_sub_nonneg hXint hx₁),
@@ -991,7 +1009,7 @@ theorem redPoint_add (W : WeierstrassCurve H) [W.IsElliptic] (hW : IntegralCoeff
               (W.toAffine.slope x₁ x₂ y₁ y₂)).coeff 0 =
               (specialFibre W).toAffine.addY (x₁.coeff 0) (x₂.coeff 0) (y₁.coeff 0)
                 ((W.toAffine.slope x₁ x₂ y₁ y₂).coeff 0) := by
-            show (W.toAffine.negY (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂))
+            change (W.toAffine.negY (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂))
               (W.toAffine.negAddY x₁ x₂ y₁ (W.toAffine.slope x₁ x₂ y₁ y₂))).coeff 0 = _
             rw [coeff_zero_negY W hW hXint, hXcoeff, hnAYcoeff]
             rfl
@@ -1514,7 +1532,7 @@ theorem m_a4_zero (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodromy Qbar) 
     (hζs : m (HahnSeries.single (1 / 6 : ℚ) 1) = HahnSeries.single (1 / 6 : ℚ) ζ) :
     m (goodModel 0).a₄ = HahnSeries.C ζ ^ 2 * (goodModel 0).a₄ := by
   rw [goodModel_zero_eq]
-  show m (HahnSeries.single (1 / 3 : ℚ) 1 *
+  change m (HahnSeries.single (1 / 3 : ℚ) 1 *
       ι (PowerSeries.C (-1 / 48 : Qbar) * (PowerSeries.X - PowerSeries.C 1728) ^ 3)) =
     HahnSeries.C ζ ^ 2 * (HahnSeries.single (1 / 3 : ℚ) 1 *
       ι (PowerSeries.C (-1 / 48 : Qbar) * (PowerSeries.X - PowerSeries.C 1728) ^ 3))
@@ -1524,7 +1542,7 @@ theorem m_a4_zero (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodromy Qbar) 
 theorem m_a6_zero (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodromy Qbar) :
     m (goodModel 0).a₆ = (goodModel 0).a₆ := by
   rw [goodModel_zero_eq]
-  show m (ι (PowerSeries.C (1 / 864 : Qbar) * (PowerSeries.X - PowerSeries.C 1728) ^ 5)) =
+  change m (ι (PowerSeries.C (1 / 864 : Qbar) * (PowerSeries.X - PowerSeries.C 1728) ^ 5)) =
     ι (PowerSeries.C (1 / 864 : Qbar) * (PowerSeries.X - PowerSeries.C 1728) ^ 5)
   exact monodromy_fixes_ofPowerSeries hm _
 
@@ -1532,19 +1550,19 @@ theorem m_a1_1728 (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodromy Qbar) 
     (hζs : m (HahnSeries.single (3 / 4 : ℚ) 1) = HahnSeries.single (3 / 4 : ℚ) ζ) :
     m (goodModel 1728).a₁ = HahnSeries.C ζ ^ 3 * (goodModel 1728).a₁ := by
   rw [goodModel_1728_eq]
-  show m (HahnSeries.single (1 / 4 : ℚ) 1) = HahnSeries.C ζ ^ 3 * HahnSeries.single (1 / 4 : ℚ) 1
+  change m (HahnSeries.single (1 / 4 : ℚ) 1) = HahnSeries.C ζ ^ 3 * HahnSeries.single (1 / 4 : ℚ) 1
   exact m_single_quarter_1728 hm hζs
 
 theorem m_a4_1728 (m : H ≃ₐ[Qbar] H) : m (goodModel 1728).a₄ = (goodModel 1728).a₄ := by
   rw [goodModel_1728_eq]
-  show m (HahnSeries.C (-36)) = HahnSeries.C (-36)
+  change m (HahnSeries.C (-36)) = HahnSeries.C (-36)
   exact monodromy_fixes_C m (-36)
 
 theorem m_a6_1728 (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodromy Qbar) (ζ : Qbar)
     (hζs : m (HahnSeries.single (3 / 4 : ℚ) 1) = HahnSeries.single (3 / 4 : ℚ) ζ) :
     m (goodModel 1728).a₆ = HahnSeries.C ζ ^ 2 * (goodModel 1728).a₆ := by
   rw [goodModel_1728_eq]
-  show m (-HahnSeries.single (1 / 2 : ℚ) 1) =
+  change m (-HahnSeries.single (1 / 2 : ℚ) 1) =
     HahnSeries.C ζ ^ 2 * -HahnSeries.single (1 / 2 : ℚ) 1
   rw [map_neg, m_single_half_1728 hm hζs]
   ring
@@ -1557,15 +1575,15 @@ theorem map_goodModel_zero (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodro
   have ha2 : (goodModel 0).a₂ = 0 := by rw [goodModel_zero_eq]
   have ha3 : (goodModel 0).a₃ = 0 := by rw [goodModel_zero_eq]
   refine WeierstrassCurve.ext ?_ ?_ ?_ ?_ ?_
-  · show m (goodModel 0).a₁ = 0
+  · change m (goodModel 0).a₁ = 0
     rw [ha1, map_zero]
-  · show m (goodModel 0).a₂ = 0
+  · change m (goodModel 0).a₂ = 0
     rw [ha2, map_zero]
-  · show m (goodModel 0).a₃ = 0
+  · change m (goodModel 0).a₃ = 0
     rw [ha3, map_zero]
-  · show m (goodModel 0).a₄ = HahnSeries.C ζ ^ 2 * (goodModel 0).a₄
+  · change m (goodModel 0).a₄ = HahnSeries.C ζ ^ 2 * (goodModel 0).a₄
     exact m_a4_zero m hm ζ hζs
-  · show m (goodModel 0).a₆ = (goodModel 0).a₆
+  · change m (goodModel 0).a₆ = (goodModel 0).a₆
     exact m_a6_zero m hm
 
 theorem map_goodModel_1728 (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodromy Qbar) (ζ : Qbar)
@@ -1576,15 +1594,15 @@ theorem map_goodModel_1728 (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.monodro
   have ha2 : (goodModel 1728).a₂ = 0 := by rw [goodModel_1728_eq]
   have ha3 : (goodModel 1728).a₃ = 0 := by rw [goodModel_1728_eq]
   refine WeierstrassCurve.ext ?_ ?_ ?_ ?_ ?_
-  · show m (goodModel 1728).a₁ = HahnSeries.C ζ ^ 3 * (goodModel 1728).a₁
+  · change m (goodModel 1728).a₁ = HahnSeries.C ζ ^ 3 * (goodModel 1728).a₁
     exact m_a1_1728 m hm ζ hζs
-  · show m (goodModel 1728).a₂ = 0
+  · change m (goodModel 1728).a₂ = 0
     rw [ha2, map_zero]
-  · show m (goodModel 1728).a₃ = 0
+  · change m (goodModel 1728).a₃ = 0
     rw [ha3, map_zero]
-  · show m (goodModel 1728).a₄ = (goodModel 1728).a₄
+  · change m (goodModel 1728).a₄ = (goodModel 1728).a₄
     exact m_a4_1728 m
-  · show m (goodModel 1728).a₆ = HahnSeries.C ζ ^ 2 * (goodModel 1728).a₆
+  · change m (goodModel 1728).a₆ = HahnSeries.C ζ ^ 2 * (goodModel 1728).a₆
     exact m_a6_1728 m hm ζ hζs
 
 theorem nonsingular_fibreTwist_zero {ζ : Qbar} (hζ6 : ζ ^ 6 = 1) {x₀ y₀ : Qbar}
@@ -1672,10 +1690,10 @@ theorem fibreTwistEquiv_zero_some (ζ : Qbar) (hζ0 : ζ ≠ 0) (hζ6 : ζ ^ 6 =
         (nonsingular_fibreTwist_zero hζ6 h₀) := by
   refine stab_equiv_some (fibreTwistVC_smul_fibre_zero hζ0 hζ6) h₀ ?_ ?_
     (nonsingular_fibreTwist_zero hζ6 h₀)
-  · show (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 2 * (x₀ - (fibreTwistVC ζ hζ0).r) =
+  · change (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 2 * (x₀ - (fibreTwistVC ζ hζ0).r) =
       ζ ^ 2 * x₀
     simp [fibreTwistVC]
-  · show (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 3 * (y₀ - (fibreTwistVC ζ hζ0).t -
+  · change (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 3 * (y₀ - (fibreTwistVC ζ hζ0).t -
         (fibreTwistVC ζ hζ0).s * (x₀ - (fibreTwistVC ζ hζ0).r)) = ζ ^ 3 * y₀
     simp [fibreTwistVC]
 
@@ -1686,10 +1704,10 @@ theorem fibreTwistEquiv_1728_some (ζ : Qbar) (hζ0 : ζ ≠ 0) (hζ4 : ζ ^ 4 =
         (nonsingular_fibreTwist_1728 hζ4 h₀) := by
   refine stab_equiv_some (fibreTwistVC_smul_fibre_1728 hζ0 hζ4) h₀ ?_ ?_
     (nonsingular_fibreTwist_1728 hζ4 h₀)
-  · show (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 2 * (x₀ - (fibreTwistVC ζ hζ0).r) =
+  · change (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 2 * (x₀ - (fibreTwistVC ζ hζ0).r) =
       ζ ^ 2 * x₀
     simp [fibreTwistVC]
-  · show (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 3 * (y₀ - (fibreTwistVC ζ hζ0).t -
+  · change (((fibreTwistVC ζ hζ0).u⁻¹ : Qbarˣ) : Qbar) ^ 3 * (y₀ - (fibreTwistVC ζ hζ0).t -
         (fibreTwistVC ζ hζ0).s * (x₀ - (fibreTwistVC ζ hζ0).r)) = ζ ^ 3 * y₀
     simp [fibreTwistVC]
 
@@ -1762,20 +1780,20 @@ theorem fixedTransport_conj_zero (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.m
     rw [jNear_zero, map_sub, HahnSeries.fixes_single_one_of_mem_monodromy hm, map_ofNat]
   have hmu : m (((scaleVC 0).u : Hˣ) : H) = HahnSeries.C ζ * (((scaleVC 0).u : Hˣ) : H) := by
     rw [scaleVC_zero]
-    show m (HahnSeries.single (2 / 12 : ℚ) 1) = HahnSeries.C ζ * HahnSeries.single (2 / 12 : ℚ) 1
+    change m (HahnSeries.single (2 / 12 : ℚ) 1) = HahnSeries.C ζ * HahnSeries.single (2 / 12 : ℚ) 1
     rw [single_two_twelfths]
     exact m_single_sixth hζs
   have hmr : m ((scaleVC 0).r) = (scaleVC 0).r := by
     rw [scaleVC_zero]
-    show m (-(jNear 0 - 1728) ^ 2 / 12) = -(jNear 0 - 1728) ^ 2 / 12
+    change m (-(jNear 0 - 1728) ^ 2 / 12) = -(jNear 0 - 1728) ^ 2 / 12
     rw [map_div₀, map_neg, map_pow, hA, map_ofNat]
   have hms : m ((scaleVC 0).s) = (scaleVC 0).s := by
     rw [scaleVC_zero]
-    show m (-(jNear 0 - 1728) / 2) = -(jNear 0 - 1728) / 2
+    change m (-(jNear 0 - 1728) / 2) = -(jNear 0 - 1728) / 2
     rw [map_div₀, map_neg, hA, map_ofNat]
   have hmt : m ((scaleVC 0).t) = (scaleVC 0).t := by
     rw [scaleVC_zero]
-    show m ((jNear 0 - 1728) ^ 3 / 24) = (jNear 0 - 1728) ^ 3 / 24
+    change m ((jNear 0 - 1728) ^ 3 / 24) = (jNear 0 - 1728) ^ 3 / 24
     rw [map_div₀, map_pow, hA, map_ofNat]
   have huu : (((scaleVC 0).u⁻¹ : Hˣ) : H) * (((scaleVC 0).u : Hˣ) : H) = 1 := by simp
   have hP : (scaleAddEquiv 0).symm (WeierstrassCurve.Affine.Point.some x y h) =
@@ -1786,14 +1804,14 @@ theorem fixedTransport_conj_zero (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.m
           (C := scaleVC 0) (W := (nearCurve 0).toAffine) x y).mp h) := rfl
   rw [hP, WeierstrassCurve.Affine.Point.fixedTransport_some]
   refine some_point_ext' ?_ ?_
-  · show (((scaleVC 0).u⁻¹ : Hˣ) : H) ^ 2 *
+  · change (((scaleVC 0).u⁻¹ : Hˣ) : H) ^ 2 *
         (m ((((scaleVC 0).u : Hˣ) : H) ^ 2 * x + (scaleVC 0).r) - (scaleVC 0).r) =
       HahnSeries.C ζ ^ 2 * m x
     simp only [map_add, map_mul, map_pow]
     rw [hmu, hmr, add_sub_cancel_right]
     linear_combination (HahnSeries.C ζ ^ 2 * m x) *
       ((((scaleVC 0).u⁻¹ : Hˣ) : H) * (((scaleVC 0).u : Hˣ) : H) + 1) * huu
-  · show (((scaleVC 0).u⁻¹ : Hˣ) : H) ^ 3 *
+  · change (((scaleVC 0).u⁻¹ : Hˣ) : H) ^ 3 *
         (m ((((scaleVC 0).u : Hˣ) : H) ^ 3 * y + (((scaleVC 0).u : Hˣ) : H) ^ 2 * (scaleVC 0).s * x
             + (scaleVC 0).t) - (scaleVC 0).t -
           (scaleVC 0).s * (m ((((scaleVC 0).u : Hˣ) : H) ^ 2 * x + (scaleVC 0).r) -
@@ -1816,20 +1834,20 @@ theorem fixedTransport_conj_1728 (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.m
   have hmu : m (((scaleVC 1728).u : Hˣ) : H) =
       HahnSeries.C ζ * (((scaleVC 1728).u : Hˣ) : H) := by
     rw [scaleVC_1728]
-    show m (HahnSeries.single (9 / 12 : ℚ) 1) =
+    change m (HahnSeries.single (9 / 12 : ℚ) 1) =
       HahnSeries.C ζ * HahnSeries.single (9 / 12 : ℚ) 1
     rw [show (9 / 12 : ℚ) = 3 / 4 by norm_num, hζs, C_mul_single]
   have hmr : m ((scaleVC 1728).r) = (scaleVC 1728).r := by
     rw [scaleVC_1728]
-    show m (0 : H) = (0 : H)
+    change m (0 : H) = (0 : H)
     exact map_zero m
   have hms : m ((scaleVC 1728).s) = (scaleVC 1728).s := by
     rw [scaleVC_1728]
-    show m (0 : H) = (0 : H)
+    change m (0 : H) = (0 : H)
     exact map_zero m
   have hmt : m ((scaleVC 1728).t) = (scaleVC 1728).t := by
     rw [scaleVC_1728]
-    show m (0 : H) = (0 : H)
+    change m (0 : H) = (0 : H)
     exact map_zero m
   have huu : (((scaleVC 1728).u⁻¹ : Hˣ) : H) * (((scaleVC 1728).u : Hˣ) : H) = 1 := by simp
   have hP : (scaleAddEquiv 1728).symm (WeierstrassCurve.Affine.Point.some x y h) =
@@ -1840,14 +1858,14 @@ theorem fixedTransport_conj_1728 (m : H ≃ₐ[Qbar] H) (hm : m ∈ HahnSeries.m
           (C := scaleVC 1728) (W := (nearCurve 1728).toAffine) x y).mp h) := rfl
   rw [hP, WeierstrassCurve.Affine.Point.fixedTransport_some]
   refine some_point_ext' ?_ ?_
-  · show (((scaleVC 1728).u⁻¹ : Hˣ) : H) ^ 2 *
+  · change (((scaleVC 1728).u⁻¹ : Hˣ) : H) ^ 2 *
         (m ((((scaleVC 1728).u : Hˣ) : H) ^ 2 * x + (scaleVC 1728).r) - (scaleVC 1728).r) =
       HahnSeries.C ζ ^ 2 * m x
     simp only [map_add, map_mul, map_pow]
     rw [hmu, hmr, add_sub_cancel_right]
     linear_combination (HahnSeries.C ζ ^ 2 * m x) *
       ((((scaleVC 1728).u⁻¹ : Hˣ) : H) * (((scaleVC 1728).u : Hˣ) : H) + 1) * huu
-  · show (((scaleVC 1728).u⁻¹ : Hˣ) : H) ^ 3 *
+  · change (((scaleVC 1728).u⁻¹ : Hˣ) : H) ^ 3 *
         (m ((((scaleVC 1728).u : Hˣ) : H) ^ 3 * y +
             (((scaleVC 1728).u : Hˣ) : H) ^ 2 * (scaleVC 1728).s * x + (scaleVC 1728).t) -
           (scaleVC 1728).t -
@@ -1954,7 +1972,7 @@ theorem specialise_eq_redPoint (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
     (hΔ : W.Δ.orderTop = 0) (Q : W.toAffine.Point) :
     specialise W hW (specialFibre_Δ_ne_zero_of_orderTop W hW hΔ) Q = redPoint W hW hΔ Q := by
   rcases Q with _ | ⟨x, y, h⟩
-  · show specialise W hW _ 0 = redPoint W hW hΔ 0
+  · change specialise W hW _ 0 = redPoint W hW hΔ 0
     rw [map_zero, redPoint_zero]
   · by_cases hx : 0 ≤ x.orderTop
     · have h' : ((liftModel W hW).map valuationSubringH.subtype).toAffine.Nonsingular x y := by
@@ -1970,7 +1988,7 @@ theorem cycScale_zmultiples (N : ℕ) (j₀ : Qbar) (g : (nearCurve j₀).toAffi
     (hg : addOrderOf g = N) :
     (cycScale N j₀ ⟨AddSubgroup.zmultiples g, g, hg, rfl⟩).1 =
       AddSubgroup.zmultiples (scaleAddEquiv j₀ g) := by
-  show (AddSubgroup.zmultiples g).map _ = _
+  change (AddSubgroup.zmultiples g).map _ = _
   rw [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_ofClass]
 
 theorem bridge3SpecialiseN_apply_coe (N : ℕ) [NeZero N] (j₀ : Qbar)
@@ -1988,7 +2006,7 @@ theorem bridge3SpecialiseN_coe_eq_of_coe_eq (N : ℕ) [NeZero N] (j₀ : Qbar)
     {G G' : CycSubH (nearCurve j₀) N} (h : G.1 = G'.1) :
     (bridge3SpecialiseN N j₀ G).1 = (bridge3SpecialiseN N j₀ G').1 := by
   have hs : (cycScale N j₀ G).1 = (cycScale N j₀ G').1 := by
-    show G.1.map _ = G'.1.map _
+    change G.1.map _ = G'.1.map _
     rw [h]
   rw [bridge3SpecialiseN_apply_coe, bridge3SpecialiseN_apply_coe, hs]
 
@@ -2033,7 +2051,7 @@ theorem scaleAddEquiv_some_genericN (j₀ : Qbar) (h0 : j₀ ≠ 0) (h1728 : j�
   refine ⟨?_, ?_⟩
   · rw [goodModel_eq_nearCurve h0 h1728]; exact h
   · rw [scaleAddEquiv_apply]
-    show (WeierstrassCurve.Affine.Point.some
+    change (WeierstrassCurve.Affine.Point.some
         (WeierstrassCurve.Affine.vcXInv (scaleVC j₀) x)
         (WeierstrassCurve.Affine.vcYInv (scaleVC j₀) x y) _ :
         (goodModel j₀).toAffine.Point) = WeierstrassCurve.Affine.Point.some x y _
@@ -2055,9 +2073,11 @@ theorem redPoint_scaleAddEquiv_nearTransport_generic (N : ℕ) [NeZero N]
     obtain ⟨hgn, hscale⟩ := scaleAddEquiv_some_genericN j₀ h0 h1728 h
     have htor : N • (WeierstrassCurve.Affine.Point.some x y h : (nearCurve j₀).toAffine.Point) = 0 :=
       hg ▸ addOrderOf_nsmul_eq_zero _
-    have htor' : N • (WeierstrassCurve.Affine.Point.some x y hgn : (goodModel j₀).toAffine.Point) = 0 := by
+    have htor' : N • (WeierstrassCurve.Affine.Point.some x y hgn : (goodModel j₀).toAffine.Point) = 0 :=
+      by
       rw [← hscale, ← map_nsmul, htor, map_zero]
-    have ⟨hx, hy⟩ := torsion_coords_integral (goodModel j₀) (goodModel_spec j₀).1 (goodModel_spec j₀).2
+    have ⟨hx, hy⟩ :=
+      torsion_coords_integral (goodModel j₀) (goodModel_spec j₀).1 (goodModel_spec j₀).2
       hgn (NeZero.ne N) htor'
     have hx' : 0 ≤ ((m : H ≃ₐ[Qbar] H) x).orderTop := by rw [orderTop_of_mem_monodromy hm]; exact hx
     have hy' : 0 ≤ ((m : H ≃ₐ[Qbar] H) y).orderTop := by rw [orderTop_of_mem_monodromy hm]; exact hy
@@ -2138,7 +2158,6 @@ theorem specialisationEquivariance_level_generic (N : ℕ) [NeZero N] (j₀ : Qb
     rw [this]
 
 open WeierstrassCurve.Affine in
-
 theorem redPoint_scaleAddEquiv_nearTransport_zero (N : ℕ) [NeZero N]
     (m : HahnSeries.monodromy Qbar) {ζ : Qbar}
     (hζs : (m : H ≃ₐ[Qbar] H) (HahnSeries.single (1 / 6 : ℚ) 1) = HahnSeries.single (1 / 6 : ℚ) ζ)
@@ -2174,7 +2193,6 @@ theorem redPoint_scaleAddEquiv_nearTransport_zero (N : ℕ) [NeZero N]
         hx hy hns)]
 
 open WeierstrassCurve.Affine in
-
 theorem redPoint_scaleAddEquiv_nearTransport_1728 (N : ℕ) [NeZero N]
     (m : HahnSeries.monodromy Qbar) {ζ : Qbar}
     (hζs : (m : H ≃ₐ[Qbar] H) (HahnSeries.single (3 / 4 : ℚ) 1) = HahnSeries.single (3 / 4 : ℚ) ζ)
@@ -2278,7 +2296,7 @@ theorem specialisationEquivariance_level_zero (N : ℕ) [NeZero N]
       rw [← h6]; exact hζs
     have hftvc : fibreTwistVC ζ hζ0 = (fibreVC 0)⁻¹ * γ * fibreVC 0 := by
       rw [variableChange_eq_of_rst_eq_zero _ hr hs ht]
-      show (⟨(Units.mk0 ζ hζ0)⁻¹, 0, 0, 0⟩ : VariableChange Qbar) = ⟨u, 0, 0, 0⟩
+      change (⟨(Units.mk0 ζ hζ0)⁻¹, 0, 0, 0⟩ : VariableChange Qbar) = ⟨u, 0, 0, 0⟩
       have : Units.mk0 ζ hζ0 = u⁻¹ := Units.ext (by rw [Units.val_mk0, hζdef])
       rw [this, inv_inv]
     refine ⟨⟨m', hm'⟩, ?_⟩
@@ -2373,7 +2391,7 @@ theorem specialisationEquivariance_level_1728 (N : ℕ) [NeZero N]
     obtain ⟨m', hm', hζs⟩ := monodromy_full_three_quartersN ζ hζ4
     have hftvc : fibreTwistVC ζ hζ0 = (fibreVC 1728)⁻¹ * γ * fibreVC 1728 := by
       rw [variableChange_eq_of_rst_eq_zero _ hr hs ht]
-      show (⟨(Units.mk0 ζ hζ0)⁻¹, 0, 0, 0⟩ : VariableChange Qbar) = ⟨u, 0, 0, 0⟩
+      change (⟨(Units.mk0 ζ hζ0)⁻¹, 0, 0, 0⟩ : VariableChange Qbar) = ⟨u, 0, 0, 0⟩
       have : Units.mk0 ζ hζ0 = u⁻¹ := Units.ext (by rw [Units.val_mk0, hζdef])
       rw [this, inv_inv]
     refine ⟨⟨m', hm'⟩, ?_⟩
@@ -2418,7 +2436,6 @@ end ModularCurve.B3
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve ModularCurve.TatePoint _root_.ModularCurve.B3 _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3 in
-
 theorem solution (N : ℕ) [NeZero N] (j₀ : Qbar) :
     ∃ β : CycSubH (nearCurve j₀) N ≃ CycSub (WeierstrassCurve.ofJ j₀) N,
       ∀ G G' : CycSubH (nearCurve j₀) N,
@@ -2440,6 +2457,7 @@ theorem ModularCurve.B3.specialisationEquivariance_level (N : ℕ) [NeZero N] (j
     ∃ β : CycSubH (nearCurve j₀) N ≃ CycSub (WeierstrassCurve.ofJ j₀) N,
       ∀ G G' : CycSubH (nearCurve j₀) N,
         (∃ m : HahnSeries.monodromy Qbar, b3Act j₀ m G.1 = G'.1) ↔
-          SameOrbit (WeierstrassCurve.ofJ j₀) (β G).1 (β G').1 := _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.solution N j₀
+          SameOrbit (WeierstrassCurve.ofJ j₀) (β G).1 (β G').1 :=
+  solution N j₀
 
 end publicSection

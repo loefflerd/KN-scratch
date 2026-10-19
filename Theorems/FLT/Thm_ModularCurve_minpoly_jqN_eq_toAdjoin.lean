@@ -65,13 +65,16 @@ noncomputable section
 open Polynomial IntermediateField
 
 namespace ModularCurve
-p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin PhiIrreducible"
+p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData algebraMap_comp_evalAtJGen \
+  ModularPolynomialData.toAdjoin PhiIrreducible"
 p2m_open "ModularCurve"
 
 variable {N : ℕ} [NeZero N]
 
-theorem aeval_jqN_toAdjoin (data : ModularPolynomialData N) : Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
-  rw [ModularPolynomialData.toAdjoin, Polynomial.aeval_def, Polynomial.eval₂_map, algebraMap_comp_evalAtJGen]
+theorem aeval_jqN_toAdjoin (data : ModularPolynomialData N) :
+    Polynomial.aeval (jqN N) data.toAdjoin = 0 := by
+  rw [ModularPolynomialData.toAdjoin, Polynomial.aeval_def, Polynomial.eval₂_map,
+    algebraMap_comp_evalAtJGen]
   exact data.eval_eq_zero
 
 private theorem minpoly_jqN_eq_toAdjoin (data : ModularPolynomialData N) (h : PhiIrreducible data) :
@@ -82,7 +85,8 @@ theorem finrank_adjoin_jqN_eq (data : ModularPolynomialData N) (h : PhiIrreducib
     Module.finrank ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN N⟯ = dedekindPsi N := by
   have hint : IsIntegral ℚ⟮jq⟯ (jqN N) := ⟨data.toAdjoin, data.toAdjoin_monic, by
     rw [← Polynomial.aeval_def]; exact aeval_jqN_toAdjoin data⟩
-  rw [IntermediateField.adjoin.finrank hint, minpoly_jqN_eq_toAdjoin data h, ModularPolynomialData.toAdjoin,
+  rw [IntermediateField.adjoin.finrank hint, minpoly_jqN_eq_toAdjoin data h,
+    ModularPolynomialData.toAdjoin,
     data.monic.natDegree_map, data.natDegree_eq]
 
 end ModularCurve
@@ -90,10 +94,9 @@ end ModularCurve
 end
 
 set_option pp.universes true in
-
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_minpoly_jqN_eq_toAdjoin.ModularCurve ModularCurve.PhiGen in
-
-theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (h : PhiIrreducible data) : minpoly (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) = data.toAdjoin :=
+theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (h : PhiIrreducible data) :
+    minpoly (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) = data.toAdjoin :=
   ModularCurve.minpoly_jqN_eq_toAdjoin data h
 
 end S_ModularCurve_minpoly_jqN_eq_toAdjoin
@@ -106,6 +109,9 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.minpoly_jqN_eq_toAdjoin {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (h : PhiIrreducible data) : minpoly (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) = data.toAdjoin := _root_.P2MW.S_ModularCurve_minpoly_jqN_eq_toAdjoin.solution data h
+theorem ModularCurve.minpoly_jqN_eq_toAdjoin {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
+    (h : PhiIrreducible data) :
+    minpoly (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) = data.toAdjoin :=
+  solution data h
 
 end publicSection

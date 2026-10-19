@@ -60,16 +60,21 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum.AlgebraicCurve"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum.Algebraic\
+  Curve"
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 noncomputable section
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.deg Place.ofHeightOneSpectrum RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum Place.mem_maximalIdeal_iff_adicValuation_lt_one"
+p2m_export "AlgebraicCurve" "Place Place.deg Place.ofHeightOneSpectrum \
+  RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum \
+  Place.mem_maximalIdeal_iff_adicValuation_lt_one"
 namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum"
+p2m_export "AlgebraicCurve.RationalFunctionField" "toValuationSubring_eq_of_forall_ne_ofHeightOneSp\
+  ectrum"
 p2m_open "AlgebraicCurve.RationalFunctionField AlgebraicCurve"
 
 namespace WFg
@@ -130,7 +135,10 @@ end AlgebraicCurve.RationalFunctionField
 
 end
 
-theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.deg = 1 := by
+theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K))
+    (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w)
+    :
+    v.deg = 1 := by
   classical
   have hvS : v.toValuationSubring = (RatFunc.inftyValuation K).valuationSubring :=
     AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum v hv
@@ -147,10 +155,10 @@ theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K)) (hv : ∀ w : I
       obtain ⟨c, hc⟩ :=
         AlgebraicCurve.RationalFunctionField.WFg.exists_sub_algebraMap_intDegree_neg K hx'
       refine ⟨c, ?_⟩
-      show IsLocalRing.residue _ (algebraMap K v.toValuationSubring c) = _
+      change IsLocalRing.residue _ (algebraMap K v.toValuationSubring c) = _
       rw [← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff,
         Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-      show v.adicValuation (algebraMap K (RatFunc K) c - x) < 1
+      change v.adicValuation (algebraMap K (RatFunc K) c - x) < 1
       rw [← hequiv.lt_one_iff_lt_one,
         show algebraMap K (RatFunc K) c - x = -(x - algebraMap K (RatFunc K) c) from
           (neg_sub _ _).symm, Valuation.map_neg]
@@ -175,6 +183,11 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.deg_eq_one_of_forall_ne_ofHeightOneSpectrum {K : Type*} [Field K] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.deg = 1 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum.solution v hv
+theorem AlgebraicCurve.RationalFunctionField.deg_eq_one_of_forall_ne_ofHeightOneSpectrum {K : Type*}
+    [Field K] (v : Place K (RatFunc K))
+    (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w)
+    :
+    v.deg = 1 :=
+  solution v hv
 
 end publicSection

@@ -75,7 +75,6 @@ def HeckeInputsAlong : Prop :=
       NormFormulaAlong L (heckeAlphaBar L N ℓ) hfin
 
 open Classical in
-
 def heckeOperatorAlong :
     Pic0 L (laurentBaseChange L (modularFunctionFieldFull N)) →+
       Pic0 L (laurentBaseChange L (modularFunctionFieldFull N)) :=

@@ -134,7 +134,6 @@ end KernelTower
 
 open scoped Classical
 open ModularCurve ModularCurve.TatePoint in
-
 theorem solution (N : ℕ) [NeZero N] : FullKernelInjAt N :=
   KernelTower.fullKernelInjAt' N
 
@@ -148,6 +147,8 @@ public section publicSection
 
 
 open scoped Classical
-theorem ModularCurve.TatePoint.fullKernelInjAt (N : ℕ) [NeZero N] : FullKernelInjAt N := _root_.P2MW.S_ModularCurve_TatePoint_fullKernelInjAt.solution N
+theorem ModularCurve.TatePoint.fullKernelInjAt (N : ℕ) [NeZero N] :
+    FullKernelInjAt N :=
+  solution N
 
 end publicSection

@@ -410,7 +410,8 @@ lemma tendsto_primitive_cusp {G F : ℂ → ℂ} (hG : ∀ z ∈ UHP, HasDerivAt
     constructor
     · rintro ⟨n, hn⟩; exact lt_trans (hs n) hn
     · intro ht; obtain ⟨n, hn⟩ := exists_nat_one_div_lt ht; exact ⟨n, hn⟩
-  have hint' : IntegrableOn (fun t : ℝ => F ((x : ℂ) + t * I)) (⋃ n : ℕ, Ioi (1 / ((n : ℝ) + 1))) := by
+  have hint' : IntegrableOn (fun t : ℝ => F ((x : ℂ) + t * I)) (⋃ n : ℕ, Ioi (1 / ((n : ℝ) + 1))) :=
+    by
     rw [hunion]; exact hint
   have hlim := tendsto_setIntegral_of_monotone (fun n => measurableSet_Ioi) hmono hint'
   rw [hunion] at hlim
@@ -493,7 +494,7 @@ lemma rational_translate_integrable
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (r : ℚ) (j : ℕ) :
     IntegrableOn (fun t : ℝ =>
-      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ)^j) (Set.Ioi 0) := by
+      f (ofComplex ((r : ℂ) + Complex.I * t)) * (t : ℂ) ^ j) (Set.Ioi 0) := by
   let : NeZero N := ⟨by omega⟩
   let g : GL (Fin 2) ℚ := Matrix.GeneralLinearGroup.upperRightHom r
   let gr : GL (Fin 2) ℝ := g.map (Rat.castHom ℝ)
@@ -1230,13 +1231,13 @@ lemma conjugate_act (A : Matrix (Fin 2) (Fin 2) ℤ) (Q : Binary ℂ) :
 
 lemma coeff_Gvec_deriv {N k : ℕ} (hN : 0 < N)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (e : Fin 2 →₀ ℕ)
-    (z : UpperHalfPlane) : HasDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec f (k-2) w) e)
-      (AddMonoidAlgebra.coeff (f z • periodPower (k-2) z) e) (z : ℂ) := by
-  have hh := hasDerivAt_coeff_vecOfFun (n := k-2)
+    (z : UpperHalfPlane) : HasDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec f (k - 2) w) e)
+      (AddMonoidAlgebra.coeff (f z • periodPower (k - 2) z) e) (z : ℂ) := by
+  have hh := hasDerivAt_coeff_vecOfFun (n := k - 2)
     (fun j _ => (normPrim_spec (differentiableOn_Fj (ModularFormClass.holo f) j)
       (decays_self hN f j)).1 z z.im_pos) e
-  change HasDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec f (k-2) w) e)
-    (AddMonoidAlgebra.coeff (Fvec f (k-2) z) e) z at hh
+  change HasDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec f (k - 2) w) e)
+    (AddMonoidAlgebra.coeff (Fvec f (k - 2) z) e) z at hh
   simpa [Fvec_eq, periodPower] using hh
 
 lemma real_deriv_of_complex {F : ℂ → ℂ} {a z : ℂ} (h : HasDerivAt F a z) :
@@ -1255,15 +1256,15 @@ lemma conjugate_deriv_of_complex {F : ℂ → ℂ} {a z : ℂ} (h : HasDerivAt F
 lemma mixed_Gvec_deriv {N k : ℕ} (hN : 0 < N)
     (g v : CuspForm (MTT.GammaOne N) (k : ℤ)) (Q : Binary ℂ)
     (z : UpperHalfPlane) (e : Fin 2 →₀ ℕ) :
-    HasFDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec g (k-2) w - conjugatePolynomial (Gvec v (k-2) w) + Q) e)
+    HasFDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec g (k - 2) w - conjugatePolynomial (Gvec v (k - 2) w) + Q) e)
       (periodDifferential
-        (AddMonoidAlgebra.coeff (g z • periodPower (k-2) z) e)
-        (-AddMonoidAlgebra.coeff (conj (v z) • periodPower (k-2) (conj (z : ℂ))) e)) z := by
+        (AddMonoidAlgebra.coeff (g z • periodPower (k - 2) z) e)
+        (-AddMonoidAlgebra.coeff (conj (v z) • periodPower (k - 2) (conj (z : ℂ))) e)) z := by
   have hg := real_deriv_of_complex (coeff_Gvec_deriv hN g e z)
   have hv := conjugate_deriv_of_complex (coeff_Gvec_deriv hN v e z)
   have hh := (hg.sub hv).add_const (AddMonoidAlgebra.coeff Q e)
-  have hc : conj (AddMonoidAlgebra.coeff (v z • periodPower (k-2) z) e) =
-      AddMonoidAlgebra.coeff (conj (v z) • periodPower (k-2) (conj (z : ℂ))) e := by
+  have hc : conj (AddMonoidAlgebra.coeff (v z • periodPower (k - 2) z) e) =
+      AddMonoidAlgebra.coeff (conj (v z) • periodPower (k - 2) (conj (z : ℂ))) e := by
     rw [← MvPolynomial.coeff_map]
     congr 1
     simp [periodPower, MvPolynomial.smul_eq_C_mul]
@@ -1368,18 +1369,19 @@ lemma coeff_Gvec_cusp_bound {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (δ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (e : Fin 2 →₀ ℕ) (W : ℝ) (hW : 0 < W) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : UpperHalfPlane, 1 ≤ z.im → |z.re| ≤ W →
-      ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val (Gvec f (k-2) (δ • z : UpperHalfPlane))) e‖ ≤ C := by
+      ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val (Gvec f (k - 2) (δ • z : UpperHalfPlane))) e‖ ≤ C := by
   let f' := ⇑f ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ δ
   obtain ⟨C, hC0, hC⟩ := coeff_act_Gvec_strip_bound f' (holo_slash f δ)
-    (decays_slash hN f δ) (k-2) 1 e W hW
-  let K := Kconst δ f f' (k-2)
+    (decays_slash hN f δ) (k - 2) 1 e W hW
+  let K := Kconst δ f f' (k - 2)
   refine ⟨C + ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val K) e‖, by positivity, ?_⟩
   intro z hz hzr
   have ht := transport_cuspForm hN hk f δ (z := (z : ℂ)) z.im_pos
   rw [mob_eq_coe_smul δ z.im_pos] at ht
   simp only [UpperHalfPlane.ofComplex_apply] at ht
-  change Gvec f (k-2) (δ • z : UpperHalfPlane) = act δ.val (Gvec f' (k-2) z) + K at ht
-  rw [ht, map_add, act_act, ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one,
+  change Gvec f (k - 2) (δ • z : UpperHalfPlane) = act δ.val (Gvec f' (k - 2) z) + K at ht
+  rw [ht, map_add, act_act, ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel,
+    Matrix.SpecialLinearGroup.coe_one,
     act_one, AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
   apply (norm_add_le _ _).trans
   exact add_le_add (by simpa only [act_one] using hC z hz hzr) le_rfl
@@ -1397,7 +1399,7 @@ lemma reflected_modular_integral {N k : ℕ}
     (h v : CuspForm (MTT.GammaOne N) (k : ℤ))
     (hv : ∀ z : UpperHalfPlane, conj (v z) = h (periodReflect z)) (j : ℕ) (r : ℚ) :
     conj (MTT.modularIntegral v (Polynomial.X ^ j) r) =
-      (-1 : ℂ)^j * MTT.modularIntegral h (Polynomial.X ^ j) (-r) := by
+      (-1 : ℂ) ^ j * MTT.modularIntegral h (Polynomial.X ^ j) (-r) := by
   rw [modularIntegral_X_pow, modularIntegral_X_pow, map_mul, ← integral_conj]
   simp only [map_mul, map_ofNat, Complex.conj_ofReal]
   rw [mul_left_comm]
@@ -1422,7 +1424,7 @@ lemma reflected_modular_integral {N k : ℕ}
 
 lemma reflection_monomial (n j : ℕ) (a : ℂ) :
     act !![-1, 0; 0, 1] (MvPolynomial.monomial (binaryExponent n j) a) =
-      MvPolynomial.monomial (binaryExponent n j) ((-1 : ℂ)^j * a) := by
+      MvPolynomial.monomial (binaryExponent n j) ((-1 : ℂ) ^ j * a) := by
   rw [monomial_binaryExponent, act_eq_actAlg, map_mul, map_mul, map_pow, map_pow]
   simp [actAlg, monomial_binaryExponent]
   ring
@@ -1457,14 +1459,14 @@ namespace MTT.Eichler
 lemma Gvec_gamma {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (γ : CongruenceSubgroup.Gamma1 N) (z : UpperHalfPlane) :
-    Gvec f (k-2) (γ.val • z : UpperHalfPlane) =
-      act γ.val.val (Gvec f (k-2) z) +
+    Gvec f (k - 2) (γ.val • z : UpperHalfPlane) =
+      act γ.val.val (Gvec f (k - 2) z) +
         (2 * Real.pi * I : ℂ)⁻¹ • cuspPrimitive f (cuspAct γ.val OnePoint.infty) := by
   have hs := SlashInvariantFormClass.slash_action_eq f (Matrix.SpecialLinearGroup.mapGL ℝ γ.val)
     (show Matrix.SpecialLinearGroup.mapGL ℝ γ.val ∈ MTT.GammaOne N from ⟨γ.val, γ.property, rfl⟩)
   have ht := transport_cuspForm hN hk f γ.val (z := (z : ℂ)) z.im_pos
   rw [mob_eq_coe_smul γ.val z.im_pos, UpperHalfPlane.ofComplex_apply, hs] at ht
-  change Gvec f (k-2) (γ.val • z : UpperHalfPlane) = _ at ht
+  change Gvec f (k - 2) (γ.val • z : UpperHalfPlane) = _ at ht
   rw [ht, cuspPrimitive_eq_Kconst hN hk f γ.val, hs, smul_smul]
   have hc : (2 * Real.pi * I : ℂ) ≠ 0 :=
     mul_ne_zero (mul_ne_zero (by norm_num) (Complex.ofReal_ne_zero.mpr Real.pi_ne_zero)) I_ne_zero
@@ -1491,27 +1493,27 @@ theorem solution
     ∃ U : ℂ → Binary ℂ, IsMixedPeriodPrimitive g v U := by
   let s : ℂ := (2 * Real.pi * I : ℂ)⁻¹
   let Q : Binary ℂ := s • P
-  let U : ℂ → Binary ℂ := fun w => Gvec g (k-2) w - conjugatePolynomial (Gvec v (k-2) w) + Q
+  let U : ℂ → Binary ℂ := fun w => Gvec g (k - 2) w - conjugatePolynomial (Gvec v (k - 2) w) + Q
   have htwo : conj (2 : ℂ) = (2 : ℂ) := by
     exact Complex.conj_ofReal 2
   have hs : conj s = -s := by
     simp only [s, map_inv₀, map_mul, htwo, Complex.conj_ofReal, Complex.conj_I, mul_neg, inv_neg]
   refine ⟨U, ?_, ?_, ?_, ?_⟩
   · intro z
-    apply (MTT.Cohomology.Sym ℂ (k-2)).add_mem
+    apply (MTT.Cohomology.Sym ℂ (k - 2)).add_mem
     · exact (vecOfConst_homogeneous _ _).sub ((vecOfConst_homogeneous _ _).map (starRingEnd ℂ))
-    · exact (MTT.Cohomology.Sym ℂ (k-2)).smul_mem s hP
+    · exact (MTT.Cohomology.Sym ℂ (k - 2)).smul_mem s hP
   · intro γ z
     have hp := hcob γ
     rw [← reflected_cusp_primitive h v hv] at hp
     have hp' := congrArg (fun R : Binary ℂ => s • R) hp
     simp only [smul_add, smul_sub, ← map_smul] at hp'
-    change Gvec g (k-2) (γ.val • z : UpperHalfPlane) -
-      conjugatePolynomial (Gvec v (k-2) (γ.val • z : UpperHalfPlane)) + Q =
-      act γ.val.val (Gvec g (k-2) z - conjugatePolynomial (Gvec v (k-2) z) + Q)
+    change Gvec g (k - 2) (γ.val • z : UpperHalfPlane) -
+      conjugatePolynomial (Gvec v (k - 2) (γ.val • z : UpperHalfPlane)) + Q =
+      act γ.val.val (Gvec g (k - 2) z - conjugatePolynomial (Gvec v (k - 2) z) + Q)
     rw [Gvec_gamma hN hk g γ z, Gvec_gamma hN hk v γ z]
-    change act γ.val.val (Gvec g (k-2) z) + s • cuspPrimitive g _ -
-      conjugatePolynomial (act γ.val.val (Gvec v (k-2) z) + s • cuspPrimitive v _) + Q = _
+    change act γ.val.val (Gvec g (k - 2) z) + s • cuspPrimitive g _ -
+      conjugatePolynomial (act γ.val.val (Gvec v (k - 2) z) + s • cuspPrimitive v _) + Q = _
     rw [map_add, conjugate_act, conjugate_smul, hs, neg_smul, map_add, map_sub]
     have hp'' : s • cuspPrimitive g (cuspAct γ.val OnePoint.infty) +
         s • conjugatePolynomial (cuspPrimitive v (cuspAct γ.val OnePoint.infty)) + Q = act γ.val.val Q := by
@@ -1528,7 +1530,7 @@ theorem solution
     refine ⟨Cg + Cv + D, 0, by dsimp [D]; positivity, ?_⟩
     intro z hz hzr
     change ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val
-      (Gvec g (k-2) (δ • z : UpperHalfPlane) - conjugatePolynomial (Gvec v (k-2) (δ • z : UpperHalfPlane)) + Q)) e‖ ≤ _
+      (Gvec g (k - 2) (δ • z : UpperHalfPlane) - conjugatePolynomial (Gvec v (k - 2) (δ • z : UpperHalfPlane)) + Q)) e‖ ≤ _
     rw [map_add, map_sub, ← conjugate_act, AddMonoidAlgebra.coeff_add, Finsupp.add_apply,
       AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
     simp only [pow_zero, mul_one]

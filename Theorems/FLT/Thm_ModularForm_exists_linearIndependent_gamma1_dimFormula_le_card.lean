@@ -96,6 +96,7 @@ theorem ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card
       (k - 1) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index +
           6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
             ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ)))
-        ≤ 12 * d := _root_.P2MW.S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card.solution M hM k hk
+        ≤ 12 * d :=
+  solution M hM k hk
 
 end publicSection

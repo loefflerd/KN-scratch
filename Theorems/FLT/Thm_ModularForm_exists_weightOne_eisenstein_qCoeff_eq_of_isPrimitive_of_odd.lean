@@ -259,7 +259,8 @@ lemma inv_zero_eq (hL : 3 ≤ L) : χ⁻¹ (0 : ZMod L) = 0 := by
   apply MulChar.map_nonunit
   simp
 
-lemma isUnit_entry (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) : IsUnit (((γ 1 1 : ℤ) : ZMod L)) := by
+lemma isUnit_entry (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) :
+    IsUnit (((γ 1 1 : ℤ) : ZMod L)) := by
   have hdet := Matrix.SpecialLinearGroup.det_coe γ
   rw [Matrix.det_fin_two] at hdet
   rw [CongruenceSubgroup.Gamma0_mem] at hγ
@@ -286,12 +287,12 @@ lemma vb_vecMul_eq (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 L) 
   refine ⟨![w0, w1], ?_⟩
   funext i
   fin_cases i
-  · show (vb L b ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) 0 =
+  · change (vb L b ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) 0 =
       vb L (b * ((γ 1 1 : ℤ) : ZMod L)) 0 + (L : ℤ) * (![w0, w1] : Fin 2 → ℤ) 0
     simp only [Matrix.vecMul, dotProduct, Fin.sum_univ_two, vb, Matrix.cons_val_zero,
       Matrix.cons_val_one, Matrix.cons_val_fin_one, zero_mul, zero_add]
     linear_combination hw0
-  · show (vb L b ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) 1 =
+  · change (vb L b ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) 1 =
       vb L (b * ((γ 1 1 : ℤ) : ZMod L)) 1 + (L : ℤ) * (![w0, w1] : Fin 2 → ℤ) 1
     simp only [Matrix.vecMul, dotProduct, Fin.sum_univ_two, vb, Matrix.cons_val_zero,
       Matrix.cons_val_one, Matrix.cons_val_fin_one, zero_mul, zero_add]
@@ -340,7 +341,7 @@ def E0SIF (hL : 3 ≤ L) : SlashInvariantForm (CongruenceSubgroup.Gamma1 L) 1 wh
     rw [CongruenceSubgroup.Gamma1_mem] at hγ'
     have hγ0 : γ ∈ CongruenceSubgroup.Gamma0 L := by
       rw [CongruenceSubgroup.Gamma0_mem]; exact hγ'.2.2
-    show E0 L χ ∣[(1 : ℤ)] (γ : GL (Fin 2) ℝ) = E0 L χ
+    change E0 L χ ∣[(1 : ℤ)] (γ : GL (Fin 2) ℝ) = E0 L χ
     funext τ
     rw [← ModularForm.SL_slash, ModularForm.SL_slash_apply, E0_smul χ hL γ hγ0 τ, hγ'.2.1, map_one]
     have hD : (denom γ τ : ℂ) ≠ 0 := denom_ne_zero _ τ
@@ -369,7 +370,8 @@ lemma not_dvd_vecMul {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (L : ℤ) ∣ v i) (A :
     ¬ ∀ i, (L : ℤ) ∣ (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) i := by
   intro h
   apply hv
-  have key : v = (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) ᵥ* ((A⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) := by
+  have key : v = (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) ᵥ* ((A⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) :=
+    by
     rw [Matrix.vecMul_vecMul, ← Matrix.SpecialLinearGroup.coe_mul, mul_inv_cancel,
       Matrix.SpecialLinearGroup.coe_one, Matrix.vecMul_one]
   intro i
@@ -617,9 +619,10 @@ theorem E0_mdifferentiable (hL : 3 ≤ L) : MDiff (E0 L χ) := by
   have hdiff := differentiableOn_qseries (A χ) (K0 L) (4 * π * L) (norm_A_le χ) hεpos
   have hU : IsOpen {w : ℂ | ε < w.im} := isOpen_lt continuous_const Complex.continuous_im
   have hzU : z ∈ {w : ℂ | ε < w.im} := by
-    show ε < z.im
+    change ε < z.im
     rw [hε]; linarith
-  have heq : (E0 L χ ∘ ofComplex) =ᶠ[𝓝 z] (fun w => ∑' n : ℕ, A χ n * cexp (2 * π * I * w) ^ n) := by
+  have heq : (E0 L χ ∘ ofComplex) =ᶠ[𝓝 z] (fun w => ∑' n : ℕ, A χ n * cexp (2 * π * I * w) ^ n) :=
+    by
     filter_upwards [hU.mem_nhds hzU] with w hw
     have hw' : ε < w.im := hw
     have hw0 : 0 < w.im := lt_trans hεpos hw'
@@ -643,7 +646,8 @@ lemma E1_smul (hL : 3 ≤ L) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.
   rw [E0_smul χ hL γ hγ τ]
   ring
 
-lemma E1_slash (A : SL(2, ℤ)) : E1 L χ ∣[(1 : ℤ)] A = fun τ => (cst χ)⁻¹ * (E0 L χ ∣[(1 : ℤ)] A) τ := by
+lemma E1_slash (A : SL(2, ℤ)) :
+    E1 L χ ∣[(1 : ℤ)] A = fun τ => (cst χ)⁻¹ * (E0 L χ ∣[(1 : ℤ)] A) τ := by
   funext τ
   simp only [ModularForm.SL_slash_apply, E1]
   ring
@@ -658,7 +662,7 @@ def E1SIF (hL : 3 ≤ L) : SlashInvariantForm (CongruenceSubgroup.Gamma1 L) 1 wh
     rw [CongruenceSubgroup.Gamma1_mem] at hγ'
     have hγ0 : γ ∈ CongruenceSubgroup.Gamma0 L := by
       rw [CongruenceSubgroup.Gamma0_mem]; exact hγ'.2.2
-    show E1 L χ ∣[(1 : ℤ)] (γ : GL (Fin 2) ℝ) = E1 L χ
+    change E1 L χ ∣[(1 : ℤ)] (γ : GL (Fin 2) ℝ) = E1 L χ
     funext τ
     rw [← ModularForm.SL_slash, ModularForm.SL_slash_apply, E1_smul χ hL γ hγ0 τ, hγ'.2.1, map_one]
     have hD : (denom γ τ : ℂ) ≠ 0 := denom_ne_zero _ τ
@@ -741,9 +745,9 @@ theorem main (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
   refine ⟨E1MF L χ hL, fun γ hγ τ => ?_, ?_, fun n hn => ?_⟩
   · rw [E1MF_apply, E1MF_apply, E1_smul χ hL γ hγ τ, zpow_one, denom_eq]
     ring
-  · show (qExpansion 1 ⇑(E1MF L χ hL)).coeff 0 = _
+  · change (qExpansion 1 ⇑(E1MF L χ hL)).coeff 0 = _
     rw [qExpansion_coeff_E1MF, A_zero χ hχ hodd, ← mul_assoc, inv_mul_cancel₀ hc, one_mul]
-  · show (qExpansion 1 ⇑(E1MF L χ hL)).coeff n = _
+  · change (qExpansion 1 ⇑(E1MF L χ hL)).coeff n = _
     rw [qExpansion_coeff_E1MF, A_of_ne_zero χ hχ hodd (Nat.pos_iff_ne_zero.mp hn), ← mul_assoc,
       inv_mul_cancel₀ hc, one_mul]
 
@@ -785,6 +789,7 @@ theorem ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
             ((((γ 1 0 : ℤ) : ℂ) * (τ : ℂ) + ((γ 1 1 : ℤ) : ℂ)) ^ (1 : ℤ) * E τ)) ∧
       ModularFormClass.qCoeff E 0 =
         -(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L) ∧
-      ∀ n : ℕ, 0 < n → ModularFormClass.qCoeff E n = ∑ d ∈ n.divisors, χ (d : ZMod L) := _root_.P2MW.S_ModularForm_exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd.solution L χ hχ hodd
+      ∀ n : ℕ, 0 < n → ModularFormClass.qCoeff E n = ∑ d ∈ n.divisors, χ (d : ZMod L) :=
+  solution L χ hχ hodd
 
 end publicSection

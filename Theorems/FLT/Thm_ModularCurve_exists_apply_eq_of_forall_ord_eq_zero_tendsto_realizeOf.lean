@@ -80,14 +80,16 @@ theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (Pl : SL(2, ℤ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hΓPl : ∀ γ ∈ Γ, ∀ σ : SL(2, ℤ), Pl (γ * σ) = Pl σ)
     (hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0 →
       ∃ L : ℂ, L ≠ 0 ∧
         Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
           UpperHalfPlane.atImInfty (nhds L))
-    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hP : y ∉ P.toValuationSubring) :
+    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hP : y ∉ P.toValuationSubring) :
     ∃ σ : SL(2, ℤ), Pl σ = P := by
   classical
   by_contra hcon
@@ -139,14 +141,17 @@ theorem ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (Pl : SL(2, ℤ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hΓPl : ∀ γ ∈ Γ, ∀ σ : SL(2, ℤ), Pl (γ * σ) = Pl σ)
     (hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0 →
       ∃ L : ℂ, L ≠ 0 ∧
         Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
           UpperHalfPlane.atImInfty (nhds L))
-    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hP : y ∉ P.toValuationSubring) :
-    ∃ σ : SL(2, ℤ), Pl σ = P := _root_.P2MW.S_ModularCurve_exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf.solution Γ hT hΓ F₀ hF y hy Pl hΓPl hlim P hP
+    (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
+    (hP : y ∉ P.toValuationSubring) :
+    ∃ σ : SL(2, ℤ), Pl σ = P :=
+  solution Γ hT hΓ F₀ hF y hy Pl hΓPl hlim P hP
 
 end publicSection

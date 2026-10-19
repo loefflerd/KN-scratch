@@ -104,7 +104,7 @@ def genOf (c : Cu Γ) : Γ := ⟨_, gen_mem Γ (rep Γ c)⟩
 
 theorem trace_genOf (c : Cu Γ) :
     ((genOf Γ c : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = 2 := by
-  show (((rep Γ c)⁻¹ * ModularGroup.T ^ wd Γ (rep Γ c : SL(2, ℤ) ⧸ Γ) * rep Γ c : SL(2, ℤ)) :
+  change (((rep Γ c)⁻¹ * ModularGroup.T ^ wd Γ (rep Γ c : SL(2, ℤ) ⧸ Γ) * rep Γ c : SL(2, ℤ)) :
       Matrix (Fin 2) (Fin 2) ℤ).trace = 2
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.trace_mul_comm, Matrix.SpecialLinearGroup.coe_mul,
     ← Matrix.mul_assoc, ← Matrix.SpecialLinearGroup.coe_mul, mul_inv_cancel,
@@ -136,7 +136,7 @@ theorem ker_sumL_le_range (hneg : (-1 : SL(2, ℤ)) ∈ Γ) [Fintype (Cu Γ)] :
     Matrix.SpecialLinearGroup.exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
       Γ hneg K v hv'
   refine ⟨φ, funext fun c => ?_⟩
-  show φ (Additive.ofMul (genOf Γ c)) = v c
+  change φ (Additive.ofMul (genOf Γ c)) = v c
   have key := hφ (rep Γ c) (gen_mem Γ (rep Γ c))
   exact key.trans (congrArg v (cusp_rep Γ c))
 
@@ -217,6 +217,7 @@ theorem ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMono
     Module.finrank K (ModularCurve.Period.parabolicHoms K Γ K)
       + Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T)
           (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Γ))
-      ≤ Module.finrank K (Additive Γ →+ K) + 1 := _root_.P2MW.S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one.solution Γ hneg K
+      ≤ Module.finrank K (Additive Γ →+ K) + 1 :=
+  solution Γ hneg K
 
 end publicSection

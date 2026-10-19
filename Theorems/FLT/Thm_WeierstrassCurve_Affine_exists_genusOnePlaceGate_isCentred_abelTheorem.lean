@@ -157,11 +157,9 @@ end Generic
 variable {F : Type u} [Field F] {W : Affine F}
 
 variable (W) in
-
 def xF : W.FunctionField := algebraMap W.CoordinateRing W.FunctionField (mk W (C X))
 
 variable (W) in
-
 def vInf : AlgebraicCurve.Place F W.FunctionField :=
   (WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one W).choose
 
@@ -267,12 +265,12 @@ scoped instance geomGate : GenusOnePlaceGate W where
 
 theorem isCentred_geomGate : GenusOnePlaceGate.IsCentred W := by
   refine ⟨fun x y h => ?_, fun x y h => ?_⟩
-  · show algebraMap W.CoordinateRing W.FunctionField (XClass W x) ∈
+  · change algebraMap W.CoordinateRing W.FunctionField (XClass W x) ∈
       ValuationSubring.nonunits (Place.toValuationSubring
         (Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) (hosOf h.left)))
     exact algebraMap_mem_nonunits_ofHeightOneSpectrum _
       (Ideal.subset_span (Set.mem_insert _ _))
-  · show algebraMap W.CoordinateRing W.FunctionField (YClass W (C y)) ∈
+  · change algebraMap W.CoordinateRing W.FunctionField (YClass W (C y)) ∈
       ValuationSubring.nonunits (Place.toValuationSubring
         (Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) (hosOf h.left)))
     exact algebraMap_mem_nonunits_ofHeightOneSpectrum _
@@ -450,6 +448,7 @@ theorem WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem
     [W.IsElliptic] :
     ∃ g : WeierstrassCurve.Affine.GenusOnePlaceGate W,
       @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g ∧
-      @WeierstrassCurve.Affine.AbelTheorem F _ _ g _ := _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem.solution W
+      @WeierstrassCurve.Affine.AbelTheorem F _ _ g _ :=
+  solution W
 
 end publicSection

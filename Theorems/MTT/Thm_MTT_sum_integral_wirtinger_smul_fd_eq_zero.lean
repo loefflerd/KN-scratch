@@ -1044,7 +1044,8 @@ theorem sum_comp_mul_right {Γ : Subgroup SL(2, ℤ)} {R : Finset SL(2, ℤ)}
   have key : ∀ (k : SL(2, ℤ)) (g : SL(2, ℤ)), g ∈ R →
       ((hR.equiv (((hR.equiv (g * k)).2 : SL(2, ℤ)) * k⁻¹)).2 : SL(2, ℤ)) = g := by
     intro k g hg
-    have e1 : ((hR.equiv (g * k)).2 : SL(2, ℤ)) * k⁻¹ = (((hR.equiv (g * k)).1 : SL(2, ℤ)))⁻¹ * g := by
+    have e1 : ((hR.equiv (g * k)).2 : SL(2, ℤ)) * k⁻¹ = (((hR.equiv (g * k)).1 : SL(2, ℤ)))⁻¹ * g :=
+      by
       rw [hR.equiv_snd_eq_inv_mul]
       group
     rw [e1, hR.equiv_mul_left_of_mem (inv_mem (hR.equiv (g * k)).1.2)]

@@ -82,7 +82,6 @@ def HasRamBound (e : ℕ) (y : HahnSeries ℚ K) : Prop :=
   y.support ⊆ Set.range (fun k : ℤ => (k : ℚ) / e)
 
 variable (K) in
-
 def puiseuxRamSubfield {e : ℕ} (he : 0 < e) : Subfield (HahnSeries ℚ K) :=
   (puiseuxRamEmb (K := K) he).fieldRange
 

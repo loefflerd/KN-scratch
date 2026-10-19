@@ -86,7 +86,14 @@ open UpperHalfPlane Polynomial
 open scoped MatrixGroups Topology
 
 namespace ModularCurve
-p2m_export "ModularCurve" "realizeOf laurentBaseChange qExpand jGen qExpFunctionFieldC jqModC LevelN.ring LevelN.jGen exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul LevelN.isDomain_ring exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem LevelN.exists_algHom_laurentSeries_qExpansion LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin"
+p2m_export "ModularCurve" "realizeOf laurentBaseChange qExpand jGen qExpFunctionFieldC jqModC \
+  LevelN.ring LevelN.jGen exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto \
+  LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand \
+  LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one \
+  LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul LevelN.isDomain_ring \
+  exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem \
+  LevelN.exists_algHom_laurentSeries_qExpansion \
+  LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin"
 namespace CuspPlaceGlue
 p2m_open "ModularCurve"
 
@@ -131,11 +138,17 @@ theorem exists_monic_pullback {F K : Type*} [Field F] [Field K] [Algebra ℂ F] 
 end ModularCurve.CuspPlaceGlue
 
 namespace ModularCurve
-p2m_export "ModularCurve" "realizeOf laurentBaseChange qExpand jGen qExpFunctionFieldC jqModC LevelN.ring LevelN.jGen exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul LevelN.isDomain_ring exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem LevelN.exists_algHom_laurentSeries_qExpansion LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin"
+p2m_export "ModularCurve" "realizeOf laurentBaseChange qExpand jGen qExpFunctionFieldC jqModC \
+  LevelN.ring LevelN.jGen exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto \
+  LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand \
+  LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one \
+  LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul LevelN.isDomain_ring \
+  exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem \
+  LevelN.exists_algHom_laurentSeries_qExpansion \
+  LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.CuspPlaceGlue in
-
 theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (M : ℕ) [NeZero M] (hΓM : CongruenceSubgroup.Gamma M ≤ Γ)
@@ -158,7 +171,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin M K
   obtain ⟨E, hEj, hEq⟩ := ModularCurve.LevelN.exists_algHom_laurentSeries_qExpansion M K
   have hEinj : Function.Injective E := E.toRingHom.injective
-  obtain ⟨Ψ, hΨ⟩ := ModularCurve.LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand M K σ hker hfixed
+  obtain ⟨Ψ, hΨ⟩ :=
+    ModularCurve.LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand M K σ hker hfixed
     E hEj Γ hΓM hT
   have hΨinj : Function.Injective Ψ := Ψ.toRingHom.injective
   have hΨy : Ψ y = algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M) := by
@@ -207,7 +221,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     apply hEz
     have hqg0 : qg = 0 := by
       rw [hqg, hg0]
-      have : UpperHalfPlane.qExpansion 1 ((0 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) : ℍ → ℂ) = 0 := by
+      have : UpperHalfPlane.qExpansion 1 ((0 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) : ℍ → ℂ) = 0 :=
+        by
         have h1 : (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
           rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem hT]
           exact AddSubgroup.mem_zmultiples _
@@ -242,7 +257,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
       M K σ hker hfixed E hEj z⁻¹ hpole'
   rw [← hΨy] at hPc hQc
-  obtain ⟨P₀, hP₀m, hP₀x, hP₀c⟩ := exists_monic_pullback Ψ y x P hPm (by rw [← hzdef]; exact hPz) hPc
+  obtain ⟨P₀, hP₀m, hP₀x, hP₀c⟩ :=
+    exists_monic_pullback Ψ y x P hPm (by rw [← hzdef]; exact hPz) hPc
   obtain ⟨Q₀, hQ₀m, hQ₀x, hQ₀c⟩ :=
     exists_monic_pullback Ψ y x⁻¹ Q hQm (by rw [map_inv₀, ← hzdef]; exact hQz) hQc
   exact AlgebraicCurve.Place.ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
@@ -295,6 +311,7 @@ theorem ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto
     (v : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ F₀))
     (y : ModularCurve.laurentBaseChange ℂ F₀) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (hv : y ∉ v.toValuationSubring) :
-    v.ord x = 0 := _root_.P2MW.S_ModularCurve_ord_eq_zero_of_not_mem_of_realizeOf_tendsto.solution Γ hT hΓ F₀ hF x F hFx hcusp v y hy hv
+    v.ord x = 0 :=
+  solution Γ hT hΓ F₀ hF x F hFx hcusp v y hy hv
 
 end publicSection

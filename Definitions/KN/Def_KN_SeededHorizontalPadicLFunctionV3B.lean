@@ -29,7 +29,7 @@ noncomputable section
 namespace HorizontalPadicL
 
 /-- The faithful interpolation contract for a seeded horizontal `p`-adic
-L-function.  The Dirichlet characters are obtained from the actual quotient
+L-function. The Dirichlet characters are obtained from the actual quotient
 maps used to push forward the theta elements. -/
 def SeededHorizontalPadicLFunctionV2.InterpolatesSeededCriticalValuesV3
     {N k B p : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
@@ -43,7 +43,7 @@ def SeededHorizontalPadicLFunctionV2.InterpolatesSeededCriticalValuesV3
       @MTT.criticalLValue ι f.form
         θ.1.1 ⟨Nat.ne_of_gt θ.1.2⟩ θ.2 (k / 2 - 1) ≠ 0
 
-/-- The one-sign seeded construction needed for Corollary 5.17.  The prime
+/-- The one-sign seeded construction needed for Corollary 5.17. The prime
 `p` is required to be odd, so every horizontal character of `p`-power order
 is even and the plus theta measure interpolates every character in the
 horizontal family. -/

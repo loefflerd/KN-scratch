@@ -58,7 +58,8 @@ namespace P2MW.S_ModularCurve_order_qExpand
 
 open ModularCurve
 
-theorem solution {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (f : LaurentSeries R) : (qExpand R N f).order = N * f.order := by
+theorem solution {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (f : LaurentSeries R) :
+    (qExpand R N f).order = N * f.order := by
   rcases eq_or_ne f 0 with rfl | hf
   · rw [map_zero, HahnSeries.order_zero, mul_zero]
   have hc : (qExpand R N f).coeff ((N : ℤ) * f.order) ≠ 0 := by
@@ -88,6 +89,9 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.order_qExpand {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (f : LaurentSeries R) : (qExpand R N f).order = N * f.order := _root_.P2MW.S_ModularCurve_order_qExpand.solution N f
+theorem ModularCurve.order_qExpand {R : Type*} [CommRing R] (N : ℕ) [NeZero N] (f : LaurentSeries R)
+    :
+    (qExpand R N f).order = N * f.order :=
+  solution N f
 
 end publicSection

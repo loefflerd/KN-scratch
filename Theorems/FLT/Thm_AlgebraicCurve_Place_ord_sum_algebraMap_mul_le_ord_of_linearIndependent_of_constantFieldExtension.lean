@@ -122,12 +122,12 @@ theorem solution
   have hπ0 : (π : F) ≠ 0 := fun h => hπ.ne_zero (Subtype.ext h)
   have hπord : v.ord (π : F) = 1 := v.ord_coe_irreducible hπ
   have hgj0 : ∀ j ∈ g.support, g j ≠ 0 := fun j hj => Finsupp.mem_support_iff.mp hj
-  have haj_ne : ∀ j ∈ g.support, (π : F)^(-m) * g j ≠ 0 := fun j hj =>
+  have haj_ne : ∀ j ∈ g.support, (π : F) ^ (-m) * g j ≠ 0 := fun j hj =>
     mul_ne_zero (zpow_ne_zero _ hπ0) (hgj0 j hj)
-  have haj_ord : ∀ j ∈ g.support, v.ord ((π : F)^(-m) * g j) = v.ord (g j) - m := by
+  have haj_ord : ∀ j ∈ g.support, v.ord ((π : F) ^ (-m) * g j) = v.ord (g j) - m := by
     intro j hj
     rw [v.ord_mul (zpow_ne_zero _ hπ0) (hgj0 j hj), v.ord_zpow, hπord]; ring
-  have haj_mem : ∀ j ∈ g.support, (π : F)^(-m) * g j ∈ v.toValuationSubring := fun j hj =>
+  have haj_mem : ∀ j ∈ g.support, (π : F) ^ (-m) * g j ∈ v.toValuationSubring := fun j hj =>
     (v.mem_iff_ord_nonneg (haj_ne j hj)).mpr (by rw [haj_ord j hj]; linarith [hmle j hj])
   have hdig : ∀ j, ∀ hj : j ∈ g.support, ∃ cj : K, ∃ o' : v.toValuationSubring,
       (⟨_, haj_mem j hj⟩ : v.toValuationSubring) =
@@ -136,11 +136,11 @@ theorem solution
   choose c o' hco using hdig
   have hcj1 : c j₁ hj₁ ≠ 0 := by
     intro hc0
-    have heq : (π : F)^(-m) * g j₁ = (π : F) * ((o' j₁ hj₁ : v.toValuationSubring) : F) := by
+    have heq : (π : F) ^ (-m) * g j₁ = (π : F) * ((o' j₁ hj₁ : v.toValuationSubring) : F) := by
       have h := congrArg (Subtype.val (p := (· ∈ v.toValuationSubring))) (hco j₁ hj₁)
       simp only [hc0, map_zero, zero_add, MulMemClass.coe_mul] at h
       exact h
-    have haj1ord : v.ord ((π:F)^(-m) * g j₁) = 0 := by rw [haj_ord j₁ hj₁, ← hj₁m]; ring
+    have haj1ord : v.ord ((π:F) ^ (-m) * g j₁) = 0 := by rw [haj_ord j₁ hj₁, ← hj₁m]; ring
     rcases eq_or_ne ((o' j₁ hj₁ : v.toValuationSubring) : F) 0 with ho0 | ho0
     · rw [heq, ho0, mul_zero] at haj1ord
       exact haj_ne j₁ hj₁ (by rw [heq, ho0, mul_zero])
@@ -149,7 +149,8 @@ theorem solution
       omega
   let c' : ι → K := fun j => if hj : j ∈ g.support then c j hj else 0
   have hc'eq : ∀ j (hj : j ∈ g.support), c' j = c j hj := fun j hj => dite_eq_left hj
-  let e' : ι → F := fun j => if hj : j ∈ g.support then ((o' j hj : v.toValuationSubring) : F) else 0
+  let e' : ι → F :=
+    fun j => if hj : j ∈ g.support then ((o' j hj : v.toValuationSubring) : F) else 0
   have he'eq : ∀ j (hj : j ∈ g.support), e' j = ((o' j hj : v.toValuationSubring) : F) :=
     fun j hj => dite_eq_left hj
   have he'mem : ∀ j ∈ g.support, e' j ∈ v.toValuationSubring := fun j hj =>
@@ -160,20 +161,20 @@ theorem solution
     have := linearIndependent_iff'.1 hB g.support c' hd0 j₁ hj₁
     rw [hc'eq j₁ hj₁] at this
     exact hcj1 this
-  have hcoe : ∀ j (hj : j ∈ g.support), (π:F)^(-m) * g j =
+  have hcoe : ∀ j (hj : j ∈ g.support), (π:F) ^ (-m) * g j =
       algebraMap K F (c' j) + (π:F) * (e' j) := by
     intro j hj
     have h := congrArg (Subtype.val (p := (· ∈ v.toValuationSubring))) (hco j hj)
     simp only [AddMemClass.coe_add, MulMemClass.coe_mul, Place.coe_algebraMap] at h
     rw [hc'eq j hj, he'eq j hj]; exact h
   let R : F' := ∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (e' j)
-  have hfact : (algebraMap F F' (π:F))^(-m) * Tot =
+  have hfact : (algebraMap F F' (π:F)) ^ (-m) * Tot =
       algebraMap K' F' d + algebraMap F F' (π:F) * R := by
     rw [hTot, Finset.mul_sum]
     simp only [d, R, map_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun j hj => ?_
-    rw [show (algebraMap F F' (π:F))^(-m) * (algebraMap K' F' (B j) * algebraMap F F' (g j))
-        = algebraMap K' F' (B j) * algebraMap F F' ((π:F)^(-m) * g j) by
+    rw [show (algebraMap F F' (π:F)) ^ (-m) * (algebraMap K' F' (B j) * algebraMap F F' (g j))
+        = algebraMap K' F' (B j) * algebraMap F F' ((π:F) ^ (-m) * g j) by
       rw [map_mul, ← map_zpow₀]; ring]
     rw [hcoe j hj, map_add, map_mul, Algebra.smul_def, map_mul,
       ← IsScalarTower.algebraMap_apply K K' F', ← IsScalarTower.algebraMap_apply K F F']
@@ -255,6 +256,7 @@ theorem AlgebraicCurve.Place.ord_sum_algebraMap_mul_le_ord_of_linearIndependent_
     (∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j)) ≠ 0 ∧
     ∀ j ∈ g.support,
       (lift v).ord (∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j)) ≤
-        v.ord (g j) := _root_.P2MW.S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension.solution K F K' F' lift hlift_ord v B hB g hg
+        v.ord (g j) :=
+  solution K F K' F' lift hlift_ord v B hB g hg
 
 end publicSection

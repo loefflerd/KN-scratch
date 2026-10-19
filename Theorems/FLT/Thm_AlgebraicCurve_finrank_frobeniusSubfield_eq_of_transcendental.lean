@@ -126,7 +126,7 @@ private theorem finrank_algebraMapRange_eq :
     (fun e ↦ (algebraMap E M).rangeRestrictFieldEquiv e) (AddEquiv.refl M)
     (algebraMap E M).rangeRestrictFieldEquiv.bijective
     (fun e m ↦ by
-      show e • m = ((algebraMap E M).rangeRestrictFieldEquiv e) • m
+      change e • m = ((algebraMap E M).rangeRestrictFieldEquiv e) • m
       rw [Algebra.smul_def, Subfield.smul_def]
       rfl)
   simp only [Cardinal.lift_id] at h
@@ -432,10 +432,12 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.finrank_frobeniusSubfield_eq_of_transcendental {K M : Type*} [Field K] [Field M] [Algebra K M]
+theorem AlgebraicCurve.finrank_frobeniusSubfield_eq_of_transcendental {K M : Type*} [Field K]
+    [Field M] [Algebra K M]
     [PerfectField K] (p : ℕ) [hp : Fact p.Prime] [CharP K p] (t : M) (htr : Transcendental K t)
     [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M] :
     haveI : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
-    Module.finrank ↥(frobenius M p).fieldRange M = p := _root_.P2MW.S_AlgebraicCurve_finrank_frobeniusSubfield_eq_of_transcendental.solution p t htr
+    Module.finrank ↥(frobenius M p).fieldRange M = p :=
+  solution p t htr
 
 end publicSection

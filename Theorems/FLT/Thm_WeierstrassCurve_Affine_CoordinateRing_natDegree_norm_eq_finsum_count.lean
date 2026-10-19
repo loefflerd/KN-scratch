@@ -60,10 +60,13 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count
 
-p2m_open "IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count.IsDedekindDomain Module"
+p2m_open "IsDedekindDomain \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count.IsDedekindDomain \
+  Module"
 
 namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "HeightOneSpectrum.quotientEquivPiOfProdEq quotientEquivPiOfProdEq mk HeightOneSpectrum"
+p2m_export "IsDedekindDomain" "HeightOneSpectrum.quotientEquivPiOfProdEq quotientEquivPiOfProdEq \
+  mk HeightOneSpectrum"
 p2m_open "IsDedekindDomain"
 
 variable (K : Type*) {R : Type*} [Field K] [CommRing R] [IsDedekindDomain R] [Algebra K R]
@@ -132,7 +135,6 @@ theorem finrank_quotient_pow (hP : P ≠ ⊥) :
 end Filtration
 
 open scoped Classical in
-
 theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite K (R ⧸ I)] :
     finrank K (R ⧸ I) = ∑ᶠ v : HeightOneSpectrum R,
       (Associates.mk v.asIdeal).count (Associates.mk I).factors * finrank K (R ⧸ v.asIdeal) := by
@@ -142,7 +144,8 @@ theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite
   have hcT : ∀ v, c v ≠ 0 → v ∈ T := fun v hv =>
     (Ideal.finite_factors hI).mem_toFinset.mpr ((Associates.count_ne_zero_iff_dvd hI v.irreducible).mp hv)
   have hprod : ∏ v : T, (v : HeightOneSpectrum R).asIdeal ^ c v = I := by
-    rw [Finset.prod_coe_sort T fun v => v.asIdeal ^ c v, ← Ideal.finprod_heightOneSpectrum_factorization hI]
+    rw [Finset.prod_coe_sort T fun v => v.asIdeal ^ c v, ←
+      Ideal.finprod_heightOneSpectrum_factorization hI]
     refine (finprod_eq_prod_of_mulSupport_subset _ fun v hv => ?_).symm
     refine hcT v fun h0 => hv ?_
     simp only [h0, pow_zero]
@@ -168,7 +171,6 @@ theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite
         Finset.sum_coe_sort T fun v => c v * finrank K (R ⧸ v.asIdeal)
 
 open scoped Classical in
-
 theorem finrank_quotient_eq_finsum_of_isAlgClosed [IsAlgClosed K] {I : Ideal R} (hI : I ≠ ⊥)
     [Module.Finite K (R ⧸ I)] :
     finrank K (R ⧸ I) =
@@ -200,12 +202,12 @@ p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine WeierstrassCurve"
 
 open scoped nonZeroDivisors Polynomial
-p2m_open "IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count.IsDedekindDomain"
+p2m_open "IsDedekindDomain \
+  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count.IsDedekindDomain"
 
 variable {K : Type*} [Field K] [IsAlgClosed K] (W : Affine K) [IsDedekindDomain W.CoordinateRing]
 
 open scoped Classical in
-
 theorem natDegree_norm_eq_finsum_count_aux {a : W.CoordinateRing} (ha : a ≠ 0) :
     ((Algebra.norm K[X] a).natDegree : ℤ) =
       ∑ᶠ v : HeightOneSpectrum W.CoordinateRing, FractionalIdeal.count W.FunctionField v
@@ -230,7 +232,9 @@ end WeierstrassCurve.Affine.CoordinateRing
 
 open scoped nonZeroDivisors
 
-theorem solution {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing] {a : W.toAffine.CoordinateRing} (ha : a ≠ 0) : ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
+theorem solution {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K)
+    [IsDedekindDomain W.toAffine.CoordinateRing] {a : W.toAffine.CoordinateRing} (ha : a ≠ 0) :
+    ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
   WeierstrassCurve.Affine.CoordinateRing.natDegree_norm_eq_finsum_count_aux W.toAffine ha
 
 end S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count
@@ -243,6 +247,10 @@ public section publicSection
 
 
 open scoped nonZeroDivisors
-theorem WeierstrassCurve.Affine.CoordinateRing.natDegree_norm_eq_finsum_count {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing] {a : W.toAffine.CoordinateRing} (ha : a ≠ 0) : ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField a)) := _root_.P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count.solution W ha
+theorem WeierstrassCurve.Affine.CoordinateRing.natDegree_norm_eq_finsum_count {K : Type*} [Field K]
+    [IsAlgClosed K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing]
+    {a : W.toAffine.CoordinateRing} (ha : a ≠ 0) :
+    ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
+  solution W ha
 
 end publicSection

@@ -75,7 +75,8 @@ open ModularForm ModularFormClass
 
 namespace W2WsF
 
-private theorem _root_.W2WsF.eq_of_forall_qCoeff_eq {f g : ℍ → ℂ} (hfper : Periodic (f ∘ ofComplex) 1) (hfhol : MDiff f)
+private theorem _root_.W2WsF.eq_of_forall_qCoeff_eq {f g : ℍ → ℂ}
+    (hfper : Periodic (f ∘ ofComplex) 1) (hfhol : MDiff f)
     (hfbdd : IsBoundedAtImInfty f) (hgper : Periodic (g ∘ ofComplex) 1) (hghol : MDiff g)
     (hgbdd : IsBoundedAtImInfty g) (h : ∀ n : ℕ, qCoeff f n = qCoeff g n) : f = g :=
   UpperHalfPlane.eq_of_forall_qCoeff_eq hfper hfhol hfbdd hgper hghol hgbdd h
@@ -133,7 +134,10 @@ theorem heckeU_heckeU_comm_bare {f : ℍ → ℂ} (hper : Periodic (f ∘ ofComp
 
 end W2WsF
 
-theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ] {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F) (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (p q : ℕ) : ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU k p ⇑f) :=
+theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ]
+    {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
+    (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (p q : ℕ) :
+    ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU k p ⇑f) :=
   W2WsF.heckeU_heckeU_comm_bare (W2WsF.mf_periodic f hΓ) (ModularFormClass.holo f)
     (W2WsF.mf_bdd f hΓ) k p q
 
@@ -147,6 +151,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularFormClass.heckeU_heckeU_comm {F : Type*} [FunLike F UpperHalfPlane ℂ] {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F) (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (p q : ℕ) : ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU k p ⇑f) := _root_.P2MW.S_ModularFormClass_heckeU_heckeU_comm.solution f hΓ p q
+theorem ModularFormClass.heckeU_heckeU_comm {F : Type*} [FunLike F UpperHalfPlane ℂ]
+    {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
+    (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (p q : ℕ) :
+    ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU k p ⇑f) :=
+  solution f hΓ p q
 
 end publicSection

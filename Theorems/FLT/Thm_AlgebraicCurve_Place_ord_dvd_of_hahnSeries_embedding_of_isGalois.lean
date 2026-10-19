@@ -72,12 +72,19 @@ namespace P2MW.S_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGaloi
 
 noncomputable section
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGalois.AlgebraicCurve Polynomial"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGalois.AlgebraicCurve Polynomial"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.finitePlace Place.exists_ord_mul_eq_order_of_hasRamBound Place.ramificationIndex_eq_of_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap"
+p2m_export "AlgebraicCurve" "Place Place.ord_ofHeightOneSpectrum_ne_zero_iff \
+  RationalFunctionField.finitePlace Place.exists_ord_mul_eq_order_of_hasRamBound \
+  Place.ramificationIndex_eq_of_restrict_eq \
+  RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty \
+  RationalFunctionField.ord_placeInfty_algebraMap"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ord ord_coe_irreducible toValuationSubring ramificationIndex ramificationIndex_pos restrict ord_restrict ord_ofHeightOneSpectrum_ne_zero_iff exists_ord_mul_eq_order_of_hasRamBound ramificationIndex_eq_of_restrict_eq"
+p2m_export "AlgebraicCurve.Place" "ord ord_coe_irreducible toValuationSubring ramificationIndex \
+  ramificationIndex_pos restrict ord_restrict ord_ofHeightOneSpectrum_ne_zero_iff \
+  exists_ord_mul_eq_order_of_hasRamBound ramificationIndex_eq_of_restrict_eq"
 namespace HahnUnramAux
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
@@ -126,7 +133,7 @@ theorem order_ofPowerSeries_eq_one {L : Type*} [Field L] (q : L[X]) (h0 : q.coef
     rw [HahnSeries.mem_support, ← hn, hcn, h0] at hsupp
     exact hsupp rfl
   rw [← hn]
-  show (1 : ℚ) ≤ (n : ℚ)
+  change (1 : ℚ) ≤ (n : ℚ)
   exact_mod_cast Nat.one_le_iff_ne_zero.mpr hn0
 
 theorem taylor_coeffs {K L : Type*} [Field K] [Field L] [Algebra K L] (p : K[X]) (a : L)
@@ -149,7 +156,6 @@ theorem taylor_coeffs {K L : Type*} [Field K] [Field L] [Algebra K L] (p : K[X])
     exact ha'
 
 open AlgebraicCurve.RationalFunctionField in
-
 theorem eq_finitePlace_of_ord_pos {K : Type*} [Field K] {p : K[X]} (hp : Irreducible p)
     (v : Place K (RatFunc K)) (hv : 0 < v.ord (algebraMap K[X] (RatFunc K) p)) :
     v = finitePlace K hp := by
@@ -173,7 +179,6 @@ theorem eq_finitePlace_of_ord_pos {K : Type*} [Field K] {p : K[X]} (hp : Irreduc
 end AlgebraicCurve.Place.HahnUnramAux
 
 open AlgebraicCurve.Place.HahnUnramAux in
-
 theorem solution
     {K L M : Type*} [Field K] [Field L] [Algebra K L] [Field M] [Algebra K M]
     [Algebra (RatFunc K) M] [IsScalarTower K (RatFunc K) M]
@@ -300,6 +305,7 @@ theorem AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
     {d : ℕ} (hd : 0 < d) (hψ : ∀ m : M, HahnSeries.HasRamBound d (ψ m))
     (W : AlgebraicCurve.Place K M)
     (hW : 0 < W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p))) :
-    W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) := _root_.P2MW.S_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGalois.solution p hp a ha ha' ψ hψX hd hψ W hW
+    W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) :=
+  solution p hp a ha ha' ψ hψX hd hψ W hW
 
 end publicSection

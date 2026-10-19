@@ -93,7 +93,8 @@ theorem finrank_jAdjoin : Module.finrank 𝕃 𝔽 = ModularCurve.dedekindPsi N 
             ⟨ModularCurve.jq, IntermediateField.mem_adjoin_simple_self ℚ ModularCurve.jq⟩
         · exact IntermediateField.mem_adjoin_simple_self _ (ModularCurve.jqN N)
     · intro hx
-      have hx' : x ∈ (IntermediateField.adjoin 𝕃 ({ModularCurve.jqN N} : Set (LaurentSeries ℚ))).toSubfield := hx
+      have hx' : x ∈ (IntermediateField.adjoin 𝕃 ({ModularCurve.jqN N} : Set (LaurentSeries ℚ))).toSubfield :=
+        hx
       rw [IntermediateField.adjoin_toSubfield] at hx'
       refine (Subfield.closure_le.mpr ?_) hx'
       rintro y (⟨z, rfl⟩ | rfl)
@@ -132,6 +133,7 @@ public section publicSection
 open IntermediateField AlgebraicCurve
 theorem ModularCurve.finrank_jAdjoin_modularFunctionField_eq_dedekindPsi (N : ℕ) [NeZero N] :
     @Module.finrank ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N) _ _
-      (ModularCurve.jAdjoinAlgebra N).toModule = ModularCurve.dedekindPsi N := _root_.P2MW.S_ModularCurve_finrank_jAdjoin_modularFunctionField_eq_dedekindPsi.solution N
+      (ModularCurve.jAdjoinAlgebra N).toModule = ModularCurve.dedekindPsi N :=
+  solution N
 
 end publicSection

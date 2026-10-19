@@ -116,7 +116,6 @@ variable (N ℓ : ℕ) [NeZero N] [NeZero ℓ]
 section DegeneracyMapsBar
 
 variable (L) in
-
 def heckeAlphaBar :
     laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L]
       laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) :=
@@ -129,7 +128,6 @@ theorem coe_heckeAlphaBar (x : laurentBaseChange L (modularFunctionFieldFull N))
   IntermediateField.coe_inclusion _ x
 
 variable (L) in
-
 def heckeBetaBarRingHom :
     laurentBaseChange L (modularFunctionFieldFull N) →+*
       laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) where
@@ -148,13 +146,12 @@ theorem coe_heckeBetaBarRingHom (x : laurentBaseChange L (modularFunctionFieldFu
   rfl
 
 variable (L) in
-
 def heckeBetaBar :
     laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L]
       laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) :=
   { heckeBetaBarRingHom L N ℓ with
     commutes' := fun a => Subtype.ext <| by
-      show qExpand L ℓ (algebraMap L (LaurentSeries L) a) = algebraMap L (LaurentSeries L) a
+      change qExpand L ℓ (algebraMap L (LaurentSeries L) a) = algebraMap L (LaurentSeries L) a
       rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero] }
 
 theorem heckeAlphaBar_eq_inclusion
@@ -174,12 +171,10 @@ end DegeneracyMapsBar
 section HeckePic0Bar
 
 variable (L) in
-
 def HeckeAlphaBarIntegral : Prop :=
   (heckeAlphaBar L N ℓ).toRingHom.IsIntegral
 
 variable (L) in
-
 def HeckeBetaBarIntegral : Prop :=
   (heckeBetaBar L N ℓ).toRingHom.IsIntegral
 

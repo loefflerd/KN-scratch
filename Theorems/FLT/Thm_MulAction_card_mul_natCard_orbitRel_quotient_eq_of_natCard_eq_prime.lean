@@ -97,7 +97,7 @@ theorem solution
     Finset.card_univ, hGc] at hB
   rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
   convert hB.symm using 1
-  all_goals (first | exact mul_comm _ _  )
+  all_goals (first | exact mul_comm _ _ )
 
 end S_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime
 end P2MW
@@ -111,6 +111,7 @@ theorem MulAction.card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime
     (G : Type*) {X : Type*} [Group G] [MulAction G X] [Finite G] [Finite X]
     {p : ℕ} (hp : p.Prime) (hG : Nat.card G = p) :
     p * Nat.card (MulAction.orbitRel.Quotient G X)
-      = Nat.card X + (p - 1) * Nat.card (MulAction.fixedPoints G X) := _root_.P2MW.S_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime.solution G hp hG
+      = Nat.card X + (p - 1) * Nat.card (MulAction.fixedPoints G X) :=
+  solution G hp hG
 
 end publicSection

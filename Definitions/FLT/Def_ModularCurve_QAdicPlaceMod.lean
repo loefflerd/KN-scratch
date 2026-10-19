@@ -133,7 +133,6 @@ section QAdicPlaceMod
 variable (F : IntermediateField K (LaurentSeries K))
 
 variable {F} in
-
 def jModElt (hF : jqModC K ∈ F) : F := ⟨jqModC K, hF⟩
 
 variable {F} in
@@ -147,7 +146,6 @@ theorem jModElt_ne_zero (hF : jqModC K ∈ F) : jModElt K hF ≠ 0 := by
   exact jqModC_ne_zero_def K (by simpa [jModElt, Subtype.ext_iff] using h)
 
 variable {F} in
-
 theorem jModElt_notMem_qIntegersBar (hF : jqModC K ∈ F) :
     jModElt K hF ∉ qIntegersBar K F := by
   rw [mem_qIntegersBar_iff, qSeriesBar_jModElt, order_jqModC_def]
@@ -159,7 +157,6 @@ theorem qIntegersBar_ne_top_of_jqModC_mem (hF : jqModC K ∈ F) : qIntegersBar K
   exact jModElt_notMem_qIntegersBar K hF (h ▸ ValuationSubring.mem_top _)
 
 variable {F} in
-
 def jModInvElt (hF : jqModC K ∈ F) : F := (jModElt K hF)⁻¹
 
 variable {F} in
@@ -172,7 +169,6 @@ theorem jModInvElt_ne_zero (hF : jqModC K ∈ F) : jModInvElt K hF ≠ 0 :=
   inv_ne_zero (jModElt_ne_zero K hF)
 
 variable {F} in
-
 theorem order_jModInvElt (hF : jqModC K ∈ F) :
     (qSeriesBar K F (jModInvElt K hF)).order = 1 := by
   rw [qSeriesBar_jModInvElt, order_inv_of_ne_zero_bar (jqModC_ne_zero_def K), order_jqModC_def]
@@ -185,7 +181,6 @@ theorem jModInvElt_mem_qIntegersBar (hF : jqModC K ∈ F) :
   omega
 
 variable {F} in
-
 def uniformizerMod (hF : jqModC K ∈ F) : qIntegersBar K F :=
   ⟨jModInvElt K hF, jModInvElt_mem_qIntegersBar K hF⟩
 
@@ -200,7 +195,6 @@ theorem uniformizerMod_ne_zero (hF : jqModC K ∈ F) :
   jModInvElt_ne_zero K hF
 
 variable {F} in
-
 theorem irreducible_uniformizerMod (hF : jqModC K ∈ F) :
     Irreducible (uniformizerMod K hF) := by
   constructor
@@ -228,7 +222,6 @@ theorem irreducible_uniformizerMod (hF : jqModC K ∈ F) :
     omega
 
 variable {F} in
-
 theorem qIntegersBar_isPrincipalIdealRing_of_jqModC_mem (hF : jqModC K ∈ F) :
     IsPrincipalIdealRing (qIntegersBar K F) := by
   refine (IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
@@ -261,7 +254,6 @@ theorem qIntegersBar_isPrincipalIdealRing_of_jqModC_mem (hF : jqModC K ∈ F) :
   exact hπn
 
 variable {F} in
-
 def qInftyPlaceMod (hF : jqModC K ∈ F) : Place K F where
   toValuationSubring := qIntegersBar K F
   algebraMap_mem' := fun a => by
@@ -278,7 +270,6 @@ theorem qInftyPlaceMod_toValuationSubring (hF : jqModC K ∈ F) :
     (qInftyPlaceMod K hF).toValuationSubring = qIntegersBar K F := rfl
 
 variable {F} in
-
 theorem ord_qInftyPlaceMod (hF : jqModC K ∈ F) (f : F) :
     (qInftyPlaceMod K hF).ord f = (qSeriesBar K F f).order := by
   rcases eq_or_ne f 0 with rfl | hf
@@ -307,7 +298,6 @@ theorem ord_qInftyPlaceMod (hF : jqModC K ∈ F) (f : F) :
   exact (qInftyPlaceMod K hF).ord_unit_smul_zpow huu.unit (irreducible_uniformizerMod K hF) n
 
 variable {F} in
-
 theorem algebraMap_coeff_zero_sub_not_isUnit_mod (hF : jqModC K ∈ F)
     (f : (qInftyPlaceMod K hF).toValuationSubring) :
     ¬IsUnit (algebraMap K (qInftyPlaceMod K hF).toValuationSubring
@@ -346,7 +336,6 @@ theorem algebraMap_coeff_zero_sub_not_isUnit_mod (hF : jqModC K ∈ F)
     exact hne (hgcoeff 0 le_rfl)
 
 variable {F} in
-
 theorem surjective_algebraMap_residueField_mod (hF : jqModC K ∈ F) :
     Function.Surjective (algebraMap K (qInftyPlaceMod K hF).ResidueField) := by
   intro y
@@ -364,14 +353,13 @@ theorem surjective_algebraMap_residueField_mod (hF : jqModC K ∈ F) :
       ((qSeriesBar K F (f : F)).coeff 0)) f).mpr hmem
 
 variable {F} in
-
 theorem deg_qInftyPlaceMod (hF : jqModC K ∈ F) : (qInftyPlaceMod K hF).deg = 1 := by
   have hsurj := surjective_algebraMap_residueField_mod K hF
   have hinj : Function.Injective (algebraMap K (qInftyPlaceMod K hF).ResidueField) :=
     (algebraMap K (qInftyPlaceMod K hF).ResidueField).injective
   have e : K ≃ₐ[K] (qInftyPlaceMod K hF).ResidueField :=
     AlgEquiv.ofBijective (Algebra.ofId K _) ⟨hinj, hsurj⟩
-  show Module.finrank K (qInftyPlaceMod K hF).ResidueField = 1
+  change Module.finrank K (qInftyPlaceMod K hF).ResidueField = 1
   rw [← e.toLinearEquiv.finrank_eq, Module.finrank_self]
 
 end QAdicPlaceMod

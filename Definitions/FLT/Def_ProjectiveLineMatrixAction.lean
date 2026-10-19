@@ -85,7 +85,8 @@ theorem vecMulRow_snd (M : Matrix (Fin 2) (Fin 2) R) (hM : IsUnit M.det) (v : Un
     (vecMulRow M hM v).1.2 = v.1.1 * M 0 1 + v.1.2 * M 1 1 :=
   rfl
 
-def vecMul (M : Matrix (Fin 2) (Fin 2) R) (hM : IsUnit M.det) : ProjectiveLine R → ProjectiveLine R :=
+def vecMul (M : Matrix (Fin 2) (Fin 2) R) (hM : IsUnit M.det) :
+    ProjectiveLine R → ProjectiveLine R :=
   Quotient.map (vecMulRow M hM) <| by
     rintro v w ⟨u, h1, h2⟩
     refine ⟨u, ?_, ?_⟩
@@ -142,7 +143,8 @@ theorem projLineAct_of_isUnit (N : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) (h : Is
   classical
   rw [projLineAct, dite_eq_left h]
 
-theorem isUnit_det_redMat_coe (N : ℕ) (g : SL(2, ℤ)) : IsUnit (redMat N (g : Matrix (Fin 2) (Fin 2) ℤ)).det := by
+theorem isUnit_det_redMat_coe (N : ℕ) (g : SL(2, ℤ)) :
+    IsUnit (redMat N (g : Matrix (Fin 2) (Fin 2) ℤ)).det := by
   have : (redMat N (g : Matrix (Fin 2) (Fin 2) ℤ)).det = 1 := by
     rw [redMat, ← RingHom.mapMatrix_apply, ← RingHom.map_det, g.det_coe, map_one]
   rw [this]
@@ -151,9 +153,11 @@ theorem isUnit_det_redMat_coe (N : ℕ) (g : SL(2, ℤ)) : IsUnit (redMat N (g :
 @[simp]
 theorem projLineAct_one (N : ℕ) (P : ProjectiveLine (ZMod N)) : projLineAct N 1 P = P := by
   have h1 : redMat N 1 = 1 := by simp [redMat]
-  have h : IsUnit (redMat N (1 : Matrix (Fin 2) (Fin 2) ℤ)).det := by rw [h1, Matrix.det_one]; exact isUnit_one
+  have h : IsUnit (redMat N (1 : Matrix (Fin 2) (Fin 2) ℤ)).det :=
+    by rw [h1, Matrix.det_one]; exact isUnit_one
   rw [projLineAct_of_isUnit N 1 h]
-  have h' : IsUnit (1 : Matrix (Fin 2) (Fin 2) (ZMod N)).det := by rw [Matrix.det_one]; exact isUnit_one
+  have h' : IsUnit (1 : Matrix (Fin 2) (Fin 2) (ZMod N)).det :=
+    by rw [Matrix.det_one]; exact isUnit_one
   rw [show ProjectiveLine.vecMul (redMat N 1) h = ProjectiveLine.vecMul 1 h' from by congr 1]
   exact ProjectiveLine.vecMul_one h' P
 
@@ -196,7 +200,8 @@ noncomputable def projLineRepSL : Representation K SL(2, ℤ) (ProjectiveLine (Z
     simp only [LinearMap.funLeft_apply, Module.End.mul_apply, projLineAct_coe_mul]
 
 @[simp]
-theorem projLineRepSL_apply (g : SL(2, ℤ)) (f : ProjectiveLine (ZMod N) → K) (P : ProjectiveLine (ZMod N)) :
+theorem projLineRepSL_apply (g : SL(2, ℤ)) (f : ProjectiveLine (ZMod N) → K)
+    (P : ProjectiveLine (ZMod N)) :
     projLineRepSL N K g f P = f (projLineAct N (g : Matrix (Fin 2) (Fin 2) ℤ) P) :=
   rfl
 
@@ -215,7 +220,8 @@ noncomputable def projLineAlphaAdj (ℓ : ℕ) :
   LinearMap.funLeft K K (projLineAct N !![(ℓ : ℤ), 0; 0, 1])
 
 @[simp]
-theorem projLineAlphaAdj_apply (ℓ : ℕ) (f : ProjectiveLine (ZMod N) → K) (P : ProjectiveLine (ZMod N)) :
+theorem projLineAlphaAdj_apply (ℓ : ℕ) (f : ProjectiveLine (ZMod N) → K)
+    (P : ProjectiveLine (ZMod N)) :
     projLineAlphaAdj N K ℓ f P = f (projLineAct N !![(ℓ : ℤ), 0; 0, 1] P) :=
   rfl
 

@@ -58,12 +58,14 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_degeneracy_Gamma0
 
-p2m_open_scoped "MatrixGroups ModularForm P2MW.S_ModularForm_exists_degeneracy_Gamma0.ModularForm Pointwise"
+p2m_open_scoped "MatrixGroups ModularForm P2MW.S_ModularForm_exists_degeneracy_Gamma0.ModularForm \
+  Pointwise"
 
 noncomputable section
 
 namespace ModularForm
-p2m_export "ModularForm" "translate IsGLPos.coe_smul coe_smul holo' ext smul_apply bdd_at_cusps' coe_translate heckeDiagMatrix val_heckeDiagMatrix slash_heckeDiagMatrix_apply"
+p2m_export "ModularForm" "translate IsGLPos.coe_smul coe_smul holo' ext smul_apply bdd_at_cusps' \
+  coe_translate heckeDiagMatrix val_heckeDiagMatrix slash_heckeDiagMatrix_apply"
 namespace DegeneracyPort
 p2m_open "ModularForm"
 
@@ -108,13 +110,14 @@ theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) 
   have hdet : (A : Matrix (Fin 2) (Fin 2) ℤ) 0 0 * (A : Matrix (Fin 2) (Fin 2) ℤ) 1 1 -
       (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1 * (A : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 := by
     rw [← Matrix.det_fin_two, A.det_coe]
-  let B : SL(2, ℤ) := ⟨!![(A : Matrix (Fin 2) (Fin 2) ℤ) 0 0, d * (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1;
+  let B : SL(2, ℤ) :=
+    ⟨!![(A : Matrix (Fin 2) (Fin 2) ℤ) 0 0, d * (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1;
       c', (A : Matrix (Fin 2) (Fin 2) ℤ) 1 1], by
     rw [Matrix.det_fin_two_of]
     linear_combination hdet + (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1 * hc'⟩
   refine ⟨B, ?_, ?_⟩
   · rw [SetLike.mem_coe, CongruenceSubgroup.Gamma0_mem]
-    show ((c' : ℤ) : ZMod M) = 0
+    change ((c' : ℤ) : ZMod M) = 0
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ M).mpr hMc'
   · rw [eq_mul_inv_iff_mul_eq]
     apply Units.ext
@@ -151,13 +154,15 @@ theorem exists_cuspForm {M N d : ℕ} [NeZero N] (hdiv : d * M ∣ N)
     restrictCF (Gamma0_le_conj_Gamma0 hd hdiv) (CuspForm.translate f (heckeDiagMatrix d)), ?_⟩
   funext τ
   rw [FunLike.coe_smul, Pi.smul_apply, coe_restrictCF]
-  show ((d : ℂ) ^ (k - 1))⁻¹ • (⇑f ∣[k] heckeDiagMatrix d) τ = _
+  change ((d : ℂ) ^ (k - 1))⁻¹ • (⇑f ∣[k] heckeDiagMatrix d) τ = _
   rw [slash_heckeDiagMatrix_apply k hd, smul_eq_mul, ← mul_assoc, inv_mul_cancel₀ hdk, one_mul]
 
 end ModularForm.DegeneracyPort
 end
 
-theorem solution {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N) (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) : ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) :=
+theorem solution {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N)
+    (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) :
+    ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) :=
   ModularForm.DegeneracyPort.exists_modularForm hd f
 
 end S_ModularForm_exists_degeneracy_Gamma0
@@ -168,6 +173,9 @@ end privateSection
 
 public section publicSection
 
-theorem ModularForm.exists_degeneracy_Gamma0 {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N) (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) : ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) := _root_.P2MW.S_ModularForm_exists_degeneracy_Gamma0.solution hd f
+theorem ModularForm.exists_degeneracy_Gamma0 {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N)
+    (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) :
+    ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) :=
+  solution hd f
 
 end publicSection

@@ -79,7 +79,9 @@ theorem PortCard.evalEval_φ {R : Type*} [CommRing R] (W : WeierstrassCurve R) {
   rw [evalEval_sub, evalEval_mul, h0, zero_mul, sub_eq_zero, evalEval_C] at h1
   exact h1
 
-theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) {x y : R} (h : W.toAffine.Equation x y) (n : ℤ) : (W.ψ n).evalEval x y ^ 2 = (W.ΨSq n).eval x :=
+theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) {x y : R}
+    (h : W.toAffine.Equation x y) (n : ℤ) :
+    (W.ψ n).evalEval x y ^ 2 = (W.ΨSq n).eval x :=
   PortCard.evalEval_ψ_sq W h n
 
 end S_WeierstrassCurve_Affine_evalEval_psi_sq
@@ -90,6 +92,9 @@ end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.Affine.evalEval_psi_sq {R : Type*} [CommRing R] (W : WeierstrassCurve R) {x y : R} (h : W.toAffine.Equation x y) (n : ℤ) : (W.ψ n).evalEval x y ^ 2 = (W.ΨSq n).eval x := _root_.P2MW.S_WeierstrassCurve_Affine_evalEval_psi_sq.solution W h n
+theorem WeierstrassCurve.Affine.evalEval_psi_sq {R : Type*} [CommRing R] (W : WeierstrassCurve R)
+    {x y : R} (h : W.toAffine.Equation x y) (n : ℤ) :
+    (W.ψ n).evalEval x y ^ 2 = (W.ΨSq n).eval x :=
+  solution W h n
 
 end publicSection

@@ -283,7 +283,6 @@ theorem mk_add (D E : Divisor.degZero (K := K) (F := F)) : mk (D + E) = mk D + m
 theorem mk_zero : mk (0 : Divisor.degZero (K := K) (F := F)) = 0 := rfl
 
 variable (K F) in
-
 def torsion (n : ℕ) : AddSubgroup (Pic0 K F) :=
   (Submodule.torsionBy ℤ (Pic0 K F) (n : ℤ)).toAddSubgroup
 
@@ -381,7 +380,7 @@ def smulResidueAlgEquiv : v.ResidueField ≃ₐ[K] (σ • v).ResidueField :=
       ext
       rw [coe_smulRingEquiv_apply, coe_algebraMap, σ.commutes]
       rfl
-    show IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _) = IsLocalRing.residue _ _
+    change IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _) = IsLocalRing.residue _ _
     rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
     exact congrArg _ h3
 
@@ -473,13 +472,13 @@ instance : DistribMulAction (F ≃ₐ[K] F) (Pic0 K F) where
     rw [smul_mk, smul_mk, smul_mk]
     exact congrArg mk (Subtype.ext (by simp only [coe_degZeroSMulHom]; rw [mul_smul]))
   smul_zero σ := by
-    show σ • mk 0 = mk 0
+    change σ • mk 0 = mk 0
     rw [smul_mk]
     grind
   smul_add σ x y := by
     obtain ⟨D, rfl⟩ := mk_surjective x
     obtain ⟨E, rfl⟩ := mk_surjective y
-    show σ • mk (D + E) = mk (degZeroSMulHom σ D) + mk (degZeroSMulHom σ E)
+    change σ • mk (D + E) = mk (degZeroSMulHom σ D) + mk (degZeroSMulHom σ E)
     rw [smul_mk]
     exact congrArg mk (map_add _ _ _)
 
@@ -491,7 +490,6 @@ variable {K F}
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 
 open IsDedekindDomain.HeightOneSpectrum in
-
 theorem isPrincipalIdealRing_valuationSubring (w : HeightOneSpectrum R) :
     IsPrincipalIdealRing ((w.valuation F).valuationSubring) := by
   rw [show (w.valuation F).valuationSubring = valuationSubringAtPrime F w from
@@ -499,7 +497,6 @@ theorem isPrincipalIdealRing_valuationSubring (w : HeightOneSpectrum R) :
   infer_instance
 
 open IsDedekindDomain.HeightOneSpectrum in
-
 def ofHeightOneSpectrum [Algebra K R] [IsScalarTower K R F] (w : HeightOneSpectrum R) :
     Place K F where
   toValuationSubring := (w.valuation F).valuationSubring

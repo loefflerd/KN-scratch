@@ -162,7 +162,7 @@ theorem val_infty_eq (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ))
   induction y using OnePoint.rec with
   | infty => exact diag_zero φ _
   | coe r =>
-      show φ.val (OnePoint.infty, ((r : ℚ) : Cusp)) = cuspPeriodPolynomial f r
+      change φ.val (OnePoint.infty, ((r : ℚ) : Cusp)) = cuspPeriodPolynomial f r
       refine hom_ext ((MvPolynomial.mem_homogeneousSubmodule _ _).mp (φ.2.1 _ _))
         (cpp_hom hk f r) fun j hj => ?_
       rw [coeff_cpp hk f r j hj]
@@ -178,7 +178,7 @@ theorem mi_smul (c : ℂ) (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (P : Polynom
         = c * (f (UpperHalfPlane.ofComplex ((r : ℂ) + Complex.I * t)) *
             P.eval ((r : ℂ) + Complex.I * t)) := by
     intro t
-    show (c * f _) * _ = _
+    change (c * f _) * _ = _
     ring
   unfold MTT.modularIntegral
   rw [MeasureTheory.integral_congr_ae (Filter.Eventually.of_forall hpt),
@@ -196,14 +196,14 @@ theorem cpp_smul (c : ℂ) (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (r : ℚ) :
 theorem cuspPrimitive_smul (c : ℂ) (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (x : Cusp) :
     cuspPrimitive (c • f) x = c • cuspPrimitive f x := by
   induction x using OnePoint.rec with
-  | infty => show (0 : Binary ℂ) = c • (0 : Binary ℂ); rw [smul_zero]
+  | infty => change (0 : Binary ℂ) = c • (0 : Binary ℂ); rw [smul_zero]
   | coe r => exact cpp_smul c f r
 
 end P2MCLI
 
 open P2MCLI in
 theorem solution {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
-    (φ : Hc N (k-2) ℂ) (hφ : IntegralClass f.form φ)
+    (φ : Hc N (k - 2) ℂ) (hφ : IntegralClass f.form φ)
     (γ : CongruenceSubgroup.Gamma0 N) (r : ℚ) :
     φ.val (cuspAct γ.val OnePoint.infty, cuspAct γ.val ((r : ℚ) : Cusp))
       = ι (f.epsilon (γ.val 1 1 : ZMod N)) •
@@ -215,7 +215,7 @@ theorem solution {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) (ι : MTT.Qbar →+* �
           ((c • f.form : CuspForm (MTT.GammaOne N) (k : ℤ)) : UpperHalfPlane → ℂ) z := by
     intro z
     rw [f.character_law γ z]
-    show _ = _ * (c * f.form z)
+    change _ = _ * (c * f.form z)
     ring
   have hslash := MTT.Cohomology.cuspPrimitive_slash_relation hN hk f.form
     (c • f.form) γ hg' ((r : ℚ) : Cusp)
@@ -235,7 +235,7 @@ open MTT.Cohomology
 
 theorem MTT.Cohomology.integral_class_character_law_infty
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
-    (φ : Hc N (k-2) ℂ) (hφ : IntegralClass f.form φ)
+    (φ : Hc N (k - 2) ℂ) (hφ : IntegralClass f.form φ)
     (γ : CongruenceSubgroup.Gamma0 N) (r : ℚ) :
     φ.val (cuspAct γ.val OnePoint.infty, cuspAct γ.val ((r : ℚ) : Cusp))
       = ι (f.epsilon (γ.val 1 1 : ZMod N)) •

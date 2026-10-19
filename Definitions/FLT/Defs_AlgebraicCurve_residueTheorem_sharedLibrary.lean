@@ -119,7 +119,8 @@ section Ultrametric
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-theorem _root_.AlgebraicCurve.Place.ord_add_eq_left {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f < v.ord g) :
+theorem _root_.AlgebraicCurve.Place.ord_add_eq_left {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
+    (h : v.ord f < v.ord g) :
     v.ord (f + g) = v.ord f := by
   have hfv := v.adicValuation_ne_zero hf
   have hgv := v.adicValuation_ne_zero hg
@@ -566,7 +567,6 @@ namespace AlgebraicCurve
 variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
 
 omit [DecidableEq (RatFunc K)] in
-
 theorem D_ratFuncX_eq_neg_X_sq_smul_D_inv :
     KaehlerDifferential.D K (RatFunc K) RatFunc.X
       = (-(RatFunc.X : RatFunc K) ^ 2) •
@@ -587,14 +587,16 @@ section NonVanishing
 
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
+omit [DecidableEq (RatFunc K)] in
 theorem D_ratFuncX_inv_ne_zero (hwd : OrdDifferentialWellDefined K (RatFunc K)) :
     KaehlerDifferential.D K (RatFunc K) (RatFunc.X : RatFunc K)⁻¹ ≠ 0 := by
+  classical
   obtain ⟨u, -, hueq⟩ :=
     hwd (placeInfty K) (RatFunc.X : RatFunc K)⁻¹ (placeInfty K).uniformizer
       (ord_placeInfty_X_inv K) (placeInfty K).ord_uniformizer
   intro h0
   refine (placeInfty K).dCoord_ne_zero ?_
-  show KaehlerDifferential.D K (RatFunc K) (placeInfty K).uniformizer = 0
+  change KaehlerDifferential.D K (RatFunc K) (placeInfty K).uniformizer = 0
   rw [hueq, h0, smul_zero]
 
 end NonVanishing
@@ -768,7 +770,7 @@ public theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
     (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
+  change Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
   ext a
@@ -777,12 +779,12 @@ public theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     RingHom.coe_coe]
   apply (residueFieldEquivQuotientCenter hw).injective
   rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
+  change IsLocalRing.residue w.toValuationSubring
       (toValuationSubringOfRestrictEq hw
         (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
     = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
   refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
+  change algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
     = algebraMap F F' (a : F)
   rw [← IsScalarTower.algebraMap_apply,
@@ -1350,7 +1352,8 @@ variable (K)
 
 section UnitFinite
 
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
+    [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 variable [HasPrincipalDivisors K (RatFunc K)]
 
@@ -1490,10 +1493,12 @@ public theorem ordDifferential_dX_placeInfty_of_perfectField :
   ordDifferential_placeInfty_D_ratFuncX K
     (ordDifferentialWellDefined_ratFunc_of_perfectField K)
 
+omit [DecidableEq (RatFunc K)] in
 theorem exists_divisor_smul_dX_of_perfectField {c : RatFunc K} (hc : c ≠ 0) :
     ∃ D : Divisor K (RatFunc K),
       (∀ v : Place K (RatFunc K), D v = v.ordDifferential (c • dX K)) ∧
         Divisor.degree D = -2 := by
+  classical
   obtain ⟨Dc, hDc, hDcdeg⟩ :=
     HasPrincipalDivisors.exists_divisor (K := K) (F := RatFunc K) c hc
   refine ⟨Dc + Finsupp.single (placeInfty K) (-2), fun v => ?_, ?_⟩

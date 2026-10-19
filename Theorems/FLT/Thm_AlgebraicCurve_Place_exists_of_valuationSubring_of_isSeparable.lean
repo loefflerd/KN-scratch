@@ -61,7 +61,9 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring_of_isSeparable
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring_of_isSeparable.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve \
+  P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring_of_isSeparable.AlgebraicCurve \
+  IsDedekindDomain"
 open scoped IntermediateField.algebraAdjoinAdjoin
 
 section Crux
@@ -198,13 +200,18 @@ end Crux
 section Roots
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring"
+p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum \
+  Place.ofHeightOneSpectrum_toValuationSubring"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring \
+  toValuationSubring"
 end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
-
-private theorem AlgebraicCurve.Place.exists_of_valuationSubring' {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := by
+private theorem AlgebraicCurve.Place.exists_of_valuationSubring' {K F : Type*} [Field K] [Field F]
+    [Algebra K F] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
+    [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F)
+    (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) :
+    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := by
   by_cases hx : Transcendental K x
   · rcases A.mem_or_inv_mem x with hxA | hxiA
     · exact exists_place_of_mem x A hAK hA hx hxA
@@ -269,6 +276,7 @@ theorem AlgebraicCurve.Place.exists_of_valuationSubring_of_isSeparable
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F]
     (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) :
-    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := _root_.P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring_of_isSeparable.solution x A hAK hA
+    ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A :=
+  solution x A hAK hA
 
 end publicSection

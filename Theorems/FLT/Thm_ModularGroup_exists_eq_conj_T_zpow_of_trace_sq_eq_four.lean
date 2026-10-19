@@ -70,7 +70,8 @@ p2m_export "ModularGroup" "T coe_T_zpow det_coe"
 namespace ParabolicClassificationSol
 p2m_open "ModularGroup"
 
-p2m_open "Matrix Matrix.SpecialLinearGroup ModularGroup P2MW.S_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four.ModularGroup"
+p2m_open "Matrix Matrix.SpecialLinearGroup ModularGroup \
+  P2MW.S_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four.ModularGroup"
 
 private theorem det_entries (γ : SL(2, ℤ)) : γ 0 0 * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
   have := γ.det_coe
@@ -195,6 +196,7 @@ public section publicSection
 open scoped MatrixGroups
 theorem ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ))
     (hγ : ((γ : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4) :
-    ∃ (ε δ : SL(2, ℤ)) (h : ℤ), (ε = 1 ∨ ε = -1) ∧ γ = ε * (δ * ModularGroup.T ^ h * δ⁻¹) := _root_.P2MW.S_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four.solution γ hγ
+    ∃ (ε δ : SL(2, ℤ)) (h : ℤ), (ε = 1 ∨ ε = -1) ∧ γ = ε * (δ * ModularGroup.T ^ h * δ⁻¹) :=
+  solution γ hγ
 
 end publicSection

@@ -80,7 +80,6 @@ private theorem _root_.HeckeEis.UnipotentFixedAux.monomial_eq (n j : ℕ) :
 
 p2m_export "HeckeEis.UnipotentFixedAux" "monomial_eq"
 variable (n) in
-
 noncomputable def expo (j : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 (n - j) + Finsupp.single 1 j
 
 theorem expo_injOn : Set.InjOn (expo n) (Finset.range (n + 1) : Set ℕ) := by
@@ -88,7 +87,8 @@ theorem expo_injOn : Set.InjOn (expo n) (Finset.range (n + 1) : Set ℕ) := by
   have := congrArg (fun d : Fin 2 →₀ ℕ => d 1) h
   simpa [expo, Finsupp.single_apply] using this
 
-theorem degree_eq_iff (d : Fin 2 →₀ ℕ) : d.degree = n ↔ ∃ j ∈ Finset.range (n + 1), expo n j = d := by
+theorem degree_eq_iff (d : Fin 2 →₀ ℕ) :
+    d.degree = n ↔ ∃ j ∈ Finset.range (n + 1), expo n j = d := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
   constructor
   · intro h
@@ -108,7 +108,8 @@ theorem eq_sum_range {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
   simp only [MvPolynomial.coeff_monomial]
   by_cases hd : d.degree = n
   · obtain ⟨j, hj, rfl⟩ := (degree_eq_iff d).mp hd
-    rw [Finset.sum_eq_single j (fun i hi hne => ite_eq_right fun h => hne (expo_injOn hi hj h)) (fun h => (h hj).elim),
+    rw [Finset.sum_eq_single j (fun i hi hne => ite_eq_right fun h => hne (expo_injOn hi hj h)) (fun
+      h => (h hj).elim),
       ite_eq_left rfl]
   · rw [Finset.sum_eq_zero fun i hi => ite_eq_right fun h => hd ((degree_eq_iff d).mpr ⟨i, hi, h⟩)]
     exact ((MvPolynomial.mem_homogeneousSubmodule n P).mp hP).coeff_eq_zero hd
@@ -131,10 +132,12 @@ theorem coeff_dehom {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) (j 
   rw [dehom_eq_sum hP, Polynomial.finsetSum_coeff]
   simp only [Polynomial.coeff_C_mul_X_pow]
   split_ifs with h
-  · rw [Finset.sum_eq_single j (fun i _ hne => ite_eq_right hne.symm) (fun h' => (h' h).elim), ite_eq_left rfl]
+  · rw [Finset.sum_eq_single j (fun i _ hne => ite_eq_right hne.symm) (fun h' => (h' h).elim),
+      ite_eq_left rfl]
   · exact Finset.sum_eq_zero fun i hi => ite_eq_right fun h' => h (by rw [h']; exact hi)
 
-theorem natDegree_dehom_le {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) : (dehom P).natDegree ≤ n := by
+theorem natDegree_dehom_le {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
+    (dehom P).natDegree ≤ n := by
   rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
   intro j hj
   rw [coeff_dehom hP, ite_eq_right]
@@ -154,7 +157,8 @@ theorem dehom_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) R) :
   simpa [Polynomial.aeval_X, Polynomial.comp_eq_aeval] using this
 
 theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n) {h : R} (hh : h ≠ 0)
-    (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0) (hinv : q.comp (Polynomial.X + Polynomial.C h) = q) :
+    (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0) (hinv : q.comp (Polynomial.X + Polynomial.C h) = q)
+    :
     q = Polynomial.C (q.eval 0) := by
   classical
   have hper : ∀ k : ℕ, q.eval ((k : R) * h) = q.eval 0 := by
@@ -163,7 +167,8 @@ theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n)
     | zero => simp
     | succ k ih =>
       have := congrArg (fun r => Polynomial.eval ((k : R) * h) r) hinv
-      simp only [Polynomial.eval_comp, Polynomial.eval_add, Polynomial.eval_X, Polynomial.eval_C] at this
+      simp only [Polynomial.eval_comp, Polynomial.eval_add, Polynomial.eval_X,
+        Polynomial.eval_C] at this
       rw [← ih, ← this]
       congr 1; push_cast; ring
   set q' : R[X] := q - Polynomial.C (q.eval 0) with hq'
@@ -194,32 +199,37 @@ theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n)
 end UnipotentFixedAux
 
 open UnipotentFixedAux in
-
 theorem SolMain.A2 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ) {h : ℤ}
     (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0) (P : ↥(BinaryForm R n))
     (hP : binaryFormRepSL R n (ModularGroup.T ^ h) P = P) :
     ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n := by
   classical
-  have hsub : binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) = P := by
+  have hsub : binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) = P :=
+    by
     simpa using congrArg Subtype.val hP
-  have hq : (dehom (P : MvPolynomial (Fin 2) R)).comp (Polynomial.X + Polynomial.C (h : R)) = dehom (P : MvPolynomial (Fin 2) R) := by
+  have hq : (dehom (P : MvPolynomial (Fin 2) R)).comp (Polynomial.X + Polynomial.C (h : R)) = dehom (P : MvPolynomial (Fin 2) R) :=
+    by
     rw [← dehom_binarySubst_T_zpow, hsub]
   have hconst := eq_C_of_comp_X_add_C_eq (natDegree_dehom_le P.2) hh hn hq
   refine ⟨AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n 0), ?_⟩
-  have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n j) = 0 := by
+  have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n j) = 0 :=
+    by
     intro j hj hj0
     have := congrArg (fun r : R[X] => r.coeff j) hconst
     simp only [Polynomial.coeff_C, ite_eq_right hj0] at this
     rwa [coeff_dehom P.2, ite_eq_left hj] at this
   conv_lhs => rw [eq_sum_range P.2]
-  rw [Finset.sum_eq_single 0 (fun j hj hj0 => by rw [hcoeff j hj hj0, map_zero]) (fun h0 => (h0 (by simp)).elim)]
-  rw [expo, Nat.sub_zero, Finsupp.single_zero, add_zero, ← MvPolynomial.C_mul_X_pow_eq_monomial, MvPolynomial.smul_eq_C_mul]
+  rw [Finset.sum_eq_single 0 (fun j hj hj0 => by rw [hcoeff j hj hj0,
+    map_zero]) (fun h0 => (h0 (by simp)).elim)]
+  rw [expo, Nat.sub_zero, Finsupp.single_zero, add_zero, ← MvPolynomial.C_mul_X_pow_eq_monomial,
+    MvPolynomial.smul_eq_C_mul]
 
 end HeckeEis
 
 open scoped MatrixGroups in
 theorem solution {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
-    {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0) (P : ↥(HeckeEis.BinaryForm R n))
+    {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0)
+    (P : ↥(HeckeEis.BinaryForm R n))
     (hP : HeckeEis.binaryFormRepSL R n (ModularGroup.T ^ h) P = P) :
     ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n :=
   HeckeEis.SolMain.A2 n hh hn P hP
@@ -234,9 +244,12 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
-    {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0) (P : ↥(HeckeEis.BinaryForm R n))
+theorem HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self {R : Type*} [CommRing R]
+    [IsDomain R] (n : ℕ)
+    {h : ℤ} (hh : (h : R) ≠ 0) (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0)
+    (P : ↥(HeckeEis.BinaryForm R n))
     (hP : HeckeEis.binaryFormRepSL R n (ModularGroup.T ^ h) P = P) :
-    ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n := _root_.P2MW.S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self.solution n hh hn P hP
+    ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n :=
+  solution n hh hn P hP
 
 end publicSection

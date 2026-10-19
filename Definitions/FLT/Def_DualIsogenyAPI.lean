@@ -84,9 +84,9 @@ theorem IsDualPair.comp {φ' : A →+ B} {φ : B →+ A} {m : ℤ} {ψ' : B →+
     {n : ℤ} (hφ : IsDualPair φ' φ m) (hψ : IsDualPair ψ' ψ n) :
     IsDualPair (ψ'.comp φ') (φ.comp ψ) (m * n) := by
   refine ⟨fun a => ?_, fun c => ?_⟩
-  · show φ (ψ (ψ' (φ' a))) = (m * n) • a
+  · change φ (ψ (ψ' (φ' a))) = (m * n) • a
     rw [hψ.comp_left, map_zsmul, hφ.comp_left, mul_zsmul']
-  · show ψ' (φ' (φ (ψ c))) = (m * n) • c
+  · change ψ' (φ' (φ (ψ c))) = (m * n) • c
     rw [hφ.comp_right, map_zsmul, hψ.comp_right, mul_zsmul]
 
 theorem isDualPair_intCast (m : ℤ) :
@@ -197,7 +197,7 @@ def symm (D : DualEndData φ) : DualEndData D.dual where
 
 private theorem intLin_apply (a b : ℤ) (ψ : AddMonoid.End A) (x : A) :
     ((a : AddMonoid.End A) + (b : AddMonoid.End A) * ψ) x = a • x + b • ψ x := by
-  show (a : AddMonoid.End A) x + (b : AddMonoid.End A) (ψ x) = _
+  change (a : AddMonoid.End A) x + (b : AddMonoid.End A) (ψ x) = _
   rw [AddMonoid.End.intCast_apply, AddMonoid.End.intCast_apply]
 
 theorem dual_charPoly (D : DualEndData φ) :
@@ -210,7 +210,7 @@ theorem intLinComb_mul_dual (D : DualEndData φ) (a b : ℤ) :
       * ((a : AddMonoid.End A) + (b : AddMonoid.End A) * D.dual)
       = ((a ^ 2 + D.trace * a * b + D.norm * b ^ 2 : ℤ) : AddMonoid.End A) := by
   ext x
-  show ((a : AddMonoid.End A) + b * φ)
+  change ((a : AddMonoid.End A) + b * φ)
       (((a : AddMonoid.End A) + b * D.dual) x)
     = ((a ^ 2 + D.trace * a * b + D.norm * b ^ 2 : ℤ) : AddMonoid.End A) x
   rw [intLin_apply, intLin_apply, AddMonoid.End.intCast_apply,
@@ -237,7 +237,7 @@ def intLinComb (D : DualEndData φ) (a b : ℤ) :
       rw [mul_add]; abel
     rw [h, D.add_dual]
     ext x
-    show (a : AddMonoid.End A) x + (a : AddMonoid.End A) x
+    change (a : AddMonoid.End A) x + (a : AddMonoid.End A) x
         + ((b : AddMonoid.End A) * (D.trace : AddMonoid.End A)) x
       = ((2 * a + D.trace * b : ℤ) : AddMonoid.End A) x
     rw [show ((b : AddMonoid.End A) * (D.trace : AddMonoid.End A)) x

@@ -66,7 +66,8 @@ noncomputable section
 open KaehlerDifferential
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place.diffCoeff Place.ordDiff_def Place Place.diffCoeff_smul_D_of_ord_ne_zero Place.diffCoeff_smul_D_eq"
+p2m_export "AlgebraicCurve" "Place.diffCoeff Place.ordDiff_def Place \
+  Place.diffCoeff_smul_D_of_ord_ne_zero Place.diffCoeff_smul_D_eq"
 namespace FF2R4A
 p2m_open "AlgebraicCurve"
 
@@ -94,7 +95,8 @@ end AlgebraicCurve.FF2R4A
 end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {g : F} (hg : g ≠ 0) {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {g : F} (hg : g ≠ 0) {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
     v.ordDiff (g • ω) = v.ord g + v.ordDiff ω :=
   AlgebraicCurve.FF2R4A.ordDiff_smul x v hg hω
 
@@ -106,8 +108,11 @@ end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.Place.ordDiff_smul {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
-    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {g : F} (hg : g ≠ 0) {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
-    v.ordDiff (g • ω) = v.ord g + v.ordDiff ω := _root_.P2MW.S_AlgebraicCurve_Place_ordDiff_smul.solution x v hg hω
+theorem AlgebraicCurve.Place.ordDiff_smul {K F : Type*} [Field K] [Field F] [Algebra K F]
+    [CharZero K] (x : F)
+    [Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
+    (v : AlgebraicCurve.Place K F) {g : F} (hg : g ≠ 0) {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
+    v.ordDiff (g • ω) = v.ord g + v.ordDiff ω :=
+  solution x v hg hω
 
 end publicSection

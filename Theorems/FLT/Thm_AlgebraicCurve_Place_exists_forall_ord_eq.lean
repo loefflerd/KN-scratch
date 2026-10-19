@@ -63,7 +63,9 @@ p2m_export "AlgebraicCurve" "Place Place.ext Place.ord"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero adicValuation_coe ord ord_zero ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow exists_unit_mul_zpow ne_top' toValuationSubring"
+p2m_export "AlgebraicCurve.Place" "ext heightOneSpectrum heightOneSpectrum_asIdeal adicValuation \
+  adicValuation_ne_zero adicValuation_coe ord ord_zero ord_one ord_mul ord_inv ord_coe_irreducible \
+  ord_zpow exists_unit_mul_zpow ne_top' toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -113,7 +115,8 @@ private theorem _root_.AlgebraicCurve.Place.mem_iff_ord_nonneg' {x : F} (hx : x 
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg'"
 
-private theorem _root_.AlgebraicCurve.Place.not_mem_iff_ord_neg (x : F) : x ∉ v.toValuationSubring ↔ v.ord x < 0 := by
+private theorem _root_.AlgebraicCurve.Place.not_mem_iff_ord_neg (x : F) :
+    x ∉ v.toValuationSubring ↔ v.ord x < 0 := by
   rcases eq_or_ne x 0 with rfl | hx
   · simp
   · rw [v.mem_iff_ord_nonneg' hx, not_le]
@@ -206,7 +209,8 @@ theorem exists_ord_neg_and_ord_pos {v w : Place K F} (hvw : v ≠ w) :
     have h2 : w.ord x < 0 := (w.not_mem_iff_ord_neg x).mp hxw
     omega
 
-private theorem _root_.AlgebraicCurve.Place.one_add_ne_zero_and_ord_eq_of_ord_neg {t : F} (ht : v.ord t < 0) :
+private theorem _root_.AlgebraicCurve.Place.one_add_ne_zero_and_ord_eq_of_ord_neg {t : F}
+    (ht : v.ord t < 0) :
     1 + t ≠ 0 ∧ v.ord (1 + t) = v.ord t := by
   have ht0 : t ≠ 0 := by rintro rfl; simp at ht
   have hval : v.adicValuation 1 < v.adicValuation t := by
@@ -462,6 +466,7 @@ public section publicSection
 open AlgebraicCurve
 theorem AlgebraicCurve.Place.exists_forall_ord_eq {K F : Type*} [Field K] [Field F] [Algebra K F]
     (T : Finset (Place K F)) (n : Place K F → ℤ) :
-    ∃ f : F, f ≠ 0 ∧ ∀ v ∈ T, v.ord f = n v := _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq.solution T n
+    ∃ f : F, f ≠ 0 ∧ ∀ v ∈ T, v.ord f = n v :=
+  solution T n
 
 end publicSection

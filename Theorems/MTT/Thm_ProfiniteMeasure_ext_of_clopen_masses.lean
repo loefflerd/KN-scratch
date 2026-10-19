@@ -108,7 +108,8 @@ public section publicSection
 open scoped BigOperators
 open Set Filter UniformSpace ContinuousMap TopologicalSpace
 
-theorem ProfiniteMeasure.ext_of_clopen_masses {X R : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]
+theorem ProfiniteMeasure.ext_of_clopen_masses {X R : Type*} [TopologicalSpace X] [CompactSpace X]
+    [T2Space X]
     [TotallyDisconnectedSpace X] [NormedField R]
     (μ ν : AbstractMeasure X R R)
     (h : ∀ U : Clopens X,
