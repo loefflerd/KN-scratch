@@ -640,7 +640,8 @@ theorem weierstrassP_torsionPt_qExpansion (τ : ℍ) {N a₁ a₂ : ℕ} (ha₁ 
   congr 2
   refine tsum_congr fun c ↦ tsum_congr fun m ↦ ?_
   obtain ⟨k, hk⟩ : ∃ k : ℕ, (c : ℕ) * N = a₁ + k :=
-    ⟨(c : ℕ) * N - a₁, (Nat.add_sub_cancel' (le_trans ha₁.le (Nat.le_mul_of_pos_left N c.pos))).symm⟩
+    ⟨(c : ℕ) * N - a₁, (Nat.add_sub_cancel' (le_trans ha₁.le (Nat.le_mul_of_pos_left N
+      c.pos))).symm⟩
   rw [← pow_mul (qN N τ) N, show N * ((c : ℕ) * m) = ((c : ℕ) * N) * m by ring, hk,
     Nat.add_sub_cancel_left, mul_assoc, torsion_term_aux _ _ (qN_ne_zero N τ)]
 

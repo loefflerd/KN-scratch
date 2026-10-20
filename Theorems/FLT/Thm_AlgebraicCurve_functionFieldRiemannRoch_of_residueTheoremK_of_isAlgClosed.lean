@@ -64,7 +64,8 @@ differential.
 This is the Riemann–Roch theorem for a function field $F$ over an algebraically closed constant
 field $K$, obtained from the residue theorem by the adelic (Weil–Tate) route. It is the form in
 which Riemann–Roch enters the arithmetic of modular curves; it is used by
-[`AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed`](thm.html#AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed),
+[`AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed),
 where the residue theorem hypothesis is itself discharged.
 
 ## Explanation of the source proof
@@ -115,7 +116,8 @@ section PlaceInfty
 
 variable [DecidableEq (RatFunc K)]
 
-scoped instance : Nontrivial (MonoidWithZeroHom.valueGroup (MonoidWithZeroHom.ofClass (RatFunc.inftyValuation K))) := by
+scoped instance : Nontrivial (MonoidWithZeroHom.valueGroup (MonoidWithZeroHom.ofClass
+  (RatFunc.inftyValuation K))) := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
   refine ⟨Units.mk0 (RatFunc.inftyValuation K RatFunc.X)
     (by rw [RatFunc.inftyValuation.X]; exact exp_ne_zero), ?_, ?_⟩

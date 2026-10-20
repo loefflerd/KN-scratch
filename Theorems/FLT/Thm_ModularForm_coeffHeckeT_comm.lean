@@ -38,7 +38,8 @@ where $n/p$ is natural-number division and $(p:\mathbb C)^{k-1}$ is the integer 
 number $p$ (so the exponent may be negative, and $0^{k-1}$ is interpreted by the usual conventions
 when $p=0$). The assertion is the equality of the two sequences $\mathbb N\to\mathbb C$ obtained by
 applying these operators in the two orders:
-$$\mathrm{coeffHeckeT}\,k\,p\,(\mathrm{coeffHeckeT}\,k\,q\,a)=\mathrm{coeffHeckeT}\,k\,q\,(\mathrm{coeffHeckeT}\,k\,p\,a).$$
+$$\mathrm{coeffHeckeT}\,k\,p\,(\mathrm{coeffHeckeT}\,k\,q\,a)=\mathrm{coeffHeckeT}\,k\,q\,(
+\mathrm{coeffHeckeT}\,k\,p\,a).$$
 No primality of $p$ or $q$, and no positivity, is assumed beyond coprimality; the statement is
 purely one about sequences, with no modularity hypothesis on $a$.
 
@@ -116,7 +117,8 @@ theorem coeffHeckeT_comm (k : ℤ) {p q : ℕ} (hpq : Nat.Coprime p q) (a : ℕ 
 end M4cP1W2
 
 theorem solution (k : ℤ) {p q : ℕ} (hpq : Nat.Coprime p q) (a : ℕ → ℂ) :
-    ModularForm.coeffHeckeT k p (ModularForm.coeffHeckeT k q a) = ModularForm.coeffHeckeT k q (ModularForm.coeffHeckeT k p a) :=
+    ModularForm.coeffHeckeT k p (ModularForm.coeffHeckeT k q a) = ModularForm.coeffHeckeT k q
+      (ModularForm.coeffHeckeT k p a) :=
   M4cP1W2.coeffHeckeT_comm k hpq a
 
 end S_ModularForm_coeffHeckeT_comm
@@ -128,7 +130,8 @@ end privateSection
 public section publicSection
 
 theorem ModularForm.coeffHeckeT_comm (k : ℤ) {p q : ℕ} (hpq : Nat.Coprime p q) (a : ℕ → ℂ) :
-    ModularForm.coeffHeckeT k p (ModularForm.coeffHeckeT k q a) = ModularForm.coeffHeckeT k q (ModularForm.coeffHeckeT k p a) :=
+    ModularForm.coeffHeckeT k p (ModularForm.coeffHeckeT k q a) = ModularForm.coeffHeckeT k q
+      (ModularForm.coeffHeckeT k p a) :=
   solution k hpq a
 
 end publicSection

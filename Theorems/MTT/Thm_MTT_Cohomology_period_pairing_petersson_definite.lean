@@ -115,7 +115,8 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
   unfold periodPower
   rw [add_pow, MvPolynomial.coeff_sum]
   have key : ∀ m ∈ Finset.range (n + 1),
-      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m)
+        *
           (n.choose m : MvPolynomial (Fin 2) ℂ)) (binaryExponent n j)
         = if m = j then (n.choose j : ℂ) * z ^ j else 0 := by
     intro m _
@@ -359,7 +360,8 @@ theorem period_pairing_petersson_definite_proof (hN : 0 < N) (hk : 2 ≤ k)
       Measure.integrableOn_of_bounded volume_fd_ne_top (hGcont σ).aestronglyMeasurable
         (ae_of_all _ fun z => by rw [Real.norm_of_nonneg (hGnn σ z)]; exact hC _)
     have hPreal : periodPetersson N k f f =
-        ((∑' q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N, ∫ z in (𝒟 : Set ℍ), G q.out⁻¹ z : ℝ) : ℂ) := by
+        ((∑' q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N, ∫ z in (𝒟 : Set ℍ), G q.out⁻¹ z : ℝ) : ℂ)
+          := by
       unfold periodPetersson periodDomainIntegral
       rw [Complex.ofReal_tsum]
       refine tsum_congr fun q => ?_

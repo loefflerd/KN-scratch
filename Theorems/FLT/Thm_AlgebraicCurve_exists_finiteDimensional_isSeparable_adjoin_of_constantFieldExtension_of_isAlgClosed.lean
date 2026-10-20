@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
+Based on Prove2Me node
+AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
 (3a95c22c-d63d-58cf-8425-27387f799760) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission f712fcd4-03e1-57d7-b600-a62920b8a436
@@ -46,7 +47,8 @@ This is the statement that a constant field extension $F' = K' \cdot F$ of a one
 field over an algebraically closed constant field is again separably generated, the witness being
 the image of a separating transcendental downstairs. It is used in the construction of places of
 $F'$ restricting to a prescribed place of $F$
-([`AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed`](thm.html#AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed)).
+([`AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed)).
 
 ## Explanation of the source proof
 
@@ -142,13 +144,16 @@ theorem solution
 
 end S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed (solution)
+export
+  P2MW.S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
+  (solution)
 
 end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
+theorem
+  AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
     (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']

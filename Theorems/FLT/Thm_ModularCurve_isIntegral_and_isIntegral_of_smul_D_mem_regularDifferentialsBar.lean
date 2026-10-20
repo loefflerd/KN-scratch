@@ -200,9 +200,11 @@ theorem ord_bound (x : 𝔽) (hx0 : x ≠ 0) (hreg : ∀ v : Place 𝕂 𝔽, 0 
   omega
 
 theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsBar N) :
-    IsIntegral (Algebra.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) (x ^ 6 * (jB N) ^ 4 * (jB N - algebraMap 𝕂 𝔽 1728) ^ 3) ∧
+    IsIntegral (Algebra.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) (x ^ 6 * (jB N) ^ 4 * (jB N - algebraMap 𝕂
+      𝔽 1728) ^ 3) ∧
     IsIntegral (Algebra.adjoin 𝕂 ({(jB N : 𝔽)⁻¹} : Set 𝔽))
-      (x ^ (2 * dedekindPsi N) * (jB N) ^ (dedekindPsi N + 1) * (jB N - algebraMap 𝕂 𝔽 1728) ^ dedekindPsi N) := by
+      (x ^ (2 * dedekindPsi N) * (jB N) ^ (dedekindPsi N + 1) * (jB N - algebraMap 𝕂 𝔽 1728) ^
+        dedekindPsi N) := by
   classical
   have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
   have hEFT := ModularCurve.essFiniteType_modularFunctionFieldBar N
@@ -358,7 +360,8 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
   · have htr' : Transcendental 𝕂 J⁻¹ := by
       intro halg
       exact htr (by simpa using halg.inv)
-    have hadj : IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽) = IntermediateField.adjoin 𝕂 ({J} : Set 𝔽) :=
+    have hadj : IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽) = IntermediateField.adjoin 𝕂 ({J} : Set
+      𝔽) :=
       by
       apply le_antisymm
       · rw [IntermediateField.adjoin_simple_le_iff]
@@ -390,19 +393,43 @@ end ALGGlue
 theorem solution (N : ℕ) [NeZero N]
     (x : ModularCurve.modularFunctionFieldBar N)
     (hx : x • KaehlerDifferential.D (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N)
-        (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ∈ ModularCurve.regularDifferentialsBar N) :
-    IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N)} : Set (ModularCurve.modularFunctionFieldBar N)))
-        (x ^ 6 * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ^ 4 * ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ 3) ∧
-      IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N)⁻¹} : Set (ModularCurve.modularFunctionFieldBar N)))
-        (x ^ (2 * ModularCurve.dedekindPsi N) * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ^ (ModularCurve.dedekindPsi N + 1) *
-          ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ ModularCurve.dedekindPsi N) :=
+        (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq,
+          ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) ∈ ModularCurve.regularDifferentialsBar N) :
+    IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+      ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+      (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+      ModularCurve.modularFunctionFieldBar N)} : Set (ModularCurve.modularFunctionFieldBar N)))
+        (x ^ 6 * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq,
+          ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) ^ 4 * ((⟨ModularCurve.coeffEmb (AlgebraicClosure
+          ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionFieldBar N) 1728) ^ 3) ∧
+      IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+        ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+        (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+        ModularCurve.modularFunctionFieldBar N)⁻¹} : Set (ModularCurve.modularFunctionFieldBar N)))
+        (x ^ (2 * ModularCurve.dedekindPsi N) * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+          ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) ^ (ModularCurve.dedekindPsi N + 1) *
+          ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq,
+            ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+            (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+            ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ)
+            (ModularCurve.modularFunctionFieldBar N) 1728) ^ ModularCurve.dedekindPsi N) :=
   ALGGlue.main N x hx
 
 end
 
 end S_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar
 end P2MW
-export P2MW.S_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar (solution)
+export P2MW.S_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar
+  (solution)
 
 end privateSection
 
@@ -414,12 +441,35 @@ theorem ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferential
     [NeZero N]
     (x : ModularCurve.modularFunctionFieldBar N)
     (hx : x • KaehlerDifferential.D (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N)
-        (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ∈ ModularCurve.regularDifferentialsBar N) :
-    IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N)} : Set (ModularCurve.modularFunctionFieldBar N)))
-        (x ^ 6 * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ^ 4 * ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ 3) ∧
-      IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N)⁻¹} : Set (ModularCurve.modularFunctionFieldBar N)))
-        (x ^ (2 * ModularCurve.dedekindPsi N) * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) ^ (ModularCurve.dedekindPsi N + 1) *
-          ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ : ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ) (ModularCurve.modularFunctionFieldBar N) 1728) ^ ModularCurve.dedekindPsi N) :=
+        (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq,
+          ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) ∈ ModularCurve.regularDifferentialsBar N) :
+    IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+      ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+      (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+      ModularCurve.modularFunctionFieldBar N)} : Set (ModularCurve.modularFunctionFieldBar N)))
+        (x ^ 6 * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq,
+          ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) ^ 4 * ((⟨ModularCurve.coeffEmb (AlgebraicClosure
+          ℚ) ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionFieldBar N) 1728) ^ 3) ∧
+      IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+        ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+        (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+        ModularCurve.modularFunctionFieldBar N)⁻¹} : Set (ModularCurve.modularFunctionFieldBar N)))
+        (x ^ (2 * ModularCurve.dedekindPsi N) * (⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+          ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+          ModularCurve.modularFunctionFieldBar N) ^ (ModularCurve.dedekindPsi N + 1) *
+          ((⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) ModularCurve.jq,
+            ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+            (ModularCurve.modularFunctionField_le_full N (ModularCurve.jq_mem N))⟩ :
+            ModularCurve.modularFunctionFieldBar N) - algebraMap (AlgebraicClosure ℚ)
+            (ModularCurve.modularFunctionFieldBar N) 1728) ^ ModularCurve.dedekindPsi N) :=
   solution N x hx
 
 end publicSection

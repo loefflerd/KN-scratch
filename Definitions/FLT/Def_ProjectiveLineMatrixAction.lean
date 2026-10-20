@@ -178,7 +178,8 @@ theorem projLineAct_mul (N : ℕ) (M M' : Matrix (Fin 2) (Fin 2) ℤ)
 
 theorem projLineAct_coe_mul (N : ℕ) (g h : SL(2, ℤ)) (P : ProjectiveLine (ZMod N)) :
     projLineAct N ((g * h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P
-      = projLineAct N (h : Matrix (Fin 2) (Fin 2) ℤ) (projLineAct N (g : Matrix (Fin 2) (Fin 2) ℤ) P) := by
+      = projLineAct N (h : Matrix (Fin 2) (Fin 2) ℤ) (projLineAct N (g : Matrix (Fin 2) (Fin 2) ℤ)
+        P) := by
   rw [Matrix.SpecialLinearGroup.coe_mul]
   exact projLineAct_mul N _ _ (isUnit_det_redMat_coe N g) (isUnit_det_redMat_coe N h) P
 
@@ -244,7 +245,8 @@ instance instFiniteProjLineCusps (N : ℕ) [NeZero N] : Finite (ProjLineCusps N)
 
 noncomputable def fixedCuspCount (N : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) : ℕ :=
   Nat.card {c : ProjLineCusps N //
-    ∀ P : ProjectiveLine (ZMod N), projLineCuspMk N P = c → projLineCuspMk N (projLineAct N M P) = c}
+    ∀ P : ProjectiveLine (ZMod N), projLineCuspMk N P = c → projLineCuspMk N (projLineAct N M P) =
+      c}
 
 end HeckeEis
 

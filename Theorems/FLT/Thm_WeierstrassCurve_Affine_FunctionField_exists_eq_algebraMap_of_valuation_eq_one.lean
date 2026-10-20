@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one
+Based on Prove2Me node
+WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one
 (3180b122-1bc0-5283-bc24-20ba69c94aeb) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission dbe9c74f-476c-5ddf-badb-85457ebaf495
@@ -42,10 +43,13 @@ trivial divisor is constant (Silverman, AEC II.1.2, II.3.1), phrased purely in t
 height-one valuations of the affine coordinate ring. It is used in the construction of the Weil
 pairing, where ratios of translated functions are shown to be constant: among the results citing it
 are
-[`WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_map_of_algHom`](thm.html#WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_map_of_algHom),
-[`WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul`](thm.html#WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul)
+[`WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_map_of_algHom`]
+(thm.html#WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_map_of_algHom),
+[`WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul`]
+(thm.html#WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul)
 and
-[`WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq`](thm.html#WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq).
+[`WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq`]
+(thm.html#WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq).
 
 ## Explanation of the source proof
 
@@ -120,7 +124,8 @@ theorem XClass_not_isUnit {F : Type*} [Field F] {W : WeierstrassCurve F} (x : F)
     ¬IsUnit (CoordinateRing.XClass W.toAffine x) := by
   rw [isUnit_iff_eq_algebraMap']
   rintro ⟨c, -, hc⟩
-  have h1 : (X - C x - C c) • (1 : W.toAffine.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W.toAffine Y = 0 :=
+  have h1 : (X - C x - C c) • (1 : W.toAffine.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk
+    W.toAffine Y = 0 :=
     by
     rw [zero_smul, add_zero, sub_smul, CoordinateRing.smul, mul_one, CoordinateRing.smul, mul_one,
       sub_eq_zero]
@@ -134,7 +139,10 @@ end WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
 open WeierstrassCurve.Affine.CoordinateRing.DetInfra
 
-theorem solution {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) :
+theorem solution {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain
+  W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v :
+  IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField
+  f = 1) :
     ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.FunctionField c := by
   obtain ⟨M, hMmax, hXM⟩ := exists_max_ideal_of_mem_nonunits (XClass_not_isUnit (W := W) 0)
   have hM0 : M ≠ ⊥ := fun h =>
@@ -154,14 +162,18 @@ theorem solution {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomai
 
 end S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one (solution)
+export P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one
+  (solution)
 
 end privateSection
 
 public section publicSection
 
 
-theorem WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f : W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) :
+theorem WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one {F : Type*}
+  [Field F] {W : WeierstrassCurve F} [IsDedekindDomain W.toAffine.CoordinateRing] {f :
+  W.toAffine.FunctionField} (hf : ∀ v : IsDedekindDomain.HeightOneSpectrum
+  W.toAffine.CoordinateRing, v.valuation W.toAffine.FunctionField f = 1) :
     ∃ c : F, c ≠ 0 ∧ f = algebraMap F W.toAffine.FunctionField c :=
   solution hf
 

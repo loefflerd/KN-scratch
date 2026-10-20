@@ -1299,9 +1299,14 @@ end RationalFunctionField
 end AlgebraicCurve
 end
 
-open Polynomial _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve _root_.AlgebraicCurve.RationalFunctionField _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve.RationalFunctionField in
+open Polynomial _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve
+  _root_.AlgebraicCurve.RationalFunctionField
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve.RationalFunctionField
+  in
 theorem solution (K : Type*) [Field K] [DecidableEq (RatFunc K)] (b : K) (v : Place K (RatFunc K)) :
-    v.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C b)) = (Finsupp.single (placeOfPoint K b) (1 : ℤ) + Finsupp.single (placeInfty K) (-1 : ℤ)) v :=
+    v.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C b)) = (Finsupp.single
+      (placeOfPoint K b) (1 : ℤ) + Finsupp.single (placeInfty K) (-1 : ℤ)) v :=
   AlgebraicCurve.RationalFunctionField.ord_X_sub_C b v
 
 end S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C
@@ -1316,7 +1321,8 @@ public section publicSection
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
 theorem AlgebraicCurve.RationalFunctionField.ord_X_sub_C (K : Type*) [Field K]
     [DecidableEq (RatFunc K)] (b : K) (v : Place K (RatFunc K)) :
-    v.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C b)) = (Finsupp.single (placeOfPoint K b) (1 : ℤ) + Finsupp.single (placeInfty K) (-1 : ℤ)) v :=
+    v.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C b)) = (Finsupp.single
+      (placeOfPoint K b) (1 : ℤ) + Finsupp.single (placeInfty K) (-1 : ℤ)) v :=
   solution K b v
 
 end publicSection

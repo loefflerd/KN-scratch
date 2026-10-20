@@ -93,7 +93,8 @@ private theorem eval₂_rat_of_data {ℓ : ℕ} [NeZero ℓ] (data : ModularPoly
 
 theorem solution {ℓ : ℕ} [NeZero ℓ] (data : ModularCurve.ModularPolynomialData ℓ) (K : Type*)
     [CommRing K] (d : ℕ) [NeZero d] :
-    data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K d)).toRingHom (ModularCurve.jqNModC K (d * ℓ)) = 0 := by
+    data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K d)).toRingHom
+      (ModularCurve.jqNModC K (d * ℓ)) = 0 := by
   have hZ : data.Φ.eval₂ (aeval (R := ℤ) (jqNModC ℤ d)).toRingHom (jqNModC ℤ (d * ℓ)) = 0 := by
     apply coeffMap_injective (f := Int.castRingHom ℚ) Int.cast_injective
     rw [coeffMap_eval₂_jqNModC, map_zero]
@@ -111,7 +112,8 @@ public section publicSection
 
 theorem ModularCurve.ModularPolynomialData.eval_jqNModC_mul_eq_zero {ℓ : ℕ} [NeZero ℓ]
     (data : ModularCurve.ModularPolynomialData ℓ) (K : Type*) [CommRing K] (d : ℕ) [NeZero d] :
-    data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K d)).toRingHom (ModularCurve.jqNModC K (d * ℓ)) = 0 :=
+    data.Φ.eval₂ (Polynomial.aeval (R := ℤ) (ModularCurve.jqNModC K d)).toRingHom
+      (ModularCurve.jqNModC K (d * ℓ)) = 0 :=
   solution data K d
 
 end publicSection

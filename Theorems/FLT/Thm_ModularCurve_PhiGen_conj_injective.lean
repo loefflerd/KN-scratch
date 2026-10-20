@@ -138,7 +138,8 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve
+  _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_conj_injective.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
     Function.Injective (conj ℓ ζ (K := K)) :=

@@ -15,7 +15,8 @@ public import Definitions.MTT.Def_MTT_Cohomology
 public import Mathlib.RingTheory.Flat.Basic
 
 /-!
-# Manin's unimodular paths span: every value of a modular symbol is an integral combination of its values on unimodular paths
+# Manin's unimodular paths span: every value of a modular symbol is an integral combination of its
+values on unimodular paths
 
 Theorem statement: `MTT.Cohomology.manin_generation_span` (`17e6a675-dc2d-4c9c-9962-6c5c0b6b3fd2`),
 by allychan327, 2026-09-07.

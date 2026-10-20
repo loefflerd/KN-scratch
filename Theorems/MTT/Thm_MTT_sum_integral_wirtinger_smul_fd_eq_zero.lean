@@ -31,7 +31,7 @@ import Mathlib.GroupTheory.Complement
 import Mathlib.RingTheory.Complex
 
 /-!
-# Stokes' theorem on $\Gamma\backslash\mathfrak H$ for a $\Gamma$-invariant $(0,1)$-form vanishing at the cusps
+# Stokes' theorem on $\Gamma\backslash\mathfrak H$ for an $(0,1)$-form vanishing at the cusps
 
 Theorem statement: `MTT.sum_integral_wirtinger_smul_fd_eq_zero`
 (`96750ee1-2300-4829-8e76-ea8e27a3f75d`), by cbirkbeck, 2026-09-07.
@@ -121,7 +121,8 @@ the invariance hypothesis says exactly $\operatorname{pull}_\gamma A=A$ on $\mat
 $\gamma\in\Gamma$ (`pull_eq_self_of_mem`).
 
 Since $\operatorname{mob}_g$ is holomorphic, the chain rule for the Wirtinger derivative reads
-$\partial_z(A\circ\operatorname{mob}_g)=(\partial_zA\circ\operatorname{mob}_g)\cdot\operatorname{mob}_g'$
+$\partial_z(A\circ\operatorname{mob}_g)=
+(\partial_zA\circ\operatorname{mob}_g)\cdot\operatorname{mob}_g'$
 (`wirtinger_comp_hasDerivAt`, obtained from the real chain rule by decomposing a real-linear map $L$
 on $\mathbb C$ as $L(w)=\operatorname{Re}w\,L(1)+\operatorname{Im}w\,L(i)$), and $\partial_z$ of the
 antiholomorphic factor $\overline{\operatorname{den}_g}^{\,-2}$ vanishes (`wirtinger_conj_comp`).
@@ -146,7 +147,9 @@ B-\operatorname{side}^-_HB\bigr)+\tfrac i2\operatorname{arc}B-\tfrac i2\operator
 where, with $\varphi(x)=\sqrt{1-x^2}$,
 
 $$\operatorname{side}^{\pm}_HB=\int_{\sqrt3/2}^{H}B(\pm\tfrac12+iy)\,dy,\quad
-\operatorname{arc}B=\int_{-1/2}^{1/2}B\bigl(x+i\varphi(x)\bigr)\Bigl(1+i\frac{x}{\varphi(x)}\Bigr)dx,\quad
+\operatorname{arc}B=
+\int_{-1/2}^{1/2}B\bigl(x+i\varphi(x)\bigr)
+\Bigl(1+i\frac{x}{\varphi(x)}\Bigr)dx,\quad
 \operatorname{cap}_HB=\int_{-1/2}^{1/2}B(x+iH)\,dx .$$
 
 (The arc term is $\int B\,d\bar z$ along the unit arc, since $d\bar z=(1-i\varphi'(x))dx$ and
@@ -184,9 +187,12 @@ $\mathrm{SL}_2(\mathbb Z)$ that is left $\Gamma$-invariant, $\sum_{g\in R}F(gh)=
 (`sum_comp_mul_right`). We apply this to $F(g)=\operatorname{side}^-_H(\operatorname{pull}_gA)$ and
 $F(g)=\operatorname{arc}(\operatorname{pull}_gA)$, which are left $\Gamma$-invariant by the cocycle
 identity and $\operatorname{pull}_\gamma A=A$ (`pull_mul_eq_of_mem`). With $h=T$ this yields
-$\sum_g\operatorname{side}^+_H(\operatorname{pull}_gA)=\sum_g\operatorname{side}^-_H(\operatorname{pull}_{gT}A)=\sum_g\operatorname{side}^-_H(\operatorname{pull}_gA)$
+$\sum_g\operatorname{side}^+_H(\operatorname{pull}_gA) =
+\sum_g\operatorname{side}^-_H(\operatorname{pull}_{gT}A) =
+\sum_g\operatorname{side}^-_H(\operatorname{pull}_gA)$
 (`sum_sideR_eq_sum_sideL`), and with $h=S$ it yields
-$\sum_g\operatorname{arc}(\operatorname{pull}_gA)=-\sum_g\operatorname{arc}(\operatorname{pull}_gA)$,
+$\sum_g\operatorname{arc}(\operatorname{pull}_gA)=
+-\sum_g\operatorname{arc}(\operatorname{pull}_gA)$,
 hence this sum is $0$ (`sum_arc_eq_zero`). Therefore, for every $H\ge1$,
 
 $$\sum_{g\in R}\int_{\operatorname{mob}_g(\mathcal D_H)}\partial_zA=-\frac i2\sum_{g\in
@@ -245,7 +251,9 @@ def den (g : SL(2, ℤ)) (z : ℂ) : ℂ := (g 1 0 : ℂ) * z + (g 1 1 : ℂ)
 def wirtinger (A : ℂ → ℂ) (z : ℂ) : ℂ :=
   (1 / 2 : ℂ) * (fderiv ℝ A z 1 - Complex.I * fderiv ℝ A z Complex.I)
 
-/-- The coefficient of the pullback `g^*(A dz̄) = A (g z) * conj (g' z) dz̄`, `g' z = (c z + d)⁻²`. -/
+/--
+The coefficient of the pullback `g^*(A dz̄) = A (g z) * conj (g' z) dz̄`, `g' z = (c z + d)⁻²`.
+-/
 def pull (g : SL(2, ℤ)) (A : ℂ → ℂ) (z : ℂ) : ℂ :=
   A (mob g z) * ((starRingEnd ℂ (den g z)) ^ 2)⁻¹
 
@@ -674,8 +682,8 @@ theorem continuousOn_wirtinger {B : ℂ → ℂ} (hB : ContDiffOn ℝ 1 B upperH
 theorem im_add_mul_I (x y : ℝ) : ((x : ℂ) + y * Complex.I).im = y := by simp
 
 theorem hasDerivAt_vertical {B : ℂ → ℂ} (x y : ℝ)
-    (hB : DifferentiableAt ℝ B (x + y * Complex.I)) :
-    HasDerivAt (fun t : ℝ ↦ B (x + t * Complex.I)) (fderiv ℝ B (x + y * Complex.I) Complex.I) y := by
+    (hB : DifferentiableAt ℝ B (x + y * .I)) :
+    HasDerivAt (fun t : ℝ ↦ B (x + t * .I)) (fderiv ℝ B (x + y * .I) .I) y := by
   have h1 : HasDerivAt (fun t : ℝ ↦ (x : ℂ) + t * Complex.I) Complex.I y := by
     simpa using ((hasDerivAt_id y).ofReal_comp.mul_const Complex.I).const_add (x : ℂ)
   exact hB.hasFDerivAt.comp_hasDerivAt y h1

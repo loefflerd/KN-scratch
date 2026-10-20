@@ -48,7 +48,8 @@ map $x$ above a point $a \in k$ has total multiplicity equal to the degree $[F:k
 Theorem 1.4.11), packaged as an explicit finite sum rather than as an equality of divisor degrees.
 It is used for the ramification estimates for the covering $X_1(M) \to \mathbb{P}^1_j$ and for
 counting zeros against supersingular points; among its consumers are
-[`AlgebraicCurve.finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le`](thm.html#AlgebraicCurve.finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le)
+[`AlgebraicCurve.finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le`]
+(thm.html#AlgebraicCurve.finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le)
 and lemmas on cuspidal and non-cuspidal specialisations of modular curves.
 
 ## Explanation of the source proof
@@ -72,7 +73,8 @@ theorem solution
     (x : F) (hx : Transcendental k x)
     (hfin : FiniteDimensional (IntermediateField.adjoin k ({x} : Set F)) F) (a : k) :
     ∃ S : Finset (Place k F), (∀ P, P ∈ S ↔ 0 < P.ord (x - algebraMap k F a)) ∧
-      ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := by
+      ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set
+        F)) F : ℤ) := by
   classical
   have := hfin
   have : IsCurveOver k F := isCurveOver_of_isAlgClosed_of_transcendental x hx
@@ -98,7 +100,8 @@ theorem solution
 
 end S_AlgebraicCurve_exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (solution)
+export P2MW.S_AlgebraicCurve_exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
+  (solution)
 
 end privateSection
 
@@ -111,7 +114,8 @@ theorem AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgC
     (x : F) (hx : Transcendental k x)
     (hfin : FiniteDimensional (IntermediateField.adjoin k ({x} : Set F)) F) (a : k) :
     ∃ S : Finset (Place k F), (∀ P, P ∈ S ↔ 0 < P.ord (x - algebraMap k F a)) ∧
-      ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) :=
+      ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set
+        F)) F : ℤ) :=
   solution k x hx hfin a
 
 end publicSection

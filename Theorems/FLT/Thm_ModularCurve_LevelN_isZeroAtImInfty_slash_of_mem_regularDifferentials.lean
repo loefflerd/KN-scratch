@@ -52,7 +52,8 @@ on the upper half-plane as $F(\tau)\,d\tau$, gives a function $F$ vanishing at e
 being the places of the function field obtained from the $q$-expansion valuations at $\delta \cdot
 i\infty$. It feeds the construction of an injective linear map from the regular differentials of the
 level-$N$ function field to weight-$2$ cusp forms,
-[`ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective`](thm.html#ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective).
+[`ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective`]
+(thm.html#ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective).
 
 ## Explanation of the source proof
 
@@ -236,7 +237,7 @@ theorem isBoundedAtImInfty_discriminant : IsBoundedAtImInfty ModularForm.discrim
 theorem isBoundedAtImInfty_discriminant_pow (m : ℕ) :
     IsBoundedAtImInfty (ModularForm.discriminant ^ m) := by
   induction m with
-  | zero => first | simpa using Filter.const_boundedAtFilter atImInfty (1 : ℂ) | (simp only [pow_zero]; exact Filter.const_boundedAtFilter atImInfty (1 : ℂ))
+  | zero => simp only [pow_zero]; exact Filter.const_boundedAtFilter atImInfty (1 : ℂ)
   | succ m ih => rw [pow_succ]; exact ih.mul isBoundedAtImInfty_discriminant
 
 theorem exists_isBoundedAtImInfty {F : ℍ → ℂ} (hF : F ∈ ring N) :

@@ -265,10 +265,12 @@ theorem solution
     (hΨs : ∀ q : SL(2, ℤ) ⧸ Γ,
       IntegrableOn (fun y : ℝ => Ψ (Quotient.out q)⁻¹ (-(1 / 2) + y * Complex.I)) s)
     (hΦarc : ∀ q : SL(2, ℤ) ⧸ Γ, IntervalIntegrable (fun θ : ℝ =>
-      Φ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ * Complex.I)))
+      Φ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ *
+        Complex.I)))
       volume (Real.pi / 3) (2 * Real.pi / 3))
     (hΨarc : ∀ q : SL(2, ℤ) ⧸ Γ, IntervalIntegrable (fun θ : ℝ =>
-      Ψ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ * Complex.I)))
+      Ψ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ *
+        Complex.I)))
       volume (Real.pi / 3) (2 * Real.pi / 3)) :
     (∑ q : SL(2, ℤ) ⧸ Γ, ∫ y in s, Φ (Quotient.out q)⁻¹ (1 / 2 + y * Complex.I)) =
         (∑ q : SL(2, ℤ) ⧸ Γ, ∫ y in s, Φ (Quotient.out q)⁻¹ (-(1 / 2) + y * Complex.I)) +
@@ -289,7 +291,8 @@ theorem solution
   have hsec := isSection_out Γ
   have key : ∀ (g : SL(2, ℤ)) (q : SL(2, ℤ) ⧸ Γ) (z : ℂ),
       tilePull (slash2 φ (pairElt Quotient.out g q)) (Quotient.out q)⁻¹ z =
-        tilePull φ (Quotient.out q)⁻¹ z + c (pairElt Quotient.out g q) * tilePull ψ (Quotient.out q)⁻¹ z := by
+        tilePull φ (Quotient.out q)⁻¹ z + c (pairElt Quotient.out g q) * tilePull ψ (Quotient.out
+          q)⁻¹ z := by
     intro g q z
     rw [slash2_eq_of_twist hφ (pairElt_mem hsec g q), tilePull_add_mul]
   refine ⟨?_, ?_⟩
@@ -353,10 +356,12 @@ theorem ModularCurve.gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add
     (hΨs : ∀ q : SL(2, ℤ) ⧸ Γ,
       IntegrableOn (fun y : ℝ => Ψ (Quotient.out q)⁻¹ (-(1 / 2) + y * Complex.I)) s)
     (hΦarc : ∀ q : SL(2, ℤ) ⧸ Γ, IntervalIntegrable (fun θ : ℝ =>
-      Φ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ * Complex.I)))
+      Φ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ *
+        Complex.I)))
       volume (Real.pi / 3) (2 * Real.pi / 3))
     (hΨarc : ∀ q : SL(2, ℤ) ⧸ Γ, IntervalIntegrable (fun θ : ℝ =>
-      Ψ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ * Complex.I)))
+      Ψ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) * (Complex.I * Complex.exp (θ *
+        Complex.I)))
       volume (Real.pi / 3) (2 * Real.pi / 3)) :
     (∑ q : SL(2, ℤ) ⧸ Γ, ∫ y in s, Φ (Quotient.out q)⁻¹ (1 / 2 + y * Complex.I)) =
         (∑ q : SL(2, ℤ) ⧸ Γ, ∫ y in s, Φ (Quotient.out q)⁻¹ (-(1 / 2) + y * Complex.I)) +

@@ -52,9 +52,11 @@ parametrisation of a lattice induces a group isomorphism $\mathbb{C}/\Lambda \co
 E_\Lambda(\mathbb{C})$. It underlies the subsequent transfer of analytic data to the algebraic
 curve, and is cited by the results comparing maps of period pairs with morphisms of the
 corresponding Weierstrass curves, such as
-[`PeriodPair.exists_mem_rationalHomSet_forall_apply_toPoint_eq_toPoint_mul`](thm.html#PeriodPair.exists_mem_rationalHomSet_forall_apply_toPoint_eq_toPoint_mul)
+[`PeriodPair.exists_mem_rationalHomSet_forall_apply_toPoint_eq_toPoint_mul`]
+(thm.html#PeriodPair.exists_mem_rationalHomSet_forall_apply_toPoint_eq_toPoint_mul)
 and
-[`PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint`](thm.html#PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint).
+[`PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint`]
+(thm.html#PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint).
 
 ## Explanation of the source proof
 
@@ -815,13 +817,16 @@ p2m_export "PeriodPair" "kw_weierstrassPExcept_zero_order_ge_two"
 
 private def _root_.PeriodPair.kwAddBridgeT (w : ℂ) (z : ℂ) : ℂ :=
   4 * ((L.weierstrassPExcept (0:ℂ)) z - ℘[L] w) ^ 2 * ℘[L] (z + w)
-    - 4 * ℘[L] w * (L.weierstrassPExcept (0:ℂ)) z ^ 2 - 4 * ℘[L] w ^ 2 * (L.weierstrassPExcept (0:ℂ)) z
-    + L.g₂ * (L.weierstrassPExcept (0:ℂ)) z + L.g₂ * ℘[L] w + 2 * L.g₃ + 2 * ℘'[L] w * (L.derivWeierstrassPExcept (0:ℂ)) z
+    - 4 * ℘[L] w * (L.weierstrassPExcept (0:ℂ)) z ^ 2 - 4 * ℘[L] w ^ 2 * (L.weierstrassPExcept
+      (0:ℂ)) z
+    + L.g₂ * (L.weierstrassPExcept (0:ℂ)) z + L.g₂ * ℘[L] w + 2 * L.g₃ + 2 * ℘'[L] w *
+      (L.derivWeierstrassPExcept (0:ℂ)) z
 
 p2m_export "PeriodPair" "kwAddBridgeT"
 
 private def _root_.PeriodPair.kwAddBridgeR (w : ℂ) (z : ℂ) : ℂ :=
-  8 * (z ^ 2 * (L.weierstrassPExcept (0:ℂ)) z) * (℘[L] (z + w) - ℘[L] w) + z ^ 4 * L.kwAddBridgeT w z
+  8 * (z ^ 2 * (L.weierstrassPExcept (0:ℂ)) z) * (℘[L] (z + w) - ℘[L] w) + z ^ 4 * L.kwAddBridgeT w
+    z
 
 p2m_export "PeriodPair" "kwAddBridgeR"
 

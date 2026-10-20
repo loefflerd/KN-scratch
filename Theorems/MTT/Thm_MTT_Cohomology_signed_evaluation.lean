@@ -130,7 +130,8 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j))
+        := by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -270,9 +271,11 @@ theorem solution
     rw [← (MTT.Cohomology.reflection_class Φ).2.1, hHΦ l hl, reflection_smul]
   -- the evaluations of the reflection
   have hevψ : ∀ j r, j ≤ k - 2 → evaluation j r ψ =
-      (-1 : ℂ) ^ j * (((k - 2).choose j : ℂ) * MTT.modularIntegral f.form (Polynomial.X ^ j) (-r)) := by
+      (-1 : ℂ) ^ j * (((k - 2).choose j : ℂ) * MTT.modularIntegral f.form (Polynomial.X ^ j) (-r))
+        := by
     intro j r hj
-    change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, (r : Cusp))) (binaryExponent (k - 2) j) = _
+    change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, (r : Cusp))) (binaryExponent (k - 2) j) =
+      _
     rw [hψ]
     simp only [reflection]
     rw [fractional_refl_infty, fractional_refl_coe,
@@ -320,7 +323,8 @@ theorem MTT.Cohomology.signed_evaluation
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι) :
     ∃ φ : Bool → Hc N (k - 2) ℂ, ∀ s,
       SignedClass f.form s (φ s) ∧
-      Packet (fun d => ι (f.epsilon d)) (fun l => ι (f.coeff l)) s (φ s) := _root_.solution hN hk I hI hT ι f
+      Packet (fun d => ι (f.epsilon d)) (fun l => ι (f.coeff l)) s (φ s) := _root_.solution hN hk I
+        hI hT ι f
 end
 
 end publicSection

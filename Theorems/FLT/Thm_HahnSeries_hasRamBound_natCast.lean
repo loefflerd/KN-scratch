@@ -46,7 +46,8 @@ predicate `HasRamBound e` is, for $e>0$, membership in [`HahnSeries.puiseuxRamSu
 he`](def/HahnSeries_RamificationBound.html#L37). It is used when the modular equation, whose
 coefficients are rational integers and hence constant series, is evaluated at a series with
 ramification bound $e$, in
-[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`](thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
+[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`]
+(thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
 
 ## Explanation of the source proof
 

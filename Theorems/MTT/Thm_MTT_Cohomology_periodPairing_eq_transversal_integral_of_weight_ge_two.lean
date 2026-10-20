@@ -132,7 +132,8 @@ theorem MTT.Cohomology.periodPairing_eq_transversal_integral_of_weight_ge_two
         (f z • periodPower (k - 2) (z : ℂ))
         (conj (q z) • periodPower (k - 2) (conj (z : ℂ)))) :
     periodPairing N (k - 2) f q =
-      ∑ σ ∈ R, ∫ z in (fun τ : ℍ ↦ ((σ • τ : ℍ) : ℂ)) '' 𝒟, D z := _root_.solution hk f q R hR D hint hD
+      ∑ σ ∈ R, ∫ z in (fun τ : ℍ ↦ ((σ • τ : ℍ) : ℂ)) '' 𝒟, D z := _root_.solution hk f q R hR D
+        hint hD
 end
 
 end publicSection

@@ -60,7 +60,8 @@ S_2(\Gamma(N))$, and no identification of the dimension with the genus, is part 
 This is the existence (lower bound) half of the classical identity $\dim_{\mathbb C} S_2(\Gamma(N))
 = g(X(N))$, in the cleared-denominator shape in which the genus of $X(N)$ is computed from the index
 $\mu_N$. It is used in
-[`ModularCurve.finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm`](thm.html#ModularCurve.finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm),
+[`ModularCurve.finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm`]
+(thm.html#ModularCurve.finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm),
 and thence in the Eichler–Shimura comparison between parabolic cohomology of congruence subgroups
 and weight-$2$ cusp forms.
 

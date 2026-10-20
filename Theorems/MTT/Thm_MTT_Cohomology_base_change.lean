@@ -274,7 +274,8 @@ to a fixed set of coset representatives. -/
 def ThetaF (N n : ℕ) [NeZero N] (R : Type*) [CommRing R] :
     Hc N n R →ₗ[R] (Idx N n →₀ R) where
   toFun φ := Finsupp.equivFunOnFinite.symm fun z : Idx N n =>
-    AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) (mono n z.2.val)
+    AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out
+      OnePoint.infty)) (mono n z.2.val)
   map_add' φ ψ := by ext z; simp
   map_smul' c φ := by
     ext z
@@ -282,7 +283,8 @@ def ThetaF (N n : ℕ) [NeZero N] (R : Type*) [CommRing R] :
     exact MvPolynomial.coeff_smul _ _ _
 
 @[simp] theorem ThetaF_apply (φ : Hc N n R) (z : Idx N n) :
-    ThetaF N n R φ z = AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) (mono n z.2.val) := rfl
+    ThetaF N n R φ z = AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct
+      z.1.out OnePoint.infty)) (mono n z.2.val) := rfl
 
 theorem ThetaF_injective : Function.Injective (ThetaF N n R) := by
   rw [injective_iff_map_eq_zero]

@@ -42,9 +42,11 @@ full expected one at every point $a$, with no exceptional fibres.
 This is the uniform fibre count for a monic correspondence: specialising a monic $\Phi \in
 (\mathbb{Z}[X])[Y]$ at any point of an algebraically closed field leaves a polynomial of unchanged
 degree, all of whose roots lie in the field. It supplies the root count used by
-[`ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental`](thm.html#ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental)
+[`ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental`]
+(thm.html#ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental)
 and
-[`ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd`](thm.html#ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd),
+[`ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd),
 where the roots of the specialised modular polynomial at a transcendental $j$-invariant must be
 exhausted.
 

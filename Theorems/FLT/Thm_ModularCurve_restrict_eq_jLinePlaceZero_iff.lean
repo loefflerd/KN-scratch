@@ -49,9 +49,11 @@ This is the statement that a place of the function field of $X_0(N)$ lies over t
 the $j$-line exactly when the $j$-invariant vanishes there, one of the lemmas pinning down places of
 $F_N$ by the order of vanishing of $j$ (and of $j - 1728$) at them. It is used in the computations
 of the numbers of points of $X_0(N)$ above $j = 0$ and $j = 1728$, namely in
-[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
+[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
 
 ## Explanation of the source proof
 
@@ -101,7 +103,8 @@ theorem solution (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero ↔
-        0 < w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) := by
+        0 < w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField
+          N)) := by
   let := ModularCurve.jAdjoinAlgebra N
   intro _ w
   rw [ModularCurve.eq_jLinePlaceZero_iff_ord_jGen_pos,
@@ -123,7 +126,8 @@ theorem ModularCurve.restrict_eq_jLinePlaceZero_iff (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero ↔
-        0 < w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) :=
+        0 < w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField
+          N)) :=
   solution N
 
 end publicSection

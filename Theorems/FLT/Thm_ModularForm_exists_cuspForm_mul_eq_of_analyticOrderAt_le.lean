@@ -44,9 +44,11 @@ the quotient $\Phi/\Psi$ holomorphic on the upper half-plane, and the decay cond
 $\mathrm{SL}_2(\mathbb{Z})$-translates makes it vanish at every cusp, so that the quotient is a cusp
 form of the difference weight. It is used to produce cusp forms from quotients of explicit modular
 forms by theta series, in
-[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral`](thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral)
+[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral`]
+(thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral)
 and
-[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral`](thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral).
+[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral`]
+(thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral).
 
 ## Explanation of the source proof
 
@@ -103,7 +105,8 @@ theorem quo_analytic {F G : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
   have hGne : ∀ w ∈ U, ∀ᶠ v in 𝓝[≠] w, G v ≠ 0 := fun w hw =>
     ((hG w hw).eventually_eq_zero_or_eventually_ne_zero).resolve_left (hG0 w hw)
   have heq : ∀ᶠ w in 𝓝 z, quo F G w = q w := by
-    filter_upwards [hq.eventually_analyticAt, hfac.eventually_nhds, hU.mem_nhds hz] with w hqw hfw hwU
+    filter_upwards [hq.eventually_analyticAt, hfac.eventually_nhds, hU.mem_nhds hz] with w hqw hfw
+      hwU
     exact quo_eq hqw hfw (hGne w hwU)
   refine ⟨hq.congr (EventuallyEq.symm heq), ?_⟩
   have h1 := heq.self_of_nhds
@@ -136,11 +139,13 @@ end ANa
 theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
     (Φ : ModularForm (CongruenceSubgroup.Gamma0 N) a)
     (Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) b) (hΨ : Ψ ≠ 0)
-    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
+    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘
+      UpperHalfPlane.ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ))
     (hcusp : ∀ (A : Matrix.SpecialLinearGroup (Fin 2) ℤ) (ε : ℝ), 0 < ε →
       ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
-        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
+        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b]
+          (A : GL (Fin 2) ℝ)) τ‖) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ := by
   classical
   set Φ' : ℂ → ℂ := (Φ : ℍ → ℂ) ∘ ofComplex with hΦ'
@@ -176,11 +181,13 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
     refine h1.congr fun z hz => ?_
     exact congrArg F (by rw [ofComplex_apply_of_im_pos hz])
   have hcb : c + b = a := by omega
-  have hf_slash : ∀ γ ∈ Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N),
+  have hf_slash : ∀ γ ∈ Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0
+    N),
       f ∣[c] γ = f := by
     rintro _ ⟨γ₀, hγ₀, rfl⟩
     have hmem : (Matrix.SpecialLinearGroup.mapGL ℝ γ₀) ∈
-        Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N) := ⟨γ₀, hγ₀, rfl⟩
+        Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N) := ⟨γ₀, hγ₀,
+          rfl⟩
     change f ∣[c] γ₀ = f
     have hΨinv : (Ψ : ℍ → ℂ) ∣[b] γ₀ = Ψ := SlashInvariantForm.slash_action_eqn Ψ _ hmem
     have hΦinv : (Φ : ℍ → ℂ) ∣[a] γ₀ = Φ := SlashInvariantForm.slash_action_eqn Φ _ hmem
@@ -224,7 +231,8 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
       exact this
     have hG_cont : Continuous G := (hf_mdiff.slash c (γ : GL (Fin 2) ℝ)).continuous
     have hWo : IsOpen {σ : ℍ | ε < ‖G σ‖ ∧ T < σ.im} :=
-      (isOpen_lt continuous_const hG_cont.norm).inter (isOpen_lt continuous_const UpperHalfPlane.continuous_im)
+      (isOpen_lt continuous_const hG_cont.norm).inter (isOpen_lt continuous_const
+        UpperHalfPlane.continuous_im)
     have hΨAW : ∀ σ ∈ {σ : ℍ | ε < ‖G σ‖ ∧ T < σ.im}, ΨA σ = 0 := by
       rintro σ ⟨h1, h2⟩
       have hb := hT σ h2.le
@@ -261,11 +269,13 @@ theorem ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le (N : ℕ) {a b 
     (habc : b + c = a)
     (Φ : ModularForm (CongruenceSubgroup.Gamma0 N) a)
     (Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) b) (hΨ : Ψ ≠ 0)
-    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
+    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘
+      UpperHalfPlane.ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ))
     (hcusp : ∀ (A : Matrix.SpecialLinearGroup (Fin 2) ℤ) (ε : ℝ), 0 < ε →
       ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
-        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
+        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b]
+          (A : GL (Fin 2) ℝ)) τ‖) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ :=
   solution N c habc Φ Ψ hΨ hord hcusp
 

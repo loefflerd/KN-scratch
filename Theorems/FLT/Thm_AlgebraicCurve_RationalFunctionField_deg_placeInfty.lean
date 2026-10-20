@@ -46,7 +46,8 @@ irreducible polynomials together with $\infty$ — the place at infinity is rati
 field being $K$ itself. It identifies the named place at infinity as a degree-one point of
 $\mathbb{P}^1$ and is used throughout the function-field foundations, for instance in the
 Riemann–Roch-style computations for $K(t)$ such as
-[`AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero`](thm.html#AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero)
+[`AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero`]
+(thm.html#AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero)
 and the finite-dimensionality of the space attached to the zero divisor.
 
 ## Explanation of the source proof

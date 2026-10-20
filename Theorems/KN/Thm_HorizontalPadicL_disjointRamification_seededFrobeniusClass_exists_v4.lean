@@ -91,7 +91,8 @@ theorem disjointRamification_seededFrobeniusClass_exists_v4
     (V : SeededEigenformPadicPlaceData (p := p) f η)
     (R : ResidualEigenformRepresentationData f η V)
     (C : SeedCyclotomicGaloisCharacterDataV2 N p m η) :
-    Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := _root_.solution hN hk heven ι f η m B hB hηcoprime V R C
+    Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := _root_.solution hN hk heven ι f η m B hB
+      hηcoprime V R C
 
 end HorizontalPadicL
 

@@ -102,11 +102,13 @@ theorem solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F] [Perf
     ∃ γ : ℤ, ∀ D : Divisor K F,
       Module.Finite K (↥(adeleSpace K F) ⧸ adeleBddPrincipal K F D) ∧
         (indexOfSpecialty D : ℤ) = (ell D : ℤ) - (Divisor.degree D + 1 - γ) := by
-  exact exists_genus_riemannIndex_of_stichtenothGenusExists (stichtenothGenusExists_of_isCurveOver_port hC)
+  exact exists_genus_riemannIndex_of_stichtenothGenusExists
+    (stichtenothGenusExists_of_isCurveOver_port hC)
 
 end AlgebraicCurve.TowerFreePort
 
-open IntermediateField _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver.AlgebraicCurve in
+open IntermediateField _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver.AlgebraicCurve in
 theorem solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K]
     [Algebra.EssFiniteType K F] [IsCurveOver K F] (hC : ConstantsAreBase K F) :
     ∃ γ : ℤ, ∀ D : Divisor K F,

@@ -48,7 +48,8 @@ polynomial, the case $\ell = p$, or reduction type at $\ell$.
 This is the determinant half of the Eichler–Shimura type description of Frobenius on the $p$-adic
 Tate module of an elliptic curve: the determinant is the $p$-adic cyclotomic character, whose value
 at a Frobenius at $\ell$ is $\ell$. It feeds into
-[`WeierstrassCurve.tateModuleRep_charpoly_frobenius`](thm.html#WeierstrassCurve.tateModuleRep_charpoly_frobenius),
+[`WeierstrassCurve.tateModuleRep_charpoly_frobenius`]
+(thm.html#WeierstrassCurve.tateModuleRep_charpoly_frobenius),
 where together with the trace it identifies the characteristic polynomial of Frobenius.
 
 ## Explanation of the source proof
@@ -86,7 +87,9 @@ theorem solution (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime] (hΔ : W.Δ
   have hmem : ∀ n : ℕ,
       LinearMap.det ((W.tateModuleRep p hcard).ρ σ) - ((ℓ : ℕ) : ℤ_[p]) ∈
         Ideal.span {((p ^ n : ℕ) : ℤ_[p])} := fun n =>
-    (W.tateModuleRep_detIsCyclotomic p hΔ hcard).2 n σ ℓ fun μ hμ => ValuationSubring.IsFrobeniusAt.apply_eq_pow_of_pow_prime_pow_eq_one Fact.out hℓ hℓp A hA hσ n μ hμ
+    (W.tateModuleRep_detIsCyclotomic p hΔ hcard).2 n σ ℓ fun μ hμ =>
+      ValuationSubring.IsFrobeniusAt.apply_eq_pow_of_pow_prime_pow_eq_one Fact.out hℓ hℓp A hA hσ n
+      μ hμ
   exact sub_eq_zero.mp (padic_sep hmem)
 
 end S_WeierstrassCurve_tateModuleRep_det_frobenius

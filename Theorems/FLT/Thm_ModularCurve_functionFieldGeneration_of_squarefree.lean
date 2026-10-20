@@ -91,7 +91,8 @@ private theorem ModularCurve.functionFieldGeneration_of_squarefree (N : ℕ) [Ne
   have hmul :=
     IntermediateField.relfinrank_mul_relfinrank (adjoin_jq_le N) (modularFunctionField_le_full N)
   rw [h1, relfinrank_full_of_squarefree N hN] at hmul
-  have hone : IntermediateField.relfinrank (modularFunctionField N) (modularFunctionFieldFull N) = 1 :=
+  have hone : IntermediateField.relfinrank (modularFunctionField N) (modularFunctionFieldFull N) = 1
+    :=
     (Nat.eq_of_mul_eq_mul_left hψ (hmul.trans (Nat.mul_one _).symm))
   exact IntermediateField.relfinrank_eq_one_iff.mp hone
 
@@ -114,7 +115,8 @@ private theorem ModularCurve.phiIrreducible_of_squarefree (N : ℕ) [NeZero N] (
   rw [PhiIrreducible, heq]
   exact minpoly.irreducible hint
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_functionFieldGeneration_of_squarefree.ModularCurve in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_functionFieldGeneration_of_squarefree.ModularCurve in
 theorem solution (N : ℕ) [NeZero N] (hN : Squarefree N) : FunctionFieldGeneration N :=
   ModularCurve.functionFieldGeneration_of_squarefree N hN
 

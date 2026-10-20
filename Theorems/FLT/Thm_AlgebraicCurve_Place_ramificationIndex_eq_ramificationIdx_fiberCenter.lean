@@ -43,9 +43,11 @@ $F$ and the primes of the integral closure of $\mathcal O_v$ in $F'$; it is what
 fundamental identity $\sum_i e_i f_i = [F' : F]$ for Dedekind extensions to be read as a statement
 about places. It is used in the computation of norms and of local contributions along a fibre, for
 instance in
-[`AlgebraicCurve.Place.evalAt_norm_eq_prod_fiber`](thm.html#AlgebraicCurve.Place.evalAt_norm_eq_prod_fiber)
+[`AlgebraicCurve.Place.evalAt_norm_eq_prod_fiber`]
+(thm.html#AlgebraicCurve.Place.evalAt_norm_eq_prod_fiber)
 and
-[`AlgebraicCurve.Place.hasValue_norm_along_of_separableAlong`](thm.html#AlgebraicCurve.Place.hasValue_norm_along_of_separableAlong).
+[`AlgebraicCurve.Place.hasValue_norm_along_of_separableAlong`]
+(thm.html#AlgebraicCurve.Place.hasValue_norm_along_of_separableAlong).
 
 ## Explanation of the source proof
 
@@ -258,7 +260,8 @@ theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     (v : Place K F) {w : Place K F'}
     (hw : w.restrict F = v) :
-    w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx' (Place.fiberCenter F' v hw).asIdeal :=
+    w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx'
+      (Place.fiberCenter F' v hw).asIdeal :=
   Place.ramificationIndex_eq_ramificationIdx_fiberCenter hw
 
 end S_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
@@ -276,7 +279,8 @@ theorem AlgebraicCurve.Place.ramificationIndex_eq_ramificationIdx_fiberCenter {K
     [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F)
     {w : Place K F'}
     (hw : w.restrict F = v) :
-    w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx' (Place.fiberCenter F' v hw).asIdeal :=
+    w.ramificationIndex F = (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx'
+      (Place.fiberCenter F' v hw).asIdeal :=
   solution v hw
 
 end publicSection

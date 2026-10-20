@@ -74,7 +74,8 @@ theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k :
     (hline : ∀ m : ℕ, 1 ≤ m → (m : k) ≠ 0 →
       ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + Fintype.card F)
     (hpos : ∀ m : ℕ, 1 ≤ m → (m : k) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0)
-    (hcount : ∀ r : ℕ, r.Prime → (r : k) ≠ 0 → Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2) :
+    (hcount : ∀ r : ℕ, r.Prime → (r : k) ≠ 0 → Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^
+      2) :
     FrobCharEqOnPoints W σ a (Fintype.card F) := by
   set q : ℕ := Fintype.card F with hq
   have hq1 : 1 ≤ q := Fintype.card_pos_iff.mpr ⟨1⟩
@@ -91,7 +92,8 @@ theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k :
     · exact hne1 h1
     · have hle : ringChar F ≤ q := Nat.le_of_dvd hq1 hdvd_q
       omega
-  have hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧
+  have hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) =
+    r ^ 2 ∧
       ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (q : ℤ) • P = 0 := by
     intro N
     obtain ⟨r, hNr, hr, c, hc⟩ :=
@@ -126,7 +128,13 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.frobCharEqOnPoints_of_line {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (a : ℤ) (hline : ∀ m : ℕ, 1 ≤ m → (m : k) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + Fintype.card F) (hpos : ∀ m : ℕ, 1 ≤ m → (m : k) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hcount : ∀ r : ℕ, r.Prime → (r : k) ≠ 0 → Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2) :
+theorem FrobeniusEndo.frobCharEqOnPoints_of_line {R : Type*} [CommRing R] {F : Type*} [Field F]
+  [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k]
+  [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^
+  Fintype.card F) (a : ℤ) (hline : ∀ m : ℕ, 1 ≤ m → (m : k) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) :
+  ℤ) = (m : ℤ) ^ 2 - a * m + Fintype.card F) (hpos : ∀ m : ℕ, 1 ≤ m → (m : k) ≠ 0 → kerDeg (frobEnd
+  W σ) m 1 ≠ 0) (hcount : ∀ r : ℕ, r.Prime → (r : k) ≠ 0 → Nat.card (Submodule.torsionBy ℤ
+  (W⁄k).Point r) = r ^ 2) :
     FrobCharEqOnPoints W σ a (Fintype.card F) :=
   solution W σ hσ a hline hpos hcount
 

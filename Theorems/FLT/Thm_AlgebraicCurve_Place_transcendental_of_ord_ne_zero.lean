@@ -74,7 +74,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Pla
 
 private theorem mem_of_isAlgebraic {x : F} (hx : IsAlgebraic K x) : x ∈ v.toValuationSubring := by
   have hint : IsIntegral K x := hx.isIntegral
-  refine v.mem_of_eval_monic_eq_zero (P := (minpoly K x).map (algebraMap K F)) ((minpoly.monic hint).map _)
+  refine v.mem_of_eval_monic_eq_zero (P := (minpoly K x).map (algebraMap K F)) ((minpoly.monic
+    hint).map _)
     (fun i => ?_) ?_
   · rw [coeff_map]; exact v.algebraMap_mem' _
   · rw [eval_map_algebraMap, minpoly.aeval]

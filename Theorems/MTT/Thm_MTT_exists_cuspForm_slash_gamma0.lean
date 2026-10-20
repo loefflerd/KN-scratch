@@ -14,7 +14,8 @@ module
 public import Definitions.MTT.Def_MTT_Arithmetic
 
 /-!
-# The slash of a cusp form on $\Gamma_1(N)$ by an element of $\Gamma_0(N)$ is again a cusp form on $\Gamma_1(N)$
+# The slash of a cusp form on $\Gamma_1(N)$ by an element of $\Gamma_0(N)$ is again a cusp form on
+$\Gamma_1(N)$
 
 Theorem statement: `MTT.exists_cuspForm_slash_gamma0` (`73a0c211-8cd0-444b-ac39-d39d363a8e88`), by
 cbirkbeck, 2026-09-06.
@@ -50,7 +51,8 @@ The cusp form is constructed directly (`slashCuspForm`) with underlying function
 Z/N$, $\gamma\mapsto d\bmod N$ (Mathlib's `Gamma1' N = (Gamma0Map N).ker`), so it is normalised by
 $\Gamma_0(N)$: for $\delta\in\Gamma_1(N)$ we have $\gamma\delta\gamma^{-1}\in\Gamma_1(N)$
 (`conj_mem_Gamma1`, from `MonoidHom.normal_ker`). Hence
-$(g|_k\gamma)|_k\delta=g|_k(\gamma\delta)=g|_k\big((\gamma\delta\gamma^{-1})\gamma\big)=(g|_k\gamma\delta\gamma^{-1})|_k\gamma=g|_k\gamma$,
+$(g|_k\gamma)|_k\delta=g|_k(\gamma\delta)=g|_k\big((\gamma\delta\gamma^{-1})\gamma\big)=(g|_k\gamma
+\delta\gamma^{-1})|_k\gamma=g|_k\gamma$,
 using that the slash is an action (`SlashAction.slash_mul`) and the invariance of $g$ under
 $\Gamma_1(N)$.
 

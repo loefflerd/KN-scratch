@@ -325,7 +325,8 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
   have := hcV
   have := haV
   obtain ⟨ι₁, hι₁, hfin₁, hseam⟩ :=
-    WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 hQeq hgy hΔ₁
+    WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 hQeq hgy
+      hΔ₁
   have hN₁ : NormFormulaAlong F ι₁ hfin₁ := normFormulaAlong_of_elliptic ι₁ hfin₁
   set p₁ := pointMapOfPushforward ι₁ hι₁ hfin₁ hN₁ with hp₁_def
   have hp₁ : ∀ P, p₁ P = WeierstrassCurve.veluPointMap2 two_ne_zero hQeq hgy hΔ₁ P :=
@@ -516,7 +517,8 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
       rw [hker]; infer_instance
     have hcard : Nat.card (pointMapOfPushforward (T H).ι (T H).hι (T H).hfin hN').ker = N := by
       rw [hker, Nat.card_zmultiples, hgenord]
-    exact WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+    exact
+      WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
       F W.toAffine (T H).V.toAffine (T H).ι (T H).hι (T H).hfin hN' N hcyc hcard data
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq
@@ -576,10 +578,12 @@ theorem solution
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
       N • (WeierstrassCurve.Affine.Point.some x y h : W.toAffine.Point) = 0 → x ∈ L ∧ y ∈ L)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
+    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+      W.j)).IsRoot r) :
     r ∈ L := by
   by_cases hodd : Odd N
-  · exact ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd hodd data W
+  · exact ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd hodd data
+      W
       ht L h₁ h₂ h₃ h₄ h₆ htors r hr
   · have : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
     have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
@@ -608,7 +612,8 @@ theorem ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
       N • (WeierstrassCurve.Affine.Point.some x y h : W.toAffine.Point) = 0 → x ∈ L ∧ y ∈ L)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
+    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+      W.j)).IsRoot r) :
     r ∈ L :=
   solution data W ht L h₁ h₂ h₃ h₄ h₆ htors r hr
 

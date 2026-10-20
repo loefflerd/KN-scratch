@@ -995,7 +995,8 @@ end AlgebraicCurve
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     [HasPrincipalDivisors K F'] (v : Place K F) :
-    ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
+    ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ)
+      :=
   AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg_infra v
 
 end
@@ -1014,7 +1015,8 @@ theorem AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg {K F F' : Type
     [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
     [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [HasPrincipalDivisors K F'] (v : Place K F)
     :
-    ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
+    ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ)
+      :=
   solution v
 
 end publicSection

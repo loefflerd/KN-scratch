@@ -50,9 +50,11 @@ $\mathrm{AlgebraicClosure}\ \mathbb{Q}$, one has $\sigma \bullet x = x$.
 This is the accessible direction of the criterion of Néron–Ogg–Shafarevich for elliptic curves: good
 reduction at $q$ forces the mod-$n$ (and $n$-torsion) Galois representation to be unramified at
 every place above $q$ when $q \nmid n$. It is used downstream, via
-[`WeierstrassCurve.galoisRepUnramifiedAt_of_goodReduction`](thm.html#WeierstrassCurve.galoisRepUnramifiedAt_of_goodReduction)
+[`WeierstrassCurve.galoisRepUnramifiedAt_of_goodReduction`]
+(thm.html#WeierstrassCurve.galoisRepUnramifiedAt_of_goodReduction)
 and
-[`WeierstrassCurve.tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor`](thm.html#WeierstrassCurve.tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor),
+[`WeierstrassCurve.tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor`]
+(thm.html#WeierstrassCurve.tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor),
 to control the ramification of the Galois representations attached to the Frey curve away from its
 bad primes.
 
@@ -108,7 +110,8 @@ theorem point_descend_of_mem (W : WeierstrassCurve ℚ) (L : IntermediateField �
           (WeierstrassCurve.Affine.Point.some ⟨x, hx⟩ ⟨y, hy⟩ h')
         = WeierstrassCurve.Affine.Point.some x y h := by
   have h' : (W.baseChange L).toAffine.Nonsingular ⟨x, hx⟩ ⟨y, hy⟩ :=
-    (W.toAffine.baseChange_nonsingular (f := L.val) L.val.injective (⟨x, hx⟩ : L) (⟨y, hy⟩ : L)).mp h
+    (W.toAffine.baseChange_nonsingular (f := L.val) L.val.injective (⟨x, hx⟩ : L) (⟨y, hy⟩ : L)).mp
+      h
   exact ⟨h', rfl⟩
 
 end NOSAssembly

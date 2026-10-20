@@ -71,7 +71,8 @@ def upperTriangularGL (a b d : ℝ) (had : a * d ≠ 0) : GL (Fin 2) ℝ :=
     (by rwa [Matrix.det_fin_two_of, mul_zero, sub_zero])
 
 @[simp] theorem val_upperTriangularGL (a b d : ℝ) (had : a * d ≠ 0) :
-    ((upperTriangularGL a b d had : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = !![a, b; 0, d] := rfl
+    ((upperTriangularGL a b d had : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = !![a, b; 0, d] :=
+      rfl
 
 def heckeMatrix (p j : ℕ) : GL (Fin 2) ℝ :=
   if hp : p = 0 then 1 else upperTriangularGL 1 j p (by rw [one_mul]; exact_mod_cast hp)
@@ -80,7 +81,8 @@ def heckeDiagMatrix (p : ℕ) : GL (Fin 2) ℝ :=
   if hp : p = 0 then 1 else upperTriangularGL p 0 1 (by rw [mul_one]; exact_mod_cast hp)
 
 @[simp] theorem val_heckeMatrix {p : ℕ} (hp : p ≠ 0) (j : ℕ) :
-    ((heckeMatrix p j : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = !![(1 : ℝ), (j : ℝ); 0, (p : ℝ)] := by
+    ((heckeMatrix p j : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) = !![(1 : ℝ), (j : ℝ); 0, (p : ℝ)]
+      := by
   simp [heckeMatrix, hp]
 
 @[simp] theorem val_heckeDiagMatrix {p : ℕ} (hp : p ≠ 0) :
@@ -237,7 +239,8 @@ theorem coeffHeckeT_of_not_dvd (k : ℤ) {p n : ℕ} (h : ¬ p ∣ n) (a : ℕ �
   rw [coeffHeckeT, ite_eq_right h, add_zero]
 
 theorem coeffHeckeT_eq_coeffHeckeU_add (k : ℤ) (p : ℕ) (a : ℕ → ℂ) (n : ℕ) :
-    coeffHeckeT k p a n = coeffHeckeU p a n + if p ∣ n then (p : ℂ) ^ (k - 1) * a (n / p) else 0 := rfl
+    coeffHeckeT k p a n = coeffHeckeU p a n + if p ∣ n then (p : ℂ) ^ (k - 1) * a (n / p) else 0 :=
+      rfl
 
 theorem coeffHeckeT_add (k : ℤ) (p : ℕ) (a b : ℕ → ℂ) :
     coeffHeckeT k p (a + b) = coeffHeckeT k p a + coeffHeckeT k p b := by

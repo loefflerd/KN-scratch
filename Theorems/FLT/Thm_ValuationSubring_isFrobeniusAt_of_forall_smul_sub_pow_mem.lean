@@ -141,7 +141,8 @@ private theorem smul_mem {σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure
 
 omit [Qt.IsMaximal] in
 private theorem mem_decompositionSubgroup {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ}
-    (hstab : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x ∈ Qt ↔ x ∈ Qt) : τ ∈ A.decompositionSubgroup ℚ := by
+    (hstab : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x ∈ Qt ↔ x ∈ Qt) : τ ∈ A.decompositionSubgroup ℚ :=
+      by
   have hstab' : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ⁻¹ • x ∈ Qt ↔ x ∈ Qt := fun x => by
     simpa using (hstab (τ⁻¹ • x)).symm
   rw [MulAction.mem_stabilizer_iff]
@@ -172,7 +173,8 @@ private theorem smul_residue {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClo
     rw [Ne, IsLocalRing.residue_eq_zero_iff, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
       not_not]
     exact isUnit_ψ hA hs
-  have h1 : IsLocalRing.residue A (ψ hA s) * IsLocalRing.residue A r = IsLocalRing.residue A (ψ hA a) :=
+  have h1 : IsLocalRing.residue A (ψ hA s) * IsLocalRing.residue A r = IsLocalRing.residue A (ψ hA
+    a) :=
     by
     rw [← map_mul, hsr]
   have h2 : g • (IsLocalRing.residue A (ψ hA s) * IsLocalRing.residue A r) =
@@ -193,7 +195,8 @@ theorem solution
     (hfrob : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x - x ^ ℓ ∈ Qt)
     (A : ValuationSubring (AlgebraicClosure ℚ))
     (hA : ∀ x : AlgebraicClosure ℚ,
-      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a) :
+      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s :
+        AlgebraicClosure ℚ) * x = a) :
     A.LiesOverPrime ℓ ∧ A.IsFrobeniusAt τ ℓ := by
   have hA' : C6PortS10T3b.IsLoc Qt A := hA
   have hτ := mem_decompositionSubgroup hA' hstab
@@ -217,7 +220,8 @@ theorem ValuationSubring.isFrobeniusAt_of_forall_smul_sub_pow_mem
     (hfrob : ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x - x ^ ℓ ∈ Qt)
     (A : ValuationSubring (AlgebraicClosure ℚ))
     (hA : ∀ x : AlgebraicClosure ℚ,
-      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a) :
+      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s :
+        AlgebraicClosure ℚ) * x = a) :
     A.LiesOverPrime ℓ ∧ A.IsFrobeniusAt τ ℓ :=
   solution Qt ℓ hℓ hℓQ τ hstab hfrob A hA
 

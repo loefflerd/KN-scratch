@@ -44,7 +44,8 @@ This is the classical determination, going back to Rademacher, of generators for
 stabiliser $T$ of the cusp $\infty$, the stabiliser $U$ of the cusp $0$ (a conjugate of $T^{-1}$ by
 the Fricke involution $W_3 = \begin{pmatrix} 0 & -1 \\ 3 & 0\end{pmatrix}$), together with the
 centre. It is used in
-[`ModularForm.exists_weight_one_gamma1_three_slash_fricke_eq_smul`](thm.html#ModularForm.exists_weight_one_gamma1_three_slash_fricke_eq_smul),
+[`ModularForm.exists_weight_one_gamma1_three_slash_fricke_eq_smul`]
+(thm.html#ModularForm.exists_weight_one_gamma1_three_slash_fricke_eq_smul),
 where the behaviour of a weight one form of level $3$ under the Fricke involution is pinned down by
 checking finitely many generators.
 

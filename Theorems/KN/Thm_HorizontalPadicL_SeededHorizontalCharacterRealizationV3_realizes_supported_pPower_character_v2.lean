@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.SeededHorizontalCharacterRealizationV3.realizes_supported_pPower_character_v2
+Based on Prove2Me node
+HorizontalPadicL.SeededHorizontalCharacterRealizationV3.realizes_supported_pPower_character_v2
 (c8e3b378-13d3-4aa4-b143-ef850db23f5f) by davidloeffler (2026-09-25).
 
 Proof based on Prove2Me submission d482bb76-bf57-48b6-b431-878a5a804de4

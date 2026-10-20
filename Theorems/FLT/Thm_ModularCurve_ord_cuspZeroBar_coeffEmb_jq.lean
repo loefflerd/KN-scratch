@@ -62,10 +62,14 @@ open ModularCurve AlgebraicCurve
 open scoped Pointwise
 
 theorem solution (N : ℕ) [NeZero N] (h : IsFrickeAutFull N (frickeInvolutionFull N)) :
-    (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -N := by
+    (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange
+      (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -N := by
   have e := ModularCurve.ord_cuspZeroBar_coeffEmb_qExpand N h N 1 (mul_one N)
-  have hj : (⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ 1 jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left N (mul_one N)))⟩ : modularFunctionFieldBar N) =
-      ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :=
+  have hj : (⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ 1 jq), coeffEmb_mem_laurentBaseChange
+    (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left N (mul_one N)))⟩ : modularFunctionFieldBar
+    N) =
+      ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+        (jq_mem_full N)⟩ :=
     Subtype.ext (by simp only [qExpand_one_apply])
   rwa [hj] at e
 
@@ -81,7 +85,8 @@ public section publicSection
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_cuspZeroBar_coeffEmb_jq (N : ℕ) [NeZero N]
     (h : IsFrickeAutFull N (frickeInvolutionFull N)) :
-    (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -N :=
+    (cuspZeroBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange
+      (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -N :=
   solution N h
 
 end publicSection

@@ -40,9 +40,11 @@ This is the explicit form of the fact that the space of level one modular forms 
 one-dimensional, spanned by $E_6 = 1 - 504q - \cdots$, so that $a_1$ is determined by $a_0$. It is
 used in the project's control of $q$-expansions of level one forms, for instance in the divisibility
 statement
-[`CuspForm.dvd_504_mul_qCoeff_one_cube_of_qCoeff_congr_sigmaPrimeTo`](thm.html#CuspForm.dvd_504_mul_qCoeff_one_cube_of_qCoeff_congr_sigmaPrimeTo)
+[`CuspForm.dvd_504_mul_qCoeff_one_cube_of_qCoeff_congr_sigmaPrimeTo`]
+(thm.html#CuspForm.dvd_504_mul_qCoeff_one_cube_of_qCoeff_congr_sigmaPrimeTo)
 and in the bounds on analytic orders of vanishing of integral combinations of $j$ appearing in
-[`ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq`](thm.html#ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq)
+[`ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq`]
+(thm.html#ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq)
 and its power variant.
 
 ## Explanation of the source proof

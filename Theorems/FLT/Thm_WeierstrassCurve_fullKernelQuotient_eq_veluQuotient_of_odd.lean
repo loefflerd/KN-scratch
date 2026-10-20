@@ -104,7 +104,8 @@ private theorem _root_.WeierstrassCurve.fullKernelQuotient_discriminant_ne_zero_
 
 p2m_export "WeierstrassCurve" "fullKernelQuotient_discriminant_ne_zero_of_odd"
 
-private theorem _root_.WeierstrassCurve.zmultiples_eq_of_fullKernelQuotient_j_eq_of_transcendental_of_odd
+private theorem
+  _root_.WeierstrassCurve.zmultiples_eq_of_fullKernelQuotient_j_eq_of_transcendental_of_odd
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))]
     (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
     (ht : Transcendental ℚ W.j) (N : ℕ) [NeZero N] (hN : Odd N) (Q Q' : W.toAffine.Point)
@@ -122,7 +123,8 @@ private theorem _root_.WeierstrassCurve.zmultiples_eq_of_fullKernelQuotient_j_eq
   have hΔ₂ : (W.veluQuotient (W.oddOrderSummingSet Q' m)).Δ ≠ 0 := by rw [← hWQ']; exact hΔ'
   rw [j_congr hWQ ⟨isUnit_iff_ne_zero.mpr hΔ⟩ ⟨isUnit_iff_ne_zero.mpr hΔ₁⟩,
     j_congr hWQ' ⟨isUnit_iff_ne_zero.mpr hΔ'⟩ ⟨isUnit_iff_ne_zero.mpr hΔ₂⟩] at hj
-  exact WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental W ht m Q Q' hQ hQ' hΔ₁ hΔ₂ hj
+  exact WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental W ht m Q Q' hQ hQ' hΔ₁
+    hΔ₂ hj
 
 p2m_export "WeierstrassCurve" "zmultiples_eq_of_fullKernelQuotient_j_eq_of_transcendental_of_odd"
 end WeierstrassCurve
@@ -149,7 +151,8 @@ theorem ModularCurve.ModularPolynomialData.isRoot_map_j_fullKernelQuotient_j_of_
   have hWQ := W.fullKernelQuotient_eq_veluQuotient_oddOrderSummingSet Q m hQ
   have hΔ₁ : (W.veluQuotient (W.oddOrderSummingSet Q m)).Δ ≠ 0 := by rw [← hWQ]; exact hΔ
   rw [WeierstrassCurve.j_congr hWQ ⟨isUnit_iff_ne_zero.mpr hΔ⟩ ⟨isUnit_iff_ne_zero.mpr hΔ₁⟩]
-  exact ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq W m Q hQ hΔ₁ data
+  exact ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq W m Q hQ hΔ₁
+    data
 
 namespace ModularCurve
 p2m_export "ModularCurve" "TatePoint.dictOdd TatePoint.Qbar TatePoint.nearCurve TatePoint.CycSubH \
@@ -167,7 +170,8 @@ private theorem cycSubRootN_eq_cycSubRootOdd_aux (E : WeierstrassCurve H) [E.IsE
     (hW1 : FullKernelIsRootAt N) (hW3 : FullKernelDiscAt N) (data : ModularPolynomialData N)
     (G : CycSubH E N) : cycSubRootN E hW1 hW3 data G = cycSubRootOdd E hN data G :=
   Subtype.ext (WeierstrassCurve.j_congr
-    (E.fullKernelQuotient_eq_veluQuotient_of_odd_aux (cycSubGen E G) hN (addOrderOf_cycSubGen E G)) _ _)
+    (E.fullKernelQuotient_eq_veluQuotient_of_odd_aux (cycSubGen E G) hN (addOrderOf_cycSubGen E G))
+      _ _)
 
 private theorem rootsEquivCycSubHN_eq_rootsEquivCycSubHOdd_aux (E : WeierstrassCurve H)
     [E.IsElliptic] {N : ℕ} [NeZero N]
@@ -192,7 +196,8 @@ private theorem fullKernelIsRootAt_of_odd_aux (N : ℕ) [NeZero N] (hN : Odd N) 
 
 private theorem fullKernelInjAt_of_odd_aux (N : ℕ) [NeZero N] (hN : Odd N) : FullKernelInjAt N :=
   fun W _ ht Q Q' hQ hQ' hΔ hΔ' hj =>
-    W.zmultiples_eq_of_fullKernelQuotient_j_eq_of_transcendental_of_odd ht N hN Q Q' hQ hQ' hΔ hΔ' hj
+    W.zmultiples_eq_of_fullKernelQuotient_j_eq_of_transcendental_of_odd ht N hN Q Q' hQ hQ' hΔ hΔ'
+      hj
 
 private theorem fullKernelDiscAt_of_odd_aux (N : ℕ) [NeZero N] (hN : Odd N) : FullKernelDiscAt N :=
   fun h2 W _ Q hQ => W.fullKernelQuotient_discriminant_ne_zero_of_odd h2 N hN Q hQ
@@ -211,13 +216,15 @@ end ModularCurve.TatePoint
 
 end
 
-noncomputable example (data : ModularCurve.ModularPolynomialData 3) (j₀ : ModularCurve.TatePoint.Qbar) :
+noncomputable example (data : ModularCurve.ModularPolynomialData 3) (j₀ :
+  ModularCurve.TatePoint.Qbar) :
     ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.nearCurve j₀).j ≃
       ModularCurve.TatePoint.CycSubH (ModularCurve.TatePoint.nearCurve j₀) 3 :=
   ModularCurve.TatePoint.dictNOdd 3 (by decide) data j₀
 
 open scoped Classical
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_fullKernelQuotient_eq_veluQuotient_of_odd.WeierstrassCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_fullKernelQuotient_eq_veluQuotient_of_odd.WeierstrassCurve in
 theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) {N : ℕ} (hN : Odd N) (hQ : addOrderOf Q = N) :
     W.fullKernelQuotient Q N = W.veluQuotient (W.oddOrderSummingSet Q ((N - 1) / 2)) :=

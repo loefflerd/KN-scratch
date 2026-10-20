@@ -42,7 +42,8 @@ Dedekind domain with the $w$-adic valuation itself, the basic compatibility need
 divisors on a curve described by primes of a coordinate ring and divisors described by places of its
 function field. It is used in computing the degree of the place of a height-one prime of the
 rational function field, via
-[`AlgebraicCurve.RationalFunctionField.deg_ofHeightOneSpectrum`](thm.html#AlgebraicCurve.RationalFunctionField.deg_ofHeightOneSpectrum).
+[`AlgebraicCurve.RationalFunctionField.deg_ofHeightOneSpectrum`]
+(thm.html#AlgebraicCurve.RationalFunctionField.deg_ofHeightOneSpectrum).
 
 ## Explanation of the source proof
 
@@ -93,7 +94,8 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R]
     [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
     [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) :

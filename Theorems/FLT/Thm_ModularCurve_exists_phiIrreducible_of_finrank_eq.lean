@@ -51,7 +51,8 @@ variable, vanishing at $(j(q), j(q^N))$ — obtained here from the degree equali
 $[\mathbb{Q}(j)(j(q^N)):\mathbb{Q}(j)] = \psi(N)$, which is established separately level by level.
 It feeds the unconditional existence statement
 [`ModularCurve.exists_phiIrreducible`](thm.html#ModularCurve.exists_phiIrreducible), the computation
-[`ModularCurve.finrank_adjoin_jqN_eq_dedekindPsi`](thm.html#ModularCurve.finrank_adjoin_jqN_eq_dedekindPsi),
+[`ModularCurve.finrank_adjoin_jqN_eq_dedekindPsi`]
+(thm.html#ModularCurve.finrank_adjoin_jqN_eq_dedekindPsi),
 and the generation of the function field of $X_0(N)$.
 
 ## Explanation of the source proof
@@ -171,7 +172,8 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
           fun g => RingHom.congr_fun algebraMap_comp_evalAtJGen g
         have key : (z : LaurentSeries ℚ) *
             evalAtJ (Polynomial.C br * IsLocalization.integerNormalization (nonZeroDivisors ℤ) s) =
-            evalAtJ (Polynomial.C bs * IsLocalization.integerNormalization (nonZeroDivisors ℤ) r) := by
+            evalAtJ (Polynomial.C bs * IsLocalization.integerNormalization (nonZeroDivisors ℤ) r)
+              := by
           rw [map_mul, map_mul, W1.evalAtJ_C, W1.evalAtJ_C, hrval, hsval, zsmul_eq_mul,
             zsmul_eq_mul, ← hzs]
           ring
@@ -212,8 +214,11 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_of_finrank_eq.ModularCurve ModularCurve.PhiGen in
-theorem solution (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) :
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_of_finrank_eq.ModularCurve
+  ModularCurve.PhiGen in
+theorem solution (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set
+  (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set
+  (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) :
     ∃ data : ModularPolynomialData N, PhiIrreducible data :=
   ModularCurve.exists_phiIrreducible_of_finrank_eq N h
 
@@ -227,7 +232,10 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) :
+theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZero N] (h : Module.finrank
+  (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin
+  (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) =
+  dedekindPsi N) :
     ∃ data : ModularPolynomialData N, PhiIrreducible data :=
   solution N h
 

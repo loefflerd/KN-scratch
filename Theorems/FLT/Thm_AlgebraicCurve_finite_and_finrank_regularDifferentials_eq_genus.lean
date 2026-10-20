@@ -249,7 +249,9 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_finite_and_finrank_regularDifferentials_eq_genus.AlgebraicCurve AlgebraicCurve.RegularDifferentialsFinrank KaehlerDifferential in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_finite_and_finrank_regularDifferentials_eq_genus.AlgebraicCurve
+  AlgebraicCurve.RegularDifferentialsFinrank KaehlerDifferential in
 theorem solution {K F : Type*} [Field K]
     [Field F] [Algebra K F] [IsAlgClosed K] [Algebra.EssFiniteType K F]
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)] :

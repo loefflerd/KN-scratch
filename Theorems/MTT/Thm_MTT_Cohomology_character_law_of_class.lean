@@ -286,7 +286,8 @@ theorem MTT.Cohomology.character_law_of_class
     ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ z : UpperHalfPlane,
       g ((Matrix.SpecialLinearGroup.mapGL ℝ γ.val) • z) =
         e (γ.val 1 1 : ZMod N) *
-          (((γ.val 1 0 : ℤ) : ℂ) * z + ((γ.val 1 1 : ℤ) : ℂ)) ^ k * g z := _root_.solution hN hk I hI e g hlaw
+          (((γ.val 1 0 : ℤ) : ℂ) * z + ((γ.val 1 1 : ℤ) : ℂ)) ^ k * g z := _root_.solution hN hk I
+            hI e g hlaw
 end
 
 end publicSection

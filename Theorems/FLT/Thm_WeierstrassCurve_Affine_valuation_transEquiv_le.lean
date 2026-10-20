@@ -44,7 +44,8 @@ field of an elliptic curve: a function vanishing to order at least $k$ at $P+S$ 
 vanishing to order at least $k$ at $P$ (equality in fact holds, the translation being an
 automorphism, but only the inequality is asserted). It is used in the construction and verification
 of the properties of the Weil pairing, in particular by
-[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`](thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
+[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`]
+(thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
 
 ## Explanation of the source proof
 
@@ -85,14 +86,18 @@ theorem genericX_ne_algebraMap (c : K) : genericX W K ≠ algebraMap K (W⁄K).F
   apply IsFractionRing.injective (W⁄K).CoordinateRing (W⁄K).FunctionField
   have e1 : algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (C X)) =
       genericX W K := rfl
-  have e2 : algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (C (C c))) =
-      algebraMap K _ c := (IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField c).symm
+  have e2 : algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (C (C c)))
+    =
+      algebraMap K _ c := (IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField
+        c).symm
   rw [CoordinateRing.XClass, map_sub, map_sub, map_sub, _root_.map_zero, e1, e2, h, sub_self]
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem baseChange_a_eq :
-    (W⁄(W⁄K).FunctionField).a₁ = algebraMap K _ (W⁄K).a₁ ∧ (W⁄(W⁄K).FunctionField).a₂ = algebraMap K _ (W⁄K).a₂ ∧
-    (W⁄(W⁄K).FunctionField).a₃ = algebraMap K _ (W⁄K).a₃ ∧ (W⁄(W⁄K).FunctionField).a₄ = algebraMap K _ (W⁄K).a₄ ∧
+    (W⁄(W⁄K).FunctionField).a₁ = algebraMap K _ (W⁄K).a₁ ∧ (W⁄(W⁄K).FunctionField).a₂ = algebraMap K
+      _ (W⁄K).a₂ ∧
+    (W⁄(W⁄K).FunctionField).a₃ = algebraMap K _ (W⁄K).a₃ ∧ (W⁄(W⁄K).FunctionField).a₄ = algebraMap K
+      _ (W⁄K).a₄ ∧
     (W⁄(W⁄K).FunctionField).a₆ = algebraMap K _ (W⁄K).a₆ :=
   ⟨IsScalarTower.algebraMap_apply R K _ W.a₁, IsScalarTower.algebraMap_apply R K _ W.a₂,
     IsScalarTower.algebraMap_apply R K _ W.a₃, IsScalarTower.algebraMap_apply R K _ W.a₄,
@@ -113,7 +118,8 @@ theorem cong_addX_addY {P : (W⁄K).Point} (hP : P ≠ 0) {x₁ x₂ y₁ ℓ : 
   set v := (placeOf W K P hP).valuation (W⁄K).FunctionField
   have hc := valuation_algebraMap_le_one W K P hP
   obtain ⟨e1, e2, e3, -, -⟩ := baseChange_a_eq W K
-  have hX : v.Cong ((W⁄(W⁄K).FunctionField).addX x₁ x₂ ℓ) (algebraMap K _ ((W⁄K).addX x₁' x₂' ℓ')) :=
+  have hX : v.Cong ((W⁄(W⁄K).FunctionField).addX x₁ x₂ ℓ) (algebraMap K _ ((W⁄K).addX x₁' x₂' ℓ'))
+    :=
     by
     simp only [addX, map_sub, map_add, map_mul, map_pow, e1, e2]
     exact ((((h₄.pow (hc _) 2).add ((Valuation.Cong.refl _).mul h₄ (hc _) (hc _))).sub
@@ -143,16 +149,20 @@ theorem valuation_transEquiv_le' {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S �
   have hγx' : genericX W K ≠ Algebra.ofId K (W⁄K).FunctionField xS := hγx
   have hQx : (genericPoint W K + Point.baseChange K (W⁄K).FunctionField (.some xS yS hSns)).xc =
       (W⁄(W⁄K).FunctionField).addX (genericX W K) (algebraMap K (W⁄K).FunctionField xS)
-        ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
+        ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS)
+          (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
     rw [genericPoint, Point.baseChange, Point.map_some, Point.add_of_X_ne hγx', Point.xc_some]; rfl
   have hQy : (genericPoint W K + Point.baseChange K (W⁄K).FunctionField (.some xS yS hSns)).yc =
-      (W⁄(W⁄K).FunctionField).addY (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K)
-        ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
+      (W⁄(W⁄K).FunctionField).addY (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W
+        K)
+        ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS)
+          (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
     rw [genericPoint, Point.baseChange, Point.map_some, Point.add_of_X_ne hγx', Point.yc_some]; rfl
   have hX := cong_genericX W K (.some a b hab) hP
   have hY := cong_genericY W K (.some a b hab) hP
   simp only [Point.xc_some, Point.yc_some] at hX hY
-  have hslope : v.Cong ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K) (algebraMap K (W⁄K).FunctionField yS))
+  have hslope : v.Cong ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K
+    (W⁄K).FunctionField xS) (genericY W K) (algebraMap K (W⁄K).FunctionField yS))
       (algebraMap K (W⁄K).FunctionField ((W⁄K).slope a xS b yS)) := by
     rw [slope_of_X_ne hγx, slope_of_X_ne hx, map_div₀, map_sub, map_sub]
     refine (hY.sub (Valuation.Cong.refl _)).div (hX.sub (Valuation.Cong.refl _))
@@ -172,7 +182,11 @@ end TransportTau
 
 end WeierstrassCurve.Affine
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.WeierstrassCurve.Affine IsDedekindDomain WithZero in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le.WeierstrassCurve.Affine
+  IsDedekindDomain WithZero in
 theorem solution {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K]
     [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
     {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S ≠ 0) (hx : P.xc ≠ S.xc) (hPS : P + S ≠ 0)

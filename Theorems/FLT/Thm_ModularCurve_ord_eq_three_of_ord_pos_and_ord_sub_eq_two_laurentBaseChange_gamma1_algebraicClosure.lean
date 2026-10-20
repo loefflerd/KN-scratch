@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
+Based on Prove2Me node
+ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
 (56ee15ee-939b-5cfb-be23-8ce5ba8e581b) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 1e109a5a-0444-59e3-8325-4799324db6be
@@ -131,7 +132,8 @@ theorem mem_sup_zpowers_neg_one_iff (H : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
     · exact Subgroup.mem_sup_left hg
     · have : g = (-g) * (-1) := by simp
       rw [this]
-      exact Subgroup.mul_mem _ (Subgroup.mem_sup_left hg) (Subgroup.mem_sup_right (Subgroup.mem_zpowers _))
+      exact Subgroup.mul_mem _ (Subgroup.mem_sup_left hg) (Subgroup.mem_sup_right
+        (Subgroup.mem_zpowers _))
 
 theorem ST_smul_ρ : (ModularGroup.S * ModularGroup.T) • UpperHalfPlane.ρ = UpperHalfPlane.ρ :=
   ModularGroup.stabilizer_ρ.mpr (by simp)
@@ -159,7 +161,8 @@ private theorem ModularCurve.NoEllAux.keyEQ
     ∀ (j₀ : ℂ) (W₀ : Place ℂ K) (γ₀ : SL(2, ℤ)) (τ₀ : UpperHalfPlane), γ₀ • τ₀ = τ₀ →
       0 < W₀.ord (t - algebraMap ℂ K j₀) →
       (∀ g : K ≃ₐ[ℂ⟮t⟯] K,
-        SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W₀ = W₀ → ∃ k : ℕ, g.restrictScalars ℂ = σ γ₀ ^ k) →
+        SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W₀ = W₀ → ∃ k : ℕ, g.restrictScalars ℂ = σ γ₀
+          ^ k) →
       ∀ w : Place ℂ ↥E, 0 < w.ord (v - algebraMap ℂ ↥E j₀) →
         w.ord (v - algebraMap ℂ ↥E j₀) = W₀.ord (t - algebraMap ℂ K j₀) := by
   classical
@@ -190,7 +193,8 @@ private theorem ModularCurve.NoEllAux.keyEQ
   have hrange : σ.range = rSH.range := by
     have hle : σ.range ≤ rSH.range := by
       rintro _ ⟨d, rfl⟩
-      exact ⟨{ (σ d).toRingEquiv with commutes' := fun z => hfixL d z z.2 }, AlgEquiv.ext fun _ => rfl⟩
+      exact ⟨{ (σ d).toRingEquiv with commutes' := fun z => hfixL d z z.2 }, AlgEquiv.ext fun _ =>
+        rfl⟩
     refine Subgroup.eq_of_le_of_card_ge hle (le_of_eq ?_)
     show Nat.card rSH.range = Nat.card σ.range
     rw [← Subgroup.index_ker σ, hker, ← hdeg, ← IsGalois.card_aut_eq_finrank]
@@ -208,7 +212,8 @@ private theorem ModularCurve.NoEllAux.keyEQ
     obtain ⟨g, hg, rfl⟩ := (h4 ψ ψ' hψ hψ').mp heq.symm
     exact ⟨⟨g, hg⟩, rfl⟩
   have hclaim : ∀ g : K ≃ₐ[ℂ⟮t⟯] K,
-      SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W₀ = W₀ → (∀ e : ↥E, g (ψ e) = ψ e) → g = 1 := by
+      SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W₀ = W₀ → (∀ e : ↥E, g (ψ e) = ψ e) → g = 1
+        := by
     intro g hgW hgψ
     obtain ⟨k, hk⟩ := hD g hgW
     have hψfix : ∀ (z : K) (hz : z ∈ ℂ⟮t⟯), ψ ⟨z, hle' hz⟩ = z := by
@@ -317,7 +322,8 @@ theorem ModularCurve.NoEllAux.main
     ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin M K
   have hM2 : 2 ≤ M := by omega
   obtain ⟨⟨W0, hW0, hD0⟩, ⟨W1728, hW1728, hD1728⟩⟩ :=
-    ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers M hM2 K hst σ hσ hker
+    ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers M hM2 K hst
+      σ hσ hker
       hfix hfd hgal
   have : (Gamma1 M).FiniteIndex := inferInstance
   let t : K := algebraMap ↥(ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M)
@@ -335,7 +341,8 @@ theorem ModularCurve.NoEllAux.main
   have : IsScalarTower ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E :=
     IsScalarTower.of_algebraMap_eq fun c =>
     Subtype.ext (by
-      change ((algebraMap ℂ ↥E (ι c) : ↥E) : K) = ((ΦE (algebraMap ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) c) : ↥E) : K)
+      change ((algebraMap ℂ ↥E (ι c) : ↥E) : K) = ((ΦE (algebraMap ℚ̄ ↥(laurentBaseChange ℚ̄
+        (qExpFunctionFieldC ℚ (Gamma1 M))) c) : ↥E) : K)
       rw [hcoeC, hΦE, hΦc])
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange ℚ̄ (Gamma1 M) hT
@@ -360,11 +367,13 @@ theorem ModularCurve.NoEllAux.main
       have h2 := congrArg (fun u : ℂ⟮t⟯ => (u : K)) (e₁.apply_symm_apply w)
       simp only [h1] at h2
       exact h2)
-  have hgen : adjoin ℂ (Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E)) = ⊤ :=
+  have hgen : adjoin ℂ (Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1
+    M))) ↥E)) = ⊤ :=
     by
     apply lift_injective
     rw [lift_adjoin, lift_top]
-    have : Subtype.val '' Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ↥E) = Set.range Φ :=
+    have : Subtype.val '' Set.range (algebraMap ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1
+      M))) ↥E) = Set.range Φ :=
       by
       ext w
       constructor
@@ -372,7 +381,8 @@ theorem ModularCurve.NoEllAux.main
       · rintro ⟨f, rfl⟩; exact ⟨ΦE f, ⟨f, rfl⟩, hΦE f⟩
     rw [this]
   obtain ⟨P', -, hP'ord, -⟩ := Place.exists_comap_algebraMap_eq_of_constantFieldExtension
-    ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ℂ ↥E ⟨x₀, hx₀tr, hx₀fd⟩ ⟨ΦE y, htr', hEfd⟩ hgen P
+    ℚ̄ ↥(laurentBaseChange ℚ̄ (qExpFunctionFieldC ℚ (Gamma1 M))) ℂ ↥E ⟨x₀, hx₀tr, hx₀fd⟩ ⟨ΦE y,
+      htr', hEfd⟩ hgen P
   have hvaly : E.val (ΦE y) = t := by rw [coe_val]; exact (hΦE y).trans hΦy'
   have hint : ∀ ψ : ↥E →ₐ[ℂ] K, ψ (ΦE y) = t → ψ.toRingHom.IsIntegral := by
     intro ψ hψ
@@ -393,7 +403,8 @@ theorem ModularCurve.NoEllAux.main
       change ψ x = ((e x : ↥S) : K)
       rw [AlgEquiv.ofInjective_apply]
     rw [he]
-    exact RingHom.IsIntegral.trans _ _ (RingHom.isIntegral_of_surjective e.toAlgHom.toRingHom e.surjective) hS
+    exact RingHom.IsIntegral.trans _ _ (RingHom.isIntegral_of_surjective e.toAlgHom.toRingHom
+      e.surjective) hS
   have hΦfixσ : ∀ γ ∈ Gamma1 M, ∀ u, σ γ (Φ u) = Φ u :=
     fun γ hγ u => hΦfix γ hγ (hst γ⁻¹) (σ γ) (hσ γ) u
   have hfixer : ∀ η : SL(2, ℤ), (∀ e : ↥E, σ η (e : K) = (e : K)) →
@@ -433,12 +444,15 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
+theorem
+  ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
-    (y : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ))
     (P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-      ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+      ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M)))) :
     (0 < P.ord y → P.ord y = 3) ∧ (0 < P.ord (y - 1728) → P.ord (y - 1728) = 2) :=
   solution M hM y hy P
 

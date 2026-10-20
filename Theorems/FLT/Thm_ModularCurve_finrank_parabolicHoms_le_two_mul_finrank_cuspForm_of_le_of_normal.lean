@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
+Based on Prove2Me node
+ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
 (9f210cd5-40c4-5b4c-94fc-ba0db5fd5d19) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 4235979a-285c-5ece-8f92-aabb78a04442
@@ -54,7 +55,8 @@ of cusp forms passes from a finite-index subgroup normal in $\Gamma$ up to $\Gam
 mechanism being that the real period map is injective for every finite-index subgroup and
 equivariant for the action of $\Gamma$ on the data for $\Gamma'$. It is used to deduce the
 corresponding bound for an arbitrary congruence subgroup, in
-[`ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup`](thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup),
+[`ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup`]
+(thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup),
 from the case of a suitable normal subgroup.
 
 ## Explanation of the source proof
@@ -344,7 +346,8 @@ theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ �
       hL.sub_const L
     rwa [sub_self] at this
   · intro γ
-    refine ⟨hequiv.period ⟨(δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹, conj_mem hle hn γ.2 δ⟩, fun z => ?_⟩
+    refine ⟨hequiv.period ⟨(δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹, conj_mem hle hn γ.2 δ⟩, fun z =>
+      ?_⟩
     have hz : (δ : SL(2, ℤ)) • ((γ : SL(2, ℤ)) • z) =
         ((δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹) • ((δ : SL(2, ℤ)) • z) := by
       rw [← mul_smul, ← mul_smul]
@@ -364,7 +367,8 @@ theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ �
 
 theorem periodOf_act [Γ'.FiniteIndex] (δ : Γ) (g : CuspForm Γ' 2) (γ : Γ') :
     ModularCurve.periodOf Γ' γ (act hle hn δ g) =
-      ModularCurve.periodOf Γ' ⟨(δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹, conj_mem hle hn γ.2 δ⟩ g := by
+      ModularCurve.periodOf Γ' ⟨(δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹, conj_mem hle hn γ.2 δ⟩ g
+        := by
   obtain ⟨G, hG⟩ := ModularCurve.exists_hasEquivariantPrimitiveOf Γ' g
   obtain ⟨L, hG'⟩ := hasEquivariantPrimitiveOf_act hle hn δ g hG
   rw [ModularCurve.periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf Γ' _ hG' γ,
@@ -470,7 +474,8 @@ theorem solution
 
 end S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
 end P2MW
-export P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal (solution)
+export P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
+  (solution)
 
 end privateSection
 

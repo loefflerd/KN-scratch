@@ -399,7 +399,8 @@ theorem nonempty_zmodSqAddEquiv_torsionBy_one {A : Type*} [AddCommGroup A] :
     rw [Submodule.mem_torsionBy_iff] at hx hy
     simp only [Nat.cast_one, one_smul] at hx hy
     rw [hx, hy]
-  refine ⟨AddEquiv.ofBijective (0 : ZMod 1 × ZMod 1 →+ Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) ⟨?_, ?_⟩⟩
+  refine ⟨AddEquiv.ofBijective (0 : ZMod 1 × ZMod 1 →+ Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) ⟨?_,
+    ?_⟩⟩
   · intro a b _; exact Subsingleton.elim a b
   · intro y; exact ⟨0, Subsingleton.elim _ _⟩
 

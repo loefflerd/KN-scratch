@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
+Based on Prove2Me node
+PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
 (aa8de0ab-6fe5-5b54-9c67-7eb99189b746) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission c1ce856c-80f9-5744-ba79-9be9c873e49a
@@ -65,9 +66,11 @@ This is the analytic dictionary for isogenies of complex elliptic curves: a cycl
 between two lattice curves is realised, after rescaling the target lattice, by an inclusion of
 lattices of index $N$ with cyclic quotient. It is used in the passage from a cyclic $N$-isogeny to a
 relation between the $j$-invariants of the two curves, as in
-[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`](thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward)
+[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
+(thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward)
 and
-[`WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq).
 
 ## Explanation of the source proof
 
@@ -121,7 +124,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -454,7 +458,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
+  IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
@@ -867,7 +872,8 @@ scoped instance kw_infinite_quotientLattice : Infinite (ℂ ⧸ L.lattice.toAddS
   have : Uncountable ℂ := Complex.ofReal_injective.uncountable
   exact absurd hCc not_countable
 
-private scoped instance _root_.PeriodPair.kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :=
+private scoped instance _root_.PeriodPair.kw_infinite_point : Infinite
+  L.weierstrassCurve.toAffine.Point :=
   L.kw_toPointAddEquiv.toEquiv.infinite_iff.mp inferInstance
 
 p2m_export "PeriodPair" "kw_infinite_point"
@@ -1758,7 +1764,8 @@ noncomputable def kw_surgehgf4_kqe_toZModSq :
 
 theorem kw_surgehgf4_kqe_toZModSq_apply (l : M.lattice.toAddSubgroup) :
     kw_surgehgf4_kqe_toZModSq M (N := N) l
-      = (((M.latticeEquivProd ⟨l, l.2⟩).1 : ZMod N), ((M.latticeEquivProd ⟨l, l.2⟩).2 : ZMod N)) := by
+      = (((M.latticeEquivProd ⟨l, l.2⟩).1 : ZMod N), ((M.latticeEquivProd ⟨l, l.2⟩).2 : ZMod N))
+        := by
   rfl
 
 theorem kw_surgehgf4_kqe_toZModSq_surjective :
@@ -2031,7 +2038,12 @@ end
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine
+  _root_.P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.AlgebraicCurve
+  in
 theorem solution
     (L L' : PeriodPair) [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic]
     [GenusOnePlaceGate L.weierstrassCurve.toAffine]
@@ -2052,7 +2064,8 @@ theorem solution
     intro L L' _ _ _ _ _ _ _ _ ι hι hfin
     obtain ⟨F, hF, hF0, hFz⟩ :=
       PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint L L'
-        L.kw_discriminantNeZero L'.kw_discriminantNeZero ι hι hfin (normFormulaAlong_of_elliptic ι hfin)
+        L.kw_discriminantNeZero L'.kw_discriminantNeZero ι hι hfin (normFormulaAlong_of_elliptic ι
+          hfin)
     refine ⟨F, hF, hF0, fun z => ?_⟩
     rw [PeriodPair.kw_toPointHom_apply, PeriodPair.kw_toPointHom_apply]
     exact hFz z
@@ -2069,7 +2082,9 @@ theorem solution
 end
 end S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
 end P2MW
-export P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient (solution)
+export
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
+  (solution)
 
 end privateSection
 
@@ -2077,7 +2092,8 @@ public section publicSection
 
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
-theorem PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
+theorem
+  PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
     (L L' : PeriodPair) [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic]
     [GenusOnePlaceGate L.weierstrassCurve.toAffine]
     [GenusOnePlaceGate.IsCentred L.weierstrassCurve.toAffine]

@@ -787,7 +787,8 @@ theorem MTT.interpolation_positive_conductor_of_moments
     ∃ (g : C((ℤ_[p])ˣ, ℂ_[p])) (v : Qbar),
       (∀ x, g x = specialFunction ιp n χ j x) ∧
       ι v = normalizedCriticalValue f P.omega n χ j ∧
-      (μ true + μ false) g = eulerMultiplier f ιp α n χ j * ιp v := _root_.solution hN hk ι ιp f P α hα μ hμ n hn χ hχ j hj
+      (μ true + μ false) g = eulerMultiplier f ιp α n χ j * ιp v := _root_.solution hN hk ι ιp f P α
+        hα μ hμ n hn χ hχ j hj
 end
 
 end publicSection

@@ -91,7 +91,8 @@ theorem span_weilNum {n : ℤ} {T : (W⁄K).Point} (h : (fibIdeal W K n T).IsPri
   exact @Ideal.span_singleton_generator _ _ _ h
 
 noncomputable def weilFun (n : ℤ) (T : (W⁄K).Point) : (W⁄K).FunctionField :=
-  algebraMap _ (W⁄K).FunctionField (weilNum W K n T) / algebraMap _ (W⁄K).FunctionField (weilNum W K n 0)
+  algebraMap _ (W⁄K).FunctionField (weilNum W K n T) / algebraMap _ (W⁄K).FunctionField (weilNum W K
+    n 0)
 
 open Classical in
 noncomputable def weilPairing0 [IsAlgClosed K] [W.IsElliptic] (n : ℤ) (S T : (W⁄K).Point) : Kˣ :=

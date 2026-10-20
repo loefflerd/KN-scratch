@@ -46,8 +46,10 @@ This is the existence half of the construction of the modular polynomial $\Phi_\
 $\ell+1$ conjugate $q$-expansions: it records simultaneously that the elementary symmetric functions
 of the conjugates are series in $t^{\ell}$ and that they have rational coefficients. It feeds the
 assembly of the modular polynomial data for $X_0(\ell)$, in particular
-[`ModularCurve.exists_modularPolynomialData_evalSymm`](thm.html#ModularCurve.exists_modularPolynomialData_evalSymm),
-[`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le)
+[`ModularCurve.exists_modularPolynomialData_evalSymm`]
+(thm.html#ModularCurve.exists_modularPolynomialData_evalSymm),
+[`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le)
 and [`ModularCurve.PhiGen.splits_of_prime`](thm.html#ModularCurve.PhiGen.splits_of_prime).
 
 ## Explanation of the source proof
@@ -349,7 +351,9 @@ end PhiGen
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     [IsGalois ℚ K] [FiniteDimensional ℚ K] (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
     ∃ c : ℕ → LaurentSeries ℚ, PhiGenDescends ℓ ζ c :=

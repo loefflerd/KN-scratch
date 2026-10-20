@@ -87,7 +87,8 @@ theorem solution
       exact hle (by rw [hgen]; exact Subgroup.mem_top h)
     · intro hx; exact hx g
   have c1 : Fintype.card (fixedBy X (1 : G)) = Fintype.card X :=
-    Fintype.card_congr (Equiv.subtypeUnivEquiv (fun x => show x ∈ fixedBy X (1 : G) from one_smul G x))
+    Fintype.card_congr (Equiv.subtypeUnivEquiv (fun x => show x ∈ fixedBy X (1 : G) from one_smul G
+      x))
   have cg : ∀ g : G, g ≠ 1 → Fintype.card (fixedBy X g) = Fintype.card (fixedPoints G X) :=
     fun g hg => Fintype.card_congr (Set.equivOfEq (hfix g hg))
   have hB := sum_card_fixedBy_eq_card_orbits_mul_card_group G X

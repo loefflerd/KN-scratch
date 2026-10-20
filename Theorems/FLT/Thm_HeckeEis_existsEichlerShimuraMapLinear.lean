@@ -77,7 +77,8 @@ open UpperHalfPlane MvPolynomial CongruenceSubgroup
 open scoped MatrixGroups ModularForm
 
 theorem SolMain.lin (n N : ℕ) [NeZero N] :
-    ∃ ES : CuspForm (Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] coeffH1par ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype),
+    ∃ ES : CuspForm (Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] coeffH1par ((binaryFormRepSL ℂ n).comp (Gamma0
+      N).subtype),
       ∀ f : CuspForm (Gamma0 N) ((n : ℤ) + 2), ES f = eichlerShimuraMap n N f :=
   ⟨{ toFun := fun f => eichlerShimuraMap n N ⇑f,
       map_add' := fun f g => eichlerShimuraMap_add n N f g,
@@ -90,8 +91,10 @@ end
 
 open scoped MatrixGroups ModularForm in
 theorem solution (n N : ℕ) [NeZero N] :
-    ∃ ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype),
-      ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap n N f :=
+    ∃ ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] HeckeEis.coeffH1par
+      ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype),
+      ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap
+        n N f :=
   HeckeEis.SolMain.lin n N
 
 end S_HeckeEis_existsEichlerShimuraMapLinear
@@ -105,8 +108,10 @@ public section publicSection
 
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.existsEichlerShimuraMapLinear (n N : ℕ) [NeZero N] :
-    ∃ ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype),
-      ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap n N f :=
+    ∃ ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] HeckeEis.coeffH1par
+      ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype),
+      ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap
+        n N f :=
   solution n N
 
 end publicSection

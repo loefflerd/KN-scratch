@@ -116,7 +116,8 @@ theorem coeffHeckeT_comm (k : ℤ) {p q : ℕ} (hpq : Nat.Coprime p q) (a : ℕ 
 end M4cP1W2
 
 theorem solution (p q : ℕ) (a : ℕ → ℂ) :
-    ModularForm.coeffHeckeU p (ModularForm.coeffHeckeU q a) = ModularForm.coeffHeckeU q (ModularForm.coeffHeckeU p a) :=
+    ModularForm.coeffHeckeU p (ModularForm.coeffHeckeU q a) = ModularForm.coeffHeckeU q
+      (ModularForm.coeffHeckeU p a) :=
   M4cP1W2.coeffHeckeU_comm p q a
 
 end S_ModularForm_coeffHeckeU_comm
@@ -128,7 +129,8 @@ end privateSection
 public section publicSection
 
 theorem ModularForm.coeffHeckeU_comm (p q : ℕ) (a : ℕ → ℂ) :
-    ModularForm.coeffHeckeU p (ModularForm.coeffHeckeU q a) = ModularForm.coeffHeckeU q (ModularForm.coeffHeckeU p a) :=
+    ModularForm.coeffHeckeU p (ModularForm.coeffHeckeU q a) = ModularForm.coeffHeckeU q
+      (ModularForm.coeffHeckeU p a) :=
   solution p q a
 
 end publicSection

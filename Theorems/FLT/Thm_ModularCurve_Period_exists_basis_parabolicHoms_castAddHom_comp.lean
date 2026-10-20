@@ -304,7 +304,8 @@ private theorem liftHom_π (hg : Subgroup.closure (Set.range g) = ⊤) {z : Fin 
   liftFun_π g hg hz w
 
 private theorem liftHom_mem (hg : Subgroup.closure (Set.range g) = ⊤) {z : Fin n → A}
-    (hz : ∀ c ∈ R g, pair c z = 0) : liftHom g hg z hz ∈ ModularCurve.Period.parabolicHoms ℤ Γ A := by
+    (hz : ∀ c ∈ R g, pair c z = 0) : liftHom g hg z hz ∈ ModularCurve.Period.parabolicHoms ℤ Γ A :=
+      by
   intro γ hγ
   obtain ⟨w, rfl⟩ := π_surjective g hg γ
   rw [liftHom_π]
@@ -333,7 +334,8 @@ private scoped instance instFiniteQf : Module.Finite ℤ (Qf g) := Module.Finite
 private scoped instance instIsTorsionFreeQf : Module.IsTorsionFree ℤ (Qf g) :=
   Submodule.QuotientTorsion.instIsTorsionFree
 
-private scoped instance instFreeQf : Module.Free ℤ (Qf g) := Module.free_of_finite_type_torsion_free'
+private scoped instance instFreeQf : Module.Free ℤ (Qf g) :=
+  Module.free_of_finite_type_torsion_free'
 
 private noncomputable def t : ℕ := Module.finrank ℤ (Qf g)
 
@@ -420,7 +422,8 @@ private theorem Λ_surjective (y : Fin (t g) → A) :
 
 private theorem coord_bijective (hg : Subgroup.closure (Set.range g) = ⊤)
     (hA : ∀ (a : ℤ) (x : A), a ≠ 0 → a • x = 0 → x = 0) :
-    Function.Bijective (fun φ : ModularCurve.Period.parabolicHoms ℤ Γ A => Λ g (ev g (φ : Additive Γ →+ A))) := by
+    Function.Bijective (fun φ : ModularCurve.Period.parabolicHoms ℤ Γ A => Λ g (ev g (φ : Additive Γ
+      →+ A))) := by
   constructor
   · intro φ ψ h
     exact Subtype.ext (ev_injective g hg (Λ_injective g hA (ev_perp g φ.2) (ev_perp g ψ.2) h))
@@ -504,7 +507,8 @@ private theorem coordK_bijective (hg : Subgroup.closure (Set.range g) = ⊤) (K 
       ⟨(ψ : Additive Γ →+ K), (mem_parabolicHoms_iff _).2 ((mem_parabolicHoms_iff _).1 ψ.2)⟩ h
     exact Subtype.ext (congrArg Subtype.val key)
   · obtain ⟨φ, hφ⟩ := hb.2 y
-    exact ⟨⟨(φ : Additive Γ →+ K), (mem_parabolicHoms_iff _).2 ((mem_parabolicHoms_iff _).1 φ.2)⟩, hφ⟩
+    exact ⟨⟨(φ : Additive Γ →+ K), (mem_parabolicHoms_iff _).2 ((mem_parabolicHoms_iff _).1 φ.2)⟩,
+      hφ⟩
 
 private noncomputable def coordK (hg : Subgroup.closure (Set.range g) = ⊤) (K : Type*) [Field K]
     [CharZero K] :

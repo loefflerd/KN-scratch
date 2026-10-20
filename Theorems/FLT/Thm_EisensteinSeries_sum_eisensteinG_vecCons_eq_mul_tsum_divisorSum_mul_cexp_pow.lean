@@ -44,7 +44,8 @@ This is the Lipschitz–Hecke $q$-expansion for Eisenstein series of level $N$, 
 obtained by summing the series over all rows congruent to a fixed nonzero first residue $a$; the
 hypothesis $a \neq 0$ removes the row $m = 0$ and hence the constant term, and evenness of $k$
 identifies the rows $m$ and $-m$. It supplies the explicit expansion used in
-[`ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq`](thm.html#ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq),
+[`ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq`]
+(thm.html#ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq),
 where a weight-four form with integral $q$-expansion and prescribed partial divisor-sum coefficients
 is produced.
 
@@ -245,7 +246,8 @@ theorem solution
     rw [hB', ← hsumA.tsum_add hsumB]
     exact tsum_congr fun m => by ring
   let w : ℕ → ℂ := fun m =>
-      (if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) + (if ((m : ℕ) : ZMod N) = -a then (1 : ℂ) else 0)
+      (if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) + (if ((m : ℕ) : ZMod N) = -a then (1 : ℂ)
+        else 0)
   have hw0 : w 0 = 0 := by
     have h1 : ¬ ((0 : ℕ) : ZMod N) = a := by rw [Nat.cast_zero]; exact fun h => ha h.symm
     have h2 : ¬ ((0 : ℕ) : ZMod N) = -a := by
@@ -257,7 +259,8 @@ theorem solution
     refine (norm_add_le _ _).trans ?_
     have : ∀ P : Prop, ∀ _ : Decidable P, ‖(if P then (1 : ℂ) else 0)‖ ≤ 1 := by
       intro P _; split_ifs <;> simp
-    linarith [this (((m : ℕ) : ZMod N) = a) inferInstance, this (((m : ℕ) : ZMod N) = -a) inferInstance]
+    linarith [this (((m : ℕ) : ZMod N) = a) inferInstance, this (((m : ℕ) : ZMod N) = -a)
+      inferInstance]
   have hrow : ∀ m : ℕ+, row m =
       C * ∑' d : ℕ+, (((d : ℕ) : ℂ) ^ (k - 1)) * q ^ ((m : ℕ) * (d : ℕ)) := by
     intro m

@@ -70,9 +70,11 @@ over arbitrary finite sets of regular points and poles of $x$ and discarding the
 nonnegative different exponents; as such it is valid in arbitrary characteristic, including wild
 ramification. It underlies the genus estimates for the function fields of modular curves used in the
 comparison of the genera of coverings, and is cited by
-[`AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable`](thm.html#AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable)
+[`AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable`]
+(thm.html#AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable)
 and by the genus comparison
-[`ModularCurve.genusFF_xHFunctionFieldBar_le_genusFF_xHFunctionFieldC_of_not_dvd`](thm.html#ModularCurve.genusFF_xHFunctionFieldBar_le_genusFF_xHFunctionFieldC_of_not_dvd).
+[`ModularCurve.genusFF_xHFunctionFieldBar_le_genusFF_xHFunctionFieldC_of_not_dvd`]
+(thm.html#ModularCurve.genusFF_xHFunctionFieldBar_le_genusFF_xHFunctionFieldC_of_not_dvd).
 
 ## Explanation of the source proof
 
@@ -247,9 +249,11 @@ theorem ordDiff_eq_ordDifferential (v : Place K F) [v.DCoordGenerates] [Nontrivi
     (ω : Ω[F⁄K]) : v.ordDiff ω = v.ordDifferential ω := by
   obtain ⟨t₂, ht₂, hdc⟩ := exists_dCoord_eq_D v
   have ht₁ : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
-  have hc_smul : Place.diffCoeff v.uniformizer_alt (D K F t₂) • D K F v.uniformizer_alt = D K F t₂ :=
+  have hc_smul : Place.diffCoeff v.uniformizer_alt (D K F t₂) • D K F v.uniformizer_alt = D K F t₂
+    :=
     Place.diffCoeff_smul_D_of_ord_eq_one x v ht₁ _
-  have hc'_smul : Place.diffCoeff t₂ (D K F v.uniformizer_alt) • D K F t₂ = D K F v.uniformizer_alt :=
+  have hc'_smul : Place.diffCoeff t₂ (D K F v.uniformizer_alt) • D K F t₂ = D K F v.uniformizer_alt
+    :=
     Place.diffCoeff_smul_D_of_ord_eq_one x v ht₂ _
   have hD₁ : D K F v.uniformizer_alt ≠ 0 := Place.D_ne_zero_of_ord_eq_one x v ht₁
   have hcc' : Place.diffCoeff t₂ (D K F v.uniformizer_alt) *

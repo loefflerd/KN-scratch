@@ -56,7 +56,8 @@ This is the rationality descent for the modular function field of level $N$ (Shi
 6.9) in the case of functions holomorphic on the upper half-plane: a $\Gamma(N)$-invariant function
 with $\mathbb{Q}(\zeta_N)$-rational Fourier coefficients is a fraction, with coefficients in
 $\mathbb{Q}(\zeta_N)$, of polynomials in $j$ and the Fricke functions of level $N$. It is used by
-[`ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant`](thm.html#ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant),
+[`ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant`]
+(thm.html#ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant),
 on the way to the arithmetic of modular curves used in the modularity arguments.
 
 ## Explanation of the source proof
@@ -513,7 +514,8 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     exact hinv _ (conj_mem_Gamma N α hγ) _
   obtain ⟨a, b, ha, hb, hb0, hGb⟩ := WLight.exists_levelFraction_of_stable_family N X.L X.hL
     X.W X.hW X.fricke X.hfricke X.jf X.hjf S hhol hpb' hst hinvS hGS
-  have hpbG : ∀ γ : SL(2, ℤ), ∃ m : ℕ, IsBoundedAtImInfty ((G ∘ (γ • ·)) * ModularForm.discriminant ^ m) :=
+  have hpbG : ∀ γ : SL(2, ℤ), ∃ m : ℕ, IsBoundedAtImInfty ((G ∘ (γ • ·)) * ModularForm.discriminant
+    ^ m) :=
     fun γ => ⟨m, hpb γ⟩
   obtain ⟨d, p, hprel⟩ := WLight.exists_monicRel_j_of_mdifferentiable_levelFraction N X.L X.hL
     X.W X.hW X.fricke X.hfricke X.jf X.hjf ha hb hb0 hG hGb hpbG
@@ -545,7 +547,8 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
   set M : ℕ := m + ∑ i, mi i with hM
   have hGM : RatAt N (kN N) M G := hrat.of_le (Nat.le_add_right _ _)
   have hGiM : ∀ i, RatAt N (kN N) M (Gi i) := fun i =>
-    (hmi i).of_le (le_trans (Finset.single_le_sum (fun j _ => Nat.zero_le (mi j)) (Finset.mem_univ i))
+    (hmi i).of_le (le_trans (Finset.single_le_sum (fun j _ => Nat.zero_le (mi j)) (Finset.mem_univ
+      i))
       (Nat.le_add_left _ _))
   have hmem : G ∈ Submodule.span ℂ (Set.range Gi) := by
     rw [hGsum]
@@ -560,7 +563,8 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     refine Finset.sum_congr rfl fun i _ => ?_
     have h1 : (MvPolynomial.aeval (gen X)) (MvPolynomial.map (algebraMap (kN N) ℂ) (Ph i)) = Pi i :=
       hPh i
-    have h2 : ∀ j, (MvPolynomial.aeval (gen X)) (MvPolynomial.map (algebraMap (kN N) ℂ) (Qh j)) = Qi j :=
+    have h2 : ∀ j, (MvPolynomial.aeval (gen X)) (MvPolynomial.map (algebraMap (kN N) ℂ) (Qh j)) = Qi
+      j :=
       hQh
     simp only [h1, h2]
     rw [← Finset.mul_prod_erase Finset.univ Qi (Finset.mem_univ i), ← (hPQ i).2.2.2]
@@ -573,12 +577,16 @@ end Descent
 theorem main (N : ℕ) [NeZero N] (X : FD N) (K : IntermediateField ℚ ℂ) (hK : K = kN N)
     (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G)
     (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, G (γ • τ) = G τ)
-    (hbd : ∀ α : SL(2, ℤ), IsBoundedAtImInfty ((fun τ : ℍ => G (α • τ)) * ModularForm.discriminant ^ m))
+    (hbd : ∀ α : SL(2, ℤ), IsBoundedAtImInfty ((fun τ : ℍ => G (α • τ)) * ModularForm.discriminant ^
+      m))
     (hcoeff : ∀ n : ℕ, (qExpansion N (G * ModularForm.discriminant ^ m)).coeff n ∈ K) :
     ∃ P Q : MvPolynomial (Idx N) K,
-      MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (Q.map (algebraMap K ℂ)) ≠ 0 ∧
-      G * MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (Q.map (algebraMap K ℂ)) =
-        MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (P.map (algebraMap K ℂ)) := by
+      MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (Q.map (algebraMap K
+        ℂ)) ≠ 0 ∧
+      G * MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (Q.map (algebraMap
+        K ℂ)) =
+        MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (P.map (algebraMap K
+          ℂ)) := by
   subst hK
   have hT : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
     rw [Gamma_mem, ModularGroup.coe_T_zpow]
@@ -598,7 +606,8 @@ theorem main (N : ℕ) [NeZero N] (X : FD N) (K : IntermediateField ℚ ℂ) (hK
       simp [ofComplex_apply_of_im_nonpos this, ofComplex_apply_of_im_nonpos hw]
   have hrat : RatAt N (kN N) m G :=
     { mdiff := hG
-      periodic := periodic_mul hperG (periodic_pow (periodic_ofComplex_natCast periodic_disc_one N) m)
+      periodic := periodic_mul hperG (periodic_pow (periodic_ofComplex_natCast periodic_disc_one N)
+        m)
       bdd := by simpa [cw] using hbd 1
       mem := hcoeff }
   obtain ⟨P, Q, hQ, hGQ⟩ := descent X hG hinv (fun α => hbd α) hrat
@@ -642,7 +651,8 @@ theorem solution
 
 end S_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem
 end P2MW
-export P2MW.S_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem (solution)
+export P2MW.S_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem
+  (solution)
 
 end privateSection
 

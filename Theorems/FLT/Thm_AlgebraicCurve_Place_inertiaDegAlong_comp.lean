@@ -63,7 +63,8 @@ open IsDedekindDomain AlgebraicCurve
 theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F]
     [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral)
     (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') :
-    W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ := by
+    W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ
+      hχ).inertiaDegAlong φ hφ := by
   let iχ : Algebra F' F'' := algebraAlong χ
   have := isScalarTower_along χ
   have := isIntegral_along χ hχ
@@ -103,7 +104,8 @@ theorem AlgebraicCurve.Place.inertiaDegAlong_comp {K F F' F'' : Type*} [Field K]
     [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F')
     (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral)
     (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') :
-    W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ :=
+    W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ
+      hχ).inertiaDegAlong φ hφ :=
   solution φ χ hφ hχ hχφ W
 
 end publicSection

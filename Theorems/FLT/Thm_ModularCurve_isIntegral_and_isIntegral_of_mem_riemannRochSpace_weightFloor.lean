@@ -168,7 +168,8 @@ theorem isIntegral_adjoin_coe {K : Type*} {L : Type*} [Field K] [Field L] [Algeb
   have hmemL : ∀ i, Polynomial.aeval (t : L) (c i) ∈ Algebra.adjoin K ({(t : L)} : Set L) :=
     fun i => by
     rw [Algebra.adjoin_singleton_eq_range_aeval]; exact ⟨c i, rfl⟩
-  have hrelL : (z : L) ^ n + ∑ i ∈ Finset.range n, Polynomial.aeval (t : L) (c i) * (z : L) ^ i = 0 :=
+  have hrelL : (z : L) ^ n + ∑ i ∈ Finset.range n, Polynomial.aeval (t : L) (c i) * (z : L) ^ i = 0
+    :=
     by
     have h := congrArg (fun x : ↥E => (x : L)) hrelE
     push_cast at h
@@ -180,7 +181,8 @@ theorem isIntegral_adjoin_coe {K : Type*} {L : Type*} [Field K] [Field L] [Algeb
     exact Polynomial.aeval_algHom_apply E.val t (c i)
   let Q : Polynomial ↥(Algebra.adjoin K ({(t : L)} : Set L)) :=
     Polynomial.X ^ n + ∑ i ∈ Finset.range n,
-      Polynomial.C (⟨Polynomial.aeval (t : L) (c i), hmemL i⟩ : ↥(Algebra.adjoin K ({(t : L)} : Set L))) *
+      Polynomial.C (⟨Polynomial.aeval (t : L) (c i), hmemL i⟩ : ↥(Algebra.adjoin K ({(t : L)} : Set
+        L))) *
         Polynomial.X ^ i
   have hQm : Q.Monic := by
     apply Polynomial.monic_X_pow_add
@@ -220,7 +222,8 @@ theorem solution
   set j : ↥F := y with hjdef
   have hjcoe : (j : LaurentSeries K) = jqModC K := hy
   have hD' : ∀ w : Place K ↥F, D w = (if 0 < w.ord j then (2 * (m : ℤ) * w.ord j) / 3 else 0)
-          + (if 0 < w.ord (j - algebraMap K _ 1728) then ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) / 2 else 0)
+          + (if 0 < w.ord (j - algebraMap K _ 1728) then ((m : ℤ) * w.ord (j - algebraMap K _ 1728))
+            / 2 else 0)
           + (if w.ord j < 0 then (m : ℤ) * w.ord j else 0) := by
     intro w; rw [map_ofNat]; exact hD w
   have hcoe1 : ((G ^ 6 * j ^ (4 * m) * (j - algebraMap K _ 1728) ^ (3 * m) : ↥F) :
@@ -246,8 +249,10 @@ theorem solution
   rw [mem_riemannRochSpace_iff] at hG
   have hG' : ∀ w : Place K ↥F, -D w ≤ w.ord G := fun w => (hG w).resolve_left hG0
   have key : ∀ w : Place K ↥F,
-      (0 ≤ w.ord j → 0 ≤ 6 * w.ord G + (4 * m : ℕ) * w.ord j + (3 * m : ℕ) * w.ord (j - algebraMap K _ 1728)) ∧
-      (w.ord j ≤ 0 → 0 ≤ 2 * w.ord G + (m : ℤ) * w.ord j + (m : ℤ) * w.ord (j - algebraMap K _ 1728)) := by
+      (0 ≤ w.ord j → 0 ≤ 6 * w.ord G + (4 * m : ℕ) * w.ord j + (3 * m : ℕ) * w.ord (j - algebraMap K
+        _ 1728)) ∧
+      (w.ord j ≤ 0 → 0 ≤ 2 * w.ord G + (m : ℤ) * w.ord j + (m : ℤ) * w.ord (j - algebraMap K _
+        1728)) := by
     intro w
     have hDw := hG' w
     rw [hD' w] at hDw
@@ -295,7 +300,8 @@ theorem solution
   have hjc : ∀ w : Place K ↥F, True := fun _ => trivial
   have hord1 : ∀ w : Place K ↥F, j - algebraMap K _ 1728 ≠ 0 →
       w.ord (G ^ 6 * j ^ (4 * m) * (j - algebraMap K _ 1728) ^ (3 * m)) =
-      6 * w.ord G + (4 * m : ℕ) * w.ord j + (3 * m : ℕ) * w.ord (j - algebraMap K _ 1728) := fun w hjc => by
+      6 * w.ord G + (4 * m : ℕ) * w.ord j + (3 * m : ℕ) * w.ord (j - algebraMap K _ 1728) := fun w
+        hjc => by
     rw [w.ord_mul (mul_ne_zero (pow_ne_zero _ hG0) (pow_ne_zero _ hj0)) (pow_ne_zero _ hjc),
       w.ord_mul (pow_ne_zero _ hG0) (pow_ne_zero _ hj0), ord_pow, ord_pow, ord_pow]
     push_cast; ring
@@ -313,12 +319,14 @@ theorem solution
     exact (transcendental_jqModC K) (h' ▸ isAlgebraic_algebraMap (1728 : K))
   constructor
   · apply isIntegral_adjoin_coe
-    refine @isIntegral_adjoin_of_forall_mem_toValuationSubring K _ _ _ _ j hfd hsep j _ fun w hw => ?_
+    refine @isIntegral_adjoin_of_forall_mem_toValuationSubring K _ _ _ _ j hfd hsep j _ fun w hw =>
+      ?_
     apply mem_of_ord_nonneg
     rw [hord1 w hjc0]
     exact (key w).1 (ord_nonneg_of_mem w hw)
   · apply isIntegral_adjoin_coe
-    refine @isIntegral_adjoin_of_forall_mem_toValuationSubring K _ _ _ _ j hfd hsep j⁻¹ _ fun w hw => ?_
+    refine @isIntegral_adjoin_of_forall_mem_toValuationSubring K _ _ _ _ j hfd hsep j⁻¹ _ fun w hw
+      => ?_
     apply mem_of_ord_nonneg
     rw [hord2 w hjc0]
     have : w.ord j ≤ 0 := by have := ord_nonneg_of_mem w hw; rw [Place.ord_inv] at this; omega

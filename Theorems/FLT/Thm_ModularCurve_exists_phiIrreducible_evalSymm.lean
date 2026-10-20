@@ -51,11 +51,13 @@ This is the existence, for each prime $\ell$, of the classical modular polynomia
 relating $j(q)$ and $j(q^\ell)$, in the strong form in which irreducibility over $\mathbb{Q}(j)$ and
 the symmetry $\Phi_\ell(X,Y)=\Phi_\ell(Y,X)$ hold for one and the same packet; the pair of
 properties is what pins the packet down. It feeds the uniqueness statement
-[`ModularCurve.ModularPolynomialData.eq_of_prime`](thm.html#ModularCurve.ModularPolynomialData.eq_of_prime),
+[`ModularCurve.ModularPolynomialData.eq_of_prime`]
+(thm.html#ModularCurve.ModularPolynomialData.eq_of_prime),
 the construction of the Fricke involution
 [`ModularCurve.exists_isFrickeAut`](thm.html#ModularCurve.exists_isFrickeAut), and the existence of
 a monic relation
-[`ModularCurve.exists_monic_evalAtJ_jqN_eq_zero`](thm.html#ModularCurve.exists_monic_evalAtJ_jqN_eq_zero).
+[`ModularCurve.exists_monic_evalAtJ_jqN_eq_zero`]
+(thm.html#ModularCurve.exists_monic_evalAtJ_jqN_eq_zero).
 
 ## Explanation of the source proof
 
@@ -105,14 +107,16 @@ private theorem exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Pri
     fun k => PhiGen.mem_adjoin_jq_of_phiGenDescends ℓ hzu.unit hζ c hc k
   obtain ⟨data, hcoeff⟩ := PhiGen.exists_modularPolynomialData_coeff_eq hc hint hmem
   exact ⟨data,
-    PhiGen.phiIrreducible_of_splits ℓ hzu.unit hζ data (PhiGen.splits_of_coeff_evalAtJ_eq hzu.unit hc data hcoeff),
+    PhiGen.phiIrreducible_of_splits ℓ hzu.unit hζ data (PhiGen.splits_of_coeff_evalAtJ_eq hzu.unit
+      hc data hcoeff),
     PhiGen.evalSymm_of_coeff_evalAtJ_eq hζ hc data hcoeff⟩
 
 end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_evalSymm.ModularCurve ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_evalSymm.ModularCurve
+  ModularCurve.PhiGen in
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
     ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ :=
   ModularCurve.exists_phiIrreducible_evalSymm ℓ

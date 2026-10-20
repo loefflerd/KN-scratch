@@ -165,7 +165,8 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
     change coeffMap ι (y₀ : LaurentSeries ℚ̄) = jqModC ℂ
     rw [hy₀]; exact map_jqModC ι
   have hfull :=
-    ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M yC hyC
+    ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M yC
+      hyC
   rw [← hfull]
   symm
   set EE : IntermediateField ℂ K := IntermediateField.adjoin ℂ (Set.range Φ) with hEE
@@ -179,7 +180,8 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
     intro z
     change (((EE.equivMap E') (j z) : ↥(EE.map E')) : LaurentSeries ℂ) = _
     change (((EE.equivMap E') ((EE.equivMap E').symm
-      (IntermediateField.equivOfEq heq ((FC).equivMap (qExpC M) z))) : ↥(EE.map E')) : LaurentSeries ℂ) = _
+      (IntermediateField.equivOfEq heq ((FC).equivMap (qExpC M) z))) : ↥(EE.map E')) : LaurentSeries
+        ℂ) = _
     rw [AlgEquiv.apply_symm_apply]
     rfl
   have hjy : j yC = tE := by
@@ -238,7 +240,8 @@ theorem fixer_le (t : K)
     (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K))
     (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hfin : FiniteDimensional ℂ⟮t⟯ K) (hgal : IsGalois ℂ⟮t⟯ K)
-    (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
+    (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2,
+      ℤ))).index)
     (ι : ℚ̄ →+* ℂ) (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] LaurentSeries ℂ)
     (hE'j : E' t = qExpand ℂ M (jqModC ℂ))
     (hE'Φ : ∀ u : ↥FF, E' (Φ u) = qExpand ℂ M (coeffMap ι (u : LaurentSeries ℚ̄)))
@@ -263,7 +266,8 @@ theorem fixer_le (t : K)
         conv_lhs => rw [← ha u]
         exact (σ a).symm_apply_apply _ }
   have hmemS : ∀ d, d ∈ S₁ ↔ ∀ u, σ d (Φ u) = Φ u := fun _ => Iff.rfl
-  set G₁ : Subgroup SL(2, ℤ) := CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) with hG₁
+  set G₁ : Subgroup SL(2, ℤ) := CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) with
+    hG₁
   have hneg : σ (-1) = 1 := by
     have : (-1 : SL(2, ℤ)) ∈ σ.ker :=
       by rw [hker]; exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
@@ -375,7 +379,8 @@ theorem solution (M : ℕ) [NeZero M]
     (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K))
     (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hfin : FiniteDimensional ℂ⟮t⟯ K) (hgal : IsGalois ℂ⟮t⟯ K)
-    (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
+    (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2,
+      ℤ))).index)
     (ι : AlgebraicClosure ℚ →+* ℂ)
     (Φ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) →+* K)
@@ -383,7 +388,8 @@ theorem solution (M : ℕ) [NeZero M]
     (hE'j : E' t = ModularCurve.qExpand ℂ M (ModularCurve.jqModC ℂ))
     (hE'Φ : ∀ u : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
-        E' (Φ u) = ModularCurve.qExpand ℂ M (ModularCurve.coeffMap ι (u : LaurentSeries (AlgebraicClosure ℚ))))
+        E' (Φ u) = ModularCurve.qExpand ℂ M (ModularCurve.coeffMap ι (u : LaurentSeries
+          (AlgebraicClosure ℚ))))
     (y₀ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
     (hy₀ : (y₀ : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ))
@@ -391,7 +397,8 @@ theorem solution (M : ℕ) [NeZero M]
     (hΦfix : ∀ γ ∈ CongruenceSubgroup.Gamma1 M, ∀ u, σ γ (Φ u) = Φ u)
     (δ : SL(2, ℤ)) (hδ : ∀ u, σ δ (Φ u) = Φ u) :
     δ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) :=
-  ModularCurve.LevelN.Descent.fixer_le M K t σ hker hfin hgal hdeg ι Φ E' hE'j hE'Φ y₀ hy₀ hΦy hΦfix δ hδ
+  ModularCurve.LevelN.Descent.fixer_le M K t σ hker hfin hgal hdeg ι Φ E' hE'j hE'Φ y₀ hy₀ hΦy hΦfix
+    δ hδ
 
 end S_ModularCurve_LevelN_Descent_fixer_le
 end P2MW
@@ -408,7 +415,8 @@ theorem ModularCurve.LevelN.Descent.fixer_le (M : ℕ) [NeZero M]
     (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K))
     (hker : σ.ker = CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)))
     (hfin : FiniteDimensional ℂ⟮t⟯ K) (hgal : IsGalois ℂ⟮t⟯ K)
-    (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index)
+    (hdeg : Module.finrank ℂ⟮t⟯ K = (CongruenceSubgroup.Gamma M ⊔ Subgroup.zpowers (-1 : SL(2,
+      ℤ))).index)
     (ι : AlgebraicClosure ℚ →+* ℂ)
     (Φ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) →+* K)
@@ -416,7 +424,8 @@ theorem ModularCurve.LevelN.Descent.fixer_le (M : ℕ) [NeZero M]
     (hE'j : E' t = ModularCurve.qExpand ℂ M (ModularCurve.jqModC ℂ))
     (hE'Φ : ∀ u : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
-        E' (Φ u) = ModularCurve.qExpand ℂ M (ModularCurve.coeffMap ι (u : LaurentSeries (AlgebraicClosure ℚ))))
+        E' (Φ u) = ModularCurve.qExpand ℂ M (ModularCurve.coeffMap ι (u : LaurentSeries
+          (AlgebraicClosure ℚ))))
     (y₀ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
     (hy₀ : (y₀ : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ))

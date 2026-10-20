@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node P2M.Dup.AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty
+Based on Prove2Me node
+P2M.Dup.AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty
 (c0f27816-d641-5c01-9328-7eb6d67b8805) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 246310e9-5f60-5eb0-b628-f6f18800d82c
@@ -60,15 +61,19 @@ namespace P2MW.S_AlgebraicCurve_RationalFunctionField_eq_ofHeightOneSpectrum_or_
 open IsDedekindDomain AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
 theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) :
-    (∃ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v = Place.ofHeightOneSpectrum w) ∨ v = placeInfty K := by
-  by_cases h : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w
-  · exact Or.inr ((AlgebraicCurve.RationalFunctionField.eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum v).2 h)
+    (∃ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v = Place.ofHeightOneSpectrum w) ∨ v =
+      placeInfty K := by
+  by_cases h : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+    Place.ofHeightOneSpectrum w
+  · exact Or.inr
+      ((AlgebraicCurve.RationalFunctionField.eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum v).2 h)
   · push Not at h
     exact Or.inl h
 
 end S_AlgebraicCurve_RationalFunctionField_eq_ofHeightOneSpectrum_or_eq_placeInfty
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_eq_ofHeightOneSpectrum_or_eq_placeInfty (solution)
+export P2MW.S_AlgebraicCurve_RationalFunctionField_eq_ofHeightOneSpectrum_or_eq_placeInfty
+  (solution)
 
 end privateSection
 
@@ -78,7 +83,8 @@ public section publicSection
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
 theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty
     {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) :
-    (∃ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v = Place.ofHeightOneSpectrum w) ∨ v = placeInfty K :=
+    (∃ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v = Place.ofHeightOneSpectrum w) ∨ v =
+      placeInfty K :=
   solution v
 
 end publicSection

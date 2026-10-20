@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
+Based on Prove2Me node
+ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
 (ec49970f-20d9-5977-874f-ff3faa19fdb8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6b60dcc9-6933-5c44-9597-a3241e77bb1d
@@ -80,12 +81,14 @@ theorem solution
     (hΔ : (W.veluQuotient (W.oddOrderSummingSet Q n)).Δ ≠ 0)
     (data : ModularCurve.ModularPolynomialData (2 * n + 1)) :
     haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot
+    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+      W.j)).IsRoot
       (W.veluQuotient (W.oddOrderSummingSet Q n)).j := by
   have hE' : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   have : IsAlgClosed 𝕂 := HahnSeries.isAlgClosed_rat
   have : CharZero 𝕂 :=
-    (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
+    (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp
+      inferInstance
   have : W.toAffine.IsElliptic := ‹W.IsElliptic›
   have : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.IsElliptic := hE'
   have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
@@ -98,7 +101,8 @@ theorem solution
   have := hga
   have : IsDedekindDomain (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.CoordinateRing :=
     CoordinateRing.isDedekindDomain (W.veluQuotient (W.oddOrderSummingSet Q n))
-  have : HasPrincipalDivisors 𝕂 (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
+  have : HasPrincipalDivisors 𝕂 (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField
+    :=
     hasPrincipalDivisors_functionField (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine
   obtain ⟨g', hgc', hga'⟩ :=
     exists_genusOnePlaceGate_isCentred_and_abelTheorem (F := 𝕂)
@@ -126,13 +130,15 @@ theorem solution
     rw [hkerQ]; infer_instance
   have hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = 2 * n + 1 := by
     rw [hkerQ, Nat.card_zmultiples, hQ]
-  exact WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+  exact
+    WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
     𝕂 W.toAffine (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine ι hι hfin hN (2 * n + 1)
     hcyc hcard data
 
 end S_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
 end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq (solution)
+export P2MW.S_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
+  (solution)
 
 end privateSection
 
@@ -147,7 +153,8 @@ theorem ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrd
     (hΔ : (W.veluQuotient (W.oddOrderSummingSet Q n)).Δ ≠ 0)
     (data : ModularCurve.ModularPolynomialData (2 * n + 1)) :
     haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot
+    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+      W.j)).IsRoot
       (W.veluQuotient (W.oddOrderSummingSet Q n)).j :=
   solution W n Q hQ hΔ data
 

@@ -151,7 +151,8 @@ theorem sub_eq_const_of_forall_hasDerivAt {F G : ℂ → ℂ} {f : ℍ → ℂ}
     ∃ c : ℂ, ∀ τ : ℍ, F ↑τ - G ↑τ = c := by
   refine ⟨F ↑UpperHalfPlane.I - G ↑UpperHalfPlane.I, fun τ => ?_⟩
   exact apply_eq_apply_of_hasDerivAt_zero
-    (D := fun z => F z - G z) (fun σ => ((hF σ).fun_sub (hG σ)).congr_deriv (sub_self _)) τ UpperHalfPlane.I
+    (D := fun z => F z - G z) (fun σ => ((hF σ).fun_sub (hG σ)).congr_deriv (sub_self _)) τ
+      UpperHalfPlane.I
 
 theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => ((γ • ofComplex z : ℍ) : ℂ))

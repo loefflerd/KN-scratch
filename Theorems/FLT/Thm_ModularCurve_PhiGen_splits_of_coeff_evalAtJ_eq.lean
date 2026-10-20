@@ -44,9 +44,11 @@ This is the modular equation for $X_0(\ell)$ read as a factorisation: the classi
 $\Phi_\ell(X,Y)$, specialised at $X = j(q)$ and re-expanded in $q^{1/\ell}$-style coordinates, is
 the monic polynomial whose roots are the $\ell+1$ conjugates $j(q^{\ell^2})$ and $j(\zeta^{i}q)$. It
 feeds the symmetry and splitting statements
-[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`](thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq),
+[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`]
+(thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq),
 [`ModularCurve.PhiGen.splits_of_prime`](thm.html#ModularCurve.PhiGen.splits_of_prime) and
-[`ModularCurve.exists_phiIrreducible_evalSymm`](thm.html#ModularCurve.exists_phiIrreducible_evalSymm).
+[`ModularCurve.exists_phiIrreducible_evalSymm`]
+(thm.html#ModularCurve.exists_phiIrreducible_evalSymm).
 
 ## Explanation of the source proof
 
@@ -92,7 +94,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ)
     (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :

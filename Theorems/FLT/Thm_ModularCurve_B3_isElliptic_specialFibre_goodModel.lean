@@ -30,7 +30,8 @@ Let $j_0$ be an element of `Qbar`, the algebraic closure of $\mathbb{Q}$. Over t
 forms `nearCurve j₀`, the Weierstrass curve `WeierstrassCurve.ofJ (jNear j₀)` attached by the
 standard formulae to the element `jNear j₀` of `H`, and then `goodModel j₀`, the result of acting on
 `nearCurve j₀` by the variable change `scaleVC j₀`; the latter is $\langle
-sU(2/12),\,-(\mathrm{jNear}\,0-1728)^2/12,\,-(\mathrm{jNear}\,0-1728)/2,\,(\mathrm{jNear}\,0-1728)^3/24\rangle$
+sU(2/12),\,-(\mathrm{jNear}\,0-1728)^2/12,\,-(\mathrm{jNear}\,0-1728)/2,\,(\mathrm{jNear}
+\,0-1728)^3/24\rangle$
 when $j_0=0$, it is $\langle sU(9/12),0,0,0\rangle$ when $j_0=1728$, and it is the identity variable
 change otherwise. Its special fibre `specialFibre (goodModel j₀)` is the Weierstrass curve over
 `Qbar` whose five coefficients $a_1,a_2,a_3,a_4,a_6$ are the coefficients at index $0$ of the
@@ -292,7 +293,8 @@ theorem mEl_mem : mEl ∈ integralO := w_mem 0
 theorem coeff_zero_mEl : mEl.coeff 0 = -1728 := by rw [mEl, coeff_zero_w, zero_sub]
 
 theorem uInv_pow_mul_sMon_four :
-    (HahnSeries.single (-(2 / 12) : ℚ) (1 : Qbar) : H) ^ 4 * sMon = HahnSeries.single (1 / 3 : ℚ) 1 := by
+    (HahnSeries.single (-(2 / 12) : ℚ) (1 : Qbar) : H) ^ 4 * sMon = HahnSeries.single (1 / 3 : ℚ) 1
+      := by
   rw [HahnSeries.single_pow, HahnSeries.single_mul_single]; norm_num
 
 theorem uInv_pow_mul_sMon_six :
@@ -322,7 +324,8 @@ theorem goodModel_0_a₄ :
       2 * (-(jNear 0 - 1728) ^ 2 / 12) * 0 -
       ((jNear 0 - 1728) ^ 3 / 24 + -(jNear 0 - 1728) ^ 2 / 12 * (-(jNear 0 - 1728) / 2)) *
         (jNear 0 - 1728) +
-      3 * (-(jNear 0 - 1728) ^ 2 / 12) ^ 2 - 2 * (-(jNear 0 - 1728) / 2) * ((jNear 0 - 1728) ^ 3 / 24))
+      3 * (-(jNear 0 - 1728) ^ 2 / 12) ^ 2 - 2 * (-(jNear 0 - 1728) / 2) * ((jNear 0 - 1728) ^ 3 /
+        24))
       = sMon * (-mEl ^ 3 / 48) := by
     rw [← mEl_add]; simp only [mEl]; ring
   rw [key, ← mul_assoc, uInv_pow_mul_sMon_four]

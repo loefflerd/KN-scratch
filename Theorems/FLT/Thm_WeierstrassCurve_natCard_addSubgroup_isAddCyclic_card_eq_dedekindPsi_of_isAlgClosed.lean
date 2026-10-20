@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
+Based on Prove2Me node
+WeierstrassCurve.natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
 (94a534c6-fb29-5f54-a382-f8be7c08c792) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 020351b1-1941-5c3f-8339-f757f7235292
@@ -74,7 +75,8 @@ theorem solution
 
 end S_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
 end P2MW
-export P2MW.S_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed (solution)
+export P2MW.S_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
+  (solution)
 
 end privateSection
 

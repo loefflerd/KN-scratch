@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.SeedCyclotomicGaloisCharacterDataV2.exists_fullOrder_value_v2
+Based on Prove2Me node
+HorizontalPadicL.SeedCyclotomicGaloisCharacterDataV2.exists_fullOrder_value_v2
 (9606b52a-0137-48ed-adb7-fbb513d1c658) by davidloeffler (2026-09-25).
 
 Proof based on Prove2Me submission 7e21a5fb-c56c-4fb1-97e7-c49eae9feb07

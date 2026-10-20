@@ -46,7 +46,8 @@ space with basis $dt$ for any $t$ of nonzero order at a place, in characteristic
 coefficient extraction $\mathrm{diffCoeff}$ well behaved, and hence the order of a differential at a
 place well defined. It is used in the computation of the order of a differential at $v$, for
 instance in
-[`AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one`](thm.html#AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one)
+[`AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one`]
+(thm.html#AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one)
 and [`AlgebraicCurve.Place.ordDiff_D_nonneg`](thm.html#AlgebraicCurve.Place.ordDiff_D_nonneg), and
 in the comparison of regular differentials under extension of the constant field.
 

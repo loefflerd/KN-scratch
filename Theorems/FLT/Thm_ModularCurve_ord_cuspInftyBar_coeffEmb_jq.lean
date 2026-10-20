@@ -65,7 +65,8 @@ open ModularCurve AlgebraicCurve
 open scoped Pointwise
 
 theorem solution (N : ℕ) [NeZero N] :
-    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -1 := by
+    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange
+      (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -1 := by
   rw [ModularCurve.ord_cuspInftyBar]
   exact order_coeffEmb_jq (AlgebraicClosure ℚ)
 
@@ -80,7 +81,8 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_cuspInftyBar_coeffEmb_jq (N : ℕ) [NeZero N] :
-    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -1 :=
+    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange
+      (AlgebraicClosure ℚ) (jq_mem_full N)⟩ = -1 :=
   solution N
 
 end publicSection

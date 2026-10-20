@@ -40,9 +40,11 @@ stabiliser hypothesis is imposed.
 This is the vertex-set form of Serre's tree of representatives (fundamental domain) for a group
 acting on a connected graph, as in §I.3 of Serre's Trees. It is used in the present development in
 the treatment of free products, supporting the Kurosh/Nielsen–Schreier style statements
-[`Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank`](thm.html#Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank)
+[`Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank`]
+(thm.html#Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank)
 and
-[`Monoid.CoprodI.finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one`](thm.html#Monoid.CoprodI.finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one).
+[`Monoid.CoprodI.finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one`]
+(thm.html#Monoid.CoprodI.finrank_addMonoidHom_add_card_orbitRelQuotient_le_index_add_one).
 
 ## Explanation of the source proof
 

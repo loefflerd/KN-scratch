@@ -45,7 +45,8 @@ This is the rigidity statement in the conditional place-theoretic set-up: the gr
 $W(F)$ obtained by transporting push-forward of degree-zero divisors along $\iota$ through the
 Abel–Jacobi dictionary is the geometric self-map $h$ determined by $\iota$ on places, corrected by
 subtracting $h(O)$, so that $h$ is a translation composed with an isogeny. It is used by
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add),
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add),
 which passes between morphism-level identities for $\iota$ and additive identities for `pointEnd`.
 
 ## Explanation of the source proof
@@ -72,8 +73,10 @@ theorem solution
     (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) (P : W.Point) :
     D.pointEnd hN P
       = (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D.ι D.hι)
-        - (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) := by
-  set Q : W.Point := (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D.ι D.hι) with hQ
+        - (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) :=
+          by
+  set Q : W.Point := (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D.ι D.hι) with
+    hQ
   set Q₀ : W.Point :=
     (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) with hQ₀
   have hP : (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint Q :=

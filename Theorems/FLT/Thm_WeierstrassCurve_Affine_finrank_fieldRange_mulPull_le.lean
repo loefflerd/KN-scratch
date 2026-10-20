@@ -53,9 +53,11 @@ classical equality.
 This is the function-field form of the statement that multiplication by $n$ on an elliptic curve has
 degree $n^2$: the pull-back $[n]^*$ exhibits the function field as an extension of index at most
 $n^2$ of its image. It feeds the study of endomorphisms of the function field, being used in
-[`WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq`](thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq)
+[`WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq`]
+(thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq)
 and in
-[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`](thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul).
+[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`]
+(thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul).
 
 ## Explanation of the source proof
 
@@ -76,7 +78,8 @@ open Polynomial IntermediateField
 
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
     (W : WeierstrassCurve F) [W.IsElliptic] {n : ℤ} (hgood : MulGood W K n) :
-    FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 := by
+    FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K
+      n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 := by
   classical
   have hEK : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
@@ -96,7 +99,8 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     rw [← hf]; exact W.baseChange_Ψ₂Sq f
   have hγn : n • genericPoint W K ≠ 0 := hgood.1
   have hψ : ((W⁄L).ψ n).evalEval gX gY ≠ 0 := fun h0 =>
-    hγn ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (W⁄L) (generic_nonsingular W K) n).mpr h0)
+    hγn ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (W⁄L) (generic_nonsingular W K) n).mpr
+      h0)
   have hΨX : ((W⁄L).ΨSq n).eval gX ≠ 0 := by
     rw [← WeierstrassCurve.Affine.evalEval_psi_sq (W⁄L) (generic_equation W K) n]
     exact pow_ne_zero _ hψ
@@ -150,10 +154,12 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     rw [hP, WeierstrassCurve.Affine.Point.two_smul_some_eq_zero_iff (W⁄L), hΨ₂Sq,
       eval_map_algebraMap] at h2
     apply not_isIntegral_xc_of_ne_baseChange (n • genericPoint W K) hgood.1 hgood.2
-    exact IsAlgebraic.isIntegral ⟨(W⁄K).Ψ₂Sq, WeierstrassCurve.Psi2Sq_ne_zero_of_isElliptic (W⁄K), h2⟩
+    exact IsAlgebraic.isIntegral ⟨(W⁄K).Ψ₂Sq, WeierstrassCurve.Psi2Sq_ne_zero_of_isElliptic (W⁄K),
+      h2⟩
   have hgen : IntermediateField.adjoin K {gX, gY} = ⊤ := FunctionField.adjoin_X_Y_eq_top (W⁄K)
   have key :=
-    IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top gX gY hgen A B hAmem hBmem hYq (mulPull W K n)
+    IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top gX gY hgen A B hAmem hBmem hYq
+      (mulPull W K n)
     (negEquiv W K : L →ₐ[K] L) hιX hιY hιμ ((W⁄K).Φ n) ((W⁄K).ΨSq n)
     (d := n.natAbs ^ 2) (pow_pos (Int.natAbs_pos.mpr hn0) 2) ?_ ?_
   · exact key
@@ -176,7 +182,8 @@ open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 theorem WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le {F K : Type*} [Field F] [Field K]
     [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℤ}
     (hgood : MulGood W K n) :
-    FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 :=
+    FiniteDimensional (mulPull W K n).fieldRange (W⁄K).FunctionField ∧ Module.finrank (mulPull W K
+      n).fieldRange (W⁄K).FunctionField ≤ n.natAbs ^ 2 :=
   solution W hgood
 
 end publicSection

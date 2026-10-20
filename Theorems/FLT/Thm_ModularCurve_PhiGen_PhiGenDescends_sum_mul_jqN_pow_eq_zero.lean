@@ -46,9 +46,11 @@ This is the vanishing $\Phi_{\ell}(j(q), j(q^{\ell})) = 0$ of the modular equati
 recorded at the level of Laurent series and before the coefficients $c_k$ are identified as
 polynomials in $j$. It is used in the construction of the modular polynomial data for $X_0(\ell)$,
 namely by
-[`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le)
+[`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le)
 and
-[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`](thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq).
+[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`]
+(thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq).
 
 ## Explanation of the source proof
 
@@ -378,7 +380,10 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) :
     ∑ k ∈ Finset.range (ℓ + 2), c k * (jqN ℓ) ^ k = 0 :=

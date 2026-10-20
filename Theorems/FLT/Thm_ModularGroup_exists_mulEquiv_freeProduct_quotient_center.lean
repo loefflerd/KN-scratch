@@ -544,7 +544,8 @@ theorem mulEquiv_apply_of_eq (i : Fin 2) (x : G23 i) (g : SL(2, ℤ)) (hg : toPe
     apply Subtype.ext
     rw [equivRange_apply_coe, Monoid.CoprodI.lift_of]
     exact hg.symm
-  have h2 : (QuotientGroup.quotientKerEquivRange toPerm) (QuotientGroup.mk g) = ⟨toPerm g, g, rfl⟩ :=
+  have h2 : (QuotientGroup.quotientKerEquivRange toPerm) (QuotientGroup.mk g) = ⟨toPerm g, g, rfl⟩
+    :=
     rfl
   rw [h1, ← h2, MulEquiv.symm_apply_apply]
   rfl
@@ -562,7 +563,8 @@ end ModularCurve
 
 theorem solution :
     ∃ e : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2)))
-        ≃* Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Subgroup.center (Matrix.SpecialLinearGroup (Fin 2) ℤ),
+        ≃* Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Subgroup.center (Matrix.SpecialLinearGroup (Fin 2)
+          ℤ),
       e (Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 0)
           (Multiplicative.ofAdd 1)) = QuotientGroup.mk ModularGroup.S ∧
       e (Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 1)
@@ -581,7 +583,8 @@ public section publicSection
 
 theorem ModularGroup.exists_mulEquiv_freeProduct_quotient_center :
     ∃ e : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2)))
-        ≃* Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Subgroup.center (Matrix.SpecialLinearGroup (Fin 2) ℤ),
+        ≃* Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Subgroup.center (Matrix.SpecialLinearGroup (Fin 2)
+          ℤ),
       e (Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 0)
           (Multiplicative.ofAdd 1)) = QuotientGroup.mk ModularGroup.S ∧
       e (Monoid.CoprodI.of (M := fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) (i := 1)

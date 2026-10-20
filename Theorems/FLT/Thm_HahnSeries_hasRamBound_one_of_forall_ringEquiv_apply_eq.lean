@@ -50,7 +50,8 @@ itself, the Galois-theoretic half of the Puiseux tower $K((t)) \subset K((t^{1/e
 K((t^{\mathbb Q}))$; note that the automorphisms quantified over are merely ring isomorphisms, not
 assumed $K$-linear. It is used to bound ramification of Puiseux expansions attached to torsion
 points of a Weierstrass curve over a power series ring, in
-[`WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries`](thm.html#WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries).
+[`WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries`]
+(thm.html#WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries).
 
 ## Explanation of the source proof
 
@@ -170,7 +171,8 @@ theorem rootSeq_zero : rootSeq ζ 0 = ζ := rfl
 theorem rootSeq_succ_pow (m : ℕ) : (rootSeq ζ (m + 1)) ^ (m + 1) = rootSeq ζ m := by
   apply Units.ext
   rw [Units.val_pow_eq_pow_val]
-  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
+  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^
+    (m+1) = _
   exact Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)
 
 theorem rootSeq_add_pow (m j : ℕ) :
@@ -208,7 +210,8 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_right x.den m))
   have e2 : (((b * x.den.factorial) / x.den : ℕ) : ℤ) * (x.den : ℤ) = b * x.den.factorial := by
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
-  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) :=
+  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den +
+    m).factorial : ℤ) :=
     by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
@@ -247,7 +250,8 @@ noncomputable def char : Multiplicative ℚ →* Kˣ where
     change charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
       = charFun ζ b (Multiplicative.toAdd x) * charFun ζ b (Multiplicative.toAdd y)
     have hm0 : 0 < (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den :=
-      Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd y).den_nz)
+      Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd
+        y).den_nz)
     have hfac : (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den ∣
         ((Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den).factorial :=
       Nat.dvd_factorial hm0 le_rfl

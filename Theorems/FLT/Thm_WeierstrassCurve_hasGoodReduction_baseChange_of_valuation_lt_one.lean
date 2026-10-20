@@ -47,7 +47,8 @@ base is extended to a finite extension, here in the arithmetic situation where t
 localisation of $\mathbb{Z}$ inside $\mathbb{Q}$ and $S$ is a discrete valuation subring of a number
 field lying over the prime $q$. It feeds the proof that the Galois representation attached to a
 curve with good reduction at $q$ is unramified at places above $q$, via
-[`WeierstrassCurve.galoisRepUnramifiedAt_of_hasGoodReduction`](thm.html#WeierstrassCurve.galoisRepUnramifiedAt_of_hasGoodReduction).
+[`WeierstrassCurve.galoisRepUnramifiedAt_of_hasGoodReduction`]
+(thm.html#WeierstrassCurve.galoisRepUnramifiedAt_of_hasGoodReduction).
 
 ## Explanation of the source proof
 

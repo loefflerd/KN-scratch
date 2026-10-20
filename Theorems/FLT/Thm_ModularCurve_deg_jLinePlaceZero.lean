@@ -42,9 +42,11 @@ rational.
 This records that the point $j=0$ of the $j$-line is a rational point, the residue field being
 $\mathbb{Q}$ itself. It is used in the computation of ramification data for the covering of the
 $j$-line by the modular curve, entering the counts
-[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo)
+[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo)
 of points above $j=0$ and $j=1728$.
 
 ## Explanation of the source proof

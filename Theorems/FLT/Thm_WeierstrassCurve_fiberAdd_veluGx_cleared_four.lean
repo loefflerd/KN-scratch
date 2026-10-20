@@ -32,7 +32,8 @@ the vanishing of `veluGy` at $(x_0,y_0)$. Writing $t_0=3x_0^2+2a_2x_0+a_4-a_1y_0
 $M=(y-y_0)\bigl(x(x-x_0)^2-N\bigr)-y(x-x_0)^3-a_1N(x-x_0)-a_3(x-x_0)^3$, the asserted identity in
 $R$ is
 $$4\Bigl[(3x^2+2a_2x+a_4-a_1y)(x-x_0)^4+3N^2+2a_2N(x-x_0)^2+a_4(x-x_0)^4-a_1M(x-x_0)\Bigr]$$
-$$=4\Bigl[3\bigl(x(x-x_0)^2+t_0(x-x_0)\bigr)^2+2a_2\bigl(x(x-x_0)^2+t_0(x-x_0)\bigr)(x-x_0)^2+(a_4-5t_0)(x-x_0)^4-a_1\bigl(y(x-x_0)^3-t_0(a_1(x-x_0)+y-y_0)(x-x_0)\bigr)(x-x_0)\Bigr].$$
+$$=4\Bigl[3\bigl(x(x-x_0)^2+t_0(x-x_0)\bigr)^2+2a_2\bigl(x(x-x_0)^2+t_0(x-x_0)\bigr)(x-x_0)^2+
+(a_4-5t_0)(x-x_0)^4-a_1\bigl(y(x-x_0)^3-t_0(a_1(x-x_0)+y-y_0)(x-x_0)\bigr)(x-x_0)\Bigr].$$
 Here $N=(x-x_0)^2x_3$ and $M=(x-x_0)^3y_3$ for the chord-law sum $(x_3,y_3)=(x,y)+(x_0,y_0)$, and
 the two bracketed expressions on the right involve $(x-x_0)^2$ and $(x-x_0)^3$ times the coordinates
 of the image of $(x,y)$ under the Vélu isogeny with kernel $\{O,(x_0,y_0)\}$; so the identity is the
@@ -45,9 +46,11 @@ $2y_0=-(a_1x_0+a_3)$ to be used without dividing by $2$. It is used in the compa
 quotients by a cyclic subgroup of even order with the two-step quotient, and feeds the discriminant
 computations
 [`ModularCurve.TatePoint.fullKernelDiscAt`](thm.html#ModularCurve.TatePoint.fullKernelDiscAt) and
-[`ModularCurve.TatePoint.fullKernelDiscAt_univ`](thm.html#ModularCurve.TatePoint.fullKernelDiscAt_univ)
+[`ModularCurve.TatePoint.fullKernelDiscAt_univ`]
+(thm.html#ModularCurve.TatePoint.fullKernelDiscAt_univ)
 and the construction
-[`WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`](thm.html#WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
+[`WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`]
+(thm.html#WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
 
 ## Explanation of the source proof
 
@@ -101,8 +104,16 @@ private theorem fiberAdd_veluGx_cleared_four_aux {R : Type*} [CommRing R] (W : W
     (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
-    4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)))
-      = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) := by
+    4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+      x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+      x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^
+      2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x -
+      x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)
+      * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)))
+      = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 +
+        W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 -
+        W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x -
+        x₀)) := by
   obtain ⟨hn, hm⟩ := fiberAdd_coordinates W x y x₀ y₀ hP hQ hgy
   rw [hm, hn]
   simp only [veluGx]
@@ -111,12 +122,21 @@ private theorem fiberAdd_veluGx_cleared_four_aux {R : Type*} [CommRing R] (W : W
 
 end WeierstrassCurve
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four.WeierstrassCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four.WeierstrassCurve in
 theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
-    4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)))
-      = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) :=
+    4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+      x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+      x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^
+      2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x -
+      x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)
+      * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)))
+      = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 +
+        W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 -
+        W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x -
+        x₀)) :=
   WeierstrassCurve.fiberAdd_veluGx_cleared_four_aux W x y x₀ y₀ hP hQ hgy
 
 end S_WeierstrassCurve_fiberAdd_veluGx_cleared_four
@@ -131,8 +151,16 @@ theorem WeierstrassCurve.fiberAdd_veluGx_cleared_four {R : Type*} [CommRing R]
     (W : WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
-    4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)))
-      = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) :=
+    4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+      x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+      x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^
+      2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x -
+      x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)
+      * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀)))
+      = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 +
+        W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 -
+        W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x -
+        x₀)) :=
   solution W x y x₀ y₀ hP hQ hgy
 
 end publicSection

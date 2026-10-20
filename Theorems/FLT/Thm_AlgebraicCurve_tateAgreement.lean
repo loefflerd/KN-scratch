@@ -47,7 +47,8 @@ local residue at $u$ evaluated on an element of $L$ differing from $\hat f$ by a
 This is the comparison, in Tate's treatment of residues of differentials on curves, between the
 commutator-trace definition of the residue on a completion and the trace to $K$ of the classical
 local residue, here at the pairing of an arbitrary element against a uniformizer. It is used by
-[`AlgebraicCurve.residueTraceCompletionCommute`](thm.html#AlgebraicCurve.residueTraceCompletionCommute)
+[`AlgebraicCurve.residueTraceCompletionCommute`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute)
 in establishing the compatibility of residues with traces on completions.
 
 ## Explanation of the source proof
@@ -2463,7 +2464,8 @@ theorem tateCommTrace_of_kernelData (D : TateCohenKernelData u) (fh : u.adicComp
           (kwHgfV352_localResidueCompletion u fh))) := by rw [hconj]
     _ = LinearMap.trace K u.ResidueField (Algebra.lmul K u.ResidueField
           (kwHgfV352_localResidueCompletion u fh)) :=
-          LinearMap.trace_conj' (N := ↥W) (Algebra.lmul K u.ResidueField (kwHgfV352_localResidueCompletion u fh)) e
+          LinearMap.trace_conj' (N := ↥W) (Algebra.lmul K u.ResidueField
+            (kwHgfV352_localResidueCompletion u fh)) e
     _ = Algebra.trace K u.ResidueField (kwHgfV352_localResidueCompletion u fh) := rfl
 
 end TraceComputation

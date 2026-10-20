@@ -133,7 +133,8 @@ theorem N3Prep.exists_algHom_comp_eq
     intro x
     obtain ⟨h, hh⟩ := N3Prep.exists_apply_eq_apply_smul H E E' hagree x
     exact ⟨_, hh.symm⟩
-  refine ⟨(AlgEquiv.ofInjectiveField E).symm.toAlgHom.comp (E'.codRestrict E.range hmem), fun x => ?_⟩
+  refine ⟨(AlgEquiv.ofInjectiveField E).symm.toAlgHom.comp (E'.codRestrict E.range hmem), fun x =>
+    ?_⟩
   have h1 := AlgEquiv.ofInjective_apply E (RingHom.injective (E : K →+* L))
     ((AlgEquiv.ofInjectiveField E).symm (E'.codRestrict E.range hmem x))
   change E ((AlgEquiv.ofInjectiveField E).symm (E'.codRestrict E.range hmem x)) = E' x
@@ -204,7 +205,8 @@ theorem solution
       ((AlgEquiv.ofInjectiveField E₉).symm w)
     change E₉ ((AlgEquiv.ofInjectiveField E₉).symm w) = _
     rw [← h1]
-    change (((AlgEquiv.ofInjectiveField E₉) ((AlgEquiv.ofInjectiveField E₉).symm w)) : LaurentSeries ℂ) = _
+    change (((AlgEquiv.ofInjectiveField E₉) ((AlgEquiv.ofInjectiveField E₉).symm w)) : LaurentSeries
+      ℂ) = _
     rw [AlgEquiv.apply_symm_apply]
     rfl
   have : σ.ker.FiniteIndex := by

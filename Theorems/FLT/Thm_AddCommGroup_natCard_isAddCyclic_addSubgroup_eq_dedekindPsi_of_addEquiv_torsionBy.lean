@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AddCommGroup.natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy
+Based on Prove2Me node
+AddCommGroup.natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy
 (f0b6d6df-0db0-5a8f-baf6-97c9def0bb3a) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 5f2d5eb4-3c9a-5031-88de-79879aca740d
@@ -107,7 +108,8 @@ open Transport in
 theorem solution
     (n : ℕ) [NeZero n] {A : Type*} [AddCommGroup A]
     (e : ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n) :
-    Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n := by
+    Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n :=
+      by
   let ι : ZMod n × ZMod n →+ A :=
     ((Submodule.torsionBy ℤ A n).toAddSubgroup.subtype).comp e.toAddMonoidHom
   have hι : Function.Injective ι :=

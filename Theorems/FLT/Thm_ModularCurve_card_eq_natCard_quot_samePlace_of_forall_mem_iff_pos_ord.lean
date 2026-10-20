@@ -54,7 +54,8 @@ This is the function-field form of the classical description of the points of $X
 given $j$-invariant as classes of normalised Puiseux embeddings of the modular function field, the
 places being counted with multiplicity through the order of vanishing of $\bar\jmath - j_0$. It
 feeds the comparison
-[`ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD`](thm.html#ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD)
+[`ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD`]
+(thm.html#ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD)
 between this count of places and the moduli-theoretic count of points with prescribed $j$-invariant.
 
 ## Explanation of the source proof
@@ -82,14 +83,16 @@ namespace S12P
 variable (N : ℕ) [NeZero N]
 
 abbrev jb : ↥(modularFunctionFieldBar N) :=
-  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩
+  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+    (jq_mem_full N)⟩
 
 abbrev jNb : ↥(modularFunctionFieldBar N) :=
   ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ N jq),
     coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (dvd_refl N))⟩
 
 theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
-    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) (jNb N)
+    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))
+      (jNb N)
       = 0 := by
   apply Subtype.ext
   have hval : ((modularFunctionFieldBar N).toSubfield.subtype).comp
@@ -97,7 +100,8 @@ theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
       = (coeffEmb (AlgebraicClosure ℚ)).comp evalAtJ := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
     change ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
-        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (evalAtJ X)
+        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb
+          (AlgebraicClosure ℚ) (evalAtJ X)
     rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X]
   have h0 := congrArg (coeffEmb (AlgebraicClosure ℚ)) data.eval_eq_zero
   rw [map_zero, Polynomial.hom_eval₂, ← hval] at h0
@@ -170,13 +174,16 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
       (eval₂RingHom_mem_puiseuxRamSubfield_one _ (hasRamBound_C_add_single j₀) _)
   have hroot : P.IsRoot (ψ (jNb N)) := by
     rw [Polynomial.IsRoot, hPdef, Polynomial.eval_map, ← hψ]
-    have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb N))
-        = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) := by
+    have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ
+      (jb N))
+        = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N))
+          (jb N)) := by
       refine Polynomial.ringHom_ext (fun z => by simp) ?_
       simp
     rw [hcomp]
     have h := (Polynomial.hom_eval₂ data.Φ
-      (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom (jNb N)).symm
+      (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom
+        (jNb N)).symm
     rw [eval₂_Phi_jb_jNb N data, map_zero] at h
     simpa using h
   have hbN := HahnSeries.hasRamBound_natDegree_factorial_of_isRoot hP0 hcoeff hroot
@@ -245,7 +252,8 @@ theorem pos_ord_of_induces (j₀ : AlgebraicClosure ℚ) (ψ : Emb N j₀)
   have hx := h (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)
   rw [map_sub, ψ.2, AlgHom.commutes, algebraMap_hahn_eq_C, add_sub_cancel_left,
     HahnSeries.order_single (one_ne_zero)] at hx
-  have : (0 : ℚ) < (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀) : ℚ) * g :=
+  have : (0 : ℚ) < (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)
+    : ℚ) * g :=
     by
     rw [hx]; exact_mod_cast one_pos
   exact_mod_cast pos_of_mul_pos_left this hg.le
@@ -307,7 +315,8 @@ theorem natCard_quot_eq_of_surjective {X Y : Type*} (r : X → X → Prop) (π :
 
 theorem card_eq_natCard_quot (j₀ : AlgebraicClosure ℚ)
     (S : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)))
-    (hS : ∀ v, v ∈ S ↔ 0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)) :
+    (hS : ∀ v, v ∈ S ↔ 0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar
+      N) j₀)) :
     S.card = Nat.card (Quot (fun ψ ψ' : Emb N j₀ => SamePlace ψ.1 ψ'.1)) := by
   have hmem : ∀ ψ : Emb N j₀, placeOf N j₀ ψ ∈ S := fun ψ =>
     (hS _).mpr (pos_ord_of_induces N j₀ ψ (induces_placeOf N j₀ ψ))
@@ -327,9 +336,12 @@ end
 
 theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
-    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
-    (hS : ∀ v, v ∈ S ↔ 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) j₀)) :
-    S.card = Nat.card (Quot (fun ψ ψ' : ModularCurve.Emb N j₀ => ModularCurve.SamePlace ψ.1 ψ'.1)) := by
+    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar
+      N)))
+    (hS : ∀ v, v ∈ S ↔ 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) j₀)) :
+    S.card = Nat.card (Quot (fun ψ ψ' : ModularCurve.Emb N j₀ => ModularCurve.SamePlace ψ.1 ψ'.1))
+      := by
   exact S12P.card_eq_natCard_quot N j₀ S hS
 
 end S_ModularCurve_card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord
@@ -342,9 +354,12 @@ public section publicSection
 
 theorem ModularCurve.card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
-    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
-    (hS : ∀ v, v ∈ S ↔ 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) j₀)) :
-    S.card = Nat.card (Quot (fun ψ ψ' : ModularCurve.Emb N j₀ => ModularCurve.SamePlace ψ.1 ψ'.1)) :=
+    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar
+      N)))
+    (hS : ∀ v, v ∈ S ↔ 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) j₀)) :
+    S.card = Nat.card (Quot (fun ψ ψ' : ModularCurve.Emb N j₀ => ModularCurve.SamePlace ψ.1 ψ'.1))
+      :=
   solution N j₀ S hS
 
 end publicSection

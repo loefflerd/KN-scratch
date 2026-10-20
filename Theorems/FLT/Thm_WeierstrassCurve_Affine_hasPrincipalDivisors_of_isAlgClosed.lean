@@ -198,7 +198,8 @@ theorem infVal_xF_div_yF : infVal W (xF W / yF W) = exp (-1 : ℤ) := by
 
 theorem forall_mem_of_xF_mem (v : AlgebraicCurve.Place F W.FunctionField)
     (hx : xF W ∈ v.toValuationSubring) :
-    ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring := by
+    ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring :=
+      by
   set A := v.toValuationSubring with hA
   set φ : F[X] →+* W.FunctionField :=
     (algebraMap W.CoordinateRing W.FunctionField).comp (algebraMap F[X] W.CoordinateRing)
@@ -333,7 +334,8 @@ theorem countFun_finite (f : W.FunctionField) : (Function.support (countFun (W :
 def countFinsupp (f : W.FunctionField) : HeightOneSpectrum W.CoordinateRing →₀ ℤ :=
   Finsupp.ofSupportFinite (countFun f) (countFun_finite f)
 
-@[scoped simp] theorem countFinsupp_apply (f : W.FunctionField) (w : HeightOneSpectrum W.CoordinateRing) :
+@[scoped simp] theorem countFinsupp_apply (f : W.FunctionField) (w : HeightOneSpectrum
+  W.CoordinateRing) :
     countFinsupp f w = FractionalIdeal.count W.FunctionField w
       (FractionalIdeal.spanSingleton W.CoordinateRing⁰ f) := rfl
 

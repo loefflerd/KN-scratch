@@ -73,7 +73,8 @@ variable {K : Type*} [Field K]
 
 theorem valuation_algebraMap_le_one (d : K) :
     Valued.v (algebraMap K (LaurentSeries K) d) ≤ (1 : WithZero (Multiplicative ℤ)) := by
-  rw [show algebraMap K (LaurentSeries K) d = ((PowerSeries.C d : PowerSeries K) : LaurentSeries K) by
+  rw [show algebraMap K (LaurentSeries K) d = ((PowerSeries.C d : PowerSeries K) : LaurentSeries K)
+    by
     rw [LaurentSeries.algebraMap_apply, HahnSeries.ofPowerSeries_C]]
   rw [LaurentSeries.valuation_def, ← LaurentSeries.coe_algebraMap]
   exact IsDedekindDomain.HeightOneSpectrum.valuation_le_one _ _
@@ -245,7 +246,8 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
   let bF := Module.finBasis ℚ⟮X₀⟯ F₀
   let T : Set (LaurentSeries L) := Set.range fun j => coeffEmb L ((bF j : F₀) : LaurentSeries ℚ)
   have : Finite T := Set.finite_range _ |>.to_subtype
-  have hcoeQ : ∀ c : ℚ, ((algebraMap ℚ F₀ c : F₀) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries ℚ) c :=
+  have hcoeQ : ∀ c : ℚ, ((algebraMap ℚ F₀ c : F₀) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries
+    ℚ) c :=
     fun c => RingHom.congr_fun (Subsingleton.elim
       ((algebraMap F₀ (LaurentSeries ℚ)).comp (algebraMap ℚ F₀)) (algebraMap ℚ (LaurentSeries ℚ))) c
   have hval : ∀ z : F₀, z ∈ ℚ⟮X₀⟯ → (z : LaurentSeries ℚ) ∈ ℚ⟮(X₀ : LaurentSeries ℚ)⟯ := by
@@ -263,7 +265,8 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
       rw [show ((y⁻¹ : F₀) : LaurentSeries ℚ) = ((y : F₀) : LaurentSeries ℚ)⁻¹ from rfl]
       exact inv_mem hy
     | mul y w _ _ hy hw => rw [MulMemClass.coe_mul]; exact mul_mem hy hw
-  have hmemK₁ : ∀ r : ℚ⟮X₀⟯, coeffEmb L ((r : F₀) : LaurentSeries ℚ) ∈ L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ :=
+  have hmemK₁ : ∀ r : ℚ⟮X₀⟯, coeffEmb L ((r : F₀) : LaurentSeries ℚ) ∈ L⟮coeffEmb L (X₀ :
+    LaurentSeries ℚ)⟯ :=
     fun r => coeffEmb_mem_adjoin_of_mem_adjoin L _ (hval r r.2)
   let ψ : ℚ⟮X₀⟯ →+* L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ :=
     { toFun := fun r => ⟨coeffEmb L ((r : F₀) : LaurentSeries ℚ), hmemK₁ r⟩
@@ -291,7 +294,8 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
       (IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ T : Set _) := by
     rintro _ ⟨y, hy, rfl⟩
     have hrepr := bF.sum_repr ⟨y, hy⟩
-    have hy' : coeffEmb L y = ∑ j, coeffEmb L (((bF.repr ⟨y, hy⟩ j : ℚ⟮X₀⟯) : F₀) : LaurentSeries ℚ) *
+    have hy' : coeffEmb L y = ∑ j, coeffEmb L (((bF.repr ⟨y, hy⟩ j : ℚ⟮X₀⟯) : F₀) : LaurentSeries ℚ)
+      *
         coeffEmb L ((bF j : F₀) : LaurentSeries ℚ) := by
       have := congrArg (fun w : F₀ => coeffEmb L (w : LaurentSeries ℚ)) hrepr
       simp only at this
@@ -365,7 +369,8 @@ theorem solution
 
 end S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 end P2MW
-export P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange (solution)
+export P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
+  (solution)
 
 end privateSection
 

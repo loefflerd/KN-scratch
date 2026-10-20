@@ -43,7 +43,8 @@ $X_0(N)$: the full field $\mathbb{Q}(j(q^{d}) : d \mid N)$ coincides with the fi
 two distinguished elements $j(q)$ and $j(q^{N})$. It is used in the curve layer of the $X_0(\ell)$
 construction, being cited by
 [`ModularCurve.full_eq_of_prime`](thm.html#ModularCurve.full_eq_of_prime) and by
-[`ModularCurve.NodeLocalized.place_eq_of_forall_hasValue_iff_of_mem_fieldOver`](thm.html#ModularCurve.NodeLocalized.place_eq_of_forall_hasValue_iff_of_mem_fieldOver).
+[`ModularCurve.NodeLocalized.place_eq_of_forall_hasValue_iff_of_mem_fieldOver`]
+(thm.html#ModularCurve.NodeLocalized.place_eq_of_forall_hasValue_iff_of_mem_fieldOver).
 
 ## Explanation of the source proof
 

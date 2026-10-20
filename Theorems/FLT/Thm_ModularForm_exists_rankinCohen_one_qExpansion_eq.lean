@@ -111,7 +111,8 @@ theorem hasDerivAt_denom_zpow (k : ℤ) (γ : SL(2, ℤ)) (τ : ℍ) :
 theorem D_slash {F : ℍ → ℂ} (hF : MDiff F) (k : ℤ) (γ : SL(2, ℤ)) (τ : ℍ) :
     Derivative.normalizedDerivOfComplex (F ∣[k] γ) τ =
       (Derivative.normalizedDerivOfComplex F (γ • τ) * (denom (γ : GL (Fin 2) ℝ) τ)⁻¹ ^ 2
-        - k * (2 * π * Complex.I)⁻¹ * ((γ 1 0 : ℤ) : ℂ) * (denom (γ : GL (Fin 2) ℝ) τ)⁻¹ * F (γ • τ))
+        - k * (2 * π * Complex.I)⁻¹ * ((γ 1 0 : ℤ) : ℂ) * (denom (γ : GL (Fin 2) ℝ) τ)⁻¹ * F (γ •
+          τ))
         * denom (γ : GL (Fin 2) ℝ) τ ^ (-k) := by
   have hden : denom (γ : GL (Fin 2) ℝ) τ ≠ 0 := denom_ne_zero _ _
   have hprod := (hasDerivAt_comp_smul hF γ τ).mul (hasDerivAt_denom_zpow k γ τ)
@@ -262,7 +263,8 @@ theorem coe_rankinCohen [Γ.FiniteIndex] (g : ModularForm Γ k₁) (h : ModularF
 
 open ModularCurve in
 theorem coeff_nat_thetaL_ofPowerSeries (φ : PowerSeries ℂ) (n : ℕ) :
-    (thetaL ℂ (HahnSeries.ofPowerSeries ℤ ℂ φ)).coeff (n : ℤ) = (n : ℂ) * PowerSeries.coeff n φ := by
+    (thetaL ℂ (HahnSeries.ofPowerSeries ℤ ℂ φ)).coeff (n : ℤ) = (n : ℂ) * PowerSeries.coeff n φ
+      := by
   rw [thetaL_apply, show ((n : ℤ)) = ((n : ℤ) - 1) + 1 by ring, HahnSeries.coeff_single_mul_add,
     one_mul, LaurentSeries.derivative_apply, LaurentSeries.hasseDeriv_coeff, Nat.cast_one,
     sub_add_cancel, Ring.choose_one_right, HahnSeries.ofPowerSeries_apply_coeff, zsmul_eq_mul,

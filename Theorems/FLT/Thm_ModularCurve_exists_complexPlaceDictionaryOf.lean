@@ -180,7 +180,8 @@ theorem realize_eventuallyEq {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) 
 theorem meromorphicAt_div (x : LaurentSeries ℂ) (P : Pres Γ x) (τ : ℍ) :
     MeromorphicAt (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z) / (P.h : ℍ → ℂ) (ofComplex z))
       (τ : ℂ) :=
-  (analyticAt_comp_ofComplex P.g τ).meromorphicAt.div (analyticAt_comp_ofComplex P.h τ).meromorphicAt
+  (analyticAt_comp_ofComplex P.g τ).meromorphicAt.div (analyticAt_comp_ofComplex P.h
+    τ).meromorphicAt
 
 theorem meromorphicAt_realize {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) :
     MeromorphicAt (fun z : ℂ => realizeOf Γ x (ofComplex z)) (τ : ℂ) :=
@@ -190,7 +191,8 @@ theorem meromorphicOrderAt_realize_eq {x : LaurentSeries ℂ} (P : Pres Γ x) (�
     ∃ m : ℤ, 0 ≤ m ∧
       meromorphicOrderAt (fun z : ℂ => (P.h : ℍ → ℂ) (ofComplex z)) (τ : ℂ) = m ∧
       meromorphicOrderAt (fun z : ℂ => realizeOf Γ x (ofComplex z)) (τ : ℂ) =
-        meromorphicOrderAt (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z)) (τ : ℂ) + ((-m : ℤ) : WithTop ℤ) := by
+        meromorphicOrderAt (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z)) (τ : ℂ) + ((-m : ℤ) : WithTop
+          ℤ) := by
   have hh := meromorphicOrderAt_comp_ofComplex_ne_top P.h P.h_ne τ
   obtain ⟨m, hm⟩ := WithTop.ne_top_iff_exists.mp hh
   have hm0 : 0 ≤ m := by
@@ -200,7 +202,8 @@ theorem meromorphicOrderAt_realize_eq {x : LaurentSeries ℂ} (P : Pres Γ x) (�
   refine ⟨m, hm0, hm.symm, ?_⟩
   rw [meromorphicOrderAt_congr (realize_eventuallyEq P τ)]
   have hdiv : (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z) / (P.h : ℍ → ℂ) (ofComplex z)) =
-      (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z)) * (fun z : ℂ => (P.h : ℍ → ℂ) (ofComplex z))⁻¹ := by
+      (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z)) * (fun z : ℂ => (P.h : ℍ → ℂ) (ofComplex z))⁻¹ :=
+        by
     ext z; simp [div_eq_mul_inv]
   rw [hdiv, meromorphicOrderAt_mul (analyticAt_comp_ofComplex P.g τ).meromorphicAt
     (analyticAt_comp_ofComplex P.h τ).meromorphicAt.inv, meromorphicOrderAt_inv, ← hm]
@@ -323,7 +326,8 @@ abbrev CF (Γ : Subgroup SL(2, ℤ)) : Type :=
 
 def pres (x : CF Γ) : Pres Γ (x : LaurentSeries ℂ) :=
   let E :=
-    ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem Γ hT.out
+    ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
+      Γ hT.out
     (x : LaurentSeries ℂ) x.2
   ⟨E.choose, E.choose_spec.choose, E.choose_spec.choose_spec.choose,
     E.choose_spec.choose_spec.choose_spec.1, E.choose_spec.choose_spec.choose_spec.2⟩
@@ -337,7 +341,8 @@ theorem meromorphicAt_realize' (x : CF Γ) (τ : ℍ) :
 
 theorem mu_mul (τ : ℍ) (x y : CF Γ) : mu τ (x * y) = mu τ x + mu τ y := by
   change meromorphicOrderAt
-      (fun z : ℂ => realizeOf Γ ((x : LaurentSeries ℂ) * (y : LaurentSeries ℂ)) (ofComplex z)) (τ : ℂ) = _
+      (fun z : ℂ => realizeOf Γ ((x : LaurentSeries ℂ) * (y : LaurentSeries ℂ)) (ofComplex z)) (τ :
+        ℂ) = _
   rw [meromorphicOrderAt_congr (realize_mul_eventuallyEq (pres x) (pres y) τ),
     meromorphicOrderAt_mul (meromorphicAt_realize' x τ) (meromorphicAt_realize' y τ)]
   rfl
@@ -485,7 +490,8 @@ end OrderFunction
 end ModularCurve.ComplexPlaceDictionaryOfExistence
 
 open scoped MatrixGroups in
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.ModularCurve ModularCurve.ComplexPlaceDictionaryOfExistence in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.ModularCurve
+  ModularCurve.ComplexPlaceDictionaryOfExistence in
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ) :

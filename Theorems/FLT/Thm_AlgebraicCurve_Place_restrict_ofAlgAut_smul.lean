@@ -71,7 +71,8 @@ p2m_export "AlgebraicCurve.Place" "restrict restrict_toValuationSubring ext smul
 end Place
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul.AlgebraicCurve.Place in
+open _root_.AlgebraicCurve.Place
+  _root_.P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul.AlgebraicCurve.Place in
 theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [Algebra.IsIntegral F' M] (σ : M ≃ₐ[F'] M) (W : Place K M) :

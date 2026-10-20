@@ -136,7 +136,8 @@ private theorem ModularCurve.phiIrreducible_of_prime (p : ℕ) [hp : Fact (Nat.P
   obtain ⟨d₀, h, -⟩ := exists_phiIrreducible_evalSymm p
   rwa [ModularCurve.ModularPolynomialData.eq_of_prime p data d₀]
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime.ModularCurve in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_ModularPolynomialData_eq_of_prime.ModularCurve
+  in
 theorem solution (p : ℕ) [hp : Fact (Nat.Prime p)] (d d' : ModularPolynomialData p) : d = d' :=
   ModularCurve.ModularPolynomialData.eq_of_prime p d d'
 

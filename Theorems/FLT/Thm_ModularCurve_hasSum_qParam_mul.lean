@@ -109,10 +109,12 @@ theorem hasSum_qParam_mul' (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G :
       (PowerSeries.coeff kl.1 A * q ^ kl.1) * (PowerSeries.coeff kl.2 B * q ^ kl.2)) :=
     (summable_norm_sum_mul_antidiagonal_of_summable_norm hsA hsB).of_norm
   have H : HasSum (fun n : ℕ => ∑ kl ∈ Finset.HasAntidiagonal.antidiagonal n,
-      (PowerSeries.coeff kl.1 A * q ^ kl.1) * (PowerSeries.coeff kl.2 B * q ^ kl.2)) (F τ * G τ) := by
+      (PowerSeries.coeff kl.1 A * q ^ kl.1) * (PowerSeries.coeff kl.2 B * q ^ kl.2)) (F τ * G τ) :=
+        by
     rw [← (hA τ).tsum_eq, ← (hB τ).tsum_eq, ← hqdef, key]
     exact hsum.hasSum
-  have hfg : (fun m : ℕ => PowerSeries.coeff m (A * B) * q ^ m) = (fun n : ℕ => ∑ kl ∈ Finset.HasAntidiagonal.antidiagonal n,
+  have hfg : (fun m : ℕ => PowerSeries.coeff m (A * B) * q ^ m) = (fun n : ℕ => ∑ kl ∈
+    Finset.HasAntidiagonal.antidiagonal n,
       (PowerSeries.coeff kl.1 A * q ^ kl.1) * (PowerSeries.coeff kl.2 B * q ^ kl.2)) := by
     funext n
     rw [PowerSeries.coeff_mul, Finset.sum_mul]
@@ -129,8 +131,12 @@ end ModularCurve
 
 end
 
-theorem solution (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m A * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m B * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) :
-    HasSum (fun m : ℕ => PowerSeries.coeff m (A * B) * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) :=
+theorem solution (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ :
+  UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m A * Function.Periodic.qParam h (τ : ℂ) ^
+  m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m B *
+  Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℕ => PowerSeries.coeff m (A * B) * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ
+      * G τ) :=
   ModularCurve.Realized.hasSum_qParam_mul' h hh A B F G hA hB τ
 
 end S_ModularCurve_hasSum_qParam_mul
@@ -141,8 +147,12 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.hasSum_qParam_mul (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m A * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m B * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) :
-    HasSum (fun m : ℕ => PowerSeries.coeff m (A * B) * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ * G τ) :=
+theorem ModularCurve.hasSum_qParam_mul (h : ℝ) (hh : 0 < h) (A B : PowerSeries ℂ) (F G :
+  UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => PowerSeries.coeff m A *
+  Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hB : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ =>
+  PowerSeries.coeff m B * Function.Periodic.qParam h (τ : ℂ) ^ m) (G τ)) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℕ => PowerSeries.coeff m (A * B) * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ
+      * G τ) :=
   solution h hh A B F G hA hB τ
 
 end publicSection

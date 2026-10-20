@@ -47,7 +47,8 @@ twisting an Eichler integral of $f$ by $\rho_n(\delta^{-1})$ and precomposing wi
 an Eichler integral of $f\mid[(n+2)]\delta$. It is the mechanism behind the cocycle relations used
 for equivariance and behaviour at the cusps in the Eichler–Shimura picture, and is invoked in the
 period computations, in
-[`HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral`](thm.html#HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral)
+[`HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral`]
+(thm.html#HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral)
 and in the injectivity of the Eichler–Shimura map.
 
 ## Explanation of the source proof
@@ -113,13 +114,16 @@ theorem eq_sum_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n) 
       coeff_eq_zero_of_not_mem_degExps hp hd]
 
 theorem coeff_binaryFormRepSL_eq_sum (g : SL(2, ℤ)) (v : ↥(BinaryForm K n)) (d : Fin 2 →₀ ℕ) :
-    AddMonoidAlgebra.coeff ((binaryFormRepSL K n g v : ↥(BinaryForm K n)) : MvPolynomial (Fin 2) K) d
+    AddMonoidAlgebra.coeff ((binaryFormRepSL K n g v : ↥(BinaryForm K n)) : MvPolynomial (Fin 2) K)
+      d
       = ∑ e ∈ degExps n, AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e
-          * AddMonoidAlgebra.coeff (binarySubst K (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d := by
+          * AddMonoidAlgebra.coeff (binarySubst K (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d
+            := by
   rw [binaryFormRepSL_apply_coe]
   conv_lhs => rw [eq_sum_degExps v.2, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun e _ => ?_
-  rw [show monomial e (AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e) = AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e • monomial e (1 : K) by
+  rw [show monomial e (AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e) =
+    AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e • monomial e (1 : K) by
       rw [smul_monomial, smul_eq_mul, mul_one],
     map_smul, coeff_smul, smul_eq_mul]
 
@@ -181,20 +185,26 @@ variable {n : ℕ}
 
 theorem hasDerivAt_coeff_binaryFormRepSL {H : ℂ → ↥(BinaryForm ℂ n)} {w : ↥(BinaryForm ℂ n)}
     {z₀ : ℂ}
-    (hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
+    (hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((H z : ↥(BinaryForm ℂ
+      n)) : MvPolynomial (Fin 2) ℂ) e)
       (AddMonoidAlgebra.coeff ((w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e) z₀)
     (g : SL(2, ℤ)) (d : Fin 2 →₀ ℕ) :
     HasDerivAt
-      (fun z : ℂ => AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
-      (AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d) z₀ := by
-  have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
+      (fun z : ℂ => AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) :
+        MvPolynomial (Fin 2) ℂ) d)
+      (AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+        ℂ) d) z₀ := by
+  have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ
+    n)) : MvPolynomial (Fin 2) ℂ) d)
       = fun z : ℂ => ∑ e ∈ degExps n,
           AddMonoidAlgebra.coeff ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e
-            * AddMonoidAlgebra.coeff (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d :=
+            * AddMonoidAlgebra.coeff (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d
+              :=
     funext fun z => coeff_binaryFormRepSL_eq_sum g (H z) d
   rw [hfun, coeff_binaryFormRepSL_eq_sum g w d]
   exact HasDerivAt.fun_sum fun e _ =>
-    (hH e).mul_const (AddMonoidAlgebra.coeff (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d)
+    (hH e).mul_const (AddMonoidAlgebra.coeff (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial
+      e 1)) d)
 
 end RepDeriv
 
@@ -207,12 +217,16 @@ theorem SolMain.slash {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm �
   intro d τ
   set c : ℂ := f (δ • τ) * denom (Matrix.SpecialLinearGroup.mapGL ℝ δ) ↑τ ^ (-2 : ℤ) with hc
   have hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt
-      (fun z : ℂ => AddMonoidAlgebra.coeff ((F (δ • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
-      (AddMonoidAlgebra.coeff (((c • linePow n ((δ • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e) ↑τ := by
+      (fun z : ℂ => AddMonoidAlgebra.coeff ((F (δ • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial
+        (Fin 2) ℂ) e)
+      (AddMonoidAlgebra.coeff (((c • linePow n ((δ • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ n)) :
+        MvPolynomial (Fin 2) ℂ) e) ↑τ := by
     intro e
     have h1 := hasDerivAt_comp_smul
-      (G := fun w : ℍ => AddMonoidAlgebra.coeff ((F w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
-      (g := fun w : ℍ => f w * AddMonoidAlgebra.coeff ((linePow n (w : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
+      (G := fun w : ℍ => AddMonoidAlgebra.coeff ((F w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+        e)
+      (g := fun w : ℍ => f w * AddMonoidAlgebra.coeff ((linePow n (w : ℂ) : ↥(BinaryForm ℂ n)) :
+        MvPolynomial (Fin 2) ℂ) e)
       (fun w => hF e w) δ τ
     refine h1.congr_deriv ?_
     rw [Submodule.coe_smul, coeff_smul, smul_eq_mul, hc]
@@ -243,7 +257,8 @@ end
 open scoped MatrixGroups ModularForm in
 theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
-    HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) :=
+    HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹
+      (F (δ • τ))) :=
   HeckeEis.SolMain.slash hF δ
 
 end S_HeckeEis_IsEichlerIntegral_slash
@@ -259,7 +274,8 @@ open scoped MatrixGroups ModularForm
 theorem HeckeEis.IsEichlerIntegral.slash {n : ℕ} {f : UpperHalfPlane → ℂ}
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
-    HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) :=
+    HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹
+      (F (δ • τ))) :=
   solution hF δ
 
 end publicSection

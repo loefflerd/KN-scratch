@@ -49,7 +49,8 @@ matrices $!![\ell,0;0,1]$ and $!![1,b;0,\ell]$ represent the left cosets of $\ma
 Z)$ in the set of integral matrices of determinant $\ell$, right multiplication by $\gamma \in
 \mathrm{SL}_2(\mathbb Z)$ permutes these cosets, and the product over the cosets is therefore
 unchanged. It is used by
-[`ModularCurve.PhiGen.mem_adjoin_jq_of_phiGenDescends`](thm.html#ModularCurve.PhiGen.mem_adjoin_jq_of_phiGenDescends),
+[`ModularCurve.PhiGen.mem_adjoin_jq_of_phiGenDescends`]
+(thm.html#ModularCurve.PhiGen.mem_adjoin_jq_of_phiGenDescends),
 where the coefficients of this polynomial, taken for $F = j$, are identified as modular functions of
 level one.
 
@@ -168,12 +169,14 @@ variable [Fact p.Prime]
 variable (p) in
 def redMatrix (g : SL(2, ℤ)) : GL (Fin 2) (ZMod p) :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero
-    !![((g 1 1 : ℤ) : ZMod p), ((g 0 1 : ℤ) : ZMod p); ((g 1 0 : ℤ) : ZMod p), ((g 0 0 : ℤ) : ZMod p)]
+    !![((g 1 1 : ℤ) : ZMod p), ((g 0 1 : ℤ) : ZMod p); ((g 1 0 : ℤ) : ZMod p), ((g 0 0 : ℤ) : ZMod
+      p)]
     (by
       have := congrArg (Int.cast : ℤ → ZMod p) (det_eq g)
       push_cast at this
       rw [Matrix.det_fin_two_of,
-        show ((g 1 1 : ℤ) : ZMod p) * ((g 0 0 : ℤ) : ZMod p) - ((g 0 1 : ℤ) : ZMod p) * ((g 1 0 : ℤ) : ZMod p)
+        show ((g 1 1 : ℤ) : ZMod p) * ((g 0 0 : ℤ) : ZMod p) - ((g 0 1 : ℤ) : ZMod p) * ((g 1 0 : ℤ)
+          : ZMod p)
           = 1 by linear_combination this]
       exact one_ne_zero)
 
@@ -257,7 +260,8 @@ variable {p : ℕ} [NeZero p]
 
 theorem prod_range_eq_prod_zmod {M : Type} [CommMonoid M] (G : ℕ → M) :
     ∏ j ∈ Finset.range p, G j = ∏ x : ZMod p, G x.val := by
-  refine Finset.prod_nbij' (fun j : ℕ ↦ (j : ZMod p)) (fun x : ZMod p ↦ x.val) (fun _ _ ↦ Finset.mem_univ _)
+  refine Finset.prod_nbij' (fun j : ℕ ↦ (j : ZMod p)) (fun x : ZMod p ↦ x.val) (fun _ _ ↦
+    Finset.mem_univ _)
     (fun x _ ↦ Finset.mem_range.mpr x.val_lt) (fun j hj ↦ ?_) (fun x _ ↦ ?_) (fun j hj ↦ ?_)
   · exact ZMod.val_cast_of_lt (Finset.mem_range.mp hj)
   · exact ZMod.natCast_zmod_val x
@@ -277,8 +281,10 @@ end reindex
 
 theorem cosetPoly_smul' (ℓ : ℕ) (hℓ : ℓ.Prime) (F : ℍ → ℂ)
     (hF : ∀ (γ : SL(2, ℤ)) (τ : ℍ), F (γ • τ) = F τ) (γ : SL(2, ℤ)) (τ : ℍ) :
-    (X - C (F (heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ, (X - C (F (heckeMatrix ℓ (b : ℕ) • γ • τ)))
-      = (X - C (F (heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (X - C (F (heckeMatrix ℓ (b : ℕ) • τ))) := by
+    (X - C (F (heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ, (X - C (F (heckeMatrix ℓ (b : ℕ) • γ •
+      τ)))
+      = (X - C (F (heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (X - C (F (heckeMatrix ℓ (b : ℕ) • τ)))
+        := by
   have : Fact ℓ.Prime := ⟨hℓ⟩
   rw [cosetPoly_eq_prod_onePoint F (γ • τ), cosetPoly_eq_prod_onePoint F τ]
   calc ∏ x : OnePoint (ZMod ℓ), (X - C (F (heckeRep ℓ x • γ • τ)))
@@ -294,7 +300,10 @@ end
 theorem solution (ℓ : ℕ) (hℓ : ℓ.Prime) (F : UpperHalfPlane → ℂ)
     (hF : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ)
     (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) :
-    (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • γ • τ))) = (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • τ))) :=
+    (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ,
+      (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • γ • τ))) = (Polynomial.X
+      - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X -
+      Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • τ))) :=
   ModularCurve.CosetPoly.cosetPoly_smul' ℓ hℓ F hF γ τ
 
 end S_ModularCurve_cosetPoly_smul
@@ -308,7 +317,10 @@ public section publicSection
 theorem ModularCurve.cosetPoly_smul (ℓ : ℕ) (hℓ : ℓ.Prime) (F : UpperHalfPlane → ℂ)
     (hF : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ)
     (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) :
-    (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • γ • τ))) = (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • τ))) :=
+    (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ,
+      (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • γ • τ))) = (Polynomial.X
+      - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X -
+      Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • τ))) :=
   solution ℓ hℓ F hF γ τ
 
 end publicSection

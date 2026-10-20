@@ -39,9 +39,11 @@ This is the elementary fact that a homogeneous polynomial of degree $n$ is annih
 iterated derivatives in a single variable. It is used in the treatment of Eichler integrals and the
 Bol identity, where it shows that the rung above the top of the differentiation ladder vanishes; it
 is cited by
-[`HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const`](thm.html#HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const)
+[`HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const`]
+(thm.html#HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const)
 and
-[`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`](thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval).
+[`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`]
+(thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval).
 
 ## Explanation of the source proof
 

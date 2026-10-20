@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node Matrix.SpecialLinearGroup.exists_generators_free_mod_neg_one_of_forall_trace_ne
+Based on Prove2Me node
+Matrix.SpecialLinearGroup.exists_generators_free_mod_neg_one_of_forall_trace_ne
 (3bd3e142-725c-544e-b864-4fd8b4d3ed7e) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 9ce5f5c0-0c4d-5814-b662-464da7d3f2e5
@@ -45,7 +46,8 @@ a $\bar\Gamma$ is free of rank $1 + [\mathrm{SL}_2(\mathbb Z):\Gamma]/6$, and th
 transports this to $\Gamma$ itself modulo $\pm 1$ in the shape of a generating family on which
 homomorphisms may be prescribed freely. It is used in the construction of bases for spaces of
 homomorphisms out of $\Gamma$, via
-[`ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp`](thm.html#ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp).
+[`ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp`]
+(thm.html#ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp).
 
 ## Explanation of the source proof
 
@@ -128,7 +130,8 @@ theorem exists_gens [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
         ∃ f : Γ →* L, ∀ i, f (gens i) = v i := by
   classical
   obtain ⟨b⟩ :=
-    Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne Γ hneg hΓ
+    Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne Γ hneg
+      hΓ
   have hsurj := (QuotientGroup.mk' (Subgroup.center SL(2, ℤ))).subgroupMap_surjective Γ
   choose gens hgens using fun i => hsurj (b i)
   refine ⟨gens, ?_, ?_⟩
@@ -167,7 +170,8 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
 
 end S_Matrix_SpecialLinearGroup_exists_generators_free_mod_neg_one_of_forall_trace_ne
 end P2MW
-export P2MW.S_Matrix_SpecialLinearGroup_exists_generators_free_mod_neg_one_of_forall_trace_ne (solution)
+export P2MW.S_Matrix_SpecialLinearGroup_exists_generators_free_mod_neg_one_of_forall_trace_ne
+  (solution)
 
 end privateSection
 

@@ -105,7 +105,8 @@ theorem of_sub_one_pow_mem (g : G) (k : ℕ) (hg : g ^ p ^ k = 1) :
   · have hp2 : p = 2 := ((Fact.out : p.Prime).even_iff).mp (Nat.even_pow.mp hev).1
     have h11 : (1 : Λ) + 1 = (p : Λ) := by rw [hp2, Nat.cast_two, one_add_one_eq_two]
     rw [hev.neg_one_pow, h11, mul_assoc, mul_assoc]
-    exact Ideal.add_mem _ (Ideal.mem_span_singleton_self _) (Ideal.mul_mem_right _ _ (Ideal.mem_span_singleton_self _))
+    exact Ideal.add_mem _ (Ideal.mem_span_singleton_self _) (Ideal.mul_mem_right _ _
+      (Ideal.mem_span_singleton_self _))
   · rw [hodd.neg_one_pow, add_neg_cancel, zero_add, mul_assoc, mul_assoc]
     exact Ideal.mul_mem_right _ _ (Ideal.mem_span_singleton_self _)
 

@@ -63,7 +63,8 @@ the classical dimension formula, expressed as the existence of a linearly indepe
 than as an equality of dimensions; the double-coset count is the number of cusps of $X_1(M)$ and the
 index term is $[\mathrm{SL}_2(\mathbb{Z}):\pm\Gamma_1(M)]$, which by the genus formula for $X_1(M)$
 rewrites the bound as $\dim M_k \ge (k-1)(g-1) + kc/2$. Together with the even-weight case it feeds
-[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card`](thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card),
+[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card`]
+(thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card),
 the uniform dimension lower bound used to produce modular forms of prescribed weight and level.
 
 ## Explanation of the source proof
@@ -95,7 +96,8 @@ theorem finite_doubleCoset_quotient {G : Type*} [Group G] (H K : Subgroup G) [H.
   classical
   have : Finite (Quotient (QuotientGroup.rightRel H)) :=
     Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel H).symm
-  refine Finite.of_surjective (fun q : Quotient (QuotientGroup.rightRel H) => Quotient.liftOn' q (fun g => DoubleCoset.mk H K g) ?_) ?_
+  refine Finite.of_surjective (fun q : Quotient (QuotientGroup.rightRel H) => Quotient.liftOn' q
+    (fun g => DoubleCoset.mk H K g) ?_) ?_
   · intro a b hab
     rw [QuotientGroup.rightRel_apply] at hab
     apply DoubleCoset.mk_eq_of_doubleCoset_eq
@@ -106,20 +108,23 @@ theorem finite_doubleCoset_quotient {G : Type*} [Group G] (H K : Subgroup G) [H.
     | h g => exact ⟨Quotient.mk'' g, rfl⟩
 
 theorem exists_coe_eq_jqModC (M : ℕ) [NeZero M] :
-    ∃ y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+    ∃ y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))),
       (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ := by
   have hmem : ModularCurve.jq ∈ ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M) :=
     by
     rw [← ModularCurve.jqModC_rat]
     exact ModularCurve.intFormRatiosC_subset ℚ _ (ModularCurve.jqModC_mem_intFormRatiosC ℚ _)
-  refine ⟨⟨ModularCurve.coeffEmb ℂ ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange ℂ hmem⟩, ?_⟩
+  refine ⟨⟨ModularCurve.coeffEmb ℂ ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange ℂ
+    hmem⟩, ?_⟩
   change ModularCurve.coeffEmb ℂ ModularCurve.jq = _
   rw [← ModularCurve.jqModC_rat]
   exact ModularCurve.map_jqModC (algebraMap ℚ ℂ)
 
 variable (M : ℕ) [NeZero M]
 
-local notation "Γ₁ℝ" => ((CongruenceSubgroup.Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
+local notation "Γ₁ℝ" => ((CongruenceSubgroup.Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2)
+  ℝ))
 
 omit [NeZero M] in
 theorem one_mem_strictPeriods_gamma1 : (1 : ℝ) ∈ (Γ₁ℝ).strictPeriods := by
@@ -133,12 +138,14 @@ theorem analyticAt_cuspFunction {k : ℤ} (g : ModularForm Γ₁ℝ k) :
 omit [NeZero M] in
 theorem qExpansion_sum_smul {k : ℤ} {ι : Type*} (s : Finset ι) (c : ι → ℂ)
     (f : ι → ModularForm Γ₁ℝ k) :
-    qExpansion 1 (⇑(∑ i ∈ s, c i • f i) : ℍ → ℂ) = ∑ i ∈ s, c i • qExpansion 1 (⇑(f i) : ℍ → ℂ) := by
+    qExpansion 1 (⇑(∑ i ∈ s, c i • f i) : ℍ → ℂ) = ∑ i ∈ s, c i • qExpansion 1 (⇑(f i) : ℍ → ℂ)
+      := by
   classical
   induction s using Finset.induction_on with
   | empty => simp [qExpansion_zero]
   | insert a s ha ih =>
-    have hcoe : (⇑(c a • f a + ∑ i ∈ s, c i • f i) : ℍ → ℂ) = (⇑(c a • f a) : ℍ → ℂ) + (⇑(∑ i ∈ s, c i • f i) : ℍ → ℂ) :=
+    have hcoe : (⇑(c a • f a + ∑ i ∈ s, c i • f i) : ℍ → ℂ) = (⇑(c a • f a) : ℍ → ℂ) + (⇑(∑ i ∈ s, c
+      i • f i) : ℍ → ℂ) :=
       rfl
     have hcoe2 : (⇑(c a • f a) : ℍ → ℂ) = (c a) • (⇑(f a) : ℍ → ℂ) := rfl
     have h1 : qExpansion 1 (⇑(c a • f a) : ℍ → ℂ) = c a • qExpansion 1 (⇑(f a) : ℍ → ℂ) := by
@@ -153,13 +160,15 @@ theorem eq_zero_of_qExpansion_eq_zero {k : ℤ} (g : ModularForm Γ₁ℝ k)
   apply DFunLike.ext
   intro τ
   have hs :=
-    hasSum_qExpansion one_pos (SlashInvariantFormClass.periodic_comp_ofComplex g (one_mem_strictPeriods_gamma1 M))
+    hasSum_qExpansion one_pos (SlashInvariantFormClass.periodic_comp_ofComplex g
+      (one_mem_strictPeriods_gamma1 M))
     g.holo' (ModularFormClass.bdd_at_infty g) τ
   rw [h] at hs
   simpa using hs.tsum_eq.symm
 
 theorem ofPowerSeries_smul (a : ℂ) (p : PowerSeries ℂ) :
-    HahnSeries.ofPowerSeries ℤ ℂ (a • p) = algebraMap ℂ (LaurentSeries ℂ) a * HahnSeries.ofPowerSeries ℤ ℂ p := by
+    HahnSeries.ofPowerSeries ℤ ℂ (a • p) = algebraMap ℂ (LaurentSeries ℂ) a *
+      HahnSeries.ofPowerSeries ℤ ℂ p := by
   rw [PowerSeries.smul_eq_C_mul, map_mul]
   congr 1
 
@@ -174,7 +183,8 @@ theorem solution
     ∃ (d : ℕ) (f : Fin d → ModularForm (Gamma1 M) (k : ℤ)), LinearIndependent ℂ f ∧
       (k - 1) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index +
           6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ)))
+            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set
+              SL(2, ℤ)))
         ≤ 12 * d := by
   classical
   have hk1 : 1 ≤ k := by omega
@@ -190,20 +200,24 @@ theorem solution
   have hfull :=
     ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
   have hsep : Algebra.IsSeparable
-      ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
+      ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M)))))
       ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := inferInstance
   obtain ⟨h0, h1728⟩ :=
     ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M (by omega) y hy
-  have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+  have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+    :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   have hg :=
-    ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed ℂ M hM
+    ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
+      ℂ M hM
   obtain ⟨w, v0, hw0, hv0mem, hv0⟩ :=
     ModularForm.exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq M hM
   let v : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     ⟨v0, hv0mem⟩
   obtain ⟨Dw, hDw⟩ :=
-    ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1 M hM y hy w hw0 v hv0
+    ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1 M hM y
+      hy w hw0 v hv0
   obtain ⟨Dk, hDk⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y k
   have hdegk :=
     AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
@@ -241,7 +255,8 @@ theorem solution
   have hdegw : 12 * (k • Dw).degree =
       (k : ℤ) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := by
     rw [map_nsmul, nsmul_eq_mul]
-    have : (12 : ℤ) * Dw.degree = (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
+    have : (12 : ℤ) * Dw.degree = (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2,
+      ℤ))).index :=
       by
       have e := hdeg1
       push_cast at e
@@ -250,14 +265,17 @@ theorem solution
       _ = _ := by rw [this]
   set μ : ℕ := (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index with hμdef
   set cc : ℕ := Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-      ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) with hccdef
-  set gg : ℕ := genusFF ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) with hggdef
+      ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+        ℤ))) with hccdef
+  set gg : ℕ := genusFF ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+    M))) with hggdef
   have hgZ : (12 : ℤ) * gg + 6 * cc = μ + 12 := by exact_mod_cast hg
   have hcpos : 1 ≤ cc := by
     have := finite_doubleCoset_quotient (CongruenceSubgroup.Gamma1 M)
       (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))
     have : Nonempty (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-      ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) :=
+      ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+        ℤ))) :=
       ⟨DoubleCoset.mk _ _ 1⟩
     exact Nat.card_pos
   have hcZ : (1 : ℤ) ≤ cc := by exact_mod_cast hcpos
@@ -265,13 +283,16 @@ theorem solution
   have hμZ : (0 : ℤ) ≤ μ := by exact_mod_cast Nat.zero_le μ
   have hRRhyp : 2 * (gg : ℤ) - 1 ≤ (k • Dw).degree := by nlinarith [hdegw, hgZ, hμZ, hkZ, hcZ]
   have hRR :=
-    AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable ℂ y htr hfin hsep (k • Dw) hRRhyp
+    AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable ℂ y htr hfin hsep
+      (k • Dw) hRRhyp
   have :=
-    ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M (k • Dw)
+    ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
+      (k • Dw)
   set d : ℕ := Module.finrank ℂ ↥(riemannRochSpace (k • Dw)) with hddef
   have hell : (ell (k • Dw) : ℤ) = d := rfl
   let b := Module.finBasis ℂ ↥(riemannRochSpace (k • Dw))
-  have hEk : ∀ P : AlgebraicCurve.Place ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+  have hEk : ∀ P : AlgebraicCurve.Place ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ
+    (CongruenceSubgroup.Gamma1 M))),
       (k : ℤ) * D1 P = Dk P := by
     intro P
     rw [hD1 P, hDk P]
@@ -286,19 +307,22 @@ theorem solution
       split_ifs with hc
       · rw [h1728 P hc]; omega
       · simp
-    have t3 : (k : ℤ) * (if P.ord y < 0 then 1 * P.ord y else 0) = (if P.ord y < 0 then (k : ℤ) * P.ord y else 0) :=
+    have t3 : (k : ℤ) * (if P.ord y < 0 then 1 * P.ord y else 0) = (if P.ord y < 0 then (k : ℤ) *
+      P.ord y else 0) :=
       by
       split_ifs <;> simp
     rw [← t1, ← t2, ← t3]
     ring_nf
   have hmemk : ∀ G : ↥(riemannRochSpace (k • Dw)),
-      ((G : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ^ 2 * v ^ k)
+      ((G : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ^ 2 * v ^
+        k)
         ∈ riemannRochSpace Dk := by
     intro G
     rw [AlgebraicCurve.mem_riemannRochSpace_iff]
     intro P
     have hG := (AlgebraicCurve.mem_riemannRochSpace_iff.mp G.2) P
-    by_cases hG0 : (G : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) = 0
+    by_cases hG0 : (G : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+      = 0
     · left; rw [hG0]; ring
     · right
       rcases hG with hG | hG
@@ -317,19 +341,23 @@ theorem solution
       nlinarith [hG, e2, e3]
   have hshape : ∀ i : Fin d, _ := fun i =>
     ModularCurve.isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor ℂ
-      (laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) y hy k Dk hDk _ (hmemk (b i))
+      (laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) y hy k Dk hDk _
+        (hmemk (b i))
   choose F₂ hF₂ using fun i : Fin d =>
     ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral M k hk1
       ((((b i : ↥(riemannRochSpace (k • Dw))) :
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ^ 2 * v ^ k :
-          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ)
+          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+            LaurentSeries ℂ)
       (((b i : ↥(riemannRochSpace (k • Dw))) :
-          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ^ 2 * v ^ k).2
+          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ^ 2 * v ^
+            k).2
       (hshape i).1 (hshape i).2
   have hsq : ∀ i : Fin d,
       HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 (F₂ i)) =
         ((((b i : ↥(riemannRochSpace (k • Dw))) :
-            ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) *
+            ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+              LaurentSeries ℂ) *
           HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 w) ^ k) ^ 2 := by
     intro i
     rw [hF₂ i]
@@ -341,7 +369,8 @@ theorem solution
   choose f hf using fun i : Fin d =>
     ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq M k w
       ((((b i : ↥(riemannRochSpace (k • Dw))) :
-          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ))
+          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+            LaurentSeries ℂ))
       ((b i : ↥(riemannRochSpace (k • Dw))) :
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))).2
       (F₂ i) (hsq i)
@@ -352,23 +381,27 @@ theorem solution
       rw [hg0]; exact qExpansion_zero 1
     rw [qExpansion_sum_smul M] at hq
     have h3 : (((∑ i, g i • b i : ↥(riemannRochSpace (k • Dw))) :
-          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) =
+          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+            LaurentSeries ℂ) =
         ∑ i, algebraMap ℂ (LaurentSeries ℂ) (g i) *
           (((b i : ↥(riemannRochSpace (k • Dw))) :
-            ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) := by
+            ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+              LaurentSeries ℂ) := by
       rw [Submodule.coe_sum, AddSubmonoidClass.coe_finsetSum]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [Submodule.coe_smul, IntermediateField.coe_smul]
       first
         | rw [Algebra.smul_def]
     have hL : (((∑ i, g i • b i : ↥(riemannRochSpace (k • Dw))) :
-          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) * W ^ k = 0 := by
+          ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+            LaurentSeries ℂ) * W ^ k = 0 := by
       have h1 := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hq
       rw [map_sum, map_zero] at h1
       have h2 : ∀ i, HahnSeries.ofPowerSeries ℤ ℂ (g i • qExpansion 1 (⇑(f i) : ℍ → ℂ)) =
           (algebraMap ℂ (LaurentSeries ℂ) (g i) *
             (((b i : ↥(riemannRochSpace (k • Dw))) :
-              ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ)) * W ^ k :=
+              ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+                LaurentSeries ℂ)) * W ^ k :=
         fun i => by rw [ofPowerSeries_smul, hf i, hWdef, mul_assoc]
       simp only [h2] at h1
       rw [← Finset.sum_mul] at h1
@@ -399,7 +432,8 @@ theorem ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd
     ∃ (d : ℕ) (f : Fin d → ModularForm (Gamma1 M) (k : ℤ)), LinearIndependent ℂ f ∧
       (k - 1) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index +
           6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ)))
+            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set
+              SL(2, ℤ)))
         ≤ 12 * d :=
   solution M hM k hk
 

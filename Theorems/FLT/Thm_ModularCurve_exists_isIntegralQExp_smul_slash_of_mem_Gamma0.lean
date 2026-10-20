@@ -133,7 +133,8 @@ theorem solution (M : ℕ) [NeZero M] {k : ℤ}
         (⇑f₁ : UpperHalfPlane → ℂ) = (D : ℂ) • ((⇑f : UpperHalfPlane → ℂ) ∣[k] γ) := by
   have hrat := ModularCurve.exists_ratCast_qExpansion_slash_of_mem_Gamma0 M f
     (rat_of_isIntegralQExp hp) γ hγ
-  set g : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k := diamondSlash γ hγ f
+  set g : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k := diamondSlash γ hγ
+    f
     with hg
   have hcoe : (⇑g : ℍ → ℂ) = (⇑f : ℍ → ℂ) ∣[k] γ := coe_diamondSlash γ hγ f
   have hrat' : ∀ n : ℕ, ∃ r : ℚ, (qExpansion 1 g).coeff n = (r : ℂ) := by

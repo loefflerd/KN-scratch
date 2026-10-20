@@ -47,7 +47,8 @@ $\Gamma_1(M) \le \Gamma_H(M) \le \Gamma_0(M)$, in the form that reduces the inde
 to the classical index $\psi(M)$ of $\Gamma_0(M)$ times the index of $H$ in $(\mathbb{Z}/M)^\times$.
 It is used in the cohomological bookkeeping for the carrier modules at level $H$, for instance in
 the vanishing statement
-[`CohCarrier.subsingleton_H2_gamma0_of_isUnit_index`](thm.html#CohCarrier.subsingleton_H2_gamma0_of_isUnit_index)
+[`CohCarrier.subsingleton_H2_gamma0_of_isUnit_index`]
+(thm.html#CohCarrier.subsingleton_H2_gamma0_of_isUnit_index)
 and in the diamond-operator orbit estimates at full level.
 
 ## Explanation of the source proof
@@ -68,7 +69,8 @@ open scoped MatrixGroups in
 private theorem igIDX_gamma0Units_surjective (M : ℕ) [NeZero M] :
     Function.Surjective (CohCarrier.gamma0Units M) := by
   intro u
-  have hAD : (((((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ) * ((u : ZMod M).val : ℤ) - 1 : ℤ) : ZMod M) = 0 :=
+  have hAD : (((((u⁻¹ : (ZMod M)ˣ) : ZMod M).val : ℤ) * ((u : ZMod M).val : ℤ) - 1 : ℤ) : ZMod M) =
+    0 :=
     by
     simp
   obtain ⟨k, hk⟩ := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp hAD

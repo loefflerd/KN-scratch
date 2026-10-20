@@ -45,9 +45,11 @@ of $F$ with no poles at any place are exactly the constants coming from $K$.
 This is the standard statement that the field of constants of a function field is the base field, as
 soon as there exists a rational place of nonzero degree. It is used to supply the `ConstantsAreBase`
 hypothesis in the Riemann–Roch corollaries of the project, via the specialisations
-[`AlgebraicCurve.constantsAreBase_of_deg_eq_one`](thm.html#AlgebraicCurve.constantsAreBase_of_deg_eq_one)
+[`AlgebraicCurve.constantsAreBase_of_deg_eq_one`]
+(thm.html#AlgebraicCurve.constantsAreBase_of_deg_eq_one)
 and
-[`AlgebraicCurve.constantsAreBase_of_isAlgClosed`](thm.html#AlgebraicCurve.constantsAreBase_of_isAlgClosed),
+[`AlgebraicCurve.constantsAreBase_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.constantsAreBase_of_isAlgClosed),
 and ultimately in the Serre-duality pairing statement for curves.
 
 ## Explanation of the source proof

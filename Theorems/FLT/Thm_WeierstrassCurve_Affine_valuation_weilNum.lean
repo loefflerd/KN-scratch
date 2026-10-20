@@ -69,7 +69,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_weilNum
 
-open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero
+open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
+  WithZero
 open scoped nonZeroDivisors
 
 namespace WeilDiv
@@ -225,7 +226,8 @@ theorem fibIdeal_isPrincipal {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
     rw [hcoe, FractionalIdeal.coe_coeIdeal] at key'
     exact (IsLocalization.coeSubmodule_isPrincipal _ le_rfl).mp key'
   · have hpt : ∀ i : {P : (W⁄K).Point // P ≠ 0},
-        Point.some i.1.xc i.1.yc (Point.nonsingular_xc_yc i.2) = i.1 := fun i => (Point.eq_some_xc_yc i.2).symm
+        Point.some i.1.xc i.1.yc (Point.nonsingular_xc_yc i.2) = i.1 := fun i =>
+          (Point.eq_some_xc_yc i.2).symm
     simp_rw [one_smul, hpt]
     have hsub : ∑ x ∈ s', (x : (W⁄K).Point) = ∑ P ∈ s.filter (· ≠ 0), P :=
       Finset.sum_subtype_eq_sum_filter (fun P : (W⁄K).Point => P)
@@ -234,7 +236,8 @@ theorem fibIdeal_isPrincipal {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
 
 omit [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem span_weilNum_eq {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) :
-    Ideal.span {weilNum W K n T} = ∏ P ∈ (WeierstrassCurve.Affine.fibSet_finite W hn T).toFinset, placeIdeal W K P := by
+    Ideal.span {weilNum W K n T} = ∏ P ∈ (WeierstrassCurve.Affine.fibSet_finite W hn T).toFinset,
+      placeIdeal W K P := by
   rw [span_weilNum W K (fibIdeal_isPrincipal W hn hT), fibIdeal_eq]
 
 end WeilDiv
@@ -242,7 +245,8 @@ end WeilDiv
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
     (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
     (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
-    (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 := by
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing
+      (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 := by
   classical
   rw [valuation_of_algebraMap, WeilDiv.intValuation_of_span_eq_prod W _ (WeilDiv.span_weilNum_eq W
     hn hT) P hP]
@@ -263,7 +267,8 @@ theorem WeierstrassCurve.Affine.valuation_weilNum {F K : Type*} [Field F] [Field
     [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
     [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
     (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
-    (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 :=
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (algebraMap (W⁄K).CoordinateRing
+      (W⁄K).FunctionField (weilNum W K n T)) = if (n : ℤ) • P = T then exp (-1 : ℤ) else 1 :=
   solution W hn hT P hP
 
 end publicSection

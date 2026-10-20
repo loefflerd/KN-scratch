@@ -461,7 +461,8 @@ p2m_open "AlgebraicCurve \
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     (v : Place K F) :
-    ∑ w ∈ v.fiberOver F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
+    ∑ w ∈ v.fiberOver F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F'
+      : ℤ) :=
   Place.sum_ramificationIndex_mul_inertiaDeg_fiberOver v
 
 end S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
@@ -477,7 +478,8 @@ open AlgebraicCurve
 theorem AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg_fiberOver {K F F' : Type*}
     [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F']
     [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (v : Place K F) :
-    ∑ w ∈ v.fiberOver F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
+    ∑ w ∈ v.fiberOver F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F'
+      : ℤ) :=
   solution v
 
 end publicSection

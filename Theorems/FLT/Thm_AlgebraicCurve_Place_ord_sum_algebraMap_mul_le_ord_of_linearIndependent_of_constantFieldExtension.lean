@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.Place.ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
+Based on Prove2Me node
+AlgebraicCurve.Place.ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
 (28da6612-7502-5e70-9d2c-35fe64ed010d) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission d6f09882-448e-5b92-9c54-27289f65783c
@@ -52,7 +53,8 @@ $\mathrm{ord}_{\mathrm{lift}\,v}(\Sigma) \le \mathrm{ord}_v(g_j)$ for every $j \
 This is the no-cancellation half of the behaviour of places under a constant field extension, the
 computational core of the statement that the Riemann–Roch space of a divisor does not grow when the
 constant field is enlarged (Stichtenoth, Theorem 3.6.3(a)). It is used by
-[`AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain`](thm.html#AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain)
+[`AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain`]
+(thm.html#AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain)
 to deduce membership of each coordinate $g_j$ in the Riemann–Roch space over $K$ from membership of
 the weighted sum over $K'$.
 
@@ -236,7 +238,9 @@ theorem solution
 
 end S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension (solution)
+export
+  P2MW.S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
+  (solution)
 
 end privateSection
 
@@ -244,7 +248,8 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Place.ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
+theorem
+  AlgebraicCurve.Place.ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
     (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']

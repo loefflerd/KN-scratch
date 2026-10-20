@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
+Based on Prove2Me node
+ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
 (d56581c0-5133-56e9-8c0e-d24c21066309) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 59b6839b-4777-5db0-8277-3c5fc6216fcd
@@ -74,30 +75,37 @@ open scoped MatrixGroups
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem solution
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M]
-    (D : AlgebraicCurve.Divisor K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+    (D : AlgebraicCurve.Divisor K ↥(ModularCurve.laurentBaseChange K
+      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
     FiniteDimensional K ↥(AlgebraicCurve.riemannRochSpace D) := by
-  obtain ⟨x, htr, hfd⟩ : ∃ x : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+  obtain ⟨x, htr, hfd⟩ : ∃ x : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
+    (CongruenceSubgroup.Gamma1 M))),
       Transcendental K x ∧ FiniteDimensional ↥(IntermediateField.adjoin K ({x} : Set _)) _ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange
       K (CongruenceSubgroup.Gamma1 M) (by rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T])
   have := hfd
   have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have : Algebra.IsAlgebraic ↥(IntermediateField.adjoin K ({x} : Set _))
-      ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+      ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M))) :=
     Algebra.IsAlgebraic.of_finite _ _
   have : Algebra.IsSeparable ↥(IntermediateField.adjoin K ({x} : Set _))
-      ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+      ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M))) :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
   have := AlgebraicCurve.nonempty_place_of_transcendental_of_finiteDimensional K x htr hfd
   have := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 K M
   have := AlgebraicCurve.essFiniteType_of_transcendental_of_finiteDimensional htr hfd
   have := AlgebraicCurve.finiteDimensional_lSpace_zero K
-    ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+    ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+      M)))
   exact AlgebraicCurve.finiteDimensional_lSpace D
 
 end S_ModularCurve_finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
 end P2MW
-export P2MW.S_ModularCurve_finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 (solution)
+export
+  P2MW.S_ModularCurve_finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
+  (solution)
 
 end privateSection
 
@@ -109,7 +117,8 @@ open AlgebraicCurve
 open scoped MatrixGroups
 theorem ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M]
-    (D : AlgebraicCurve.Divisor K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+    (D : AlgebraicCurve.Divisor K ↥(ModularCurve.laurentBaseChange K
+      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
     FiniteDimensional K ↥(AlgebraicCurve.riemannRochSpace D) :=
   solution K M D
 

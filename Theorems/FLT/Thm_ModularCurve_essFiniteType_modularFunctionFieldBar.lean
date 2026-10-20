@@ -67,7 +67,8 @@ theorem solution (N : ℕ) [NeZero N] :
     Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) := by
   refine IntermediateField.fg_top_iff.mp ?_
   classical
-  refine ⟨{⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩,
+  refine ⟨{⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+    (jq_mem_full N)⟩,
       ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ N jq),
         coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (dvd_refl N))⟩}, ?_⟩
   rw [Finset.coe_insert, Finset.coe_singleton]

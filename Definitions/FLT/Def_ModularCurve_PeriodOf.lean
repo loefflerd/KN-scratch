@@ -99,7 +99,8 @@ theorem intervalIntegrable_periodIntegrandOf (τ₀ τ₁ : ℍ) (f : CuspForm �
   (continuous_periodIntegrandOf Γ τ₀ τ₁ f).intervalIntegrable a b
 
 theorem periodIntegrandOf_add (τ₀ τ₁ : ℍ) (f g : CuspForm Γ 2) :
-    periodIntegrandOf Γ τ₀ τ₁ (f + g) = periodIntegrandOf Γ τ₀ τ₁ f + periodIntegrandOf Γ τ₀ τ₁ g := by
+    periodIntegrandOf Γ τ₀ τ₁ (f + g) = periodIntegrandOf Γ τ₀ τ₁ f + periodIntegrandOf Γ τ₀ τ₁ g
+      := by
   funext t
   simp [periodIntegrandOf, add_mul]
 
@@ -148,7 +149,8 @@ def periodMapOf (f : CuspForm Γ 2) : Additive Γ →+ ℂ :=
   if h : ∃ F : ℍ → ℂ, HasEquivariantPrimitiveOf Γ f F then h.choose_spec.2.2.1.periodHom else 0
 
 theorem periodMapOf_def (f : CuspForm Γ 2) {F : ℍ → ℂ} (hF : HasEquivariantPrimitiveOf Γ f F) :
-    ∃ (F₀ : ℍ → ℂ) (h₀ : HasEquivariantPrimitiveOf Γ f F₀), periodMapOf Γ f = h₀.2.2.1.periodHom := by
+    ∃ (F₀ : ℍ → ℂ) (h₀ : HasEquivariantPrimitiveOf Γ f F₀), periodMapOf Γ f = h₀.2.2.1.periodHom
+      := by
   classical
   have h : ∃ F : ℍ → ℂ, HasEquivariantPrimitiveOf Γ f F := ⟨F, hF⟩
   exact ⟨h.choose, h.choose_spec, dite_eq_left h⟩
@@ -182,7 +184,8 @@ def peterssonIntegrandOf (f g : CuspForm Γ k) (τ : UpperHalfPlane) : ℂ :=
     UpperHalfPlane.petersson k (⇑f ∣[k] (q.out⁻¹ : SL(2, ℤ))) (⇑g ∣[k] (q.out⁻¹ : SL(2, ℤ))) τ
 
 def peterssonOf (f g : CuspForm Γ k) : ℂ :=
-  MeasureTheory.integral (MeasureTheory.volume.restrict ModularGroup.fd) (peterssonIntegrandOf Γ f g)
+  MeasureTheory.integral (MeasureTheory.volume.restrict ModularGroup.fd) (peterssonIntegrandOf Γ f
+    g)
 
 theorem peterssonOf_def (f g : CuspForm Γ k) :
     peterssonOf Γ f g =

@@ -340,7 +340,8 @@ theorem hasSum_heckeU (k : ℤ) (τ : ℍ) :
 
 include hp hper hhol hbdd in
 theorem hasSum_heckeT (k : ℤ) (τ : ℍ) :
-    HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) := by
+    HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) :=
+      by
   rw [heckeT_apply k hp]
   convert (hasSum_average hp hper hhol hbdd τ).add (hasSum_diag hp hper hhol hbdd k τ) using 1
   funext n
@@ -387,7 +388,8 @@ end
 
 theorem solution {f : UpperHalfPlane → ℂ}
     (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) :
-    MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) :=
+    MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f)
+      :=
   M4cP1W2.mdifferentiable_heckeT k p hf
 
 end S_ModularForm_mdifferentiable_heckeT
@@ -400,7 +402,8 @@ public section publicSection
 
 theorem ModularForm.mdifferentiable_heckeT {f : UpperHalfPlane → ℂ}
     (hf : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (k : ℤ) (p : ℕ) :
-    MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f) :=
+    MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (ModularForm.heckeT k p f)
+      :=
   solution hf k p
 
 end publicSection

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq
+Based on Prove2Me node
+WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq
 (93fd7e0a-3705-57ba-bebe-bf48e6f46962) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 19ad62a3-f786-52d3-87d0-a6dda5e2bda1
@@ -62,9 +63,11 @@ presented field-theoretically, as a finite integral self-embedding of the functi
 $N$) yields a point of $X_0(N)$ lying over $(j(E),j(E))$, so that $j(E)$ is a root of the diagonal
 modular polynomial $\Phi_N(X,X)$. It is used to rule out endomorphisms of degree $N>1$ when $j(W)$
 is transcendental or non-integral, in
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j)
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j)
 and
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j).
 
 ## Explanation of the source proof
 
@@ -609,9 +612,11 @@ theorem s13_aeval_diag_eq_eval_map {R : Type*} [CommRing R] (Φ : Polynomial (Po
     Polynomial.aeval a (Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X)
       = (Φ.map (Polynomial.eval₂RingHom (Int.castRingHom R) a)).eval a := by
   let lhs : Polynomial (Polynomial ℤ) →+* R :=
-    (Polynomial.aeval (R := ℤ) a).toRingHom.comp (Polynomial.eval₂RingHom (RingHom.id (Polynomial ℤ)) Polynomial.X)
+    (Polynomial.aeval (R := ℤ) a).toRingHom.comp (Polynomial.eval₂RingHom (RingHom.id (Polynomial
+      ℤ)) Polynomial.X)
   let rhs : Polynomial (Polynomial ℤ) →+* R :=
-    (Polynomial.evalRingHom a).comp (Polynomial.mapRingHom (Polynomial.eval₂RingHom (Int.castRingHom R) a))
+    (Polynomial.evalRingHom a).comp (Polynomial.mapRingHom (Polynomial.eval₂RingHom (Int.castRingHom
+      R) a))
   have h : lhs = rhs := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
     · simp only [lhs, rhs, RingHom.comp_apply, Polynomial.coe_eval₂RingHom, RingHom.id_apply,
@@ -627,7 +632,13 @@ theorem s13_j_weierstrassCurve_eq_jLattice (L : PeriodPair) [L.weierstrassCurve.
   rw [PeriodPair.jLattice_eq_c₄_pow_three_div_Δ, WeierstrassCurve.j, ← WeierstrassCurve.coe_Δ',
     div_eq_mul_inv, mul_comm, Units.val_inv_eq_inv_val]
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.ModularCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine
+  AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.ModularCurve
+  in
 theorem solution
     {K : Type u} [Field K] [IsAlgClosed K] [CharZero K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -673,7 +684,8 @@ theorem solution
   have : HasPrincipalDivisors ℂ L.weierstrassCurve.toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
   obtain ⟨g, hgc, hga⟩ :=
-    WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := L.weierstrassCurve.toAffine)
+    WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem (W :=
+      L.weierstrassCurve.toAffine)
   let := g
   have := hgc
   have := hga
@@ -685,7 +697,8 @@ theorem solution
   have hrk₂ : finrankAlong ℂ ι₂ = N := (kw_fdn2_qephod_hend21_finrankAlong_conj eE eE ι₁).trans hN₁
   have hN₂ : NormFormulaAlong ℂ ι₂ hfin₂ := normFormulaAlong_of_elliptic ι₂ hfin₂
   have hcard : Nat.card (pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂).ker = N :=
-    (WeierstrassCurve.Affine.natCard_ker_pointMapOfPushforward_eq_finrankAlong _ _ ι₂ hι₂ hfin₂ hN₂).trans hrk₂
+    (WeierstrassCurve.Affine.natCard_ker_pointMapOfPushforward_eq_finrankAlong _ _ ι₂ hι₂ hfin₂
+      hN₂).trans hrk₂
   have hcyc : IsAddCyclic (pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂).ker :=
     IsAddCyclic.of_squarefree_natCard (hcard.symm ▸ hN)
   obtain ⟨β, hsub, hidx, hcq⟩ :=
@@ -702,7 +715,8 @@ theorem solution
 end
 end S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq (solution)
+export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq
+  (solution)
 
 end privateSection
 

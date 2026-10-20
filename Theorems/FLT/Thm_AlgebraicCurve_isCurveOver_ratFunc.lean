@@ -280,7 +280,8 @@ p2m_export "AlgebraicCurve.Place" "adicValuation_algebraMap"
 
 p2m_export "AlgebraicCurve.Place" "ord_algebraMap"
 
-private theorem _root_.AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_eq (w : Valuation F ℤᵐ⁰)
+private theorem _root_.AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_eq (w : Valuation F
+  ℤᵐ⁰)
     (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = exp (-1 : ℤ))
     {f : F} (hf : f ≠ 0) : v.ord f = -log (w f) := by
   have hequiv : w.IsEquiv v.adicValuation :=

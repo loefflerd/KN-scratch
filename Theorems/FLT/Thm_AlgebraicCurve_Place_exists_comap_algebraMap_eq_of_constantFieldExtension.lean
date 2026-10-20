@@ -476,7 +476,8 @@ theorem solution (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [CharZero K]
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F]
@@ -604,7 +605,8 @@ theorem solution (K F K' F' : Type*)
     have ha' : Psi F' B P w * algebraMap F F' (π : F) = 1 := by
       have := congrArg Subtype.val ha
       simpa [hw] using this
-    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F)) :=
+    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F))
+      :=
       by
       let OK : Submodule K F :=
         { carrier := P.toValuationSubring
@@ -684,7 +686,8 @@ theorem AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtensio
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [CharZero K]
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F]

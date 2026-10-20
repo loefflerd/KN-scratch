@@ -239,7 +239,8 @@ theorem MTT.Cohomology.integral_class_character_law_infty
     (γ : CongruenceSubgroup.Gamma0 N) (r : ℚ) :
     φ.val (cuspAct γ.val OnePoint.infty, cuspAct γ.val ((r : ℚ) : Cusp))
       = ι (f.epsilon (γ.val 1 1 : ZMod N)) •
-          act γ.val.val (φ.val (OnePoint.infty, ((r : ℚ) : Cusp))) := _root_.solution hN hk ι f φ hφ γ r
+          act γ.val.val (φ.val (OnePoint.infty, ((r : ℚ) : Cusp))) := _root_.solution hN hk ι f φ hφ
+            γ r
 end
 
 end publicSection

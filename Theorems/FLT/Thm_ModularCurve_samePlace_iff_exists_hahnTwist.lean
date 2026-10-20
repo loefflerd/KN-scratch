@@ -56,7 +56,8 @@ This identifies, in function-field terms, the set of normalised Puiseux branches
 curve of level $N$ above the point $j = j_0$ of the $j$-line that induce one and the same place:
 they form a single orbit of the local monodromy group acting by twisting Hahn coefficients by a
 character trivial on $\mathbb{Z}$. It is used by
-[`ModularCurve.samePlace_iff_exists_monodromy`](thm.html#ModularCurve.samePlace_iff_exists_monodromy),
+[`ModularCurve.samePlace_iff_exists_monodromy`]
+(thm.html#ModularCurve.samePlace_iff_exists_monodromy),
 and rests on the counting of normalised embeddings inducing a given place together with the
 ramification bound $(\deg)!$ for roots of polynomials with Laurent coefficients.
 
@@ -110,7 +111,8 @@ theorem rootSeq_zero : rootSeq ζ 0 = ζ := rfl
 theorem rootSeq_succ_pow (m : ℕ) : (rootSeq ζ (m + 1)) ^ (m + 1) = rootSeq ζ m := by
   apply Units.ext
   rw [Units.val_pow_eq_pow_val]
-  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
+  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^
+    (m+1) = _
   exact Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)
 
 theorem rootSeq_add_pow (m j : ℕ) :
@@ -148,7 +150,8 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_right x.den m))
   have e2 : (((b * x.den.factorial) / x.den : ℕ) : ℤ) * (x.den : ℤ) = b * x.den.factorial := by
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
-  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) :=
+  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den +
+    m).factorial : ℤ) :=
     by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
@@ -187,7 +190,8 @@ noncomputable def char : Multiplicative ℚ →* Kˣ where
     change charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
       = charFun ζ b (Multiplicative.toAdd x) * charFun ζ b (Multiplicative.toAdd y)
     have hm0 : 0 < (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den :=
-      Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd y).den_nz)
+      Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd
+        y).den_nz)
     have hfac : (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den ∣
         ((Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den).factorial :=
       Nat.dvd_factorial hm0 le_rfl
@@ -386,14 +390,16 @@ p2m_open "ModularCurve"
 variable (N : ℕ) [NeZero N]
 
 abbrev jb : ↥(modularFunctionFieldBar N) :=
-  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩
+  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+    (jq_mem_full N)⟩
 
 abbrev jNb : ↥(modularFunctionFieldBar N) :=
   ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ N jq),
     coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (dvd_refl N))⟩
 
 theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
-    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) (jNb N)
+    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))
+      (jNb N)
       = 0 := by
   apply Subtype.ext
   have hval : ((modularFunctionFieldBar N).toSubfield.subtype).comp
@@ -401,7 +407,8 @@ theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
       = (coeffEmb (AlgebraicClosure ℚ)).comp evalAtJ := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
     change ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
-        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (evalAtJ X)
+        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb
+          (AlgebraicClosure ℚ) (evalAtJ X)
     rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X]
   have h0 := congrArg (coeffEmb (AlgebraicClosure ℚ)) data.eval_eq_zero
   rw [map_zero, Polynomial.hom_eval₂, ← hval] at h0
@@ -474,13 +481,16 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
       (eval₂RingHom_mem_puiseuxRamSubfield_one _ (hasRamBound_C_add_single j₀) _)
   have hroot : P.IsRoot (ψ (jNb N)) := by
     rw [Polynomial.IsRoot, hPdef, Polynomial.eval_map, ← hψ]
-    have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb N))
-        = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) := by
+    have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ
+      (jb N))
+        = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N))
+          (jb N)) := by
       refine Polynomial.ringHom_ext (fun z => by simp) ?_
       simp
     rw [hcomp]
     have h := (Polynomial.hom_eval₂ data.Φ
-      (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom (jNb N)).symm
+      (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom
+        (jNb N)).symm
     rw [eval₂_Phi_jb_jNb N data, map_zero] at h
     simpa using h
   have hbN := HahnSeries.hasRamBound_natDegree_factorial_of_isRoot hP0 hcoeff hroot
@@ -549,7 +559,8 @@ theorem pos_ord_of_induces (j₀ : AlgebraicClosure ℚ) (ψ : Emb N j₀)
   have hx := h (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)
   rw [map_sub, ψ.2, AlgHom.commutes, algebraMap_hahn_eq_C, add_sub_cancel_left,
     HahnSeries.order_single (one_ne_zero)] at hx
-  have : (0 : ℚ) < (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀) : ℚ) * g :=
+  have : (0 : ℚ) < (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)
+    : ℚ) * g :=
     by
     rw [hx]; exact_mod_cast one_pos
   exact_mod_cast pos_of_mul_pos_left this hg.le
@@ -573,7 +584,8 @@ end
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_samePlace_iff_exists_hahnTwist.ModularCurve in
 theorem solution (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ) (ψ ψ' : Emb N j₀) :
     SamePlace ψ.1 ψ'.1 ↔
-      ∃ χ ∈ HahnSeries.MonoChar (AlgebraicClosure ℚ), ∀ x, ψ'.1 x = HahnSeries.hahnTwist χ (ψ.1 x) :=
+      ∃ χ ∈ HahnSeries.MonoChar (AlgebraicClosure ℚ), ∀ x, ψ'.1 x = HahnSeries.hahnTwist χ (ψ.1 x)
+        :=
   ModularCurve.SamePlaceTwist.exists_induces_and_induces_iff
     (fun (w : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))
       (x : ↥(modularFunctionFieldBar N)) => w.ord x)

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+Based on Prove2Me node
+AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
 (f2d2bd84-f499-5483-aa53-90e12e67fe5d) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 3ff2149c-0891-52bc-a2fa-1265d075fe39
@@ -213,13 +214,16 @@ theorem solution
 
 end S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed (solution)
+export
+  P2MW.S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+  (solution)
 
 end privateSection
 
 public section publicSection
 
-theorem AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+theorem
+  AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
     (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']

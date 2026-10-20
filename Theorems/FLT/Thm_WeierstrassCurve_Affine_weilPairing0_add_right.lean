@@ -66,7 +66,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_right
 
-open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero
+open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
+  WithZero
 open scoped nonZeroDivisors
 
 namespace WeilLaws
@@ -101,7 +102,8 @@ theorem weilPairing0_eq_of {n : ℕ} (hn : (n : K) ≠ 0) {S T : (W⁄K).Point} 
 
 omit [DecidableEq K] in
 theorem exists_eq_algebraMap {f : (W⁄K).FunctionField}
-    (hf : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (placeOf W K P hP).valuation (W⁄K).FunctionField f = 1) :
+    (hf : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (placeOf W K P hP).valuation (W⁄K).FunctionField f =
+      1) :
     ∃ c : K, c ≠ 0 ∧ f = algebraMap K (W⁄K).FunctionField c := by
   apply WeierstrassCurve.Affine.FunctionField.exists_eq_algebraMap_of_valuation_eq_one (W := W⁄K)
   intro v
@@ -128,7 +130,8 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   set gsum := weilFun W K n (T + T')
   set h := gT * transEquiv W K (-T₁') gT2 with hh
   have hh0 : h ≠ 0 := mul_ne_zero (WeierstrassCurve.Affine.weilFun_ne_zero W hn hT)
-    ((map_ne_zero_iff _ (transEquiv W K _).injective).mpr (WeierstrassCurve.Affine.weilFun_ne_zero W hn hT'))
+    ((map_ne_zero_iff _ (transEquiv W K _).injective).mpr (WeierstrassCurve.Affine.weilFun_ne_zero W
+      hn hT'))
   have hg0 : gsum ≠ 0 := WeierstrassCurve.Affine.weilFun_ne_zero W hn hTsum
   have hval : ∀ (P : (W⁄K).Point) (hP : P ≠ 0),
       (placeOf W K P hP).valuation (W⁄K).FunctionField (gsum / h) = 1 := by

@@ -138,11 +138,13 @@ open scoped Classical in
 theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite K (R ⧸ I)] :
     finrank K (R ⧸ I) = ∑ᶠ v : HeightOneSpectrum R,
       (Associates.mk v.asIdeal).count (Associates.mk I).factors * finrank K (R ⧸ v.asIdeal) := by
-  set c : HeightOneSpectrum R → ℕ := fun v => (Associates.mk v.asIdeal).count (Associates.mk I).factors
+  set c : HeightOneSpectrum R → ℕ := fun v => (Associates.mk v.asIdeal).count (Associates.mk
+    I).factors
     with hc
   set T := (Ideal.finite_factors hI).toFinset with hT
   have hcT : ∀ v, c v ≠ 0 → v ∈ T := fun v hv =>
-    (Ideal.finite_factors hI).mem_toFinset.mpr ((Associates.count_ne_zero_iff_dvd hI v.irreducible).mp hv)
+    (Ideal.finite_factors hI).mem_toFinset.mpr ((Associates.count_ne_zero_iff_dvd hI
+      v.irreducible).mp hv)
   have hprod : ∏ v : T, (v : HeightOneSpectrum R).asIdeal ^ c v = I := by
     rw [Finset.prod_coe_sort T fun v => v.asIdeal ^ c v, ←
       Ideal.finprod_heightOneSpectrum_factorization hI]
@@ -150,7 +152,8 @@ theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite
     refine hcT v fun h0 => hv ?_
     simp only [h0, pow_zero]
   let e : (R ⧸ I) ≃ₐ[K] ∀ v : T, R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v :=
-    AlgEquiv.ofRingEquiv (f := HeightOneSpectrum.quotientEquivPiOfProdEq I (fun v : T => v.1) (fun v => c v)
+    AlgEquiv.ofRingEquiv (f := HeightOneSpectrum.quotientEquivPiOfProdEq I (fun v : T => v.1) (fun v
+      => c v)
       (fun _ _ h => Subtype.coe_injective.ne h) hprod) (fun _ => rfl)
   have : Module.Finite K (∀ v : T, R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v) :=
     Module.Finite.equiv e.toLinearEquiv
@@ -216,7 +219,8 @@ theorem natDegree_norm_eq_finsum_count_aux {a : W.CoordinateRing} (ha : a ≠ 0)
   have hI : Ideal.span {a} ≠ ⊥ := by rwa [Ne, Ideal.span_singleton_eq_bot]
   have : Module.Finite K (W.CoordinateRing ⧸ Ideal.span {a}) :=
     Module.Finite.equiv
-      ((Ideal.quotientEquivPiSpan (Ideal.span {a}) (CoordinateRing.basis W) hI).restrictScalars K).symm
+      ((Ideal.quotientEquivPiSpan (Ideal.span {a}) (CoordinateRing.basis W) hI).restrictScalars
+        K).symm
   have hfin : Function.HasFiniteSupport fun v : HeightOneSpectrum W.CoordinateRing =>
       (Associates.mk v.asIdeal).count (Associates.mk (Ideal.span {a})).factors :=
     (Ideal.finite_factors hI).subset fun v hv =>
@@ -234,7 +238,10 @@ open scoped nonZeroDivisors
 
 theorem solution {K : Type*} [Field K] [IsAlgClosed K] (W : WeierstrassCurve K)
     [IsDedekindDomain W.toAffine.CoordinateRing] {a : W.toAffine.CoordinateRing} (ha : a ≠ 0) :
-    ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
+    ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum
+      W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v
+      (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap
+      W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
   WeierstrassCurve.Affine.CoordinateRing.natDegree_norm_eq_finsum_count_aux W.toAffine ha
 
 end S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count
@@ -250,7 +257,10 @@ open scoped nonZeroDivisors
 theorem WeierstrassCurve.Affine.CoordinateRing.natDegree_norm_eq_finsum_count {K : Type*} [Field K]
     [IsAlgClosed K] (W : WeierstrassCurve K) [IsDedekindDomain W.toAffine.CoordinateRing]
     {a : W.toAffine.CoordinateRing} (ha : a ≠ 0) :
-    ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
+    ((Algebra.norm (Polynomial K) a).natDegree : ℤ) = ∑ᶠ v : IsDedekindDomain.HeightOneSpectrum
+      W.toAffine.CoordinateRing, FractionalIdeal.count W.toAffine.FunctionField v
+      (FractionalIdeal.spanSingleton W.toAffine.CoordinateRing⁰ (algebraMap
+      W.toAffine.CoordinateRing W.toAffine.FunctionField a)) :=
   solution W ha
 
 end publicSection

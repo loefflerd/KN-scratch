@@ -78,10 +78,12 @@ private theorem exists_smul_D_jBar_aux (N : ℕ) [NeZero N]
     (ω : KaehlerDifferential (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) :
     ∃ x : modularFunctionFieldBar N,
       ω = x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
-        ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ := by
+        ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (jq_mem_full N)⟩ := by
   have : Algebra.IsSeparable
       (IntermediateField.adjoin (AlgebraicClosure ℚ)
-        ({⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩} :
+        ({⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+          (jq_mem_full N)⟩} :
           Set (modularFunctionFieldBar N)))
       (modularFunctionFieldBar N) :=
     isSeparable_adjoin_coeffEmb_jq_full (AlgebraicClosure ℚ) N
@@ -99,8 +101,10 @@ private theorem exists_smul_D_jBar_aux (N : ℕ) [NeZero N]
 private theorem diffQExpBar_smul_D_jBar_aux (N : ℕ) [NeZero N] (x : modularFunctionFieldBar N) :
     diffQExpBar N
         (x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
-          ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩) =
-      (x : LaurentSeries (AlgebraicClosure ℚ)) * qEuler (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq) :=
+          ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+            (jq_mem_full N)⟩) =
+      (x : LaurentSeries (AlgebraicClosure ℚ)) * qEuler (AlgebraicClosure ℚ) (coeffEmb
+        (AlgebraicClosure ℚ) jq) :=
   diffQExp_smul_D (modularFunctionFieldBar N) x _
 
 end Engine
@@ -116,8 +120,10 @@ private theorem ModularCurve.diffQExpBar_injective_of_neZero (N : ℕ) [NeZero N
   intro ω₁ ω₂ h
   obtain ⟨x₁, rfl⟩ := exists_smul_D_jBar_aux N ω₁
   obtain ⟨x₂, rfl⟩ := exists_smul_D_jBar_aux N ω₂
-  have h' : (x₁ : LaurentSeries (AlgebraicClosure ℚ)) * qEuler (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq) =
-      (x₂ : LaurentSeries (AlgebraicClosure ℚ)) * qEuler (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq) :=
+  have h' : (x₁ : LaurentSeries (AlgebraicClosure ℚ)) * qEuler (AlgebraicClosure ℚ) (coeffEmb
+    (AlgebraicClosure ℚ) jq) =
+      (x₂ : LaurentSeries (AlgebraicClosure ℚ)) * qEuler (AlgebraicClosure ℚ) (coeffEmb
+        (AlgebraicClosure ℚ) jq) :=
     (diffQExpBar_smul_D_jBar_aux N x₁).symm.trans (h.trans (diffQExpBar_smul_D_jBar_aux N x₂))
   have hx : x₁ = x₂ := Subtype.ext (mul_right_cancel₀ qEuler_coeffEmb_jq_ne_zero_aux h')
   rw [hx]

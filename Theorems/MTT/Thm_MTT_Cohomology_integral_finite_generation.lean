@@ -291,7 +291,8 @@ theorem hom_eq_zero (P : Binary ℤ) (hP : P ∈ MTT.Cohomology.Sym ℤ n)
 
 /-- Evaluation of a class on the unimodular paths attached to coset representatives. -/
 def Theta (N n : ℕ) : Hc N n ℤ →ₗ[ℤ] ((Cos N × Fin (n + 1)) → ℤ) where
-  toFun φ := fun z => AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) (mono n z.2.val)
+  toFun φ := fun z => AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct
+    z.1.out OnePoint.infty)) (mono n z.2.val)
   map_add' φ ψ := by funext z; simp
   map_smul' c φ := by funext z; exact MvPolynomial.coeff_smul _ _ _
 

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
+Based on Prove2Me node
+WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
 (44f8253f-ac3c-5c57-a620-3d9729e4c128) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission b68932ab-e88d-53e8-a00a-15658f5b95a9
@@ -53,7 +54,8 @@ points with $\mathrm{Pic}^0$, is exactly the subgroup of integer multiples of $Q
 This is the kernel half of Vélu's construction of the quotient isogeny $W \to W/\langle Q\rangle$
 for a point $Q$ of odd order, realised on function fields and transported to point groups through
 $\mathrm{Pic}^0$. It feeds the construction of isogenies with prescribed full kernel, via
-[`WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`](thm.html#WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
+[`WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`]
+(thm.html#WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
 
 ## Explanation of the source proof
 
@@ -96,13 +98,16 @@ theorem solution
 
 end S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder (solution)
+export
+  P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
+  (solution)
 
 end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
+theorem
+  WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
     {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {n : ℕ} (hord : addOrderOf Q = 2 * n + 1)

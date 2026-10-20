@@ -139,7 +139,8 @@ theorem solution
 
 end S_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap
 end P2MW
-export P2MW.S_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap (solution)
+export P2MW.S_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap
+  (solution)
 
 end privateSection
 

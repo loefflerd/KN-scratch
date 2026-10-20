@@ -89,7 +89,8 @@ lemma count_le {S T : Set DirichletCharacterWithLevel} (F : CharacterCountingTra
     have hfin : (Subtype.val '' {ψ : S | F.map ψ = ⟨θ, hθT⟩}).Finite :=
       (F.fibre_finite ⟨θ, hθT⟩).image _
     calc (hA.toFinset.filter (fun χ => f χ = θ)).card
-        = Set.ncard ((hA.toFinset.filter (fun χ => f χ = θ)) : Set _) := (Set.ncard_coe_finset _).symm
+        = Set.ncard ((hA.toFinset.filter (fun χ => f χ = θ)) : Set _) := (Set.ncard_coe_finset
+          _).symm
       _ ≤ Set.ncard (Subtype.val '' {ψ : S | F.map ψ = ⟨θ, hθT⟩}) := Set.ncard_le_ncard hsub hfin
       _ = Set.ncard {ψ : S | F.map ψ = ⟨θ, hθT⟩} :=
           Set.ncard_image_of_injective _ Subtype.val_injective
@@ -166,7 +167,8 @@ theorem solution
   have hcmp := log_rpow_le s X (1 - α) hs hX2 hX3
   -- c' X / L^β ≤ c (X/s) / (M L_Y^β) ≤ count_S(X/s) / M ≤ count_T X
   have hcmp' : Real.log (X / s) ^ (1 - α) ≤ K * Real.log X ^ (1 - α) := hcmp
-  have key : c / (M * s * K) * X / Real.log X ^ (1 - α) ≤ c * (X / s) / Real.log (X / s) ^ (1 - α) / M :=
+  have key : c / (M * s * K) * X / Real.log X ^ (1 - α) ≤ c * (X / s) / Real.log (X / s) ^ (1 - α) /
+    M :=
     by
     have e1 : c / (M * s * K) * X / Real.log X ^ (1 - α) =
         (c * X / (s * M)) * (1 / (K * Real.log X ^ (1 - α))) := by

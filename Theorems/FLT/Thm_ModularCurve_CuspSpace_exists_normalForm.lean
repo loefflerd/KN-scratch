@@ -144,7 +144,8 @@ end ModularCurve.CuspSpace
 
 theorem solution {N : ℕ} (hN : N ≠ 0) (x : ModularCurve.CuspSpace N) :
     ∃ a : ℤ, IsCoprime a (ModularCurve.CuspSpace.cuspDenom N x : ℤ) ∧
-      x = ModularCurve.CuspSpace.mk N (ModularCurve.ratPoint a (ModularCurve.CuspSpace.cuspDenom N x)) := by
+      x = ModularCurve.CuspSpace.mk N (ModularCurve.ratPoint a (ModularCurve.CuspSpace.cuspDenom N
+        x)) := by
   obtain ⟨y, rfl⟩ := mk_surjective N x
   obtain ⟨a, c, hac, rfl⟩ := exists_ratPoint_eq y
   obtain ⟨r, s, hNr, hrs, hsum⟩ := exists_row_smul_eq_gcd hN hac
@@ -172,7 +173,8 @@ open OnePoint
 theorem ModularCurve.CuspSpace.exists_normalForm {N : ℕ} (hN : N ≠ 0) (x : ModularCurve.CuspSpace N)
     :
     ∃ a : ℤ, IsCoprime a (ModularCurve.CuspSpace.cuspDenom N x : ℤ) ∧
-      x = ModularCurve.CuspSpace.mk N (ModularCurve.ratPoint a (ModularCurve.CuspSpace.cuspDenom N x)) :=
+      x = ModularCurve.CuspSpace.mk N (ModularCurve.ratPoint a (ModularCurve.CuspSpace.cuspDenom N
+        x)) :=
   solution hN x
 
 end publicSection

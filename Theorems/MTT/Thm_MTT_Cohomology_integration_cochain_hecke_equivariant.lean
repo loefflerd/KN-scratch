@@ -237,7 +237,8 @@ lemma ofComplex_shift_div {l : ℕ} (hl : 0 < l) (r : ℚ) (b : ℕ) (t : ℝ) :
 lemma modularIntegral_upTranslate {l : ℕ} (hl : 0 < l) (b : ℕ) (F : ℍ → ℂ) (P : Polynomial ℂ)
     (r : ℚ) :
     modularIntegral (upTranslate l b F) P r =
-      (l : ℂ) * modularIntegral F (P.comp (Polynomial.C (l : ℂ) * Polynomial.X - Polynomial.C (b : ℂ)))
+      (l : ℂ) * modularIntegral F (P.comp (Polynomial.C (l : ℂ) * Polynomial.X - Polynomial.C (b :
+        ℂ)))
         ((r + b) / l) := by
   have hl' : (l : ℂ) ≠ 0 := by exact_mod_cast hl.ne'
   have hlR : (0 : ℝ) < (l : ℝ)⁻¹ := inv_pos.mpr (by exact_mod_cast hl)
@@ -339,7 +340,8 @@ lemma modularIntegral_heckePrime {l : ℕ} (hl : 0 < l) (k : ℕ) (e : ℂ) (f g
     (hf : ∀ b : ℕ, GoodAt f ((r + b) / l)) (hf' : GoodAt f (l * r)) (P : Polynomial ℂ) :
     modularIntegral g P r =
       ∑ b : Fin l, modularIntegral f
-          (P.comp (Polynomial.C (l : ℂ) * Polynomial.X - Polynomial.C (b.val : ℂ))) ((r + b.val) / l) +
+          (P.comp (Polynomial.C (l : ℂ) * Polynomial.X - Polynomial.C (b.val : ℂ))) ((r + b.val) /
+            l) +
         e * (l : ℂ) ^ (k - 1) * (l : ℂ)⁻¹ *
           modularIntegral f (P.comp (Polynomial.C (l : ℂ)⁻¹ * Polynomial.X)) (l * r) := by
   have hl' : (l : ℂ) ≠ 0 := by exact_mod_cast hl.ne'

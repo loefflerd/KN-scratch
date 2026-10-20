@@ -119,16 +119,19 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
   let g : ι → laurentBaseChange L (modularFunctionFieldFull N) := fun d =>
     haveI : NeZero d.1 := ⟨d.2.2⟩
     ⟨coeffEmb L (qExpand ℚ d.1 jq), coeffEmb_mem_laurentBaseChange L (jqd_mem_full N d.2.1)⟩
-  have hgval : ∀ d : ι, ((g d : laurentBaseChange L (modularFunctionFieldFull N)) : LaurentSeries L) =
+  have hgval : ∀ d : ι, ((g d : laurentBaseChange L (modularFunctionFieldFull N)) : LaurentSeries L)
+    =
       haveI : NeZero d.1 := ⟨d.2.2⟩; coeffEmb L (qExpand ℚ d.1 jq) := fun d => rfl
   let J : laurentBaseChange L (modularFunctionFieldFull N) :=
     ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L hjq⟩
   have hint : ∀ d : ι, IsIntegral
-      (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (g d) := by
+      (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (g
+        d) := by
     rintro ⟨d, hdvd, hd0⟩
     have : NeZero d := ⟨hd0⟩
     obtain ⟨data⟩ := ModularCurve.nonempty_modularPolynomialData d
-    let J' : IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N))) :=
+    let J' : IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull
+      N))) :=
       ⟨J, IntermediateField.mem_adjoin_simple_self L J⟩
     let ψ : Polynomial ℤ →+*
         IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N))) :=
@@ -138,13 +141,16 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
         (algebraMap (laurentBaseChange L (modularFunctionFieldFull N)) (LaurentSeries L)) :=
       (algebraMap (laurentBaseChange L (modularFunctionFieldFull N)) (LaurentSeries L)).injective
     apply hv
-    have hcomp : ((algebraMap (laurentBaseChange L (modularFunctionFieldFull N)) (LaurentSeries L)).comp
-        (algebraMap (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
+    have hcomp : ((algebraMap (laurentBaseChange L (modularFunctionFieldFull N)) (LaurentSeries
+      L)).comp
+        (algebraMap (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L
+          (modularFunctionFieldFull N))))
           (laurentBaseChange L (modularFunctionFieldFull N)))).comp ψ =
         (coeffEmb L).comp evalAtJ := by
       refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
       rw [RingHom.comp_apply, RingHom.comp_apply, RingHom.comp_apply, evalAtJ_X]
-      change (algebraMap _ (LaurentSeries L)) (algebraMap _ _ (Polynomial.eval₂ (Int.castRingHom _) J' X)) =
+      change (algebraMap _ (LaurentSeries L)) (algebraMap _ _ (Polynomial.eval₂ (Int.castRingHom _)
+        J' X)) =
         coeffEmb L jq
       rw [Polynomial.eval₂_X]
       rfl

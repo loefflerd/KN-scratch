@@ -106,7 +106,8 @@ private theorem galRingHom_one (z : (W⁄K).CoordinateRing) : galRingHom W 1 z =
 
 theorem galRing_exists (σ : K ≃ₐ[F] K) :
     ∃ φ : (W⁄K).CoordinateRing ≃+* (W⁄K).CoordinateRing, ∀ p : K[X][Y],
-      φ (CoordinateRing.mk (W⁄K) p) = CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))) := by
+      φ (CoordinateRing.mk (W⁄K) p) = CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))
+        := by
   refine ⟨RingEquiv.ofRingHom (galRingHom W σ) (galRingHom W σ⁻¹) ?_ ?_, galRingHom_mk W σ⟩
   · refine RingHom.ext fun z => ?_
     rw [RingHom.comp_apply, RingHom.id_apply, galRingHom_comp, mul_inv_cancel, galRingHom_one]
@@ -116,7 +117,8 @@ theorem galRing_exists (σ : K ≃ₐ[F] K) :
 theorem galRing_map_XYIdeal (σ : K ≃ₐ[F] K) (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing)
     (hφ : ∀ p : K[X][Y], φ (CoordinateRing.mk (W⁄K) p) =
       CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))) (x y : K) :
-    (CoordinateRing.XYIdeal (W⁄K) x (C y)).map φ = CoordinateRing.XYIdeal (W⁄K) (σ x) (C (σ y)) := by
+    (CoordinateRing.XYIdeal (W⁄K) x (C y)).map φ = CoordinateRing.XYIdeal (W⁄K) (σ x) (C (σ y))
+      := by
   rw [CoordinateRing.XYIdeal, Ideal.map_span, Set.image_pair, CoordinateRing.XClass,
     CoordinateRing.YClass, hφ, hφ]
   simp only [Polynomial.map_sub, Polynomial.map_C, Polynomial.map_X, coe_mapRingHom,
@@ -149,7 +151,8 @@ section GalA
 
 variable {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F)
   (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField)
-  (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) =
+  (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk
+    (W⁄K) p)) =
     algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField
       (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))))
 
@@ -273,7 +276,8 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     ((weilPairing0 W K n (σ • S) (σ • T) : Kˣ) : K) = σ (weilPairing0 W K n S T) := by
   obtain ⟨Φe, hΦe⟩ := galFunctionField_exists W σ
   set Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField := Φe.toRingHom with hΦdef
-  have hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) =
+  have hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk
+    (W⁄K) p)) =
       algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField
         (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))) := fun p => hΦe p
   have hσS : (n : ℤ) • (σ • S) = 0 := by rw [← Point.smul_zsmul_comm W σ, hS, smul_zero]
@@ -286,7 +290,8 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have hc0 : algebraMap K (W⁄K).FunctionField (c : K) ≠ 0 :=
     (map_ne_zero_iff _ (algebraMap K (W⁄K).FunctionField).injective).mpr c.ne_zero
   have h2 : transEquiv W K (σ • S) (weilFun W K n (σ • T)) =
-      algebraMap K (W⁄K).FunctionField (σ (weilPairing0 W K n S T : K)) * weilFun W K n (σ • T) := by
+      algebraMap K (W⁄K).FunctionField (σ (weilPairing0 W K n S T : K)) * weilFun W K n (σ • T)
+        := by
     apply mul_left_cancel₀ hc0
     rw [h1]
     ring

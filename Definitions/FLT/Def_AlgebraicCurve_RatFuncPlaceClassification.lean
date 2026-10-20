@@ -75,8 +75,11 @@ section PlaceInfty
 
 variable [DecidableEq (RatFunc K)]
 
-instance instNontrivialSubtypeUnitsWithZeroMultiplicativeIntMemSubgroupValueGroupRatFuncValuationInftyValuation_definitions :
-    Nontrivial (MonoidWithZeroHom.valueGroup (MonoidWithZeroHom.ofClass (RatFunc.inftyValuation K))) := by
+instance
+  instNontrivialSubtypeUnitsWithZeroMultiplicativeIntMemSubgroupValueGroupRatFuncValuationInftyValuation_definitions
+  :
+    Nontrivial (MonoidWithZeroHom.valueGroup (MonoidWithZeroHom.ofClass (RatFunc.inftyValuation K)))
+      := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
   refine ⟨Units.mk0 (RatFunc.inftyValuation K RatFunc.X)
     (by rw [RatFunc.inftyValuation.X]; exact exp_ne_zero), ?_, ?_⟩

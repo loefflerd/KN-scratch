@@ -77,7 +77,8 @@ theorem qParam_vadd_pow {q n : ℕ} (hq : q ≠ 0) (hn : q ∣ n) (τ : ℍ) :
   push_cast
   have hqq : (q : ℂ) * (q : ℂ)⁻¹ = 1 := mul_inv_cancel₀ hq'
   rw [show (q : ℂ) * (k : ℂ) * (2 * Real.pi * Complex.I * (((q : ℂ))⁻¹ + (τ : ℂ)) / 1)
-      = (q : ℂ) * (k : ℂ) * (2 * Real.pi * Complex.I * (τ : ℂ) / 1) + (k : ℂ) * (2 * Real.pi * Complex.I)
+      = (q : ℂ) * (k : ℂ) * (2 * Real.pi * Complex.I * (τ : ℂ) / 1) + (k : ℂ) * (2 * Real.pi *
+        Complex.I)
       by linear_combination ((k : ℂ) * (2 * Real.pi * Complex.I)) * hqq,
     Complex.exp_add, Complex.exp_nat_mul_two_pi_mul_I, mul_one]
 
@@ -304,7 +305,8 @@ theorem slash_Sc {p : ℕ} (hp : p ≠ 0) (f : ℍ → ℂ) : f ∣[(2 : ℤ)] S
 
 theorem B_mul_heckeMatrix {p : ℕ} (hp : p ≠ 0) (j : ℕ) :
     B p * heckeMatrix p j
-      = Sc p hp * (Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ (j : ℤ)) : GL (Fin 2) ℝ) := by
+      = Sc p hp * (Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ (j : ℤ)) : GL (Fin 2) ℝ)
+        := by
   apply Units.ext
   rw [Units.val_mul, Units.val_mul]
   change ((heckeDiagMatrix p : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) *
@@ -312,7 +314,8 @@ theorem B_mul_heckeMatrix {p : ℕ} (hp : p ≠ 0) (j : ℕ) :
     = ((Sc p hp : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) *
       ((ModularGroup.T ^ (j : ℤ) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).map (algebraMap ℤ ℝ)
   rw [val_heckeDiagMatrix hp, val_heckeMatrix hp, Sc, val_upperTriangularGL]
-  have hT : ((ModularGroup.T ^ (j : ℤ) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, (j : ℤ); 0, 1] :=
+  have hT : ((ModularGroup.T ^ (j : ℤ) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, (j : ℤ); 0,
+    1] :=
     ModularGroup.coe_T_zpow (j : ℤ)
   rw [hT]
   ext i k
@@ -383,7 +386,8 @@ theorem qCoeff_lift (hp : p.Prime) (hpm : ¬ p ∣ m) (F : CuspForm (CongruenceS
   split_ifs <;> simp
 
 def Supp (m p : ℕ) : Type :=
-  {G : CuspForm (CongruenceSubgroup.Gamma0 m) 2 // ∀ n : ℕ, ¬ p ∣ n → ModularFormClass.qCoeff G n = 0}
+  {G : CuspForm (CongruenceSubgroup.Gamma0 m) 2 // ∀ n : ℕ, ¬ p ∣ n → ModularFormClass.qCoeff G n =
+    0}
 
 def step (hp : p.Prime) (hpm : ¬ p ∣ m) (G : Supp m p) : Supp m p :=
   ⟨lift hp hpm G.1 G.2, fun n hn => by rw [qCoeff_lift, ite_eq_right hn]⟩

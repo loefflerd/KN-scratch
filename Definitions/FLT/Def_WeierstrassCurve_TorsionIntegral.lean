@@ -542,7 +542,8 @@ theorem secant_slope_identity {x₁ y₁ x₂ y₂ : L}
   set a4 := (W.map A.subtype).toAffine.a₄
   set a6 := (W.map A.subtype).toAffine.a₆
   linear_combination (-a1 ^ 2*x₁*x₂*y₂ + a1*a2*x₁*x₂ ^ 2 - a1*a3*x₁*y₂ - a1*a3*x₂*y₂ + a1*a4*x₁*x₂
-      + a1*a6*x₁ + a1*x₁*x₂ ^ 3 - a1*x₁*y₂ ^ 2 + a1*x₂*y₁*y₂ + a2*a3*x₂ ^ 2 - a2*x₂ ^ 2*y₁ - a3 ^ 2*y₂
+      + a1*a6*x₁ + a1*x₁*x₂ ^ 3 - a1*x₁*y₂ ^ 2 + a1*x₂*y₁*y₂ + a2*a3*x₂ ^ 2 - a2*x₂ ^ 2*y₁ - a3 ^
+        2*y₂
       + a3*a4*x₂ + a3*a6 + a3*x₂ ^ 3 + a3*y₁*y₂ - a3*y₂ ^ 2 - a4*x₂*y₁ - a6*y₁ - x₂ ^ 3*y₁
       + y₁*y₂ ^ 2 - y₂ ^ 3) * h₁
     + (a1 ^ 2*x₁ ^ 2*y₁ - a1*a2*x₁ ^ 3 + 2*a1*a3*x₁*y₁ - a1*a4*x₁ ^ 2 - a1*a6*x₁ - a1*x₁ ^ 4

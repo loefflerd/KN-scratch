@@ -801,22 +801,26 @@ p2m_open "AlgebraicCurve \
 
 theorem solution (K : Type*) [Field K] [CharZero K] {F : Type*} [Field F]
     [Algebra K F] (x : F) (hx : Transcendental K x)
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] : HasPrincipalDivisors K F := by
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] : HasPrincipalDivisors K F
+      := by
   classical
   let e : RatFunc K ≃ₐ[K] ↥(IntermediateField.adjoin K ({x} : Set F)) :=
     RatFunc.algEquivOfTranscendental x hx
   let : Algebra (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F))) :=
     e.toAlgHom.toRingHom.toAlgebra
   let : Algebra (RatFunc K) F :=
-    ((algebraMap (↥(IntermediateField.adjoin K ({x} : Set F))) F).comp e.toAlgHom.toRingHom).toAlgebra
+    ((algebraMap (↥(IntermediateField.adjoin K ({x} : Set F))) F).comp
+      e.toAlgHom.toRingHom).toAlgebra
   have : IsScalarTower (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F))) F :=
     IsScalarTower.of_algebraMap_eq fun q => rfl
   have : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq fun r => by
-    change algebraMap K F r = algebraMap (↥(IntermediateField.adjoin K ({x} : Set F))) F (e (algebraMap K (RatFunc K) r))
+    change algebraMap K F r = algebraMap (↥(IntermediateField.adjoin K ({x} : Set F))) F (e
+      (algebraMap K (RatFunc K) r))
     rw [AlgEquiv.commutes]
     exact IsScalarTower.algebraMap_apply K (↥(IntermediateField.adjoin K ({x} : Set F))) F r
   have : Module.Finite (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F))) :=
-    Module.Finite.of_surjective (Algebra.linearMap (RatFunc K) (↥(IntermediateField.adjoin K ({x} : Set F)))) e.surjective
+    Module.Finite.of_surjective (Algebra.linearMap (RatFunc K) (↥(IntermediateField.adjoin K ({x} :
+      Set F)))) e.surjective
   have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.trans (↥(IntermediateField.adjoin K ({x} : Set F))) F
   exact hasPrincipalDivisors_of_finiteDimensional_ratFunc K F

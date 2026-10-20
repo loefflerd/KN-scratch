@@ -44,7 +44,8 @@ This is the classical fact that over an algebraically closed constant field ever
 function field has degree one; it makes all rationality-of-support hypotheses in the theory of
 evaluation of functions at places and of Weil reciprocity automatic in the geometric setting. It is
 used throughout the divisor-theoretic and Weil-pairing parts of the development, for instance by
-[`AlgebraicCurve.Divisor.mapDomain_placeReduction_eq_ord_of_retraction`](thm.html#AlgebraicCurve.Divisor.mapDomain_placeReduction_eq_ord_of_retraction)
+[`AlgebraicCurve.Divisor.mapDomain_placeReduction_eq_ord_of_retraction`]
+(thm.html#AlgebraicCurve.Divisor.mapDomain_placeReduction_eq_ord_of_retraction)
 and by the injectivity statements for the divisorial Weil pairing.
 
 ## Explanation of the source proof

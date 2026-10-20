@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
+Based on Prove2Me node
+AlgebraicCurve.mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
 (f41197aa-9dea-5a56-87b6-eb8ecdcf9037) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission f2919514-e3d1-5ee8-a4d9-14e60337ae93
@@ -277,10 +278,12 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
       refine lt_of_le_of_lt (degree_C_mul_X_pow_le _ _) ?_
       exact_mod_cast Nat.lt_succ_of_le (Nat.sub_le n i)
     refine ⟨X ^ (n + 1) - g, monic_X_pow_sub hgdeg, ?_⟩
-    have hfw : (aeval w⁻¹ f : L) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w⁻¹ ^ i :=
+    have hfw : (aeval w⁻¹ f : L) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w⁻¹ ^ i
+      :=
       by
       rw [aeval_def, eval₂_eq_sum_range]
-    have hkey : w ^ (n + 1) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w ^ (n - i) :=
+    have hkey : w ^ (n + 1) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w ^ (n - i)
+      :=
       by
       have h2 : w ^ (n + 1) = w ^ (n + 1) * ((a : L) * w⁻¹) := by rw [haw, mul_one]
       rw [h2, ← hf, show ((aeval w⁻¹).toRingHom f : L) = aeval w⁻¹ f from rfl, hfw,
@@ -361,7 +364,8 @@ theorem transcendental_algebraMap [IsAlgClosed K] [IsAlgClosed K']
     obtain ⟨a, ha⟩ := Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed j hj h
     exact hx (ha ▸ isAlgebraic_algebraMap a)
   obtain ⟨P', -, hord, -⟩ :=
-    Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen v
+    Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg'
+      hgen v
   intro halg
   obtain ⟨a, ha⟩ := mem_range_of_isAlgebraic halg
   have h1 := hord x
@@ -433,7 +437,8 @@ theorem trace_mem [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOve
       (∀ v : Place K F, W.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring) →
         w ∈ W.toValuationSubring) :
     ((Algebra.trace (IntermediateField.adjoin K' ({algebraMap F F' x} : Set F')) F' w :
-      IntermediateField.adjoin K' ({algebraMap F F' x} : Set F')) : F') ∈ v'.toValuationSubring := by
+      IntermediateField.adjoin K' ({algebraMap F F' x} : Set F')) : F') ∈ v'.toValuationSubring
+        := by
   set x' := algebraMap F F' x with hx'
   set kx' : IntermediateField K' F' := IntermediateField.adjoin K' ({x'} : Set F') with hkx'
   set R : ValuationSubring kx' := v'.toValuationSubring.comap (algebraMap kx' F') with hR
@@ -862,7 +867,8 @@ theorem mem_span_range_algebraMap_of_constantFieldExtension
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
@@ -912,7 +918,8 @@ theorem solution
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
@@ -922,11 +929,13 @@ theorem solution
       (∀ v : Place K F, v'.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring) →
         z ∈ v'.toValuationSubring) :
     z ∈ Submodule.span K' (Set.range (algebraMap F F')) :=
-  AlgebraicCurve.W7XH.mem_span_range_algebraMap_of_constantFieldExtension K F K' F' hfg hfg' hgen z hz
+  AlgebraicCurve.W7XH.mem_span_range_algebraMap_of_constantFieldExtension K F K' F' hfg hfg' hgen z
+    hz
 
 end S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed (solution)
+export P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
+  (solution)
 
 end privateSection
 
@@ -939,7 +948,8 @@ theorem AlgebraicCurve.mem_span_range_algebraMap_of_constantFieldExtension_of_is
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']

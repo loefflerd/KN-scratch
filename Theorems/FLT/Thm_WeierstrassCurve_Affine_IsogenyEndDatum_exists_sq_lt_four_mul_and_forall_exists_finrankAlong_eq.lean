@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.IsogenyEndDatum.exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
+Based on Prove2Me node
+WeierstrassCurve.Affine.IsogenyEndDatum.exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
 (cac63699-df2c-5ce8-9951-0c3825b27434) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 33c4bf56-590f-52d2-ba2d-6ada0775b790
@@ -551,7 +552,9 @@ theorem solution
 
 end S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq (solution)
+export
+  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
+  (solution)
 
 end privateSection
 
@@ -561,7 +564,8 @@ public section publicSection
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u
-theorem WeierstrassCurve.Affine.IsogenyEndDatum.exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
+theorem
+  WeierstrassCurve.Affine.IsogenyEndDatum.exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
     (W : WeierstrassCurve.Affine F) [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
     [GenusOnePlaceGate.IsCentred W]

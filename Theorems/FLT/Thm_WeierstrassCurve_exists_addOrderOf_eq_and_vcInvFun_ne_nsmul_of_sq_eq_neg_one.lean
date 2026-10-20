@@ -49,7 +49,8 @@ T`](def/WeierstrassCurve_VariableChangePointEquiv.html#L119) and $k \bullet T$ f
 `vcInvFun` is the map from points of $W$ to points of $C \bullet W$ sending $0$ to $0$ and an affine
 point $(x,y)$ to $(u^{-2}x,\, u^{-3}y)$, that is, to $(-x,\, u^{-3}y)$; since $C \bullet W$ is only
 propositionally equal to $W$ (by
-[`WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one`](thm.html#WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one)),
+[`WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one`]
+(thm.html#WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one)),
 the two sides live in types identified only after rewriting, and the inequality is therefore phrased
 with `HEq`.
 
@@ -57,7 +58,8 @@ For $j = 1728$ the curve $y^2 = x^3 + Ax$ carries the extra automorphism $[i]\co
 (-x, u^{-3}y)$ with $u^2 = -1$, and the statement says that $[i]$ does not act on the $p$-torsion
 through a scalar: some point of exact order $p$ fails to be an eigenvector, the natural-number
 multiples $k \bullet T$ exhausting the possible eigenvalues modulo $p$. It is used by
-[`WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo`](thm.html#WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo)
+[`WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo`]
+(thm.html#WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo)
 in the count of cyclic subgroups fixed by the automorphism group of such a curve.
 
 ## Explanation of the source proof
@@ -89,7 +91,8 @@ def xco [DecidableEq L] {W : WeierstrassCurve L} : W.toAffine.Point → Option L
 
 @[scoped simp] theorem xco_zero [DecidableEq L] {W : WeierstrassCurve L} :
     xco (0 : W.toAffine.Point) = none := rfl
-@[scoped simp] theorem xco_some [DecidableEq L] {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
+@[scoped simp] theorem xco_some [DecidableEq L] {W : WeierstrassCurve L} {x y : L} (h :
+  W.toAffine.Nonsingular x y) :
     xco (Point.some x y h) = some x := rfl
 
 theorem xco_neg [DecidableEq L] {W : WeierstrassCurve L} (P : W.toAffine.Point) :
@@ -135,7 +138,8 @@ theorem xco_castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = 
   subst e; rfl
 
 theorem xco_vcInvFun [DecidableEq L] (u : Lˣ) (W : WeierstrassCurve L) (P : W.toAffine.Point) :
-    xco (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L) W.toAffine P) = (xco P).map (fun x => ((u⁻¹ : Lˣ) : L) ^ 2 * x) := by
+    xco (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L) W.toAffine P) = (xco P).map (fun x =>
+      ((u⁻¹ : Lˣ) : L) ^ 2 * x) := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
   · change some _ = some _
@@ -232,7 +236,8 @@ theorem solution
     (A : L) (hA : A ≠ 0) (u : Lˣ) (hu : (u : L) ^ 2 = -1)
     (p : ℕ) (hp : p.Prime) :
     ∃ T : (⟨0, 0, 0, A, 0⟩ : WeierstrassCurve L).toAffine.Point, addOrderOf T = p ∧
-      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ : WeierstrassCurve.VariableChange L)
+      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ :
+        WeierstrassCurve.VariableChange L)
         (⟨0, 0, 0, A, 0⟩ : WeierstrassCurve L).toAffine T) (k • T) := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   have : Fact p.Prime := ⟨hp⟩
@@ -364,7 +369,8 @@ theorem solution
           (ZMod.intCast_eq_intCast_iff_dvd_sub (r : ℤ) c p).mp (by exact_mod_cast hr)
         have : c = r + p * k := by linarith
         rw [this, add_zsmul, mul_comm, mul_zsmul, hpT, zsmul_zero, add_zero]
-      obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 :=
+      obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some
+        x y h = 0 :=
         by
         have h1 : 1 < Nat.card Ep := by rw [show Nat.card Ep = p ^ 2 from hcard]; nlinarith
         have : Finite Ep :=
@@ -391,7 +397,8 @@ theorem solution
     have hF0 : F ≠ 0 := Phi_add_X_mul_PsiSq_ne_zero W m hm1
     have hFdeg : F.natDegree ≤ m ^ 2 := natDegree_Phi_add_X_mul_PsiSq_le W m hm1
     have hmp : (m : ℤ) • (0 : W.toAffine.Point) = 0 := zsmul_zero _
-    have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 → F.IsRoot x :=
+    have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 →
+      F.IsRoot x :=
       by
       intro x y h hpT
       have hord : addOrderOf (Point.some x y h) = p :=
@@ -461,7 +468,8 @@ theorem solution
 
 end S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg_one
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg_one (solution)
+export P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg_one
+  (solution)
 
 end privateSection
 
@@ -472,7 +480,8 @@ theorem WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg
     (A : L) (hA : A ≠ 0) (u : Lˣ) (hu : (u : L) ^ 2 = -1)
     (p : ℕ) (hp : p.Prime) :
     ∃ T : (⟨0, 0, 0, A, 0⟩ : WeierstrassCurve L).toAffine.Point, addOrderOf T = p ∧
-      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ : WeierstrassCurve.VariableChange L)
+      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ :
+        WeierstrassCurve.VariableChange L)
         (⟨0, 0, 0, A, 0⟩ : WeierstrassCurve L).toAffine T) (k • T) :=
   solution A hA u hu p hp
 

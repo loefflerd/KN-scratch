@@ -102,7 +102,8 @@ def heckeULin (k : ℤ) [NeZero N] (hpN : p ∣ N) :
     show heckeU k p ⇑(c • f) = c • heckeU k p ⇑f by rw [FunLike.coe_smul, heckeU_smul]
 
 @[simp] theorem coe_heckeTLin_apply (k : ℤ) (hp : p.Prime) (hpN : ¬ p ∣ N)
-    (f : ModularForm (CongruenceSubgroup.Gamma0 N) k) : ⇑(heckeTLin k hp hpN f) = heckeT k p ⇑f := rfl
+    (f : ModularForm (CongruenceSubgroup.Gamma0 N) k) : ⇑(heckeTLin k hp hpN f) = heckeT k p ⇑f :=
+      rfl
 
 @[simp] theorem coe_heckeULin_apply (k : ℤ) [NeZero N] (hpN : p ∣ N)
     (f : ModularForm (CongruenceSubgroup.Gamma0 N) k) : ⇑(heckeULin k hpN f) = heckeU k p ⇑f := rfl

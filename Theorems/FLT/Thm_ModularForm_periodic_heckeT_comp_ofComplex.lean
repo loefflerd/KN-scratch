@@ -341,7 +341,8 @@ theorem hasSum_heckeU (k : ℤ) (τ : ℍ) :
 
 include hp hper hhol hbdd in
 theorem hasSum_heckeT (k : ℤ) (τ : ℍ) :
-    HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) := by
+    HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) :=
+      by
   rw [heckeT_apply k hp]
   convert (hasSum_average hp hper hhol hbdd τ).add (hasSum_diag hp hper hhol hbdd k τ) using 1
   funext n

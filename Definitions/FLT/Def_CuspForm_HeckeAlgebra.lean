@@ -102,7 +102,8 @@ theorem heckeGenerators_mono {S S' : Set ℕ} (h : S ⊆ S') :
 theorem heckeAlgebra_mono {S S' : Set ℕ} (h : S ⊆ S') : heckeAlgebra N k S' ≤ heckeAlgebra N k S :=
   Algebra.adjoin_mono (heckeGenerators_mono h)
 
-theorem commute_of_mem_heckeGenerators {T T' : Module.End ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k)}
+theorem commute_of_mem_heckeGenerators {T T' : Module.End ℂ (CuspForm (CongruenceSubgroup.Gamma0 N)
+  k)}
     (hT : T ∈ heckeGenerators N k S) (hT' : T' ∈ heckeGenerators N k S) : Commute T T' := by
   rcases hT with ⟨ℓ, hℓ, hℓN, -, rfl⟩ | ⟨q, hqN, -, -, rfl⟩ <;>
     rcases hT' with ⟨ℓ', hℓ', hℓ'N, -, rfl⟩ | ⟨q', hq'N, -, -, rfl⟩

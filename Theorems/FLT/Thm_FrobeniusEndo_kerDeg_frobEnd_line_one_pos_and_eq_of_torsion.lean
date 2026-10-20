@@ -50,7 +50,8 @@ the cardinality of the kernel of $a \cdot \mathrm{id} - b\pi$, the conclusion is
 This is the degree formula at the heart of Manin's elementary proof of the Hasse bound, with the
 trace written as $a = q + 1 - \#\ker(1-\pi)$ rather than through a point count. It is the version
 carrying the two division-polynomial inputs as explicit hypotheses; the hypothesis-free form
-[`FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq`](thm.html#FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq)
+[`FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq`]
+(thm.html#FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq)
 is obtained from it by discharging them.
 
 ## Explanation of the source proof
@@ -589,8 +590,14 @@ end Frobenius
 
 end M4cP4H4
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
-    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+  [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W
+  : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
+  (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n •
+  Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq
+  n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
+    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 -
+      ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
   M4cP4H4.main W σ hσ hF htor hcop m hm hmk
 
 end S_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_torsion
@@ -604,8 +611,14 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq_of_torsion {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n : ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0) (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
-    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
+theorem FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq_of_torsion {R : Type*} [CommRing R] {F :
+  Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k]
+  [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ
+  : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (htor : ∀ (n :
+  ℤ) {x y : k} (h : (W⁄k).Nonsingular x y), n • Point.some x y h = 0 → ((W⁄k).ΨSq n).eval x = 0)
+  (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (m : ℕ) (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
+    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 -
+      ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
   solution W σ hσ hF htor hcop m hm hmk
 
 end publicSection

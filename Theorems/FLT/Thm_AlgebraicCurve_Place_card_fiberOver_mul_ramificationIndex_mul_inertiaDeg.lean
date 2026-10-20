@@ -78,7 +78,9 @@ p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver ramifi
 end Place
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place in
+open _root_.AlgebraicCurve.Place
+  _root_.P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place
+  in
 theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (w : Place K F') (W : Place K M)

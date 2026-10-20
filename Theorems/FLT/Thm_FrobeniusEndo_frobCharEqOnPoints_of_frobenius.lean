@@ -47,9 +47,11 @@ This is the pointwise form of the statement that the characteristic polynomial o
 endomorphism of an elliptic curve over a finite field $\mathbb{F}_q$ is $X^{2} - aX + q$ with $a = q
 + 1 - \#E(\mathbb{F}_q)$, here under the restriction that $q$ is prime. It feeds the computation of
 the trace and determinant of Frobenius on torsion, via
-[`FrobeniusEndo.galoisTrace_det_frob_of_isAlgClosed`](thm.html#FrobeniusEndo.galoisTrace_det_frob_of_isAlgClosed)
+[`FrobeniusEndo.galoisTrace_det_frob_of_isAlgClosed`]
+(thm.html#FrobeniusEndo.galoisTrace_det_frob_of_isAlgClosed)
 and
-[`WeierstrassCurve.frobenius_cayleyHamilton_on_torsion`](thm.html#WeierstrassCurve.frobenius_cayleyHamilton_on_torsion),
+[`WeierstrassCurve.frobenius_cayleyHamilton_on_torsion`]
+(thm.html#WeierstrassCurve.frobenius_cayleyHamilton_on_torsion),
 which is the special-fibre input needed for the Galois representation attached to the Frey curve.
 
 ## Explanation of the source proof
@@ -74,7 +76,8 @@ theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k :
     (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
     (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
     (hF : (Fintype.card F).Prime) :
-    FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F) := by
+    FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F)
+      := by
   refine FrobeniusEndo.frobCharEqOnPoints_of_line W σ hσ _
     (fun m hm hmk => FrobeniusEndo.kerDeg_frobEnd_line_one W σ hσ hF m hm hmk)
     (fun m hm hmk => FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero W σ hσ hF m hm hmk)
@@ -96,7 +99,8 @@ theorem FrobeniusEndo.frobCharEqOnPoints_of_frobenius {R : Type*} [CommRing R] {
     [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k]
     [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic]
     (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) :
-    FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F) :=
+    FrobCharEqOnPoints W σ ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) (Fintype.card F)
+      :=
   solution W σ hσ hF
 
 end publicSection

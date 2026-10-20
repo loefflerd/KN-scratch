@@ -477,7 +477,8 @@ private theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure
 
 end
 
-open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve in
+open AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve in
 theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1) :

@@ -43,7 +43,8 @@ uniqueness, and non-degeneracy is stated for the first argument alone.
 This is the classical determinant (transvectant) pairing on binary forms of degree $n$, i.e. the
 $SL_2$-invariant, $(-1)^n$-symmetric form on $\mathrm{Sym}^n$ of the standard two-dimensional
 representation, pinned down on $n$-th powers of linear forms by $B(u^n,v^n)=[u,v]^n$. It is used in
-[`HeckeEis.exists_induced_binaryFormRepSL_top`](thm.html#HeckeEis.exists_induced_binaryFormRepSL_top).
+[`HeckeEis.exists_induced_binaryFormRepSL_top`]
+(thm.html#HeckeEis.exists_induced_binaryFormRepSL_top).
 
 ## Explanation of the source proof
 
@@ -111,7 +112,8 @@ theorem wt_mul_choose {i : ℕ} (hi : i ≤ n) : wt n i * (n.choose i : ℂ) = (
 
 def rawPairing : MvPolynomial (Fin 2) ℂ →ₗ[ℂ] MvPolynomial (Fin 2) ℂ →ₗ[ℂ] ℂ :=
   LinearMap.mk₂ ℂ
-    (fun P Q => ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) * AddMonoidAlgebra.coeff Q (ex n (n - i)))
+    (fun P Q => ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) *
+      AddMonoidAlgebra.coeff Q (ex n (n - i)))
     (fun P P' Q => by
       rw [← sum_add_distrib]
       exact sum_congr rfl fun i _ => by rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply]; ring)
@@ -126,14 +128,16 @@ def rawPairing : MvPolynomial (Fin 2) ℂ →ₗ[ℂ] MvPolynomial (Fin 2) ℂ �
       exact sum_congr rfl fun i _ => by rw [coeff_smul, smul_eq_mul]; ring)
 
 @[scoped simp] theorem rawPairing_apply (P Q : MvPolynomial (Fin 2) ℂ) :
-    rawPairing n P Q = ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) * AddMonoidAlgebra.coeff Q (ex n (n - i)) := rfl
+    rawPairing n P Q = ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) *
+      AddMonoidAlgebra.coeff Q (ex n (n - i)) := rfl
 
 def pairing : ↥(BinaryForm ℂ n) →ₗ[ℂ] ↥(BinaryForm ℂ n) →ₗ[ℂ] ℂ :=
   (rawPairing n).compl₁₂ (BinaryForm ℂ n).subtype (BinaryForm ℂ n).subtype
 
 theorem pairing_apply (P Q : ↥(BinaryForm ℂ n)) :
     pairing n P Q = ∑ i ∈ range (n + 1),
-      wt n i * AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (ex n i) * AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin 2) ℂ) (ex n (n - i)) := rfl
+      wt n i * AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (ex n i) * AddMonoidAlgebra.coeff
+        (Q : MvPolynomial (Fin 2) ℂ) (ex n (n - i)) := rfl
 
 theorem linePow_expand (τ : ℂ) :
     ((C τ * X 0 + X 1 : MvPolynomial (Fin 2) ℂ)) ^ n
@@ -147,7 +151,8 @@ theorem linePow_expand (τ : ℂ) :
   simp only [mul_one]
 
 theorem coeff_linePow {i : ℕ} (hi : i ≤ n) (τ : ℂ) :
-    AddMonoidAlgebra.coeff ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n i) = (n.choose i : ℂ) * τ ^ i := by
+    AddMonoidAlgebra.coeff ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n i) =
+      (n.choose i : ℂ) * τ ^ i := by
   rw [coe_linePow, linePow_expand, coeff_sum]
   rw [sum_eq_single i]
   · rw [coeff_monomial, ite_eq_left rfl]
@@ -230,7 +235,8 @@ variable (n : ℕ)
 
 theorem det_coe_complex (g : SL(2, ℤ)) :
     ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
-      - ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 := by
+      - ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 :=
+        by
   have h := Matrix.SpecialLinearGroup.det_coe g
   rw [Matrix.det_fin_two] at h
   exact_mod_cast h
@@ -246,7 +252,8 @@ theorem jFactor_mul_jFactor_mul_sub (g : SL(2, ℤ)) (τ σ : ℍ) :
   linear_combination ((τ : ℂ) - (σ : ℂ)) * hdet
 
 theorem pairing_rep_linePow (g : SL(2, ℤ)) (τ σ : ℍ) :
-    pairing n (binaryFormRepSL ℂ n g (linePow n (τ : ℂ))) (binaryFormRepSL ℂ n g (linePow n (σ : ℂ)))
+    pairing n (binaryFormRepSL ℂ n g (linePow n (τ : ℂ))) (binaryFormRepSL ℂ n g (linePow n (σ :
+      ℂ)))
       = pairing n (linePow n (τ : ℂ)) (linePow n (σ : ℂ)) := by
   rw [binaryFormRepSL_linePow, binaryFormRepSL_linePow, LinearMap.map_smul₂, LinearMap.map_smul,
     pairing_linePow,
@@ -279,7 +286,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     intro j
     rw [hL, Lagrange.natDegree_basis hvs (Finset.mem_univ j), Finset.card_univ, Fintype.card_fin]
     omega
-  have heval : ∀ j m : Fin (n + 1), ∑ i : Fin (n + 1), (L j).coeff i * v m ^ (i : ℕ) = if j = m then 1 else 0 :=
+  have heval : ∀ j m : Fin (n + 1), ∑ i : Fin (n + 1), (L j).coeff i * v m ^ (i : ℕ) = if j = m then
+    1 else 0 :=
     by
     intro j m
     rw [Fin.sum_univ_eq_sum_range (fun i => (L j).coeff i * v m ^ i) (n + 1),
@@ -294,7 +302,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     rw [Matrix.mul_apply, Matrix.one_apply]
     exact heval j m
   have hVA : V * A = 1 := mul_eq_one_comm.mp hAV
-  have hcol : ∀ i k' : Fin (n + 1), ∑ j : Fin (n + 1), v j ^ (i : ℕ) * (L j).coeff k' = if i = k' then 1 else 0 :=
+  have hcol : ∀ i k' : Fin (n + 1), ∑ j : Fin (n + 1), v j ^ (i : ℕ) * (L j).coeff k' = if i = k'
+    then 1 else 0 :=
     by
     intro i k'
     have := congrFun (congrFun hVA i) k'
@@ -302,7 +311,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
   set kk : Fin (n + 1) := ⟨k, Nat.lt_succ_of_le hk⟩ with hkk
   have hmem : (∑ j : Fin (n + 1), (L j).coeff k • linePow n (v j)) ∈ lineSpan n :=
     Submodule.sum_mem _ fun j _ => Submodule.smul_mem _ _ (linePow_mem_lineSpan n (node n j))
-  have hcomb : ((∑ j : Fin (n + 1), (L j).coeff k • linePow n (v j) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+  have hcomb : ((∑ j : Fin (n + 1), (L j).coeff k • linePow n (v j) : ↥(BinaryForm ℂ n)) :
+    MvPolynomial (Fin 2) ℂ)
       = C ((n.choose k : ℂ)) * monomial (ex n k) 1 := by
     rw [Submodule.coe_sum]
     simp only [Submodule.coe_smul, coe_linePow, linePow_expand, smul_sum, smul_monomial,
@@ -310,7 +320,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
     rw [Finset.sum_comm]
     rw [← Fin.sum_univ_eq_sum_range (fun m => ∑ j : Fin (n + 1), monomial (ex n m) ((L j).coeff k *
       ((n.choose m : ℂ) * v j ^ m))) (n + 1)]
-    have inner : ∀ m : Fin (n + 1), ∑ j : Fin (n + 1), monomial (ex n m) ((L j).coeff k * ((n.choose (m : ℕ) : ℂ) * v j ^ (m : ℕ)))
+    have inner : ∀ m : Fin (n + 1), ∑ j : Fin (n + 1), monomial (ex n m) ((L j).coeff k * ((n.choose
+      (m : ℕ) : ℂ) * v j ^ (m : ℕ)))
         = monomial (ex n m) ((n.choose (m : ℕ) : ℂ) * (if m = kk then 1 else 0)) := by
       intro m
       rw [← map_sum, ← hcol m kk]
@@ -340,7 +351,8 @@ theorem lineSpan_eq_top : lineSpan n = ⊤ := by
     refine ⟨⟨monomial (ex n (d 0)) 1, monomial_ex_mem n hle⟩, monomial_mem_lineSpan n hle, ?_⟩
     change monomial (ex n (d 0)) (1 : ℂ) = monomial d 1
     rw [← hd']
-  have hle : (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) ≤ (lineSpan n).map (BinaryForm ℂ n).subtype :=
+  have hle : (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) ≤ (lineSpan n).map (BinaryForm
+    ℂ n).subtype :=
     by
     intro φ hφ
     have hφ' : φ ∈ AddMonoidAlgebra.supported ℂ ℂ {d : Fin 2 →₀ ℕ | d.degree = n} := by
@@ -399,7 +411,8 @@ theorem solution (n : ℕ) :
       (∀ P Q : ↥(HeckeEis.BinaryForm ℂ n), B Q P = (-1) ^ n * B P Q) ∧
       (∀ P : ↥(HeckeEis.BinaryForm ℂ n), (∀ Q : ↥(HeckeEis.BinaryForm ℂ n), B P Q = 0) → P = 0) ∧
       (∀ τ σ : ℂ, B (HeckeEis.linePow n τ) (HeckeEis.linePow n σ) = (τ - σ) ^ n) :=
-  ⟨HeckeEis.PairingSol.pairing n, HeckeEis.PairingSol.pairing_rep n, HeckeEis.PairingSol.pairing_swap n,
+  ⟨HeckeEis.PairingSol.pairing n, HeckeEis.PairingSol.pairing_rep n,
+    HeckeEis.PairingSol.pairing_swap n,
     HeckeEis.PairingSol.eq_zero_of_pairing_eq_zero n, HeckeEis.PairingSol.pairing_linePow n⟩
 
 end S_HeckeEis_exists_pairing_binaryForm_linePow

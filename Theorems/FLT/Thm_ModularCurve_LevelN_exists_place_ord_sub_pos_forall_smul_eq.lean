@@ -49,10 +49,13 @@ This produces the place of the level-$N$ modular function field given by the ord
 point $\tau_0$ of the upper half plane, lying above the point $j = j(\tau_0)$ of the $j$-line and
 invariant under the automorphisms of $K$ induced by elements of the stabiliser of $\tau_0$ in
 $\mathrm{SL}_2(\mathbb{Z})$. It feeds the ramification and fibre-counting arguments
-[`ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF`](thm.html#ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF),
-[`ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index`](thm.html#ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index)
+[`ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF`]
+(thm.html#ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF),
+[`ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index`]
+(thm.html#ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index)
 and
-[`ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index`](thm.html#ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index).
+[`ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index`]
+(thm.html#ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index).
 
 ## Explanation of the source proof
 
@@ -451,7 +454,8 @@ theorem ext_comp_smul_eventuallyEq (δ : SL(2, ℤ)) (F : ℍ → ℂ) (τ₀ : 
 
 omit [NeZero N] in
 theorem analyticOrderAt_ext_comp_smul (δ : SL(2, ℤ)) (F : ℍ → ℂ) (τ₀ : ℍ) :
-    analyticOrderAt (ext (fun τ : ℍ => F (δ • τ))) τ₀ = analyticOrderAt (ext F) ((δ • τ₀ : ℍ) : ℂ) := by
+    analyticOrderAt (ext (fun τ : ℍ => F (δ • τ))) τ₀ = analyticOrderAt (ext F) ((δ • τ₀ : ℍ) : ℂ)
+      := by
   rw [analyticOrderAt_congr (ext_comp_smul_eventuallyEq δ F τ₀),
     analyticOrderAt_comp_of_deriv_ne_zero (analyticAt_moeb δ τ₀) (deriv_moeb_ne_zero δ τ₀),
     coe_smul_eq_moeb]
@@ -508,7 +512,8 @@ theorem ordValuationK_algEquiv (τ₀ : ℍ) (δ : SL(2, ℤ)) (hδ : δ • τ�
 theorem smul_analyticPlace_eq (τ₀ : ℍ) (δ : SL(2, ℤ)) (hδ : δ • τ₀ = τ₀)
     (hst : ∀ F ∈ ring N, (fun τ : ℍ => F (δ • τ)) ∈ ring N) (φ : K ≃ₐ[ℂ] K)
     (hφ : ∀ (F : ℍ → ℂ) (hF : F ∈ ring N),
-      φ (algebraMap (ring N) K ⟨F, hF⟩) = algebraMap (ring N) K ⟨fun τ : ℍ => F (δ • τ), hst F hF⟩) :
+      φ (algebraMap (ring N) K ⟨F, hF⟩) = algebraMap (ring N) K ⟨fun τ : ℍ => F (δ • τ), hst F
+        hF⟩) :
     AlgebraicCurve.SemilinearAut.ofAlgAut φ • analyticPlace N K τ₀ = analyticPlace N K τ₀ := by
   apply AlgebraicCurve.Place.ext
   rw [AlgebraicCurve.SemilinearAut.smul_toValuationSubring]
@@ -520,7 +525,8 @@ theorem smul_analyticPlace_eq (τ₀ : ℍ) (δ : SL(2, ℤ)) (hδ : δ • τ�
   rw [h]
 
 theorem ord_jSub_pos (τ₀ : ℍ) :
-    0 < (analyticPlace N K τ₀).ord (algebraMap (ring N) K (jGen N) - algebraMap ℂ K (jAnalytic τ₀)) := by
+    0 < (analyticPlace N K τ₀).ord (algebraMap (ring N) K (jGen N) - algebraMap ℂ K (jAnalytic τ₀))
+      := by
   have hmem := jSub_mem_nonunits N K τ₀
   have heq : algebraMap (ring N) K (jSub N τ₀) =
       algebraMap (ring N) K (jGen N) - algebraMap ℂ K (jAnalytic τ₀) := by
@@ -546,7 +552,10 @@ end Stabiliser
 
 end ModularCurve.LevelN.AnalyticPlaces
 
-open _root_.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN.AnalyticPlaces in
+open _root_.ModularCurve.LevelN
+  _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN
+  _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN.AnalyticPlaces
+  in
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]
     [IsScalarTower ℂ (ModularCurve.LevelN.ring N) K]

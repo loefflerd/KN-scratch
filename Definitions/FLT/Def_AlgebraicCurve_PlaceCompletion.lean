@@ -166,12 +166,14 @@ variable (F)
 variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
 
 def kw_ffgc_adicCompletionComap : (W.restrict F).adicCompletion →+* W.adicCompletion :=
-  ((IsDedekindDomain.HeightOneSpectrum.adicCompletion.equiv F' W.heightOneSpectrum).symm.toRingHom.comp
+  ((IsDedekindDomain.HeightOneSpectrum.adicCompletion.equiv F'
+    W.heightOneSpectrum).symm.toRingHom.comp
     (UniformSpace.Completion.mapRingHom
       (WithVal.map ((W.restrict F).heightOneSpectrum.valuation F)
         (W.heightOneSpectrum.valuation F') (algebraMap F F'))
       (kw_ffgc_uniformContinuous_withValMapAlgebraMap F W).continuous)).comp
-    (IsDedekindDomain.HeightOneSpectrum.adicCompletion.equiv F (W.restrict F).heightOneSpectrum).toRingHom
+    (IsDedekindDomain.HeightOneSpectrum.adicCompletion.equiv F (W.restrict
+      F).heightOneSpectrum).toRingHom
 
 theorem kw_ffgc_continuous_adicCompletionComap :
     Continuous (kw_ffgc_adicCompletionComap F W) := by

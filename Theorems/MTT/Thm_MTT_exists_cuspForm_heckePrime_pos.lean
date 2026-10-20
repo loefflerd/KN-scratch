@@ -16,7 +16,8 @@ public import Definitions.MTT.Def_MTT_Arithmetic
 import Mathlib.Algebra.Field.ZMod
 
 /-!
-# $T_\ell$ (and $U_\ell$ for $\ell\mid N$) preserves the cusp forms of nebentypus $\varepsilon$ on $\Gamma_1(N)$
+# $T_\ell$ (and $U_\ell$ for $\ell\mid N$) preserves the cusp forms of nebentypus $\varepsilon$ on
+$\Gamma_1(N)$
 
 Theorem statement: `MTT.exists_cuspForm_heckePrime_pos` (`8a4189d2-af0f-405c-9f5b-17aecd821b31`), by
 cbirkbeck, 2026-09-06.
@@ -572,7 +573,8 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
       have hlq : (l : ℤ) * q = (γ.val 0 1 + b₀.val * γ.val 1 1) -
           (γ.val 0 0 + b₀.val * γ.val 1 0) * b'.val := Int.mul_ediv_cancel' hdiv
       let γ' : Gamma0 N :=
-        mkGamma0 !![γ.val 0 0 + b₀.val * γ.val 1 0, q; l * γ.val 1 0, γ.val 1 1 - γ.val 1 0 * b'.val]
+        mkGamma0 !![γ.val 0 0 + b₀.val * γ.val 1 0, q; l * γ.val 1 0, γ.val 1 1 - γ.val 1 0 *
+          b'.val]
           (by rw [Matrix.det_fin_two_of]; linear_combination hdet - γ.val 1 0 * hlq)
           (by simp [hcN])
       rw [slash_factor e g γ hg (some b₀) (some b') γ' (by

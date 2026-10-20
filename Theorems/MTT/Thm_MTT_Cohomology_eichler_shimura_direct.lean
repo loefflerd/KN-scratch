@@ -17,7 +17,8 @@ import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Theorems.MTT.Thm_MTT_Cohomology_period_cocycle_injective
 
 /-!
-# Directness of the Eichler–Shimura decomposition of $H^1_c$: holomorphic, antiholomorphic and boundary classes are independent
+# Directness of the Eichler–Shimura decomposition of $H^1_c$: holomorphic, antiholomorphic and
+boundary classes are independent
 
 Theorem statement: `MTT.Cohomology.eichler_shimura_direct` (`98189fbe-6dc1-4abe-aff4-a1ec348bb514`),
 by cbirkbeck, 2026-09-07.

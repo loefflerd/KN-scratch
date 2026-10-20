@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
+Based on Prove2Me node
+ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
 (4dd51e11-6963-58d5-8ed3-5d91243e5e6c) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 1725a524-e81c-535d-955e-491a2544b961
@@ -327,7 +328,8 @@ theorem quotientFunc_smul_sub (c : ℂ) (q : (Cos Γ)) :
       SlashAction.neg_slash, ModularForm.SL_smul_slash, sub_eq_add_neg]
 
 theorem norm_smul_sub_apply (c : ℂ) (τ : ℍ) :
-    (ModularForm.norm 𝒮ℒ (c • g - f)) τ = ∏ q : (Cos Γ), (c * quotientFunc g q τ - quotientFunc f q τ) := by
+    (ModularForm.norm 𝒮ℒ (c • g - f)) τ = ∏ q : (Cos Γ), (c * quotientFunc g q τ - quotientFunc f q
+      τ) := by
   have h := ModularForm.coe_norm 𝒮ℒ (c • g - f)
   rw [h]
   rw [Finset.prod_apply]
@@ -385,7 +387,8 @@ theorem charPolyAt_eq_sum (τ : ℍ) :
     charPolyAt f g τ = ∑ j : Fin (Nat.card (Cos Γ) + 1),
       C ((ModularForm.norm 𝒮ℒ ((node _ j) • g - f)) τ) * lag (Nat.card (Cos Γ)) j := by
   classical
-  have hdeg : (charPolyAt f g τ).degree < (Finset.univ : Finset (Fin (Nat.card (Cos Γ) + 1))).card :=
+  have hdeg : (charPolyAt f g τ).degree < (Finset.univ : Finset (Fin (Nat.card (Cos Γ) + 1))).card
+    :=
     by
     rw [Finset.card_univ, Fintype.card_fin]
     refine lt_of_le_of_lt (degree_le_natDegree) ?_
@@ -397,7 +400,8 @@ theorem charPolyAt_eq_sum (τ : ℍ) :
   rfl
 
 noncomputable def coeffForm (i : ℕ) : ModularForm 𝒮ℒ (k * Nat.card (Cos Γ)) :=
-  ∑ j : Fin (Nat.card (Cos Γ) + 1), ((lag (Nat.card (Cos Γ)) j).coeff i) • ModularForm.norm 𝒮ℒ ((node _ j) • g - f)
+  ∑ j : Fin (Nat.card (Cos Γ) + 1), ((lag (Nat.card (Cos Γ)) j).coeff i) • ModularForm.norm 𝒮ℒ
+    ((node _ j) • g - f)
 
 omit [Γ.FiniteIndex] in
 theorem coe_finset_sum {ι : Type*} {k' : ℤ} (s : Finset ι) (F : ι → ModularForm 𝒮ℒ k') :
@@ -440,7 +444,8 @@ theorem sum_coeffForm_mul_pow_eq_zero (τ : ℍ) :
   simp_rw [eval_homogenize_linear]
   refine Finset.prod_eq_zero (Finset.mem_univ (QuotientGroup.mk (1 : ↥𝒮ℒ) : (Cos Γ))) ?_
   have h1 : ∀ (φ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k),
-      quotientFunc φ (QuotientGroup.mk (1 : ↥𝒮ℒ) : (Cos Γ)) = (φ : ℍ → ℂ) ∣[k] ((1 : ↥𝒮ℒ) : GL (Fin 2) ℝ)⁻¹ :=
+      quotientFunc φ (QuotientGroup.mk (1 : ↥𝒮ℒ) : (Cos Γ)) = (φ : ℍ → ℂ) ∣[k] ((1 : ↥𝒮ℒ) : GL (Fin
+        2) ℝ)⁻¹ :=
     fun φ => rfl
   rw [h1, h1]
   simp only [OneMemClass.coe_one, inv_one, SlashAction.slash_one]
@@ -485,7 +490,8 @@ theorem Nice.sum {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (hF : ∀
   | empty => rw [Finset.sum_empty]; exact nice_zero
   | insert a s ha ih =>
     rw [Finset.sum_insert ha]
-    exact (hF a (Finset.mem_insert_self a s)).add (ih fun i hi => hF i (Finset.mem_insert_of_mem hi))
+    exact (hF a (Finset.mem_insert_self a s)).add (ih fun i hi => hF i (Finset.mem_insert_of_mem
+      hi))
 
 theorem qExpansion_sum' {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (hF : ∀ i ∈ s, Nice (F i)) :
     qExpansion 1 (∑ i ∈ s, F i) = ∑ i ∈ s, qExpansion 1 (F i) := by
@@ -725,7 +731,8 @@ theorem add_mem_intFormRatiosC {a b : LaurentSeries ℚ} (ha : a ∈ intFormRati
     (hb : b ∈ intFormRatiosC ℚ Γ) : a + b ∈ intFormRatiosC ℚ Γ := by
   obtain ⟨k₁, f₁, g₁, pf₁, pg₁, hf₁, hg₁, hg₁0, rfl⟩ := ha
   obtain ⟨k₂, f₂, g₂, pf₂, pg₂, hf₂, hg₂, hg₂0, rfl⟩ := hb
-  refine ⟨k₁ + k₂, f₁.mul g₂ + (g₁.mul f₂), g₁.mul g₂, pf₁ * pg₂ + pg₁ * pf₂, pg₁ * pg₂, ?_, ?_, ?_, ?_⟩
+  refine ⟨k₁ + k₂, f₁.mul g₂ + (g₁.mul f₂), g₁.mul g₂, pf₁ * pg₂ + pg₁ * pf₂, pg₁ * pg₂, ?_, ?_, ?_,
+    ?_⟩
   · rw [IsIntegralQExp, map_add, map_mul, map_mul, hf₁, hf₂, hg₁, hg₂, FunLike.coe_add,
       ModularForm.qExpansion_add one_pos (hper hT), ModularForm.coe_mul, ModularForm.coe_mul,
       ModularForm.qExpansion_mul_coe one_pos (hper hT), ModularForm.qExpansion_mul_coe one_pos (hper
@@ -873,12 +880,14 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   let g₀ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (12 * k) := ((g.pow 11).mul g).mcast hw
   let f' : ModularForm (Γ' : Subgroup (GL (Fin 2) ℝ)) (12 * k) := liftEven hΓ' hneg heven f₀
   let g' : ModularForm (Γ' : Subgroup (GL (Fin 2) ℝ)) (12 * k) := liftEven hΓ' hneg heven g₀
-  have hqf' : qExpansion 1 (f' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (f : ℍ → ℂ) :=
+  have hqf' : qExpansion 1 (f' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (f : ℍ → ℂ)
+    :=
     by
     simp only [f', f₀, coe_liftEven, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul
       one_pos (hper hT),
       ModularForm.qExpansion_pow one_pos (hper hT)]
-  have hqg' : qExpansion 1 (g' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (g : ℍ → ℂ) :=
+  have hqg' : qExpansion 1 (g' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) ^ 11 * qExpansion 1 (g : ℍ → ℂ)
+    :=
     by
     simp only [g', g₀, coe_liftEven, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul
       one_pos (hper hT),
@@ -896,7 +905,8 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   set m : ℕ := k.toNat * μ with hm
   have hkm : 12 * k * (μ : ℤ) = 12 * (m : ℤ) := by
     rw [hm]; push_cast; rw [Int.toNat_of_nonneg hk]; ring
-  have hspan : ∀ i, qExpansion 1 (FIdxNorm.coeffForm f' g' i : ℍ → ℂ) ∈ FIdxLevelOne.monomialSpan m :=
+  have hspan : ∀ i, qExpansion 1 (FIdxNorm.coeffForm f' g' i : ℍ → ℂ) ∈ FIdxLevelOne.monomialSpan m
+    :=
     fun i => FIdxLevelOne.qExpansion_mem_monomialSpan m _ hkm _
   choose c hc using fun i => (Submodule.mem_span_range_iff_exists_fun ℂ).mp (hspan i)
   let Φ : PowerSeries ℂ →+* LaurentSeries ℂ := HahnSeries.ofPowerSeries ℤ ℂ
@@ -905,7 +915,8 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   set QD : LaurentSeries ℂ := Φ FIdxLevelOne.qΔ with hQD
   set QF : LaurentSeries ℂ := Φ (qExpansion 1 (f : ℍ → ℂ)) with hQF
   set QG : LaurentSeries ℂ := Φ (qExpansion 1 (g : ℍ → ℂ)) with hQG
-  set QE : ℕ → LaurentSeries ℂ := fun i => Φ (qExpansion 1 (FIdxNorm.coeffForm f' g' i : ℍ → ℂ)) with hQE
+  set QE : ℕ → LaurentSeries ℂ := fun i => Φ (qExpansion 1 (FIdxNorm.coeffForm f' g' i : ℍ → ℂ))
+    with hQE
   have hQG0 : QG ≠ 0 := fun h => hqg (hΦ (by rw [map_zero]; exact h))
   have hQ40 : Q4 ≠ 0 := by
     intro h
@@ -913,7 +924,8 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     have h0 := congrArg (PowerSeries.coeff 0) this
     rw [FIdxLevelOne.q4_coeff_zero, map_zero] at h0
     exact one_ne_zero h0
-  have hrel' : ∑ i ∈ Finset.range (μ + 1), QE i * (QG ^ 11 * QF) ^ i * (QG ^ 11 * QG) ^ (μ - i) = 0 :=
+  have hrel' : ∑ i ∈ Finset.range (μ + 1), QE i * (QG ^ 11 * QF) ^ i * (QG ^ 11 * QG) ^ (μ - i) = 0
+    :=
     by
     have := congrArg Φ hrel
     rw [map_sum, map_zero] at this
@@ -958,7 +970,8 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   obtain ⟨b₀, hb₀⟩ := hnz
   let v : Fin (μ + 1) × Fin (m + 1) → LaurentSeries ℚ :=
     fun ib => wq ^ (ib.2 : ℕ) * (intSeriesC ℚ pf / intSeriesC ℚ pg) ^ (ib.1 : ℕ)
-  have hvmap : ∀ ib, HahnSeries.map (v ib) (algebraMap ℚ ℂ) = Wh ^ (ib.2 : ℕ) * (QF / QG) ^ (ib.1 : ℕ) :=
+  have hvmap : ∀ ib, HahnSeries.map (v ib) (algebraMap ℚ ℂ) = Wh ^ (ib.2 : ℕ) * (QF / QG) ^ (ib.1 :
+    ℕ) :=
     by
     intro ib
     rw [← coeffEmb_eq_map, map_mul, map_pow, map_pow, wq, map_div₀, map_div₀,
@@ -994,7 +1007,8 @@ theorem jqModC_mem : jqModC ℚ ∈ qExpFunctionFieldC ℚ Γ := by
 
 theorem finrank_adjoin_wq_le :
     Module.finrank
-        (IntermediateField.adjoin ℚ ({(⟨wq, wq_mem⟩ : qExpFunctionFieldC ℚ Γ)} : Set (qExpFunctionFieldC ℚ Γ)))
+        (IntermediateField.adjoin ℚ ({(⟨wq, wq_mem⟩ : qExpFunctionFieldC ℚ Γ)} : Set
+          (qExpFunctionFieldC ℚ Γ)))
         (qExpFunctionFieldC ℚ Γ) ≤ Nat.card (FIdxNorm.Cos Γ') := by
   classical
   let F := qExpFunctionFieldC ℚ Γ
@@ -1009,7 +1023,8 @@ theorem finrank_adjoin_wq_le :
     rw [Polynomial.aeval_def, show wq = φ X₀ from rfl, ← this, ← Polynomial.aeval_def, hr, map_zero]
   let K₀ := IntermediateField.adjoin ℚ ({X₀} : Set F)
   let Xk : K₀ := ⟨X₀, IntermediateField.mem_adjoin_simple_self ℚ X₀⟩
-  have hrat : ∀ e : ℚ, (((algebraMap ℚ K₀ e : K₀) : F) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries ℚ) e :=
+  have hrat : ∀ e : ℚ, (((algebraMap ℚ K₀ e : K₀) : F) : LaurentSeries ℚ) = algebraMap ℚ
+    (LaurentSeries ℚ) e :=
     by
     intro e
     have h := RingHom.congr_fun (Subsingleton.elim
@@ -1117,7 +1132,8 @@ theorem finrank_le (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGrou
   have : Γ'.FiniteIndex := Subgroup.finiteIndex_of_le hΓ'
   have hQ := FIdxRat.finrank_adjoin_wq_le (Γ := Γ) hT hΓ' hneg
   rw [FIdxNorm.card_cos_eq_index] at hQ
-  have hQ' : IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({FIdxRat.wq} : Set (LaurentSeries ℚ)))
+  have hQ' : IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({FIdxRat.wq} : Set
+    (LaurentSeries ℚ)))
       (qExpFunctionFieldC ℚ Γ) ≤ Γ'.index := by
     have h := FIdxAlg.finrank_adjoin_simple_eq_relfinrank (qExpFunctionFieldC ℚ Γ)
       (⟨FIdxRat.wq, FIdxRat.wq_mem⟩ : qExpFunctionFieldC ℚ Γ)
@@ -1149,7 +1165,8 @@ theorem solution
 
 end S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
 end P2MW
-export P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index (solution)
+export P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
+  (solution)
 
 end privateSection
 

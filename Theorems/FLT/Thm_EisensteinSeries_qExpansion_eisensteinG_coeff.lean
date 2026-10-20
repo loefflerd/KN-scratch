@@ -163,7 +163,8 @@ lemma norm_le_tsum_norm (N : ℕ) (a : Fin 2 → ZMod N) (k : ℤ) (hk : 3 ≤ k
     ‖EisensteinSeries.eisensteinG N k a z‖ ≤ ∑' (x : Fin 2 → ℤ), ‖eisSummand k x z‖ := by
   rw [eisensteinG_eq]
   apply le_trans (norm_tsum_le_tsum_norm ((summable_norm_eisSummand hk z).subtype _))
-    (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) => ‖(eisSummand k x z)‖) _ (fun _ => norm_nonneg _)
+    (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) => ‖(eisSummand k x z)‖) _ (fun _ => norm_nonneg
+      _)
       (summable_norm_eisSummand hk z))
 
 theorem isBoundedAtImInfty_eisensteinG [NeZero N] (a : Fin 2 → ZMod N) (hk : 3 ≤ k) :
@@ -260,7 +261,8 @@ lemma eisensteinG_eq_tsum_tsum (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) 
   rw [← (congrSetEquivSigma a).symm.tsum_eq]
   have hs : Summable (fun p : Σ _ : cls N (a 0), cls N (a 1) =>
       eisSummand (k : ℤ) ((congrSetEquivSigma a).symm p).1 τ) :=
-    (congrSetEquivSigma a).symm.summable_iff.mpr ((summable_norm_eisSummand hk' τ).of_norm.subtype _)
+    (congrSetEquivSigma a).symm.summable_iff.mpr ((summable_norm_eisSummand hk' τ).of_norm.subtype
+      _)
   rw [hs.tsum_sigma]
   refine tsum_congr fun c => tsum_congr fun d => ?_
   rw [eisSummand_natCast]
@@ -303,7 +305,8 @@ lemma tsum_int_eq (hk : 2 ≤ k) (b : ZMod N) (bv : ℕ) (hbv : (bv : ZMod N) = 
     ∑' j : ℤ, ((((c : ℂ)) * τ + ((bv : ℂ) + (N : ℂ) * j)) ^ k)⁻¹ =
       ((N : ℂ) ^ k)⁻¹ * ((-2 * π * I) ^ k / (k - 1)!) *
         ∑' m : ℕ+, ((m : ℕ) : ℂ) ^ (k - 1) *
-          (ZMod.stdAddChar (b * ((m : ℕ) : ZMod N)) * Function.Periodic.qParam N τ ^ ((m : ℕ) * c)) := by
+          (ZMod.stdAddChar (b * ((m : ℕ) : ZMod N)) * Function.Periodic.qParam N τ ^ ((m : ℕ) * c))
+            := by
   have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
   have hfac : ∀ j : ℤ, ((((c : ℂ)) * τ + ((bv : ℂ) + (N : ℂ) * j)) ^ k)⁻¹ =
       ((N : ℂ) ^ k)⁻¹ * (1 / (((wpt (N := N) c hc bv τ : ℍ) : ℂ) + j) ^ k) := by
@@ -335,7 +338,8 @@ lemma tsum_cls_eq (hk : 2 ≤ k) (b : ZMod N) (c : ℕ) (hc : 0 < c) (τ : ℍ) 
     ∑' d : cls N b, ((((c : ℂ)) * τ + d.1) ^ k)⁻¹ =
       ((N : ℂ) ^ k)⁻¹ * ((-2 * π * I) ^ k / (k - 1)!) *
         ∑' m : ℕ+, ((m : ℕ) : ℂ) ^ (k - 1) *
-          (ZMod.stdAddChar (b * ((m : ℕ) : ZMod N)) * Function.Periodic.qParam N τ ^ ((m : ℕ) * c)) := by
+          (ZMod.stdAddChar (b * ((m : ℕ) : ZMod N)) * Function.Periodic.qParam N τ ^ ((m : ℕ) * c))
+            := by
   rw [← (clsEquiv b).tsum_eq]
   have : ∀ j : ℤ, ((((c : ℂ)) * τ + ((clsEquiv b j).1 : ℂ)) ^ k)⁻¹ =
       ((((c : ℂ)) * τ + (((b.val : ℕ) : ℂ) + (N : ℂ) * j)) ^ k)⁻¹ := by
@@ -453,17 +457,20 @@ def kappa (N k : ℕ) : ℂ := ((N : ℂ) ^ k)⁻¹ * ((-2 * π * I) ^ k / (k - 
 
 def Splus (N k : ℕ) [NeZero N] (a : Fin 2 → ZMod N) (n : ℕ+) : ℂ :=
   ∑ x ∈ (n : ℕ).divisorsAntidiagonal,
-    (if ((x.1 : ℕ) : ZMod N) = a 0 then (1 : ℂ) else 0) * ZMod.stdAddChar (a 1 * ((x.2 : ℕ) : ZMod N)) *
+    (if ((x.1 : ℕ) : ZMod N) = a 0 then (1 : ℂ) else 0) * ZMod.stdAddChar (a 1 * ((x.2 : ℕ) : ZMod
+      N)) *
       ((x.2 : ℕ) : ℂ) ^ (k - 1)
 
 def Sminus (N k : ℕ) [NeZero N] (a : Fin 2 → ZMod N) (n : ℕ+) : ℂ :=
   ∑ x ∈ (n : ℕ).divisorsAntidiagonal,
-    (if ((x.1 : ℕ) : ZMod N) = -a 0 then (1 : ℂ) else 0) * ZMod.stdAddChar (-a 1 * ((x.2 : ℕ) : ZMod N)) *
+    (if ((x.1 : ℕ) : ZMod N) = -a 0 then (1 : ℂ) else 0) * ZMod.stdAddChar (-a 1 * ((x.2 : ℕ) : ZMod
+      N)) *
       ((x.2 : ℕ) : ℂ) ^ (k - 1)
 
 def coefFun (N k : ℕ) [NeZero N] (a : Fin 2 → ZMod N) (n : ℕ) : ℂ :=
   if h : n = 0 then (if a 0 = 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0)
-  else kappa N k * (Splus N k a ⟨n, Nat.pos_of_ne_zero h⟩ + (-1) ^ k * Sminus N k a ⟨n, Nat.pos_of_ne_zero h⟩)
+  else kappa N k * (Splus N k a ⟨n, Nat.pos_of_ne_zero h⟩ + (-1) ^ k * Sminus N k a ⟨n,
+    Nat.pos_of_ne_zero h⟩)
 
 lemma norm_stdAddChar (x : ZMod N) : ‖ZMod.stdAddChar x‖ = 1 := by
   rw [ZMod.stdAddChar_apply]; exact Circle.norm_coe _
@@ -477,11 +484,13 @@ lemma norm_qParam_lt_one (τ : ℍ) : ‖Function.Periodic.qParam N τ‖ < 1 :=
 
 lemma norm_divisorSum_le (hk : 1 ≤ k) (b b' : ZMod N) (n : ℕ+) :
     ‖∑ x ∈ (n : ℕ).divisorsAntidiagonal,
-      (if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod N)) *
+      (if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod
+        N)) *
         ((x.2 : ℕ) : ℂ) ^ (k - 1)‖ ≤ ((n : ℕ) : ℝ) ^ k := by
   refine (norm_sum_le _ _).trans ?_
   have hle : ∀ x ∈ (n : ℕ).divisorsAntidiagonal,
-      ‖(if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod N)) *
+      ‖(if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod
+        N)) *
         ((x.2 : ℕ) : ℂ) ^ (k - 1)‖ ≤ (fun i j : ℕ => ((j : ℝ)) ^ (k - 1)) x.1 x.2 := by
     intro x hx
     rw [norm_mul, norm_mul, norm_stdAddChar, mul_one, norm_pow, Complex.norm_natCast]
@@ -505,9 +514,11 @@ lemma norm_divisorSum_le (hk : 1 ≤ k) (b b' : ZMod N) (n : ℕ+) :
 
 lemma summable_divisorSum_mul_pow (hk : 1 ≤ k) (b b' : ZMod N) {r : ℂ} (hr : ‖r‖ < 1) :
     Summable fun n : ℕ+ => (∑ x ∈ (n : ℕ).divisorsAntidiagonal,
-      (if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod N)) *
+      (if ((x.1 : ℕ) : ZMod N) = b then (1 : ℂ) else 0) * ZMod.stdAddChar (b' * ((x.2 : ℕ) : ZMod
+        N)) *
         ((x.2 : ℕ) : ℂ) ^ (k - 1)) * r ^ (n : ℕ) := by
-  have hs : Summable fun n : ℕ => ‖((n : ℂ)) ^ k * r ^ n‖ := summable_norm_pow_mul_geometric_of_norm_lt_one k hr
+  have hs : Summable fun n : ℕ => ‖((n : ℂ)) ^ k * r ^ n‖ :=
+    summable_norm_pow_mul_geometric_of_norm_lt_one k hr
   refine Summable.of_norm_bounded (hs.subtype _) fun n => ?_
   simp only [Function.comp_apply, norm_mul, norm_pow, Complex.norm_natCast]
   exact mul_le_mul_of_nonneg_right (norm_divisorSum_le hk b b' n) (by positivity)
@@ -551,7 +562,8 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
     simp_rw [h1]
     rw [tsum_mul_left]
     congr 1
-    exact tsum_tsum_eq_tsum_antidiagonal (F := fun c : ℕ => if ((c : ℕ) : ZMod N) = a 0 then (1 : ℂ) else 0)
+    exact tsum_tsum_eq_tsum_antidiagonal (F := fun c : ℕ => if ((c : ℕ) : ZMod N) = a 0 then (1 : ℂ)
+      else 0)
       (G := fun m : ℕ => ZMod.stdAddChar (a 1 * ((m : ℕ) : ZMod N)))
       (fun c => by split_ifs <;> simp) (fun m => (norm_stdAddChar _).le) hqn (k - 1)
   have eneg : (∑' c : ℕ+, if ((-((c : ℕ) : ℤ) : ℤ) : ZMod N) = a 0 then
@@ -571,7 +583,8 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
     simp_rw [h1]
     rw [tsum_mul_left, tsum_mul_left]
     congr 2
-    exact tsum_tsum_eq_tsum_antidiagonal (F := fun c : ℕ => if ((c : ℕ) : ZMod N) = -a 0 then (1 : ℂ) else 0)
+    exact tsum_tsum_eq_tsum_antidiagonal (F := fun c : ℕ => if ((c : ℕ) : ZMod N) = -a 0 then (1 :
+      ℂ) else 0)
       (G := fun m : ℕ => ZMod.stdAddChar (-a 1 * ((m : ℕ) : ZMod N)))
       (fun c => by split_ifs <;> simp) (fun m => (norm_stdAddChar _).le) hqn (k - 1)
   rw [e0, epos, eneg, add_assoc]
@@ -604,7 +617,8 @@ theorem hasSum_coefFun (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) :
     refine this.congr fun n => ?_
     simp only [Splus, Sminus]
     ring
-  have hsumN : Summable fun n : ℕ => coefFun N k a n * q ^ n := summable_pnat_iff_summable_nat.mp hsum
+  have hsumN : Summable fun n : ℕ => coefFun N k a n * q ^ n := summable_pnat_iff_summable_nat.mp
+    hsum
   have htsum : ∑' n : ℕ, coefFun N k a n * q ^ n = EisensteinSeries.eisensteinG N k a τ := by
     rw [← tsum_zero_pnat_eq_tsum_nat hsumN, eisensteinG_eq_expansion hk a τ]
     simp_rw [hpn]
@@ -621,7 +635,8 @@ theorem qExpansion_coeff_formula (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (n : ℕ)
           ∑ m ∈ n.divisors,
             ((if ((n / m : ℕ) : ZMod N) = a 0 then ZMod.stdAddChar (a 1 * (m : ZMod N)) else 0) +
               (-1) ^ k *
-                (if ((n / m : ℕ) : ZMod N) = -a 0 then ZMod.stdAddChar (-(a 1 * (m : ZMod N))) else 0)) *
+                (if ((n / m : ℕ) : ZMod N) = -a 0 then ZMod.stdAddChar (-(a 1 * (m : ZMod N))) else
+                  0)) *
             (m : ℂ) ^ (k - 1) := by
   have hk' : 3 ≤ ((k : ℕ) : ℤ) := by exact_mod_cast hk
   rw [qExpansion_coeff_eq hk' a (hasSum_coefFun hk a) n, coefFun]
@@ -662,7 +677,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 3 ≤ k)
           ∑ m ∈ n.divisors,
             ((if ((n / m : ℕ) : ZMod N) = a 0 then ZMod.stdAddChar (a 1 * (m : ZMod N)) else 0) +
               (-1) ^ k *
-                (if ((n / m : ℕ) : ZMod N) = -a 0 then ZMod.stdAddChar (-(a 1 * (m : ZMod N))) else 0)) *
+                (if ((n / m : ℕ) : ZMod N) = -a 0 then ZMod.stdAddChar (-(a 1 * (m : ZMod N))) else
+                  0)) *
             (m : ℂ) ^ (k - 1) :=
   CardC.qExpansion_coeff_formula hk a n
 
@@ -687,7 +703,8 @@ theorem EisensteinSeries.qExpansion_eisensteinG_coeff (N : ℕ) [NeZero N] (k : 
           ∑ m ∈ n.divisors,
             ((if ((n / m : ℕ) : ZMod N) = a 0 then ZMod.stdAddChar (a 1 * (m : ZMod N)) else 0) +
               (-1) ^ k *
-                (if ((n / m : ℕ) : ZMod N) = -a 0 then ZMod.stdAddChar (-(a 1 * (m : ZMod N))) else 0)) *
+                (if ((n / m : ℕ) : ZMod N) = -a 0 then ZMod.stdAddChar (-(a 1 * (m : ZMod N))) else
+                  0)) *
             (m : ℂ) ^ (k - 1) :=
   solution N k hk a n
 

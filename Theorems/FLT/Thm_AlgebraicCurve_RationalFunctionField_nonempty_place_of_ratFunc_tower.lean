@@ -68,7 +68,8 @@ theorem solution (K : Type*) [Field K]
     Nonempty (AlgebraicCurve.Place K F) := by
   classical
   exact
-    (AlgebraicCurve.Place.exists_restrict_eq (M := F) (AlgebraicCurve.RationalFunctionField.placeInfty K)).nonempty
+    (AlgebraicCurve.Place.exists_restrict_eq (M := F)
+      (AlgebraicCurve.RationalFunctionField.placeInfty K)).nonempty
 
 end S_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_tower
 end P2MW

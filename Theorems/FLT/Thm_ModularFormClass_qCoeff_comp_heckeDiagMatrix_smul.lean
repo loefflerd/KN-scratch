@@ -132,7 +132,8 @@ theorem qCoeff_comp_smul {F : ℍ → ℂ} (hper : Periodic (F ∘ ofComplex) 1)
       if d ∣ n then ModularFormClass.qCoeff F (n / d) else 0 := by
   set G : ℍ → ℂ := fun τ ↦ F (heckeDiagMatrix d • τ) with hG
   have han : AnalyticAt ℂ (cuspFunction 1 G) 0 :=
-    analyticAt_cuspFunction_zero one_pos (periodic_comp_smul hd hper) (mdifferentiable_comp_smul hd hhol)
+    analyticAt_cuspFunction_zero one_pos (periodic_comp_smul hd hper) (mdifferentiable_comp_smul hd
+      hhol)
       (isBoundedAtImInfty_comp_smul hd hbdd)
   set c : ℕ → ℂ := fun n ↦ if d ∣ n then (qExpansion 1 F).coeff (n / d) else 0 with hc
   have hsum : ∀ τ : ℍ, HasSum (fun m ↦ c m • Periodic.qParam 1 τ ^ m) (G τ) := by
@@ -175,7 +176,8 @@ end
 theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ]
     {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
     (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) :
-    ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
+    ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then
+      ModularFormClass.qCoeff f (n / d) else 0 :=
   UpperHalfPlane.DegeneracyQExp.qCoeff_comp_smul_of_modularFormClass f hΓ hd n
 
 end S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul
@@ -190,7 +192,8 @@ public section publicSection
 theorem ModularFormClass.qCoeff_comp_heckeDiagMatrix_smul {F : Type*} [FunLike F UpperHalfPlane ℂ]
     {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
     (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) :
-    ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
+    ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then
+      ModularFormClass.qCoeff f (n / d) else 0 :=
   solution f hΓ hd n
 
 end publicSection

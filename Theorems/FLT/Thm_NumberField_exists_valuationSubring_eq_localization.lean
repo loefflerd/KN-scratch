@@ -93,7 +93,8 @@ noncomputable def subring : Subring ℚ̄ where
   one_mem' := ⟨1, one_notMem Qt, 1, by simp only [map_one, mul_one]⟩
   add_mem' := by
     rintro x y ⟨s, hs, a, ha⟩ ⟨t, ht, b, hb⟩
-    refine ⟨s * t, fun h => ((Ideal.IsPrime.mem_or_mem inferInstance h).elim hs ht), t * a + s * b, ?_⟩
+    refine ⟨s * t, fun h => ((Ideal.IsPrime.mem_or_mem inferInstance h).elim hs ht), t * a + s * b,
+      ?_⟩
     simp only [NumberField.RingOfIntegers.coe_eq_algebraMap, map_mul, map_add] at ha hb ⊢
     rw [← ha, ← hb]; ring
   zero_mem' := ⟨1, one_notMem Qt, 0, by simp only [map_one, map_zero, mul_zero]⟩
@@ -127,7 +128,8 @@ theorem mem_or_inv_mem (x : ℚ̄) : x ∈ carrier Qt ∨ x⁻¹ ∈ carrier Qt 
   obtain ⟨n, d, hnd⟩ :=
     IsDedekindDomain.HeightOneSpectrum.exists_primeCompl_mul_eq_or_mul_eq (K := K) v ⟨x, hxK⟩
   have hd : algebraMap (𝓞 K) (𝓞 ℚ̄) d ∉ Qt := fun h => d.2 (Ideal.mem_comap.mpr h)
-  have coe_alg : ∀ a : 𝓞 K, ((algebraMap (𝓞 K) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((algebraMap (𝓞 K) K a : K) : ℚ̄) :=
+  have coe_alg : ∀ a : 𝓞 K, ((algebraMap (𝓞 K) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((algebraMap (𝓞 K) K a : K)
+    : ℚ̄) :=
     fun _ => rfl
   rcases hnd with h | h
   · left
@@ -159,7 +161,8 @@ end C6P1T3a
 theorem solution
     (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) [Qt.IsMaximal] :
     ∃ A : ValuationSubring (AlgebraicClosure ℚ), ∀ x : AlgebraicClosure ℚ,
-      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a :=
+      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s :
+        AlgebraicClosure ℚ) * x = a :=
   ⟨C6P1T3a.valuationSubring Qt, fun _ => Iff.rfl⟩
 
 end S_NumberField_exists_valuationSubring_eq_localization
@@ -176,7 +179,8 @@ open scoped NumberField Pointwise
 theorem NumberField.exists_valuationSubring_eq_localization
     (Qt : Ideal (𝓞 (AlgebraicClosure ℚ))) [Qt.IsMaximal] :
     ∃ A : ValuationSubring (AlgebraicClosure ℚ), ∀ x : AlgebraicClosure ℚ,
-      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s : AlgebraicClosure ℚ) * x = a :=
+      x ∈ A ↔ ∃ s : 𝓞 (AlgebraicClosure ℚ), s ∉ Qt ∧ ∃ a : 𝓞 (AlgebraicClosure ℚ), (s :
+        AlgebraicClosure ℚ) * x = a :=
   solution Qt
 
 end publicSection

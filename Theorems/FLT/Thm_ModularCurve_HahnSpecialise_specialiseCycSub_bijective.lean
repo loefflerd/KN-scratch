@@ -42,7 +42,8 @@ downstairs arises from exactly one subgroup upstairs.
 This is the level-structure counterpart of good-reduction specialisation: over the series field the
 cyclic subgroups of exact order $N$ of the generic curve correspond bijectively to those of its
 special fibre over $\bar{\mathbb Q}$. It is the curve-side input used by
-[`ModularCurve.B3.specialisationEquivariance_level`](thm.html#ModularCurve.B3.specialisationEquivariance_level),
+[`ModularCurve.B3.specialisationEquivariance_level`]
+(thm.html#ModularCurve.B3.specialisationEquivariance_level),
 where cyclic $N$-isogenies (level structures) must be matched between the generic and the special
 curve.
 

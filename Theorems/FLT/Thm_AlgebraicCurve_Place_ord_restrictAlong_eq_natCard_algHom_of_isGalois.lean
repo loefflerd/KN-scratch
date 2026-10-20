@@ -305,7 +305,8 @@ theorem finiteAlong_of_finiteDimensional_adjoin
   | zero => exact zero_mem _
   | add b b' _ _ ih ih' => exact add_mem ih ih'
   | smul r' b _ ih =>
-    have hc : (r' : M) = ι ((adjoinEquivAlong ι y).symm r' : IntermediateField.adjoin K ({y} : Set F)) :=
+    have hc : (r' : M) = ι ((adjoinEquivAlong ι y).symm r' : IntermediateField.adjoin K ({y} : Set
+      F)) :=
       by
       rw [← coe_adjoinEquivAlong ι y, AlgEquiv.apply_symm_apply]
     have hr : r' • b =
@@ -692,7 +693,8 @@ theorem smul_emb_val (σ : M ≃ₐ[K⟮t⟯] M) (ψ : Emb x t (K := K)) :
     (σ • ψ).1 = ((σ : M →ₐ[K⟮t⟯] M).restrictScalars K).comp ψ.1 := rfl
 
 theorem setOf_sameClass_eq_orbit (ψ : Emb x t (K := K)) :
-    {ψ' : Emb x t (K := K) | W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ.1 (hint ψ.1 ψ.2)} =
+    {ψ' : Emb x t (K := K) | W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ.1 (hint ψ.1
+      ψ.2)} =
       MulAction.orbit (MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀) ψ := by
   ext ψ'
   rw [Set.mem_ofPred_eq, MulAction.mem_orbit_iff, eq_comm,

@@ -127,7 +127,8 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 variable [GenusOnePlaceGate V] [AbelTheorem V] [GenusOnePlaceGate W] [AbelTheorem W]
 variable (ι : V.FunctionField →ₐ[F] W.FunctionField) (hι : ι.toRingHom.IsIntegral)
 
-omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] [V.AbelTheorem] [W.AbelTheorem] in
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W]
+  [V.AbelTheorem] [W.AbelTheorem] in
 omit [DecidableEq F] in
 theorem inertiaDegAlong_eq_one (w : AlgebraicCurve.Place F W.FunctionField) :
     w.inertiaDegAlong ι hι = 1 := by
@@ -135,7 +136,8 @@ theorem inertiaDegAlong_eq_one (w : AlgebraicCurve.Place F W.FunctionField) :
   rw [deg_eq_one (W := V) (w.restrictAlong ι hι), deg_eq_one (W := W) w, one_mul] at h
   exact h
 
-omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] [V.AbelTheorem] [W.AbelTheorem] in
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W]
+  [V.AbelTheorem] [W.AbelTheorem] in
 omit [DecidableEq F] in
 theorem pushforwardAlong_single_eq (w : AlgebraicCurve.Place F W.FunctionField) (n : ℤ) :
     Divisor.pushforwardAlong ι hι (Finsupp.single w n)
@@ -268,14 +270,16 @@ def pointHom (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F D.ι D.hfi
     V₀.Point →+ V₁.Point :=
   pointMapOfPushforward D.ι D.hι D.hfin hN
 
-omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀] [WeierstrassCurve.IsElliptic V₁] in
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀] [WeierstrassCurve.IsElliptic V₁]
+  in
 theorem pointHom_apply (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F D.ι D.hfin)
     (P : V₀.Point) :
     D.pointHom hN P = genusOnePic0Equiv V₁
       (Pic0.pushforwardAlongHom D.ι D.hι D.hfin hN (pointClass P)) :=
   pointMapOfPushforward_apply D.ι D.hι D.hfin hN P
 
-omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀] [WeierstrassCurve.IsElliptic V₁] in
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀] [WeierstrassCurve.IsElliptic V₁]
+  in
 theorem pointHom_eq_of_seam (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F D.ι D.hfin)
     (g : V₀.Point → V₁.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (g P))

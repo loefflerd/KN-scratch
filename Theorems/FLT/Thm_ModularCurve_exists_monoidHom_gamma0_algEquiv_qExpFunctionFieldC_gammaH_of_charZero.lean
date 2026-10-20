@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero
+Based on Prove2Me node
+ModularCurve.exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero
 (fe6640f4-f025-5455-a866-9bba11379d25) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 48ac79ef-6d2c-5016-99bc-503aa3ea118b

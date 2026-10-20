@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred
+Based on Prove2Me node
+WeierstrassCurve.Affine.IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred
 (217861b0-b122-56d6-87cc-27a3f701a2a1) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 114a08cd-9b12-573a-8e8d-bb9fb4412caf
@@ -358,7 +359,8 @@ scoped instance instFiniteKer : Finite (φ.pointHom hNφ).ker :=
 
 scoped instance instFintypeKer : Fintype (φ.pointHom hNφ).ker := Fintype.ofFinite _
 
-scoped instance instFintypeKerMul : Fintype (Multiplicative (φ.pointHom hNφ).ker) := Fintype.ofFinite _
+scoped instance instFintypeKerMul : Fintype (Multiplicative (φ.pointHom hNφ).ker) :=
+  Fintype.ofFinite _
 
 theorem fieldRange_eq_fixedPoints :
     φ.ι.fieldRange.toSubfield
@@ -437,7 +439,8 @@ theorem solution
 end
 end S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred (solution)
+export P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred
+  (solution)
 
 end privateSection
 

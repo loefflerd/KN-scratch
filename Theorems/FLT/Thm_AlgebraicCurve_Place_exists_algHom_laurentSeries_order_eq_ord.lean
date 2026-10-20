@@ -569,7 +569,9 @@ private theorem AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.AlgebraicCurve ModularCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.AlgebraicCurve
+  ModularCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1) :
     ∃ φ : F →ₐ[K] LaurentSeries K, ∀ x : F, (φ x).order = w.ord x :=
   AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord w hw

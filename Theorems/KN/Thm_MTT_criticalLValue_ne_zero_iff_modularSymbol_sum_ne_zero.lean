@@ -148,7 +148,8 @@ theorem MTT.criticalLValue_ne_zero_iff_modularSymbol_sum_ne_zero
     (χ : DirichletCharacter Qbar m) (hχ : χ.IsPrimitive)
     (j : ℕ) (hj : j ≤ k - 2) :
     criticalLValue ι f.form m χ j ≠ 0 ↔
-      (∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m) ≠ 0 := _root_.solution hN hk ι f χ hχ j hj
+      (∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m) ≠ 0 := _root_.solution hN hk ι f χ hχ
+        j hj
 end
 
 end publicSection

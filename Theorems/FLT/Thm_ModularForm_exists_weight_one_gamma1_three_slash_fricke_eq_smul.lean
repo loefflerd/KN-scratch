@@ -48,7 +48,8 @@ The form produced is the theta series of the hexagonal lattice, equivalently the
 Eisenstein series attached to the pair of characters $(\mathbf 1,\chi_{-3})$, whose functional
 equation under $\tau\mapsto -1/(3\tau)$ is Poisson summation for the Eisenstein norm form
 $m^2+mn+n^2$. It is used by
-[`ModularCurve.exists_qExpansion_slash_fricke_eq_and_conj_eq_slash_gamma0`](thm.html#ModularCurve.exists_qExpansion_slash_fricke_eq_and_conj_eq_slash_gamma0),
+[`ModularCurve.exists_qExpansion_slash_fricke_eq_and_conj_eq_slash_gamma0`]
+(thm.html#ModularCurve.exists_qExpansion_slash_fricke_eq_and_conj_eq_slash_gamma0),
 where a weight-one form with rational expansion, constant term $1$ and prescribed Fricke eigenvalue
 serves as a normalising factor.
 
@@ -896,7 +897,8 @@ theorem qExpansion_coeff_thetaForm (n : ℕ) :
 
 theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ)
     (hW : (W : Matrix (Fin 2) (Fin 2) ℝ) = !![(0 : ℝ), -1; 3, 0]) :
-    (⇑thetaForm : ℍ → ℂ) ∣[(1 : ℤ)] W = (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑thetaForm : ℍ → ℂ) := by
+    (⇑thetaForm : ℍ → ℂ) ∣[(1 : ℤ)] W = (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑thetaForm : ℍ → ℂ) :=
+      by
   funext τ
   have hdet : (W.det : ℝ) = 3 := by
     rw [Matrix.GeneralLinearGroup.val_det_apply, hW, Matrix.det_fin_two_of]; norm_num

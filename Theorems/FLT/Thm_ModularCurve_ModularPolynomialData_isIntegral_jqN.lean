@@ -40,7 +40,8 @@ This is the integrality half of the classical statement that $\mathbb{Q}(j(q), j
 extension of the rational function field $\mathbb{Q}(j(q))$, the modular equation $\Phi_N$ providing
 a monic relation for $j(q^N)$ over $\mathbb{Z}[j(q)]$. It is used in the construction of the Fricke
 involution on the algebraic model of $X_0(N)$, via
-[`ModularCurve.exists_isFrickeAut_of_modularPolynomialData`](thm.html#ModularCurve.exists_isFrickeAut_of_modularPolynomialData).
+[`ModularCurve.exists_isFrickeAut_of_modularPolynomialData`]
+(thm.html#ModularCurve.exists_isFrickeAut_of_modularPolynomialData).
 
 ## Explanation of the source proof
 

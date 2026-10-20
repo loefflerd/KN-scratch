@@ -49,7 +49,8 @@ consisting of those $K$-linear functionals on the adele space $\bigsqcup_E$ `ade
 This is the finiteness of the space of Weil differentials bounded by a divisor $D$, dual to the
 finiteness of the adelic cohomology $H^1(D)$ in the adelic (repartition) approach to the
 Riemann–Roch theorem. It serves as the finiteness side condition in
-[`AlgebraicCurve.exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached`](thm.html#AlgebraicCurve.exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached),
+[`AlgebraicCurve.exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached`]
+(thm.html#AlgebraicCurve.exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached),
 where the rank-one property of the space of differentials is established.
 
 ## Explanation of the source proof
@@ -1315,12 +1316,14 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_omegaSpace_finite_of_genusReached.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_omegaSpace_finite_of_genusReached.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]
     [Nonempty (Place K F)] [FiniteDimensional K ↥(LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
     Module.Finite K ↥(omegaSpace (K := K) (F := F) D) :=
-  AlgebraicCurve.omegaSpace_finite_of_genusReached_port (K := K) (F := F) (γ := γ) (D₀ := D₀) (h := h) (D := D)
+  AlgebraicCurve.omegaSpace_finite_of_genusReached_port (K := K) (F := F) (γ := γ) (D₀ := D₀) (h :=
+    h) (D := D)
 
 end S_AlgebraicCurve_omegaSpace_finite_of_genusReached
 end P2MW

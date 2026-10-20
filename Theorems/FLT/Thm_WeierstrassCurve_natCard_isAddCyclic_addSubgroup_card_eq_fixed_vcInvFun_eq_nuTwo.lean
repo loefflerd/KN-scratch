@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo
+Based on Prove2Me node
+WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo
 (29c5b42e-ed21-58ba-b7b8-54ea07fd9c77) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 601c2bf5-1646-5b3d-ad24-c12bc96ab4d6
@@ -52,7 +53,8 @@ of $W$ respectively), equals $\nu_2(N) = \#\{x \in \mathbb{Z}/N : x^2 + 1 = 0\}$
 This is the count of cyclic subgroups of order $N$ on a curve with $j = 1728$ that are stable under
 the automorphism $[i]$, i.e. the contribution of the elliptic points of order two to the standard
 count of moduli points on $Y_0(N)$. It supplies the term $\nu_2(N)$ in
-[`ModularCurve.two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo`](thm.html#ModularCurve.two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo).
+[`ModularCurve.two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo`]
+(thm.html#ModularCurve.two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo).
 
 ## Explanation of the source proof
 
@@ -99,7 +101,8 @@ theorem xy_neg {W : WeierstrassCurve L} (P : W.toAffine.Point) :
 
 omit [DecidableEq L] in
 theorem xy_vcInvFun (γ : VariableChange L) {W : WeierstrassCurve L} (P : W.toAffine.Point) :
-    xy (Point.vcInvFun γ W.toAffine P) = (xy P).map (fun q => (vcXInv γ q.1, vcYInv γ q.1 q.2)) := by
+    xy (Point.vcInvFun γ W.toAffine P) = (xy P).map (fun q => (vcXInv γ q.1, vcYInv γ q.1 q.2)) :=
+      by
   rcases P with _ | ⟨x, y, h⟩ <;> rfl
 
 def castPt {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) : W₁.toAffine.Point ≃+ W₂.toAffine.Point := by
@@ -186,7 +189,8 @@ theorem solution
       · linear_combination (((u⁻¹ : Lˣ) : L) ^ 4 * y - ((u⁻¹ : Lˣ) : L) ^ 2 * y + y) * hi2
   have σinj : Function.Injective σ := fun a b h => by
     have h2 := congrArg σ h; rwa [hσ, hσ, neg_inj] at h2
-  have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a :=
+  have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k
+    • a :=
     by
     intro p hp _
     obtain ⟨T, hT, hk⟩ :=
@@ -211,7 +215,8 @@ theorem solution
 
 end S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo
 end P2MW
-export P2MW.S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo (solution)
+export P2MW.S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo
+  (solution)
 
 end privateSection
 

@@ -56,7 +56,8 @@ This is the function-field model of the classical fact that the sum $\varphi + \
 it is the zero map, so that the endomorphisms of $E(F)$ coming from finite self-embeddings of the
 function field are closed under addition. It is the additive closure step used in assembling those
 endomorphisms into a subring of $\operatorname{End}_{\mathbb{Z}}(E(F))$, and is cited by
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring).
 
 ## Explanation of the source proof
 

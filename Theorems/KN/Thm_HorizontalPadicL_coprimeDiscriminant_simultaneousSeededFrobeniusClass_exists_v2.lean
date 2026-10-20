@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2
+Based on Prove2Me node
+HorizontalPadicL.coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2
 (77bb9d30-8d23-4457-8f5d-f68d26e885ae) by davidloeffler (2026-09-25).
 
 Proof based on Prove2Me submission c7805816-bbd2-4be3-be0a-51eb1c48ec60
@@ -116,7 +117,8 @@ theorem coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2
       letI : NumberField D.kernelField := D.kernelField_numberField
       ∀ {l : ℕ}, l.Prime →
         (l : ℤ) ∣ NumberField.discr D.kernelField → l ∣ N * p) :
-    Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := _root_.solution hN hk ι f η m B hB hηcoprime V D a ha hdiscr
+    Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := _root_.solution hN hk ι f η m B hB
+      hηcoprime V D a ha hdiscr
 
 end HorizontalPadicL
 end

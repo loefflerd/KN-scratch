@@ -321,7 +321,8 @@ end WC1bSolAW
 
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (S : Finset (AlgebraicCurve.Place K F)) (n : AlgebraicCurve.Place K F → ℤ) :
     ∃ g : F, g ≠ 0 ∧ ∀ v ∈ S, v.ord g = n v :=

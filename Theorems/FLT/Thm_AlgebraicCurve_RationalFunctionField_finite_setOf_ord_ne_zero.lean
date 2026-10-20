@@ -105,7 +105,8 @@ private theorem _root_.AlgebraicCurve.Place.adicValuation_isTrivialOn' :
     v.mem_iff_adicValuation_le_one'.mp (v.algebraMap_mem' a)
 
 p2m_export "AlgebraicCurve.Place" "adicValuation_isTrivialOn'"
-private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq' {Γ : Type*}
+private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq' {Γ :
+  Type*}
     [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
     (h : w.valuationSubring = v.toValuationSubring) : w.IsEquiv v.adicValuation :=
   (Valuation.isEquiv_iff_valuationSubring _ _).mpr
@@ -248,7 +249,8 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero.AlgebraicCurve in
 theorem solution {K : Type*} [Field K] {f : RatFunc K} (hf : f ≠ 0) :
     {v : Place K (RatFunc K) | v.ord f ≠ 0}.Finite :=
   AlgebraicCurve.RationalFunctionField.rowMain hf

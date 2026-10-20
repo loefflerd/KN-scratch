@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.exists_algHom_functionField_baseChange_finrankAlong_eq
+Based on Prove2Me node
+WeierstrassCurve.Affine.exists_algHom_functionField_baseChange_finrankAlong_eq
 (f9fb6037-8f9d-5c67-be82-66f7e78fec74) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission b3015788-82b4-558c-8e89-28fc2203960b
@@ -1113,7 +1114,8 @@ def kw_coordinateRingMapAlongGeneral :
   commutes' r := by
     simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
       MonoidHom.coe_ofClass]
-    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
+    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _
+      r
     rw [IsScalarTower.algebraMap_apply F F[X] CR,
       show (algebraMap F F[X] r) = Polynomial.C r from rfl,
       show (algebraMap F[X] CR) (C r) = (C r : F[X]) • (1 : CR) by
@@ -1372,7 +1374,13 @@ end ModularCurve
 end
 end
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine
+  _root_.AlgebraicCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve
+  in
 theorem solution
     {R₀ : Type u} [Field R₀] (W : WeierstrassCurve R₀) [W.IsElliptic]
     (F : Type v) [Field F] [Algebra R₀ F] [IsAlgClosed F] [CharZero F]
@@ -1381,7 +1389,8 @@ theorem solution
     (ι : (W.baseChange F).toAffine.FunctionField →ₐ[F] (W.baseChange F).toAffine.FunctionField)
     (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong F ι) :
     ∃ ι' : (W.baseChange F').toAffine.FunctionField →ₐ[F'] (W.baseChange F').toAffine.FunctionField,
-      ι'.toRingHom.IsIntegral ∧ ∃ hfin' : FiniteAlong F' ι', finrankAlong F' ι' = finrankAlong F ι := by
+      ι'.toRingHom.IsIntegral ∧ ∃ hfin' : FiniteAlong F' ι', finrankAlong F' ι' = finrankAlong F ι
+        := by
   classical
   obtain ⟨D', hD'⟩ := ModularCurve.kw_isogenyEndDatumBaseChangeAlong_dischargeGeneral W F F'
     (IsScalarTower.toAlgHom R₀ F F') (finrankAlong F ι) ⟨⟨ι, hι, hfin⟩, rfl⟩
@@ -1390,7 +1399,8 @@ theorem solution
 end
 end S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq (solution)
+export P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq
+  (solution)
 
 end privateSection
 
@@ -1412,6 +1422,7 @@ theorem WeierstrassCurve.Affine.exists_algHom_functionField_baseChange_finrankAl
           := by
   classical
   exact
-    _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.solution W F F' ι hι hfin
+    _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.solution
+      W F F' ι hι hfin
 
 end publicSection

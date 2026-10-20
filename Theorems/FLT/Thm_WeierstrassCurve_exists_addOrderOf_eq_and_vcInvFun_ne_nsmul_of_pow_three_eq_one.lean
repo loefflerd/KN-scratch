@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one
+Based on Prove2Me node
+WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one
 (1a187efa-9dc1-57d8-ba71-f8f1e74fdca7) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission f4370572-27f3-59de-871f-c9720a93199f
@@ -87,7 +88,8 @@ def xco [DecidableEq L] {W : WeierstrassCurve L} : W.toAffine.Point → Option L
 
 @[scoped simp] theorem xco_zero [DecidableEq L] {W : WeierstrassCurve L} :
     xco (0 : W.toAffine.Point) = none := rfl
-@[scoped simp] theorem xco_some [DecidableEq L] {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
+@[scoped simp] theorem xco_some [DecidableEq L] {W : WeierstrassCurve L} {x y : L} (h :
+  W.toAffine.Nonsingular x y) :
     xco (Point.some x y h) = some x := rfl
 
 theorem xco_neg [DecidableEq L] {W : WeierstrassCurve L} (P : W.toAffine.Point) :
@@ -133,7 +135,8 @@ theorem xco_castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = 
   subst e; rfl
 
 theorem xco_vcInvFun [DecidableEq L] (u : Lˣ) (W : WeierstrassCurve L) (P : W.toAffine.Point) :
-    xco (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L) W.toAffine P) = (xco P).map (fun x => ((u⁻¹ : Lˣ) : L) ^ 2 * x) := by
+    xco (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L) W.toAffine P) = (xco P).map (fun x =>
+      ((u⁻¹ : Lˣ) : L) ^ 2 * x) := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
   · change some _ = some _
@@ -229,7 +232,8 @@ theorem solution
     (B : L) (hB : B ≠ 0) (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1)
     (p : ℕ) (hp : p.Prime) :
     ∃ T : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine.Point, addOrderOf T = p ∧
-      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ : WeierstrassCurve.VariableChange L)
+      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ :
+        WeierstrassCurve.VariableChange L)
         (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine T) (k • T) := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   have : Fact p.Prime := ⟨hp⟩
@@ -257,7 +261,8 @@ theorem solution
     rw [← this]; simp [hu2inv]
   obtain ⟨e, he⟩ := WeierstrassCurve.exists_addEquiv_point_variableChange W γ
   let σ : W.toAffine.Point →+ W.toAffine.Point := (castPt hW).toAddMonoidHom.comp e.toAddMonoidHom
-  have hσx : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), xco (σ (Point.some x y h)) = some ((u : L) * x) :=
+  have hσx : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), xco (σ (Point.some x y h)) = some ((u :
+    L) * x) :=
     by
     intro x y h
     obtain ⟨h', he'⟩ := he x y h
@@ -366,7 +371,8 @@ theorem solution
           (ZMod.intCast_eq_intCast_iff_dvd_sub (r : ℤ) c p).mp (by exact_mod_cast hr)
         have : c = r + p * k := by linarith
         rw [this, add_zsmul, mul_comm, mul_zsmul, hpT, zsmul_zero, add_zero]
-      obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 :=
+      obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some
+        x y h = 0 :=
         by
         have h1 : 1 < Nat.card Ep := by rw [show Nat.card Ep = p ^ 2 from hcard]; nlinarith
         have : Finite Ep :=
@@ -409,7 +415,8 @@ theorem solution
     have hF0 : F ≠ 0 := Phi_sub_C_mul_X_mul_PsiSq_ne_zero W (u : L) m hm1 hc
     have hFdeg : F.natDegree ≤ m ^ 2 := natDegree_Phi_sub_C_mul_X_mul_PsiSq_le W (u : L) m hm1
     have hmp : (m : ℤ) • (0 : W.toAffine.Point) = 0 := zsmul_zero _
-    have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 → F.IsRoot x :=
+    have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 →
+      F.IsRoot x :=
       by
       intro x y h hpT
       have hord : addOrderOf (Point.some x y h) = p :=
@@ -479,7 +486,8 @@ theorem solution
 
 end S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one (solution)
+export P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one
+  (solution)
 
 end privateSection
 
@@ -490,7 +498,8 @@ theorem WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three
     (B : L) (hB : B ≠ 0) (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1)
     (p : ℕ) (hp : p.Prime) :
     ∃ T : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine.Point, addOrderOf T = p ∧
-      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ : WeierstrassCurve.VariableChange L)
+      ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ :
+        WeierstrassCurve.VariableChange L)
         (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine T) (k • T) :=
   solution B hB u hu hu1 p hp
 

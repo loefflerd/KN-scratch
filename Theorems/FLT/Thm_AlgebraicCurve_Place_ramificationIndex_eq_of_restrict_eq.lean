@@ -42,7 +42,8 @@ infimum of the set of natural numbers $n$ with $0 < n$ for which there exists $f
 This is the standard statement that in a finite Galois extension the ramification index is the same
 at all places lying over a fixed place of the base field. It feeds into the fundamental identity
 $\sum_{W \mid w} e\, f = [M:F']$ in the form
-[`AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg`](thm.html#AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg),
+[`AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg`]
+(thm.html#AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg),
 and into the results on orders of elements under Hahn series embeddings in the Galois case.
 
 ## Explanation of the source proof
@@ -87,7 +88,8 @@ private theorem intertwinesAlong_one_ofAlgAut (σ : M ≃ₐ[F'] M) :
 end Place
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.AlgebraicCurve.Place in
+open _root_.AlgebraicCurve.Place
+  _root_.P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.AlgebraicCurve.Place in
 theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (W W' : Place K M)

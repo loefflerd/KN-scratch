@@ -41,9 +41,11 @@ along $\iota_{F,F'}$, of the residue field of that place of $F'$.
 This is the invariance of the residue (inertia) degree in a tower $F \subseteq F'$ under a
 compatible pair of semilinear automorphisms of $F$ and $F'$; it is the residue-degree half of the
 statement that such a pair acts on places compatibly with the tower. It is used for
-[`AlgebraicCurve.Place.inertiaDeg_eq_of_restrict_eq`](thm.html#AlgebraicCurve.Place.inertiaDeg_eq_of_restrict_eq)
+[`AlgebraicCurve.Place.inertiaDeg_eq_of_restrict_eq`]
+(thm.html#AlgebraicCurve.Place.inertiaDeg_eq_of_restrict_eq)
 and for
-[`AlgebraicCurve.SemilinearAut.pushforward_smul`](thm.html#AlgebraicCurve.SemilinearAut.pushforward_smul).
+[`AlgebraicCurve.SemilinearAut.pushforward_smul`]
+(thm.html#AlgebraicCurve.SemilinearAut.pushforward_smul).
 The inertia degree is a vector-space dimension, so it takes the value $0$ on infinite residue
 extensions; the assertion is an equality of the two dimensions and carries no finiteness
 information.

@@ -49,9 +49,11 @@ $j$-invariant `ModuliPoint.j x` equals $j(E_0)$. The assertion is that these two
 This is the moduli-theoretic count of points of $X_0(N)$ lying over a fixed $j$-invariant: the
 $\mathrm{Aut}(E_0)$-orbits of cyclic subgroups of order $N$ in $E_0(\overline{\mathbb{Q}})$ are
 equinumerous with the pairs $(E,C)$ whose underlying curve has $j(E) = j(E_0)$. It is used by
-[`ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD`](thm.html#ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD),
+[`ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD`]
+(thm.html#ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD),
 and its proof goes through
-[`ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq`](thm.html#ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq),
+[`ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq`]
+(thm.html#ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq),
 which replaces the right-hand side by a quotient of the set of points of exact order $N$ on $E_0$,
 together with the additivity of the transport map
 [`WeierstrassCurve.Affine.Point.vcInvFun`](def/WeierstrassCurve_VariableChangePointEquiv.html#L119).
@@ -161,7 +163,8 @@ theorem exists_coprime_nsmul_of_mem_zmultiples {N : ℕ} (hN : N ≠ 0) {x y : G
 theorem zmultiples_nsmul_eq_of_coprime {N : ℕ} {x : G} (hx : addOrderOf x = N) {k : ℕ}
     (hk : k.Coprime N) : AddSubgroup.zmultiples (k • x) = AddSubgroup.zmultiples x := by
   apply le_antisymm
-  · exact AddSubgroup.zmultiples_le_of_mem ((AddSubgroup.zmultiples x).nsmul_mem (AddSubgroup.mem_zmultiples x) k)
+  · exact AddSubgroup.zmultiples_le_of_mem ((AddSubgroup.zmultiples x).nsmul_mem
+      (AddSubgroup.mem_zmultiples x) k)
   · apply AddSubgroup.zmultiples_le_of_mem
     obtain ⟨m, hm⟩ := exists_nsmul_eq_self_of_coprime (x := x) (n := k) (hx ▸ hk)
     have h : m • k • x ∈ AddSubgroup.zmultiples (k • x) :=
@@ -176,7 +179,8 @@ open P2MWs12.CycSubOrbit ModularCurve in
 theorem solution (N : ℕ) [NeZero N]
     (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) [E₀.IsElliptic] :
     Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1 H'.1))
-      = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j x = E₀.j} := by
+      = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j
+        x = E₀.j} := by
   rw [ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq N (AlgebraicClosure ℚ) E₀]
   have hN : N ≠ 0 := NeZero.ne N
   let A := {T : E₀.toAffine.Point // addOrderOf T = N}
@@ -236,7 +240,8 @@ theorem solution (N : ℕ) [NeZero N]
       refine (Quot.sound ⟨1, one_smul _ E₀, m, hm, ?_⟩).symm
       change HEq (gen (toCyc T)).1 (m • Point.vcInvFun 1 E₀.toAffine T.1)
       rw [hmT]
-      exact ModularCurve.Point.heq_nsmul (one_smul _ E₀).symm m (vcInvFun_one_heq E₀.toAffine T.1).symm
+      exact ModularCurve.Point.heq_nsmul (one_smul _ E₀).symm m (vcInvFun_one_heq E₀.toAffine
+        T.1).symm
 
 end S_ModularCurve_natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq
 end P2MW
@@ -249,7 +254,8 @@ public section publicSection
 theorem ModularCurve.natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq (N : ℕ) [NeZero N]
     (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) [E₀.IsElliptic] :
     Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1 H'.1))
-      = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j x = E₀.j} :=
+      = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j
+        x = E₀.j} :=
   solution N E₀
 
 end publicSection

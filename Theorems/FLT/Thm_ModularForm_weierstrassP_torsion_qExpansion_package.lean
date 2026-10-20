@@ -1319,7 +1319,8 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
   · intro a₁ a₂ ha₁ ha₂ h0
     rw [hW]
     exact ⟨mdifferentiable_wpNorm ha₁ ha₂ h0, periodic_wpNorm ha₁ ha₂ h0,
-      isBoundedAtImInfty_wpNorm ha₁ ha₂ h0, fun n ↦ hk ▸ qExpansion_wpNorm_coeff_mem_kN ha₁ ha₂ h0 n⟩
+      isBoundedAtImInfty_wpNorm ha₁ ha₂ h0, fun n ↦ hk ▸ qExpansion_wpNorm_coeff_mem_kN ha₁ ha₂ h0
+        n⟩
   · intro a₁ a₂ b₁ b₂ ha₁ ha₂ ha0 hb₁ hb₂ hb0 heq
     exact wpNorm_eq_imp ha₁ ha₂ ha0 hb₁ hb₂ hb0 (hW ▸ heq)
   · have hζk : ζk = zetaK N := rfl

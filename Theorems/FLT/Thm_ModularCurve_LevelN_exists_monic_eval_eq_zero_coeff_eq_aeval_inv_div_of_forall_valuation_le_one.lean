@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
+Based on Prove2Me node
+ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
 (b7c8921a-b6a8-5b7b-a694-d41c39eab001) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 96a24ab4-b440-5738-892c-00c378e4d4aa
@@ -46,7 +47,8 @@ This is the classical statement that an element of the level-$M$ function field 
 at all cusps (equivalently, along all $\mathrm{SL}(2,\mathbb Z)$-translates) have no pole is
 integral over the local ring $\mathbb C[1/j]_{(1/j)}$ of the $j$-line at $j=\infty$. The monic
 equation with coefficients of this shape is what is consumed by
-[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`](thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto)
+[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`]
+(thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto)
 when computing orders at the cusps.
 
 ## Explanation of the source proof
@@ -159,7 +161,8 @@ theorem valinf_draft (M : ℕ) [NeZero M]
     rw [hEj, show (-(M : ℤ)) = (M : ℤ) * (-1) by ring, ModularCurve.qExpand_coeff_mul,
       ModularCurve.jqModC]
     have h : ((HahnSeries.single (-1 : ℤ)) (1 : ℂ) *
-        HahnSeries.ofPowerSeries ℤ ℂ (ModularCurve.jNum.map (Int.castRingHom ℂ))).coeff (0 + (-1)) = 1 := by
+        HahnSeries.ofPowerSeries ℤ ℂ (ModularCurve.jNum.map (Int.castRingHom ℂ))).coeff (0 + (-1)) =
+          1 := by
       rw [HahnSeries.coeff_single_mul_add, one_mul, show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl,
         HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map,
         PowerSeries.coeff_zero_eq_constantCoeff_apply, ModularCurve.constantCoeff_jNum, map_one]
@@ -290,7 +293,9 @@ theorem solution
 
 end S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
 end P2MW
-export P2MW.S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one (solution)
+export
+  P2MW.S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
+  (solution)
 
 end privateSection
 
@@ -299,7 +304,8 @@ public section publicSection
 
 open Polynomial
 open scoped MatrixGroups
-theorem ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
+theorem
+  ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
     (M : ℕ) [NeZero M]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring M) K]
     [IsScalarTower ℂ (ModularCurve.LevelN.ring M) K]

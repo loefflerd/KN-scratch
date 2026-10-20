@@ -586,7 +586,8 @@ lemma arc_cos :
   have hΦc := continuousOn_Φ Φ Φ' U hd
   have hcont : ContinuousOn (fun θ => Real.cos θ • Φ (γ θ)) (Icc (Real.pi / 3) (2 * Real.pi / 3)) :=
     Real.continuous_cos.continuousOn.smul (continuousOn_arc Φ Φ' U hDU hd)
-  have hi1 : IntervalIntegrable (fun θ => Real.cos θ • Φ (γ θ)) volume (Real.pi / 3) (Real.pi / 2) :=
+  have hi1 : IntervalIntegrable (fun θ => Real.cos θ • Φ (γ θ)) volume (Real.pi / 3) (Real.pi / 2)
+    :=
     (hcont.mono (by rw [uIcc_of_le h1]; exact Icc_subset_Icc_right h2)).intervalIntegrable
   have hi2 : IntervalIntegrable (fun θ => Real.cos θ • Φ (γ θ)) volume (Real.pi / 2)
       (2 * Real.pi / 3) :=

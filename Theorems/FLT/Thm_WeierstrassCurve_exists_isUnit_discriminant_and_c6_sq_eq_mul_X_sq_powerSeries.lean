@@ -41,7 +41,8 @@ This provides an elliptic curve over $K[[t]]$ with good reduction whose $j$-inva
 equal to the uniformiser squared, i.e. a local model at the elliptic point $j = 1728$ of the
 $j$-line. It is used in the analysis of ramification of modular coverings above $j = 1728$, namely
 by
-[`ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd)
+[`ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd)
 and [`ModularCurve.ord_jBar_sub_1728_dvd_two`](thm.html#ModularCurve.ord_jBar_sub_1728_dvd_two).
 
 ## Explanation of the source proof
@@ -109,7 +110,8 @@ theorem solution
 
 end S_WeierstrassCurve_exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries (solution)
+export P2MW.S_WeierstrassCurve_exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries
+  (solution)
 
 end privateSection
 

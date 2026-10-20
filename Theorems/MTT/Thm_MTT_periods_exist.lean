@@ -53,7 +53,8 @@ of
 * algebraic numbers $v(s,j,r)\in\overline{\mathbf Q}$ for $s\in\{\pm\}$, $0\le j\le k-2$,
   $r\in\mathbf Q$, satisfying
 $$\iota\bigl(v(s,j,r)\bigr)\;=\;\frac{\lambda^{s}_{j}(f,r)}{\Omega^{s}},\qquad
-\lambda^{s}_{j}(f,r)=\tfrac12\Bigl(\textstyle\int_{r}^{i\infty}\!f\,X^{j}+s\,(-1)^{j}\int_{-r}^{i\infty}\!f\,X^{j}\Bigr),$$
+\lambda^{s}_{j}(f,r)=\tfrac12\Bigl(\textstyle\int_{r}^{i\infty}\!f\,X^{j}+s\,(-1)^{j}\int_{-r}^{i
+\infty}\!f\,X^{j}\Bigr),$$
 * and the requirement that the $\mathbf Z$-span of all the $v(s,j,r)$ be a **finitely generated**
   subgroup of $\overline{\mathbf Q}$.
 
@@ -91,7 +92,8 @@ $$v(s,j,r)\;=\;\frac{\operatorname{ev}_{j,r}(\Psi^{s})}{\binom{k-2}{j}}\in\overl
 Coefficientwise extension commutes with the evaluation functionals — this is the lemma
 `evaluation_extends`, which is just $\operatorname{coeff}_d(\text{map
 }\iota\,P)=\iota(\operatorname{coeff}_d P)$ — so
-$$\iota\bigl(\operatorname{ev}_{j,r}\Psi^{s}\bigr)=\operatorname{ev}_{j,r}\bigl((\Omega^{s})^{-1}\Phi^{s}\bigr)=(\Omega^{s})^{-1}\binom{k-2}{j}\lambda^{s}_{j}(f,r),$$
+$$\iota\bigl(\operatorname{ev}_{j,r}\Psi^{s}\bigr)=\operatorname{ev}_{j,r}\bigl((\Omega^{s})^{-1}
+\Phi^{s}\bigr)=(\Omega^{s})^{-1}\binom{k-2}{j}\lambda^{s}_{j}(f,r),$$
 and dividing by $\binom{k-2}{j}$, which is a nonzero integer for $j\le k-2$, gives exactly the
 comparison identity. Note that the denominators cancel *before* any lattice claim is made; this is
 why the binomial factor is carried through the definition of `IntegralClass` rather than absorbed

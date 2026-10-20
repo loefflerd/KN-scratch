@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
+Based on Prove2Me node
+ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 (33ba6941-ae96-5a37-b6ef-2d875c317bd8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 17f04867-e214-5b77-9a5c-7a449e4ade11
@@ -15,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Elements of the base-changed q-expansion field are ratios of forms
@@ -65,18 +65,14 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
-
 noncomputable section
 
 open UpperHalfPlane
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intFormRatiosC qExpFunctionFieldC \
-  laurentBaseChange laurentBaseChange_qExpFunctionFieldC_eq"
+
 namespace RatioFieldOfLevelG
-p2m_open "ModularCurve"
 
 variable {Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)}
 
@@ -208,7 +204,8 @@ theorem isRatio_of_mem_intFormRatiosC (hT : ModularGroup.T ∈ Γ) {x : LaurentS
 theorem isRatio_of_mem (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ}
     (hx : x ∈ laurentBaseChange ℂ (qExpFunctionFieldC ℚ Γ)) : IsRatio Γ x := by
   rw [ModularCurve.laurentBaseChange_qExpFunctionFieldC_eq] at hx
-  change x ∈ Subfield.closure (Set.range (algebraMap ℂ (LaurentSeries ℂ)) ∪ intFormRatiosC ℂ Γ) at hx
+  change x ∈ Subfield.closure
+    (Set.range (algebraMap ℂ (LaurentSeries ℂ)) ∪ intFormRatiosC ℂ Γ) at hx
   induction hx using Subfield.closure_induction with
   | mem z hz =>
       rcases hz with ⟨c, rfl⟩ | hz
@@ -234,17 +231,13 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
         ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
   ModularCurve.RatioFieldOfLevelG.isRatio_of_mem hT hx
 
-end S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
-end P2MW
-export P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC (solution)
-
 end privateSection
 
 public section publicSection
 
-
 open UpperHalfPlane in
-theorem ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
+theorem
+  ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (x : LaurentSeries ℂ)
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) :

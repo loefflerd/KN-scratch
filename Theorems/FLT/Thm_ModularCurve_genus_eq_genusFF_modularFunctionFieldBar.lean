@@ -83,7 +83,8 @@ open ModularCurve AlgebraicCurve IntermediateField
 attribute [local instance] ModularCurve.instDecidableEqRatFuncAlgebraicClosure
 
 theorem solution (N : ℕ) [NeZero N]
-    [AlgebraicCurve.HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := ↥(ModularCurve.modularFunctionFieldBar N))] :
+    [AlgebraicCurve.HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F :=
+      ↥(ModularCurve.modularFunctionFieldBar N))] :
     AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)
       = AlgebraicCurve.genusFF (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) := by
   have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
@@ -97,13 +98,16 @@ theorem solution (N : ℕ) [NeZero N]
   let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
     (jLineBarRingEquiv N).toRingHom.toAlgebra
   let algRF : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
-    ((algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)).comp (jLineBarRingEquiv N).toRingHom).toAlgebra
+    ((algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)).comp (jLineBarRingEquiv
+      N).toRingHom).toAlgebra
   have : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
+  have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar
+    N) :=
     by
     refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
-    change algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N) (jLineBarRingEquiv N (algebraMap _ _ a))
+    change algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)
+      (jLineBarRingEquiv N (algebraMap _ _ a))
     rw [jLineBarRingEquiv_algebraMap]
     rfl
   have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
@@ -125,7 +129,8 @@ theorem solution (N : ℕ) [NeZero N]
   have : Algebra.EssFiniteType (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.of_isLocalization _ (nonZeroDivisors (Polynomial (AlgebraicClosure ℚ)))
   have : Algebra.EssFiniteType (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
-    Algebra.EssFiniteType.comp (AlgebraicClosure ℚ) (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ))
+    Algebra.EssFiniteType.comp (AlgebraicClosure ℚ) (Polynomial (AlgebraicClosure ℚ)) (RatFunc
+      (AlgebraicClosure ℚ))
   have hDCGR : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
   have : HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
@@ -148,7 +153,8 @@ end privateSection
 public section publicSection
 
 theorem ModularCurve.genus_eq_genusFF_modularFunctionFieldBar (N : ℕ) [NeZero N]
-    [AlgebraicCurve.HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := ↥(ModularCurve.modularFunctionFieldBar N))] :
+    [AlgebraicCurve.HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F :=
+      ↥(ModularCurve.modularFunctionFieldBar N))] :
     AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)
       = AlgebraicCurve.genusFF (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) :=
   solution N

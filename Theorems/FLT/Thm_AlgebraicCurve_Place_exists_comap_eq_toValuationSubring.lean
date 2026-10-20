@@ -138,7 +138,8 @@ theorem rowMain (v : Place K F) :
 
 end AlgebraicCurve.Place
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring.AlgebraicCurve in
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     (v : Place K F) :

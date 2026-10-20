@@ -212,7 +212,8 @@ theorem isDiscreteValuationRing_localization_XYIdeal' {x y : F} (h : W.Nonsingul
   exact ((IsDiscreteValuationRing.TFAE _ hnf).out 1 5).mpr
     (isPrincipal_maximalIdeal_localization h)
 
-scoped instance : Module.Finite F[X] W.CoordinateRing := Module.Finite.of_basis (CoordinateRing.basis W)
+scoped instance : Module.Finite F[X] W.CoordinateRing := Module.Finite.of_basis
+  (CoordinateRing.basis W)
 
 lemma isMaximal_of_isPrime_of_ne_bot (P : Ideal W.CoordinateRing) [P.IsPrime] (hP : P ≠ ⊥) :
     P.IsMaximal :=

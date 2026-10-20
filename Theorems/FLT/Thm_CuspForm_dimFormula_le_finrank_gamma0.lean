@@ -54,9 +54,11 @@ left-hand side is the value predicted by the Riemann–Roch dimension formula ex
 genus, elliptic-point and cusp numerics of $X_0(N)$; only the inequality ‘at least’ is asserted
 here, which is the half obtained from the Riemann inequality applied to an explicit divisor on the
 modular function field. It is used in the comparison of Eichler–Shimura and Hecke data
-([`HeckeEis.isCompl_range_eichlerShimuraMap_range_conj`](thm.html#HeckeEis.isCompl_range_eichlerShimuraMap_range_conj))
+([`HeckeEis.isCompl_range_eichlerShimuraMap_range_conj`]
+(thm.html#HeckeEis.isCompl_range_eichlerShimuraMap_range_conj))
 and in the corresponding lower bound for spaces of mod $p$ cusp forms
-([`ModPForms.dimFormulaCusp_le_finrank_modPCusp`](thm.html#ModPForms.dimFormulaCusp_le_finrank_modPCusp)).
+([`ModPForms.dimFormulaCusp_le_finrank_modPCusp`]
+(thm.html#ModPForms.dimFormulaCusp_le_finrank_modPCusp)).
 
 ## Explanation of the source proof
 
@@ -116,8 +118,10 @@ theorem thetaL_coeffEmb_jq_pow_ne_zero (m : ℕ) :
 
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
-    (((k : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((k / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + ((k / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + ((k : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ))
+    (((k : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((k / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N :
+      ℚ)
+        + ((k / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + ((k : ℚ) / 2 - 1) *
+          (ModularCurve.cuspCount N : ℚ))
       ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (k : ℤ)) : ℚ) := by
   classical
   obtain ⟨m, hkm⟩ : ∃ m, k = 2 * m := by obtain ⟨r, hr⟩ := hke; exact ⟨r, by omega⟩
@@ -128,8 +132,10 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   obtain ⟨D, hdeg, hint⟩ :=
     ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace N m hm
   have hk4 : (2 * m / 4 : ℕ) = m / 2 := by omega
-  have hLHS : (((2 * m : ℕ) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((2 * m / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + ((2 * m / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((2 * m : ℕ) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)
+  have hLHS : (((2 * m : ℕ) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((2 * m / 4 : ℕ) : ℚ) *
+    (ModularCurve.nuTwo N : ℚ)
+        + ((2 * m / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((2 * m : ℕ) : ℚ) / 2 - 1) *
+          (ModularCurve.cuspCount N : ℚ)
       = (D.degree : ℚ) + 1 - ModularCurve.genusFormula N := by
     rw [hdeg, hk4]
     push_cast
@@ -138,7 +144,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   have hRR := ModularCurve.degree_add_one_sub_genusFF_le_finrank_riemannRochSpace N D
   have hg1 := ModularCurve.genus_eq_genusFF_modularFunctionFieldBar N
   have hg2 := ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula N
-  have hgen : ModularCurve.genusFormula N = (genusFF (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℚ) :=
+  have hgen : ModularCurve.genusFormula N = (genusFF (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar
+    N) : ℚ) :=
     by
     rw [← hg2, hg1]
   have hcast : (2 * (m : ℤ)) = ((2 * m : ℕ) : ℤ) := by push_cast; ring
@@ -160,14 +167,17 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   let ι₀ : AlgebraicClosure ℚ →+* ℂ := (IsAlgClosed.lift : AlgebraicClosure ℚ →ₐ[ℚ] ℂ).toRingHom
   have hex : ∀ i : Fin r, ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
-        ModularCurve.coeffMap ι₀ (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) *
+        ModularCurve.coeffMap ι₀ (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) :
+          LaurentSeries (AlgebraicClosure ℚ)) *
           ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m := by
     intro i
     obtain ⟨h₁, h₂⟩ := hint ((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) (b i).2
-    exact ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral N m hm ι₀ _ h₁ h₂
+    exact ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral N m hm ι₀
+      _ h₁ h₂
   choose f hf using hex
   let v : Fin r → ℤ → AlgebraicClosure ℚ :=
-    fun i n => ((((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ))).coeff n
+    fun i n => ((((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries
+      (AlgebraicClosure ℚ))).coeff n
   have hcoeff_sum : ∀ (s : Finset (Fin r)) (x : Fin r → LaurentSeries (AlgebraicClosure ℚ)) (n : ℤ),
       (∑ i ∈ s, x i).coeff n = ∑ i ∈ s, (x i).coeff n := by
     intro s x n
@@ -181,7 +191,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     | empty => simp
     | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, HahnSeries.coeff_add, ih]
   let E : ↥(riemannRochSpace D) →ₗ[AlgebraicClosure ℚ] (ℤ → AlgebraicClosure ℚ) :=
-    { toFun := fun y n => (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)).coeff n
+    { toFun := fun y n => (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) :
+      LaurentSeries (AlgebraicClosure ℚ)).coeff n
       map_add' := by
         intro y y'
         funext n
@@ -196,7 +207,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
           | rw [IntermediateField.coe_smul, Algebra.smul_def,
               ModularCurve.algebraMap_laurentSeries_eq_single,
               HahnSeries.coeff_single_zero_mul] }
-  have hE : ∀ y n, E y n = (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)).coeff n :=
+  have hE : ∀ y n, E y n = (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) :
+    LaurentSeries (AlgebraicClosure ℚ)).coeff n :=
     fun _ _ => rfl
   have hEinj : Function.Injective E := by
     intro y y' h
@@ -222,11 +234,13 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   have hΓ := CongruenceSubgroup.one_mem_strictPeriods_Gamma0 N
   have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)), ⇑(φ + ψ) = ⇑φ + ⇑ψ :=
     fun _ _ => rfl
-  have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))), ⇑(x • φ) = x • ⇑φ :=
+  have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))), ⇑(x • φ) = x •
+    ⇑φ :=
     fun _ _ => rfl
   have hczero : ⇑(0 : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))) = 0 := rfl
   have hqadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
-      UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
+      UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ +
+        UpperHalfPlane.qExpansion 1 ⇑ψ := by
     intro φ ψ
     first
       | exact ModularForm.qExpansion_add one_pos hΓ φ ψ
@@ -243,7 +257,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     rw [Fintype.linearIndependent_iff]
     intro c hc
     have hqsum : ∀ s : Finset (Fin r),
-        UpperHalfPlane.qExpansion 1 ⇑(∑ i ∈ s, c i • f i) = ∑ i ∈ s, c i • UpperHalfPlane.qExpansion 1 ⇑(f i) := by
+        UpperHalfPlane.qExpansion 1 ⇑(∑ i ∈ s, c i • f i) = ∑ i ∈ s, c i • UpperHalfPlane.qExpansion
+          1 ⇑(f i) := by
       intro s
       induction s using Finset.induction_on with
       | empty => rw [Finset.sum_empty, Finset.sum_empty, hczero, hqzero]
@@ -257,19 +272,22 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     rw [map_sum] at hq'
     have hterm : ∀ i, HahnSeries.ofPowerSeries ℤ ℂ (c i • UpperHalfPlane.qExpansion 1 ⇑(f i)) =
         HahnSeries.C (c i) * (ModularCurve.coeffMap ι₀
-          (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) *
+          (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries
+            (AlgebraicClosure ℚ)) *
             ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m) := by
       intro i
       rw [PowerSeries.smul_eq_C_mul, map_mul, HahnSeries.ofPowerSeries_C, hf i]
     simp_rw [hterm] at hq'
     have hqL : (∑ i, HahnSeries.C (c i) * ModularCurve.coeffMap ι₀
-          (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ))) *
+          (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries
+            (AlgebraicClosure ℚ))) *
         ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m = 0 := by
       rw [Finset.sum_mul, ← hq']
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [mul_assoc]
     have hqL' : ∑ i, HahnSeries.C (c i) * ModularCurve.coeffMap ι₀
-        (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = 0 :=
+        (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries
+          (AlgebraicClosure ℚ)) = 0 :=
       (mul_eq_zero.mp hqL).resolve_right hT
     have hrel : ∑ i, c i • (fun n => ι₀ (v i n)) = 0 := by
       funext n
@@ -295,8 +313,10 @@ public section publicSection
 
 theorem CuspForm.dimFormula_le_finrank_gamma0 (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k)
     :
-    (((k : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((k / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + ((k / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + ((k : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ))
+    (((k : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((k / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N :
+      ℚ)
+        + ((k / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + ((k : ℚ) / 2 - 1) *
+          (ModularCurve.cuspCount N : ℚ))
       ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (k : ℤ)) : ℚ) :=
   solution N k hk hke
 

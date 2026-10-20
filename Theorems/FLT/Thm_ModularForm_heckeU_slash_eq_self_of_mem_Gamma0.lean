@@ -159,7 +159,8 @@ variable {p : ℕ} [NeZero p]
 
 theorem sum_range_eq_sum_zmod {M : Type*} [AddCommMonoid M] (F : ℕ → M) :
     ∑ j ∈ Finset.range p, F j = ∑ x : ZMod p, F x.val := by
-  refine Finset.sum_nbij' (fun j : ℕ ↦ (j : ZMod p)) (fun x : ZMod p ↦ x.val) (fun _ _ ↦ Finset.mem_univ _)
+  refine Finset.sum_nbij' (fun j : ℕ ↦ (j : ZMod p)) (fun x : ZMod p ↦ x.val) (fun _ _ ↦
+    Finset.mem_univ _)
     (fun x _ ↦ Finset.mem_range.mpr x.val_lt) (fun j hj ↦ ?_) (fun x _ ↦ ?_) (fun j hj ↦ ?_)
   · exact ZMod.val_cast_of_lt (Finset.mem_range.mp hj)
   · exact ZMod.natCast_zmod_val x
@@ -203,7 +204,8 @@ variable [NeZero p]
 theorem heckeMatrix_mul_of_dvd (g : SL(2, ℤ)) (hc : (p : ℤ) ∣ g 1 0) (x : ZMod p) :
     ∃ g' : SL(2, ℤ), g' 1 0 = p * g 1 0 ∧
       heckeMatrix p x.val * mapGL ℝ g =
-        mapGL ℝ g' * heckeMatrix p (affinePerm g ((ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hc) x).val := by
+        mapGL ℝ g' * heckeMatrix p (affinePerm g ((ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hc)
+          x).val := by
   have hc0 : ((g 1 0 : ℤ) : ZMod p) = 0 := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hc
   set x' := affinePerm g hc0 x with hx'
   obtain ⟨e, he⟩ : (p : ℤ) ∣ g 0 1 + x.val * g 1 1 - x'.val * (g 0 0 + x.val * g 1 0) := by
@@ -262,12 +264,14 @@ variable [Fact p.Prime]
 variable (p) in
 def redMatrix (g : SL(2, ℤ)) : GL (Fin 2) (ZMod p) :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero
-    !![((g 1 1 : ℤ) : ZMod p), ((g 0 1 : ℤ) : ZMod p); ((g 1 0 : ℤ) : ZMod p), ((g 0 0 : ℤ) : ZMod p)]
+    !![((g 1 1 : ℤ) : ZMod p), ((g 0 1 : ℤ) : ZMod p); ((g 1 0 : ℤ) : ZMod p), ((g 0 0 : ℤ) : ZMod
+      p)]
     (by
       have := congrArg (Int.cast : ℤ → ZMod p) (det_eq g)
       push_cast at this
       rw [Matrix.det_fin_two_of,
-        show ((g 1 1 : ℤ) : ZMod p) * ((g 0 0 : ℤ) : ZMod p) - ((g 0 1 : ℤ) : ZMod p) * ((g 1 0 : ℤ) : ZMod p)
+        show ((g 1 1 : ℤ) : ZMod p) * ((g 0 0 : ℤ) : ZMod p) - ((g 0 1 : ℤ) : ZMod p) * ((g 1 0 : ℤ)
+          : ZMod p)
           = 1 by linear_combination this]
       exact one_ne_zero)
 
@@ -395,7 +399,10 @@ theorem heckeU_slash_eq_self_of_mem_Gamma0' {N : ℕ} (k : ℤ) {p : ℕ} (hpN :
 
 end ModularForm
 
-theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
+theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈
+  (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k
+  γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N :
+  Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
     SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f :=
   ModularForm.heckeU_slash_eq_self_of_mem_Gamma0' k hpN hf γ hγ
 
@@ -408,7 +415,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularForm.heckeU_slash_eq_self_of_mem_Gamma0 {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
+theorem ModularForm.heckeU_slash_eq_self_of_mem_Gamma0 {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f :
+  UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup
+  (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈
+  (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
     SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f :=
   solution k hpN hf γ hγ
 

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
+Based on Prove2Me node
+AlgebraicCurve.weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
 (d4f063ae-a924-5f01-9ff2-f039622ce835) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 7d34e6b1-f520-5ec8-8ad5-a738bb62ab90
@@ -109,7 +110,8 @@ theorem solution
 
 end S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
 end P2MW
-export P2MW.S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists (solution)
+export P2MW.S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
+  (solution)
 
 end privateSection
 

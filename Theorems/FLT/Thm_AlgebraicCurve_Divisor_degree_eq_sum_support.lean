@@ -118,7 +118,8 @@ theorem lSpace_eq_bot_of_degree_neg [IsCurveOver K F]
   exact absurd hdegPD (not_le.mpr hD)
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Divisor_degree_eq_sum_support.AlgebraicCurve in
+open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Divisor_degree_eq_sum_support.AlgebraicCurve
+  in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (D : Divisor K F) :
     Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) :=
   AlgebraicCurve.Divisor.degree_eq_sum_support_port (K := K) (F := F) (D := D)

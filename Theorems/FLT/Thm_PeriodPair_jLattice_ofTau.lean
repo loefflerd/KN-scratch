@@ -44,7 +44,8 @@ This is the classical identification of the $j$-invariant of the lattice $\mathb
 modular function $j = E_4^3/\Delta$. It links the lattice-theoretic uniformisation theory to the
 analytic, $q$-expansion side, and is used in the proof that `jLattice` of a lattice with cyclic
 quotient is a root of the relevant modular polynomial, via
-[`ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic`](thm.html#ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic).
+[`ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic`]
+(thm.html#ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic).
 
 ## Explanation of the source proof
 
@@ -179,6 +180,7 @@ public section publicSection
 
 open scoped UpperHalfPlane
 theorem PeriodPair.jLattice_ofTau (τ : ℍ) :
-    (PeriodPair.ofTau τ).jLattice = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ := _root_.solution τ
+    (PeriodPair.ofTau τ).jLattice = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ :=
+      _root_.solution τ
 
 end publicSection

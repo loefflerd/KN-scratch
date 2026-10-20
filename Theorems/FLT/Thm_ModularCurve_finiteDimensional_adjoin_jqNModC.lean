@@ -172,7 +172,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_jqNModC.ModularCurve in
 theorem solution (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
-    FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) :=
+    FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K N} : Set (LaurentSeries K))) :=
   ModularCurve.finiteDimensional_adjoin_jqNModC K data
 
 end S_ModularCurve_finiteDimensional_adjoin_jqNModC
@@ -187,7 +189,9 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.finiteDimensional_adjoin_jqNModC (K : Type*) [Field K] {N : ℕ} [NeZero N]
     (data : ModularPolynomialData N) :
-    FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) :=
+    FiniteDimensional (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K N} : Set (LaurentSeries K))) :=
   solution K data
 
 end publicSection

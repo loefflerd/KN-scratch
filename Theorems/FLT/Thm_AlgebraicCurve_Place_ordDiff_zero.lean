@@ -47,7 +47,8 @@ nonvanishing hypotheses. It is used in the description of the regular differenti
 ([`AlgebraicCurve.mem_regularDiffs_iff`](thm.html#AlgebraicCurve.mem_regularDiffs_iff)) and in the
 treatment of coefficient maps on modular curves
 ([`ModularCurve.coeffMap_coeffEmb_of_ringHom`](thm.html#ModularCurve.coeffMap_coeffEmb_of_ringHom),
-[`ModularCurve.coeffMap_mem_laurentBaseChange_of_ringHom`](thm.html#ModularCurve.coeffMap_mem_laurentBaseChange_of_ringHom)).
+[`ModularCurve.coeffMap_mem_laurentBaseChange_of_ringHom`]
+(thm.html#ModularCurve.coeffMap_mem_laurentBaseChange_of_ringHom)).
 
 ## Explanation of the source proof
 

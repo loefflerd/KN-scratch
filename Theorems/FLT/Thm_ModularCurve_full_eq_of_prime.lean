@@ -64,7 +64,8 @@ noncomputable section
 
 theorem solution {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) :
     modularFunctionFieldFull ℓ = modularFunctionField ℓ :=
-  (ModularCurve.functionFieldGeneration_iff_full_eq ℓ).mp (ModularCurve.functionFieldGeneration_of_prime hℓ)
+  (ModularCurve.functionFieldGeneration_iff_full_eq ℓ).mp
+    (ModularCurve.functionFieldGeneration_of_prime hℓ)
 
 end
 

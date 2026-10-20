@@ -211,7 +211,8 @@ private theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZer
 
 end
 
-open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.ModularCurve in
+open AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.ModularCurve in
 theorem solution (M : ℕ) [NeZero M] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) :
     w.deg = 1 :=
   ModularCurve.deg_eq_one_modularFunctionFieldBar M w

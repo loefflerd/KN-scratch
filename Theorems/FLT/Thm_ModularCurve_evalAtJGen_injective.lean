@@ -42,9 +42,11 @@ transcendental over $\mathbb{Q}$ as far as integral polynomials are concerned: n
 This is the formal-Laurent-series form of the transcendence of the $j$-invariant over $\mathbb{Q}$,
 packaged so that $\mathbb{Z}[X]$ may be identified with the subring $\mathbb{Z}[\mathrm{jq}]$ of
 `ℚ⟮jq⟯`. It is used in the uniqueness and existence statements for modular polynomial data,
-[`ModularCurve.modularPolynomialData_phi_unique_of_prime`](thm.html#ModularCurve.modularPolynomialData_phi_unique_of_prime)
+[`ModularCurve.modularPolynomialData_phi_unique_of_prime`]
+(thm.html#ModularCurve.modularPolynomialData_phi_unique_of_prime)
 and
-[`ModularCurve.nonempty_modularPolynomialData`](thm.html#ModularCurve.nonempty_modularPolynomialData),
+[`ModularCurve.nonempty_modularPolynomialData`]
+(thm.html#ModularCurve.nonempty_modularPolynomialData),
 where two polynomials over $\mathbb{Z}[X]$ with equal images must be shown to coincide.
 
 ## Explanation of the source proof

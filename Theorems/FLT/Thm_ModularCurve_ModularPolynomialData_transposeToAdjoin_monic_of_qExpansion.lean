@@ -54,7 +54,8 @@ This records the classical degree and leading-coefficient statement for the modu
 the other variable: the pole orders of the $q$-expansions $\Phi_k(j)$, together with the simplicity
 of the pole of $j$, pin down the $X$-degree of $\Phi$ as $\psi(N)$ and its leading $X$-coefficient
 as $1$. It is used by
-[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`](thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq)
+[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`]
+(thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq)
 in establishing the symmetry properties of the modular polynomial over $\mathbb{Q}(j)$.
 
 ## Explanation of the source proof
@@ -445,7 +446,8 @@ private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_toAdjoin :
 
 p2m_export "ModularCurve.ModularPolynomialData" "aeval_jqN_toAdjoin"
 
-private theorem _root_.ModularCurve.ModularPolynomialData.minpoly_jqN_eq (hirr : PhiIrreducible data) :
+private theorem _root_.ModularCurve.ModularPolynomialData.minpoly_jqN_eq (hirr : PhiIrreducible
+  data) :
     minpoly ℚ⟮jq⟯ (jqN N) = data.toAdjoin :=
   (minpoly.eq_of_irreducible_of_monic hirr data.aeval_jqN_toAdjoin data.toAdjoin_monic).symm
 
@@ -704,7 +706,8 @@ p2m_open "ModularCurve.ModularPolynomialData"
 
 variable {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
 
-private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_transposeToAdjoin (hswap : data.Φ.eval₂ (evalAtJqN N) jq = 0) :
+private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_transposeToAdjoin (hswap :
+  data.Φ.eval₂ (evalAtJqN N) jq = 0) :
     Polynomial.aeval (jqN N) ((swapBivar data.Φ).map evalAtJGen) = 0 := by
   rw [Polynomial.aeval_def, Polynomial.eval₂_map, algebraMap_comp_evalAtJGen,
     evalAtJ_def, swapBivar_eval₂, ← evalAtJqN_def]
@@ -712,7 +715,8 @@ private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_transposeToA
 
 p2m_export "ModularCurve.ModularPolynomialData" "aeval_jqN_transposeToAdjoin"
 
-private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irreducible (hirr : PhiIrreducible data)
+private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irreducible (hirr :
+  PhiIrreducible data)
     (hswap : data.Φ.eval₂ (evalAtJqN N) jq = 0)
     (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic)
     (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi N) :
@@ -728,7 +732,8 @@ private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irredu
 
 p2m_export "ModularCurve.ModularPolynomialData" "swapBivar_eq_of_irreducible"
 
-private theorem _root_.ModularCurve.ModularPolynomialData.evalSymm_of_irreducible (hirr : PhiIrreducible data)
+private theorem _root_.ModularCurve.ModularPolynomialData.evalSymm_of_irreducible (hirr :
+  PhiIrreducible data)
     (hswap : data.Φ.eval₂ (evalAtJqN N) jq = 0)
     (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic)
     (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi N) :
@@ -946,13 +951,18 @@ end ModularCurve
 end
 
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve.PhiGen
+  in
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
     (h0top : (evalAtJ (data.Φ.coeff 0)).coeff (-(dedekindPsi N : ℤ)) = 1)
     (h0le : ∀ m : ℕ, dedekindPsi N < m → (evalAtJ (data.Φ.coeff 0)).coeff (-(m : ℤ)) = 0)
     (hk : ∀ k, k ≠ 0 → ∀ m : ℕ, dedekindPsi N ≤ m → (evalAtJ (data.Φ.coeff k)).coeff (-(m : ℤ)) = 0)
     :
-    ((swapBivar data.Φ).map evalAtJGen).Monic ∧ ((swapBivar data.Φ).map evalAtJGen).natDegree = dedekindPsi N :=
+    ((swapBivar data.Φ).map evalAtJGen).Monic ∧ ((swapBivar data.Φ).map evalAtJGen).natDegree =
+      dedekindPsi N :=
   ModularCurve.ModularPolynomialData.transposeToAdjoin_monic_of_qExpansion data h0top h0le hk
 
 end S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion
@@ -971,7 +981,8 @@ theorem ModularCurve.ModularPolynomialData.transposeToAdjoin_monic_of_qExpansion
     (h0le : ∀ m : ℕ, dedekindPsi N < m → (evalAtJ (data.Φ.coeff 0)).coeff (-(m : ℤ)) = 0)
     (hk : ∀ k, k ≠ 0 → ∀ m : ℕ, dedekindPsi N ≤ m → (evalAtJ (data.Φ.coeff k)).coeff (-(m : ℤ)) = 0)
     :
-    ((swapBivar data.Φ).map evalAtJGen).Monic ∧ ((swapBivar data.Φ).map evalAtJGen).natDegree = dedekindPsi N :=
+    ((swapBivar data.Φ).map evalAtJGen).Monic ∧ ((swapBivar data.Φ).map evalAtJGen).natDegree =
+      dedekindPsi N :=
   solution data h0top h0le hk
 
 end publicSection

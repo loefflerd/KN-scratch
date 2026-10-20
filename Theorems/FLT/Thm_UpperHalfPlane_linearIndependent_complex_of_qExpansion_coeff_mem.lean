@@ -47,10 +47,13 @@ $\mathbb{C}$-combination of $K$-linear relations, and injectivity of the $q$-exp
 holomorphic, $N$-periodic, bounded functions transfers relations among coefficients back to
 relations among the functions. It is used in the $q$-expansion-principle arguments for cusp forms,
 in particular by
-[`CuspForm.exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice`](thm.html#CuspForm.exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice),
-[`CuspForm.exists_ratCast_qCoeff_alSlash_of_forall_qCoeff_ratCast_gammaH`](thm.html#CuspForm.exists_ratCast_qCoeff_alSlash_of_forall_qCoeff_ratCast_gammaH)
+[`CuspForm.exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice`]
+(thm.html#CuspForm.exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice),
+[`CuspForm.exists_ratCast_qCoeff_alSlash_of_forall_qCoeff_ratCast_gammaH`]
+(thm.html#CuspForm.exists_ratCast_qCoeff_alSlash_of_forall_qCoeff_ratCast_gammaH)
 and
-[`WLight.exists_monicRel_j_K_of_mdifferentiable_frickeQuotient`](thm.html#WLight.exists_monicRel_j_K_of_mdifferentiable_frickeQuotient).
+[`WLight.exists_monicRel_j_K_of_mdifferentiable_frickeQuotient`]
+(thm.html#WLight.exists_monicRel_j_K_of_mdifferentiable_frickeQuotient).
 
 ## Explanation of the source proof
 

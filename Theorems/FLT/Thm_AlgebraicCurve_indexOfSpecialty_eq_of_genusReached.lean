@@ -48,7 +48,8 @@ This is the adelic form of the Riemann–Roch theorem in the shape $\ell(D) - i(
 as a dimension of differentials. It serves as the input for Weil duality, for the identification of
 the space of Weil differentials as one-dimensional, and for the classical Riemann–Roch formula, and
 is used in the Čech-theoretic form
-[`AlgebraicCurve.cechRiemannRoch_of_genusReached`](thm.html#AlgebraicCurve.cechRiemannRoch_of_genusReached)
+[`AlgebraicCurve.cechRiemannRoch_of_genusReached`]
+(thm.html#AlgebraicCurve.cechRiemannRoch_of_genusReached)
 and in counting arguments for effective divisors.
 
 ## Explanation of the source proof
@@ -1086,13 +1087,15 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]
     [Nonempty (Place K F)] [FiniteDimensional K ↥(LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
     Module.Finite K (↥(adeleSpace K F) ⧸ adeleBddPrincipal K F D) ∧
       (indexOfSpecialty D : ℤ) = (ell D : ℤ) - (Divisor.degree D + 1 - γ) :=
-  AlgebraicCurve.indexOfSpecialty_eq_of_genusReached_port (K := K) (F := F) (γ := γ) (D₀ := D₀) (h := h) (D := D)
+  AlgebraicCurve.indexOfSpecialty_eq_of_genusReached_port (K := K) (F := F) (γ := γ) (D₀ := D₀) (h
+    := h) (D := D)
 
 end S_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
 end P2MW

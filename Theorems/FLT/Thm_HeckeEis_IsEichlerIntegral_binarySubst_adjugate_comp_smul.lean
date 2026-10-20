@@ -48,7 +48,8 @@ $n+2$ transforms, under an integral matrix of positive determinant, into an Eich
 slashed form, with the binary-form values twisted by the adjugate substitution. It is used in the
 computation of the action of the Hecke operators $T_\ell$ and $U_\ell$ on Eichler–Shimura cohomology
 classes, in
-[`HeckeEis.coeffH1Mk_cocycle_heckeTLin_modularForm`](thm.html#HeckeEis.coeffH1Mk_cocycle_heckeTLin_modularForm),
+[`HeckeEis.coeffH1Mk_cocycle_heckeTLin_modularForm`]
+(thm.html#HeckeEis.coeffH1Mk_cocycle_heckeTLin_modularForm),
 [`HeckeEis.eichlerShimuraMap_heckeTLin`](thm.html#HeckeEis.eichlerShimuraMap_heckeTLin) and
 [`HeckeEis.eichlerShimuraMap_heckeULin`](thm.html#HeckeEis.eichlerShimuraMap_heckeULin).
 
@@ -100,7 +101,8 @@ theorem hasDerivAt_comp_smul_of_det_pos {G : ℍ → ℂ} {g : ℂ}
     simp only [Function.comp_apply, ofComplex_apply]
   have houter : HasDerivAt (G ∘ ofComplex) g ((fun z : ℂ => ((β • ofComplex z : ℍ) : ℂ)) ↑τ) := by
     simpa only [ofComplex_apply] using hG
-  have hinner : HasDerivAt (fun z : ℂ => ((β • ofComplex z : ℍ) : ℂ)) (↑β.val.det / denom β ↑τ ^ 2) ↑τ :=
+  have hinner : HasDerivAt (fun z : ℂ => ((β • ofComplex z : ℍ) : ℂ)) (↑β.val.det / denom β ↑τ ^ 2)
+    ↑τ :=
     (UpperHalfPlane.hasStrictDerivAt_smul hβ τ).hasDerivAt
   have hcomp := houter.comp (↑τ : ℂ) hinner
   rwa [← hfun] at hcomp
@@ -139,18 +141,22 @@ theorem coeff_binarySubst_eq_sum {K : Type*} [CommRing K] (M : Matrix (Fin 2) (F
     (v : ↥(BinaryForm K n))
     (d : Fin 2 →₀ ℕ) :
     AddMonoidAlgebra.coeff (binarySubst K M (v : MvPolynomial (Fin 2) K)) d
-      = ∑ e ∈ degExps n, AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e * AddMonoidAlgebra.coeff (binarySubst K M (monomial e 1)) d := by
+      = ∑ e ∈ degExps n, AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e *
+        AddMonoidAlgebra.coeff (binarySubst K M (monomial e 1)) d := by
   conv_lhs => rw [eq_sum_degExps v.2, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun e _ => ?_
-  rw [show monomial e (AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e) = AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e • monomial e (1 : K) by
+  rw [show monomial e (AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e) =
+    AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e • monomial e (1 : K) by
       rw [smul_monomial, smul_eq_mul, mul_one],
     map_smul, coeff_smul, smul_eq_mul]
 
 theorem binarySubst_adjugate_linePow {M : Matrix (Fin 2) (Fin 2) ℤ} (hM : 0 < M.det)
     {β : GL (Fin 2) ℝ}
     (hβM : (β : Matrix (Fin 2) (Fin 2) ℝ) = M.map (algebraMap ℤ ℝ)) (τ : ℍ) :
-    binarySubst ℂ M.adjugate ((linePow n ((β • τ : ℍ) : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
-      = ((M.det : ℂ) / denom β ↑τ) ^ n • ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := by
+    binarySubst ℂ M.adjugate ((linePow n ((β • τ : ℍ) : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin
+      2) ℂ)
+      = ((M.det : ℂ) / denom β ↑τ) ^ n • ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial
+        (Fin 2) ℂ) := by
   have hdet : (0 : ℝ) < β.val.det := by
     rw [hβM, ← RingHom.mapMatrix_apply, ← RingHom.map_det, eq_intCast]
     exact_mod_cast hM
@@ -191,7 +197,9 @@ end DetPosAux
 
 end HeckeEis
 
-open _root_.HeckeEis _root_.P2MW.S_HeckeEis_IsEichlerIntegral_binarySubst_adjugate_comp_smul.HeckeEis HeckeEis.DetPosAux UpperHalfPlane MvPolynomial in
+open _root_.HeckeEis
+  _root_.P2MW.S_HeckeEis_IsEichlerIntegral_binarySubst_adjugate_comp_smul.HeckeEis
+  HeckeEis.DetPosAux UpperHalfPlane MvPolynomial in
 theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hF : HeckeEis.IsEichlerIntegral n f F)
     {M : Matrix (Fin 2) (Fin 2) ℤ} (hM : 0 < M.det) {β : GL (Fin 2) ℝ}
@@ -209,27 +217,35 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
   have hden : denom β (τ : ℂ) ≠ 0 := denom_ne_zero β τ
   set c : ℂ := f (β • τ) * (↑β.val.det / denom β ↑τ ^ 2) with hc
   have hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt
-      (fun z : ℂ => AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
-      (AddMonoidAlgebra.coeff (((c • linePow n ((β • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e) ↑τ := by
+      (fun z : ℂ => AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial
+        (Fin 2) ℂ) e)
+      (AddMonoidAlgebra.coeff (((c • linePow n ((β • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ n)) :
+        MvPolynomial (Fin 2) ℂ) e) ↑τ := by
     intro e
     have h1 :=
-      hasDerivAt_comp_smul_of_det_pos (G := fun w : ℍ => AddMonoidAlgebra.coeff ((F w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
+      hasDerivAt_comp_smul_of_det_pos (G := fun w : ℍ => AddMonoidAlgebra.coeff ((F w : ↥(BinaryForm
+        ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
       hdet τ (hF e (β • τ))
     refine h1.congr_deriv ?_
     rw [Submodule.coe_smul, coeff_smul, smul_eq_mul, hc]
     ring
-  have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff ((((binarySubst ℂ M.adjugate).toLinearMap.restrict
-        (fun _ h => binarySubst_mem ℂ M.adjugate h)) (F (β • ofComplex z)) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
+  have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff ((((binarySubst ℂ
+    M.adjugate).toLinearMap.restrict
+        (fun _ h => binarySubst_mem ℂ M.adjugate h)) (F (β • ofComplex z)) : ↥(BinaryForm ℂ n)) :
+          MvPolynomial (Fin 2) ℂ) d)
       = fun z : ℂ => ∑ e ∈ degExps n,
-          AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e
+          AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+            ℂ) e
             * AddMonoidAlgebra.coeff (binarySubst ℂ M.adjugate (monomial e 1)) d := by
     funext z
     exact coeff_binarySubst_eq_sum M.adjugate (F (β • ofComplex z)) d
   rw [hfun]
   have h2 : HasDerivAt (fun z : ℂ => ∑ e ∈ degExps n,
-          AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e
+          AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+            ℂ) e
             * AddMonoidAlgebra.coeff (binarySubst ℂ M.adjugate (monomial e 1)) d)
-      (∑ e ∈ degExps n, AddMonoidAlgebra.coeff (((c • linePow n ((β • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e
+      (∑ e ∈ degExps n, AddMonoidAlgebra.coeff (((c • linePow n ((β • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ
+        n)) : MvPolynomial (Fin 2) ℂ) e
             * AddMonoidAlgebra.coeff (binarySubst ℂ M.adjugate (monomial e 1)) d) ↑τ :=
     HasDerivAt.fun_sum fun e _ => (hH e).mul_const _
   refine h2.congr_deriv ?_

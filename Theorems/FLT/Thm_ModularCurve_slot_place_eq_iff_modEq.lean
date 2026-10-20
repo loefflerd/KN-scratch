@@ -148,7 +148,8 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N
         qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))
     (hι'₁ : ι' ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
-    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
+    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩
+      =
         qExpand K (a' * a') (qTwist (ζ ^ (b' * a')) (coeffEmb K jq)))
     (w w' : Place K (laurentBaseChange K (modularFunctionFieldFull N))) (γ γ' : ℤ)
     (hγ : 0 < γ) (hγ' : 0 < γ')
@@ -249,7 +250,8 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N
     let T : LaurentSeries K →ₐ[K] LaurentSeries K :=
       { toRingHom := qTwist (ζ ^ k)
         commutes' := fun c => by
-          change qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+          change qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K)
+            c
           rw [algebraMap_laurentSeries_eq_single, qTwist_single, zpow_zero, Units.val_one,
             one_mul] }
     have hFeq : laurentBaseChange K (modularFunctionFieldFull (a * d)) =
@@ -292,13 +294,15 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
         qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))
     (hι'₁ : ι' ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
-    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
+    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩
+      =
         qExpand K (a' * a') (qTwist (ζ ^ (b' * a')) (coeffEmb K jq)))
     (w w' : Place K (laurentBaseChange K (modularFunctionFieldFull N))) (γ γ' : ℤ)
     (hγ : 0 < γ) (hγ' : 0 < γ')
     (hw : ∀ x, w.ord x * γ = (ι x).order) (hw' : ∀ x, w'.ord x * γ' = (ι' x).order) :
     w = w' ↔ a = a' ∧ b ≡ b' [MOD Nat.gcd a (N / a)] :=
-  ModularCurve.slot_place_eq_iff_modEq' K N ζ hζ a b ha a' b' ha' ι ι' hι₁ hι₂ hι'₁ hι'₂ w w' γ γ' hγ hγ' hw hw'
+  ModularCurve.slot_place_eq_iff_modEq' K N ζ hζ a b ha a' b' ha' ι ι' hι₁ hι₂ hι'₁ hι'₂ w w' γ γ'
+    hγ hγ' hw hw'
 
 end S_ModularCurve_slot_place_eq_iff_modEq
 end P2MW
@@ -320,7 +324,8 @@ theorem ModularCurve.slot_place_eq_iff_modEq (K : Type*) [Field K] [Algebra ℚ 
         qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))
     (hι'₁ : ι' ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
-    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
+    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩
+      =
         qExpand K (a' * a') (qTwist (ζ ^ (b' * a')) (coeffEmb K jq)))
     (w w' : Place K (laurentBaseChange K (modularFunctionFieldFull N))) (γ γ' : ℤ)
     (hγ : 0 < γ) (hγ' : 0 < γ')

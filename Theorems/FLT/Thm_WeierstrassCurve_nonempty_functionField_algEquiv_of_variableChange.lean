@@ -243,7 +243,8 @@ section
 
 open Polynomial WeierstrassCurve.Affine.Point
 
-open scoped WeierstrassCurve.Affine WeierstrassCurve.Affine Polynomial.Bivariate Polynomial.Bivariate
+open scoped WeierstrassCurve.Affine WeierstrassCurve.Affine Polynomial.Bivariate
+  Polynomial.Bivariate
 
 noncomputable section
 
@@ -548,7 +549,8 @@ universe u in
 theorem solution {F : Type u} [Field F] (W : WeierstrassCurve F)
     (C : WeierstrassCurve.VariableChange F) :
     Nonempty (W.toAffine.FunctionField ≃ₐ[F] (C • W).toAffine.FunctionField) :=
-  ⟨(FLT.Mrtw60aVCPlaceSeamS3.mrtw60aVCPlaceSeamAlgEquiv (C := C) (W := W.toAffine) (V := (C • W).toAffine) rfl).symm⟩
+  ⟨(FLT.Mrtw60aVCPlaceSeamS3.mrtw60aVCPlaceSeamAlgEquiv (C := C) (W := W.toAffine) (V := (C •
+    W).toAffine) rfl).symm⟩
 
 end privateSection
 

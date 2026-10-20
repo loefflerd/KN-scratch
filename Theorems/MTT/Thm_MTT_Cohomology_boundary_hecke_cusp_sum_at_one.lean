@@ -240,7 +240,8 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) :=
+        by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -402,7 +403,8 @@ def lin (v : Fin 2 → ℤ) : Binary ℂ :=
   ((v 0 : ℤ) : ℂ) • MvPolynomial.X 0 + ((v 1 : ℤ) : ℂ) • MvPolynomial.X 1
 
 lemma actAlg_X_eq (A : Matrix (Fin 2) (Fin 2) ℤ) (i : Fin 2) :
-    actAlg A (MvPolynomial.X i) = ∑ a : Fin 2, ((A a i : ℤ) : ℂ) • (MvPolynomial.X a : Binary ℂ) := by
+    actAlg A (MvPolynomial.X i) = ∑ a : Fin 2, ((A a i : ℤ) : ℂ) • (MvPolynomial.X a : Binary ℂ) :=
+      by
   rw [actAlg, MvPolynomial.aeval_X]
 
 lemma act_lin (A : Matrix (Fin 2) (Fin 2) ℤ) (v : Fin 2 → ℤ) :
@@ -609,7 +611,8 @@ lemma exists_gamma1_mulVec {N : ℕ} (hN : 0 < N) {v w : Fin 2 → ℤ} (hv : Is
       group
     rw [Gamma1_mem]
     have e := fun i k => congrArg
-      (fun M : Matrix.SpecialLinearGroup (Fin 2) (ZMod N) => (M : Matrix (Fin 2) (Fin 2) (ZMod N)) i k)
+      (fun M : Matrix.SpecialLinearGroup (Fin 2) (ZMod N) => (M : Matrix (Fin 2) (Fin 2) (ZMod N)) i
+        k)
       hred
     simp only [red_apply, ModularGroup.coe_T_zpow] at e
     refine ⟨?_, ?_, ?_⟩
@@ -867,13 +870,16 @@ lemma count_sum {l : ℕ} (hl : l.Prime) {v0 v1 : ℤ} (hv : IsCoprime v0 v1) (n
         field_simp
         ring
     have hsum : (∑ b : Fin l, (if (l : ℤ) ∣ v0 + (b.val : ℤ) * v1 then (1 : ℂ) else (l : ℂ) ^ n)) =
-        ∑ z : ZMod l, (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then (1 : ℂ) else (l : ℂ) ^ n) := by
+        ∑ z : ZMod l, (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then (1 : ℂ) else (l : ℂ) ^ n) :=
+          by
       refine Fintype.sum_equiv finEquivZMod _ _ fun b => ?_
       simp only [hcond b]
       rfl
     rw [hsum]
-    have hsplit : ∀ z : ZMod l, (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then (1 : ℂ) else (l : ℂ) ^ n)
-        = (l : ℂ) ^ n + (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then 1 - (l : ℂ) ^ n else 0) := by
+    have hsplit : ∀ z : ZMod l, (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then (1 : ℂ) else (l : ℂ)
+      ^ n)
+        = (l : ℂ) ^ n + (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then 1 - (l : ℂ) ^ n else 0) :=
+          by
       intro z; split_ifs <;> ring
     simp only [hsplit, Finset.sum_add_distrib, Finset.sum_const, Finset.card_univ, ZMod.card,
       nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]

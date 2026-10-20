@@ -43,7 +43,8 @@ ring is a maximal proper subring of its fraction field, so a one-sided dominatio
 along an isomorphism forces equality of the normalised valuations. It is used in the function-field
 computations for elliptic curves, where the valuation at a point is compared with the valuation
 pulled back along an isomorphism of the function field, and is cited by
-[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`](thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
+[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`]
+(thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
 
 ## Explanation of the source proof
 
@@ -113,7 +114,8 @@ lemma valuationSubring_comap {L' : Type*} [Field L'] (v : Valuation L' ℤᵐ⁰
 
 theorem eq_comap_of_valuationSubring_le_comap_aux {L' : Type*} [Field L'] {v : Valuation L' ℤᵐ⁰}
     {w : Valuation L ℤᵐ⁰} (hv : Function.Surjective v) (hw : Function.Surjective w) (σ : L ≃+* L')
-    (hle : w.valuationSubring ≤ v.valuationSubring.comap σ.toRingHom) : w = v.comap σ.toRingHom := by
+    (hle : w.valuationSubring ≤ v.valuationSubring.comap σ.toRingHom) : w = v.comap σ.toRingHom :=
+      by
   have hvσ : Function.Surjective (v.comap σ.toRingHom) := fun γ => by
     obtain ⟨y, hy⟩ := hv γ
     exact ⟨σ.symm y, by rw [comap_apply, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom,

@@ -47,7 +47,8 @@ level-$\Gamma$ realization of a Laurent series to the honest ratio $g/h$ of modu
 representing that series: finite non-zero limits towards $i\infty$ in every
 $\mathrm{SL}_2(\mathbb{Z})$-translate persist. It is used in the computation of orders of vanishing
 of such realizations, via
-[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`](thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto),
+[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`]
+(thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto),
 and rests on the identification
 [`ModularCurve.realizeOf_eq_div`](thm.html#ModularCurve.realizeOf_eq_div) of the realization with
 $g/h$ away from the zeros of $h$.
@@ -118,7 +119,8 @@ private theorem mapGL_T_zpow (N : ℕ) :
 theorem natCast_mem_strictPeriods_translate (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (σ : SL(2, ℤ)) :
     (wd Γ : ℝ) ∈ Subgroup.strictPeriods
-      (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ • ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))) := by
+      (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ • ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2)
+        ℝ))) := by
   rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff,
     ConjAct.toConjAct_smul, ← mapGL_T_zpow (wd Γ), coe_eq_mapGL, ← map_inv, ← map_mul, ← map_mul]
   exact Subgroup.mem_map_of_mem _ (conj_T_zpow_mem Γ σ)
@@ -307,7 +309,8 @@ open Ws49.LIMTR in
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ) {k : ℤ}
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) (x : LaurentSeries ℂ)
-    (hx : x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+    (hx : x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) =
       ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (F : UpperHalfPlane → ℂ)
     (hFx : ∀ τ : UpperHalfPlane, (fun z : ℂ => F (ofComplex z)) =ᶠ[𝓝[≠] (τ : ℂ)]
@@ -316,7 +319,8 @@ theorem solution
       Filter.Tendsto (fun τ : UpperHalfPlane => F (σ • τ)) atImInfty (𝓝 L))
     (σ : SL(2, ℤ)) :
     ∃ L : ℂ, L ≠ 0 ∧
-      Filter.Tendsto (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (σ • τ) / (h : UpperHalfPlane → ℂ) (σ • τ))
+      Filter.Tendsto (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (σ • τ) / (h :
+        UpperHalfPlane → ℂ) (σ • τ))
         atImInfty (𝓝 L) := by
   obtain ⟨L, hL, hF⟩ := hcusp σ
   refine ⟨L, hL, ?_⟩
@@ -374,7 +378,8 @@ open scoped MatrixGroups Topology
 theorem ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ) {k : ℤ}
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) (x : LaurentSeries ℂ)
-    (hx : x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+    (hx : x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) =
       ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (F : UpperHalfPlane → ℂ)
     (hFx : ∀ τ : UpperHalfPlane, (fun z : ℂ => F (ofComplex z)) =ᶠ[𝓝[≠] (τ : ℂ)]
@@ -383,7 +388,8 @@ theorem ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendst
       Filter.Tendsto (fun τ : UpperHalfPlane => F (σ • τ)) atImInfty (𝓝 L))
     (σ : SL(2, ℤ)) :
     ∃ L : ℂ, L ≠ 0 ∧
-      Filter.Tendsto (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (σ • τ) / (h : UpperHalfPlane → ℂ) (σ • τ))
+      Filter.Tendsto (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (σ • τ) / (h :
+        UpperHalfPlane → ℂ) (σ • τ))
         atImInfty (𝓝 L) :=
   solution Γ hT g h hh x hx F hFx hcusp σ
 

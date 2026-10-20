@@ -102,7 +102,8 @@ private theorem adicValuation_isTrivialOn' : v.adicValuation.IsTrivialOn K :=
   Valuation.IsTrivialOn.of_le_one v.adicValuation fun a =>
     v.mem_iff_adicValuation_le_one'.mp (v.algebraMap_mem' a)
 
-private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq' {Γ : Type*}
+private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq' {Γ :
+  Type*}
     [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
     (h : w.valuationSubring = v.toValuationSubring) : w.IsEquiv v.adicValuation :=
   (Valuation.isEquiv_iff_valuationSubring _ _).mpr
@@ -188,9 +189,12 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum.AlgebraicCurve
+  in
 theorem solution {K : Type*} [Field K] :
-    ∃ v : Place K (RatFunc K), ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w :=
+    ∃ v : Place K (RatFunc K), ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+      Place.ofHeightOneSpectrum w :=
   AlgebraicCurve.RationalFunctionField.rowMain
 
 end S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum
@@ -205,7 +209,8 @@ public section publicSection
 open AlgebraicCurve
 theorem AlgebraicCurve.RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum {K : Type*}
     [Field K] :
-    ∃ v : Place K (RatFunc K), ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w :=
+    ∃ v : Place K (RatFunc K), ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+      Place.ofHeightOneSpectrum w :=
   solution
 
 end publicSection

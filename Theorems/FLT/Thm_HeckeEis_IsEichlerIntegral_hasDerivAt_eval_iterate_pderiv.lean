@@ -48,9 +48,11 @@ This is Bol's identity $\bigl(\tfrac{d}{d\tau}\bigr)^{n+1}\bigl[G(\tau)(1,-\tau)
 n!\,g(\tau)$ for an Eichler integral $G$ of $g$, recorded one derivative at a time so that only
 first derivatives of the intermediate quantities $r_j(\tau) = (\partial_{X_1}^{\,j}
 G(\tau))(1,-\tau)$ occur. It underlies the holomorphy and growth statements
-[`HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const`](thm.html#HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const)
+[`HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const`]
+(thm.html#HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const)
 and
-[`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`](thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval),
+[`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`]
+(thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval),
 and through them the injectivity of the Eichler–Shimura map
 [`HeckeEis.eichlerShimuraMap_injective`](thm.html#HeckeEis.eichlerShimuraMap_injective).
 
@@ -81,7 +83,8 @@ open scoped MatrixGroups
 variable {K : Type*} [CommRing K]
 
 theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
-    AddMonoidAlgebra.coeff (pderiv 1 P) d = ((d 1 + 1 : ℕ) : K) * AddMonoidAlgebra.coeff P (d + Finsupp.single 1 1) := by
+    AddMonoidAlgebra.coeff (pderiv 1 P) d = ((d 1 + 1 : ℕ) : K) * AddMonoidAlgebra.coeff P (d +
+      Finsupp.single 1 1) := by
   induction P using MvPolynomial.induction_on' with
   | monomial s a =>
     rw [pderiv_monomial, coeff_monomial, coeff_monomial]
@@ -111,14 +114,16 @@ theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
       Finsupp.add_apply, hp, hq, mul_add]
 
 theorem coeff_iterate_pderiv_one (P : MvPolynomial (Fin 2) K) (j : ℕ) (d : Fin 2 →₀ ℕ) :
-    AddMonoidAlgebra.coeff ((pderiv 1)^[j] P) d = ((d 1 + j).descFactorial j : K) * AddMonoidAlgebra.coeff P (d + Finsupp.single 1 j) := by
+    AddMonoidAlgebra.coeff ((pderiv 1)^[j] P) d = ((d 1 + j).descFactorial j : K) *
+      AddMonoidAlgebra.coeff P (d + Finsupp.single 1 j) := by
   induction j generalizing d with
   | zero => simp
   | succ j ih =>
     rw [Function.iterate_succ_apply', coeff_pderiv_one, ih]
     have e1 : d + Finsupp.single 1 1 + Finsupp.single 1 j = d + Finsupp.single 1 (j + 1) := by
       rw [add_assoc, ← Finsupp.single_add, add_comm 1 j]
-    have e2 : ((d 1 + 1 : ℕ) : K) * ((((d + Finsupp.single 1 1 : Fin 2 →₀ ℕ) 1 + j).descFactorial j : ℕ) : K)
+    have e2 : ((d 1 + 1 : ℕ) : K) * ((((d + Finsupp.single 1 1 : Fin 2 →₀ ℕ) 1 + j).descFactorial j
+      : ℕ) : K)
         = (((d 1 + (j + 1)).descFactorial (j + 1) : ℕ) : K) := by
       rw [← Nat.cast_mul]
       congr 1
@@ -163,7 +168,8 @@ theorem eq_ex_of_degree {m : ℕ} {d : Fin 2 →₀ ℕ} (hd : d.degree = m) : d
 theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogeneous m) (w : K) :
     eval ![1, w] Q = ∑ k ∈ Finset.range (m + 1), AddMonoidAlgebra.coeff Q (ex m k) * w ^ k := by
   classical
-  have hF : ∀ d : Fin 2 →₀ ℕ, AddMonoidAlgebra.coeff Q d * ∏ i, (![1, w] : Fin 2 → K) i ^ d i = AddMonoidAlgebra.coeff Q d * w ^ (d 1) :=
+  have hF : ∀ d : Fin 2 →₀ ℕ, AddMonoidAlgebra.coeff Q d * ∏ i, (![1, w] : Fin 2 → K) i ^ d i =
+    AddMonoidAlgebra.coeff Q d * w ^ (d 1) :=
     by
     intro d
     simp [Fin.prod_univ_two]
@@ -191,7 +197,8 @@ theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogen
 theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : P.IsHomogeneous n)
     (i : ℕ) (w : K) :
     eval ![1, w] ((pderiv 1)^[i] P)
-      = ∑ k ∈ Finset.range (n + 1 - i), ((k + i).descFactorial i : K) * AddMonoidAlgebra.coeff P (ex n (k + i)) * w ^ k := by
+      = ∑ k ∈ Finset.range (n + 1 - i), ((k + i).descFactorial i : K) * AddMonoidAlgebra.coeff P (ex
+        n (k + i)) * w ^ k := by
   rcases Nat.lt_or_ge n i with hi | hi
   swap
   · rw [eval_one_eq_sum (isHomogeneous_iterate_pderiv 1 hP i), show n + 1 - i = n - i + 1 by omega]
@@ -212,7 +219,8 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
   classical
   rw [add_pow, coeff_sum]
   have hterm : ∀ k ∈ Finset.range (n + 1),
-      AddMonoidAlgebra.coeff ((C t * X 0) ^ k * X 1 ^ (n - k) * (n.choose k : MvPolynomial (Fin 2) K)) (ex n m)
+      AddMonoidAlgebra.coeff ((C t * X 0) ^ k * X 1 ^ (n - k) * (n.choose k : MvPolynomial (Fin 2)
+        K)) (ex n m)
         = if k = n - m then (n.choose m : K) * t ^ (n - m) else 0 := by
     intro k hk
     rw [Finset.mem_range] at hk
@@ -237,9 +245,11 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
     ite_eq_left (Finset.mem_range.mpr (by omega))]
 
 theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) :
-    ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : K) * (n.choose (k + j) : K) * (-1 : K) ^ k
+    ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : K) * (n.choose (k + j) : K) * (-1 :
+      K) ^ k
       = if j = n then (n.factorial : K) else 0 := by
-  have hkey : ∀ k : ℕ, (k + j).descFactorial j * n.choose (k + j) = n.descFactorial j * (n - j).choose k :=
+  have hkey : ∀ k : ℕ, (k + j).descFactorial j * n.choose (k + j) = n.descFactorial j * (n -
+    j).choose k :=
     by
     intro k
     rw [Nat.descFactorial_eq_factorial_mul_choose, Nat.descFactorial_eq_factorial_mul_choose,
@@ -252,7 +262,8 @@ theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) 
     push_cast at this
     exact this
   simp_rw [hcast, mul_assoc, ← Finset.mul_sum]
-  have halt : ∑ k ∈ Finset.range (n + 1 - j), ((n - j).choose k : K) * (-1 : K) ^ k = if n - j = 0 then 1 else 0 :=
+  have halt : ∑ k ∈ Finset.range (n + 1 - j), ((n - j).choose k : K) * (-1 : K) ^ k = if n - j = 0
+    then 1 else 0 :=
     by
     have h := (Int.alternating_sum_range_choose (n := n - j))
     rw [show n + 1 - j = n - j + 1 by omega]
@@ -270,14 +281,17 @@ theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) 
 theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
     (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) (τ : ℍ) :
     HasDerivAt (fun z : ℂ => MvPolynomial.eval ![(1 : ℂ), -z]
-        ((MvPolynomial.pderiv 1)^[j] ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
+        ((MvPolynomial.pderiv 1)^[j] ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+          ℂ)))
       ((if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0)
         - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
-          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))) (τ : ℂ) := by
+          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))) (τ
+            : ℂ) := by
   have hhom : ∀ σ : ℍ, ((G σ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ).IsHomogeneous n :=
     fun σ =>
     (mem_homogeneousSubmodule n _).mp (G σ).2
-  set c : ℕ → ℂ → ℂ := fun m z => AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n m)
+  set c : ℕ → ℂ → ℂ := fun m z => AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) :
+    MvPolynomial (Fin 2) ℂ) (ex n m)
     with hcdef
   have hc : ∀ m, m ≤ n → HasDerivAt (c m) (g τ * ((n.choose m : ℂ) * (τ : ℂ) ^ (n - m))) (τ : ℂ) :=
     by
@@ -286,12 +300,15 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
     rw [coe_linePow, coeff_ex_linePow n m hm] at h
     exact h
   have hfun : (fun z : ℂ => MvPolynomial.eval ![(1 : ℂ), -z]
-        ((MvPolynomial.pderiv 1)^[j] ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
-      = fun z : ℂ => ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ) * c (k + j) z * (-z) ^ k := by
+        ((MvPolynomial.pderiv 1)^[j] ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+          ℂ)))
+      = fun z : ℂ => ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ) * c (k + j) z *
+        (-z) ^ k := by
     funext z
     rw [eval_iterate_pderiv_eq_sum (hhom (ofComplex z)) j (-z)]
   rw [hfun]
-  have hsum : HasDerivAt (fun z : ℂ => ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ) * c (k + j) z * (-z) ^ k)
+  have hsum : HasDerivAt (fun z : ℂ => ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ)
+    * c (k + j) z * (-z) ^ k)
       (∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ)
         * (g τ * ((n.choose (k + j) : ℂ) * (τ : ℂ) ^ (n - (k + j))) * (-(τ : ℂ)) ^ k
             + c (k + j) τ * ((k : ℂ) * (-(τ : ℂ)) ^ (k - 1) * (-1)))) (τ : ℂ) := by
@@ -330,18 +347,21 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
   have hB : ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ)
         * (c (k + j) τ * ((k : ℂ) * (-(τ : ℂ)) ^ (k - 1) * (-1)))
       = - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
-          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) := by
+          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) :=
+            by
     rw [eval_iterate_pderiv_eq_sum (hhom τ) (j + 1), show n + 1 - j = (n - j) + 1 by omega, Finset.sum_range_succ',
       show n + 1 - (j + 1) = n - j by omega]
     simp only [CharP.cast_eq_zero, zero_mul, mul_zero, add_zero]
     rw [← Finset.sum_neg_distrib]
     refine Finset.sum_congr rfl fun k hk => ?_
     rw [Finset.mem_range] at hk
-    have hcτ : c (k + 1 + j) (τ : ℂ) = AddMonoidAlgebra.coeff ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n (k + 1 + j)) :=
+    have hcτ : c (k + 1 + j) (τ : ℂ) = AddMonoidAlgebra.coeff ((G τ : ↥(BinaryForm ℂ n)) :
+      MvPolynomial (Fin 2) ℂ) (ex n (k + 1 + j)) :=
       by
       simp only [hcdef, ofComplex_apply]
     have hidx : k + (j + 1) = k + 1 + j := by ring
-    have hdesc : (((k + 1 + j).descFactorial (j + 1) : ℕ) : ℂ) = (((k + 1 + j).descFactorial j : ℕ) : ℂ) * ((k : ℂ) + 1) :=
+    have hdesc : (((k + 1 + j).descFactorial (j + 1) : ℕ) : ℂ) = (((k + 1 + j).descFactorial j : ℕ)
+      : ℂ) * ((k : ℂ) + 1) :=
       by
       rw [Nat.descFactorial_succ, show k + 1 + j - j = k + 1 by omega]
       push_cast
@@ -364,7 +384,8 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
           ((G (UpperHalfPlane.ofComplex z) : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
       ((if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0)
         - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
-          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
+          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin
+            2) ℂ)))
       (τ : ℂ) :=
   HeckeEis.BolAux.hasDerivAt_eval_iterate_pderiv hG hj τ
 
@@ -386,7 +407,8 @@ theorem HeckeEis.IsEichlerIntegral.hasDerivAt_eval_iterate_pderiv {n : ℕ} {g :
           ((G (UpperHalfPlane.ofComplex z) : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
       ((if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0)
         - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
-          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
+          ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin
+            2) ℂ)))
       (τ : ℂ) :=
   solution hG hj τ
 

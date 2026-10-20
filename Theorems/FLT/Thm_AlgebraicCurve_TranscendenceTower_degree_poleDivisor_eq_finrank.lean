@@ -50,7 +50,8 @@ This is the identity $\deg (x)_\infty = [F:K(x)]$ for a function field: the fund
 $\sum_{w \mid v} e(w\mid v) f(w\mid v) = [F:E]$, specialised to a degree-one place $v$ of $E$ at
 which $x$ has a simple pole. It supplies the identification of the extension degree with the degree
 of the pole divisor used in the pole-divisor package, and is cited in the estimate
-[`AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable`](thm.html#AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable).
+[`AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable`]
+(thm.html#AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable).
 
 ## Explanation of the source proof
 
@@ -1824,7 +1825,8 @@ p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Place.ord_zero Divisor D
   Place.sum_ramificationIndex_mul_inertiaDeg"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 
-scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Field F] [Field F']
+  [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     [HasPrincipalDivisors K F'] : SumRamificationInertia K F F' :=
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg v⟩
@@ -1913,7 +1915,8 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.degree_poleDivisor_eq_f
 
 p2m_export "AlgebraicCurve.TranscendenceTower" "degree_poleDivisor_eq_finrank_port"
 omit [FiniteDimensional E F] in
-private theorem _root_.AlgebraicCurve.TranscendenceTower.mem_lSpace_nsmul_poleDivisor_of_regular_outside {f : F}
+private theorem
+  _root_.AlgebraicCurve.TranscendenceTower.mem_lSpace_nsmul_poleDivisor_of_regular_outside {f : F}
     (hreg : ∀ w : Place K F, w.restrict E ≠ T.v → 0 ≤ w.ord f)
     {c : ℕ} (hc : ∀ w ∈ T.v.fiber F, -(c : ℤ) ≤ w.ord f) :
     f ∈ LSpace (c • T.poleDivisor) := by
@@ -2263,7 +2266,8 @@ theorem stichtenothGenusExists_of_hasRegularFractionSubring [IsCurveOver K F]
 namespace TranscendenceTower
 p2m_open_scoped "AlgebraicCurve.TranscendenceTower" in
 omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
-private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F) :
+private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T :
+  TranscendenceTower K E F) :
     ∀ u : Place K E, u ≠ T.v →
       ∀ a ∈ Algebra.adjoin K {T.x}, a ∈ u.toValuationSubring := by
   intro u hu a ha
@@ -2356,7 +2360,8 @@ theorem solution {K : Type*} {E : Type*} {F : Type*} [Field K] [Field E] [Field 
     [Algebra K F] [Algebra E F] [IsScalarTower K E F] [FiniteDimensional E F]
     [Algebra.IsSeparable E F] [HasPrincipalDivisors K F] (T : TranscendenceTower K E F) :
     Divisor.degree T.poleDivisor = (Module.finrank E F : ℤ) :=
-  AlgebraicCurve.TranscendenceTower.degree_poleDivisor_eq_finrank_port (K := K) (F := F) (E := E) (T := T)
+  AlgebraicCurve.TranscendenceTower.degree_poleDivisor_eq_finrank_port (K := K) (F := F) (E := E) (T
+    := T)
 
 end S_AlgebraicCurve_TranscendenceTower_degree_poleDivisor_eq_finrank
 end P2MW

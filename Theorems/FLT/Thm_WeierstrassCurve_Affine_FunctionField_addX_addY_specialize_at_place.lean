@@ -47,7 +47,8 @@ $K$-points of $W$ obtained from a pair of $F$-algebra endomorphisms of the funct
 compatible with reduction at an arbitrary place of $K/F$, including the places where the formulas
 degenerate (an input at a pole, a vertical chord, or the tangent case). It is used in the
 construction of dual endomorphism data for isogenies, in
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong).
 
 ## Explanation of the source proof
 

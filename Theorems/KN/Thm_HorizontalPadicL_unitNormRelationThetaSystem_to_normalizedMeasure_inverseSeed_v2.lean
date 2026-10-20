@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.unitNormRelationThetaSystem_to_normalizedMeasure_inverseSeed_v2
+Based on Prove2Me node
+HorizontalPadicL.unitNormRelationThetaSystem_to_normalizedMeasure_inverseSeed_v2
 (3c40a3a9-e908-423d-908f-a2ad9445ee8a) by davidloeffler (2026-09-25).
 
 Proof based on Prove2Me submission 3615cb0e-ead6-4eb4-80fa-c43c07289fbb

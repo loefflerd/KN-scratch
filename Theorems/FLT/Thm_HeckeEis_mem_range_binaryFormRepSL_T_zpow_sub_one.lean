@@ -118,7 +118,8 @@ theorem mono_mem_range_T_zpow_sub_one (n : ℕ) {h : ℤ} (hh : h ≠ 0) :
       Nat.cast_one, one_mul,
       one_smul, Nat.choose_succ_self_right, Nat.add_sub_cancel_left, pow_one] at hexp
     have hmem : (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) (mono K n (b + 1))
-        ∈ LinearMap.range (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := LinearMap.mem_range_self _ _
+        ∈ LinearMap.range (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := LinearMap.mem_range_self
+          _ _
     rw [LinearMap.sub_apply, Module.End.one_apply, hexp, add_sub_cancel_right] at hmem
     have hsum : ∑ i ∈ Finset.range b, (((b + 1).choose i : K) * (h : K) ^ (b + 1 - i)) • mono K n i
         ∈ LinearMap.range (binaryFormRepSL K n (ModularGroup.T ^ h) - 1) :=
@@ -133,7 +134,8 @@ theorem mono_mem_range_T_zpow_sub_one (n : ℕ) {h : ℤ} (hh : h ≠ 0) :
 
 end HeckeEis.RangeTzpowSol
 
-open _root_.HeckeEis _root_.P2MW.S_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one.HeckeEis HeckeEis.RangeTzpowSol MvPolynomial in
+open _root_.HeckeEis _root_.P2MW.S_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one.HeckeEis
+  HeckeEis.RangeTzpowSol MvPolynomial in
 theorem solution {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     (hh : h ≠ 0) (P : ↥(HeckeEis.BinaryForm K n))
     (hP : AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) K) (Finsupp.single 1 n) = 0) :
@@ -166,7 +168,8 @@ theorem solution {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     rw [Submodule.coe_smul, coe_mono K n hd1.le, monomial_eq, smul_eq_C_mul,
       Finsupp.prod_fintype _ _ (fun i => pow_zero _), Fin.prod_univ_two, show n - d 1 = d 0 by omega]
   rw [hrepr]
-  exact Submodule.sum_mem _ fun d hd => Submodule.smul_mem _ _ (mono_mem_range_T_zpow_sub_one n hh _ (hdeg d hd).2)
+  exact Submodule.sum_mem _ fun d hd => Submodule.smul_mem _ _ (mono_mem_range_T_zpow_sub_one n hh _
+    (hdeg d hd).2)
 
 end
 

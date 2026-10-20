@@ -72,7 +72,8 @@ p2m_export "IntermediateField" "lift AdjoinSimple.gen ext adjoin_simple_adjoin_s
   algebraMap_mem map"
 end IntermediateField
 p2m_open_scoped "IntermediateField" in
-scoped instance IntermediateField.W2B.instIsScalarTowerRatSubtypeMem {L : Type*} [Field L] [Algebra ℚ L]
+scoped instance IntermediateField.W2B.instIsScalarTowerRatSubtypeMem {L : Type*} [Field L] [Algebra
+  ℚ L]
     (F : IntermediateField ℚ L) : IsScalarTower ℚ F L :=
   IsScalarTower.of_algebraMap_eq' (by apply RingHom.ext_rat)
 
@@ -90,7 +91,9 @@ variable (N : ℕ) [NeZero N]
 
 theorem algHom_ext_of_eq_on_gens {A : Type*} [DivisionRing A] [Algebra ℚ A]
     {f g : modularFunctionField N →ₐ[ℚ] A}
-    (hj : f (⟨jq, jq_mem N⟩ : modularFunctionField N) = g (⟨jq, jq_mem N⟩ : modularFunctionField N)) (hjN : f (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = g (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) : f = g := by
+    (hj : f (⟨jq, jq_mem N⟩ : modularFunctionField N) = g (⟨jq, jq_mem N⟩ : modularFunctionField N))
+      (hjN : f (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = g (⟨jqN N, jqN_mem N⟩ :
+      modularFunctionField N)) : f = g := by
   ext ⟨x, hx⟩
   induction hx using IntermediateField.adjoin_induction with
   | mem x hxS =>
@@ -123,13 +126,17 @@ theorem algHom_ext_of_eq_on_gens {A : Type*} [DivisionRing A] [Algebra ℚ A]
 variable {N}
 
 theorem exists_isFrickeAut_of_endo (φ : modularFunctionField N →ₐ[ℚ] modularFunctionField N)
-    (h1 : φ (⟨jq, jq_mem N⟩ : modularFunctionField N) = (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) (h2 : φ (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = (⟨jq, jq_mem N⟩ : modularFunctionField N)) :
+    (h1 : φ (⟨jq, jq_mem N⟩ : modularFunctionField N) = (⟨jqN N, jqN_mem N⟩ : modularFunctionField
+      N)) (h2 : φ (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = (⟨jq, jq_mem N⟩ :
+      modularFunctionField N)) :
     ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ := by
   have hcomp : φ.comp φ = AlgHom.id ℚ (modularFunctionField N) := by
     refine algHom_ext_of_eq_on_gens N ?_ ?_
-    · change φ (φ (⟨jq, jq_mem N⟩ : modularFunctionField N)) = (⟨jq, jq_mem N⟩ : modularFunctionField N)
+    · change φ (φ (⟨jq, jq_mem N⟩ : modularFunctionField N)) = (⟨jq, jq_mem N⟩ :
+        modularFunctionField N)
       rw [h1, h2]
-    · change φ (φ (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)
+    · change φ (φ (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = (⟨jqN N, jqN_mem N⟩ :
+        modularFunctionField N)
       rw [h2, h1]
   exact ⟨AlgEquiv.ofAlgHom φ φ hcomp hcomp, h1, h2⟩
 
@@ -239,7 +246,8 @@ def frickeAbsoluteHom (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
 
 theorem frickeAbsoluteHom_jInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
     frickeAbsoluteHom data hsymm hirr (⟨jq, jq_mem N⟩ : modularFunctionField N) = jqN N := by
-  change frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ : modularFunctionField N)) = jqN N
+  change frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ :
+    modularFunctionField N)) = jqN N
   rw [show (relativeRingEquiv N).symm (⟨jq, jq_mem N⟩ : modularFunctionField N) = algebraMap ℚ⟮jq⟯
     ℚ⟮jq⟯⟮jqN N⟯ jGen from
     Subtype.ext rfl]
@@ -248,7 +256,8 @@ theorem frickeAbsoluteHom_jInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible
 
 theorem frickeAbsoluteHom_jNInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
     frickeAbsoluteHom data hsymm hirr (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = jq := by
-  change frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ : modularFunctionField N)) = jq
+  change frickeRelativeHom data hsymm hirr ((relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ :
+    modularFunctionField N)) = jq
   rw [show (relativeRingEquiv N).symm (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) =
     AdjoinSimple.gen ℚ⟮jq⟯ (jqN N) from
     Subtype.ext rfl]
@@ -323,12 +332,14 @@ def frickeEndoAlgHom (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
     exact map_ratCast (frickeEndoRingHom data hsymm hirr) r
 
 theorem frickeEndoAlgHom_jInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
-    frickeEndoAlgHom data hsymm hirr (⟨jq, jq_mem N⟩ : modularFunctionField N) = (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) := by
+    frickeEndoAlgHom data hsymm hirr (⟨jq, jq_mem N⟩ : modularFunctionField N) = (⟨jqN N, jqN_mem N⟩
+      : modularFunctionField N) := by
   apply Subtype.ext
   exact frickeAbsoluteHom_jInF data hsymm hirr
 
 theorem frickeEndoAlgHom_jNInF (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) :
-    frickeEndoAlgHom data hsymm hirr (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = (⟨jq, jq_mem N⟩ : modularFunctionField N) := by
+    frickeEndoAlgHom data hsymm hirr (⟨jqN N, jqN_mem N⟩ : modularFunctionField N) = (⟨jq, jq_mem N⟩
+      : modularFunctionField N) := by
   apply Subtype.ext
   exact frickeAbsoluteHom_jNInF data hsymm hirr
 

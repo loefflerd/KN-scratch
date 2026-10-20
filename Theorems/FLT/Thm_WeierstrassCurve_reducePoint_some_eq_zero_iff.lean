@@ -68,7 +68,8 @@ theorem solution
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y) :
     WeierstrassCurve.reducePoint_alt R W (.some x y h) = .zero ↔
-      ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 := by
+      ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤
+        1 := by
   classical
   constructor
   · intro h0 hx
@@ -96,7 +97,8 @@ theorem WeierstrassCurve.reducePoint_some_eq_zero_iff
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y) :
     WeierstrassCurve.reducePoint_alt R W (.some x y h) = .zero ↔
-      ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 :=
+      ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤
+        1 :=
   solution R W h
 
 end publicSection

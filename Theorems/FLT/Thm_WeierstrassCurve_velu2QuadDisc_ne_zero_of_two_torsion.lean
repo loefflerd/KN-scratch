@@ -40,7 +40,8 @@ The statement records that at an affine point of order dividing $2$ on a curve w
 discriminant, the quadratic cofactor of the $2$-division polynomial has nonzero discriminant. It is
 used in the construction of the quotient curve by a subgroup of order $2$ in the Vélu formulae,
 where it enters the verification that the quotient curve again has nonzero discriminant
-([`WeierstrassCurve.veluQuotient2_Delta_ne_zero`](thm.html#WeierstrassCurve.veluQuotient2_Delta_ne_zero)).
+([`WeierstrassCurve.veluQuotient2_Delta_ne_zero`]
+(thm.html#WeierstrassCurve.veluQuotient2_Delta_ne_zero)).
 
 ## Explanation of the source proof
 

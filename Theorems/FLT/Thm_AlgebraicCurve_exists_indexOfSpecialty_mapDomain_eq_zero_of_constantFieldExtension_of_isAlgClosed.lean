@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
+Based on Prove2Me node
+AlgebraicCurve.exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
 (2180e045-2644-53c7-835e-9f68ce3e16bf) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission ae12884e-7881-5bc6-a9c3-f97debf16c71
@@ -115,7 +116,8 @@ theorem solution
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
@@ -146,7 +148,9 @@ theorem solution
 
 end S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed (solution)
+export
+  P2MW.S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
+  (solution)
 
 end privateSection
 
@@ -154,12 +158,14 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
+theorem
+  AlgebraicCurve.exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
     (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']

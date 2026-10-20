@@ -217,11 +217,13 @@ private lemma disc_bdd : IsBoundedAtImInfty (⇑CuspForm.discriminant : ℍ → 
 
 private lemma disc_per1 :
     Function.Periodic ((⇑CuspForm.discriminant : ℍ → ℂ) ∘ ofComplex) 1 := by
-  simpa using SlashInvariantFormClass.periodic_comp_ofComplex CuspForm.discriminant one_mem_strictPeriods_SL
+  simpa using SlashInvariantFormClass.periodic_comp_ofComplex CuspForm.discriminant
+    one_mem_strictPeriods_SL
 
 private lemma E4_per1 :
     Function.Periodic ((⇑ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) 1 := by
-  simpa using SlashInvariantFormClass.periodic_comp_ofComplex ModularForm.E₄ one_mem_strictPeriods_SL
+  simpa using SlashInvariantFormClass.periodic_comp_ofComplex ModularForm.E₄
+    one_mem_strictPeriods_SL
 
 private lemma E4_hol : MDiff (⇑ModularForm.E₄ : ℍ → ℂ) := ModularForm.E₄.holo'
 

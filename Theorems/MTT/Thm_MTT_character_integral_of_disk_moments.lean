@@ -115,6 +115,7 @@ theorem MTT.character_integral_of_disk_moments {p N k : ℕ} [Fact p.Prime]
     ∃ g : C((ℤ_[p])ˣ, ℂ_[p]),
       (∀ x, g x = specialFunction ιp n χ j x) ∧
       μ g = ∑ a : (ZMod (p ^ n))ˣ,
-        ιp (χ a) * diskMoment f ιp P α s j n ((a : ZMod (p ^ n)).val : ℤ) := _root_.solution ιp f P α s μ hμ n hn χ j hj
+        ιp (χ a) * diskMoment f ιp P α s j n ((a : ZMod (p ^ n)).val : ℤ) := _root_.solution ιp f P
+          α s μ hμ n hn χ j hj
 
 end publicSection

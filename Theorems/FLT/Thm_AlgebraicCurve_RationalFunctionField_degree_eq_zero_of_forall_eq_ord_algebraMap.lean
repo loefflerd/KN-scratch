@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap
+Based on Prove2Me node
+AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap
 (ba5de16f-1086-5701-903d-c960fbd0bc4d) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 53133994-14a7-53b6-900f-486e09a3ccaa
@@ -168,7 +169,8 @@ end AlgebraicCurve.RationalFunctionField
 end
 
 theorem solution {K : Type*} [Field K] (q : Polynomial K) :
-    ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K) (RatFunc K) q)) → Divisor.degree D = 0 := by
+    ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K)
+      (RatFunc K) q)) → Divisor.degree D = 0 := by
   classical
   obtain ⟨vinf, hvinf⟩ :=
     AlgebraicCurve.RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum (K := K)
@@ -210,7 +212,8 @@ theorem solution {K : Type*} [Field K] (q : Polynomial K) :
 
 end S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap (solution)
+export P2MW.S_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap
+  (solution)
 
 end privateSection
 
@@ -220,7 +223,8 @@ public section publicSection
 open AlgebraicCurve
 theorem AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap {K : Type*}
     [Field K] (q : Polynomial K) :
-    ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K) (RatFunc K) q)) → Divisor.degree D = 0 :=
+    ∀ D : Divisor K (RatFunc K), (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap (Polynomial K)
+      (RatFunc K) q)) → Divisor.degree D = 0 :=
   solution q
 
 end publicSection

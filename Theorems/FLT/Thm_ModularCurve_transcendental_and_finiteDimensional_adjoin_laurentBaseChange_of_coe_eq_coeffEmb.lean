@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
+Based on Prove2Me node
+ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
 (1d73107f-d1f1-5075-beee-77bb400c7de9) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission f1d9d388-8cf4-5376-b3b8-3d67d43820b0
@@ -192,7 +193,9 @@ end
 
 end S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
 end P2MW
-export P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb (solution)
+export
+  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
+  (solution)
 
 end privateSection
 
@@ -200,7 +203,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
+theorem
+  ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
     (L : Type) [Field L] [Algebra ℚ L] [Algebra.IsAlgebraic ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (j : ↥F₀) (hj : Transcendental ℚ j)
     [FiniteDimensional ↥(IntermediateField.adjoin ℚ ({j} : Set ↥F₀)) ↥F₀]

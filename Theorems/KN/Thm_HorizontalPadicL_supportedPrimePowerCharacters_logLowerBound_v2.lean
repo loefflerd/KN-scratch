@@ -924,7 +924,8 @@ variable {p m : ℕ} [Fact p.Prime] {ℓ : ℕ → ℕ} (hprime : ∀ n, (ℓ n)
 include hprime hinj hcong hδ hdensity in
 lemma exists_hasLogPowerLowerBound (hm : 0 < m) :
     ∃ α₀ : ℝ, 0 < α₀ ∧
-      HasLogPowerLowerBound (characterConductorCount (supportedPrimePowerCharacters ℓ A p m)) α₀ := by
+      HasLogPowerLowerBound (characterConductorCount (supportedPrimePowerCharacters ℓ A p m)) α₀
+        := by
   obtain ⟨α₀, hα₀, c₃, hc₃, Y₀, hY₀1, hH⟩ :=
     exists_H_lower (hinj := hinj) (A := A) hprime hδ hdensity
   set c₁ := δ * log 2 / 8 with hc₁
@@ -1076,7 +1077,8 @@ theorem supportedPrimePowerCharacters_logLowerBound_v2
     (A : Finset ℕ) :
     ∃ α : ℝ, 0 < α ∧ α < ((p ^ m - 1 : ℕ) : ℝ) * δ ∧
       HasLogPowerLowerBound
-        (characterConductorCount (supportedPrimePowerCharacters ℓ A p m)) α := _root_.solution p m hm ℓ hprime hinj hcong δ hδ hdensity A
+        (characterConductorCount (supportedPrimePowerCharacters ℓ A p m)) α := _root_.solution p m
+          hm ℓ hprime hinj hcong δ hδ hdensity A
 
 end HorizontalPadicL
 end

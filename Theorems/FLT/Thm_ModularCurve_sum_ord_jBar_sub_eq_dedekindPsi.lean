@@ -245,7 +245,8 @@ theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : 
     HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
   rfl
 
-scoped instance charZero_adjoin [CharZero K] : CharZero (IntermediateField.adjoin K ({t} : Set F)) :=
+scoped instance charZero_adjoin [CharZero K] : CharZero (IntermediateField.adjoin K ({t} : Set F))
+  :=
   charZero_of_injective_algebraMap (algebraMap K _).injective
 
 variable [CharZero K] [FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F]
@@ -391,7 +392,8 @@ private theorem ModularCurve.exists_finset_ord_jBar_sub_pos (N : ℕ) [NeZero N]
 
 end
 
-open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.ModularCurve in
+open AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.ModularCurve in
 theorem solution (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1)
     (S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)))

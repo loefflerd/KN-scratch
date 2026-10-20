@@ -46,7 +46,8 @@ G_2(\tau)-2\pi i$ attached to the period $\tau$, so that Legendre's relation
 $\eta_2\cdot\tau-\eta_1\cdot 1=2\pi i$ holds; the third expresses the homogeneity of degree $-1$ of
 $\zeta$ in the lattice, reflecting $\mathbb Z(\gamma\tau)+\mathbb Z=(c\tau+d)^{-1}(\mathbb
 Z\tau+\mathbb Z)$. It is used in the treatment of the weight-one Eisenstein series, via
-[`EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add`](thm.html#EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add).
+[`EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add`]
+(thm.html#EisensteinSeries.eisensteinG1_apply_smul_and_eisensteinG1_add).
 
 ## Explanation of the source proof
 

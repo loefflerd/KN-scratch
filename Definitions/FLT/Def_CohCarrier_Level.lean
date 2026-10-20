@@ -427,7 +427,8 @@ theorem LevelLE.conjLowerMat_mem [NeZero d] (h : LevelLE M M' H H' d) (γ : ↥(
     ring
   have h0 : conjLowerMat d (γ : SL(2, ℤ)) (h.dvd_entry γ) ∈ Gamma0 M := by
     rw [Gamma0_mem]
-    change (((!![(γ : SL(2, ℤ)) 0 0, (γ : SL(2, ℤ)) 0 1 * d; (γ : SL(2, ℤ)) 1 0 / d, (γ : SL(2, ℤ)) 1 1]
+    change (((!![(γ : SL(2, ℤ)) 0 0, (γ : SL(2, ℤ)) 0 1 * d; (γ : SL(2, ℤ)) 1 0 / d, (γ : SL(2, ℤ))
+      1 1]
       : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ZMod M) = 0
     simp only [Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_fin_one]
@@ -531,7 +532,8 @@ theorem iotaDeg_injective [NeZero d] (h : LevelLE M M' H H' d) :
   · have h10 := e 1 0
     simp only [conjLowerMat, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero,
       Matrix.cons_val_one, Matrix.cons_val_fin_one] at h10
-    calc (γ : SL(2, ℤ)) 1 0 = d * ((γ : SL(2, ℤ)) 1 0 / d) := (Int.mul_ediv_cancel' (h.dvd_entry γ)).symm
+    calc (γ : SL(2, ℤ)) 1 0 = d * ((γ : SL(2, ℤ)) 1 0 / d) := (Int.mul_ediv_cancel' (h.dvd_entry
+      γ)).symm
       _ = d * ((δ : SL(2, ℤ)) 1 0 / d) := by rw [h10]
       _ = (δ : SL(2, ℤ)) 1 0 := Int.mul_ediv_cancel' (h.dvd_entry δ)
   · simpa [conjLowerMat] using e 1 1
@@ -548,7 +550,8 @@ noncomputable def jDeg [NeZero M'] [NeZero d] (h : LevelLE M M' H H' d) :
     have : pushChar M M' H H' d A h 0 = 0 := by ext; rfl
     rw [this, coresAdd_zero]
   map_add' φ ψ := by
-    have : pushChar M M' H H' d A h (φ + ψ) = pushChar M M' H H' d A h φ + pushChar M M' H H' d A h ψ :=
+    have : pushChar M M' H H' d A h (φ + ψ) = pushChar M M' H H' d A h φ + pushChar M M' H H' d A h
+      ψ :=
       by
       ext; rfl
     rw [this, coresAdd_add]
@@ -557,7 +560,8 @@ noncomputable def jDegL (R : Type*) [Semiring R] [Module R A] [NeZero M'] [NeZer
     (h : LevelLE M M' H H' d) : H1 M' H' A →ₗ[R] H1 M H A where
   toFun φ := coresAdd _ (pushChar M M' H H' d A h φ)
   map_add' φ ψ := by
-    have : pushChar M M' H H' d A h (φ + ψ) = pushChar M M' H H' d A h φ + pushChar M M' H H' d A h ψ :=
+    have : pushChar M M' H H' d A h (φ + ψ) = pushChar M M' H H' d A h φ + pushChar M M' H H' d A h
+      ψ :=
       by
       ext; rfl
     rw [this, coresAdd_add]

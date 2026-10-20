@@ -54,7 +54,8 @@ This is the divisibility form of the classical statement that Puiseux expansions
 dividing $d$ bound the ramification: every place of $M$ above the closed point $(p)$ of the rational
 function field has ramification index dividing $d$, the case $d=1$ being the Laurent-series
 criterion for unramifiedness. It is used by
-[`AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound`](thm.html#AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound).
+[`AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound`]
+(thm.html#AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound).
 
 ## Explanation of the source proof
 

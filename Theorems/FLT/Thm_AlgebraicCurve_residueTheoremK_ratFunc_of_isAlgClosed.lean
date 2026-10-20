@@ -62,7 +62,8 @@ diagonally.
 This is the residue theorem on $\mathbb{P}^1$, the genus-zero case of the global residue relation
 underlying Tate's treatment of Riemann–Roch and of duality for curves. It is used as the base case
 from which the residue theorem for a general function field over an algebraically closed field,
-[`AlgebraicCurve.residueTheoremK_of_isAlgClosed`](thm.html#AlgebraicCurve.residueTheoremK_of_isAlgClosed),
+[`AlgebraicCurve.residueTheoremK_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.residueTheoremK_of_isAlgClosed),
 is deduced.
 
 ## Explanation of the source proof
@@ -180,7 +181,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalDivisor (K := K) (F := F)]
 variable [∀ v : Place K F, v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
 
-omit [HasCanonicalLocalResidueKStar K F] [HasCanonicalDivisor (K := K) (F := F)] [Nontrivial Ω[F⁄K]] in
+omit [HasCanonicalLocalResidueKStar K F] [HasCanonicalDivisor (K := K) (F := F)] [Nontrivial Ω[F⁄K]]
+  in
 theorem exists_smul_eq_of_ne_zero (v : Place K F) {ω ω₀ : Ω[F⁄K]}
     (hω : ω ≠ 0) (hω₀ : ω₀ ≠ 0) : ∃ g : F, g ≠ 0 ∧ ω = g • ω₀ := by
   set a := v.differentialCoeff ω with ha
@@ -318,7 +320,8 @@ namespace ModularCurve
 
 namespace MilneAvAg9bRd14CubeRowCartierSliceStart
 
-private theorem _root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
+private theorem
+  _root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     (v : Place K F) (R : v.CanonicalLocalResidueDataK)
     {j : ℤ} (hj : j ≠ -1) :
@@ -726,7 +729,8 @@ private theorem _root_.AlgebraicCurve.Place.ker_algebraMap_residueField_eq_span 
   rw [IsLocalRing.ResidueField.algebraMap_eq, IsLocalRing.ker_residue,
     v.maximalIdeal_eq_span_uniformizer]
 
-private theorem _root_.AlgebraicCurve.Place.formallyUnramified_polynomial_residueField_of_isSeparable
+private theorem
+  _root_.AlgebraicCurve.Place.formallyUnramified_polynomial_residueField_of_isSeparable
     [Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring)] :
     letI := v.polynomialAlgebra
     Algebra.FormallyUnramified K[X] (IsLocalRing.ResidueField v.toValuationSubring) := by
@@ -744,7 +748,8 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_residueKaehler_of_isSep
   have := v.formallyUnramified_polynomial_residueField_of_isSeparable
   exact Algebra.FormallyUnramified.subsingleton_kaehlerDifferential
 
-private theorem _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomialKaehler_of_isSeparable
+private theorem
+  _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomialKaehler_of_isSeparable
     [Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring)] :
     letI := v.polynomialAlgebra
     Subsingleton (v.ResidueField ⊗[v.toValuationSubring] Ω[v.toValuationSubring⁄K[X]]) := by
@@ -857,7 +862,8 @@ namespace ModularCurve
 
 namespace MilneAvAg9bRd15UnitNormalFormLaurentSeed
 
-private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_eq_zero_or_one_le_ord_of_residue_eq_zero
+private theorem
+  _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_eq_zero_or_one_le_ord_of_residue_eq_zero
     {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
     {g : F} (hg : g ∈ v.toValuationSubring)
     (h0 : IsLocalRing.residue _ (⟨g, hg⟩ : v.toValuationSubring) = 0) :
@@ -877,7 +883,8 @@ private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9
       Subtype.ext (inv_mul_cancel₀ hg0)⟩, rfl⟩
   · omega
 
-private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_exists_unit_normal_form_of_surj
+private theorem
+  _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_exists_unit_normal_form_of_surj
     {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
     (hsurj : Function.Surjective (algebraMap K v.ResidueField))
     {w : F} (hw0 : w ≠ 0) (hw : v.ord w = 0) :
@@ -925,7 +932,8 @@ private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9
     rw [hrw, mul_comm w (algebraMap K F c)⁻¹, ← mul_assoc,
       mul_inv_cancel₀ ha0, one_mul]
 
-private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_exists_K_truncation_of_mem_poleSubmodule
+private theorem
+  _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_exists_K_truncation_of_mem_poleSubmodule
     {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
     (hsurj : Function.Surjective (algebraMap K v.ResidueField))
     (n : ℕ) {f : F} (hf : f ∈ v.poleSubmodule n) :
@@ -965,7 +973,8 @@ private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9
               algebraMap K F (c' j) * (v.uniformizer ^ (j + 1))⁻¹ from by ring]
     exact hc'
 
-private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_differentialCoeff_D_unit_mul_uniformizer
+private theorem
+  _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_differentialCoeff_D_unit_mul_uniformizer
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     (v : Place K F) [v.DCoordGenerates] [Nontrivial Ω[F⁄K]] (w : F) :
     v.differentialCoeff (KaehlerDifferential.D K F (w * v.uniformizer))
@@ -1196,7 +1205,8 @@ section EftEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.finite_kaehler_of_essFiniteType [Algebra.EssFiniteType K v.toValuationSubring] :
+private theorem _root_.AlgebraicCurve.Place.finite_kaehler_of_essFiniteType [Algebra.EssFiniteType K
+  v.toValuationSubring] :
     Module.Finite v.toValuationSubring Ω[v.toValuationSubring⁄K] :=
   KaehlerDifferential.finite K v.toValuationSubring
 
@@ -1478,7 +1488,8 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_not_mem_cen
     not_not] at hs
   exact hs
 
-private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_mem_primeCompl (s : (v.centerIdeal A hA).primeCompl) :
+private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_mem_primeCompl (s :
+  (v.centerIdeal A hA).primeCompl) :
     IsUnit (v.modelInclusion A hA (s : A)) :=
   v.isUnit_modelInclusion_of_not_mem_centerIdeal A hA s.2
 
@@ -1805,7 +1816,8 @@ private theorem div_mem_of_not_mem_centerIdeal (r : A) {a : A}
   exact v.toValuationSubring.toSubring.mul_mem (hA r.2)
     (inv_mem_of_not_mem_centerIdeal v A hA ha)
 
-private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A
+  F] :
     v.centerIdeal A hA ≠ ⊥ := by
   obtain ⟨f, hf⟩ : ∃ f : F, f ∉ v.toValuationSubring := by
     by_contra h; push Not at h
@@ -1826,7 +1838,8 @@ section LocalizationSubalgebra
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
   (A : Subalgebra K F) (hA : (A : Set F) ⊆ (v.toValuationSubring : Set F))
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra [IsFractionRing A F] :
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra
+  [IsFractionRing A F] :
     Subalgebra A F :=
   Localization.subalgebra.ofField F (v.centerIdeal A hA).primeCompl
     (v.centerIdeal A hA).primeCompl_le_nonZeroDivisors
@@ -1849,7 +1862,8 @@ scoped instance centerLocalizationSubalgebra_isFractionRing [IsFractionRing A F]
     IsFractionRing (v.centerLocalizationSubalgebra A hA) F :=
   inferInstanceAs (IsFractionRing (Localization.subalgebra.ofField F _ _) F)
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset [IsFractionRing A
+  F] :
     ((v.centerLocalizationSubalgebra A hA : Subalgebra A F) : Set F)
       ⊆ (v.toValuationSubring : Set F) := by
   intro x hx
@@ -3931,7 +3945,8 @@ namespace ModularCurve
 
 namespace MilneAvAg9bRd13T2CoordIndepChar3
 
-private theorem _root_.ModularCurve.MilneAvAg9bRd13T2CoordIndepChar3.ag9b13t_res_differentialCoeff_D_mul_pow_inv_of_surj_of_natCast_ne_zero
+private theorem
+  _root_.ModularCurve.MilneAvAg9bRd13T2CoordIndepChar3.ag9b13t_res_differentialCoeff_D_mul_pow_inv_of_surj_of_natCast_ne_zero
     {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
     (v : Place K F) [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
     (hsurj : Function.Surjective (algebraMap K v.ResidueField))
@@ -5059,7 +5074,8 @@ theorem p0n22_cpf_exists_residue_lift_decomp
       rw [← hd, IsScalarTower.algebraMap_apply K v.toValuationSubring
         v.ResidueField, IsLocalRing.ResidueField.algebraMap_eq]
     rw [hfact, map_sub, h2, sub_self]
-  rcases _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_eq_zero_or_one_le_ord_of_residue_eq_zero
+  rcases
+    _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_eq_zero_or_one_le_ord_of_residue_eq_zero
       v hxmem hres0 with hx0 | hxord
   · exact ⟨d, 0, zero_mem _, by rw [mul_zero, add_zero]; exact (sub_eq_zero.mp hx0)⟩
   · have hxne : r - algebraMap K (RatFunc K) d ≠ 0 := by
@@ -5264,7 +5280,8 @@ theorem p0n22_cpf_res_geom_core
           have hk0 : (k : ℤ) ≠ 0 := by omega
           have h3 : (t : ℤ) + 1 = (e : ℤ) := mul_left_cancel₀ hk0 h2
           omega
-        rw [_root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
+        rw
+          [_root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
           v R hne, smul_zero]
       rw [Finset.sum_eq_single_of_mem (e - 1) (Finset.mem_range.mpr he_lt) hother,
         show (k : ℤ) * (((e - 1 : ℕ) : ℤ) + 1) - 1 - ((k * e : ℕ) : ℤ) = -1 from by
@@ -5279,7 +5296,8 @@ theorem p0n22_cpf_res_geom_core
       have h2 : (k : ℤ) * ((t : ℤ) + 1) = (q : ℤ) := by linarith
       have h3 : k * (t + 1) = q := by exact_mod_cast h2
       exact hdvd ⟨t + 1, h3.symm⟩
-    rw [_root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
+    rw
+      [_root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
       v R hne, smul_zero]
 
 theorem p0n22_cpf_res_logDeriv_elementary
@@ -5365,7 +5383,8 @@ theorem p0n22_cpf_row_integrand_eq_pow_mul_dlog
         * ((v.uniformizer)⁻¹
             + v.differentialCoeff (KaehlerDifferential.D K (RatFunc K) w)
                 * w⁻¹) := by
-  rw [_root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_differentialCoeff_D_unit_mul_uniformizer
+  rw
+    [_root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9b15u_differentialCoeff_D_unit_mul_uniformizer
     v w]
   have hπ0 : (v.uniformizer : RatFunc K) ≠ 0 := v.uniformizer_ne_zero
   have hcw : w * w⁻¹ = 1 := mul_inv_cancel₀ hw0
@@ -5628,7 +5647,8 @@ theorem p0n22_cpf_res_pow_mul_dlog_unit [PerfectField K]
       have h1 : R.res ((v.uniformizer : RatFunc K) ^ ((p : ℤ) * j)
           * (v.uniformizer)⁻¹) = 0 := by
         rw [← zpow_sub_one₀ hπ0]
-        refine _root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
+        refine
+          _root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
           v R ?_
         intro hcontra
         have hpj : (p : ℤ) * j = 0 := by linarith
@@ -5637,7 +5657,8 @@ theorem p0n22_cpf_res_pow_mul_dlog_unit [PerfectField K]
         · exact hj h
       have h2 : R.res ((v.uniformizer : RatFunc K) ^ j * (v.uniformizer)⁻¹) = 0 := by
         rw [← zpow_sub_one₀ hπ0]
-        exact _root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
+        exact
+          _root_.ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart.ag9b14c_res_uniformizer_zpow_eq_zero_of_ne_neg_one
           v R (by omega)
       rw [h1, h2, smul_zero, smul_zero, zero_pow hp.out.ne_zero]
   · rw [hPp, Finset.sum_mul, Finset.sum_mul, map_sum, map_sum, sum_pow_char]
@@ -5687,7 +5708,8 @@ theorem p0n22_cpf_res_row_at_unit_mul_uniformizer [PerfectField K]
       rw [hstep, ih m hmlt hm1, zero_pow hp.out.ne_zero]
     · have hnK : ((n : ℕ) : K) ≠ 0 := fun h =>
         hpn ((CharP.cast_eq_zero_iff K p n).mp h)
-      exact _root_.ModularCurve.MilneAvAg9bRd13T2CoordIndepChar3.ag9b13t_res_differentialCoeff_D_mul_pow_inv_of_surj_of_natCast_ne_zero
+      exact
+        _root_.ModularCurve.MilneAvAg9bRd13T2CoordIndepChar3.ag9b13t_res_differentialCoeff_D_mul_pow_inv_of_surj_of_natCast_ne_zero
         v hsurj
         (fun h hh => ag9b13e_differentialCoeff_D_mem_of_mem_of_perfectField v hh)
         R (w * v.uniformizer) hn hnK

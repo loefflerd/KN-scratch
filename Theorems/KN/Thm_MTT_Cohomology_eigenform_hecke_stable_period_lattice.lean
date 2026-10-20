@@ -216,7 +216,8 @@ theorem dividedMem_pair {N n : ℕ} (ψ : Hc N n MTT.Qbar)
     cases z with
     | none =>
         intro j hj
-        change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, OnePoint.infty)) (binaryExponent n j) / _ ∈ L
+        change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, OnePoint.infty)) (binaryExponent n j)
+          / _ ∈ L
         rw [hdiag]
         change 0 / (n.choose j : MTT.Qbar) ∈ L
         rw [zero_div]

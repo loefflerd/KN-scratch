@@ -80,10 +80,12 @@ theorem alphaAdjMat_mul_heckeConjMat {ℓ : ℕ} {g : Matrix (Fin 2) (Fin 2) ℤ
 theorem SolMain.A1 (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
     (u : ↥(heckeUpper N ℓ)) :
     binaryFormAlphaAdj K n ℓ ∘ₗ ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (heckeConj N ℓ u)
-      = ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (u : Gamma0 N) ∘ₗ binaryFormAlphaAdj K n ℓ := by
+      = ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (u : Gamma0 N) ∘ₗ binaryFormAlphaAdj K n ℓ
+        := by
   refine LinearMap.ext fun v => Subtype.ext ?_
   change binarySubst K !![(ℓ : ℤ), 0; 0, 1]
-      (binarySubst K ((heckeConjSL N ℓ u : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (v : MvPolynomial (Fin 2) K))
+      (binarySubst K ((heckeConjSL N ℓ u : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (v : MvPolynomial
+        (Fin 2) K))
     = binarySubst K ((((u : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ))
       (binarySubst K !![(ℓ : ℤ), 0; 0, 1] (v : MvPolynomial (Fin 2) K))
   rw [← AlgHom.comp_apply, ← binarySubst_mul, ← AlgHom.comp_apply, ← binarySubst_mul,
@@ -95,8 +97,10 @@ end HeckeEis
 open scoped MatrixGroups in
 theorem solution (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
     (u : ↥(HeckeEis.heckeUpper N ℓ)) :
-    HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)
-      = ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (u : CongruenceSubgroup.Gamma0 N)
+    HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)
+      = ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (u :
+        CongruenceSubgroup.Gamma0 N)
           ∘ₗ HeckeEis.binaryFormAlphaAdj K n ℓ :=
   HeckeEis.SolMain.A1 K n N ℓ u
 
@@ -113,8 +117,10 @@ open scoped MatrixGroups
 theorem HeckeEis.binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj (K : Type*) [CommRing K]
     (n N ℓ : ℕ) [NeZero ℓ]
     (u : ↥(HeckeEis.heckeUpper N ℓ)) :
-    HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)
-      = ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (u : CongruenceSubgroup.Gamma0 N)
+    HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)
+      = ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (u :
+        CongruenceSubgroup.Gamma0 N)
           ∘ₗ HeckeEis.binaryFormAlphaAdj K n ℓ :=
   solution K n N ℓ u
 

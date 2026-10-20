@@ -166,7 +166,8 @@ noncomputable scoped instance algebraTRng_KFldT : Algebra ↥(TRng F t) ↥(KFld
 
 noncomputable scoped instance smulTRng_KFldT : SMul ↥(TRng F t) ↥(KFldT F t S) := Algebra.toSMul
 
-noncomputable scoped instance moduleTRng_KFldT : Module ↥(TRng F t) ↥(KFldT F t S) := Algebra.toModule
+noncomputable scoped instance moduleTRng_KFldT : Module ↥(TRng F t) ↥(KFldT F t S) :=
+  Algebra.toModule
 
 scoped instance : IsScalarTower ↥(TRng F t) ↥(RFld F t) ↥(KFldT F t S) :=
   IsScalarTower.of_algebraMap_eq fun _ ↦ rfl

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.seededNormalizedThetaMeasure_trivial_interpolation_inverseSeed_v2
+Based on Prove2Me node
+HorizontalPadicL.seededNormalizedThetaMeasure_trivial_interpolation_inverseSeed_v2
 (e954f63e-c077-4f71-889f-922003c7633d) by davidloeffler (2026-09-25).
 
 Proof based on Prove2Me submission 46bb78a2-a638-480e-a066-88f692325916

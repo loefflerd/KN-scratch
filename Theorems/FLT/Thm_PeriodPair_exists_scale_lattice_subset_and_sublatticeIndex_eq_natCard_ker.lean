@@ -48,7 +48,8 @@ This is the dual-isogeny direction of the dictionary between homomorphisms of co
 homotheties between lattices: a homomorphism of the point groups lifting $z \mapsto \alpha z$
 produces a homothety $\beta\Lambda' \subseteq \Lambda$ whose index matches the degree $\#\ker\psi$.
 It feeds into
-[`PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient`](thm.html#PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient),
+[`PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient`]
+(thm.html#PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient),
 where the quotient is in addition shown to be cyclic.
 
 ## Explanation of the source proof

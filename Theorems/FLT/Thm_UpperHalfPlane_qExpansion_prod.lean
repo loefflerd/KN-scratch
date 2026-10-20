@@ -41,7 +41,8 @@ This is the finite-product form of the two-factor multiplicativity of $q$-expans
 `qExpansion_mul`: the passage from a function on the upper half-plane to its Taylor series in the
 local parameter at the cusp is a ring homomorphism on functions whose cusp functions are analytic at
 the cusp. It is used in the vanishing criterion
-[`ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic`](thm.html#ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic),
+[`ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic`]
+(thm.html#ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic),
 where one compares the order of vanishing at $\infty$ of a modular form with that of a product of
 its translates.
 

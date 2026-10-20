@@ -42,7 +42,8 @@ constraints in the characteristic-$\ell$ study of the $q$-expansions attached to
 hypothesis $p \neq \ell$ being essential since for $p = \ell$ the identity holds with $\gamma = 1$
 (raising a series with coefficients from the prime field to the $\ell$-th power substitutes $q
 \mapsto q^{\ell}$, as recorded in
-[`ModularCurve.map_intCast_pow_char_eq_qExpand`](thm.html#ModularCurve.map_intCast_pow_char_eq_qExpand)).
+[`ModularCurve.map_intCast_pow_char_eq_qExpand`]
+(thm.html#ModularCurve.map_intCast_pow_char_eq_qExpand)).
 It is used by [`ModularCurve.StarBank.starBank`](thm.html#ModularCurve.StarBank.starBank).
 
 ## Explanation of the source proof
@@ -77,7 +78,8 @@ local notation "𝓔[" K "]" =>
 
 theorem coeff_one_mul {R : Type*} [CommRing R] (φ ψ : PowerSeries R) :
     PowerSeries.coeff 1 (φ * ψ) =
-      PowerSeries.coeff 0 φ * PowerSeries.coeff 1 ψ + PowerSeries.coeff 1 φ * PowerSeries.coeff 0 ψ := by
+      PowerSeries.coeff 0 φ * PowerSeries.coeff 1 ψ + PowerSeries.coeff 1 φ * PowerSeries.coeff 0 ψ
+        := by
   rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_succ, Finset.Nat.antidiagonal_zero,
     Finset.sum_singleton]
 
@@ -145,7 +147,8 @@ theorem coeff_one_etaC_pow (K : Type*) [CommRing K] (N : ℕ) :
 
 theorem ofPowerSeries_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (u : PowerSeries R) :
-    (HahnSeries.ofPowerSeries ℤ R u).map f = HahnSeries.ofPowerSeries ℤ S (PowerSeries.map f u) := by
+    (HahnSeries.ofPowerSeries ℤ R u).map f = HahnSeries.ofPowerSeries ℤ S (PowerSeries.map f u) :=
+      by
   ext k
   rw [HahnSeries.map_coeff]
   rcases le_or_gt 0 k with hk | hk

@@ -116,7 +116,8 @@ theorem conj_T_zpow_mem_Gamma0 (N : ℕ) (δ : SL(2, ℤ)) :
 theorem mdifferentiable_eval {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
     (hG : IsEichlerIntegral n g G) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ)
-      (fun τ : ℍ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) := by
+      (fun τ : ℍ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial
+        (Fin 2) ℂ)) := by
   rw [UpperHalfPlane.mdifferentiable_iff]
   intro z hz
   have h := (hG.hasDerivAt_eval_iterate_pderiv (Nat.zero_le n) ⟨z, hz⟩).differentiableAt
@@ -157,11 +158,13 @@ theorem exists_eq_const_of_slash_invariant {Γ : Subgroup SL(2, ℤ)} [Γ.Finite
 
 end HeckeEis.MainAux
 
-open _root_.HeckeEis _root_.P2MW.S_HeckeEis_eichlerShimuraMap_injective.HeckeEis HeckeEis.MainAux UpperHalfPlane CongruenceSubgroup MvPolynomial in
+open _root_.HeckeEis _root_.P2MW.S_HeckeEis_eichlerShimuraMap_injective.HeckeEis HeckeEis.MainAux
+  UpperHalfPlane CongruenceSubgroup MvPolynomial in
 open scoped ModularForm Pointwise Manifold MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     Function.Injective
-      (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N f) := by
+      (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N
+        f) := by
   have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
   obtain ⟨ES, hES⟩ := existsEichlerShimuraMapLinear n N
   suffices hker : ∀ f : CuspForm (Gamma0 N) ((n : ℤ) + 2), eichlerShimuraMap n N f = 0 → f = 0 by
@@ -193,7 +196,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     have h3 : F (γ • τ) - R γ (F τ) = R γ v - v := h1
     rw [sub_eq_iff_eq_add.mp h3]
     abel
-  set P : ℍ → ℂ := fun τ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((F₁ τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+  set P : ℍ → ℂ := fun τ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((F₁ τ : ↥(BinaryForm ℂ n)) :
+    MvPolynomial (Fin 2) ℂ)
     with hP
   set Gδ : SL(2, ℤ) → ℍ → ↥(BinaryForm ℂ n) := fun δ τ => R δ⁻¹ (F₁ (δ • τ)) with hGδ
   have hGδEI : ∀ δ : SL(2, ℤ), IsEichlerIntegral n (⇑f ∣[((n : ℤ) + 2)] δ) (Gδ δ) :=
@@ -202,7 +206,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     simp only [hGδ]
     rw [← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
   have hslash : ∀ (δ : SL(2, ℤ)) (τ : ℍ), (P ∣[-(n : ℤ)] δ) τ
-      = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((Gδ δ τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := by
+      = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((Gδ δ τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+        ℂ) := by
     intro δ τ
     rw [ModularForm.SL_slash_apply, hP, neg_neg]
     simp only []
@@ -222,7 +227,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
   have hbdd : ∀ δ : SL(2, ℤ), IsBoundedAtImInfty (P ∣[-(n : ℤ)] δ) := by
     intro δ
     have hfun : P ∣[-(n : ℤ)] δ
-        = fun τ : ℍ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((Gδ δ τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) :=
+        = fun τ : ℍ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((Gδ δ τ : ↥(BinaryForm ℂ n)) :
+          MvPolynomial (Fin 2) ℂ) :=
       funext (hslash δ)
     rw [hfun]
     have hσ : δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ ∈ Gamma0 N := conj_T_zpow_mem_Gamma0 N δ
@@ -236,7 +242,8 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
       intro τ
       simp only [hGδ]
       have h1 := hEq _ hσ (δ • τ)
-      have hpt : ((δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ : SL(2, ℤ)) • δ • τ) = δ • ((((N : ℤ) : ℝ)) +ᵥ τ) :=
+      have hpt : ((δ * ModularGroup.T ^ (N : ℤ) * δ⁻¹ : SL(2, ℤ)) • δ • τ) = δ • ((((N : ℤ) : ℝ)) +ᵥ
+        τ) :=
         by
         rw [← UpperHalfPlane.modular_T_zpow_smul, smul_smul, smul_smul]
         congr 1
@@ -263,7 +270,8 @@ public section publicSection
 open scoped Manifold MatrixGroups ModularForm
 theorem HeckeEis.eichlerShimuraMap_injective (N : ℕ) [NeZero N] (n : ℕ) :
     Function.Injective
-      (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N f) :=
+      (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N
+        f) :=
   solution N n
 
 end publicSection

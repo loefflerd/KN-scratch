@@ -49,9 +49,11 @@ Since $t = j - 1728$ is a local parameter at $j = 1728$, this is the statement t
 index of $X_0(N) \to X(1)$ at every point above $j = 1728$ divides $2$, reflecting the order-$2$
 stabiliser of $i$ in $\mathrm{PSL}_2(\mathbb{Z})$, for odd level $N$. It feeds the divisibility
 results
-[`ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd`](thm.html#ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd),
+[`ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd`]
+(thm.html#ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd),
 [`ModularCurve.ord_jBar_dvd_three_of_odd`](thm.html#ModularCurve.ord_jBar_dvd_three_of_odd) and
-[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`](thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
+[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`]
+(thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
 
 ## Explanation of the source proof
 
@@ -253,14 +255,18 @@ open P2MWs13.Wire HahnSeries Polynomial in
 theorem solution
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
-      ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
+    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure
+      ℚ)))
+      ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure
+        ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 2 r := by
   classical
   obtain ⟨𝓔, hΔ, hc⟩ :=
-    WeierstrassCurve.exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
+    WeierstrassCurve.exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries (AlgebraicClosure
+      ℚ) two_ne_zero three_ne_zero
   have h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
-  have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = (1728 : 𝕂) + HahnSeries.single (2 : ℚ) (1 : ℚ̄) :=
+  have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = (1728 : 𝕂) + HahnSeries.single (2 : ℚ) (1 :
+    ℚ̄) :=
     j_eq_1728_add_single_two_one 𝓔 hΔ hc
   have ht : Transcendental ℚ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
     rw [hjW]; exact transcendental_1728_add_single_two
@@ -287,7 +293,8 @@ theorem solution
     · rw [WeierstrassCurve.map_a₆, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · intro x y hns hd
       have h :=
-        WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries 𝓔 hΔ (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
+        WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries 𝓔 hΔ
+          (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
       exact ⟨(hmemL x).mpr h.1, (hmemL y).mpr h.2⟩
   exact (hasRamBound_one_hahnExpMul_iff 2 (by norm_num) r).mp ((hmemL _).mp hτrL)
 
@@ -302,8 +309,10 @@ public section publicSection
 theorem ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
-      ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
+    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure
+      ℚ)))
+      ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure
+        ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 2 r :=
   solution hN data r hroot
 

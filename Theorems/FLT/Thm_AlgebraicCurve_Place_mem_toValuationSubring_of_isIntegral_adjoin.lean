@@ -42,7 +42,8 @@ serves as the bridge used throughout the divisor-theoretic part of the developme
 when locating the support of a modular unit: it is invoked to conclude that an element integral over
 $\mathbb Q[j]$ lies in every valuation subring containing $j$, and is cited by the results on orders
 of such elements and on divisors (for example
-[`AlgebraicCurve.Place.ord_eq_zero_of_isIntegral_adjoin`](thm.html#AlgebraicCurve.Place.ord_eq_zero_of_isIntegral_adjoin)).
+[`AlgebraicCurve.Place.ord_eq_zero_of_isIntegral_adjoin`]
+(thm.html#AlgebraicCurve.Place.ord_eq_zero_of_isIntegral_adjoin)).
 
 ## Explanation of the source proof
 

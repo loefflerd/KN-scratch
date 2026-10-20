@@ -92,6 +92,7 @@ theorem MTT.Cohomology.centralCoinduced_fixed_dimensions_large_level {N n : ℕ}
         Module.finrank ℂ W ∧
       Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 N : Set SL(2, ℤ))
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) :
-          Set SL(2, ℤ))) ≤ Module.finrank ℂ (W.ρ ModularGroup.T - LinearMap.id).ker := _root_.solution hN hn
+          Set SL(2, ℤ))) ≤ Module.finrank ℂ (W.ρ ModularGroup.T - LinearMap.id).ker :=
+            _root_.solution hN hn
 
 end publicSection

@@ -54,7 +54,8 @@ This is the lower-bound half of the classical dimension formula $\dim_{\mathbb C
 g(X_0(N))$, the genus being computed by the Riemann–Hurwitz count for $X_0(N) \to X(1)$; the proof
 passes through regular differentials on the modular function field over $\overline{\mathbb Q}$ and
 their $q$-expansions. Together with the matching upper bound it yields
-[`CuspForm.finrank_gamma0_weight_two_eq_genusFormula`](thm.html#CuspForm.finrank_gamma0_weight_two_eq_genusFormula),
+[`CuspForm.finrank_gamma0_weight_two_eq_genusFormula`]
+(thm.html#CuspForm.finrank_gamma0_weight_two_eq_genusFormula),
 and it is used in the Eichler–Shimura decomposition and in the dimension estimates for mod $p$ cusp
 forms.
 
@@ -106,7 +107,8 @@ theorem linearIndependent_ringHom_comp_of_linearIndependent {K L : Type*} [Field
   exact (LinearEquiv.map_eq_zero_iff B.repr).mp hzero
 
 theorem solution (N : ℕ) [NeZero N] :
-    ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ) := by
+    ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ)
+      := by
   classical
   have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
   have hEFT := ModularCurve.essFiniteType_modularFunctionFieldBar N
@@ -131,16 +133,22 @@ theorem solution (N : ℕ) [NeZero N] :
     ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
       N ι₀ (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) (b i).2
   choose f hf using hex
-  let v : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)) → ℤ → AlgebraicClosure ℚ :=
-    fun i n => (ModularCurve.diffQExpBar N (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ])).coeff n
+  let v : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)) → ℤ →
+    AlgebraicClosure ℚ :=
+    fun i n => (ModularCurve.diffQExpBar N (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure
+      ℚ])).coeff n
   have hv_def : ∀ i n, v i n =
-      (ModularCurve.diffQExpBar N (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ])).coeff n :=
+      (ModularCurve.diffQExpBar N (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ])).coeff n
+        :=
     fun _ _ => rfl
-  let Θ : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] →ₗ[AlgebraicClosure ℚ] LaurentSeries (AlgebraicClosure ℚ) :=
+  let Θ : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] →ₗ[AlgebraicClosure ℚ] LaurentSeries
+    (AlgebraicClosure ℚ) :=
     (ModularCurve.diffQExpBar N).restrictScalars (AlgebraicClosure ℚ)
   have hΘ : ∀ ω, Θ ω = ModularCurve.diffQExpBar N ω := fun ω => rfl
-  have hcoeff_sum : ∀ (s : Finset (Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N))))
-      (x : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)) → LaurentSeries (AlgebraicClosure ℚ))
+  have hcoeff_sum : ∀ (s : Finset (Fin (Module.finrank (AlgebraicClosure ℚ)
+    ↥(regularDifferentialsBar N))))
+      (x : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)) → LaurentSeries
+        (AlgebraicClosure ℚ))
       (n : ℤ), (∑ i ∈ s, x i).coeff n = ∑ i ∈ s, (x i).coeff n := by
     intro s x n
     induction s using Finset.induction_on with
@@ -149,7 +157,8 @@ theorem solution (N : ℕ) [NeZero N] :
   have hv : LinearIndependent (AlgebraicClosure ℚ) v := by
     rw [Fintype.linearIndependent_iff]
     intro d hd
-    have hsum : Θ ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) = 0 :=
+    have hsum : Θ ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar
+      N⁄AlgebraicClosure ℚ]) = 0 :=
       by
       rw [Submodule.coe_sum, map_sum]
       ext n
@@ -160,7 +169,8 @@ theorem solution (N : ℕ) [NeZero N] :
       rw [Submodule.coe_smul, map_smul, HahnSeries.coeff_smul, smul_eq_mul]
       rw [hΘ, hv_def]
     rw [hΘ] at hsum
-    have hzero : ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) = 0 :=
+    have hzero : ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar
+      N⁄AlgebraicClosure ℚ]) = 0 :=
       ModularCurve.diffQExpBar_injective_of_neZero N (by rw [hsum, map_zero])
     have hzero' : (∑ i, d i • b i) = 0 := by
       first | exact (Submodule.coe_eq_zero).mp hzero
@@ -174,7 +184,8 @@ theorem solution (N : ℕ) [NeZero N] :
     fun _ _ => rfl
   have hczero : ⇑(0 : CuspForm (CongruenceSubgroup.Gamma0 N) 2) = 0 := rfl
   have hqadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) 2,
-      UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
+      UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ +
+        UpperHalfPlane.qExpansion 1 ⇑ψ := by
     intro φ ψ
     first
       | exact ModularForm.qExpansion_add one_pos hΓ φ ψ
@@ -189,7 +200,8 @@ theorem solution (N : ℕ) [NeZero N] :
   have hli : LinearIndependent ℂ f := by
     rw [Fintype.linearIndependent_iff]
     intro c hc
-    have hqsum : ∀ s : Finset (Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N))),
+    have hqsum : ∀ s : Finset (Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar
+      N))),
         UpperHalfPlane.qExpansion 1 ⇑(∑ i ∈ s, c i • f i) =
           ∑ i ∈ s, c i • UpperHalfPlane.qExpansion 1 ⇑(f i) := by
       intro s
@@ -234,7 +246,8 @@ public section publicSection
 
 
 theorem CuspForm.genusFormula_le_finrank_gamma0_weight_two (N : ℕ) [NeZero N] :
-    ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ) :=
+    ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ)
+      :=
   solution N
 
 end publicSection

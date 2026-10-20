@@ -112,7 +112,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -443,7 +444,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
+  IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
@@ -672,7 +674,8 @@ variable (W) in
 lemma point_infinite : Infinite W.toAffine.Point := by
   refine Infinite.of_injective
     (fun x : F => Affine.Point.some x (WeierstrassCurve.Affine.exists_equation W x).choose
-      ((Affine.equation_iff_nonsingular (W := W)).mp (WeierstrassCurve.Affine.exists_equation W x).choose_spec))
+      ((Affine.equation_iff_nonsingular (W := W)).mp (WeierstrassCurve.Affine.exists_equation W
+        x).choose_spec))
     fun x x' hxx' => ?_
   exact (Affine.Point.some.inj hxx').1
 
@@ -738,7 +741,8 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_mk_of_ord_eq_zero {f : F} (hf
 p2m_export "AlgebraicCurve.Place" "isUnit_mk_of_ord_eq_zero"
 private theorem _root_.AlgebraicCurve.Place.residue_ne_zero_of_ord_eq_zero {f : F} (hf : f ≠ 0)
     (h : v.ord f = 0) :
-    residue v.toValuationSubring (⟨f, AlgebraicCurve.Place.mem_of_ord_nonneg v hf h.ge⟩ : v.toValuationSubring)
+    residue v.toValuationSubring (⟨f, AlgebraicCurve.Place.mem_of_ord_nonneg v hf h.ge⟩ :
+      v.toValuationSubring)
       ≠ 0 :=
   (residue_ne_zero_iff_isUnit _).mpr (v.isUnit_mk_of_ord_eq_zero hf h)
 
@@ -995,7 +999,12 @@ end
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.AlgebraicCurve
+  in
 universe u in
 theorem solution
     {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]

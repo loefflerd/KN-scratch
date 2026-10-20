@@ -110,8 +110,11 @@ end ModularCurve
 
 end
 
-theorem solution (ℓ : ℕ) [NeZero ℓ] (A : LaurentSeries ℂ) (F : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ : UpperHalfPlane) :
-    HasSum (fun m : ℤ => (ModularCurve.qExpand ℂ (ℓ * ℓ) A).coeff m * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularForm.heckeDiagMatrix ℓ • τ)) :=
+theorem solution (ℓ : ℕ) [NeZero ℓ] (A : LaurentSeries ℂ) (F : UpperHalfPlane → ℂ) (hA : ∀ τ :
+  UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ
+  : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (ModularCurve.qExpand ℂ (ℓ * ℓ) A).coeff m * Function.Periodic.qParam ℓ (τ
+      : ℂ) ^ m) (F (ModularForm.heckeDiagMatrix ℓ • τ)) :=
   ModularCurve.Realized.hasSum_qParam_heckeDiagMatrix_smul' ℓ A F hA τ
 
 end S_ModularCurve_hasSum_qParam_heckeDiagMatrix_smul
@@ -122,8 +125,11 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.hasSum_qParam_heckeDiagMatrix_smul (ℓ : ℕ) [NeZero ℓ] (A : LaurentSeries ℂ) (F : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ : UpperHalfPlane) :
-    HasSum (fun m : ℤ => (ModularCurve.qExpand ℂ (ℓ * ℓ) A).coeff m * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularForm.heckeDiagMatrix ℓ • τ)) :=
+theorem ModularCurve.hasSum_qParam_heckeDiagMatrix_smul (ℓ : ℕ) [NeZero ℓ] (A : LaurentSeries ℂ) (F
+  : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m *
+  Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (ModularCurve.qExpand ℂ (ℓ * ℓ) A).coeff m * Function.Periodic.qParam ℓ (τ
+      : ℂ) ^ m) (F (ModularForm.heckeDiagMatrix ℓ • τ)) :=
   solution ℓ A F hA τ
 
 end publicSection

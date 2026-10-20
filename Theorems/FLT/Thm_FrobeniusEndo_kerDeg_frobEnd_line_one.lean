@@ -68,7 +68,8 @@ theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k :
     (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
     (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ) (hm : 1 ≤ m)
     (hmk : (m : k) ≠ 0) :
-    ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) * m + Fintype.card F := by
+    ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - (Nat.card
+      (W⁄F).Point : ℤ)) * m + Fintype.card F := by
   have h := (FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq W σ hσ hF m hm hmk).2
   rw [FrobeniusEndo.kerDeg_frobEnd_one_one W σ hσ] at h
   exact h
@@ -89,7 +90,8 @@ theorem FrobeniusEndo.kerDeg_frobEnd_line_one {R : Type*} [CommRing R] {F : Type
     [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic]
     (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ)
     (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
-    ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - (Nat.card (W⁄F).Point : ℤ)) * m + Fintype.card F :=
+    ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - (Nat.card
+      (W⁄F).Point : ℤ)) * m + Fintype.card F :=
   solution W σ hσ hF m hm hmk
 
 end publicSection

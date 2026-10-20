@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AddCommGroup.natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
+Based on Prove2Me node
+AddCommGroup.natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
 (6f1fbd4e-9356-5c7c-af1d-b45c321f6444) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission bd4d0fff-00b0-52f9-86ac-7957cfc05baa
@@ -99,7 +100,8 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
   symm
   refine Nat.card_eq_of_bijective
     (fun L : {H : AddSubgroup M // IsAddCyclic H ∧ Nat.card H = n ∧ H.map T = H} =>
-      (⟨L.1.map ι, hΦ L.1 L.2⟩ : {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ = H}))
+      (⟨L.1.map ι, hΦ L.1 L.2⟩ : {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ =
+        H}))
     ⟨?_, ?_⟩
   · intro L₁ L₂ h
     exact Subtype.ext (AddSubgroup.map_injective hι (congrArg Subtype.val h))
@@ -149,7 +151,9 @@ theorem solution
 
 end S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
 end P2MW
-export P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree (solution)
+export
+  P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
+  (solution)
 
 end privateSection
 

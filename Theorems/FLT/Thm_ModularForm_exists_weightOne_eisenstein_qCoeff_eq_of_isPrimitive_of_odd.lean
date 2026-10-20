@@ -370,7 +370,8 @@ lemma not_dvd_vecMul {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (L : ℤ) ∣ v i) (A :
     ¬ ∀ i, (L : ℤ) ∣ (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) i := by
   intro h
   apply hv
-  have key : v = (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) ᵥ* ((A⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) :=
+  have key : v = (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) ᵥ* ((A⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2)
+    ℤ) :=
     by
     rw [Matrix.vecMul_vecMul, ← Matrix.SpecialLinearGroup.coe_mul, mul_inv_cancel,
       Matrix.SpecialLinearGroup.coe_one, Matrix.vecMul_one]
@@ -384,8 +385,10 @@ theorem isBoundedAtImInfty_E0_slash (hL : 3 ≤ L) (A : SL(2, ℤ)) :
     IsBoundedAtImInfty (E0 L χ ∣[(1 : ℤ)] A) := by
   have hB := (EisensteinSeries.isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1 L).1
   rw [E0_slash]
-  have : (fun τ => ∑ b : ZMod L, χ⁻¹ b * eisensteinG1 L (vb L b ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) τ)
-      = ∑ b : ZMod L, fun τ => χ⁻¹ b * eisensteinG1 L (vb L b ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) τ := by
+  have : (fun τ => ∑ b : ZMod L, χ⁻¹ b * eisensteinG1 L (vb L b ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ))
+    τ)
+      = ∑ b : ZMod L, fun τ => χ⁻¹ b * eisensteinG1 L (vb L b ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) τ
+        := by
     funext τ; simp [Finset.sum_apply]
   rw [this]
   refine Finset.sum_induction _ (fun f : ℍ → ℂ => IsBoundedAtImInfty f)
@@ -395,7 +398,8 @@ theorem isBoundedAtImInfty_E0_slash (hL : 3 ≤ L) (A : SL(2, ℤ)) :
     by_cases hb : b = 0
     · subst hb
       have : (fun τ : ℍ => χ⁻¹ (0 : ZMod L) *
-          eisensteinG1 L (vb L 0 ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) τ) = Function.const ℍ (0 : ℂ) := by
+          eisensteinG1 L (vb L 0 ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) τ) = Function.const ℍ (0 : ℂ) :=
+            by
         funext τ; simp [inv_zero_eq χ hL]
       rw [this]
       exact Filter.const_boundedAtFilter _ (0 : ℂ)
@@ -413,7 +417,8 @@ variable {L : ℕ} [NeZero L] (χ : DirichletCharacter ℂ L)
 def cb (b : ZMod L) (n : ℕ) : ℂ :=
   if n = 0 then π / L * Complex.cot (π * ((b.val : ℤ) : ℂ) / L) else
     -(2 * π * I) / L * ∑ k ∈ n.divisors,
-      (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) - cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k / L)))
+      (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) - cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k /
+        L)))
 
 lemma hasSum_G {b : ZMod L} (hb : b ≠ 0) (τ : ℍ) :
     HasSum (fun n : ℕ => cb b n * cexp (2 * π * I * τ) ^ n) (eisensteinG1 L (vb L b) τ) := by
@@ -473,7 +478,8 @@ theorem A_of_ne_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) {n : ℕ} (hn : n �
   unfold A
   simp only [cb, ite_eq_right hn]
   have hterm : ∀ b : ZMod L, χ⁻¹ b * (-(2 * π * I) / L * ∑ k ∈ n.divisors,
-      (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) - cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k / L)))) =
+      (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) - cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k /
+        L)))) =
       -(2 * π * I) / L * ∑ k ∈ n.divisors,
         (χ⁻¹ b * ψL L (b * (k : ZMod L)) - χ⁻¹ b * ψL L (b * (-(k : ZMod L)))) := by
     intro b
@@ -628,7 +634,8 @@ theorem E0_mdifferentiable (hL : 3 ≤ L) : MDiff (E0 L χ) := by
     have hw0 : 0 < w.im := lt_trans hεpos hw'
     simp only [Function.comp_apply, ofComplex_apply_of_im_pos hw0]
     exact ((hasSum_E0 χ hL ⟨w, hw0⟩).tsum_eq).symm
-  exact ((hdiff.differentiableAt (hU.mem_nhds hzU)).congr_of_eventuallyEq heq).differentiableWithinAt
+  exact ((hdiff.differentiableAt (hU.mem_nhds hzU)).congr_of_eventuallyEq
+    heq).differentiableWithinAt
 
 end qexp
 

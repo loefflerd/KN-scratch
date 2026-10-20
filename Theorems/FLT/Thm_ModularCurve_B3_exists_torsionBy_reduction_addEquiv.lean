@@ -120,7 +120,8 @@ theorem solution (W : WeierstrassCurve H)
   have h' : ((liftModel W hW).map valuationSubringH.subtype).toAffine.Nonsingular x y := by
     rw [liftModel_map_subtype]; exact h
   have hx : x ∈ valuationSubringH := by
-    refine X_mem_of_nsmul_eq_zero' (liftModel W hW) (natCast_residueField_ne_zero (NeZero.ne p)) h' ?_
+    refine X_mem_of_nsmul_eq_zero' (liftModel W hW) (natCast_residueField_ne_zero (NeZero.ne p)) h'
+      ?_
     have : (P : W.toAffine.Point) = (Affine.Point.some x y h' :
         ((liftModel W hW).map valuationSubringH.subtype).toAffine.Point) := hP
     rw [← this]; exact hPt

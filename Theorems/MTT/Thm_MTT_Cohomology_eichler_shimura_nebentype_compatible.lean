@@ -185,7 +185,8 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j))
+        := by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -547,7 +548,8 @@ theorem MTT.Cohomology.eichler_shimura_nebentype_compatible
         e (γ.val 1 1 : ZMod N) • act γ.val.val (reflection (I h).val (x, y))) ∧
     (∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       boundaryCochain Φ (cuspAct γ.val x, cuspAct γ.val y) =
-        e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y))) := _root_.solution hN hk I hI g h Φ hΦ e hlaw
+        e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y))) := _root_.solution hN hk
+          I hI g h Φ hΦ e hlaw
 end
 
 end publicSection

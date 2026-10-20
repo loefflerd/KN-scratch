@@ -43,7 +43,8 @@ This is the classical finite-dimensionality of spaces of modular forms of fixed 
 arithmetic group, here in the uniform form covering all finite-index subgroups of
 $\mathrm{SL}_2(\mathbb{Z})$, in particular $\Gamma_0(N)$, $\Gamma_1(N)$ and $\Gamma(N)$. It
 underlies the corresponding statements for cusp forms
-([`CuspForm.finiteDimensional_of_isArithmetic`](thm.html#CuspForm.finiteDimensional_of_isArithmetic),
+([`CuspForm.finiteDimensional_of_isArithmetic`]
+(thm.html#CuspForm.finiteDimensional_of_isArithmetic),
 [`CuspForm.finiteDimensional_Gamma1`](thm.html#CuspForm.finiteDimensional_Gamma1)) and the
 construction of bases with controlled $q$-expansion coefficients, and hence the treatment of Hecke
 operators as a commuting family of endomorphisms of a finite-dimensional space.
@@ -96,7 +97,8 @@ theorem solution (𝒢 : Subgroup (GL (Fin 2) ℝ)) [𝒢.IsArithmetic] [𝒢.Ha
   obtain ⟨M, hM, hconj⟩ := Subgroup.IsArithmetic.exists_nat_mem_strictPeriods_conj 𝒢
   have hM𝒢 : (M : ℝ) ∈ 𝒢.strictPeriods := by simpa using hconj 1
   set B := M * ((k * 𝒢.relIndex 𝒮ℒ).toNat / 12) + 1 with hB
-  refine Module.Finite.of_injective (ModularForm.qExpansionCoeffs_W2D k (Nat.cast_pos.mpr hM) hM𝒢 B) ?_
+  refine Module.Finite.of_injective (ModularForm.qExpansionCoeffs_W2D k (Nat.cast_pos.mpr hM) hM𝒢 B)
+    ?_
   rw [injective_iff_map_eq_zero]
   intro f hf
   refine f.eq_zero_of_lt_order_qExpansion_of_isArithmetic hM hconj (lt_of_lt_of_le ?_

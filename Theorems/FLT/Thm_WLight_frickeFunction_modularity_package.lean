@@ -208,7 +208,8 @@ theorem wpNorm_eq_imp {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : 
 
 theorem isBoundedAtImInfty_frickeH {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) : IsBoundedAtImInfty (frickeH N a₁ a₂) :=
-  ((ModularFormClass.bdd_at_infty ModularForm.E₄).mul (ModularFormClass.bdd_at_infty ModularForm.E₆)).mul
+  ((ModularFormClass.bdd_at_infty ModularForm.E₄).mul (ModularFormClass.bdd_at_infty
+    ModularForm.E₆)).mul
     (isBoundedAtImInfty_wpNorm ha₁ ha₂ h0)
 
 theorem qExpansion_coeff_width (f : ℍ → ℂ) {N : ℕ} (hN : N ≠ 0)
@@ -790,7 +791,8 @@ theorem solution (N : ℕ) [NeZero N]
         ∀ a : Fin 2 → ZMod N, a ≠ 0 →
           ∀ (n : ℕ) (z : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)})),
             (z : ℂ) = (qExpansion N (f a * ModularForm.discriminant)).coeff n →
-            (qExpansion N (f ![a 0, (s : ZMod N) * a 1] * ModularForm.discriminant)).coeff n = φ z) := by
+            (qExpansion N (f ![a 0, (s : ZMod N) * a 1] * ModularForm.discriminant)).coeff n = φ z)
+              := by
   intro f
   have hLpp : ∀ τ : ℍ, L τ = periodPairOfTau τ := fun τ =>
     periodPair_ext' ((hL τ).1.trans (periodPairOfTau_ω₁ τ).symm)
@@ -847,7 +849,8 @@ theorem solution (N : ℕ) [NeZero N]
           (mdifferentiable_frickeH h1 h2 h0) (periodic_frickeH h1 h2 h0)
           (isBoundedAtImInfty_frickeH h1 h2 h0)), PowerSeries.coeff_smul, smul_eq_mul]
       refine mul_mem ?_ (qExpansion_frickeH_coeff_mem_kN h1 h2 h0 n)
-      show ((-(1 / 2592) : ℂ)) ∈ IntermediateField.adjoin ℚ {Complex.exp (2 * ↑Real.pi * Complex.I / N)}
+      show ((-(1 / 2592) : ℂ)) ∈ IntermediateField.adjoin ℚ {Complex.exp (2 * ↑Real.pi * Complex.I /
+        N)}
       simp
   · intro a b ha hb hab
     exact frickeF_eq_imp ⟨a, ha⟩ ⟨b, hb⟩ (by rw [← hfeq' a, ← hfeq' b]; exact hab)
@@ -955,6 +958,7 @@ theorem WLight.frickeFunction_modularity_package (N : ℕ) [NeZero N]
         ∀ a : Fin 2 → ZMod N, a ≠ 0 →
           ∀ (n : ℕ) (z : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)})),
             (z : ℂ) = (qExpansion N (f a * ModularForm.discriminant)).coeff n →
-            (qExpansion N (f ![a 0, (s : ZMod N) * a 1] * ModularForm.discriminant)).coeff n = φ z) := _root_.solution N L hL
+            (qExpansion N (f ![a 0, (s : ZMod N) * a 1] * ModularForm.discriminant)).coeff n = φ z)
+              := _root_.solution N L hL
 
 end publicSection

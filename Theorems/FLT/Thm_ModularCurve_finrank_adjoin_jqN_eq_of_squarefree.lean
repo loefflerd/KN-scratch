@@ -59,7 +59,8 @@ This is the statement that the modular equation of squarefree level $N$ has degr
 $\mathbb{Q}(j)$, equivalently that the modular polynomial $\Phi_N(X,Y)$ is irreducible over
 $\mathbb{Q}(j)$, formulated for the formal $q$-expansion model of the function field of $X_0(N)$
 inside $\mathbb{Q}((q))$. It is used by
-[`ModularCurve.functionFieldGeneration_of_squarefree`](thm.html#ModularCurve.functionFieldGeneration_of_squarefree),
+[`ModularCurve.functionFieldGeneration_of_squarefree`]
+(thm.html#ModularCurve.functionFieldGeneration_of_squarefree),
 which identifies that function field as $\mathbb{Q}(j,j_N)$.
 
 ## Explanation of the source proof
@@ -166,7 +167,8 @@ omit [Algebra ℚ K] in
 
 omit [Algebra ℚ K] in
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 omit [Algebra ℚ K] in
@@ -188,7 +190,8 @@ theorem phiProd_conj_eq (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [conj_succ_eq]
 
 theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
-    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^ b)) := by
+    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^
+      b)) := by
   classical
   rw [phiProd_conj_eq]
   have h1 : (Polynomial.X - Polynomial.C (TS K (p * p) 1) : Polynomial (LaurentSeries K)) ≠ 0 :=
@@ -198,8 +201,10 @@ theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [Polynomial.roots_mul (mul_ne_zero h1 h2), Polynomial.roots_X_sub_C,
     Finset.prod_eq_multiset_prod,
     Finset.range_val]
-  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range p)) =
-      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C a) := by
+  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range
+    p)) =
+      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C
+        a) := by
     rw [Multiset.map_map]; rfl
   rw [hm, Polynomial.roots_multiset_prod_X_sub_C, Multiset.singleton_add]
 
@@ -224,7 +229,8 @@ theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
   have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
   have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) :=
     CyclotomicField.isCyclotomicExtension N ℚ
-  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
+  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N)
+    (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
   ((exists_isPrimitiveRoot_cyclotomicField N).choose_spec.isUnit (NeZero.ne N)).unit
@@ -289,7 +295,8 @@ private theorem prod_form_ne_zero (N : ℕ) (ζ : Kˣ) (p : ℕ) [NeZero p] (e :
     (u : Kˣ) :
     (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (coeffEmb K jq)))) *
         ∏ b ∈ Finset.range p,
-          (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ (b * (N / p))) (coeffEmb K jq)))) ≠ 0 :=
+          (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ (b * (N / p))) (coeffEmb K
+            jq)))) ≠ 0 :=
   mul_ne_zero (Polynomial.X_sub_C_ne_zero _)
     (Polynomial.monic_prod_of_monic _ _ fun _ _ => Polynomial.monic_X_sub_C _).ne_zero
 
@@ -410,7 +417,8 @@ theorem phiAtSeed_jqN_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
 theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZero A] (n : ℕ)
     [NeZero n]
     (data : ModularPolynomialData n) (M : ℕ) [NeZero M] :
-    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M * n)))) = 0 :=
+    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M *
+      n)))) = 0 :=
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
@@ -701,7 +709,8 @@ theorem toAdjoin_eq_minpoly (p : ℕ) [hp : Fact p.Prime] (data : ModularPolynom
     ⟨_, phiAtSeed_monic data jGen, by rwa [Polynomial.aeval_def] at hroot⟩
   have hdeg : (minpoly ℚ⟮jq⟯ (jqN p)).natDegree = p + 1 := by
     rw [← IntermediateField.adjoin.finrank hint]; exact finrank_adjoin_jqN_eq_of_prime p
-  refine Polynomial.eq_of_monic_of_dvd_of_natDegree_le (minpoly.monic hint) (phiAtSeed_monic data jGen)
+  refine Polynomial.eq_of_monic_of_dvd_of_natDegree_le (minpoly.monic hint) (phiAtSeed_monic data
+    jGen)
     (minpoly.dvd _ _ hroot) ?_
   rw [hdeg, phiAtSeed_natDegree, dedekindPsi_prime hp.out]
 
@@ -722,9 +731,12 @@ open ModularCurve.W1 in
 set_option synthInstance.maxHeartbeats 40000 in -- this is needed (DL)
 private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZero N]
     (hN : Squarefree N) :
-    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N := by
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N}
+      : Set (LaurentSeries ℚ))) = dedekindPsi N := by
   classical
-  set Sg : Set (LaurentSeries ℚ) := insert jq {x : LaurentSeries ℚ | ∃ p ∈ N.primeFactors, ∃ _ : NeZero p, x = jqN p}
+  set Sg : Set (LaurentSeries ℚ) := insert jq {x : LaurentSeries ℚ | ∃ p ∈ N.primeFactors, ∃ _ :
+    NeZero p, x = jqN p}
     with hSg
   have hle : ℚ⟮jq⟯ ≤ IntermediateField.adjoin ℚ Sg :=
     IntermediateField.adjoin.mono ℚ _ _ (by simp [hSg])
@@ -746,7 +758,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
   have hαE : jqN N ∈ E := memE N inferInstance (dvd_refl N)
   have hsub : IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ)) ≤ E :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr hαE)
-  have hup : Module.finrank ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ))) ≤ dedekindPsi N :=
+  have hup : Module.finrank ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ)))
+    ≤ dedekindPsi N :=
     hfin ▸ IntermediateField.finrank_le_of_le_right hsub
   have : NeZero (N * N) := ⟨mul_ne_zero (NeZero.ne N) (NeZero.ne N)⟩
   let K := CyclotomicField (N * N) ℚ
@@ -767,7 +780,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
   have hsplit : ∀ x : E, ((minpoly ℚ⟮jq⟯ x).map (algebraMap ℚ⟮jq⟯ (LaurentSeries K))).Splits := by
     intro x
     rw [← minpoly.algHom_eq E.val Subtype.val_injective x]
-    refine @IntermediateField.splits_of_mem_adjoin ℚ⟮jq⟯ (LaurentSeries ℚ) _ _ _ (LaurentSeries K) _ _ Sg ?_
+    refine @IntermediateField.splits_of_mem_adjoin ℚ⟮jq⟯ (LaurentSeries ℚ) _ _ _ (LaurentSeries K) _
+      _ Sg ?_
       (x : LaurentSeries ℚ) x.2
     intro y hy
     rcases hy with rfl | ⟨p, hp, _, rfl⟩
@@ -786,7 +800,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
       rw [← hmin, phiAtSeed_map, halg]
       change (phiAtSeed data (ι jq)).Splits
       have : NeZero (N * (N / p)) :=
-        ⟨mul_ne_zero (NeZero.ne N) (Nat.div_ne_zero_iff_of_dvd hpN |>.mpr ⟨NeZero.ne N, (Nat.prime_of_mem_primeFactors hp).ne_zero⟩)⟩
+        ⟨mul_ne_zero (NeZero.ne N) (Nat.div_ne_zero_iff_of_dvd hpN |>.mpr ⟨NeZero.ne N,
+          (Nat.prime_of_mem_primeFactors hp).ne_zero⟩)⟩
       have hseed : ι jq = qExpand K (p * (N * (N / p))) (qTwist ((1 : Kˣ) ^ p) (coeffEmb K jq)) :=
         by
         rw [← TS_eq_coeffEmb]
@@ -799,7 +814,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
         (Polynomial.Splits.prod fun _ _ => Polynomial.Splits.X_sub_C _)
   have hcard : Nat.card (E →ₐ[ℚ⟮jq⟯] LaurentSeries K) = dedekindPsi N := by
     rw [AlgHom.natCard_of_splits ℚ⟮jq⟯ E (LaurentSeries K) hsplit, hfin]
-  have hlev : ∀ (ψ : E →ₐ[ℚ⟮jq⟯] LaurentSeries K) (d : ℕ) (_ : NeZero d) (hd : d ∣ N) (hmem : jqN d ∈ E),
+  have hlev : ∀ (ψ : E →ₐ[ℚ⟮jq⟯] LaurentSeries K) (d : ℕ) (_ : NeZero d) (hd : d ∣ N) (hmem : jqN d
+    ∈ E),
       IsLevel K N d (ψ ⟨jqN d, hmem⟩) := by
     intro ψ d
     induction d using induction_on_primes with
@@ -823,7 +839,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
       have hrel : (phiAtSeed data (ψ ⟨jqN a, memE a inferInstance ha⟩)).IsRoot
           (ψ ⟨jqN (a * p), memE (a * p) inferInstance hap⟩) :=
         phiAtSeed_eval_map data _ _ (ψ : E →+* LaurentSeries K)
-          (phiAtSeed_eval_of_injective data _ _ (algebraMap E (LaurentSeries ℚ)) Subtype.val_injective
+          (phiAtSeed_eval_of_injective data _ _ (algebraMap E (LaurentSeries ℚ))
+            Subtype.val_injective
             (phiAtSeed_jqN_eval p data a))
       have hval :=
         isLevel_mul_of_isRoot N hN ζ hζ (M := a) (q := p) hap data (ih inferInstance ha _) hrel
@@ -834,7 +851,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
   have hinj : Function.Injective (fun ψ : E →ₐ[ℚ⟮jq⟯] LaurentSeries K => ψ ⟨jqN N, hαE⟩) := by
     intro ψ₁ ψ₂ htop
     have hdown : ∀ m d : ℕ, ∀ _ : NeZero d, ∀ hdm : d * m = N,
-        ψ₁ ⟨jqN d, memE d inferInstance ⟨m, hdm.symm⟩⟩ = ψ₂ ⟨jqN d, memE d inferInstance ⟨m, hdm.symm⟩⟩ := by
+        ψ₁ ⟨jqN d, memE d inferInstance ⟨m, hdm.symm⟩⟩ = ψ₂ ⟨jqN d, memE d inferInstance ⟨m,
+          hdm.symm⟩⟩ := by
       intro m
       induction m using induction_on_primes with
       | zero => intro d _ h; exact absurd h (by rw [Nat.mul_zero]; exact (NeZero.ne N).symm)
@@ -858,7 +876,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
           intro ψ
           have h1 : (phiAtSeed data (⟨jqN (d * p), memE (d * p) inferInstance hdpN⟩ : E)).eval
               ⟨jqN d, memE d inferInstance hdN⟩ = 0 :=
-            phiAtSeed_eval_of_injective data _ _ (algebraMap E (LaurentSeries ℚ)) Subtype.val_injective
+            phiAtSeed_eval_of_injective data _ _ (algebraMap E (LaurentSeries ℚ))
+              Subtype.val_injective
               (phiAtSeed_jqN_eval_down p data hs d)
           exact phiAtSeed_eval_map data _ _ (ψ : E →+* LaurentSeries K) h1
         exact eq_of_isRoot_of_isLevel N hN ζ hζ (M := d) (q := p) hdpN data
@@ -882,7 +901,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
         Polynomial.aeval_algHom_apply,
         minpoly.aeval, map_zero]⟩
   have hev : Function.Injective ev := fun ψ₁ ψ₂ h => hinj (congrArg Subtype.val h)
-  have hlow : dedekindPsi N ≤ Module.finrank ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ))) :=
+  have hlow : dedekindPsi N ≤ Module.finrank ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set
+    (LaurentSeries ℚ))) :=
     by
     rw [IntermediateField.adjoin.finrank hintL, ← hcard]
     refine (Nat.card_le_card_of_injective ev hev).trans ?_
@@ -894,7 +914,9 @@ p2m_open "ModularCurve~coeffEmb_qExpand\
   " in
 open _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_squarefree.ModularCurve in
 theorem solution (N : ℕ) [NeZero N] (hN : Squarefree N) :
-    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N :=
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N}
+      : Set (LaurentSeries ℚ))) = dedekindPsi N :=
   ModularCurve.finrank_adjoin_jqN_eq_of_squarefree N hN
 
 end
@@ -909,7 +931,9 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZero N] (hN : Squarefree N) :
-    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N :=
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N}
+      : Set (LaurentSeries ℚ))) = dedekindPsi N :=
   solution N hN
 
 end publicSection

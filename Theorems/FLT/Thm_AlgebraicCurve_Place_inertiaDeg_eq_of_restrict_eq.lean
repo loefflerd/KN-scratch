@@ -41,7 +41,8 @@ $f(W'|_{F'}) = f(W|_{F'})$ as natural numbers.
 This is the classical constancy of the residue (inertia) degree among the places of $M$ lying over a
 fixed place of $F'$ when $M/F'$ is finite Galois. It feeds the fundamental identity relating the
 number of places in a fibre, the ramification indices and the inertia degrees, used in
-[`AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg`](thm.html#AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg)
+[`AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg`]
+(thm.html#AlgebraicCurve.Place.card_fiberOver_mul_ramificationIndex_mul_inertiaDeg)
 and in the two summation formulas over bifibres.
 
 ## Explanation of the source proof
@@ -85,7 +86,8 @@ private theorem intertwinesAlong_one_ofAlgAut (σ : M ≃ₐ[F'] M) :
 end Place
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_inertiaDeg_eq_of_restrict_eq.AlgebraicCurve.Place in
+open _root_.AlgebraicCurve.Place
+  _root_.P2MW.S_AlgebraicCurve_Place_inertiaDeg_eq_of_restrict_eq.AlgebraicCurve.Place in
 theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (W W' : Place K M)

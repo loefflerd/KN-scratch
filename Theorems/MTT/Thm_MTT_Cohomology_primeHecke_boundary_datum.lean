@@ -31,7 +31,8 @@ datum ($\Gamma_1(N)$-equivariant) whose boundary cochain $\partial\Phi(x,y)=\Phi
 satisfies the nebentype law $\partial\Phi(\gamma x,\gamma
 y)=\varepsilon(d)\,\gamma\cdot\partial\Phi(x,y)$ for $\gamma\in\Gamma_0(N)$. Let $\ell$ be a prime
 and let
-$$T_\ell\phi=\sum_{b=0}^{\ell-1}\phi\Big|\begin{pmatrix}1&b\\0&\ell\end{pmatrix}+\varepsilon(\ell)\,\phi\Big|\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$$
+$$T_\ell\phi=\sum_{b=0}^{\ell-1}\phi\Big|\begin{pmatrix}1&b\\0&\ell\end{pmatrix}+\varepsilon(\ell)\,
+\phi\Big|\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$$
 be the mission's prime Hecke operator on cochains.
 
 **Claim.** $T_\ell\,\partial\Phi$ is again the boundary cochain of a boundary datum: there is a
@@ -43,7 +44,8 @@ $\{\beta_b=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}\}_{b}\cup\{\sigma_\ell\alpha\
 $\alpha=\operatorname{diag}(\ell,1)$, is a set of representatives of
 $\Gamma_1(N)\backslash\Gamma_1(N)\operatorname{diag}(1,\ell)\Gamma_1(N)$ (Diamond–Shurman,
 Proposition 5.2.1), and the standard operator
-$\Psi=\sum_b\operatorname{adj}(\beta_b)\cdot\Phi(\beta_b\,\cdot)+\operatorname{adj}(\sigma_\ell\alpha)\cdot\Phi(\sigma_\ell\alpha\,\cdot)$
+$\Psi=\sum_b\operatorname{adj}(\beta_b)\cdot\Phi(\beta_b\,\cdot)+\operatorname{adj}(\sigma_\ell
+\alpha)\cdot\Phi(\sigma_\ell\alpha\,\cdot)$
 on $\operatorname{Hom}_{\Gamma_1(N)}(\operatorname{Div},\operatorname{Sym}^n)$ is well defined and
 $\Gamma_1(N)$-equivariant because right multiplication by $\gamma\in\Gamma_1(N)$ permutes the
 cosets. Since $\partial\Phi$ has the nebentype law and the lower-right entry of $\sigma_\ell$ is
@@ -65,7 +67,8 @@ $T_\ell\phi=\sum_{b<\ell}\phi|\beta_b+\varepsilon(\ell)\,\phi|\alpha$ with
 $\beta_b=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$, $\alpha=\operatorname{diag}(\ell,1)$ and
 $(\phi|M)(x,y)=\operatorname{adj}(M)\cdot\phi(Mx,My)$. Since each slash is linear,
 $T_\ell\partial\Phi=\partial(T^{\mathrm{pl}}\Phi)$ with
-$(T^{\mathrm{pl}}\Phi)(x)=\sum_b\operatorname{adj}(\beta_b)\cdot\Phi(\beta_bx)+\varepsilon(\ell)\operatorname{adj}(\alpha)\cdot\Phi(\alpha
+$(T^{\mathrm{pl}}\Phi)(x)=\sum_b\operatorname{adj}(\beta_b)\cdot\Phi(\beta_bx)+\varepsilon(\ell)
+\operatorname{adj}(\alpha)\cdot\Phi(\alpha
 x)$ (`primeHecke_boundaryCochain`). The platform's `fractional` action of an integer matrix is the
 action of $GL_2(\mathbf Q)$ on $\mathbf P^1(\mathbf Q)$ (`fractional_eq_smul`), hence multiplicative
 (`fractional_mul`) and equal to `cuspAct` on $SL_2(\mathbf Z)$.
@@ -277,7 +280,8 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) :=
+        by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -356,7 +360,8 @@ variable {N : ℕ}
 def heckeDatum (e : DirichletCharacter ℂ N) (l : ℕ) (Φ : Cusp → Binary ℂ) : Cusp → Binary ℂ :=
   fun x => ∑ b : Fin l, act (Matrix.adjugate !![1, (b.val : ℤ); 0, (l : ℤ)])
       (Φ (fractional !![1, (b.val : ℤ); 0, (l : ℤ)] x)) +
-    e (l : ZMod N) • act (Matrix.adjugate !![(l : ℤ), 0; 0, 1]) (Φ (fractional !![(l : ℤ), 0; 0, 1] x))
+    e (l : ZMod N) • act (Matrix.adjugate !![(l : ℤ), 0; 0, 1]) (Φ (fractional !![(l : ℤ), 0; 0, 1]
+      x))
 
 lemma primeHecke_boundaryCochain (e : DirichletCharacter ℂ N) (l : ℕ) (Φ : Cusp → Binary ℂ) :
     primeHecke (e (l : ZMod N)) l (boundaryCochain Φ) = boundaryCochain (heckeDatum e l Φ) := by
@@ -613,7 +618,8 @@ lemma key_factor (γ : Gamma0 N) (x : Option (ZMod l))
       have hlq : (l : ℤ) * q = (γ.val 0 1 + b₀.val * γ.val 1 1) -
           (γ.val 0 0 + b₀.val * γ.val 1 0) * b'.val := Int.mul_ediv_cancel' hdiv
       let γ' : Gamma0 N :=
-        mkGamma0 !![γ.val 0 0 + b₀.val * γ.val 1 0, q; l * γ.val 1 0, γ.val 1 1 - γ.val 1 0 * b'.val]
+        mkGamma0 !![γ.val 0 0 + b₀.val * γ.val 1 0, q; l * γ.val 1 0, γ.val 1 1 - γ.val 1 0 *
+          b'.val]
           (by rw [Matrix.det_fin_two_of]; linear_combination hdet - γ.val 1 0 * hlq)
           (by simp [hcN])
       refine ⟨γ', ?_, ?_, ?_⟩
@@ -829,7 +835,8 @@ lemma key_std (hN : 0 < N) (hcop : Nat.Coprime l N) (δ : Gamma1 N) (x : Option 
           Mstd (sigmaL (l := l) hN hcop) (σγ ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ x) := by
   obtain ⟨ha, hd, hc⟩ := (Gamma1_mem N δ.val).mp δ.2
   have hlN : ¬ l ∣ N := (hl.out.coprime_iff_not_dvd).mp hcop
-  have hgood : ¬ (x = none ∧ (((⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ : Gamma0 N).val 1 0 : ℤ) : ZMod l) = 0 ∧
+  have hgood : ¬ (x = none ∧ (((⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ : Gamma0 N).val 1 0 : ℤ) : ZMod l) =
+    0 ∧
       l ∣ N) := fun h => hlN h.2.2
   obtain ⟨γ₀, hfac, h00, h11⟩ := key_factor ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ x hgood
   have hu := linv_mul hN hcop
@@ -942,7 +949,8 @@ lemma heckeStd_term (hN : 0 < N) (hcop : Nat.Coprime l N) (Φ : Cusp → Binary 
         (Φ (fractional (Mstd (sigmaL (l := l) hN hcop) z) (cuspAct δ.val y))) =
       act δ.val.val (act (Matrix.adjugate (Mstd (sigmaL (l := l) hN hcop)
           (σγ ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ z)))
-        (Φ (fractional (Mstd (sigmaL (l := l) hN hcop) (σγ ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ z)) y))) := by
+        (Φ (fractional (Mstd (sigmaL (l := l) hN hcop) (σγ ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ z)) y)))
+          := by
   obtain ⟨γ', hγ', hfac⟩ := key_std hN hcop δ z
   have hδdet : ((δ.val : Matrix (Fin 2) (Fin 2) ℤ)).det ≠ 0 := by simp
   have hγ'det : ((γ' : Matrix (Fin 2) (Fin 2) ℤ)).det ≠ 0 := by simp
@@ -994,7 +1002,8 @@ lemma heckeStd_sub_heckeDatum (hN : 0 < N) (hcop : Nat.Coprime l N) (e : Dirichl
     (hlaw : ∀ γ : Gamma0 N, ∀ x y,
       boundaryCochain Φ (cuspAct γ.val x, cuspAct γ.val y) =
         e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y))) :
-    ∃ K : Binary ℂ, ∀ x, heckeStd (l := l) (sigmaL (l := l) hN hcop) Φ x = heckeDatum e l Φ x + K := by
+    ∃ K : Binary ℂ, ∀ x, heckeStd (l := l) (sigmaL (l := l) hN hcop) Φ x = heckeDatum e l Φ x + K :=
+      by
   set σ := sigmaL (l := l) hN hcop with hσ
   have hσ11 : ((σ.val 1 1 : ℤ) : ZMod N) = (l : ZMod N) := by
     rw [hσ, sigmaL_11]; simp
@@ -1036,7 +1045,8 @@ theorem heckeDatum_equivariant_of_dvd (_hN : 0 < N) (hlN : l ∣ N) (e : Dirichl
   set δ₀ : Gamma0 N := ⟨δ.val, Gamma1_in_Gamma0 N δ.2⟩ with hδ₀
   obtain ⟨ha, hd, hc⟩ := (Gamma1_mem N δ.val).mp δ.2
   have hlN' : (l : ℤ) ∣ N := Int.natCast_dvd_natCast.mpr hlN
-  have hmodl : ∀ z : ℤ, ((z : ZMod N) = 1 → (z : ZMod l) = 1) ∧ ((z : ZMod N) = 0 → (z : ZMod l) = 0) :=
+  have hmodl : ∀ z : ℤ, ((z : ZMod N) = 1 → (z : ZMod l) = 1) ∧ ((z : ZMod N) = 0 → (z : ZMod l) =
+    0) :=
     by
     intro z
     constructor
@@ -1149,7 +1159,8 @@ theorem MTT.Cohomology.primeHecke_boundary_datum
         e (γ.val 1 1 : ZMod N) • act γ.val.val (boundaryCochain Φ (x, y)))
     (l : ℕ) (hl : l.Prime) :
     ∃ Ψ : Cusp → Binary ℂ, IsBoundaryDatum N (k-2) Ψ ∧
-      primeHecke (e (l : ZMod N)) l (boundaryCochain Φ) = boundaryCochain Ψ := _root_.solution hN hk e Φ hΦ hlaw l hl
+      primeHecke (e (l : ZMod N)) l (boundaryCochain Φ) = boundaryCochain Ψ := _root_.solution hN hk
+        e Φ hΦ hlaw l hl
 end
 
 end publicSection

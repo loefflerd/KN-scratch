@@ -155,7 +155,8 @@ omit [Algebra ℚ K] in
 
 omit [Algebra ℚ K] in
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 omit [Algebra ℚ K] in
@@ -177,7 +178,8 @@ theorem phiProd_conj_eq (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [conj_succ_eq]
 
 theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
-    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^ b)) := by
+    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^
+      b)) := by
   classical
   rw [phiProd_conj_eq]
   have h1 : (Polynomial.X - Polynomial.C (TS K (p * p) 1) : Polynomial (LaurentSeries K)) ≠ 0 :=
@@ -187,8 +189,10 @@ theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [Polynomial.roots_mul (mul_ne_zero h1 h2), Polynomial.roots_X_sub_C,
     Finset.prod_eq_multiset_prod,
     Finset.range_val]
-  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range p)) =
-      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C a) := by
+  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range
+    p)) =
+      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C
+        a) := by
     rw [Multiset.map_map]; rfl
   rw [hm, Polynomial.roots_multiset_prod_X_sub_C, Multiset.singleton_add]
 
@@ -213,7 +217,8 @@ theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
   have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
   have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) :=
     CyclotomicField.isCyclotomicExtension N ℚ
-  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
+  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N)
+    (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
   ((exists_isPrimitiveRoot_cyclotomicField N).choose_spec.isUnit (NeZero.ne N)).unit
@@ -258,7 +263,8 @@ theorem phiAtSeed_jqN_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
 theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZero A] (n : ℕ)
     [NeZero n]
     (data : ModularPolynomialData n) (M : ℕ) [NeZero M] :
-    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M * n)))) = 0 :=
+    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M *
+      n)))) = 0 :=
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
@@ -330,7 +336,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_prime_of_not_mem
     rw [RingHom.algebraMap_toAlgebra, ← Polynomial.map_map, hPmap, phiAtSeed_map]
     exact phiAtSeed_iota_jq_eq_phiProd p ζ hζ data
   have hirr : Irreducible P := by
-    refine Polynomial.irreducible_of_transitive_ringAut P hPmonic ?_ (qTwistEquiv ζ) ?_ (TS K (p * p) 1)
+    refine Polynomial.irreducible_of_transitive_ringAut P hPmonic ?_ (qTwistEquiv ζ) ?_ (TS K (p *
+      p) 1)
       (fun b => TS K 1 (ζ ^ b)) p ?_ ?_ ?_ ?_
     · rw [hPmapL, phiProd]
       exact Polynomial.Splits.prod fun i _ => Polynomial.Splits.X_sub_C _

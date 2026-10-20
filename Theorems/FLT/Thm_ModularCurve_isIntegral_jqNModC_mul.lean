@@ -43,9 +43,11 @@ Laurent series containing $j(q^{d})$, obtained from the modular equation $\Phi_{
 monic in $Y$. It is one of the integrality inputs for the degeneracy maps used in the construction
 of the Hecke correspondence, and is cited in the finiteness and field-degree statements for the
 relevant adjunctions of $q$-expansions, such as
-[`ModularCurve.finiteAlong_heckeAlphaBar_of_modularPolynomialData`](thm.html#ModularCurve.finiteAlong_heckeAlphaBar_of_modularPolynomialData)
+[`ModularCurve.finiteAlong_heckeAlphaBar_of_modularPolynomialData`]
+(thm.html#ModularCurve.finiteAlong_heckeAlphaBar_of_modularPolynomialData)
 and
-[`ModularCurve.finrank_adjoin_jqNModC_igusaFunctionFieldX1C_eq`](thm.html#ModularCurve.finrank_adjoin_jqNModC_igusaFunctionFieldX1C_eq).
+[`ModularCurve.finrank_adjoin_jqNModC_igusaFunctionFieldX1C_eq`]
+(thm.html#ModularCurve.finrank_adjoin_jqNModC_igusaFunctionFieldX1C_eq).
 
 ## Explanation of the source proof
 

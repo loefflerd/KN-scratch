@@ -73,8 +73,10 @@ polynomials in the modular invariant $j$, with coefficients controlled by the $q
 (c) allows such polynomial identities to be tested by evaluation, and parts (d), (e) transfer
 rationality information from a single combined $q$-series to the polynomial coefficients. The
 package is cited in the level-$N$ function-field results, among them
-[`WLight.exists_levelFraction_of_stable_family`](thm.html#WLight.exists_levelFraction_of_stable_family),
-[`WLight.exists_monicRel_j_of_mdifferentiable_levelFraction`](thm.html#WLight.exists_monicRel_j_of_mdifferentiable_levelFraction)
+[`WLight.exists_levelFraction_of_stable_family`]
+(thm.html#WLight.exists_levelFraction_of_stable_family),
+[`WLight.exists_monicRel_j_of_mdifferentiable_levelFraction`]
+(thm.html#WLight.exists_monicRel_j_of_mdifferentiable_levelFraction)
 and [`WLight.frickeFunction_orbit_package`](thm.html#WLight.frickeFunction_orbit_package).
 
 ## Explanation of the source proof

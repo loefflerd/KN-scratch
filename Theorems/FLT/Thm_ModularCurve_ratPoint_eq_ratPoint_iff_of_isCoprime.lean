@@ -60,7 +60,8 @@ open ModularCurve ModularCurve.CuspSpace
 
 theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
     (h' : IsCoprime a' c') :
-    ModularCurve.ratPoint a c = ModularCurve.ratPoint a' c' ↔ (a = a' ∧ c = c') ∨ (a = -a' ∧ c = -c') := by
+    ModularCurve.ratPoint a c = ModularCurve.ratPoint a' c' ↔ (a = a' ∧ c = c') ∨ (a = -a' ∧ c =
+      -c') := by
   constructor
   · intro heq
     rcases eq_or_ne c 0 with rfl | hc
@@ -116,7 +117,8 @@ public section publicSection
 open OnePoint
 theorem ModularCurve.ratPoint_eq_ratPoint_iff_of_isCoprime {a c a' c' : ℤ} (h : IsCoprime a c)
     (h' : IsCoprime a' c') :
-    ModularCurve.ratPoint a c = ModularCurve.ratPoint a' c' ↔ (a = a' ∧ c = c') ∨ (a = -a' ∧ c = -c') :=
+    ModularCurve.ratPoint a c = ModularCurve.ratPoint a' c' ↔ (a = a' ∧ c = c') ∨ (a = -a' ∧ c =
+      -c') :=
   solution h h'
 
 end publicSection

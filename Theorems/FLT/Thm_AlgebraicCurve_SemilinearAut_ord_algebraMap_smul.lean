@@ -41,7 +41,8 @@ $F \subseteq F'$, between transport of places and the induced action on elements
 subfield: the order at the transported place of an element of $F$ is the order at the original place
 of the inversely transported element. It is used in the corresponding statement for ramification
 indices,
-[`AlgebraicCurve.SemilinearAut.ramificationIndex_smul`](thm.html#AlgebraicCurve.SemilinearAut.ramificationIndex_smul).
+[`AlgebraicCurve.SemilinearAut.ramificationIndex_smul`]
+(thm.html#AlgebraicCurve.SemilinearAut.ramificationIndex_smul).
 
 ## Explanation of the source proof
 

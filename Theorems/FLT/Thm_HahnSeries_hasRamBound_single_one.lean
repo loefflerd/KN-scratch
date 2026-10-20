@@ -41,7 +41,8 @@ the stated range; no hypothesis is imposed on $c$. The positivity of $e$ is need
 This records that the variable $t$, scaled by an arbitrary constant, lies in the ramification-$e$
 part of the Hahn series field $\mathbb{Q}$-graded over $K$, i.e. in $K((t^{1/e}))$ for every $e \geq
 1$. It is used in the analysis of roots of the modular equation, via
-[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`](thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
+[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`]
+(thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
 
 ## Explanation of the source proof
 

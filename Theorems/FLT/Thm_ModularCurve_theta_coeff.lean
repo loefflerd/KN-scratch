@@ -68,14 +68,17 @@ p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_coeff {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) :
-    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k = k • f.coeff k := by
+    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k =
+      k • f.coeff k := by
   rw [HahnSeries.coeff_single_mul, one_mul, LaurentSeries.derivative_apply,
     LaurentSeries.hasseDeriv_coeff]
   simp
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_mul {R : Type*} [CommRing R] (f g : LaurentSeries R) :
-    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (f * g) = f * ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R g) + g * ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f) := by
+    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (f * g) = f *
+      ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R g) + g *
+      ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f) := by
   have hθ : ∀ (h : LaurentSeries R) (m : ℤ),
       ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R h).coeff m
         = m • h.coeff m := by
@@ -101,7 +104,8 @@ private theorem ModularCurve.theta_mul {R : Type*} [CommRing R] (f g : LaurentSe
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_order {K : Type*} [Field K] [Algebra ℚ K] (f : LaurentSeries K)
     (hf : f.order ≠ 0) :
-    ((HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) * LaurentSeries.derivative K f).order = f.order := by
+    ((HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) * LaurentSeries.derivative K f).order =
+      f.order := by
   have hθ : ∀ m : ℤ,
       ((HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) * LaurentSeries.derivative K f).coeff m
         = m • f.coeff m := by
@@ -115,7 +119,8 @@ private theorem ModularCurve.theta_order {K : Type*} [Field K] [Algebra ℚ K] (
       LaurentSeries.derivative K f).coeff f.order ≠ 0 := by
     rw [hθ, zsmul_eq_mul]
     exact mul_ne_zero (Int.cast_ne_zero.mpr hf) (HahnSeries.coeff_order_eq_zero.not.mpr hf0)
-  have hne : (HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) * LaurentSeries.derivative K f ≠ 0 :=
+  have hne : (HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) * LaurentSeries.derivative K f ≠
+    0 :=
     HahnSeries.ne_zero_of_coeff_ne_zero hlead
   refine le_antisymm (HahnSeries.order_le_of_coeff_ne_zero hlead) ?_
   rw [HahnSeries.le_order_iff_forall hne]
@@ -125,7 +130,9 @@ private theorem ModularCurve.theta_order {K : Type*} [Field K] [Algebra ℚ K] (
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_qExpand {R : Type*} [CommRing R] (N : ℕ) [NeZero N]
     (f : LaurentSeries R) :
-    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (qExpand R N f) = N • (qExpand R N ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f)) := by
+    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (qExpand R N
+      f) = N • (qExpand R N ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) *
+      LaurentSeries.derivative R f)) := by
   ext k
   rw [theta_coeff, HahnSeries.coeff_nsmul, Pi.smul_apply]
   by_cases hk : (N : ℤ) ∣ k
@@ -135,7 +142,9 @@ private theorem ModularCurve.theta_qExpand {R : Type*} [CommRing R] (N : ℕ) [N
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_qTwist {R : Type*} [CommRing R] (u : Rˣ) (f : LaurentSeries R) :
-    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (qTwist u f) = qTwist u ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f) := by
+    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (qTwist u f)
+      = qTwist u ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R
+      f) := by
   ext k
   rw [theta_coeff, qTwist_coeff, qTwist_coeff, theta_coeff, mul_smul_comm]
 
@@ -148,7 +157,8 @@ end ModularCurve.PhiGen
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots {K : Type*} [Field K] [Algebra ℚ K]
     (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) (n : ℤ) :
-    ((ℓ * ℓ) • qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n) = (ℓ : K) * (f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0) := by
+    ((ℓ * ℓ) • qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n) =
+      (ℓ : K) * (f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0) := by
   have hℓ : (ℓ : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
   rw [HahnSeries.coeff_add, HahnSeries.coeff_nsmul, Pi.smul_apply, sum_qTwist_coeff ℓ ζ hζ f,
     ite_eq_left (dvd_mul_right _ _)]
@@ -169,7 +179,8 @@ p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots_inv {K : Type*} [Field K]
     [Algebra ℚ K] (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K)
     (n : ℤ) :
-    ((ℓ : K) • qExpand K (ℓ * ℓ) f + (ℓ : K)⁻¹ • ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n) = f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0 := by
+    ((ℓ : K) • qExpand K (ℓ * ℓ) f + (ℓ : K)⁻¹ • ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ :
+      ℤ) * n) = f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0 := by
   have hℓ : (ℓ : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
   have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have hℓK : (ℓ : K) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
@@ -202,7 +213,11 @@ private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots_not_dvd {K : Type*
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_theta_sum_slots {R : Type*} [CommRing R] (ℓ : ℕ)
     [NeZero ℓ] (ζ : Rˣ) (f : LaurentSeries R) :
-    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (qExpand R (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f) = (ℓ * ℓ) • qExpand R (ℓ * ℓ) ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f) + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f) := by
+    (HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R (qExpand R (ℓ
+      * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f) = (ℓ * ℓ) • qExpand R (ℓ * ℓ)
+      ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f) + ∑ b ∈
+      Finset.range ℓ, qTwist (ζ ^ b) ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) *
+      LaurentSeries.derivative R f) := by
   rw [map_add, mul_add, theta_qExpand, map_sum, Finset.mul_sum]
   congr 1
   refine Finset.sum_congr rfl fun b _ => ?_
@@ -211,7 +226,10 @@ private theorem ModularCurve.PhiGen.weightTwo_theta_sum_slots {R : Type*} [CommR
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_theta_coeff {R : Type*} [CommRing R] (ℓ : ℕ)
     (f : LaurentSeries R) (n : ℤ) :
-    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff ((ℓ : ℤ) * n) + (if (ℓ : ℤ) ∣ n then (ℓ : R) * ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff (n / ℓ) else 0) = n • ((if (ℓ : ℤ) ∣ n then f.coeff (n / ℓ) else 0) + (ℓ : R) * f.coeff ((ℓ : ℤ) * n)) := by
+    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff ((ℓ
+      : ℤ) * n) + (if (ℓ : ℤ) ∣ n then (ℓ : R) * ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries
+      R) * LaurentSeries.derivative R f).coeff (n / ℓ) else 0) = n • ((if (ℓ : ℤ) ∣ n then f.coeff
+      (n / ℓ) else 0) + (ℓ : R) * f.coeff ((ℓ : ℤ) * n)) := by
   rw [theta_coeff]
   by_cases hn : (ℓ : ℤ) ∣ n
   · rw [ite_eq_left hn, ite_eq_left hn, theta_coeff]
@@ -262,9 +280,11 @@ example :
   simp only [F, θF, w0, w2, ModularCurve.theta_coeff, HahnSeries.coeff_add, HahnSeries.coeff_single]
   norm_num
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve
+  _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve.PhiGen in
 theorem solution {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) :
-    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k = k • f.coeff k :=
+    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k =
+      k • f.coeff k :=
   ModularCurve.theta_coeff f k
 
 end S_ModularCurve_theta_coeff
@@ -278,7 +298,8 @@ public section publicSection
 
 open ModularCurve ModularCurve.PhiGen
 theorem ModularCurve.theta_coeff {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) :
-    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k = k • f.coeff k :=
+    ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k =
+      k • f.coeff k :=
   solution f k
 
 end publicSection

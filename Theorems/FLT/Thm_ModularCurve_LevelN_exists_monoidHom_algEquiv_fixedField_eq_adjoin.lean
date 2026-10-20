@@ -49,9 +49,11 @@ $\mathbb{C}$: it is a Galois extension of $\mathbb{C}(j) = \mathbb{C}(X(1))$ wit
 $\mathrm{SL}_2(\mathbb{Z})/\pm\Gamma(N)$ acting by $F \mapsto F \circ \gamma^{-1}$. It underlies the
 later counting of fibres and double cosets and the genus estimates for the level-$N$ function field,
 such as
-[`ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF`](thm.html#ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF)
+[`ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF`]
+(thm.html#ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF)
 and
-[`ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index`](thm.html#ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index).
+[`ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index`]
+(thm.html#ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index).
 
 ## Explanation of the source proof
 
@@ -305,7 +307,8 @@ theorem ρHom_eq_one_iff (γ : SL(2, ℤ)) :
   constructor
   · intro h v hv
     have hF :=
-      congrArg (fun e : ring N ≃ₐ[ℂ] ring N => ((e ⟨fricke N v, fricke_mem N hv⟩ : ring N) : ℍ → ℂ)) h
+      congrArg (fun e : ring N ≃ₐ[ℂ] ring N => ((e ⟨fricke N v, fricke_mem N hv⟩ : ring N) : ℍ → ℂ))
+        h
     funext τ
     have := congrFun hF τ
     change fricke N v (γ⁻¹ • τ) = fricke N v τ at this
@@ -480,7 +483,8 @@ theorem main :
         (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index ∧
       IsGalois
           (IntermediateField.adjoin ℂ
-            ({algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)} : Set K)) K := by
+            ({algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)} : Set K)) K
+              := by
   refine ⟨fun γ F hF => comp_smul_mem N γ hF, σHom N K, fun γ F hF => σHom_algebraMap' N K γ F hF,
     ker_σHom_eq N K, fixedField_eq N K, transcendental_jK N K, ?_, ?_, ?_⟩
   · rw [← fixedField_eq N K]; exact finiteDimensional_fixedField N K

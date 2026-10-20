@@ -76,7 +76,9 @@ p2m_open_scoped "ModularCurve" in
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_full (L : Type*) [Field L]
     [Algebra ℚ L] (N : ℕ) [NeZero N] :
-    FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (laurentBaseChange L (modularFunctionFieldFull N)) := by
+    FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L
+      (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
+      (laurentBaseChange L (modularFunctionFieldFull N)) := by
   have hmap : (IntermediateField.adjoin L
         ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} :
           Set (laurentBaseChange L (modularFunctionFieldFull N)))).map
@@ -112,9 +114,12 @@ p2m_open_scoped "ModularCurve" in
 set_option synthInstance.maxHeartbeats 400000 in
 private theorem ModularCurve.isSeparable_adjoin_coeffEmb_jq_full (L : Type*) [Field L] [Algebra ℚ L]
     (N : ℕ) [NeZero N] :
-    Algebra.IsSeparable (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (laurentBaseChange L (modularFunctionFieldFull N)) := by
+    Algebra.IsSeparable (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange
+      L (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
+      (laurentBaseChange L (modularFunctionFieldFull N)) := by
   set X : IntermediateField L (laurentBaseChange L (modularFunctionFieldFull N)) :=
-    IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} :
+    IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full
+      N)⟩} :
       Set (laurentBaseChange L (modularFunctionFieldFull N))) with hX
   have : FiniteDimensional X (laurentBaseChange L (modularFunctionFieldFull N)) :=
     finiteDimensional_adjoin_coeffEmb_jq_full L N
@@ -126,7 +131,9 @@ p2m_open "ModularCurve~modularFunctionFieldBar\
   " in
 open _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full.ModularCurve in
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
-    FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (laurentBaseChange L (modularFunctionFieldFull N)) :=
+    FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L
+      (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
+      (laurentBaseChange L (modularFunctionFieldFull N)) :=
   ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_full L N
 
 end S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full
@@ -141,7 +148,9 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_full (L : Type*) [Field L] [Algebra ℚ L]
     (N : ℕ) [NeZero N] :
-    FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (laurentBaseChange L (modularFunctionFieldFull N)) :=
+    FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L
+      (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
+      (laurentBaseChange L (modularFunctionFieldFull N)) :=
   solution L N
 
 end publicSection

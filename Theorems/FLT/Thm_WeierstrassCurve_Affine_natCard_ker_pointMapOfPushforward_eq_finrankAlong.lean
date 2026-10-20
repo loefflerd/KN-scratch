@@ -597,7 +597,12 @@ end
 
 p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve
+  in
 universe u in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]

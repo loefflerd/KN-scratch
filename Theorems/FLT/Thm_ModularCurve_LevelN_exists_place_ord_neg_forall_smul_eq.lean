@@ -259,7 +259,8 @@ theorem cuspFunction_comp_T_inv_eventuallyEq (hh : 0 < h) (hG : Good h G)
   have hc2 : ContinuousAt (fun q => cuspFunction h G (zetaInv h * q)) 0 := by
     have h1 : ContinuousAt (cuspFunction h G) (zetaInv h * 0) := by
       rw [mul_zero]; exact hG.continuousAt hh
-    exact ContinuousAt.comp (g := cuspFunction h G) h1 (continuous_const.mul continuous_id).continuousAt
+    exact ContinuousAt.comp (g := cuspFunction h G) h1 (continuous_const.mul
+      continuous_id).continuousAt
   exact (hc1.eventuallyEq_nhds_iff_eventuallyEq_nhdsNE hc2).mp
     (cuspFunction_comp_T_inv_eventuallyEq_nhdsNE hh hG)
 
@@ -590,7 +591,8 @@ theorem min_ordInf_le_ordInf_add {F G : ℍ → ℂ} (hF : F ∈ ring N) (hG : G
   obtain ⟨n, hn⟩ := exists_isBoundedAtImInfty_mul_pow N hG
   have hmM : PB F (m + n) := PB.add_right hm n
   have hnM : PB G (m + n) := by rw [add_comm]; exact PB.add_right hn m
-  have hsum : (F + G) * (Δ : ℍ → ℂ) ^ (m + n) = F * (Δ : ℍ → ℂ) ^ (m + n) + G * (Δ : ℍ → ℂ) ^ (m + n) :=
+  have hsum : (F + G) * (Δ : ℍ → ℂ) ^ (m + n) = F * (Δ : ℍ → ℂ) ^ (m + n) + G * (Δ : ℍ → ℂ) ^ (m +
+    n) :=
     by
     ring
   have hM : PB (F + G) (m + n) := by
@@ -922,7 +924,9 @@ end Valuation
 
 end ModularCurve.LevelN.CuspPlaces
 
-open _root_.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN ModularCurve.LevelN.CuspPlaces in
+open _root_.ModularCurve.LevelN
+  _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN
+  ModularCurve.LevelN.CuspPlaces in
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]
     [IsScalarTower ℂ (ModularCurve.LevelN.ring N) K]

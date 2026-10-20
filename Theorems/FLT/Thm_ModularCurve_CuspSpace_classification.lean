@@ -46,7 +46,8 @@ divisor $d \mid N$ together with a numerator class in $(\mathbb{Z}/\gcd(d,N/d))^
 (Diamond–Shurman, Prop. 3.8.3). It is obtained from the normal-form results for points of
 $\mathbb{P}^1(\mathbb{Q})$ modulo $\Gamma_0(N)$ and is used to compute the cardinality of the cusp
 space, in
-[`ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount`](thm.html#ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount).
+[`ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount`]
+(thm.html#ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount).
 
 ## Explanation of the source proof
 
@@ -217,7 +218,8 @@ end
 
 theorem solution {N : ℕ} (hN : N ≠ 0) :
     ModularCurve.CuspSpace.Classification N :=
-  ModularCurve.CuspSpace.classification_of_normalFormCriterion hN (ModularCurve.CuspSpace.normalFormCriterion hN)
+  ModularCurve.CuspSpace.classification_of_normalFormCriterion hN
+    (ModularCurve.CuspSpace.normalFormCriterion hN)
 
 end S_ModularCurve_CuspSpace_classification
 end P2MW

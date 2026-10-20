@@ -66,7 +66,8 @@ sum $\sum_b(\zeta^n)^b=\frac{(\zeta^n)^p-1}{\zeta^n-1}$ vanishes (`geom_sum_eq`,
 from `IsPrimitiveRoot.pow_eq_one_iff_dvd`). Hence $\frac1p\sum_bf(\sigma_b)=\sum_{p\mid n}a_nw^n$.
 Reindexing along the injection $m\mapsto pm$ (`Function.Injective.hasSum_iff`, the terms off its
 range being zero) and using $w^{pm}=q_\tau^{\,m}$ yields
-$$\frac1p\sum_{b=0}^{p-1}f\Big(\frac{\tau+b}{p}\Big)=\sum_{m\ge0}a_{pm}\,q_\tau^{\,m}\qquad(\text{`hasSum_heckePrime_upper`}).$$
+$$\frac1p\sum_{b=0}^{p-1}f\Big(\frac{\tau+b}{p}\Big)=\sum_{m\ge0}a_{pm}\,q_\tau^{\,m}\qquad(
+\text{`hasSum_heckePrime_upper`}).$$
 
 **The $V_p$ term.** Since $\operatorname{Im}(p\tau)>0$,
 $f(p\tau)=\sum_na_nq_{p\tau}^{\,n}=\sum_na_nq_\tau^{\,pn}$ by $q_{p\tau}=q_\tau^{\,p}$. Reindexing

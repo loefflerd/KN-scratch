@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
+Based on Prove2Me node
+ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
 (4c0c6588-cadd-583f-ab34-2e414ed26ca5) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 2214a693-0c80-5319-88ed-bc647d42ffff
@@ -71,7 +72,9 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L]
 
 end S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
 end P2MW
-export P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional (solution)
+export
+  P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
+  (solution)
 
 end privateSection
 

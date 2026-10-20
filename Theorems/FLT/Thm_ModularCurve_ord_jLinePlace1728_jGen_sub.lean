@@ -45,7 +45,8 @@ at the point $j = 1728$ of the $j$-line.
 This records one of the standard local normalisations on the $j$-line: $j-1728$ is a uniformiser at
 the point $j=1728$, the point below which the covering $X_0(N)\to X(1)$ has its ramification of
 order dividing $2$. It is used in
-[`ModularCurve.ramificationIndex_eq_ord_sub_of_restrict_eq_jLinePlace1728`](thm.html#ModularCurve.ramificationIndex_eq_ord_sub_of_restrict_eq_jLinePlace1728),
+[`ModularCurve.ramificationIndex_eq_ord_sub_of_restrict_eq_jLinePlace1728`]
+(thm.html#ModularCurve.ramificationIndex_eq_ord_sub_of_restrict_eq_jLinePlace1728),
 where ramification indices above $j=1728$ are computed as orders of $j-1728$ at places of the larger
 function field.
 
@@ -75,7 +76,8 @@ namespace JLineOrdAux
 p2m_open "ModularCurve"
 
 theorem equiv_X_sub_C (b : ℚ) :
-    ModularCurve.jLineRingEquiv (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C b))
+    ModularCurve.jLineRingEquiv (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C
+      b))
       = ModularCurve.jGen - algebraMap ℚ ↥ℚ⟮ModularCurve.jq⟯ b := by
   rw [map_sub, RatFunc.algebraMap_X, map_sub, ModularCurve.jLineRingEquiv_X, RatFunc.algebraMap_C]
   congr 1
@@ -97,7 +99,8 @@ theorem ord_congr_jGen_sub (b : ℚ) (v' : Place ℚ (RatFunc ℚ)) :
   exact ord_X_sub_C ℚ b v'
 
 theorem injective_congr : Function.Injective (Place.congrRingEquiv ModularCurve.jLineRingEquiv
-      (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _) :=
+      (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _)
+        :=
   (Place.congrEquiv ModularCurve.jLineRingEquiv
       (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom)).injective
 

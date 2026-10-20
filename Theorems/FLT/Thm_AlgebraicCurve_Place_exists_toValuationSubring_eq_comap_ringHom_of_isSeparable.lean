@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
+Based on Prove2Me node
+AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
 (c2700d3f-c07d-5588-8b25-09576fc6b229) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 359f9990-bd8a-5b92-a14e-643e8f7b69e8
@@ -77,7 +78,8 @@ variable (hx : Transcendental K x) (hxA : x ∈ A)
 local notation3 "Kx" => Algebra.adjoin K ({x} : Set F)
 local notation3 "Kxfield" => IntermediateField.adjoin K ({x} : Set F)
 
-omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] in
+omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional
+  (IntermediateField.adjoin K ({x} : Set F)) F] in
 include hx in
 private theorem isDedekindDomain_Kx : IsDedekindDomain (Kx) := by
   have hinj : Function.Injective (Polynomial.aeval x : Polynomial K →ₐ[K] F) :=
@@ -101,7 +103,8 @@ private theorem isFractionRing_integralClosure :
     IsFractionRing (integralClosure (Kx) F) F :=
   integralClosure.isFractionRing_of_finite_extension (A := Kx) (Kxfield) F
 
-omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] in
+omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional
+  (IntermediateField.adjoin K ({x} : Set F)) F] in
 include hxA hAK in
 private theorem Kx_le_A : (Kx).toSubring ≤ A.toSubring := by
   intro y hy
@@ -117,7 +120,8 @@ private scoped instance : IsFractionRing (A : ValuationSubring F).toSubring F :=
 private scoped instance : IsFractionRing (A : ValuationSubring F) F :=
   inferInstanceAs (IsFractionRing A.toSubring F)
 
-omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] in
+omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional
+  (IntermediateField.adjoin K ({x} : Set F)) F] in
 include hxA hAK in
 private theorem integralClosure_Kx_le_A :
     (integralClosure (Kx) F).toSubring ≤ A.toSubring := by
@@ -131,7 +135,8 @@ private theorem integralClosure_Kx_le_A :
   obtain ⟨z, hz⟩ := (isIntegrallyClosed_iff F).mp inferInstance hyA
   exact hz ▸ z.2
 
-omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] in
+omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional
+  (IntermediateField.adjoin K ({x} : Set F)) F] in
 include hxA hAK in
 private theorem inv_mem_of_notMem_maximalIdeal {b : integralClosure (Kx) F}
     (hb : Subring.inclusion (integralClosure_Kx_le_A x A hAK hxA) b
@@ -168,7 +173,8 @@ private theorem idealOfA_ne_bot :
   rw [← hab, div_eq_mul_inv]
   exact mul_mem haA (inv_mem_of_notMem_maximalIdeal x A hAK hxA hbm)
 
-omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] in
+omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] [FiniteDimensional
+  (IntermediateField.adjoin K ({x} : Set F)) F] in
 include hxA hAK in
 private theorem place_of_idealOfA_le (P : HeightOneSpectrum (integralClosure (Kx) F))
     [IsDedekindDomain (integralClosure (Kx) F)] [IsFractionRing (integralClosure (Kx) F) F]
@@ -278,7 +284,8 @@ theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] (
 
 end S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable (solution)
+export P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
+  (solution)
 
 end privateSection
 

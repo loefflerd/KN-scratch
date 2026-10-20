@@ -103,11 +103,15 @@ end ModularCurve.RC18Transfer
 open ModularCurve.RC18Transfer in
 theorem solution :
     HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4) *
-        thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)))
-      - 3 * thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4)) *
-        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit))
+        thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X *
+          dedekindEtaUnit)))
+      - 3 * thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ)
+        eisenstein4)) *
+        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X *
+          dedekindEtaUnit))
       = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6) *
-        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)) := by
+        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X *
+          dedekindEtaUnit)) := by
   have hE6 : eisenstein6 =
       (PowerSeries.mk fun n => if n = 0 then 1 else -504 * ∑ d ∈ n.divisors, (d : ℤ) ^ 5) := rfl
   have hZ : eisenstein4 * thetaPS (PowerSeries.X * dedekindEtaUnit)
@@ -129,7 +133,8 @@ theorem solution :
     simpa [hE6, map_mul, map_sub, map_ofNat] using hC
   let ψ : PowerSeries ℤ →+* LaurentSeries ℚ :=
     (HahnSeries.ofPowerSeries ℤ ℚ).comp (PowerSeries.map (Int.castRingHom ℚ))
-  have hψ : ∀ f : PowerSeries ℤ, ψ f = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) :=
+  have hψ : ∀ f : PowerSeries ℤ, ψ f = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map
+    (Int.castRingHom ℚ) f) :=
     fun f => rfl
   have hθ : ∀ f : PowerSeries ℤ, ψ (thetaPS f) = thetaL ℚ (ψ f) := by
     intro f
@@ -152,11 +157,15 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta :
     HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4) *
-        thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)))
-      - 3 * thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4)) *
-        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit))
+        thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X *
+          dedekindEtaUnit)))
+      - 3 * thetaL ℚ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ)
+        eisenstein4)) *
+        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X *
+          dedekindEtaUnit))
       = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6) *
-        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)) :=
+        HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X *
+          dedekindEtaUnit)) :=
   solution
 
 end publicSection

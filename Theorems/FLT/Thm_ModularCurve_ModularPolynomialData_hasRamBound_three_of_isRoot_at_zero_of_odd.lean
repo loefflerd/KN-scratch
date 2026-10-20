@@ -53,9 +53,11 @@ ramification index of $X_0(N) \to X(1)$ at each such point divides $3$, reflecti
 stabiliser of the elliptic point $\rho = e^{2\pi i/3}$ in $\mathrm{PSL}_2(\mathbb Z)$. It feeds the
 divisibility statements
 [`ModularCurve.ord_jBar_dvd_three_of_odd`](thm.html#ModularCurve.ord_jBar_dvd_three_of_odd),
-[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`](thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound)
+[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`]
+(thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound)
 and
-[`ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd`](thm.html#ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd).
+[`ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd`]
+(thm.html#ModularCurve.ord_jBar_sub_1728_dvd_two_of_odd).
 
 ## Explanation of the source proof
 
@@ -257,12 +259,14 @@ open P2MWs13.Wire HahnSeries Polynomial in
 theorem solution
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure
+      ℚ)))
       (HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 3 r := by
   classical
   obtain ⟨𝓔, hΔ, hc⟩ :=
-    WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
+    WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
+      (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
   have h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
   have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = HahnSeries.single (3 : ℚ) (1 : ℚ̄) :=
     j_eq_single_three_one 𝓔 hΔ hc
@@ -291,13 +295,15 @@ theorem solution
     · rw [WeierstrassCurve.map_a₆, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · intro x y hns hd
       have h :=
-        WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries 𝓔 hΔ (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
+        WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries 𝓔 hΔ
+          (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
       exact ⟨(hmemL x).mpr h.1, (hmemL y).mpr h.2⟩
   exact (hasRamBound_one_hahnExpMul_iff 3 (by norm_num) r).mp ((hmemL _).mp hτrL)
 
 end S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd
 end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd (solution)
+export P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd
+  (solution)
 
 end privateSection
 
@@ -306,7 +312,8 @@ public section publicSection
 theorem ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure
+      ℚ)))
       (HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 3 r :=
   solution hN data r hroot

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
+Based on Prove2Me node
+ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
 (92920117-e244-5e68-a7e2-72bc7583480f) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 0ec0d603-b082-54a5-8bcd-bae1227ddeb2
@@ -48,7 +49,8 @@ finite-index subgroup of $\mathrm{SL}_2(\mathbb{Z})$ which is holomorphic on $\m
 poles only at the cusps, is integral over $\mathbb{C}[j]$; here it is formulated at the level of
 $q$-expansions in $\mathbb{C}((q))$. It is used in the construction of the complex points of modular
 curves, via
-[`ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem`](thm.html#ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem).
+[`ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem`]
+(thm.html#ModularCurve.ComplexPlaceDictionaryOf.exists_pt_eq_of_mem).
 The proof cites the identification of [`ModularCurve.jqModC ℂ`](def/ModularCurve_JqCoeff.html#L15)
 with $\tilde{E_4}^3/\tilde\Delta$ and the integrality of $\tilde g/\tilde\Delta^m$ over
 $\mathbb{C}[\tilde{E_4}^3/\tilde\Delta]$ for forms of weight $12m$ on arithmetic subgroups.
@@ -314,7 +316,8 @@ def translateSL (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (A : SL(2, 
     (A : SL(2, ℤ)) : ⇑(translateSL Γ f A) = ⇑f ∣[k] A := rfl
 
 theorem wd_mem_strictPeriods :
-    ((wd Γ : ℕ) : ℝ) ∈ ((Γ.normalCore : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
+    ((wd Γ : ℕ) : ℝ) ∈ ((Γ.normalCore : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods
+      := by
   have hmem : ModularGroup.T ^ ((wd Γ : ℕ) : ℤ) ∈ Γ.normalCore := by
     rw [zpow_natCast]
     exact Γ.normalCore.pow_index_mem ModularGroup.T
@@ -587,7 +590,9 @@ theorem solution
 end
 end S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
 end P2MW
-export P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex (solution)
+export
+  P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
+  (solution)
 
 end privateSection
 

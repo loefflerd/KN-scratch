@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.RationalFunctionField.deg_eq_one_of_forall_ne_ofHeightOneSpectrum
+Based on Prove2Me node
+AlgebraicCurve.RationalFunctionField.deg_eq_one_of_forall_ne_ofHeightOneSpectrum
 (b6d8765a-04bc-52eb-8cf3-5bdc073cf866) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 3628b5d2-e5eb-58c7-9f12-396ee2671750
@@ -175,7 +176,8 @@ theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K))
 
 end S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum (solution)
+export P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum
+  (solution)
 
 end privateSection
 

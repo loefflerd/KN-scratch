@@ -60,10 +60,12 @@ trace $a_\ell$ is not introduced as such but written out as $\ell + 1$ minus the
 F_\ell$-points of $W \bmod \ell$, and the good-reduction hypothesis is the concrete condition $\ell
 \nmid W.\Delta$ for the given integral model. It is used to rule out Galois-stable cofixed lines for
 the Frey curve, via the divisibility statement
-[`WeierstrassCurve.prime_dvd_card_point_of_cofixed_addSubgroup_of_goodReduction`](thm.html#WeierstrassCurve.prime_dvd_card_point_of_cofixed_addSubgroup_of_goodReduction)
+[`WeierstrassCurve.prime_dvd_card_point_of_cofixed_addSubgroup_of_goodReduction`]
+(thm.html#WeierstrassCurve.prime_dvd_card_point_of_cofixed_addSubgroup_of_goodReduction)
 and [`FreyPackage.frey_no_cofixed_large`](thm.html#FreyPackage.frey_no_cofixed_large), and to
 identify the characteristic polynomial of Frobenius on the Tate module in
-[`WeierstrassCurve.tateModuleRep_charpoly_frobenius`](thm.html#WeierstrassCurve.tateModuleRep_charpoly_frobenius).
+[`WeierstrassCurve.tateModuleRep_charpoly_frobenius`]
+(thm.html#WeierstrassCurve.tateModuleRep_charpoly_frobenius).
 
 ## Explanation of the source proof
 

@@ -62,7 +62,11 @@ open UpperHalfPlane
 open scoped MatrixGroups
 
 theorem solution (N : ℕ) (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) :
-    ∃ P : Polynomial ℂ, P.natDegree ≤ N ∧ ((qExpansion 1 (F : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) P * ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ N := by
+    ∃ P : Polynomial ℂ, P.natDegree ≤ N ∧ ((qExpansion 1 (F : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) = Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ)
+      : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ)) P * ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) ^ N := by
   induction N with
   | zero =>
     obtain ⟨c, hc⟩ := ModularFormClass.levelOne_weight_zero_const
@@ -135,10 +139,12 @@ theorem solution (N : ℕ) (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) :
           LaurentSeries ℂ) ≠ 0 := by
         rw [Ne, ← PowerSeries.coe_zero]
         exact fun h => hΔ0 (HahnSeries.ofPowerSeries_injective h)
-      have hsplit : (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3)
+      have hsplit : (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^
+        3)
             ^ (N + 1)
           = (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3
-              / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
+              / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries
+                ℂ))
               ^ (N + 1)
             * ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
               ^ (N + 1) := by
@@ -162,7 +168,11 @@ open UpperHalfPlane
 open scoped MatrixGroups
 theorem ModularForm.exists_qExpansion_eq_aeval_mul_pow_levelOne (N : ℕ)
     (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) :
-    ∃ P : Polynomial ℂ, P.natDegree ≤ N ∧ ((qExpansion 1 (F : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) P * ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ N :=
+    ∃ P : Polynomial ℂ, P.natDegree ≤ N ∧ ((qExpansion 1 (F : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) = Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ)
+      : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ)) P * ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) ^ N :=
   solution N F
 
 end publicSection

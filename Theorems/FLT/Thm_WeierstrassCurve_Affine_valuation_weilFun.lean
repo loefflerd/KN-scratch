@@ -67,13 +67,15 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_weilFun
 
-open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero
+open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
+  WithZero
 open scoped nonZeroDivisors
 
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
     (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ}
     (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
-    (placeOf W K P hP).valuation (W⁄K).FunctionField (weilFun W K n T) = (if (n : ℤ) • P = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • P = 0 then exp (-1 : ℤ) else 1) := by
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (weilFun W K n T) = (if (n : ℤ) • P = T then
+      exp (-1 : ℤ) else 1) / (if (n : ℤ) • P = 0 then exp (-1 : ℤ) else 1) := by
   rw [weilFun, map_div₀, WeierstrassCurve.Affine.valuation_weilNum W hn hT P hP,
     WeierstrassCurve.Affine.valuation_weilNum W hn (smul_zero _) P hP]
 
@@ -92,7 +94,8 @@ theorem WeierstrassCurve.Affine.valuation_weilFun {F K : Type*} [Field F] [Field
     [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
     [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
     (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
-    (placeOf W K P hP).valuation (W⁄K).FunctionField (weilFun W K n T) = (if (n : ℤ) • P = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • P = 0 then exp (-1 : ℤ) else 1) :=
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (weilFun W K n T) = (if (n : ℤ) • P = T then
+      exp (-1 : ℤ) else 1) / (if (n : ℤ) • P = 0 then exp (-1 : ℤ) else 1) :=
   solution W hn hT P hP
 
 end publicSection

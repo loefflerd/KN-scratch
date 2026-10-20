@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable
+Based on Prove2Me node
+AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable
 (1ae50d15-37c4-5a9d-9054-09cdc9f3f89e) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 61f21c19-de5a-5806-bf87-90b6b7aac3dd
@@ -140,7 +141,8 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
   obtain ⟨ω, hω⟩ := exists_ne (0 : Ω[F⁄k])
   have hdegK : Divisor.degree (canonicalDivisorOf hω) = 2 * (genus k F : ℤ) - 2 :=
     degree_canonicalDivisor_eq_of_riemannRoch hRR hC hω
-  have hRRD : (ell D : ℤ) - (ell (canonicalDivisorOf hω - D) : ℤ) = Divisor.degree D + 1 - (genus k F : ℤ) :=
+  have hRRD : (ell D : ℤ) - (ell (canonicalDivisorOf hω - D) : ℤ) = Divisor.degree D + 1 - (genus k
+    F : ℤ) :=
     hRR hω D
   have hneg : Divisor.degree (canonicalDivisorOf hω - D) < 0 := by
     rw [map_sub, hdegK, hg]
@@ -169,7 +171,8 @@ theorem solution
 
 end S_AlgebraicCurve_ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable
 end P2MW
-export P2MW.S_AlgebraicCurve_ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable (solution)
+export P2MW.S_AlgebraicCurve_ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable
+  (solution)
 
 end privateSection
 

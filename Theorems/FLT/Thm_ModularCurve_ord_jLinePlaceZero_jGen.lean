@@ -46,7 +46,8 @@ $1$; that is, $j$ is a uniformiser at the place $j=0$ of the $j$-line.
 This records the elementary but needed fact that the rational function $j$ has a simple zero at the
 point $j=0$ of the $j$-line $X(1)_{\mathbb{Q}}$, the place being one of the three distinguished
 places $j=0,1728,\infty$. It is used by
-[`ModularCurve.ramificationIndex_eq_ord_of_restrict_eq_jLinePlaceZero`](thm.html#ModularCurve.ramificationIndex_eq_ord_of_restrict_eq_jLinePlaceZero),
+[`ModularCurve.ramificationIndex_eq_ord_of_restrict_eq_jLinePlaceZero`]
+(thm.html#ModularCurve.ramificationIndex_eq_ord_of_restrict_eq_jLinePlaceZero),
 where ramification indices of places of modular function fields above $j=0$ are computed as orders
 of $j$.
 
@@ -76,7 +77,8 @@ namespace JLineOrdAux
 p2m_open "ModularCurve"
 
 theorem equiv_X_sub_C (b : ℚ) :
-    ModularCurve.jLineRingEquiv (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C b))
+    ModularCurve.jLineRingEquiv (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C
+      b))
       = ModularCurve.jGen - algebraMap ℚ ↥ℚ⟮ModularCurve.jq⟯ b := by
   rw [map_sub, RatFunc.algebraMap_X, map_sub, ModularCurve.jLineRingEquiv_X, RatFunc.algebraMap_C]
   congr 1
@@ -98,7 +100,8 @@ theorem ord_congr_jGen_sub (b : ℚ) (v' : Place ℚ (RatFunc ℚ)) :
   exact ord_X_sub_C ℚ b v'
 
 theorem injective_congr : Function.Injective (Place.congrRingEquiv ModularCurve.jLineRingEquiv
-      (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _) :=
+      (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _)
+        :=
   (Place.congrEquiv ModularCurve.jLineRingEquiv
       (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom)).injective
 

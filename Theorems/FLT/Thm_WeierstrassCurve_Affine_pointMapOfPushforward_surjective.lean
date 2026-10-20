@@ -87,7 +87,8 @@ theorem solution
     obtain ⟨D', rfl⟩ := Pic0.mk_surjective c'
     let D : Divisor F E.FunctionField := Finsupp.mapDomain s (D' : Divisor F E'.FunctionField)
     have hD : Divisor.pushforwardAlong ι hι D = (D' : Divisor F E'.FunctionField) := by
-      change Divisor.pushforwardAlong ι hι (Finsupp.mapDomain s (D' : Divisor F E'.FunctionField)) = _
+      change Divisor.pushforwardAlong ι hι (Finsupp.mapDomain s (D' : Divisor F E'.FunctionField)) =
+        _
       rw [Finsupp.mapDomain, map_finsuppSum]
       conv_rhs => rw [← Finsupp.sum_single (D' : Divisor F E'.FunctionField)]
       refine Finsupp.sum_congr (fun v _ => ?_)

@@ -232,7 +232,8 @@ def cuspHeckeRep : HeckeAlg →+* Module.End ℂ (CuspForm (CongruenceSubgroup.G
   ((CuspForm.heckeAlgebra N 2 (∅ : Set ℕ)).val.comp (cuspHeckeAeval N)).toRingHom
 
 theorem cuspHeckeRep_apply (t : HeckeAlg) :
-    cuspHeckeRep N t = (cuspHeckeAeval N t : Module.End ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2)) :=
+    cuspHeckeRep N t = (cuspHeckeAeval N t : Module.End ℂ (CuspForm (CongruenceSubgroup.Gamma0 N)
+      2)) :=
   rfl
 
 theorem cuspHeckeRep_heckeGen (ℓ : Nat.Primes) :

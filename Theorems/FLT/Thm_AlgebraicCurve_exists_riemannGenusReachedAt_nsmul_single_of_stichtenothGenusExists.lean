@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists
+Based on Prove2Me node
+AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists
 (ca093734-12dd-594a-980b-08b791760f21) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 76a95cca-a8c6-5f34-9d2e-722cd986e596
@@ -88,7 +89,8 @@ theorem solution
 
 end S_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists
 end P2MW
-export P2MW.S_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists (solution)
+export P2MW.S_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists
+  (solution)
 
 end privateSection
 

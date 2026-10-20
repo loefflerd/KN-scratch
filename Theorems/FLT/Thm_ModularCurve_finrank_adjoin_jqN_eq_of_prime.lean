@@ -47,9 +47,11 @@ polynomial $\Phi_\ell(X,Y)$ has $Y$-degree $\psi(\ell)=\ell+1$, and $j(q^{\ell})
 extension of that degree over $\mathbb{Q}(j)$, here carried out entirely with $q$-expansions in
 $\mathbb{Q}((q))$. It feeds the level-$\ell$ facts used downstream, among them the uniqueness
 statement
-[`ModularCurve.ModularPolynomialData.eq_of_prime`](thm.html#ModularCurve.ModularPolynomialData.eq_of_prime),
+[`ModularCurve.ModularPolynomialData.eq_of_prime`]
+(thm.html#ModularCurve.ModularPolynomialData.eq_of_prime),
 the squarefree-level degree formula
-[`ModularCurve.finrank_adjoin_jqN_eq_of_squarefree`](thm.html#ModularCurve.finrank_adjoin_jqN_eq_of_squarefree),
+[`ModularCurve.finrank_adjoin_jqN_eq_of_squarefree`]
+(thm.html#ModularCurve.finrank_adjoin_jqN_eq_of_squarefree),
 and [`ModularCurve.jqN_prime_not_mem_adjoin`](thm.html#ModularCurve.jqN_prime_not_mem_adjoin).
 
 ## Explanation of the source proof
@@ -105,9 +107,12 @@ end ModularCurve
 end
 
 set_option pp.universes true in
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime.ModularCurve ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime.ModularCurve
+  ModularCurve.PhiGen in
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
-    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ}
+      : Set (LaurentSeries ℚ))) = ℓ + 1 :=
   ModularCurve.finrank_adjoin_jqN_eq_of_prime ℓ
 
 end S_ModularCurve_finrank_adjoin_jqN_eq_of_prime
@@ -121,7 +126,9 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.finrank_adjoin_jqN_eq_of_prime (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
-    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
+    Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ}
+      : Set (LaurentSeries ℚ))) = ℓ + 1 :=
   solution ℓ
 
 end publicSection

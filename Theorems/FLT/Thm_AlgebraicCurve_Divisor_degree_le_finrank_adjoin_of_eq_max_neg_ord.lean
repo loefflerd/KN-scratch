@@ -46,7 +46,8 @@ This is one half of the classical identity $\deg (x)_\infty = [F:K(x)]$ for a on
 field, the direction given by the fundamental inequality $\sum_{P \mid \infty} e_P f_P \le [F:K(x)]$
 for the extensions of the infinite place of $K(x)$, and it requires no separability assumption. It
 feeds into
-[`AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord`](thm.html#AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord),
+[`AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord`]
+(thm.html#AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord),
 where the two inequalities are combined into the equality.
 
 ## Explanation of the source proof
@@ -216,7 +217,8 @@ theorem solution
     ring
   have hres_E : ∀ v ∈ S, ∀ g : E, (g:F) ≠ 0 → v.ord (g:F) = 0 →
       ∃ c : K, c ≠ 0 ∧ ∀ hmem : (g:F) ∈ v.toValuationSubring,
-        IsLocalRing.residue _ (⟨(g:F), hmem⟩ : v.toValuationSubring) = algebraMap K v.ResidueField c := by
+        IsLocalRing.residue _ (⟨(g:F), hmem⟩ : v.toValuationSubring) = algebraMap K v.ResidueField c
+          := by
     intro v hv g hg0 hord0
     obtain ⟨r, s, hgrs⟩ := (IntermediateField.mem_adjoin_simple_iff K (x := (g:F))).mp g.2
     have hs0 : s ≠ 0 := by rintro rfl; simp only [map_zero, div_zero] at hgrs; exact hg0 hgrs
@@ -235,7 +237,8 @@ theorem solution
     obtain ⟨hmr, hur, hresr⟩ := hkey v hv r hr0
     obtain ⟨hms, hus, hress⟩ := hkey v hv s hs0
     refine ⟨r.leadingCoeff / s.leadingCoeff,
-      div_ne_zero (Polynomial.leadingCoeff_ne_zero.mpr hr0) (Polynomial.leadingCoeff_ne_zero.mpr hs0),
+      div_ne_zero (Polynomial.leadingCoeff_ne_zero.mpr hr0) (Polynomial.leadingCoeff_ne_zero.mpr
+        hs0),
       fun hmem => ?_⟩
     have hgval : (⟨(g:F), hmem⟩ : v.toValuationSubring) * ⟨_, hms⟩ = ⟨_, hmr⟩ := by
       refine Subtype.ext ?_
@@ -510,7 +513,8 @@ theorem solution
       have hxcan : x ^ Q * x ^ q₂ = x ^ (q₂ + Q) := by rw [← zpow_add₀ hx0]; ring_nf
       have htcan : (t vv) ^ (a₃+1) * (t vv) ^ (-(a₃+1)) = 1 := by
         rw [← zpow_add₀ (ht0 vv hv₀), add_neg_cancel, zpow_zero]
-      calc x ^ Q * (t vv) ^ (a₃+1) * (x ^ q₂ * ((φ (j k):E):F) * (z vv i₃.1.2 k * (t vv) ^ (-(a₃+1))))
+      calc x ^ Q * (t vv) ^ (a₃+1) * (x ^ q₂ * ((φ (j k):E):F) * (z vv i₃.1.2 k * (t vv) ^
+        (-(a₃+1))))
           = (x ^ Q * x ^ q₂) * ((φ (j k):E):F) * z vv i₃.1.2 k *
             ((t vv) ^ (a₃+1) * (t vv) ^ (-(a₃+1))) := by ring
         _ = x ^ (q₂+Q) * ((φ (j k):E):F) * z vv i₃.1.2 k := by rw [hxcan, htcan, mul_one]

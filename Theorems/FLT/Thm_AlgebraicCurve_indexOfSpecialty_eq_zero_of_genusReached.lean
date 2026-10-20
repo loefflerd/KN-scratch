@@ -1044,12 +1044,14 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_zero_of_genusReached.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_zero_of_genusReached.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]
     [Nonempty (Place K F)] [FiniteDimensional K ↥(LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) :
     indexOfSpecialty D₀ = 0 :=
-  AlgebraicCurve.indexOfSpecialty_eq_zero_of_genusReached_port (K := K) (F := F) (γ := γ) (D₀ := D₀) (h := h)
+  AlgebraicCurve.indexOfSpecialty_eq_zero_of_genusReached_port (K := K) (F := F) (γ := γ) (D₀ := D₀)
+    (h := h)
 
 end S_AlgebraicCurve_indexOfSpecialty_eq_zero_of_genusReached
 end P2MW

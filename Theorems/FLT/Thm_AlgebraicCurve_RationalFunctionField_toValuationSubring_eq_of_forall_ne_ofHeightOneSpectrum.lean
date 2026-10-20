@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+Based on Prove2Me node
+AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
 (b16d57bd-64f3-5e5d-9a5b-eee948a2c874) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 1a0a4486-f528-5d32-9478-0270db9fe56b
@@ -82,7 +83,9 @@ theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (R
 
 end S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum (solution)
+export
+  P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+  (solution)
 
 end privateSection
 

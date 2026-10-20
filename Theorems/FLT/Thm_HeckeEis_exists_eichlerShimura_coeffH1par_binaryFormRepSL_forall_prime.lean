@@ -88,30 +88,42 @@ open scoped MatrixGroups
 
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     ∃ (ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ]
-          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
+          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+            N).subtype))
       (ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ]
-          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+            N).subtype)),
       Function.Injective ES ∧ Function.Injective ESbar ∧
       IsCompl (LinearMap.range ES) (LinearMap.range ESbar) ∧
       (∀ (ℓ : ℕ) (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N)
-        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+          N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+              (CongruenceSubgroup.Gamma0 N).subtype)),
               haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
               (w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n))
-                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
+                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp
+                    (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
                 T (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) →
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ES f) = ES (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f)) ∧
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ESbar f) = ESbar (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f))) ∧
       (∀ (ℓ : ℕ) (hℓ : ℓ.Prime) (hℓN : ℓ ∣ N)
-        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+          N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+              (CongruenceSubgroup.Gamma0 N).subtype)),
               haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
               (w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n))
-                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
+                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp
+                    (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
                 T (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) →
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ES f) = ES (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f)) ∧
@@ -121,7 +133,9 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
   obtain ⟨ES, hES⟩ := HeckeEis.existsEichlerShimuraMapLinear n N
   obtain ⟨Φ, hΦ, hΦΦ⟩ :=
     HeckeEis.exists_coeffH1par_semilinearMap_starRingEnd n (CongruenceSubgroup.Gamma0 N)
-  let ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) :=
+  let ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ]
+    HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)
+    :=
     Φ.comp ES
   have hESbar : ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ESbar f = Φ (ES f) :=
     fun f => rfl
@@ -132,19 +146,26 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     exact HeckeEis.eichlerShimuraMap_injective N n h'
   have hΦinj : Function.Injective Φ := fun x y h => by rw [← hΦΦ x, ← hΦΦ y, h]
   have hcomm : ∀ (ℓ : ℕ) [NeZero ℓ]
-      (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-      (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-        ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+      (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+        N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+        (CongruenceSubgroup.Gamma0 N).subtype)),
+      (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+        (CongruenceSubgroup.Gamma0 N).subtype)),
+        ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
           (w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n))
-              = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
+              = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp
+                (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
             T (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) →
       ∀ x, T (Φ x) = Φ (T x) := by
     intro ℓ _ T hT x
-    exact HeckeEis.coeffH1par_map_heckeT_comm (starRingEnd ℂ) n N ℓ Φ.toAddMonoidHom (fun z => hΦ z) T hT T hT x
+    exact HeckeEis.coeffH1par_map_heckeT_comm (starRingEnd ℂ) n N ℓ Φ.toAddMonoidHom (fun z => hΦ z)
+      T hT T hT x
   refine ⟨ES, ESbar, hinj, ?_, ?_, ?_, ?_⟩
   · intro a b h
     exact hinj (hΦinj h)
-  · exact HeckeEis.isCompl_range_eichlerShimuraMap_range_conj N n ES hES Φ.toAddMonoidHom (fun z => hΦ z) ESbar hESbar
+  · exact HeckeEis.isCompl_range_eichlerShimuraMap_range_conj N n ES hES Φ.toAddMonoidHom (fun z =>
+      hΦ z) ESbar hESbar
   · intro ℓ hℓ hℓN T hT
     have : NeZero ℓ := ⟨hℓ.ne_zero⟩
     refine ⟨fun f => ?_, fun f => ?_⟩
@@ -173,30 +194,42 @@ open scoped MatrixGroups
 theorem HeckeEis.exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime (N : ℕ) [NeZero N]
     (n : ℕ) :
     ∃ (ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ]
-          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
+          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+            N).subtype))
       (ESbar : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₛₗ[starRingEnd ℂ]
-          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+          HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+            N).subtype)),
       Function.Injective ES ∧ Function.Injective ESbar ∧
       IsCompl (LinearMap.range ES) (LinearMap.range ESbar) ∧
       (∀ (ℓ : ℕ) (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N)
-        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+          N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+              (CongruenceSubgroup.Gamma0 N).subtype)),
               haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
               (w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n))
-                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
+                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp
+                    (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
                 T (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) →
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ES f) = ES (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f)) ∧
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ESbar f) = ESbar (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f))) ∧
       (∀ (ℓ : ℕ) (hℓ : ℓ.Prime) (hℓN : ℓ ∣ N)
-        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+        (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0
+          N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+        (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+          (CongruenceSubgroup.Gamma0 N).subtype)),
+            ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp
+              (CongruenceSubgroup.Gamma0 N).subtype)),
               haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
               (w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n))
-                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
+                  = HeckeEis.coeffHeckeFun N ℓ ((HeckeEis.binaryFormRepSL ℂ n).comp
+                    (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.binaryFormAlphaAdj ℂ n ℓ) z ∧
                 T (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) →
         (∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2),
             T (ES f) = ES (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f)) ∧

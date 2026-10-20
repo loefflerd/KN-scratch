@@ -41,8 +41,10 @@ The function $\psi$ is Dedekind's psi function, the degree of the modular equati
 i.e. the expected degree of the function field of $X_0(N)$ over $\mathbb{Q}(j)$. This closed formula
 at squarefree levels is used by the statements on the degree of $\mathbb{Q}(j)(j_N)$ over
 $\mathbb{Q}(j)$ and on generation of the function field at squarefree level, such as
-[`ModularCurve.finrank_adjoin_jqN_eq_of_squarefree`](thm.html#ModularCurve.finrank_adjoin_jqN_eq_of_squarefree),
-[`ModularCurve.functionFieldGeneration_of_squarefree`](thm.html#ModularCurve.functionFieldGeneration_of_squarefree)
+[`ModularCurve.finrank_adjoin_jqN_eq_of_squarefree`]
+(thm.html#ModularCurve.finrank_adjoin_jqN_eq_of_squarefree),
+[`ModularCurve.functionFieldGeneration_of_squarefree`]
+(thm.html#ModularCurve.functionFieldGeneration_of_squarefree)
 and [`ModularCurve.relfinrank_adjoin_primes`](thm.html#ModularCurve.relfinrank_adjoin_primes).
 
 ## Explanation of the source proof

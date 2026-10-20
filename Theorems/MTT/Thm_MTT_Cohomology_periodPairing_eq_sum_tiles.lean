@@ -237,7 +237,8 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
   unfold periodPower
   rw [add_pow, MvPolynomial.coeff_sum]
   have key : ∀ m ∈ Finset.range (n + 1),
-      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m)
+        *
           (n.choose m : MvPolynomial (Fin 2) ℂ)) (binaryExponent n j)
         = if m = j then (n.choose j : ℂ) * z ^ j else 0 := by
     intro m _

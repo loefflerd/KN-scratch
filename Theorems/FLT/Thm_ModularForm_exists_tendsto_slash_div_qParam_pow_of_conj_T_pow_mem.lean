@@ -46,7 +46,8 @@ This is the statement that a non-zero modular form has a well-defined finite ord
 the local parameter $q_h = e^{2\pi i \tau/h}$ at a cusp $\sigma\infty$ whose width divides $h$, the
 basic input for defining the divisor of a modular form on a modular curve. It is used in the
 computation of orders of a weight-one form at the cusps of the curves $X_1(M)$, namely by
-[`ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1`](thm.html#ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1).
+[`ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1`]
+(thm.html#ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1).
 
 ## Explanation of the source proof
 
@@ -107,7 +108,8 @@ theorem exists_tendsto_div_qParam_pow {Γ' : Subgroup (GL (Fin 2) ℝ)} {k : ℤ
   rw [UpperHalfPlane.eq_cuspFunction τ hh.ne' hper]
 
 theorem mapGL_T_zpow (n : ℤ) :
-    Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ n) = Matrix.GeneralLinearGroup.upperRightHom (n : ℝ) := by
+    Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ n) = Matrix.GeneralLinearGroup.upperRightHom
+      (n : ℝ) := by
   simp only [Units.ext_iff, Matrix.SpecialLinearGroup.mapGL_coe_matrix,
     Matrix.SpecialLinearGroup.map_apply_coe]
   ext i j
@@ -120,7 +122,8 @@ theorem WCuspOrdAux.slash_main
     (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) (hf : f ≠ 0)
     (σ : SL(2, ℤ)) (h : ℕ) (hh : 0 < h) (hper : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :
     ∃ (n : ℕ) (a : ℂ), a ≠ 0 ∧
-      Tendsto (fun τ : ℍ => ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) τ / Function.Periodic.qParam h τ ^ n)
+      Tendsto (fun τ : ℍ => ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) τ / Function.Periodic.qParam h τ ^
+        n)
         atImInfty (𝓝 a) := by
   let F := ModularForm.translate f (σ : GL (Fin 2) ℝ)
   have hΓ' : ((h : ℝ)) ∈ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
@@ -150,7 +153,8 @@ theorem solution
     (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) (hf : f ≠ 0)
     (σ : SL(2, ℤ)) (h : ℕ) (hh : 0 < h) (hper : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :
     ∃ (n : ℕ) (a : ℂ), a ≠ 0 ∧
-      Tendsto (fun τ : ℍ => ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) τ / Function.Periodic.qParam h τ ^ n)
+      Tendsto (fun τ : ℍ => ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) τ / Function.Periodic.qParam h τ ^
+        n)
         atImInfty (𝓝 a) :=
   WCuspOrdAux.slash_main Γ k f hf σ h hh hper
 
@@ -170,7 +174,8 @@ theorem ModularForm.exists_tendsto_slash_div_qParam_pow_of_conj_T_pow_mem
     (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) (hf : f ≠ 0)
     (σ : SL(2, ℤ)) (h : ℕ) (hh : 0 < h) (hper : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :
     ∃ (n : ℕ) (a : ℂ), a ≠ 0 ∧
-      Tendsto (fun τ : ℍ => ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) τ / Function.Periodic.qParam h τ ^ n)
+      Tendsto (fun τ : ℍ => ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) τ / Function.Periodic.qParam h τ ^
+        n)
         atImInfty (𝓝 a) :=
   solution Γ k f hf σ h hh hper
 

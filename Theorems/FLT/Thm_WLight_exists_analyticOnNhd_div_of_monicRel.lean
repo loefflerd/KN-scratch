@@ -47,7 +47,8 @@ quotient satisfies a monic algebraic relation whose lower coefficients carry com
 $G$: the relation forces the vanishing order of $F$ to dominate that of $G$ at each point of $U$,
 the preconnectedness hypothesis and the identity principle ruling out identical vanishing of $G$. It
 is applied through its upper-half-plane counterpart
-[`WLight.exists_mdifferentiable_div_of_monicRel`](thm.html#WLight.exists_mdifferentiable_div_of_monicRel).
+[`WLight.exists_mdifferentiable_div_of_monicRel`]
+(thm.html#WLight.exists_mdifferentiable_div_of_monicRel).
 
 ## Explanation of the source proof
 

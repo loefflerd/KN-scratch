@@ -63,7 +63,8 @@ This is the function-field form of translation by a point on an elliptic curve: 
 $\tau$ is the pull-back along $P \mapsto P + R$, and the conclusion records that it moves the place
 attached to $Q$ to the place attached to $Q+R$. It is used in the construction of homomorphisms of
 points from isogeny data, via
-[`WeierstrassCurve.Affine.IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred`](thm.html#WeierstrassCurve.Affine.IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred).
+[`WeierstrassCurve.Affine.IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred`]
+(thm.html#WeierstrassCurve.Affine.IsogenyHomDatum.exists_pointHom_comp_eq_of_ker_le_of_isCentred).
 
 ## Explanation of the source proof
 
@@ -133,7 +134,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -479,7 +481,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
+  IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
@@ -1584,7 +1587,8 @@ theorem ord_X_neg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) :
   by_contra hcon
   push Not at hcon
   exact hv (isFinitePlace_of_mem v
-    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero) hcon))
+    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero)
+      hcon))
 
 theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
     2 * v.ord (algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y))
@@ -3198,7 +3202,8 @@ section Transcendence
 variable {W : Affine F} {a b : F}
 
 theorem isIntegral_addYFun_adjoin_addXFun (hA : W.Equation a b) :
-    _root_.IsIntegral (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) (W.addYFun a b) := by
+    _root_.IsIntegral (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) (W.addYFun a b)
+      := by
   set R := Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)
   have hmem : ∀ p : F[X], (Polynomial.aeval (R := F) (W.addXFun a b)).toRingHom p ∈ R := by
     intro p
@@ -3540,7 +3545,8 @@ theorem kw_ord_addXFun_sub_pos_charFree (hA : W.Equation a b)
     have hYinv : W.yGen⁻¹ ∈ v.toValuationSubring :=
       AlgebraicCurve.Place.mem_of_ord_nonneg v (inv_ne_zero hY0) (by rw [v.ord_inv, hordY]; omega)
     have hXYinv : W.polyToFunctionField X * W.yGen⁻¹ ∈ v.toValuationSubring :=
-      AlgebraicCurve.Place.mem_of_ord_nonneg v (mul_ne_zero (polyToFunctionField_ne_zero X_ne_zero) (inv_ne_zero hY0))
+      AlgebraicCurve.Place.mem_of_ord_nonneg v (mul_ne_zero (polyToFunctionField_ne_zero X_ne_zero)
+        (inv_ne_zero hY0))
         (by rw [v.ord_mul (polyToFunctionField_ne_zero X_ne_zero) (inv_ne_zero hY0), v.ord_inv,
               ord_X_eq_neg_two_of_not_isFinitePlace v hv, hordY]; omega)
     rw [hnumdef, add_mul, sub_mul, mul_assoc _ (W.polyToFunctionField X), mul_assoc _ W.yGen,
@@ -3911,7 +3917,11 @@ theorem kw_taseq_le_ord_sub_charFree {K L : Type*} [Field K] [Field L] [Algebra 
     rw [hneg] at hmin
     omega
 
-open _root_.IsDedekindDomain _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.IsDedekindDomain _root_.WithZero _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WithZero in
+open _root_.IsDedekindDomain
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.IsDedekindDomain
+  _root_.WithZero
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WithZero
+  in
 theorem kw_taseq_ord_ge_of_mem_XYIdeal_pow_charFree (h : W.Equation a b)
     {r : W.CoordinateRing} (hr0 : r ≠ 0) {n : ℕ} (hr : r ∈ XYIdeal W a (C b) ^ n) :
     (n : ℤ) ≤ (placeOfEquation h).ord (algebraMap W.CoordinateRing W.FunctionField r) := by
@@ -4333,7 +4343,11 @@ p2m_open "WeierstrassCurve.Affine~genericPoint\
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_n\
   onneg~Place.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq\
   " in
-open _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.AlgebraicCurve in
+open
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.AlgebraicCurve
+  in
 universe u in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]

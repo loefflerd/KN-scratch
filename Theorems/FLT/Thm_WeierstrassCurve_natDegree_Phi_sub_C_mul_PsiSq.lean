@@ -39,7 +39,8 @@ Classically this is the statement that, for a point with abscissa $c$, the absci
 $n$-division points are the roots of a polynomial of degree exactly $n^2$; it underlies the bound
 $n^2$ for the degree of multiplication by $n$ on a Weierstrass curve. It is used in the computation
 of the rank of the field extension cut out by multiplication by $n$
-([`WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le`](thm.html#WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le))
+([`WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le`]
+(thm.html#WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le))
 and in the two statements producing, under the hypothesis that all $n$-torsion is trivial, a
 rational point homomorphism with nonvanishing Wronskian, respectively a Frobenius factorisation of
 multiplication by $n$.

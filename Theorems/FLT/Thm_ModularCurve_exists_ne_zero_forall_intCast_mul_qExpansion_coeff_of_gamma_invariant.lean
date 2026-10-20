@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant
+Based on Prove2Me node
+ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant
 (8697798b-0a6c-5d34-8d44-8c488094cc1d) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission aa1ea372-f0ac-5d2f-9a08-e32b1a5639c5
@@ -51,7 +52,8 @@ coefficients have bounded denominators: there exists a nonzero integer $D$ such 
 This is the bounded-denominator assertion of the classical theory of the modular function field of
 level $N$ (the relevant clause of Shimura's Theorem 3.52), here in the form applying to weight-zero
 quotients $G = F/\Delta^m$ for $\Gamma(N)$. It feeds
-[`ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion`](thm.html#ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion),
+[`ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion`]
+(thm.html#ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion),
 where a rational $q$-expansion is rescaled to an integral one.
 
 ## Explanation of the source proof
@@ -204,7 +206,8 @@ theorem aut_mem_AZ (σ : (kN N) ≃ₐ[ℚ] (kN N)) (x : kN N) (hx : (x : ℂ) �
     rw [hy, map_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [map_mul, map_pow, map_intCast, hs]
-  have hσc : ((σ x : kN N) : ℂ) = ∑ i ∈ Finset.range (p.natDegree + 1), (p.coeff i : ℂ) * (zetaN N ^ s) ^ i :=
+  have hσc : ((σ x : kN N) : ℂ) = ∑ i ∈ Finset.range (p.natDegree + 1), (p.coeff i : ℂ) * (zetaN N ^
+    s) ^ i :=
     by
     rw [hxK, hσy, hcoe, map_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
@@ -239,12 +242,14 @@ theorem exists_nat_mul_mem_AZ (x : ℂ) (hx : x ∈ kN N) : ∃ D : ℕ, D ≠ 0
   obtain ⟨p, rfl⟩ := hx'
   refine ⟨∏ i ∈ Finset.range (p.natDegree + 1), (p.coeff i).den, ?_, ?_⟩
   · exact Finset.prod_ne_zero_iff.mpr fun i _ => (p.coeff i).den_nz
-  · change ((∏ i ∈ Finset.range (p.natDegree + 1), (p.coeff i).den : ℕ) : ℂ) * Polynomial.aeval (zetaN N) p ∈ AZ N
+  · change ((∏ i ∈ Finset.range (p.natDegree + 1), (p.coeff i).den : ℕ) : ℂ) * Polynomial.aeval
+      (zetaN N) p ∈ AZ N
     rw [Polynomial.aeval_eq_sum_range, Finset.mul_sum]
     refine sum_mem fun i hi => ?_
     rw [Algebra.smul_def, ← mul_assoc]
     refine mul_mem ?_ (pow_mem (zetaN_mem_AZ N) _)
-    have hdvd : ((p.coeff i).den : ℤ) ∣ ∏ j ∈ Finset.range (p.natDegree + 1), ((p.coeff j).den : ℤ) :=
+    have hdvd : ((p.coeff i).den : ℤ) ∣ ∏ j ∈ Finset.range (p.natDegree + 1), ((p.coeff j).den : ℤ)
+      :=
       Finset.dvd_prod_of_mem _ hi
     obtain ⟨c, hc⟩ := hdvd
     have hq : ((∏ j ∈ Finset.range (p.natDegree + 1), (p.coeff j).den : ℕ) : ℚ) * p.coeff i
@@ -253,7 +258,8 @@ theorem exists_nat_mul_mem_AZ (x : ℂ) (hx : x ∈ kN N) : ∃ D : ℕ, D ≠ 0
           = ((p.coeff i).den : ℚ) * (c : ℚ) := by exact_mod_cast hc
       rw [h1, mul_comm ((p.coeff i).den : ℚ), mul_assoc, Rat.den_mul_eq_num]
       grind
-    have : ((∏ j ∈ Finset.range (p.natDegree + 1), (p.coeff j).den : ℕ) : ℂ) * (algebraMap ℚ ℂ) (p.coeff i)
+    have : ((∏ j ∈ Finset.range (p.natDegree + 1), (p.coeff j).den : ℕ) : ℂ) * (algebraMap ℚ ℂ)
+      (p.coeff i)
         = ((c * (p.coeff i).num : ℤ) : ℂ) := by
       have := congrArg (algebraMap ℚ ℂ) hq
       simpa using this
@@ -290,7 +296,8 @@ variable {N}
 
 omit [NeZero N] in
 theorem mem_nice {g : ℍ → ℂ} :
-    g ∈ nice N ↔ MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g ∧ Periodic (g ∘ ofComplex) N ∧ IsBoundedAtImInfty g := Iff.rfl
+    g ∈ nice N ↔ MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g ∧ Periodic (g ∘ ofComplex) N ∧ IsBoundedAtImInfty g :=
+      Iff.rfl
 
 theorem analyticAt_of_mem {g : ℍ → ℂ} (hg : g ∈ nice N) : AnalyticAt ℂ (cuspFunction N g) 0 :=
   analyticAt_cuspFunction_zero (natCast_pos N) hg.2.1 hg.1 hg.2.2
@@ -421,10 +428,12 @@ theorem BddA.add {φ ψ : PowerSeries ℂ} (h : BddA N φ) (h' : BddA N ψ) : Bd
   obtain ⟨D', hD', hψ⟩ := h'
   refine ⟨D * D', mul_ne_zero hD hD', fun n => ?_⟩
   rw [map_add, mul_add]
-  have h1 : ((D * D' : ℕ) : ℂ) * PowerSeries.coeff n φ = (D' : ℂ) * ((D : ℂ) * PowerSeries.coeff n φ) :=
+  have h1 : ((D * D' : ℕ) : ℂ) * PowerSeries.coeff n φ = (D' : ℂ) * ((D : ℂ) * PowerSeries.coeff n
+    φ) :=
     by
     grind
-  have h2 : ((D * D' : ℕ) : ℂ) * PowerSeries.coeff n ψ = (D : ℂ) * ((D' : ℂ) * PowerSeries.coeff n ψ) :=
+  have h2 : ((D * D' : ℕ) : ℂ) * PowerSeries.coeff n ψ = (D : ℂ) * ((D' : ℂ) * PowerSeries.coeff n
+    ψ) :=
     by
     grind
   rw [h1, h2]
@@ -476,7 +485,8 @@ theorem exists_int_of_bddA_of_isRat {φ : PowerSeries ℂ} (hB : BddA N φ) (hR 
     intro n
     have h1 := hφ n
     rw [PowerSeries.coeff_map] at h1 ⊢
-    have h2 : (D : ℂ) * (algebraMap ℚ ℂ) (PowerSeries.coeff n p) = (((D : ℚ) * PowerSeries.coeff n p : ℚ) : ℂ) :=
+    have h2 : (D : ℂ) * (algebraMap ℚ ℂ) (PowerSeries.coeff n p) = (((D : ℚ) * PowerSeries.coeff n p
+      : ℚ) : ℂ) :=
       by
       push_cast; rfl
     rw [h2] at h1 ⊢
@@ -551,7 +561,8 @@ theorem qExpansion_widthN_of_int {k : ℤ} (f : ModularForm 𝒮ℒ k) (P : Powe
     (spread (N := N) P).map (Int.castRingHom ℂ) = qExpansion N (⇑f : ℍ → ℂ) := by
   ext n
   have hw := qExpansion_coeff_widthN N (g := (⇑f : ℍ → ℂ)) f.holo'
-    (SlashInvariantFormClass.periodic_comp_ofComplex f one_mem_strictPeriods_SL) (ModularFormClass.bdd_at_infty f) n
+    (SlashInvariantFormClass.periodic_comp_ofComplex f one_mem_strictPeriods_SL)
+      (ModularFormClass.bdd_at_infty f) n
   rw [PowerSeries.coeff_map]
   refine Eq.trans ?_ hw.symm
   rw [spread, PowerSeries.coeff_mk]
@@ -813,7 +824,8 @@ theorem exists_rat_monic (m : ℕ) {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(
   classical
   set L : ℕ := ∑ i, (p i).natDegree with hL
   have hLi : ∀ i, (p i).natDegree < L + 1 := fun i =>
-    Nat.lt_succ_of_le (Finset.single_le_sum (f := fun j => (p j).natDegree) (fun j _ => Nat.zero_le _)
+    Nat.lt_succ_of_le (Finset.single_le_sum (f := fun j => (p j).natDegree) (fun j _ => Nat.zero_le
+      _)
       (Finset.mem_univ i))
   set M : ℕ := L + m * d with hM
   set Gi : Fin d × Fin (L + 1) → ℍ → ℂ := fun il => jf ^ (il.2 : ℕ) * G ^ (il.1 : ℕ) with hGi
@@ -852,7 +864,8 @@ theorem exists_rat_monic (m : ℕ) {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(
     have hfun : G ^ d = ∑ i : Fin d, ∑ l : Fin (L + 1), (-(p i).coeff l) • Gi (i, l) := by
       funext τ
       have h1 := hrel τ
-      have h2 : ∀ i : Fin d, (p i).eval (jf τ) = ∑ l : Fin (L + 1), (p i).coeff l * jf τ ^ (l : ℕ) :=
+      have h2 : ∀ i : Fin d, (p i).eval (jf τ) = ∑ l : Fin (L + 1), (p i).coeff l * jf τ ^ (l : ℕ)
+        :=
         by
         intro i
         rw [Polynomial.eval_eq_sum_range' (hLi i), Finset.sum_range]
@@ -944,11 +957,13 @@ theorem bddQ_sum {ι : Type*} (s : Finset ι) (f : ι → PowerSeries ℚ) (h : 
   | empty => simpa using bddQ_zero
   | insert a s ha ih =>
       rw [Finset.sum_insert ha]
-      exact (h a (Finset.mem_insert_self a s)).add (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+      exact (h a (Finset.mem_insert_self a s)).add (ih fun i hi => h i (Finset.mem_insert_of_mem
+        hi))
 
 omit [NeZero N] in
 theorem periodic_of_gamma_invariant {G : ℍ → ℂ}
-    (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, G (γ • τ) = G τ) : Periodic (G ∘ ofComplex) N := by
+    (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, G (γ • τ) = G τ) : Periodic (G ∘ ofComplex) N
+      := by
   have hT : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
     rw [Gamma_mem, ModularGroup.coe_T_zpow]
     simp
@@ -989,7 +1004,8 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     intro n; obtain ⟨r, hr⟩ := hrat n; rw [hr]; exact ratCast_mem (kN N) r
   obtain ⟨P, Q, hQ0, hGQ⟩ :=
     ModularCurve.exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem N
-    tauPair tauPair_spec (WW N) (WW_spec N) (fricke N) (fricke_spec N) jf jf_spec (kN N) rfl m G hG hinv hbd hcoeff
+    tauPair tauPair_spec (WW N) (WW_spec N) (fricke N) (fricke_spec N) jf jf_spec (kN N) rfl m G hG
+      hinv hbd hcoeff
   change ev N Q ≠ 0 at hQ0
   change G * ev N Q = ev N P at hGQ
   obtain ⟨d, p, -, hrel⟩ :=
@@ -1016,10 +1032,12 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     have h2 : E * d = E * i + E * (d - i) := by rw [← Nat.mul_add, Nat.add_sub_cancel' i.2.le]
     omega
   set kk : Fin d → Fin (L + 1) → ℕ := fun i l => E * (d - i) - l with hkk
-  set Z : nice N := ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jn ^ (l : ℕ) * y ^ (i : ℕ) * dN ^ kk i l)
+  set Z : nice N := ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jn ^ (l : ℕ) * y ^ (i : ℕ)
+    * dN ^ kk i l)
     with hZ
   have hZ_coe : ((Z : nice N) : ℍ → ℂ) =
-      ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • ((jf * Δ) ^ (l : ℕ) * (G * Δ ^ m * Δ ^ L) ^ (i : ℕ) * Δ ^ kk i l) := by
+      ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • ((jf * Δ) ^ (l : ℕ) * (G * Δ ^ m * Δ ^ L)
+        ^ (i : ℕ) * Δ ^ kk i l) := by
     rw [hZ]
     push_cast
     rfl
@@ -1028,9 +1046,11 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     rw [hZ_coe]
     change (G * Δ ^ m * Δ ^ L) ^ d = _
     calc (G * Δ ^ m * Δ ^ L) ^ d = G ^ d * Δ ^ (E * d) := by rw [hE]; ring
-      _ = (∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jf ^ (l : ℕ) * G ^ (i : ℕ))) * Δ ^ (E * d) := by
+      _ = (∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jf ^ (l : ℕ) * G ^ (i : ℕ))) * Δ ^
+        (E * d) := by
           rw [← hb]
-      _ = ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jf ^ (l : ℕ) * G ^ (i : ℕ) * Δ ^ (E * d)) := by
+      _ = ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jf ^ (l : ℕ) * G ^ (i : ℕ) * Δ ^ (E *
+        d)) := by
           rw [Finset.sum_mul]
           refine Finset.sum_congr rfl fun i _ => ?_
           rw [Finset.sum_mul]
@@ -1062,7 +1082,8 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
   have hYrat : IsRat (qE N y) := by rw [hqEy]; exact hGrat.mul (isRat_disc.pow L)
   obtain ⟨y₀, hy₀⟩ := hYrat
   set c₀ : Fin d → PowerSeries ℚ := fun i =>
-    -∑ l : Fin (L + 1), (b i l) • ((JZ (N := N) ^ (l : ℕ) * DZ (N := N) ^ kk i l).map (Int.castRingHom ℚ)) with hc₀
+    -∑ l : Fin (L + 1), (b i l) • ((JZ (N := N) ^ (l : ℕ) * DZ (N := N) ^ kk i l).map
+      (Int.castRingHom ℚ)) with hc₀
   have hc₀map : ∀ i, (c₀ i).map (algebraMap ℚ ℂ) =
       -∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • ((qE N jn) ^ (l : ℕ) * (qE N dN) ^ kk i l) := by
     intro i
@@ -1172,7 +1193,8 @@ theorem bddK_prod {ι : Type*} (s : Finset ι) (f : ι → PowerSeries (kN N)) (
   | empty => simpa using bddK_one
   | insert a s ha ih =>
       rw [Finset.prod_insert ha]
-      exact (h a (Finset.mem_insert_self a s)).mul (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+      exact (h a (Finset.mem_insert_self a s)).mul (ih fun i hi => h i (Finset.mem_insert_of_mem
+        hi))
 
 private def _root_.GammaNBounded.autS (σ : (kN N) ≃ₐ[ℚ] (kN N)) :
     PowerSeries (kN N) →+* PowerSeries (kN N) :=
@@ -1292,14 +1314,16 @@ theorem exists_int_multiple {d : ℕ} (y₀ : PowerSeries ℚ) (c₀ : Fin d →
     have h1 : (∏ j ∈ Finset.univ.erase i, D j) * D i = c := by
       rw [hcdef, Finset.prod_erase_mul _ _ (Finset.mem_univ i)]
     have h2 : d - 1 - (i : ℕ) + 1 + i = d := by have := i.2; omega
-    calc z i * D i * c ^ (i : ℕ) = c ^ (d - 1 - i) * ((∏ j ∈ Finset.univ.erase i, D j) * D i) * c ^ (i : ℕ) := by
+    calc z i * D i * c ^ (i : ℕ) = c ^ (d - 1 - i) * ((∏ j ∈ Finset.univ.erase i, D j) * D i) * c ^
+      (i : ℕ) := by
           rw [hz]; ring
       _ = c ^ (d - 1 - i) * c * c ^ (i : ℕ) := by rw [h1]
       _ = c ^ (d - 1 - (i : ℕ) + 1 + i) := by rw [pow_add, pow_succ]
       _ = c ^ d := by rw [h2]
   set ι : PowerSeries ℤ →+* PowerSeries ℚ := PowerSeries.map (Int.castRingHom ℚ) with hι
   set a : Fin d → PowerSeries ℤ := fun i => PowerSeries.C (z i : ℤ) * C i with ha
-  set Φ : Polynomial (PowerSeries ℤ) := Polynomial.X ^ d + ∑ i : Fin d, Polynomial.C (a i) * Polynomial.X ^ (i : ℕ)
+  set Φ : Polynomial (PowerSeries ℤ) := Polynomial.X ^ d + ∑ i : Fin d, Polynomial.C (a i) *
+    Polynomial.X ^ (i : ℕ)
     with hΦ
   have hΦmonic : Φ.Monic := Polynomial.monic_X_pow_add (Polynomial.degree_sum_fin_lt a)
   set g : PowerSeries ℚ := PowerSeries.C (c : ℚ) * y₀ with hg
@@ -1370,7 +1394,8 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
   obtain ⟨h₀, u₀, hh0, hh, hu, hhy⟩ := galois_descent (N := N) y₀ q r hq0 hq hr hyq
   obtain ⟨c, gZ, hc0, hgZ⟩ := exists_int_multiple y₀ c₀ hc₀ hrel h₀ u₀ hh0 hh hu hhy
   set Ghat : PowerSeries ℂ := qExpansion N (G * Δ ^ m) with hGhat
-  have hC : gZ.map (Int.castRingHom ℂ) = (PowerSeries.C (c : ℂ) * Ghat * ((UZ (N := N)) ^ L).map (Int.castRingHom ℂ))
+  have hC : gZ.map (Int.castRingHom ℂ) = (PowerSeries.C (c : ℂ) * Ghat * ((UZ (N := N)) ^ L).map
+    (Int.castRingHom ℂ))
       * PowerSeries.X ^ (N * L) := by
     rw [← map_int_rat, hgZ, PowerSeries.smul_eq_C_mul, map_mul, PowerSeries.map_C, hy₀, ← map_DZ,
       DZ_eq, map_pow,
@@ -1386,7 +1411,8 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
       eq_intCast] at h1
     exact_mod_cast h1
   obtain ⟨g', hg'⟩ := hdvd
-  have hC' : g'.map (Int.castRingHom ℂ) = PowerSeries.C (c : ℂ) * Ghat * ((UZ (N := N)) ^ L).map (Int.castRingHom ℂ) :=
+  have hC' : g'.map (Int.castRingHom ℂ) = PowerSeries.C (c : ℂ) * Ghat * ((UZ (N := N)) ^ L).map
+    (Int.castRingHom ℂ) :=
     by
     have h1 := hC
     rw [hg', map_mul, map_pow, PowerSeries.map_X, mul_comm] at h1
@@ -1417,12 +1443,14 @@ theorem solution
     (hrat : ∀ n : ℕ, ∃ r : ℚ,
       (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n = (r : ℂ)) :
     ∃ D : ℤ, D ≠ 0 ∧ ∀ n : ℕ, ∃ z : ℤ,
-      (D : ℂ) * (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n = (z : ℂ) :=
+      (D : ℂ) * (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n = (z : ℂ)
+        :=
   GammaNBounded.main N m G hG hinv hbd hrat
 
 end S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant
 end P2MW
-export P2MW.S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant (solution)
+export P2MW.S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant
+  (solution)
 
 end privateSection
 
@@ -1438,7 +1466,8 @@ theorem ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma
     (hrat : ∀ n : ℕ, ∃ r : ℚ,
       (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n = (r : ℂ)) :
     ∃ D : ℤ, D ≠ 0 ∧ ∀ n : ℕ, ∃ z : ℤ,
-      (D : ℂ) * (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n = (z : ℂ) :=
+      (D : ℂ) * (UpperHalfPlane.qExpansion N (G * ModularForm.discriminant ^ m)).coeff n = (z : ℂ)
+        :=
   solution N m G hG hinv hbd hrat
 
 end publicSection

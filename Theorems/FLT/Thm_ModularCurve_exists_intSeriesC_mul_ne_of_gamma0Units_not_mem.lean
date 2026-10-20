@@ -85,7 +85,8 @@ private theorem faithCoeff_neg (M : ℕ) (c : (ZMod M)ˣ) (n : ℕ) :
     exact Finset.sum_congr rfl fun d _ => if_congr or_comm rfl rfl
 
 private theorem faithCoeff_one (M : ℕ) (c : (ZMod M)ˣ) :
-    faithCoeff M c 1 = if (1 : ZMod M) = (c : ZMod M) ∨ (1 : ZMod M) = -(c : ZMod M) then 1 else 0 := by
+    faithCoeff M c 1 = if (1 : ZMod M) = (c : ZMod M) ∨ (1 : ZMod M) = -(c : ZMod M) then 1 else 0
+      := by
   simp [faithCoeff, Nat.divisors_one]
 
 private theorem faith_ne_neg {M : ℕ} [NeZero M] (hM : 3 ≤ M) (c : (ZMod M)ˣ) : c ≠ -c := by
@@ -188,7 +189,8 @@ theorem solution
     | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, SlashAction.add_slash, ih]
   have hcoe_sum : ∀ (s : Finset (ZMod M)ˣ)
       (Φ : (ZMod M)ˣ → ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 4),
-      (⇑(∑ c ∈ s, Φ c) : ℍ → ℂ) = ∑ c ∈ s, ⇑(Φ c) := fun s Φ => map_sum (FunLike.coeAddMonoidHom (ModularForm _ 4) ℍ ℂ) Φ s
+      (⇑(∑ c ∈ s, Φ c) : ℍ → ℂ) = ∑ c ∈ s, ⇑(Φ c) := fun s Φ => map_sum (FunLike.coeAddMonoidHom
+        (ModularForm _ 4) ℍ ℂ) Φ s
   have hqsum : ∀ (s : Finset (ZMod M)ˣ)
       (Φ : (ZMod M)ˣ → ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 4),
       qExpansion 1 (⇑(∑ c ∈ s, Φ c)) = ∑ c ∈ s, qExpansion 1 (⇑(Φ c)) := by
@@ -318,7 +320,8 @@ theorem solution
   have h1A : (1 : (ZMod M)ˣ) ∈ A := (hmemA 1).mpr H'.one_mem
   have hm1A : (-1 : (ZMod M)ˣ) ∈ A :=
     (hmemA _).mpr (hH' ▸ Subgroup.mem_sup_right (Subgroup.mem_zpowers _))
-  have hpf1 : PowerSeries.coeff 1 (PowerSeries.mk fun n => (∑ c ∈ A, faithCoeff M (c * 1) n) / 2) = 1 :=
+  have hpf1 : PowerSeries.coeff 1 (PowerSeries.mk fun n => (∑ c ∈ A, faithCoeff M (c * 1) n) / 2) =
+    1 :=
     by
     rw [PowerSeries.coeff_mk, hcount A 1, hpair A h1A hm1A]
     norm_num
@@ -350,7 +353,8 @@ theorem solution
     PowerSeries.mk fun n => (∑ c ∈ A, faithCoeff M (c * u⁻¹) n) / 2,
     PowerSeries.mk fun n => (∑ c ∈ (Finset.univ : Finset (ZMod M)ˣ), faithCoeff M (c * 1) n) / 2,
     1, one_ne_zero, hint A hnegA 1 fH (hlift _ (hinvA 1)), hint _ hnegU 1 gH (hlift _ hinvU),
-    hint A hnegA u⁻¹ f₁H (hlift _ (hinvA u⁻¹)), hint _ hnegU 1 gH (hlift _ hinvU), ?_, ?_, hg0, hg0, ?_⟩
+    hint A hnegA u⁻¹ f₁H (hlift _ (hinvA u⁻¹)), hint _ hnegU 1 gH (hlift _ hinvU), ?_, ?_, hg0, hg0,
+      ?_⟩
   · rw [one_smul, FunLike.coe_smul, FunLike.coe_smul, hlift _ (hinvA u⁻¹),
       hlift _ (hinvA 1), key, hslash_sum A 1 γ hγ, ← hu, hcoe_sum]
     congr 1

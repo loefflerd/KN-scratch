@@ -621,7 +621,8 @@ private theorem descent_of_full_support
   have hpull := character_of_same_realization R χ ψ hsub hψ
   obtain ⟨u, hu⟩ := theta_projection_unit_multiple Θ hnorm hunit ψ.support χ.support hsub
   let ev := horizontalCharacterEvalRingHom Θ.coefficientRing ψ
-  have heval : Θ.eval χ = ev (u : HorizontalGroupAlgebra Θ.coefficientRing p L.exponent ψ.support) * Θ.eval ψ :=
+  have heval : Θ.eval χ = ev (u : HorizontalGroupAlgebra Θ.coefficientRing p L.exponent ψ.support) *
+    Θ.eval ψ :=
     by
     change (Θ.theta χ.support).coeff.sum _ = _
     rw [← horizontalCharacterEvalRingHom_apply]

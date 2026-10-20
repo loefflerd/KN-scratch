@@ -296,7 +296,8 @@ theorem mEl_mem : mEl ∈ integralO := w_mem 0
 theorem coeff_zero_mEl : mEl.coeff 0 = -1728 := by rw [mEl, coeff_zero_w, zero_sub]
 
 theorem uInv_pow_mul_sMon_four :
-    (HahnSeries.single (-(2 / 12) : ℚ) (1 : Qbar) : H) ^ 4 * sMon = HahnSeries.single (1 / 3 : ℚ) 1 := by
+    (HahnSeries.single (-(2 / 12) : ℚ) (1 : Qbar) : H) ^ 4 * sMon = HahnSeries.single (1 / 3 : ℚ) 1
+      := by
   rw [HahnSeries.single_pow, HahnSeries.single_mul_single]; norm_num
 
 theorem uInv_pow_mul_sMon_six :
@@ -326,7 +327,8 @@ theorem goodModel_0_a₄ :
       2 * (-(jNear 0 - 1728) ^ 2 / 12) * 0 -
       ((jNear 0 - 1728) ^ 3 / 24 + -(jNear 0 - 1728) ^ 2 / 12 * (-(jNear 0 - 1728) / 2)) *
         (jNear 0 - 1728) +
-      3 * (-(jNear 0 - 1728) ^ 2 / 12) ^ 2 - 2 * (-(jNear 0 - 1728) / 2) * ((jNear 0 - 1728) ^ 3 / 24))
+      3 * (-(jNear 0 - 1728) ^ 2 / 12) ^ 2 - 2 * (-(jNear 0 - 1728) / 2) * ((jNear 0 - 1728) ^ 3 /
+        24))
       = sMon * (-mEl ^ 3 / 48) := by
     rw [← mEl_add]; simp only [mEl]; ring
   rw [key, ← mul_assoc, uInv_pow_mul_sMon_four]

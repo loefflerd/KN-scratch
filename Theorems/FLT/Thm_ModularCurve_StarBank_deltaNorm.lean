@@ -365,8 +365,10 @@ p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.StarBank.etaNorm {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) :
     (∏ b ∈ Finset.range p,
-        qTwist (ζ ^ b) (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd))) *
-      qExpand K (p * p) (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd)) =
+        qTwist (ζ ^ b) (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd)))
+          *
+      qExpand K (p * p) (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd))
+        =
     qExpand K p (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd)) ^
       (p + 1) := by
   rw [ModularCurve.W1.qExpand_ofPowerSeries, ModularCurve.W1.qExpand_ofPowerSeries,
@@ -392,7 +394,8 @@ theorem prod_single_one {K : Type*} [CommRing K] (s : Finset ℕ) (x : ℕ → K
 
 theorem delta_bookkeeping {K : Type*} [Field K] (p : ℕ) (ε : K) (PT V1 V2 : LaurentSeries K)
     (hN : PT * V2 = V1 ^ (p + 1)) :
-    HahnSeries.single (p : ℤ) ε * PT ^ 24 * (HahnSeries.single ((p * p : ℕ) : ℤ) (1 : K) * V2 ^ 24) =
+    HahnSeries.single (p : ℤ) ε * PT ^ 24 * (HahnSeries.single ((p * p : ℕ) : ℤ) (1 : K) * V2 ^ 24)
+      =
       HahnSeries.C ε * (HahnSeries.single (p : ℤ) (1 : K) * V1 ^ 24) ^ (p + 1) := by
   have hs : HahnSeries.single (p : ℤ) ε * HahnSeries.single ((p * p : ℕ) : ℤ) (1 : K) =
       HahnSeries.C ε * HahnSeries.single (p : ℤ) (1 : K) ^ (p + 1) := by
@@ -443,7 +446,8 @@ p2m_open "ModularCurve"
 
 theorem coeff_one_mul {R : Type*} [CommRing R] (φ ψ : PowerSeries R) :
     PowerSeries.coeff 1 (φ * ψ) =
-      PowerSeries.coeff 0 φ * PowerSeries.coeff 1 ψ + PowerSeries.coeff 1 φ * PowerSeries.coeff 0 ψ := by
+      PowerSeries.coeff 0 φ * PowerSeries.coeff 1 ψ + PowerSeries.coeff 1 φ * PowerSeries.coeff 0 ψ
+        := by
   rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_succ, Finset.Nat.antidiagonal_zero,
     Finset.sum_singleton]
 

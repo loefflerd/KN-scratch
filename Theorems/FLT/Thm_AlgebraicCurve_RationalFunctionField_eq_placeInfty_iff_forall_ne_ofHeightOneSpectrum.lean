@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.RationalFunctionField.eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
+Based on Prove2Me node
+AlgebraicCurve.RationalFunctionField.eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
 (5dc01e2e-6b78-580e-ae5e-511e2495ea8f) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 2e7eae80-5114-5bf8-84dd-43b5162fd0d1
@@ -64,7 +65,8 @@ namespace P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_n
 open IsDedekindDomain AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
 theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) :
-    v = placeInfty K ↔ ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w := by
+    v = placeInfty K ↔ ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+      Place.ofHeightOneSpectrum w := by
   constructor
   · rintro rfl
     exact AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum K
@@ -74,7 +76,8 @@ theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (R
 
 end S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum (solution)
+export P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
+  (solution)
 
 end privateSection
 
@@ -84,7 +87,8 @@ public section publicSection
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
 theorem AlgebraicCurve.RationalFunctionField.eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
     {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) :
-    v = placeInfty K ↔ ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w :=
+    v = placeInfty K ↔ ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+      Place.ofHeightOneSpectrum w :=
   solution v
 
 end publicSection

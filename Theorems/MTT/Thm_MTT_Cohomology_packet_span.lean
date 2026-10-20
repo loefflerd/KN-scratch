@@ -222,7 +222,8 @@ theorem MTT.Cohomology.packet_span
     (hφε : ∀ γ : CongruenceSubgroup.Gamma0 N, ∀ x y,
       φ.val (cuspAct γ.val x, cuspAct γ.val y) =
         ι (f.epsilon (γ.val 1 1 : ZMod N)) • act γ.val.val (φ.val (x, y))) :
-    ∃ c d : ℂ, φ.val = c • (I f.form).val + d • reflection (I f.form).val := _root_.solution hN hk I hI hT ι f φ hφH hφε
+    ∃ c d : ℂ, φ.val = c • (I f.form).val + d • reflection (I f.form).val := _root_.solution hN hk I
+      hI hT ι f φ hφH hφε
 end
 
 end publicSection

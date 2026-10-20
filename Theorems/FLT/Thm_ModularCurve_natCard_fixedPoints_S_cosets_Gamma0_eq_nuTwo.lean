@@ -92,7 +92,8 @@ variable (N : ℕ)
 abbrev X : Type := SL(2, ℤ) ⧸ Gamma0 N
 
 theorem mk_eq_mk_iff (g h : SL(2, ℤ)) :
-    ((g : X N) = (h : X N)) ↔ ((g 0 0 : ℤ) : ZMod N) * (h 1 0 : ℤ) - (g 1 0 : ℤ) * (h 0 0 : ℤ) = 0 := by
+    ((g : X N) = (h : X N)) ↔ ((g 0 0 : ℤ) : ZMod N) * (h 1 0 : ℤ) - (g 1 0 : ℤ) * (h 0 0 : ℤ) = 0
+      := by
   rw [QuotientGroup.eq, Gamma0_mem, inv_mul_lower]
   push_cast
   exact Iff.rfl

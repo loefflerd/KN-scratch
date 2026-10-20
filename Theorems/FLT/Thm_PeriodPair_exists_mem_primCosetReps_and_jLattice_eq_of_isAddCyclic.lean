@@ -49,7 +49,8 @@ which leaves the $j$-invariant unchanged, a lattice and a cyclic sublattice of i
 $\mathbb{Z}\tau + \mathbb{Z}$ and $\mathbb{Z}\sigma + \mathbb{Z}$ with $\sigma = (a\tau+b)/d$ for
 one of the primitive coset representatives of level $N$. It feeds the proof that the modular
 polynomial of level $N$ vanishes at the pair of $j$-invariants,
-[`ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic`](thm.html#ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic).
+[`ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic`]
+(thm.html#ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic).
 
 ## Explanation of the source proof
 
@@ -631,7 +632,8 @@ theorem kw_surgehgf4_hu5c_gcd_eq_one_of_isAddCyclic
       hpdvd.trans ((Nat.gcd_dvd_right _ _).trans (Nat.gcd_dvd_left _ _))
     exact hb ▸ Int.natCast_dvd_natCast.mpr this
   have hpd : (p : ℤ) ∣ (dOf H : ℤ) :=
-    Int.natCast_dvd_natCast.mpr (hpdvd.trans ((Nat.gcd_dvd_right _ _).trans (Nat.gcd_dvd_right _ _)))
+    Int.natCast_dvd_natCast.mpr (hpdvd.trans ((Nat.gcd_dvd_right _ _).trans (Nat.gcd_dvd_right _
+      _)))
   have : NeZero p := ⟨hp.ne_zero⟩
   let π : ℤ × ℤ →+ ZMod p × ZMod p :=
     (Int.castAddHom (ZMod p)).prodMap (Int.castAddHom (ZMod p))
@@ -773,7 +775,13 @@ end ModularCurve
 end
 end
 
-open _root_.ModularCurve _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve _root_.QuaternionAlgebra _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra _root_.PeriodPair _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair UpperHalfPlane in
+open _root_.ModularCurve
+  _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve
+  _root_.QuaternionAlgebra
+  _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra
+  _root_.PeriodPair
+  _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair
+  UpperHalfPlane in
 theorem solution
     {N : ℕ} [NeZero N] (L L' : PeriodPair)
     (hsub : (L'.lattice : Set ℂ) ⊆ L.lattice) (hidx : PeriodPair.sublatticeIndex L L' = N)

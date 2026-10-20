@@ -82,7 +82,8 @@ private theorem exists_basis : ∃ b : Module.Basis Unit F Ω[F⁄K], b () = D K
   let algKx : Algebra K[X] (IntermediateField.adjoin K ({x} : Set F)) :=
     (e.toAlgHom.toRingHom.comp (algebraMap K[X] (RatFunc K))).toAlgebra
   let algF : Algebra K[X] F :=
-    ((algebraMap (IntermediateField.adjoin K ({x} : Set F)) F).comp (algebraMap K[X] (IntermediateField.adjoin K ({x} : Set F)))).toAlgebra
+    ((algebraMap (IntermediateField.adjoin K ({x} : Set F)) F).comp (algebraMap K[X]
+      (IntermediateField.adjoin K ({x} : Set F)))).toAlgebra
   have : IsScalarTower K[X] (IntermediateField.adjoin K ({x} : Set F)) F :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
   have : IsScalarTower K K[X] (IntermediateField.adjoin K ({x} : Set F)) :=
@@ -109,7 +110,8 @@ private theorem exists_basis : ∃ b : Module.Basis Unit F Ω[F⁄K], b () = D K
   let ψ := tensorKaehlerEquivOfFormallyEtale K K[X] F
   refine ⟨(b₀.baseChange F).map ψ, ?_⟩
   have hX : algebraMap K[X] F X = x := by
-    change algebraMap (IntermediateField.adjoin K ({x} : Set F)) F (e (algebraMap K[X] (RatFunc K) X)) = x
+    change algebraMap (IntermediateField.adjoin K ({x} : Set F)) F (e (algebraMap K[X] (RatFunc K)
+      X)) = x
     rw [RatFunc.algebraMap_X]
     exact RatFunc.algEquivOfTranscendental_X x hx
   simp only [Module.Basis.map_apply, Module.Basis.baseChange_apply, hb₀, ψ,

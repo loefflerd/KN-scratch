@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j
+Based on Prove2Me node
+WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j
 (6dd2c674-31b5-5cc3-a8b5-7b0ca8e877c2) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6070a9c7-1ec2-518c-ace4-b2ff7e195a0c
@@ -114,7 +115,9 @@ theorem solution
 
 end S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j (solution)
+export
+  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j
+  (solution)
 
 end privateSection
 

@@ -771,7 +771,8 @@ lemma Fvec_eq (h : ℍ → ℂ) (n : ℕ) (w : ℂ) :
 
 lemma act_lin (σ : SL(2, ℤ)) {z : ℂ} (hz : z ∈ UHP) :
     act σ (MvPolynomial.C z * MvPolynomial.X 0 + MvPolynomial.X 1 : Binary ℂ) =
-      MvPolynomial.C (den σ z) * (MvPolynomial.C (mob σ z) * MvPolynomial.X 0 + MvPolynomial.X 1) := by
+      MvPolynomial.C (den σ z) * (MvPolynomial.C (mob σ z) * MvPolynomial.X 0 + MvPolynomial.X 1) :=
+        by
   have hd := den_ne_zero σ hz
   have hm : den σ z * mob σ z = ((σ 0 0 : ℤ) : ℂ) * z + ((σ 0 1 : ℤ) : ℂ) := by
     unfold mob den at hd ⊢
@@ -894,10 +895,13 @@ theorem transport (σ : SL(2, ℤ)) {h h' : ℍ → ℂ} {n : ℕ}
   have hG' : ∀ j, ∀ w ∈ UHP, HasDerivAt (normPrim (Fj h' j)) (Fj h' j w) w :=
     fun j => (normPrim_spec (differentiableOn_Fj hh' j) (hd' j)).1
   have hconst : ∀ m : Fin 2 →₀ ℕ, ∀ w ∈ UHP,
-      AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n w)) m =
-      AddMonoidAlgebra.coeff (Gvec h n (mob σ I)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n I)) m := by
+      AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n w)) m
+        =
+      AddMonoidAlgebra.coeff (Gvec h n (mob σ I)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n I)) m
+        := by
     intro m w hw
-    refine eq_const_of_hasDerivAt_zero (G := fun w => AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m -
+    refine eq_const_of_hasDerivAt_zero (G := fun w => AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m
+      -
       AddMonoidAlgebra.coeff (act σ (Gvec h' n w)) m) ?_ w hw I I_mem_UHP
     intro u hu
     have h1 : HasDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m)
@@ -1004,7 +1008,8 @@ lemma Kconst_eq_of_tendsto {σ : SL(2, ℤ)} {h h' : ℍ → ℂ} {n : ℕ}
   ext e
   have hlim := (h1 e).sub (h2 e)
   have hc : ∀ m, AddMonoidAlgebra.coeff (Gvec h n (mob σ (z m))) e -
-      AddMonoidAlgebra.coeff (act σ (Gvec h' n (z m))) e = AddMonoidAlgebra.coeff (Kconst σ h h' n) e := by
+      AddMonoidAlgebra.coeff (act σ (Gvec h' n (z m))) e = AddMonoidAlgebra.coeff (Kconst σ h h' n)
+        e := by
     intro m
     rw [hK (z m) (hz m), AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
     ring
@@ -1256,7 +1261,8 @@ lemma conjugate_deriv_of_complex {F : ℂ → ℂ} {a z : ℂ} (h : HasDerivAt F
 lemma mixed_Gvec_deriv {N k : ℕ} (hN : 0 < N)
     (g v : CuspForm (MTT.GammaOne N) (k : ℤ)) (Q : Binary ℂ)
     (z : UpperHalfPlane) (e : Fin 2 →₀ ℕ) :
-    HasFDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec g (k - 2) w - conjugatePolynomial (Gvec v (k - 2) w) + Q) e)
+    HasFDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec g (k - 2) w - conjugatePolynomial (Gvec v (k
+      - 2) w) + Q) e)
       (periodDifferential
         (AddMonoidAlgebra.coeff (g z • periodPower (k - 2) z) e)
         (-AddMonoidAlgebra.coeff (conj (v z) • periodPower (k - 2) (conj (z : ℂ))) e)) z := by
@@ -1516,7 +1522,8 @@ theorem solution
       conjugatePolynomial (act γ.val.val (Gvec v (k - 2) z) + s • cuspPrimitive v _) + Q = _
     rw [map_add, conjugate_act, conjugate_smul, hs, neg_smul, map_add, map_sub]
     have hp'' : s • cuspPrimitive g (cuspAct γ.val OnePoint.infty) +
-        s • conjugatePolynomial (cuspPrimitive v (cuspAct γ.val OnePoint.infty)) + Q = act γ.val.val Q := by
+        s • conjugatePolynomial (cuspPrimitive v (cuspAct γ.val OnePoint.infty)) + Q = act γ.val.val
+          Q := by
       dsimp [Q]
       rw [hp', sub_add_cancel]
     rw [← hp'']
@@ -1530,7 +1537,8 @@ theorem solution
     refine ⟨Cg + Cv + D, 0, by dsimp [D]; positivity, ?_⟩
     intro z hz hzr
     change ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val
-      (Gvec g (k - 2) (δ • z : UpperHalfPlane) - conjugatePolynomial (Gvec v (k - 2) (δ • z : UpperHalfPlane)) + Q)) e‖ ≤ _
+      (Gvec g (k - 2) (δ • z : UpperHalfPlane) - conjugatePolynomial (Gvec v (k - 2) (δ • z :
+        UpperHalfPlane)) + Q)) e‖ ≤ _
     rw [map_add, map_sub, ← conjugate_act, AddMonoidAlgebra.coeff_add, Finsupp.add_apply,
       AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
     simp only [pow_zero, mul_one]

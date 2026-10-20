@@ -50,7 +50,8 @@ here in the form of an inequality (classically an equality, with correction term
 invariants and coinvariants, both assumed to vanish). It is used to bound the dimension of parabolic
 cohomology with coefficients in a representation of $\Gamma_0(N)$ against the weight-$k$ dimension
 formula, via
-[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`](thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula).
+[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`]
+(thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula).
 
 ## Explanation of the source proof
 
@@ -160,7 +161,8 @@ theorem z_eq_zero (hS : z eS = 0) (hU : z eU = 0) : z = 0 := by
   funext g
   have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ)) := by
     rw [SpecialLinearGroup.SL2Z_generators]; trivial
-  have key : ∀ x (hx : x ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ))), z ⟨x, Subgroup.mem_top _⟩ = 0 :=
+  have key : ∀ x (hx : x ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ))), z ⟨x, Subgroup.mem_top _⟩ = 0
+    :=
     by
     intro x hx
     induction hx using Subgroup.closure_induction with
@@ -186,7 +188,8 @@ section LinAlg
 variable [FiniteDimensional ℂ V]
 
 theorem finrank_ker_add_of_sq_eq_one (s : Module.End ℂ V) (hs : s * s = 1) :
-    Module.finrank ℂ ↥(LinearMap.ker (s + 1)) + Module.finrank ℂ ↥(LinearMap.ker (s - 1)) = Module.finrank ℂ V := by
+    Module.finrank ℂ ↥(LinearMap.ker (s + 1)) + Module.finrank ℂ ↥(LinearMap.ker (s - 1)) =
+      Module.finrank ℂ V := by
   have hinf : LinearMap.ker (s + 1) ⊓ LinearMap.ker (s - 1) = ⊥ := by
     rw [eq_bot_iff]
     intro v hv
@@ -221,7 +224,8 @@ theorem finrank_ker_add_of_sq_eq_one (s : Module.End ℂ V) (hs : s * s = 1) :
   exact h.symm
 
 theorem finrank_ker_add_of_cube_eq_one (u : Module.End ℂ V) (hu : u * u * u = 1) :
-    Module.finrank ℂ ↥(LinearMap.ker (1 + u + u * u)) + Module.finrank ℂ ↥(LinearMap.ker (u - 1)) = Module.finrank ℂ V := by
+    Module.finrank ℂ ↥(LinearMap.ker (1 + u + u * u)) + Module.finrank ℂ ↥(LinearMap.ker (u - 1)) =
+      Module.finrank ℂ V := by
   have hu3 : ∀ v, u (u (u v)) = v := fun v => by
     have := LinearMap.congr_fun hu v
     simpa [Module.End.mul_apply] using this
@@ -314,11 +318,13 @@ theorem E_mem_K (z : ↥(coeffParabolicCocycles W)) : E W z ∈ K W := by
 omit hinv in
 theorem finrank_K_add :
     Module.finrank ℂ ↥(K W) + Module.finrank ℂ ↥(LinearMap.ker (W eT - 1))
-      = Module.finrank ℂ ↥(LinearMap.ker (W eS + 1)) + Module.finrank ℂ ↥(LinearMap.ker (1 + W eU + W eU * W eU)) := by
+      = Module.finrank ℂ ↥(LinearMap.ker (W eS + 1)) + Module.finrank ℂ ↥(LinearMap.ker (1 + W eU +
+        W eU * W eU)) := by
   set A := LinearMap.ker (W eS + 1) with hA
   set B := LinearMap.ker (1 + W eU + W eU * W eU) with hB
   set R₁ := (LinearMap.range (W eT - 1)).map (W eS) with hR₁
-  set δ : (V × V) →ₗ[ℂ] V ⧸ R₁ := (Submodule.mkQ R₁).comp (LinearMap.snd ℂ V V - LinearMap.fst ℂ V V) with hδ
+  set δ : (V × V) →ₗ[ℂ] V ⧸ R₁ := (Submodule.mkQ R₁).comp (LinearMap.snd ℂ V V - LinearMap.fst ℂ V
+    V) with hδ
   set δ' : ↥(Submodule.prod A B) →ₗ[ℂ] V ⧸ R₁ := δ.comp (Submodule.prod A B).subtype with hδ'
   have hsurj : Function.Surjective δ' := by
     intro q
@@ -423,7 +429,8 @@ theorem main :
     rw [map_sub]
     exact sub_eq_sub_iff_sub_eq_sub.mp this
   let cb' : V →ₗ[ℂ] ↥PC :=
-    LinearMap.codRestrict PC (coeffCoboundaryMap W) fun v => coeffCoboundaries_le_coeffParabolicCocycles W ⟨v, rfl⟩
+    LinearMap.codRestrict PC (coeffCoboundaryMap W) fun v =>
+      coeffCoboundaries_le_coeffParabolicCocycles W ⟨v, rfl⟩
   have hcb'_range : LinearMap.range cb' = CB' := by
     ext z
     constructor
@@ -456,10 +463,12 @@ theorem solution {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional �
     (hneg : W ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id)
     (hinv : ∀ v : V, (∀ g : (⊤ : Subgroup SL(2, ℤ)), W g v = v) → v = 0)
     (hcoinv : ∀ v : V, ∃ a b : V,
-      v = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ b - b)) :
+      v = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T,
+        Subgroup.mem_top _⟩ b - b)) :
     Module.finrank ℂ (HeckeEis.coeffH1par W)
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1))
-      + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1))
+      + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ -
+        1))
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1))
       ≤ Module.finrank ℂ V :=
   HeckeEis.UASol.main W hneg hinv hcoinv
@@ -480,10 +489,12 @@ theorem HeckeEis.finrank_coeffH1par_top_add_le {V : Type} [AddCommGroup V] [Modu
     (hneg : W ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id)
     (hinv : ∀ v : V, (∀ g : (⊤ : Subgroup SL(2, ℤ)), W g v = v) → v = 0)
     (hcoinv : ∀ v : V, ∃ a b : V,
-      v = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ b - b)) :
+      v = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T,
+        Subgroup.mem_top _⟩ b - b)) :
     Module.finrank ℂ (HeckeEis.coeffH1par W)
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1))
-      + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1))
+      + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ -
+        1))
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1))
       ≤ Module.finrank ℂ V :=
   solution W hneg hinv hcoinv

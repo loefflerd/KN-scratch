@@ -57,7 +57,8 @@ spans the rational one, i.e. that the image of $\Phi$ is of finite index in the 
 rational class becomes integral after multiplication by a suitable nonzero integer. It is used in
 the construction of a basis of $H^1_{\mathrm{par}}$ over $\mathbb{C}$ coming from the integral
 classes, in
-[`HeckeEis.exists_basis_coeffH1par_int_complex`](thm.html#HeckeEis.exists_basis_coeffH1par_int_complex).
+[`HeckeEis.exists_basis_coeffH1par_int_complex`]
+(thm.html#HeckeEis.exists_basis_coeffH1par_int_complex).
 
 ## Explanation of the source proof
 
@@ -158,8 +159,10 @@ theorem binarySubst_eq_bind₁ (S : Type*) [CommRing S] (M : Matrix (Fin 2) (Fin
 theorem map_binarySubst_int (φ : ℤ →+* R) (M : Matrix (Fin 2) (Fin 2) ℤ)
     (P : MvPolynomial (Fin 2) ℤ) :
     MvPolynomial.map φ (binarySubst ℤ M P) = binarySubst R M (MvPolynomial.map φ P) := by
-  have key : (MvPolynomial.map φ).comp (binarySubst ℤ M : MvPolynomial (Fin 2) ℤ →ₐ[ℤ] MvPolynomial (Fin 2) ℤ).toRingHom
-      = (binarySubst R M : MvPolynomial (Fin 2) R →ₐ[R] MvPolynomial (Fin 2) R).toRingHom.comp (MvPolynomial.map φ) :=
+  have key : (MvPolynomial.map φ).comp (binarySubst ℤ M : MvPolynomial (Fin 2) ℤ →ₐ[ℤ] MvPolynomial
+    (Fin 2) ℤ).toRingHom
+      = (binarySubst R M : MvPolynomial (Fin 2) R →ₐ[R] MvPolynomial (Fin 2) R).toRingHom.comp
+        (MvPolynomial.map φ) :=
     MvPolynomial.ringHom_ext (fun a => by simp []) (fun j => by simp [binarySubst_X])
   exact RingHom.congr_fun key P
 
@@ -167,12 +170,14 @@ def substCoeff (M : Matrix (Fin 2) (Fin 2) ℤ) (d d' : Fin 2 →₀ ℕ) : ℤ 
   AddMonoidAlgebra.coeff (binarySubst ℤ M (monomial d' 1)) d
 
 theorem binarySubst_monomial_one (M : Matrix (Fin 2) (Fin 2) ℤ) (d' : Fin 2 →₀ ℕ) :
-    binarySubst R M (monomial d' 1) = MvPolynomial.map (Int.castRingHom R) (binarySubst ℤ M (monomial d' 1)) := by
+    binarySubst R M (monomial d' 1) = MvPolynomial.map (Int.castRingHom R) (binarySubst ℤ M
+      (monomial d' 1)) := by
   rw [map_binarySubst_int, map_monomial, (Int.castRingHom R).map_one]
 
 theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R)
     (d : Fin 2 →₀ ℕ) :
-    AddMonoidAlgebra.coeff (binarySubst R M P) d = ∑ d' ∈ P.support, (substCoeff M d d' : R) * AddMonoidAlgebra.coeff P d' := by
+    AddMonoidAlgebra.coeff (binarySubst R M P) d = ∑ d' ∈ P.support, (substCoeff M d d' : R) *
+      AddMonoidAlgebra.coeff P d' := by
   conv_lhs => rw [P.as_sum, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun d' _ => ?_
   rw [show monomial d' (AddMonoidAlgebra.coeff P d') = C (AddMonoidAlgebra.coeff P d') * monomial d' 1 by rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
@@ -263,7 +268,8 @@ theorem pushForm_comp_mem_coeffCocycles {z : Γ → ↥(BinaryForm R n)}
     (hz : z ∈ coeffCocycles ((binaryFormRepSL R n).comp Γ.subtype)) :
     (fun g => pushForm f n (z g)) ∈ coeffCocycles ((binaryFormRepSL R' n).comp Γ.subtype) := by
   intro g h
-  change pushForm f n (z (g * h)) = pushForm f n (z g) + binaryFormRepSL R' n ((g : Γ) : SL(2, ℤ)) (pushForm f n (z h))
+  change pushForm f n (z (g * h)) = pushForm f n (z g) + binaryFormRepSL R' n ((g : Γ) : SL(2, ℤ))
+    (pushForm f n (z h))
   rw [hz g h, pushForm_add, ← pushForm_binaryFormRepSL]
   rfl
 
@@ -280,7 +286,8 @@ theorem isParabolicCocycle_pushForm_comp {z : Γ → ↥(BinaryForm R n)}
 
 theorem pushForm_comp_mem_coeffParabolicCocycles {z : Γ → ↥(BinaryForm R n)}
     (hz : z ∈ coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype)) :
-    (fun g => pushForm f n (z g)) ∈ coeffParabolicCocycles ((binaryFormRepSL R' n).comp Γ.subtype) :=
+    (fun g => pushForm f n (z g)) ∈ coeffParabolicCocycles ((binaryFormRepSL R' n).comp Γ.subtype)
+      :=
   ⟨pushForm_comp_mem_coeffCocycles f n hz.1, isParabolicCocycle_pushForm_comp f n hz.2⟩
 
 theorem pushForm_comp_mem_coeffCoboundaries {z : Γ → ↥(BinaryForm R n)}
@@ -306,8 +313,10 @@ def pushPar : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype)
     change pushForm f n (z.1 g + w.1 g) = pushForm f n (z.1 g) + pushForm f n (w.1 g)
     rw [pushForm_add]
 
-@[scoped simp] theorem pushPar_apply_coe (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype))) (g : Γ) :
-    (((pushPar f n z).1 g : ↥(BinaryForm R' n)) : MvPolynomial (Fin 2) R') = pushCoeff f (z.1 g) := rfl
+@[scoped simp] theorem pushPar_apply_coe (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp
+  Γ.subtype))) (g : Γ) :
+    (((pushPar f n z).1 g : ↥(BinaryForm R' n)) : MvPolynomial (Fin 2) R') = pushCoeff f (z.1 g) :=
+      rfl
 
 theorem pushPar_apply_val (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype)))
     (g : Γ) :
@@ -335,15 +344,20 @@ def pushH1par :
     coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+ coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
   toFun x := coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) x))
   map_zero' := by
-    have h0 : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp Γ.subtype)) 0)
-        = coeffH1parMk _ (0 : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype))) := by
+    have h0 : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp
+      Γ.subtype)) 0)
+        = coeffH1parMk _ (0 : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype))) :=
+          by
       rw [Function.surjInv_eq (coeffH1parMk_surjective _), map_zero]
     change coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) 0)) = 0
     rw [mk_pushPar_congr f n h0, map_zero, map_zero]
   map_add' x y := by
-    have hxy : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp Γ.subtype)) (x + y))
-        = coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp Γ.subtype)) x
-            + Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp Γ.subtype)) y) := by
+    have hxy : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp
+      Γ.subtype)) (x + y))
+        = coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp
+          Γ.subtype)) x
+            + Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp Γ.subtype)) y)
+              := by
       rw [map_add, Function.surjInv_eq (coeffH1parMk_surjective _), Function.surjInv_eq
         (coeffH1parMk_surjective _),
         Function.surjInv_eq (coeffH1parMk_surjective _)]
@@ -352,7 +366,8 @@ def pushH1par :
 
 theorem pushH1par_mk (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp Γ.subtype))) :
     pushH1par f n (coeffH1parMk _ z) = coeffH1parMk _ (pushPar f n z) := by
-  change coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) (coeffH1parMk _ z))) = _
+  change coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) (coeffH1parMk _
+    z))) = _
   apply mk_pushPar_congr
   exact Function.surjInv_eq (coeffH1parMk_surjective _) _
 
@@ -476,7 +491,8 @@ theorem exists_isInt_zsmul_family {ι : Type*} (s : Finset ι) (P : ι → MvPol
     ∃ D : ℤ, D ≠ 0 ∧ ∀ i ∈ s, IsInt (D • P i) := by
   classical
   obtain ⟨D, hD, h⟩ :=
-    exists_common_den (s.biUnion fun i => (P i).support.image fun d => AddMonoidAlgebra.coeff (P i) d)
+    exists_common_den (s.biUnion fun i => (P i).support.image fun d => AddMonoidAlgebra.coeff (P i)
+      d)
   refine ⟨D, hD, fun i hi d => ?_⟩
   by_cases hd : d ∈ (P i).support
   · obtain ⟨m, hm⟩ := h _ (Finset.mem_biUnion.mpr ⟨i, hi, Finset.mem_image_of_mem _ hd⟩)
@@ -497,7 +513,8 @@ theorem pushForm_ι_injective (n : ℕ) :
   exact Int.cast_injective this
 
 theorem coe_pushForm_ι (n : ℕ) (P : ↥(BinaryForm ℤ n)) :
-    ((pushForm ιZQ n P : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ) = MvPolynomial.map (Int.castRingHom ℚ) P := by
+    ((pushForm ιZQ n P : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ) = MvPolynomial.map
+      (Int.castRingHom ℚ) P := by
   rw [coe_pushForm]; exact pushCoeff_ringHom_eq_map _ _
 
 theorem exists_eq_pushForm_of_isInt (n : ℕ) {Q : ↥(BinaryForm ℚ n)}
@@ -510,7 +527,8 @@ theorem exists_eq_pushForm_of_isInt (n : ℕ) {Q : ↥(BinaryForm ℚ n)}
 theorem pushForm_zsmul {R R' : Type*} [CommRing R] [CommRing R'] (f : R →+ R') (n : ℕ) (m : ℤ)
     (P : ↥(BinaryForm R n)) :
     pushForm f n (m • P) = m • pushForm f n P :=
-  map_zsmul (⟨⟨pushForm f n, pushForm_zero f n⟩, pushForm_add f n⟩ : ↥(BinaryForm R n) →+ ↥(BinaryForm R' n)) m P
+  map_zsmul (⟨⟨pushForm f n, pushForm_zero f n⟩, pushForm_add f n⟩ : ↥(BinaryForm R n) →+
+    ↥(BinaryForm R' n)) m P
 
 end HeckeEis.RatAux
 end
@@ -551,7 +569,8 @@ theorem conj_T_zpow_eq (δ : SL(2, ℤ)) (h : ℤ) :
   rw [MulAut.conj_apply]
 
 theorem conj_T_zpow_add (δ : SL(2, ℤ)) (x y : ℤ) :
-    δ * ModularGroup.T ^ (x + y) * δ⁻¹ = (δ * ModularGroup.T ^ x * δ⁻¹) * (δ * ModularGroup.T ^ y * δ⁻¹) := by
+    δ * ModularGroup.T ^ (x + y) * δ⁻¹ = (δ * ModularGroup.T ^ x * δ⁻¹) * (δ * ModularGroup.T ^ y *
+      δ⁻¹) := by
   rw [zpow_add]; group
 
 theorem conj_T_zpow_mul (δ : SL(2, ℤ)) (a k : ℤ) :
@@ -630,10 +649,12 @@ theorem mul_cuspRep_inv_mem (σ : SL(2, ℤ)) :
   simpa only [cuspRep, inv_inv] using h3
 
 def cuspGen (q : SL(2, ℤ) ⧸ Gamma0 N) : Gamma0 N :=
-  ⟨cuspRep N q * ModularGroup.T ^ (cuspWidth N (cuspRep N q) : ℤ) * (cuspRep N q)⁻¹, (cuspWidth_spec N (cuspRep N q)).2⟩
+  ⟨cuspRep N q * ModularGroup.T ^ (cuspWidth N (cuspRep N q) : ℤ) * (cuspRep N q)⁻¹, (cuspWidth_spec
+    N (cuspRep N q)).2⟩
 
 theorem coe_cuspGen (q : SL(2, ℤ) ⧸ Gamma0 N) :
-    ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) = cuspRep N q * ModularGroup.T ^ (cuspWidth N (cuspRep N q) : ℤ) * (cuspRep N q)⁻¹ := rfl
+    ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) = cuspRep N q * ModularGroup.T ^ (cuspWidth N (cuspRep N
+      q) : ℤ) * (cuspRep N q)⁻¹ := rfl
 
 theorem trace_cuspGen_sq (q : SL(2, ℤ) ⧸ Gamma0 N) :
     (((cuspGen N q : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
@@ -687,7 +708,8 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N]
     (hWq : ∀ q : SL(2, ℤ) ⧸ Gamma0 N, ∃ W : ↥(BinaryForm ℤ n),
       y (cuspGen N q) = binaryFormRepSL ℤ n ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) W - W) :
     IsParabolicCocycle ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) y := by
-  have hρZ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℤ n (g : SL(2, ℤ)) :=
+  have hρZ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℤ
+    n (g : SL(2, ℤ)) :=
     fun g => rfl
   set m₁ : Gamma0 N := ⟨-1, neg_one_mem_Gamma0 N⟩ with hm₁
   intro γ hγ
@@ -700,14 +722,16 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N]
   have hεmem : ε ∈ Gamma0 N :=
     hε.elim (fun h => h ▸ Subgroup.one_mem _) (fun h => h ▸ neg_one_mem_Gamma0 N)
   have hconj_mem : cuspRep N q * ModularGroup.T ^ h * (cuspRep N q)⁻¹ ∈ Gamma0 N := by
-    have e1 : cuspRep N q * ModularGroup.T ^ h * (cuspRep N q)⁻¹ = (g₀ : SL(2, ℤ))⁻¹ * (ε⁻¹ * (γ : SL(2, ℤ))) * g₀ :=
+    have e1 : cuspRep N q * ModularGroup.T ^ h * (cuspRep N q)⁻¹ = (g₀ : SL(2, ℤ))⁻¹ * (ε⁻¹ * (γ :
+      SL(2, ℤ))) * g₀ :=
       by
       rw [hγeq, hσ]; group
     rw [e1]
     exact Subgroup.mul_mem _ (Subgroup.mul_mem _ (Subgroup.inv_mem _ g₀.2)
       (Subgroup.mul_mem _ (Subgroup.inv_mem _ hεmem) γ.2)) g₀.2
   obtain ⟨k, hk⟩ := cuspWidth_dvd N (cuspRep N q) hconj_mem
-  have hpow : cuspRep N q * ModularGroup.T ^ h * (cuspRep N q)⁻¹ = ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) ^ k :=
+  have hpow : cuspRep N q * ModularGroup.T ^ h * (cuspRep N q)⁻¹ = ((cuspGen N q : Gamma0 N) : SL(2,
+    ℤ)) ^ k :=
     by
     rw [hk, conj_T_zpow_mul, coe_cuspGen]
   set γ' : Gamma0 N := g₀ * (cuspGen N q) ^ k * g₀⁻¹ with hγ'def
@@ -715,7 +739,8 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N]
     simp only [hγ'def, Subgroup.coe_mul, Subgroup.coe_inv, SubgroupClass.coe_zpow, ← hpow, hσ]
     group
   obtain ⟨W, hW⟩ := hWq q
-  have hW' : y (cuspGen N q) = ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) (cuspGen N q) W - W :=
+  have hW' : y (cuspGen N q) = ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) (cuspGen N q) W - W
+    :=
     hW
   have hzp : ∀ v ∈ Subgroup.zpowers (cuspGen N q),
       y v = ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) v W - W := fun v hv =>
@@ -734,7 +759,8 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N]
       rw [hmm, coeffCocycles_apply_one hycoc, hρm₁, Module.End.one_apply] at h1
       apply Subtype.ext; ext d
       have h2 :=
-        congrArg (fun P : ↥(BinaryForm ℤ n) => AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℤ) d) h1
+        congrArg (fun P : ↥(BinaryForm ℤ n) => AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℤ)
+          d) h1
       simp only [Submodule.coe_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply,
         Submodule.coe_zero, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply] at h2
       simp only [Submodule.coe_zero, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
@@ -743,8 +769,10 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N]
     exact hpar'
 
 theorem mk_eq_zero_of_odd (n N : ℕ) (hodd : Odd n)
-    (z : ↥(coeffParabolicCocycles ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype))) : coeffH1parMk _ z = 0 := by
-  have hρQ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℚ n (g : SL(2, ℤ)) :=
+    (z : ↥(coeffParabolicCocycles ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype))) : coeffH1parMk _
+      z = 0 := by
+  have hρQ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℚ
+    n (g : SL(2, ℤ)) :=
     fun g => rfl
   set m₁ : Gamma0 N := ⟨-1, neg_one_mem_Gamma0 N⟩ with hm₁
   have hρm : ∀ v, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) m₁ v = -v := fun v => by
@@ -778,20 +806,25 @@ theorem mk_eq_zero_of_odd (n N : ℕ) (hodd : Odd n)
 variable (n N : ℕ) [NeZero N]
 
 theorem main
-    (Φ : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) →+ coeffH1par ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype))
+    (Φ : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) →+ coeffH1par ((binaryFormRepSL
+      ℚ n).comp (Gamma0 N).subtype))
     (hΦ : ∀ z : ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)),
       ∃ w : ↥(coeffParabolicCocycles ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype)),
         (∀ g : Gamma0 N, ((w : Gamma0 N → ↥(BinaryForm ℚ n)) g : MvPolynomial (Fin 2) ℚ)
-            = MvPolynomial.map (Int.castRingHom ℚ) (((z : Gamma0 N → ↥(BinaryForm ℤ n)) g : MvPolynomial (Fin 2) ℤ))) ∧
+            = MvPolynomial.map (Int.castRingHom ℚ) (((z : Gamma0 N → ↥(BinaryForm ℤ n)) g :
+              MvPolynomial (Fin 2) ℤ))) ∧
         Φ (coeffH1parMk _ z) = coeffH1parMk _ w)
     (x : coeffH1par ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype)) :
-    ∃ (m : ℤ) (y : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)), m ≠ 0 ∧ Φ y = m • x := by
+    ∃ (m : ℤ) (y : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)), m ≠ 0 ∧ Φ y = m • x
+      := by
   classical
   have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
   have : Fintype (SL(2, ℤ) ⧸ Gamma0 N) := Fintype.ofFinite _
-  have hρQ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℚ n (g : SL(2, ℤ)) :=
+  have hρQ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℚ
+    n (g : SL(2, ℤ)) :=
     fun g => rfl
-  have hρZ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℤ n (g : SL(2, ℤ)) :=
+  have hρZ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℤ
+    n (g : SL(2, ℤ)) :=
     fun g => rfl
   obtain ⟨z, rfl⟩ := coeffH1parMk_surjective ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) x
   rcases Nat.even_or_odd n with heven | hodd
@@ -824,16 +857,20 @@ theorem main
           intro P hP
           change IsInt ((-P : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ)
           rw [Submodule.coe_neg]; exact hP.neg }
-    have hMρ : ∀ (g : Gamma0 N) (v : ↥(BinaryForm ℚ n)), v ∈ M → ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g v ∈ M :=
+    have hMρ : ∀ (g : Gamma0 N) (v : ↥(BinaryForm ℚ n)), v ∈ M → ((binaryFormRepSL ℚ n).comp (Gamma0
+      N).subtype) g v ∈ M :=
       by
       intro g v hv
-      change IsInt ((((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g v : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ)
+      change IsInt ((((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g v : ↥(BinaryForm ℚ n)) :
+        MvPolynomial (Fin 2) ℚ)
       rw [hρQ', binaryFormRepSL_apply_coe]
       exact hv.binarySubst _
-    have hint : ∀ g : Gamma0 N, IsInt ((((((D₁ * D₂ : ℤ)) : ℚ) • z).1 g : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ) :=
+    have hint : ∀ g : Gamma0 N, IsInt ((((((D₁ * D₂ : ℤ)) : ℚ) • z).1 g : ↥(BinaryForm ℚ n)) :
+      MvPolynomial (Fin 2) ℚ) :=
       by
       intro g
-      refine mem_of_mem_coeffCocycles_of_closure_eq_top ((((D₁ * D₂ : ℤ)) : ℚ) • z).2.1 M hMρ hS (fun g hg => ?_) g
+      refine mem_of_mem_coeffCocycles_of_closure_eq_top ((((D₁ * D₂ : ℤ)) : ℚ) • z).2.1 M hMρ hS
+        (fun g hg => ?_) g
       change IsInt ((((((D₁ * D₂ : ℤ)) : ℚ) • z).1 g : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ)
       rw [show (((((D₁ * D₂ : ℤ)) : ℚ) • z).1 g : ↥(BinaryForm ℚ n)) = (((D₁ * D₂ : ℤ)) : ℚ) • z.1 g
         from rfl, Submodule.coe_smul,
@@ -849,7 +886,8 @@ theorem main
     have hWq : ∀ q, ∃ W : ↥(BinaryForm ℤ n),
         y (cuspGen N q) = binaryFormRepSL ℤ n ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) W - W := by
       intro q
-      have hiw : IsInt (((((D₁ * D₂ : ℤ)) : ℚ) • w q : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ) :=
+      have hiw : IsInt (((((D₁ * D₂ : ℤ)) : ℚ) • w q : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ)
+        :=
         by
         rw [Submodule.coe_smul, Int.cast_smul_eq_zsmul, mul_smul]
         exact (hint₂ q (Finset.mem_univ q)).zsmul D₁
@@ -866,7 +904,8 @@ theorem main
     have : w' = (((D₁ * D₂ : ℤ)) : ℚ) • z := by
       apply Subtype.ext; funext g; apply Subtype.ext
       rw [hw'1 g]
-      change MvPolynomial.map (Int.castRingHom ℚ) ((y g : ↥(BinaryForm ℤ n)) : MvPolynomial (Fin 2) ℤ) = _
+      change MvPolynomial.map (Int.castRingHom ℚ) ((y g : ↥(BinaryForm ℤ n)) : MvPolynomial (Fin 2)
+        ℤ) = _
       rw [← coe_pushForm_ι, hyv]
       try rfl
     rw [this, LinearMap.map_smul, Int.cast_smul_eq_zsmul]
@@ -876,17 +915,25 @@ end
 
 open scoped MatrixGroups in
 theorem solution (n N : ℕ) [NeZero N]
-    (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)
-        →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
-    (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-      ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+    (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0
+      N).subtype)
+        →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0
+          N).subtype))
+    (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℤ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)),
+      ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℚ n).comp
+        (CongruenceSubgroup.Gamma0 N).subtype)),
         (∀ g : CongruenceSubgroup.Gamma0 N,
-            ((w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℚ n)) g : MvPolynomial (Fin 2) ℚ)
+            ((w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℚ n)) g : MvPolynomial (Fin 2)
+              ℚ)
               = MvPolynomial.map (Int.castRingHom ℚ)
-                  (((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℤ n)) g : MvPolynomial (Fin 2) ℤ))) ∧
+                  (((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℤ n)) g : MvPolynomial
+                    (Fin 2) ℤ))) ∧
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
-    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) :
-    ∃ (m : ℤ) (y : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0
+      N).subtype)) :
+    ∃ (m : ℤ) (y : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)),
       m ≠ 0 ∧ Φ y = m • x :=
   HeckeEis.ZQAux.main n N Φ hΦ x
 
@@ -901,17 +948,25 @@ public section publicSection
 
 open scoped MatrixGroups
 theorem HeckeEis.exists_ne_zero_smul_eq_coeffH1par_map_int_rat (n N : ℕ) [NeZero N]
-    (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)
-        →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
-    (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
-      ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+    (Φ : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0
+      N).subtype)
+        →+ HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0
+          N).subtype))
+    (hΦ : ∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℤ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)),
+      ∃ w : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℚ n).comp
+        (CongruenceSubgroup.Gamma0 N).subtype)),
         (∀ g : CongruenceSubgroup.Gamma0 N,
-            ((w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℚ n)) g : MvPolynomial (Fin 2) ℚ)
+            ((w : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℚ n)) g : MvPolynomial (Fin 2)
+              ℚ)
               = MvPolynomial.map (Int.castRingHom ℚ)
-                  (((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℤ n)) g : MvPolynomial (Fin 2) ℤ))) ∧
+                  (((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℤ n)) g : MvPolynomial
+                    (Fin 2) ℤ))) ∧
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
-    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) :
-    ∃ (m : ℤ) (y : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
+    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℚ n).comp (CongruenceSubgroup.Gamma0
+      N).subtype)) :
+    ∃ (m : ℤ) (y : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)),
       m ≠ 0 ∧ Φ y = m • x :=
   solution n N Φ hΦ x
 

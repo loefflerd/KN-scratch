@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring
+Based on Prove2Me node
+WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_of_mem_isogenyEndSubring
 (3b1add86-45bc-5c3b-a1e2-8c4b164ae447) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6c806b92-5290-58e5-b799-540ebb4a176a
@@ -126,7 +127,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -466,7 +468,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
+  IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
@@ -638,7 +641,8 @@ abbrev KwIsogenyEndDatumOfNonzeroEnd (W : Affine F) [W.IsElliptic]
     [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
     :
     Prop :=
-  ∀ ψ ∈ isogenyEndSubring W (fun D => D.normFormulaAlong_auto), ψ ≠ 0 → ∃ D' : IsogenyEndDatum W, D'.pointEnd' = ψ
+  ∀ ψ ∈ isogenyEndSubring W (fun D => D.normFormulaAlong_auto), ψ ≠ 0 → ∃ D' : IsogenyEndDatum W,
+    D'.pointEnd' = ψ
 
 end NonzeroEndLift
 end ModularCurve
@@ -892,7 +896,8 @@ theorem isIntegral_comp (D₁ D₂ : IsogenyEndDatum W) :
     (D₂.ι.comp D₁.ι).toRingHom.IsIntegral :=
   RingHom.IsIntegral.trans D₁.ι.toRingHom D₂.ι.toRingHom D₁.hι D₂.hι
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.finiteAlong_comp (D₁ D₂ : IsogenyEndDatum W) :
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.finiteAlong_comp (D₁ D₂ :
+  IsogenyEndDatum W) :
     FiniteAlong F (D₂.ι.comp D₁.ι) :=
   RingHom.Finite.comp (g := D₂.ι.toRingHom) (f := D₁.ι.toRingHom) D₂.hfin D₁.hfin
 
@@ -1327,7 +1332,8 @@ theorem ord_X_neg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) :
   by_contra hcon
   push Not at hcon
   exact hv (isFinitePlace_of_mem v
-    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero) hcon))
+    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero)
+      hcon))
 
 end WeierstrassCurve.Affine
 end
@@ -1443,7 +1449,8 @@ theorem comp_pointEnd (D₁ D₂ : IsogenyEndDatum W) :
       D₁.hfin D₂.hfin (ModularCurve.finiteAlong_comp D₁.hfin D₂.hfin)
       (normFormulaAlong_of_elliptic D₁.ι D₁.hfin)
       (normFormulaAlong_of_elliptic D₂.ι D₂.hfin)
-      (normFormulaAlong_of_elliptic (D₂.ι.comp D₁.ι) (ModularCurve.finiteAlong_comp D₁.hfin D₂.hfin))
+      (normFormulaAlong_of_elliptic (D₂.ι.comp D₁.ι) (ModularCurve.finiteAlong_comp D₁.hfin
+        D₂.hfin))
       ((genusOnePic0Equiv W).symm P))
 
 theorem mul_mem_range_pointEnd
@@ -2577,7 +2584,12 @@ end
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.AlgebraicCurve
+  in
 universe u in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
@@ -2596,7 +2608,8 @@ theorem solution
 end
 end S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring (solution)
+export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
+  (solution)
 
 end privateSection
 

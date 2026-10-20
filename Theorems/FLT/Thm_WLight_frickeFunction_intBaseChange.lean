@@ -28,7 +28,6 @@ import Theorems.FLT.Thm_WLight_frickeFunction_orbit_package
 import Theorems.FLT.Thm_WLight_exists_mdifferentiable_div_of_monicRel
 import Theorems.FLT.Thm_IsIntegral_mem_span_of_adjoin_simple_constants
 import Theorems.FLT.Thm_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Descent of level-N integral fractions to ℚ(ζ_N)
@@ -81,18 +80,14 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WLight_frickeFunction_intBaseChange
-
-
 noncomputable section
 
-p2m_open "Complex Real UpperHalfPlane ModularForm Polynomial Real.Polynomial"
+open Complex Real UpperHalfPlane ModularForm Polynomial Real.Polynomial
 open scoped Topology Manifold MatrixGroups ModularForm
 
 namespace WLight
-p2m_export "WLight" "frickeFunction_modularity_package frickeFunction_orbit_package \
-  exists_mdifferentiable_div_of_monicRel"
-p2m_open "WLight"
+
+
 namespace R8b
 
 section Furniture
@@ -436,8 +431,8 @@ end QKit
 
 section RatCoeff
 
-p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm \
-  ModularForm.CuspForm EisensteinSeries"
+open UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm
+  ModularForm.CuspForm EisensteinSeries
 open scoped MatrixGroups ArithmeticFunction.sigma
 
 private lemma ratCoeff_mul {p q : PowerSeries ℂ}
@@ -734,15 +729,17 @@ lemma qExpansion_sum_smul {h : ℝ} {ι : Type} [Fintype ι] (c : ι → ℂ) (g
     (qExpansion h (∑ i, c i • g i)).coeff n = ∑ i, c i * (qExpansion h (g i)).coeff n := by
   classical
   have key : ∀ s : Finset ι, AnalyticAt ℂ (cuspFunction h (∑ i ∈ s, c i • g i)) 0 ∧
-      (qExpansion h (∑ i ∈ s, c i • g i)).coeff n = ∑ i ∈ s, c i * (qExpansion h (g i)).coeff n := by
+      (qExpansion h (∑ i ∈ s, c i • g i)).coeff n = ∑ i ∈ s, c i * (qExpansion h (g i)).coeff n :=
+        by
     intro s
     induction s using Finset.induction_on with
     | empty =>
       refine ⟨?_, ?_⟩
       · simp only [Finset.sum_empty]
-        rw [show cuspFunction h (0 : ℍ → ℂ) = 0 from by
-          simp [cuspFunction, Periodic.cuspFunction]
-          exact (tendsto_const_nhds.mono_left nhdsWithin_le_nhds).limUnder_eq]
+        rw [show cuspFunction h (0 : ℍ → ℂ) = 0 by
+            simp only [cuspFunction, Periodic.cuspFunction, Pi.zero_comp, update_eq_self_iff,
+              Pi.zero_apply]
+            exact (tendsto_const_nhds.mono_left nhdsWithin_le_nhds).limUnder_eq]
         exact analyticAt_const
       · simp [qExpansion_zero]
     | insert a s ha ih =>
@@ -789,11 +786,10 @@ lemma combo_props {ι : Type} [Fintype ι] (c : ι → ℂ) (e : ι → ℍ → 
     rw [show e i (UpperHalfPlane.ofComplex (w + N)) = e i (UpperHalfPlane.ofComplex w) from
       periodic_of_kPoleAt (hm i) w]
   · rw [hshape]
-    have : ∀ s : Finset ι, IsBoundedAtImInfty (∑ i ∈ s, c i • (e i * ⇑CuspForm.discriminant ^ m)) :=
-      by
+    have : ∀ s, IsBoundedAtImInfty (∑ i ∈ s, c i • (e i * ⇑CuspForm.discriminant ^ m)) := by
       intro s
       induction s using Finset.induction_on with
-      | empty => (have h__af := (Filter.const_boundedAtFilter atImInfty (0 : ℂ)); simp at h__af; exact h__af)
+      | empty => exact Filter.const_boundedAtFilter atImInfty _
       | insert a s ha ih =>
         rw [Finset.sum_insert ha]
         exact ((hm a).2.1.const_smul_left (c a)).add ih
@@ -817,7 +813,8 @@ theorem eq_zero_of_const_relation (hg : GenMD jf fricke)
       (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 := by
     intro n
     rw [← qExpansion_sum_smul _ _ han, ← hshape, hrel, zero_mul, qExpansion_zero, map_zero]
-  have hcoeff0 : ∀ (i : Fin d) (n : ℕ), (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 :=
+  have hcoeff0 : ∀ (i : Fin d) (n : ℕ), (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n =
+    0 :=
     by
     intro i n
     set z : Fin d → ↥F := fun i' => ⟨(qExpansion N (a i' * ⇑CuspForm.discriminant ^ M)).coeff n,
@@ -957,7 +954,8 @@ lemma aeval_pi_apply_C (p : Polynomial ℂ) (τ : ℍ) :
     Polynomial.hom_eval₂]
   rfl
 
-theorem aeval_jf_eq_zero_imp (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ)
+theorem aeval_jf_eq_zero_imp (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant
+  τ)
     (p : Polynomial ℂ) (hp : (Polynomial.aeval jf p : ℍ → ℂ) = 0) : p = 0 := by
   by_contra hp0
   set m := p.natDegree with hm
@@ -1142,7 +1140,8 @@ lemma isIntegral_closureT_of_monicRel (F : IntermediateField ℚ ℂ) {f : ℍ �
     Polynomial.monic_X_pow_add (Polynomial.degree_sum_fin_lt _), ?_⟩
   rw [Polynomial.eval₂_add, Polynomial.eval₂_X_pow, Polynomial.eval₂_finsetSum]
   simp only [Polynomial.eval₂_mul, Polynomial.eval₂_C, Polynomial.eval₂_X_pow]
-  have hrelH : (⟨f, hf⟩ : ↥holSub) ^ d + ∑ i : Fin d, ⟨_, hcmem i⟩ * (⟨f, hf⟩ : ↥holSub) ^ (i : ℕ) = 0 :=
+  have hrelH : (⟨f, hf⟩ : ↥holSub) ^ d + ∑ i : Fin d, ⟨_, hcmem i⟩ * (⟨f, hf⟩ : ↥holSub) ^ (i : ℕ) =
+    0 :=
     by
     apply Subtype.ext
     simp only [AddMemClass.coe_add, SubmonoidClass.coe_pow, AddSubmonoidClass.coe_finsetSum,
@@ -1252,9 +1251,11 @@ theorem exists_list_mem_RS {G a b : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ)
   refine ⟨L, ?_, isIntegral_closureT_of_monicRel (Gch K L) hG p hLc hprel⟩
   have hGab : ι ⟨G, hG⟩ = ι ⟨a, hamd⟩ / ι ⟨b, hbmd⟩ :=
     eq_div_of_mul_eq hb0' ((map_mul ι ⟨G, hG⟩ ⟨b, hbmd⟩).symm.trans (congrArg ι (Subtype.ext hGb)))
-  have haF : ι ⟨a, hamd⟩ ∈ Subfield.closure (⇑(algebraMap ℂ KK) '' ((Gch K L : IntermediateField ℚ ℂ) : Set ℂ) ∪ SK hg) :=
+  have haF : ι ⟨a, hamd⟩ ∈ Subfield.closure (⇑(algebraMap ℂ KK) '' ((Gch K L : IntermediateField ℚ
+    ℂ) : Set ℂ) ∪ SK hg) :=
     Subfield.subring_closure_le _ haS
-  have hbF : ι ⟨b, hbmd⟩ ∈ Subfield.closure (⇑(algebraMap ℂ KK) '' ((Gch K L : IntermediateField ℚ ℂ) : Set ℂ) ∪ SK hg) :=
+  have hbF : ι ⟨b, hbmd⟩ ∈ Subfield.closure (⇑(algebraMap ℂ KK) '' ((Gch K L : IntermediateField ℚ
+    ℂ) : Set ℂ) ∪ SK hg) :=
     Subfield.subring_closure_le _ hbS
   rw [hGab]
   exact Subfield.div_mem _ haF hbF
@@ -1416,8 +1417,6 @@ open WLight.R8b
 
 open UpperHalfPlane in
 open scoped Manifold in
-/-!
-                                                                    -/
 theorem solutionInterim
     (N : ℕ) [NeZero N]
     (L : ℍ → PeriodPair) (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)
@@ -1477,9 +1476,9 @@ theorem solutionInterim
       by simpa only [CuspForm.coe_discriminant] using h3⟩
   exact WLight.R8b.main (hg := hg) hjf hkp hR4int hR6 hR7b hR8a hG ha hb hb0 hGb p hprel
 
-p2m_open "UpperHalfPlane~I" in
+open UpperHalfPlane hiding I in
 open scoped UpperHalfPlane Manifold MatrixGroups ModularForm in
-open _root_.WLight _root_.P2MW.S_WLight_frickeFunction_intBaseChange.WLight in
+open WLight in
 theorem solution
     (N : ℕ) [NeZero N]
     (L : ℍ → PeriodPair) (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)
@@ -1552,9 +1551,6 @@ theorem solution
   · exact IsIntegral.mem_span_of_adjoin_simple_constants_transcendental
 
 end
-end S_WLight_frickeFunction_intBaseChange
-end P2MW
-export P2MW.S_WLight_frickeFunction_intBaseChange (solution)
 
 end privateSection
 

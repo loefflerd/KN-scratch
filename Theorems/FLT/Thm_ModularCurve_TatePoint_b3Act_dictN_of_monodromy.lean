@@ -48,7 +48,8 @@ This is the monodromy equivariance of the root/cyclic-subgroup dictionary at lev
 bijection between roots of the modular polynomial at the near curve and order-$N$ cyclic subgroups
 of its points intertwines the Galois-type action of the monodromy group on roots with transport of
 subgroups along the induced automorphism of the near model. It is used by
-[`ModularCurve.exists_elliptic_cycSub_orbitMap`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap),
+[`ModularCurve.exists_elliptic_cycSub_orbitMap`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap),
 where equivariance turns the bijection of sets into a map of monodromy orbits for the subsequent
 counting argument.
 
@@ -159,7 +160,8 @@ theorem fullKernelQuotient_nearTransport (Q : (nearCurve j₀).toAffine.Point) (
     exact hgx x y
   · refine Finset.sum_congr rfl fun P _ => ?_
     obtain ⟨x, y⟩ := P
-    change (m : H ≃ₐ[Qbar] H) x * (nearCurve j₀).veluGx ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H) y) -
+    change (m : H ≃ₐ[Qbar] H) x * (nearCurve j₀).veluGx ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H)
+      y) -
         (m : H ≃ₐ[Qbar] H) y * (nearCurve j₀).veluGy ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H) y) =
       (m : H ≃ₐ[Qbar] H) (x * (nearCurve j₀).veluGx x y - y * (nearCurve j₀).veluGy x y)
     rw [map_sub, map_mul, map_mul, hgx, hgy]

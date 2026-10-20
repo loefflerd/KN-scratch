@@ -51,8 +51,10 @@ with inner variable $y$ and outer variable $x$.
 This is the symmetry $\Phi_\ell(X,Y) = \Phi_\ell(Y,X)$ of the modular equation of prime level
 $\ell$, established for a packet of data whose coefficients are prescribed by a descended family of
 $q$-expansions. It is used in the construction of modular polynomials, being cited by
-[`ModularCurve.exists_modularPolynomialData_evalSymm`](thm.html#ModularCurve.exists_modularPolynomialData_evalSymm),
-[`ModularCurve.exists_phiIrreducible_evalSymm`](thm.html#ModularCurve.exists_phiIrreducible_evalSymm)
+[`ModularCurve.exists_modularPolynomialData_evalSymm`]
+(thm.html#ModularCurve.exists_modularPolynomialData_evalSymm),
+[`ModularCurve.exists_phiIrreducible_evalSymm`]
+(thm.html#ModularCurve.exists_phiIrreducible_evalSymm)
 and [`ModularCurve.modularPolynomialFamily`](thm.html#ModularCurve.modularPolynomialFamily).
 
 ## Explanation of the source proof
@@ -101,7 +103,8 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.coeff_phiProd_coeff"
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_zero_coeff_lead (hc : PhiGenDescends ℓ ζ c)
+private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_zero_coeff_lead (hc : PhiGenDescends ℓ ζ
+  c)
     (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
     (c 0).coeff (-((ℓ + 1 : ℕ) : ℤ)) = 1 := by
   refine (algebraMap ℚ K).injective ?_
@@ -114,7 +117,8 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.c_zero_coeff_lead"
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_coeff_eq_zero_of_ne_zero (hc : PhiGenDescends ℓ ζ c)
+private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_coeff_eq_zero_of_ne_zero (hc :
+  PhiGenDescends ℓ ζ c)
     (k : ℕ) (hk : k ≠ 0) (m : ℕ) (hm : ℓ + 1 ≤ m) :
     (c k).coeff (-(m : ℤ)) = 0 := by
   refine (algebraMap ℚ K).injective ?_
@@ -127,7 +131,8 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.c_coeff_eq_zero_of_ne_zero"
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
-private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_zero_coeff_eq_zero_of_lt (hc : PhiGenDescends ℓ ζ c)
+private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.c_zero_coeff_eq_zero_of_lt (hc :
+  PhiGenDescends ℓ ζ c)
     (m : ℕ) (hm : ℓ + 1 < m) :
     (c 0).coeff (-(m : ℤ)) = 0 :=
   hc.poleOrderLE 0 (-(m : ℤ)) (by push_cast; omega)
@@ -145,7 +150,8 @@ private theorem evalSymm_of_coeff_evalAtJ_eq (hζ : IsPrimitiveRoot (ζ : K) ℓ
     (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ)
     (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :
     EvalSymm data.Φ := by
-  have hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ) :=
+  have hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ)
+    :=
     splits_of_coeff_evalAtJ_eq ζ hc data hcoeff
   have h0top : (evalAtJ (data.Φ.coeff 0)).coeff (-((dedekindPsi ℓ : ℕ) : ℤ)) = 1 := by
     rw [hcoeff 0, dedekindPsi_prime hℓ.out]
@@ -170,7 +176,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (hc : PhiGenDescends ℓ ζ c)
     (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :

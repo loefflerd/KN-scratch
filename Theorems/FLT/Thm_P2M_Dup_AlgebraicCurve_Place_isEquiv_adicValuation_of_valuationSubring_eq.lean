@@ -84,7 +84,8 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_of_valuationSubring_eq.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_isEquiv_adicValuation_of_valuationSubring_eq.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {Γ : Type*}
     [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
     (h : w.valuationSubring = v.toValuationSubring) :

@@ -464,8 +464,17 @@ end Sym
 end ParallelogramLaw
 
 open ParallelogramLaw in
-theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) :
-    u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree + v₂.natDegree = 2 * (u * t - s * v).natDegree := by
+theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k)
+  [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u
+  v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠
+  0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree
+  < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular
+  xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm :
+  W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧
+  Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb *
+  t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) :
+    u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree +
+      v₂.natDegree = 2 * (u * t - s * v).natDegree := by
   obtain ⟨-, -⟩ : v ≠ 0 ∧ t ≠ 0 := ⟨hv, ht⟩
   clear hv ht
   have hs : s ≠ 0 := by
@@ -540,8 +549,18 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.Point.natDegree_parallelogram_law {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁ v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁) (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp : W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha + Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm * v₂.eval x = u₂.eval x) :
-    u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree + v₂.natDegree = 2 * (u * t - s * v).natDegree :=
+theorem WeierstrassCurve.Affine.Point.natDegree_parallelogram_law {k : Type*} [Field k] [DecidableEq
+  k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] {S : Set k} (hS : S.Finite) {u v s t u₁
+  v₁ u₂ v₂ : Polynomial k} (huv : IsCoprime u v) (hst : IsCoprime s t) (huv₁ : IsCoprime u₁ v₁)
+  (huv₂ : IsCoprime u₂ v₂) (hu : u ≠ 0) (hv : v ≠ 0) (ht : t ≠ 0) (hv₁ : v₁ ≠ 0) (hv₂ : v₂ ≠ 0) (hvu
+  : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) (H : ∀ x : k, x ∉ S → ∃ (xa ya xb
+  yb xp yp xm ym : k) (ha : W.toAffine.Nonsingular xa ya) (hb : W.toAffine.Nonsingular xb yb) (hp :
+  W.toAffine.Nonsingular xp yp) (hm : W.toAffine.Nonsingular xm ym), Point.some xa ya ha +
+  Point.some xb yb hb = Point.some xp yp hp ∧ Point.some xa ya ha - Point.some xb yb hb = Point.some
+  xm ym hm ∧ xa * v.eval x = u.eval x ∧ xb * t.eval x = s.eval x ∧ xp * v₁.eval x = u₁.eval x ∧ xm *
+  v₂.eval x = u₂.eval x) :
+    u₁ ≠ 0 ∧ u₂ ≠ 0 ∧ u₁.natDegree + u₂.natDegree = 2 * (u.natDegree + s.natDegree) ∧ v₁.natDegree +
+      v₂.natDegree = 2 * (u * t - s * v).natDegree :=
   solution W hS huv hst huv₁ huv₂ hu hv ht hv₁ hv₂ hvu hts H
 
 end publicSection

@@ -44,7 +44,8 @@ $\tau + h$ in $\mathfrak{H}$ vanishes.
 This is the vanishing of the constant Fourier coefficient of a periodic holomorphic function
 decaying at $i\infty$, in primitive form: an antiderivative of such a $g$ is itself $h$-periodic. It
 is used in the construction of Eichler integrals, where it supplies the invariance needed in
-[`HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range`](thm.html#HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range).
+[`HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range`]
+(thm.html#HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range).
 
 ## Explanation of the source proof
 
@@ -149,7 +150,9 @@ theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}
 
 end UpperHalfPlane.PeriodicPrimitiveSol
 
-open _root_.UpperHalfPlane _root_.P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty.UpperHalfPlane UpperHalfPlane.PeriodicPrimitiveSol in
+open _root_.UpperHalfPlane
+  _root_.P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty.UpperHalfPlane
+  UpperHalfPlane.PeriodicPrimitiveSol in
 theorem solution {h : ℝ} (hh : 0 < h) {g : UpperHalfPlane → ℂ}
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) h)
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hzero : UpperHalfPlane.IsZeroAtImInfty g)

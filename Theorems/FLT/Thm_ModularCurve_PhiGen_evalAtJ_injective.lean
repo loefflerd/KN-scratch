@@ -45,9 +45,11 @@ This is the basic transcendence statement underlying the use of $q$-expansions t
 polynomial identities between modular functions: a relation among $q$-expansions can be read back as
 an identity of polynomials. It is used by the results on `ModularPolynomialData`, among them
 [`ModularCurve.ModularPolynomialData.eq_all`](thm.html#ModularCurve.ModularPolynomialData.eq_all),
-[`ModularCurve.ModularPolynomialData.eq_of_prime`](thm.html#ModularCurve.ModularPolynomialData.eq_of_prime)
+[`ModularCurve.ModularPolynomialData.eq_of_prime`]
+(thm.html#ModularCurve.ModularPolynomialData.eq_of_prime)
 and
-[`ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare`](thm.html#ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare),
+[`ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare`]
+(thm.html#ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare),
 where modular polynomials are characterised through their behaviour on $q$-expansions.
 
 ## Explanation of the source proof
@@ -378,7 +380,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve
+  _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve.PhiGen
+  in
 theorem solution : Function.Injective evalAtJ :=
   ModularCurve.PhiGen.evalAtJ_injective
 

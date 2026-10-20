@@ -145,7 +145,8 @@ def rootsEquivCycSubHN (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero
     (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N)
     (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j)
     : RootsAt data E.j ≃ CycSubH E N :=
-  (Equiv.ofBijective (cycSubRootN E hW1 hW3 data) (cycSubRootN_bijective E hW1 hW2 hW3 data hj)).symm
+  (Equiv.ofBijective (cycSubRootN E hW1 hW3 data) (cycSubRootN_bijective E hW1 hW2 hW3 data
+    hj)).symm
 
 theorem rootsEquivCycSubHN_symm_apply (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N]
     (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N)
@@ -176,7 +177,8 @@ theorem dictN_apply_eq_iff (N : ℕ) [NeZero N] (data : ModularPolynomialData N)
     (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N)
     (r : RootsAt data (nearCurve j₀).j) (G : CycSubH (nearCurve j₀) N) :
     dictN N data j₀ hW1 hW2 hW3 r = G ↔ r = cycSubRootN (nearCurve j₀) hW1 hW3 data G :=
-  rootsEquivCycSubHN_apply_eq_iff (nearCurve j₀) hW1 hW2 hW3 data (nearCurve_j_transcendental j₀) r G
+  rootsEquivCycSubHN_apply_eq_iff (nearCurve j₀) hW1 hW2 hW3 data (nearCurve_j_transcendental j₀) r
+    G
 
 end ModularCurve.TatePoint
 
@@ -209,7 +211,8 @@ example (N : ℕ) [NeZero N] (h : ∀ [DecidableEq (HahnSeries ℚ (AlgebraicClo
     (_ : haveI : (W.fullKernelQuotient Q N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
       haveI : (W.fullKernelQuotient Q' N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
       (W.fullKernelQuotient Q N).j = (W.fullKernelQuotient Q' N).j),
-    AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q') : ModularCurve.TatePoint.FullKernelInjAt N := h
+    AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q') : ModularCurve.TatePoint.FullKernelInjAt N
+      := h
 example (N : ℕ) [NeZero N] (h : ModularCurve.TatePoint.FullKernelInjAt N)
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))]
     (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
@@ -220,9 +223,11 @@ example (N : ℕ) [NeZero N] (h : ModularCurve.TatePoint.FullKernelInjAt N)
       haveI : (W.fullKernelQuotient Q' N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
       (W.fullKernelQuotient Q N).j = (W.fullKernelQuotient Q' N).j) :
     AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' := h W ht Q Q' hQ hQ' hΔ hΔ' hj
-example (N : ℕ) [NeZero N] (h : ∀ {L : Type} [Field L] [DecidableEq L] [IsAlgClosed L], (2 : L) ≠ 0 →
+example (N : ℕ) [NeZero N] (h : ∀ {L : Type} [Field L] [DecidableEq L] [IsAlgClosed L], (2 : L) ≠ 0
+  →
     ∀ (W : WeierstrassCurve L) [W.IsElliptic] (Q : W.toAffine.Point),
-      addOrderOf Q = N → (W.fullKernelQuotient Q N).Δ ≠ 0) : ModularCurve.TatePoint.FullKernelDiscAt N := h
+      addOrderOf Q = N → (W.fullKernelQuotient Q N).Δ ≠ 0) : ModularCurve.TatePoint.FullKernelDiscAt
+        N := h
 example (N : ℕ) [NeZero N] (h : ModularCurve.TatePoint.FullKernelDiscAt N)
     {L : Type} [Field L] [DecidableEq L] [IsAlgClosed L]
     (h2 : (2 : L) ≠ 0) (W : WeierstrassCurve L) [W.IsElliptic] (Q : W.toAffine.Point)

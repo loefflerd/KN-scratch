@@ -403,10 +403,13 @@ namespace BassSerre
 p2m_open "Monoid Monoid.CoprodI"
 
 theorem fromRel_eq_graph {G : Fin 2 → Type*} [∀ i, Group (G i)] :
-    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range) =>
+    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i
+      := i)).range) =>
         v.1 ≠ w.1 ∧ ∃ g : Monoid.CoprodI G,
-          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := v.1)).range) ∧
-          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := w.1)).range))
+          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            v.1)).range) ∧
+          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            w.1)).range))
       = graph G := by
   ext ⟨i, x⟩ ⟨j, y⟩
   rw [SimpleGraph.fromRel_adj]
@@ -425,10 +428,13 @@ theorem fromRel_eq_graph {G : Fin 2 → Type*} [∀ i, Group (G i)] :
 end GroupTheory.BassSerre
 
 theorem solution {G : Fin 2 → Type*} [∀ i, Group (G i)] :
-    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range) =>
+    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i
+      := i)).range) =>
         v.1 ≠ w.1 ∧ ∃ g : Monoid.CoprodI G,
-          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := v.1)).range) ∧
-          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := w.1)).range)).IsTree := by
+          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            v.1)).range) ∧
+          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            w.1)).range)).IsTree := by
   rw [GroupTheory.BassSerre.fromRel_eq_graph]
   exact GroupTheory.BassSerre.isTree_two
 
@@ -442,10 +448,13 @@ public section publicSection
 
 
 theorem Monoid.CoprodI.isTree_cosetGraph {G : Fin 2 → Type*} [∀ i, Group (G i)] :
-    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range) =>
+    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i
+      := i)).range) =>
         v.1 ≠ w.1 ∧ ∃ g : Monoid.CoprodI G,
-          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := v.1)).range) ∧
-          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := w.1)).range)).IsTree :=
+          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            v.1)).range) ∧
+          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            w.1)).range)).IsTree :=
   solution
 
 end publicSection

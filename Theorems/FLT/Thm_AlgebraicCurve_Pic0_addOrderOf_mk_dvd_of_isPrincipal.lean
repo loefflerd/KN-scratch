@@ -44,7 +44,8 @@ the order of $[D]$ in $\mathrm{Pic}^0(F/K)$ divides $m$. It is used in the treat
 divisor classes on modular curves, for instance by
 [`ModularCurve.addOrderOf_cuspidalClass_dvd`](thm.html#ModularCurve.addOrderOf_cuspidalClass_dvd)
 and
-[`ModularCurve.addOrderOf_cuspidalClass_eq_eisensteinNumerator`](thm.html#ModularCurve.addOrderOf_cuspidalClass_eq_eisensteinNumerator).
+[`ModularCurve.addOrderOf_cuspidalClass_eq_eisensteinNumerator`]
+(thm.html#ModularCurve.addOrderOf_cuspidalClass_eq_eisensteinNumerator).
 
 ## Explanation of the source proof
 

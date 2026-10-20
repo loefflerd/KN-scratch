@@ -578,7 +578,8 @@ private theorem torsion_coords_integral (W : WeierstrassCurve H) [W.IsElliptic]
     have hx'val : integralO.subtype x' = x := rfl
     have key : Q.coeff i =
         integralO.subtype
-          (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff i) := by
+          (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff i)
+            := by
       simp only [Q, Polynomial.coeff_map, Polynomial.coe_evalRingHom]
       rw [← Polynomial.eval₂_hom (f := integralO.subtype), ← Polynomial.eval_map]
       congr 1
@@ -587,7 +588,8 @@ private theorem torsion_coords_integral (W : WeierstrassCurve H) [W.IsElliptic]
       rfl
     rw [key]
     exact mem_integralO.mp
-      (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff i).property
+      (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff
+        i).property
   exact orderTop_nonneg_of_isRoot Q hQcoeff hQlead hQroot
 
 section E3
@@ -1234,7 +1236,8 @@ def cycOfCongr {A B : Type*} [AddCommGroup A] [AddCommGroup B] (e : A ≃+ B) (N
   left_inv G := Subtype.ext ((AddSubgroup.map_symm_eq_iff_map_eq (K := G.1)).mpr rfl)
   right_inv G := Subtype.ext ((AddSubgroup.map_symm_eq_iff_map_eq (K := G.1) (e := e.symm)).mpr rfl)
 
-@[scoped simp] theorem cycOfCongr_apply_coe {A B : Type*} [AddCommGroup A] [AddCommGroup B] (e : A ≃+ B)
+@[scoped simp] theorem cycOfCongr_apply_coe {A B : Type*} [AddCommGroup A] [AddCommGroup B] (e : A
+  ≃+ B)
     (N : ℕ) (G : CycOf A N) : (cycOfCongr e N G).1 = G.1.map (e : A →+ B) := rfl
 
 theorem mem_torsionBy_of_addOrderOf_eq {A : Type*} [AddCommGroup A] {N : ℕ} {g : A}
@@ -1272,7 +1275,8 @@ def cycOfTorsionBy (A : Type*) [AddCommGroup A] (N : ℕ) :
   right_inv G :=
     Subtype.ext (AddSubgroup.comap_map_eq_self_of_injective (Submodule.injective_subtype _) _)
 
-@[scoped simp] theorem cycOfTorsionBy_apply_coe (A : Type*) [AddCommGroup A] (N : ℕ) (G : CycOf A N) :
+@[scoped simp] theorem cycOfTorsionBy_apply_coe (A : Type*) [AddCommGroup A] (N : ℕ) (G : CycOf A
+  N) :
     (cycOfTorsionBy A N G).1 = G.1.comap (Submodule.torsionBy ℤ A N).subtype.toAddMonoidHom := rfl
 
 @[scoped simp] theorem cycOfTorsionBy_symm_apply_coe (A : Type*) [AddCommGroup A] (N : ℕ)
@@ -1350,7 +1354,8 @@ def cycScale (p : ℕ) (j₀ : Qbar) : CycSubH (nearCurve j₀) p ≃ CycSubH (g
 
 def fibreAddEquiv (j₀ : Qbar) :
     (specialFibre (goodModel j₀)).toAffine.Point ≃+ (WeierstrassCurve.ofJ j₀).toAffine.Point :=
-  (vcAddEquiv (fibreVC j₀) (specialFibre (goodModel j₀))).trans (pointAddEquivOfEq (fibreVC_smul j₀))
+  (vcAddEquiv (fibreVC j₀) (specialFibre (goodModel j₀))).trans (pointAddEquivOfEq (fibreVC_smul
+    j₀))
 
 theorem fibreAddEquiv_apply (j₀ : Qbar) (P : (specialFibre (goodModel j₀)).toAffine.Point) :
     fibreAddEquiv j₀ P =
@@ -1394,14 +1399,16 @@ theorem bridge3Specialise_apply_coe (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : 
     (bridge3Specialise p j₀ G).1 =
       ((((G.1.map (scaleAddEquiv j₀ :
               (nearCurve j₀).toAffine.Point →+ (goodModel j₀).toAffine.Point)).comap
-            (Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ)).subtype.toAddMonoidHom).map
+            (Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p :
+              ℤ)).subtype.toAddMonoidHom).map
           (redTorsionEquiv (goodModel j₀) (goodModel_spec j₀).1 (goodModel_spec j₀).2 p :
             Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ) →+
               Submodule.torsionBy ℤ (specialFibre (goodModel j₀)).toAffine.Point (p : ℤ))).map
         (Submodule.torsionBy ℤ (specialFibre (goodModel j₀)).toAffine.Point
           (p : ℤ)).subtype.toAddMonoidHom).map
         (fibreAddEquiv j₀ :
-          (specialFibre (goodModel j₀)).toAffine.Point →+ (WeierstrassCurve.ofJ j₀).toAffine.Point) :=
+          (specialFibre (goodModel j₀)).toAffine.Point →+ (WeierstrassCurve.ofJ j₀).toAffine.Point)
+            :=
   rfl
 
 theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : Qbar)
@@ -2868,7 +2875,8 @@ end ModularCurve.B3
 
 open ModularCurve.TatePoint
 open scoped Classical
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve _root_.ModularCurve.B3 _root_.P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve.B3 in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve
+  _root_.ModularCurve.B3 _root_.P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve.B3 in
 theorem solution (W : WeierstrassCurve H)
     (hW : IntegralCoeffs W) (hΔ : W.Δ.orderTop = 0) : (specialFibre W).IsElliptic :=
   ModularCurve.B3.isElliptic_specialFibre W hW hΔ

@@ -32,7 +32,8 @@ locally adapted.
 
 In the setting of `MTT.Cohomology.eichler_shimura_span`, restrict to classes obeying a fixed
 nebentype law $e$ through $\Gamma_0(N)$, so that the prime Hecke operator is
-$T_\ell=\sum_{b}\big(\begin{smallmatrix}1&b\\0&\ell\end{smallmatrix}\big)+e(\ell)\big(\begin{smallmatrix}\ell&0\\0&1\end{smallmatrix}\big)$,
+$T_\ell=\sum_{b}\big(\begin{smallmatrix}1&b\\0&\ell\end{smallmatrix}\big)+e(\ell)\big(
+\begin{smallmatrix}\ell&0\\0&1\end{smallmatrix}\big)$,
 and $U_\ell$ when $e(\ell)=0$. Then the three subspaces — holomorphic classes, reflected classes,
 boundary symbols — are each $T_\ell$-stable and their sum is direct, so eigen-equations are
 inherited by the summands: if
@@ -237,7 +238,8 @@ theorem MTT.Cohomology.eichler_shimura_hecke_compatible_char
       a • ((I g).val + reflection (I h).val + boundaryCochain Φ)) :
     primeHecke (e (l : ZMod N)) l (I g).val = a • (I g).val ∧
     primeHecke (e (l : ZMod N)) l (reflection (I h).val) = a • reflection (I h).val ∧
-    primeHecke (e (l : ZMod N)) l (boundaryCochain Φ) = a • boundaryCochain Φ := _root_.solution hN hk I hI hT g h Φ hΦ e hg hh hb l hl a hsum
+    primeHecke (e (l : ZMod N)) l (boundaryCochain Φ) = a • boundaryCochain Φ := _root_.solution hN
+      hk I hI hT g h Φ hΦ e hg hh hb l hl a hsum
 end
 
 end publicSection

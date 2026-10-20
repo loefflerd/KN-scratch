@@ -72,7 +72,8 @@ produced over the base ring so that it specialises compatibly to every field ext
 universality in $F$ is what makes the formula usable both for points over a fixed field and for the
 generic point over the function field; it is used in the analysis of valuations of the coordinates
 of $nP$, in
-[`WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero`](thm.html#WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero).
+[`WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero`]
+(thm.html#WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero).
 
 ## Explanation of the source proof
 
@@ -156,7 +157,14 @@ end PortCardMulXY
 universe u v
 
 theorem solution {R : Type u} [CommRing R] (W : WeierstrassCurve R) (n : ℤ) :
-    ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 → ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3) h' :=
+    ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y :
+      F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 →
+      ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange
+      F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y /
+      ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h =
+      WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq
+      n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange
+      F).ψ n).evalEval x y ^ 3) h' :=
   PortCard.exists_zsmul_some_eq_some_baseChange W n
 
 end S_WeierstrassCurve_Affine_Point_exists_zsmul_some_eq_some_baseChange
@@ -172,7 +180,14 @@ universe u v
 
 theorem WeierstrassCurve.Affine.Point.exists_zsmul_some_eq_some_baseChange {R : Type u} [CommRing R]
     (W : WeierstrassCurve R) (n : ℤ) :
-    ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y : F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 → ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange F).ψ n).evalEval x y ^ 3) h' :=
+    ∃ ω : Polynomial (Polynomial R), ∀ {F : Type v} [Field F] [DecidableEq F] [Algebra R F] {x y :
+      F} (h : (W.baseChange F).toAffine.Nonsingular x y), ((W.baseChange F).ψ n).evalEval x y ≠ 0 →
+      ∃ h' : (W.baseChange F).toAffine.Nonsingular (((W.baseChange F).Φ n).eval x / ((W.baseChange
+      F).ΨSq n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y /
+      ((W.baseChange F).ψ n).evalEval x y ^ 3), n • WeierstrassCurve.Affine.Point.some x y h =
+      WeierstrassCurve.Affine.Point.some (((W.baseChange F).Φ n).eval x / ((W.baseChange F).ΨSq
+      n).eval x) ((ω.map (Polynomial.mapRingHom (algebraMap R F))).evalEval x y / ((W.baseChange
+      F).ψ n).evalEval x y ^ 3) h' :=
   solution W n
 
 end publicSection

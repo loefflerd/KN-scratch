@@ -44,9 +44,11 @@ This is the integrality of the coefficients of the modular equation of prime lev
 elementary symmetric functions of the $\ell+1$ conjugates of the $q$-expansion of $j$ descend to
 Laurent series with integral coefficients. It feeds the construction of the modular polynomial data
 for $X_0(\ell)$, being used in
-[`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le),
+[`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le),
 [`ModularCurve.PhiGen.splits_of_prime`](thm.html#ModularCurve.PhiGen.splits_of_prime) and
-[`ModularCurve.exists_modularPolynomialData_evalSymm`](thm.html#ModularCurve.exists_modularPolynomialData_evalSymm).
+[`ModularCurve.exists_modularPolynomialData_evalSymm`]
+(thm.html#ModularCurve.exists_modularPolynomialData_evalSymm).
 
 ## Explanation of the source proof
 
@@ -285,7 +287,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) :
     IntCoeffs (c k) :=

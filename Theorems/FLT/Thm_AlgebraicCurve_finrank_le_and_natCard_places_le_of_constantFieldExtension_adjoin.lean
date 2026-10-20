@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin
+Based on Prove2Me node
+AlgebraicCurve.finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin
 (a93a0fd6-b762-5620-a1c2-4211647c1f99) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 44d00469-9cc7-55e5-894e-d696722ba769
@@ -55,9 +56,12 @@ This is the comparison of a one-variable function field with its constant field 
 concretely inside a finite extension of $K'(t)$: the degree over the rational subfield does not drop
 and the numbers of zeros and of poles of a function do not increase. It is used in the counting
 arguments for modular curves, where fibres of a map of curves are matched with double cosets
-([`ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index`](thm.html#ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index),
-[`ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index`](thm.html#ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index),
-[`ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset`](thm.html#ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset)).
+([`ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index`]
+(thm.html#ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index),
+[`ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index`]
+(thm.html#ModularCurve.natCard_fibres_jqModC_eq_natCard_doubleCoset_of_finrank_eq_index),
+[`ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset`]
+(thm.html#ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset)).
 
 ## Explanation of the source proof
 
@@ -117,7 +121,8 @@ variable {L : Type*} [Field L] [Algebra K' L] (t : L) (E : IntermediateField K'�
 variable [Algebra F E] [Algebra k E] [IsScalarTower k K' E] [IsScalarTower k F E]
 
 theorem exists_mul_aeval_eq (l : K'⟮t⟯) :
-    ∃ p q : Polynomial K', Polynomial.aeval t q ≠ 0 ∧ (l : L) * Polynomial.aeval t q = Polynomial.aeval t p := by
+    ∃ p q : Polynomial K', Polynomial.aeval t q ≠ 0 ∧ (l : L) * Polynomial.aeval t q =
+      Polynomial.aeval t p := by
   obtain ⟨r, s, hrs⟩ := (IntermediateField.mem_adjoin_simple_iff K' (l : L)).mp l.2
   by_cases hs : Polynomial.aeval t s = 0
   · refine ⟨0, 1, by simp, ?_⟩
@@ -140,7 +145,8 @@ theorem finrank_le_finrank (y : F) (hy : Transcendental k y) [FiniteDimensional 
   rw [Fintype.linearIndependent_iff]
   intro l hl
   have hpq : ∀ i, ∃ p q : Polynomial K', Polynomial.aeval t q ≠ 0 ∧
-      ((l i : K'⟮t⟯) : L) * Polynomial.aeval t q = Polynomial.aeval t p := fun i => exists_mul_aeval_eq t (l i)
+      ((l i : K'⟮t⟯) : L) * Polynomial.aeval t q = Polynomial.aeval t p := fun i =>
+        exists_mul_aeval_eq t (l i)
   choose p q hq hpq using hpq
   set Q : Polynomial K' := ∏ i, q i with hQ
   have hQ0 : Polynomial.aeval t Q ≠ 0 := by
@@ -226,7 +232,8 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
       ∃ v : AlgebraicCurve.Place k F,
         v.toValuationSubring = P.toValuationSubring.comap (algebraMap F E) := by
     intro P hP
-    refine AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom (K := k) y (algebraMap F E)
+    refine AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom (K := k) y (algebraMap F
+      E)
       P.toValuationSubring (fun a => ?_) ?_
     · rw [← IsScalarTower.algebraMap_apply, IsScalarTower.algebraMap_apply k K' E]
       exact P.algebraMap_mem' _
@@ -277,11 +284,13 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
   have hfin_pos : Finite {P : AlgebraicCurve.Place k F // 0 < P.ord u} := by
     apply Finite.of_injective (fun P => (⟨P.1, by
       rw [Finsupp.mem_support_iff, hD]; exact P.2.ne'⟩ : D.support))
-    intro P₁ P₂ h; exact Subtype.ext (congrArg (fun z : D.support => (z : AlgebraicCurve.Place k F)) h)
+    intro P₁ P₂ h; exact Subtype.ext (congrArg (fun z : D.support => (z : AlgebraicCurve.Place k F))
+      h)
   have hfin_neg : Finite {P : AlgebraicCurve.Place k F // P.ord u < 0} := by
     apply Finite.of_injective (fun P => (⟨P.1, by
       rw [Finsupp.mem_support_iff, hD]; exact P.2.ne⟩ : D.support))
-    intro P₁ P₂ h; exact Subtype.ext (congrArg (fun z : D.support => (z : AlgebraicCurve.Place k F)) h)
+    intro P₁ P₂ h; exact Subtype.ext (congrArg (fun z : D.support => (z : AlgebraicCurve.Place k F))
+      h)
   constructor
   · let f : {P : AlgebraicCurve.Place K' E // 0 < P.ord (algebraMap F E u)} →
         {P : AlgebraicCurve.Place k F // 0 < P.ord u} := fun P =>
@@ -351,7 +360,8 @@ theorem adjoin_range_eq_top
     IntermediateField.adjoin K' (Set.range (algebraMap F E)) = ⊤ := by
   let f : E →ₐ[K'] L := E.val.restrictScalars K'
   set A := IntermediateField.adjoin K' (Set.range (algebraMap F E)) with hA
-  have hmapA : A.map f = IntermediateField.adjoin K' (Set.range fun u : F => (algebraMap F E u : L)) :=
+  have hmapA : A.map f = IntermediateField.adjoin K' (Set.range fun u : F => (algebraMap F E u : L))
+    :=
     by
     rw [hA, IntermediateField.adjoin_map, ← Set.range_comp]
     rfl
@@ -405,7 +415,8 @@ theorem solution
 
 end S_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin
 end P2MW
-export P2MW.S_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin (solution)
+export P2MW.S_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin
+  (solution)
 
 end privateSection
 

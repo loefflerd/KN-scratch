@@ -231,7 +231,8 @@ theorem step_trans {P Q R : Gamma0Pair N K} (hPQ : Gamma0Pair.Step P Q)
     ((Point.heq_vcInvFun γ₂ hγ₁.symm hgen₁).trans
       (heq_of_eq (vcInvFun_nsmul γ₂ _ k₁ _)))) ?_
   exact (heq_of_eq (smul_smul k₂ k₁ _)).trans
-    (ModularCurve.Point.heq_nsmul hV2 (k₂ * k₁) (vcInvFun_mul_heq γ₁ γ₂ P.toCurve.toAffine P.gen).symm)
+    (ModularCurve.Point.heq_nsmul hV2 (k₂ * k₁) (vcInvFun_mul_heq γ₁ γ₂ P.toCurve.toAffine
+      P.gen).symm)
 
 theorem stepEquivalence : Equivalence (Gamma0Pair.Step (N := N) (L := K)) :=
   ⟨step_refl, step_symm, step_trans⟩
@@ -258,7 +259,8 @@ theorem solution
     fun T T' => Iff.rfl
   let f : Quot (fun (T T' : {T : W.toAffine.Point // addOrderOf T = N}) =>
           ∃ γ : VariableChange L, ∃ _ : γ • W = W, ∃ k : ℕ, k.Coprime N ∧
-            HEq T'.1 (k • Point.vcInvFun γ W.toAffine T.1)) → {x : ModuliPoint N L // ModuliPoint.j x = W.j} :=
+            HEq T'.1 (k • Point.vcInvFun γ W.toAffine T.1)) → {x : ModuliPoint N L // ModuliPoint.j
+              x = W.j} :=
     Quot.lift (fun T => ⟨Quot.mk _ (mkP T), rfl⟩)
       (fun T T' h => Subtype.ext (Quot.sound ((hR T T').mp h)))
   refine (Nat.card_congr (Equiv.ofBijective f ⟨?_, ?_⟩)).symm

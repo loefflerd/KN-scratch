@@ -116,7 +116,10 @@ theorem WeilPairing.exists_pairing_torsionBy_of_laws {F K : Type*} [Field F] [Fi
 
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K] [DecidableEq K]
     (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hnK : (n : K) ≠ 0) :
-    ∃ e : Submodule.torsionBy ℤ (W⁄K).Point n → Submodule.torsionBy ℤ (W⁄K).Point n → Kˣ, (∀ P P' Q, e (P + P') Q = e P Q * e P' Q) ∧ (∀ P Q Q', e P (Q + Q') = e P Q * e P Q') ∧ (∀ P, e P P = 1) ∧ (∀ (σ : K ≃ₐ[F] K) P Q, ((e (σ • P) (σ • Q) : Kˣ) : K) = σ (e P Q)) ∧ (∀ P, (∀ Q, e P Q = 1) → P = 0) := by
+    ∃ e : Submodule.torsionBy ℤ (W⁄K).Point n → Submodule.torsionBy ℤ (W⁄K).Point n → Kˣ, (∀ P P' Q,
+      e (P + P') Q = e P Q * e P' Q) ∧ (∀ P Q Q', e P (Q + Q') = e P Q * e P Q') ∧ (∀ P, e P P = 1)
+      ∧ (∀ (σ : K ≃ₐ[F] K) P Q, ((e (σ • P) (σ • Q) : Kˣ) : K) = σ (e P Q)) ∧ (∀ P, (∀ Q, e P Q = 1)
+      → P = 0) := by
   classical
   have hEK : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
@@ -128,7 +131,8 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K]
     (fun σ S T hS hT => WeierstrassCurve.Affine.weilPairing0_galois W hnK σ S T hS hT) ?_
   intro T hT h1
   apply WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq W hnK
-    (fun P hP hnP h k hh => WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero W hnK P hP hnP h k hh)
+    (fun P hP hnP h k hh => WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero W hnK P hP hnP h
+      k hh)
     (weilFun W K n T)
   · intro P hP hnP
     rw [WeierstrassCurve.Affine.valuation_weilFun W hnK hT P hP, ite_eq_right hnP, div_one]
@@ -152,7 +156,10 @@ open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 theorem WeierstrassCurve.exists_pairing_torsionBy {F K : Type*} [Field F] [Field K] [Algebra F K]
     [IsAlgClosed K] [DecidableEq K] (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ}
     (hnK : (n : K) ≠ 0) :
-    ∃ e : Submodule.torsionBy ℤ (W⁄K).Point n → Submodule.torsionBy ℤ (W⁄K).Point n → Kˣ, (∀ P P' Q, e (P + P') Q = e P Q * e P' Q) ∧ (∀ P Q Q', e P (Q + Q') = e P Q * e P Q') ∧ (∀ P, e P P = 1) ∧ (∀ (σ : K ≃ₐ[F] K) P Q, ((e (σ • P) (σ • Q) : Kˣ) : K) = σ (e P Q)) ∧ (∀ P, (∀ Q, e P Q = 1) → P = 0) :=
+    ∃ e : Submodule.torsionBy ℤ (W⁄K).Point n → Submodule.torsionBy ℤ (W⁄K).Point n → Kˣ, (∀ P P' Q,
+      e (P + P') Q = e P Q * e P' Q) ∧ (∀ P Q Q', e P (Q + Q') = e P Q * e P Q') ∧ (∀ P, e P P = 1)
+      ∧ (∀ (σ : K ≃ₐ[F] K) P Q, ((e (σ • P) (σ • Q) : Kˣ) : K) = σ (e P Q)) ∧ (∀ P, (∀ Q, e P Q = 1)
+      → P = 0) :=
   solution W hnK
 
 end publicSection

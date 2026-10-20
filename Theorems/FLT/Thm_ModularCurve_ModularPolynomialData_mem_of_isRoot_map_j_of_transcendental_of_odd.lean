@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd
+Based on Prove2Me node
+ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd
 (ab127387-aafa-5673-9e11-75310cd2c2bd) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission a43cdecf-3371-5f38-a79c-6dfdea4aff62
@@ -49,10 +50,13 @@ This is the statement that the roots of the level-$N$ modular polynomial special
 the $j$-invariants of the quotients of $E$ by its cyclic subgroups of order $N$, and hence are
 defined over any field containing the coefficients of $E$ and the coordinates of its $N$-torsion. It
 feeds the three ramification estimates
-[`ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd),
-[`ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd)
+[`ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd),
+[`ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd)
 and
-[`ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd).
+[`ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd).
 
 ## Explanation of the source proof
 
@@ -120,16 +124,19 @@ theorem solution
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
       N • (WeierstrassCurve.Affine.Point.some x y h : W.toAffine.Point) = 0 → x ∈ L ∧ y ∈ L)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
+    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+      W.j)).IsRoot r) :
     r ∈ L := by
   have hK : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
   have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
-    (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
+    (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp
+      inferInstance
   obtain ⟨n, rfl⟩ := hN
   have h2 : (2 : HahnSeries ℚ (AlgebraicClosure ℚ)) ≠ 0 := two_ne_zero
   have hNK : ((2 * n + 1 : ℕ) : HahnSeries ℚ (AlgebraicClosure ℚ)) ≠ 0 :=
     Nat.cast_ne_zero.mpr (by omega)
-  set Φj := data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)
+  set Φj := data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure
+    ℚ))) W.j)
     with hΦj
   have hΦjm : Φj.Monic := data.monic.map _
   let B := {H : AddSubgroup W.toAffine.Point // IsAddCyclic H ∧ Nat.card H = 2 * n + 1}
@@ -150,13 +157,15 @@ theorem solution
   have hΔgen : ∀ H : B, (W.veluQuotient (W.oddOrderSummingSet (gen H) n)).Δ ≠ 0 := fun H =>
     WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero h2 W n (gen H) (hgenord H)
   let jH : B → HahnSeries ℚ (AlgebraicClosure ℚ) := fun H =>
-    haveI : (W.veluQuotient (W.oddOrderSummingSet (gen H) n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr (hΔgen H)⟩
+    haveI : (W.veluQuotient (W.oddOrderSummingSet (gen H) n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr
+      (hΔgen H)⟩
     (W.veluQuotient (W.oddOrderSummingSet (gen H) n)).j
   have hjHmem : ∀ H : B, jH H ∈ L := fun H =>
     WeierstrassCurve.veluQuotient_j_mem_of_mem W L _ h₁ h₂ h₃ h₄ h₆
       (oddOrderSummingSet_coords_mem W L (hgenord H) htors) (hΔgen H)
   have hjHroot : ∀ H : B, Φj.IsRoot (jH H) := fun H =>
-    ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq W n (gen H) (hgenord H)
+    ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq W n (gen H)
+      (hgenord H)
       (hΔgen H) data
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq
@@ -177,7 +186,8 @@ theorem solution
     calc Φj.roots.toFinset.card ≤ Multiset.card Φj.roots := Multiset.toFinset_card_le _
       _ = ModularCurve.dedekindPsi (2 * n + 1) := by
           rw [hΦj, ← data.natDegree_eq]
-          exact ModularCurve.card_roots_fibrePoly_of_monic (K := HahnSeries ℚ (AlgebraicClosure ℚ)) data.monic W.j
+          exact ModularCurve.card_roots_fibrePoly_of_monic (K := HahnSeries ℚ (AlgebraicClosure ℚ))
+            data.monic W.j
       _ = (Finset.univ.image jH).card := hJcard.symm
   have hrmem : r ∈ Φj.roots.toFinset := by
     rw [Multiset.mem_toFinset, Polynomial.mem_roots hΦjm.ne_zero]; exact hr
@@ -187,7 +197,8 @@ theorem solution
 
 end S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd
 end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd (solution)
+export P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd
+  (solution)
 
 end privateSection
 
@@ -203,7 +214,8 @@ theorem ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental
     (htors : ∀ (x y : HahnSeries ℚ (AlgebraicClosure ℚ)) (h : W.toAffine.Nonsingular x y),
       N • (WeierstrassCurve.Affine.Point.some x y h : W.toAffine.Point) = 0 → x ∈ L ∧ y ∈ L)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
+    (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
+      W.j)).IsRoot r) :
     r ∈ L :=
   solution hN data W ht L h₁ h₂ h₃ h₄ h₆ htors r hr
 

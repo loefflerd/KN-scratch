@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
+Based on Prove2Me node
+ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
 (0f90f902-6270-5272-a743-919daad53e1d) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission e8a15ddc-6513-5410-9aca-ec001d8484c8
@@ -50,9 +51,11 @@ character space of $\Gamma$, the discrepancy being governed by the number of cus
 of a character on the cusp generators covers the hyperplane of sum-zero functions on the cusps. It
 is used in the project's computations of $\dim_K H^1_{\mathrm{par}}$ for $\Gamma_0(N)$ and
 $\Gamma(N)$, namely in
-[`ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula`](thm.html#ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula)
+[`ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula`]
+(thm.html#ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula)
 and
-[`ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq`](thm.html#ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq).
+[`ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq`]
+(thm.html#ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq).
 
 ## Explanation of the source proof
 
@@ -204,7 +207,8 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
 end
 end S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
 end P2MW
-export P2MW.S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one (solution)
+export P2MW.S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
+  (solution)
 
 end privateSection
 

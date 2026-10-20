@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
+Based on Prove2Me node
+ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
 (93b28a2f-818b-54b1-9942-b0b31550fe4f) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 74298caa-59e8-5731-bfdc-ce176d383621
@@ -84,7 +85,8 @@ theorem GenusX1.exists_coe_eq_jqModC_laurentBaseChange_qExpFunctionFieldC
   have hmem : ModularCurve.jq ∈ ModularCurve.qExpFunctionFieldC ℚ Γ := by
     rw [← ModularCurve.jqModC_rat]
     exact ModularCurve.intFormRatiosC_subset ℚ Γ (ModularCurve.jqModC_mem_intFormRatiosC ℚ Γ)
-  refine ⟨⟨ModularCurve.coeffEmb K ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange K hmem⟩, ?_⟩
+  refine ⟨⟨ModularCurve.coeffEmb K ModularCurve.jq, ModularCurve.coeffEmb_mem_laurentBaseChange K
+    hmem⟩, ?_⟩
   change ModularCurve.coeffEmb K ModularCurve.jq = _
   rw [← ModularCurve.jqModC_rat]
   exact ModularCurve.map_jqModC (algebraMap ℚ K)
@@ -95,7 +97,8 @@ theorem solution
         ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
           (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) +
       6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) =
+        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+          ℤ))) =
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 := by
   classical
   set Kb := AlgebraicClosure ℚ with hKb
@@ -113,7 +116,8 @@ theorem solution
     ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1
     (AlgebraicClosure ℚ) M (le_trans (by norm_num) hM) y hy
   obtain ⟨hμ3, hμ2⟩ :=
-    CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul M hM
+    CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+      M hM
   obtain ⟨htr, hfd⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M) (by rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]) y hy
@@ -125,7 +129,8 @@ theorem solution
     AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
     (AlgebraicClosure ℚ) y htr hfd 1728
   simp only [map_zero, sub_zero] at hS₀ hsum₀
-  have hmap : (algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) 1728) = 1728 :=
+  have hmap : (algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
+    (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) 1728) = 1728 :=
     by
     exact map_ofNat _ 1728
   rw [hmap] at hS₁ hsum₁
@@ -135,19 +140,25 @@ theorem solution
   have hsum₁' : ∑ P ∈ S₁, P.ord (y - 1728) = 2 * (S₁.card : ℤ) := by
     rw [Finset.sum_congr rfl (fun P hP => h1728 P ((hS₁ P).mp hP)), Finset.sum_const, nsmul_eq_mul,
       mul_comm]
-  have hcard₀ : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // 0 < P.ord y} = S₀.card :=
+  have hcard₀ : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
+    ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+    (CongruenceSubgroup.Gamma1 M))) // 0 < P.ord y} = S₀.card :=
     by
     rw [← Nat.card_eq_finsetCard]
     exact Nat.card_congr (Equiv.subtypeEquivRight (fun P => (hS₀ P).symm))
-  have hcard₁ : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // 0 < P.ord (y - 1728)} = S₁.card :=
+  have hcard₁ : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
+    ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+    (CongruenceSubgroup.Gamma1 M))) // 0 < P.ord (y - 1728)} = S₁.card :=
     by
     rw [← Nat.card_eq_finsetCard]
     exact Nat.card_congr (Equiv.subtypeEquivRight (fun P => (hS₁ P).symm))
   rw [hcusp, hcard₀, hcard₁] at hfib
-  have e0 : 3 * (S₀.card : ℤ) = ((CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index : ℤ) :=
+  have e0 : 3 * (S₀.card : ℤ) = ((CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2,
+    ℤ))).index : ℤ) :=
     by
     rw [← hsum₀', hsum₀, hfull]
-  have e1 : 2 * (S₁.card : ℤ) = ((CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index : ℤ) :=
+  have e1 : 2 * (S₁.card : ℤ) = ((CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2,
+    ℤ))).index : ℤ) :=
     by
     rw [← hsum₁', hsum₁, hfull]
   zify at hfib ⊢
@@ -155,7 +166,9 @@ theorem solution
 
 end S_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
 end P2MW
-export P2MW.S_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve (solution)
+export
+  P2MW.S_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
+  (solution)
 
 end privateSection
 
@@ -165,13 +178,15 @@ public section publicSection
 open ModularCurve CongruenceSubgroup
 open AlgebraicCurve
 open scoped MatrixGroups
-theorem ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
+theorem
+  ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
     12 * AlgebraicCurve.genusFF (AlgebraicClosure ℚ)
         ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
           (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) +
       6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) =
+        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+          ℤ))) =
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 :=
   solution M hM
 

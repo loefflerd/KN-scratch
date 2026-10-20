@@ -529,7 +529,8 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
     intro q
     induction q using QuotientGroup.induction_on with
     | H γ => exact mdiff_comp_smul hF γ
-  choose mq hmq using fun q : Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N => hpb q.out
+  choose mq hmq using fun q : Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N =>
+    hpb q.out
   set M := Finset.univ.sup mq with hM
   have hbd : ∀ q, IsBoundedAtImInfty (orb q * ⇑CuspForm.discriminant ^ M) := by
     intro q

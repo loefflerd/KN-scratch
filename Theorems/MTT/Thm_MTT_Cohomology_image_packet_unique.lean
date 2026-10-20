@@ -20,7 +20,8 @@ import Theorems.MTT.Thm_MTT_coeff_eq_of_hecke_recurrence
 import Theorems.MTT.Thm_MTT_period_vanishing
 
 /-!
-# Multiplicity one for the full prime eigenpacket: a class with the packet of $f$ comes from $\mathbf C\,f$
+# Multiplicity one for the full prime eigenpacket: a class with the packet of $f$ comes from
+$\mathbf C\,f$
 
 Theorem statement: `MTT.Cohomology.image_packet_unique` (`45a3d1fa-a4ff-4041-8d81-1301a7b99c56`), by
 cbirkbeck, 2026-09-06.

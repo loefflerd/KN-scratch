@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero
+Based on Prove2Me node
+ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero
 (10a8535e-aaea-506b-b133-07bb1902183c) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 9fda4869-e363-5b9e-a9c7-640238431521
@@ -93,9 +94,11 @@ theorem jt_smul (γ : SL(2, ℤ)) (z : ℍ) : jt ((γ : GL (Fin 2) ℝ) • z) =
   field_simp
 
 theorem upperTriangularGL_eq {N a b d : ℕ} (hN : N ≠ 0) (γ₁ γ₂ : SL(2, ℤ))
-    (hM : !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ : Matrix (Fin 2) (Fin 2) ℤ))
+    (hM : !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ :
+      Matrix (Fin 2) (Fin 2) ℤ))
     (had' : (a : ℝ) * d ≠ 0) :
-    ModularForm.upperTriangularGL a b d had' = (γ₁ : GL (Fin 2) ℝ) * ModularForm.heckeDiagMatrix N * (γ₂ : GL (Fin 2) ℝ) := by
+    ModularForm.upperTriangularGL a b d had' = (γ₁ : GL (Fin 2) ℝ) * ModularForm.heckeDiagMatrix N *
+      (γ₂ : GL (Fin 2) ℝ) := by
   apply Units.ext
   have hmap := congrArg (fun M : Matrix (Fin 2) (Fin 2) ℤ => M.map (Int.castRingHom ℝ)) hM
   simp only [Matrix.map_mul] at hmap
@@ -149,7 +152,8 @@ end
 
 end S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero
 end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero (solution)
+export P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero
+  (solution)
 
 end privateSection
 

@@ -51,7 +51,8 @@ This is the arithmetic core of the non-degeneracy argument for the Weil pairing 
 an $E[n]$-invariant function is a pullback along $[n]$, and if its divisor were concentrated on a
 single fibre of $[n]$ the maximal ideal of the affine point $T$ would be principal, which is
 impossible unless $T=0$. It feeds the non-degeneracy statement
-[`WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one`](thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one)
+[`WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one`]
+(thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one)
 and the construction
 [`WeierstrassCurve.exists_pairing_torsionBy`](thm.html#WeierstrassCurve.exists_pairing_torsionBy) of
 the pairing on $n$-torsion.
@@ -84,7 +85,15 @@ lemma placeOf_congr {P Q : (W⁄K).Point} (hP : P ≠ 0) (hQ : Q ≠ 0) (h : P =
 
 end WeilND
 
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hnK : (n : K) ≠ 0) (hpull : ∀ (P : (W⁄K).Point) (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ), (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤ WithZero.exp (-(k : ℤ)) → (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ WithZero.exp (-(k : ℤ))) {T : (W⁄K).Point} (g : (W⁄K).FunctionField) (hg : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (n : ℤ) • P ≠ 0 → (placeOf W K P hP).valuation (W⁄K).FunctionField g = if (n : ℤ) • P = T then WithZero.exp (-1) else 1) (hinv : ∀ S : (W⁄K).Point, (n : ℤ) • S = 0 → transEquiv W K S g = g) :
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W
+  : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hnK : (n :
+  K) ≠ 0) (hpull : ∀ (P : (W⁄K).Point) (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h :
+  (W⁄K).FunctionField) (k : ℕ), (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤
+  WithZero.exp (-(k : ℤ)) → (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤
+  WithZero.exp (-(k : ℤ))) {T : (W⁄K).Point} (g : (W⁄K).FunctionField) (hg : ∀ (P : (W⁄K).Point) (hP
+  : P ≠ 0), (n : ℤ) • P ≠ 0 → (placeOf W K P hP).valuation (W⁄K).FunctionField g = if (n : ℤ) • P =
+  T then WithZero.exp (-1) else 1) (hinv : ∀ S : (W⁄K).Point, (n : ℤ) • S = 0 → transEquiv W K S g =
+  g) :
     T = 0 := by
   classical
   by_contra hT0
@@ -157,9 +166,11 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     fun v => Classical.choose (Classical.choose_spec (placeOf_surjective W K v))
   have hptv : ∀ v, placeOf W K (pt v) (hpt0 v) = v := fun v =>
     Classical.choose_spec (Classical.choose_spec (placeOf_surjective W K v))
-  let N : HeightOneSpectrum (W⁄K).CoordinateRing → Option (HeightOneSpectrum (W⁄K).CoordinateRing) :=
+  let N : HeightOneSpectrum (W⁄K).CoordinateRing → Option (HeightOneSpectrum (W⁄K).CoordinateRing)
+    :=
     fun v => if hv : (n : ℤ) • pt v = 0 then none else Option.some (placeOf W K ((n : ℤ) • pt v) hv)
-  have hNsome : ∀ v w, N v = Option.some w → ∃ hv : (n : ℤ) • pt v ≠ 0, placeOf W K ((n : ℤ) • pt v) hv = w :=
+  have hNsome : ∀ v w, N v = Option.some w → ∃ hv : (n : ℤ) • pt v ≠ 0, placeOf W K ((n : ℤ) • pt v)
+    hv = w :=
     by
     intro v w hvw
     by_cases hv : (n : ℤ) • pt v = 0
@@ -178,8 +189,10 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     simp only [N, hv, dite_false, Option.some.injEq]
     exact WeilND.placeOf_congr W K _ _ (by rw [hpt_of_place, hQ])
   have key :=
-    IsDedekindDomain.HeightOneSpectrum.exists_eq_span_singleton_of_map_eq (R := (W⁄K).CoordinateRing) (K := (W⁄K).FunctionField)
-    (mulPull W K (n : ℤ) : (W⁄K).FunctionField →+* (W⁄K).FunctionField) N hN ?_ g (placeOf W K T hT0) ?_ ?_ ⟨h, hh⟩
+    IsDedekindDomain.HeightOneSpectrum.exists_eq_span_singleton_of_map_eq (R :=
+      (W⁄K).CoordinateRing) (K := (W⁄K).FunctionField)
+    (mulPull W K (n : ℤ) : (W⁄K).FunctionField →+* (W⁄K).FunctionField) N hN ?_ g (placeOf W K T
+      hT0) ?_ ?_ ⟨h, hh⟩
   rotate_left
   · intro v w hvw x k hx
     obtain ⟨hv, rfl⟩ := hNsome v w hvw
@@ -215,7 +228,15 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hnK : (n : K) ≠ 0) (hpull : ∀ (P : (W⁄K).Point) (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ), (placeOf W K ((n : ℤ) • P) hnP).valuation (W⁄K).FunctionField h ≤ WithZero.exp (-(k : ℤ)) → (placeOf W K P hP).valuation (W⁄K).FunctionField (mulPull W K n h) ≤ WithZero.exp (-(k : ℤ))) {T : (W⁄K).Point} (g : (W⁄K).FunctionField) (hg : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (n : ℤ) • P ≠ 0 → (placeOf W K P hP).valuation (W⁄K).FunctionField g = if (n : ℤ) • P = T then WithZero.exp (-1) else 1) (hinv : ∀ S : (W⁄K).Point, (n : ℤ) • S = 0 → transEquiv W K S g = g) :
+theorem WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq {F K : Type*} [Field F] [Field K]
+  [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
+  [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hnK : (n : K) ≠ 0) (hpull : ∀ (P : (W⁄K).Point)
+  (hP : P ≠ 0) (hnP : (n : ℤ) • P ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ), (placeOf W K ((n : ℤ) • P)
+  hnP).valuation (W⁄K).FunctionField h ≤ WithZero.exp (-(k : ℤ)) → (placeOf W K P hP).valuation
+  (W⁄K).FunctionField (mulPull W K n h) ≤ WithZero.exp (-(k : ℤ))) {T : (W⁄K).Point} (g :
+  (W⁄K).FunctionField) (hg : ∀ (P : (W⁄K).Point) (hP : P ≠ 0), (n : ℤ) • P ≠ 0 → (placeOf W K P
+  hP).valuation (W⁄K).FunctionField g = if (n : ℤ) • P = T then WithZero.exp (-1) else 1) (hinv : ∀
+  S : (W⁄K).Point, (n : ℤ) • S = 0 → transEquiv W K S g = g) :
     T = 0 :=
   solution W hnK hpull g hg hinv
 

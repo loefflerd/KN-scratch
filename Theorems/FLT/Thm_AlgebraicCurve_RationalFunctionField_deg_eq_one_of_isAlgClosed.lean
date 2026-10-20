@@ -1297,7 +1297,8 @@ end RationalFunctionField
 end AlgebraicCurve
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed.AlgebraicCurve in
 theorem solution (K : Type*) [Field K] [IsAlgClosed K] (v : Place K (RatFunc K)) : v.deg = 1 :=
   AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed K v
 

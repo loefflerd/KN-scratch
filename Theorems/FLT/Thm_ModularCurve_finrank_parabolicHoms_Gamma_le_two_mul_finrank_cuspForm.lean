@@ -46,7 +46,8 @@ This is the inequality expressing the surjectivity half of the Eichler–Shimura
 level: the rank of the group of parabolic (trace $\pm 2$ killing) homomorphisms $\Gamma(N) \to
 \mathbb{Z}$ is at most twice $\dim_{\mathbb{C}} S_2(\Gamma(N))$. It is the input from which the
 corresponding bound for an arbitrary congruence subgroup is obtained by descent, in
-[`ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup`](thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup).
+[`ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup`]
+(thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup).
 
 ## Explanation of the source proof
 
@@ -148,7 +149,8 @@ theorem finrank_parabolicHoms_gamma_one : Module.finrank ℤ (parabolicHoms ℤ 
   rw [parabolicHoms_gamma_one_eq_bot, finrank_bot]
 
 theorem main_of_two_le (N : ℕ) (hN : 2 ≤ N) :
-    Module.finrank ℤ (parabolicHoms ℤ (Gamma N) ℤ) ≤ 2 * Module.finrank ℂ (CuspForm (Gamma N) 2) := by
+    Module.finrank ℤ (parabolicHoms ℤ (Gamma N) ℤ) ≤ 2 * Module.finrank ℂ (CuspForm (Gamma N) 2)
+      := by
   have hA := ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq N hN
   have hG := ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma N hN
   set r := Module.finrank ℤ (parabolicHoms ℤ (Gamma N) ℤ)

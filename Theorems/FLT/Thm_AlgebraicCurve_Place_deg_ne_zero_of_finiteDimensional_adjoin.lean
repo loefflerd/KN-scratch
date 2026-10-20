@@ -67,8 +67,10 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
   have hinj : Function.Injective (Polynomial.aeval x : Polynomial K →ₐ[K] F) :=
     transcendental_iff_injective.mp hx
   let lift : RatFunc K →ₐ[K] F :=
-    RatFunc.liftAlgHom (Polynomial.aeval x) (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj)
-  have hlift : ∀ p : Polynomial K, lift (algebraMap (Polynomial K) (RatFunc K) p) = Polynomial.aeval x p :=
+    RatFunc.liftAlgHom (Polynomial.aeval x) (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _
+      hinj)
+  have hlift : ∀ p : Polynomial K, lift (algebraMap (Polynomial K) (RatFunc K) p) = Polynomial.aeval
+    x p :=
     fun p => by
     have h := RatFunc.liftAlgHom_apply_div (Polynomial.aeval x)
       (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj) p 1
@@ -92,7 +94,8 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
         have hrange : IntermediateField.adjoin K ({x} : Set F) ≤ lift.fieldRange := by
           rw [IntermediateField.adjoin_le_iff]
           rintro y' rfl
-          exact ⟨algebraMap (Polynomial K) (RatFunc K) Polynomial.X, (hlift _).trans (Polynomial.aeval_X _)⟩
+          exact ⟨algebraMap (Polynomial K) (RatFunc K) Polynomial.X, (hlift _).trans
+            (Polynomial.aeval_X _)⟩
         obtain ⟨c', hc'⟩ := hrange c.2
         have hcc : c • y = c' • y := by
           change (c : F) * y = lift.toRingHom c' * y

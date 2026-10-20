@@ -44,7 +44,8 @@ This is the restriction $w \mapsto w|_F$ of places along an algebraic extension 
 common base field, in the form needed to compare places of a function field with those of a
 subfield. It is used in the treatment of the modular function field, for the description of the
 $j$-coordinate via
-[`ModularCurve.jCoordinate_spec_modularFunctionFieldBar`](thm.html#ModularCurve.jCoordinate_spec_modularFunctionFieldBar).
+[`ModularCurve.jCoordinate_spec_modularFunctionFieldBar`]
+(thm.html#ModularCurve.jCoordinate_spec_modularFunctionFieldBar).
 
 ## Explanation of the source proof
 
@@ -390,7 +391,8 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap.AlgebraicCurve in
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (w : Place K F') :
     ∃ v : Place K F, v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F') :=

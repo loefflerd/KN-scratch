@@ -99,7 +99,8 @@ end ModularCurve.CuspSpace
 
 theorem solution {N : ℕ} (hN : N ≠ 0) :
     Nat.card (ModularCurve.CuspSpace N) = ModularCurve.cuspCount N :=
-  ModularCurve.CuspSpace.card_eq_cuspCount_of_classification (ModularCurve.CuspSpace.classification hN)
+  ModularCurve.CuspSpace.card_eq_cuspCount_of_classification (ModularCurve.CuspSpace.classification
+    hN)
 
 end S_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount
 end P2MW

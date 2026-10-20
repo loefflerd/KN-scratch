@@ -58,7 +58,8 @@ of modular forms of level $\Gamma_0(N)$: the three lower bounds measure the $S$-
 $T$-invariants of the induced representation $\mathrm{Ind}_{\Gamma_0(N)}^{SL_2(\mathbb
 Z)}\mathrm{Sym}^n$ in terms of the elliptic points of order $2$ and $3$ and the cusps. It is used in
 the bound
-[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`](thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
+[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`]
+(thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
 comparing a parabolic cohomology dimension with the classical dimension formula.
 
 ## Explanation of the source proof
@@ -203,7 +204,8 @@ theorem card_fixedPts_add_card_moving : (fixedPts σ).card + (moving σ).card = 
 theorem card_fiber {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1) {r : X} (hr : r ∈ freeReps σ) :
     ((moving σ).filter fun a => rep σ a = r).card = p := by
   rw [mem_freeReps] at hr
-  have heq : ((moving σ).filter fun a => rep σ a = r) = (Finset.range p).image fun i => (σ ^ i) r := by
+  have heq : ((moving σ).filter fun a => rep σ a = r) = (Finset.range p).image fun i => (σ ^ i) r :=
+    by
     ext a
     simp only [Finset.mem_filter, mem_moving, Finset.mem_image, Finset.mem_range]
     constructor
@@ -325,7 +327,8 @@ theorem compMap_injective (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} 
     (hA : A ^ p = 1) : Function.Injective (compMap σ A Φ hΦ hσ hA) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   rintro ⟨u, v⟩ huv
-  have H : extZero k (fixedPts σ) V (fun y => (u y : V)) + avg Φ p (extZero k (freeReps σ) V v) = 0 :=
+  have H : extZero k (fixedPts σ) V (fun y => (u y : V)) + avg Φ p (extZero k (freeReps σ) V v) = 0
+    :=
     by
     have := congrArg Subtype.val huv
     simp [compMap] at this
@@ -362,9 +365,10 @@ theorem le_finrank_ker_shift_sub_one (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x)))
   have hX : Fintype.card X - (fixedPts σ).card = p * (freeReps σ).card := by
     rw [← card_fixedPts_add_card_moving σ, Nat.add_sub_cancel_left, card_moving σ hp hσ]
   rw [hX]
-  calc p * (fixedPts σ).card * finrank k (LinearMap.ker (A - 1)) + p * (freeReps σ).card * finrank k V
-      = p * ((fixedPts σ).card * finrank k (LinearMap.ker (A - 1)) + (freeReps σ).card * finrank k V) := by
-        ring
+  calc p * (fixedPts σ).card * finrank k (LinearMap.ker (A - 1))
+        + p * (freeReps σ).card * finrank k V
+      = p * ((fixedPts σ).card * finrank k (LinearMap.ker (A - 1))
+        + (freeReps σ).card * finrank k V) := by ring
     _ ≤ p * finrank k (LinearMap.ker (Φ - 1)) := Nat.mul_le_mul_left p hle
 
 end Abstract
@@ -378,7 +382,8 @@ theorem finrank_binaryForm (K : Type*) [Field K] (n : ℕ) :
     Module.finrank K (BinaryForm K n) = n + 1 := by
   let S : Set (Fin 2 →₀ ℕ) := {d | d.degree = n}
   have e1 : (BinaryForm K n) ≃ₗ[K] (S →₀ K) :=
-    (LinearEquiv.ofEq _ _ (MvPolynomial.homogeneousSubmodule_eq_finsupp_supported (Fin 2) K n)).trans
+    (LinearEquiv.ofEq _ _ (MvPolynomial.homogeneousSubmodule_eq_finsupp_supported (Fin 2) K
+      n)).trans
       (AddMonoidAlgebra.supportedEquivFinsupp S)
   have e2 : S ≃ Fin (n + 1) :=
     { toFun := fun d => ⟨d.1 0, by
@@ -403,7 +408,8 @@ theorem finrank_binaryForm (K : Type*) [Field K] (n : ℕ) :
   have : Fintype S := Fintype.ofEquiv _ e2.symm
   rw [e1.finrank_eq, Module.finrank_finsupp_self, Fintype.card_congr e2, Fintype.card_fin]
 
-scoped instance instFiniteDimensionalBinaryForm (K : Type*) [Field K] (n : ℕ) : FiniteDimensional K (BinaryForm K n) :=
+scoped instance instFiniteDimensionalBinaryForm (K : Type*) [Field K] (n : ℕ) : FiniteDimensional K
+  (BinaryForm K n) :=
   Module.finite_of_finrank_pos (by rw [finrank_binaryForm]; omega)
 
 variable (N : ℕ)
@@ -488,11 +494,13 @@ theorem prime_conjunct [NeZero N] (hn : Even n) {g : SL(2, ℤ)}
   have key :=
     le_finrank_ker_shift_sub_one (k := ℂ) (MulAction.toPerm g) (binaryFormRepSL ℂ n g) Φ hΦ hp
     (toPerm_coset_pow_eq_one N hg) (binaryFormRepSL_pow_eq_one n hn hg)
-  have h1 : (fixedPts (MulAction.toPerm g : Equiv.Perm (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))).card
+  have h1 : (fixedPts (MulAction.toPerm g : Equiv.Perm (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0
+    N))).card
       = Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // g • x = x} := by
     rw [Nat.card_eq_fintype_card, Fintype.card_subtype, fixedPts]
     simp only [MulAction.toPerm_apply]
-  have h2 : Fintype.card (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) = (CongruenceSubgroup.Gamma0 N).index :=
+  have h2 : Fintype.card (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) = (CongruenceSubgroup.Gamma0
+    N).index :=
     by
     rw [Subgroup.index_eq_card, Nat.card_eq_fintype_card]
   rw [h1, h2, finrank_binaryForm, mul_assoc] at key
@@ -544,19 +552,28 @@ end HeckeEis.UH2
 open scoped MatrixGroups
 
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n)
-    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)))
-    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
+    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)))
+    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
       W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) :
-    Module.finrank ℂ (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) = (n + 1) * (CongruenceSubgroup.Gamma0 N).index ∧
+    Module.finrank ℂ (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) = (n + 1)
+      * (CongruenceSubgroup.Gamma0 N).index ∧
     2 * (Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x}
         * Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1)))
-      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x}) * (n + 1)
+      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N
+        // ModularGroup.S • x = x}) * (n + 1)
       ≤ 2 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1)) ∧
-    3 * (Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}
-        * Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)))
-      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}) * (n + 1)
-      ≤ 3 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1)) ∧
-    Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))
+    3 * (Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) •
+      x = x}
+        * Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S *
+          ModularGroup.T) - 1)))
+      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N
+        // (ModularGroup.S * ModularGroup.T) • x = x}) * (n + 1)
+      ≤ 3 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top
+        _⟩ - 1)) ∧
+    Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸
+      CongruenceSubgroup.Gamma0 N))
       ≤ Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1)) :=
   ⟨HeckeEis.UH2.finrank_coset_fun N n,
     HeckeEis.UH2.prime_conjunct N n hn _ (hW ⟨ModularGroup.S, Subgroup.mem_top _⟩) Nat.prime_two
@@ -576,19 +593,28 @@ public section publicSection
 
 open scoped MatrixGroups
 theorem HeckeEis.le_finrank_fixed_induced_binaryFormRepSL (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n)
-    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)))
-    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
+    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)))
+    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
       W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) :
-    Module.finrank ℂ (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) = (n + 1) * (CongruenceSubgroup.Gamma0 N).index ∧
+    Module.finrank ℂ (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) = (n + 1)
+      * (CongruenceSubgroup.Gamma0 N).index ∧
     2 * (Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x}
         * Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1)))
-      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x}) * (n + 1)
+      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N
+        // ModularGroup.S • x = x}) * (n + 1)
       ≤ 2 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1)) ∧
-    3 * (Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}
-        * Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)))
-      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}) * (n + 1)
-      ≤ 3 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1)) ∧
-    Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))
+    3 * (Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) •
+      x = x}
+        * Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S *
+          ModularGroup.T) - 1)))
+      + ((CongruenceSubgroup.Gamma0 N).index - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N
+        // (ModularGroup.S * ModularGroup.T) • x = x}) * (n + 1)
+      ≤ 3 * Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top
+        _⟩ - 1)) ∧
+    Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸
+      CongruenceSubgroup.Gamma0 N))
       ≤ Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1)) :=
   solution N n hn W hW
 

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
+Based on Prove2Me node
+Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
 (58b14f3f-1204-5f4c-b250-45a15a04fa48) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 1cbeae97-a859-5ba9-911c-45cfc97a8772
@@ -594,7 +595,8 @@ theorem solution
     ∃ φ : Additive H →+ R,
       ∀ (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))))
         (hg : g⁻¹ * t ^ Function.minimalPeriod (fun x => t • x)
-                (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H) * g ∈ H),
+                (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H) * g ∈
+                  H),
         φ (Additive.ofMul ⟨_, hg⟩)
           = a (Quotient.mk (MulAction.orbitRel (Subgroup.zpowers t) _)
               (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H)) := by
@@ -605,7 +607,8 @@ theorem solution
 end
 end S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
 end P2MW
-export P2MW.S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero (solution)
+export P2MW.S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
+  (solution)
 
 end privateSection
 
@@ -625,7 +628,8 @@ theorem Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_e
     ∃ φ : Additive H →+ R,
       ∀ (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))))
         (hg : g⁻¹ * t ^ Function.minimalPeriod (fun x => t • x)
-                (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H) * g ∈ H),
+                (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H) * g ∈
+                  H),
         φ (Additive.ofMul ⟨_, hg⟩)
           = a (Quotient.mk (MulAction.orbitRel (Subgroup.zpowers t) _)
               (g : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))) ⧸ H)) :=

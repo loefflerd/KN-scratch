@@ -29,7 +29,8 @@ there exist $\alpha,\beta\in R$ with $\alpha\neq\beta$, $\operatorname{tr}M=\alp
 M=\alpha\beta$. Accompanying this are the $2\times2$ Cayley–Hamilton identity
 $M^2=(\operatorname{tr}M)M-(\det M)\cdot 1$, its consequence
 $M^{k+2}=(\operatorname{tr}M)M^{k+1}-(\det M)M^{k}$, and the resulting trace recursion
-$\operatorname{tr}(M^{k+2})=\operatorname{tr}(M)\operatorname{tr}(M^{k+1})-\det(M)\operatorname{tr}(M^{k})$.
+$\operatorname{tr}(M^{k+2})=
+  \operatorname{tr}(M)\operatorname{tr}(M^{k+1})-\det(M)\operatorname{tr}(M^{k})$.
 
 In the `FrobeniusDensity` namespace, `ratPrimeIdeal ℓ` is the ideal $(\ell)\subseteq\mathbb{Z}$,
 with helper lemmas that it is nonzero and maximal for $\ell$ prime, that nonzero ideals of

@@ -46,7 +46,8 @@ curve over a field of residue characteristic not dividing $n$, obtained from the
 algebraically closed field the $n$-torsion has exactly $n^2$ elements. It serves as the finiteness
 guarantee underlying the torsion-subgroup counts used in the modular-curve part of the development,
 and is cited by [`ModularCurve.finite_cycSub`](thm.html#ModularCurve.finite_cycSub) and by
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong).
 
 ## Explanation of the source proof
 
@@ -81,7 +82,8 @@ theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) 
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn0)
   let φ : (W.toAffine⁄k).Point →+ (W.toAffine⁄K).Point := Point.baseChange k K
   have hφ : Function.Injective φ := Point.map_injective _
-  have hmem : ∀ P : Submodule.torsionBy ℤ W.toAffine.Point n, φ P.1 ∈ Submodule.torsionBy ℤ (W⁄K).Point n :=
+  have hmem : ∀ P : Submodule.torsionBy ℤ W.toAffine.Point n, φ P.1 ∈ Submodule.torsionBy ℤ
+    (W⁄K).Point n :=
     by
     intro P
     have hP := P.2

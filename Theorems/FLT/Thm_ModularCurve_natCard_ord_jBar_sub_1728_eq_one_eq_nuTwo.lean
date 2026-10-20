@@ -994,7 +994,8 @@ private theorem ModularCurve.exists_finset_place_bar_dominating_of_ord_jq_nonneg
           0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)) ∧
         ∃ c : ℤ, 0 < c ∧
           ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
-            (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) →
+            (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x :
+              LaurentSeries ℚ) →
               v.ord y = c * w.ord x :=
   DOM_main N w hw
 
@@ -1203,7 +1204,8 @@ private theorem CNT_ord_sub_eq_mul [Algebra.IsIntegral ℚ⟮jq⟯ (modularFunct
 private theorem CNT_restrict_eq_base_iff [Algebra.IsIntegral ℚ⟮jq⟯ (modularFunctionField N)]
     (w : Place ℚ (modularFunctionField N)) (c : ℚ) :
     w.restrict ℚ⟮jq⟯ = CNT_base c ↔
-      0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) := by
+      0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N)
+        c) := by
   constructor
   · intro h
     rw [CNT_ord_sub_eq_mul N w c, h, CNT_ord_base, mul_one]
@@ -1216,9 +1218,11 @@ private theorem CNT_restrict_eq_base_iff [Algebra.IsIntegral ℚ⟮jq⟯ (modula
 
 private theorem CNT_ramificationIndex_eq_ord [Algebra.IsIntegral ℚ⟮jq⟯ (modularFunctionField N)]
     (w : Place ℚ (modularFunctionField N)) (c : ℚ)
-    (h : 0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c)) :
+    (h : 0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField
+      N) c)) :
     (w.ramificationIndex ℚ⟮jq⟯ : ℤ) =
-      w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) := by
+      w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c)
+        := by
   rw [CNT_ord_sub_eq_mul N w c, (CNT_restrict_eq_base_iff N w c).mpr h, CNT_ord_base, mul_one]
 
 private scoped instance CNT_finiteDimensional : FiniteDimensional ℚ⟮jq⟯ (modularFunctionField N) :=
@@ -1234,12 +1238,14 @@ private scoped instance CNT_isSeparable : Algebra.IsSeparable ℚ⟮jq⟯ (modul
 
 private theorem CNT_exists_companion (x : modularFunctionField N) :
     ∃ y : modularFunctionFieldBar N,
-      (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) :=
+      (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ)
+        :=
   ⟨⟨coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ),
     coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionField_le_full N x.2)⟩, rfl⟩
 
 private theorem CNT_coe_jBar_sub (c : ℚ) :
-    ((jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c : AlgebraicClosure ℚ) :
+    ((jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c : AlgebraicClosure
+      ℚ) :
         modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) =
       coeffEmb (AlgebraicClosure ℚ)
         (((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c :
@@ -1248,20 +1254,24 @@ private theorem CNT_coe_jBar_sub (c : ℚ) :
       modularFunctionField N) : LaurentSeries ℚ) = jq - (c : LaurentSeries ℚ) := by
     rw [eq_ratCast (algebraMap ℚ (modularFunctionField N)) c, AddSubgroupClass.coe_sub,
       SubfieldClass.coe_ratCast]
-  have h2 : ((jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c : AlgebraicClosure ℚ) :
+  have h2 : ((jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c :
+    AlgebraicClosure ℚ) :
       modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) =
       coeffEmb (AlgebraicClosure ℚ) jq -
-        algebraMap (AlgebraicClosure ℚ) (LaurentSeries (AlgebraicClosure ℚ)) (c : AlgebraicClosure ℚ) := rfl
+        algebraMap (AlgebraicClosure ℚ) (LaurentSeries (AlgebraicClosure ℚ)) (c : AlgebraicClosure
+          ℚ) := rfl
   rw [h1, h2, map_sub, map_ratCast, map_ratCast]
 
 private theorem CNT_eq_of_dominated (w w' : Place ℚ (modularFunctionField N))
     (v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) (a a' : ℤ) (ha : 0 < a)
     (ha' : 0 < a')
     (h : ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
-      (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) →
+      (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ)
+        →
         v.ord y = a * w.ord x)
     (h' : ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
-      (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) →
+      (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ)
+        →
         v.ord y = a' * w'.ord x) :
     w = w' := by
   apply Place.ext
@@ -1297,14 +1307,17 @@ variable (N : ℕ) [NeZero N] [HasPrincipalDivisors ℚ (modularFunctionField N)
 
 private theorem CNT_squeeze (c : ℚ) :
     (∀ w : Place ℚ (modularFunctionField N),
-      0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) →
+      0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N)
+        c) →
       ∃ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
         ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
-          (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) →
+          (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x :
+            LaurentSeries ℚ) →
             v.ord y = w.ord x) ∧
     (∀ T : Finset (Place ℚ (modularFunctionField N)),
       (∀ w, w ∈ T ↔
-        w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) = 1) →
+        w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c)
+          = 1) →
       ∑ w ∈ T, (w.deg : ℤ) =
         Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) //
           v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
@@ -1313,8 +1326,10 @@ private theorem CNT_squeeze (c : ℚ) :
   obtain ⟨P, hP⟩ := ModularCurve.exists_finset_ord_jBar_sub_pos N (c : AlgebraicClosure ℚ)
   have hPEO := ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi N (c : AlgebraicClosure ℚ)
     (deg_eq_one_modularFunctionFieldBar N) P hP
-  have hW : ∀ w : Place ℚ (modularFunctionField N), w ∈ (CNT_base c).fiber (modularFunctionField N) ↔
-      0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) :=
+  have hW : ∀ w : Place ℚ (modularFunctionField N), w ∈ (CNT_base c).fiber (modularFunctionField N)
+    ↔
+      0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N)
+        c) :=
     fun w => by rw [Place.mem_fiber, CNT_restrict_eq_base_iff]
   have hsum :=
     Place.sum_ramificationIndex_mul_inertiaDeg (F' := modularFunctionField N) (CNT_base c)
@@ -1331,15 +1346,18 @@ private theorem CNT_squeeze (c : ℚ) :
     rw [← hf w hw]
     exact Nat.succ_le_of_lt (Place.inertiaDeg_pos_of_finiteDimensional (F := ℚ⟮jq⟯) w)
   have hsumW : ∑ w ∈ (CNT_base c).fiber (modularFunctionField N),
-      (w.deg : ℤ) * w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) =
+      (w.deg : ℤ) * w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ
+        (modularFunctionField N) c) =
         dedekindPsi N := by
     rw [← hsum]
     refine Finset.sum_congr rfl fun w hw => ?_
     rw [he w hw, hf w hw, mul_comm]
   have hdom : ∀ w ∈ (CNT_base c).fiber (modularFunctionField N),
-      ∃ S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)), w.deg ≤ S.card ∧ ∀ v ∈ S,
+      ∃ S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)), w.deg ≤ S.card ∧ ∀ v ∈
+        S,
         ∃ a : ℤ, 0 < a ∧ ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
-          (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) →
+          (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x :
+            LaurentSeries ℚ) →
             v.ord y = a * w.ord x := by
     intro w hw
     have hj : 0 ≤ w.ord (⟨jq, jq_mem N⟩ : modularFunctionField N) :=
@@ -1351,9 +1369,12 @@ private theorem CNT_squeeze (c : ℚ) :
   set jc : modularFunctionField N :=
     (⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c with hjc
   set jBc : modularFunctionFieldBar N :=
-    jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c : AlgebraicClosure ℚ) with hjBc
-  set W : Finset (Place ℚ (modularFunctionField N)) := (CNT_base c).fiber (modularFunctionField N) with hWdef
-  have hrel : (jBc : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (jc : LaurentSeries ℚ) :=
+    jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c : AlgebraicClosure ℚ)
+      with hjBc
+  set W : Finset (Place ℚ (modularFunctionField N)) := (CNT_base c).fiber (modularFunctionField N)
+    with hWdef
+  have hrel : (jBc : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (jc :
+    LaurentSeries ℚ) :=
     by
     rw [hjc, hjBc]
     exact CNT_coe_jBar_sub N c
@@ -1453,7 +1474,8 @@ private theorem CNT_squeeze (c : ℚ) :
     have hdisj' : ((W.filter (fun w => w.ord jc = 1) : Finset (Place ℚ (modularFunctionField N))) :
         Set (Place ℚ (modularFunctionField N))).PairwiseDisjoint S :=
       hdisj.subset (fun w hw => (Finset.mem_filter.mp hw).1)
-    have hcard : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord jBc = 1} =
+    have hcard : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord jBc =
+      1} =
         ((W.filter (fun w => w.ord jc = 1)).biUnion S).card := by
       rw [Nat.card_congr (Equiv.subtypeEquivRight hmem), Nat.card_eq_fintype_card, Fintype.card_coe]
     rw [hcard, Finset.card_biUnion hdisj', hTW]
@@ -1461,7 +1483,8 @@ private theorem CNT_squeeze (c : ℚ) :
     exact Finset.sum_congr rfl fun w hw => by rw [hcardS w (Finset.mem_filter.mp hw).1]
 
 private theorem CNT_face [Algebra.IsIntegral ℚ⟮jq⟯ (modularFunctionField N)] (c : ℚ) :
-    ∑ w ∈ ((CNT_base c).fiber (modularFunctionField N)).filter (fun w => w.ramificationIndex ℚ⟮jq⟯ = 1),
+    ∑ w ∈ ((CNT_base c).fiber (modularFunctionField N)).filter (fun w => w.ramificationIndex ℚ⟮jq⟯ =
+      1),
         (w.inertiaDeg ℚ⟮jq⟯ : ℤ) =
       (Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) //
         v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
@@ -1496,10 +1519,12 @@ p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.exists_place_bar_ord_eq_of_ord_jq_sub_pos (N : ℕ) [NeZero N]
     [HasPrincipalDivisors ℚ (modularFunctionField N)] (c : ℚ)
     (w : Place ℚ (modularFunctionField N))
-    (hw : 0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c)) :
+    (hw : 0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField
+      N) c)) :
     ∃ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
       ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
-        (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries ℚ) →
+        (y : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (x : LaurentSeries
+          ℚ) →
           v.ord y = w.ord x := by
   exact (CNTUnit.CNT_squeeze N c).1 w hw
 
@@ -1509,10 +1534,12 @@ private theorem ModularCurve.sum_deg_ord_jq_sub_eq_one_eq_natCard_ord_jBar_sub_e
     [HasPrincipalDivisors ℚ (modularFunctionField N)] (c : ℚ)
     (T : Finset (Place ℚ (modularFunctionField N)))
     (hT : ∀ w, w ∈ T ↔
-      w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) = 1) :
+      w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) =
+        1) :
     ∑ w ∈ T, (w.deg : ℤ) =
       Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) //
-        v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c : AlgebraicClosure ℚ)) = 1} := by
+        v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (c :
+          AlgebraicClosure ℚ)) = 1} := by
   exact (CNTUnit.CNT_squeeze N c).2 T hT
 
 p2m_open_scoped "ModularCurve" in
@@ -1521,9 +1548,11 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_n
     [HasPrincipalDivisors ℚ ↥(modularFunctionField N)] :
     letI := jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮jq⟯ ↥(modularFunctionField N)],
-    ∑ w ∈ (jLinePlace1728.fiber ↥(modularFunctionField N)).filter (fun w => w.ramificationIndex ↥ℚ⟮jq⟯ = 1),
+    ∑ w ∈ (jLinePlace1728.fiber ↥(modularFunctionField N)).filter (fun w => w.ramificationIndex
+      ↥ℚ⟮jq⟯ = 1),
         (w.inertiaDeg ↥ℚ⟮jq⟯ : ℤ) =
-      (Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) = 1} : ℤ) := by
+      (Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728)
+        = 1} : ℤ) := by
   intro hint
   have h := CNTUnit.CNT_face N (1728 : ℚ)
   rw [← CNTUnit.CNT_jLinePlace1728_eq, Rat.cast_ofNat, map_ofNat] at h
@@ -1535,9 +1564,11 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_n
     [HasPrincipalDivisors ℚ ↥(modularFunctionField N)] :
     letI := jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮jq⟯ ↥(modularFunctionField N)],
-    ∑ w ∈ (jLinePlaceZero.fiber ↥(modularFunctionField N)).filter (fun w => w.ramificationIndex ↥ℚ⟮jq⟯ = 1),
+    ∑ w ∈ (jLinePlaceZero.fiber ↥(modularFunctionField N)).filter (fun w => w.ramificationIndex
+      ↥ℚ⟮jq⟯ = 1),
         (w.inertiaDeg ↥ℚ⟮jq⟯ : ℤ) =
-      (Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N) = 1} : ℤ) := by
+      (Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N) = 1} :
+        ℤ) := by
   intro hint
   have h := CNTUnit.CNT_face N (0 : ℚ)
   rw [← CNTUnit.CNT_jLinePlaceZero_eq, Rat.cast_zero, map_zero, sub_zero] at h
@@ -1614,14 +1645,19 @@ end EFIX
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo (N : ℕ) [NeZero N]
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N - 1728)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure ℚ)}) :
-    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) = 1} = nuTwo N := by
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N - 1728)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure
+        ℚ)}) :
+    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) =
+      1} = nuTwo N := by
   obtain ⟨S, hS⟩ := exists_finset_ord_jBar_sub_pos N (1728 : AlgebraicClosure ℚ)
   have h1728 : jBar N - (1728 : modularFunctionFieldBar N) =
-      jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (1728 : AlgebraicClosure ℚ) := by
+      jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (1728 : AlgebraicClosure
+        ℚ) := by
     rw [JD_ofNat_eq_algebraMap_bar]
   simp only [← h1728] at hS
   have hmem : ∀ v ∈ S, v.ord (jBar N - 1728) = 1 ∨ v.ord (jBar N - 1728) = 2 := fun v hv =>
@@ -1655,11 +1691,15 @@ private theorem ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo (N : ℕ)
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree (N : ℕ) [NeZero N]
-    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3)
+    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord
+      (jBar N) ∣ 3)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure ℚ)}) :
-    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N) = 1} = nuThree N := by
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure
+        ℚ)}) :
+    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N) = 1} =
+      nuThree N := by
   obtain ⟨S, hS⟩ := exists_finset_ord_jBar_sub_pos N (0 : AlgebraicClosure ℚ)
   have h0 : jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
       (0 : AlgebraicClosure ℚ) = jBar N := by rw [map_zero, sub_zero]
@@ -1894,13 +1934,17 @@ private theorem JD_exists_bar_ord_eq_mul_ram_zero
 end JDHelpersModular
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_jLinePlace1728_of_even_of_bounds (N : ℕ) [NeZero N] (hN : Even N)
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2) :
+private theorem
+  ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_jLinePlace1728_of_even_of_bounds (N
+  : ℕ) [NeZero N] (hN : Even N)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 →
-      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 2 := by
+      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 2
+        := by
   intro _ w hw
   let := jAdjoinAlgebra N
   have _ := hN
@@ -1914,13 +1958,17 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_j
   exact (Nat.dvd_prime Nat.prime_two).mp hN2
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq_jLinePlaceZero_of_even_of_bounds (N : ℕ) [NeZero N] (hN : Even N)
-    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3) :
+private theorem
+  ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq_jLinePlaceZero_of_even_of_bounds
+  (N : ℕ) [NeZero N] (hN : Even N)
+    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord
+      (jBar N) ∣ 3) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
-      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 3 := by
+      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 3
+        := by
   intro _ w hw
   let := jAdjoinAlgebra N
   have _ := hN
@@ -1934,13 +1982,17 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq
   exact (Nat.dvd_prime Nat.prime_three).mp hN3
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_jLinePlace1728_of_odd_of_bounds (N : ℕ) [NeZero N] (hN : Odd N)
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2) :
+private theorem
+  ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_jLinePlace1728_of_odd_of_bounds (N
+  : ℕ) [NeZero N] (hN : Odd N)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 →
-      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 2 := by
+      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 2
+        := by
   intro _ w hw
   let := jAdjoinAlgebra N
   have _ := hN
@@ -1954,13 +2006,17 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_j
   exact (Nat.dvd_prime Nat.prime_two).mp hN2
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq_jLinePlaceZero_of_odd_of_bounds (N : ℕ) [NeZero N] (hN : Odd N)
-    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3) :
+private theorem
+  ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq_jLinePlaceZero_of_odd_of_bounds
+  (N : ℕ) [NeZero N] (hN : Odd N)
+    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord
+      (jBar N) ∣ 3) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
-      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 3 := by
+      w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 3
+        := by
   intro _ w hw
   let := jAdjoinAlgebra N
   have _ := hN
@@ -1974,12 +2030,17 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq
   exact (Nat.dvd_prime Nat.prime_three).mp hN3
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_nuTwo_of_even_of_bounds (N : ℕ) [NeZero N] (hN : Even N)
+private theorem
+  ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_nuTwo_of_even_of_bounds (N : ℕ)
+  [NeZero N] (hN : Even N)
     [AlgebraicCurve.HasPrincipalDivisors ℚ ↥(ModularCurve.modularFunctionField N)]
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N - 1728)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure ℚ)}) :
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N - 1728)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure
+        ℚ)}) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)],
     ∑ w ∈ (ModularCurve.jLinePlace1728.fiber ↥(ModularCurve.modularFunctionField N)).filter
@@ -1992,12 +2053,17 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_n
     natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo N h2 hcount]
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_nuThree_of_even_of_bounds (N : ℕ) [NeZero N] (hN : Even N)
+private theorem
+  ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_nuThree_of_even_of_bounds (N : ℕ)
+  [NeZero N] (hN : Even N)
     [AlgebraicCurve.HasPrincipalDivisors ℚ ↥(ModularCurve.modularFunctionField N)]
-    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3)
+    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord
+      (jBar N) ∣ 3)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure ℚ)}) :
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure
+        ℚ)}) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)],
     ∑ w ∈ (ModularCurve.jLinePlaceZero.fiber ↥(ModularCurve.modularFunctionField N)).filter
@@ -2010,12 +2076,17 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_n
     natCard_ord_jBar_eq_one_eq_nuThree N h1 hcount]
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_nuTwo_of_odd_of_bounds (N : ℕ) [NeZero N] (hN : Odd N)
+private theorem
+  ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_nuTwo_of_odd_of_bounds (N : ℕ)
+  [NeZero N] (hN : Odd N)
     [AlgebraicCurve.HasPrincipalDivisors ℚ ↥(ModularCurve.modularFunctionField N)]
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N - 1728)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure ℚ)}) :
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N - 1728)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure
+        ℚ)}) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)],
     ∑ w ∈ (ModularCurve.jLinePlace1728.fiber ↥(ModularCurve.modularFunctionField N)).filter
@@ -2028,12 +2099,17 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_n
     natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo N h2 hcount]
 
 p2m_open_scoped "ModularCurve" in
-private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_nuThree_of_odd_of_bounds (N : ℕ) [NeZero N] (hN : Odd N)
+private theorem
+  ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_nuThree_of_odd_of_bounds (N : ℕ)
+  [NeZero N] (hN : Odd N)
     [AlgebraicCurve.HasPrincipalDivisors ℚ ↥(ModularCurve.modularFunctionField N)]
-    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord (jBar N) ∣ 3)
+    (h1 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N) → v.ord
+      (jBar N) ∣ 3)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure ℚ)}) :
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (0 : AlgebraicClosure
+        ℚ)}) :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)],
     ∑ w ∈ (ModularCurve.jLinePlaceZero.fiber ↥(ModularCurve.modularFunctionField N)).filter
@@ -2186,7 +2262,8 @@ end H1
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces_of_even_of_bounds
     (N : ℕ) [NeZero N] (hN : Even N)
-    (h3 : ∀ (j₀ : AlgebraicClosure ℚ), j₀ ≠ 0 → j₀ ≠ 1728 → ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
+    (h3 : ∀ (j₀ : AlgebraicClosure ℚ), j₀ ≠ 0 → j₀ ≠ 1728 → ∀ v : Place (AlgebraicClosure ℚ)
+      (modularFunctionFieldBar N),
       0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
       v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) = 1) :
     letI := ModularCurve.jAdjoinAlgebra N
@@ -2236,7 +2313,8 @@ private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces_of_odd_of_bounds
     (N : ℕ) [NeZero N] (hN : Odd N)
-    (h3 : ∀ (j₀ : AlgebraicClosure ℚ), j₀ ≠ 0 → j₀ ≠ 1728 → ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
+    (h3 : ∀ (j₀ : AlgebraicClosure ℚ), j₀ ≠ 0 → j₀ ≠ 1728 → ∀ v : Place (AlgebraicClosure ℚ)
+      (modularFunctionFieldBar N),
       0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
       v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) = 1) :
     letI := ModularCurve.jAdjoinAlgebra N
@@ -2283,13 +2361,19 @@ private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces
     · omega
   exact_mod_cast hewZ
 
-open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField _root_.ModularCurve _root_.P2MW.S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo.ModularCurve IsDedekindDomain WithZero IsLocalRing in
+open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo.ModularCurve IsDedekindDomain
+  WithZero IsLocalRing in
 theorem solution (N : ℕ) [NeZero N]
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N - 1728)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure ℚ)}) :
-    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) = 1} = nuTwo N :=
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N - 1728)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure
+        ℚ)}) :
+    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) =
+      1} = nuTwo N :=
   ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo N h2 hcount
 
 end S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo
@@ -2301,13 +2385,18 @@ end privateSection
 public section publicSection
 
 
-open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField ModularCurve IsDedekindDomain WithZero IsLocalRing
+open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField ModularCurve
+  IsDedekindDomain WithZero IsLocalRing
 theorem ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo (N : ℕ) [NeZero N]
-    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) → v.ord (jBar N - 1728) ∣ 2)
+    (h2 : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), 0 < v.ord (jBar N - 1728) →
+      v.ord (jBar N - 1728) ∣ 2)
     [DecidableEq (AlgebraicClosure ℚ)]
-    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord (jBar N - 1728)} =
-      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure ℚ)}) :
-    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) = 1} = nuTwo N :=
+    (hcount : Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // 0 < v.ord
+      (jBar N - 1728)} =
+      Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure
+        ℚ)}) :
+    Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) =
+      1} = nuTwo N :=
   solution N h2 hcount
 
 end publicSection

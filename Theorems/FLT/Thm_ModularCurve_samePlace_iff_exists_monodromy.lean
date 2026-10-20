@@ -48,9 +48,11 @@ This identifies the fibres of the map from normalised Hahn-series expansions at 
 the level-$N$ modular function field: two normalised embeddings induce the same place exactly when
 they differ by a coefficientwise twist fixing the exponent-$1$ coefficient. It is used in the
 construction of elliptic points and cyclic-subgroup orbit maps on the modular curve, through
-[`ModularCurve.exists_elliptic_cycSub_orbitMap_of_props`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_of_props)
+[`ModularCurve.exists_elliptic_cycSub_orbitMap_of_props`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_of_props)
 and
-[`ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two).
+[`ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two).
 
 ## Explanation of the source proof
 

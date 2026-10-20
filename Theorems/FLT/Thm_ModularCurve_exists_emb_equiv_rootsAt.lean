@@ -48,9 +48,11 @@ This is the dictionary between normalised Puiseux-type embeddings of the functio
 over $\overline{\mathbb{Q}}$ sending $j$ to $j_0 + t$ and roots of the specialised modular
 polynomial $\Phi_N(j_0 + t, Y)$, the bijection being evaluation at $j(q^N)$. It feeds the
 construction of elliptic models with a distinguished cyclic subgroup, being used by
-[`ModularCurve.exists_elliptic_cycSub_orbitMap_of_props`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_of_props)
+[`ModularCurve.exists_elliptic_cycSub_orbitMap_of_props`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_of_props)
 and
-[`ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two).
+[`ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_prime_of_ne_two).
 
 ## Explanation of the source proof
 
@@ -77,7 +79,8 @@ namespace S12E
 variable (N : ℕ) [NeZero N]
 
 abbrev jb : ↥(modularFunctionFieldBar N) :=
-  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩
+  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+    (jq_mem_full N)⟩
 
 abbrev jNb : ↥(modularFunctionFieldBar N) :=
   ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ N jq),
@@ -89,7 +92,8 @@ abbrev PhiAt (data : ModularPolynomialData N) (j₀ : AlgebraicClosure ℚ) :
     (HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))
 
 theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
-    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) (jNb N)
+    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))
+      (jNb N)
       = 0 := by
   apply Subtype.ext
   have hval : ((modularFunctionFieldBar N).toSubfield.subtype).comp
@@ -97,7 +101,8 @@ theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
       = (coeffEmb (AlgebraicClosure ℚ)).comp evalAtJ := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
     change ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
-        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (evalAtJ X)
+        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb
+          (AlgebraicClosure ℚ) (evalAtJ X)
     rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X]
   have h0 := congrArg (coeffEmb (AlgebraicClosure ℚ)) data.eval_eq_zero
   rw [map_zero, Polynomial.hom_eval₂, ← hval] at h0
@@ -111,13 +116,16 @@ theorem isRoot_apply_jNb' (data : ModularPolynomialData N) (j₀ : AlgebraicClos
     (hψ : ψ (jb N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)) :
     (PhiAt N data j₀).IsRoot (ψ (jNb N)) := by
   rw [Polynomial.IsRoot, Polynomial.eval_map, ← hψ]
-  have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb N))
-      = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) := by
+  have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb
+    N))
+      = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N))
+        (jb N)) := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
     simp
   rw [hcomp]
   have h := (Polynomial.hom_eval₂ data.Φ
-    (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom (jNb N)).symm
+    (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom (jNb
+      N)).symm
   rw [eval₂_Phi_jb_jNb N data, map_zero] at h
   simpa using h
 
@@ -170,10 +178,12 @@ theorem transcendental_C_add_single (j₀ : AlgebraicClosure ℚ) : Transcendent
     (HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)) := by
   intro halg
   apply transcendental_single
-  have hC : IsAlgebraic (AlgebraicClosure ℚ) (HahnSeries.C j₀ : HahnSeries ℚ (AlgebraicClosure ℚ)) :=
+  have hC : IsAlgebraic (AlgebraicClosure ℚ) (HahnSeries.C j₀ : HahnSeries ℚ (AlgebraicClosure ℚ))
+    :=
     by
     rw [← algebraMap_hahn_eq_C]
-    exact isAlgebraic_algebraMap (R := AlgebraicClosure ℚ) (A := HahnSeries ℚ (AlgebraicClosure ℚ)) j₀
+    exact isAlgebraic_algebraMap (R := AlgebraicClosure ℚ) (A := HahnSeries ℚ (AlgebraicClosure ℚ))
+      j₀
   simpa using halg.sub hC
 
 theorem exists_equiv (data : ModularPolynomialData N) (j₀ : AlgebraicClosure ℚ) :
@@ -198,9 +208,12 @@ end
 
 theorem solution (N : ℕ) [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     (j₀ : AlgebraicClosure ℚ) :
-    ∃ e : ModularCurve.Emb N j₀ ≃ ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear j₀),
-      ∀ ψ : ModularCurve.Emb N j₀, (e ψ).1 = ψ.1 ⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) (ModularCurve.qExpand ℚ N ModularCurve.jq),
-        ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.jqd_mem_full N (dvd_refl N))⟩ := by
+    ∃ e : ModularCurve.Emb N j₀ ≃ ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear
+      j₀),
+      ∀ ψ : ModularCurve.Emb N j₀, (e ψ).1 = ψ.1 ⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+        (ModularCurve.qExpand ℚ N ModularCurve.jq),
+        ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.jqd_mem_full
+          N (dvd_refl N))⟩ := by
   exact S12E.exists_equiv N data j₀
 
 end S_ModularCurve_exists_emb_equiv_rootsAt
@@ -214,9 +227,12 @@ public section publicSection
 theorem ModularCurve.exists_emb_equiv_rootsAt (N : ℕ) [NeZero N]
     (data : ModularCurve.ModularPolynomialData N)
     (j₀ : AlgebraicClosure ℚ) :
-    ∃ e : ModularCurve.Emb N j₀ ≃ ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear j₀),
-      ∀ ψ : ModularCurve.Emb N j₀, (e ψ).1 = ψ.1 ⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ) (ModularCurve.qExpand ℚ N ModularCurve.jq),
-        ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.jqd_mem_full N (dvd_refl N))⟩ :=
+    ∃ e : ModularCurve.Emb N j₀ ≃ ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear
+      j₀),
+      ∀ ψ : ModularCurve.Emb N j₀, (e ψ).1 = ψ.1 ⟨ModularCurve.coeffEmb (AlgebraicClosure ℚ)
+        (ModularCurve.qExpand ℚ N ModularCurve.jq),
+        ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.jqd_mem_full
+          N (dvd_refl N))⟩ :=
   solution N data j₀
 
 end publicSection

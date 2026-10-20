@@ -45,7 +45,8 @@ $R$.
 This is the descent step used to convert bounded denominators for an auxiliary multiple of a
 $q$-expansion into integrality of the $q$-expansion itself; it rests on the normality of $R[[X]]$
 for $R$ a principal ideal domain. It is applied with $R = \mathbb{Z}$ in
-[`ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant`](thm.html#ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant).
+[`ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant`]
+(thm.html#ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant).
 The hypothesis on $h$ cannot be omitted: $\sqrt{4+X} \in \mathbb{Q}[[X]]$ is integral over
 $\mathbb{Z}[[X]]$ but has unbounded denominators.
 

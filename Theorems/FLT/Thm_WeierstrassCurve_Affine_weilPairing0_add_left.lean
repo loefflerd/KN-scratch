@@ -77,7 +77,8 @@ variable {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq 
 
 theorem weilPairing0_eq {n : ℕ} (hn : (n : K) ≠ 0) {S T : (W⁄K).Point} (hT : (n : ℤ) • T = 0)
     {c : Kˣ}
-    (h : transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K n T) :
+    (h : transEquiv W K S (weilFun W K n T) = algebraMap K (W⁄K).FunctionField (c : K) * weilFun W K
+      n T) :
     weilPairing0 W K n S T = c := by
   have h' := transEquiv_weilFun W K ⟨c, h⟩
   rw [h] at h'

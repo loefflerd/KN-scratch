@@ -160,7 +160,8 @@ end CharLRows
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_frobenius_identity_geom_unconditional.ModularCurve in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_frobenius_identity_geom_unconditional.ModularCurve in
 theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ] :
     jqNModC K ℓ = (jqModC K) ^ ℓ :=
   CharLRows.frobenius_identity_geom K ℓ

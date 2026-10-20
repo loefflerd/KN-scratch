@@ -55,7 +55,8 @@ contribute only a constant after evaluation at $(1,-\tau)$. It feeds the injecti
 Eichler–Shimura map,
 [`HeckeEis.eichlerShimuraMap_injective`](thm.html#HeckeEis.eichlerShimuraMap_injective), and the
 vanishing statement
-[`HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero`](thm.html#HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero).
+[`HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero`]
+(thm.html#HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero).
 
 ## Explanation of the source proof
 
@@ -85,10 +86,12 @@ open scoped MatrixGroups Manifold Topology
 variable {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
 
 def rung (G : ℍ → ↥(BinaryForm ℂ n)) (j : ℕ) (τ : ℍ) : ℂ :=
-  MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
+  MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) :
+    MvPolynomial (Fin 2) ℂ))
 
 theorem rung_zero (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) :
-    rung G 0 τ = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := rfl
+    rung G 0 τ = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial
+      (Fin 2) ℂ) := rfl
 
 theorem rung_succ_n (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : rung G (n + 1) τ = 0 := by
   rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n
@@ -152,11 +155,13 @@ theorem rung_vadd (hG : IsEichlerIntegral n g G) (hper : ∀ τ : ℍ, g ((h : �
     have hperj : Periodic (rung G j ∘ ofComplex) ((h : ℝ) : ℂ) :=
       periodic_comp_ofComplex (ih (by omega))
     have h1 : HasDerivAt (rung G j ∘ ofComplex)
-        ((if j = n then ((n.factorial : ℕ) : ℂ) * g ((h : ℝ) +ᵥ τ) else 0) - rung G (j + 1) ((h : ℝ) +ᵥ τ)) (τ : ℂ) := by
+        ((if j = n then ((n.factorial : ℕ) : ℂ) * g ((h : ℝ) +ᵥ τ) else 0) - rung G (j + 1) ((h : ℝ)
+          +ᵥ τ)) (τ : ℂ) := by
       have h0 := hasDerivAt_rung hG hj' ((h : ℝ) +ᵥ τ)
       rw [UpperHalfPlane.coe_vadd, add_comm ((h : ℝ) : ℂ) (τ : ℂ)] at h0
       have h2 := h0.comp_add_const (τ : ℂ) ((h : ℝ) : ℂ)
-      have hfun : (fun x : ℂ => (rung G j ∘ ofComplex) (x + ((h : ℝ) : ℂ))) = rung G j ∘ ofComplex :=
+      have hfun : (fun x : ℂ => (rung G j ∘ ofComplex) (x + ((h : ℝ) : ℂ))) = rung G j ∘ ofComplex
+        :=
         funext hperj
       rwa [hfun] at h2
     have h3 := hasDerivAt_rung hG hj' τ
@@ -194,7 +199,8 @@ theorem isBoundedAtImInfty_rung_zero (hG : IsEichlerIntegral n g G) {h : ℤ} (h
       have hj : j ≤ n := by omega
       have hj1 : n + 1 - i = j + 1 := by omega
       have ih' : IsBoundedAtImInfty (rung G (j + 1)) := by rw [← hj1]; exact ih (by omega)
-      set u : ℍ → ℂ := fun τ => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j + 1) τ with hu
+      set u : ℍ → ℂ := fun τ => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j +
+        1) τ with hu
       have hu_per : Periodic (u ∘ ofComplex) ((h : ℝ) : ℂ) := by
         apply periodic_comp_ofComplex
         intro τ
@@ -205,14 +211,16 @@ theorem isBoundedAtImInfty_rung_zero (hG : IsEichlerIntegral n g G) {h : ℤ} (h
           · have : rung G (j + 1) = fun _ => 0 := funext fun τ => by rw [hjn]; exact rung_succ_n G τ
             rw [this]; exact mdifferentiable_const
           · exact mdifferentiable_rung hG (by omega)
-        have h1 : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (fun τ : ℍ => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0)) :=
+        have h1 : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (fun τ : ℍ => (if j = n then ((n.factorial : ℕ) : ℂ) * g
+          τ else 0)) :=
           by
           split_ifs
           · exact mdifferentiable_const.mul hhol
           · exact mdifferentiable_const
         exact h1.sub h2
       have hu_bdd : IsBoundedAtImInfty u := by
-        have h1 : IsBoundedAtImInfty (fun τ : ℍ => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0)) :=
+        have h1 : IsBoundedAtImInfty (fun τ : ℍ => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else
+          0)) :=
           by
           split_ifs
           · exact hbdd.const_mul_left _
@@ -222,7 +230,8 @@ theorem isBoundedAtImInfty_rung_zero (hG : IsEichlerIntegral n g G) {h : ℤ} (h
         fun τ => hasDerivAt_rung hG hj τ
       have hv_per : Periodic (rung G j ∘ ofComplex) ((h : ℝ) : ℂ) :=
         periodic_comp_ofComplex (hrper j (by omega))
-      exact UpperHalfPlane.isBoundedAtImInfty_of_hasDerivAt_of_periodic hh' hu_per hu_hol hu_bdd hv hv_per
+      exact UpperHalfPlane.isBoundedAtImInfty_of_hasDerivAt_of_periodic hh' hu_per hu_hol hu_bdd hv
+        hv_per
   simpa using key (n + 1) le_rfl
 
 end HeckeEis.LadderAux2
@@ -235,9 +244,11 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     {h : ℤ} (hh : 0 < h)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hbdd : UpperHalfPlane.IsBoundedAtImInfty g)
-    (hT : ∀ τ : UpperHalfPlane, G ((h : ℝ) +ᵥ τ) = HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) (G τ)) :
+    (hT : ∀ τ : UpperHalfPlane, G ((h : ℝ) +ᵥ τ) = HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h)
+      (G τ)) :
     UpperHalfPlane.IsBoundedAtImInfty (fun τ : UpperHalfPlane =>
-      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) :=
+      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin
+        2) ℂ)) :=
   HeckeEis.LadderAux2.isBoundedAtImInfty_rung_zero hG hh hper hhol hbdd hT
 
 end S_HeckeEis_IsEichlerIntegral_isBoundedAtImInfty_eval
@@ -254,9 +265,11 @@ theorem HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval {n : ℕ} {g : UpperH
     {h : ℤ} (hh : 0 < h)
     (hper : Function.Periodic (g ∘ UpperHalfPlane.ofComplex) ((h : ℝ) : ℂ))
     (hhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hbdd : UpperHalfPlane.IsBoundedAtImInfty g)
-    (hT : ∀ τ : UpperHalfPlane, G ((h : ℝ) +ᵥ τ) = HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h) (G τ)) :
+    (hT : ∀ τ : UpperHalfPlane, G ((h : ℝ) +ᵥ τ) = HeckeEis.binaryFormRepSL ℂ n (ModularGroup.T ^ h)
+      (G τ)) :
     UpperHalfPlane.IsBoundedAtImInfty (fun τ : UpperHalfPlane =>
-      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) :=
+      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin
+        2) ℂ)) :=
   solution hG hh hper hhol hbdd hT
 
 end publicSection

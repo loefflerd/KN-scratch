@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
+Based on Prove2Me node
+WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
 (d6495b5f-be77-5f82-a6d2-899d7829bc29) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission ff0762e0-45f8-51a8-af41-a0027a911d5a
@@ -54,7 +55,8 @@ $x \in \mathbb{Z}/N$ with $x^{2} + x + 1 = 0$.
 This is the "fixed" contribution in the count of elliptic points of order $3$ on the modular curve
 $Y_0(N)$: cyclic subgroups of order $N$ on a curve with $j = 0$ that are carried to themselves by
 the automorphism $(x,y) \mapsto (\omega x, y)$ of order $3$. It is used by
-[`ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree`](thm.html#ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree),
+[`ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree`]
+(thm.html#ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree),
 which assembles the double count of such moduli points into the formula involving the Dedekind
 $\psi$-function and $\nu_3(N)$.
 
@@ -103,7 +105,8 @@ theorem xy_neg {W : WeierstrassCurve L} (P : W.toAffine.Point) :
 
 omit [DecidableEq L] in
 theorem xy_vcInvFun (γ : VariableChange L) {W : WeierstrassCurve L} (P : W.toAffine.Point) :
-    xy (Point.vcInvFun γ W.toAffine P) = (xy P).map (fun q => (vcXInv γ q.1, vcYInv γ q.1 q.2)) := by
+    xy (Point.vcInvFun γ W.toAffine P) = (xy P).map (fun q => (vcXInv γ q.1, vcYInv γ q.1 q.2)) :=
+      by
   rcases P with _ | ⟨x, y, h⟩ <;> rfl
 
 def castPt {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) : W₁.toAffine.Point ≃+ W₂.toAffine.Point := by
@@ -222,7 +225,8 @@ theorem solution
       · have hw2x : W.toAffine.Nonsingular ((u : L) ^ 2 * x) y := by
           have : (u : L) ^ 2 * x = (u : L) * ((u : L) * x) := by ring
           rw [this]; exact h2'
-        have e3 : Point.some ((u : L) * ((u : L) * x)) y h2' = Point.some ((u : L) ^ 2 * x) y hw2x :=
+        have e3 : Point.some ((u : L) * ((u : L) * x)) y h2' = Point.some ((u : L) ^ 2 * x) y hw2x
+          :=
           by
           apply xy_injective; simp only [xy, Option.some.injEq, Prod.mk.injEq, and_true]; ring
         rw [e3, add_assoc, add_comm (Point.some ((u : L) * x) y h1),
@@ -233,11 +237,13 @@ theorem solution
     have ha : a = -(σ (σ a) + σ a) := eq_neg_of_add_eq_zero_right (hσ a)
     have hb : b = -(σ (σ b) + σ b) := eq_neg_of_add_eq_zero_right (hσ b)
     rw [ha, hb, h]
-  have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a :=
+  have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k
+    • a :=
     by
     intro p hp _
     obtain ⟨T, hT, hk⟩ :=
-      WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one B hB u hu hu1 p hp
+      WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one B hB u hu hu1
+        p hp
     refine ⟨T, hT, fun k hk' => hk k ?_⟩
     exact (heq_vcHom γ W hW T).trans (heq_of_eq hk')
   have hNL : ((N : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hN
@@ -259,7 +265,8 @@ theorem solution
 
 end S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
 end P2MW
-export P2MW.S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree (solution)
+export P2MW.S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
+  (solution)
 
 end privateSection
 

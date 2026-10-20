@@ -42,7 +42,8 @@ variable presented by generators: a transcendental element together with finitel
 integral over the rational subfield it generates. It is applied to the field of modular functions of
 level $N$ realised inside a Laurent series field, with $x = j$ and $T$ the set of $j(q^d)$ for $d
 \mid N$, in
-[`ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull`](thm.html#ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull).
+[`ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull`]
+(thm.html#ModularCurve.hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull).
 
 ## Explanation of the source proof
 
@@ -87,7 +88,8 @@ theorem hasPrincipalDivisors_adjoin (x : LF) (hx : Transcendental K x) (T : Fins
   have hint : ∀ t (ht : t ∈ T), IsIntegral A (⟨t, hTF t ht⟩ : F) := by
     intro t ht
     have h1 : IsIntegral A (t : LF) := by
-      refine (hT t ht).map_of_comp_eq (R := IntermediateField.adjoin K ({x} : Set LF)) (S := LF) (T := A) (U := LF)
+      refine (hT t ht).map_of_comp_eq (R := IntermediateField.adjoin K ({x} : Set LF)) (S := LF) (T
+        := A) (U := LF)
         (e.symm : IntermediateField.adjoin K ({x} : Set LF) →+* A) (RingHom.id LF) ?_
       ext b
       change (((e.symm b : A) : F) : LF) = ((b : IntermediateField.adjoin K ({x} : Set LF)) : LF)

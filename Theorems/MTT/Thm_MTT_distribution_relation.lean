@@ -52,7 +52,8 @@ Two independent facts combine. The first is analytic: the modular symbols attach
 the Hecke relation at $p$, obtained by integrating the eigenform equation $T_pf=a_pf$ along vertical
 lines. The second is algebraic: the $\alpha$-stabilization built into (10.2),
 
-$$M_{s,j}(n,a)=\alpha^{-n}\Lambda_j\bigl(a,p^{n}\bigr)-\frac{\varepsilon(p)p^{k-2}}{\alpha^{n+1}}\,\Lambda_j\bigl(a,p^{n-1}\bigr),$$
+$$M_{s,j}(n,a)=\alpha^{-n}\Lambda_j\bigl(a,p^{n}\bigr)-\frac{\varepsilon(p)p^{k-2}}{\alpha^{n+1}}\,
+\Lambda_j\bigl(a,p^{n-1}\bigr),$$
 
 is designed exactly so that the two-term Hecke recursion telescopes; the telescoping closes because
 $\alpha$ satisfies $\alpha^{2}-a_p\alpha+\varepsilon(p)p^{k-1}=0$. Neither fact alone suffices: the
@@ -69,7 +70,8 @@ the substitution $X\mapsto mX+c$ applied to the normalized signed values. Expand
 integral by the binomial theorem, $\lambda(f,X^{t};r)=2\pi\sum_{l\le t}\binom tl
 r^{t-l}i^{l}V_l(r)$, and then collapsing the resulting double sum, gives
 
-$$\omega_s\cdot\iota\Lambda_j(c,m)\;=\;\pi\,(im)^{j}\Bigl(V_j(-c/m)+\operatorname{sign}(s)(-1)^{j}V_j(c/m)\Bigr).$$
+$$\omega_s\cdot\iota\Lambda_j(c,m)\;=\;\pi\,(im)^{j}\Bigl(V_j(-c/m)+
+\operatorname{sign}(s)(-1)^{j}V_j(c/m)\Bigr).$$
 
 The collapse is binomial inversion: after exchanging the order of summation, the inner sum is
 $\binom ju(c+(-c))^{\,j-u}=\binom ju0^{\,j-u}$, so only the top term $u=j$ survives, and the whole
@@ -95,7 +97,8 @@ Every integrability statement needed reduces to one fact: for a cusp form on $\G
 rational $r$, the translate $z\mapsto f(r+z)$ has a convergent Mellin transform, which is the strong
 functional-equation pair attached to the translated form. The result is
 
-$$p^{\,j+1}\sum_{b=0}^{p-1}V_j\Bigl(\frac{r+b}{p}\Bigr)=p\,a_p\,V_j(r)-\varepsilon(p)\,p^{\,k-j-1}\,V_j(pr),$$
+$$p^{\,j+1}\sum_{b=0}^{p-1}V_j\Bigl(\frac{r+b}{p}\Bigr)=p\,a_p\,V_j(r)-\varepsilon(p)\,p^{\,k-j-1}
+\,V_j(pr),$$
 
 which is `hecke_vm`. Applying it at $r$ and at $-r$ and adding — the reflected sum $\sum_b
 V_j\bigl(-(r+b)/p\bigr)$ equals $\sum_b V_j\bigl((-r+b)/p\bigr)$ after the involution $b\mapsto
@@ -104,7 +107,8 @@ V_j\bigl(-(r+b)/p\bigr)$ equals $\sum_b V_j\bigl((-r+b)/p\bigr)$ after the invol
 Combining with Step 1 and cancelling the nonzero period $\omega_s$, and then the injectivity of
 $\iota$ on $\overline{\mathbf Q}$, yields a purely algebraic statement in $\overline{\mathbf Q}$:
 
-$$\sum_{b=0}^{p-1}\Lambda_j\bigl(a+bp^{n},p^{n+1}\bigr)=a_p\,\Lambda_j\bigl(a,p^{n}\bigr)-\varepsilon(p)p^{\,k-2}\,\Lambda_j\bigl(a,p^{n-1}\bigr).$$
+$$\sum_{b=0}^{p-1}\Lambda_j\bigl(a+bp^{n},p^{n+1}\bigr)=a_p\,\Lambda_j\bigl(a,p^{n}\bigr)-
+\varepsilon(p)p^{\,k-2}\,\Lambda_j\bigl(a,p^{n-1}\bigr).$$
 
 All the powers of $\pi$ and $i$ cancel; what remains is bookkeeping of powers of $p$, and the
 exponents match precisely because $n\ge1$ and $j\le k-2$.
@@ -114,7 +118,8 @@ exponents match precisely because $n\ge1$ and $j\le k-2$.
 Write $X=\iota_p\Lambda_j(a,p^{n})$ and $Y=\iota_p\Lambda_j(a,p^{n-1})$. Applying $\iota_p$ to Step
 2 and to the translation invariance of Step 1, the left-hand side of the theorem becomes
 
-$$\alpha^{-(n+1)}\bigl(a_pX-p^{k-2}\varepsilon(p)Y\bigr)-\frac{\varepsilon(p)p^{k-2}}{\alpha^{n+2}}\,pX,$$
+$$\alpha^{-(n+1)}\bigl(a_pX-p^{k-2}\varepsilon(p)Y\bigr)-\frac{\varepsilon(p)p^{k-2}}{\alpha^{n+2}}
+\,pX,$$
 
 while the right-hand side is $\alpha^{-n}X-\alpha^{-(n+1)}\varepsilon(p)p^{k-2}Y$. The coefficients
 of $Y$ agree on the nose. The coefficients of $X$ agree if and only if

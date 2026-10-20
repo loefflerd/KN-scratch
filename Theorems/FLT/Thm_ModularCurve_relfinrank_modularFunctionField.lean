@@ -83,7 +83,10 @@ private theorem ModularCurve.relfinrank_modularFunctionField (N : ℕ) [NeZero N
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_relfinrank_modularFunctionField.ModularCurve in
 theorem solution (N : ℕ) [NeZero N] :
-    IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (modularFunctionField N) = Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) :=
+    IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (modularFunctionField N) = Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set
+      (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set
+      (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) :=
   ModularCurve.relfinrank_modularFunctionField N
 
 end S_ModularCurve_relfinrank_modularFunctionField
@@ -97,7 +100,10 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.relfinrank_modularFunctionField (N : ℕ) [NeZero N] :
-    IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (modularFunctionField N) = Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) :=
+    IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (modularFunctionField N) = Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set
+      (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set
+      (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) :=
   solution N
 
 end publicSection

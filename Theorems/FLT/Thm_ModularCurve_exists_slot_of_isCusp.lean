@@ -600,7 +600,8 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
         qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))
     (hι'₁ : ι' ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩ =
         qExpand K N (coeffEmb K jq))
-    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
+    (hι'₂ : ι' ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩
+      =
         qExpand K (a' * a') (qTwist (ζ ^ (b' * a')) (coeffEmb K jq)))
     (w w' : Place K (laurentBaseChange K (modularFunctionFieldFull N))) (γ γ' : ℤ)
     (hγ : 0 < γ) (hγ' : 0 < γ')
@@ -701,7 +702,8 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     let T : LaurentSeries K →ₐ[K] LaurentSeries K :=
       { toRingHom := qTwist (ζ ^ k)
         commutes' := fun c => by
-          change qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
+          change qTwist (ζ ^ k) (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K)
+            c
           rw [algebraMap_laurentSeries_eq_single, qTwist_single, zpow_zero, Units.val_one,
             one_mul] }
     have hFeq : laurentBaseChange K (modularFunctionFieldFull (a * d)) =
@@ -996,7 +998,8 @@ theorem ramificationIndex_eq_neg_ord_of_isCusp
   have hepos₀ : (0 : ℤ) < (w₀.ramificationIndex (RatFunc K) : ℤ) := by
     exact_mod_cast w₀.ramificationIndex_pos (F := RatFunc K)
   have he₀ : ((w₀.ramificationIndex (RatFunc K) : ℤ)) = 1 := by
-    refine Int.eq_one_of_mul_eq_one_right hepos₀.le (b := -(w₀.restrict (RatFunc K)).ord RatFunc.X) ?_
+    refine Int.eq_one_of_mul_eq_one_right hepos₀.le (b := -(w₀.restrict (RatFunc K)).ord RatFunc.X)
+      ?_
     linarith [h1]
   have hX : (w₀.restrict (RatFunc K)).ord RatFunc.X = -1 := by
     rw [he₀, one_mul] at h1
@@ -1057,7 +1060,8 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
   have hcusp : ∀ s (hs : s ∈ slotFinset N), IsCusp (jbar K N) (place s hs) := by
     intro s hs
     have h1 : 0 < N / s.1 := Nat.div_pos
-      (Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne N)) (Nat.mem_divisors.mp ((mem_slotFinset.mp hs).1)).1)
+      (Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne N)) (Nat.mem_divisors.mp ((mem_slotFinset.mp
+        hs).1)).1)
       (Nat.pos_of_mem_divisors ((mem_slotFinset.mp hs).1))
     have h2 : 0 < N / s.1 / Nat.gcd s.1 (N / s.1) := Nat.div_pos
       (Nat.le_of_dvd h1 (Nat.gcd_dvd_right s.1 (N / s.1)))

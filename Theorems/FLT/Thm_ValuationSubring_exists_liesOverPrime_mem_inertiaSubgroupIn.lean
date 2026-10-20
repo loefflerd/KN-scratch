@@ -173,14 +173,18 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     { to_charZero := charZero_of_injective_algebraMap (algebraMap ℚ F).injective
       to_finiteDimensional := hFfd }
   have hOA : ∀ b : 𝓞 F, algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) ∈ A := fun b =>
-    int_mem _ (map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ)) (NumberField.RingOfIntegers.isIntegral_coe b))
+    int_mem _ (map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ))
+      (NumberField.RingOfIntegers.isIntegral_coe b))
   let φ : 𝓞 F →+* A :=
-    ((algebraMap F (AlgebraicClosure ℚ)).comp (algebraMap (𝓞 F) F)).codRestrict A.toSubring (fun b => hOA b)
-  have hφ : ∀ b : 𝓞 F, (φ b : (AlgebraicClosure ℚ)) = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) :=
+    ((algebraMap F (AlgebraicClosure ℚ)).comp (algebraMap (𝓞 F) F)).codRestrict A.toSubring (fun b
+      => hOA b)
+  have hφ : ∀ b : 𝓞 F, (φ b : (AlgebraicClosure ℚ)) = algebraMap F (AlgebraicClosure ℚ) (algebraMap
+    (𝓞 F) F b) :=
     fun b => rfl
   let P : Ideal (𝓞 F) := Ideal.comap φ (IsLocalRing.maximalIdeal A)
   have hPprime : P.IsPrime := Ideal.IsPrime.comap φ
-  have hmemP : ∀ b : 𝓞 F, b ∈ P ↔ algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) ∈ A.nonunits :=
+  have hmemP : ∀ b : 𝓞 F, b ∈ P ↔ algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) ∈
+    A.nonunits :=
     by
     intro b
     rw [← hφ, ValuationSubring.coe_mem_nonunits_iff]
@@ -192,7 +196,8 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     intro hbot
     rw [hbot, Ideal.mem_bot] at hqP
     exact hq.ne_zero (Nat.cast_eq_zero.mp hqP)
-  have hval1 : ∀ s : 𝓞 F, s ∉ P → A.valuation (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s)) = 1 :=
+  have hval1 : ∀ s : 𝓞 F, s ∉ P → A.valuation (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F
+    s)) = 1 :=
     by
     intro s hs
     refine le_antisymm ((A.valuation_le_one_iff _).mpr (hOA s)) (not_lt.mp fun hlt => hs ?_)
@@ -203,7 +208,8 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
   have ha'0 : a' ≠ 0 := fun h => ha0 (by rw [← ha', h, map_zero])
   have hint : ∀ b : 𝓞 F, IsIntegral ℤ (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)) :=
     fun b =>
-    map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ)) (NumberField.RingOfIntegers.isIntegral_coe b)
+    map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ))
+      (NumberField.RingOfIntegers.isIntegral_coe b)
   rcases exists_div_rep_or_inv_div_rep_of_ne_bot P hPbot a' ha'0 with
     ⟨b, s, hs, hrep⟩ | ⟨b, s, hb, hs, hrep⟩
   · have hsK : algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) ≠ 0 := by
@@ -215,11 +221,13 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     · change algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) ∉ A.nonunits
       rw [ValuationSubring.mem_nonunits_iff, hval1 s hs]
       exact lt_irrefl 1
-    · change a * algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)
+    · change a * algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) = algebraMap F
+        (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)
       rw [← ha', hrep, map_div₀, div_mul_cancel₀ _ hsK]
   · exfalso
     have hlt : A.valuation a⁻¹ < 1 := by
-      have : a⁻¹ = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) / algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) :=
+      have : a⁻¹ = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) / algebraMap F
+        (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) :=
         by
         rw [← ha', ← map_inv₀, hrep, map_div₀]
       rw [this, map_div₀, hval1 s hs, div_one, ← ValuationSubring.mem_nonunits_iff, ← hmemP]

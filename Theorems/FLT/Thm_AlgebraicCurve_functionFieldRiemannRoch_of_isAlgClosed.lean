@@ -52,7 +52,8 @@ degree of a canonical divisor.
 This is the Riemann–Roch theorem for the function field $F/K$ of a curve over an algebraically
 closed field, in Tate's residue-theoretic formulation. It is the form used downstream to compute
 $\deg(\omega) = 2g-2$, to identify $\ell((\omega)) = g$, and in the ramification count
-[`AlgebraicCurve.finsum_ramificationIndexAlong_sub_one_eq`](thm.html#AlgebraicCurve.finsum_ramificationIndexAlong_sub_one_eq).
+[`AlgebraicCurve.finsum_ramificationIndexAlong_sub_one_eq`]
+(thm.html#AlgebraicCurve.finsum_ramificationIndexAlong_sub_one_eq).
 
 ## Explanation of the source proof
 

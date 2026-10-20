@@ -93,7 +93,9 @@ end JT
 
 end ModularCurve
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_mem_adjoin_jq_of_phiGenDescends.ModularCurve ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_mem_adjoin_jq_of_phiGenDescends.ModularCurve ModularCurve.PhiGen
+  in
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : (CyclotomicField ℓ ℚ)ˣ)
     (hζ : IsPrimitiveRoot (ζ : CyclotomicField ℓ ℚ) ℓ) (c : ℕ → LaurentSeries ℚ)
     (hc : PhiGenDescends ℓ ζ c) (k : ℕ) :

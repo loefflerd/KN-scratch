@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
+Based on Prove2Me node
+WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
 (102db63a-46f1-5a3e-a4bf-eb9199ece59e) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission a8b71afd-afb7-5df0-be34-30cd3f5422dd
@@ -63,7 +64,8 @@ of $W$ whose kernels have the same order and whose targets have equal $j$-invari
 isomorphism of the targets, hence have the same kernel. It underlies the injectivity of $C \mapsto
 j(W/C)$ on subgroups of a fixed order, and is used in the analysis of the modular polynomial and of
 the Tate point kernels
-([`ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental`](thm.html#ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental)
+([`ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental`]
+(thm.html#ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental)
 and [`ModularCurve.TatePoint.fullKernelInjAt`](thm.html#ModularCurve.TatePoint.fullKernelInjAt)).
 
 ## Explanation of the source proof
@@ -565,7 +567,9 @@ theorem solution
 
 end S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul (solution)
+export
+  P2MW.S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
+  (solution)
 
 end privateSection
 

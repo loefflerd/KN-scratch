@@ -41,7 +41,8 @@ No primality is assumed of $q$, and $M$ is an arbitrary natural number; only $q\
 A generation statement for $\Gamma_0(M)$: every element of $\Gamma_0(M)$ is a product of
 translations and of elements of $\Gamma_0(M)$ whose upper-right entry is divisible by a prescribed
 non-zero integer $q$. It is used in the proof of
-[`CuspForm.eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero`](thm.html#CuspForm.eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero),
+[`CuspForm.eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero`]
+(thm.html#CuspForm.eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero),
 where a vanishing property invariant under translations need only be checked on matrices with $q\mid
 b$.
 
@@ -114,11 +115,13 @@ end AlliAux1Gen
 theorem solution (M : ℕ) {q : ℕ} (hq : q ≠ 0) :
     CongruenceSubgroup.Gamma0 M ≤ Subgroup.closure
       ({ModularGroup.T} ∪ {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ |
-        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1}) := by
+        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0
+          1}) := by
   intro γ hγ
   set H := Subgroup.closure
       ({ModularGroup.T} ∪ {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ |
-        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1})
+        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0
+          1})
     with hH
   have hT : ModularGroup.T ∈ H := Subgroup.subset_closure (Or.inl rfl)
   have hc : (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 :=
@@ -157,7 +160,8 @@ public section publicSection
 theorem CongruenceSubgroup.Gamma0_le_closure_T_union_setOf_dvd (M : ℕ) {q : ℕ} (hq : q ≠ 0) :
     CongruenceSubgroup.Gamma0 M ≤ Subgroup.closure
       ({ModularGroup.T} ∪ {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ |
-        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1}) :=
+        (M : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 ∧ (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0
+          1}) :=
   solution M hq
 
 end publicSection

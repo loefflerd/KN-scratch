@@ -121,7 +121,8 @@ private theorem Polynomial.mem_range_of_eval_eq_const {F L : Type*} [Field F] [F
     refine (Polynomial.natDegree_sub_le _ _).trans ?_
     rw [Polynomial.natDegree_map, Polynomial.natDegree_C, max_eq_left (Nat.zero_le _)]
   have hQ0 : Q = 0 := by
-    refine Polynomial.eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Q s (fun y hy => ?_) (hQdeg.trans_lt hcard)
+    refine Polynomial.eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Q s (fun y hy => ?_)
+      (hQdeg.trans_lt hcard)
     rw [hQ, Polynomial.eval_sub, Polynomial.eval_C, Polynomial.eval_map_algebraMap, hval y hy,
       sub_self]
   have hconst : g.map i = Polynomial.C x := sub_eq_zero.mp hQ0
@@ -149,7 +150,8 @@ private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Fiel
     rw [hroots] at hnodup; exact (Multiset.nodup_cons.mp hnodup).1
   have hr_nodup : ((Multiset.range n).map r).Nodup := by
     rw [hroots] at hnodup; exact (Multiset.nodup_cons.mp hnodup).2
-  have key : ∀ f g : Polynomial F, f.Monic → g.Monic → f * g = P → y₀ ∈ (f.map i).roots → g.natDegree = 0 :=
+  have key : ∀ f g : Polynomial F, f.Monic → g.Monic → f * g = P → y₀ ∈ (f.map i).roots →
+    g.natDegree = 0 :=
     by
     intro f g hf hg hfg hyf
     have hfm0 : f.map i ≠ 0 := (Polynomial.map_ne_zero_iff i.injective).mpr hf.ne_zero

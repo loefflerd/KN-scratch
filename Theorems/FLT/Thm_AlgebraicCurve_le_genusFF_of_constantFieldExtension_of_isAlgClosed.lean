@@ -51,7 +51,8 @@ function field is the $K$-dimension of the adelic $H^1$ of the zero divisor.
 
 This is one inequality of the classical invariance of the genus under extension of an algebraically
 closed constant field; it is used by
-[`AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed`](thm.html#AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed),
+[`AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed),
 which combines it with the reverse inequality to identify the two genera.
 
 ## Explanation of the source proof
@@ -112,7 +113,8 @@ theorem solution (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
@@ -204,7 +206,8 @@ theorem AlgebraicCurve.le_genusFF_of_constantFieldExtension_of_isAlgClosed (K F 
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']

@@ -112,7 +112,8 @@ theorem lSpace_eq_bot_of_degree_neg_port [IsCurveOver K F]
   exact absurd hdegPD (not_le.mpr hD)
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_lSpace_eq_bot_of_degree_neg.AlgebraicCurve in
+open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_lSpace_eq_bot_of_degree_neg.AlgebraicCurve
+  in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {D : Divisor K F} [IsCurveOver K F]
     (hD : Divisor.degree D < 0) : LSpace D = ⊥ :=
   AlgebraicCurve.lSpace_eq_bot_of_degree_neg_port (K := K) (F := F) (D := D) (hD := hD)

@@ -110,7 +110,8 @@ theorem finprod_heightOneSpectrum_count {I : FractionalIdeal R⁰ L} (hI : I ≠
       = I := by
   classical
   obtain ⟨a, J, ha, haJ⟩ := FractionalIdeal.exists_eq_spanSingleton_mul I
-  calc (∏ᶠ w : HeightOneSpectrum R, (w.asIdeal : FractionalIdeal R⁰ L) ^ FractionalIdeal.count L w I)
+  calc (∏ᶠ w : HeightOneSpectrum R, (w.asIdeal : FractionalIdeal R⁰ L) ^ FractionalIdeal.count L w
+    I)
       = ∏ᶠ w : HeightOneSpectrum R, (w.asIdeal : FractionalIdeal R⁰ L) ^
           ((Associates.mk w.asIdeal).count (Associates.mk J).factors -
             (Associates.mk w.asIdeal).count (Associates.mk (Ideal.span {a})).factors : ℤ) :=
@@ -147,7 +148,8 @@ theorem algebraMap_mem_ofHeightOneSpectrum (w : HeightOneSpectrum R) (r : R) :
 
 theorem algebraMap_mem_nonunits_ofHeightOneSpectrum (w : HeightOneSpectrum R) {r : R}
     (hr : r ∈ w.asIdeal) :
-    algebraMap R L r ∈ (Place.ofHeightOneSpectrum (K := K) (F := L) w).toValuationSubring.nonunits := by
+    algebraMap R L r ∈ (Place.ofHeightOneSpectrum (K := K) (F := L) w).toValuationSubring.nonunits
+      := by
   rw [Place.ofHeightOneSpectrum_toValuationSubring, ValuationSubring.mem_nonunits_iff,
     ← (w.valuation L).isEquiv_valuation_valuationSubring.lt_one_iff_lt_one]
   exact (w.valuation_lt_one_iff_mem r).mpr hr
@@ -323,7 +325,8 @@ theorem unitIdealOfDivisor_single (v : AlgebraicCurve.Place F W.FunctionField) (
   Finsupp.prod_single_index (zpow_zero _)
 
 theorem classGroup_mk_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField) :
-    ClassGroup.mk W.FunctionField (unitIdealOfDivisor D) = Additive.toMul (Point.toClass (divisorSum D)) := by
+    ClassGroup.mk W.FunctionField (unitIdealOfDivisor D) = Additive.toMul (Point.toClass (divisorSum
+      D)) := by
   induction D using Finsupp.induction with
   | zero =>
       rw [unitIdealOfDivisor_zero, map_one, map_zero, map_zero]

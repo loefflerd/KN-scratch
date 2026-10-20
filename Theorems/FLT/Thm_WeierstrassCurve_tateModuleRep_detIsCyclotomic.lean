@@ -225,8 +225,10 @@ private theorem rep_basisOfCard_level (g : G') (k : ℕ) (j : Fin 2) :
     conv_lhs => rw [← Module.Basis.sum_repr (TateModule.basisOfCard hcard)
       (TateModule.rep p M G' g (TateModule.basisOfCard hcard j))]
     exact Finset.sum_congr rfl fun i _ => by rw [LinearMap.toMatrix_apply]
-  have hdist : ((∑ i, LinearMap.toMatrix (TateModule.basisOfCard hcard) (TateModule.basisOfCard hcard)
-          (TateModule.rep p M G' g) i j • TateModule.basisOfCard hcard i : TateModule p M) : ℕ → M) k
+  have hdist : ((∑ i, LinearMap.toMatrix (TateModule.basisOfCard hcard) (TateModule.basisOfCard
+    hcard)
+          (TateModule.rep p M G' g) i j • TateModule.basisOfCard hcard i : TateModule p M) : ℕ → M)
+            k
       = ∑ i, ((LinearMap.toMatrix (TateModule.basisOfCard hcard) (TateModule.basisOfCard hcard)
           (TateModule.rep p M G' g) i j).appr k : ℤ)
             • ((TateModule.basisOfCard hcard i : TateModule p M) : ℕ → M) k := by

@@ -42,7 +42,8 @@ nonzero value there; equivalently, a nonzero element of order zero is a unit of 
 so has nonzero residue. It underlies the evaluation of functions at divisors, $f(D) = \prod_v
 f(v)^{D(v)}$, being nonzero when the divisor avoids the support of $\operatorname{div} f$, and is
 used throughout the evaluation-at-divisors layer, for instance by
-[`AlgebraicCurve.Divisor.evalFun_algebraMap_pushforward`](thm.html#AlgebraicCurve.Divisor.evalFun_algebraMap_pushforward).
+[`AlgebraicCurve.Divisor.evalFun_algebraMap_pushforward`]
+(thm.html#AlgebraicCurve.Divisor.evalFun_algebraMap_pushforward).
 
 ## Explanation of the source proof
 

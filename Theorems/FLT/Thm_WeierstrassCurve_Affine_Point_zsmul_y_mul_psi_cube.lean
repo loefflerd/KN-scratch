@@ -73,7 +73,8 @@ This is the $y$-coordinate half of the classical multiplication-by-$n$ formula $
 \bigl(\phi_n(P)/\psi_n(P)^2,\ \omega_n(P)/\psi_n(P)^3\bigr)$, stated here with the
 characteristic-free $\omega_n$ so that characteristic $2$ is included. It is used in the treatment
 of Frobenius and isogeny endomorphisms, for instance by
-[`FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq`](thm.html#FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq)
+[`FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq`]
+(thm.html#FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq)
 and by the results on Weil numbers and on restricting isogeny data along places of points.
 
 ## Explanation of the source proof
@@ -236,7 +237,9 @@ end M4WilesOmegaXY
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
+theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n :
+  ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn
+  : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
     y' * ((W.ψ n).evalEval x y) ^ 3 = (W.ω n).evalEval x y :=
   (M4Wiles.zsmul_coords W h h' hn).2.2
 
@@ -252,7 +255,10 @@ public section publicSection
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem WeierstrassCurve.Affine.Point.zsmul_y_mul_psi_cube {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
+theorem WeierstrassCurve.Affine.Point.zsmul_y_mul_psi_cube {F : Type*} [Field F] [DecidableEq F] (W
+  : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' :
+  F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h =
+  WeierstrassCurve.Affine.Point.some x' y' h') :
     y' * ((W.ψ n).evalEval x y) ^ 3 = (W.ω n).evalEval x y :=
   solution W n h h' hn
 

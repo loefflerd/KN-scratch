@@ -59,7 +59,8 @@ the cusps $\sigma\infty$ of $\mathbb{H}^*$: such a place is read off at some $\s
 \mathrm{SL}_2(\mathbb{Z})$, its width $h$ is the least positive exponent with $\sigma T^h\sigma^{-1}
 \in \pm\Gamma$, the order of $j$ at it is $-h$, and $\operatorname{ord}_P$ computes the leading
 exponent in the $q^{1/h}$-expansion of $x|\sigma$. It feeds the parity statement
-[`ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1`](thm.html#ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1)
+[`ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1`]
+(thm.html#ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1)
 about orders at cusp places of $X_1(M)$.
 
 ## Explanation of the source proof
@@ -89,7 +90,8 @@ theorem realizeOf_smul (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (
       (h : ℍ → ℂ) (γ • τ) = (denom (γ : GL (Fin 2) ℝ) τ) ^ k * (h : ℍ → ℂ) τ :=
     fun k h => SlashInvariantForm.slash_action_eqn_SL'' h hγ τ
   have hd0 : denom (γ : GL (Fin 2) ℝ) τ ≠ 0 := denom_ne_zero _ _
-  by_cases H : ∃ p : (k : ℤ) × (ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k × ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k),
+  by_cases H : ∃ p : (k : ℤ) × (ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k × ModularForm (Γ :
+    Subgroup (GL (Fin 2) ℝ)) k),
       (p.2.2 : ℍ → ℂ) τ ≠ 0 ∧
         x * ((qExpansion 1 (p.2.2 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
           ((qExpansion 1 (p.2.1 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
@@ -99,7 +101,8 @@ theorem realizeOf_smul (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (
     rw [realizeOf_eq_div Γ hT g h x hx (γ • τ) hγτ, realizeOf_eq_div Γ hT g h x hx τ hτ, hden k g,
       hden k h,
       mul_div_mul_left _ _ (zpow_ne_zero _ hd0)]
-  · have H' : ¬ ∃ p : (k : ℤ) × (ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k × ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k),
+  · have H' : ¬ ∃ p : (k : ℤ) × (ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k × ModularForm (Γ :
+      Subgroup (GL (Fin 2) ℝ)) k),
         (p.2.2 : ℍ → ℂ) (γ • τ) ≠ 0 ∧
           x * ((qExpansion 1 (p.2.2 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
             ((qExpansion 1 (p.2.1 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
@@ -145,9 +148,11 @@ theorem solution
     ext x
     rw [hE3 (γ * σ) x, hE3 σ x]
     simp only [mul_smul, realizeOf_smul Γ hT _ hγ]
-  have hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0 →
+  have hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x =
+    0 →
       ∃ L : ℂ, L ≠ 0 ∧
-        Filter.Tendsto (fun τ : ℍ => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L) := by
+        Filter.Tendsto (fun τ : ℍ => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
+          atImInfty (𝓝 L) := by
     intro σ x hx h0
     obtain ⟨L, hL, ht⟩ := hE1 σ x hx
     refine ⟨L, hL, ht.congr fun τ => ?_⟩
@@ -169,11 +174,13 @@ theorem solution
   have hh : 0 < h := (Nat.find_spec hex).1
   have hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) :=
     (Nat.find_spec hex).2
-  have hmin : ∀ k : ℕ, 0 < k → σ * ModularGroup.T ^ k * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) → h ≤ k :=
+  have hmin : ∀ k : ℕ, 0 < k → σ * ModularGroup.T ^ k * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) →
+    h ≤ k :=
     fun k hk hk' => Nat.find_min' hex ⟨hk, hk'⟩
   have hyN : (e σ : ℤ) * (Pl σ).ord y = -(Γ.normalCore.index : ℤ) := (hyc σ y hy).2.1
   have hyh : (Pl σ).ord y = -(h : ℤ) :=
-    ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash Γ hT hΓ F₀ hF y hy σ (Φ σ) (Pl σ) (e σ)
+    ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash Γ hT hΓ F₀ hF y hy σ (Φ σ)
+      (Pl σ) (e σ)
       (he σ) (hpres σ) (hord σ) (hyc σ y hy).1 hdeg h hh hmem hmin
   have heh : ((e σ : ℕ) : ℂ) * (h : ℂ) = (Γ.normalCore.index : ℂ) := by
     have h1 : (e σ : ℤ) * (h : ℤ) = (Γ.normalCore.index : ℤ) := by rw [hyh] at hyN; linarith

@@ -149,7 +149,8 @@ private theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : �
     refine ⟨φ', ?_, fun x => by rw [hφ', hφ]⟩
     rw [hφ'f, hφ, Int.toNat_of_nonneg hw.le])
 
-open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.ModularCurve in
+open AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.ModularCurve in
 theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ) :
     ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),

@@ -911,7 +911,8 @@ end HeadTwo
 
 end WLight
 
-open _root_.WLight _root_.P2MW.S_WLight_exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction.WLight in
+open _root_.WLight
+  _root_.P2MW.S_WLight_exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction.WLight in
 theorem solution
     (N : ℕ) [NeZero N]
     (L : ℍ → PeriodPair) (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)

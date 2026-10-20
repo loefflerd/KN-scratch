@@ -44,7 +44,8 @@ has degree zero.
 This is the statement that in a finite separable extension of a rational function field the divisor
 of a nonzero function is well defined and of degree zero, in a form free of hypotheses on the
 characteristic. It is the entry point used to verify that such an $F$ is a curve over $K$
-([`AlgebraicCurve.isCurveOver_of_transcendental`](thm.html#AlgebraicCurve.isCurveOver_of_transcendental))
+([`AlgebraicCurve.isCurveOver_of_transcendental`]
+(thm.html#AlgebraicCurve.isCurveOver_of_transcendental))
 and, through that, in the divisor-theoretic computations on modular curves.
 
 ## Explanation of the source proof

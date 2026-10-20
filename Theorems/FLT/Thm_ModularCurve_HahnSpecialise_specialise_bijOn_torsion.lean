@@ -43,9 +43,11 @@ This is the statement that reduction from the Hahn-series field to its residue f
 Q}$ is an isomorphism on $N$-torsion for a model with non-degenerate special fibre (residue
 characteristic $0$, so no condition on $N$ is needed). It is used to transport $N$-torsion and
 cyclic level structures between a curve over $H$ and its special fibre, being cited by
-[`ModularCurve.HahnSpecialise.specialiseCycSub_bijective`](thm.html#ModularCurve.HahnSpecialise.specialiseCycSub_bijective)
+[`ModularCurve.HahnSpecialise.specialiseCycSub_bijective`]
+(thm.html#ModularCurve.HahnSpecialise.specialiseCycSub_bijective)
 and
-[`ModularCurve.B3.exists_torsionBy_reduction_addEquiv`](thm.html#ModularCurve.B3.exists_torsionBy_reduction_addEquiv).
+[`ModularCurve.B3.exists_torsionBy_reduction_addEquiv`]
+(thm.html#ModularCurve.B3.exists_torsionBy_reduction_addEquiv).
 
 ## Explanation of the source proof
 
@@ -160,7 +162,8 @@ theorem solution (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
     rw [← map_nsmul, show N • P = 0 from hP, map_zero]
   · obtain ⟨P, hP⟩ := (ModularCurve.HahnSpecialise.specialiseTorsion_bijective E hE hΔ hN).2
       ⟨Q, ModularCurve.HahnSpecialise.mem_torsionBy_of_nsmul_eq_zero hQ⟩
-    exact ⟨P, ModularCurve.HahnSpecialise.nsmul_eq_zero_of_mem_torsionBy P.2, congrArg Subtype.val hP⟩
+    exact ⟨P, ModularCurve.HahnSpecialise.nsmul_eq_zero_of_mem_torsionBy P.2, congrArg Subtype.val
+      hP⟩
 
 end
 

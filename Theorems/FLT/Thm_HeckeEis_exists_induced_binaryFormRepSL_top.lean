@@ -50,7 +50,8 @@ This packages the induced module $\mathrm{Ind}_{\Gamma_0(N)}^{SL_2(\mathbb Z)}\m
 together with the three facts about it needed for a cohomological count: triviality of the central
 element $-1$, vanishing of invariants, and vanishing of coinvariants in the explicit shape dictated
 by the presentation of $PSL_2(\mathbb Z)$ by $S$ and $ST$. It feeds the bound
-[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`](thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
+[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`]
+(thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
 on the dimension of parabolic cohomology in weight $n+2$.
 
 ## Explanation of the source proof
@@ -144,14 +145,16 @@ variable {n : ℕ}
 theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (v : Fin 2 → ℂ) (P : MvPolynomial (Fin 2) ℂ)
     :
     eval v (binarySubst ℂ M P) = eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : ℂ) * v i) P := by
-  have key : (eval v).comp (binarySubst ℂ M : MvPolynomial (Fin 2) ℂ →ₐ[ℂ] MvPolynomial (Fin 2) ℂ).toRingHom
+  have key : (eval v).comp (binarySubst ℂ M : MvPolynomial (Fin 2) ℂ →ₐ[ℂ] MvPolynomial (Fin 2)
+    ℂ).toRingHom
       = eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : ℂ) * v i) :=
     MvPolynomial.ringHom_ext (fun r => by simp []) (fun j => by simp [binarySubst_X])
   exact RingHom.congr_fun key P
 
 theorem eval_one_eq_of_T_zpow_fixed (m : ℤ) (P : Vn n) (hP : ρ n (ModularGroup.T ^ m) P = P) (k : ℕ)
     :
-    eval ![(1 : ℂ), (m : ℂ) * k] (P : MvPolynomial (Fin 2) ℂ) = eval ![(1 : ℂ), 0] (P : MvPolynomial (Fin 2) ℂ) := by
+    eval ![(1 : ℂ), (m : ℂ) * k] (P : MvPolynomial (Fin 2) ℂ) = eval ![(1 : ℂ), 0] (P : MvPolynomial
+      (Fin 2) ℂ) := by
   have hk : ρ n ((ModularGroup.T ^ m) ^ k) P = P := by
     induction k with
     | zero => rw [pow_zero, map_one, Module.End.one_apply]
@@ -159,7 +162,8 @@ theorem eval_one_eq_of_T_zpow_fixed (m : ℤ) (P : Vn n) (hP : ρ n (ModularGrou
   have h := congrArg (fun Q : Vn n => eval ![(1 : ℂ), 0] (Q : MvPolynomial (Fin 2) ℂ)) hk
   rw [binaryFormRepSL_apply_coe, eval_binarySubst, ← zpow_natCast, ← zpow_mul,
     ModularGroup.coe_T_zpow] at h
-  have hv : (fun j : Fin 2 => ∑ i : Fin 2, (((!![(1 : ℤ), m * (k : ℤ); 0, 1] : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ) * (![(1 : ℂ), 0] : Fin 2 → ℂ) i)
+  have hv : (fun j : Fin 2 => ∑ i : Fin 2, (((!![(1 : ℤ), m * (k : ℤ); 0, 1] : Matrix (Fin 2) (Fin
+    2) ℤ) i j : ℤ) : ℂ) * (![(1 : ℂ), 0] : Fin 2 → ℂ) i)
       = ![(1 : ℂ), (m : ℂ) * k] := by
     funext j
     fin_cases j <;> simp [Fin.sum_univ_two]
@@ -171,7 +175,8 @@ def dehom (P : MvPolynomial (Fin 2) ℂ) : Polynomial ℂ := aeval ![(1 : Polyno
 theorem eval_dehom (P : MvPolynomial (Fin 2) ℂ) (t : ℂ) :
     (dehom P).eval t = eval ![(1 : ℂ), t] P := by
   rw [dehom, ← Polynomial.coe_aeval_eq_eval, ← AlgHom.comp_apply, MvPolynomial.comp_aeval]
-  change aeval (fun i => Polynomial.aeval t ((![(1 : Polynomial ℂ), Polynomial.X] : Fin 2 → Polynomial ℂ) i)) P = aeval ![(1 : ℂ), t] P
+  change aeval (fun i => Polynomial.aeval t ((![(1 : Polynomial ℂ), Polynomial.X] : Fin 2 →
+    Polynomial ℂ) i)) P = aeval ![(1 : ℂ), t] P
   congr 2
   funext j
   fin_cases j <;> simp
@@ -196,7 +201,8 @@ theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHo
     ext j; fin_cases j
     · simp [hda]; omega
     · simp [hda, h1]
-  have hmono : ∀ (d : Fin 2 →₀ ℕ) (c : ℂ), (dehom (monomial d c)).coeff a = if d 1 = a then c else 0 :=
+  have hmono : ∀ (d : Fin 2 →₀ ℕ) (c : ℂ), (dehom (monomial d c)).coeff a = if d 1 = a then c else 0
+    :=
     by
     intro d c
     rw [dehom_monomial, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow]
@@ -264,7 +270,8 @@ theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n)
   set q := dehom (P : MvPolynomial (Fin 2) ℂ) with hq
   have hconst : q - Polynomial.C (q.eval 0) = 0 := by
     apply Polynomial.eq_zero_of_infinite_isRoot
-    have hroots : Set.range (fun k : ℕ => ((m : ℂ) * k)) ⊆ {t | (q - Polynomial.C (q.eval 0)).IsRoot t} :=
+    have hroots : Set.range (fun k : ℕ => ((m : ℂ) * k)) ⊆ {t | (q - Polynomial.C (q.eval 0)).IsRoot
+      t} :=
       by
       rintro _ ⟨k, rfl⟩
       change (q - Polynomial.C (q.eval 0)).IsRoot _
@@ -314,7 +321,8 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
     ((congrArg (fun g => ρ n g v) (zpow_one ModularGroup.T)).trans h1)
   have e2 := eq_of_T_zpow_fixed hm _ h2
   set c := AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) ℂ) (Finsupp.single 0 n) with hc
-  have hSv : ((ρ n ModularGroup.S v : Vn n) : MvPolynomial (Fin 2) ℂ) = monomial (Finsupp.single 1 n) c :=
+  have hSv : ((ρ n ModularGroup.S v : Vn n) : MvPolynomial (Fin 2) ℂ) = monomial (Finsupp.single 1
+    n) c :=
     by
     rw [binaryFormRepSL_apply_coe, e1, ← C_mul_X_pow_eq_monomial, map_mul, binarySubst_C, map_pow,
       binarySubst_X]
@@ -351,7 +359,8 @@ theorem T_mem_Gamma0 : (ModularGroup.T : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamm
   rw [CongruenceSubgroup.Gamma0_mem]; simp [ModularGroup.T]
 
 theorem Sinv_TN_S_mem :
-    (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N : ℤ) * ModularGroup.S ∈ CongruenceSubgroup.Gamma0 N := by
+    (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N : ℤ) * ModularGroup.S ∈
+      CongruenceSubgroup.Gamma0 N := by
   rw [CongruenceSubgroup.Gamma0_mem]
   have hS : ((ModularGroup.S : SL(2, ℤ))⁻¹ : SL(2, ℤ)) = ⟨!![0, 1; -1, 0], by norm_num [Matrix.det_fin_two_of]⟩ :=
     by
@@ -416,7 +425,8 @@ open LinearMap (BilinForm)
 
 variable {N n : ℕ} [NeZero N]
 
-noncomputable scoped instance fintypeX0' : Fintype (X0 N) := (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
+noncomputable scoped instance fintypeX0' : Fintype (X0 N) := (CongruenceSubgroup.Gamma0
+  N).fintypeQuotientOfFiniteIndex
 
 section Coinv
 
@@ -478,7 +488,8 @@ theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
     MvPolynomial.homogeneousSubmodule_eq_finsupp_supported,
     AddMonoidAlgebra.supported_eq_span_single]
   refine Submodule.fg_span (Set.Finite.image _ ?_)
-  refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i + Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
+  refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i +
+    Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
   intro d hd
   have hsum : d 0 + d 1 = n := by
     have : d.degree = n := hd
@@ -491,7 +502,8 @@ theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
 include hBinv hBsymm hBnd in
 theorem sup_range_eq_top (hn0 : n ≠ 0) :
     LinearMap.range (indRep N n ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1)
-      ⊔ LinearMap.range (indRep N n ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1) = ⊤ := by
+      ⊔ LinearMap.range (indRep N n ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1) = ⊤
+        := by
   set W := indRep N n with hW
   set eS : ↥Gt := ⟨ModularGroup.S, Subgroup.mem_top _⟩
   set eU : ↥Gt := ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩
@@ -523,7 +535,8 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
     have hU : W eU f' = f' := hfix eU le_sup_right
     have hT : W ⟨ModularGroup.T, Subgroup.mem_top _⟩ f' = f' := by
       have e : (⟨ModularGroup.T, Subgroup.mem_top _⟩ : ↥Gt) = eS⁻¹ * eU := by
-        apply Subtype.ext; change ModularGroup.T = ModularGroup.S⁻¹ * (ModularGroup.S * ModularGroup.T); group
+        apply Subtype.ext; change ModularGroup.T = ModularGroup.S⁻¹ * (ModularGroup.S *
+          ModularGroup.T); group
       have hSinv : W eS⁻¹ f' = f' := by
         conv_lhs => rw [← hS]
         rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
@@ -533,7 +546,8 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
     have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ)) :=
       by
       rw [SpecialLinearGroup.SL2Z_generators]; trivial
-    have keyc : ∀ x (hx : x ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ))), W ⟨x, Subgroup.mem_top _⟩ f' = f' :=
+    have keyc : ∀ x (hx : x ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ))), W
+      ⟨x, Subgroup.mem_top _⟩ f' = f' :=
       by
       intro x hx
       induction hx using Subgroup.closure_induction with
@@ -564,13 +578,18 @@ end
 
 open scoped MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n) (hn0 : n ≠ 0) :
-    ∃ W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)),
-      (∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
+    ∃ W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)),
+      (∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+        ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
         W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) ∧
       W ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id ∧
-      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), (∀ g : (⊤ : Subgroup SL(2, ℤ)), W g f = f) → f = 0) ∧
-      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), ∃ a b : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n),
-        f = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ b - b)) := by
+      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), (∀ g : (⊤ :
+        Subgroup SL(2, ℤ)), W g f = f) → f = 0) ∧
+      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), ∃ a b : SL(2, ℤ) ⧸
+        CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n),
+        f = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T,
+          Subgroup.mem_top _⟩ b - b)) := by
   obtain ⟨B, hBinv, hBsymm, hBnd, -⟩ := HeckeEis.exists_pairing_binaryForm_linePow n
   refine ⟨HeckeEis.UH3Sol.indRep N n, fun g f x => rfl, HeckeEis.UH3Sol.indRep_neg_one hn,
     HeckeEis.UH3Sol.indRep_invariants hn0, fun f => ?_⟩
@@ -592,13 +611,18 @@ public section publicSection
 open scoped MatrixGroups
 theorem HeckeEis.exists_induced_binaryFormRepSL_top (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n)
     (hn0 : n ≠ 0) :
-    ∃ W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)),
-      (∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
+    ∃ W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)),
+      (∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+        ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
         W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) ∧
       W ⟨-1, Subgroup.mem_top _⟩ = LinearMap.id ∧
-      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), (∀ g : (⊤ : Subgroup SL(2, ℤ)), W g f = f) → f = 0) ∧
-      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), ∃ a b : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n),
-        f = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ b - b)) :=
+      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), (∀ g : (⊤ :
+        Subgroup SL(2, ℤ)), W g f = f) → f = 0) ∧
+      (∀ f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n), ∃ a b : SL(2, ℤ) ⧸
+        CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n),
+        f = (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ a - a) + (W ⟨ModularGroup.S * ModularGroup.T,
+          Subgroup.mem_top _⟩ b - b)) :=
   solution N n hn hn0
 
 end publicSection

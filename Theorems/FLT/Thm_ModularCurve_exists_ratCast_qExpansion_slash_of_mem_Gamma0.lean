@@ -45,9 +45,11 @@ the cusp $\infty$: since $\Gamma_1(M)$ is normal in $\Gamma_0(M)$, slashing by $
 \Gamma_0(M)$ preserves the space of forms of weight $k$ on $\Gamma_1(M)$ and preserves rationality
 of Fourier coefficients. It feeds the results on bases of cusp forms with rational (or integral)
 $q$-coefficients stable under slashing and under Hecke and diamond operators, such as
-[`CuspForm.exists_basis_gamma1_qCoeff_slash_mem_range_intCast`](thm.html#CuspForm.exists_basis_gamma1_qCoeff_slash_mem_range_intCast)
+[`CuspForm.exists_basis_gamma1_qCoeff_slash_mem_range_intCast`]
+(thm.html#CuspForm.exists_basis_gamma1_qCoeff_slash_mem_range_intCast)
 and
-[`CuspForm.exists_basis_gammaH_qCoeff_mem_range_ratCast`](thm.html#CuspForm.exists_basis_gammaH_qCoeff_mem_range_ratCast).
+[`CuspForm.exists_basis_gammaH_qCoeff_mem_range_ratCast`]
+(thm.html#CuspForm.exists_basis_gammaH_qCoeff_mem_range_ratCast).
 
 ## Explanation of the source proof
 
@@ -270,7 +272,8 @@ omit [NeZero M] in
 theorem apply_smul (f : ModularForm Γ₁(M) k) {g : SL(2, ℤ)} (hg : g ∈ Gamma1 M) (τ : ℍ) :
     f (g • τ) = denom (g : GL (Fin 2) ℝ) τ ^ k * f τ := by
   have :=
-    SlashInvariantForm.slash_action_eqn'' f (Subgroup.mem_map_of_mem (Matrix.SpecialLinearGroup.mapGL ℝ) hg) τ
+    SlashInvariantForm.slash_action_eqn'' f (Subgroup.mem_map_of_mem
+      (Matrix.SpecialLinearGroup.mapGL ℝ) hg) τ
   rw [ModularGroup.sl_moeb]
   exact this
 
@@ -460,7 +463,8 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
     have hq : ‖Periodic.qParam 1 z‖ < 1 := by
       have : 0 < 2 * π * z.im / 1 := by have := z.im_pos; positivity
       simpa [Periodic.qParam, Complex.norm_exp, neg_div] using this
-    have hterm : ∀ n : ℕ, ((c n : ℤ) : ℂ) * Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (n : ℂ) * (z : ℂ))
+    have hterm : ∀ n : ℕ, ((c n : ℤ) : ℂ) * Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (n : ℂ) *
+      (z : ℂ))
         = ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n := by
       intro n
       rw [smul_eq_mul, Periodic.qParam, ← Complex.exp_nat_mul]
@@ -525,7 +529,8 @@ theorem isCoprime_entry {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsCoprime (�
 
 omit [NeZero M] in
 theorem exists_lift (d : ℤ) (hd : IsCoprime d (M : ℤ)) :
-    ∃ d' : ℤ, IsCoprime d' (3 * M : ℤ) ∧ (∃ t : ℤ, d' = d + t * M) ∧ ((3 : ℤ) ∣ M ∨ (3 : ℤ) ∣ d' - 1) := by
+    ∃ d' : ℤ, IsCoprime d' (3 * M : ℤ) ∧ (∃ t : ℤ, d' = d + t * M) ∧ ((3 : ℤ) ∣ M ∨ (3 : ℤ) ∣ d' -
+      1) := by
   by_cases h3 : (3 : ℤ) ∣ M
   · refine ⟨d, ?_, ⟨0, by ring⟩, Or.inl h3⟩
     exact IsCoprime.mul_right (hd.of_isCoprime_of_dvd_right h3) hd

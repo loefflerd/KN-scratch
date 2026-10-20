@@ -51,8 +51,10 @@ vanishing: a function vanishing to order at least $k$ at $nP$ pulls back to a fu
 order at least $k$ at $P$. It supplies the compatibility between $[n]^{*}$ and the adic valuations
 at closed points that is required in the construction of the pairing on $n$-torsion and in the proof
 of its non-degeneracy, and is used by
-[`WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one`](thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one),
-[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`](thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul)
+[`WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one`]
+(thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_weilPairing0_eq_one),
+[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`]
+(thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul)
 and
 [`WeierstrassCurve.exists_pairing_torsionBy`](thm.html#WeierstrassCurve.exists_pairing_torsionBy).
 
@@ -137,7 +139,8 @@ theorem zsmul_genericPoint_good {n : ℤ} (hn : (n : K) ≠ 0) : MulGood W K n :
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
 theorem evalEval_map_mapRingHom {L : Type*} [CommRing L] (g : K →+* L) (q : K[X][Y]) (a b : L) :
     (q.map (mapRingHom g)).evalEval a b = q.eval₂ (eval₂RingHom g a) b := by
-  have hφ : (evalEvalRingHom a b).comp (mapRingHom (mapRingHom g)) = eval₂RingHom (eval₂RingHom g a) b :=
+  have hφ : (evalEvalRingHom a b).comp (mapRingHom (mapRingHom g)) = eval₂RingHom (eval₂RingHom g a)
+    b :=
     by
     apply Polynomial.ringHom_ext
     · intro p
@@ -169,19 +172,24 @@ theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [Deci
   rcases P with _ | ⟨a, b, hab⟩
   · exact absurd rfl hP
   have hψP : ((W.baseChange K).ψ n).evalEval a b ≠ 0 :=
-    fun h0 => hnP ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (W.baseChange K) hab n).mpr h0)
+    fun h0 => hnP ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (W.baseChange K) hab n).mpr
+      h0)
   obtain ⟨hP', hPeq⟩ := hω hab hψP
   have hΨP : ((W.baseChange K).ΨSq n).eval a ≠ 0 := by
     rw [← WeierstrassCurve.Affine.evalEval_psi_sq (W.baseChange K) hab.left n]
     exact pow_ne_zero 2 hψP
-  have eΦ : (W.baseChange (W⁄K).FunctionField).Φ n = ((W.baseChange K).Φ n).map (algebraMap K (W⁄K).FunctionField) :=
+  have eΦ : (W.baseChange (W⁄K).FunctionField).Φ n = ((W.baseChange K).Φ n).map (algebraMap K
+    (W⁄K).FunctionField) :=
     baseChange_Φ (W := W) (Algebra.ofId K (W⁄K).FunctionField) n
-  have eΨ : (W.baseChange (W⁄K).FunctionField).ΨSq n = ((W.baseChange K).ΨSq n).map (algebraMap K (W⁄K).FunctionField) :=
+  have eΨ : (W.baseChange (W⁄K).FunctionField).ΨSq n = ((W.baseChange K).ΨSq n).map (algebraMap K
+    (W⁄K).FunctionField) :=
     baseChange_ΨSq (W := W) (Algebra.ofId K (W⁄K).FunctionField) n
-  have eψ : (W.baseChange (W⁄K).FunctionField).ψ n = ((W.baseChange K).ψ n).map (mapRingHom (algebraMap K (W⁄K).FunctionField)) :=
+  have eψ : (W.baseChange (W⁄K).FunctionField).ψ n = ((W.baseChange K).ψ n).map (mapRingHom
+    (algebraMap K (W⁄K).FunctionField)) :=
     baseChange_ψ (W := W) (Algebra.ofId K (W⁄K).FunctionField) n
   have eω : ω.map (mapRingHom (algebraMap F (W⁄K).FunctionField)) =
-      (ω.map (mapRingHom (algebraMap F K))).map (mapRingHom (algebraMap K (W⁄K).FunctionField)) := by
+      (ω.map (mapRingHom (algebraMap F K))).map (mapRingHom (algebraMap K (W⁄K).FunctionField)) :=
+        by
     rw [Polynomial.map_map, mapRingHom_comp, ← IsScalarTower.algebraMap_eq F K (W⁄K).FunctionField]
   refine valuation_mulPull_le W K hgood ((W.baseChange K).Φ n) ((W.baseChange K).ΨSq n)
     (ω.map (mapRingHom (algebraMap F K))) ((W.baseChange K).ψ n) ?_ ?_ hP hnP ?_ hΨP ?_ hψP h k hh

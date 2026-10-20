@@ -9,10 +9,11 @@ Licensed under Apache License 2.0
 module
 
 /-
-Copyright: the vendored blocks below are verbatim copies from Mathlib (Apache-2.0; see Mathlib's LICENSE),
-release v4.30.0 = leanprover-community/mathlib4 commit c5ea00351c28e24afc9f0f84379aa41082b1188f, with declarations
-RENAMED (suffix `Finsupp` / trailing prime) so they do not clash with Mathlib v4.33.0. Bodies are the Mathlib v4.30.0 text
-with its docstrings omitted, otherwise byte-identical unless a line is marked `-- [port]`.
+Copyright: the vendored blocks below are verbatim copies from Mathlib (Apache-2.0; see Mathlib's
+LICENSE), release v4.30.0 = leanprover-community/mathlib4 commit
+c5ea00351c28e24afc9f0f84379aa41082b1188f, with declarations RENAMED (suffix `Finsupp` / trailing
+prime) so they do not clash with Mathlib v4.33.0. Bodies are the Mathlib v4.30.0 text with its
+docstrings omitted, otherwise byte-identical unless a line is marked `-- [port]`.
 -/
 
 public import Mathlib.RepresentationTheory.Rep.Basic
@@ -76,7 +77,10 @@ to the argument.
 
 @[expose] public section publicSection
 
-/-! ## Block A — Mathlib v4.30.0 Mathlib/RepresentationTheory/Basic.lean:391-419 (section MulAction), names suffixed `Finsupp` -/
+/-! ## Block A
+
+Mathlib v4.30.0 Mathlib/RepresentationTheory/Basic.lean:391-419 (section MulAction), names suffixed
+`Finsupp` -/
 
 namespace Representation
 
@@ -110,7 +114,9 @@ theorem ofMulActionFinsupp_single (g : G) (x : H) (r : k) :
 
 end MulAction
 
-/-! ## Block B — Mathlib v4.30.0 Mathlib/RepresentationTheory/Basic.lean:472-483 (section Group) -/
+/-! ## Block B
+
+Mathlib v4.30.0 Mathlib/RepresentationTheory/Basic.lean:472-483 (section Group) -/
 
 section Group
 
@@ -144,7 +150,10 @@ end Bridge
 
 end Representation
 
-/-! ## Block C — Mathlib v4.30.0 Mathlib/RepresentationTheory/Rep/Basic.lean:336-346 and 404-412, names suffixed `Finsupp` -/
+/-! ## Block C
+
+Mathlib v4.30.0 Mathlib/RepresentationTheory/Rep/Basic.lean:336-346 and 404-412, names suffixed
+`Finsupp` -/
 
 namespace Rep
 
@@ -184,7 +193,11 @@ theorem leftRegularHomFinsupp_hom_single {A : Rep k G} (g : G) (x : A) (r : k) :
 
 end Rep
 
-/-! ## Block D — AddAut: Mathlib v4.30.0 Mathlib/Algebra/Group/End.lean:746-801 (+ GroupWithZero/Action/Basic.lean:89-92 and :104-112, Ring/AddAut.lean:32), lemma names primed -/
+/-! ## Block D — AddAut
+
+Mathlib v4.30.0 Mathlib/Algebra/Group/End.lean:746-801 (+ GroupWithZero/Action/Basic.lean:89-92
+and :104-112, Ring/AddAut.lean:32), lemma names primed
+-/
 
 namespace AddAut
 
@@ -266,9 +279,14 @@ def DistribMulAction.toAddAut' (G A : Type*) [Group G] [AddMonoid A] [DistribMul
 def AddAut.mulLeft' {R : Type*} [Semiring R] : Rˣ →* AddAut R :=
   DistribMulAction.toAddAut' _ _
 
-/-! ### Block D (continued) — Mathlib v4.30.0 Mathlib/Algebra/GroupWithZero/Action/Basic.lean:104-112: the tautological `DistribMulAction (AddAut A) A`
-(`AddAut.applyDistribMulAction`, its `smul_def` and `apply_faithfulSMul`), dropped in v4.33.0 together with the multiplicative structure;
-vendored with primed names on top of the Group instance above. -/
+/-!
+### Block D (continued)
+
+ Mathlib v4.30.0 Mathlib/Algebra/GroupWithZero/Action/Basic.lean:104-112: the tautological
+ `DistribMulAction (AddAut A) A` `AddAut.applyDistribMulAction`, its `smul_def` and
+ `apply_faithfulSMul`), dropped in v4.33.0 together with the multiplicative structure;
+vendored with primed names on top of the Group instance above.
+-/
 
 namespace AddAut
 instance applyDistribMulAction' {A : Type*} [AddMonoid A] : DistribMulAction (AddAut A) A where
@@ -285,10 +303,13 @@ instance apply_faithfulSMul' {A : Type*} [AddMonoid A] : FaithfulSMul (AddAut A)
   ⟨fun h => AddEquiv.ext h⟩
 end AddAut
 
-/-! ## Block E — elliptic (divisibility) sequence predicates: Mathlib v4.30.0
-Mathlib/NumberTheory/EllipticDivisibilitySequence.lean:78-110 (verbatim; names primed). Vendored because Mathlib v4.33.0 (db584cd6,
-same file :286-295) RENAMED AND REDEFINED them (`IsEllipticSequence W := ∀ p q r, IsEllipticNet.rel W p q r 0 = 0`,
-`IsDvdSequence` over ℤ instead of ℕ) and kept the 4.30 names only as deprecated aliases of the NEW predicates. -/
+/-!
+## Block E — elliptic (divisibility) sequence predicates
+
+Mathlib v4.30. Mathlib/NumberTheory/EllipticDivisibilitySequence.lean:78-110 (verbatim; names
+primed). Vendored because Mathlib v4.33.0 (db584cd6, same file :286-295) RENAMED AND REDEFINED them
+(`IsEllipticSequence W := ∀ p q r, IsEllipticNet.rel W p q r 0 = 0`, `IsDvdSequence` over ℤ instead
+of ℕ) and kept the 4.30 names only as deprecated aliases of the NEW predicates. -/
 
 section IsEllDivSequence430
 
@@ -331,15 +352,20 @@ lemma IsEllDivSequence'.smul (h : IsEllDivSequence' W) (x : R) : IsEllDivSequenc
 
 end IsEllDivSequence430
 
-/-! ## Block F — notation `α ^+ M` for `FixedPoints.addSubgroup M α`: Mathlib v4.30.0 Mathlib/Algebra/Ring/Action/Submonoid.lean:43
-(verbatim). Mathlib v4.33.0 removed the notation line; the definition itself is unchanged, so re-declaring the notation keeps
-every tree statement that uses it textually and semantically identical. -/
+/-! ## Block F: Notation `α ^+ M` for `FixedPoints.addSubgroup M α`
+
+Mathlib v4.30.0 Mathlib/Algebra/Ring/Action/Submonoid.lean:43 (verbatim).
+
+Mathlib v4.33.0 removed the notation line; the definition itself is unchanged, so re-declaring the
+notation keeps every tree statement that uses it textually and semantically identical. -/
 
 notation α "^+" M:51 => FixedPoints.addSubgroup M α
 
-/-! ## Block G — ramification/inertia cardinality lemmas under the separability hypothesis (adapted from Mathlib v4.30.0,
-Mathlib/NumberTheory/RamificationInertia/Galois.lean; v4.33.0 restates them assuming PerfectField of the residue field). Theorems only,
-primed names; no definitions involved. -/
+/-! ## Block G Ramification/inertia cardinality lemmas under the separability hypothesis
+
+(adapted from Mathlib v4.30.0, Mathlib/NumberTheory/RamificationInertia/Galois.lean; v4.33.0
+restates them assuming PerfectField of the residue field). Theorems only, primed names; no
+definitions involved. -/
 
 namespace Ideal
 

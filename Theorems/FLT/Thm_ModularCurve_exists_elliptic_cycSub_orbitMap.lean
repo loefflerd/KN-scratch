@@ -54,7 +54,8 @@ level-$N$ modular function field over $\overline{\mathbb{Q}}$ and the orbits of 
 order $N$ on an elliptic curve with $j$-invariant $j_0$, the order of vanishing of $j - j_0$ at a
 place matching the size of the corresponding orbit. It is used in the proof of
 [`ModularCurve.emd_holds`](thm.html#ModularCurve.emd_holds) and of
-[`ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne`](thm.html#ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne),
+[`ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne`]
+(thm.html#ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne),
 which extracts unramifiedness away from the exceptional $j$-invariants.
 
 ## Explanation of the source proof
@@ -88,7 +89,8 @@ theorem solution (N : ℕ) [NeZero N]
   ModularCurve.exists_elliptic_cycSub_orbitMap_of_props N j₀
     (ModularCurve.TatePoint.fullKernelIsRootAt N) (ModularCurve.TatePoint.fullKernelInjAt N)
     (ModularCurve.TatePoint.fullKernelDiscAt N)
-    (ModularCurve.TatePoint.b3Act_dictN_of_monodromy N j₀ (ModularCurve.TatePoint.fullKernelIsRootAt N)
+    (ModularCurve.TatePoint.b3Act_dictN_of_monodromy N j₀ (ModularCurve.TatePoint.fullKernelIsRootAt
+      N)
       (ModularCurve.TatePoint.fullKernelInjAt N) (ModularCurve.TatePoint.fullKernelDiscAt N))
 
 end S_ModularCurve_exists_elliptic_cycSub_orbitMap

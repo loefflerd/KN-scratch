@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
+Based on Prove2Me node
+AlgebraicCurve.RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
 (aff2c448-5247-5cf8-b286-350bd75e11e5) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 230abd3e-62a3-58f3-a54f-d8134c83ba01
@@ -80,7 +81,9 @@ theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K))
 
 end S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum (solution)
+export
+  P2MW.S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
+  (solution)
 
 end privateSection
 

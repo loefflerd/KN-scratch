@@ -105,11 +105,15 @@ p2m_open "AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint" in
 p2m_open "AlgebraicCurve.\
   RationalFunctionField~exists_eq_placeOfPoint\
   " in
-open _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.RationalFunctionField in
+open
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.RationalFunctionField
+  in
 theorem solution (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
     (v : Place K (RatFunc K)) :
     (∃ a : K, v = placeOfPoint K a) ∨ v = placeInfty K := by
-  rcases AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, hw⟩ | hw
+  rcases AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, hw⟩
+    | hw
   · obtain ⟨a, ha⟩ := exists_eq_placeOfPoint K w
     exact Or.inl ⟨a, hw.trans ha⟩
   · exact Or.inr hw

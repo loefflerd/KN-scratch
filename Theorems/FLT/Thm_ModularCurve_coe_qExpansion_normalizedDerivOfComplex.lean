@@ -51,7 +51,8 @@ defined operator on functions on $\mathbb{H}$ and the purely formal operator
 $q\,\mathrm{d}/\mathrm{d}q$ on Laurent series, the coefficient computation being supplied by
 [`ModularCurve.theta_coeff`](thm.html#ModularCurve.theta_coeff). It is used in the computation of
 the $q$-expansion of the first Rankin–Cohen bracket,
-[`ModularForm.exists_rankinCohen_one_qExpansion_eq`](thm.html#ModularForm.exists_rankinCohen_one_qExpansion_eq).
+[`ModularForm.exists_rankinCohen_one_qExpansion_eq`]
+(thm.html#ModularForm.exists_rankinCohen_one_qExpansion_eq).
 
 ## Explanation of the source proof
 

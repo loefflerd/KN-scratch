@@ -47,7 +47,8 @@ reduction can be carried out on both sides inside $\mathrm{SL}_2(\mathbb{Z})$ ra
 $\mathrm{GL}_2(\mathbb{Z})$. It is used in the study of the modular equation, where a level-one
 modular function is evaluated along the cosets $\mathrm{SL}_2(\mathbb{Z})\binom{a\;b}{0\;d}$ with
 $ad = N$; it is cited by
-[`ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero`](thm.html#ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero).
+[`ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero`]
+(thm.html#ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_coset_eq_zero).
 
 ## Explanation of the source proof
 
@@ -138,7 +139,8 @@ end Matrix.SpecialLinearGroup.PrimitiveSmith
 theorem solution
     {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
     ∃ γ₁ γ₂ : Matrix.SpecialLinearGroup (Fin 2) ℤ,
-      !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ : Matrix (Fin 2) (Fin 2) ℤ) :=
+      !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ : Matrix
+        (Fin 2) (Fin 2) ℤ) :=
   Matrix.SpecialLinearGroup.PrimitiveSmith.main hN had hgcd
 
 end S_Matrix_SpecialLinearGroup_exists_eq_mul_diagonal_mul_of_gcd_eq_one
@@ -152,7 +154,8 @@ public section publicSection
 theorem Matrix.SpecialLinearGroup.exists_eq_mul_diagonal_mul_of_gcd_eq_one
     {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
     ∃ γ₁ γ₂ : Matrix.SpecialLinearGroup (Fin 2) ℤ,
-      !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ : Matrix (Fin 2) (Fin 2) ℤ) :=
+      !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ : Matrix
+        (Fin 2) (Fin 2) ℤ) :=
   solution hN had hgcd
 
 end publicSection

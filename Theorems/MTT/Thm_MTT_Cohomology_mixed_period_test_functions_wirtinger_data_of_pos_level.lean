@@ -176,7 +176,8 @@ theorem MTT.Cohomology.mixed_period_test_functions_wirtinger_data_of_pos_level
             (fderiv ℝ A₂ z 1 - Complex.I * fderiv ℝ A₂ z Complex.I) =
           -conj (periodContraction (k - 2)
             (q z • periodPower (k - 2) (z : ℂ))
-            (conj (v z) • periodPower (k - 2) (conj (z : ℂ))))) := _root_.solution hN hk g v q U hU R
+            (conj (v z) • periodPower (k - 2) (conj (z : ℂ))))) := _root_.solution hN hk g v q U hU
+              R
 end
 
 end publicSection

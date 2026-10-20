@@ -41,7 +41,8 @@ This is the routine observation that the class of a degree-zero divisor is kille
 which $mD$ is principal, recorded with natural-number scalars because the order of an element is
 expressed over $\mathbb{N}$ while divisor coefficients live in $\mathbb{Z}$. It is used to bound the
 order of a divisor class, in
-[`AlgebraicCurve.Pic0.addOrderOf_mk_dvd_of_isPrincipal`](thm.html#AlgebraicCurve.Pic0.addOrderOf_mk_dvd_of_isPrincipal).
+[`AlgebraicCurve.Pic0.addOrderOf_mk_dvd_of_isPrincipal`]
+(thm.html#AlgebraicCurve.Pic0.addOrderOf_mk_dvd_of_isPrincipal).
 
 ## Explanation of the source proof
 

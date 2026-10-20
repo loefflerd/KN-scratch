@@ -62,7 +62,8 @@ open scoped nonZeroDivisors
 
 theorem solution {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K]
     [IsFractionRing R K] (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) :
-    v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) := by
+    v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x))
+      := by
   classical
   obtain ⟨r, s, rfl⟩ := IsLocalization.exists_mk'_eq R⁰ x
   have hr : r ≠ 0 := by
@@ -104,7 +105,8 @@ open scoped nonZeroDivisors
 theorem IsDedekindDomain.HeightOneSpectrum.valuation_eq_exp_neg_count {R : Type*} [CommRing R]
     [IsDedekindDomain R] (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]
     (v : IsDedekindDomain.HeightOneSpectrum R) {x : K} (hx : x ≠ 0) :
-    v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x)) :=
+    v.valuation K x = WithZero.exp (-FractionalIdeal.count K v (FractionalIdeal.spanSingleton R⁰ x))
+      :=
   solution K v hx
 
 end publicSection

@@ -159,7 +159,8 @@ theorem coeff_qExpansion_eisensteinOdd (χ : DirichletCharacter ℂ L) (n : ℕ)
   · have hcond : χ.Odd ∧ χ.IsPrimitive := ⟨hodd, isPrimitive_of_odd L hprim hodd⟩
     have hE := (ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd L χ
       hcond.2 hcond.1).choose_spec
-    have hdef : eisensteinOdd L χ = (ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
+    have hdef : eisensteinOdd L χ =
+      (ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
         L χ hcond.2 hcond.1).choose := by
       simp only [eisensteinOdd, dite_eq_left hcond]
     rw [ite_eq_left hodd, hdef]
@@ -182,11 +183,13 @@ theorem qExpansion_oddEisensteinSum :
   exact this
 
 theorem coeff_zero_oddEisensteinSum :
-    (4 * L : ℂ) * (qExpansion 1 ⇑(oddEisensteinSum L)).coeff 0 = (L.totient : ℂ) * ((L : ℂ) - 2) := by
+    (4 * L : ℂ) * (qExpansion 1 ⇑(oddEisensteinSum L)).coeff 0 = (L.totient : ℂ) * ((L : ℂ) - 2)
+      := by
   classical
   rw [qExpansion_oddEisensteinSum L, map_sum]
   have hterm : ∀ χ : DirichletCharacter ℂ L, (qExpansion 1 ⇑(eisensteinOdd L χ)).coeff 0 =
-      (if χ.Odd then -(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L) else 0) := fun χ => by
+      (if χ.Odd then -(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L) else 0) := fun χ
+        => by
     rw [coeff_qExpansion_eisensteinOdd L hprim, ite_eq_left rfl]
   rw [Finset.sum_congr rfl (fun χ _ => hterm χ)]
   have hswap : ∑ χ : DirichletCharacter ℂ L,
@@ -209,7 +212,8 @@ theorem coeff_zero_oddEisensteinSum :
       (L.totient : ℂ) * (2 - L) := by
     rw [Finset.mul_sum]
     have : ∀ a ∈ Finset.range L, 2 * ((a : ℂ) * oddCharSum L (a : ZMod L)) =
-        (L.totient : ℂ) * ((if a = 1 then (a : ℂ) else 0) - (if a = L - 1 then (a : ℂ) else 0)) := by
+        (L.totient : ℂ) * ((if a = 1 then (a : ℂ) else 0) - (if a = L - 1 then (a : ℂ) else 0))
+          := by
       intro a ha
       rw [Finset.mem_range] at ha
       rw [mul_left_comm, two_mul_oddCharSum]
@@ -247,7 +251,8 @@ theorem coeff_zero_oddEisensteinSum :
 
 omit hL in
 theorem coeff_pos_oddEisensteinSum {n : ℕ} (hn : 0 < n) :
-    2 * (qExpansion 1 ⇑(oddEisensteinSum L)).coeff n = (L.totient : ℂ) * (divisorSignCount L n : ℂ) := by
+    2 * (qExpansion 1 ⇑(oddEisensteinSum L)).coeff n = (L.totient : ℂ) * (divisorSignCount L n : ℂ)
+      := by
   classical
   rw [qExpansion_oddEisensteinSum L, map_sum]
   simp_rw [coeff_qExpansion_eisensteinOdd L hprim, ite_eq_right (Nat.pos_iff_ne_zero.mp hn)]
@@ -258,7 +263,8 @@ theorem coeff_pos_oddEisensteinSum {n : ℕ} (hn : 0 < n) :
   simp_rw [this]
   rw [Finset.sum_comm, Finset.mul_sum]
   have : ∀ d ∈ n.divisors, 2 * ∑ χ : DirichletCharacter ℂ L, (if χ.Odd then χ (d : ZMod L) else 0) =
-      (L.totient : ℂ) * ((if (d : ZMod L) = 1 then 1 else 0) - (if (d : ZMod L) = -1 then 1 else 0)) := by
+      (L.totient : ℂ) * ((if (d : ZMod L) = 1 then 1 else 0) - (if (d : ZMod L) = -1 then 1 else 0))
+        := by
     intro d _
     exact two_mul_oddCharSum L (d : ZMod L)
   rw [Finset.sum_congr rfl this, ← Finset.mul_sum, Finset.sum_sub_distrib, Finset.sum_boole,
@@ -330,7 +336,8 @@ theorem exists_isIntegralQExp_thetaLikeSeries (L : ℕ) [NeZero L] (hL : 2 < L)
     (m c₀ : ℕ) (hmc : c₀ * (2 * L) = m * (L - 2)) :
     ∃ f : ModularForm (Gamma1 L) 1, IsIntegralQExp f (thetaLikeSeries L m c₀) := by
   obtain ⟨f, h0, hpos⟩ :=
-    ModularForm.exists_weightOne_qExpansion_coeff_eq_card_filter_of_forall_isPrimitive L hL hprim m c₀ hmc
+    ModularForm.exists_weightOne_qExpansion_coeff_eq_card_filter_of_forall_isPrimitive L hL hprim m
+      c₀ hmc
   refine ⟨f, ?_⟩
   rw [IsIntegralQExp]
   ext n
@@ -393,7 +400,8 @@ theorem nonempty_integralWeightOneForm_of_dvd (κ : Type) [Field κ] {L M : ℕ}
   have hle : ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤
       ((Gamma1 L : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) :=
     Subgroup.map_mono (Gamma1_le_of_dvd hLM)
-  refine ⟨{ form := restrictForm hle f, series := s, isIntegralQExp := hfs, intSeriesC_ne_zero := ?_ }⟩
+  refine ⟨{ form := restrictForm hle f, series := s, isIntegralQExp := hfs, intSeriesC_ne_zero := ?_
+    }⟩
   intro h0
   apply hn
   have h1 : s.map (Int.castRingHom κ) = 0 :=
@@ -423,7 +431,8 @@ theorem solution
       simpa [ModularCurve.WeightOneEisensteinSum.thetaLikeSeries, PowerSeries.coeff_mk] using h0
     · rw [not_ne_iff, Int.cast_natCast] at h0
       refine ModularCurve.nonempty_integralWeightOneForm_of_dvd κ hLM f _ hf 1 ?_
-      have hc1 : PowerSeries.coeff 1 (ModularCurve.WeightOneEisensteinSum.thetaLikeSeries L (2 * L) (L - 2)) =
+      have hc1 : PowerSeries.coeff 1 (ModularCurve.WeightOneEisensteinSum.thetaLikeSeries L (2 * L)
+        (L - 2)) =
           2 * L := by
         have : Fact (2 < L) := ⟨hL2⟩
         have hneg : ¬ ((1 : ZMod L) = -1) := fun h => ZMod.neg_one_ne_one h.symm

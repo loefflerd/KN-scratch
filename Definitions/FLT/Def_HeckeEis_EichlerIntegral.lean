@@ -92,7 +92,8 @@ def linePow (τ : ℂ) : ↥(BinaryForm ℂ n) :=
     ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = (C τ * X 0 + X 1) ^ n := rfl
 
 def jFactor (g : SL(2, ℤ)) (τ : ℍ) :
-    ℂ := ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
+    ℂ := ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 :
+      ℂ)
 
 theorem jFactor_eq_denom (g : SL(2, ℤ)) (τ : ℍ) :
     jFactor g τ = denom (Matrix.SpecialLinearGroup.mapGL ℝ g) (τ : ℂ) := by
@@ -105,7 +106,8 @@ theorem jFactor_ne_zero (g : SL(2, ℤ)) (τ : ℍ) : jFactor g τ ≠ 0 := by
 
 theorem coe_smul_mul_jFactor (g : SL(2, ℤ)) (τ : ℍ) :
     ((g • τ : ℍ) : ℂ) * jFactor g τ
-      = ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) := by
+      = ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 :
+        ℂ) := by
   rw [coe_specialLinearGroup_apply]
   have hj := jFactor_ne_zero g τ
   simp only [jFactor, eq_intCast, Complex.ofReal_intCast] at hj ⊢
@@ -118,7 +120,8 @@ theorem binarySubst_line (M : Matrix (Fin 2) (Fin 2) ℤ) (τ : ℂ) :
   ring
 
 theorem binaryFormRepSL_linePow (g : SL(2, ℤ)) (τ : ℍ) :
-    binaryFormRepSL ℂ n g (linePow n (τ : ℂ)) = (jFactor g τ) ^ n • linePow n ((g • τ : ℍ) : ℂ) := by
+    binaryFormRepSL ℂ n g (linePow n (τ : ℂ)) = (jFactor g τ) ^ n • linePow n ((g • τ : ℍ) : ℂ) :=
+      by
   apply Subtype.ext
   rw [binaryFormRepSL_apply_coe, Submodule.coe_smul, coe_linePow, coe_linePow, map_pow,
     binarySubst_line,
@@ -173,8 +176,10 @@ variable (n : ℕ)
 
 def IsEichlerIntegral (f : ℍ → ℂ) (F : ℍ → ↥(BinaryForm ℂ n)) : Prop :=
   ∀ (d : Fin 2 →₀ ℕ) (τ : ℍ),
-    HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((F (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
-      (f τ * AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d) (τ : ℂ)
+    HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((F (ofComplex z) : ↥(BinaryForm ℂ n)) :
+      MvPolynomial (Fin 2) ℂ) d)
+      (f τ * AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+        ℂ) d) (τ : ℂ)
 
 variable (N : ℕ)
 
@@ -195,12 +200,15 @@ theorem eichlerShimuraMap_def (f : ℍ → ℂ) {F : ℍ → ↥(BinaryForm ℂ 
     ∃ (F₀ : ℍ → ↥(BinaryForm ℂ n)) (_ : IsEichlerIntegral n f F₀)
       (h₀ : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F₀)
       (hpar₀ : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) h₀.cocycle),
-      eichlerShimuraMap n N f = coeffH1parMk _ ⟨h₀.cocycle, ⟨h₀.cocycle_mem_coeffCocycles, hpar₀⟩⟩ := by
+      eichlerShimuraMap n N f = coeffH1parMk _ ⟨h₀.cocycle, ⟨h₀.cocycle_mem_coeffCocycles, hpar₀⟩⟩
+        := by
   classical
   have h : ∃ F : ℍ → ↥(BinaryForm ℂ n), IsEichlerIntegral n f F ∧
       ∃ hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F,
-        IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) hF.cocycle := ⟨F, hEI, hF, hpar⟩
-  exact ⟨h.choose, h.choose_spec.1, h.choose_spec.2.choose, h.choose_spec.2.choose_spec, dite_eq_left h⟩
+        IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) hF.cocycle := ⟨F, hEI,
+          hF, hpar⟩
+  exact ⟨h.choose, h.choose_spec.1, h.choose_spec.2.choose, h.choose_spec.2.choose_spec,
+    dite_eq_left h⟩
 
 theorem eichlerShimuraMap_of_not_exists (f : ℍ → ℂ)
     (h : ¬ ∃ F : ℍ → ↥(BinaryForm ℂ n), IsEichlerIntegral n f F ∧

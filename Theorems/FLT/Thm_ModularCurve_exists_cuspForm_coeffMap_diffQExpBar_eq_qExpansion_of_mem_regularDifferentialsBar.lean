@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
+Based on Prove2Me node
+ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
 (1fa447ab-933b-5209-83b9-b9eca9a63e48) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 58538eff-0347-5df8-bfc7-7e524e1fd05e
@@ -49,9 +50,11 @@ width $1$.
 This is the $\Omega \to S_2$ half of the $q$-expansion dictionary between global regular
 differentials on $X_0(N)$ over $\overline{\mathbb Q}$ and weight-two cusp forms on $\Gamma_0(N)$, in
 the direction producing a cusp form from a differential. It is used in the proof of the genus bound
-[`CuspForm.genusFormula_le_finrank_gamma0_weight_two`](thm.html#CuspForm.genusFormula_le_finrank_gamma0_weight_two)
+[`CuspForm.genusFormula_le_finrank_gamma0_weight_two`]
+(thm.html#CuspForm.genusFormula_le_finrank_gamma0_weight_two)
 and in the construction of the linear equivalence
-[`ModularCurve.exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero`](thm.html#ModularCurve.exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero)
+[`ModularCurve.exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero`]
+(thm.html#ModularCurve.exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero)
 between the differentials of a rational model and the integral lattice of cusp forms.
 
 ## Explanation of the source proof
@@ -78,7 +81,8 @@ namespace C2primeGlue
 variable (N : ℕ) [NeZero N]
 
 abbrev jB : modularFunctionFieldBar N :=
-  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionField_le_full N (jq_mem N))⟩
+  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+    (modularFunctionField_le_full N (jq_mem N))⟩
 
 theorem coeffMap_qEuler {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (s : LaurentSeries R)
     :
@@ -124,7 +128,8 @@ theorem coeffMap_mem_laurentBaseChange_complex (ι₀ : AlgebraicClosure ℚ →
 
 noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) :
     modularFunctionFieldBar N →+* LaurentSeries ℂ :=
-  (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)).toSubfield.subtype
+  (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull
+    N)).toSubfield.subtype
 
 omit [NeZero N] in
 theorem phi_apply (ι₀ : AlgebraicClosure ℚ →+* ℂ) (x : modularFunctionFieldBar N) :
@@ -144,7 +149,8 @@ theorem phi_jB (ι₀ : AlgebraicClosure ℚ →+* ℂ) : phi N ι₀ (jB N) = c
 omit [NeZero N] in
 theorem isIntegral_phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) (a : modularFunctionFieldBar N)
     {y : modularFunctionFieldBar N}
-    (hy : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N))) y) :
+    (hy : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N)))
+      y) :
     IsIntegral (Algebra.adjoin ℂ ({phi N ι₀ a} : Set (LaurentSeries ℂ))) (phi N ι₀ y) := by
   have hmem : ∀ r : modularFunctionFieldBar N,
       r ∈ Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N)) →
@@ -162,7 +168,8 @@ theorem isIntegral_phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) (a : modularFunc
     | mul r s _ _ hr hs => rw [map_mul]; exact mul_mem hr hs
   let ψ : Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N)) →+*
       Algebra.adjoin ℂ ({phi N ι₀ a} : Set (LaurentSeries ℂ)) :=
-    ((phi N ι₀).comp (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N))).val.toRingHom).codRestrict
+    ((phi N ι₀).comp (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar
+      N))).val.toRingHom).codRestrict
       (Algebra.adjoin ℂ ({phi N ι₀ a} : Set (LaurentSeries ℂ))) (fun r => hmem r r.2)
   refine IsIntegral.map_of_comp_eq ψ (phi N ι₀) ?_ hy
   ext r
@@ -170,14 +177,17 @@ theorem isIntegral_phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) (a : modularFunc
 
 theorem D_jB_ne_zero : D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N) ≠ 0 := by
   intro h
-  have h1 : diffQExp (modularFunctionFieldBar N) (D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N)) =
-      qEuler (AlgebraicClosure ℚ) ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) :=
+  have h1 : diffQExp (modularFunctionFieldBar N) (D (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
+    (jB N)) =
+      qEuler (AlgebraicClosure ℚ) ((jB N : modularFunctionFieldBar N) : LaurentSeries
+        (AlgebraicClosure ℚ)) :=
     diffQExp_D _ _
   rw [h, map_zero] at h1
   have h2 := congrArg (fun s : LaurentSeries (AlgebraicClosure ℚ) => s.coeff (-1)) h1
   simp only at h2
   rw [qEuler_coeff] at h2
-  have h3 : ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)).coeff (-1) = 1 :=
+  have h3 : ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)).coeff (-1) = 1
+    :=
     by
     change (coeffEmb (AlgebraicClosure ℚ) jq).coeff (-1) = 1
     rw [coeffEmb_coeff, coeff_jq_neg_one, map_one]
@@ -199,7 +209,8 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
       Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] = 1 := IsCurveOver.finrank_kaehler
   obtain ⟨x, hx⟩ := (finrank_eq_one_iff_of_nonzero'
     (D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N)) (D_jB_ne_zero N)).mp hrank ω
-  have hxreg : x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N) ∈ regularDifferentialsBar N :=
+  have hxreg : x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N) ∈
+    regularDifferentialsBar N :=
     by
     rw [hx]; exact hω
   obtain ⟨h₁, h₂⟩ :=
@@ -221,7 +232,8 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
   refine ⟨f, ?_⟩
   have hΘ : ModularCurve.diffQExpBar N ω =
       ((x : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) *
-        qEuler (AlgebraicClosure ℚ) ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) := by
+        qEuler (AlgebraicClosure ℚ) ((jB N : modularFunctionFieldBar N) : LaurentSeries
+          (AlgebraicClosure ℚ)) := by
     rw [← hx]
     exact diffQExp_smul_D _ _ _
   rw [hf, hΘ, map_mul, coeffMap_qEuler, qEuler_eq_thetaL, ← phi_apply, ← phi_apply, hJ]
@@ -230,7 +242,9 @@ end
 
 end S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
 end P2MW
-export P2MW.S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar (solution)
+export
+  P2MW.S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
+  (solution)
 
 end privateSection
 
@@ -238,7 +252,8 @@ public section publicSection
 
 
 open ModularCurve
-theorem ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
+theorem
+  ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
     (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
     (ω : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ])
     (hω : ω ∈ ModularCurve.regularDifferentialsBar N) :

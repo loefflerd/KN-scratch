@@ -54,7 +54,8 @@ This is the analytic input, cusp by cusp, to the statement that a quotient $g/h$
 with finite non-zero limit at the cusp $\gamma^{-1}(i\infty)$ has no pole there: the element of the
 function field $K$ realising $g/h$ has $q$-expansion without polar terms after applying
 $\sigma_\gamma$. It is used by
-[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`](thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto).
+[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`]
+(thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto).
 
 ## Explanation of the source proof
 
@@ -434,7 +435,8 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
       mdiff := hf.mdiff
       bdd := hf.bdd }
   have hcoeff : ∀ m, c m = (qExpansion N f).coeff m := by
-    have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ) (τ : ℂ) ^ m) (f τ) :=
+    have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ) (τ :
+      ℂ) ^ m) (f τ) :=
       fun τ => hasSum_qExpansion hNpos hgoodN.periodic hgoodN.mdiff hgoodN.bdd τ
     have h1 :=
       (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN).hasFPowerSeriesAt
@@ -601,7 +603,8 @@ theorem order_eq_of_tendsto_div {N : ℕ} [NeZero N] {G H : ℍ → ℂ} (hG : G
           have hz0 : Periodic.qParam (N : ℝ) (τ : ℂ) ≠ 0 := Complex.exp_ne_zero _
           rw [idG τ, idH τ, hd, mul_div_mul_comm, show a + d + 1 = (d + 1) + a by ring, pow_add,
             mul_div_cancel_right₀ _ (pow_ne_zero _ hz0)]
-        have h1 : Tendsto (fun τ : ℍ => Periodic.qParam (N : ℝ) (τ : ℂ) ^ (d + 1)) atImInfty (𝓝 0) :=
+        have h1 : Tendsto (fun τ : ℍ => Periodic.qParam (N : ℝ) (τ : ℂ) ^ (d + 1)) atImInfty (𝓝 0)
+          :=
           by
           have := hq.pow (d + 1)
           rwa [zero_pow (Nat.succ_ne_zero d)] at this
@@ -619,7 +622,8 @@ theorem order_eq_of_tendsto_div {N : ℕ} [NeZero N] {G H : ℍ → ℂ} (hG : G
           have hz0 : Periodic.qParam (N : ℝ) (τ : ℂ) ≠ 0 := Complex.exp_ne_zero _
           rw [idG τ, idH τ, hd, mul_div_mul_comm, show b + d + 1 = (d + 1) + b by ring, pow_add,
             mul_div_cancel_right₀ _ (pow_ne_zero _ hz0)]
-        have h1 : Tendsto (fun τ : ℍ => Periodic.qParam (N : ℝ) (τ : ℂ) ^ (d + 1)) atImInfty (𝓝 0) :=
+        have h1 : Tendsto (fun τ : ℍ => Periodic.qParam (N : ℝ) (τ : ℂ) ^ (d + 1)) atImInfty (𝓝 0)
+          :=
           by
           have := hq.pow (d + 1)
           rwa [zero_pow (Nat.succ_ne_zero d)] at this
@@ -727,7 +731,8 @@ theorem solution
         E (algebraMap (ModularCurve.LevelN.ring M) K ⟨F, hF⟩) *
             HahnSeries.ofPowerSeries ℤ ℂ
               (UpperHalfPlane.qExpansion M (ModularForm.discriminant : UpperHalfPlane → ℂ)) ^ m =
-          HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion M (F * ModularForm.discriminant ^ m)))
+          HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion M (F * ModularForm.discriminant ^
+            m)))
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hΓ : CongruenceSubgroup.Gamma M ≤ Γ)
     (hT : ModularGroup.T ∈ Γ)
     {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) (z : K)
@@ -737,7 +742,8 @@ theorem solution
         ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (γ : SL(2, ℤ)) (L : ℂ) (hL : L ≠ 0)
     (hlim : Filter.Tendsto
-      (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ))
+      (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹
+        • τ))
       atImInfty (𝓝 L)) :
     Valued.v (E (σ γ z)) ≤ 1 := by
   classical
@@ -779,9 +785,11 @@ theorem solution
   have gd2 : Good M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) :=
     good_of_PB M hb'A hPb
   have hQΔ : Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ≠ 0 := Q_discriminant_ne_zero M
-  have hEa : E (algebraMap (ModularCurve.LevelN.ring M) K ⟨a', ha'A⟩) * Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m =
+  have hEa : E (algebraMap (ModularCurve.LevelN.ring M) K ⟨a', ha'A⟩) * Q M
+    (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m =
       Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) := hEq a' ha'A m hPa
-  have hEb : E (algebraMap (ModularCurve.LevelN.ring M) K ⟨b', hb'A⟩) * Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m =
+  have hEb : E (algebraMap (ModularCurve.LevelN.ring M) K ⟨b', hb'A⟩) * Q M
+    (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m =
       Q M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) := hEq b' hb'A m hPb
   have hb'ne : b' ≠ 0 := by
     intro h0
@@ -792,7 +800,8 @@ theorem solution
   have hQb : Q M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) ≠ 0 := by
     rw [ne_eq, Q_eq_zero_iff hMpos gd2, mul_discriminant_pow_eq_zero_iff]
     exact hb'ne
-  have hEz : E (σ γ z) = Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) / Q M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) :=
+  have hEz : E (σ γ z) = Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) / Q M (b' *
+    (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) :=
     by
     rw [hzσ, map_div₀, ← hEa, ← hEb, mul_div_mul_right _ _ (pow_ne_zero _ hQΔ)]
   obtain ⟨n₁, hn₁⟩ := exists_isBoundedAtImInfty_mul_pow M haA
@@ -806,23 +815,28 @@ theorem solution
     good_of_PB M haA hPa0
   have gdb : Good M (bf * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) :=
     good_of_PB M hbA hPb0
-  have hEa0 : E (algebraMap (ModularCurve.LevelN.ring M) K a) * Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n =
+  have hEa0 : E (algebraMap (ModularCurve.LevelN.ring M) K a) * Q M (ModularForm.discriminant :
+    UpperHalfPlane → ℂ) ^ n =
       Q M (af * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) := hEq af haA n hPa0
-  have hEb0 : E (algebraMap (ModularCurve.LevelN.ring M) K b) * Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n =
+  have hEb0 : E (algebraMap (ModularCurve.LevelN.ring M) K b) * Q M (ModularForm.discriminant :
+    UpperHalfPlane → ℂ) ^ n =
       Q M (bf * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) := hEq bf hbA n hPb0
   have hQb0 : Q M (bf * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) ≠ 0 := by
     rw [ne_eq, Q_eq_zero_iff hMpos gdb, mul_discriminant_pow_eq_zero_iff]
     exact hb0
   have gdh : Good M (h : UpperHalfPlane → ℂ) := good_nat_modularForm M hT h
   have gdg : Good M (g : UpperHalfPlane → ℂ) := good_nat_modularForm M hT g
-  have hQh : Q M (h : UpperHalfPlane → ℂ) = ModularCurve.qExpand ℂ M (Q 1 (h : UpperHalfPlane → ℂ)) :=
+  have hQh : Q M (h : UpperHalfPlane → ℂ) = ModularCurve.qExpand ℂ M (Q 1 (h : UpperHalfPlane → ℂ))
+    :=
     Q_natCast_eq_qExpand M (good_one_modularForm hT h)
-  have hQg : Q M (g : UpperHalfPlane → ℂ) = ModularCurve.qExpand ℂ M (Q 1 (g : UpperHalfPlane → ℂ)) :=
+  have hQg : Q M (g : UpperHalfPlane → ℂ) = ModularCurve.qExpand ℂ M (Q 1 (g : UpperHalfPlane → ℂ))
+    :=
     Q_natCast_eq_qExpand M (good_one_modularForm hT g)
   have hz' : E z * Q M (h : UpperHalfPlane → ℂ) = Q M (g : UpperHalfPlane → ℂ) := by
     rw [hQh, hQg]
     exact hz
-  have hEz0 : E z = Q M (af * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) / Q M (bf * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) :=
+  have hEz0 : E z = Q M (af * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) / Q M (bf *
+    (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n) :=
     by
     rw [← hzab, map_div₀, ← hEa0, ← hEb0, mul_div_mul_right _ _ (pow_ne_zero _ hQΔ)]
   have hfun : af * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ n * (h : UpperHalfPlane → ℂ) =
@@ -830,7 +844,8 @@ theorem solution
     apply eq_of_Q_eq hMpos (gda.mul gdh) (gdb.mul gdg)
     rw [Q_mul hMpos gda gdh, Q_mul hMpos gdb gdg, ← hz', hEz0]
     field_simp
-  have hrel : ∀ τ : UpperHalfPlane, af τ * (h : UpperHalfPlane → ℂ) τ = bf τ * (g : UpperHalfPlane → ℂ) τ :=
+  have hrel : ∀ τ : UpperHalfPlane, af τ * (h : UpperHalfPlane → ℂ) τ = bf τ * (g : UpperHalfPlane →
+    ℂ) τ :=
     by
     intro τ
     have := congrFun hfun τ
@@ -840,16 +855,19 @@ theorem solution
     have := mul_right_cancel₀ hΔ (by
       calc af τ * (h : UpperHalfPlane → ℂ) τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n
           = af τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (h : UpperHalfPlane → ℂ) τ := by ring
-        _ = bf τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (g : UpperHalfPlane → ℂ) τ := this
+        _ = bf τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (g : UpperHalfPlane → ℂ)
+          τ := this
         _ = bf τ * (g : UpperHalfPlane → ℂ) τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n := by ring)
     exact this
   have hev1 : ∀ᶠ τ : UpperHalfPlane in atImInfty,
       (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ) ≠ 0 :=
     hlim.eventually_ne hL
-  have hev2 : ∀ᶠ τ : UpperHalfPlane in atImInfty, (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) τ ≠ 0 :=
+  have hev2 : ∀ᶠ τ : UpperHalfPlane in atImInfty, (b' * (ModularForm.discriminant : UpperHalfPlane →
+    ℂ) ^ m) τ ≠ 0 :=
     eventually_ne_zero_atImInfty gd2 (qExpansion_ne_zero_of_Q_ne_zero hQb)
   have hlim' : Tendsto (fun τ : UpperHalfPlane =>
-      (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) τ / (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) τ) atImInfty (𝓝 L) := by
+      (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) τ / (b' * (ModularForm.discriminant
+        : UpperHalfPlane → ℂ) ^ m) τ) atImInfty (𝓝 L) := by
     refine hlim.congr' ?_
     filter_upwards [hev1, hev2] with τ h1 h2
     have hh' : (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ) ≠ 0 := fun h0 => h1 (by rw [h0, div_zero])
@@ -862,14 +880,16 @@ theorem solution
       pow_ne_zero _ (ModularForm.discriminant_ne_zero τ)
     simp only [Pi.mul_apply, Pi.pow_apply]
     rw [mul_div_mul_right _ _ hΔ, div_eq_div_iff hh' hb'τ]
-    change (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) * bf (γ⁻¹ • τ) = af (γ⁻¹ • τ) * (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ)
+    change (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) * bf (γ⁻¹ • τ) = af (γ⁻¹ • τ) * (h : UpperHalfPlane →
+      ℂ) (γ⁻¹ • τ)
     linear_combination -hr
   by_cases hQa : Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) = 0
   · intro n hn
     rw [hEz, hQa, zero_div, HahnSeries.coeff_zero]
   · have hord := order_eq_of_tendsto_div gd1 gd2 (qExpansion_ne_zero_of_Q_ne_zero hQa)
       (qExpansion_ne_zero_of_Q_ne_zero hQb) hL hlim'
-    have horder : (Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) / Q M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m)).order = 0 :=
+    have horder : (Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) / Q M (b' *
+      (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m)).order = 0 :=
       by
       rw [div_eq_mul_inv, HahnSeries.order_mul hQa (inv_ne_zero hQb), order_inv_laurent hQb, Q, Q,
         order_ofPowerSeries (qExpansion_ne_zero_of_Q_ne_zero hQa),
@@ -910,7 +930,8 @@ theorem ModularCurve.LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul
         E (algebraMap (ModularCurve.LevelN.ring M) K ⟨F, hF⟩) *
             HahnSeries.ofPowerSeries ℤ ℂ
               (UpperHalfPlane.qExpansion M (ModularForm.discriminant : UpperHalfPlane → ℂ)) ^ m =
-          HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion M (F * ModularForm.discriminant ^ m)))
+          HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion M (F * ModularForm.discriminant ^
+            m)))
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hΓ : CongruenceSubgroup.Gamma M ≤ Γ)
     (hT : ModularGroup.T ∈ Γ)
     {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) (z : K)
@@ -920,7 +941,8 @@ theorem ModularCurve.LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul
         ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (γ : SL(2, ℤ)) (L : ℂ) (hL : L ≠ 0)
     (hlim : Filter.Tendsto
-      (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ))
+      (fun τ : UpperHalfPlane => (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹
+        • τ))
       atImInfty (𝓝 L)) :
     Valued.v (E (σ γ z)) ≤ 1 :=
   solution M K hst σ hσ E hEj hEq Γ hΓ hT g h hh z hz γ L hL hlim

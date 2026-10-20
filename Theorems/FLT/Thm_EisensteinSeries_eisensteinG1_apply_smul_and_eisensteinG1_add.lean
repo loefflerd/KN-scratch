@@ -141,7 +141,8 @@ theorem eisensteinG1_smul (N : ℕ) (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
   generalize weierstrassZeta τ (om τ (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) / N) = Zv
   have hx : (((γ 0 0 : ℤ) : ℂ) * τ + ((γ 0 1 : ℤ) : ℂ)) / denom γ τ *
       (denom γ τ ^ 2 * G2 τ - 2 * π * I * ((γ 1 0 : ℤ) : ℂ) * denom γ τ) =
-      (((γ 0 0 : ℤ) : ℂ) * τ + ((γ 0 1 : ℤ) : ℂ)) * (denom γ τ * G2 τ - 2 * π * I * ((γ 1 0 : ℤ) : ℂ)) := by
+      (((γ 0 0 : ℤ) : ℂ) * τ + ((γ 0 1 : ℤ) : ℂ)) * (denom γ τ * G2 τ - 2 * π * I * ((γ 1 0 : ℤ) :
+        ℂ)) := by
     field_simp
   rw [hx, hDe]
   linear_combination (-(2 * π * I * (v 0 : ℂ) * (1 / (N : ℂ)) * (1 / (N : ℂ)))) * hdet
@@ -265,7 +266,8 @@ theorem solution (N : ℕ) [NeZero N] (τ : UpperHalfPlane) :
           UpperHalfPlane.denom γ τ *
             EisensteinSeries.eisensteinG1 N (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ)) τ) ∧
     (∀ v w : Fin 2 → ℤ, (¬ ∀ i, (N : ℤ) ∣ v i) →
-        EisensteinSeries.eisensteinG1 N (v + (N : ℤ) • w) τ = EisensteinSeries.eisensteinG1 N v τ) :=
+        EisensteinSeries.eisensteinG1 N (v + (N : ℤ) • w) τ = EisensteinSeries.eisensteinG1 N v τ)
+          :=
   ⟨fun γ v => WZC.eisensteinG1_smul τ N γ v, fun v w hv => WZC.eisensteinG1_add τ N v w hv⟩
 
 end S_EisensteinSeries_eisensteinG1_apply_smul_and_eisensteinG1_add

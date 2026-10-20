@@ -210,7 +210,8 @@ def heckeDiffAlong :
 
 theorem heckeDiffAlong_apply (ω : Ω[laurentBaseChange L (modularFunctionFieldFull N)⁄L]) :
     heckeDiffAlong L N ℓ ω =
-      Differential.traceAlong (heckeBetaBar L N ℓ) (Differential.pullbackAlong (heckeAlphaBar L N ℓ) ω) :=
+      Differential.traceAlong (heckeBetaBar L N ℓ) (Differential.pullbackAlong (heckeAlphaBar L N ℓ)
+        ω) :=
   rfl
 
 end Hecke

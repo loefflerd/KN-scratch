@@ -64,7 +64,8 @@ open ModularCurve AlgebraicCurve
 open scoped Pointwise
 
 theorem solution (N : ℕ) [NeZero N] :
-    IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ : modularFunctionFieldBar N) (cuspInftyBar N) := by
+    IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+      (jq_mem_full N)⟩ : modularFunctionFieldBar N) (cuspInftyBar N) := by
   rw [ModularCurve.isCusp_iff_ord_neg, ModularCurve.ord_cuspInftyBar_coeffEmb_jq]
   norm_num
 
@@ -79,7 +80,8 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.isCusp_cuspInftyBar (N : ℕ) [NeZero N] :
-    IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ : modularFunctionFieldBar N) (cuspInftyBar N) :=
+    IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+      (jq_mem_full N)⟩ : modularFunctionFieldBar N) (cuspInftyBar N) :=
   solution N
 
 end publicSection

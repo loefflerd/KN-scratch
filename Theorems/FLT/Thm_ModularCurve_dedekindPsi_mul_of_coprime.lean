@@ -497,7 +497,8 @@ theorem nonempty_modularPolynomialData_mul_of_coprime {m n : ℕ} [NeZero m] [Ne
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.ModularCurve ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.ModularCurve
+  ModularCurve.PhiGen in
 theorem solution (M N : ℕ) (h : Nat.Coprime M N) :
     dedekindPsi (M * N) = dedekindPsi M * dedekindPsi N :=
   ModularCurve.dedekindPsi_mul_of_coprime M N h

@@ -98,7 +98,8 @@ theorem map_ev (φ : A →+* B) (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
 
 theorem ev_eq_aevalAeval (Φ : Polynomial (Polynomial ℤ)) (x y : A) :
     ev Φ x y = aevalAeval x y Φ := by
-  have h : eval₂RingHom (eval₂RingHom (Int.castRingHom A) x) y = (aevalAeval (R := ℤ) x y).toRingHom :=
+  have h : eval₂RingHom (eval₂RingHom (Int.castRingHom A) x) y = (aevalAeval (R := ℤ) x y).toRingHom
+    :=
     by
     refine Polynomial.ringHom_ext' (Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_) ?_
     · simp
@@ -134,7 +135,8 @@ theorem swap_eq_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ)
     (algebraMap ℚ (LaurentSeries ℚ)).injective.comp Int.cast_injective
   have hZ : ∀ a b : ℤ, G.evalEval a b = 0 := fun a b => hι (by rw [← ev_int, map_ev, hL, map_zero])
   have h1 : ∀ b : ℤ, G.eval (Polynomial.C b) = 0 := fun b =>
-    Polynomial.eq_zero_of_infinite_isRoot _ (Set.infinite_of_injective_forall_mem (f := fun a : ℤ => a)
+    Polynomial.eq_zero_of_infinite_isRoot _ (Set.infinite_of_injective_forall_mem (f := fun a : ℤ =>
+      a)
       (fun _ _ h => h) fun a => hZ a b)
   have h2 : G = 0 :=
     Polynomial.eq_zero_of_infinite_isRoot _ (Set.infinite_of_injective_forall_mem
@@ -260,10 +262,12 @@ theorem root_injective : Function.Injective (root (N := N) K ζ) := by
 include hsymm hζ in
 theorem slice_jqNModC_eq_prod :
     slice data.Φ (jqNModC K N) = ∏ i : Fin (N + 1), (Polynomial.X - Polynomial.C (root K ζ i)) := by
-  have hdvd : (∏ i : Fin (N + 1), (Polynomial.X - Polynomial.C (root K ζ i))) ∣ slice data.Φ (jqNModC K N) :=
+  have hdvd : (∏ i : Fin (N + 1), (Polynomial.X - Polynomial.C (root K ζ i))) ∣ slice data.Φ
+    (jqNModC K N) :=
     Finset.prod_dvd_of_coprime ((pairwise_coprime_X_sub_C (root_injective K ζ hζ)).set_pairwise _)
       fun i _ => dvd_iff_isRoot.mpr (isRoot_root K data hsymm ζ hζ i)
-  refine eq_of_monic_of_dvd_of_natDegree_le (monic_prod_X_sub_C _ _) (slice_monic data.monic _) hdvd ?_
+  refine eq_of_monic_of_dvd_of_natDegree_le (monic_prod_X_sub_C _ _) (slice_monic data.monic _) hdvd
+    ?_
   rw [natDegree_slice, natDegree_finsetProd_X_sub_C_eq_card, Finset.card_univ, Fintype.card_fin]
 
 include hsymm hζ in
@@ -299,7 +303,8 @@ theorem isSeparable_jqNModC (hNK : (N : K) ≠ 0) :
   have hmap : (slice data.Φ jE).map (algebraMap E (LaurentSeries K)) = slice data.Φ (jqModC K) :=
     slice_map _ _ _
   have hsep : (slice data.Φ jE).Separable :=
-    (separable_map (algebraMap E (LaurentSeries K))).mp (hmap ▸ slice_jqModC_separable K data hsymm hNK)
+    (separable_map (algebraMap E (LaurentSeries K))).mp (hmap ▸ slice_jqModC_separable K data hsymm
+      hNK)
   have h0 : Polynomial.aeval (jqNModC K N) (slice data.Φ jE) = 0 := by
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, hmap, eval_slice]; exact ev_jq data K
   exact hsep.of_dvd (minpoly.dvd E _ h0)
@@ -319,7 +324,8 @@ end SepFibre
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_isIntegral_jqNModC_of_modularPolynomialData.ModularCurve in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_isIntegral_jqNModC_of_modularPolynomialData.ModularCurve in
 theorem solution (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
     IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) :=
   SepFibre.isIntegral_jqNModC K data

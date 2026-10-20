@@ -54,9 +54,11 @@ dependence relation over $\mathbb{C}[j]$ to an inequality of divisors: the monic
 $\mathbb{H}$, bounds below the order of $g\,(E_4^2E_6)^m/(h\,\Delta^m)$ at the zeros of $E_4$ and
 $E_6$. It is used in the construction of modular and cusp forms with prescribed $q$-expansion, being
 cited by
-[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral_qExpFunctionFieldC`](thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral_qExpFunctionFieldC)
+[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral_qExpFunctionFieldC`]
+(thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral_qExpFunctionFieldC)
 and
-[`ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral`](thm.html#ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral).
+[`ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral`]
+(thm.html#ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral).
 
 ## Explanation of the source proof
 
@@ -238,7 +240,8 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
       qB1]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant :=
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant
+    :=
     by
     ext n
     rw [PowerSeries.coeff_C_mul]
@@ -284,13 +287,15 @@ theorem le_analyticOrderAt_sum {ι : Type*} (s : Finset ι) (F : ι → ℂ → 
   | insert a s ha ih =>
     rw [Finset.sum_insert ha]
     refine le_trans ?_ le_analyticOrderAt_add
-    exact le_min (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+    exact le_min (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem
+      hi))
 
 theorem order_le_of_identity {p q d₁ d : ℂ → ℂ} {n : ℕ} {C : ℕ → ℂ → ℂ} {z : ℂ}
     (hp : AnalyticAt ℂ p z) (hq : AnalyticAt ℂ q z) (hd₁ : AnalyticAt ℂ d₁ z)
     (hd : AnalyticAt ℂ d z)
     (hC : ∀ i ∈ Finset.range n, AnalyticAt ℂ (C i) z) (hd₁0 : d₁ z ≠ 0) (hd0 : d z ≠ 0)
-    (hid : p ^ (6 * n) * d₁ + ∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)) = 0) :
+    (hid : p ^ (6 * n) * d₁ + ∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)) =
+      0) :
     analyticOrderAt q z ≤ analyticOrderAt p z := by
   by_contra hlt'
   have hlt := not_le.mp hlt'
@@ -322,7 +327,8 @@ theorem order_le_of_identity {p q d₁ d : ℂ → ℂ} {n : ℕ} {C : ℕ → �
       simp only [nsmul_eq_mul]
       push_cast
       ring
-    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) :=
+    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞)
+      :=
       by
       have e : ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) =
           ((6 * i * k + 6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
@@ -340,7 +346,8 @@ theorem order_le_of_identity {p q d₁ d : ℂ → ℂ} {n : ℕ} {C : ℕ → �
       _ ≤ analyticOrderAt (C i) z + ((6 * i) • (k : ℕ∞) + (n - i) • (6 • analyticOrderAt q z)) :=
           self_le_add_left _ _
   have hsum := le_analyticOrderAt_sum (Finset.range n) _ z _ hR
-  have heq : p ^ (6 * n) * d₁ = -(∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i))) :=
+  have heq : p ^ (6 * n) * d₁ = -(∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)))
+    :=
     eq_neg_of_add_eq_zero_left hid
   have : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * n * k : ℕ) : ℕ∞) := by
     rw [← hL, heq, analyticOrderAt_neg]
@@ -360,7 +367,8 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
     (h₁ : IsIntegral (Algebra.adjoin ℂ ({𝐉} : Set (LaurentSeries ℂ)))
       (X ^ 6 * 𝐉 ^ (4 * w) * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * w)))
     (τ : ℍ) :
-    analyticOrderAt (toC (𝔥 * 𝔡 ^ w)) (τ : ℂ) ≤ analyticOrderAt (toC (𝔤 * (𝔞 ^ 2 * 𝔟) ^ w)) (τ : ℂ) := by
+    analyticOrderAt (toC (𝔥 * 𝔡 ^ w)) (τ : ℂ) ≤ analyticOrderAt (toC (𝔤 * (𝔞 ^ 2 * 𝔟) ^ w)) (τ : ℂ)
+      := by
   classical
   have e1 : ∀ (Xx Jj T H D : LaurentSeries ℂ),
       (Xx ^ 6 * Jj ^ (4 * w) * T ^ (3 * w)) * ((H * D ^ w) ^ 6 * D ^ w)
@@ -396,8 +404,10 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
   have hdeg : ∀ i ∈ Finset.range n, (c i).natDegree ≤ m := fun i hi =>
     Finset.single_le_sum (f := fun j => (c j).natDegree) (fun j _ => Nat.zero_le _) hi
   let Cn : ℕ → 𝒩 := fun i =>
-    ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ (m - l) * 𝔞 ^ (3 * l))
-  have key3 : ∀ i ∈ Finset.range n, ψ 𝔡 ^ m * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (Cn i) :=
+    ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ (m - l) * 𝔞 ^ (3
+      * l))
+  have key3 : ∀ i ∈ Finset.range n, ψ 𝔡 ^ m * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (Cn i)
+    :=
     by
     intro i hi
     simp only [Cn, map_sum, map_mul, map_pow, AlgHom.commutes]
@@ -415,12 +425,14 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
   have k1 : Y * (ψ Q ^ 6 * ψ 𝔡 ^ w) = ψ P ^ 6 := by
     simp only [P, Q, map_mul, map_pow]
     exact key1
-  have key2 : ∀ i ≤ n, (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n * Y ^ i = ψ P ^ (6 * i) * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n - i) :=
+  have key2 : ∀ i ≤ n, (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n * Y ^ i = ψ P ^ (6 * i) * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n -
+    i) :=
     by
     intro i hi
     have e : (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n = (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ i * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n - i) := by
       rw [← pow_add, Nat.add_sub_cancel' hi]
-    calc (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n * Y ^ i = (Y * (ψ Q ^ 6 * ψ 𝔡 ^ w)) ^ i * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n - i) := by
+    calc (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n * Y ^ i = (Y * (ψ Q ^ 6 * ψ 𝔡 ^ w)) ^ i * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n
+      - i) := by
           rw [e, mul_pow Y (ψ Q ^ 6 * ψ 𝔡 ^ w) i]; ring
       _ = ψ P ^ (6 * i) * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n - i) := by rw [k1, ← pow_mul]
   let E : 𝒩 :=
@@ -452,17 +464,25 @@ end ANb
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
     (hT : ModularGroup.T ∈ Γ) {k : ℤ} (m : ℕ)
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (X : LaurentSeries ℂ)
-    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
+    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ))
     (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.jqModC ℂ} : Set (LaurentSeries ℂ)))
-      (X ^ 6 * ModularCurve.jqModC ℂ ^ (4 * m) * (ModularCurve.jqModC ℂ - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * m)))
+      (X ^ 6 * ModularCurve.jqModC ℂ ^ (4 * m) * (ModularCurve.jqModC ℂ - algebraMap ℂ
+        (LaurentSeries ℂ) 1728) ^ (3 * m)))
     (τ : UpperHalfPlane) :
-    analyticOrderAt ((fun z : UpperHalfPlane => h z * ModularForm.discriminant z ^ m) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
-      analyticOrderAt ((fun z : UpperHalfPlane => g z * (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ^ m) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) := by
-  have h₁' : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set (LaurentSeries ℂ)))
+    analyticOrderAt ((fun z : UpperHalfPlane => h z * ModularForm.discriminant z ^ m) ∘
+      UpperHalfPlane.ofComplex) (τ : ℂ) ≤
+      analyticOrderAt ((fun z : UpperHalfPlane => g z * (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ^
+        m) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) := by
+  have h₁' : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set
+    (LaurentSeries ℂ)))
       (X ^ 6 * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (4 * m) *
-        (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * m)) := by
+        (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * m))
+          := by
     rw [ANb.coeffEmb_jq]; exact h₁
-  exact ANb.core m (ANb.ofMF g (ANb.one_mem_strictPeriods_of_T_mem hT)) (ANb.ofMF h (ANb.one_mem_strictPeriods_of_T_mem hT))
+  exact ANb.core m (ANb.ofMF g (ANb.one_mem_strictPeriods_of_T_mem hT)) (ANb.ofMF h
+    (ANb.one_mem_strictPeriods_of_T_mem hT))
     X hX h₁' τ
 
 end
@@ -481,12 +501,17 @@ theorem ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     {k : ℤ} (m : ℕ)
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (X : LaurentSeries ℂ)
-    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
+    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ))
     (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.jqModC ℂ} : Set (LaurentSeries ℂ)))
-      (X ^ 6 * ModularCurve.jqModC ℂ ^ (4 * m) * (ModularCurve.jqModC ℂ - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * m)))
+      (X ^ 6 * ModularCurve.jqModC ℂ ^ (4 * m) * (ModularCurve.jqModC ℂ - algebraMap ℂ
+        (LaurentSeries ℂ) 1728) ^ (3 * m)))
     (τ : UpperHalfPlane) :
-    analyticOrderAt ((fun z : UpperHalfPlane => h z * ModularForm.discriminant z ^ m) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
-      analyticOrderAt ((fun z : UpperHalfPlane => g z * (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ^ m) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) :=
+    analyticOrderAt ((fun z : UpperHalfPlane => h z * ModularForm.discriminant z ^ m) ∘
+      UpperHalfPlane.ofComplex) (τ : ℂ) ≤
+      analyticOrderAt ((fun z : UpperHalfPlane => g z * (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ^
+        m) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) :=
   solution Γ hT m g h X hX h₁ τ
 
 end publicSection

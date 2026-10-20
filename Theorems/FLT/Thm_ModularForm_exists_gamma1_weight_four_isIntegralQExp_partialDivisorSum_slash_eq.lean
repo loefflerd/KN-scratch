@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
+Based on Prove2Me node
+ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
 (e9b4b55b-7321-51fb-94da-15e460883231) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 48fc3a70-d6e7-5cd6-8313-511443e012cd
@@ -48,9 +49,11 @@ This is the classical construction, for each unit class $\pm c$ modulo $M$, of a
 Eisenstein series on $\Gamma_1(M)$ with rational integral Fourier coefficients $\sum_{d \mid n,\ n/d
 \equiv \pm c} d^3$ and vanishing constant term, together with the action of the diamond operators
 permuting the family. It supplies the explicit forms used in
-[`ModularCurve.IsDiamondPullbackModL.apply_eq_one_iff_gamma0Units_mem`](thm.html#ModularCurve.IsDiamondPullbackModL.apply_eq_one_iff_gamma0Units_mem)
+[`ModularCurve.IsDiamondPullbackModL.apply_eq_one_iff_gamma0Units_mem`]
+(thm.html#ModularCurve.IsDiamondPullbackModL.apply_eq_one_iff_gamma0Units_mem)
 and in
-[`ModularCurve.exists_intSeriesC_mul_ne_of_gamma0Units_not_mem`](thm.html#ModularCurve.exists_intSeriesC_mul_ne_of_gamma0Units_not_mem)
+[`ModularCurve.exists_intSeriesC_mul_ne_of_gamma0Units_not_mem`]
+(thm.html#ModularCurve.exists_intSeriesC_mul_ne_of_gamma0Units_not_mem)
 to detect the image of $\Gamma_0(M)$ in $(\mathbb{Z}/M)^\times$ by its effect on $q$-expansions.
 
 ## Explanation of the source proof
@@ -104,7 +107,8 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
   let T : ℕ → ℂ := fun n => ∑ d ∈ n.divisors,
       ((if ((n / d : ℕ) : ZMod M) = (c : ZMod M) then (d : ℂ) ^ (4 - 1) else 0) +
         (if ((n / d : ℕ) : ZMod M) = -(c : ZMod M) then (d : ℂ) ^ (4 - 1) else 0))
-  have hT : ∀ n : ℕ, T n = (((PowerSeries.coeff n) (PowerSeries.mk fun n : ℕ => if n = 0 then (0 : ℤ) else
+  have hT : ∀ n : ℕ, T n = (((PowerSeries.coeff n) (PowerSeries.mk fun n : ℕ => if n = 0 then (0 :
+    ℤ) else
       ∑ d ∈ n.divisors,
         if ((n / d : ℕ) : ZMod M) = (c : ZMod M) ∨ ((n / d : ℕ) : ZMod M) = -(c : ZMod M)
         then (d : ℤ) ^ 3 else 0) : ℤ) : ℂ) := by
@@ -152,7 +156,8 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     have hqn : ‖Complex.exp (2 * π * Complex.I * τ)‖ < 1 :=
       UpperHalfPlane.norm_exp_two_pi_I_lt_one τ
     have hsum : Summable fun m : ℕ => T m * Complex.exp (2 * π * Complex.I * τ) ^ m := by
-      have hg : Summable fun m : ℕ => 2 * ((m : ℝ) ^ 4 * ‖Complex.exp (2 * π * Complex.I * τ)‖ ^ m) :=
+      have hg : Summable fun m : ℕ => 2 * ((m : ℝ) ^ 4 * ‖Complex.exp (2 * π * Complex.I * τ)‖ ^ m)
+        :=
         (summable_pow_mul_geometric_of_norm_lt_one (R := ℝ)
           (r := ‖Complex.exp (2 * π * Complex.I * τ)‖) 4 (by simpa using hqn)).mul_left 2
       refine Summable.of_norm_bounded hg fun m => ?_
@@ -208,7 +213,8 @@ theorem solution
   have hcoe_sum : ∀ c : ZMod M, (⇑(FS c) : ℍ → ℂ) = S c := by
     intro c
     have h1 : (⇑(FS c) : ℍ → ℂ) = ∑ e : ZMod M, ⇑(F ![c, e]) :=
-      map_sum (FunLike.coeAddMonoidHom (ModularForm (CongruenceSubgroup.Gamma M : Subgroup (GL (Fin 2) ℝ)) 4) ℍ ℂ)
+      map_sum (FunLike.coeAddMonoidHom (ModularForm (CongruenceSubgroup.Gamma M : Subgroup (GL (Fin
+        2) ℝ)) 4) ℍ ℂ)
         (fun e : ZMod M => F ![c, e]) Finset.univ
     rw [h1, hS]
     exact Finset.sum_congr rfl fun e _ => hF _
@@ -282,7 +288,8 @@ theorem solution
 
 end S_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
 end P2MW
-export P2MW.S_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq (solution)
+export P2MW.S_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
+  (solution)
 
 end privateSection
 

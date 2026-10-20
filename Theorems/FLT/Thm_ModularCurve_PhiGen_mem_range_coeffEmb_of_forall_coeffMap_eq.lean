@@ -347,7 +347,10 @@ end PhiGen
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K]
     (hfix : ∀ c : K, (∀ σ : K ≃ₐ[ℚ] K, σ c = c) → ∃ r : ℚ, algebraMap ℚ K r = c)
     {f : LaurentSeries K} (hf : ∀ σ : K ≃ₐ[ℚ] K, coeffMap (σ : K →+* K) f = f) :

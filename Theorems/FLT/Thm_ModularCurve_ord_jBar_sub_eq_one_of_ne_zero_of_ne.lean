@@ -50,7 +50,8 @@ This is the statement that the $j$-map $X_0(N)_{\overline{\mathbb{Q}}} \to
 X(1)_{\overline{\mathbb{Q}}}$ is unramified over every finite $j$-value other than the two elliptic
 values $0$ and $1728$, phrased as a vanishing order of $\bar\jmath - c$ at a place. It is used in
 the genus computation for $\overline{F}_N$
-([`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula`](thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula)),
+([`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula`]
+(thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula)),
 where the sum of local contributions to the differential $d\bar\jmath$ must be confined to the
 fibres over $0$, $1728$ and the cusp, and in the analysis of place specialisations and of regular
 differentials.
@@ -76,8 +77,10 @@ open ModularCurve AlgebraicCurve WeierstrassCurve
 theorem solution (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
     (c : AlgebraicClosure ℚ) (hc0 : c ≠ 0) (hc1728 : c ≠ 1728)
-    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c)) :
-    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 := by
+    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) c)) :
+    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 := by
   classical
   obtain ⟨E₀, hE, hj, f, hfib, hord⟩ := ModularCurve.exists_elliptic_cycSub_orbitMap N c
   let : E₀.IsElliptic := hE
@@ -126,8 +129,10 @@ open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
     (c : AlgebraicClosure ℚ) (hc0 : c ≠ 0) (hc1728 : c ≠ 1728)
-    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c)) :
-    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 :=
+    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) c)) :
+    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 :=
   solution N v c hc0 hc1728 hpos
 
 end publicSection

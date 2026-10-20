@@ -126,7 +126,8 @@ abbrev FjN : IntermediateField (Fj K) (LaurentSeries K) :=
 theorem modularFunctionFieldC_eq_restrictScalars :
     modularFunctionFieldC K N = (FjN K N).restrictScalars K := by
   change modularFunctionFieldC K N =
-    (adjoin (adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))).restrictScalars K
+    (adjoin (adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries
+      K))).restrictScalars K
   erw [adjoin_adjoin_left]
   rw [Set.singleton_union]
   rfl

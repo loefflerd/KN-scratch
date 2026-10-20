@@ -61,7 +61,8 @@ subgroups of order $N$ of the near curve with those of the curve of invariant $j
 monodromy orbits upstairs with orbits under the automorphisms of the curve downstairs — the
 fibre-by-fibre comparison for the $\Gamma_0(N)$-type moduli problem over the $j$-line, including the
 points $j_0 = 0$ and $1728$ where the automorphism group is larger. It is used by
-[`ModularCurve.exists_elliptic_cycSub_orbitMap_of_props`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_of_props).
+[`ModularCurve.exists_elliptic_cycSub_orbitMap_of_props`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap_of_props).
 
 ## Explanation of the source proof
 
@@ -525,7 +526,8 @@ private theorem torsion_coords_integral (W : WeierstrassCurve H) [W.IsElliptic]
     have hx'val : integralO.subtype x' = x := rfl
     have key : Q.coeff i =
         integralO.subtype
-          (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff i) := by
+          (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff i)
+            := by
       simp only [Q, Polynomial.coeff_map, Polynomial.coe_evalRingHom]
       rw [← Polynomial.eval₂_hom (f := integralO.subtype), ← Polynomial.eval_map]
       congr 1
@@ -534,7 +536,8 @@ private theorem torsion_coords_integral (W : WeierstrassCurve H) [W.IsElliptic]
       rfl
     rw [key]
     exact mem_integralO.mp
-      (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff i).property
+      (((liftToIntegralO W hW).toAffine.polynomial.map (Polynomial.evalRingHom x')).coeff
+        i).property
   exact orderTop_nonneg_of_isRoot Q hQcoeff hQlead hQroot
 
 section E3
@@ -1027,14 +1030,16 @@ theorem bridge3Specialise_apply_coe (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : 
     (bridge3Specialise p j₀ G).1 =
       ((((G.1.map (scaleAddEquiv j₀ :
               (nearCurve j₀).toAffine.Point →+ (goodModel j₀).toAffine.Point)).comap
-            (Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ)).subtype.toAddMonoidHom).map
+            (Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p :
+              ℤ)).subtype.toAddMonoidHom).map
           (redTorsionEquiv (goodModel j₀) (goodModel_spec j₀).1 (goodModel_spec j₀).2 p :
             Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ) →+
               Submodule.torsionBy ℤ (specialFibre (goodModel j₀)).toAffine.Point (p : ℤ))).map
         (Submodule.torsionBy ℤ (specialFibre (goodModel j₀)).toAffine.Point
           (p : ℤ)).subtype.toAddMonoidHom).map
         (fibreAddEquiv j₀ :
-          (specialFibre (goodModel j₀)).toAffine.Point →+ (WeierstrassCurve.ofJ j₀).toAffine.Point) :=
+          (specialFibre (goodModel j₀)).toAffine.Point →+ (WeierstrassCurve.ofJ j₀).toAffine.Point)
+            :=
   rfl
 
 theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : Qbar)
@@ -1999,7 +2004,8 @@ theorem bridge3SpecialiseN_apply_coe (N : ℕ) [NeZero N] (j₀ : Qbar)
             (specialFibre_Δ_ne_zero_of_orderTop (goodModel j₀) (goodModel_spec j₀).1
               (goodModel_spec j₀).2))).map
         (fibreAddEquiv j₀ :
-          (specialFibre (goodModel j₀)).toAffine.Point →+ (WeierstrassCurve.ofJ j₀).toAffine.Point)) :=
+          (specialFibre (goodModel j₀)).toAffine.Point →+ (WeierstrassCurve.ofJ j₀).toAffine.Point))
+            :=
   rfl
 
 theorem bridge3SpecialiseN_coe_eq_of_coe_eq (N : ℕ) [NeZero N] (j₀ : Qbar)
@@ -2071,9 +2077,11 @@ theorem redPoint_scaleAddEquiv_nearTransport_generic (N : ℕ) [NeZero N]
       (nearCurve_map_of_mem_monodromy j₀ hm) h
     obtain ⟨h', hscale'⟩ := scaleAddEquiv_some_genericN j₀ h0 h1728 hns'
     obtain ⟨hgn, hscale⟩ := scaleAddEquiv_some_genericN j₀ h0 h1728 h
-    have htor : N • (WeierstrassCurve.Affine.Point.some x y h : (nearCurve j₀).toAffine.Point) = 0 :=
+    have htor : N • (WeierstrassCurve.Affine.Point.some x y h : (nearCurve j₀).toAffine.Point) = 0
+      :=
       hg ▸ addOrderOf_nsmul_eq_zero _
-    have htor' : N • (WeierstrassCurve.Affine.Point.some x y hgn : (goodModel j₀).toAffine.Point) = 0 :=
+    have htor' : N • (WeierstrassCurve.Affine.Point.some x y hgn : (goodModel j₀).toAffine.Point) =
+      0 :=
       by
       rw [← hscale, ← map_nsmul, htor, map_zero]
     have ⟨hx, hy⟩ :=
@@ -2435,7 +2443,9 @@ theorem specialisationEquivariance_levelN (N : ℕ) [NeZero N] (j₀ : Qbar) :
 end ModularCurve.B3
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve ModularCurve.TatePoint _root_.ModularCurve.B3 _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3 in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve
+  ModularCurve.TatePoint _root_.ModularCurve.B3
+  _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3 in
 theorem solution (N : ℕ) [NeZero N] (j₀ : Qbar) :
     ∃ β : CycSubH (nearCurve j₀) N ≃ CycSub (WeierstrassCurve.ofJ j₀) N,
       ∀ G G' : CycSubH (nearCurve j₀) N,

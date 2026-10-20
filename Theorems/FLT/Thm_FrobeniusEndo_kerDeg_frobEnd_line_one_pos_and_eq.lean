@@ -46,7 +46,8 @@ $[m] - \pi$ has degree $m^2 - am + q$ with trace $a = q + 1 - \#\ker([1]-\pi)$, 
 being the group of $F$-rational points. It feeds the determination of the trace and determinant of
 Frobenius on $p$-torsion, and is used by
 [`FrobeniusEndo.kerDeg_frobEnd_line_one`](thm.html#FrobeniusEndo.kerDeg_frobEnd_line_one) and
-[`FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero`](thm.html#FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero).
+[`FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero`]
+(thm.html#FrobeniusEndo.kerDeg_frobEnd_line_one_ne_zero).
 
 ## Explanation of the source proof
 
@@ -69,7 +70,8 @@ theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k :
     (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
     (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ) (hm : 1 ≤ m)
     (hmk : (m : k) ≠ 0) :
-    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F := by
+    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 -
+      ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F := by
   refine FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq_of_torsion W σ hσ hF ?_
     (fun n => WeierstrassCurve.isCoprime_Phi_PsiSq (W⁄k) n) m hm hmk
   intro n x y h h0
@@ -92,7 +94,8 @@ theorem FrobeniusEndo.kerDeg_frobEnd_line_one_pos_and_eq {R : Type*} [CommRing R
     [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k] (W : WeierstrassCurve R) [(W⁄k).IsElliptic]
     (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F).Prime) (m : ℕ)
     (hm : 1 ≤ m) (hmk : (m : k) ≠ 0) :
-    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
+    0 < kerDeg (frobEnd W σ) m 1 ∧ ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 -
+      ((Fintype.card F : ℤ) + 1 - kerDeg (frobEnd W σ) 1 1) * m + Fintype.card F :=
   solution W σ hσ hF m hm hmk
 
 end publicSection

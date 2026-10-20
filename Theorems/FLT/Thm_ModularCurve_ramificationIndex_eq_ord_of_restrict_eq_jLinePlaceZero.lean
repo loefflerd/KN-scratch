@@ -49,9 +49,11 @@ This is the standard identification, for a place of the function field of $X_0(N
 place $j = 0$ of the $j$-line, of the ramification index with the order of vanishing of $j$ at that
 place. It is used in the counts of fibres of the covering $X_0(N) \to X(1)$ over the elliptic
 points, in
-[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
+[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
 
 ## Explanation of the source proof
 
@@ -75,7 +77,8 @@ theorem solution (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
-      (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) := by
+      (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem
+        N⟩ : ↥(ModularCurve.modularFunctionField N)) := by
   let := ModularCurve.jAdjoinAlgebra N
   intro _ w hres
   have h := w.ord_restrict (F := ↥ℚ⟮ModularCurve.jq⟯) ModularCurve.jGen
@@ -97,7 +100,8 @@ theorem ModularCurve.ramificationIndex_eq_ord_of_restrict_eq_jLinePlaceZero (N :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
-      (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) :=
+      (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem
+        N⟩ : ↥(ModularCurve.modularFunctionField N)) :=
   solution N
 
 end publicSection

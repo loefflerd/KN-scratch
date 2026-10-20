@@ -45,9 +45,11 @@ $\mathrm{ord}_w$ is minus the logarithm of the adic valuation attached to $w$.
 This identifies the places of the function field of $X_0(N)$ lying above the point $j = \infty$ of
 the $j$-line as exactly those at which $j$ has a pole, the cusps. It is used in the computations of
 the numbers of elliptic points, in
-[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo),
+[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo),
 where places above $j = \infty$ must be separated from those above $j = 0$ and $j = 1728$.
 
 ## Explanation of the source proof
@@ -98,7 +100,8 @@ theorem solution (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceInfty ↔
-        w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) < 0 := by
+        w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) <
+          0 := by
   let := ModularCurve.jAdjoinAlgebra N
   intro _ w
   rw [ModularCurve.eq_jLinePlaceInfty_iff_ord_jGen_neg,
@@ -120,7 +123,8 @@ theorem ModularCurve.restrict_eq_jLinePlaceInfty_iff (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceInfty ↔
-        w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) < 0 :=
+        w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) <
+          0 :=
   solution N
 
 end publicSection

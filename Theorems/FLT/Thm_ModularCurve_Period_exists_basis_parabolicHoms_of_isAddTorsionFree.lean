@@ -85,7 +85,8 @@ theorem cls_mul (γ δ : ↥Γ) : cls Γ (γ * δ) = cls Γ γ + cls Γ δ := by
   simp [cls, ofMul_mul]
 
 def P : AddSubgroup (A Γ) :=
-  AddSubgroup.closure {a | ∃ γ : ↥Γ, ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 ∧ a = cls Γ γ}
+  AddSubgroup.closure {a | ∃ γ : ↥Γ, ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 ∧ a =
+    cls Γ γ}
 
 abbrev Q : Type := A Γ ⧸ P Γ
 
@@ -300,7 +301,8 @@ theorem Θ_surjective [IsAddTorsionFree R] : Function.Surjective (Θ D R) := by
   rw [map_zsmul, coord_apply, zsmul_eq_mul, mul_comm]
 
 noncomputable def basisR [IsAddTorsionFree R] : Module.Basis (Fin D.n) R ↥(parabolicHoms R Γ R) :=
-  Module.Basis.map (Pi.basisFun R (Fin D.n)) (LinearEquiv.ofBijective (Θ D R) ⟨Θ_injective D R, Θ_surjective D R⟩)
+  Module.Basis.map (Pi.basisFun R (Fin D.n)) (LinearEquiv.ofBijective (Θ D R) ⟨Θ_injective D R,
+    Θ_surjective D R⟩)
 
 theorem coe_basisR [IsAddTorsionFree R] (i : Fin D.n) :
     ((basisR D R i : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R) = chi D R i := by

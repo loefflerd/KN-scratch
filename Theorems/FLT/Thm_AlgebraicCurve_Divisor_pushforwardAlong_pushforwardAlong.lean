@@ -62,7 +62,8 @@ open IsDedekindDomain AlgebraicCurve
 theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F]
     [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral)
     (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (D : Divisor K F'') :
-    Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong (χ.comp φ) hχφ D := by
+    Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong
+      (χ.comp φ) hχφ D := by
   have key : (Divisor.pushforwardAlong φ hφ).comp (Divisor.pushforwardAlong χ hχ)
       = Divisor.pushforwardAlong (χ.comp φ) hχφ := by
     refine Finsupp.addHom_ext fun W n => ?_
@@ -91,7 +92,8 @@ theorem AlgebraicCurve.Divisor.pushforwardAlong_pushforwardAlong {K F F' F'' : T
     [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F')
     (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral)
     (hχφ : (χ.comp φ).toRingHom.IsIntegral) (D : Divisor K F'') :
-    Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong (χ.comp φ) hχφ D :=
+    Divisor.pushforwardAlong φ hφ (Divisor.pushforwardAlong χ hχ D) = Divisor.pushforwardAlong
+      (χ.comp φ) hχφ D :=
   solution φ χ hφ hχ hχφ D
 
 end publicSection

@@ -85,10 +85,12 @@ def restrictCF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : CuspFo
   holo' := F.holo'
   zero_at_cusps' hc := F.zero_at_cusps' (hc.mono h)
 
-@[scoped simp] theorem coe_restrictMF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : ModularForm Γ k) :
+@[scoped simp] theorem coe_restrictMF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : ModularForm
+  Γ k) :
     ⇑(restrictMF h F) = ⇑F := rfl
 
-@[scoped simp] theorem coe_restrictCF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : CuspForm Γ k) :
+@[scoped simp] theorem coe_restrictCF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : CuspForm Γ
+  k) :
     ⇑(restrictCF h F) = ⇑F := rfl
 
 theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) :
@@ -162,7 +164,8 @@ end
 
 theorem solution {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N)
     (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) :
-    ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) :=
+    ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d
+      • τ) :=
   ModularForm.DegeneracyPort.exists_modularForm hd f
 
 end S_ModularForm_exists_degeneracy_Gamma0
@@ -175,7 +178,8 @@ public section publicSection
 
 theorem ModularForm.exists_degeneracy_Gamma0 {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N)
     (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) :
-    ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) :=
+    ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d
+      • τ) :=
   solution hd f
 
 end publicSection

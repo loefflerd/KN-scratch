@@ -176,7 +176,8 @@ theorem periodic (hh : 0 < h)
       ofComplex_apply_of_im_pos hw']
     congr 1
     simp only [Periodic.qParam]
-    rw [show 2 * ↑Real.pi * Complex.I * (w + ↑h) / ↑h = 2 * ↑Real.pi * Complex.I * w / ↑h + 2 * ↑Real.pi * Complex.I by
+    rw [show 2 * ↑Real.pi * Complex.I * (w + ↑h) / ↑h = 2 * ↑Real.pi * Complex.I * w / ↑h + 2 *
+      ↑Real.pi * Complex.I by
       field_simp [(Complex.ofReal_ne_zero.mpr hh.ne')]]
     rw [Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
   · push Not at hw
@@ -188,7 +189,8 @@ theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
     (hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => d m * 𝕢 h (τ : ℂ) ^ m) (F τ)) : c = d := by
   have hc := hasFPowerSeriesOnBall_update hh hF
   have hd := hasFPowerSeriesOnBall_update hh hF'
-  have hlim : ∀ {e : ℕ → ℂ}, HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (e 0)) (.ofScalars ℂ e) 0 1 →
+  have hlim : ∀ {e : ℕ → ℂ}, HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (e 0)) (.ofScalars ℂ
+    e) 0 1 →
       Tendsto (cuspFunction h F) (𝓝[≠] 0) (𝓝 (e 0)) := by
     intro e he
     have h1 : Tendsto (update (cuspFunction h F) 0 (e 0)) (𝓝[≠] 0) (𝓝 (e 0)) := by
@@ -208,7 +210,9 @@ end Realized
 
 end ModularCurve
 
-theorem solution (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (c d : ℕ → ℂ) (hc : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hd : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => d m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) :
+theorem solution (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (c d : ℕ → ℂ) (hc : ∀ τ :
+  UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hd : ∀
+  τ : UpperHalfPlane, HasSum (fun m : ℕ => d m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) :
     c = d :=
   ModularCurve.Realized.coeff_unique hh hc hd
 
@@ -222,7 +226,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.qParam_coeff_unique (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (c d : ℕ → ℂ) (hc : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) (hd : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => d m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F τ)) :
+theorem ModularCurve.qParam_coeff_unique (h : ℝ) (hh : 0 < h) (F : UpperHalfPlane → ℂ) (c d : ℕ → ℂ)
+  (hc : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => c m * Function.Periodic.qParam h (τ : ℂ) ^ m) (F
+  τ)) (hd : ∀ τ : UpperHalfPlane, HasSum (fun m : ℕ => d m * Function.Periodic.qParam h (τ : ℂ) ^ m)
+  (F τ)) :
     c = d :=
   solution h hh F c d hc hd
 

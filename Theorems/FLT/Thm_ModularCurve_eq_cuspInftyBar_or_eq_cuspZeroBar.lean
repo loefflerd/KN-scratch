@@ -252,7 +252,8 @@ theorem eq_cuspInftyBar_or_eq_cuspZeroBar (hw : IsFrickeAutFull ℓ (frickeInvol
   have hne : cuspZeroBar ℓ ≠ cuspInftyBar ℓ := cuspZeroBar_ne_cuspInftyBar ℓ hw hℓ.one_lt
   have r0 := restrict_eq_of_isCusp ℓ _ (isCusp_cuspZeroBar ℓ hw)
   have rw' := restrict_eq_of_isCusp ℓ _ hc
-  have hS : ∀ u ∈ ({cuspInftyBar ℓ, cuspZeroBar ℓ, w} : Finset (Place 𝕂 (modularFunctionFieldBar ℓ))),
+  have hS : ∀ u ∈ ({cuspInftyBar ℓ, cuspZeroBar ℓ, w} : Finset (Place 𝕂 (modularFunctionFieldBar
+    ℓ))),
       u.restrict (RatFunc 𝕂) = (cuspInftyBar ℓ).restrict (RatFunc 𝕂) := by
     intro u hu
     simp only [Finset.mem_insert, Finset.mem_singleton] at hu
@@ -286,7 +287,9 @@ theorem eq_cuspInftyBar_or_eq_cuspZeroBar (hw : IsFrickeAutFull ℓ (frickeInvol
 end TwoCuspAux
 
 open TwoCuspAux in
-theorem solution (ℓ : ℕ) [Fact ℓ.Prime] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ)) (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ) w) :
+theorem solution (ℓ : ℕ) [Fact ℓ.Prime] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ))
+  (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure
+  ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ) w) :
     w = cuspInftyBar ℓ ∨ w = cuspZeroBar ℓ :=
   TwoCuspAux.eq_cuspInftyBar_or_eq_cuspZeroBar ℓ (isFrickeAutFull_frickeInvolutionFull_prime ℓ) w hc
 
@@ -301,7 +304,10 @@ public section publicSection
 
 
 open ModularCurve AlgebraicCurve
-theorem ModularCurve.eq_cuspInftyBar_or_eq_cuspZeroBar (ℓ : ℕ) [Fact ℓ.Prime] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ)) (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ) w) :
+theorem ModularCurve.eq_cuspInftyBar_or_eq_cuspZeroBar (ℓ : ℕ) [Fact ℓ.Prime] (w : Place
+  (AlgebraicClosure ℚ) (modularFunctionFieldBar ℓ)) (hc : IsCusp (⟨coeffEmb (AlgebraicClosure ℚ) jq,
+  coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full ℓ)⟩ : modularFunctionFieldBar ℓ)
+  w) :
     w = cuspInftyBar ℓ ∨ w = cuspZeroBar ℓ :=
   solution ℓ w hc
 

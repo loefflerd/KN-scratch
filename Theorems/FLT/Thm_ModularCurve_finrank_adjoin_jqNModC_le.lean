@@ -48,9 +48,11 @@ $X_0(N)$ over an arbitrary field $K$, obtained from a modular polynomial packet 
 coefficients; no irreducibility of $\Phi$ and no hypothesis on the characteristic of $K$ enter.
 Since `Module.finrank` vanishes for infinite-dimensional extensions, the inequality is read together
 with the companion statement
-[`ModularCurve.finiteDimensional_adjoin_jqNModC`](thm.html#ModularCurve.finiteDimensional_adjoin_jqNModC);
+[`ModularCurve.finiteDimensional_adjoin_jqNModC`]
+(thm.html#ModularCurve.finiteDimensional_adjoin_jqNModC);
 both feed the analysis of the function field of $X_0(N)$ and of its cusps, e.g.
-[`ModularCurve.coeffMap_mem_modularFunctionFieldC`](thm.html#ModularCurve.coeffMap_mem_modularFunctionFieldC)
+[`ModularCurve.coeffMap_mem_modularFunctionFieldC`]
+(thm.html#ModularCurve.coeffMap_mem_modularFunctionFieldC)
 and the uniqueness statements for the places at the cusps.
 
 ## Explanation of the source proof
@@ -178,7 +180,9 @@ end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_le.ModularCurve in
 theorem solution (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) ≤ dedekindPsi N :=
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K N} : Set (LaurentSeries K))) ≤ dedekindPsi N :=
   ModularCurve.finrank_adjoin_jqNModC_le K data
 
 end S_ModularCurve_finrank_adjoin_jqNModC_le
@@ -193,7 +197,9 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.finrank_adjoin_jqNModC_le (K : Type*) [Field K] {N : ℕ} [NeZero N]
     (data : ModularPolynomialData N) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) ≤ dedekindPsi N :=
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K N} : Set (LaurentSeries K))) ≤ dedekindPsi N :=
   solution K data
 
 end publicSection

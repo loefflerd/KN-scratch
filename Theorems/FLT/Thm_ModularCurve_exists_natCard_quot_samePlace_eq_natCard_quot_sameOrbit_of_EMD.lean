@@ -49,7 +49,8 @@ This is the numerical consequence extracted from the embedding–moduli dictiona
 $j$-invariant: the moduli interpretation of level-$N$ structures identifies normalised embeddings of
 the modular function field modulo the place they induce with cyclic subgroups of order $N$ on an
 elliptic curve with that $j$-invariant, modulo the automorphisms of the curve. It is used by
-[`ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD`](thm.html#ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD)
+[`ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD`]
+(thm.html#ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD)
 to count the points of the modular curve lying over a given $j$.
 
 ## Explanation of the source proof
@@ -70,7 +71,8 @@ theorem solution (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ) (hEMD : ModularCurve.EMD N j₀) :
     ∃ (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) (_ : E₀.IsElliptic), E₀.j = j₀ ∧
       Nat.card (Quot (fun ψ ψ' : ModularCurve.Emb N j₀ => ModularCurve.SamePlace ψ.1 ψ'.1))
-        = Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1 H'.1)) := by
+        = Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1
+          H'.1)) := by
   obtain ⟨E₀, hE₀, hj, Φ, hΦ⟩ := hEMD
   exact ⟨E₀, hE₀, hj, Nat.card_congr (Quot.congr Φ (fun ψ ψ' => hΦ ψ ψ'))⟩
 
@@ -87,7 +89,8 @@ theorem ModularCurve.exists_natCard_quot_samePlace_eq_natCard_quot_sameOrbit_of_
     (j₀ : AlgebraicClosure ℚ) (hEMD : ModularCurve.EMD N j₀) :
     ∃ (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) (_ : E₀.IsElliptic), E₀.j = j₀ ∧
       Nat.card (Quot (fun ψ ψ' : ModularCurve.Emb N j₀ => ModularCurve.SamePlace ψ.1 ψ'.1))
-        = Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1 H'.1)) :=
+        = Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1
+          H'.1)) :=
   solution N j₀ hEMD
 
 end publicSection

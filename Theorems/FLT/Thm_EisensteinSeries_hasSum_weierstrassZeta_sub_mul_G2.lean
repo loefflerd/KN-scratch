@@ -439,7 +439,8 @@ lemma summable_crow_nat (z : ℂ) : Summable fun n : ℕ => crow τ z n := by
     nlinarith
   have hb1 := norm_pi_cot_add_le hτ hIm1
   have hb2 := norm_pi_cot_sub_le hτ hIm2
-  have hsplit : π * Complex.cot (π * (((n : ℤ) : ℂ) * τ)) + π * Complex.cot (π * (z - ((n : ℤ) : ℂ) * τ)) =
+  have hsplit : π * Complex.cot (π * (((n : ℤ) : ℂ) * τ)) + π * Complex.cot (π * (z - ((n : ℤ) : ℂ)
+    * τ)) =
       (π * Complex.cot (π * (((n : ℤ) : ℂ) * τ)) + π * I) +
         (π * Complex.cot (π * (z - ((n : ℤ) : ℂ) * τ)) - π * I) := by ring
   rw [hsplit]

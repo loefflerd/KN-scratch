@@ -279,7 +279,8 @@ private theorem _root_.AlgebraicCurve.Place.ker_algebraMap_residueField_eq_span 
     v.maximalIdeal_eq_span_uniformizer]
 
 p2m_export "AlgebraicCurve.Place" "ker_algebraMap_residueField_eq_span"
-private theorem _root_.AlgebraicCurve.Place.formallyUnramified_polynomial_residueField_of_isSeparable
+private theorem
+  _root_.AlgebraicCurve.Place.formallyUnramified_polynomial_residueField_of_isSeparable
     [Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring)] :
     letI := v.polynomialAlgebra
     Algebra.FormallyUnramified K[X] (IsLocalRing.ResidueField v.toValuationSubring) := by
@@ -299,7 +300,8 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_residueKaehler_of_isSep
   exact Algebra.FormallyUnramified.subsingleton_kaehlerDifferential
 
 p2m_export "AlgebraicCurve.Place" "subsingleton_residueKaehler_of_isSeparable"
-private theorem _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomialKaehler_of_isSeparable
+private theorem
+  _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomialKaehler_of_isSeparable
     [Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring)] :
     letI := v.polynomialAlgebra
     Subsingleton (v.ResidueField ⊗[v.toValuationSubring] Ω[v.toValuationSubring⁄K[X]]) := by
@@ -393,7 +395,8 @@ section EftEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.finite_kaehler_of_essFiniteType [Algebra.EssFiniteType K v.toValuationSubring] :
+private theorem _root_.AlgebraicCurve.Place.finite_kaehler_of_essFiniteType [Algebra.EssFiniteType K
+  v.toValuationSubring] :
     Module.Finite v.toValuationSubring Ω[v.toValuationSubring⁄K] :=
   KaehlerDifferential.finite K v.toValuationSubring
 
@@ -532,7 +535,8 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_not_mem_cen
   exact hs
 
 p2m_export "AlgebraicCurve.Place" "isUnit_modelInclusion_of_not_mem_centerIdeal"
-private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_mem_primeCompl (s : (v.centerIdeal A hA).primeCompl) :
+private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_mem_primeCompl (s :
+  (v.centerIdeal A hA).primeCompl) :
     IsUnit (v.modelInclusion A hA (s : A)) :=
   v.isUnit_modelInclusion_of_not_mem_centerIdeal A hA s.2
 
@@ -629,7 +633,8 @@ private theorem div_mem_of_not_mem_centerIdeal (r : A) {a : A}
   exact v.toValuationSubring.toSubring.mul_mem (hA r.2)
     (inv_mem_of_not_mem_centerIdeal v A hA ha)
 
-private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A
+  F] :
     v.centerIdeal A hA ≠ ⊥ := by
   obtain ⟨f, hf⟩ : ∃ f : F, f ∉ v.toValuationSubring := by
     by_contra h; push Not at h
@@ -652,7 +657,8 @@ section LocalizationSubalgebra
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
   (A : Subalgebra K F) (hA : (A : Set F) ⊆ (v.toValuationSubring : Set F))
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra [IsFractionRing A F] :
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra
+  [IsFractionRing A F] :
     Subalgebra A F :=
   Localization.subalgebra.ofField F (v.centerIdeal A hA).primeCompl
     (v.centerIdeal A hA).primeCompl_le_nonZeroDivisors
@@ -677,7 +683,8 @@ scoped instance centerLocalizationSubalgebra_isFractionRing [IsFractionRing A F]
     IsFractionRing (v.centerLocalizationSubalgebra A hA) F :=
   inferInstanceAs (IsFractionRing (Localization.subalgebra.ofField F _ _) F)
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset [IsFractionRing A F]
+  :
     ((v.centerLocalizationSubalgebra A hA : Subalgebra A F) : Set F)
       ⊆ (v.toValuationSubring : Set F) := by
   intro x hx
@@ -1183,7 +1190,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
 p2m_open_scoped "AlgebraicCurve.Place" in
-private theorem _root_.AlgebraicCurve.Place.isSeparable_residueField_of_perfectField_of_finiteResidue
+private theorem
+  _root_.AlgebraicCurve.Place.isSeparable_residueField_of_perfectField_of_finiteResidue
     [PerfectField K] (v : Place K F) [v.FiniteResidue] :
     Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring) := by
   have : Module.Finite K (IsLocalRing.ResidueField v.toValuationSubring) :=
@@ -1276,7 +1284,8 @@ theorem Place.dCoordGenerates_of_hasSeparatingTranscendental_of_perfectField
   Place.dCoordGenerates_of_valSubringDedekindModel_of_perfectField
     (valSubringDedekindModel_of_hasSeparatingTranscendental hsep) v
 
-open _root_.IntermediateField _root_.P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField in
+open _root_.IntermediateField
+  _root_.P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField in
 theorem hasSeparatingTranscendental_of_isCurveOver_of_perfectField
     [PerfectField K] [Algebra.EssFiniteType K F] [IsCurveOver K F] :
     HasSeparatingTranscendental K F := by
@@ -1353,7 +1362,8 @@ private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg_s12 {f : F} (hf : 
 p2m_export "AlgebraicCurve.Place" "mem_of_ord_nonneg_s12"
 private theorem _root_.AlgebraicCurve.Place.ord_uniformizerSubring'_s12 :
     v.ord (uniformizerSubring' v : F) = 1 :=
-  v.ord_coe_irreducible (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
+  v.ord_coe_irreducible (IsDiscreteValuationRing.exists_irreducible
+    v.toValuationSubring).choose_spec
 
 p2m_export "AlgebraicCurve.Place" "ord_uniformizerSubring'_s12"
 private theorem _root_.AlgebraicCurve.Place.dCoord_eq_D_uniformizerSubring'_s12 :
@@ -1361,7 +1371,8 @@ private theorem _root_.AlgebraicCurve.Place.dCoord_eq_D_uniformizerSubring'_s12 
 
 p2m_export "AlgebraicCurve.Place" "dCoord_eq_D_uniformizerSubring'_s12"
 
-private theorem _root_.AlgebraicCurve.Place.exists_mem_D_eq_smul_dCoord_s12 (hspan : ValSubringKaehlerSpanTop K F)
+private theorem _root_.AlgebraicCurve.Place.exists_mem_D_eq_smul_dCoord_s12 (hspan :
+  ValSubringKaehlerSpanTop K F)
     {x : F} (hx : x ∈ v.toValuationSubring) :
     ∃ c : F, c ∈ v.toValuationSubring ∧ KaehlerDifferential.D K F x = c • v.dCoord := by
   have hmem : KaehlerDifferential.D K v.toValuationSubring (⟨x, hx⟩ : v.toValuationSubring)
@@ -1380,7 +1391,8 @@ private theorem _root_.AlgebraicCurve.Place.exists_mem_D_eq_smul_dCoord_s12 (hsp
 
 p2m_export "AlgebraicCurve.Place" "exists_mem_D_eq_smul_dCoord_s12"
 
-private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hspan : ValSubringKaehlerSpanTop K F)
+private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hspan :
+  ValSubringKaehlerSpanTop K F)
     [Nontrivial Ω[F⁄K]] [v.DCoordGenerates] {ϖ : F} (hϖ : v.ord ϖ = 1) :
     ∃ w : F, w ≠ 0 ∧ v.ord w = 0 ∧ KaehlerDifferential.D K F ϖ = w • v.dCoord := by
   have hϖ0 : ϖ ≠ 0 := fun h => by rw [h, v.ord_zero] at hϖ; exact zero_ne_one hϖ
@@ -1409,9 +1421,11 @@ private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hs
   have hacmem : a * c ∈ v.toValuationSubring := mul_mem hamem hc
   have hunit : IsUnit (⟨a * c, hacmem⟩ : v.toValuationSubring) := by
     by_contra hnu
-    have hmax : (⟨a * c, hacmem⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring :=
+    have hmax : (⟨a * c, hacmem⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal
+      v.toValuationSubring :=
       (IsLocalRing.mem_maximalIdeal _).mpr hnu
-    have hϖmax : (⟨ϖ, hϖmem⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring :=
+    have hϖmax : (⟨ϖ, hϖmem⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring
+      :=
       (v.mem_maximalIdeal_iff_ord_pos hϖ0 hϖmem).mpr (by rw [hϖ]; exact one_pos)
     have h1 : (1 : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring := by
       have : (1 : v.toValuationSubring)
@@ -1437,7 +1451,8 @@ private theorem _root_.AlgebraicCurve.Place.exists_unit_D_eq_smul_dCoord_s12 (hs
 
 p2m_export "AlgebraicCurve.Place" "exists_unit_D_eq_smul_dCoord_s12"
 
-private theorem _root_.AlgebraicCurve.Place.exists_ord_eq_zero_D_eq_smul_D_s12 (hspan : ValSubringKaehlerSpanTop K F)
+private theorem _root_.AlgebraicCurve.Place.exists_ord_eq_zero_D_eq_smul_D_s12 (hspan :
+  ValSubringKaehlerSpanTop K F)
     [Nontrivial Ω[F⁄K]] [v.DCoordGenerates]
     (π π' : F) (hπ : v.ord π = 1) (hπ' : v.ord π' = 1) :
     ∃ u : F, v.ord u = 0 ∧ KaehlerDifferential.D K F π' = u • KaehlerDifferential.D K F π := by
@@ -1461,7 +1476,8 @@ theorem exists_ord_eq_zero_D_eq_smul_D_of_isCurveOver_s12
 theorem exists_mem_D_eq_smul_D_of_isCurveOver_s12
     [PerfectField K] [Algebra.EssFiniteType K F] [IsCurveOver K F]
     (v : Place K F) {π : F} (hπ : v.ord π = 1) {x : F} (hx : x ∈ v.toValuationSubring) :
-    ∃ c : F, c ∈ v.toValuationSubring ∧ KaehlerDifferential.D K F x = c • KaehlerDifferential.D K F π := by
+    ∃ c : F, c ∈ v.toValuationSubring ∧ KaehlerDifferential.D K F x = c • KaehlerDifferential.D K F
+      π := by
   have hspan := valSubringKaehlerSpanTop_of_isCurveOver_of_perfectField_s12 (K := K) (F := F)
   have : v.DCoordGenerates := Place.dCoordGenerates_of_valSubringKaehlerSpanTop hspan v
   obtain ⟨c, hc, hDx⟩ := v.exists_mem_D_eq_smul_dCoord_s12 hspan hx
@@ -1514,7 +1530,8 @@ theorem hasCanonicalDivisor_of_generator_finiteSupport_s12
 
 namespace Place
 p2m_open_scoped "AlgebraicCurve.Place" in
-private theorem _root_.AlgebraicCurve.Place.ordDifferential_D_eq_zero_of_span_eq_top_s12 (hspan : ValSubringKaehlerSpanTop K F)
+private theorem _root_.AlgebraicCurve.Place.ordDifferential_D_eq_zero_of_span_eq_top_s12 (hspan :
+  ValSubringKaehlerSpanTop K F)
     [Nontrivial Ω[F⁄K]] (v : Place K F) [v.DCoordGenerates]
     (s : v.toValuationSubring)
     (hs : Submodule.span v.toValuationSubring
@@ -1522,7 +1539,8 @@ private theorem _root_.AlgebraicCurve.Place.ordDifferential_D_eq_zero_of_span_eq
     v.ordDifferential (KaehlerDifferential.D K F (s : F)) = 0 := by
   have h1mem : KaehlerDifferential.D K v.toValuationSubring s
       ∈ Submodule.span v.toValuationSubring
-        ({KaehlerDifferential.D K v.toValuationSubring (uniformizerSubring' v)} : Set Ω[v.toValuationSubring⁄K]) := by
+        ({KaehlerDifferential.D K v.toValuationSubring (uniformizerSubring' v)} : Set
+          Ω[v.toValuationSubring⁄K]) := by
     rw [hspan v]; exact Submodule.mem_top
   have h2mem : KaehlerDifferential.D K v.toValuationSubring (uniformizerSubring' v)
       ∈ Submodule.span v.toValuationSubring
@@ -1568,7 +1586,8 @@ p2m_export "AlgebraicCurve" "Place.ordDifferential_D_eq_zero_of_span_eq_top_s12"
 theorem mem_span_D_adjoin_s12 (t : F) (ω : Ω[↥(Algebra.adjoin K ({t} : Set F))⁄K]) :
     ω ∈ Submodule.span ↥(Algebra.adjoin K ({t} : Set F))
       ({(KaehlerDifferential.D K ↥(Algebra.adjoin K ({t} : Set F))
-        ⟨t, Algebra.self_mem_adjoin_singleton K t⟩)} : Set Ω[↥(Algebra.adjoin K ({t} : Set F))⁄K]) := by
+        ⟨t, Algebra.self_mem_adjoin_singleton K t⟩)} : Set Ω[↥(Algebra.adjoin K ({t} : Set F))⁄K])
+          := by
   have htop : ω ∈ Submodule.span ↥(Algebra.adjoin K ({t} : Set F))
       (Set.range (KaehlerDifferential.D K ↥(Algebra.adjoin K ({t} : Set F)))) := by
     rw [KaehlerDifferential.span_range_derivation]; exact Submodule.mem_top
@@ -1577,7 +1596,8 @@ theorem mem_span_D_adjoin_s12 (t : F) (ω : Ω[↥(Algebra.adjoin K ({t} : Set F
   have hr : (r : F) ∈ (Polynomial.aeval (R := K) t).range := by
     rw [← Algebra.adjoin_singleton_eq_range_aeval]; exact r.2
   obtain ⟨Q, hQ⟩ := hr
-  have hr' : r = Polynomial.aeval (⟨t, Algebra.self_mem_adjoin_singleton K t⟩ : Algebra.adjoin K ({t} : Set F)) Q :=
+  have hr' : r = Polynomial.aeval (⟨t, Algebra.self_mem_adjoin_singleton K t⟩ : Algebra.adjoin K
+    ({t} : Set F)) Q :=
     by
     apply Subtype.ext
     change (r : F) = (Algebra.adjoin K ({t} : Set F)).val (Polynomial.aeval _ Q)
@@ -1593,16 +1613,19 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
     (hT : (T : Set F) ⊆ (v.toValuationSubring : Set F))
     {t : F} (hRT : Algebra.adjoin K ({t} : Set F) ≤ T)
     [IsDedekindDomain T] [IsFractionRing T F]
-    (hunr : letI : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T := (Subalgebra.inclusion hRT).toRingHom.toAlgebra
+    (hunr : letI : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T := (Subalgebra.inclusion
+      hRT).toRingHom.toAlgebra
       Algebra.IsUnramifiedAt ↥(Algebra.adjoin K ({t} : Set F)) (v.centerIdeal T hT)) :
     Submodule.span v.toValuationSubring
       ({(KaehlerDifferential.D K v.toValuationSubring
-        ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K]) = ⊤ := by
+        ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K]) = ⊤
+          := by
   let iRT : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T :=
     (Subalgebra.inclusion hRT).toRingHom.toAlgebra
   let iTO : Algebra T v.toValuationSubring := v.modelAlgebra T hT
   let iRO : Algebra ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring :=
-    ((algebraMap T v.toValuationSubring).comp (algebraMap ↥(Algebra.adjoin K ({t} : Set F)) T)).toAlgebra
+    ((algebraMap T v.toValuationSubring).comp (algebraMap ↥(Algebra.adjoin K ({t} : Set F))
+      T)).toAlgebra
   have : IsScalarTower ↥(Algebra.adjoin K ({t} : Set F)) T v.toValuationSubring :=
     IsScalarTower.of_algebraMap_eq fun _ => rfl
   have : IsScalarTower K ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring :=
@@ -1617,7 +1640,8 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
   have hsub : Subsingleton Ω[v.toValuationSubring⁄↥(Algebra.adjoin K ({t} : Set F))] :=
     Algebra.FormallyUnramified.subsingleton_kaehlerDifferential
   have hrange : LinearMap.range
-      (KaehlerDifferential.mapBaseChange K ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring) = ⊤ := by
+      (KaehlerDifferential.mapBaseChange K ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring) =
+        ⊤ := by
     rw [KaehlerDifferential.range_mapBaseChange]
     exact LinearMap.ker_eq_top.mpr (Subsingleton.elim _ _)
   have htO : algebraMap ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring
@@ -1627,7 +1651,8 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
       (KaehlerDifferential.mapBaseChange K ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring)
       ≤ Submodule.span v.toValuationSubring
         ({(KaehlerDifferential.D K v.toValuationSubring
-          ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K]) := by
+          ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K])
+            := by
     rintro _ ⟨x, rfl⟩
     induction x with
     | add x y hx hy => rw [map_add]; exact add_mem hx hy
@@ -1686,7 +1711,8 @@ theorem finite_ordDifferential_D_ne_zero_s12 (hspan : ValSubringKaehlerSpanTop K
   have : IsPrincipalIdealRing ↥(Algebra.adjoin K ({t} : Set F)) :=
     htr.isPrincipalIdealRing_adjoin_s12
   have : IsDedekindDomain ↥(Algebra.adjoin K ({t} : Set F)) := htr.isDedekindDomain_adjoin_s12
-  have hinj : Function.Injective (algebraMap ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)) :=
+  have hinj : Function.Injective (algebraMap ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart
+    K t)) :=
     Subalgebra.inclusion_injective hRT
   have : FaithfulSMul ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t) :=
     (faithfulSMul_iff_algebraMap_injective _ _).mpr hinj
@@ -1705,7 +1731,8 @@ theorem finite_ordDifferential_D_ne_zero_s12 (hspan : ValSubringKaehlerSpanTop K
     inferInstance
   have : Algebra.IsSeparable (FractionRing ↥(Algebra.adjoin K ({t} : Set F)))
       (FractionRing ↥(transcendentalChart K t)) := by
-    let e₁ : FractionRing ↥(Algebra.adjoin K ({t} : Set F)) ≃ₐ[↥(Algebra.adjoin K ({t} : Set F))] K⟮t⟯ :=
+    let e₁ : FractionRing ↥(Algebra.adjoin K ({t} : Set F)) ≃ₐ[↥(Algebra.adjoin K ({t} : Set F))]
+      K⟮t⟯ :=
       FractionRing.algEquiv _ K⟮t⟯
     let e₂ : FractionRing ↥(transcendentalChart K t) ≃ₐ[↥(transcendentalChart K t)] F :=
       FractionRing.algEquiv _ F
@@ -1715,7 +1742,8 @@ theorem finite_ordDifferential_D_ne_zero_s12 (hspan : ValSubringKaehlerSpanTop K
   have hdiff : differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t) ≠ ⊥ :=
     differentIdeal_ne_bot
   have hfinP : {P : IsDedekindDomain.HeightOneSpectrum ↥(transcendentalChart K t) |
-      P.asIdeal ∣ differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)}.Finite :=
+      P.asIdeal ∣ differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K
+        t)}.Finite :=
     Ideal.finite_factors hdiff
   obtain ⟨Dt, hDt, -⟩ := HasPrincipalDivisors.exists_divisor (K := K) t ht0
   have hpole : {v : Place K F | v.ord t < 0}.Finite := by
@@ -1737,13 +1765,16 @@ theorem finite_ordDifferential_D_ne_zero_s12 (hspan : ValSubringKaehlerSpanTop K
     have hs := v.span_D_eq_top_of_isUnramifiedAt_s12 (transcendentalChart K t) (hsub v hv) hRT hunr
     exact v.ordDifferential_D_eq_zero_of_span_eq_top_s12 hspan
       ⟨t, (hsub v hv) (hRT (Algebra.self_mem_adjoin_singleton K t))⟩ hs
-  have hS₂ : {v : Place K F | ∃ hv : 0 ≤ v.ord t, (v.centerIdeal (transcendentalChart K t) (hsub v hv)) ∣
+  have hS₂ : {v : Place K F | ∃ hv : 0 ≤ v.ord t, (v.centerIdeal (transcendentalChart K t) (hsub v
+    hv)) ∣
       differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)}.Finite := by
     have := hfinP.to_subtype
-    let g : {v : Place K F | ∃ hv : 0 ≤ v.ord t, (v.centerIdeal (transcendentalChart K t) (hsub v hv)) ∣
+    let g : {v : Place K F | ∃ hv : 0 ≤ v.ord t, (v.centerIdeal (transcendentalChart K t) (hsub v
+      hv)) ∣
         differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)} →
         {P : IsDedekindDomain.HeightOneSpectrum ↥(transcendentalChart K t) |
-          P.asIdeal ∣ differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)} :=
+          P.asIdeal ∣ differentIdeal ↥(Algebra.adjoin K ({t} : Set F)) ↥(transcendentalChart K t)}
+            :=
       fun x => ⟨⟨x.1.centerIdeal (transcendentalChart K t) (hsub x.1 x.2.1), inferInstance,
         x.1.centerIdeal_ne_bot_of_isFractionRing (transcendentalChart K t) (hsub x.1 x.2.1)⟩, x.2.2⟩
     have hg : Function.Injective g := by

@@ -242,7 +242,8 @@ theorem linearIndependent_iota {ι : Type*} [Finite ι] (v : ι → E₀)
   by_contra hne
   push Not at hne
   obtain ⟨i₀, hi₀⟩ := hne
-  have hrep : ∀ i, ∃ r s : K[X], (c i : E) = Polynomial.aeval (x : E) r / Polynomial.aeval (x : E) s :=
+  have hrep : ∀ i, ∃ r s : K[X], (c i : E) = Polynomial.aeval (x : E) r / Polynomial.aeval (x : E) s
+    :=
     by
     intro i
     exact (IntermediateField.mem_adjoin_simple_iff (F := K) (α := x) (c i : E)).mp (c i).2
@@ -330,13 +331,17 @@ theorem solution
     (x₀ : ModularCurve.qExpFunctionFieldC K₀ Γ) (x : ModularCurve.qExpFunctionFieldC K Γ)
     (hx₀ : Transcendental K₀ (x₀ : LaurentSeries K₀))
     (hx : (x : LaurentSeries K) = ModularCurve.coeffMap φ (x₀ : LaurentSeries K₀))
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K
+      Γ)))
       (ModularCurve.qExpFunctionFieldC K Γ)] :
-    FiniteDimensional (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀ Γ)))
+    FiniteDimensional (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀
+      Γ)))
         (ModularCurve.qExpFunctionFieldC K₀ Γ) ∧
-      Module.finrank (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀ Γ)))
+      Module.finrank (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀
+        Γ)))
           (ModularCurve.qExpFunctionFieldC K₀ Γ) ≤
-        Module.finrank (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
+        Module.finrank (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K
+          Γ)))
           (ModularCurve.qExpFunctionFieldC K Γ) := by
   classical
   set n : ℕ := Module.finrank (IntermediateField.adjoin K ({x} : Set (qExpFunctionFieldC K Γ)))
@@ -371,13 +376,17 @@ theorem ModularCurve.finiteDimensional_and_finrank_adjoin_le_of_eq_coeffMap
     (x₀ : ModularCurve.qExpFunctionFieldC K₀ Γ) (x : ModularCurve.qExpFunctionFieldC K Γ)
     (hx₀ : Transcendental K₀ (x₀ : LaurentSeries K₀))
     (hx : (x : LaurentSeries K) = ModularCurve.coeffMap φ (x₀ : LaurentSeries K₀))
-    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
+    [FiniteDimensional (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K
+      Γ)))
       (ModularCurve.qExpFunctionFieldC K Γ)] :
-    FiniteDimensional (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀ Γ)))
+    FiniteDimensional (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀
+      Γ)))
         (ModularCurve.qExpFunctionFieldC K₀ Γ) ∧
-      Module.finrank (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀ Γ)))
+      Module.finrank (IntermediateField.adjoin K₀ ({x₀} : Set (ModularCurve.qExpFunctionFieldC K₀
+        Γ)))
           (ModularCurve.qExpFunctionFieldC K₀ Γ) ≤
-        Module.finrank (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
+        Module.finrank (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K
+          Γ)))
           (ModularCurve.qExpFunctionFieldC K Γ) :=
   solution φ Γ x₀ x hx₀ hx
 

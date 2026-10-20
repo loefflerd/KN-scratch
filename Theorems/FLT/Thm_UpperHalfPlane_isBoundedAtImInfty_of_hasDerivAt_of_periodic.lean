@@ -46,7 +46,8 @@ $h$-periodic holomorphic function that is bounded at the cusp is itself bounded 
 periodicity of the primitive forces the constant term of the $q$-expansion of $u$ to vanish. The
 periodicity of $v$ is essential ($u=1$, $v=\tau$ is a counterexample without it). It is used to
 establish boundedness at $i\infty$ of the evaluations of Eichler integrals, via
-[`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`](thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval).
+[`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`]
+(thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval).
 
 ## Explanation of the source proof
 
@@ -223,7 +224,8 @@ theorem solution {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
     (hv : ∀ τ : UpperHalfPlane, HasDerivAt (v ∘ UpperHalfPlane.ofComplex) (u τ) ↑τ)
     (hv_per : Function.Periodic (v ∘ UpperHalfPlane.ofComplex) h) :
     UpperHalfPlane.IsBoundedAtImInfty v :=
-  UpperHalfPlane.PrimBddAux.isBoundedAtImInfty_of_hasDerivAt_of_periodic hh hu_per hu_hol hu_bdd hv hv_per
+  UpperHalfPlane.PrimBddAux.isBoundedAtImInfty_of_hasDerivAt_of_periodic hh hu_per hu_hol hu_bdd hv
+    hv_per
 
 end S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic
 end P2MW

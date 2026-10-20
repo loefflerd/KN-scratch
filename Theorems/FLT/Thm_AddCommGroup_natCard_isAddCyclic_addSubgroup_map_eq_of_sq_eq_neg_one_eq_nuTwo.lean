@@ -97,7 +97,8 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
   symm
   refine Nat.card_eq_of_bijective
     (fun L : {H : AddSubgroup M // IsAddCyclic H ∧ Nat.card H = n ∧ H.map T = H} =>
-      (⟨L.1.map ι, hΦ L.1 L.2⟩ : {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ = H}))
+      (⟨L.1.map ι, hΦ L.1 L.2⟩ : {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ =
+        H}))
     ⟨?_, ?_⟩
   · intro L₁ L₂ h
     exact Subtype.ext (AddSubgroup.map_injective hι (congrArg Subtype.val h))
@@ -147,7 +148,8 @@ theorem solution
 
 end S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo
 end P2MW
-export P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo (solution)
+export P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo
+  (solution)
 
 end privateSection
 

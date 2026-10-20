@@ -135,7 +135,8 @@ lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries �
   | empty => (have h__af := one h; simp at h__af ⊢; exact h__af)
   | insert a s ha ih =>
     have h1 :=
-      (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem hi))
+      (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem
+        hi))
     refine h1.congr (Finset.prod_insert ha).symm fun τ => ?_
     simp [Finset.prod_insert ha]
 
@@ -222,7 +223,8 @@ theorem mem_adjoin_jq_of_realL_invariant (f : LaurentSeries ℚ) (F : ℍ → �
   obtain ⟨n, hn⟩ : ∃ n : ℕ, PoleOrderLE f n := by
     by_cases hf0 : f = 0
     · exact ⟨0, fun m _ => by simp [hf0]⟩
-    refine ⟨(-f.order).toNat, fun m hm => HahnSeries.coeff_eq_zero_of_lt_order (lt_of_lt_of_le hm ?_)⟩
+    refine ⟨(-f.order).toNat, fun m hm => HahnSeries.coeff_eq_zero_of_lt_order (lt_of_lt_of_le hm
+      ?_)⟩
     have := Int.self_le_toNat (-f.order)
     omega
   obtain ⟨P, -, he⟩ := ModularCurve.exists_aeval_jq_sub_holomorphicAtInfty n f hn
@@ -233,7 +235,8 @@ theorem mem_adjoin_jq_of_realL_invariant (f : LaurentSeries ℚ) (F : ℍ → �
     rw [he_def, map_sub]
     exact hfR.sub (realL_aeval_jq P)
   have hEinv : ∀ (γ : SL(2, ℤ)) (τ : ℍ),
-      (F - fun τ => (P.map castC).eval (jt τ)) (γ • τ) = (F - fun τ => (P.map castC).eval (jt τ)) τ := by
+      (F - fun τ => (P.map castC).eval (jt τ)) (γ • τ) = (F - fun τ => (P.map castC).eval (jt τ)) τ
+        := by
     intro γ τ
     simp only [Pi.sub_apply, hinv γ τ, jt_smul γ τ]
   have hEN : ∀ τ : ℍ, HasSum (fun n : ℕ => ((e.coeff n : ℚ) : ℂ) * 𝕢 1 (τ : ℂ) ^ n)
@@ -262,13 +265,16 @@ theorem mem_adjoin_jq_of_realL_invariant (f : LaurentSeries ℚ) (F : ℍ → �
   have hck : f = algebraMap ℚ (LaurentSeries ℚ) (e.coeff 0) + Polynomial.aeval jq P := by
     rw [algebraMap_laurentSeries_eq_single, ← heconst, he_def, sub_add_cancel]
   rw [hck]
-  exact Subalgebra.add_mem _ (Subalgebra.algebraMap_mem _ _) (Polynomial.aeval_mem_adjoin_singleton ℚ jq)
+  exact Subalgebra.add_mem _ (Subalgebra.algebraMap_mem _ _) (Polynomial.aeval_mem_adjoin_singleton
+    ℚ jq)
 
 end JOut
 
 end ModularCurve
 
-theorem solution (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) :
+theorem solution (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum
+  (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ
+  : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) :
     f ∈ Algebra.adjoin ℚ {ModularCurve.jq} :=
   ModularCurve.mem_adjoin_jq_of_realL_invariant f F hF hinv
 
@@ -282,7 +288,10 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.mem_adjoin_jq_of_hasSum_of_slash_invariant (f : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) :
+theorem ModularCurve.mem_adjoin_jq_of_hasSum_of_slash_invariant (f : LaurentSeries ℚ) (F :
+  UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) *
+  Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ)
+  (τ : UpperHalfPlane), F (γ • τ) = F τ) :
     f ∈ Algebra.adjoin ℚ {ModularCurve.jq} :=
   solution f F hF hinv
 

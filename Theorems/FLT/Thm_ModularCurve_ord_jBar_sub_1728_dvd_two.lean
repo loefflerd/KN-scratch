@@ -58,7 +58,8 @@ function fields over $\overline{\mathbb Q}$, is at worst quadratically ramified 
 point $j = 1728$, the point of order two for the modular group. It is one of the inputs to the
 ramification count entering the genus formula for $X_0(N)$ and to the description of Riemann–Roch
 spaces and regular differentials on the curve, being cited by
-[`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula`](thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula)
+[`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula`]
+(thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula)
 among others.
 
 ## Explanation of the source proof
@@ -230,15 +231,18 @@ theorem j_eq_1728_add_single_two_one (𝓔 : WeierstrassCurve (PowerSeries K)) (
 theorem hasRamBound_two_of_isRoot_at_1728
     {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
-    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
-      ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
+    (hroot : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure
+      ℚ)))
+      ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure
+        ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 2 r := by
   classical
   obtain ⟨𝓔, hΔ, hc⟩ :=
     WeierstrassCurve.exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries
       (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
   have h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
-  have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = (1728 : 𝕂) + HahnSeries.single (2 : ℚ) (1 : ℚ̄) :=
+  have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = (1728 : 𝕂) + HahnSeries.single (2 : ℚ) (1 :
+    ℚ̄) :=
     j_eq_1728_add_single_two_one 𝓔 hΔ hc
   have ht : Transcendental ℚ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
     rw [hjW]; exact transcendental_1728_add_single_two
@@ -279,18 +283,21 @@ open ModularCurve AlgebraicCurve IntermediateField Polynomial
 variable (N : ℕ) [NeZero N]
 
 abbrev jb : ↥(modularFunctionFieldBar N) :=
-  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩
+  ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)
+    (jq_mem_full N)⟩
 
 abbrev jNb : ↥(modularFunctionFieldBar N) :=
   ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ N jq),
     coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (dvd_refl N))⟩
 
 @[reducible] def algRF : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
-  ((algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)).comp (jLineBarRingEquiv N).toRingHom).toAlgebra
+  ((algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)).comp (jLineBarRingEquiv
+    N).toRingHom).toAlgebra
 
 theorem isScalarTower_RF :
     letI := algRF N
-    IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
+    IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N)
+      := by
   let := algRF N
   refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
   change algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)
@@ -316,9 +323,11 @@ theorem finite_RF :
 theorem algebraMap_RF_X :
     letI := algRF N
     algebraMap (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N)
-      (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) Polynomial.X) = jb N := by
+      (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) Polynomial.X) =
+        jb N := by
   let := algRF N
-  change ((jLineBarRingEquiv N (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) X)
+  change ((jLineBarRingEquiv N (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc
+    (AlgebraicClosure ℚ)) X)
     : ↥(jLineBar N)) : ↥(modularFunctionFieldBar N)) = jb N
   rw [RatFunc.algebraMap_X, jLineBarRingEquiv_X]
 
@@ -340,7 +349,8 @@ theorem algebraMap_RF_X_sub_C (c : AlgebraicClosure ℚ) :
   rw [map_sub, map_sub, algebraMap_RF_X, algebraMap_RF_C]
 
 theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
-    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) (jNb N)
+    data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))
+      (jNb N)
       = 0 := by
   apply Subtype.ext
   have hval : ((modularFunctionFieldBar N).toSubfield.subtype).comp
@@ -348,7 +358,8 @@ theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
       = (coeffEmb (AlgebraicClosure ℚ)).comp evalAtJ := by
     refine Polynomial.ringHom_ext (fun z => by simp) ?_
     change ((Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N) X :
-        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb (AlgebraicClosure ℚ) (evalAtJ X)
+        ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) = coeffEmb
+          (AlgebraicClosure ℚ) (evalAtJ X)
     rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, evalAtJ_X]
   have h0 := congrArg (coeffEmb (AlgebraicClosure ℚ)) data.eval_eq_zero
   rw [map_zero, Polynomial.hom_eval₂, ← hval] at h0
@@ -389,7 +400,8 @@ theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : Algebr
     {d : ℕ} (hd : 0 < d)
     (hroots : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),
       (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
-        (HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r → HahnSeries.HasRamBound d r)
+        (HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r →
+          HahnSeries.HasRamBound d r)
     (ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ))
     (hψ : ψ (jb N) = HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)) :
     ∀ z, HahnSeries.HasRamBound d (ψ z) := by
@@ -399,7 +411,8 @@ theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : Algebr
   let T : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     (S.comap ψ.toRingHom).toIntermediateField (fun a => by
       change ψ (algebraMap (AlgebraicClosure ℚ) _ a) ∈ S
-      have hC : algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) a = HahnSeries.C a :=
+      have hC : algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) a = HahnSeries.C
+        a :=
         by
         rw [HahnSeries.algebraMap_apply']; simp
       rw [ψ.commutes, hS, hC]
@@ -413,13 +426,16 @@ theorem forall_hasRamBound_of_roots (data : ModularPolynomialData N) (c : Algebr
     rw [hS]
     refine hroots _ ?_
     rw [Polynomial.IsRoot, Polynomial.eval_map, ← hψ]
-    have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb N))
-        = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) := by
+    have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ
+      (jb N))
+        = (ψ.toRingHom).comp (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N))
+          (jb N)) := by
       refine Polynomial.ringHom_ext (fun z => by simp) ?_
       simp
     rw [hcomp]
     have h := (Polynomial.hom_eval₂ data.Φ
-      (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom (jNb N)).symm
+      (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) ψ.toRingHom
+        (jNb N)).symm
     rw [eval₂_Phi_jb_jNb N data, map_zero] at h
     simpa using h
   have htop := ModularCurve.adjoin_jBar_jNBar_eq_top (AlgebraicClosure ℚ) N
@@ -436,7 +452,8 @@ theorem ord_jb_sub_dvd (data : ModularPolynomialData N) (c : AlgebraicClosure �
     (hd : 0 < d)
     (hroots : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),
       (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
-        (HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r → HahnSeries.HasRamBound d r)
+        (HahnSeries.C c + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r →
+          HahnSeries.HasRamBound d r)
     (v : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))
     (hpos : 0 < v.ord (jb N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c)) :
     v.ord (jb N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c) ∣ (d : ℤ) := by
@@ -467,8 +484,10 @@ end
 
 theorem solution (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
-    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728)) :
-    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ∣ 2 := by
+    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) 1728)) :
+    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) 1728) ∣ 2 := by
   exact OrdJBarSub1728.ord_jb_sub_1728_dvd_two N v hpos
 
 end S_ModularCurve_ord_jBar_sub_1728_dvd_two
@@ -483,8 +502,10 @@ public section publicSection
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_jBar_sub_1728_dvd_two (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))
-    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728)) :
-    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ∣ 2 :=
+    (hpos : 0 < v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) 1728)) :
+    v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+      ↥(ModularCurve.modularFunctionFieldBar N) 1728) ∣ 2 :=
   solution N v hpos
 
 end publicSection

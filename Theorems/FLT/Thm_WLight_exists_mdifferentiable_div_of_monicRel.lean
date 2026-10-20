@@ -44,10 +44,12 @@ being pointwise; thus the equality holds at every point, not merely off the zero
 This is the upper-half-plane form of the classical clearing argument: a monic algebraic relation for
 the quotient $a/b$, multiplied through by $b^d$, forces $b$ to divide $a$ in the ring of holomorphic
 functions. It is obtained from
-[`WLight.exists_analyticOnNhd_div_of_monicRel`](thm.html#WLight.exists_analyticOnNhd_div_of_monicRel)
+[`WLight.exists_analyticOnNhd_div_of_monicRel`]
+(thm.html#WLight.exists_analyticOnNhd_div_of_monicRel)
 on the connected open subset of $\mathbb{C}$ underlying $\mathbb{H}$, and is used to reconstruct
 genuine holomorphic functions, and hence cusp forms, from algebraic data, as in
-[`CuspForm.exists_mul_E4_pow_mul_E6_pow_eq_iff`](thm.html#CuspForm.exists_mul_E4_pow_mul_E6_pow_eq_iff)
+[`CuspForm.exists_mul_E4_pow_mul_E6_pow_eq_iff`]
+(thm.html#CuspForm.exists_mul_E4_pow_mul_E6_pow_eq_iff)
 and the statements on $q$-expansion coefficients of bases of cusp forms for $\Gamma_1(N)$.
 
 ## Explanation of the source proof

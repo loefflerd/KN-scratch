@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+Based on Prove2Me node
+WeierstrassCurve.Affine.algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 (c0a1c72a-34d3-562d-a713-786175bd2ec5) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission fb20e9c2-8602-5b92-9b42-285529e5adc3
@@ -95,7 +96,8 @@ theorem solution
 
 end S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (solution)
+export P2MW.S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+  (solution)
 
 end privateSection
 

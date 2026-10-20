@@ -47,7 +47,8 @@ K(x)] \le \deg D$, where $\deg D = \sum_v D(v) \cdot \deg v$, as an inequality o
 This is one half of the classical identity $\deg(x)_\infty = [F:K(x)]$ for a one-variable function
 field, the direction obtained by counting dimensions of Riemann–Roch spaces; no separability of
 $F/K(x)$ is required. It is cited in the proof of the corresponding equality
-[`AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord`](thm.html#AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord).
+[`AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord`]
+(thm.html#AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord).
 
 ## Explanation of the source proof
 
@@ -158,7 +159,8 @@ theorem solution
     · have hvsupp : v ∈ D.support := Finsupp.mem_support_iff.mpr (by rw [hD]; omega)
       have hDv1 : (1 : ℤ) ≤ D v := hDsupp v hvsupp
       have hcle : (-(v.ord (u i))).toNat ≤ c := by
-        refine le_trans ?_ (Finset.le_sup (f := fun i => D.support.sup fun v => (-(v.ord (u i))).toNat) (Finset.mem_univ i))
+        refine le_trans ?_ (Finset.le_sup (f := fun i => D.support.sup fun v => (-(v.ord (u
+          i))).toNat) (Finset.mem_univ i))
         exact Finset.le_sup (f := fun w => (-(w.ord (u i))).toNat) hvsupp
       have hcge : -(c : ℤ) ≤ v.ord (u i) := by
         have := Int.toNat_le.mp hcle
@@ -242,7 +244,8 @@ theorem solution
     have := le_trans hcombine (by linarith [hmdd])
     nlinarith [this]
   have hcontra : (m : ℤ) ≤ n * c - n + ell (0 : Divisor K F) := by linarith
-  linarith [hmZ, Int.natCast_nonneg c, Int.natCast_nonneg n, Int.natCast_nonneg (ell (0 : Divisor K F))]
+  linarith [hmZ, Int.natCast_nonneg c, Int.natCast_nonneg n, Int.natCast_nonneg (ell (0 : Divisor K
+    F))]
 
 end S_AlgebraicCurve_Divisor_finrank_adjoin_le_degree_of_eq_max_neg_ord
 end P2MW

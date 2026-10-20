@@ -44,7 +44,8 @@ Eichler integral of weight $n+2$ at the moving point $(1,-\tau)$ determines the 
 up to nothing, so a constant period function forces the form to vanish. It is used for the
 injectivity of the Eichler–Shimura map, via
 [`HeckeEis.eichlerShimuraMap_injective`](thm.html#HeckeEis.eichlerShimuraMap_injective) and
-[`HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero`](thm.html#HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero).
+[`HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero`]
+(thm.html#HeckeEis.modularForm_eq_zero_of_coeffH1Mk_cocycle_eq_zero).
 
 ## Explanation of the source proof
 
@@ -67,7 +68,8 @@ open scoped MatrixGroups Topology
 variable {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
 
 def rung (G : ℍ → ↥(BinaryForm ℂ n)) (j : ℕ) (τ : ℍ) : ℂ :=
-  MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
+  MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) :
+    MvPolynomial (Fin 2) ℂ))
 
 theorem rung_succ_n (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : rung G (n + 1) τ = 0 := by
   rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n
@@ -121,7 +123,8 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
     {c : ℂ}
     (hc : ∀ τ : UpperHalfPlane,
-      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = c) :
+      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin
+        2) ℂ) = c) :
     g = 0 :=
   funext fun τ => HeckeEis.LadderAux.eq_zero_of_rung_zero_const hG hc τ
 
@@ -133,7 +136,8 @@ theorem HeckeEis.IsEichlerIntegral.eq_zero_of_eval_eq_const {n : ℕ} {g : Upper
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G)
     {c : ℂ}
     (hc : ∀ τ : UpperHalfPlane,
-      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = c) :
+      MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin
+        2) ℂ) = c) :
     g = 0 := _root_.solution hG hc
 
 end publicSection

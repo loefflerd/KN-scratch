@@ -167,7 +167,8 @@ def qTwistEquiv (u : Kˣ) : LaurentSeries K ≃+* LaurentSeries K where
     qTwistEquiv u f = qTwist u f := rfl
 
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 theorem qTwist_TS_one_cycle (ζ : Kˣ) {p : ℕ} (hζp : ζ ^ p = 1) (b : ℕ) :
@@ -258,7 +259,8 @@ private theorem ksplit_exists_isPrimitiveRoot (N : ℕ) [NeZero N] :
   have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
   have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) :=
     CyclotomicField.isCyclotomicExtension N ℚ
-  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
+  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N)
+    (NeZero.ne N)
 
 private def ksplitCycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
   ((ksplit_exists_isPrimitiveRoot N).choose_spec.isUnit (NeZero.ne N)).unit
@@ -339,7 +341,8 @@ private theorem ksplitIota_injective : Function.Injective (ksplitIota p) := by
 
 omit hp in
 private theorem ksplit_coeffEmb_qExpand (n : ℕ) [NeZero n] (x : LaurentSeries ℚ) :
-    coeffEmb (CyclotomicField p ℚ) (qExpand ℚ n x) = qExpand (CyclotomicField p ℚ) n (coeffEmb (CyclotomicField p ℚ) x) :=
+    coeffEmb (CyclotomicField p ℚ) (qExpand ℚ n x) = qExpand (CyclotomicField p ℚ) n (coeffEmb
+      (CyclotomicField p ℚ) x) :=
   coeffMap_qExpand (algebraMap ℚ (CyclotomicField p ℚ)) n x
 
 omit hp in
@@ -349,7 +352,8 @@ private theorem ksplit_coeffEmb_jq :
   exact map_jqModC (algebraMap ℚ (CyclotomicField p ℚ))
 
 private theorem ksplit_integral (data : ModularPolynomialData p) :
-    phiAtSeed data (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) p (jqModC (AdjoinRoot (Polynomial.cyclotomic p ℤ))))
+    phiAtSeed data (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) p (jqModC (AdjoinRoot
+      (Polynomial.cyclotomic p ℤ))))
       = (Polynomial.X - Polynomial.C (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) (p * p)
           (jqModC (AdjoinRoot (Polynomial.cyclotomic p ℤ)))))
         * ∏ b : Fin p, (Polynomial.X - Polynomial.C (qTwist ((ksplitZeta p) ^ (b : ℕ))
@@ -363,7 +367,8 @@ private theorem ksplit_integral (data : ModularPolynomialData p) :
       rw [RingHom.comp_apply, ksplit_coeffEmb_qExpand, ksplit_coeffEmb_jq]
     rw [ksplit_comp_evalAtJ, hseed, phiAtSeed]
   have hseedO : coeffMap (ksplitIota p)
-      (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) p (jqModC (AdjoinRoot (Polynomial.cyclotomic p ℤ))))
+      (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) p (jqModC (AdjoinRoot (Polynomial.cyclotomic
+        p ℤ))))
       = qExpand (CyclotomicField p ℚ) p (jqModC (CyclotomicField p ℚ)) := by
     rw [coeffMap_qExpand]
     congr 1
@@ -417,13 +422,15 @@ theorem phiAtSeed_qExpand_prime_eq (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
   classical
   have h := congrArg (Polynomial.map (coeffMap (ksplitLift p ζ hζ))) (ksplit_integral p data)
   have hseed : coeffMap (ksplitLift p ζ hζ)
-      (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) p (jqModC (AdjoinRoot (Polynomial.cyclotomic p ℤ))))
+      (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) p (jqModC (AdjoinRoot (Polynomial.cyclotomic
+        p ℤ))))
       = qExpand K p (jqModC K) := by
     rw [coeffMap_qExpand]
     congr 1
     exact map_jqModC (ksplitLift p ζ hζ)
   have hspread : coeffMap (ksplitLift p ζ hζ)
-      (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) (p * p) (jqModC (AdjoinRoot (Polynomial.cyclotomic p ℤ))))
+      (qExpand (AdjoinRoot (Polynomial.cyclotomic p ℤ)) (p * p) (jqModC (AdjoinRoot
+        (Polynomial.cyclotomic p ℤ))))
       = qExpand K (p * p) (jqModC K) := by
     rw [coeffMap_qExpand]
     congr 1
@@ -452,13 +459,15 @@ theorem phiAtSeed_slot_prime_eq (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
     (e : ℕ) [NeZero e] (u : Kˣ) :
     phiAtSeed data (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))
       = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K))))
-        * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))) := by
+        * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b)
+          (jqModC K)))) := by
   classical
   set f : LaurentSeries K →+* LaurentSeries K := (qExpand K e).comp (qTwist u) with hf
   have hseed : f (qExpand K p (jqModC K)) = qExpand K (p * e) (qTwist (u ^ p) (jqModC K)) := by
     rw [hf, RingHom.comp_apply, qTwist_qExpand, qExpand_qExpand, zpow_natCast]
     exact qExpand_congr (Nat.mul_comm e p) _
-  have hspread : f (qExpand K (p * p) (jqModC K)) = qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K)) :=
+  have hspread : f (qExpand K (p * p) (jqModC K)) = qExpand K (p * (p * e)) (qTwist (u ^ (p * p))
+    (jqModC K)) :=
     by
     rw [hf, RingHom.comp_apply, qTwist_qExpand, qExpand_qExpand, zpow_natCast]
     exact qExpand_congr (by ring) _
@@ -491,7 +500,9 @@ open ModularCurve.W1 in
 private theorem ModularCurve.PhiGen.splits_prime_of_isPrimitiveRoot {K : Type*} [Field K] (p : ℕ)
     [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) :
-    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K p (jqModC K))) = (Polynomial.X - Polynomial.C (qExpand K (p * p) (jqModC K))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) :=
+    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K p (jqModC
+      K))) = (Polynomial.X - Polynomial.C (qExpand K (p * p) (jqModC K))) * ∏ b ∈ Finset.range p,
+      (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) :=
   phiAtSeed_qExpand_prime_eq p ζ hζ data
 
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
@@ -499,7 +510,10 @@ open ModularCurve.W1 in
 private theorem ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot {K : Type*} [Field K]
     (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) :
-    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))) :=
+    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e)
+      (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist
+      (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e
+      (qTwist (u * ζ ^ b) (jqModC K)))) :=
   phiAtSeed_slot_prime_eq p ζ hζ data e u
 
 namespace ModularCurve
@@ -548,7 +562,8 @@ theorem roots_prime_at_slot_nodup (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
   · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h :=
-      (TS_injective (K := K) (e := e) (e' := p * (p * e)) (u := u * ζ ^ b) (u' := u ^ (p * p)) heq).1
+      (TS_injective (K := K) (e := e) (e' := p * (p * e)) (u := u * ζ ^ b) (u' := u ^ (p * p))
+        heq).1
     have hp2 : 2 ≤ p := hp.out.two_le
     have he1 : 0 < e := Nat.pos_of_ne_zero (NeZero.ne e)
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
@@ -605,15 +620,22 @@ open ModularCurve.W1 in
 private theorem ModularCurve.PhiGen.roots_nodup_prime_at_slot_of_isPrimitiveRoot {K : Type*}
     [Field K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) :
-    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (jqModC K))))).roots.Nodup :=
+    (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e)
+      (qTwist (u ^ p) (jqModC K))))).roots.Nodup :=
   roots_prime_at_slot_roots_nodup p ζ hζ data e u
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) :
-    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))) :=
+    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e)
+      (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist
+      (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e
+      (qTwist (u * ζ ^ b) (jqModC K)))) :=
   ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p ζ hζ data e u
 
 end S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot
@@ -629,7 +651,10 @@ open ModularCurve ModularCurve.PhiGen
 theorem ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot {K : Type*} [Field K] (p : ℕ)
     [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p)
     (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) :
-    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))) :=
+    data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e)
+      (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist
+      (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e
+      (qTwist (u * ζ ^ b) (jqModC K)))) :=
   solution p ζ hζ data e u
 
 end publicSection

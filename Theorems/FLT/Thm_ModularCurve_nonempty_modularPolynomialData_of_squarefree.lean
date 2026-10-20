@@ -543,7 +543,9 @@ private theorem nonempty_modularPolynomialData_of_squarefree (N : ℕ) [NeZero N
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve
+  ModularCurve.PhiGen in
 theorem solution (N : ℕ) [NeZero N] (hsf : Squarefree N) (hN : 1 < N) :
     Nonempty (ModularPolynomialData N) :=
   ModularCurve.nonempty_modularPolynomialData_of_squarefree N hsf hN

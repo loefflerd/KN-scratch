@@ -78,7 +78,8 @@ This is the Riemann–Hurwitz count, in inequality form, for the covering $j \co
 = \mathbb{P}^1_j$ realised on the $q$-expansion model of the function field of $X(\Gamma)$ over
 $\bar{\mathbb{Q}}$: the ramification of $j$ occurs only above $j = \infty, 0, 1728$. It is used to
 obtain the corresponding equality
-[`ModularCurve.two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le`](thm.html#ModularCurve.two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le)
+[`ModularCurve.two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le`]
+(thm.html#ModularCurve.two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le)
 and, from there, the comparison of genera between the $q$-expansion model over $\bar{\mathbb{Q}}$
 and the reduction used for the modular curves $X_H$.
 
@@ -247,9 +248,11 @@ theorem ordDiff_eq_ordDifferential (v : Place K F) [v.DCoordGenerates] [Nontrivi
     (ω : Ω[F⁄K]) : v.ordDiff ω = v.ordDifferential ω := by
   obtain ⟨t₂, ht₂, hdc⟩ := exists_dCoord_eq_D v
   have ht₁ : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
-  have hc_smul : Place.diffCoeff v.uniformizer_alt (D K F t₂) • D K F v.uniformizer_alt = D K F t₂ :=
+  have hc_smul : Place.diffCoeff v.uniformizer_alt (D K F t₂) • D K F v.uniformizer_alt = D K F t₂
+    :=
     Place.diffCoeff_smul_D_of_ord_eq_one x v ht₁ _
-  have hc'_smul : Place.diffCoeff t₂ (D K F v.uniformizer_alt) • D K F t₂ = D K F v.uniformizer_alt :=
+  have hc'_smul : Place.diffCoeff t₂ (D K F v.uniformizer_alt) • D K F t₂ = D K F v.uniformizer_alt
+    :=
     Place.diffCoeff_smul_D_of_ord_eq_one x v ht₂ _
   have hD₁ : D K F v.uniformizer_alt ≠ 0 := Place.D_ne_zero_of_ord_eq_one x v ht₁
   have hcc' : Place.diffCoeff t₂ (D K F v.uniformizer_alt) *
@@ -831,34 +834,42 @@ end Main
 end ModularCurve.RiemannHurwitzCount
 end
 
-open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve in
+open AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve
+  in
 theorem solution
     (M : ℕ) [NeZero M] (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
     (hΓ : CongruenceSubgroup.Gamma1 M ≤ Γ)
     (y : ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))
     (hy : (y : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ)) :
     2 * AlgebraicCurve.genusFF (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) +
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) +
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             P.ord y < 0} +
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord y} +
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord (y - 1728)} ≤
       Module.finrank
           (IntermediateField.adjoin (AlgebraicClosure ℚ)
             ({y} : Set (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
               (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) +
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) +
         2 :=
   ModularCurve.RiemannHurwitzCount.main M Γ hΓ y hy
 
 end S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
 end P2MW
-export P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le (solution)
+export P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
+  (solution)
 
 end privateSection
 
@@ -870,21 +881,26 @@ theorem ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma
     (y : ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))
     (hy : (y : LaurentSeries (AlgebraicClosure ℚ)) = ModularCurve.jqModC (AlgebraicClosure ℚ)) :
     2 * AlgebraicCurve.genusFF (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) +
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) +
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             P.ord y < 0} +
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord y} +
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord (y - 1728)} ≤
       Module.finrank
           (IntermediateField.adjoin (AlgebraicClosure ℚ)
             ({y} : Set (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
               (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) +
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) +
         2 :=
   solution M Γ hΓ y hy
 

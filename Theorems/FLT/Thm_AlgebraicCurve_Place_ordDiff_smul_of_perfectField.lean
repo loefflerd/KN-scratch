@@ -76,7 +76,8 @@ private theorem H1_impl {K F : Type*} [Field K] [Field F] [Algebra K F] [Perfect
   have ht : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
   have hrep : diffCoeff v.uniformizer_alt ω • KaehlerDifferential.D K F v.uniformizer_alt = ω :=
     v.diffCoeff_smul_D_of_ord_eq_one x ht ω
-  have hgo : g • ω = (g * diffCoeff v.uniformizer_alt ω) • KaehlerDifferential.D K F v.uniformizer_alt :=
+  have hgo : g • ω = (g * diffCoeff v.uniformizer_alt ω) • KaehlerDifferential.D K F
+    v.uniformizer_alt :=
     by
     conv_lhs => rw [← hrep]
     rw [smul_smul]

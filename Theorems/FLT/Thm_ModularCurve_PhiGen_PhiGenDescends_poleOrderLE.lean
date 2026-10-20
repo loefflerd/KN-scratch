@@ -48,11 +48,14 @@ This is the pole bound for the coefficient family descending the product over th
 conjugates, the series whose coefficients give the modular equation of level $\ell$; the bound
 $\ell+1$ results from the bound $\ell^2+\ell$ on the product's coefficients together with the
 substitution multiplying exponents by $\ell$. It feeds the support bound
-[`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le)
+[`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le)
 and the construction of modular polynomial data in
-[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`](thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq),
+[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`]
+(thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq),
 as well as
-[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`](thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq).
+[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`]
+(thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq).
 
 ## Explanation of the source proof
 
@@ -382,7 +385,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_poleOrderLE.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_poleOrderLE.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_poleOrderLE.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_poleOrderLE.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (k : ℕ) :
     PoleOrderLE (c k) (ℓ + 1) :=

@@ -63,7 +63,8 @@ open ModularCurve IntermediateField HahnSeries
 
 theorem solution {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ) [NeZero n]
     (x : LaurentSeries R) :
-    ModularCurve.coeffMap f (ModularCurve.qExpand R n x) = ModularCurve.qExpand S n (ModularCurve.coeffMap f x) :=
+    ModularCurve.coeffMap f (ModularCurve.qExpand R n x) = ModularCurve.qExpand S n
+      (ModularCurve.coeffMap f x) :=
   by
   ext k
   by_cases hk : (n : ℤ) ∣ k
@@ -82,7 +83,8 @@ public section publicSection
 
 theorem ModularCurve.coeffMap_qExpand {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S) (n : ℕ)
     [NeZero n] (x : LaurentSeries R) :
-    ModularCurve.coeffMap f (ModularCurve.qExpand R n x) = ModularCurve.qExpand S n (ModularCurve.coeffMap f x) :=
+    ModularCurve.coeffMap f (ModularCurve.qExpand R n x) = ModularCurve.qExpand S n
+      (ModularCurve.coeffMap f x) :=
   solution f n x
 
 end publicSection

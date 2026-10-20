@@ -51,7 +51,8 @@ the image of `UpperHalfPlane.qExpansion 1 w` in $\mathbb{C}((q))$.
 This supplies the odd-weight analogue of the multiplier $(\vartheta j)^m$: a square root of a
 suitable power of $\vartheta j$ up to a function on $X_1(M)$, realised by a non-zero weight-one form
 such as an Eisenstein series attached to an odd Dirichlet character. It is used by
-[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`](thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd)
+[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`]
+(thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd)
 in the proof of the upper bound for the dimension of spaces of modular forms of odd weight on
 $\Gamma_1(M)$.
 
@@ -78,7 +79,8 @@ namespace W1OddE96
 
 variable (M : ℕ) [NeZero M]
 
-local notation "Γ₁ℝ" => ((CongruenceSubgroup.Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
+local notation "Γ₁ℝ" => ((CongruenceSubgroup.Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2)
+  ℝ))
 
 omit [NeZero M] in
 theorem one_mem_strictPeriods_gamma1 : (1 : ℝ) ∈ (Γ₁ℝ).strictPeriods := by
@@ -145,7 +147,8 @@ open W1OddE96 in
 theorem solution
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
     ∃ (w : ModularForm (Gamma1 M) 1) (v : LaurentSeries ℂ), w ≠ 0 ∧
-      v ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) ∧
+      v ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M)) ∧
       v * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
         HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2 := by
   classical
@@ -174,7 +177,8 @@ theorem solution
   let Df : ModularForm ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) 10 :=
     ModularForm.mcast (by norm_num) (E4.mul E6)
   have hNf : IsIntegralQExp Nf (wI.series * wI.series * (eisenstein4 * eisenstein4)) :=
-    isIntegralQExp_mcast M _ _ (isIntegralQExp_mul M _ _ (isIntegralQExp_mul M _ _ wI.isIntegralQExp wI.isIntegralQExp)
+    isIntegralQExp_mcast M _ _ (isIntegralQExp_mul M _ _ (isIntegralQExp_mul M _ _ wI.isIntegralQExp
+      wI.isIntegralQExp)
       (isIntegralQExp_mul M _ _ hE4 hE4))
   have hDf : IsIntegralQExp Df (eisenstein4 * eisenstein6) :=
     isIntegralQExp_mcast M _ _ (isIntegralQExp_mul M _ _ hE4 hE6)
@@ -188,11 +192,13 @@ theorem solution
     rw [intSeriesC_mul]; exact mul_ne_zero (hE4ne ℚ) (hE6ne ℚ)
   have humem : intSeriesC ℂ (wI.series * wI.series * (eisenstein4 * eisenstein4)) /
       intSeriesC ℂ (eisenstein4 * eisenstein6) ∈
-      ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) := by
+      ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+        M)) := by
     rw [← coeffEmb_intSeriesC ℂ, ← coeffEmb_intSeriesC ℂ, ← map_div₀]
     exact coeffEmb_mem_laurentBaseChange ℂ (div_mem_qExpFunctionFieldC Nf Df hNf hDf hDne)
   have hjmem : ModularCurve.jqModC ℂ ∈
-      ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) := by
+      ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+        M)) := by
     rw [← map_jqModC (algebraMap ℚ ℂ), jqModC_rat]
     exact coeffEmb_mem_laurentBaseChange ℂ
       (intFormRatiosC_subset ℚ _ (by rw [← jqModC_rat]; exact jqModC_mem_intFormRatiosC ℚ _))
@@ -204,9 +210,11 @@ theorem solution
     have hid :=
       congrArg (coeffEmb ℂ) ModularCurve.thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6
     rw [map_mul, map_neg, map_mul, coeffEmb_thetaL, hjC] at hid
-    have h4 : coeffEmb ℂ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4)) =
+    have h4 : coeffEmb ℂ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ)
+      eisenstein4)) =
         intSeriesC ℂ eisenstein4 := coeffEmb_intSeriesC ℂ eisenstein4
-    have h6 : coeffEmb ℂ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6)) =
+    have h6 : coeffEmb ℂ (HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ)
+      eisenstein6)) =
         intSeriesC ℂ eisenstein6 := coeffEmb_intSeriesC ℂ eisenstein6
     rw [h4, h6] at hid
     have hj : ModularCurve.jqModC ℂ ≠ 0 := by
@@ -231,7 +239,8 @@ open scoped MatrixGroups ModularForm
 theorem ModularForm.exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
     ∃ (w : ModularForm (Gamma1 M) 1) (v : LaurentSeries ℂ), w ≠ 0 ∧
-      v ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) ∧
+      v ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M)) ∧
       v * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
         HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2 :=
   solution M hM

@@ -55,9 +55,11 @@ polynomials in $j$, and the resulting packet is monic of degree $\psi(\ell)$ in 
 $(j(q),$ `jqN ℓ` $)$. It is used downstream for the splitting statement
 [`ModularCurve.PhiGen.splits_of_prime`](thm.html#ModularCurve.PhiGen.splits_of_prime), for the
 weighted support bound
-[`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le),
+[`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le),
 and in
-[`ModularCurve.exists_modularPolynomialData_evalSymm`](thm.html#ModularCurve.exists_modularPolynomialData_evalSymm).
+[`ModularCurve.exists_modularPolynomialData_evalSymm`]
+(thm.html#ModularCurve.exists_modularPolynomialData_evalSymm).
 
 ## Explanation of the source proof
 
@@ -222,7 +224,10 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k))
     (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) :

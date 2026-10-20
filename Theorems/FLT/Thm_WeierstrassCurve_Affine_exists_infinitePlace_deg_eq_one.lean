@@ -361,7 +361,8 @@ theorem div_mem_infPlace_iff {a b : W.CoordinateRing} (ha : a ≠ 0) (hb : b ≠
 
 theorem forall_mem_of_xF_mem (v : AlgebraicCurve.Place F W.FunctionField)
     (hx : xF W ∈ v.toValuationSubring) :
-    ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring := by
+    ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring :=
+      by
   set A := v.toValuationSubring with hA
   set φ : F[X] →+* W.FunctionField :=
     (algebraMap W.CoordinateRing W.FunctionField).comp (algebraMap F[X] W.CoordinateRing)
@@ -514,7 +515,8 @@ theorem exists_infinitePlace_deg_eq_one_impl (W : Affine F) :
       ∀ v : AlgebraicCurve.Place F W.FunctionField,
         (¬ ∀ r : W.CoordinateRing,
           algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
-  ⟨infPlace W, deg_infPlace, not_forall_mem_infPlace, fun v hv => eq_infPlace_of_not_forall_mem v hv⟩
+  ⟨infPlace W, deg_infPlace, not_forall_mem_infPlace, fun v hv => eq_infPlace_of_not_forall_mem v
+    hv⟩
 
 end D5S
 end
@@ -538,7 +540,10 @@ public section publicSection
 
 theorem WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one {F : Type*} [Field F]
     (W : WeierstrassCurve.Affine F) :
-    ∃ vInf : AlgebraicCurve.Place F W.FunctionField, vInf.deg = 1 ∧ (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ vInf.toValuationSubring) ∧ ∀ v : AlgebraicCurve.Place F W.FunctionField, (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
+    ∃ vInf : AlgebraicCurve.Place F W.FunctionField, vInf.deg = 1 ∧ (¬ ∀ r : W.CoordinateRing,
+      algebraMap W.CoordinateRing W.FunctionField r ∈ vInf.toValuationSubring) ∧ ∀ v :
+      AlgebraicCurve.Place F W.FunctionField, (¬ ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing
+      W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
   solution W
 
 end publicSection

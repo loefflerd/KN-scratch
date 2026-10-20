@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
+Based on Prove2Me node
+Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
 (8a515b68-0526-52cb-8cbc-52fbd29a8276) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 82502845-9dc2-5a07-8245-7f4f24c10cc3
@@ -47,11 +48,14 @@ This is the classical statement that a finite-index subgroup of $\mathrm{SL}_2(\
 containing $-1$ and having no elliptic elements has free image in $\mathrm{PSL}_2(\mathbb{Z})$, of
 rank $1 + [\mathrm{SL}_2(\mathbb{Z}):\Gamma]/6$; it is obtained by transporting the Kurosh rank
 formula
-[`Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank`](thm.html#Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank)
+[`Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank`]
+(thm.html#Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank)
 along the isomorphism $\mathrm{PSL}_2(\mathbb{Z}) \cong C_2 * C_3$ of
-[`ModularGroup.exists_mulEquiv_freeProduct_quotient_center`](thm.html#ModularGroup.exists_mulEquiv_freeProduct_quotient_center),
+[`ModularGroup.exists_mulEquiv_freeProduct_quotient_center`]
+(thm.html#ModularGroup.exists_mulEquiv_freeProduct_quotient_center),
 together with the index computation
-[`Subgroup.card_orbitRelQuotient_mul_card_eq_index`](thm.html#Subgroup.card_orbitRelQuotient_mul_card_eq_index).
+[`Subgroup.card_orbitRelQuotient_mul_card_eq_index`]
+(thm.html#Subgroup.card_orbitRelQuotient_mul_card_eq_index).
 It feeds the construction of explicit free generators for such subgroups and, through that, the
 vanishing of $H^2$ and the degree-one surjectivity statements used in the cohomological part of the
 argument.
@@ -114,7 +118,8 @@ theorem exists_trace_of_ne_one {i : Fin 2} (x : G23 i) (hx : x ≠ 1) :
     rcases hh with rfl | rfl
     · exact ⟨S * T, e_of_one, Or.inr (Or.inl (by decide))⟩
     · refine ⟨S * T * (S * T), ?_, Or.inr (Or.inr (by decide))⟩
-      have h1 : e (Monoid.CoprodI.of (i := 1) (Multiplicative.ofAdd 1)) = QuotientGroup.mk (S * T) :=
+      have h1 : e (Monoid.CoprodI.of (i := 1) (Multiplicative.ofAdd 1)) = QuotientGroup.mk (S * T)
+        :=
         e_of_one
       rw [map_mul, map_mul, QuotientGroup.mk_mul]
       exact congrArg₂ (· * ·) h1 h1
@@ -138,7 +143,8 @@ theorem mem_center_iff_eq (A : SL(2, ℤ)) : A ∈ Subgroup.center SL(2, ℤ) �
     · exact ⟨-1, by simp, by simp⟩
 
 theorem trace_coe_conj (δ w : SL(2, ℤ)) :
-    ((δ⁻¹ * w * δ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = (w : Matrix (Fin 2) (Fin 2) ℤ).trace := by
+    ((δ⁻¹ * w * δ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = (w : Matrix (Fin 2) (Fin 2)
+      ℤ).trace := by
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul,
     Matrix.trace_mul_comm, ← Matrix.mul_assoc, ← Matrix.SpecialLinearGroup.coe_mul,
     mul_inv_cancel, Matrix.SpecialLinearGroup.coe_one, Matrix.one_mul]
@@ -180,8 +186,10 @@ theorem conjTrivial (i : Fin 2) (g : Monoid.CoprodI G23) (x : G23 i)
     rw [QuotientGroup.mk'_apply] at hγeq
     rw [hγeq, QuotientGroup.mk_mul, QuotientGroup.mk_mul, QuotientGroup.mk_inv]
   rw [QuotientGroup.eq] at hγeq'
-  have key : ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = (w : Matrix (Fin 2) (Fin 2) ℤ).trace ∨
-      ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = -(w : Matrix (Fin 2) (Fin 2) ℤ).trace := by
+  have key : ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = (w : Matrix (Fin 2) (Fin 2)
+    ℤ).trace ∨
+      ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = -(w : Matrix (Fin 2) (Fin 2) ℤ).trace :=
+        by
     rcases (mem_center_iff_eq _).mp hγeq' with h1 | h1
     · left
       have : δ⁻¹ * w * δ = γ := by
@@ -241,7 +249,9 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
 
 end S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
 end P2MW
-export P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne (solution)
+export
+  P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
+  (solution)
 
 end privateSection
 

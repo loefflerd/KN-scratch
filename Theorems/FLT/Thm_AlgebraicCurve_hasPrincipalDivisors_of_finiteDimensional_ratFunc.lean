@@ -51,9 +51,11 @@ This is the statement that on an algebraic curve every nonzero rational function
 divisor, of degree zero — classically the product formula $\sum_v \operatorname{ord}_v(f)\deg v = 0$
 for a function field of one variable, here asserted only for fields finite over $K(X)$ with $K$ of
 characteristic zero. It supplies the divisor-theoretic input to
-[`WeierstrassCurve.Affine.hasPrincipalDivisors_functionField`](thm.html#WeierstrassCurve.Affine.hasPrincipalDivisors_functionField)
+[`WeierstrassCurve.Affine.hasPrincipalDivisors_functionField`]
+(thm.html#WeierstrassCurve.Affine.hasPrincipalDivisors_functionField)
 and, through it, to the injectivity statement
-[`AlgebraicCurve.DivisorialWeilPairingData.toHom_injective_of_divisible`](thm.html#AlgebraicCurve.DivisorialWeilPairingData.toHom_injective_of_divisible).
+[`AlgebraicCurve.DivisorialWeilPairingData.toHom_injective_of_divisible`]
+(thm.html#AlgebraicCurve.DivisorialWeilPairingData.toHom_injective_of_divisible).
 
 ## Explanation of the source proof
 

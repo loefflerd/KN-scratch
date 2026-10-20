@@ -55,7 +55,8 @@ plane: a regular differential of the function field $K$ is determined by, and de
 holomorphic function $F$ on $\mathbb{H}$ through $\omega = F(\tau)\,d\tau$, the correspondence being
 recorded by the displayed cross-multiplied identity so as to avoid dividing by the zeros of $b$ and
 $e$. It is used by
-[`ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective`](thm.html#ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective),
+[`ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective`]
+(thm.html#ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective),
 where the image of $\Psi$ is matched with weight $2$ cusp forms of level $N$.
 
 ## Explanation of the source proof
@@ -618,7 +619,8 @@ theorem tendsto_of_germ_eq {m : Gm N K} {g G : ℂ → ℂ} {z : ℂ} (hz : z �
 theorem value_unique {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g₁ G₁ g₂ G₂ : ℂ → ℂ}
     (hg₁ : germ N K g₁ = m) (hG₁ : ContinuousAt G₁ z) (h₁ : g₁ =ᶠ[𝓝[≠] z] G₁)
     (hg₂ : germ N K g₂ = m) (hG₂ : ContinuousAt G₂ z) (h₂ : g₂ =ᶠ[𝓝[≠] z] G₂) : G₁ z = G₂ z :=
-  tendsto_nhds_unique (tendsto_of_germ_eq N hz hg₁ hG₁ h₁ hg₁) (tendsto_of_germ_eq N hz hg₂ hG₂ h₂ hg₁)
+  tendsto_nhds_unique (tendsto_of_germ_eq N hz hg₁ hG₁ h₁ hg₁) (tendsto_of_germ_eq N hz hg₂ hG₂ h₂
+    hg₁)
 
 variable (K)
 
@@ -694,7 +696,8 @@ theorem locAnalytic_smul (c : ℂ) {m : Gm N K} (h : LocAnalytic N K m) :
 
 theorem glue_add {m₁ m₂ : Gm N K} (h₁ : LocAnalytic N K m₁) (h₂ : LocAnalytic N K m₂) :
     Set.EqOn (glue N K m₁ + glue N K m₂) (glue N K (m₁ + m₂)) 𝕌 :=
-  eqOn_glue N K (locAnalytic_add N K h₁ h₂) ((analyticOnNhd_glue N K h₁).add (analyticOnNhd_glue N K h₂))
+  eqOn_glue N K (locAnalytic_add N K h₁ h₂) ((analyticOnNhd_glue N K h₁).add (analyticOnNhd_glue N K
+    h₂))
     (by rw [germ_add', germ_glue N K h₁, germ_glue N K h₂])
 
 theorem glue_smul (c : ℂ) {m : Gm N K} (h : LocAnalytic N K m) :
@@ -787,7 +790,8 @@ theorem exists_rep_of_mem (ω : Ω[K⁄ℂ]) (hω : ω ∈ AlgebraicCurve.regula
     ∃ (a b c e : ℍ → ℂ) (ha : a ∈ ring N) (hb : b ∈ ring N) (hc : c ∈ ring N) (he : e ∈ ring N),
       b ≠ 0 ∧ e ≠ 0 ∧
       ω = (algebraMap (ring N) K ⟨a, ha⟩ / algebraMap (ring N) K ⟨b, hb⟩) •
-        KaehlerDifferential.D ℂ K (algebraMap (ring N) K ⟨c, hc⟩ / algebraMap (ring N) K ⟨e, he⟩) := by
+        KaehlerDifferential.D ℂ K (algebraMap (ring N) K ⟨c, hc⟩ / algebraMap (ring N) K ⟨e, he⟩)
+          := by
   obtain ⟨f, π, hω', -, -, -⟩ := exists_smul_D_of_mem N K UpperHalfPlane.I hω
   refine ⟨num N K f, den N K f, num N K π, den N K π, (num N K f).2, (den N K f).2, (num N K π).2,
     (den N K π).2, den_ne_zero N K f, den_ne_zero N K π, ?_⟩

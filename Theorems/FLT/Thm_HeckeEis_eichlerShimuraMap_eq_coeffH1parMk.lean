@@ -105,6 +105,7 @@ theorem HeckeEis.eichlerShimuraMap_eq_coeffH1parMk (n N : ℕ) (f : UpperHalfPla
     (hpar : HeckeEis.IsParabolicCocycle
       ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle) :
     HeckeEis.eichlerShimuraMap n N f
-      = HeckeEis.coeffH1parMk _ ⟨hF.cocycle, ⟨hF.cocycle_mem_coeffCocycles, hpar⟩⟩ := _root_.solution n N f hEI hF hpar
+      = HeckeEis.coeffH1parMk _ ⟨hF.cocycle, ⟨hF.cocycle_mem_coeffCocycles, hpar⟩⟩ :=
+        _root_.solution n N f hEI hF hpar
 
 end publicSection

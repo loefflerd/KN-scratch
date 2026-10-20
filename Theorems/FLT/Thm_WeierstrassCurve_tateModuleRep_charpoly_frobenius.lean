@@ -67,7 +67,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_tateModuleRep_charpoly_frobenius
 
-open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point ValuationSubring
+open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
+  ValuationSubring
 
 private lemma apOfModel_dict (W : WeierstrassCurve ℤ) (ℓ : ℕ) :
     W.apOfModel ℓ = (ℓ : ℤ) + 1 - (Nat.card (W⁄(ZMod ℓ)).Point : ℤ) := by
@@ -123,7 +124,8 @@ theorem solution
     rw [WeierstrassCurve.map_Δ, eq_intCast]
     exact_mod_cast hΔℤ
   have hdet : LinearMap.det f = ((ℓ : ℕ) : ℤ_[p]) :=
-    WeierstrassCurve.tateModuleRep_det_frobenius (W.map (Int.castRingHom ℚ)) p hΔℚ hcard ℓ hℓ hℓp A hA σ hσ
+    WeierstrassCurve.tateModuleRep_det_frobenius (W.map (Int.castRingHom ℚ)) p hΔℚ hcard ℓ hℓ hℓp A
+      hA σ hσ
   have hd : ((ℓ : ℕ) : ℤ_[p]) ≠ 0 := by exact_mod_cast hℓ.pos.ne'
   have hendo : f * f - ((W.apOfModel ℓ : ℤ) : ℤ_[p]) • f
       + ((ℓ : ℕ) : ℤ_[p]) • (1 : Module.End ℤ_[p] (TateModule p (MPoint W))) = 0 := by
@@ -155,7 +157,8 @@ end privateSection
 public section publicSection
 
 
-open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point ValuationSubring
+open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
+  ValuationSubring
 
 theorem WeierstrassCurve.tateModuleRep_charpoly_frobenius
     (W : WeierstrassCurve ℤ) (p : ℕ) [Fact p.Prime]

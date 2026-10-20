@@ -159,7 +159,8 @@ omit [Algebra ℚ K] in
 
 omit [Algebra ℚ K] in
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 omit [Algebra ℚ K] in
@@ -181,7 +182,8 @@ theorem phiProd_conj_eq (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [conj_succ_eq]
 
 theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
-    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^ b)) := by
+    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^
+      b)) := by
   classical
   rw [phiProd_conj_eq]
   have h1 : (Polynomial.X - Polynomial.C (TS K (p * p) 1) : Polynomial (LaurentSeries K)) ≠ 0 :=
@@ -191,8 +193,10 @@ theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [Polynomial.roots_mul (mul_ne_zero h1 h2), Polynomial.roots_X_sub_C,
     Finset.prod_eq_multiset_prod,
     Finset.range_val]
-  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range p)) =
-      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C a) := by
+  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range
+    p)) =
+      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C
+        a) := by
     rw [Multiset.map_map]; rfl
   rw [hm, Polynomial.roots_multiset_prod_X_sub_C, Multiset.singleton_add]
 
@@ -217,7 +221,8 @@ theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
   have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
   have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) :=
     CyclotomicField.isCyclotomicExtension N ℚ
-  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
+  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N)
+    (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
   ((exists_isPrimitiveRoot_cyclotomicField N).choose_spec.isUnit (NeZero.ne N)).unit
@@ -280,7 +285,8 @@ private theorem prod_form_ne_zero (N : ℕ) (ζ : Kˣ) (p : ℕ) [NeZero p] (e :
     (u : Kˣ) :
     (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (coeffEmb K jq)))) *
         ∏ b ∈ Finset.range p,
-          (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ (b * (N / p))) (coeffEmb K jq)))) ≠ 0 :=
+          (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ (b * (N / p))) (coeffEmb K
+            jq)))) ≠ 0 :=
   mul_ne_zero (Polynomial.X_sub_C_ne_zero _)
     (Polynomial.monic_prod_of_monic _ _ fun _ _ => Polynomial.monic_X_sub_C _).ne_zero
 
@@ -400,7 +406,8 @@ theorem phiAtSeed_jqN_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
 theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZero A] (n : ℕ)
     [NeZero n]
     (data : ModularPolynomialData n) (M : ℕ) [NeZero M] :
-    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M * n)))) = 0 :=
+    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M *
+      n)))) = 0 :=
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
@@ -603,7 +610,8 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
           letI : NeZero a := ⟨h⟩; qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq))))) ≠ 0 ∧
       ((∏ b ∈ (Finset.range (N / a)).filter (fun b => Nat.gcd (Nat.gcd a b) (N / a) = 1),
         (TS K N 1 - (if h : a = 0 then 0 else
-          letI : NeZero a := ⟨h⟩; qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq))))).leadingCoeff)
+          letI : NeZero a := ⟨h⟩; qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K
+            jq))))).leadingCoeff)
         ^ (2 * N) = 1 := by
     intro a ha
     have ha0 : a ≠ 0 := (Nat.pos_of_mem_divisors ha).ne'
@@ -730,7 +738,9 @@ end
 
 p2m_open "ModularCurve~coeffEmb_qExpand\
   " in
-open _root_.P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve in
+open
+  _root_.P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve
+  in
 theorem solution (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
     (data : ModularCurve.ModularPolynomialData N) :
     IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=

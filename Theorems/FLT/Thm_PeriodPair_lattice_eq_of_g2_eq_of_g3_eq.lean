@@ -42,10 +42,13 @@ statement says precisely that no further collapsing occurs.
 This is the injectivity half of the uniformisation theorem for complex elliptic curves: the
 assignment sending a lattice $\Lambda \subset \mathbb{C}$ to the pair $(g_2(\Lambda), g_3(\Lambda))$
 is injective. It is used for the rigidity statements
-[`ModularCurve.exists_smul_eq_of_E4_cube_div_discriminant_eq`](thm.html#ModularCurve.exists_smul_eq_of_E4_cube_div_discriminant_eq),
-[`ModularForm.exists_gamma0_apply_mul_apply_ne_of_forall_smul_ne`](thm.html#ModularForm.exists_gamma0_apply_mul_apply_ne_of_forall_smul_ne)
+[`ModularCurve.exists_smul_eq_of_E4_cube_div_discriminant_eq`]
+(thm.html#ModularCurve.exists_smul_eq_of_E4_cube_div_discriminant_eq),
+[`ModularForm.exists_gamma0_apply_mul_apply_ne_of_forall_smul_ne`]
+(thm.html#ModularForm.exists_gamma0_apply_mul_apply_ne_of_forall_smul_ne)
 and
-[`PeriodPair.scale_lattice_eq_of_pow_four_eq_one_or_g2_eq_zero`](thm.html#PeriodPair.scale_lattice_eq_of_pow_four_eq_one_or_g2_eq_zero),
+[`PeriodPair.scale_lattice_eq_of_pow_four_eq_one_or_g2_eq_zero`]
+(thm.html#PeriodPair.scale_lattice_eq_of_pow_four_eq_one_or_g2_eq_zero),
 which translate equalities of modular invariants into relations between lattices and hence into
 $\mathrm{SL}_2(\mathbb{Z})$-equivalences of points of the upper half-plane.
 

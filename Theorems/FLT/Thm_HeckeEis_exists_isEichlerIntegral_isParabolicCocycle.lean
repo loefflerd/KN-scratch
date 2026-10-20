@@ -74,7 +74,8 @@ theorem solution (N n : ℕ) [NeZero N]
       ∃ hF : HeckeEis.IsEquivariantPrimitiveWith
           ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F,
         HeckeEis.IsParabolicCocycle
-          ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle := by
+          ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle :=
+            by
   obtain ⟨F, hEI⟩ :=
     HeckeEis.exists_isEichlerIntegral n (f := (f : UpperHalfPlane → ℂ)) (CuspFormClass.holo f)
   have hF : HeckeEis.IsEquivariantPrimitiveWith

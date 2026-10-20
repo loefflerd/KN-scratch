@@ -53,7 +53,8 @@ This is the classical factorisation of the modular equation of prime level, $\Ph
 j(q^{p}))\prod_{b=0}^{p-1}(Y - j(\zeta^{b} q^{1/p}))$, indexed by the $p+1$ cosets of $\Gamma_0(p)$
 in $\mathrm{SL}_2(\mathbb{Z})$, here in the form of an identity of polynomials over a Laurent series
 field. Compared with
-[`ModularCurve.PhiGen.splits_of_coeff_evalAtJ_eq`](thm.html#ModularCurve.PhiGen.splits_of_coeff_evalAtJ_eq)
+[`ModularCurve.PhiGen.splits_of_coeff_evalAtJ_eq`]
+(thm.html#ModularCurve.PhiGen.splits_of_coeff_evalAtJ_eq)
 it carries no descent hypothesis on the coefficients of the datum, being stated for every level-$p$
 datum and every field with a primitive $p$-th root of unity; it feeds the splitting statements
 [`ModularCurve.PhiGen.splits_prime_at_slot`](thm.html#ModularCurve.PhiGen.splits_prime_at_slot) and
@@ -158,7 +159,8 @@ omit [Algebra ℚ K] in
 
 omit [Algebra ℚ K] in
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 omit [Algebra ℚ K] in
@@ -180,7 +182,8 @@ theorem phiProd_conj_eq (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [conj_succ_eq]
 
 theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
-    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^ b)) := by
+    (phiProd p (conj p ζ)).roots = TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^
+      b)) := by
   classical
   rw [phiProd_conj_eq]
   have h1 : (Polynomial.X - Polynomial.C (TS K (p * p) 1) : Polynomial (LaurentSeries K)) ≠ 0 :=
@@ -190,8 +193,10 @@ theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
   rw [Polynomial.roots_mul (mul_ne_zero h1 h2), Polynomial.roots_X_sub_C,
     Finset.prod_eq_multiset_prod,
     Finset.range_val]
-  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range p)) =
-      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C a) := by
+  have hm : (Multiset.map (fun b => Polynomial.X - Polynomial.C (TS K 1 (ζ ^ b))) (Multiset.range
+    p)) =
+      ((Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).map (fun a => Polynomial.X - Polynomial.C
+        a) := by
     rw [Multiset.map_map]; rfl
   rw [hm, Polynomial.roots_multiset_prod_X_sub_C, Multiset.singleton_add]
 
@@ -216,7 +221,8 @@ theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
   have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
   have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) :=
     CyclotomicField.isCyclotomicExtension N ℚ
-  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
+  exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N)
+    (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
   ((exists_isPrimitiveRoot_cyclotomicField N).choose_spec.isUnit (NeZero.ne N)).unit
@@ -261,7 +267,8 @@ theorem phiAtSeed_jqN_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
 theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZero A] (n : ℕ)
     [NeZero n]
     (data : ModularPolynomialData n) (M : ℕ) [NeZero M] :
-    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M * n)))) = 0 :=
+    (phiAtSeed data (coeffEmb K (qExpand ℚ A (jqN M)))).eval (coeffEmb K (qExpand ℚ A (jqN (M *
+      n)))) = 0 :=
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
@@ -361,7 +368,8 @@ private theorem ModularCurve.PhiGen.splits_of_prime {K : Type*} [Field K] [Algeb
   have hσu : Units.map (σ : CyclotomicField p ℚ →+* K).toMonoidHom (cycUnit p) = ζ :=
     Units.ext (by rw [Units.coe_map]; exact hσ)
   have h :=
-    congrArg (Polynomial.map (coeffMap (σ : CyclotomicField p ℚ →+* K))) (splits_of_prime_cyclotomicField p data)
+    congrArg (Polynomial.map (coeffMap (σ : CyclotomicField p ℚ →+* K)))
+      (splits_of_prime_cyclotomicField p data)
   rw [map_coeffMap_phiProd, hσu, Polynomial.map_map] at h
   convert h using 2
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
@@ -370,7 +378,8 @@ private theorem ModularCurve.PhiGen.splits_of_prime {K : Type*} [Field K] [Algeb
 
 p2m_open "ModularCurve~coeffEmb_qExpand\
   " in
-open _root_.P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.PhiGen in
+open _root_.P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) :
     data.Φ.map (((coeffEmb K).comp (qExpand ℚ p)).comp evalAtJ) = phiProd p (conj p ζ) :=

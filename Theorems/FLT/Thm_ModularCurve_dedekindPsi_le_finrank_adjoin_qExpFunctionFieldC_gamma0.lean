@@ -104,14 +104,16 @@ theorem solution
         (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) := by
     rw [← hx]
     exact igT3s_finrank_adjoin_eq_relfinrank _ x
-  have h2 : (IntermediateField.adjoin K ({ModularCurve.jqModC K} : Set (LaurentSeries K))).relfinrank
+  have h2 : (IntermediateField.adjoin K ({ModularCurve.jqModC K} : Set (LaurentSeries
+    K))).relfinrank
       (ModularCurve.modularFunctionFieldFullC K M) = ModularCurve.dedekindPsi M := by
     rw [← ModularCurve.finrank_adjoin_jqModC_modularFunctionFieldFullC_eq_dedekindPsi K M hM]
     exact (igT3s_finrank_adjoin_eq_relfinrank (ModularCurve.modularFunctionFieldFullC K M)
       ⟨ModularCurve.jqModC K, ModularCurve.jqModC_mem_full K M⟩).symm
   have hAB : IntermediateField.adjoin K ({ModularCurve.jqModC K} : Set (LaurentSeries K)) ≤
       ModularCurve.modularFunctionFieldFullC K M :=
-    IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr (ModularCurve.jqModC_mem_full K M))
+    IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr (ModularCurve.jqModC_mem_full
+      K M))
   have hBC : ModularCurve.modularFunctionFieldFullC K M ≤
       ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M) :=
     ModularCurve.modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0 K M

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
+Based on Prove2Me node
+WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
 (0a40ab42-17dc-59b1-8b65-ce60e1b9c70a) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6b155adb-686e-5360-9630-4ed2fb76951c
@@ -74,7 +75,8 @@ embedding with cyclic kernel of order $N$ is defined over a finitely generated, 
 subfield of $K$, and the conclusion is stated in the form that quantifies universally over the
 admissible genus-one gate data on the descended curves rather than supplying it. It feeds the
 transfer to $\mathbb{C}$ used in
-[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`](thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward),
+[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
+(thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward),
 which identifies the pair of $j$-invariants as a root of the modular polynomial of level $N$.
 
 ## Explanation of the source proof
@@ -112,7 +114,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -376,9 +379,12 @@ theorem s13_exists_gate : ∃ (g : GenusOnePlaceGate W),
     hasPrincipalDivisors_functionField W
   exact exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W)
 
-noncomputable scoped instance (priority := 50) s13GlobalGate : GenusOnePlaceGate W := (s13_exists_gate W).choose
-scoped instance (priority := 50) s13GlobalGate_isCentred : GenusOnePlaceGate.IsCentred W := (s13_exists_gate W).choose_spec.1
-scoped instance (priority := 50) s13GlobalGate_abelTheorem : AbelTheorem W := (s13_exists_gate W).choose_spec.2
+noncomputable scoped instance (priority := 50) s13GlobalGate : GenusOnePlaceGate W :=
+  (s13_exists_gate W).choose
+scoped instance (priority := 50) s13GlobalGate_isCentred : GenusOnePlaceGate.IsCentred W :=
+  (s13_exists_gate W).choose_spec.1
+scoped instance (priority := 50) s13GlobalGate_abelTheorem : AbelTheorem W := (s13_exists_gate
+  W).choose_spec.2
 
 end S13GlobalGate
 end Affine
@@ -392,7 +398,8 @@ section S13FiniteOverRatFunc
 
 variable {F : Type*} [Field F] (W : Affine F)
 
-scoped instance s13_finiteDimensional_ratFunc_functionField : FiniteDimensional (RatFunc F) W.FunctionField := by
+scoped instance s13_finiteDimensional_ratFunc_functionField : FiniteDimensional (RatFunc F)
+  W.FunctionField := by
   have h1 : FiniteDimensional (RatFunc F)
       (IntermediateField.adjoin (RatFunc F) {yCoord W}) :=
     IntermediateField.adjoin.finiteDimensional isIntegral_yCoord
@@ -959,7 +966,8 @@ def kw_coordinateRingMapAlongGeneralNoAC :
   commutes' r := by
     simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
       MonoidHom.coe_ofClass]
-    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
+    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _
+      r
     rw [IsScalarTower.algebraMap_apply F F[X] CR,
       show (algebraMap F F[X] r) = Polynomial.C r from rfl,
       show (algebraMap F[X] CR) (C r) = (C r : F[X]) • (1 : CR) by
@@ -1484,7 +1492,8 @@ theorem kw_fdn2_qephod_hend2fgd1_countable_of_fg {K : Type uK} [Field K] [Algebr
     {K₀ : IntermediateField ℚ K} (hfg : K₀.FG) : Countable (↥K₀) := by
   obtain ⟨s, hs⟩ := hfg
   rw [← hs]
-  have h2 : Cardinal.lift.{0} (Cardinal.mk ↥(IntermediateField.adjoin ℚ (↑s : Set K))) ≤ Cardinal.aleph0 :=
+  have h2 : Cardinal.lift.{0} (Cardinal.mk ↥(IntermediateField.adjoin ℚ (↑s : Set K))) ≤
+    Cardinal.aleph0 :=
     (IntermediateField.lift_cardinalMk_adjoin_le ℚ (↑s : Set K)).trans
       (max_le (max_le (Cardinal.lift_le_aleph0.mpr Cardinal.mk_le_aleph0)
         (Cardinal.lift_le_aleph0.mpr (Set.Countable.le_aleph0 s.countable_toSet))) le_rfl)
@@ -2016,7 +2025,8 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
       (WeierstrassCurve.Affine.s13GlobalGate_isCentred _)
   subst hgE
   subst hgE'
-  let ι₀ : (E₀'⁄(AlgebraicClosure (↥K₀))).toAffine.FunctionField →ₐ[(AlgebraicClosure (↥K₀))] (E₀⁄(AlgebraicClosure (↥K₀))).toAffine.FunctionField :=
+  let ι₀ : (E₀'⁄(AlgebraicClosure (↥K₀))).toAffine.FunctionField →ₐ[(AlgebraicClosure (↥K₀))]
+    (E₀⁄(AlgebraicClosure (↥K₀))).toAffine.FunctionField :=
     kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' (↥K₀) (AlgebraicClosure (↥K₀)) ι'
   have hι₀ : ι₀.toRingHom.IsIntegral :=
     kw_surgehgf4_hfgkd_bcIota₁NoAC_isIntegral E₀ E₀' (↥K₀) (AlgebraicClosure (↥K₀)) ι' hfin'
@@ -2050,26 +2060,39 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
       (g := (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K).toRingHom.comp
         ι₀.toRingHom)
       (fun r => by
-        have h1 : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K) (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField) r :=
+        have h1 : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K)
+          (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField)
+          r :=
           by
           rw [(kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K).commutes r,
             IsScalarTower.algebraMap_apply (AlgebraicClosure (↥K₀)) K
             ((E₀'⁄K).toAffine.FunctionField) r]
-          exact (ι.commutes _).trans (IsScalarTower.algebraMap_apply (AlgebraicClosure (↥K₀)) K ((E₀⁄K).toAffine.FunctionField) r).symm
-        have h2 : (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀ (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField) r :=
+          exact (ι.commutes _).trans (IsScalarTower.algebraMap_apply (AlgebraicClosure (↥K₀)) K
+            ((E₀⁄K).toAffine.FunctionField) r).symm
+        have h2 : (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀
+          (algebraMap _ _ r)) = algebraMap (AlgebraicClosure (↥K₀)) ((E₀⁄K).toAffine.FunctionField)
+          r :=
           by
           rw [ι₀.commutes r, (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀))
             K).commutes r]
         exact h1.trans h2.symm)
       (by
-        have key : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K) ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (polyToFunctionField (E₀'⁄(↥K₀)) X)))
-            = (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀ ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (polyToFunctionField (E₀'⁄(↥K₀)) X))) := by
+        have key : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K)
+          ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀)))
+          (polyToFunctionField (E₀'⁄(↥K₀)) X)))
+            = (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀
+              ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀)))
+              (polyToFunctionField (E₀'⁄(↥K₀)) X))) := by
           rw [hD3, hχΦE, hχΦE']; exact hcompat _
         rw [kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X] at key
         exact key)
       (by
-        have key : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K) ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (yGen (E₀'⁄(↥K₀)))))
-            = (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀ ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (yGen (E₀'⁄(↥K₀))))) := by
+        have key : ι ((kw_functionFieldMapAlongGeneralNoAC E₀' (AlgebraicClosure (↥K₀)) K)
+          ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (yGen
+          (E₀'⁄(↥K₀)))))
+            = (kw_functionFieldMapAlongGeneralNoAC E₀ (AlgebraicClosure (↥K₀)) K) (ι₀
+              ((kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀))) (yGen
+              (E₀'⁄(↥K₀))))) := by
           rw [hD3, hχΦE, hχΦE']; exact hcompat _
         rw [kw_functionFieldMapAlongGeneralNoAC_yGen] at key
         exact key)
@@ -2200,21 +2223,26 @@ variable (ι : (E₀'.map (algebraMap K₀ K)).toAffine.FunctionField
   →ₐ[K] (E₀.map (algebraMap K₀ K)).toAffine.FunctionField)
 
 def kw_surgehgf4_hSD_CoeffsHyp : Prop :=
-  (kw_iA_crCoeffsIn E₀ (IsLocalization.sec (nonZeroDivisors (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing)
+  (kw_iA_crCoeffsIn E₀ (IsLocalization.sec (nonZeroDivisors (E₀.map (algebraMap K₀
+    K)).toAffine.CoordinateRing)
       (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X))).1
     ∧ kw_iA_crCoeffsIn E₀ ((IsLocalization.sec (nonZeroDivisors
-        (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing) (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X))).2 :
+        (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing) (ι (polyToFunctionField (E₀'.map
+          (algebraMap K₀ K)).toAffine Polynomial.X))).2 :
       (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing))
-  ∧ (kw_iA_crCoeffsIn E₀ (IsLocalization.sec (nonZeroDivisors (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing)
+  ∧ (kw_iA_crCoeffsIn E₀ (IsLocalization.sec (nonZeroDivisors (E₀.map (algebraMap K₀
+    K)).toAffine.CoordinateRing)
       (ι (yGen (E₀'.map (algebraMap K₀ K)).toAffine))).1
     ∧ kw_iA_crCoeffsIn E₀ ((IsLocalization.sec (nonZeroDivisors
-        (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing) (ι (yGen (E₀'.map (algebraMap K₀ K)).toAffine))).2 :
+        (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing) (ι (yGen (E₀'.map (algebraMap K₀
+          K)).toAffine))).2 :
       (E₀.map (algebraMap K₀ K)).toAffine.CoordinateRing))
 
 variable (hcoeffs : kw_surgehgf4_hSD_CoeffsHyp E₀ E₀' ι)
 
 def kw_surgehgf4_hSD_xP : E₀.toAffine.FunctionField :=
-  Classical.choose (kw_iA_ffDescend_exists E₀ (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X))
+  Classical.choose (kw_iA_ffDescend_exists E₀ (ι (polyToFunctionField (E₀'.map (algebraMap K₀
+    K)).toAffine Polynomial.X))
     hcoeffs.1.1 hcoeffs.1.2)
 
 def kw_surgehgf4_hSD_yP : E₀.toAffine.FunctionField :=
@@ -2244,8 +2272,10 @@ theorem kw_surgehgf4_hSD_equation :
   classical
   set xP := kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs with hxP
   set yP := kw_surgehgf4_hSD_yP E₀ E₀' ι hcoeffs with hyP
-  have hι : ((E₀'.map (algebraMap K₀ K)).map (algebraMap K (E₀.map (algebraMap K₀ K)).toAffine.FunctionField)).toAffine.Equation
-      (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) (ι (yGen (E₀'.map (algebraMap K₀ K)).toAffine)) := by
+  have hι : ((E₀'.map (algebraMap K₀ K)).map (algebraMap K (E₀.map (algebraMap K₀
+    K)).toAffine.FunctionField)).toAffine.Equation
+      (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) (ι (yGen (E₀'.map
+        (algebraMap K₀ K)).toAffine)) := by
     have h₀ := equation_map_polyToFunctionField_yGen (W := (E₀'.map (algebraMap K₀ K)).toAffine)
     rw [Affine.equation_iff] at h₀ ⊢
     have h₁ := congrArg ι h₀
@@ -2254,7 +2284,8 @@ theorem kw_surgehgf4_hSD_equation :
       WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆, AlgHom.commutes] at h₁ ⊢
     linear_combination h₁
   rw [Affine.equation_iff] at hι ⊢
-  have hΦx : kw_iA_phi E₀ xP = ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X) :=
+  have hΦx : kw_iA_phi E₀ xP = ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine
+    Polynomial.X) :=
     hxP ▸ kw_surgehgf4_hSD_xP_spec E₀ E₀' ι hcoeffs
   have hΦy : kw_iA_phi E₀ yP = ι (yGen (E₀'.map (algebraMap K₀ K)).toAffine) :=
     hyP ▸ kw_surgehgf4_hSD_yP_spec E₀ E₀' ι hcoeffs
@@ -2276,18 +2307,22 @@ theorem kw_surgehgf4_hSD_transcendental :
       (Polynomial.aeval (R := K₀) (kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs)) := by
   classical
   refine (injective_iff_map_eq_zero _).mpr fun p hp => ?_
-  have hK : Transcendental K (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) :=
+  have hK : Transcendental K (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine
+    Polynomial.X)) :=
     by
     intro halg
     obtain ⟨r, hr0, hreval⟩ := halg
-    refine (transcendental_polyToFunctionField_X (W := (E₀'.map (algebraMap K₀ K)).toAffine)) ⟨r, hr0, ?_⟩
+    refine (transcendental_polyToFunctionField_X (W := (E₀'.map (algebraMap K₀ K)).toAffine)) ⟨r,
+      hr0, ?_⟩
     apply ι.toRingHom.injective
     rw [_root_.map_zero, ← hreval]
     exact (Polynomial.aeval_algHom_apply ι _ r).symm
-  have hιX : Transcendental K₀ (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) :=
+  have hιX : Transcendental K₀ (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine
+    Polynomial.X)) :=
     hK.restrictScalars (R := K₀) (algebraMap K₀ K).injective
   refine transcendental_iff.mp hιX p ?_
-  calc Polynomial.aeval (R := K₀) (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine Polynomial.X)) p
+  calc Polynomial.aeval (R := K₀) (ι (polyToFunctionField (E₀'.map (algebraMap K₀ K)).toAffine
+    Polynomial.X)) p
       = Polynomial.aeval (R := K₀)
           (kw_iA_phi E₀ (kw_surgehgf4_hSD_xP E₀ E₀' ι hcoeffs)) p := by
         rw [kw_surgehgf4_hSD_xP_spec]
@@ -2665,9 +2700,11 @@ theorem kw_surgehgf4_cfe_bcIota₁NoAC_eq_ι :
   classical
   set ι' := kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs with hι'_def
   refine kw_functionField_algHom_ext ?_ ?_
-  · have key : ι (kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) K (polyToFunctionField (E₀'⁄(↥K₀)).toAffine X))
+  · have key : ι (kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) K (polyToFunctionField
+      (E₀'⁄(↥K₀)).toAffine X))
         = kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' (↥K₀) K ι'
-            (kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) K (polyToFunctionField (E₀'⁄(↥K₀)).toAffine X)) := by
+            (kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) K (polyToFunctionField
+              (E₀'⁄(↥K₀)).toAffine X)) := by
       rw [kw_surgehgf4_hfgkd_bcIota₁NoAC_compat, kw_surgehgf4_cfe_chi_eq_phi_apply E₀,
         kw_surgehgf4_cfe_chi_eq_phi_apply E₀']
       exact kw_surgehgf4_hSD_phiCompat_apply E₀ E₀' ι hcoeffs _
@@ -2736,8 +2773,10 @@ end
 namespace ModularCurve
 
 theorem s13_stub_ktd : KwD5BetweenCurvesKerTransportAlongEmbed.{uK} := by
-  intro R₀ _ E₀ E₀' _ _ F₁ _ _ _ _ _ F₂ _ _ _ _ _ _ _ _ _ _ _ ι₁ hι₁ hfin₁ ι₂ hι₂ hfin₂ hχ N _ hcyc hcard
-  exact WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom R₀ E₀ E₀' F₁ F₂
+  intro R₀ _ E₀ E₀' _ _ F₁ _ _ _ _ _ F₂ _ _ _ _ _ _ _ _ _ _ _ ι₁ hι₁ hfin₁ ι₂ hι₂ hfin₂ hχ N _ hcyc
+    hcard
+  exact WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom R₀ E₀ E₀'
+    F₁ F₂
     (kw_functionFieldMapAlongGeneralNoAC E₀ F₁ F₂)
     (kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X E₀ F₁ F₂)
     (kw_functionFieldMapAlongGeneralNoAC_yGen E₀ F₁ F₂)
@@ -2793,12 +2832,16 @@ theorem solution
     @CoordinateRing.isDedekindDomain _ _ _ (E₀.baseChange (AlgebraicClosure ↥K₀)) hAC
   have : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure ↥K₀)).toAffine.CoordinateRing :=
     @CoordinateRing.isDedekindDomain _ _ _ (E₀'.baseChange (AlgebraicClosure ↥K₀)) hAC'
-  have hg : g = @WeierstrassCurve.Affine.s13GlobalGate _ _ _ _ _ (E₀.baseChange (AlgebraicClosure ↥K₀)).toAffine hAC :=
+  have hg : g = @WeierstrassCurve.Affine.s13GlobalGate _ _ _ _ _ (E₀.baseChange (AlgebraicClosure
+    ↥K₀)).toAffine hAC :=
     GenusOnePlaceGate.ext_of_isCentred _ _ gc
-      (@WeierstrassCurve.Affine.s13GlobalGate_isCentred _ _ _ _ _ (E₀.baseChange (AlgebraicClosure ↥K₀)).toAffine hAC)
-  have hg' : g' = @WeierstrassCurve.Affine.s13GlobalGate _ _ _ _ _ (E₀'.baseChange (AlgebraicClosure ↥K₀)).toAffine hAC' :=
+      (@WeierstrassCurve.Affine.s13GlobalGate_isCentred _ _ _ _ _ (E₀.baseChange (AlgebraicClosure
+        ↥K₀)).toAffine hAC)
+  have hg' : g' = @WeierstrassCurve.Affine.s13GlobalGate _ _ _ _ _ (E₀'.baseChange (AlgebraicClosure
+    ↥K₀)).toAffine hAC' :=
     GenusOnePlaceGate.ext_of_isCentred _ _ gc'
-      (@WeierstrassCurve.Affine.s13GlobalGate_isCentred _ _ _ _ _ (E₀'.baseChange (AlgebraicClosure ↥K₀)).toAffine hAC')
+      (@WeierstrassCurve.Affine.s13GlobalGate_isCentred _ _ _ _ _ (E₀'.baseChange (AlgebraicClosure
+        ↥K₀)).toAffine hAC')
   subst hg
   subst hg'
   exact ⟨hcyc₀, hcard₀⟩
@@ -2812,7 +2855,8 @@ public section publicSection
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u
-theorem WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
+theorem
+  WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
     {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
+Based on Prove2Me node
+ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
 (44bd2a0d-9100-5e11-8546-1f6573c5bdd2) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission a8e5a615-3a36-5553-83a2-c074aa242a8e
@@ -85,7 +86,8 @@ noncomputable section
 namespace IntParityAux
 
 theorem one_mem_strictPeriods_gamma1 (M : ℕ) :
-    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1 M)).strictPeriods := by
+    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1
+      M)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma1]
   exact AddSubgroup.mem_zmultiples 1
 
@@ -133,14 +135,17 @@ end IntParityAux
 open IntParityAux in
 theorem solution
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0)
-    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hv : (v : LaurentSeries ℂ) * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2)
     (P : AlgebraicCurve.Place ℂ
-        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M))))
     (hP : y ∈ P.toValuationSubring) :
     Even (P.ord v +
           ((if 0 < P.ord y then (2 * P.ord y) / 3 else 0)
@@ -161,7 +166,8 @@ theorem solution
   obtain ⟨hell1, hell2⟩ :=
     ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy
   have hoy : 0 ≤ (D.pt τ).ord y := AlgebraicCurve.Place.ord_nonneg_of_mem _ hP
-  obtain ⟨a6, n, hoy', hov⟩ : ∃ (a6 : ℕ) (n : ℤ), (D.pt τ).ord (y - 1728) = 2 * a6 ∧ (D.pt τ).ord v + a6 = 2 * n :=
+  obtain ⟨a6, n, hoy', hov⟩ : ∃ (a6 : ℕ) (n : ℤ), (D.pt τ).ord (y - 1728) = 2 * a6 ∧ (D.pt τ).ord v
+    + a6 = 2 * n :=
     by
     obtain ⟨E4N, hE4⟩ :=
       ModularForm.exists_coe_eq_of_levelOne (CongruenceSubgroup.Gamma1 M) ModularForm.E₄
@@ -193,7 +199,8 @@ theorem solution
       simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply,
         Pi.mul_apply, hDcoe]
       ring
-    have hP17coe : (P17 : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 3 - 1728 * ModularForm.discriminant z := by
+    have hP17coe : (P17 : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 3 - 1728 * ModularForm.discriminant z
+      := by
       funext z
       rw [hP17def, FunLike.coe_sub, FunLike.coe_smul, Pi.sub_apply, Pi.smul_apply, hP4coe, hDcoe,
         smul_eq_mul]
@@ -207,13 +214,15 @@ theorem solution
         qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 2 * qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by
       rw [hHhdef, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos h1,
         ModularForm.qExpansion_mul one_pos h1, hqE4, hqE6]; ring
-    have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) :=
+    have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1
+      ModularForm.discriminant) :=
       by
       rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos
         h1,
         ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, hqD]; ring
     have hqP17 : qExpansion 1 (P17 : ℍ → ℂ) =
-        qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 3 - 1728 * qExpansion 1 ModularForm.discriminant := by
+        qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 3 - 1728 * qExpansion 1 ModularForm.discriminant
+          := by
       rw [hP17def, FunLike.coe_sub, ModularForm.qExpansion_sub one_pos h1, hqP4, FunLike.coe_smul,
         ModularForm.qExpansion_smul one_pos h1, hqD, Algebra.smul_def, map_ofNat]
     have hT2 : thetaL ℂ (jqModC ℂ) * ofPowerSeries ℤ ℂ (qExpansion 1 ModularForm.discriminant) =
@@ -235,23 +244,29 @@ theorem solution
     have hY : (y : LaurentSeries ℂ) * ofPowerSeries ℤ ℂ (qExpansion 1 ModularForm.discriminant) =
         ofPowerSeries ℤ ℂ (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) ^ 3 := by
       rw [hy, ModularCurve.jqModC_eq_qExpansion_E4_cube_div_discriminant, div_mul_cancel₀ _ hDq]
-    have pres_y : (y : LaurentSeries ℂ) * ((qExpansion 1 (DN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+    have pres_y : (y : LaurentSeries ℂ) * ((qExpansion 1 (DN : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) =
         ((qExpansion 1 (P4 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
       rw [hqD, hqP4, PowerSeries.coe_pow]
       exact hY
-    have h1728 : ((1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+    have h1728 : ((1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))) :
         LaurentSeries ℂ) = 1728 :=
-      map_ofNat (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))).val 1728
-    have hcoe17 : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+      map_ofNat (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M))).val 1728
+    have hcoe17 : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))) :
         LaurentSeries ℂ) = (y : LaurentSeries ℂ) - 1728 := by
       rw [← h1728]; rfl
-    have pres_y' : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+    have pres_y' : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC
+      ℚ (CongruenceSubgroup.Gamma1 M)))) :
           LaurentSeries ℂ) * ((qExpansion 1 (DN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
         ((qExpansion 1 (P17 : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
       rw [hcoe17, hqD, hqP17, PowerSeries.coe_sub, PowerSeries.coe_mul, PowerSeries.coe_pow,
         map_ofNat]
       linear_combination hY
-    have pres_v : (v : LaurentSeries ℂ) * ((qExpansion 1 (Hh : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+    have pres_v : (v : LaurentSeries ℂ) * ((qExpansion 1 (Hh : ℍ → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) =
         ((qExpansion 1 (Gv : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
       rw [hqHh, hqGv, PowerSeries.coe_neg, PowerSeries.coe_mul, PowerSeries.coe_mul,
         PowerSeries.coe_pow, PowerSeries.coe_pow]
@@ -287,10 +302,12 @@ theorem solution
       rw [h0] at this
       simp only [ZeroMemClass.coe_zero, zero_mul] at this
       exact pow_eq_zero_iff two_ne_zero |>.mp this.symm
-    have hy'0 : (y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ≠ 0 :=
+    have hy'0 : (y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))) ≠ 0 :=
       by
       intro h0
-      have h1' : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+      have h1' : ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M)))) :
           LaurentSeries ℂ).coeff (-1) = 1 := by
         rw [hcoe17, hy, HahnSeries.coeff_sub', Pi.sub_apply]
         have hj1 : (jqModC ℂ).coeff (-1) = 1 := by
@@ -305,13 +322,15 @@ theorem solution
           rw [jqModC]
           exact e
         have hc : (1728 : LaurentSeries ℂ).coeff (-1) = 0 := by
-          rw [show (1728 : LaurentSeries ℂ) = HahnSeries.C (1728 : ℂ) from (map_ofNat HahnSeries.C 1728).symm,
+          rw [show (1728 : LaurentSeries ℂ) = HahnSeries.C (1728 : ℂ) from (map_ofNat HahnSeries.C
+            1728).symm,
             HahnSeries.C_apply, HahnSeries.coeff_single_of_ne (by decide)]
         rw [hj1, hc, sub_zero]
       rw [h0] at h1'
       simp at h1'
     have hRy' : ∀ z : ℍ, ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M)
-        ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) z =
+        ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) z =
         ModularForm.E₆ z ^ 2 / ModularForm.discriminant z := by
       intro z
       rw [ModularCurve.realizeOf_eq_div (CongruenceSubgroup.Gamma1 M) hT P17 DN _ pres_y' z
@@ -336,7 +355,8 @@ theorem solution
     have haH := analyticAt_comp_ofComplex Hh τ
     obtain ⟨aw, haw', hmw⟩ := exists_nat_meromorphicOrderAt_eq haw (analyticOrderAt_ne_top w hw τ)
     have hHtop := analyticOrderAt_ne_top Hh hHh0 τ
-    have hBfun : ((Hh : ℍ → ℂ) ∘ ofComplex) = ((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) ^ 2 * ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex) :=
+    have hBfun : ((Hh : ℍ → ℂ) ∘ ofComplex) = ((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) ^ 2 *
+      ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex) :=
       by
       funext c; simp only [Function.comp_apply, hHhcoe, Pi.mul_apply, Pi.pow_apply]
     have h4top : analyticOrderAt ((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) ≠ ⊤ := by
@@ -357,8 +377,10 @@ theorem solution
           UpperHalfPlane.ofComplex_apply]; exact ModularForm.discriminant_ne_zero τ)]
       rfl
     have hFy' : (fun c : ℂ => ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M)
-        ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ)
-        (ofComplex c)) = ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex) ^ 2 / (ModularForm.discriminant ∘ ofComplex) := by
+        ((y - 1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ)
+        (ofComplex c)) = ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex) ^ 2 / (ModularForm.discriminant ∘
+          ofComplex) := by
       funext c
       simp only [Pi.div_apply, Pi.pow_apply, Function.comp_apply]
       exact hRy' (ofComplex c)
@@ -377,9 +399,11 @@ theorem solution
       rcases haH.eventually_eq_zero_or_eventually_ne_zero with h0 | hne
       · exact absurd (analyticOrderAt_eq_top.mpr h0) hHtop
       · exact hne
-    have hFv : (fun c : ℂ => ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M) (v : LaurentSeries ℂ) (ofComplex c)) =ᶠ[𝓝[≠] (τ : ℂ)]
+    have hFv : (fun c : ℂ => ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M) (v : LaurentSeries
+      ℂ) (ofComplex c)) =ᶠ[𝓝[≠] (τ : ℂ)]
         -((((w : ℍ → ℂ) ∘ ofComplex) ^ 2 * (ModularForm.discriminant ∘ ofComplex)) /
-          (((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) ^ 2 * ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex))) := by
+          (((ModularForm.E₄ : ℍ → ℂ) ∘ ofComplex) ^ 2 * ((ModularForm.E₆ : ℍ → ℂ) ∘ ofComplex)))
+            := by
       filter_upwards [hevB] with c hc
       have hc' : ModularForm.E₄ (ofComplex c) ^ 2 * ModularForm.E₆ (ofComplex c) ≠ 0 := by
         simpa only [Function.comp_apply, hHhcoe] using hc
@@ -394,7 +418,8 @@ theorem solution
       meromorphicOrderAt_pow haw.meromorphicAt, meromorphicOrderAt_pow ha4.meromorphicAt,
       hmw, hm4, hm6, hmD, he] at hmv
     have hov : (D.pt τ).ord v + a6 = 2 * ((aw : ℤ) - a4) := by
-      have : ((2 • (aw : ℤ) + 0 - (2 • (a4 : ℤ) + a6) : ℤ) : WithTop ℤ) = (((1 : ℕ) : ℤ) * (D.pt τ).ord v : ℤ) :=
+      have : ((2 • (aw : ℤ) + 0 - (2 • (a4 : ℤ) + a6) : ℤ) : WithTop ℤ) = (((1 : ℕ) : ℤ) * (D.pt
+        τ).ord v : ℤ) :=
         by
         rw [← hmv]; push_cast; rfl
       have := WithTop.coe_injective this
@@ -425,7 +450,9 @@ theorem solution
 end
 end S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
 end P2MW
-export P2MW.S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1 (solution)
+export
+  P2MW.S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
+  (solution)
 
 end privateSection
 
@@ -436,14 +463,17 @@ open CongruenceSubgroup ModularCurve
 open scoped MatrixGroups ModularForm
 theorem ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0)
-    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hv : (v : LaurentSeries ℂ) * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2)
     (P : AlgebraicCurve.Place ℂ
-        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M))))
     (hP : y ∈ P.toValuationSubring) :
     Even (P.ord v +
           ((if 0 < P.ord y then (2 * P.ord y) / 3 else 0)

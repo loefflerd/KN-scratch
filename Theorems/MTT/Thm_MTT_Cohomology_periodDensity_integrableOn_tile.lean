@@ -92,7 +92,8 @@ The period-pairing argument is in the [Columbia seminar notes, §1.2, Theorem 1,
 pp. 8–10](https://www.math.columbia.edu/~dmarcil/Seminars/2021_Spring/Notes/Week4-5.pdf).
 The finite-area proof and bounded-Petersson integrability argument are adapted
 from [AINTLIB's
-PeterssonInnerProduct.lean](https://github.com/CBirkbeck/AINTLIB/blob/eb9621e7bcb0ce220ad53983ec45d987cb5b9002/projects/LeanModularForms/LeanModularForms/Modularforms/PeterssonInnerProduct.lean),
+PeterssonInnerProduct.lean]
+(https://github.com/CBirkbeck/AINTLIB/blob/eb9621e7bcb0ce220ad53983ec45d987cb5b9002/projects/LeanModularForms/LeanModularForms/Modularforms/PeterssonInnerProduct.lean),
 by Chris Birkbeck, Apache 2.0. The coefficient calculations credit Part A of
 accepted Prove2Me proof `777707bf-f8aa-4fd9-8d82-71afe645b027` by cbirkbeck.
 
@@ -225,7 +226,8 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
   unfold periodPower
   rw [add_pow, MvPolynomial.coeff_sum]
   have key : ∀ m ∈ Finset.range (n + 1),
-      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m)
+        *
           (n.choose m : MvPolynomial (Fin 2) ℂ)) (binaryExponent n j)
         = if m = j then (n.choose j : ℂ) * z ^ j else 0 := by
     intro m _
@@ -382,7 +384,8 @@ theorem MTT.Cohomology.periodDensity_integrableOn_tile {N k : ℕ} (hN : 0 < N) 
     (hD : ∀ z : ℍ, D z = periodContraction (k - 2)
       (f z • periodPower (k - 2) z)
       (conj (q z) • periodPower (k - 2) (conj (z : ℂ)))) :
-    IntegrableOn D ((fun z : ℍ => ((σ • z : ℍ) : ℂ)) '' ModularGroup.fd) := _root_.solution hN hk f q σ D hD
+    IntegrableOn D ((fun z : ℍ => ((σ • z : ℍ) : ℂ)) '' ModularGroup.fd) := _root_.solution hN hk f
+      q σ D hD
 end
 
 end publicSection

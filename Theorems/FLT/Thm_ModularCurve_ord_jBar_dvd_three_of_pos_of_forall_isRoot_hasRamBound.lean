@@ -99,7 +99,8 @@ private lemma forall_hasRamBound_of_embedding (N : ℕ) [NeZero N]
     (htrio : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),
       (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
         s)).IsRoot r → HasRamBound d r)
-    (ψ : ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) →ₐ[AlgebraicClosure ℚ]
+    (ψ : ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) →ₐ[AlgebraicClosure
+      ℚ]
       HahnSeries ℚ (AlgebraicClosure ℚ))
     (hψj : ψ (⟨coeffEmb (AlgebraicClosure ℚ) jq,
       coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :
@@ -315,7 +316,8 @@ private theorem ord_jBar_sub_1728_dvd_two_of_pos_of_forall_isRoot_hasRamBound (N
           laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) - 1728)) :
     v.ord ((⟨coeffEmb (AlgebraicClosure ℚ) jq,
         coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :
-          laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) - 1728) ∣ (2 : ℤ) := by
+          laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) - 1728) ∣ (2 : ℤ)
+            := by
   have hC : HahnSeries.C (1728 : AlgebraicClosure ℚ) =
       (1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) := map_ofNat _ 1728
   have halg : algebraMap (AlgebraicClosure ℚ)
@@ -379,7 +381,8 @@ private theorem ord_jBar_sub_1728_dvd_two_of_pos_of_odd (N : ℕ) [NeZero N] (hN
 
 end ModularCurve
 
-open HahnSeries Polynomial _root_.ModularCurve _root_.P2MW.S_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound.ModularCurve in
+open HahnSeries Polynomial _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound.ModularCurve in
 theorem solution (N : ℕ) [NeZero N]
     (data : ModularPolynomialData N)
     (htrio : ∀ r : HahnSeries ℚ (AlgebraicClosure ℚ),

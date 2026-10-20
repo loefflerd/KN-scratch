@@ -86,7 +86,8 @@ private theorem _root_.AlgebraicCurve.Place.ordDiff_smul_impl [PerfectField K] (
   have ht : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
   have hrep : diffCoeff v.uniformizer_alt ω • KaehlerDifferential.D K F v.uniformizer_alt = ω :=
     v.diffCoeff_smul_D_of_ord_eq_one x ht ω
-  have hgo : g • ω = (g * diffCoeff v.uniformizer_alt ω) • KaehlerDifferential.D K F v.uniformizer_alt :=
+  have hgo : g • ω = (g * diffCoeff v.uniformizer_alt ω) • KaehlerDifferential.D K F
+    v.uniformizer_alt :=
     by
     conv_lhs => rw [← hrep]
     rw [smul_smul]

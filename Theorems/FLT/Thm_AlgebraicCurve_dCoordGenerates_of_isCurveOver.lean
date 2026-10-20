@@ -223,7 +223,8 @@ private theorem _root_.AlgebraicCurve.Place.ker_algebraMap_residueField_eq_span 
   rw [IsLocalRing.ResidueField.algebraMap_eq, IsLocalRing.ker_residue,
     v.maximalIdeal_eq_span_uniformizer]
 
-private theorem _root_.AlgebraicCurve.Place.formallyUnramified_polynomial_residueField_of_isSeparable
+private theorem
+  _root_.AlgebraicCurve.Place.formallyUnramified_polynomial_residueField_of_isSeparable
     [Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring)] :
     letI := v.polynomialAlgebra
     Algebra.FormallyUnramified K[X] (IsLocalRing.ResidueField v.toValuationSubring) := by
@@ -241,7 +242,8 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_residueKaehler_of_isSep
   have := v.formallyUnramified_polynomial_residueField_of_isSeparable
   exact Algebra.FormallyUnramified.subsingleton_kaehlerDifferential
 
-private theorem _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomialKaehler_of_isSeparable
+private theorem
+  _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomialKaehler_of_isSeparable
     [Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring)] :
     letI := v.polynomialAlgebra
     Subsingleton (v.ResidueField ⊗[v.toValuationSubring] Ω[v.toValuationSubring⁄K[X]]) := by
@@ -322,7 +324,8 @@ section EftEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.finite_kaehler_of_essFiniteType [Algebra.EssFiniteType K v.toValuationSubring] :
+private theorem _root_.AlgebraicCurve.Place.finite_kaehler_of_essFiniteType [Algebra.EssFiniteType K
+  v.toValuationSubring] :
     Module.Finite v.toValuationSubring Ω[v.toValuationSubring⁄K] :=
   KaehlerDifferential.finite K v.toValuationSubring
 
@@ -442,7 +445,8 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_not_mem_cen
     not_not] at hs
   exact hs
 
-private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_mem_primeCompl (s : (v.centerIdeal A hA).primeCompl) :
+private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_mem_primeCompl (s :
+  (v.centerIdeal A hA).primeCompl) :
     IsUnit (v.modelInclusion A hA (s : A)) :=
   v.isUnit_modelInclusion_of_not_mem_centerIdeal A hA s.2
 
@@ -526,7 +530,8 @@ private theorem div_mem_of_not_mem_centerIdeal (r : A) {a : A}
   exact v.toValuationSubring.toSubring.mul_mem (hA r.2)
     (inv_mem_of_not_mem_centerIdeal v A hA ha)
 
-private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A
+  F] :
     v.centerIdeal A hA ≠ ⊥ := by
   obtain ⟨f, hf⟩ : ∃ f : F, f ∉ v.toValuationSubring := by
     by_contra h; push Not at h
@@ -548,7 +553,8 @@ section LocalizationSubalgebra
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
   (A : Subalgebra K F) (hA : (A : Set F) ⊆ (v.toValuationSubring : Set F))
 
-@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra [IsFractionRing A F] :
+@[reducible] private noncomputable def _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra
+  [IsFractionRing A F] :
     Subalgebra A F :=
   Localization.subalgebra.ofField F (v.centerIdeal A hA).primeCompl
     (v.centerIdeal A hA).primeCompl_le_nonZeroDivisors
@@ -571,7 +577,8 @@ scoped instance centerLocalizationSubalgebra_isFractionRing [IsFractionRing A F]
     IsFractionRing (v.centerLocalizationSubalgebra A hA) F :=
   inferInstanceAs (IsFractionRing (Localization.subalgebra.ofField F _ _) F)
 
-private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset [IsFractionRing A F] :
+private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset [IsFractionRing A F]
+  :
     ((v.centerLocalizationSubalgebra A hA : Subalgebra A F) : Set F)
       ⊆ (v.toValuationSubring : Set F) := by
   intro x hx
@@ -1019,7 +1026,8 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 namespace Place
 open scoped AlgebraicCurve.Place in
-private theorem _root_.AlgebraicCurve.Place.isSeparable_residueField_of_perfectField_of_finiteResidue
+private theorem
+  _root_.AlgebraicCurve.Place.isSeparable_residueField_of_perfectField_of_finiteResidue
     [PerfectField K] (v : Place K F) [v.FiniteResidue] :
     Algebra.IsSeparable K (IsLocalRing.ResidueField v.toValuationSubring) := by
   have : Module.Finite K (IsLocalRing.ResidueField v.toValuationSubring) :=

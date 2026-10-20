@@ -51,7 +51,8 @@ $$\dim_{\mathbb{C}} \mathrm{coeffH1par}\bigl(\mathrm{binaryFormRepSL}\,\mathbb{C
 This is one half of Shapiro's lemma for parabolic cohomology of the finite-index subgroup
 $\Gamma_0(N) \le SL(2,\mathbb{Z})$, recorded as the inequality of dimensions rather than as an
 isomorphism of cohomology groups. It feeds the Eichler–Shimura style dimension count
-[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`](thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula),
+[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`]
+(thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula),
 which bounds the dimension of parabolic cohomology with binary-form coefficients.
 
 ## Explanation of the source proof
@@ -167,7 +168,8 @@ section Shapiro
 
 variable {N n}
 variable (W : Representation ℂ ↥Gt (X0 N → Vn n))
-  (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x)))
+  (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2,
+    ℤ))⁻¹) • x)))
 include hW
 
 def Sh (z : ↥(Γ0 N) → Vn n) : ↥Gt → X0 N → Vn n := fun g x => ρ n x.out (z (tr (g : SL(2, ℤ)) x))
@@ -196,7 +198,8 @@ theorem Sh_mem_coeffCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCocycles
   rw [show ((g * h : ↥Gt) : SL(2, ℤ)) = (g : SL(2, ℤ)) * (h : SL(2, ℤ)) from rfl, tr_mul, hz]
   rw [map_add]
   rw [add_right_inj]
-  change ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) (z (tr (h : SL(2, ℤ)) ((g : SL(2, ℤ))⁻¹ • x)))) = _
+  change ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) (z (tr (h : SL(2, ℤ)) ((g :
+    SL(2, ℤ))⁻¹ • x)))) = _
   rw [← Module.End.mul_apply, ← map_mul, out_mul_tr, map_mul, Module.End.mul_apply]
 
 theorem Sh_mem_coeffCoboundaries {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCoboundaries (ρΓ N n)) :
@@ -223,7 +226,8 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
     intro γ
     rw [hx0, MulAction.Quotient.smul_coe, QuotientGroup.eq]
     simp
-  have key : ∀ γ : ↥(Γ0 N), ρ n x0.out (z (tr (γ : SL(2, ℤ)) x0)) = ρ n (γ : SL(2, ℤ)) (F x0) - F x0 :=
+  have key : ∀ γ : ↥(Γ0 N), ρ n x0.out (z (tr (γ : SL(2, ℤ)) x0)) = ρ n (γ : SL(2, ℤ)) (F x0) - F x0
+    :=
     by
     intro γ
     have := congrFun (congrFun hF ⟨(γ : SL(2, ℤ)), Subgroup.mem_top _⟩) x0
@@ -238,7 +242,8 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
   refine ⟨ρΓ N n σ0⁻¹ (F x0), funext fun δ => ?_⟩
   have hk := key (σ0 * δ * σ0⁻¹)
   rw [htr, show σ0⁻¹ * (σ0 * δ * σ0⁻¹) * σ0 = δ by group] at hk
-  have : z δ = ρ n ((σ0 : ↥(Γ0 N)) : SL(2, ℤ))⁻¹ (ρ n (((σ0 * δ * σ0⁻¹ : ↥(Γ0 N))) : SL(2, ℤ)) (F x0) - F x0) :=
+  have : z δ = ρ n ((σ0 : ↥(Γ0 N)) : SL(2, ℤ))⁻¹ (ρ n (((σ0 * δ * σ0⁻¹ : ↥(Γ0 N))) : SL(2, ℤ)) (F
+    x0) - F x0) :=
     by
     rw [← hk, ← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
   rw [this, map_sub, ← Module.End.mul_apply, ← map_mul]
@@ -280,13 +285,15 @@ theorem trace_T_zpow (h : ℤ) :
   rw [ModularGroup.coe_T_zpow, Matrix.trace_fin_two_of]; ring
 
 theorem trace_conj (δ g : SL(2, ℤ)) :
-    ((δ * g * δ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = ((g : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace := by
+    ((δ * g * δ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = ((g : SL(2, ℤ)) : Matrix (Fin 2)
+      (Fin 2) ℤ).trace := by
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, Matrix.trace_mul_cycle,
     ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one,
     Matrix.one_mul]
 
 theorem trace_sq_of_shape (ε δ : SL(2, ℤ)) (h : ℤ) (hε : ε = 1 ∨ ε = -1) :
-    (((ε * (δ * ModularGroup.T ^ h * δ⁻¹) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4 := by
+    (((ε * (δ * ModularGroup.T ^ h * δ⁻¹) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace) ^ 2 = 4 :=
+      by
   rcases hε with rfl | rfl
   · rw [one_mul, trace_conj, trace_T_zpow]; norm_num
   · rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_neg,
@@ -321,7 +328,8 @@ section Power
 
 variable {N : ℕ} [NeZero N]
 
-noncomputable scoped instance fintypeX0 : Fintype (X0 N) := (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
+noncomputable scoped instance fintypeX0 : Fintype (X0 N) := (CongruenceSubgroup.Gamma0
+  N).fintypeQuotientOfFiniteIndex
 
 theorem exists_pow_smul_eq (g : SL(2, ℤ)) : ∃ M : ℕ, 0 < M ∧ ∀ x : X0 N, g ^ M • x = x := by
   classical
@@ -358,7 +366,8 @@ section Parabolic
 
 variable {N n : ℕ} [NeZero N]
 variable (W : Representation ℂ ↥Gt (X0 N → Vn n))
-  (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x)))
+  (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2,
+    ℤ))⁻¹) • x)))
 include hW
 
 theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n}
@@ -370,7 +379,8 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n}
   have hfix' : ∀ x : X0 N, ((g : SL(2, ℤ)) ^ M)⁻¹ • x = x := fun x => by
     conv_lhs => rw [← hfix x]
     rw [inv_smul_smul]
-  have hγ : ∀ x : X0 N, (((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 :=
+  have hγ : ∀ x : X0 N, (((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2)
+    ℤ).trace ^ 2 = 4 :=
     by
     intro x
     rw [coe_tr, hfix']
@@ -418,7 +428,8 @@ section Final
 
 variable {N n : ℕ} [NeZero N]
 variable (W : Representation ℂ ↥Gt (X0 N → Vn n))
-  (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x)))
+  (hW : ∀ (g : ↥Gt) (f : X0 N → Vn n) (x : X0 N), W g f x = ρ n (g : SL(2, ℤ)) (f (((g : SL(2,
+    ℤ))⁻¹) • x)))
 include hW
 
 omit [NeZero N] hW in
@@ -437,7 +448,8 @@ theorem eq_zero_of_apply_S_T {Z : ↥Gt → X0 N → Vn n} (hZ : Z ∈ coeffCocy
   have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ)) :=
     by
     rw [SpecialLinearGroup.SL2Z_generators]; trivial
-  have key : ∀ x (hx : x ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ))), Z ⟨x, Subgroup.mem_top _⟩ = 0 :=
+  have key : ∀ x (hx : x ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ))), Z
+    ⟨x, Subgroup.mem_top _⟩ = 0 :=
     by
     intro x hx
     induction hx using Subgroup.closure_induction with
@@ -464,7 +476,8 @@ theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
     MvPolynomial.homogeneousSubmodule_eq_finsupp_supported,
     AddMonoidAlgebra.supported_eq_span_single]
   refine Submodule.fg_span (Set.Finite.image _ ?_)
-  refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i + Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
+  refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i +
+    Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
   intro d hd
   have hsum : d 0 + d 1 = n := by
     have : d.degree = n := hd
@@ -497,7 +510,8 @@ def ShPC : ↥(coeffParabolicCocycles (ρΓ N n)) →ₗ[ℂ] ↥(coeffParabolic
   toFun z := ⟨Sh (z : ↥(Γ0 N) → Vn n), Sh_mem_coeffParabolicCocycles W hW z.2⟩
   map_add' z w := by
     apply Subtype.ext
-    change Sh ((z : ↥(Γ0 N) → Vn n) + (w : ↥(Γ0 N) → Vn n)) = Sh (z : ↥(Γ0 N) → Vn n) + Sh (w : ↥(Γ0 N) → Vn n)
+    change Sh ((z : ↥(Γ0 N) → Vn n) + (w : ↥(Γ0 N) → Vn n)) = Sh (z : ↥(Γ0 N) → Vn n) + Sh (w : ↥(Γ0
+      N) → Vn n)
     exact Sh_add _ _
   map_smul' c z := by
     apply Subtype.ext
@@ -505,7 +519,8 @@ def ShPC : ↥(coeffParabolicCocycles (ρΓ N n)) →ₗ[ℂ] ↥(coeffParabolic
     exact Sh_smul _ _
 
 @[scoped simp] theorem coe_ShPC (z : ↥(coeffParabolicCocycles (ρΓ N n))) :
-    ((ShPC W hW z : ↥(coeffParabolicCocycles W)) : ↥Gt → X0 N → Vn n) = Sh (z : ↥(Γ0 N) → Vn n) := rfl
+    ((ShPC W hW z : ↥(coeffParabolicCocycles W)) : ↥Gt → X0 N → Vn n) = Sh (z : ↥(Γ0 N) → Vn n) :=
+      rfl
 
 theorem mk_ShPC_congr {a b : ↥(coeffParabolicCocycles (ρΓ N n))}
     (h : coeffH1parMk _ a = coeffH1parMk _ b) :
@@ -531,7 +546,8 @@ def Ψ : coeffH1par (ρΓ N n) →ₗ[ℂ] coeffH1par W where
 
 theorem Ψ_mk (z : ↥(coeffParabolicCocycles (ρΓ N n))) :
     Ψ W hW (coeffH1parMk _ z) = coeffH1parMk _ (ShPC W hW z) := by
-  change coeffH1parMk _ (ShPC W hW (Function.surjInv (coeffH1parMk_surjective _) (coeffH1parMk _ z))) = _
+  change coeffH1parMk _ (ShPC W hW (Function.surjInv (coeffH1parMk_surjective _) (coeffH1parMk _
+    z))) = _
   apply mk_ShPC_congr
   rw [Function.surjInv_eq (coeffH1parMk_surjective _)]
 
@@ -556,10 +572,13 @@ end
 
 open scoped MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ)
-    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)))
-    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
+    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)))
+    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
       W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) :
-    Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
+    Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype))
       ≤ Module.finrank ℂ (HeckeEis.coeffH1par W) :=
   HeckeEis.UBSol.main W hW
 
@@ -575,10 +594,13 @@ public section publicSection
 open scoped MatrixGroups
 theorem HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced (N : ℕ) [NeZero N]
     (n : ℕ)
-    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)))
-    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
+    (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)))
+    (hW : ∀ (g : (⊤ : Subgroup SL(2, ℤ))) (f : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N →
+      ↥(HeckeEis.BinaryForm ℂ n)) (x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N),
       W g f x = HeckeEis.binaryFormRepSL ℂ n (g : SL(2, ℤ)) (f (((g : SL(2, ℤ))⁻¹) • x))) :
-    Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
+    Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype))
       ≤ Module.finrank ℂ (HeckeEis.coeffH1par W) :=
   solution N n W hW
 

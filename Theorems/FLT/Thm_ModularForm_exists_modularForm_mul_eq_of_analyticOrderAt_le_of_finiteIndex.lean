@@ -100,7 +100,8 @@ theorem quo_analytic {F G : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
   have hGne : ∀ w ∈ U, ∀ᶠ v in 𝓝[≠] w, G v ≠ 0 := fun w hw =>
     ((hG w hw).eventually_eq_zero_or_eventually_ne_zero).resolve_left (hG0 w hw)
   have heq : ∀ᶠ w in 𝓝 z, quo F G w = q w := by
-    filter_upwards [hq.eventually_analyticAt, hfac.eventually_nhds, hU.mem_nhds hz] with w hqw hfw hwU
+    filter_upwards [hq.eventually_analyticAt, hfac.eventually_nhds, hU.mem_nhds hz] with w hqw hfw
+      hwU
     exact quo_eq hqw hfw (hGne w hwU)
   refine ⟨hq.congr (EventuallyEq.symm heq), ?_⟩
   have h1 := heq.self_of_nhds
@@ -134,11 +135,13 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
     (c : ℤ) (habc : b + c = a)
     (Φ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a)
     (Ψ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) b) (hΨ : Ψ ≠ 0)
-    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
+    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘
+      UpperHalfPlane.ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ))
     (hcusp : ∀ A : Matrix.SpecialLinearGroup (Fin 2) ℤ, ∃ C : ℝ,
       ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
-        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
+        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b]
+          (A : GL (Fin 2) ℝ)) τ‖) :
     ∃ f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ := by
   classical
   set Φ' : ℂ → ℂ := (Φ : ℍ → ℂ) ∘ ofComplex with hΦ'
@@ -222,7 +225,8 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
       exact this
     have hG_cont : Continuous G := (hf_mdiff.slash c (γ : GL (Fin 2) ℝ)).continuous
     have hWo : IsOpen {σ : ℍ | C < ‖G σ‖ ∧ T < σ.im} :=
-      (isOpen_lt continuous_const hG_cont.norm).inter (isOpen_lt continuous_const UpperHalfPlane.continuous_im)
+      (isOpen_lt continuous_const hG_cont.norm).inter (isOpen_lt continuous_const
+        UpperHalfPlane.continuous_im)
     have hΨAW : ∀ σ ∈ {σ : ℍ | C < ‖G σ‖ ∧ T < σ.im}, ΨA σ = 0 := by
       rintro σ ⟨h1, h2⟩
       have hb := hT σ h2.le
@@ -260,11 +264,13 @@ theorem ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteInd
     (habc : b + c = a)
     (Φ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a)
     (Ψ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) b) (hΨ : Ψ ≠ 0)
-    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ) ≤
+    (hord : ∀ τ : UpperHalfPlane, analyticOrderAt ((Ψ : UpperHalfPlane → ℂ) ∘
+      UpperHalfPlane.ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex) (τ : ℂ))
     (hcusp : ∀ A : Matrix.SpecialLinearGroup (Fin 2) ℤ, ∃ C : ℝ,
       ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
-        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
+        ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b]
+          (A : GL (Fin 2) ℝ)) τ‖) :
     ∃ f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ :=
   solution Γ c habc Φ Ψ hΨ hord hcusp
 

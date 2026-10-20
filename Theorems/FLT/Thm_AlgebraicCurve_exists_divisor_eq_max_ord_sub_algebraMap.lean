@@ -43,7 +43,8 @@ This is the existence of the divisor of zeros of $x-a$, the positive part of the
 $\operatorname{div}(x-a)$; its support enumerates the places of $F/K$ lying over the value $a$ of
 $x$, so that the fibre of $x$ above $a$ is finite. It feeds the computation of the number of such
 places, used in
-[`AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed`](thm.html#AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed).
+[`AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed).
 
 ## Explanation of the source proof
 

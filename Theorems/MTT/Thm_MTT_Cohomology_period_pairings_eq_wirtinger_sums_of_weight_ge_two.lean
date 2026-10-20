@@ -171,7 +171,8 @@ theorem MTT.Cohomology.period_pairings_eq_wirtinger_sums_of_weight_ge_two
     periodPairing N (k - 2) q v =
         -conj (∑ σ ∈ R, ∫ z in (fun τ : ℍ ↦ ((σ • τ : ℍ) : ℂ)) '' 𝒟,
           (1 / 2 : ℂ) *
-            (fderiv ℝ A₂ z 1 - Complex.I * fderiv ℝ A₂ z Complex.I)) := _root_.solution hk g v q R hR hint₁ hint₂ hderiv₁ hderiv₂
+            (fderiv ℝ A₂ z 1 - Complex.I * fderiv ℝ A₂ z Complex.I)) := _root_.solution hk g v q R
+              hR hint₁ hint₂ hderiv₁ hderiv₂
 end
 
 end publicSection

@@ -25,7 +25,8 @@ import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.NumberTheory.ModularForms.LFunction
 
 /-!
-# $\Gamma_0(N)$-equivariance of the cusp primitive: $P_g(\gamma x)=\gamma\cdot P_{g|\gamma}(x)+P_g(\gamma\infty)$
+# $\Gamma_0(N)$-equivariance of the cusp primitive: $P_g(\gamma x)=\gamma\cdot
+P_{g|\gamma}(x)+P_g(\gamma\infty)$
 
 Theorem statement: `MTT.Cohomology.cuspPrimitive_slash_relation`
 (`35b51ddd-a1fd-4031-8d47-dde64226ea84`), by cbirkbeck, 2026-09-06.
@@ -757,7 +758,8 @@ lemma Fvec_eq (h : ℍ → ℂ) (n : ℕ) (w : ℂ) :
 
 lemma act_lin (σ : SL(2, ℤ)) {z : ℂ} (hz : z ∈ UHP) :
     act σ (MvPolynomial.C z * MvPolynomial.X 0 + MvPolynomial.X 1 : Binary ℂ) =
-      MvPolynomial.C (den σ z) * (MvPolynomial.C (mob σ z) * MvPolynomial.X 0 + MvPolynomial.X 1) := by
+      MvPolynomial.C (den σ z) * (MvPolynomial.C (mob σ z) * MvPolynomial.X 0 + MvPolynomial.X 1) :=
+        by
   have hd := den_ne_zero σ hz
   have hm : den σ z * mob σ z = ((σ 0 0 : ℤ) : ℂ) * z + ((σ 0 1 : ℤ) : ℂ) := by
     unfold mob den at hd ⊢
@@ -880,10 +882,13 @@ theorem transport (σ : SL(2, ℤ)) {h h' : ℍ → ℂ} {n : ℕ}
   have hG' : ∀ j, ∀ w ∈ UHP, HasDerivAt (normPrim (Fj h' j)) (Fj h' j w) w :=
     fun j => (normPrim_spec (differentiableOn_Fj hh' j) (hd' j)).1
   have hconst : ∀ m : Fin 2 →₀ ℕ, ∀ w ∈ UHP,
-      AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n w)) m =
-      AddMonoidAlgebra.coeff (Gvec h n (mob σ I)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n I)) m := by
+      AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n w)) m
+        =
+      AddMonoidAlgebra.coeff (Gvec h n (mob σ I)) m - AddMonoidAlgebra.coeff (act σ (Gvec h' n I)) m
+        := by
     intro m w hw
-    refine eq_const_of_hasDerivAt_zero (G := fun w => AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m -
+    refine eq_const_of_hasDerivAt_zero (G := fun w => AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m
+      -
       AddMonoidAlgebra.coeff (act σ (Gvec h' n w)) m) ?_ w hw I I_mem_UHP
     intro u hu
     have h1 : HasDerivAt (fun w => AddMonoidAlgebra.coeff (Gvec h n (mob σ w)) m)
@@ -990,7 +995,8 @@ lemma Kconst_eq_of_tendsto {σ : SL(2, ℤ)} {h h' : ℍ → ℂ} {n : ℕ}
   ext e
   have hlim := (h1 e).sub (h2 e)
   have hc : ∀ m, AddMonoidAlgebra.coeff (Gvec h n (mob σ (z m))) e -
-      AddMonoidAlgebra.coeff (act σ (Gvec h' n (z m))) e = AddMonoidAlgebra.coeff (Kconst σ h h' n) e := by
+      AddMonoidAlgebra.coeff (act σ (Gvec h' n (z m))) e = AddMonoidAlgebra.coeff (Kconst σ h h' n)
+        e := by
     intro m
     rw [hK (z m) (hz m), AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
     ring
@@ -1241,7 +1247,8 @@ theorem cuspPrimitive_slash_relation_proof (hN : 0 < N) (hk : 2 ≤ k)
     exact mul_left_cancel₀ hd h
   rcases x with _ | r
   · change cuspPrimitive g (cuspAct γ.val OnePoint.infty) =
-      act γ.val.val (cuspPrimitive g' OnePoint.infty) + cuspPrimitive g (cuspAct γ.val OnePoint.infty)
+      act γ.val.val (cuspPrimitive g' OnePoint.infty) + cuspPrimitive g (cuspAct γ.val
+        OnePoint.infty)
     rw [cuspPrimitive_infty, map_zero, zero_add]
   · change cuspPrimitive g (cuspAct γ.val (r : Cusp)) =
       act γ.val.val (cuspPrimitive g' (r : Cusp)) + cuspPrimitive g (cuspAct γ.val OnePoint.infty)
@@ -1284,7 +1291,8 @@ theorem MTT.Cohomology.cuspPrimitive_slash_relation
         (((γ.val 1 0 : ℤ) : ℂ) * z + ((γ.val 1 1 : ℤ) : ℂ)) ^ k * g' z)
     (x : Cusp) :
     cuspPrimitive g (cuspAct γ.val x) =
-      act γ.val.val (cuspPrimitive g' x) + cuspPrimitive g (cuspAct γ.val OnePoint.infty) := _root_.solution hN hk g g' γ hg' x
+      act γ.val.val (cuspPrimitive g' x) + cuspPrimitive g (cuspAct γ.val OnePoint.infty) :=
+        _root_.solution hN hk g g' γ hg' x
 end
 
 end publicSection

@@ -42,9 +42,11 @@ point of the generic fibre.
 This is the nondegeneracy guard under which the pull-back construction of the function-field module
 behaves as the pull-back along multiplication by $n$ on an elliptic curve: it says that $n$ times
 the generic point is neither zero nor constant. It is used in
-[`WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq`](thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq)
+[`WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq`]
+(thm.html#WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq)
 and in
-[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`](thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul).
+[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`]
+(thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul).
 
 ## Explanation of the source proof
 

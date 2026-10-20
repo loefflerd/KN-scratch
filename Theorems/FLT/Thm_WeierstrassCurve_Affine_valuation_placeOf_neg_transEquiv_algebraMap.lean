@@ -48,7 +48,8 @@ This is the statement that pull-back along translation by $S$ identifies the pla
 place at infinity, at which a polynomial function $a$ has a pole of order $\deg N(a)$; in the
 normalisation used here the valuation is $\exp$ of minus the order of vanishing. It feeds the
 computation of the valuation at $-S$ of the translated Weil functions,
-[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`](thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
+[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`]
+(thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
 
 ## Explanation of the source proof
 
@@ -268,7 +269,8 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
       rw [this]
       exact sub_mem hmem (Ideal.mul_mem_right _ _ hu_mem)
     have hs : v (ι (t₀ + CoordinateRing.mk (W⁄K) (C (C (W⁄K).a₁)) * u₀)) < 1 :=
-      (HeightOneSpectrum.valuation_lt_one_iff_mem _ _).mpr (add_mem ht (Ideal.mul_mem_left _ _ hu_mem))
+      (HeightOneSpectrum.valuation_lt_one_iff_mem _ _).mpr (add_mem ht (Ideal.mul_mem_left _ _
+        hu_mem))
     have hmul := congrArg (fun z => v (ι z)) hrel
     simp only [map_mul] at hmul
     rw [hq, mul_one] at hmul
@@ -376,7 +378,8 @@ theorem valuation_placeOf_neg_transEquiv_algebraMap_aux (S : (W⁄K).Point) (hS 
         rw [hι, hvinf _ (CoordinateRing.mk_C_X_ne_zero' (W⁄K)), CoordinateRing.natDegree_norm_mk_C',
           natDegree_X]
         rfl
-      refine ⟨(ι (CoordinateRing.mk (W⁄K) Y) / ι (CoordinateRing.mk (W⁄K) (C X))) ^ WithZero.log γ, ?_⟩
+      refine ⟨(ι (CoordinateRing.mk (W⁄K) Y) / ι (CoordinateRing.mk (W⁄K) (C X))) ^ WithZero.log γ,
+        ?_⟩
       rw [map_zpow₀, map_div₀, hY, hX, ← WithZero.exp_sub, ← WithZero.exp_zsmul, smul_eq_mul]
       norm_num
       exact WithZero.exp_log hγ
@@ -398,8 +401,11 @@ p2m_open "WeierstrassCurve \
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K]
     (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
     (S : (W⁄K).Point) (hS : S ≠ 0) {a : (W⁄K).CoordinateRing} (ha : a ≠ 0) :
-    (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm (Polynomial K) a).natDegree : ℤ) :=
-  WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap_aux W K S hS (neg_ne_zero.mpr hS) ha
+    (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S
+      (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm
+      (Polynomial K) a).natDegree : ℤ) :=
+  WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap_aux W K S hS (neg_ne_zero.mpr
+    hS) ha
 
 end S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap
 end P2MW
@@ -416,7 +422,9 @@ theorem WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap {F K
     [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
     [IsDedekindDomain (W⁄K).CoordinateRing] (S : (W⁄K).Point) (hS : S ≠ 0)
     {a : (W⁄K).CoordinateRing} (ha : a ≠ 0) :
-    (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm (Polynomial K) a).natDegree : ℤ) :=
+    (placeOf W K (-S) (neg_ne_zero.mpr hS)).valuation (W⁄K).FunctionField (transEquiv W K S
+      (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField a)) = WithZero.exp ((Algebra.norm
+      (Polynomial K) a).natDegree : ℤ) :=
   solution W S hS ha
 
 end publicSection

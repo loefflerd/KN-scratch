@@ -48,7 +48,8 @@ This is the Galois equivariance of the orders of vanishing on an affine Weierstr
 $\operatorname{ord}_{\sigma P}(f^{\sigma}) = \operatorname{ord}_{P}(f)$, i.e. the statement that a
 semilinear substitution of coefficients permutes the places $\mathfrak m_P = (X - x_P, Y - y_P)$
 compatibly with the action on points. It is used in
-[`WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul`](thm.html#WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul),
+[`WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul`]
+(thm.html#WeierstrassCurve.Affine.exists_map_weilFun_eq_mul_weilFun_smul),
 where it shows that the conjugate of a function with prescribed divisor and the corresponding
 function attached to the translated point have the same divisor, as in the proof of Galois
 invariance of the Weil pairing.
@@ -114,7 +115,8 @@ private theorem galRingHom_one (z : (W⁄K).CoordinateRing) : galRingHom W 1 z =
 
 theorem galRing_exists (σ : K ≃ₐ[F] K) :
     ∃ φ : (W⁄K).CoordinateRing ≃+* (W⁄K).CoordinateRing, ∀ p : K[X][Y],
-      φ (CoordinateRing.mk (W⁄K) p) = CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))) := by
+      φ (CoordinateRing.mk (W⁄K) p) = CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))) :=
+        by
   refine ⟨RingEquiv.ofRingHom (galRingHom W σ) (galRingHom W σ⁻¹) ?_ ?_, galRingHom_mk W σ⟩
   · refine RingHom.ext fun z => ?_
     rw [RingHom.comp_apply, RingHom.id_apply, galRingHom_comp, mul_inv_cancel, galRingHom_one]
@@ -124,7 +126,8 @@ theorem galRing_exists (σ : K ≃ₐ[F] K) :
 theorem galRing_map_XYIdeal (σ : K ≃ₐ[F] K) (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing)
     (hφ : ∀ p : K[X][Y], φ (CoordinateRing.mk (W⁄K) p) =
       CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))) (x y : K) :
-    (CoordinateRing.XYIdeal (W⁄K) x (C y)).map φ = CoordinateRing.XYIdeal (W⁄K) (σ x) (C (σ y)) := by
+    (CoordinateRing.XYIdeal (W⁄K) x (C y)).map φ = CoordinateRing.XYIdeal (W⁄K) (σ x) (C (σ y)) :=
+      by
   rw [CoordinateRing.XYIdeal, Ideal.map_span, Set.image_pair, CoordinateRing.XClass,
     CoordinateRing.YClass, hφ, hφ]
   simp only [Polynomial.map_sub, Polynomial.map_C, Polynomial.map_X, coe_mapRingHom,
@@ -188,7 +191,8 @@ section GalA2
 
 variable {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F)
   (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField)
-  (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) =
+  (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk
+    (W⁄K) p)) =
     algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField
       (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))))
 
@@ -210,9 +214,17 @@ end GalA2
 
 end WeierstrassCurve.Affine
 
-open _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine in
-theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) :
-    (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f := by
+open _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine
+  in
+theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W :
+  WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p :
+  K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) =
+  algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ
+  : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P
+  ≠ 0) (f : (W⁄K).FunctionField) :
+    (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation
+      (W⁄K).FunctionField f := by
   obtain ⟨φ, hφ⟩ := galRing_exists W σ
   have hΦφ : ∀ a : (W⁄K).CoordinateRing, Φ (algebraMap _ (W⁄K).FunctionField a) =
       algebraMap _ (W⁄K).FunctionField (φ a) := by
@@ -240,8 +252,15 @@ public section publicSection
 open Polynomial WeierstrassCurve WeierstrassCurve.Affine
 open scoped Polynomial.Bivariate
 
-theorem WeierstrassCurve.Affine.valuation_placeOf_smul_of_algEquiv {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) :
-    (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f :=
+theorem WeierstrassCurve.Affine.valuation_placeOf_smul_of_algEquiv {F K : Type*} [Field F] [Field K]
+  [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField
+  →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing
+  (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing
+  (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))))
+  [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f :
+  (W⁄K).FunctionField) :
+    (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation
+      (W⁄K).FunctionField f :=
   solution W σ Φ hΦ hP hσP f
 
 end publicSection

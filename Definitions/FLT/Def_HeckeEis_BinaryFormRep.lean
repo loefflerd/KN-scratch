@@ -114,7 +114,8 @@ theorem binarySubst_mem {n : ℕ} (M : Matrix (Fin 2) (Fin 2) ℤ) {F : MvPolyno
     (hF : F ∈ BinaryForm K n) : binarySubst K M F ∈ BinaryForm K n := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hF ⊢
   have h := hF.aeval (fun j => ∑ i : Fin 2, C ((M i j : ℤ) : K) * X i)
-    (fun j => MvPolynomial.IsHomogeneous.sum _ _ _ fun i _ => (MvPolynomial.isHomogeneous_X K i).C_mul _)
+    (fun j => MvPolynomial.IsHomogeneous.sum _ _ _ fun i _ => (MvPolynomial.isHomogeneous_X K
+      i).C_mul _)
   simpa only [binarySubst, one_mul] using h
 
 variable (n : ℕ)
@@ -130,7 +131,8 @@ noncomputable def binaryFormRepSL : Representation K SL(2, ℤ) (BinaryForm K n)
   map_mul' g h := by
     refine LinearMap.ext fun F => Subtype.ext ?_
     change binarySubst K ((g * h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) F.1
-      = binarySubst K (g : Matrix (Fin 2) (Fin 2) ℤ) (binarySubst K (h : Matrix (Fin 2) (Fin 2) ℤ) F.1)
+      = binarySubst K (g : Matrix (Fin 2) (Fin 2) ℤ) (binarySubst K (h : Matrix (Fin 2) (Fin 2) ℤ)
+        F.1)
     rw [Matrix.SpecialLinearGroup.coe_mul, binarySubst_mul]
     rfl
 

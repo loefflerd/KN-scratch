@@ -76,7 +76,8 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-public theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
+public theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h :
+  v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
     intro hcon
@@ -656,7 +657,9 @@ section Setup
 
 variable (v : Place K F)
 
-scoped instance (priority := 100) instIsScalarTowerSubtypeMemValuationSubringToValuationSubring_theorems : IsScalarTower v.toValuationSubring F F' :=
+scoped instance (priority := 100)
+  instIsScalarTowerSubtypeMemValuationSubringToValuationSubring_theorems : IsScalarTower
+  v.toValuationSubring F F' :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
 end Setup

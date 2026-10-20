@@ -39,7 +39,8 @@ This is the Sturm bound in level one, stated for an expansion variable of arbitr
 than only for the standard width $1$. It is the shape in which the level-one bound is applied to
 forms whose natural expansion parameter is $q_M$, such as norms $\prod_\gamma f\,|_k\,\gamma$ of
 forms on a finite-index subgroup; it is cited by
-[`ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic`](thm.html#ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic).
+[`ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic`]
+(thm.html#ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic).
 
 ## Explanation of the source proof
 

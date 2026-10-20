@@ -133,7 +133,8 @@ theorem addOrderOf_ratPointMap (σ : L →+* L') (V : WeierstrassCurve L) (P : V
     (WeierstrassCurve.ratPointMap_injective σ (W₀ := V)) P
 
 theorem ratPointMap_nsmul (σ : L →+* L') (V : WeierstrassCurve L) (k : ℕ) (P : V.toAffine.Point) :
-    WeierstrassCurve.ratPointMap σ (W₀ := V) (k • P) = k • WeierstrassCurve.ratPointMap σ (W₀ := V) P :=
+    WeierstrassCurve.ratPointMap σ (W₀ := V) (k • P) = k • WeierstrassCurve.ratPointMap σ (W₀ := V)
+      P :=
   map_nsmul (WeierstrassCurve.ratPointHom σ (W₀ := V)) k P
 
 omit [DecidableEq L] [DecidableEq L'] in
@@ -150,7 +151,8 @@ omit [DecidableEq L] [DecidableEq L'] in
 theorem ratPointMap_vcInvFun_heq (σ : L →+* L') (γ : VariableChange L) (V : WeierstrassCurve L)
     (P : V.toAffine.Point) :
     HEq (WeierstrassCurve.ratPointMap σ (W₀ := γ • V) (Point.vcInvFun γ V.toAffine P))
-        (Point.vcInvFun (γ.map σ) (V.map σ).toAffine (WeierstrassCurve.ratPointMap σ (W₀ := V) P)) := by
+        (Point.vcInvFun (γ.map σ) (V.map σ).toAffine (WeierstrassCurve.ratPointMap σ (W₀ := V) P))
+          := by
   have hc : (γ • V).map σ = (γ.map σ) • (V.map σ) :=
     (WeierstrassCurve.map_variableChange V γ σ).symm
   cases P with
@@ -185,7 +187,8 @@ theorem gamma0PairStep_map (σ : L →+* L') {P Q : Gamma0Pair N L}
   · change γ.map σ • WP.map σ = (γ • WP).map σ
     exact WeierstrassCurve.map_variableChange WP γ σ
   · change HEq (WeierstrassCurve.ratPointMap σ (W₀ := γ • WP) gQ)
-      (k • Point.vcInvFun (γ.map σ) (WP.map σ).toAffine (WeierstrassCurve.ratPointMap σ (W₀ := WP) gP))
+      (k • Point.vcInvFun (γ.map σ) (WP.map σ).toAffine (WeierstrassCurve.ratPointMap σ (W₀ := WP)
+        gP))
     rw [hgen']
     refine HEq.trans (heq_of_eq (ratPointMap_nsmul σ (γ • WP) k
       (Point.vcInvFun γ WP.toAffine gP))) ?_

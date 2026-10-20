@@ -122,7 +122,8 @@ variable (Γ : Subgroup SL(2, ℤ))
 
 abbrev Cusp : Type := orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸ Γ)
 
-noncomputable scoped instance instFintypeCusp [Γ.FiniteIndex] : Fintype (Cusp Γ) := Fintype.ofFinite _
+noncomputable scoped instance instFintypeCusp [Γ.FiniteIndex] : Fintype (Cusp Γ) := Fintype.ofFinite
+  _
 
 noncomputable def width (x : SL(2, ℤ) ⧸ Γ) : ℕ := minimalPeriod (ModularGroup.T • ·) x
 
@@ -508,7 +509,8 @@ theorem six_dvd_index (hN : 2 ≤ N) : 6 ∣ (Gpm N).index := by
     · rw [ModularGroup.coe_S, Matrix.trace_fin_two_of]; norm_num
   have h3 : 3 ∣ (Gpm N).index := by
     have : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
-    refine dvd_index_of_pow_eq N hN (ModularGroup.S * ModularGroup.T) 3 ST_pow_three (Or.inr (Or.inl ?_))
+    refine dvd_index_of_pow_eq N hN (ModularGroup.S * ModularGroup.T) 3 ST_pow_three (Or.inr (Or.inl
+      ?_))
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T,
       Matrix.mul_fin_two,
       Matrix.trace_fin_two_of]

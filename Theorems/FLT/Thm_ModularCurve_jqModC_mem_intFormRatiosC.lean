@@ -134,7 +134,8 @@ open JqMemRatios in
 theorem solution (K : Type*) [Field K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
     ModularCurve.jqModC K ∈ ModularCurve.intFormRatiosC K Γ :=
-  ⟨12, e4cube Γ, delta Γ, ModularCurve.eisenstein4 ^ 3, PowerSeries.X * ModularCurve.dedekindEtaUnit,
+  ⟨12, e4cube Γ, delta Γ, ModularCurve.eisenstein4 ^ 3, PowerSeries.X *
+    ModularCurve.dedekindEtaUnit,
     isIntegralQExp_e4cube Γ, isIntegralQExp_delta Γ, intSeriesC_delta_ne_zero K, jqModC_eq_div K⟩
 
 end

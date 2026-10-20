@@ -118,7 +118,8 @@ theorem SolMain.esadd (n N : ℕ) [NeZero N] (f g : CuspForm (Gamma0 N) ((n : �
   obtain ⟨G, hEG, hG, hpG⟩ := exists_isEichlerIntegral_isParabolicCocycle N n g
   have hEFG : IsEichlerIntegral n (⇑(f + g)) (F + G) := by
     rw [FunLike.coe_add]; exact hEF.add hEG
-  have hpFG : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (add hF hG).cocycle :=
+  have hpFG : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (add hF hG).cocycle
+    :=
     by
     intro γ hγ
     rw [cocycle_add hF hG, Pi.add_apply]
@@ -137,7 +138,8 @@ end
 open scoped MatrixGroups ModularForm in
 theorem solution (n N : ℕ) [NeZero N]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
-    HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f + HeckeEis.eichlerShimuraMap n N g :=
+    HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f +
+      HeckeEis.eichlerShimuraMap n N g :=
   HeckeEis.SolMain.esadd n N f g
 
 end S_HeckeEis_eichlerShimuraMap_add
@@ -152,7 +154,8 @@ public section publicSection
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.eichlerShimuraMap_add (n N : ℕ) [NeZero N]
     (f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
-    HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f + HeckeEis.eichlerShimuraMap n N g :=
+    HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f +
+      HeckeEis.eichlerShimuraMap n N g :=
   solution n N f g
 
 end publicSection

@@ -915,7 +915,8 @@ theorem coprimeRamification_productFrobeniusClass_exists_v2
       [IsCyclotomicExtension {n} ℚ K]
       {l : ℕ}, l.Prime →
       (l : ℤ) ∣ NumberField.discr K → l ∣ n) :
-    Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := _root_.solution hN hk ι f η m B hB hηcoprime V D a ha hdiscr hsup hcyclo
+    Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := _root_.solution hN hk ι f η m B hB
+      hηcoprime V D a ha hdiscr hsup hcyclo
 
 end HorizontalPadicL
 end

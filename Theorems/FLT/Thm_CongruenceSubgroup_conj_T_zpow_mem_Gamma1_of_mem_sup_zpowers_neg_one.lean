@@ -40,7 +40,8 @@ This is the statement that all cusps of $\Gamma_1(M)$ are regular when $M \nmid 
 stabiliser element in $\pm\Gamma_1(M)$ comes from $\Gamma_1(M)$ with the correct sign. It is used in
 the computation of the order of vanishing of a modular form at a cusp in terms of the width of that
 cusp, via
-[`ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash`](thm.html#ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash).
+[`ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash`]
+(thm.html#ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash).
 
 ## Explanation of the source proof
 
@@ -85,7 +86,8 @@ theorem sup_le_pmGamma1 (M : ℕ) :
     (Subgroup.zpowers_le.2 (Or.inr (by rw [neg_neg]; exact one_mem _)))
 
 theorem trace_conj_T_zpow (σ : SL(2, ℤ)) (h : ℤ) :
-    ((σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) 0 0 : ℤ) + (σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) 1 1 = 2 := by
+    ((σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) 0 0 : ℤ) + (σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ))
+      1 1 = 2 := by
   have h1 : Matrix.trace ((σ * ModularGroup.T ^ h * σ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) =
       Matrix.trace ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) := by
     rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_assoc,
@@ -100,7 +102,8 @@ theorem trace_conj_T_zpow (σ : SL(2, ℤ)) (h : ℤ) :
 end RegCuspAux
 
 theorem solution (M : ℕ) (hM : ¬ M ∣ 4)
-    (σ : SL(2, ℤ)) (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
+    (σ : SL(2, ℤ)) (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M ⊔
+      Subgroup.zpowers (-1 : SL(2, ℤ))) :
     σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M := by
   rcases (RegCuspAux.sup_le_pmGamma1 M hmem) with hg | hg
   · exact hg
@@ -136,7 +139,8 @@ public section publicSection
 
 open scoped MatrixGroups
 theorem CongruenceSubgroup.conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one (M : ℕ) (hM : ¬ M ∣ 4)
-    (σ : SL(2, ℤ)) (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
+    (σ : SL(2, ℤ)) (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M ⊔
+      Subgroup.zpowers (-1 : SL(2, ℤ))) :
     σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M :=
   solution M hM σ h hmem
 

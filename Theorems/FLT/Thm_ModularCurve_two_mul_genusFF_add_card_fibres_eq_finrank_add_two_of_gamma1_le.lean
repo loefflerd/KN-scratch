@@ -115,11 +115,14 @@ theorem solution
     ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le M Γ hΓ y hy
   refine le_antisymm hle ?_
   obtain ⟨S0, hS0mem, hS0sum⟩ :=
-    AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (AlgebraicClosure ℚ) y htr hfin 0
+    AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (AlgebraicClosure
+      ℚ) y htr hfin 0
   obtain ⟨S1, hS1mem, hS1sum⟩ :=
-    AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (AlgebraicClosure ℚ) y htr hfin 1728
+    AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (AlgebraicClosure
+      ℚ) y htr hfin 1728
   obtain ⟨Si, hSimem, hSisum⟩ :=
-    AlgebraicCurve.exists_finset_sum_neg_ord_eq_finrank_of_isAlgClosed (AlgebraicClosure ℚ) y htr hfin
+    AlgebraicCurve.exists_finset_sum_neg_ord_eq_finrank_of_isAlgClosed (AlgebraicClosure ℚ) y htr
+      hfin
   have h0 : (y - algebraMap (AlgebraicClosure ℚ) _ (0 : AlgebraicClosure ℚ)) = y := by
     rw [map_zero, sub_zero]
   have h1728 : (algebraMap (AlgebraicClosure ℚ)
@@ -129,20 +132,24 @@ theorem solution
     exact map_ofNat _ 1728
   simp only [h0] at hS0mem hS0sum
   have cSi : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             P.ord y < 0} = Si.card := by
     rw [Nat.card_congr (Equiv.subtypeEquivRight (fun P => (hSimem P).symm))]
     simp only [Nat.card_eq_fintype_card, Fintype.card_coe]
   have cS0 : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord y} = S0.card := by
     rw [Nat.card_congr (Equiv.subtypeEquivRight (fun P => (hS0mem P).symm))]
     simp only [Nat.card_eq_fintype_card, Fintype.card_coe]
   have cS1 : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord (y - 1728)} = S1.card := by
     have e : ∀ P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-        ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)),
+        ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+          Γ)),
         0 < P.ord (y - 1728) ↔ P ∈ S1 := by
       intro P; rw [hS1mem P, h1728]
     rw [Nat.card_congr (Equiv.subtypeEquivRight e)]
@@ -171,15 +178,19 @@ theorem solution
     rw [hsum] at hy0
     exact lt_irrefl _ hy0
   have : CharZero ↥(IntermediateField.adjoin (AlgebraicClosure ℚ)
-      ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)))) :=
+      ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
+        (ModularCurve.qExpFunctionFieldC ℚ Γ)))) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
   have hsep : Algebra.IsSeparable
       ↥(IntermediateField.adjoin (AlgebraicClosure ℚ)
-        ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-      ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+        ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
+          (ModularCurve.qExpFunctionFieldC ℚ Γ))))
+      ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))
+        :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
   have hst :=
-    AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable (AlgebraicClosure ℚ) y htr hfin hsep
+    AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable (AlgebraicClosure ℚ) y htr hfin
+      hsep
     (S0 ∪ S1) (fun P => if P ∈ S0 then 0 else 1728)
     (by
       intro P hP
@@ -206,7 +217,8 @@ theorem solution
 
 end S_ModularCurve_two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le
 end P2MW
-export P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le (solution)
+export P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le
+  (solution)
 
 end privateSection
 

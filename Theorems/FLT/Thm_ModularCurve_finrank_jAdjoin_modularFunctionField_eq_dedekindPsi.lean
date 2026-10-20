@@ -43,9 +43,11 @@ $[\mathbb{Q}(j(q),j(q^N)) : \mathbb{Q}(j)] = \psi(N) = [\mathrm{SL}_2(\mathbb{Z}
 stated here for the absolute presentation of the modular function field as $\mathbb{Q}(jq, j(q^N))$
 rather than as the relative extension $\mathbb{Q}(jq)(j(q^N))$. It is used in the computations of
 the ramification of this cover over the points $j = 0$ and $j = 1728$, namely in
-[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
+[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
 
 ## Explanation of the source proof
 
@@ -89,11 +91,13 @@ theorem finrank_jAdjoin : Module.finrank 𝕃 𝔽 = ModularCurve.dedekindPsi N 
       · rw [eq_ratCast]
         exact SubfieldClass.ratCast_mem _ r
       · rcases hy with rfl | rfl
-        · exact (IntermediateField.adjoin 𝕃 ({ModularCurve.jqN N} : Set (LaurentSeries ℚ))).algebraMap_mem
+        · exact (IntermediateField.adjoin 𝕃 ({ModularCurve.jqN N} : Set (LaurentSeries
+            ℚ))).algebraMap_mem
             ⟨ModularCurve.jq, IntermediateField.mem_adjoin_simple_self ℚ ModularCurve.jq⟩
         · exact IntermediateField.mem_adjoin_simple_self _ (ModularCurve.jqN N)
     · intro hx
-      have hx' : x ∈ (IntermediateField.adjoin 𝕃 ({ModularCurve.jqN N} : Set (LaurentSeries ℚ))).toSubfield :=
+      have hx' : x ∈ (IntermediateField.adjoin 𝕃 ({ModularCurve.jqN N} : Set (LaurentSeries
+        ℚ))).toSubfield :=
         hx
       rw [IntermediateField.adjoin_toSubfield] at hx'
       refine (Subfield.closure_le.mpr ?_) hx'

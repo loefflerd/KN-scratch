@@ -49,7 +49,8 @@ expansion of $f_v\Delta$ at the cusp $\infty$, in the variable $q_N=e^{2\pi i\ta
 coefficients in $\mathbb{Q}(\zeta_N)$ with denominators bounded independently of the coefficient
 index. It feeds the construction of models of modular curves over cyclotomic fields, being used here
 by
-[`ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant`](thm.html#ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant).
+[`ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant`]
+(thm.html#ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant).
 
 ## Explanation of the source proof
 
@@ -129,10 +130,12 @@ variable (a₁ a₂ : ℕ)
 abbrev Idx : Type := (ℕ+ × ℕ+) × Fin 3
 
 def expo (i : Idx) : ℕ :=
-  ![((i.1.1 : ℕ) * N + a₁) * (i.1.2 : ℕ), ((i.1.1 : ℕ) * N - a₁) * (i.1.2 : ℕ), (i.1.1 : ℕ) * N * (i.1.2 : ℕ)] i.2
+  ![((i.1.1 : ℕ) * N + a₁) * (i.1.2 : ℕ), ((i.1.1 : ℕ) * N - a₁) * (i.1.2 : ℕ), (i.1.1 : ℕ) * N *
+    (i.1.2 : ℕ)] i.2
 
 def coef (i : Idx) : ℂ :=
-  ![((i.1.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (i.1.2 : ℕ)), ((i.1.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (i.1.2 : ℕ)),
+  ![((i.1.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (i.1.2 : ℕ)), ((i.1.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (i.1.2 :
+    ℕ)),
     -2 * ((i.1.2 : ℕ) : ℂ)] i.2
 
 theorem coef_mem (i : Idx) : coef N a₂ i ∈ AZ N := by
@@ -168,7 +171,8 @@ theorem mul_le_expo (ha : a₁ < N) (i : Idx) : (i.1.1 : ℕ) * (i.1.2 : ℕ) �
     omega
   fin_cases j
   · change (c : ℕ) * (k : ℕ) ≤ ((c : ℕ) * N + a₁) * (k : ℕ)
-    exact Nat.mul_le_mul_right _ (le_trans (Nat.le_mul_of_pos_right _ (NeZero.pos N)) (Nat.le_add_right _ _))
+    exact Nat.mul_le_mul_right _ (le_trans (Nat.le_mul_of_pos_right _ (NeZero.pos N))
+      (Nat.le_add_right _ _))
   · change (c : ℕ) * (k : ℕ) ≤ ((c : ℕ) * N - a₁) * (k : ℕ)
     exact Nat.mul_le_mul_right _ hcN
   · change (c : ℕ) * (k : ℕ) ≤ (c : ℕ) * N * (k : ℕ)
@@ -187,7 +191,8 @@ variable [Fact (a₁ < N)]
 def fibreMap (n : ℕ) :
     {i : Idx // expo N a₁ i = n} → (Fin (n + 1) × Fin (n + 1)) × Fin 3 := fun i =>
   ((⟨(i.1.1.1 : ℕ), Nat.lt_succ_of_le (le_trans (fst_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩,
-    ⟨(i.1.1.2 : ℕ), Nat.lt_succ_of_le (le_trans (snd_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩), i.1.2)
+    ⟨(i.1.1.2 : ℕ), Nat.lt_succ_of_le (le_trans (snd_le_expo (Fact.out : a₁ < N) i.1) i.2.le)⟩),
+      i.1.2)
 
 theorem fibreMap_injective (n : ℕ) : Function.Injective (fibreMap N a₁ n) := by
   rintro ⟨⟨⟨c, k⟩, j⟩, hi⟩ ⟨⟨⟨c', k'⟩, j'⟩, hi'⟩ h
@@ -375,7 +380,8 @@ theorem summable_majorant {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
   exact key
 
 theorem norm_Gt_le (ha : a₁ < N) (τ : ℍ) (i : Idx) :
-    ‖Gt N a₁ a₂ τ i‖ ≤ 2 * (‖qq N τ‖ ^ ((i.1.1 : ℕ) - 1) * (((i.1.2 : ℕ) : ℝ) * ‖qq N τ‖ ^ (i.1.2 : ℕ))) := by
+    ‖Gt N a₁ a₂ τ i‖ ≤ 2 * (‖qq N τ‖ ^ ((i.1.1 : ℕ) - 1) * (((i.1.2 : ℕ) : ℝ) * ‖qq N τ‖ ^ (i.1.2 :
+      ℕ))) := by
   set r : ℝ := ‖qq N τ‖ with hr
   have hr0 : 0 ≤ r := norm_nonneg _
   have hr1 : r ≤ 1 := (norm_qq_lt_one N τ).le
@@ -383,20 +389,23 @@ theorem norm_Gt_le (ha : a₁ < N) (τ : ℍ) (i : Idx) :
   have hk : 1 ≤ (i.1.2 : ℕ) := i.1.2.2
   have hexp : (i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1) ≤ expo N a₁ i := by
     refine le_trans ?_ (mul_le_expo ha i)
-    have : ((i.1.1 : ℕ) - 1) * ((i.1.2 : ℕ) - 1) + ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) = (i.1.1 : ℕ) * (i.1.2 : ℕ) :=
+    have : ((i.1.1 : ℕ) - 1) * ((i.1.2 : ℕ) - 1) + ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) = (i.1.1 : ℕ) *
+      (i.1.2 : ℕ) :=
       by
       zify [hc, hk]; ring
     omega
   rw [Gt, norm_mul, norm_pow, ← hr]
   have hpow : r ^ expo N a₁ i ≤ r ^ ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) :=
     pow_le_pow_of_le_one hr0 hr1 hexp
-  calc ‖coef N a₂ i‖ * r ^ expo N a₁ i ≤ (2 * (i.1.2 : ℕ)) * r ^ ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1)) :=
+  calc ‖coef N a₂ i‖ * r ^ expo N a₁ i ≤ (2 * (i.1.2 : ℕ)) * r ^ ((i.1.2 : ℕ) + ((i.1.1 : ℕ) - 1))
+    :=
         mul_le_mul (norm_coef_le N a₂ i) hpow (pow_nonneg hr0 _) (by positivity)
     _ = 2 * (r ^ ((i.1.1 : ℕ) - 1) * (((i.1.2 : ℕ) : ℝ) * r ^ (i.1.2 : ℕ))) := by rw [pow_add]; ring
 
 theorem summable_norm_Gt (ha : a₁ < N) (τ : ℍ) : Summable (fun i : Idx => ‖Gt N a₁ a₂ τ i‖) := by
   set r : ℝ := ‖qq N τ‖ with hr
-  set M : ℕ+ × ℕ+ → ℝ := fun p => 2 * (r ^ ((p.1 : ℕ) - 1) * (((p.2 : ℕ) : ℝ) * r ^ (p.2 : ℕ))) with hM
+  set M : ℕ+ × ℕ+ → ℝ := fun p => 2 * (r ^ ((p.1 : ℕ) - 1) * (((p.2 : ℕ) : ℝ) * r ^ (p.2 : ℕ))) with
+    hM
   have hMs : Summable M := (summable_majorant (norm_nonneg _) (norm_qq_lt_one N τ)).mul_left 2
   have hM0 : ∀ p, 0 ≤ M p := fun p => by rw [hM]; positivity
   have hMaj : Summable (fun i : Idx => M i.1) := by
@@ -423,13 +432,15 @@ theorem hasSum_cT (τ : ℍ) : HasSum (fun n => cT N a₁ a₂ n * qq N τ ^ n) 
   have h1 : HasSum (Gt N a₁ a₂ τ ∘ Equiv.sigmaFiberEquiv (expo N a₁)) (∑' i, Gt N a₁ a₂ τ i) :=
     (Equiv.hasSum_iff _).mpr (summable_Gt N a₁ a₂ ha τ).hasSum
   refine h1.sigma fun n => ?_
-  have h2 : (fun c : {i : Idx // expo N a₁ i = n} => (Gt N a₁ a₂ τ ∘ Equiv.sigmaFiberEquiv (expo N a₁)) ⟨n, c⟩)
+  have h2 : (fun c : {i : Idx // expo N a₁ i = n} => (Gt N a₁ a₂ τ ∘ Equiv.sigmaFiberEquiv (expo N
+    a₁)) ⟨n, c⟩)
       = fun c => coef N a₂ c.1 * qq N τ ^ n := by
     funext c
     simp only [comp_apply, Equiv.sigmaFiberEquiv, Equiv.coe_fn_mk, Gt]
     rw [c.2]
   rw [h2]
-  have h3 : cT N a₁ a₂ n * qq N τ ^ n = ∑ c : {i : Idx // expo N a₁ i = n}, coef N a₂ c.1 * qq N τ ^ n :=
+  have h3 : cT N a₁ a₂ n * qq N τ ^ n = ∑ c : {i : Idx // expo N a₁ i = n}, coef N a₂ c.1 * qq N τ ^
+    n :=
     by
     rw [cT, Finset.sum_mul]
   rw [h3]
@@ -470,7 +481,8 @@ theorem hasSum_cW (X : ℍ → ℂ) (τ : ℍ)
       (fun n hn => by simp [hn])
     simpa using this
   have hfun : (fun n => cW N a₁ a₂ n * qq N τ ^ n) = fun n =>
-      cA N a₁ a₂ n * qq N τ ^ n + (if n = 0 then c0 N a₁ a₂ else 0) * qq N τ ^ n + cT N a₁ a₂ n * qq N τ ^ n := by
+      cA N a₁ a₂ n * qq N τ ^ n + (if n = 0 then c0 N a₁ a₂ else 0) * qq N τ ^ n + cT N a₁ a₂ n * qq
+        N τ ^ n := by
     funext n; rw [cW]; ring
   rw [hfun, hX, htsum]
   by_cases ha0 : a₁ = 0
@@ -539,7 +551,8 @@ theorem qExpansion_eq_of_hasSum (X : ℍ → ℂ) (hmd : MDifferentiable 𝓘(�
       have hq : qq N ⟨w + N, hw'⟩ = qq N ⟨w, hw⟩ := by
         simp only [qq]
         have hN : (N : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne N)
-        rw [show 2 * (π : ℂ) * Complex.I * (w + N) / N = 2 * π * Complex.I * w / N + 2 * π * Complex.I by
+        rw [show 2 * (π : ℂ) * Complex.I * (w + N) / N = 2 * π * Complex.I * w / N + 2 * π *
+          Complex.I by
           field_simp, Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
       have h1 := hsum ⟨w + N, hw'⟩
       rw [hq] at h1
@@ -565,19 +578,23 @@ theorem qExpansion_eq_of_hasSum (X : ℍ → ℂ) (hmd : MDifferentiable 𝓘(�
       have h3 : -2 * π / N = -(2 * π * 1 / N) := by ring
       rw [h2, h3]; linarith
     have hs1 : Summable (fun n => ‖cW N a₁ a₂ n * qq N τ ^ n‖) := by
-      refine Summable.of_nonneg_of_le (fun n => norm_nonneg _) (fun n => ?_) (summable_bound N a₁ a₂ hr₀0 hr₀1)
+      refine Summable.of_nonneg_of_le (fun n => norm_nonneg _) (fun n => ?_) (summable_bound N a₁ a₂
+        hr₀0 hr₀1)
       rw [norm_mul, norm_pow]
-      exact mul_le_mul (norm_cW_le N a₁ a₂ n) (pow_le_pow_left₀ (norm_nonneg _) hr n) (pow_nonneg (norm_nonneg _) _)
+      exact mul_le_mul (norm_cW_le N a₁ a₂ n) (pow_le_pow_left₀ (norm_nonneg _) hr n) (pow_nonneg
+        (norm_nonneg _) _)
         (by positivity)
     rw [← (hsum τ).tsum_eq]
     refine le_trans (norm_tsum_le_tsum_norm hs1) ?_
     refine Summable.tsum_le_tsum (fun n => ?_) hs1 (summable_bound N a₁ a₂ hr₀0 hr₀1)
     rw [norm_mul, norm_pow]
-    exact mul_le_mul (norm_cW_le N a₁ a₂ n) (pow_le_pow_left₀ (norm_nonneg _) hr n) (pow_nonneg (norm_nonneg _) _)
+    exact mul_le_mul (norm_cW_le N a₁ a₂ n) (pow_le_pow_left₀ (norm_nonneg _) hr n) (pow_nonneg
+      (norm_nonneg _) _)
       (by positivity)
   refine ⟨hper, hbd, fun n => ?_⟩
   symm
-  refine qExpansion_coeff_unique' (natCast_pos N) (analyticAt_cuspFunction_zero (natCast_pos N) hper hmd hbd)
+  refine qExpansion_coeff_unique' (natCast_pos N) (analyticAt_cuspFunction_zero (natCast_pos N) hper
+    hmd hbd)
     (fun τ => ?_) n
   have := hsum τ
   simpa only [smul_eq_mul, qq_eq] using this
@@ -633,7 +650,8 @@ theorem qExpansion_widthN_of_int {k : ℤ} (f : ModularForm 𝒮ℒ k) (P : Powe
     (spread N P).map (Int.castRingHom ℂ) = qExpansion N (⇑f : ℍ → ℂ) := by
   ext n
   have hw := qExpansion_coeff_widthN N (g := (⇑f : ℍ → ℂ)) f.holo'
-    (SlashInvariantFormClass.periodic_comp_ofComplex f one_mem_strictPeriods_SL) (ModularFormClass.bdd_at_infty f) n
+    (SlashInvariantFormClass.periodic_comp_ofComplex f one_mem_strictPeriods_SL)
+      (ModularFormClass.bdd_at_infty f) n
   rw [PowerSeries.coeff_map]
   refine Eq.trans ?_ hw.symm
   rw [spread, PowerSeries.coeff_mk]
@@ -660,7 +678,8 @@ theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ
 
 theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
   rw [bernoulli'_def]
-  norm_num [Finset.sum_range_succ, bernoulli'_zero, bernoulli'_one, bernoulli'_two, bernoulli'_three,
+  norm_num [Finset.sum_range_succ, bernoulli'_zero, bernoulli'_one, bernoulli'_two,
+    bernoulli'_three,
     bernoulli'_four, Nat.choose]
   have h5 : bernoulli' 5 = 0 := bernoulli'_eq_zero_of_odd (by decide) (by norm_num)
   rw [h5]
@@ -720,7 +739,8 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
   set Wv : ℍ → ℂ := X.W v with hWv
   have h2pi : ((2 * (π : ℂ) * Complex.I) ^ 2) ≠ 0 := by
     apply pow_ne_zero; simp [Real.pi_ne_zero, Complex.I_ne_zero]
-  have hWτ : ∀ τ : ℍ, Wv τ = zeta N ^ a₂ * qq N τ ^ a₁ / (1 - zeta N ^ a₂ * qq N τ ^ a₁) ^ 2 + 1 / 12 +
+  have hWτ : ∀ τ : ℍ, Wv τ = zeta N ^ a₂ * qq N τ ^ a₁ / (1 - zeta N ^ a₂ * qq N τ ^ a₁) ^ 2 + 1 /
+    12 +
       ∑' p : ℕ+ × ℕ+, Ft N a₁ a₂ τ p := by
     intro τ
     rw [hWv, X.hW v τ, ← ha₁, ← ha₂, hseries τ, inv_mul_cancel_left₀ h2pi]
@@ -740,7 +760,8 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
     field_simp [discriminant_ne_zero τ]
   have hE : (⇑E46 : ℍ → ℂ) = ⇑E46 := rfl
   have hperE : Periodic ((⇑E46 : ℍ → ℂ) ∘ ofComplex) N :=
-    periodic_ofComplex_natCast (SlashInvariantFormClass.periodic_comp_ofComplex E46 one_mem_strictPeriods_SL) N
+    periodic_ofComplex_natCast (SlashInvariantFormClass.periodic_comp_ofComplex E46
+      one_mem_strictPeriods_SL) N
   have haE : AnalyticAt ℂ (cuspFunction N (⇑E46 : ℍ → ℂ)) 0 :=
     analyticAt_cuspFunction_zero (natCast_pos N) hperE E46.holo' (ModularFormClass.bdd_at_infty E46)
   have haW : AnalyticAt ℂ (cuspFunction N Wv) 0 :=
@@ -757,9 +778,11 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
   refine ⟨2592 * 12 * N ^ 2, mul_ne_zero (by norm_num) (pow_ne_zero 2 (NeZero.ne N)), fun n => ?_⟩
   rw [hq, PowerSeries.coeff_smul, PowerSeries.coeff_mul, smul_eq_mul]
   have hc : ((2592 * 12 * N ^ 2 : ℕ) : ℂ) * (-(1 / 2592) *
-      ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n, PowerSeries.coeff ij.1 ((spread N (P4 * P6)).map (Int.castRingHom ℂ)) *
+      ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n, PowerSeries.coeff ij.1 ((spread N (P4 * P6)).map
+        (Int.castRingHom ℂ)) *
         PowerSeries.coeff ij.2 (qExpansion N Wv))
-      = ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n, -(PowerSeries.coeff ij.1 ((spread N (P4 * P6)).map (Int.castRingHom ℂ)) *
+      = ∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n, -(PowerSeries.coeff ij.1 ((spread N (P4 *
+        P6)).map (Int.castRingHom ℂ)) *
         ((12 * (N : ℂ) ^ 2) * PowerSeries.coeff ij.2 (qExpansion N Wv))) := by
     rw [Finset.mul_sum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun ij _ => ?_

@@ -88,7 +88,8 @@ private lemma coeff_mul_factor_eq' {R : Type*} [CommRing R] {m n : ℕ} (hmn : m
 
 private lemma coeff_trunc_eq_coeff_tprod (R : Type*) [CommRing R] [TopologicalSpace R]
     [IsTopologicalRing R] [T2Space R] (m : ℕ) {N : ℕ} (hN : m < N) :
-    PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24) =
+    PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24)
+      =
       PowerSeries.coeff m (∏' n : ℕ, ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24) := by
   have hmul : Multipliable fun n : ℕ => ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24 :=
     (PowerSeries.WithPiTopology.multipliable_one_sub_X_pow R).pow 24
@@ -97,8 +98,10 @@ private lemma coeff_trunc_eq_coeff_tprod (R : Type*) [CommRing R] [TopologicalSp
       (𝓝 (PowerSeries.coeff m (∏' n : ℕ, ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24))) :=
     ((PowerSeries.WithPiTopology.continuous_coeff R m).tendsto _).comp hmul.hasProd.tendsto_prod_nat
   have hconst : ∀ N', N ≤ N' →
-      PowerSeries.coeff m (∏ n ∈ Finset.range N', ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24) =
-      PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^ 24) := by
+      PowerSeries.coeff m (∏ n ∈ Finset.range N', ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^
+        24) =
+      PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries R) - PowerSeries.X ^ (n + 1)) ^
+        24) := by
     intro N' hle
     induction N', hle using Nat.le_induction with
     | base => rfl
@@ -123,9 +126,11 @@ private lemma tprod_eq_map_dedekindEtaUnit :
 
 end ModularCurve
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit.ModularCurve in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit.ModularCurve in
 theorem solution :
-    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ) (PowerSeries.X * ModularCurve.dedekindEtaUnit) := by
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ)
+      (PowerSeries.X * ModularCurve.dedekindEtaUnit) := by
   rw [qExpansion_discriminant_eq_X_mul_tprod, map_mul, PowerSeries.map_X,
     tprod_eq_map_dedekindEtaUnit]
 end
@@ -139,7 +144,8 @@ end privateSection
 public section publicSection
 
 theorem ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit :
-    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ) (PowerSeries.X * ModularCurve.dedekindEtaUnit) :=
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.map (Int.castRingHom ℂ)
+      (PowerSeries.X * ModularCurve.dedekindEtaUnit) :=
   solution
 
 end publicSection

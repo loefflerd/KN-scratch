@@ -40,7 +40,8 @@ the index $[\mathrm{SL}_2(\mathbb{Z}) : \Gamma_0(N)]$. It serves the numerical l
 curves $X_0(N)$, and is used for the positivity statement
 [`ModularCurve.dedekindPsi_pos`](thm.html#ModularCurve.dedekindPsi_pos) and in the identification of
 a relative dimension with the index in
-[`ModularCurve.relfinrank_qExpFunctionFieldC_gamma0_gammaH_eq_index_of_charZero`](thm.html#ModularCurve.relfinrank_qExpFunctionFieldC_gamma0_gammaH_eq_index_of_charZero).
+[`ModularCurve.relfinrank_qExpFunctionFieldC_gamma0_gammaH_eq_index_of_charZero`]
+(thm.html#ModularCurve.relfinrank_qExpFunctionFieldC_gamma0_gammaH_eq_index_of_charZero).
 
 ## Explanation of the source proof
 

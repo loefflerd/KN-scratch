@@ -43,7 +43,8 @@ valuation attached to the height-one prime of the valuation subring of $w$, so t
 This is the classical statement that a nonzero element of an algebraic function field has only
 finitely many zeros and poles, here in the form needed for function fields that are finite separable
 extensions of $K(X)$. It is the finiteness ingredient used by
-[`AlgebraicCurve.hasPrincipalDivisors_of_finiteDimensional_of_isSeparable`](thm.html#AlgebraicCurve.hasPrincipalDivisors_of_finiteDimensional_of_isSeparable),
+[`AlgebraicCurve.hasPrincipalDivisors_of_finiteDimensional_of_isSeparable`]
+(thm.html#AlgebraicCurve.hasPrincipalDivisors_of_finiteDimensional_of_isSeparable),
 which produces principal divisors for such fields.
 
 ## Explanation of the source proof

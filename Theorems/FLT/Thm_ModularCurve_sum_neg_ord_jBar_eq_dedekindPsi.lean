@@ -71,7 +71,8 @@ namespace P2MW.S_ModularCurve_sum_neg_ord_jBar_eq_dedekindPsi
 open AlgebraicCurve ModularCurve
 
 theorem solution (N : ℕ) [NeZero N]
-    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
+    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar
+      N)))
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
     ∑ v ∈ S, -v.ord (ModularCurve.jBar N) = ModularCurve.dedekindPsi N := by
   classical
@@ -127,7 +128,8 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.sum_neg_ord_jBar_eq_dedekindPsi (N : ℕ) [NeZero N]
-    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
+    (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar
+      N)))
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
     ∑ v ∈ S, -v.ord (ModularCurve.jBar N) = ModularCurve.dedekindPsi N :=
   solution N S hS

@@ -38,7 +38,8 @@ ideals attached to $F$-rational points.
 This is the injectivity half of the classical correspondence between $F$-rational affine points of a
 plane curve and the maximal ideals of its coordinate ring that they cut out. It is used in the
 construction of a centred place datum for a genus-one Weierstrass curve in
-[`WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem`](thm.html#WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem).
+[`WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem`]
+(thm.html#WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem).
 
 ## Explanation of the source proof
 

@@ -344,7 +344,14 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-theorem WeierstrassCurve.Affine.Point.card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] (ψ : W.toAffine.Point →+ W.toAffine.Point) {B : Set W.toAffine.Point} (hB : B.Finite) {g h : Polynomial k} (hgh : IsCoprime g h) (hsep : Polynomial.derivative g * h - g * Polynomial.derivative h ≠ 0) (hker : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y), Point.some x y hP ∉ B → h.eval x ≠ 0 → ψ (Point.some x y hP) ≠ 0) (hx : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y) {x' y' : k} (hP' : W.toAffine.Nonsingular x' y'), Point.some x y hP ∉ B → ψ (Point.some x y hP) = Point.some x' y' hP' → x' * h.eval x = g.eval x) :
+theorem WeierstrassCurve.Affine.Point.card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq
+  k] [IsAlgClosed k] (W : WeierstrassCurve k) [W.IsElliptic] (ψ : W.toAffine.Point →+
+  W.toAffine.Point) {B : Set W.toAffine.Point} (hB : B.Finite) {g h : Polynomial k} (hgh : IsCoprime
+  g h) (hsep : Polynomial.derivative g * h - g * Polynomial.derivative h ≠ 0) (hker : ∀ {x y : k}
+  (hP : W.toAffine.Nonsingular x y), Point.some x y hP ∉ B → h.eval x ≠ 0 → ψ (Point.some x y hP) ≠
+  0) (hx : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y) {x' y' : k} (hP' : W.toAffine.Nonsingular
+  x' y'), Point.some x y hP ∉ B → ψ (Point.some x y hP) = Point.some x' y' hP' → x' * h.eval x =
+  g.eval x) :
     Nat.card ψ.ker = max g.natDegree h.natDegree :=
   solution W ψ hB hgh hsep hker hx
 

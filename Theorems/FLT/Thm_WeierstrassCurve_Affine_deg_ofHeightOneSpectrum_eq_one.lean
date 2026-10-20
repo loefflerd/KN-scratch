@@ -46,9 +46,11 @@ This is the statement that over an algebraically closed base field all finite pl
 field of an affine Weierstrass curve are rational, i.e. of residue degree one; it is the degree
 computation needed when the divisor-theoretic formalism on Weierstrass curves is set up. It is used
 in the construction of principal divisors on such curves
-([`WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed`](thm.html#WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed))
+([`WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed`]
+(thm.html#WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed))
 and in the genus-one place argument
-[`WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem`](thm.html#WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem).
+[`WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem`]
+(thm.html#WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem).
 
 ## Explanation of the source proof
 

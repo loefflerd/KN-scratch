@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
+Based on Prove2Me node
+WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
 (7c2b8f26-6118-5a2b-ac40-9ee60681b11f) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission f225b1e5-63af-5806-b136-701c20c6fbdc
@@ -43,7 +44,8 @@ This provides a one-parameter family of elliptic curves over $K[[t]]$ with good 
 whose $j$-invariant is the cube $t^3$, i.e. a local model near the elliptic point $j = 0$ of the
 $j$-line. It is used in the analysis of ramification of $X_0(N) \to X(1)$ above $j = 0$, being cited
 by
-[`ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd)
+[`ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd)
 and [`ModularCurve.ord_jBar_dvd_three`](thm.html#ModularCurve.ord_jBar_dvd_three).
 
 ## Explanation of the source proof
@@ -110,7 +112,8 @@ theorem solution
 
 end S_WeierstrassCurve_exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries (solution)
+export P2MW.S_WeierstrassCurve_exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
+  (solution)
 
 end privateSection
 

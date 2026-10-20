@@ -570,7 +570,8 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
       mdiff := hf.mdiff
       bdd := hf.bdd }
   have hcoeff : ∀ m, c m = (qExpansion N f).coeff m := by
-    have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ) (τ : ℂ) ^ m) (f τ) :=
+    have hsumN' : ∀ τ : ℍ, HasSum (fun m => (qExpansion N f).coeff m • Periodic.qParam (N : ℝ) (τ :
+      ℂ) ^ m) (f τ) :=
       fun τ => hasSum_qExpansion hNpos hgoodN.periodic hgoodN.mdiff hgoodN.bdd τ
     have h1 :=
       (hasFPowerSeriesOnBall_cuspFunction hNpos (hgoodN.analyticAt hNpos) hsumN).hasFPowerSeriesAt

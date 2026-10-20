@@ -48,9 +48,11 @@ surjective on the points of an elliptic curve over an algebraically closed field
 $E[n]$ has order $n^2$ when $n$ is invertible, so each fibre is a coset of $E[n]$. It is used in the
 project's development of the Weil pairing and of the associated valuation computations, being cited
 by
-[`WeierstrassCurve.Affine.exists_smul_basis_eq_algebraMap_mul_weilNum_of_valuationSubring`](thm.html#WeierstrassCurve.Affine.exists_smul_basis_eq_algebraMap_mul_weilNum_of_valuationSubring)
+[`WeierstrassCurve.Affine.exists_smul_basis_eq_algebraMap_mul_weilNum_of_valuationSubring`]
+(thm.html#WeierstrassCurve.Affine.exists_smul_basis_eq_algebraMap_mul_weilNum_of_valuationSubring)
 and
-[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`](thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
+[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`]
+(thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
 
 ## Explanation of the source proof
 
@@ -66,7 +68,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_ncard_fibSet
 
-open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero
+open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
+  WithZero
 open scoped nonZeroDivisors
 
 namespace WeilDiv

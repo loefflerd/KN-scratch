@@ -207,7 +207,8 @@ theorem isIntegral_ubar_inv (hmem : modularUnitSeries ℓ ∈ modularFunctionFie
   have hxi : (coeffEmb 𝕂 (modularUnitSeries ℓ))⁻¹ ∈ modularFunctionFieldBar ℓ :=
     inv_mem (coeffEmb_mem_laurentBaseChange 𝕂 hmem)
   have h3 := isIntegral_adjoin_intermediateField_mk (modularFunctionFieldBar ℓ) (jb ℓ).2 hxi h2
-  have e : (⟨(coeffEmb 𝕂 (modularUnitSeries ℓ))⁻¹, hxi⟩ : modularFunctionFieldBar ℓ) = (ubar ℓ hmem)⁻¹ :=
+  have e : (⟨(coeffEmb 𝕂 (modularUnitSeries ℓ))⁻¹, hxi⟩ : modularFunctionFieldBar ℓ) = (ubar ℓ
+    hmem)⁻¹ :=
     Subtype.ext rfl
   rw [e] at h3
   exact h3
@@ -216,7 +217,8 @@ theorem ord_of_not_isCusp (hmem : modularUnitSeries ℓ ∈ modularFunctionField
     (w : Place 𝕂 (modularFunctionFieldBar ℓ)) (hw : ¬ IsCusp (jb ℓ) w)
     : w.ord (ubar ℓ hmem) = 0 := by
   rw [isCusp_iff, not_not] at hw
-  exact Place.ord_eq_zero_of_isIntegral_adjoin w hw (isIntegral_ubar ℓ hmem) (isIntegral_ubar_inv ℓ hmem)
+  exact Place.ord_eq_zero_of_isIntegral_adjoin w hw (isIntegral_ubar ℓ hmem) (isIntegral_ubar_inv ℓ
+    hmem)
 
 theorem smul_cuspidalDivisor_apply (hmem : modularUnitSeries ℓ ∈ modularFunctionFieldFull ℓ)
     (v : Place 𝕂 (modularFunctionFieldBar ℓ)) :
@@ -282,18 +284,21 @@ def e₁ : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar �
   (liftAlgEquiv 𝕂⟮jb ℓ⟯).trans (equivOfEq (by rw [lift_adjoin_simple, coe_jb, coeffEmb_jq]))
 
 theorem coe_e₁ (x : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ))) :
-    ((e₁ ℓ x : 𝕂⟮jqModC 𝕂⟯) : LaurentSeries 𝕂) = ((x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) := by
+    ((e₁ ℓ x : 𝕂⟮jqModC 𝕂⟯) : LaurentSeries 𝕂) = ((x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂)
+      := by
   unfold e₁; rfl
 
 theorem compat :
-    (algebraMap (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ)) (modularFunctionFieldBar ℓ)).comp
+    (algebraMap (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ)) (modularFunctionFieldBar
+      ℓ)).comp
         (e₁ ℓ).symm.toRingEquiv.toRingHom =
       (jTr ℓ).toRingHom.comp (algebraMap (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯)) := by
   apply RingHom.ext
   intro y
   apply Subtype.ext
   change ((((e₁ ℓ).symm y : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ))) :
-      modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = ((jTr ℓ (algebraMap _ _ y) : modularFunctionFieldBar ℓ) :
+      modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = ((jTr ℓ (algebraMap _ _ y) :
+        modularFunctionFieldBar ℓ) :
         LaurentSeries 𝕂)
   rw [coe_jTr, ← coe_e₁, AlgEquiv.apply_symm_apply]
   rfl
@@ -324,7 +329,10 @@ end
 
 open ModularCurve AlgebraicCurve in
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime] :
-    modularFunctionFieldBar ℓ = (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))).restrictScalars (AlgebraicClosure ℚ) :=
+    modularFunctionFieldBar ℓ = (IntermediateField.adjoin (IntermediateField.adjoin
+      (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure
+      ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure
+      ℚ)))).restrictScalars (AlgebraicClosure ℚ) :=
   DivUSol.bar_eq_restrictScalars ℓ
 
 end S_ModularCurve_modularFunctionFieldBar_eq_restrictScalars
@@ -338,7 +346,10 @@ public section publicSection
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.modularFunctionFieldBar_eq_restrictScalars (ℓ : ℕ) [Fact ℓ.Prime] :
-    modularFunctionFieldBar ℓ = (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))).restrictScalars (AlgebraicClosure ℚ) :=
+    modularFunctionFieldBar ℓ = (IntermediateField.adjoin (IntermediateField.adjoin
+      (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure
+      ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure
+      ℚ)))).restrictScalars (AlgebraicClosure ℚ) :=
   solution ℓ
 
 end publicSection

@@ -119,13 +119,15 @@ private theorem fullKernelInjAt' (N : ℕ) [NeZero N] : FullKernelInjAt N := by
     WeierstrassCurve.Affine.forall_normFormulaAlong_of_isAlgClosed_of_charZero W.toAffine
   have hE : ∀ D : WeierstrassCurve.Affine.IsogenyEndDatum W.toAffine,
       ∃ m : ℤ, ∀ P : W.toAffine.Point, D.pointEnd (hNs D) P = m • P :=
-    fun D => WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j
+    fun D =>
+      WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j
       W hNs (transcendental_rat_irrel ht) D
   have hcard : Nat.card (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
       = Nat.card (WeierstrassCurve.Affine.pointMapOfPushforward ι' hι' hfin' hN').ker := by
     rw [hker hN, hker' hN', Nat.card_zmultiples, Nat.card_zmultiples, hQ, hQ']
   have hkk :=
-    WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul W hNs hE
+    WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul W hNs
+      hE
       (W.fullKernelQuotient Q N) (W.fullKernelQuotient Q' N) ι hι hfin hN ι' hι' hfin' hN' hcard hj
   rw [hker hN, hker' hN'] at hkk
   exact hkk

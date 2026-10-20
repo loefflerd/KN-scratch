@@ -42,7 +42,8 @@ This is the computation of the divisor of a polynomial at the point at infinity 
 in the standard description of the places of $K(t)$ as the monic irreducibles together with
 $\infty$. It is part of the function-field foundations used in the genus-zero computations for
 $K(t)$ and in the local analysis of orders at places, for instance in
-[`AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero`](thm.html#AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero).
+[`AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero`]
+(thm.html#AlgebraicCurve.RationalFunctionField.ell_sub_ell_eq_genus_zero).
 
 ## Explanation of the source proof
 

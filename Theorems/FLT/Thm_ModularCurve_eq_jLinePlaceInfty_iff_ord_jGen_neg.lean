@@ -44,7 +44,8 @@ assertion is that for every place $v$ of $\mathbb{Q}\langle jq\rangle$ over $\ma
 
 This identifies the place at infinity of the $j$-line $X(1)$ over $\mathbb{Q}$ as the unique place
 at which $j$ has a pole, all other places lying in the subring where $j$ is integral. It is used by
-[`ModularCurve.restrict_eq_jLinePlaceInfty_iff`](thm.html#ModularCurve.restrict_eq_jLinePlaceInfty_iff)
+[`ModularCurve.restrict_eq_jLinePlaceInfty_iff`]
+(thm.html#ModularCurve.restrict_eq_jLinePlaceInfty_iff)
 in the analysis of places of modular function fields above the $j$-line.
 
 ## Explanation of the source proof
@@ -73,7 +74,8 @@ namespace JLineOrdAux
 p2m_open "ModularCurve"
 
 theorem equiv_X_sub_C (b : ℚ) :
-    ModularCurve.jLineRingEquiv (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C b))
+    ModularCurve.jLineRingEquiv (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C
+      b))
       = ModularCurve.jGen - algebraMap ℚ ↥ℚ⟮ModularCurve.jq⟯ b := by
   rw [map_sub, RatFunc.algebraMap_X, map_sub, ModularCurve.jLineRingEquiv_X, RatFunc.algebraMap_C]
   congr 1
@@ -95,7 +97,8 @@ theorem ord_congr_jGen_sub (b : ℚ) (v' : Place ℚ (RatFunc ℚ)) :
   exact ord_X_sub_C ℚ b v'
 
 theorem injective_congr : Function.Injective (Place.congrRingEquiv ModularCurve.jLineRingEquiv
-      (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _) :=
+      (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _)
+        :=
   (Place.congrEquiv ModularCurve.jLineRingEquiv
       (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom)).injective
 
@@ -133,7 +136,8 @@ public section publicSection
 
 
 open IntermediateField AlgebraicCurve
-theorem ModularCurve.eq_jLinePlaceInfty_iff_ord_jGen_neg (v : AlgebraicCurve.Place ℚ ↥ℚ⟮ModularCurve.jq⟯) :
+theorem ModularCurve.eq_jLinePlaceInfty_iff_ord_jGen_neg (v : AlgebraicCurve.Place ℚ
+  ↥ℚ⟮ModularCurve.jq⟯) :
     v = ModularCurve.jLinePlaceInfty ↔ v.ord ModularCurve.jGen < 0 :=
   solution v
 

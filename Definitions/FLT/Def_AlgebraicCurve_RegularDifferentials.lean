@@ -35,7 +35,8 @@ $\mathrm{im}(K \to F)$. The companion lemma
 records the membership criterion in exactly this form.
 
 The module also proves
-[`AlgebraicCurve.Place.exists_ord_eq_one_and_dCoord_eq`](../def/AlgebraicCurve_RegularDifferentials.html#L18):
+[`AlgebraicCurve.Place.exists_ord_eq_one_and_dCoord_eq`]
+(../def/AlgebraicCurve_RegularDifferentials.html#L18):
 for each place $v$ there is $\pi \in F$ with $v.\mathrm{ord}\,\pi = 1$ and $v.\mathrm{dCoord} =
 d\pi$. This exposes, without reference to the internal choice made in defining `dCoord`, that
 `dCoord` is the differential of some element of order exactly one at $v$.

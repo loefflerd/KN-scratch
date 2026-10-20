@@ -48,7 +48,8 @@ regular cusps; in that range $12\dim_{\mathbb{C}} M_k(\Gamma_1(M)) =
 (k-1)[\mathrm{SL}_2(\mathbb{Z}):\pm\Gamma_1(M)] + 6c$, the double-coset count $c$ being the number
 of cusps of $\Gamma_1(M)$, and the statement records the inequality $\le$ in the form needed later.
 It feeds
-[`ModularCurve.exists_isIntegralQExp_linearIndependent_complex_gamma1_dimFormula_le_card`](thm.html#ModularCurve.exists_isIntegralQExp_linearIndependent_complex_gamma1_dimFormula_le_card),
+[`ModularCurve.exists_isIntegralQExp_linearIndependent_complex_gamma1_dimFormula_le_card`]
+(thm.html#ModularCurve.exists_isIntegralQExp_linearIndependent_complex_gamma1_dimFormula_le_card),
 which refines the independent family to one with integral $q$-expansions.
 
 ## Explanation of the source proof
@@ -73,7 +74,8 @@ theorem solution
     ∃ (d : ℕ) (f : Fin d → ModularForm (Gamma1 M) (k : ℤ)), LinearIndependent ℂ f ∧
       (k - 1) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index +
           6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ)))
+            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set
+              SL(2, ℤ)))
         ≤ 12 * d := by
   rcases Nat.even_or_odd k with hke | hko
   · exact ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even M hM k hk hke
@@ -95,7 +97,8 @@ theorem ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card
     ∃ (d : ℕ) (f : Fin d → ModularForm (Gamma1 M) (k : ℤ)), LinearIndependent ℂ f ∧
       (k - 1) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index +
           6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ)))
+            ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set
+              SL(2, ℤ)))
         ≤ 12 * d :=
   solution M hM k hk
 

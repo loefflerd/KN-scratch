@@ -214,7 +214,8 @@ theorem solution
   have hconst : ∀ (γ : Γ₀) (a : Γ₀) (_ : a ∈ Γ) (b : Γ₀) (_ : b ∈ Kst), f (a * γ * b) = f γ := by
     intro γ a ha b hb
     apply Subtype.ext
-    change W.restrictAlong (ψ (a * γ * b)) (hint _ (hψ (a * γ * b))) = W.restrictAlong (ψ γ) (hint _ (hψ γ))
+    change W.restrictAlong (ψ (a * γ * b)) (hint _ (hψ (a * γ * b))) = W.restrictAlong (ψ γ) (hint _
+      (hψ γ))
     symm
     apply (hDH.2.2.2.1 (ψ γ) (ψ (a * γ * b)) (hψ γ) (hψ (a * γ * b))).mpr
     refine ⟨σ b⁻¹, hD b⁻¹ (Kst.inv_mem hb), ?_⟩

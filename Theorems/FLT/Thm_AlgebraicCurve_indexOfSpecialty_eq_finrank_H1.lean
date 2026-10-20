@@ -85,7 +85,8 @@ theorem mem_repartitions_of_mem_adeleSpace {α : Place K F → F} (hα : α ∈ 
   exact mem_repartitions_of_mem_adeleBdd hD
 
 theorem diagonalHom_eq_coe_algebraMap (f : F) :
-    diagonalHom K F f = ((algebraMap F ↥(repartitions K F) f : ↥(repartitions K F)) : Place K F → F) := rfl
+    diagonalHom K F f = ((algebraMap F ↥(repartitions K F) f : ↥(repartitions K F)) : Place K F → F)
+      := rfl
 
 theorem mem_principalRepartitions_iff_coe_mem_globalSub {α : ↥(repartitions K F)} :
     α ∈ principalRepartitions K F ↔ (α : Place K F → F) ∈ globalSub K F := by
@@ -161,7 +162,8 @@ noncomputable def adeleSpaceEquivRepartitions [HasPrincipalDivisors K F] :
 
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1.AlgebraicCurve WithZero in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1.AlgebraicCurve WithZero in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDivisors K F]
     (D : Divisor K F) :
     indexOfSpecialty D = Module.finrank K (H1 D) := by
@@ -180,7 +182,8 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [HasPrincipalDi
       constructor
       · rintro ⟨β, hβ, rfl⟩; exact mem_principalRepartitions_iff_coe_mem_globalSub.mpr hβ
       · intro hα
-        exact ⟨e.symm α, mem_principalRepartitions_iff_coe_mem_globalSub.mp hα, e.apply_symm_apply α⟩
+        exact ⟨e.symm α, mem_principalRepartitions_iff_coe_mem_globalSub.mp hα, e.apply_symm_apply
+          α⟩
   rw [indexOfSpecialty_eq]
   exact LinearEquiv.finrank_eq (Submodule.Quotient.equiv _ _ e hmap)
 

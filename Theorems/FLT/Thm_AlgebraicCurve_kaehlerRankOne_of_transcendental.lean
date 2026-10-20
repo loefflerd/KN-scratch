@@ -44,9 +44,11 @@ in the statement itself (the assertion is freeness together with the numerical v
 This is the standard computation that a function field in one variable which is separably generated
 has a one-dimensional space of Kähler differentials, $\Omega_{F/K} = F\,dx$. It feeds the
 construction of curves over a field in this development, being cited by
-[`AlgebraicCurve.isCurveOver_of_transcendental`](thm.html#AlgebraicCurve.isCurveOver_of_transcendental)
+[`AlgebraicCurve.isCurveOver_of_transcendental`]
+(thm.html#AlgebraicCurve.isCurveOver_of_transcendental)
 and by
-[`AlgebraicCurve.exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one`](thm.html#AlgebraicCurve.exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one).
+[`AlgebraicCurve.exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one`]
+(thm.html#AlgebraicCurve.exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one).
 
 ## Explanation of the source proof
 

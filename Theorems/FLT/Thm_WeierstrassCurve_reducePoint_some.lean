@@ -95,7 +95,8 @@ theorem reducePoint_some' (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValua
   have hns : (reduction R W).toAffine.Nonsingular (reduceCoord R x) (reduceCoord R y) := by
     rw [hcx, hcy]
     exact Affine.equation_iff_nonsingular.mp heqk
-  have hxy : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 ∧ valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1 :=
+  have hxy : valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1 ∧ valuation K
+    (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1 :=
     ⟨hx, hy⟩
   refine ⟨hns, ?_⟩
   simp only [reducePoint_alt, dite_eq_left hxy, dite_eq_left hns]
@@ -106,8 +107,10 @@ theorem solution
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y)
-    (hx : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1)
-    (hy : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1) :
+    (hx : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x
+      ≤ 1)
+    (hy : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y
+      ≤ 1) :
     ∃ h', WeierstrassCurve.reducePoint_alt R W (.some x y h)
       = .some (WeierstrassCurve.reduceCoord R x) (WeierstrassCurve.reduceCoord R y) h' :=
   ReduceSome.reducePoint_some' R W h hx hy
@@ -124,8 +127,10 @@ theorem WeierstrassCurve.reducePoint_some
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.HasGoodReduction R] {x y : K} (h : W.toAffine.Nonsingular x y)
-    (hx : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1)
-    (hy : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y ≤ 1) :
+    (hx : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x
+      ≤ 1)
+    (hy : IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y
+      ≤ 1) :
     ∃ h', WeierstrassCurve.reducePoint_alt R W (.some x y h)
       = .some (WeierstrassCurve.reduceCoord R x) (WeierstrassCurve.reduceCoord R y) h' :=
   solution R W h hx hy

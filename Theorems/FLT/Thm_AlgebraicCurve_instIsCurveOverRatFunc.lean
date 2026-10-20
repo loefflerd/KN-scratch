@@ -68,7 +68,8 @@ p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalD
   Place.ofHeightOneSpectrum Place.FiniteResidue.finite RationalFunctionField.hasPrincipalDivisors"
 p2m_open "AlgebraicCurve"
 
-scoped instance instHasPrincipalDivisorsRatFuncLaneB (K : Type*) [Field K] : HasPrincipalDivisors K (RatFunc K) :=
+scoped instance instHasPrincipalDivisorsRatFuncLaneB (K : Type*) [Field K] : HasPrincipalDivisors K
+  (RatFunc K) :=
   RationalFunctionField.hasPrincipalDivisors K
 end AlgebraicCurve
 

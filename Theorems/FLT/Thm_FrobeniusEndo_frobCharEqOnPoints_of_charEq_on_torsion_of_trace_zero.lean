@@ -101,12 +101,14 @@ def xOf {V : WeierstrassCurve k} : V.toAffine.Point → k
   | (Point.some x _ _) => x
 
 omit [DecidableEq k] in
-@[scoped simp] theorem xOf_some {V : WeierstrassCurve k} {x y : k} (h : V.toAffine.Nonsingular x y) :
+@[scoped simp] theorem xOf_some {V : WeierstrassCurve k} {x y : k} (h : V.toAffine.Nonsingular x y)
+  :
     xOf (Point.some x y h) = x := rfl
 
 omit [Fintype F] in
 theorem smul_some (x y : k) (h : (W⁄k).Nonsingular x y) :
-    ∃ h' : (W⁄k).Nonsingular (σ x) (σ y), σ • (Point.some x y h : (W⁄k).Point) = Point.some (σ x) (σ y) h' :=
+    ∃ h' : (W⁄k).Nonsingular (σ x) (σ y), σ • (Point.some x y h : (W⁄k).Point) = Point.some (σ x) (σ
+      y) h' :=
   ⟨_, rfl⟩
 
 theorem smul_smul_some (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (x y : k)
@@ -182,7 +184,8 @@ theorem dichotomy_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card 
 
 theorem torsion_eq_zero_of_zsmul_eq_zero {r : ℕ} (hr : r.Prime) {n : ℕ} (hn0 : 0 < n) (hnr : n < r)
     {T : (W⁄k).Point} (hT : (r : ℤ) • T = 0) (hnT : (n : ℤ) • T = 0) : T = 0 :=
-  eq_zero_of_zsmul_eq_zero_of_isCoprime (Nat.isCoprime_iff_coprime.mpr (Nat.coprime_of_lt_prime hn0.ne' hnr hr))
+  eq_zero_of_zsmul_eq_zero_of_isCoprime (Nat.isCoprime_iff_coprime.mpr (Nat.coprime_of_lt_prime
+    hn0.ne' hnr hr))
     hT hnT
 
 omit [DecidableEq k] in
@@ -235,7 +238,8 @@ theorem compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {r : ℕ} 
     rw [Multiset.mem_toFinset, Polynomial.mem_roots hZ]
     exact hroot T hT
   have hcard_image : (s.image f).card ≤ Z.natDegree :=
-    (Finset.card_le_card himage).trans ((Multiset.toFinset_card_le _).trans (Polynomial.card_roots' Z))
+    (Finset.card_le_card himage).trans ((Multiset.toFinset_card_le _).trans (Polynomial.card_roots'
+      Z))
   have hfib : ∀ a ∈ s.image f, (s.filter (fun T => f T = a)).card ≤ 2 := by
     intro a ha
     obtain ⟨T₀, hT₀, rfl⟩ := Finset.mem_image.mp ha
@@ -326,7 +330,8 @@ theorem charEq_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
       rw [hb] at h3
       rw [mul_smul, two_smul]
       have key : σ • (σ • P) - (q : ℤ) • P =
-          (σ • (σ • P) + -((q : ℤ) • (T : (W⁄k).Point))) - (q : ℤ) • P + (q : ℤ) • (T : (W⁄k).Point) := by
+          (σ • (σ • P) + -((q : ℤ) • (T : (W⁄k).Point))) - (q : ℤ) • P + (q : ℤ) • (T : (W⁄k).Point)
+            := by
         abel
       rw [key, h3]
       abel
@@ -345,8 +350,10 @@ theorem charEq_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
       Finset.univ.filter B₁ ∪ Finset.univ.filter B₂ ∪ Finset.univ.filter B₃ := by
     intro T _
     rcases hcover T with h | h | h
-    · exact Finset.mem_union_left _ (Finset.mem_union_left _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩))
-    · exact Finset.mem_union_left _ (Finset.mem_union_right _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩))
+    · exact Finset.mem_union_left _ (Finset.mem_union_left _ (Finset.mem_filter.mpr ⟨Finset.mem_univ
+        _, h⟩))
+    · exact Finset.mem_union_left _ (Finset.mem_union_right _ (Finset.mem_filter.mpr
+        ⟨Finset.mem_univ _, h⟩))
     · exact Finset.mem_union_right _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩)
   have h3 : r ^ 2 ≤ 3 := by
     calc r ^ 2 = (Finset.univ : Finset Tor).card := by rw [Finset.card_univ, hcardF]
@@ -354,7 +361,8 @@ theorem charEq_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
           Finset.card_le_card hunion
       _ ≤ (Finset.univ.filter B₁ ∪ Finset.univ.filter B₂).card + (Finset.univ.filter B₃).card :=
           Finset.card_union_le _ _
-      _ ≤ ((Finset.univ.filter B₁).card + (Finset.univ.filter B₂).card) + (Finset.univ.filter B₃).card :=
+      _ ≤ ((Finset.univ.filter B₁).card + (Finset.univ.filter B₂).card) + (Finset.univ.filter
+        B₃).card :=
           Nat.add_le_add_right (Finset.card_union_le _ _) _
       _ ≤ (1 + 1) + 1 := Nat.add_le_add (Nat.add_le_add (hle B₁ hB₁) (hle B₂ hB₂)) (hle B₃ hB₃)
   have h9 : 3 ≤ r := by omega
@@ -379,11 +387,13 @@ theorem frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero
 
 end FrobeniusEndo.TraceZeroPort
 
-open _root_.FrobeniusEndo _root_.P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero.FrobeniusEndo in
+open _root_.FrobeniusEndo
+  _root_.P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero.FrobeniusEndo in
 theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
     [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k]
     (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
-    (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧
+    (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r
+      ^ 2 ∧
       ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
     FrobCharEqOnPoints W σ 0 (Fintype.card F) :=
   FrobeniusEndo.TraceZeroPort.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero W σ hσ hkill
@@ -399,7 +409,12 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
+theorem FrobeniusEndo.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero {R : Type*} [CommRing R]
+  {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R
+  k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x
+  = x ^ Fintype.card F) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ
+  (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) + (Fintype.card F : ℤ) •
+  P = 0) :
     FrobCharEqOnPoints W σ 0 (Fintype.card F) :=
   solution W σ hσ hkill
 

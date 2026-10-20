@@ -38,7 +38,8 @@ the assertion that a finite abelian group whose order is squarefree is cyclic, p
 This is the classical fact that a finite abelian group of squarefree order is cyclic. In this
 development it supplies the cyclicity of subgroups of torsion groups of elliptic curves of
 squarefree order, and is used by
-[`WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq).
 
 ## Explanation of the source proof
 

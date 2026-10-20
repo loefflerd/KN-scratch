@@ -88,7 +88,8 @@ variable (E : IntermediateField ℚ ℚ̄)
 scoped instance smulCommClass_gal_ringOfIntegers : SMulCommClass (ℚ̄ ≃ₐ[E] ℚ̄) (𝓞 E) (𝓞 ℚ̄) where
   smul_comm g a b := by
     apply Subtype.ext
-    change g ((algebraMap (𝓞 E) (𝓞 ℚ̄) a : ℚ̄) * (b : ℚ̄)) = (algebraMap (𝓞 E) (𝓞 ℚ̄) a : ℚ̄) * g (b : ℚ̄)
+    change g ((algebraMap (𝓞 E) (𝓞 ℚ̄) a : ℚ̄) * (b : ℚ̄)) = (algebraMap (𝓞 E) (𝓞 ℚ̄) a : ℚ̄) * g (b
+      : ℚ̄)
     rw [map_mul]
     congr 1
     exact g.commutes (a : E)
@@ -172,7 +173,8 @@ theorem solution
     exact (AlgEquiv.restrictNormal_commutes τ E (a : E)).symm
   have res_scalars : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (b : 𝓞 ℚ̄), (δ.restrictScalars ℚ) • b = δ • b :=
     fun _ _ => rfl
-  have res_scalars_ideal : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (I : Ideal (𝓞 ℚ̄)), (δ.restrictScalars ℚ) • I = δ • I :=
+  have res_scalars_ideal : ∀ (δ : ℚ̄ ≃ₐ[E] ℚ̄) (I : Ideal (𝓞 ℚ̄)), (δ.restrictScalars ℚ) • I = δ • I
+    :=
     by
     intro δ I
     rw [Ideal.pointwise_smul_def, Ideal.pointwise_smul_def]
@@ -271,7 +273,8 @@ theorem solution
   have hψ : ∀ x : 𝓞 ℚ̄, ψ (Ideal.Quotient.mk Qt x) = F (θinv (Ideal.Quotient.mk Qt x)) :=
     fun _ => rfl
   obtain ⟨δ, hδ⟩ := Ideal.Quotient.stabilizerHom_surjective_of_profinite (G := ℚ̄ ≃ₐ[E] ℚ̄) Q Qt ψ
-  have hδ' : ∀ b : 𝓞 ℚ̄, Ideal.Quotient.mk Qt ((δ : ℚ̄ ≃ₐ[E] ℚ̄) • b) = F (θinv (Ideal.Quotient.mk Qt b)) :=
+  have hδ' : ∀ b : 𝓞 ℚ̄, Ideal.Quotient.mk Qt ((δ : ℚ̄ ≃ₐ[E] ℚ̄) • b) = F (θinv (Ideal.Quotient.mk
+    Qt b)) :=
     by
     intro b
     have := DFunLike.congr_fun hδ (Ideal.Quotient.mk Qt b)

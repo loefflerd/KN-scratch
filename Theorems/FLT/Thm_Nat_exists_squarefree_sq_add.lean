@@ -43,7 +43,8 @@ restriction is genuinely needed only in the stated uniform form).
 This is the existence half of the degree-two case of the classical result of Estermann on squarefree
 values of quadratic polynomials; here the polynomial is $X^2 + D$ in the shifted form required
 later. It is used by
-[`Int.exists_squarefree_sq_add_mul_add_mul_sq_of_sq_lt_four_mul`](thm.html#Int.exists_squarefree_sq_add_mul_add_mul_sq_of_sq_lt_four_mul),
+[`Int.exists_squarefree_sq_add_mul_add_mul_sq_of_sq_lt_four_mul`]
+(thm.html#Int.exists_squarefree_sq_add_mul_add_mul_sq_of_sq_lt_four_mul),
 which produces squarefree values of a positive definite integral binary quadratic form and thereby
 supplies the auxiliary squarefree integers needed in the imaginary quadratic norm representation
 step.

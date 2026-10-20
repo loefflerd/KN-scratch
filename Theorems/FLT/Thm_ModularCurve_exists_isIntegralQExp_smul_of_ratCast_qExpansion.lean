@@ -129,7 +129,8 @@ theorem IsBdd.of_mul_eq {q p : PowerSeries ℂ} {U : PowerSeries ℤ}
   have h1 : (D : ℂ) • q * U.map (Int.castRingHom ℂ) = P.map (Int.castRingHom ℂ) := by
     rw [smul_mul_assoc, h, hP]
   calc (P * ↑u⁻¹).map (Int.castRingHom ℂ)
-      = ((D : ℂ) • q * U.map (Int.castRingHom ℂ)) * (↑u⁻¹ : PowerSeries ℤ).map (Int.castRingHom ℂ) := by
+      = ((D : ℂ) • q * U.map (Int.castRingHom ℂ)) * (↑u⁻¹ : PowerSeries ℤ).map (Int.castRingHom ℂ)
+        := by
         rw [map_mul, h1]
     _ = (D : ℂ) • q * ((U * ↑u⁻¹).map (Int.castRingHom ℂ)) := by rw [map_mul, mul_assoc]
     _ = (D : ℂ) • q := by rw [← hu, Units.mul_inv, map_one, mul_one]
@@ -324,7 +325,8 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
     · exact hrat1 _
     · exact ⟨0, by simp⟩
   obtain ⟨D, hD, hint⟩ :=
-    ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant M m G hmdG hinv
+    ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant M m G hmdG
+      hinv
       hbd hratM
   rw [isBdd_iff]
   refine ⟨D, hD, fun n => ?_⟩
@@ -358,7 +360,8 @@ theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ
 
 theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
   rw [bernoulli'_def]
-  norm_num [Finset.sum_range_succ, bernoulli'_zero, bernoulli'_one, bernoulli'_two, bernoulli'_three,
+  norm_num [Finset.sum_range_succ, bernoulli'_zero, bernoulli'_one, bernoulli'_two,
+    bernoulli'_three,
     bernoulli'_four, Nat.choose]
   have h5 : bernoulli' 5 = 0 := bernoulli'_eq_zero_of_odd (by decide) (by norm_num)
   rw [h5]
@@ -463,7 +466,8 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
     have hq : ‖Periodic.qParam 1 z‖ < 1 := by
       have : 0 < 2 * π * z.im / 1 := by have := z.im_pos; positivity
       simpa [Periodic.qParam, Complex.norm_exp, neg_div] using this
-    have hterm : ∀ n : ℕ, ((c n : ℤ) : ℂ) * Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (n : ℂ) * (z : ℂ))
+    have hterm : ∀ n : ℕ, ((c n : ℤ) : ℂ) * Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (n : ℂ) *
+      (z : ℂ))
         = ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n := by
       intro n
       rw [smul_eq_mul, Periodic.qParam, ← Complex.exp_nat_mul]

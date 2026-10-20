@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
+Based on Prove2Me node
+WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
 (0edecfdb-ea19-5f18-91ee-48e15aab39b8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 44b5ddd3-ae0a-5d72-869f-0031443f3da4
@@ -321,7 +322,8 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 private theorem _root_.WeierstrassCurve.xnum_eq {x y x₀ y₀ l x' : F}
     (hl : l * (x - x₀) = y - y₀)
     (hx'd : x' = l ^ 2 + W.a₁ * l - W.a₂ - x - x₀) :
-    x' * (x - x₀) ^ 2 = ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) := by
+    x' * (x - x₀) ^ 2 = ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)
+      := by
   rw [hx'd]
   linear_combination (l * (x - x₀) + (y - y₀) + W.a₁ * (x - x₀)) * hl
 
@@ -330,10 +332,13 @@ private theorem _root_.WeierstrassCurve.ynum_eq {x y x₀ y₀ l x' y' : F}
     (hl : l * (x - x₀) = y - y₀)
     (hx'd : x' = l ^ 2 + W.a₁ * l - W.a₂ - x - x₀)
     (hy'd : y' = l * (x - x') - y - W.a₁ * x' - W.a₃) :
-    y' * (x - x₀) ^ 3 = ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) := by
+    y' * (x - x₀) ^ 3 = ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) -
+      (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) *
+      (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) := by
   have hXn := W.xnum_eq hl hx'd
   rw [hy'd]
-  linear_combination (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) * hl
+  linear_combination (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x +
+    x₀) * (x - x₀) ^ 2)) * hl
     - (l + W.a₁) * (x - x₀) * hXn
 
 p2m_export "WeierstrassCurve" "ynum_eq"
@@ -345,7 +350,9 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
     (hx'd : x' = l ^ 2 + W.a₁ * l - W.a₂ - x - x₀)
     (hy'd : y' = l * (x - x') - y - W.a₁ * x' - W.a₃) :
     W.veluGx x y + W.veluGx x' y'
-      = 3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) := by
+      = 3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄
+        - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^
+        2) := by
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   have h4 : (4 : F) ≠ 0 := by
     have h := pow_ne_zero 2 hchar
@@ -361,10 +368,17 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
   calc (W.veluGx x y + W.veluGx x' y') * (4 * (x - x₀) ^ 4)
       = 4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * (x' * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀))) := by simp only [veluGx]; ring
     _ = 4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀))) := by rw [hXn, hYn]
-    _ = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) := W.fiberAdd_veluGx_cleared_four x y x₀ y₀ hP hQ hgy
-    _ = (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+    _ = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 +
+      W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁
+      * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) :=
+      W.fiberAdd_veluGx_cleared_four x y x₀ y₀ hP hQ hgy
+    _ = (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) +
+      (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x -
+      x₀) ^ 2))
           * (4 * (x - x₀) ^ 4) := by
-        rw [show (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x - x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2))
+        rw [show (3 * (x + W.veluGx x₀ y₀ / (x - x₀)) ^ 2 + 2 * W.a₂ * (x + W.veluGx x₀ y₀ / (x -
+          x₀)) + (W.a₄ - 5 * W.veluGx x₀ y₀) - W.a₁ * (y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y -
+          y₀) / (x - x₀) ^ 2))
               * (4 * (x - x₀) ^ 4)
           = 4 * (3 * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) ^ 2 * (x - x₀) ^ 2
             + 2 * W.a₂ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀) ^ 3
@@ -944,7 +958,8 @@ p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq 
   fiberAdd_asymWeight_cleared_sixteen Affine.Point.two_smul_some_eq_zero_iff"
 end WeierstrassCurve
 p2m_open_scoped "WeierstrassCurve" in
-private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux
+private theorem
+  WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux
     {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {N : ℕ} [NeZero N] (hord : addOrderOf Q = N)
@@ -1019,7 +1034,8 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
       have E2 : W.fullKernelQuotient Q (2 * M)
           = (W.veluQuotient2 x₀ y₀).fullKernelQuotient
               (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) M :=
-        fullKernelQuotient_eq_fullKernelQuotient_veluPointMap2 two_ne_zero W Q M hM0 hord hMQ hgy hΔ₂
+        fullKernelQuotient_eq_fullKernelQuotient_veluPointMap2 two_ne_zero W Q M hM0 hord hMQ hgy
+          hΔ₂
       have hV' : V = (W.veluQuotient2 x₀ y₀).fullKernelQuotient
           (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) M := hV.trans E2
       subst hV'
@@ -1070,7 +1086,8 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
           (AddSubgroup.nsmul_mem _ (AddSubgroup.mem_zmultiples Q) M)
       · have hQimg : WeierstrassCurve.Affine.pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂ Q
             = veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q :=
-          VeluTwoKernel.pointMapOfPushforward_eq_veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂ hfin₂ hN₂ hseam Q
+          VeluTwoKernel.pointMapOfPushforward_eq_veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂ hfin₂
+            hN₂ hseam Q
         rw [hQimg]
         exact hkerM hNM
     · obtain ⟨n, hn⟩ := hO
@@ -1083,7 +1100,9 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
       exact exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
         hord' hΔV
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples.WeierstrassCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples.WeierstrassCurve
+  in
 theorem solution {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {N : ℕ} [NeZero N] (hord : addOrderOf Q = N)
@@ -1104,17 +1123,22 @@ theorem solution {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed
       ∀ hN : AlgebraicCurve.NormFormulaAlong F ι hfin,
         (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
           = AddSubgroup.zmultiples Q :=
-  WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux hord hΔ'
+  WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux
+    hord hΔ'
 
 end S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples (solution)
+export
+  P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
+  (solution)
 
 end privateSection
 
 public section publicSection
 
-theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
+theorem
+  WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
+  {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {N : ℕ} [NeZero N] (hord : addOrderOf Q = N)
     (hΔ' : (W.fullKernelQuotient Q N).Δ ≠ 0)

@@ -198,7 +198,8 @@ theorem zmultiples_unit_mul (u : (ZMod N)ˣ) (x : ZMod N × ZMod N) :
       rw [zsmul_pair_snd, zsmul_eq_mul, Int.cast_natCast, ZMod.natCast_zmod_val]
   refine le_antisymm (AddSubgroup.zmultiples_le.mpr (key u x)) (AddSubgroup.zmultiples_le.mpr ?_)
   have hmem := key u⁻¹ (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N)
-  have hx : ((((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N).1,
+  have hx : ((((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N ×
+    ZMod N).1,
       ((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N).2)
         : ZMod N × ZMod N) = x := by
     have h1 : ((u⁻¹ : (ZMod N)ˣ) : ZMod N) * ((u : ZMod N) * x.1) = x.1 := by
@@ -231,7 +232,8 @@ def unimodularRowToCyclicAddSubgroup (v : UnimodularRow (ZMod N)) :
     by rw [Nat.card_zmultiples, IsUnimodularRow.addOrderOf_eq N v.2]⟩
 
 def projectiveLineToCyclicAddSubgroup :
-    ProjectiveLine (ZMod N) → {H : AddSubgroup (ZMod N × ZMod N) // IsAddCyclic H ∧ Nat.card H = N} :=
+    ProjectiveLine (ZMod N) → {H : AddSubgroup (ZMod N × ZMod N) // IsAddCyclic H ∧ Nat.card H = N}
+      :=
   Quotient.lift (unimodularRowToCyclicAddSubgroup N) <| by
     rintro v w ⟨u, h1, h2⟩
     refine Subtype.ext ?_
@@ -286,7 +288,8 @@ theorem projectiveLineToCyclicAddSubgroup_surjective :
   rw [hg', hg]
 
 def projectiveLineEquivCyclicAddSubgroup :
-    ProjectiveLine (ZMod N) ≃ {H : AddSubgroup (ZMod N × ZMod N) // IsAddCyclic H ∧ Nat.card H = N} :=
+    ProjectiveLine (ZMod N) ≃ {H : AddSubgroup (ZMod N × ZMod N) // IsAddCyclic H ∧ Nat.card H = N}
+      :=
   Equiv.ofBijective (projectiveLineToCyclicAddSubgroup N)
     ⟨projectiveLineToCyclicAddSubgroup_injective N, projectiveLineToCyclicAddSubgroup_surjective N⟩
 
@@ -313,7 +316,8 @@ end ModularCurve
 end
 
 theorem solution (n : ℕ) [NeZero n] :
-    Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n :=
+    Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} =
+      ModularCurve.dedekindPsi n :=
   ModularCurve.card_cyclicAddSubgroup_eq_dedekindPsi n
 
 end S_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi
@@ -327,7 +331,8 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 theorem ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi (n : ℕ) [NeZero n] :
-    Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n :=
+    Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} =
+      ModularCurve.dedekindPsi n :=
   solution n
 
 end publicSection

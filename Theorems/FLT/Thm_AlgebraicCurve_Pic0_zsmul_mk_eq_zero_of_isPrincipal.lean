@@ -42,7 +42,8 @@ This is the standard bookkeeping step by which an explicit function with divisor
 class of $D$ as $m$-torsion in the degree-zero divisor class group — the mechanism behind statements
 such as a modular unit with divisor $m((0)-(\infty))$ annihilating $m$ times the cuspidal class. It
 is used in the integral-form variant
-[`AlgebraicCurve.Pic0.nsmul_mk_eq_zero_of_isPrincipal`](thm.html#AlgebraicCurve.Pic0.nsmul_mk_eq_zero_of_isPrincipal)
+[`AlgebraicCurve.Pic0.nsmul_mk_eq_zero_of_isPrincipal`]
+(thm.html#AlgebraicCurve.Pic0.nsmul_mk_eq_zero_of_isPrincipal)
 and in the specialization arguments for modular curves that produce classes killed by a given
 integer.
 

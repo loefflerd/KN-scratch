@@ -344,7 +344,10 @@ end PhiGen
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)]
     {f : LaurentSeries K} (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ))
     (h2 : f ∈ Set.range (coeffEmb K)) :

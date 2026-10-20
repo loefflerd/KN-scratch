@@ -63,11 +63,16 @@ open scoped Pointwise
 
 theorem solution (N : ℕ) [NeZero N] (h : IsFrickeAutFull N (frickeInvolutionFull N)) (a b : ℕ)
     (hab : a * b = N) [NeZero a] [NeZero b] :
-    frickeInvolutionBar N ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ a jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro b hab))⟩ = ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ := by
+    frickeInvolutionBar N ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ a jq),
+      coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro b hab))⟩ =
+      ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange
+      (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ := by
   rw [frickeInvolutionBar_def]
-  refine (geomAut_coeffEmb (AlgebraicClosure ℚ) (modularFunctionFieldFull N) (frickeInvolutionFull N)
+  refine (geomAut_coeffEmb (AlgebraicClosure ℚ) (modularFunctionFieldFull N) (frickeInvolutionFull
+    N)
     ⟨qExpand ℚ a jq, jqd_mem_full N (Dvd.intro b hab)⟩).trans (Subtype.ext ?_)
-  change coeffEmb (AlgebraicClosure ℚ) ((frickeInvolutionFull N ⟨qExpand ℚ a jq, _⟩ : modularFunctionFieldFull N) :
+  change coeffEmb (AlgebraicClosure ℚ) ((frickeInvolutionFull N ⟨qExpand ℚ a jq, _⟩ :
+    modularFunctionFieldFull N) :
     LaurentSeries ℚ) = coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq)
   rw [h a b hab ‹NeZero a› ‹NeZero b›]
 
@@ -84,7 +89,10 @@ open ModularCurve AlgebraicCurve
 theorem ModularCurve.frickeInvolutionBar_coeffEmb_qExpand (N : ℕ) [NeZero N]
     (h : IsFrickeAutFull N (frickeInvolutionFull N)) (a b : ℕ) (hab : a * b = N) [NeZero a]
     [NeZero b] :
-    frickeInvolutionBar N ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ a jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro b hab))⟩ = ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ :=
+    frickeInvolutionBar N ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ a jq),
+      coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro b hab))⟩ =
+      ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ b jq), coeffEmb_mem_laurentBaseChange
+      (AlgebraicClosure ℚ) (jqd_mem_full N (Dvd.intro_left a hab))⟩ :=
   solution N h a b hab
 
 end publicSection

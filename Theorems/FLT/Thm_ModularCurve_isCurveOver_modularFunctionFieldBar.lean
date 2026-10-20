@@ -113,7 +113,8 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
   let e : A ≃ₐ[K] K⟮x⟯ := (liftAlgEquiv A).trans (equivOfEq hliftA)
   have he : ∀ a : A, ((e a : K⟮x⟯) : LF) = ((a : F) : LF) := by
     intro a; rfl
-  have hcomp : (algebraMap K⟮x⟯ LF).comp (e : A →+* K⟮x⟯) = (RingHom.id LF).comp (algebraMap A LF) :=
+  have hcomp : (algebraMap K⟮x⟯ LF).comp (e : A →+* K⟮x⟯) = (RingHom.id LF).comp (algebraMap A LF)
+    :=
     RingHom.ext fun a => he a
   have hcomp' : (algebraMap A LF).comp (e.symm : K⟮x⟯ →+* A)
       = (RingHom.id LF).comp (algebraMap K⟮x⟯ LF) := by
@@ -168,7 +169,8 @@ private theorem isCurveOver_laurentBaseChange (L : Type*) [Field L] {instQL : Al
   have hfin : ∀ E : IntermediateField L (LaurentSeries L), E = modularFunctionFieldC L N →
       ∀ w : Place L E, Module.Finite L w.ResidueField := by
     rintro E rfl w
-    exact Module.finite_of_finrank_pos (Nat.pos_of_ne_zero (deg_ne_zero_modularFunctionFieldC L N w))
+    exact Module.finite_of_finrank_pos (Nat.pos_of_ne_zero (deg_ne_zero_modularFunctionFieldC L N
+      w))
   have hkae : ∀ E : IntermediateField L (LaurentSeries L),
       E = IntermediateField.adjoin L
         (insert (jqModC L) ((({jqNModC L N} : Finset (LaurentSeries L)) : Set (LaurentSeries L)))) →

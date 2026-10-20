@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
+Based on Prove2Me node
+WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
 (8486e300-4d51-5173-820b-eb8a99a80e39) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6e56b01c-9c56-52e6-8c9b-7db76fb51146
@@ -70,7 +71,8 @@ $\iota''$ is cyclic as well, and that the two kernels have the same cardinality.
 This is the transport statement saying that the cyclicity of the kernel of a pushforward point map,
 and the order of that kernel, depend only on the function-field data up to $\mathbb{C}$-algebra
 isomorphism of the source and target function fields. It feeds the step
-[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`](thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward),
+[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
+(thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward),
 where a cyclic kernel of prescribed order between two complex elliptic curves is converted into the
 vanishing of the corresponding modular polynomial at the pair of $j$-invariants.
 
@@ -127,7 +129,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -475,7 +478,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
+  IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
@@ -698,7 +702,12 @@ end WeierstrassCurve
 namespace ModularCurve
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve
+  in
 theorem kw_fdn2_qephod_hend7_pmopKerCard_proved
     (K : Type*) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic]
@@ -1859,7 +1868,12 @@ theorem pck_s17 :
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve
+  in
 theorem solution
     (E E' D D' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsElliptic] [D.IsElliptic]
     [D'.IsElliptic]
@@ -1876,7 +1890,8 @@ theorem solution
     (hN'' : NormFormulaAlong ℂ ι'' hfin'')
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker) :
     IsAddCyclic (pointMapOfPushforward ι'' hι'' hfin'' hN'').ker ∧
-      Nat.card (pointMapOfPushforward ι'' hι'' hfin'' hN'').ker = Nat.card (pointMapOfPushforward ι hι hfin hN).ker := by
+      Nat.card (pointMapOfPushforward ι'' hι'' hfin'' hN'').ker = Nat.card (pointMapOfPushforward ι
+        hι hfin hN).ker := by
   have hι''eq : ι'' = ModularCurve.kw_fdn2_qephod_hend21_conjSeam eE eE' ι := by
     apply AlgHom.ext
     intro x
@@ -1898,7 +1913,8 @@ end
 end
 end S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj (solution)
+export P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
+  (solution)
 
 end privateSection
 
@@ -1922,7 +1938,8 @@ theorem WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_algEqui
     (hN'' : NormFormulaAlong ℂ ι'' hfin'')
     (hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker) :
     IsAddCyclic (pointMapOfPushforward ι'' hι'' hfin'' hN'').ker ∧
-      Nat.card (pointMapOfPushforward ι'' hι'' hfin'' hN'').ker = Nat.card (pointMapOfPushforward ι hι hfin hN).ker :=
+      Nat.card (pointMapOfPushforward ι'' hι'' hfin'' hN'').ker = Nat.card (pointMapOfPushforward ι
+        hι hfin hN).ker :=
   solution E E' D D' ι hι hfin hN eE eE' ι'' hconj hι'' hfin'' hN'' hcyc
 
 end publicSection

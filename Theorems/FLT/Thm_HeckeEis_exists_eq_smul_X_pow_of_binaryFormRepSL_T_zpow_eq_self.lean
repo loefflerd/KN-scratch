@@ -42,9 +42,11 @@ This identifies the fixed subspace of the unipotent element $\mathrm{T}^h$ actin
 degree $n$ — the kernel half of the analysis of $\rho(\mathrm{T}^h) - 1$ on $\mathrm{Sym}^n$ — under
 the numerical hypotheses that $h$ and $1,\dots,n$ are invertible-enough (nonzero) in the domain $R$.
 It is used for the corresponding statement for the lower unipotent matrices,
-[`HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self`](thm.html#HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self),
+[`HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self`]
+(thm.html#HeckeEis.exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self),
 and in the vanishing result
-[`HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero`](thm.html#HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero)
+[`HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero`]
+(thm.html#HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero)
 entering the study of parabolic cohomology with $\mathrm{Sym}^n$ coefficients.
 
 ## Explanation of the source proof
@@ -101,7 +103,8 @@ theorem degree_eq_iff (d : Fin 2 →₀ ℕ) :
     omega
 
 theorem eq_sum_range {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
-    P = ∑ j ∈ Finset.range (n + 1), MvPolynomial.monomial (expo n j) (AddMonoidAlgebra.coeff P (expo n j)) := by
+    P = ∑ j ∈ Finset.range (n + 1), MvPolynomial.monomial (expo n j) (AddMonoidAlgebra.coeff P (expo
+      n j)) := by
   classical
   refine MvPolynomial.ext _ _ fun d => ?_
   rw [MvPolynomial.coeff_sum]
@@ -123,12 +126,14 @@ theorem dehom_monomial (j : ℕ) (c : R) :
   simp [dehom, Polynomial.C_mul']
 
 theorem dehom_eq_sum {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
-    dehom P = ∑ j ∈ Finset.range (n + 1), Polynomial.C (AddMonoidAlgebra.coeff P (expo n j)) * Polynomial.X ^ j := by
+    dehom P = ∑ j ∈ Finset.range (n + 1), Polynomial.C (AddMonoidAlgebra.coeff P (expo n j)) *
+      Polynomial.X ^ j := by
   conv_lhs => rw [eq_sum_range hP, map_sum]
   exact Finset.sum_congr rfl fun j _ => dehom_monomial j _
 
 theorem coeff_dehom {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) (j : ℕ) :
-    (dehom P).coeff j = if j ∈ Finset.range (n + 1) then AddMonoidAlgebra.coeff P (expo n j) else 0 := by
+    (dehom P).coeff j = if j ∈ Finset.range (n + 1) then AddMonoidAlgebra.coeff P (expo n j) else 0
+      := by
   rw [dehom_eq_sum hP, Polynomial.finsetSum_coeff]
   simp only [Polynomial.coeff_C_mul_X_pow]
   split_ifs with h
@@ -148,7 +153,8 @@ theorem dehom_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) R) :
       = (dehom P).comp (Polynomial.X + Polynomial.C (h : R)) := by
   revert P
   refine fun P => ?_
-  have key : (dehom : MvPolynomial (Fin 2) R →ₐ[R] R[X]).comp (binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ))
+  have key : (dehom : MvPolynomial (Fin 2) R →ₐ[R] R[X]).comp (binarySubst R ((ModularGroup.T ^ h :
+    SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ))
       = (Polynomial.aeval (Polynomial.X + Polynomial.C (h : R)) : R[X] →ₐ[R] R[X]).comp dehom := by
     refine MvPolynomial.algHom_ext fun i => ?_
     rw [AlgHom.comp_apply, AlgHom.comp_apply, binarySubst_X, ModularGroup.coe_T_zpow]
@@ -188,7 +194,8 @@ theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n)
         apply this; rw [Nat.cast_sub hlt.le]; linear_combination h0
     · exact (hh h0).elim
   have hzero : q' = 0 := by
-    apply Polynomial.eq_zero_of_natDegree_lt_card_of_eval_eq_zero' q' ((Finset.range (n + 1)).image fun k : ℕ => (k : R) * h)
+    apply Polynomial.eq_zero_of_natDegree_lt_card_of_eval_eq_zero' q' ((Finset.range (n + 1)).image
+      fun k : ℕ => (k : R) * h)
     · intro x hx
       obtain ⟨k, hk, rfl⟩ := Finset.mem_image.mp hx
       exact hroots k hk
@@ -204,15 +211,18 @@ theorem SolMain.A2 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ) {h : ℤ}
     (hP : binaryFormRepSL R n (ModularGroup.T ^ h) P = P) :
     ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n := by
   classical
-  have hsub : binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) = P :=
+  have hsub : binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P :
+    MvPolynomial (Fin 2) R) = P :=
     by
     simpa using congrArg Subtype.val hP
-  have hq : (dehom (P : MvPolynomial (Fin 2) R)).comp (Polynomial.X + Polynomial.C (h : R)) = dehom (P : MvPolynomial (Fin 2) R) :=
+  have hq : (dehom (P : MvPolynomial (Fin 2) R)).comp (Polynomial.X + Polynomial.C (h : R)) = dehom
+    (P : MvPolynomial (Fin 2) R) :=
     by
     rw [← dehom_binarySubst_T_zpow, hsub]
   have hconst := eq_C_of_comp_X_add_C_eq (natDegree_dehom_le P.2) hh hn hq
   refine ⟨AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n 0), ?_⟩
-  have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n j) = 0 :=
+  have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2)
+    R) (expo n j) = 0 :=
     by
     intro j hj hj0
     have := congrArg (fun r : R[X] => r.coeff j) hconst

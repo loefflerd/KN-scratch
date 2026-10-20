@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
+Based on Prove2Me node
+ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
 (416a532b-c720-58ab-9911-d53629fcd33d) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 863ff352-71e6-598d-a5e1-d6ea6e67a454
@@ -661,7 +662,9 @@ theorem solution
 
 end S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
 end P2MW
-export P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two (solution)
+export
+  P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
+  (solution)
 
 end privateSection
 

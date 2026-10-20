@@ -11,8 +11,10 @@ module
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
 public import Definitions.FLT.Def_ModularCurve_TatePoint
 public import Theorems.FLT.Thm_HahnSeries_isAlgClosed_rat
-public import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
-public import Theorems.FLT.Thm_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
+public import
+  Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
+public import
+  Theorems.FLT.Thm_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
 public import Theorems.FLT.Thm_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero
 public import Theorems.FLT.Thm_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_transcendental
 
@@ -165,7 +167,8 @@ variable (E : WeierstrassCurve H) {p : ℕ}
 
 theorem exists_addOrderOf_eq_and_eq_zmultiples_iff {A : Type*} [AddCommGroup A] {N : ℕ}
     (G : AddSubgroup A) :
-    (∃ g : A, addOrderOf g = N ∧ G = AddSubgroup.zmultiples g) ↔ (IsAddCyclic G ∧ Nat.card G = N) := by
+    (∃ g : A, addOrderOf g = N ∧ G = AddSubgroup.zmultiples g) ↔ (IsAddCyclic G ∧ Nat.card G = N)
+      := by
   constructor
   · rintro ⟨g, hg, rfl⟩
     exact ⟨inferInstance, by rw [Nat.card_zmultiples, hg]⟩
@@ -194,11 +197,13 @@ theorem le_dedekindPsi (N : ℕ) (hN : N ≠ 0) : N ≤ dedekindPsi N := by
 theorem finite_cycSubH [E.IsElliptic] [NeZero p] : Finite (CycSubH E p) :=
   Nat.finite_of_card_ne_zero (by
     rw [natCard_cycSubH]
-    exact (Nat.lt_of_lt_of_le (Nat.pos_of_ne_zero (NeZero.ne p)) (le_dedekindPsi p (NeZero.ne p))).ne')
+    exact (Nat.lt_of_lt_of_le (Nat.pos_of_ne_zero (NeZero.ne p)) (le_dedekindPsi p (NeZero.ne
+      p))).ne')
 
 def rootsAtEquivMemRootsToFinset [NeZero p] (data : ModularPolynomialData p) (jv : H) :
     RootsAt data jv ≃
-      {y : H // y ∈ (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom H) jv)).roots.toFinset} := by
+      {y : H // y ∈ (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom H) jv)).roots.toFinset}
+        := by
   unfold RootsAt
   exact Equiv.subtypeEquivRight fun y => by
     rw [Multiset.mem_toFinset, Polynomial.mem_roots ((data.monic.map _).ne_zero)]

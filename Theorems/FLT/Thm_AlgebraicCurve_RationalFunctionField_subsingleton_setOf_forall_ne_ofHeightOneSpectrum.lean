@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.RationalFunctionField.subsingleton_setOf_forall_ne_ofHeightOneSpectrum
+Based on Prove2Me node
+AlgebraicCurve.RationalFunctionField.subsingleton_setOf_forall_ne_ofHeightOneSpectrum
 (6909b602-2efa-5ea4-b2ec-e54556b62997) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 21545100-5620-5552-97d0-901ecbf0b692
@@ -45,9 +46,11 @@ field: the closed points of $\mathbb A^1_K$, i.e. the height-one primes of $K[X]
 places of $K(t)/K$ except at most one, the place at infinity. It is used in the treatment of
 divisors on $\mathbb P^1_K$, for instance in
 [`AlgebraicCurve.Place.finite_setOf_deg_eq`](thm.html#AlgebraicCurve.Place.finite_setOf_deg_eq),
-[`AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed`](thm.html#AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed)
+[`AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed)
 and
-[`AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap`](thm.html#AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap).
+[`AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap`]
+(thm.html#AlgebraicCurve.RationalFunctionField.degree_eq_zero_of_forall_eq_ord_algebraMap).
 
 ## Explanation of the source proof
 
@@ -110,7 +113,8 @@ private theorem _root_.AlgebraicCurve.Place.adicValuation_isTrivialOn' :
     v.mem_iff_adicValuation_le_one'.mp (v.algebraMap_mem' a)
 
 p2m_export "AlgebraicCurve.Place" "adicValuation_isTrivialOn'"
-private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq' {Γ : Type*}
+private theorem _root_.AlgebraicCurve.Place.isEquiv_adicValuation_of_valuationSubring_eq' {Γ :
+  Type*}
     [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
     (h : w.valuationSubring = v.toValuationSubring) : w.IsEquiv v.adicValuation :=
   (Valuation.isEquiv_iff_valuationSubring _ _).mpr
@@ -214,14 +218,18 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum.AlgebraicCurve
+  in
 theorem solution {K : Type*} [Field K] :
-    {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w}.Subsingleton :=
+    {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+      Place.ofHeightOneSpectrum w}.Subsingleton :=
   AlgebraicCurve.RationalFunctionField.rowMain
 
 end S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum (solution)
+export P2MW.S_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum
+  (solution)
 
 end privateSection
 
@@ -231,7 +239,8 @@ public section publicSection
 open AlgebraicCurve
 theorem AlgebraicCurve.RationalFunctionField.subsingleton_setOf_forall_ne_ofHeightOneSpectrum
     {K : Type*} [Field K] :
-    {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w}.Subsingleton :=
+    {v : Place K (RatFunc K) | ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
+      Place.ofHeightOneSpectrum w}.Subsingleton :=
   solution
 
 end publicSection

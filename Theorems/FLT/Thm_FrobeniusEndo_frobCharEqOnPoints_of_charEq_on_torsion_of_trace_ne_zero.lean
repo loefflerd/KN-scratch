@@ -650,7 +650,8 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
     unfold charEqPoly
     rw [eval_mul, hd, zero_mul]
   · have hkill' : Fr (Fr (Affine.Point.some x y h)) =
-        a • Fr (Affine.Point.some x y h) - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) := by
+        a • Fr (Affine.Point.some x y h) - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) :=
+          by
       have h0 := hkill
       rw [sub_add_eq_add_sub, sub_eq_zero] at h0
       exact eq_sub_of_add_eq h0
@@ -677,7 +678,8 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
       rcases Int.natAbs_eq a with hsign | hsign
       · have hrhs : a • Fr (Affine.Point.some x y h)
             - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) =
-            (Affine.Point.some xS yS hSns : V.toAffine.Point) + (- Affine.Point.some xT yT hTns) := by
+            (Affine.Point.some xS yS hSns : V.toAffine.Point) + (- Affine.Point.some xT yT hTns) :=
+              by
           rw [hsign, natCast_zsmul, natCast_zsmul, hFP, hSpt, hTpt, sub_eq_add_neg]
         have hx2 : (x : k) ^ q ^ 2 =
             V.toAffine.addX xS xT (V.toAffine.slope xS xT yS (V.toAffine.negY xT yT)) := by
@@ -688,7 +690,8 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
         ring
       · have hrhs : a • Fr (Affine.Point.some x y h)
             - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) =
-            - ((Affine.Point.some xS yS hSns : V.toAffine.Point) + Affine.Point.some xT yT hTns) := by
+            - ((Affine.Point.some xS yS hSns : V.toAffine.Point) + Affine.Point.some xT yT hTns) :=
+              by
           rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hFP, hSpt, hTpt]
           abel
         have hx2 : (x : k) ^ q ^ 2 =
@@ -1483,12 +1486,18 @@ p2m_open "WeierstrassCurve \
   P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Af\
   fine.Point FrobeniusEndo"
 
-theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
+theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
+  [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W :
+  WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0)
+  (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^
+  2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0)
+  :
     FrobCharEqOnPoints W σ a (Fintype.card F) := by
   have hinj : Function.Injective (frobEnd W σ) := Affine.Point.map_injective σ.toAlgHom
   have hFr : ∀ {x y : k} (h : (W⁄k).Nonsingular x y),
       ∃ h' : (W⁄k).Nonsingular (x ^ Fintype.card F) (y ^ Fintype.card F),
-        frobEnd W σ (Point.some x y h) = Point.some (x ^ Fintype.card F) (y ^ Fintype.card F) h' := by
+        frobEnd W σ (Point.some x y h) = Point.some (x ^ Fintype.card F) (y ^ Fintype.card F) h' :=
+          by
     intro x y h
     obtain ⟨h', e⟩ : ∃ h', σ • (Point.some x y h : (W⁄k).Point) = Point.some (σ x) (σ y) h' :=
       ⟨_, rfl⟩
@@ -1515,7 +1524,12 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) - a • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
+theorem FrobeniusEndo.frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero {R : Type*} [CommRing
+  R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] [DecidableEq k] [Algebra R F] [Algebra
+  R k] [Algebra F k] [IsScalarTower R F k] (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k) (hσ : ∀ x : k, σ
+  x = x ^ Fintype.card F) {a : ℤ} (ha : a ≠ 0) (hkill : ∀ N : ℕ, ∃ r : ℕ, N < r ∧ r.Prime ∧ Nat.card
+  (Submodule.torsionBy ℤ (W⁄k).Point r) = r ^ 2 ∧ ∀ P : (W⁄k).Point, (r : ℤ) • P = 0 → σ • (σ • P) -
+  a • (σ • P) + (Fintype.card F : ℤ) • P = 0) :
     FrobCharEqOnPoints W σ a (Fintype.card F) :=
   solution W σ hσ ha hkill
 

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
+Based on Prove2Me node
+ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
 (7fabc00c-6c36-50e8-b2c2-880239cc5eb8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission e8a85cf3-1184-556b-9641-b0edb52dd92f
@@ -305,7 +306,8 @@ theorem laurentBaseChange_le_adjoin_gensZ : FF ≤ adjoin L (gensZ L Γ) := by
   change adjoin L _ ≤ adjoin L (gensZ L Γ)
   rw [adjoin_le_iff]
   rintro _ ⟨x, hx, rfl⟩
-  have hx' : x ∈ Subfield.closure (Set.range (algebraMap ℚ (LaurentSeries ℚ)) ∪ intFormRatiosC ℚ Γ) :=
+  have hx' : x ∈ Subfield.closure (Set.range (algebraMap ℚ (LaurentSeries ℚ)) ∪ intFormRatiosC ℚ Γ)
+    :=
     hx
   have hmap : coeffEmb L x ∈ (Subfield.closure
       (Set.range (algebraMap ℚ (LaurentSeries ℚ)) ∪ intFormRatiosC ℚ Γ)).map (coeffEmb L) :=
@@ -462,7 +464,8 @@ def resHom : gaussRing A Γ →+* LaurentSeries kk where
   map_mul' f g := by
     obtain ⟨hf, hf'⟩ := wit_spec A Γ f
     obtain ⟨hg, hg'⟩ := wit_spec A Γ g
-    have h : (((f * g : gaussRing A Γ) : FF) : LaurentSeries L) * ι A ((wit A Γ f).2 * (wit A Γ g).2)
+    have h : (((f * g : gaussRing A Γ) : FF) : LaurentSeries L) * ι A ((wit A Γ f).2 * (wit A Γ
+      g).2)
         = ι A ((wit A Γ f).1 * (wit A Γ g).1) := by
       rw [map_mul, map_mul, ← hf', ← hg']; push_cast; ring
     rw [resL_eq A Γ (by rw [map_mul]; exact mul_ne_zero hf hg) h]
@@ -473,7 +476,8 @@ def resHom : gaussRing A Γ →+* LaurentSeries kk where
   map_add' f g := by
     obtain ⟨hf, hf'⟩ := wit_spec A Γ f
     obtain ⟨hg, hg'⟩ := wit_spec A Γ g
-    have h : (((f + g : gaussRing A Γ) : FF) : LaurentSeries L) * ι A ((wit A Γ f).2 * (wit A Γ g).2)
+    have h : (((f + g : gaussRing A Γ) : FF) : LaurentSeries L) * ι A ((wit A Γ f).2 * (wit A Γ
+      g).2)
         = ι A ((wit A Γ f).1 * (wit A Γ g).2 + (wit A Γ g).1 * (wit A Γ f).2) := by
       rw [map_add, map_mul, map_mul, map_mul, ← hf', ← hg']; push_cast; ring
     rw [resL_eq A Γ (by rw [map_mul]; exact mul_ne_zero hf hg) h]
@@ -548,7 +552,8 @@ theorem algebraMap_mem_gaussRing_iff (c : L) : algebraMap L FF c ∈ gaussRing A
     rw [coe_algebraMap, ι_C, map_one, mul_one]
 
 theorem resHom_algebraMap (a : A) (h : algebraMap L FF a ∈ gaussRing A Γ) :
-    resHom A Γ ⟨algebraMap L FF a, h⟩ = algebraMap kk (LaurentSeries kk) (IsLocalRing.residue A a) := by
+    resHom A Γ ⟨algebraMap L FF a, h⟩ = algebraMap kk (LaurentSeries kk) (IsLocalRing.residue A a)
+      := by
   rw [resHom_eq A Γ (x := HahnSeries.C a) (y := 1) (by simp)
     (by rw [map_one, mul_one]; change algebraMap L (LaurentSeries L) (a : L) = _; rw [ι_C]),
     ϖ_C, map_one, div_one]
@@ -565,7 +570,8 @@ local notation "kk" => IsLocalRing.ResidueField A
 local notation "Fb" => qExpFunctionFieldC (IsLocalRing.ResidueField A) Γ
 
 theorem exists_primitive_poly {r : L[X]} (hr : r ≠ 0) :
-    ∃ c : L, c ≠ 0 ∧ ∃ r₀ : A[X], r = C c * r₀.map A.subtype ∧ r₀.map (IsLocalRing.residue A) ≠ 0 := by
+    ∃ c : L, c ≠ 0 ∧ ∃ r₀ : A[X], r = C c * r₀.map A.subtype ∧ r₀.map (IsLocalRing.residue A) ≠ 0
+      := by
   have hne : (r.support.image r.coeff).Nonempty := by
     rw [Finset.image_nonempty, Polynomial.nonempty_support_iff]; exact hr
   obtain ⟨c, hcT, hcmax⟩ := Finset.exists_max_image _ A.valuation hne
@@ -711,7 +717,8 @@ theorem exists_resHom_eq {z : LaurentSeries kk} (hz : z ∈ qExpFunctionFieldC k
       have hϖg : ϖ A (intSeriesA A pg) ≠ 0 := by rwa [ϖ_intSeriesA]
       have hιg : ι A (intSeriesA A pg) ≠ 0 := by
         rw [Ne, ι_eq_zero_iff]; exact ϖ_ne_zero_ne_zero hϖg
-      have hw : ((⟨_, hmem⟩ : FF) : LaurentSeries L) * ι A (intSeriesA A pg) = ι A (intSeriesA A pf) :=
+      have hw : ((⟨_, hmem⟩ : FF) : LaurentSeries L) * ι A (intSeriesA A pg) = ι A (intSeriesA A pf)
+        :=
         by
         change ι A (intSeriesA A pf) / ι A (intSeriesA A pg) * ι A (intSeriesA A pg) = _
         rw [div_mul_cancel₀ _ hιg]
@@ -759,13 +766,18 @@ theorem exists_adjoin_coe_eq_resHom {g : FF} (hgK : g ∈ IntermediateField.adjo
   by_cases he : cr / cs ∈ A
   · have hw : (g : LaurentSeries L) * ι A S₀ = ι A (HahnSeries.C ⟨cr / cs, he⟩ * R₀) := by
       rw [hgcoe, map_mul, ι_C]
-    have e0k : ∀ p : kk[X], ((aeval (jbar Γ kk : Fb) p : Fb) : LaurentSeries kk) = aeval (jqModC kk) p :=
+    have e0k : ∀ p : kk[X], ((aeval (jbar Γ kk : Fb) p : Fb) : LaurentSeries kk) = aeval (jqModC kk)
+      p :=
       fun p => (aeval_algHom_apply (qExpFunctionFieldC kk Γ).val (jbar Γ kk) p).symm
-    have hmemK : ∀ p : kk[X], aeval (jbar Γ kk : Fb) p ∈ IntermediateField.adjoin kk {(jbar Γ kk : Fb)} :=
-      fun p => IntermediateField.algebra_adjoin_le_adjoin kk _ (Polynomial.aeval_mem_adjoin_singleton kk _)
-    refine ⟨⟨aeval (jbar Γ kk : Fb) (C (IsLocalRing.residue A ⟨cr / cs, he⟩) * r₀.map (IsLocalRing.residue A)) /
+    have hmemK : ∀ p : kk[X], aeval (jbar Γ kk : Fb) p ∈ IntermediateField.adjoin kk {(jbar Γ kk :
+      Fb)} :=
+      fun p => IntermediateField.algebra_adjoin_le_adjoin kk _
+        (Polynomial.aeval_mem_adjoin_singleton kk _)
+    refine ⟨⟨aeval (jbar Γ kk : Fb) (C (IsLocalRing.residue A ⟨cr / cs, he⟩) * r₀.map
+      (IsLocalRing.residue A)) /
       aeval (jbar Γ kk : Fb) (s₀.map (IsLocalRing.residue A)), div_mem (hmemK _) (hmemK _)⟩, ?_⟩
-    change (((aeval (jbar Γ kk : Fb) (C (IsLocalRing.residue A ⟨cr / cs, he⟩) * r₀.map (IsLocalRing.residue A)) /
+    change (((aeval (jbar Γ kk : Fb) (C (IsLocalRing.residue A ⟨cr / cs, he⟩) * r₀.map
+      (IsLocalRing.residue A)) /
       aeval (jbar Γ kk : Fb) (s₀.map (IsLocalRing.residue A)) : Fb)) : LaurentSeries kk) = _
     rw [resHom_eq A Γ (f := ⟨g, hgO⟩) hS₀ hw, map_mul (ϖ A), ϖ_C, hϖR, hϖS,
       IntermediateField.coe_div, map_mul, IntermediateField.coe_mul, e0k, e0k, aeval_C]
@@ -814,7 +826,8 @@ local notation "Fb" => qExpFunctionFieldC (IsLocalRing.ResidueField A) Γ
 theorem card_le_finrank_of_linearIndependent
     [Module.Finite (IntermediateField.adjoin L {(jF Γ : FF)}) FF]
     (s : Finset Fb)
-    (hli : LinearIndependent (IntermediateField.adjoin kk {(jbar Γ kk : Fb)}) (fun i : s => (i : Fb))) :
+    (hli : LinearIndependent (IntermediateField.adjoin kk {(jbar Γ kk : Fb)}) (fun i : s => (i :
+      Fb))) :
     s.card ≤ Module.finrank (IntermediateField.adjoin L {(jF Γ : FF)}) FF := by
   set K0 := IntermediateField.adjoin L {(jF Γ : FF)} with hK0
   set K0' := IntermediateField.adjoin kk {(jbar Γ kk : Fb)} with hK0'
@@ -919,7 +932,8 @@ theorem finite_adjoin_adjoin {x t : F} (hfin : FiniteDimensional (IntermediateFi
       have haE : (a : F) ∈ E := by
         have hle : Kx ≤ E.restrictScalars K :=
           IntermediateField.adjoin_simple_le_iff.mpr
-            ((IntermediateField.mem_restrictScalars K).mpr (IntermediateField.mem_adjoin_simple_self Kt x))
+            ((IntermediateField.mem_restrictScalars K).mpr (IntermediateField.mem_adjoin_simple_self
+              Kt x))
         exact hle a.2
       have : (a • y : F) = (⟨(a : F), haE⟩ : E) • y := rfl
       rw [this]
@@ -1065,7 +1079,8 @@ end
 
 end S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
 end P2MW
-export P2MW.S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField (solution)
+export P2MW.S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
+  (solution)
 
 end privateSection
 

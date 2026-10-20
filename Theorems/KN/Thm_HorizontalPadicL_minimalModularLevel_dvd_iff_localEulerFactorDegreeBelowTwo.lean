@@ -122,10 +122,12 @@ imported proved MTT lemmas.
 
 Formal-code attribution: the inverse-slash descent construction is adapted from the Apache-2.0
 [Fermat's Last Theorem project
-solution](https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536de0d8e75b9a3e9ef/P2M/Sol/S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero.lean),
+solution]
+(https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536de0d8e75b9a3e9ef/P2M/Sol/S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero.lean),
 copyright 2026 Anthropic, PBC. The rational completion residue-field comparison is adapted from
 Riccardo Brasca's Apache-2.0 [Norwich
-project](https://github.com/riccardobrasca/Norwich/blob/master/Norwich/Preliminaries/LFunctionGoodReduction.lean),
+project]
+(https://github.com/riccardobrasca/Norwich/blob/master/Norwich/Preliminaries/LFunctionGoodReduction.lean),
 copyright 2026 Riccardo Brasca. The proof retains these notices. All imported theorem nodes were
 already marked Proved; no new open child lemma is assumed.
 
@@ -457,7 +459,8 @@ theorem qParam_vadd_pow {q n : ℕ} (hq : q ≠ 0) (hn : q ∣ n) (τ : ℍ) :
   push_cast
   have hqq : (q : ℂ) * (q : ℂ)⁻¹ = 1 := mul_inv_cancel₀ hq'
   rw [show (q : ℂ) * (k : ℂ) * (2 * Real.pi * Complex.I * (((q : ℂ))⁻¹ + (τ : ℂ)) / 1)
-      = (q : ℂ) * (k : ℂ) * (2 * Real.pi * Complex.I * (τ : ℂ) / 1) + (k : ℂ) * (2 * Real.pi * Complex.I)
+      = (q : ℂ) * (k : ℂ) * (2 * Real.pi * Complex.I * (τ : ℂ) / 1) + (k : ℂ) * (2 * Real.pi *
+        Complex.I)
       by linear_combination ((k : ℂ) * (2 * Real.pi * Complex.I)) * hqq,
     Complex.exp_add, Complex.exp_nat_mul_two_pi_mul_I, mul_one]
 
@@ -948,7 +951,8 @@ namespace HorizontalPadicL
 theorem minimalModularLevel_dvd_iff_localEulerFactorDegreeBelowTwo
     (E : WeierstrassCurve ℚ) [E.IsElliptic] (hmod : IsModular E)
     (p : ℕ) (hp : p.Prime) :
-    (p ∣ modularConductor E hmod ↔ LocalEulerFactorDegreeBelowTwo E p) := _root_.solution E hmod p hp
+    (p ∣ modularConductor E hmod ↔ LocalEulerFactorDegreeBelowTwo E p) := _root_.solution E hmod p
+      hp
 
 end HorizontalPadicL
 

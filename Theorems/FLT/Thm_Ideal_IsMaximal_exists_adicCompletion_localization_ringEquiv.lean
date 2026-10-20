@@ -79,18 +79,22 @@ theorem exists_ringEquiv (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n)
       ∀ (n : ℕ) (x : AdicCompletion I R)
         , AdicCompletion.evalₐ J n (E x) = e n (AdicCompletion.evalₐ I n x) := by
   have he' : ∀ {m n : ℕ} (hle : m ≤ n) (y : S ⧸ J ^ n),
-      (e m).symm (Ideal.Quotient.factorPow J hle y) = Ideal.Quotient.factorPow I hle ((e n).symm y) := by
+      (e m).symm (Ideal.Quotient.factorPow J hle y) = Ideal.Quotient.factorPow I hle ((e n).symm y)
+        := by
     intro m n hle y
     apply (e m).injective
     rw [RingEquiv.apply_symm_apply, he, RingEquiv.apply_symm_apply]
   let F : AdicCompletion I R →+* AdicCompletion J S :=
-    AdicCompletion.liftRingHom J (fun n => (e n).toRingHom.comp (AdicCompletion.evalₐ I n).toRingHom) (by
+    AdicCompletion.liftRingHom J (fun n => (e n).toRingHom.comp (AdicCompletion.evalₐ I
+      n).toRingHom) (by
       intro m n hle
       ext x
-      change Ideal.Quotient.factorPow J hle (e n (AdicCompletion.evalₐ I n x)) = e m (AdicCompletion.evalₐ I m x)
+      change Ideal.Quotient.factorPow J hle (e n (AdicCompletion.evalₐ I n x)) = e m
+        (AdicCompletion.evalₐ I m x)
       rw [← he, factorPow_evalₐ])
   let G : AdicCompletion J S →+* AdicCompletion I R :=
-    AdicCompletion.liftRingHom I (fun n => (e n).symm.toRingHom.comp (AdicCompletion.evalₐ J n).toRingHom) (by
+    AdicCompletion.liftRingHom I (fun n => (e n).symm.toRingHom.comp (AdicCompletion.evalₐ J
+      n).toRingHom) (by
       intro m n hle
       ext y
       change Ideal.Quotient.factorPow I hle ((e n).symm (AdicCompletion.evalₐ J n y)) =
@@ -110,7 +114,8 @@ theorem exists_ringEquiv (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n)
 
 theorem apply_of_eq_of (e : ∀ n : ℕ, R ⧸ I ^ n ≃+* S ⧸ J ^ n)
     (E : AdicCompletion I R ≃+* AdicCompletion J S)
-    (hE : ∀ (n : ℕ) (x : AdicCompletion I R), AdicCompletion.evalₐ J n (E x) = e n (AdicCompletion.evalₐ I n x))
+    (hE : ∀ (n : ℕ) (x : AdicCompletion I R), AdicCompletion.evalₐ J n (E x) = e n
+      (AdicCompletion.evalₐ I n x))
     (θ : R → S)
     (hθ : ∀ (n : ℕ) (r : R), e n (Ideal.Quotient.mk (I ^ n) r) = Ideal.Quotient.mk (J ^ n) (θ r))
     (r : R) :
@@ -124,7 +129,8 @@ end AdicIso
 open AdicIso in
 theorem solution
     {C : Type u} [CommRing C] (𝔪 : Ideal C) [𝔪.IsMaximal] :
-    ∃ e : AdicCompletion (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) (Localization.AtPrime 𝔪) ≃+*
+    ∃ e : AdicCompletion (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) (Localization.AtPrime
+      𝔪) ≃+*
         AdicCompletion 𝔪 C,
       ∀ c : C, e (algebraMap (Localization.AtPrime 𝔪) _ (algebraMap C (Localization.AtPrime 𝔪) c)) =
         algebraMap C (AdicCompletion 𝔪 C) c := by
@@ -138,27 +144,32 @@ theorem solution
     obtain ⟨y, i, hi, hyi⟩ := (‹𝔪.IsMaximal›).exists_inv hs
     have hnil : IsNilpotent (Ideal.Quotient.mk (𝔪 ^ n) i) :=
       ⟨n, by rw [← map_pow, Ideal.Quotient.eq_zero_iff_mem]; exact Ideal.pow_mem_pow hi n⟩
-    have h1 : Ideal.Quotient.mk (𝔪 ^ n) y * Ideal.Quotient.mk (𝔪 ^ n) s = 1 - Ideal.Quotient.mk (𝔪 ^ n) i :=
+    have h1 : Ideal.Quotient.mk (𝔪 ^ n) y * Ideal.Quotient.mk (𝔪 ^ n) s = 1 - Ideal.Quotient.mk (𝔪 ^
+      n) i :=
       by
       rw [← map_mul, eq_sub_of_add_eq hyi, map_sub, map_one]
     exact isUnit_of_mul_isUnit_right (h1 ▸ hnil.isUnit_one_sub)
-  have hU : ∀ n : ℕ, Algebra.algebraMapSubmonoid (C ⧸ 𝔪 ^ n) 𝔪.primeCompl ≤ IsUnit.submonoid (C ⧸ 𝔪 ^ n) :=
+  have hU : ∀ n : ℕ, Algebra.algebraMapSubmonoid (C ⧸ 𝔪 ^ n) 𝔪.primeCompl ≤ IsUnit.submonoid (C ⧸ 𝔪
+    ^ n) :=
     by
     intro n x hx
     rw [Algebra.algebraMapSubmonoid, Submonoid.mem_map] at hx
     obtain ⟨s, hs, rfl⟩ := hx
     exact hunit n s hs
-  let d : ∀ n : ℕ, C ⧸ 𝔪 ^ n ≃+* Localization.AtPrime 𝔪 ⧸ (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) ^ n :=
+  let d : ∀ n : ℕ, C ⧸ 𝔪 ^ n ≃+* Localization.AtPrime 𝔪 ⧸ (IsLocalRing.maximalIdeal
+    (Localization.AtPrime 𝔪)) ^ n :=
     fun n =>
       (IsLocalization.atUnits (C ⧸ 𝔪 ^ n) (Algebra.algebraMapSubmonoid (C ⧸ 𝔪 ^ n) 𝔪.primeCompl)
-          (S := Localization.AtPrime 𝔪 ⧸ (𝔪 ^ n).map (algebraMap C (Localization.AtPrime 𝔪))) (hU n)).toRingEquiv.trans
+          (S := Localization.AtPrime 𝔪 ⧸ (𝔪 ^ n).map (algebraMap C (Localization.AtPrime 𝔪))) (hU
+            n)).toRingEquiv.trans
         (Ideal.quotEquivOfEq (hmap n))
   have hd_mk : ∀ (n : ℕ) (c : C), d n (Ideal.Quotient.mk (𝔪 ^ n) c) =
       Ideal.Quotient.mk _ (algebraMap C (Localization.AtPrime 𝔪) c) := by
     intro n c
     have h :=
       (IsLocalization.atUnits (C ⧸ 𝔪 ^ n) (Algebra.algebraMapSubmonoid (C ⧸ 𝔪 ^ n) 𝔪.primeCompl)
-      (S := Localization.AtPrime 𝔪 ⧸ (𝔪 ^ n).map (algebraMap C (Localization.AtPrime 𝔪))) (hU n)).commutes
+      (S := Localization.AtPrime 𝔪 ⧸ (𝔪 ^ n).map (algebraMap C (Localization.AtPrime 𝔪))) (hU
+        n)).commutes
       (Ideal.Quotient.mk (𝔪 ^ n) c)
     rw [Algebra.algebraMap_self, RingHom.id_apply,
       Ideal.Quotient.algebraMap_quotient_map_quotient] at h
@@ -192,7 +203,8 @@ universe u
 
 theorem Ideal.IsMaximal.exists_adicCompletion_localization_ringEquiv
     {C : Type u} [CommRing C] (𝔪 : Ideal C) [𝔪.IsMaximal] :
-    ∃ e : AdicCompletion (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) (Localization.AtPrime 𝔪) ≃+*
+    ∃ e : AdicCompletion (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) (Localization.AtPrime
+      𝔪) ≃+*
         AdicCompletion 𝔪 C,
       ∀ c : C, e (algebraMap (Localization.AtPrime 𝔪) _ (algebraMap C (Localization.AtPrime 𝔪) c)) =
         algebraMap C (AdicCompletion 𝔪 C) c :=

@@ -84,9 +84,11 @@ theorem solution
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (Pl : SL(2, ℤ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hΓPl : ∀ γ ∈ Γ, ∀ σ : SL(2, ℤ), Pl (γ * σ) = Pl σ)
-    (hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0 →
+    (hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0
+      →
       ∃ L : ℂ, L ≠ 0 ∧
-        Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
+        Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ
+          • τ))
           UpperHalfPlane.atImInfty (nhds L))
     (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hP : y ∉ P.toValuationSubring) :
@@ -94,7 +96,8 @@ theorem solution
   classical
   by_contra hcon
   push Not at hcon
-  let Pl' : Quotient (QuotientGroup.rightRel Γ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀) :=
+  let Pl' : Quotient (QuotientGroup.rightRel Γ) → AlgebraicCurve.Place ℂ
+    ↥(ModularCurve.laurentBaseChange ℂ F₀) :=
     Quotient.lift Pl (by
       intro a b hab
       have hab' : b * a⁻¹ ∈ Γ := QuotientGroup.rightRel_apply.mp hab
@@ -118,11 +121,13 @@ theorem solution
     have h := hg (Pl σ) (Finset.mem_insert_of_mem (hS₀ σ))
     rwa [ite_eq_right (hcon σ)] at h
   have hcusp : ∀ σ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧
-      Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) (σ • τ)) UpperHalfPlane.atImInfty (nhds L) :=
+      Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) (σ •
+        τ)) UpperHalfPlane.atImInfty (nhds L) :=
     fun σ => hlim σ g hg0 (hσg σ)
   have h0 : P.ord g = 0 :=
     ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto Γ hT hΓ F₀ hF g
-      (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) τ) (fun τ => Filter.EventuallyEq.rfl) hcusp P y hy hP
+      (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) τ) (fun τ =>
+        Filter.EventuallyEq.rfl) hcusp P y hy hP
   rw [h0] at hPg
   exact zero_ne_one hPg
 
@@ -145,9 +150,11 @@ theorem ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (Pl : SL(2, ℤ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hΓPl : ∀ γ ∈ Γ, ∀ σ : SL(2, ℤ), Pl (γ * σ) = Pl σ)
-    (hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0 →
+    (hlim : ∀ (σ : SL(2, ℤ)) (x : ↥(ModularCurve.laurentBaseChange ℂ F₀)), x ≠ 0 → (Pl σ).ord x = 0
+      →
       ∃ L : ℂ, L ≠ 0 ∧
-        Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
+        Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ
+          • τ))
           UpperHalfPlane.atImInfty (nhds L))
     (P : AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (hP : y ∉ P.toValuationSubring) :

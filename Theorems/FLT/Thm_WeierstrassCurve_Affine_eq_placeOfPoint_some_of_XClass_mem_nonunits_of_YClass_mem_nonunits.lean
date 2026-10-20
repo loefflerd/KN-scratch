@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+Based on Prove2Me node
+WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 (ea6ca28e-5425-5a6f-b3c4-b511c0ce9cf4) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 27bec31f-bafa-5013-a176-befc6fbbfbc9
@@ -48,9 +49,11 @@ This is the uniqueness half of the dictionary between affine points and places: 
 nonsingular affine point, in the sense that $X-x$ and $Y-y$ both lie in its maximal ideal, is forced
 to be the place attached to that point by the genus-one gate. It is used when identifying the places
 obtained by restricting along isogenies and Vélu-type maps, in
-[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`](thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul)
+[`WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul`]
+(thm.html#WeierstrassCurve.Affine.exists_isogenyEndDatum_restrictAlong_placeOfPoint_eq_smul)
 and
-[`WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2`](thm.html#WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2).
+[`WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2`]
+(thm.html#WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2).
 
 ## Explanation of the source proof
 
@@ -90,7 +93,9 @@ theorem solution
 
 end S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits (solution)
+export
+  P2MW.S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+  (solution)
 
 end privateSection
 

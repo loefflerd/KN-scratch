@@ -43,9 +43,11 @@ This identifies the normalised order function of a finite place of the rational 
 $K(t)$, defined through the place's own valuation ring, with the exponent of the corresponding
 $w$-adic valuation on $\mathrm{RatFunc}\,K$; it is the computational form in which orders at finite
 places are used. It is cited by
-[`AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_of_span`](thm.html#AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_of_span)
+[`AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_of_span`]
+(thm.html#AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_of_span)
 and by
-[`AlgebraicCurve.RationalFunctionField.trace_localResidue_finitePlace_div_pow_eq_zero`](thm.html#AlgebraicCurve.RationalFunctionField.trace_localResidue_finitePlace_div_pow_eq_zero).
+[`AlgebraicCurve.RationalFunctionField.trace_localResidue_finitePlace_div_pow_eq_zero`]
+(thm.html#AlgebraicCurve.RationalFunctionField.trace_localResidue_finitePlace_div_pow_eq_zero).
 
 ## Explanation of the source proof
 
@@ -67,7 +69,8 @@ open scoped Polynomial
 
 theorem solution {K : Type*} [Field K] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K))
     {p : Polynomial K} (hp : p ≠ 0) (hw : w.asIdeal = Ideal.span {p}) {f : RatFunc K} (hf : f ≠ 0) :
-    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord f = -WithZero.log (w.valuation (RatFunc K) f) := by
+    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord f = -WithZero.log (w.valuation
+      (RatFunc K) f) := by
   have hval : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) p) = exp (-1 : ℤ) := by
     have h := w.intValuation_singleton hp hw
     rw [← h]
@@ -88,7 +91,8 @@ open AlgebraicCurve
 theorem AlgebraicCurve.RationalFunctionField.ord_ofHeightOneSpectrum_eq_neg_log {K : Type*}
     [Field K] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) {p : Polynomial K}
     (hp : p ≠ 0) (hw : w.asIdeal = Ideal.span {p}) {f : RatFunc K} (hf : f ≠ 0) :
-    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord f = -WithZero.log (w.valuation (RatFunc K) f) :=
+    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ord f = -WithZero.log (w.valuation
+      (RatFunc K) f) :=
   solution w hp hw hf
 
 end publicSection

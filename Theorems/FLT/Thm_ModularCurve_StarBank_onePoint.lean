@@ -241,7 +241,8 @@ example : (((1 : LaurentSeries (ZMod 2)) + HahnSeries.single (1 : ℤ) 1) - 1).c
   rw [add_sub_cancel_left, HahnSeries.coeff_single, ite_eq_left rfl]
   decide
 
-open Polynomial HahnSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve in
+open Polynomial HahnSeries _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve in
 theorem solution {K : Type*} [Field K] {M : ℕ}
     (hM : (M : K) ≠ 0) {c : K} (hc : c ≠ 0) {β₀ : K}
     (hstar : Polynomial.aeval (ModularCurve.jqModC K)

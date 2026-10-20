@@ -41,9 +41,11 @@ This is the classical statement that $\Phi_N(X,X)$ is, up to sign, monic when $N
 square, the source of integrality of singular moduli and of the $j$-invariants of curves carrying a
 cyclic endomorphism of degree $N$. It is used in the construction of integral models for isogeny
 endomorphism data, in
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j)
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j)
 and
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j).
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j).
 
 ## Explanation of the source proof
 
@@ -63,7 +65,8 @@ theorem solution
     (N : ℕ) [NeZero N] (h2 : 2 ≤ N) (hN : ¬ IsSquare N)
     (data : ModularCurve.ModularPolynomialData N) :
     IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=
-  (fun _ => ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare N hN data) h2
+  (fun _ => ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare N hN data)
+    h2
 
 end S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag
 end P2MW

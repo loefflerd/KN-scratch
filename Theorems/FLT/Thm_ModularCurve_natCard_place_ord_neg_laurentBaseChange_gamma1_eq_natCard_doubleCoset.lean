@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
+Based on Prove2Me node
+ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
 (bfb5c657-61f1-572d-9030-5dce9a7005f8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 1eccfff4-914e-51f0-8fec-6cd7a9837145
@@ -148,7 +149,8 @@ theorem natCard_place_le_natCard_doubleCoset (t : L) (L₀ : IntermediateField �
     Nat.card {P : AlgebraicCurve.Place ℂ E // 0 < P.ord (x - algebraMap ℂ E c)} ≤
       Nat.card (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := by
   subst hL₀
-  exact AlgebraicCurve.natCard_place_ord_sub_pos_le_natCard_doubleCoset ℂ t inferInstance inferInstance
+  exact AlgebraicCurve.natCard_place_ord_sub_pos_le_natCard_doubleCoset ℂ t inferInstance
+    inferInstance
     σ hσ Γ Kst E hE c W hW hD x hx
 
 theorem algebraMap_mem_adjoin (t : L) (E : IntermediateField ℂ⟮t⟯ L) (x : E) (hx : (x : L) = t)
@@ -375,7 +377,8 @@ theorem adjoin_range_eq_top
     IntermediateField.adjoin ℂ (Set.range (algebraMap F E)) = ⊤ := by
   let f : E →ₐ[ℂ] L := E.val.restrictScalars ℂ
   set A := IntermediateField.adjoin ℂ (Set.range (algebraMap F E)) with hA
-  have hmapA : A.map f = IntermediateField.adjoin ℂ (Set.range fun u : F => (algebraMap F E u : L)) :=
+  have hmapA : A.map f = IntermediateField.adjoin ℂ (Set.range fun u : F => (algebraMap F E u : L))
+    :=
     by
     rw [hA, IntermediateField.adjoin_map, ← Set.range_comp]
     rfl
@@ -410,7 +413,8 @@ variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (LevelN.ring M) K]
   [IsScalarTower ℂ (LevelN.ring M) K] [IsFractionRing (LevelN.ring M) K]
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
-local notation "FF" => laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
+local notation "FF" => laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ
+  (CongruenceSubgroup.Gamma1 M))
 
 include K in
 theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF)
@@ -527,7 +531,8 @@ theorem natCard_place_ord_lt_zero_eq (y : FF) (hy : (y : LaurentSeries ℚ̄) = 
   let ι : ℚ̄ →+* ℂ := (IsAlgClosed.lift (R := ℚ) (M := ℂ) (S := ℚ̄)).toRingHom
   refine le_antisymm (natCard_place_ord_lt_zero_le M (FractionRing (LevelN.ring M)) ι y hy) ?_
   have hfull :=
-    ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℚ̄ M y hy
+    ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℚ̄ M y
+      hy
   exact (ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index M
     (CongruenceSubgroup.Gamma1 M) le_rfl y hy hfull).2.2
 
@@ -564,7 +569,8 @@ theorem algebraMap_laurentSeries_eq_C {L : Type*} [Field L] (a : L) :
   rw [h1, HahnSeries.ofPowerSeries_C]
 
 theorem coeffMap_algebraMap' (a : κ) :
-    coeffMap τ.toRingHom (algebraMap κ (LaurentSeries κ) a) = algebraMap k (LaurentSeries k) (τ a) := by
+    coeffMap τ.toRingHom (algebraMap κ (LaurentSeries κ) a) = algebraMap k (LaurentSeries k) (τ a)
+      := by
   rw [algebraMap_laurentSeries_eq_C, algebraMap_laurentSeries_eq_C, HahnSeries.C_apply,
     HahnSeries.C_apply,
     coeffMap_single]
@@ -580,7 +586,8 @@ variable (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
 theorem coeffMap_mem_laurentBaseChange {x : LaurentSeries κ} (hx : x ∈ laurentBaseChange κ F₀) :
     coeffMap τ.toRingHom x ∈ laurentBaseChange k F₀ := by
   rw [mem_laurentBaseChange_iff] at hx
-  have hle : Subfield.closure (Set.range (algebraMap κ (LaurentSeries κ)) ∪ (⇑(coeffEmb κ) '' (F₀ : Set (LaurentSeries ℚ)))) ≤
+  have hle : Subfield.closure (Set.range (algebraMap κ (LaurentSeries κ)) ∪ (⇑(coeffEmb κ) '' (F₀ :
+    Set (LaurentSeries ℚ)))) ≤
       (laurentBaseChange k F₀).toSubfield.comap (coeffMap τ.toRingHom) := by
     rw [Subfield.closure_le]
     rintro z (⟨a, rfl⟩ | ⟨w, hw, rfl⟩)
@@ -593,11 +600,13 @@ theorem coeffMap_mem_laurentBaseChange {x : LaurentSeries κ} (hx : x ∈ lauren
   exact hle hx
 
 noncomputable def psi : ↥(laurentBaseChange κ F₀) →+* ↥(laurentBaseChange k F₀) :=
-  RingHom.codRestrict ((coeffMap τ.toRingHom).comp (algebraMap ↥(laurentBaseChange κ F₀) (LaurentSeries κ)))
+  RingHom.codRestrict ((coeffMap τ.toRingHom).comp (algebraMap ↥(laurentBaseChange κ F₀)
+    (LaurentSeries κ)))
     (laurentBaseChange k F₀) (fun f => coeffMap_mem_laurentBaseChange τ F₀ f.2)
 
 theorem coe_psi (f : ↥(laurentBaseChange κ F₀)) :
-    ((psi τ F₀ f : ↥(laurentBaseChange k F₀)) : LaurentSeries k) = coeffMap τ.toRingHom (f : LaurentSeries κ) := rfl
+    ((psi τ F₀ f : ↥(laurentBaseChange k F₀)) : LaurentSeries k) = coeffMap τ.toRingHom (f :
+      LaurentSeries κ) := rfl
 
 end CoeffMap
 
@@ -614,11 +623,14 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M]
     (yK : ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
     (hyK : (yK : LaurentSeries K) = jqModC K)
-    (y : ↥(laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+      M))))
     (hy : (y : LaurentSeries (AlgebraicClosure ℚ)) = jqModC (AlgebraicClosure ℚ)) :
-    Nat.card {P : Place K ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord yK < 0} =
+    Nat.card {P : Place K ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+      M))) // P.ord yK < 0} =
       Nat.card {P : Place (AlgebraicClosure ℚ)
-        ↥(laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} := by
+        ↥(laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
+          M))) // P.ord y < 0} := by
   classical
   let F₀ : IntermediateField ℚ (LaurentSeries ℚ) :=
     qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)
@@ -626,7 +638,8 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
   have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let τ : (AlgebraicClosure ℚ) →ₐ[ℚ] K := IsAlgClosed.lift
   let Ψ : ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) →+* ↥(laurentBaseChange K F₀) := psi τ F₀
-  have hΨ : ∀ f, ((Ψ f : ↥(laurentBaseChange K F₀)) : LaurentSeries K) = coeffMap τ.toRingHom (f : LaurentSeries (AlgebraicClosure ℚ)) :=
+  have hΨ : ∀ f, ((Ψ f : ↥(laurentBaseChange K F₀)) : LaurentSeries K) = coeffMap τ.toRingHom (f :
+    LaurentSeries (AlgebraicClosure ℚ)) :=
     fun f => rfl
   have hΨy : Ψ y = yK := by
     apply Subtype.ext
@@ -651,29 +664,35 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     ((algebraMap K ↥(laurentBaseChange K F₀)).comp τ.toRingHom).toAlgebra
   have : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K F₀) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  have : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀) :=
+  have : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀)
+    ↥(laurentBaseChange K F₀) :=
     by
     refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
     apply Subtype.ext
-    change ((algebraMap K ↥(laurentBaseChange K F₀) (τ a) : ↥(laurentBaseChange K F₀)) : LaurentSeries K) =
-      ((Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) a) : ↥(laurentBaseChange K F₀)) : LaurentSeries K)
+    change ((algebraMap K ↥(laurentBaseChange K F₀) (τ a) : ↥(laurentBaseChange K F₀)) :
+      LaurentSeries K) =
+      ((Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) a) :
+        ↥(laurentBaseChange K F₀)) : LaurentSeries K)
     rw [hΨ]
     exact (coeffMap_algebraMap' τ a).symm
   have hgen : IntermediateField.adjoin K
-      (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀))) = ⊤ := by
+      (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K
+        F₀))) = ⊤ := by
     rw [eq_top_iff]
     rintro ⟨v, hv⟩ -
     have hv' := (mem_laurentBaseChange_iff).mp hv
     have hle : Subfield.closure (Set.range (algebraMap K (LaurentSeries K)) ∪
         (⇑(coeffEmb K) '' (F₀ : Set (LaurentSeries ℚ)))) ≤
         (IntermediateField.adjoin K
-          (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀)))).toSubfield.map
+          (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K
+            F₀)))).toSubfield.map
           (algebraMap ↥(laurentBaseChange K F₀) (LaurentSeries K)) := by
       rw [Subfield.closure_le]
       rintro z (⟨a, rfl⟩ | ⟨w, hw, rfl⟩)
       · exact ⟨algebraMap K ↥(laurentBaseChange K F₀) a, IntermediateField.algebraMap_mem _ a,
           (IsScalarTower.algebraMap_apply K ↥(laurentBaseChange K F₀) (LaurentSeries K) a).symm⟩
-      · refine ⟨Ψ ⟨coeffEmb (AlgebraicClosure ℚ) w, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) hw⟩,
+      · refine ⟨Ψ ⟨coeffEmb (AlgebraicClosure ℚ) w, coeffEmb_mem_laurentBaseChange (AlgebraicClosure
+          ℚ) hw⟩,
           IntermediateField.subset_adjoin K _ ⟨_, rfl⟩, ?_⟩
         change ((Ψ _ : ↥(laurentBaseChange K F₀)) : LaurentSeries K) = coeffEmb K w
         rw [hΨ]
@@ -683,18 +702,23 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     rw [← hw]
     exact hwA
   have hlift := fun P : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) =>
-    AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀)
+    AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension (AlgebraicClosure ℚ)
+      ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀)
       K ↥(laurentBaseChange K F₀) ⟨y, htr, hfin⟩ ⟨yK, htrK, hfinK⟩ hgen P
-  let lift : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) → Place K ↥(laurentBaseChange K F₀) :=
+  let lift : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) → Place K
+    ↥(laurentBaseChange K F₀) :=
     fun P => (hlift P).choose
   have hlift_comap : ∀ P, (lift P).toValuationSubring.comap
-      (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀)) = P.toValuationSubring :=
+      (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀)) =
+        P.toValuationSubring :=
     fun P => (hlift P).choose_spec.1
   have hlift_ord : ∀ P f, (lift P).ord (Ψ f) = P.ord f := fun P f => (hlift P).choose_spec.2.1 f
   have hlift_uniq : ∀ P Q', Q'.toValuationSubring.comap
-      (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀)) = P.toValuationSubring → Q' = lift P :=
+      (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀)) =
+        P.toValuationSubring → Q' = lift P :=
     fun P Q' h => (hlift P).choose_spec.2.2 Q' h
-  let g : {P : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) // P.ord y < 0} →
+  let g : {P : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) // P.ord y <
+    0} →
       {Q : Place K ↥(laurentBaseChange K F₀) // Q.ord yK < 0} :=
     fun P => ⟨lift P.1, by rw [← hΨy, hlift_ord]; exact P.2⟩
   have ginj : Function.Injective g := by
@@ -707,7 +731,8 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     rintro ⟨Q, hQ⟩
     have hQy : Q.ord (Ψ y) ≠ 0 := by rw [hΨy]; exact ne_of_lt hQ
     obtain ⟨P₀, hP₀⟩ :=
-      ModularCurve.exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange K (CongruenceSubgroup.Gamma1 M) hT
+      ModularCurve.exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange K
+        (CongruenceSubgroup.Gamma1 M) hT
         τ Ψ hΨ Q ⟨y, hQy⟩
     have hP₀y : P₀.ord y < 0 := by rw [← hP₀ y, hΨy]; exact hQ
     refine ⟨⟨P₀, hP₀y⟩, ?_⟩
@@ -735,31 +760,39 @@ open scoped MatrixGroups
 theorem solution
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
     (M : ℕ) [NeZero M]
-    (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries K) = ModularCurve.jqModC K) :
-    Nat.card {P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} =
+    Nat.card {P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K
+      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} =
       Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) := by
+        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+          ℤ))) := by
   let y₀ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
       (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     ⟨ModularCurve.jqModC (AlgebraicClosure ℚ),
-      ModularCurve.CuspTransport.jqModC_mem_laurentBaseChange (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M)⟩
+      ModularCurve.CuspTransport.jqModC_mem_laurentBaseChange (AlgebraicClosure ℚ)
+        (CongruenceSubgroup.Gamma1 M)⟩
   rw [ModularCurve.CuspTransport.natCard_place_ord_lt_zero_laurentBaseChange_eq K M y hy y₀ rfl]
   exact ModularCurve.CuspFibreGamma1.natCard_place_ord_lt_zero_eq M y₀ rfl
 
 example
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
     (M : ℕ) [NeZero M]
-    (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries K) = ModularCurve.jqModC K) :
-    Nat.card {P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} =
+    Nat.card {P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K
+      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} =
       Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) :=
+        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+          ℤ))) :=
   solution K M y hy
 
 end S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
 end P2MW
-export P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset (solution)
+export P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
+  (solution)
 
 end privateSection
 
@@ -772,11 +805,14 @@ open scoped MatrixGroups
 theorem ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
     (M : ℕ) [NeZero M]
-    (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries K) = ModularCurve.jqModC K) :
-    Nat.card {P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} =
+    Nat.card {P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K
+      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} =
       Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
-        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) :=
+        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
+          ℤ))) :=
   solution K M y hy
 
 end publicSection

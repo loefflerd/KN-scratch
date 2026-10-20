@@ -41,7 +41,8 @@ pole of order exactly $2s$ and $y$ a pole of order exactly $3s$ at $\mathfrak m$
 This is the standard description of affine points of a Weierstrass model with non-integral
 coordinates, as in the analysis of the kernel of reduction: the pole orders of $x$ and $y$ are in
 the ratio $2:3$. It is used in the present development by
-[`WeierstrassCurve.reducePoint_some_add_some_of_not_le_one`](thm.html#WeierstrassCurve.reducePoint_some_add_some_of_not_le_one),
+[`WeierstrassCurve.reducePoint_some_add_some_of_not_le_one`]
+(thm.html#WeierstrassCurve.reducePoint_some_add_some_of_not_le_one),
 in establishing the behaviour of reduction on points.
 
 ## Explanation of the source proof
@@ -164,10 +165,13 @@ theorem solution
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.IsIntegral R] {x y : K} (h : W.toAffine.Equation x y)
-    (hx : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1) :
+    (hx : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R)
+      x ≤ 1) :
     ∃ s : ℕ, 0 < s ∧
-      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x = WithZero.exp (2 * (s : ℤ)) ∧
-      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y = WithZero.exp (3 * (s : ℤ)) :=
+      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x =
+        WithZero.exp (2 * (s : ℤ)) ∧
+      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y =
+        WithZero.exp (3 * (s : ℤ)) :=
   PoleDichotomy.valuation_dichotomy R W h hx
 
 end S_WeierstrassCurve_exists_valuation_eq_exp_of_not_le_one
@@ -182,10 +186,13 @@ theorem WeierstrassCurve.exists_valuation_eq_exp_of_not_le_one
     (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     (W : WeierstrassCurve K) [W.IsIntegral R] {x y : K} (h : W.toAffine.Equation x y)
-    (hx : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x ≤ 1) :
+    (hx : ¬ IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R)
+      x ≤ 1) :
     ∃ s : ℕ, 0 < s ∧
-      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x = WithZero.exp (2 * (s : ℤ)) ∧
-      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y = WithZero.exp (3 * (s : ℤ)) :=
+      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) x =
+        WithZero.exp (2 * (s : ℤ)) ∧
+      IsDedekindDomain.HeightOneSpectrum.valuation K (IsDiscreteValuationRing.maximalIdeal R) y =
+        WithZero.exp (3 * (s : ℤ)) :=
   solution R W h hx
 
 end publicSection

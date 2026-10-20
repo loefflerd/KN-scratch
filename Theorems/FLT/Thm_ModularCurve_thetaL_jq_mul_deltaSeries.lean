@@ -74,8 +74,10 @@ p2m_open_scoped "ModularCurve" in
 theorem ModularCurve.RC18C3.jq_mul_deltaSeries :
     jq * deltaSeries = laurentOfInt ℚ (eisenstein4 ^ 3) := by
   have hι : ∀ f : PowerSeries ℤ,
-      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun f => rfl
-  rw [jq, deltaSeries, dedekindEtaUnitQ, jNumQ, jNum, hι, hι, mul_mul_mul_comm, HahnSeries.single_mul_single,
+      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun
+        f => rfl
+  rw [jq, deltaSeries, dedekindEtaUnitQ, jNumQ, jNum, hι, hι, mul_mul_mul_comm,
+    HahnSeries.single_mul_single,
     ← map_mul, mul_assoc, mul_comm dedekindEtaUnitInv, dedekindEtaUnit_mul_inv, mul_one, mul_one,
     show (-1 : ℤ) + 1 = 0 by norm_num, HahnSeries.single_zero_one, one_mul]
 
@@ -88,9 +90,11 @@ theorem ModularCurve.RC18C3.deltaSeries_eq_laurentOfInt :
 
 theorem solution :
     thetaL ℚ jq * deltaSeries =
-      -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 * eisenstein6))) := by
+      -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 *
+        eisenstein6))) := by
   have hι : ∀ f : PowerSeries ℤ,
-      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun f => rfl
+      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun
+        f => rfl
   have hC2 := ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta
   rw [hι, hι, hι, ← ModularCurve.RC18C3.deltaSeries_eq_laurentOfInt] at hC2
   have hjΔ := ModularCurve.RC18C3.jq_mul_deltaSeries
@@ -98,13 +102,15 @@ theorem solution :
   have hL := ModularCurve.theta_mul jq deltaSeries
   rw [hjΔ, show laurentOfInt ℚ eisenstein4 ^ 3 =
       laurentOfInt ℚ eisenstein4 * laurentOfInt ℚ eisenstein4 * laurentOfInt ℚ eisenstein4 by ring,
-    ModularCurve.theta_mul (laurentOfInt ℚ eisenstein4 * laurentOfInt ℚ eisenstein4) (laurentOfInt ℚ eisenstein4),
+    ModularCurve.theta_mul (laurentOfInt ℚ eisenstein4 * laurentOfInt ℚ eisenstein4) (laurentOfInt ℚ
+      eisenstein4),
     ModularCurve.theta_mul (laurentOfInt ℚ eisenstein4) (laurentOfInt ℚ eisenstein4)] at hL
   simp only [thetaL_apply] at hC2 ⊢
   rw [hι, map_mul, map_pow]
   apply mul_right_cancel₀ deltaSeries_ne_zero
   linear_combination (-deltaSeries) * hL + (-(laurentOfInt ℚ eisenstein4) ^ 2) * hC2 +
-    (-((HahnSeries.single (1 : ℤ) (1 : ℚ) : LaurentSeries ℚ) * LaurentSeries.derivative ℚ deltaSeries)) * hjΔ
+    (-((HahnSeries.single (1 : ℤ) (1 : ℚ) : LaurentSeries ℚ) * LaurentSeries.derivative ℚ
+      deltaSeries)) * hjΔ
 
 end S_ModularCurve_thetaL_jq_mul_deltaSeries
 end P2MW
@@ -118,7 +124,8 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.thetaL_jq_mul_deltaSeries :
     thetaL ℚ jq * deltaSeries =
-      -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 * eisenstein6))) :=
+      -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 *
+        eisenstein6))) :=
   solution
 
 end publicSection

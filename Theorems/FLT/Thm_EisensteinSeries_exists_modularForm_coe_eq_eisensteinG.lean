@@ -168,7 +168,8 @@ lemma norm_le_tsum_norm (N : ℕ) (a : Fin 2 → ZMod N) (k : ℤ) (hk : 3 ≤ k
     ‖EisensteinSeries.eisensteinG N k a z‖ ≤ ∑' (x : Fin 2 → ℤ), ‖eisSummand k x z‖ := by
   rw [eisensteinG_eq]
   apply le_trans (norm_tsum_le_tsum_norm ((summable_norm_eisSummand hk z).subtype _))
-    (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) => ‖(eisSummand k x z)‖) _ (fun _ => norm_nonneg _)
+    (Summable.tsum_subtype_le (fun (x : Fin 2 → ℤ) => ‖(eisSummand k x z)‖) _ (fun _ => norm_nonneg
+      _)
       (summable_norm_eisSummand hk z))
 
 theorem isBoundedAtImInfty_eisensteinGSIF_slash [NeZero N] (a : Fin 2 → ZMod N)

@@ -124,7 +124,8 @@ theorem aeval_C_add_single {K L : Type*} [Field K] [Field L] [Algebra K L] (a : 
           ((((p.map (algebraMap K L)).comp (X + C a) : L[X])) : PowerSeries L) := by
   set t : HahnSeries ℚ L := HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) with ht
   have h1 : (Polynomial.aeval (R := K) t).toRingHom
-      = Polynomial.eval₂RingHom ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) t := by
+      = Polynomial.eval₂RingHom ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) t
+        := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
     · rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Polynomial.aeval_C, algebraMap_hahn_eq_C,
         Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C, RingHom.coe_comp, Function.comp_apply]

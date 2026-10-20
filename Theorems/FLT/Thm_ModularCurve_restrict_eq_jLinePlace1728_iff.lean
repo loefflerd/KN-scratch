@@ -50,9 +50,11 @@ logarithm of the associated $\mathbb{Z}^{m0}$-valued adic valuation and `jq` is 
 This is the criterion identifying the places of the function field of $X_0(N)$ that lie over the
 elliptic point $j = 1728$ of the $j$-line, expressed through vanishing of $j - 1728$. It is used in
 the counts of fibres over $j = 0$ and $j = 1728$, namely in
-[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
+[`ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo).
 
 ## Explanation of the source proof
 
@@ -102,7 +104,8 @@ theorem solution (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 ↔
-        0 < w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) - 1728) := by
+        0 < w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField
+          N)) - 1728) := by
   let := ModularCurve.jAdjoinAlgebra N
   intro _ w
   rw [ModularCurve.eq_jLinePlace1728_iff_ord_jGen_sub_pos,
@@ -125,7 +128,8 @@ theorem ModularCurve.restrict_eq_jLinePlace1728_iff (N : ℕ) [NeZero N] :
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 ↔
-        0 < w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) - 1728) :=
+        0 < w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField
+          N)) - 1728) :=
   solution N
 
 end publicSection

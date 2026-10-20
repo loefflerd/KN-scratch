@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node Matrix.SpecialLinearGroup.exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
+Based on Prove2Me node
+Matrix.SpecialLinearGroup.exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
 (8d457ddf-ccfe-5087-b1aa-22e610006cd1) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 948c23f4-0dbc-5cfd-9141-e1fcc3606f99
@@ -47,11 +48,14 @@ R^{\{\text{cusps}\}}$ at the parabolic generators hits every vector of sum zero,
 satisfy no relation in $\Gamma^{\mathrm{ab}}$ beyond the boundary relation. It is obtained by
 transport along $\mathrm{SL}_2(\mathbb Z) \to \mathrm{PSL}_2(\mathbb Z) \cong C_2 * C_3$ from the
 corresponding statement for a free product, using
-[`ModularGroup.exists_mulEquiv_freeProduct_quotient_center`](thm.html#ModularGroup.exists_mulEquiv_freeProduct_quotient_center)
+[`ModularGroup.exists_mulEquiv_freeProduct_quotient_center`]
+(thm.html#ModularGroup.exists_mulEquiv_freeProduct_quotient_center)
 and
-[`Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero`](thm.html#Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero),
+[`Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero`]
+(thm.html#Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero),
 and is used in the lower bound for the rank of the parabolic homomorphisms in
-[`ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one`](thm.html#ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one).
+[`ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one`]
+(thm.html#ModularCurve.Period.finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one).
 
 ## Explanation of the source proof
 
@@ -236,7 +240,8 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
     rw [← ha]
     exact finsum_eq_of_bijective (Θ Γ hneg).symm (Θ Γ hneg).symm.bijective fun c => rfl
   obtain ⟨φH, hφH⟩ :=
-    Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero τ rfl (Hm Γ) R a' ha'
+    Monoid.CoprodI.exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero τ rfl (Hm Γ) R a'
+      ha'
   refine ⟨φH.comp (MonoidHom.toAdditive (π.subgroupMap Γ)), fun g hg => ?_⟩
   have hk : (π g)⁻¹ * τ ^ Function.minimalPeriod (fun x => τ • x) ((π g : Gp) : Gp ⧸ Hm Γ) * π g
       ∈ Hm Γ := by
@@ -259,7 +264,9 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
 end
 end S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
 end P2MW
-export P2MW.S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero (solution)
+export
+  P2MW.S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
+  (solution)
 
 end privateSection
 

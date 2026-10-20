@@ -126,7 +126,8 @@ private theorem _root_.WeierstrassCurve.veluWSum_mem (h₁ : V.a₁ ∈ A) (h₂
 p2m_export "WeierstrassCurve" "veluWSum_mem"
 end WeierstrassCurve
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_veluQuotient_j_mem_of_mem.WeierstrassCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_veluQuotient_j_mem_of_mem.WeierstrassCurve in
 theorem solution {F : Type*} [Field F] {S : Type*} [SetLike S F] [SubfieldClass S F]
     (W : WeierstrassCurve F) (K : S) (T : Finset (F × F))
     (h₁ : W.a₁ ∈ K) (h₂ : W.a₂ ∈ K) (h₃ : W.a₃ ∈ K) (h₄ : W.a₄ ∈ K) (h₆ : W.a₆ ∈ K)

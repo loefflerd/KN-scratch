@@ -179,7 +179,8 @@ theorem full_degeneracyC_le {N M : ℕ} [NeZero N] [NeZero M] (h : N ∣ M) :
 
 omit [NeZero N] in
 theorem full_degeneracyC_map_le (ℓ : ℕ) [NeZero ℓ] :
-    (modularFunctionFieldFullC K N).map (qExpandAlgHomC K ℓ) ≤ modularFunctionFieldFullC K (N * ℓ) := by
+    (modularFunctionFieldFullC K N).map (qExpandAlgHomC K ℓ) ≤ modularFunctionFieldFullC K (N * ℓ)
+      := by
   rw [modularFunctionFieldFullC, adjoin_map, adjoin_le_iff]
   rintro x ⟨y, ⟨d, hne, hdvd, rfl⟩, rfl⟩
   have := hne

@@ -52,9 +52,11 @@ semistability, integral-model and modularity predicates are the project's own, t
 `Finite` instance for affine points over a finite ring.
 
 **Where it is used.** These definitions give the statement of the modularity input to the proof:
-[`WeierstrassCurve.modularity_of_semistableModel`](../thm.html#WeierstrassCurve.modularity_of_semistableModel)
+[`WeierstrassCurve.modularity_of_semistableModel`]
+(../thm.html#WeierstrassCurve.modularity_of_semistableModel)
 derives `IsModular` from `IsSemistableModel` (with $\Delta\ne0$), and
-[`FreyPackage.frey_isModular`](../thm.html#FreyPackage.frey_isModular) applies it to the Frey curve
+[`FreyPackage.frey_isModular`]
+(../thm.html#FreyPackage.frey_isModular) applies it to the Frey curve
 attached to a counterexample to Fermat's Last Theorem. Nearly the whole tree below the modularity
 theorem is phrased in terms of these notions.
 

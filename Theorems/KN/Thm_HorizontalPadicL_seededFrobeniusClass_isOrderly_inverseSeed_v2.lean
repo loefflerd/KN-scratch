@@ -190,7 +190,8 @@ theorem seededFrobeniusClass_isOrderly_inverseSeed_v2
     (hηorder : 2 ≤ orderOf η.2)
     (horderCoprime : Nat.Coprime (orderOf η.2) p) :
     ∀ ⦃ℓ : ℕ⦄, ℓ ∈ D.primes →
-      IsOrderlyPrimeForSeededEigenformV3 p m V.embedding f η ℓ := _root_.solution D hηorder horderCoprime
+      IsOrderlyPrimeForSeededEigenformV3 p m V.embedding f η ℓ := _root_.solution D hηorder
+        horderCoprime
 
 end HorizontalPadicL
 

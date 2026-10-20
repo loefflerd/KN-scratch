@@ -94,7 +94,8 @@ private theorem hahnMapRingHom_apply {R S : Type*} [CommRing R] [CommRing S] (f 
 
 theorem ofPowerSeries_map {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (u : PowerSeries R) :
-    (HahnSeries.ofPowerSeries ℤ R u).map f = HahnSeries.ofPowerSeries ℤ S (PowerSeries.map f u) := by
+    (HahnSeries.ofPowerSeries ℤ R u).map f = HahnSeries.ofPowerSeries ℤ S (PowerSeries.map f u) :=
+      by
   ext k
   rw [HahnSeries.map_coeff]
   rcases le_or_gt 0 k with hk | hk
@@ -249,7 +250,8 @@ private theorem ModularCurve.StarBank.starK (K : Type*) [Field K] {ℓ : ℕ} [F
 
 example : ((720 : ℤ) : ℚ) ≠ 0 := by decide
 
-open HahnSeries PowerSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_starK.ModularCurve in
+open HahnSeries PowerSeries _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_StarBank_starK.ModularCurve in
 theorem solution (K : Type*) [Field K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
     (hHasse : 5 ≤ ℓ → ∃ (T : PowerSeries ℤ) (G : Polynomial ℤ),
         (∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m) ∧ ¬ (ℓ : ℤ) ∣ PowerSeries.constantCoeff T

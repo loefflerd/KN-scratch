@@ -785,7 +785,8 @@ theorem exists_kappa (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGrou
     ∃ κ : K, E M K κ = Q M f / Q M g ∧
       ∀ γ ∈ Γ, ∀ (hst : ∀ G ∈ ring M, (fun τ : ℍ => G (γ⁻¹ • τ)) ∈ ring M) (φ : K ≃ₐ[ℂ] K),
         (∀ (G : ℍ → ℂ) (hG : G ∈ ring M),
-            φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst G hG⟩) →
+            φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst
+              G hG⟩) →
         φ κ = κ := by
   have hM := castM_pos M
   have hΔ0 : Q M (Δ : ℍ → ℂ) ≠ 0 := Q_discriminant_ne_zero M
@@ -836,9 +837,11 @@ variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring M) K] [IsScalarTow
 variable (Γ : Subgroup SL(2, ℤ))
 
 def fixedSub : Subfield K where
-  carrier := {κ | ∀ γ ∈ Γ, ∀ (hst : ∀ G ∈ ring M, (fun τ : ℍ => G (γ⁻¹ • τ)) ∈ ring M) (φ : K ≃ₐ[ℂ] K),
+  carrier := {κ | ∀ γ ∈ Γ, ∀ (hst : ∀ G ∈ ring M, (fun τ : ℍ => G (γ⁻¹ • τ)) ∈ ring M) (φ : K ≃ₐ[ℂ]
+    K),
     (∀ (G : ℍ → ℂ) (hG : G ∈ ring M),
-        φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst G hG⟩) →
+        φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst G
+          hG⟩) →
     φ κ = κ}
   mul_mem' {x y} hx hy := fun γ hγ hst φ hφ => by rw [map_mul, hx γ hγ hst φ hφ, hy γ hγ hst φ hφ]
   one_mem' := fun γ hγ hst φ hφ => map_one φ
@@ -875,7 +878,8 @@ theorem const_mem_goodSeries (c : ℚ̄) :
 
 theorem coeffMap_ofPowerSeries {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
     (p : PowerSeries R) :
-    ModularCurve.coeffMap φ (HahnSeries.ofPowerSeries ℤ R p) = HahnSeries.ofPowerSeries ℤ S (p.map φ) := by
+    ModularCurve.coeffMap φ (HahnSeries.ofPowerSeries ℤ R p) = HahnSeries.ofPowerSeries ℤ S (p.map
+      φ) := by
   ext n
   rw [ModularCurve.coeffMap_coeff]
   rcases lt_or_ge n 0 with hn | hn
@@ -996,7 +1000,8 @@ theorem main (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ 
       (∀ y : FFq, (y : LaurentSeries ℚ̄) = jqModC ℚ̄ → Φ y = algebraMap (ring M) K (jGen M)) ∧
       ∀ γ ∈ Γ, ∀ (hst : ∀ G ∈ ring M, (fun τ : ℍ => G (γ⁻¹ • τ)) ∈ ring M) (φ : K ≃ₐ[ℂ] K),
         (∀ (G : ℍ → ℂ) (hG : G ∈ ring M),
-            φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst G hG⟩) →
+            φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst
+              G hG⟩) →
         ∀ u, φ (Φ u) = Φ u := by
   have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   refine ⟨Phi M K Γ ι hΓ hT, fun c => ?_, fun y hy => ?_,

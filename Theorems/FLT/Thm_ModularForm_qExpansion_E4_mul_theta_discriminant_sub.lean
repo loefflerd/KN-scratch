@@ -45,7 +45,8 @@ and divided by $4$.
 Equivalent to Ramanujan's formula for the derivative of the $j$-invariant, $\theta j =
 -E_4^2E_6/\Delta$, in the shape of the first Rankin–Cohen bracket of $E_4$ and $\Delta$ on formal
 $q$-expansions. It is used by
-[`ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta`](thm.html#ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta).
+[`ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta`]
+(thm.html#ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta).
 
 ## Explanation of the source proof
 
@@ -82,7 +83,8 @@ theorem solution :
   set PD : PowerSeries ℂ := qExpansion 1 ModularForm.discriminant with hPD
   change qExpansion 1 (B : ℍ → ℂ) =
       PowerSeries.C ((4 : ℤ) : ℂ) * P4 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * PD.coeff n)
-        - PowerSeries.C ((12 : ℤ) : ℂ) * PowerSeries.mk (fun n : ℕ => (n : ℂ) * P4.coeff n) * PD at hBq
+        - PowerSeries.C ((12 : ℤ) : ℂ) * PowerSeries.mk (fun n : ℕ => (n : ℂ) * P4.coeff n) * PD
+          at hBq
   have h40 : P4.coeff 0 = 1 := E_qExpansion_coeff_zero (by norm_num) ⟨2, rfl⟩
   have h60 : P6.coeff 0 = 1 := E_qExpansion_coeff_zero (by norm_num) ⟨3, rfl⟩
   have hD0 : PD.coeff 0 = 0 := by
@@ -143,7 +145,8 @@ theorem solution :
   calc PowerSeries.C (4 : ℂ) * (P4 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * PD.coeff n)
           - 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * P4.coeff n) * PD)
         = PowerSeries.C (4 : ℂ) * P4 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * PD.coeff n)
-          - PowerSeries.C (4 : ℂ) * 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * P4.coeff n) * PD := by
+          - PowerSeries.C (4 : ℂ) * 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * P4.coeff n) * PD
+            := by
           ring
     _ = PD * (PowerSeries.C 4 * P6) := key
     _ = PowerSeries.C (4 : ℂ) * (P6 * PD) := by ring
@@ -161,8 +164,10 @@ public section publicSection
 
 theorem ModularForm.qExpansion_E4_mul_theta_discriminant_sub :
     UpperHalfPlane.qExpansion 1 (⇑ModularForm.E₄ : UpperHalfPlane → ℂ) *
-        PowerSeries.mk (fun n : ℕ => (n : ℂ) * (UpperHalfPlane.qExpansion 1 ModularForm.discriminant).coeff n)
-      - 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * (UpperHalfPlane.qExpansion 1 (⇑ModularForm.E₄ : UpperHalfPlane → ℂ)).coeff n)
+        PowerSeries.mk (fun n : ℕ => (n : ℂ) * (UpperHalfPlane.qExpansion 1
+          ModularForm.discriminant).coeff n)
+      - 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * (UpperHalfPlane.qExpansion 1 (⇑ModularForm.E₄ :
+        UpperHalfPlane → ℂ)).coeff n)
         * UpperHalfPlane.qExpansion 1 ModularForm.discriminant
       = UpperHalfPlane.qExpansion 1 (⇑ModularForm.E₆ : UpperHalfPlane → ℂ) *
         UpperHalfPlane.qExpansion 1 ModularForm.discriminant :=

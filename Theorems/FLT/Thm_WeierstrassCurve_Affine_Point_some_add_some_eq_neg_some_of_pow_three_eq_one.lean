@@ -41,9 +41,11 @@ points whose $x$-coordinates are $x$, $\omega x$, $\omega^2 x$, and that three c
 to zero; in endomorphism terms it is the relation $1 + [\omega] + [\omega^2] = 0$ for the
 order-three automorphism $(x,y) \mapsto (\omega x, y)$ of a curve with $j = 0$. It is used in the
 analysis of the three-torsion and of the automorphism of order three on such curves, in
-[`WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three`](thm.html#WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three)
+[`WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three`]
+(thm.html#WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three)
 and in the two counting statements
-[`WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree`](thm.html#WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree)
+[`WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree`]
+(thm.html#WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree)
 and its variant for nonzero argument.
 
 ## Explanation of the source proof
@@ -73,7 +75,8 @@ theorem solution
     (hwx : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Nonsingular (w * x) y)
     (hw2x : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Nonsingular (w ^ 2 * x) y) (hx : x ≠ 0)
     :
-    (WeierstrassCurve.Affine.Point.some x y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Point)
+    (WeierstrassCurve.Affine.Point.some x y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve
+      k).toAffine.Point)
       + WeierstrassCurve.Affine.Point.some (w * x) y hwx
       = -(WeierstrassCurve.Affine.Point.some (w ^ 2 * x) y hw2x) := by
   have hsum : 1 + w + w ^ 2 = 0 := by
@@ -110,7 +113,8 @@ theorem WeierstrassCurve.Affine.Point.some_add_some_eq_neg_some_of_pow_three_eq_
     (hwx : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Nonsingular (w * x) y)
     (hw2x : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Nonsingular (w ^ 2 * x) y) (hx : x ≠ 0)
     :
-    (WeierstrassCurve.Affine.Point.some x y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Point)
+    (WeierstrassCurve.Affine.Point.some x y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve
+      k).toAffine.Point)
       + WeierstrassCurve.Affine.Point.some (w * x) y hwx
       = -(WeierstrassCurve.Affine.Point.some (w ^ 2 * x) y hw2x) :=
   solution B w hw hw1 h hwx hw2x hx

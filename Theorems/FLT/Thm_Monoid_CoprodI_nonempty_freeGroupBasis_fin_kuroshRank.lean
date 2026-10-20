@@ -52,7 +52,8 @@ Bass–Serre form: the hypothesis says precisely that $H$ acts freely on the tre
 factors, whence $H$ is free, and the rank is the first Betti number of the quotient graph, with
 $m/\lvert G_0\rvert + m/\lvert G_1\rvert$ vertices and $m$ edges. It is used to produce free
 subgroups of $\mathrm{PSL}_2$ from trace conditions, in
-[`Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne`](thm.html#Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne).
+[`Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne`]
+(thm.html#Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne).
 
 ## Explanation of the source proof
 
@@ -413,10 +414,13 @@ namespace BassSerre
 p2m_open "Monoid Monoid.CoprodI"
 
 theorem fromRel_eq_graph {G : Fin 2 → Type*} [∀ i, Group (G i)] :
-    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range) =>
+    (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i
+      := i)).range) =>
         v.1 ≠ w.1 ∧ ∃ g : Monoid.CoprodI G,
-          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := v.1)).range) ∧
-          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := w.1)).range))
+          v.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            v.1)).range) ∧
+          w.2 = (QuotientGroup.mk g : Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i :=
+            w.1)).range))
       = graph G := by
   ext ⟨i, x⟩ ⟨j, y⟩
   rw [SimpleGraph.fromRel_adj]
@@ -1546,7 +1550,8 @@ end GroupTheory
 
 theorem solution {G : Fin 2 → Type*} [∀ i, Group (G i)] [∀ i, Finite (G i)]
     (H : Subgroup (Monoid.CoprodI G)) [H.FiniteIndex]
-    (hH : ∀ (i : Fin 2) (g : Monoid.CoprodI G) (x : G i), g⁻¹ * Monoid.CoprodI.of x * g ∈ H → x = 1) :
+    (hH : ∀ (i : Fin 2) (g : Monoid.CoprodI G) (x : G i), g⁻¹ * Monoid.CoprodI.of x * g ∈ H → x = 1)
+      :
     Nonempty (FreeGroupBasis
       (Fin (1 + H.index - H.index / Nat.card (G 0) - H.index / Nat.card (G 1))) H) := by
   have hCT : ∀ i, GroupTheory.Kurosh.ConjTrivial (Monoid.CoprodI.of (M := G) (i := i)).range H := by
@@ -1566,7 +1571,8 @@ public section publicSection
 theorem Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank {G : Fin 2 → Type*} [∀ i, Group (G i)]
     [∀ i, Finite (G i)]
     (H : Subgroup (Monoid.CoprodI G)) [H.FiniteIndex]
-    (hH : ∀ (i : Fin 2) (g : Monoid.CoprodI G) (x : G i), g⁻¹ * Monoid.CoprodI.of x * g ∈ H → x = 1) :
+    (hH : ∀ (i : Fin 2) (g : Monoid.CoprodI G) (x : G i), g⁻¹ * Monoid.CoprodI.of x * g ∈ H → x = 1)
+      :
     Nonempty (FreeGroupBasis
       (Fin (1 + H.index - H.index / Nat.card (G 0) - H.index / Nat.card (G 1))) H) :=
   solution H hH

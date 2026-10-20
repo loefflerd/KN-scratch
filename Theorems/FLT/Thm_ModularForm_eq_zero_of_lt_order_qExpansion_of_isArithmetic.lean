@@ -48,7 +48,8 @@ the translation $T$, the width $M$ playing the role of a common period of all
 $\mathrm{SL}_2(\mathbb{Z})$-conjugates of $\mathcal{G}$ (for instance $M = N$ for $\Gamma(N)$). It
 is used to derive the finite dimensionality of the space of modular forms of weight $k$ for an
 arithmetic group,
-[`ModularForm.finiteDimensional_of_isArithmetic`](thm.html#ModularForm.finiteDimensional_of_isArithmetic),
+[`ModularForm.finiteDimensional_of_isArithmetic`]
+(thm.html#ModularForm.finiteDimensional_of_isArithmetic),
 and the corresponding Sturm bound statement
 [`ModularForm.sturm_bound_of_isArithmetic`](thm.html#ModularForm.sturm_bound_of_isArithmetic).
 
@@ -81,7 +82,8 @@ p2m_export "ModularForm" "coe_norm translate norm_eq_zero_iff coe_zero \
 end ModularForm
 namespace ModularForm
 p2m_open_scoped "ModularForm" in
-private theorem _root_.ModularForm.analyticAt_cuspFunction_quotientFunc_W2D {𝒢 : Subgroup (GL (Fin 2) ℝ)}
+private theorem _root_.ModularForm.analyticAt_cuspFunction_quotientFunc_W2D {𝒢 : Subgroup (GL (Fin
+  2) ℝ)}
     {k : ℤ} (f : ModularForm 𝒢 k) {M : ℕ} (hM : 0 < M)
     (hconj : ∀ γ : SL(2, ℤ), (M : ℝ) ∈ (toConjAct (mapGL ℝ γ) • 𝒢).strictPeriods)
     (q : 𝒮ℒ ⧸ 𝒢.subgroupOf 𝒮ℒ) :
@@ -97,7 +99,10 @@ private theorem _root_.ModularForm.analyticAt_cuspFunction_quotientFunc_W2D {�
 
 end ModularForm
 p2m_export "" "ModularForm.analyticAt_cuspFunction_quotientFunc_W2D"
-theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] {k : ℤ} (f : ModularForm 𝒢 k) {M : ℕ} (hM : 0 < M) (hconj : ∀ γ : SL(2, ℤ), (M : ℝ) ∈ (ConjAct.toConjAct (Matrix.SpecialLinearGroup.mapGL ℝ γ) • 𝒢).strictPeriods) (h : ((M * ((k * 𝒢.relIndex 𝒮ℒ).toNat / 12) : ℕ) : ℕ∞) < (qExpansion M f).order) :
+theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] {k : ℤ} (f : ModularForm 𝒢 k) {M :
+  ℕ} (hM : 0 < M) (hconj : ∀ γ : SL(2, ℤ), (M : ℝ) ∈ (ConjAct.toConjAct
+  (Matrix.SpecialLinearGroup.mapGL ℝ γ) • 𝒢).strictPeriods) (h : ((M * ((k * 𝒢.relIndex 𝒮ℒ).toNat /
+  12) : ℕ) : ℕ∞) < (qExpansion M f).order) :
     f = 0 := by
   set F := ModularForm.norm 𝒮ℒ f with hF
   have hanalytic := f.analyticAt_cuspFunction_quotientFunc_W2D hM hconj
@@ -131,7 +136,10 @@ public section publicSection
 
 open UpperHalfPlane
 open scoped MatrixGroups Pointwise
-theorem ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] {k : ℤ} (f : ModularForm 𝒢 k) {M : ℕ} (hM : 0 < M) (hconj : ∀ γ : SL(2, ℤ), (M : ℝ) ∈ (ConjAct.toConjAct (Matrix.SpecialLinearGroup.mapGL ℝ γ) • 𝒢).strictPeriods) (h : ((M * ((k * 𝒢.relIndex 𝒮ℒ).toNat / 12) : ℕ) : ℕ∞) < (qExpansion M f).order) :
+theorem ModularForm.eq_zero_of_lt_order_qExpansion_of_isArithmetic {𝒢 : Subgroup (GL (Fin 2) ℝ)}
+  [𝒢.IsArithmetic] {k : ℤ} (f : ModularForm 𝒢 k) {M : ℕ} (hM : 0 < M) (hconj : ∀ γ : SL(2, ℤ), (M :
+  ℝ) ∈ (ConjAct.toConjAct (Matrix.SpecialLinearGroup.mapGL ℝ γ) • 𝒢).strictPeriods) (h : ((M * ((k *
+  𝒢.relIndex 𝒮ℒ).toNat / 12) : ℕ) : ℕ∞) < (qExpansion M f).order) :
     f = 0 :=
   solution f hM hconj h
 

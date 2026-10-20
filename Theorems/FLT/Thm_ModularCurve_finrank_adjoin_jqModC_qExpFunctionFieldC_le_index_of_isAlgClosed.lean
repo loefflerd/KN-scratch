@@ -92,7 +92,8 @@ variable (p : ℕ) [Fact p.Prime] (A : ValuationSubring (AlgebraicClosure ℚ)) 
 
 include hA in
 theorem isAlgebraic_residueField :
-    letI : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
+    letI : CharP (IsLocalRing.ResidueField A) p :=
+      ValuationSubring.charP_residueField_of_liesOverPrime_def
       (Fact.out : p.Prime) hA
     letI := ZMod.algebra (IsLocalRing.ResidueField A) p
     Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := by
@@ -157,13 +158,15 @@ theorem coe_eq_zero_of_mem_maximalIdeal_top {a : (⊤ : ValuationSubring K)}
   · exact Subtype.ext (inv_mul_cancel₀ h)
 
 def residueTopHom : IsLocalRing.ResidueField (⊤ : ValuationSubring K) →+* K :=
-  Ideal.Quotient.lift (IsLocalRing.maximalIdeal (⊤ : ValuationSubring K)) (⊤ : ValuationSubring K).subtype
+  Ideal.Quotient.lift (IsLocalRing.maximalIdeal (⊤ : ValuationSubring K)) (⊤ : ValuationSubring
+    K).subtype
     fun _ ha => coe_eq_zero_of_mem_maximalIdeal_top K ha
 
 end CharZero
 
 theorem jqModC_eq_div (K : Type*) [Field K] :
-    ModularCurve.jqModC K = ModularCurve.intSeriesC K ModularCurve.jNum / ModularCurve.intSeriesC K PowerSeries.X := by
+    ModularCurve.jqModC K = ModularCurve.intSeriesC K ModularCurve.jNum / ModularCurve.intSeriesC K
+      PowerSeries.X := by
   have hX : ModularCurve.intSeriesC K PowerSeries.X = HahnSeries.single 1 1 := by
     simp [ModularCurve.intSeriesC, PowerSeries.map_X, HahnSeries.ofPowerSeries_X]
   have hne : (HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) ≠ 0 := by simp
@@ -174,7 +177,8 @@ theorem jqModC_eq_div (K : Type*) [Field K] :
 
 theorem jqModC_mem_laurentBaseChange (L : Type*) [Field L] [Algebra ℚ L]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
-    ModularCurve.jqModC L ∈ ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) := by
+    ModularCurve.jqModC L ∈ ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)
+      := by
   have h : ModularCurve.jqModC ℚ ∈ ModularCurve.qExpFunctionFieldC ℚ Γ :=
     ModularCurve.intFormRatiosC_subset ℚ Γ (ModularCurve.jqModC_mem_intFormRatiosC ℚ Γ)
   have e : ModularCurve.coeffEmb L (ModularCurve.jqModC ℚ) = ModularCurve.jqModC L :=
@@ -198,12 +202,14 @@ theorem bound_of_place (K : Type*) [Field K]
   set X : ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) :=
     ⟨ModularCurve.jqModC L, jqModC_mem_laurentBaseChange L Γ⟩ with hXdef
   have hXab : (X : LaurentSeries L) =
-      ModularCurve.intSeriesC L ModularCurve.jNum / ModularCurve.intSeriesC L PowerSeries.X := jqModC_eq_div L
+      ModularCurve.intSeriesC L ModularCurve.jNum / ModularCurve.intSeriesC L PowerSeries.X :=
+        jqModC_eq_div L
   have hxab : (x : LaurentSeries K) =
       ModularCurve.intSeriesC K ModularCurve.jNum / ModularCurve.intSeriesC K PowerSeries.X :=
     hx.trans (jqModC_eq_div K)
   have htr : Transcendental K x := by
-    have hinj : Function.Injective (algebraMap (ModularCurve.qExpFunctionFieldC K Γ) (LaurentSeries K)) :=
+    have hinj : Function.Injective (algebraMap (ModularCurve.qExpFunctionFieldC K Γ) (LaurentSeries
+      K)) :=
       (algebraMap (ModularCurve.qExpFunctionFieldC K Γ) (LaurentSeries K)).injective
     rw [← transcendental_algebraMap_iff hinj]
     change Transcendental K (x : LaurentSeries K)
@@ -212,7 +218,8 @@ theorem bound_of_place (K : Type*) [Field K]
   obtain ⟨hfin, hle⟩ :=
     ModularCurve.finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring A π Γ hF
     ModularCurve.jNum PowerSeries.X X hXab x hxab htr
-  exact ⟨hfin, hle.trans (ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
+  exact ⟨hfin, hle.trans
+    (ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
     L Γ hT Γ' hΓ' hneg X rfl)⟩
 
 end ModularCurve.DegKDeuring
@@ -247,13 +254,16 @@ theorem solution
       isAlgebraic_residueField p A hA
     let φ : IsLocalRing.ResidueField A →+* K :=
       (IsAlgClosed.lift (R := ZMod p) (S := IsLocalRing.ResidueField A) (M := K)).toRingHom
-    exact bound_of_place K Γ hT Γ' hΓ' hneg x hx (AlgebraicClosure ℚ) A (φ.comp (IsLocalRing.residue A))
+    exact bound_of_place K Γ hT Γ' hΓ' hneg x hx (AlgebraicClosure ℚ) A (φ.comp (IsLocalRing.residue
+      A))
   · have : CharZero K := CharP.charP_to_charZero K
-    exact bound_of_place K Γ hT Γ' hΓ' hneg x hx K (⊤ : ValuationSubring K) (⊤ : ValuationSubring K).subtype
+    exact bound_of_place K Γ hT Γ' hΓ' hneg x hx K (⊤ : ValuationSubring K) (⊤ : ValuationSubring
+      K).subtype
 
 end S_ModularCurve_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed
 end P2MW
-export P2MW.S_ModularCurve_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed (solution)
+export P2MW.S_ModularCurve_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed
+  (solution)
 
 end privateSection
 

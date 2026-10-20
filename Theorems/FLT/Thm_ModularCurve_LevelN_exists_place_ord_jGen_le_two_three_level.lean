@@ -225,12 +225,14 @@ theorem analyticOrderAt_jsub (τ₀ : ℍ) :
       ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) : ℕ∞) := by
   have hmero :=
     ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ₀
-  have hfun : (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 / ModularForm.discriminant (ofComplex z)
+  have hfun : (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 / ModularForm.discriminant
+    (ofComplex z)
       - (ModularForm.E₄ : ℍ → ℂ) τ₀ ^ 3 / ModularForm.discriminant τ₀) =
       ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) := by
     funext z; rfl
   rw [hfun] at hmero
-  have han : AnalyticAt ℂ ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) τ₀ :=
+  have han : AnalyticAt ℂ ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) τ₀
+    :=
     analyticAt_comp_ofComplex ((mdifferentiable_jAnalytic).sub mdifferentiable_const) τ₀
   rw [han.meromorphicOrderAt_eq] at hmero
   generalize analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex)
@@ -348,13 +350,15 @@ theorem solution (N : ℕ) [NeZero N]
     [IsFractionRing (ModularCurve.LevelN.ring N) K] :
     (∃ W : AlgebraicCurve.Place ℂ K,
         0 < W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N) - 1728) ∧
-          W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N) - 1728) ≤ 2) ∧
+          W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N) - 1728) ≤ 2)
+            ∧
       (∃ W : AlgebraicCurve.Place ℂ K,
         0 < W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) ∧
           W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) ≤ 3) ∧
       (∃ W : AlgebraicCurve.Place ℂ K,
         W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) < 0 ∧
-          -(N : ℤ) ≤ W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N))) :=
+          -(N : ℤ) ≤ W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)))
+            :=
   ModularCurve.LevelN.SpecialRamification.main N K
 
 end S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level
@@ -373,13 +377,15 @@ theorem ModularCurve.LevelN.exists_place_ord_jGen_le_two_three_level (N : ℕ) [
     [IsFractionRing (ModularCurve.LevelN.ring N) K] :
     (∃ W : AlgebraicCurve.Place ℂ K,
         0 < W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N) - 1728) ∧
-          W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N) - 1728) ≤ 2) ∧
+          W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N) - 1728) ≤ 2)
+            ∧
       (∃ W : AlgebraicCurve.Place ℂ K,
         0 < W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) ∧
           W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) ≤ 3) ∧
       (∃ W : AlgebraicCurve.Place ℂ K,
         W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)) < 0 ∧
-          -(N : ℤ) ≤ W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N))) :=
+          -(N : ℤ) ≤ W.ord (algebraMap (ModularCurve.LevelN.ring N) K (ModularCurve.LevelN.jGen N)))
+            :=
   solution N K
 
 end publicSection

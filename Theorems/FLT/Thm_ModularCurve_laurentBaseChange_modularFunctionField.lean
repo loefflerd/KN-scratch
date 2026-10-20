@@ -64,9 +64,11 @@ namespace P2MW.S_ModularCurve_laurentBaseChange_modularFunctionField
 open ModularCurve IntermediateField HahnSeries
 
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
-    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) = ModularCurve.modularFunctionFieldC L N := by
+    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) =
+      ModularCurve.modularFunctionFieldC L N := by
   apply le_antisymm
-  · change IntermediateField.adjoin L (⇑(coeffEmb L) '' (modularFunctionField N : Set (LaurentSeries ℚ)))
+  · change IntermediateField.adjoin L (⇑(coeffEmb L) '' (modularFunctionField N : Set (LaurentSeries
+      ℚ)))
       ≤ modularFunctionFieldC L N
     rw [IntermediateField.adjoin_le_iff]
     rintro _ ⟨x, hx, rfl⟩
@@ -87,7 +89,8 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
     | inv x _ hx => simpa only [SetLike.mem_coe, map_inv₀] using inv_mem hx
     | mul x y _ _ hx hy => simpa only [SetLike.mem_coe, map_mul] using mul_mem hx hy
   · change IntermediateField.adjoin L {jqModC L, jqNModC L N}
-      ≤ IntermediateField.adjoin L (⇑(coeffEmb L) '' (modularFunctionField N : Set (LaurentSeries ℚ)))
+      ≤ IntermediateField.adjoin L (⇑(coeffEmb L) '' (modularFunctionField N : Set (LaurentSeries
+        ℚ)))
     apply IntermediateField.adjoin.mono
     rintro _ (rfl | rfl)
     · exact ⟨jq, jq_mem N, coeffEmb_jq L⟩
@@ -103,7 +106,8 @@ public section publicSection
 
 theorem ModularCurve.laurentBaseChange_modularFunctionField (L : Type*) [Field L] [Algebra ℚ L]
     (N : ℕ) [NeZero N] :
-    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) = ModularCurve.modularFunctionFieldC L N :=
+    ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionField N) =
+      ModularCurve.modularFunctionFieldC L N :=
   solution L N
 
 end publicSection

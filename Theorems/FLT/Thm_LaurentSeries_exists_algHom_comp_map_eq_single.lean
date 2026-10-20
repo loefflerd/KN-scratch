@@ -46,7 +46,8 @@ This is the Newton–Puiseux normalisation of a Laurent series of positive order
 closed field of characteristic zero, packaged as the statement that an embedding of a field into
 $K((X))$ may be replaced by an order-equivalent one sending a prescribed element of positive order
 to an exact power of the variable. It is used in the count
-[`ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord`](thm.html#ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord),
+[`ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord`]
+(thm.html#ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord),
 where an embedding of a function field may be assumed to send the chosen parameter to a power of the
 uniformiser while all orders, and hence the place determined by the embedding, are unchanged.
 

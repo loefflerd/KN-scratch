@@ -174,7 +174,8 @@ def qTwistEquiv (u : Kˣ) : LaurentSeries K ≃+* LaurentSeries K where
     qTwistEquiv u f = qTwist u f := rfl
 
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 theorem qTwist_TS_one_cycle (ζ : Kˣ) {p : ℕ} (hζp : ζ ^ p = 1) (b : ℕ) :
@@ -317,12 +318,14 @@ theorem coeffMap_jqNModC_eq (n : ℕ) [NeZero n] : coeffMap σ (jqNModC K n) = j
 theorem coeffMap_aeval_jqModC_eq (P : Polynomial K) :
     coeffMap σ (Polynomial.aeval (jqModC K) P) = Polynomial.aeval (jqModC K') (P.map σ) := by
   rw [Polynomial.aeval_def, Polynomial.aeval_def, Polynomial.hom_eval₂, Polynomial.eval₂_map]
-  have hcomp : (coeffMap σ).comp (algebraMap K (LaurentSeries K)) = (algebraMap K' (LaurentSeries K')).comp σ :=
+  have hcomp : (coeffMap σ).comp (algebraMap K (LaurentSeries K)) = (algebraMap K' (LaurentSeries
+    K')).comp σ :=
     RingHom.ext fun c => coeffMap_algebraMap_eq σ c
   rw [hcomp, coeffMap_jqModC_eq]
 
 theorem exists_map_eq_of_aeval_eq_coeffMap (P : Polynomial K')
-    (hP : ∃ y : LaurentSeries K, coeffMap σ y = Polynomial.aeval (jqModC K') P) : ∃ Q : Polynomial K, Q.map σ = P := by
+    (hP : ∃ y : LaurentSeries K, coeffMap σ y = Polynomial.aeval (jqModC K') P) : ∃ Q : Polynomial
+      K, Q.map σ = P := by
   generalize hn : P.natDegree = n
   induction n using Nat.strong_induction_on generalizing P with
   | _ n ih =>
@@ -333,7 +336,8 @@ theorem exists_map_eq_of_aeval_eq_coeffMap (P : Polynomial K')
       exact h1.symm
     have hP' : ∃ y' : LaurentSeries K, coeffMap σ y' = Polynomial.aeval (jqModC K') P.eraseLead :=
       by
-      refine ⟨y - algebraMap K (LaurentSeries K) (y.coeff (-(P.natDegree : ℤ))) * jqModC K ^ P.natDegree, ?_⟩
+      refine ⟨y - algebraMap K (LaurentSeries K) (y.coeff (-(P.natDegree : ℤ))) * jqModC K ^
+        P.natDegree, ?_⟩
       have h2 := congrArg (Polynomial.aeval (jqModC K')) (Polynomial.eraseLead_add_C_mul_X_pow P)
       rw [map_add, map_mul, Polynomial.aeval_C, map_pow, Polynomial.aeval_X] at h2
       rw [map_sub, map_mul, map_pow, coeffMap_algebraMap_eq, coeffMap_jqModC_eq, hy, ← hlead, ← h2,
@@ -355,7 +359,8 @@ theorem jqNModC_not_mem_adjoin_of_not_mem_adjoin (p : ℕ) [hp : Fact (Nat.Prime
   intro hmem
   have hpoly : ∃ P : Polynomial K', Polynomial.aeval (jqModC K') P = jqNModC K' p := by
     by_contra hcon
-    exact ModularCurve.jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne p (fun P hP => hcon ⟨P, hP⟩) hmem
+    exact ModularCurve.jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne p (fun P hP => hcon ⟨P, hP⟩)
+      hmem
   obtain ⟨P, hP⟩ := hpoly
   obtain ⟨Q, hQ⟩ :=
     exists_map_eq_of_aeval_eq_coeffMap σ P ⟨jqNModC K p, by rw [coeffMap_jqNModC_eq, hP]⟩
@@ -365,7 +370,8 @@ theorem jqNModC_not_mem_adjoin_of_not_mem_adjoin (p : ℕ) [hp : Fact (Nat.Prime
     apply hinj
     rw [coeffMap_aeval_jqModC_eq, hQ, hP, coeffMap_jqNModC_eq]
   have h3 : Polynomial.aeval (jqModC K) Q
-      = algebraMap (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (LaurentSeries K)
+      = algebraMap (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (LaurentSeries
+        K)
           (Polynomial.aeval (jA K) Q) :=
     Polynomial.aeval_algebraMap_apply (LaurentSeries K) (jA K) Q
   rw [← hval, h3]
@@ -375,7 +381,8 @@ theorem coeffMap_mem_adjoin {x : LaurentSeries K}
     (hx : x ∈ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
     coeffMap σ x ∈ IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K')) := by
   let E : IntermediateField K (LaurentSeries K) :=
-    { (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))).toSubfield.comap (coeffMap σ) with
+    { (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))).toSubfield.comap
+      (coeffMap σ) with
       algebraMap_mem' := fun c => by
         change coeffMap σ (algebraMap K (LaurentSeries K) c)
           ∈ IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))
@@ -384,7 +391,8 @@ theorem coeffMap_mem_adjoin {x : LaurentSeries K}
   have hle : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) ≤ E := by
     rw [IntermediateField.adjoin_le_iff]
     rintro _ rfl
-    change coeffMap σ (jqModC K) ∈ IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))
+    change coeffMap σ (jqModC K) ∈ IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries
+      K'))
     rw [coeffMap_jqModC_eq]
     exact IntermediateField.subset_adjoin K' _ rfl
   exact hle hx
@@ -403,19 +411,23 @@ theorem tauAdjoin_jA : tauAdjoin σ (jA K) = jA K' :=
 include σ in
 theorem finrank_adjoin_jqNModC_eq_of_map (d : ℕ) [NeZero d] (data : ModularPolynomialData d)
     (htight : Module.finrank (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K')))
-        (IntermediateField.adjoin (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K')))
+        (IntermediateField.adjoin (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries
+          K')))
           ({jqNModC K' d} : Set (LaurentSeries K'))) = dedekindPsi d) :
     Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
         (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
           ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d := by
-  have hint' : IsIntegral (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))) (jqNModC K' d) :=
+  have hint' : IsIntegral (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K')))
+    (jqNModC K' d) :=
     ModularCurve.isIntegral_jqNModC_of_modularPolynomialData K' data
-  have hmin' : (minpoly (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))) (jqNModC K' d)).natDegree
+  have hmin' : (minpoly (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K')))
+    (jqNModC K' d)).natDegree
       = dedekindPsi d := by
     rw [← IntermediateField.adjoin.finrank hint']
     exact htight
   have hΦ' : phiAtSeed data (jA K')
-      = minpoly (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))) (jqNModC K' d) :=
+      = minpoly (IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K'))) (jqNModC K' d)
+        :=
     Polynomial.eq_of_monic_of_dvd_of_natDegree_le (minpoly.monic hint') (phiAtSeed_monic data _)
       (minpoly.dvd _ _ (aeval_jqNModC_phiAtSeed_jA K' d data))
       (le_of_eq ((phiAtSeed_natDegree data _).trans hmin'.symm))
@@ -425,14 +437,17 @@ theorem finrank_adjoin_jqNModC_eq_of_map (d : ℕ) [NeZero d] (data : ModularPol
   have hmapΦ : (phiAtSeed data (jA K)).map (tauAdjoin σ) = phiAtSeed data (jA K') := by
     rw [phiAtSeed_map, tauAdjoin_jA]
   have hirr : Irreducible (phiAtSeed data (jA K)) := by
-    refine Polynomial.Monic.irreducible_of_irreducible_map (tauAdjoin σ) _ (phiAtSeed_monic data _) ?_
+    refine Polynomial.Monic.irreducible_of_irreducible_map (tauAdjoin σ) _ (phiAtSeed_monic data _)
+      ?_
     rw [hmapΦ]
     exact hirr'
-  have hint : IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K d) :=
+  have hint : IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC
+    K d) :=
     ModularCurve.isIntegral_jqNModC_of_modularPolynomialData K data
   have hmin : phiAtSeed data (jA K)
       = minpoly (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K d) :=
-    minpoly.eq_of_irreducible_of_monic hirr (aeval_jqNModC_phiAtSeed_jA K d data) (phiAtSeed_monic data _)
+    minpoly.eq_of_irreducible_of_monic hirr (aeval_jqNModC_phiAtSeed_jA K d data) (phiAtSeed_monic
+      data _)
   rw [IntermediateField.adjoin.finrank hint, ← hmin, phiAtSeed_natDegree]
 
 end Transport
@@ -447,8 +462,10 @@ theorem natCast_ne_zero_of_socket (d : ℕ) [NeZero d]
   have : Fact (Nat.Prime (ringChar K)) := ⟨CharP.char_prime_of_ne_zero K h0⟩
   have hfrob : jqNModC K (ringChar K) = jqModC K ^ ringChar K :=
     ModularCurve.qExpand_jqModC_eq_pow_unconditional K
-  have hmem : jqModC K ^ ringChar K ∈ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
-    (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))).pow_mem (IntermediateField.subset_adjoin K _ rfl)
+  have hmem : jqModC K ^ ringChar K ∈ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries
+    K)) :=
+    (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))).pow_mem
+      (IntermediateField.subset_adjoin K _ rfl)
       (ringChar K)
   rw [← hfrob] at hmem
   exact hbase (ringChar K) hdvd hmem
@@ -475,8 +492,12 @@ private theorem ModularCurve.jqNModC_prime_not_mem_adjoin_of_ringHom {K K' : Typ
 
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
-private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d := by
+private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K : Type*} [Field K]
+  (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉
+  IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d := by
   have hd : (d : K) ≠ 0 := natCast_ne_zero_of_socket d hbase
   have : NeZero ((d : ℕ) : K) := ⟨hd⟩
   obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot (AlgebraicClosure K) d
@@ -485,7 +506,8 @@ private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K 
     rw [IsUnit.unit_spec]
     exact hz
   have hbase' : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC (AlgebraicClosure K) p ∉
-      IntermediateField.adjoin (AlgebraicClosure K) ({jqModC (AlgebraicClosure K)} : Set (LaurentSeries (AlgebraicClosure K))) :=
+      IntermediateField.adjoin (AlgebraicClosure K) ({jqModC (AlgebraicClosure K)} : Set
+        (LaurentSeries (AlgebraicClosure K))) :=
     fun (p : ℕ) [Fact (Nat.Prime p)] hp =>
       jqNModC_not_mem_adjoin_of_not_mem_adjoin (algebraMap K (AlgebraicClosure K)) p (hbase p hp)
   have htight' := (ModularCurve.package_of_socket d _ hζ hbase' d dvd_rfl).1
@@ -495,7 +517,9 @@ private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_charZero {K : Type*} [Field K]
     [CharZero K] (d : ℕ) [NeZero d] :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
   ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket d
     fun (p : ℕ) [Fact (Nat.Prime p)] _ => ModularCurve.jqNModC_prime_not_mem_adjoin_of_charZero p
 
@@ -503,8 +527,11 @@ p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.finrank_adjoin_jqNModC_sq_eq_of_socket {K : Type*} [Field K] (p : ℕ)
     [hp : Fact (Nat.Prime p)]
     (hbase : jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K (p * p)} : Set (LaurentSeries K))) = dedekindPsi (p * p) :=
-  ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket (p * p) fun (q : ℕ) [hq : Fact (Nat.Prime q)] hqd => by
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K (p * p)} : Set (LaurentSeries K))) = dedekindPsi (p * p) :=
+  ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket (p * p) fun (q : ℕ) [hq : Fact
+    (Nat.Prime q)] hqd => by
     have hqp : q = p :=
       (Nat.prime_dvd_prime_iff_eq hq.out hp.out).mp (((Nat.Prime.dvd_mul hq.out).mp hqd).elim id id)
     subst hqp
@@ -515,11 +542,15 @@ private theorem ModularCurve.finrank_adjoin_jqNModC_sq_mul_prime_eq_of_socket {K
     (p ℓ : ℕ) [hp : Fact (Nat.Prime p)] [hl : Fact (Nat.Prime ℓ)]
     (hbase : jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
     (hbaseℓ : jqNModC K ℓ ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K (p * p * ℓ)} : Set (LaurentSeries K))) = dedekindPsi (p * p * ℓ) :=
-  ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket (p * p * ℓ) fun (q : ℕ) [hq : Fact (Nat.Prime q)] hqd => by
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K (p * p * ℓ)} : Set (LaurentSeries K))) = dedekindPsi (p * p * ℓ) :=
+  ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket (p * p * ℓ) fun (q : ℕ) [hq : Fact
+    (Nat.Prime q)] hqd => by
     rcases (Nat.Prime.dvd_mul hq.out).mp hqd with hqpp | hql
     · have hqp : q = p :=
-        (Nat.prime_dvd_prime_iff_eq hq.out hp.out).mp (((Nat.Prime.dvd_mul hq.out).mp hqpp).elim id id)
+        (Nat.prime_dvd_prime_iff_eq hq.out hp.out).mp (((Nat.Prime.dvd_mul hq.out).mp hqpp).elim id
+          id)
       subst hqp
       exact hbase
     · have hql' : q = ℓ := (Nat.prime_dvd_prime_iff_eq hq.out hl.out).mp hql
@@ -528,9 +559,14 @@ private theorem ModularCurve.finrank_adjoin_jqNModC_sq_mul_prime_eq_of_socket {K
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve ModularCurve.PhiGen in
-theorem solution {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve
+  ModularCurve.PhiGen in
+theorem solution {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p
+  ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
   ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket d hbase
 
 end S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket
@@ -543,8 +579,12 @@ public section publicSection
 
 
 open ModularCurve ModularCurve.PhiGen
-theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :
-    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
+theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K : Type*} [Field K] (d : ℕ)
+  [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin
+  K ({jqModC K} : Set (LaurentSeries K))) :
+    Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
   solution d hbase
 
 end publicSection

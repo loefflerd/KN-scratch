@@ -137,7 +137,8 @@ end W2WsF
 theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ]
     {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
     (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (p q : ℕ) :
-    ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU k p ⇑f) :=
+    ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU
+      k p ⇑f) :=
   W2WsF.heckeU_heckeU_comm_bare (W2WsF.mf_periodic f hΓ) (ModularFormClass.holo f)
     (W2WsF.mf_bdd f hΓ) k p q
 
@@ -154,7 +155,8 @@ public section publicSection
 theorem ModularFormClass.heckeU_heckeU_comm {F : Type*} [FunLike F UpperHalfPlane ℂ]
     {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
     (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (p q : ℕ) :
-    ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU k p ⇑f) :=
+    ModularForm.heckeU k p (ModularForm.heckeU k q ⇑f) = ModularForm.heckeU k q (ModularForm.heckeU
+      k p ⇑f) :=
   solution f hΓ p q
 
 end publicSection

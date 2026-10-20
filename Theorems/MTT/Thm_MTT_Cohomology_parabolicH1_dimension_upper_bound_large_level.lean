@@ -100,6 +100,7 @@ theorem MTT.Cohomology.parabolicH1_dimension_upper_bound_large_level {N k : ℕ}
         6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 N : Set SL(2, ℤ))
           ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) :
             Set SL(2, ℤ))) ≤
-      (k - 1) * (CongruenceSubgroup.Gamma1 N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := _root_.solution hN hk
+      (k - 1) * (CongruenceSubgroup.Gamma1 N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
+        _root_.solution hN hk
 
 end publicSection

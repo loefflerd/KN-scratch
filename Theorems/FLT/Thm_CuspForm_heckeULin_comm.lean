@@ -40,7 +40,8 @@ $\mathbb{C}$-linear endomorphisms of $S_k(\Gamma_0(N))$, i.e. `Commute (CuspForm
 This is the commutativity of the Hecke operators $U_p$ for primes dividing the level, part of the
 commutativity of the full Hecke algebra acting on $S_k(\Gamma_0(N))$. It is used in the construction
 of normalized Hecke eigenforms
-([`CuspForm.exists_isNormalizedEigenform_of_forall_heckeTLin_eq_smul`](thm.html#CuspForm.exists_isNormalizedEigenform_of_forall_heckeTLin_eq_smul),
+([`CuspForm.exists_isNormalizedEigenform_of_forall_heckeTLin_eq_smul`]
+(thm.html#CuspForm.exists_isNormalizedEigenform_of_forall_heckeTLin_eq_smul),
 [`CuspForm.exists_normalized_eigenvector`](thm.html#CuspForm.exists_normalized_eigenvector)) and in
 computing traces of the $U$-operators
 ([`CuspForm.traceLin_heckeULin`](thm.html#CuspForm.traceLin_heckeULin)).

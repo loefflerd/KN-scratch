@@ -59,7 +59,8 @@ $\mathbb{Q}⟮jq⟯$ of $\mathbb{Q}((q))$, is irreducible over $\mathbb{Q}⟮jq�
 This is the classical irreducibility of the modular equation $\Phi_\ell(j, Y)$ over $\mathbb{Q}(j)$,
 here deduced from the hypothesis that $\Phi_\ell$ factors over $K((q))$ as the product of $Y$ minus
 the $\ell+1$ expected conjugates of $j$. It feeds
-[`ModularCurve.exists_phiIrreducible_evalSymm`](thm.html#ModularCurve.exists_phiIrreducible_evalSymm),
+[`ModularCurve.exists_phiIrreducible_evalSymm`]
+(thm.html#ModularCurve.exists_phiIrreducible_evalSymm),
 and thereby the identification of the function field of $X_0(\ell)$.
 
 ## Explanation of the source proof
@@ -451,7 +452,8 @@ private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_toAdjoin :
 
 p2m_export "ModularCurve.ModularPolynomialData" "aeval_jqN_toAdjoin"
 
-private theorem _root_.ModularCurve.ModularPolynomialData.minpoly_jqN_eq (hirr : PhiIrreducible data) :
+private theorem _root_.ModularCurve.ModularPolynomialData.minpoly_jqN_eq (hirr : PhiIrreducible
+  data) :
     minpoly ℚ⟮jq⟯ (jqN N) = data.toAdjoin :=
   (minpoly.eq_of_irreducible_of_monic hirr data.aeval_jqN_toAdjoin data.toAdjoin_monic).symm
 
@@ -710,7 +712,8 @@ p2m_open "ModularCurve.ModularPolynomialData"
 
 variable {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
 
-private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_transposeToAdjoin (hswap : data.Φ.eval₂ (evalAtJqN N) jq = 0) :
+private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_transposeToAdjoin (hswap :
+  data.Φ.eval₂ (evalAtJqN N) jq = 0) :
     Polynomial.aeval (jqN N) ((swapBivar data.Φ).map evalAtJGen) = 0 := by
   rw [Polynomial.aeval_def, Polynomial.eval₂_map, algebraMap_comp_evalAtJGen,
     evalAtJ_def, swapBivar_eval₂, ← evalAtJqN_def]
@@ -718,7 +721,8 @@ private theorem _root_.ModularCurve.ModularPolynomialData.aeval_jqN_transposeToA
 
 p2m_export "ModularCurve.ModularPolynomialData" "aeval_jqN_transposeToAdjoin"
 
-private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irreducible (hirr : PhiIrreducible data)
+private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irreducible (hirr :
+  PhiIrreducible data)
     (hswap : data.Φ.eval₂ (evalAtJqN N) jq = 0)
     (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic)
     (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi N) :
@@ -734,7 +738,8 @@ private theorem _root_.ModularCurve.ModularPolynomialData.swapBivar_eq_of_irredu
 
 p2m_export "ModularCurve.ModularPolynomialData" "swapBivar_eq_of_irreducible"
 
-private theorem _root_.ModularCurve.ModularPolynomialData.evalSymm_of_irreducible (hirr : PhiIrreducible data)
+private theorem _root_.ModularCurve.ModularPolynomialData.evalSymm_of_irreducible (hirr :
+  PhiIrreducible data)
     (hswap : data.Φ.eval₂ (evalAtJqN N) jq = 0)
     (hTmonic : ((swapBivar data.Φ).map evalAtJGen).Monic)
     (hTdeg : ((swapBivar data.Φ).map evalAtJGen).natDegree ≤ dedekindPsi N) :
@@ -952,7 +957,9 @@ end ModularCurve
 end
 
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) ℓ) (data : ModularPolynomialData ℓ)
     (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ)) :

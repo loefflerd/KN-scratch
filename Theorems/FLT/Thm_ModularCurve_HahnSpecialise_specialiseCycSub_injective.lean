@@ -43,7 +43,8 @@ This is the injectivity half of the comparison of $\Gamma_0(N)$-level structures
 of order $N$ — on a Weierstrass curve with good special fibre and on that special fibre, the
 classical source being the injectivity of reduction on torsion of order prime to the residue
 characteristic. It feeds the bijectivity statement
-[`ModularCurve.HahnSpecialise.specialiseCycSub_bijective`](thm.html#ModularCurve.HahnSpecialise.specialiseCycSub_bijective).
+[`ModularCurve.HahnSpecialise.specialiseCycSub_bijective`]
+(thm.html#ModularCurve.HahnSpecialise.specialiseCycSub_bijective).
 
 ## Explanation of the source proof
 

@@ -36,7 +36,8 @@ This is the additive closure half of the statement that the generalised power se
 in $\tfrac1e\mathbb{Z}$ — the Puiseux series in an $e$-th root of the uniformiser — form a subring,
 indeed a subfield, of `HahnSeries ℚ K`. It is used in the analysis of ramification of $q$-expansions
 on modular curves, feeding into
-[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`](thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
+[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`]
+(thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
 
 ## Explanation of the source proof
 

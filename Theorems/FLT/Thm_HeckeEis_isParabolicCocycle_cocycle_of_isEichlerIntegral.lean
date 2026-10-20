@@ -107,7 +107,8 @@ theorem Gamma_le_Gamma0 (N : ℕ) : Gamma N ≤ Gamma0 N := fun _ hA =>
 
 end HeckeEis.ParabolicSol
 
-open _root_.HeckeEis _root_.P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis HeckeEis.ParabolicSol UpperHalfPlane CongruenceSubgroup in
+open _root_.HeckeEis _root_.P2MW.S_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral.HeckeEis
+  HeckeEis.ParabolicSol UpperHalfPlane CongruenceSubgroup in
 open scoped ModularForm Pointwise in
 theorem solution (N n : ℕ) [NeZero N]
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2))
@@ -161,7 +162,8 @@ theorem solution (N n : ℕ) [NeZero N]
       rw [← hF.sub_eq_cocycle γ (δ • I), hρapp, hγeq, hεsmul, hRεx, ← mul_smul,
         inv_mul_cancel_right, mul_smul,
         hFG, hFG, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, hRinv, map_sub]
-    have htrans : ∀ y ∈ LinearMap.range (R (ModularGroup.T ^ h) - 1), R δ y ∈ LinearMap.range (ρ γ - 1) :=
+    have htrans : ∀ y ∈ LinearMap.range (R (ModularGroup.T ^ h) - 1), R δ y ∈ LinearMap.range (ρ γ -
+      1) :=
       by
       rintro _ ⟨w, rfl⟩
       refine ⟨R δ w, ?_⟩

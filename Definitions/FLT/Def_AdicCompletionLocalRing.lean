@@ -150,7 +150,8 @@ instance instIsLocalRingMaximalIdeal : IsLocalRing (AdicCompletion (maximalIdeal
   isLocalRing_of_fg maximalIdeal_fg
 
 theorem maximalIdeal_pow_eq_ker_evalₐ (n : ℕ) :
-    maximalIdeal (AdicCompletion (maximalIdeal A) A) ^ n = RingHom.ker (evalₐ (maximalIdeal A) n) := by
+    maximalIdeal (AdicCompletion (maximalIdeal A) A) ^ n = RingHom.ker (evalₐ (maximalIdeal A) n) :=
+      by
   rw [maximalIdeal_eq_map, ← Ideal.map_pow, ker_evalₐ_eq_map_pow _ maximalIdeal_fg]
 
 theorem maximalIdeal_eq_ker_evalₐ_one :
@@ -249,7 +250,8 @@ theorem algEquiv_algebraMap_mem_maximalIdeal {a : A} (ha : a ∈ maximalIdeal A)
 
 noncomputable def quotientMaximalIdealPowAlgEquivOfAlgEquiv (n : ℕ) :
     (B ⧸ maximalIdeal B ^ n) ≃ₐ[k] A ⧸ maximalIdeal A ^ n :=
-  (Ideal.quotientEquivAlg (maximalIdeal (AdicCompletion (maximalIdeal A) A) ^ n) (maximalIdeal B ^ n)
+  (Ideal.quotientEquivAlg (maximalIdeal (AdicCompletion (maximalIdeal A) A) ^ n) (maximalIdeal B ^
+    n)
     Φ (by rw [Ideal.map_pow, map_maximalIdeal_algEquiv])).symm.trans
     (quotientMaximalIdealPowAlgEquiv k n)
 

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
+Based on Prove2Me node
+WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
 (4bc78d56-a5e5-547d-9853-2d36912c5bdf) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission abbdd1dc-8382-51e6-ae0e-c08f7fb8be09
@@ -49,10 +50,13 @@ This is the Néron–Ogg–Shafarevich phenomenon in the shape needed here: tors
 Weierstrass model with unit discriminant over the strictly Henselian ring $\overline{\mathbb
 Q}[[t]]$ acquire no ramification, so their coordinates have integral exponents. It is the base case
 for the ramification bounds attached to modular polynomial data, being used by the lemmas
-[`ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd),
-[`ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd)
+[`ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_one_of_isRoot_off_zero_1728_of_odd),
+[`ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_three_of_isRoot_at_zero_of_odd)
 and
-[`ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd`](thm.html#ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd),
+[`ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd`]
+(thm.html#ModularCurve.ModularPolynomialData.hasRamBound_two_of_isRoot_at_1728_of_odd),
 which treat the elliptic points $j = 0$ and $j = 1728$ separately.
 
 ## Explanation of the source proof
@@ -191,7 +195,8 @@ theorem natCast_residue_ne_zero [CharZero K] {d : ℕ} (hd : d ≠ 0) :
   have hcoe : ((d : puiseuxVal K) : HahnSeries ℚ K) = HahnSeries.C (d : K) := by
     rw [map_natCast]
     simp
-  refine isUnit_iff_exists_inv.mpr ⟨⟨HahnSeries.C ((d : K)⁻¹), mem_puiseuxVal_iff.mpr (orderTop_C_nonneg _)⟩, ?_⟩
+  refine isUnit_iff_exists_inv.mpr ⟨⟨HahnSeries.C ((d : K)⁻¹), mem_puiseuxVal_iff.mpr
+    (orderTop_C_nonneg _)⟩, ?_⟩
   apply Subtype.ext
   change ((d : puiseuxVal K) : HahnSeries ℚ K) * HahnSeries.C ((d : K)⁻¹) = 1
   rw [hcoe, ← map_mul, mul_inv_cancel₀ hdK, map_one]
@@ -260,7 +265,8 @@ theorem mem_inertiaSubgroup :
   ext r
   obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective r
   change IsLocalRing.residue _
-      ((⟨toRatAlgEquiv σr, mem_decompositionSubgroup hσv⟩ : (puiseuxVal K).decompositionSubgroup ℚ) • a)
+      ((⟨toRatAlgEquiv σr, mem_decompositionSubgroup hσv⟩ : (puiseuxVal K).decompositionSubgroup ℚ)
+        • a)
     = IsLocalRing.residue _ a
   rw [← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff]
   apply mem_maximalIdeal_of_orderTop_pos
@@ -274,7 +280,8 @@ theorem mem_inertiaSubgroup :
     · rw [(nonneg_orderTop_iff.mp (mem_puiseuxVal_iff.mp a.2)) q hq', ite_eq_right (ne_of_lt hq')]
       simp
     · simp [ha0]
-  have heq : σr (a : HahnSeries ℚ K) - (a : HahnSeries ℚ K) = σr ((a : HahnSeries ℚ K) - HahnSeries.C a0)
+  have heq : σr (a : HahnSeries ℚ K) - (a : HahnSeries ℚ K) = σr ((a : HahnSeries ℚ K) -
+    HahnSeries.C a0)
       - ((a : HahnSeries ℚ K) - HahnSeries.C a0) := by
     rw [map_sub, hσ1 _ (hasRamBound_one_C a0)]
     ring
@@ -342,7 +349,8 @@ theorem solution
 
 end S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
 end P2MW
-export P2MW.S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries (solution)
+export P2MW.S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
+  (solution)
 
 end privateSection
 

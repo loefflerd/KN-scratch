@@ -94,7 +94,8 @@ end ModularCurve
 end
 
 set_option pp.universes true in
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_minpoly_jqN_eq_toAdjoin.ModularCurve ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_minpoly_jqN_eq_toAdjoin.ModularCurve
+  ModularCurve.PhiGen in
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (h : PhiIrreducible data) :
     minpoly (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) = data.toAdjoin :=
   ModularCurve.minpoly_jqN_eq_toAdjoin data h

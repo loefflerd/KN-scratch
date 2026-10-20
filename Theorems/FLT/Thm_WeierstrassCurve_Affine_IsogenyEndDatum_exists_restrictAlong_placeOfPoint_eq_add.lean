@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.IsogenyEndDatum.exists_restrictAlong_placeOfPoint_eq_add
+Based on Prove2Me node
+WeierstrassCurve.Affine.IsogenyEndDatum.exists_restrictAlong_placeOfPoint_eq_add
 (f8a39c1e-1459-50cb-893b-11563e5e5727) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 52dbf7a5-8da4-5f91-a7ee-93f5d4b10c7e
@@ -65,7 +66,8 @@ $F$-algebra self-embeddings of the function field, in the place-theoretic formul
 curves–fields correspondence: the new embedding is given by chord-and-tangent addition of the two
 generic points, and the content is that the compatibility with places holds at every point,
 including those where the addition formulae degenerate. It is used by
-[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add`](thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add),
+[`WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add`]
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_pointEnd_eq_add),
 which upgrades it to the statement that the sum of the two induced endomorphisms of $W(F)$ is again
 induced by an isogeny end datum.
 
@@ -136,6 +138,7 @@ theorem WeierstrassCurve.Affine.IsogenyEndDatum.exists_restrictAlong_placeOfPoin
       (placeOfPoint P).restrictAlong D₃.ι D₃.hι
         = placeOfPoint
             ((pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D₁.ι D₁.hι)
-              + (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D₂.ι D₂.hι)) := _root_.solution D₁ hN₁ D₂ hN₂ h
+              + (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D₂.ι D₂.hι)) :=
+                _root_.solution D₁ hN₁ D₂ hN₂ h
 
 end publicSection

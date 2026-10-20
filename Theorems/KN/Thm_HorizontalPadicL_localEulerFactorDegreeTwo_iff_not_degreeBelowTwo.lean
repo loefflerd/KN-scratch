@@ -164,7 +164,8 @@ lemma LFunction_prime_pow (E : WeierstrassCurve ℚ) (v : HeightOneSpectrum (�
     E.LFunction (P v ^ k) = coeff k (Fv E v) := by
   have hp : (P v).Prime := (Rat.HeightOneSpectrum.primesEquiv v).2
   obtain ⟨s, hs1, hs2⟩ := ((tendsTo_eulerProduct_ofPowerSeries
-    (fun w : HeightOneSpectrum (𝓞 ℚ) => Nat.card (IsLocalRing.ResidueField (w.adicCompletionIntegers ℚ)))
+    (fun w : HeightOneSpectrum (𝓞 ℚ) => Nat.card (IsLocalRing.ResidueField (w.adicCompletionIntegers
+      ℚ)))
     (Fv E) (constantCoeff_Fv E) (P v ^ k)).and (Filter.eventually_ge_atTop {v})).exists
   unfold WeierstrassCurve.LFunction
   simp only [WeierstrassCurve.localEulerFactor] at hs1 ⊢
@@ -176,7 +177,8 @@ lemma LFunction_prime_pow (E : WeierstrassCurve ℚ) (v : HeightOneSpectrum (�
   · exact prod_delta hp _ _ fun w hw j => factor_delta E v w (Finset.ne_of_mem_erase hw) j
 
 lemma Fv_mul (E : WeierstrassCurve ℚ) (v : HeightOneSpectrum (𝓞 ℚ)) :
-    ((E.baseChange (v.adicCompletion ℚ)).localPolynomial (v.adicCompletionIntegers ℚ) : PowerSeries ℤ)
+    ((E.baseChange (v.adicCompletion ℚ)).localPolynomial (v.adicCompletionIntegers ℚ) : PowerSeries
+      ℤ)
       * Fv E v = 1 := by
   unfold Fv WeierstrassCurve.localPowerSeries
   apply mul_invOfUnit

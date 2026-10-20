@@ -74,7 +74,8 @@ open scoped MatrixGroups ModularForm
 namespace ANGlue
 
 theorem one_mem_strictPeriods_gamma0 (N : ℕ) :
-    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N)).strictPeriods := by
+    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0
+      N)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma0]
   exact AddSubgroup.mem_zmultiples 1
 
@@ -89,10 +90,12 @@ open ANGlue in
 theorem solution (N : ℕ) [NeZero N]
     (X : LaurentSeries ℂ)
     (hX : X ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.modularFunctionFieldFull N)) (M : ℕ)
-    (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set (LaurentSeries ℂ)))
+    (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set
+      (LaurentSeries ℂ)))
       (X ^ 6 * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ 4 *
         (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ 3))
-    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set (LaurentSeries ℂ)))
+    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set
+      (LaurentSeries ℂ)))
       (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) *
         (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M)) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) 2,
@@ -139,10 +142,12 @@ theorem solution (N : ℕ) [NeZero N]
     rw [hΦcoe, hΨcoe]
     exact ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq N g h X hXh h₁ τ
   have hcusp : ∀ (A : SL(2, ℤ)) (ε : ℝ), 0 < ε → ∀ᶠ τ : ℍ in atImInfty,
-      ‖((Φ : ℍ → ℂ) ∣[k + (4 + 4) + 6] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : ℍ → ℂ) ∣[k + 12] (A : GL (Fin 2) ℝ)) τ‖ := by
+      ‖((Φ : ℍ → ℂ) ∣[k + (4 + 4) + 6] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : ℍ → ℂ) ∣[k + 12] (A : GL
+        (Fin 2) ℝ)) τ‖ := by
     intro A ε hε
     rw [hΦcoe, hΨcoe, show k + (4 + 4) + 6 = k + 14 by ring]
-    exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv N g h X hXh M h₂ A ε hε
+    exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv N g h X hXh M
+      h₂ A ε hε
   obtain ⟨f, hf⟩ :=
     ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le N 2 (by ring) Φ Ψ hΨ0 hord hcusp
   refine ⟨-f, ?_⟩
@@ -152,7 +157,8 @@ theorem solution (N : ℕ) [NeZero N]
     rw [ModularForm.coe_mul, Pi.mul_apply, ← CuspForm.toModularFormₗ_eq_coe,
       CuspForm.toModularFormₗ_apply]
     exact hf z
-  have hcoef : ((ModularFormClass.modularForm f : ModularForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) = (f : ℍ → ℂ) :=
+  have hcoef : ((ModularFormClass.modularForm f : ModularForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ →
+    ℂ) = (f : ℍ → ℂ) :=
     by
     rw [← CuspForm.toModularFormₗ_eq_coe]
     funext z
@@ -161,15 +167,18 @@ theorem solution (N : ℕ) [NeZero N]
     have e := ModularForm.qExpansion_mul one_pos h1 (ModularFormClass.modularForm f) Ψ
     rw [hfΨ, hcoef] at e
     exact e.symm
-  have hqΨ : qExpansion 1 (Ψ : ℍ → ℂ) = qExpansion 1 (h : ℍ → ℂ) * qExpansion 1 ModularForm.discriminant :=
+  have hqΨ : qExpansion 1 (Ψ : ℍ → ℂ) = qExpansion 1 (h : ℍ → ℂ) * qExpansion 1
+    ModularForm.discriminant :=
     by
     rw [hΨdef, ModularForm.qExpansion_mul one_pos h1, hDcoe]
   have hqΦ : qExpansion 1 (Φ : ℍ → ℂ) =
-      qExpansion 1 (g : ℍ → ℂ) * (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) * qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) *
+      qExpansion 1 (g : ℍ → ℂ) * (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) * qExpansion 1
+        (ModularForm.E₄ : ℍ → ℂ)) *
         qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by
     rw [hΦdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1,
       ModularForm.qExpansion_mul one_pos h1, hE4, hE6]
-  have hT2 : thetaL ℂ (coeffEmb ℂ jq) * ((qExpansion 1 ModularForm.discriminant : PowerSeries ℂ) : LaurentSeries ℂ) =
+  have hT2 : thetaL ℂ (coeffEmb ℂ jq) * ((qExpansion 1 ModularForm.discriminant : PowerSeries ℂ) :
+    LaurentSeries ℂ) =
       -((((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) ^ 2 *
         ((qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) := by
     rw [thetaL_coeffEmb_jq]
@@ -205,23 +214,28 @@ theorem solution (N : ℕ) [NeZero N]
     have h0' : qExpansion 1 (DN : ℍ → ℂ) = 0 :=
       HahnSeries.ofPowerSeries_injective (by rw [hDcoe, h0, map_zero])
     exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 DN).mp h0'
-  have key : (((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) + X * thetaL ℂ (coeffEmb ℂ jq)) *
+  have key : (((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) + X * thetaL ℂ
+    (coeffEmb ℂ jq)) *
       (((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) *
         ((qExpansion 1 ModularForm.discriminant : PowerSeries ℂ) : LaurentSeries ℂ)) = 0 := by
-    linear_combination eq1 + eq3 - ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) * eq2 +
+    linear_combination eq1 + eq3 - ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) *
+      eq2 +
       X * ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) * hT2 -
       ((((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) ^ 2 *
         ((qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) * hXh
-  have hsum : ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) + X * thetaL ℂ (coeffEmb ℂ jq) = 0 :=
+  have hsum : ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) + X * thetaL ℂ
+    (coeffEmb ℂ jq) = 0 :=
     by
     rcases mul_eq_zero.mp key with h0 | h0
     · exact h0
     · exact absurd h0 (mul_ne_zero hhq hDq)
-  have hneg : qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) = -qExpansion 1 (f : ℍ → ℂ) :=
+  have hneg : qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) = -qExpansion 1
+    (f : ℍ → ℂ) :=
     by
     rw [FunLike.coe_neg]
     exact ModularForm.qExpansion_neg one_pos h1 f
-  change ((qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = _
+  change ((qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) : PowerSeries ℂ) :
+    LaurentSeries ℂ) = _
   rw [hneg, PowerSeries.coe_neg, eq_neg_of_add_eq_zero_left hsum, neg_neg]
 
 end S_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral
@@ -237,10 +251,12 @@ open ModularCurve
 theorem ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral (N : ℕ) [NeZero N]
     (X : LaurentSeries ℂ)
     (hX : X ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.modularFunctionFieldFull N)) (M : ℕ)
-    (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set (LaurentSeries ℂ)))
+    (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set
+      (LaurentSeries ℂ)))
       (X ^ 6 * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ 4 *
         (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ 3))
-    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set (LaurentSeries ℂ)))
+    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set
+      (LaurentSeries ℂ)))
       (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) *
         (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M)) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) 2,

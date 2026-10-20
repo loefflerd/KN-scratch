@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
+Based on Prove2Me node
+WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
 (3190c933-3982-52e5-8936-df1e19a29d91) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 46f9692b-89dd-5871-a452-f75e3f8d68ea
@@ -95,7 +96,8 @@ theorem solution
 
 end S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples (solution)
+export P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
+  (solution)
 
 end privateSection
 

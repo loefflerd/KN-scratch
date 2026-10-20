@@ -52,9 +52,11 @@ This is the invariance of the Riemann–Roch dimension under a constant field ex
 algebraically closed base field (Stichtenoth, Theorem 3.6.3(a)), the divisor being transported by
 the given lifting of places. It is used to compare genera across the extension, in the two
 inequalities
-[`AlgebraicCurve.genusFF_le_of_constantFieldExtension_of_isAlgClosed`](thm.html#AlgebraicCurve.genusFF_le_of_constantFieldExtension_of_isAlgClosed)
+[`AlgebraicCurve.genusFF_le_of_constantFieldExtension_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.genusFF_le_of_constantFieldExtension_of_isAlgClosed)
 and
-[`AlgebraicCurve.le_genusFF_of_constantFieldExtension_of_isAlgClosed`](thm.html#AlgebraicCurve.le_genusFF_of_constantFieldExtension_of_isAlgClosed).
+[`AlgebraicCurve.le_genusFF_of_constantFieldExtension_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.le_genusFF_of_constantFieldExtension_of_isAlgClosed).
 
 ## Explanation of the source proof
 
@@ -135,7 +137,8 @@ theorem solution
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
@@ -212,7 +215,8 @@ theorem AlgebraicCurve.ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K']
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']

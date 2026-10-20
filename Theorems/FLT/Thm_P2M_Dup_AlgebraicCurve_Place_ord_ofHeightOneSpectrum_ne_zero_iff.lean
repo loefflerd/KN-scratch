@@ -102,7 +102,8 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_ord_ofHeightOneSpectrum_ne_zero_iff.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_ord_ofHeightOneSpectrum_ne_zero_iff.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {R : Type*} [CommRing R]
     [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
     [Algebra K R] [IsScalarTower K R F] (w : IsDedekindDomain.HeightOneSpectrum R) {q : R}

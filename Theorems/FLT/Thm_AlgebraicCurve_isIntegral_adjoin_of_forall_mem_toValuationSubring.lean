@@ -72,13 +72,15 @@ theorem isIntegral_of_mem_adjoin_inv {A F : Type*} [CommRing A] [Field F] [Algeb
       (p.natDegree : WithBot ℕ) := by
     refine (Polynomial.degree_sum_le _ _).trans (Finset.sup_le fun i _ => ?_)
     exact (Polynomial.degree_C_mul_X_pow_le _ _).trans (by exact_mod_cast Nat.sub_le _ _)
-  refine ⟨X ^ (p.natDegree + 1) - ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ (p.natDegree - i),
+  refine ⟨X ^ (p.natDegree + 1) - ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^
+    (p.natDegree - i),
     Polynomial.monic_X_pow_sub (hdeg.trans_lt (by exact_mod_cast Nat.lt_succ_self _)), ?_⟩
   have hz : z = ∑ i ∈ Finset.range (p.natDegree + 1), algebraMap A F (p.coeff i) * z⁻¹ ^ i := by
     conv_lhs => rw [← hp']
     rw [Polynomial.aeval_eq_sum_range]
     simp only [Algebra.smul_def]
-  have hzpow : ∀ i ∈ Finset.range (p.natDegree + 1), z ^ p.natDegree * z⁻¹ ^ i = z ^ (p.natDegree - i) :=
+  have hzpow : ∀ i ∈ Finset.range (p.natDegree + 1), z ^ p.natDegree * z⁻¹ ^ i = z ^ (p.natDegree -
+    i) :=
     by
     intro i hi
     have hi' : i ≤ p.natDegree := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)

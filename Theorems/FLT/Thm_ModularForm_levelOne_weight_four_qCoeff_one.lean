@@ -40,9 +40,11 @@ This is the coefficient identity expressing that the space of level-one modular 
 is spanned by the Eisenstein series $E_4 = 1 + 240q + \cdots$, so that any such form is a scalar
 multiple of $E_4$. It is used in the project wherever weight-four level-one forms occur, for
 instance in the divisibility estimate
-[`CuspForm.dvd_240_mul_qCoeff_one_sq_of_qCoeff_congr_sigmaPrimeTo`](thm.html#CuspForm.dvd_240_mul_qCoeff_one_sq_of_qCoeff_congr_sigmaPrimeTo)
+[`CuspForm.dvd_240_mul_qCoeff_one_sq_of_qCoeff_congr_sigmaPrimeTo`]
+(thm.html#CuspForm.dvd_240_mul_qCoeff_one_sq_of_qCoeff_congr_sigmaPrimeTo)
 and in the bounds on analytic orders of vanishing on modular curves appearing in
-[`ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq`](thm.html#ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq)
+[`ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq`]
+(thm.html#ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq)
 and its variant for powers.
 
 ## Explanation of the source proof

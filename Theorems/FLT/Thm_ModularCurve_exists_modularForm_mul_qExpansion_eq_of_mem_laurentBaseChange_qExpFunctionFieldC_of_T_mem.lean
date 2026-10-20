@@ -1,5 +1,7 @@
 /-
-Based on Prove2Me node ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
+Based on Prove2Me node
+ModularCurve.
+exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
 (f63f1e25-7d3e-5e9b-a87a-3c7938f9a13e) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission b051b46b-d109-56ea-8911-ae482b0dcf57
@@ -14,13 +16,13 @@ module
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Elements of ℂ· F(Γ) are ratios of modular forms
 
 Theorem statement:
-`ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem`
+`ModularCurve.
+exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem`
 (`f63f1e25-7d3e-5e9b-a87a-3c7938f9a13e`), by Claude, 2026-09-05.
 
 Proof: submission `b051b46b-d109-56ea-8911-ae482b0dcf57`, by Claude, 2026-09-05 (ACCEPTED); locally
@@ -58,21 +60,14 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
-
-set_option linter.unusedSectionVars false
-
 noncomputable section
 
 open UpperHalfPlane
 open scoped MatrixGroups
 
 namespace ModularCurve
-p2m_export "ModularCurve" "IsIntegralQExp intSeriesC intSeriesC_zero intFormRatiosC \
-  qExpFunctionFieldC ofPowerSeries_coeff_of_neg coeffMap_single algebraMap_laurentSeries_eq_single \
-  coeffEmb coeffEmb_coeff laurentBaseChange mem_laurentBaseChange_iff"
+
 namespace RatioFieldOfGroup
-p2m_open "ModularCurve"
 
 variable {Γ : Subgroup SL(2, ℤ)}
 
@@ -119,8 +114,8 @@ theorem one_ne_zero' : (1 : ModularForm Γ 0) ≠ 0 := by
   have := congrArg (fun F : ModularForm Γ 0 => (F : ℍ → ℂ) UpperHalfPlane.I) h
   simp [ModularForm.one_coe_eq_one] at this
 
-theorem mul_ne_zero' {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) (hf : f ≠ 0) (hg : g ≠ 0)
-    :
+theorem mul_ne_zero'
+    {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) (hf : f ≠ 0) (hg : g ≠ 0) :
     f.mul g ≠ 0 := by
   intro hfg
   have h := congrArg (qL (Γ := Γ)) hfg
@@ -198,11 +193,12 @@ theorem coeffEmb_intSeriesC (p : PowerSeries ℤ) : coeffEmb ℂ (intSeriesC ℚ
       eq_intCast, map_intCast]
 
 omit hT in
-theorem intSeriesC_eq_qL {k : ℤ} {f : ModularForm Γ k} {p : PowerSeries ℤ} (hf : IsIntegralQExp f p)
-    :
+theorem intSeriesC_eq_qL
+    {k : ℤ} {f : ModularForm Γ k} {p : PowerSeries ℤ} (hf : IsIntegralQExp f p) :
     intSeriesC ℂ p = qL f := by
   rw [intSeriesC, hf]
 
+omit hT in
 theorem isRatio_coeffEmb_of_mem_intFormRatiosC {y : LaurentSeries ℚ} (hy : y ∈ intFormRatiosC ℚ Γ) :
     IsRatio Γ (coeffEmb ℂ y) := by
   obtain ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩ := hy
@@ -228,12 +224,13 @@ theorem isRatio_coeffEmb_of_mem_intFormRatiosC {y : LaurentSeries ℚ} (hy : y �
 
 theorem isRatio_coeffEmb {y : LaurentSeries ℚ} (hy : y ∈ qExpFunctionFieldC ℚ Γ) :
     IsRatio Γ (coeffEmb ℂ y) := by
-  change y ∈ Subfield.closure (Set.range (algebraMap ℚ (LaurentSeries ℚ)) ∪ intFormRatiosC ℚ Γ) at hy
+  change y ∈ Subfield.closure (Set.range (algebraMap ℚ (LaurentSeries ℚ))
+    ∪ intFormRatiosC ℚ Γ) at hy
   induction hy using Subfield.closure_induction with
   | mem z hz =>
       rcases hz with ⟨r, rfl⟩ | hz
       · rw [coeffEmb_algebraMap]; exact isRatio_algebraMap hT _
-      · exact isRatio_coeffEmb_of_mem_intFormRatiosC hT hz
+      · exact isRatio_coeffEmb_of_mem_intFormRatiosC hz
   | one => simpa using isRatio_one hT
   | add x y _ _ hx hy => simpa using hx.add hT hy
   | neg x _ hx => simpa using hx.neg hT
@@ -263,26 +260,30 @@ theorem solution
     (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (x : LaurentSeries ℂ)
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) :
     ∃ (k : ℤ) (g h : ModularForm Γ k), h ≠ 0 ∧
-      x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-        ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+      x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+        =
+        ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+          :=
   ModularCurve.RatioFieldOfGroup.isRatio_of_mem hT hx
-
-end S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
-end P2MW
-export P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem (solution)
 
 end privateSection
 
 public section publicSection
 
-
 open scoped MatrixGroups
-theorem ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
+namespace ModularCurve
+
+theorem
+  exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
     (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (x : LaurentSeries ℂ)
     (hx : x ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) :
     ∃ (k : ℤ) (g h : ModularForm Γ k), h ≠ 0 ∧
-      x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-        ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
+      x * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+        =
+        ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+          :=
   solution Γ hT x hx
+
+end ModularCurve
 
 end publicSection

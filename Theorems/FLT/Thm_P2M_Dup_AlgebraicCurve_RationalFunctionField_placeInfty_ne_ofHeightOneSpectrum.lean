@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node P2M.Dup.AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum
+Based on Prove2Me node
+P2M.Dup.AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum
 (5ec48eeb-92f6-50ae-bebc-475dbfe352a1) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6646b61f-8a44-51da-a0f8-ce1bb8662eb6

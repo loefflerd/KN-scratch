@@ -52,9 +52,11 @@ half-plane with the valuation-theoretic data of the function field $\mathbb{C}(X
 vanishing at $\tau_0$ is a positive integer multiple of the normalised order at a place of $K$, the
 factor $e$ being classically the ramification index of $\mathbb{H} \to X(N)$ at $\tau_0$. It is used
 in the computations of the order of the $j$-generator at such places, namely
-[`ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers`](thm.html#ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers)
+[`ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers`]
+(thm.html#ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers)
 and
-[`ModularCurve.LevelN.exists_place_ord_jGen_le_two_three_level`](thm.html#ModularCurve.LevelN.exists_place_ord_jGen_le_two_three_level).
+[`ModularCurve.LevelN.exists_place_ord_jGen_le_two_three_level`]
+(thm.html#ModularCurve.LevelN.exists_place_ord_jGen_le_two_three_level).
 
 ## Explanation of the source proof
 

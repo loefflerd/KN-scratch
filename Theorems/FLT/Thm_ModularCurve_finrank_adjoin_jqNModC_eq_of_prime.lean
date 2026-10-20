@@ -254,7 +254,8 @@ theorem eq_cuspInftyBar_or_eq_cuspZeroBar (hw : IsFrickeAutFull ℓ (frickeInvol
   have hne : cuspZeroBar ℓ ≠ cuspInftyBar ℓ := cuspZeroBar_ne_cuspInftyBar ℓ hw hℓ.one_lt
   have r0 := restrict_eq_of_isCusp ℓ _ (isCusp_cuspZeroBar ℓ hw)
   have rw' := restrict_eq_of_isCusp ℓ _ hc
-  have hS : ∀ u ∈ ({cuspInftyBar ℓ, cuspZeroBar ℓ, w} : Finset (Place 𝕂 (modularFunctionFieldBar ℓ))),
+  have hS : ∀ u ∈ ({cuspInftyBar ℓ, cuspZeroBar ℓ, w} : Finset (Place 𝕂 (modularFunctionFieldBar
+    ℓ))),
       u.restrict (RatFunc 𝕂) = (cuspInftyBar ℓ).restrict (RatFunc 𝕂) := by
     intro u hu
     simp only [Finset.mem_insert, Finset.mem_singleton] at hu
@@ -316,13 +317,18 @@ theorem le_finrank : ℓ + 1 ≤ Module.finrank (RatFunc 𝕂) (modularFunctionF
 
 theorem finrank_tower_eq : Module.finrank (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) =
     Module.finrank (RatFunc 𝕂) (modularFunctionFieldBar ℓ) :=
-  Algebra.finrank_eq_of_equiv_equiv (σa.symm.toRingEquiv : 𝕂⟮jqModC 𝕂⟯ ≃+* RatFunc 𝕂) (jTr ℓ) (he_compat ℓ)
+  Algebra.finrank_eq_of_equiv_equiv (σa.symm.toRingEquiv : 𝕂⟮jqModC 𝕂⟯ ≃+* RatFunc 𝕂) (jTr ℓ)
+    (he_compat ℓ)
 
 end DegAux
 
 open DegAux in
 theorem solution (ℓ : ℕ) [Fact ℓ.Prime] :
-    Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1 := by
+    Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} :
+      Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin
+      (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure
+      ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1
+      := by
   apply le_antisymm
   · have hℓ : ℓ.Prime := Fact.out
     obtain ⟨data⟩ := nonempty_modularPolynomialData_of_squarefree ℓ hℓ.squarefree hℓ.one_lt
@@ -343,7 +349,11 @@ public section publicSection
 
 open ModularCurve
 theorem ModularCurve.finrank_adjoin_jqNModC_eq_of_prime (ℓ : ℕ) [Fact ℓ.Prime] :
-    Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1 :=
+    Module.finrank (IntermediateField.adjoin (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} :
+      Set (LaurentSeries (AlgebraicClosure ℚ)))) (IntermediateField.adjoin (IntermediateField.adjoin
+      (AlgebraicClosure ℚ) ({jqModC (AlgebraicClosure ℚ)} : Set (LaurentSeries (AlgebraicClosure
+      ℚ)))) ({jqNModC (AlgebraicClosure ℚ) ℓ} : Set (LaurentSeries (AlgebraicClosure ℚ)))) = ℓ + 1
+      :=
   solution ℓ
 
 end publicSection

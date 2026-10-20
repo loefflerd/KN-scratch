@@ -1843,7 +1843,8 @@ p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Place.ord_zero Divisor D
   RationalFunctionField.ord_placeInfty Place.exists_restrict_eq"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 
-scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Field F] [Field F']
+  [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     [HasPrincipalDivisors K F'] : SumRamificationInertia K F F' :=
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg v⟩
@@ -1933,7 +1934,8 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.degree_poleDivisor_eq_f
 
 p2m_export "AlgebraicCurve.TranscendenceTower" "degree_poleDivisor_eq_finrank"
 omit [FiniteDimensional E F] in
-private theorem _root_.AlgebraicCurve.TranscendenceTower.mem_lSpace_nsmul_poleDivisor_of_regular_outside {f : F}
+private theorem
+  _root_.AlgebraicCurve.TranscendenceTower.mem_lSpace_nsmul_poleDivisor_of_regular_outside {f : F}
     (hreg : ∀ w : Place K F, w.restrict E ≠ T.v → 0 ≤ w.ord f)
     {c : ℕ} (hc : ∀ w ∈ T.v.fiber F, -(c : ℤ) ≤ w.ord f) :
     f ∈ LSpace (c • T.poleDivisor) := by
@@ -2284,7 +2286,8 @@ theorem stichtenothGenusExists_of_hasRegularFractionSubring [IsCurveOver K F]
 namespace TranscendenceTower
 p2m_open_scoped "AlgebraicCurve.TranscendenceTower" in
 omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
-private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F) :
+private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T :
+  TranscendenceTower K E F) :
     ∀ u : Place K E, u ≠ T.v →
       ∀ a ∈ Algebra.adjoin K {T.x}, a ∈ u.toValuationSubring := by
   intro u hu a ha
@@ -2453,7 +2456,8 @@ theorem ord_X_nonneg_of_ne_placeInfty
     {u : Place K (RatFunc K)} (hu : u ≠ placeInfty K) :
     0 ≤ u.ord (RatFunc.X : RatFunc K) := by
   rw [← RatFunc.algebraMap_X]
-  exact AlgebraicCurve.Place.ord_nonneg_of_mem u (algebraMap_polynomial_mem_of_ne_placeInfty K hu Polynomial.X)
+  exact AlgebraicCurve.Place.ord_nonneg_of_mem u (algebraMap_polynomial_mem_of_ne_placeInfty K hu
+    Polynomial.X)
 
 variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
   [IsScalarTower K (RatFunc K) F]
@@ -2587,7 +2591,8 @@ variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 
 omit [DecidableEq (RatFunc K)] in
 omit [DecidableEq (RatFunc K)] in
-private theorem _root_.AlgebraicCurve.RationalFunctionField.exists_restrict_eq (v : Place K (RatFunc K)) :
+private theorem _root_.AlgebraicCurve.RationalFunctionField.exists_restrict_eq (v : Place K (RatFunc
+  K)) :
     ∃ w : Place K F, w.restrict (RatFunc K) = v :=
   Place.exists_restrict_eq v
 
@@ -2640,7 +2645,8 @@ end
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
-open _root_.P2MW.S_AlgebraicCurve_linearIndependent_pow_of_transcendental.AlgebraicCurve Polynomial in
+open _root_.P2MW.S_AlgebraicCurve_linearIndependent_pow_of_transcendental.AlgebraicCurve Polynomial
+  in
 theorem solution {K : Type*} {A : Type*} [CommRing K] [CommRing A] [Algebra K A] {x : A}
     (hx : Transcendental K x) :
     LinearIndependent K (fun j : ℕ => x ^ j) :=

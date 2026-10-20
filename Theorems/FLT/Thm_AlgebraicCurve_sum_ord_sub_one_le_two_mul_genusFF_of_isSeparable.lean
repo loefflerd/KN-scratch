@@ -47,7 +47,8 @@ This is the Riemann–Hurwitz inequality for the extension $F/k(x)$ combined wit
 inequality $d(P\mid p)\ge e(P\mid p)-1$, packaged as a bound over an arbitrary finite family of
 places lying over points $x=a_P$ of the affine line and over poles of $x$, so that no enumeration of
 all ramified places is needed. It is used in the genus estimates for modular curves, for instance in
-[`ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF`](thm.html#ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF)
+[`ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF`]
+(thm.html#ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF)
 and in the comparisons of `genusFF` for the various modular function fields.
 
 ## Explanation of the source proof

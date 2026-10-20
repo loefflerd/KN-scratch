@@ -59,7 +59,8 @@ for the dictionary between points of the upper half-plane and places of the func
 $X_1(M)$: the analytic order of vanishing of a realized function at $\tau$ agrees with its valuation
 at the corresponding place, with no multiplier. It is used in the comparison of valuations with
 weights at such places, via
-[`ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1`](thm.html#ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1).
+[`ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1`]
+(thm.html#ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1).
 
 ## Explanation of the source proof
 
@@ -362,7 +363,8 @@ theorem jqModC_sub_mul_qL_H [hT : Fact (ModularGroup.T ∈ Γ)] (c : ℂ) :
   rw [sub_mul, jqModC_mul_qL_H, qL_G_sub_smul_H]
 
 theorem realizeOf_jqModC_sub [hT : Fact (ModularGroup.T ∈ Γ)] (c : ℂ) (z : ℍ) :
-    realizeOf Γ (jqModC ℂ - HahnSeries.C c) z = (E₄ : ℍ → ℂ) z ^ 3 / ModularForm.discriminant z - c := by
+    realizeOf Γ (jqModC ℂ - HahnSeries.C c) z = (E₄ : ℍ → ℂ) z ^ 3 / ModularForm.discriminant z - c
+      := by
   rw [ModularCurve.realizeOf_eq_div Γ hT.out (G Γ - c • H Γ) (H Γ) _ (jqModC_sub_mul_qL_H Γ c) z
     (H_apply_ne_zero Γ z)]
   have hH : (H Γ : ℍ → ℂ) z ≠ 0 := H_apply_ne_zero Γ z
@@ -421,7 +423,9 @@ end Main
 end ModularCurve.RamOne
 end
 
-open UpperHalfPlane ModularForm ModularGroup _root_.ModularCurve _root_.P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve ModularCurve.RamOne in
+open UpperHalfPlane ModularForm ModularGroup _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve
+  ModularCurve.RamOne in
 open scoped MatrixGroups Modular in
 theorem solution
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
@@ -459,8 +463,10 @@ theorem solution
   have hkey : ((D.ramification τ : ℤ) * (D.pt τ).ord x : ℤ) =
       ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ) / 2 : ℕ) : ℤ) := by
     have h := D.meromorphicOrderAt_realizeOf τ x hx0
-    have hfun : (fun z : ℂ => realizeOf (CongruenceSubgroup.Gamma1 M) (x : LaurentSeries ℂ) (ofComplex z)) =
-        (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 / ModularForm.discriminant (ofComplex z)
+    have hfun : (fun z : ℂ => realizeOf (CongruenceSubgroup.Gamma1 M) (x : LaurentSeries ℂ)
+      (ofComplex z)) =
+        (fun z : ℂ => (ModularForm.E₄ : ℍ → ℂ) (ofComplex z) ^ 3 / ModularForm.discriminant
+          (ofComplex z)
           - (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ) := by
       funext z
       rw [hxcoe, realizeOf_jqModC_sub]
@@ -482,7 +488,8 @@ theorem solution
       (mul_pos_iff_of_pos_left (show (0 : ℤ) < D.ramification (γ • UpperHalfPlane.I) by exact_mod_cast he)).mp
         (by rw [hkey]; norm_num)
     have h2 :=
-      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy).2
+      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y
+        hy).2
       _ hpos
     rw [h2] at hkey
     norm_num at hkey
@@ -497,7 +504,8 @@ theorem solution
       (mul_pos_iff_of_pos_left (show (0 : ℤ) < D.ramification (γ • ρ) by exact_mod_cast he)).mp
         (by rw [hkey]; norm_num)
     have h3 :=
-      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y hy).1
+      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y
+        hy).1
       _ hpos
     rw [h3] at hkey
     norm_num at hkey

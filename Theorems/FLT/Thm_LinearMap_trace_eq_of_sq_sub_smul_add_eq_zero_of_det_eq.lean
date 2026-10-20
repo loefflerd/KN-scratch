@@ -44,9 +44,11 @@ $a$ in a quadratic relation satisfied by $f$ with the trace of $f$. It is used t
 Hasse relation $\mathrm{Frob}_\ell^2 - a_\ell\,\mathrm{Frob}_\ell + \ell = 0$ on a Tate module,
 together with the determinant computation, to the characteristic polynomial and trace of Frobenius,
 in
-[`WeierstrassCurve.tateModuleRep_charpoly_frobenius`](thm.html#WeierstrassCurve.tateModuleRep_charpoly_frobenius)
+[`WeierstrassCurve.tateModuleRep_charpoly_frobenius`]
+(thm.html#WeierstrassCurve.tateModuleRep_charpoly_frobenius)
 and
-[`WeierstrassCurve.trace_frobenius_tateModule_eq_card_add_one_sub`](thm.html#WeierstrassCurve.trace_frobenius_tateModule_eq_card_add_one_sub).
+[`WeierstrassCurve.trace_frobenius_tateModule_eq_card_add_one_sub`]
+(thm.html#WeierstrassCurve.trace_frobenius_tateModule_eq_card_add_one_sub).
 
 ## Explanation of the source proof
 

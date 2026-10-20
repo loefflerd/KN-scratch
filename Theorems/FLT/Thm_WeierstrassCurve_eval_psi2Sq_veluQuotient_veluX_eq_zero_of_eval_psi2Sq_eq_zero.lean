@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
+Based on Prove2Me node
+WeierstrassCurve.eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
 (9b7569dc-bf28-5e7c-b79b-07654c7e8121) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission d4fd1e19-4603-5bb6-b341-f944cabf59e6
@@ -45,7 +46,8 @@ This is the statement that the Vélu isogeny with cyclic kernel of odd order $2n
 carries abscissae of $2$-torsion points of $W$ to abscissae of $2$-torsion points of the quotient
 curve, in the form of a vanishing statement for the squared $2$-division polynomials. It feeds into
 the proof that the Vélu quotient by an odd-order summing set has nonvanishing discriminant,
-[`WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero`](thm.html#WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero),
+[`WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero`]
+(thm.html#WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero),
 and rests on the fact that the Vélu formulas send an affine point off the kernel abscissae to a
 point of the quotient curve.
 
@@ -218,7 +220,8 @@ theorem solution
 
 end S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
 end P2MW
-export P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero (solution)
+export P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
+  (solution)
 
 end privateSection
 

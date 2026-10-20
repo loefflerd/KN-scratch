@@ -47,7 +47,8 @@ This is the classical count of the points of the projective line over $\mathbb{Z
 the Dedekind psi function. It feeds the index formula $[\mathrm{SL}_2(\mathbb{Z}) : \Gamma_0(N)] =
 \psi(N)$ in [`ModularCurve.Gamma0_index`](thm.html#ModularCurve.Gamma0_index) and the companion
 counting statement
-[`ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi`](thm.html#ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi).
+[`ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi`]
+(thm.html#ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi).
 
 ## Explanation of the source proof
 

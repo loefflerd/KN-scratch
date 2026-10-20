@@ -49,9 +49,11 @@ $K((t^{\mathbb{Q}}))$ which is algebraic over the Laurent series field $K((t))$ 
 with an explicit bound $n!$ on the ramification of its exponents. It is used in the construction and
 comparison of places on modular curves, being cited by
 [`ModularCurve.exists_place_of_emb`](thm.html#ModularCurve.exists_place_of_emb),
-[`ModularCurve.samePlace_iff_exists_hahnTwist`](thm.html#ModularCurve.samePlace_iff_exists_hahnTwist)
+[`ModularCurve.samePlace_iff_exists_hahnTwist`]
+(thm.html#ModularCurve.samePlace_iff_exists_hahnTwist)
 and
-[`ModularCurve.card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord`](thm.html#ModularCurve.card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord).
+[`ModularCurve.card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord`]
+(thm.html#ModularCurve.card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord).
 
 ## Explanation of the source proof
 
@@ -186,7 +188,8 @@ theorem rootSeq_zero : rootSeq ζ 0 = ζ := rfl
 theorem rootSeq_succ_pow (m : ℕ) : (rootSeq ζ (m + 1)) ^ (m + 1) = rootSeq ζ m := by
   apply Units.ext
   rw [Units.val_pow_eq_pow_val]
-  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^ (m+1) = _
+  change (Classical.choose (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)) ^
+    (m+1) = _
   exact Classical.choose_spec (IsAlgClosed.exists_pow_nat_eq ((rootSeq ζ m : Kˣ) : K) m.succ_pos)
 
 theorem rootSeq_add_pow (m j : ℕ) :
@@ -224,7 +227,8 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_right x.den m))
   have e2 : (((b * x.den.factorial) / x.den : ℕ) : ℤ) * (x.den : ℤ) = b * x.den.factorial := by
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
-  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) :=
+  have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den +
+    m).factorial : ℤ) :=
     by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
@@ -263,7 +267,8 @@ noncomputable def char : Multiplicative ℚ →* Kˣ where
     change charFun ζ b (Multiplicative.toAdd x + Multiplicative.toAdd y)
       = charFun ζ b (Multiplicative.toAdd x) * charFun ζ b (Multiplicative.toAdd y)
     have hm0 : 0 < (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den :=
-      Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd y).den_nz)
+      Nat.pos_of_ne_zero (Nat.mul_ne_zero (Multiplicative.toAdd x).den_nz (Multiplicative.toAdd
+        y).den_nz)
     have hfac : (Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den ∣
         ((Multiplicative.toAdd x).den * (Multiplicative.toAdd y).den).factorial :=
       Nat.dvd_factorial hm0 le_rfl
@@ -322,7 +327,8 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
       exact isRoot_twist (char_intCast (ζ : Kˣ) ((mem_rootsOfUnity _ _).mp ζ.2)) hcoeff hy⟩
   have hinj : Function.Injective f := by
     intro ζ₁ ζ₂ h
-    have hc : (twist (char ((ζ₁ : Kˣ)) q.den) y).coeff q = (twist (char ((ζ₂ : Kˣ)) q.den) y).coeff q :=
+    have hc : (twist (char ((ζ₁ : Kˣ)) q.den) y).coeff q = (twist (char ((ζ₂ : Kˣ)) q.den) y).coeff
+      q :=
       by
       have := congrArg Subtype.val h
       simp only [f] at this
@@ -345,7 +351,8 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
       conv_lhs => rw [← zpow_one ζ, hbez, zpow_add, zpow_mul, zpow_mul, hζ, one_zpow, mul_one]
     apply Subtype.ext
     rw [key _ h1, key _ h2, hc']
-  have hle : Nat.card (rootsOfUnity q.den K) ≤ Nat.card {z : HahnSeries ℚ K // z ∈ p.roots.toFinset} :=
+  have hle : Nat.card (rootsOfUnity q.den K) ≤ Nat.card {z : HahnSeries ℚ K // z ∈ p.roots.toFinset}
+    :=
     Nat.card_le_card_of_injective f hinj
   rw [hcard, Nat.card_eq_fintype_card, Fintype.card_coe] at hle
   exact hle.trans ((Multiset.toFinset_card_le _).trans (Polynomial.card_roots' p))

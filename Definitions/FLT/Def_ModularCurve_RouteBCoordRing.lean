@@ -77,7 +77,8 @@ abbrev routeBCoordRing : Subalgebra (Polynomial ℤ) (modularFunctionField N) :=
   integralClosure (Polynomial ℤ) (modularFunctionField N)
 
 def routeBJValue {N : ℕ} [NeZero N] {L : Type*} [CommRing L] (φ : ↥(routeBCoordRing N) →+* L) : L :=
-  φ ⟨algebraMap (Polynomial ℤ) ↥(modularFunctionField N) Polynomial.X, Subalgebra.algebraMap_mem _ _⟩
+  φ ⟨algebraMap (Polynomial ℤ) ↥(modularFunctionField N) Polynomial.X, Subalgebra.algebraMap_mem _
+    _⟩
 
 end Tower
 

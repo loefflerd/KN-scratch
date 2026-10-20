@@ -39,9 +39,11 @@ vanish, and the conclusion still holds because of the convention giving $0$ orde
 This is the familiar statement that a place of $F$ over $K$ is trivial on constants, specialised to
 the constants coming from the prime ring; it is used in the computations of orders of differentials,
 being cited by
-[`AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one`](thm.html#AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one),
+[`AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one`]
+(thm.html#AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one),
 [`AlgebraicCurve.Place.ordDiff_D_nonneg`](thm.html#AlgebraicCurve.Place.ordDiff_D_nonneg) and
-[`AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff`](thm.html#AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff).
+[`AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff`]
+(thm.html#AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff).
 
 ## Explanation of the source proof
 

@@ -94,7 +94,8 @@ theorem solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F] [Perf
 
 end AlgebraicCurve.TowerFreePort
 
-open IntermediateField _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver.AlgebraicCurve in
+open IntermediateField _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver.AlgebraicCurve in
 theorem solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K]
     [Algebra.EssFiniteType K F] [IsCurveOver K F] (hC : ConstantsAreBase K F) :
     StichtenothGenusExists K F :=

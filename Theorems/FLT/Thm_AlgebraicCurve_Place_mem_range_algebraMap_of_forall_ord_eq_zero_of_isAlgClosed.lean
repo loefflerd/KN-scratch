@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed
+Based on Prove2Me node
+AlgebraicCurve.Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed
 (4e728b40-ba0e-5edc-885d-a8df4da58b96) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 39d7436f-3d6b-5ed7-b84c-f746bfa836ad
@@ -188,7 +189,8 @@ theorem le_finrank_adjoin_of_pow_eq (y : F) (hy : Transcendental K y) [FiniteDim
     (m : ℕ) {x : F} (hxy : y ^ m = x) : m ≤ Module.finrank K⟮x⟯ F := by
   subst hxy
   have hle : K⟮y ^ m⟯ ≤ K⟮y⟯ :=
-    IntermediateField.adjoin_simple_le_iff.mpr (pow_mem (IntermediateField.mem_adjoin_simple_self K y) m)
+    IntermediateField.adjoin_simple_le_iff.mpr (pow_mem (IntermediateField.mem_adjoin_simple_self K
+      y) m)
   have hrel : IntermediateField.relfinrank K⟮y ^ m⟯ K⟮y⟯ = m := by
     rw [← map_adjoin_X_pow_ratFuncHom y hy m, ← map_top_ratFuncHom y hy,
       IntermediateField.relfinrank_map_map, IntermediateField.relfinrank_top_right,
@@ -204,7 +206,8 @@ theorem fieldRange_frobenius_ratFunc (K : Type*) [Field K] (p : ℕ) [Fact p.Pri
     [PerfectRing K p] :
     (frobenius (RatFunc K) p).fieldRange = K⟮(RatFunc.X : RatFunc K) ^ p⟯.toSubfield := by
   have : CharP (RatFunc K) p := (Algebra.charP_iff K (RatFunc K) p).mp inferInstance
-  have halg : ∀ g : K[X], algebraMap K[X] (RatFunc K) g = Polynomial.aeval (RatFunc.X : RatFunc K) g :=
+  have halg : ∀ g : K[X], algebraMap K[X] (RatFunc K) g = Polynomial.aeval (RatFunc.X : RatFunc K) g
+    :=
     fun g => by rw [← RatFunc.algebraMap_X, Polynomial.aeval_algebraMap_apply,
       Polynomial.aeval_X_left_apply]
   apply le_antisymm
@@ -427,7 +430,8 @@ theorem AlgebraicCurve.Place.exists_ord_neg_of_transcendental_of_isSeparable
     refine Algebra.IsSeparable.of_equiv_equiv eKx.symm.toRingEquiv (RingEquiv.refl F) ?_
     refine RingHom.ext fun z => ?_
     change ψ (eKx.symm z) = algebraMap (IntermediateField.adjoin K ({x} : Set F)) F z
-    have h1 : ψ (eKx.symm z) = ((eKx (eKx.symm z) : IntermediateField.adjoin K ({x} : Set F)) : F) :=
+    have h1 : ψ (eKx.symm z) = ((eKx (eKx.symm z) : IntermediateField.adjoin K ({x} : Set F)) : F)
+      :=
       rfl
     rw [h1, eKx.apply_symm_apply, IntermediateField.algebraMap_apply]
   obtain ⟨vinf, hvinf⟩ :=
@@ -459,7 +463,8 @@ theorem solution
 
 end S_AlgebraicCurve_Place_mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed (solution)
+export P2MW.S_AlgebraicCurve_Place_mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed
+  (solution)
 
 end privateSection
 

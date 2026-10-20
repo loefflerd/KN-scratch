@@ -74,7 +74,8 @@ namespace Realized
 
 theorem hasSum_qParam_heckeMatrix_smul' (ℓ : ℕ) [NeZero ℓ] (b : ℕ) (A : LaurentSeries ℂ) (F : ℍ → ℂ)
     (hA : ∀ τ : ℍ, HasSum (fun m : ℤ => A.coeff m * 𝕢 1 (τ : ℂ) ^ m) (F τ)) (τ : ℍ) :
-    HasSum (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) * 𝕢 ℓ (τ : ℂ) ^ m)
+    HasSum (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) * 𝕢 ℓ (τ :
+      ℂ) ^ m)
       (F (ModularForm.heckeMatrix ℓ b • τ)) := by
   have hℓ : ℓ ≠ 0 := NeZero.ne ℓ
   have hℓ' : (ℓ : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hℓ
@@ -91,7 +92,8 @@ theorem hasSum_qParam_heckeMatrix_smul' (ℓ : ℕ) [NeZero ℓ] (b : ℕ) (A : 
     rw [← Complex.exp_int_mul]
     congr 1
     ring
-  have hfg : (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) * 𝕢 ℓ (τ : ℂ) ^ m)
+  have hfg : (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) * 𝕢 ℓ (τ
+    : ℂ) ^ m)
       = fun m : ℤ => A.coeff m * 𝕢 1 ((ModularForm.heckeMatrix ℓ b • τ : ℍ) : ℂ) ^ m := by
     funext m
     rw [e, mul_zpow, e2]
@@ -105,8 +107,11 @@ end ModularCurve
 
 end
 
-theorem solution (ℓ : ℕ) [NeZero ℓ] (b : ℕ) (A : LaurentSeries ℂ) (F : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ : UpperHalfPlane) :
-    HasSum (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularForm.heckeMatrix ℓ b • τ)) :=
+theorem solution (ℓ : ℕ) [NeZero ℓ] (b : ℕ) (A : LaurentSeries ℂ) (F : UpperHalfPlane → ℂ) (hA : ∀ τ
+  : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ))
+  (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) *
+      Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularForm.heckeMatrix ℓ b • τ)) :=
   ModularCurve.Realized.hasSum_qParam_heckeMatrix_smul' ℓ b A F hA τ
 
 end S_ModularCurve_hasSum_qParam_heckeMatrix_smul
@@ -117,8 +122,11 @@ end privateSection
 
 public section publicSection
 
-theorem ModularCurve.hasSum_qParam_heckeMatrix_smul (ℓ : ℕ) [NeZero ℓ] (b : ℕ) (A : LaurentSeries ℂ) (F : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ : UpperHalfPlane) :
-    HasSum (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularForm.heckeMatrix ℓ b • τ)) :=
+theorem ModularCurve.hasSum_qParam_heckeMatrix_smul (ℓ : ℕ) [NeZero ℓ] (b : ℕ) (A : LaurentSeries ℂ)
+  (F : UpperHalfPlane → ℂ) (hA : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => A.coeff m *
+  Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (τ : UpperHalfPlane) :
+    HasSum (fun m : ℤ => (Complex.exp (2 * Real.pi * Complex.I * b * m / ℓ) * A.coeff m) *
+      Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularForm.heckeMatrix ℓ b • τ)) :=
   solution ℓ b A F hA τ
 
 end publicSection

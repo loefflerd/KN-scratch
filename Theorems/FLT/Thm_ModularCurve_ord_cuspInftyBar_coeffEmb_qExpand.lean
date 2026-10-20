@@ -66,7 +66,8 @@ open ModularCurve AlgebraicCurve
 open scoped Pointwise
 
 theorem solution (N : ℕ) [NeZero N] (d : ℕ) [NeZero d] (hd : d ∣ N) :
-    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ d jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N hd)⟩ = -d := by
+    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ d jq),
+      coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N hd)⟩ = -d := by
   rw [ModularCurve.ord_cuspInftyBar]
   change (coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ d jq)).order = _
   rw [ModularCurve.order_coeffEmb, ModularCurve.order_qExpand, order_jq, mul_neg, mul_one]
@@ -83,7 +84,8 @@ public section publicSection
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.ord_cuspInftyBar_coeffEmb_qExpand (N : ℕ) [NeZero N] (d : ℕ) [NeZero d]
     (hd : d ∣ N) :
-    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ d jq), coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N hd)⟩ = -d :=
+    (cuspInftyBar N).ord ⟨coeffEmb (AlgebraicClosure ℚ) (qExpand ℚ d jq),
+      coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jqd_mem_full N hd)⟩ = -d :=
   solution N d hd
 
 end publicSection

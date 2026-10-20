@@ -174,7 +174,8 @@ def ofMF {F : Type*} {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [FunLike F ℍ �
     ((ofMF f h1 : 𝒩) : ℍ → ℂ) = f := rfl
 
 theorem one_mem_strictPeriods_gamma0 (N : ℕ) :
-    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N)).strictPeriods := by
+    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0
+      N)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma0]
   exact AddSubgroup.mem_zmultiples 1
 
@@ -240,7 +241,8 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
       qB1]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant :=
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant
+    :=
     by
     ext n
     rw [PowerSeries.coeff_C_mul]
@@ -285,12 +287,14 @@ theorem le_analyticOrderAt_sum {ι : Type*} (s : Finset ι) (F : ι → ℂ → 
   | insert a s ha ih =>
     rw [Finset.sum_insert ha]
     refine le_trans ?_ le_analyticOrderAt_add
-    exact le_min (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+    exact le_min (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem
+      hi))
 
 theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ → ℂ} {z : ℂ}
     (hp : AnalyticAt ℂ p z) (hq : AnalyticAt ℂ q z) (hd : AnalyticAt ℂ d z)
     (hC : ∀ i ∈ Finset.range n, AnalyticAt ℂ (C i) z) (hd0 : d z ≠ 0)
-    (hid : p ^ (6 * n) * d ^ m + ∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)) = 0) :
+    (hid : p ^ (6 * n) * d ^ m + ∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)) =
+      0) :
     analyticOrderAt q z ≤ analyticOrderAt p z := by
   by_contra hlt'
   have hlt := not_le.mp hlt'
@@ -322,7 +326,8 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
       simp only [nsmul_eq_mul]
       push_cast
       ring
-    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) :=
+    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞)
+      :=
       by
       have e : ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) =
           ((6 * i * k + 6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
@@ -340,7 +345,8 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
       _ ≤ analyticOrderAt (C i) z + ((6 * i) • (k : ℕ∞) + (n - i) • (6 • analyticOrderAt q z)) :=
           self_le_add_left _ _
   have hsum := le_analyticOrderAt_sum (Finset.range n) _ z _ hR
-  have heq : p ^ (6 * n) * d ^ m = -(∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i))) :=
+  have heq : p ^ (6 * n) * d ^ m = -(∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n -
+    i))) :=
     eq_neg_of_add_eq_zero_left hid
   have : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * n * k : ℕ) : ℕ∞) := by
     rw [← hL, heq, analyticOrderAt_neg]
@@ -413,10 +419,12 @@ theorem rankinCohen_E4_E6 :
           PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 ⇑ModularForm.E₄).coeff n) *
             qExpansion 1 ⇑ModularForm.E₆ := by
     rw [hZcoe]; exact_mod_cast hRCq
-  have hmk0 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 0 (PowerSeries.mk fun n : ℕ => (n : ℂ) * PowerSeries.coeff n p) = 0 :=
+  have hmk0 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 0 (PowerSeries.mk fun n : ℕ => (n : ℂ) *
+    PowerSeries.coeff n p) = 0 :=
     by
     intro p; rw [PowerSeries.coeff_mk]; simp
-  have hmk1 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 1 (PowerSeries.mk fun n : ℕ => (n : ℂ) * PowerSeries.coeff n p) =
+  have hmk1 : ∀ p : PowerSeries ℂ, PowerSeries.coeff 1 (PowerSeries.mk fun n : ℕ => (n : ℂ) *
+    PowerSeries.coeff n p) =
       PowerSeries.coeff 1 p := by
     intro p; rw [PowerSeries.coeff_mk]; simp
   have h0 : ModularFormClass.qCoeff (Z : ℍ → ℂ) 0 = 0 := by
@@ -433,7 +441,8 @@ theorem rankinCohen_E4_E6 :
     rw [hC4, hC6]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C (-3456) * qExpansion 1 ModularForm.discriminant :=
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C (-3456) * qExpansion 1
+    ModularForm.discriminant :=
     by
     ext n
     rw [PowerSeries.coeff_C_mul]

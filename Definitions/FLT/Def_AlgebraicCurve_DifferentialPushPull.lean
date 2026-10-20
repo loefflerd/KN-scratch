@@ -93,7 +93,8 @@ def traceAlong (φ : F →ₐ[K] F') : Ω[F'⁄K] →ₗ[K] Ω[F⁄K] :=
     haveI : Algebra.FormallyEtale F F' := Algebra.FormallyEtale.of_isSeparable F F'
     ((TensorProduct.lid F Ω[F⁄K]).toLinearMap ∘ₗ
       (Algebra.trace F F').rTensor Ω[F⁄K] ∘ₗ
-      (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K F F').symm.toLinearMap).restrictScalars K
+      (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K F
+        F').symm.toLinearMap).restrictScalars K
   else 0
 
 theorem traceAlong_smul_pullbackAlong (φ : F →ₐ[K] F') (h : SeparableAlong K φ) (u : F')

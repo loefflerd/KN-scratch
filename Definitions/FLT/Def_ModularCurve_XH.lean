@@ -203,7 +203,8 @@ theorem JH.torsionGaloisRep_apply {n : ℕ} (σ : AlgebraicClosure ℚ ≃ₐ[�
 
 theorem JH.coe_torsionGaloisRep_apply {n : ℕ} (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     (x : Pic0.torsion (AlgebraicClosure ℚ) (xHFunctionFieldBar M H) n) :
-    ((JH.torsionGaloisRep M H n σ x : Pic0.torsion (AlgebraicClosure ℚ) (xHFunctionFieldBar M H) n) :
+    ((JH.torsionGaloisRep M H n σ x : Pic0.torsion (AlgebraicClosure ℚ) (xHFunctionFieldBar M H)
+      n) :
         JH M H) = σ • (x : JH M H) :=
   rfl
 
@@ -218,7 +219,8 @@ abbrev JH.tateEnd : AddMonoid.End (JH M H) →* Module.End ℤ_[p] (TateModule p
 
 theorem JH.tateGaloisRep_apply_coe (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     (x : TateModule p (JH M H)) (n : ℕ) :
-    ((JH.tateGaloisRep M H p σ x : TateModule p (JH M H)) : ℕ → JH M H) n = σ • (x : ℕ → JH M H) n :=
+    ((JH.tateGaloisRep M H p σ x : TateModule p (JH M H)) : ℕ → JH M H) n = σ • (x : ℕ → JH M H) n
+      :=
   rfl
 
 theorem JH.tateEnd_apply_coe (f : AddMonoid.End (JH M H)) (x : TateModule p (JH M H)) (n : ℕ) :

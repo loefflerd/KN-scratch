@@ -158,7 +158,8 @@ theorem sum_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F]
 theorem sum_veluGx_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F]
     (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
-    ∑ P ∈ W.oddOrderSummingSet Q (2 * n), W.veluGx P.1 P.2 = W.veluTSum (W.oddOrderSummingSet Q n) := by
+    ∑ P ∈ W.oddOrderSummingSet Q (2 * n), W.veluGx P.1 P.2 = W.veluTSum (W.oddOrderSummingSet Q n)
+      := by
   rw [sum_oddOrderSummingSet_two_mul W Q n hQ (fun P => W.veluGx P.1 P.2), veluTSum]
   exact Finset.sum_congr rfl fun P _ => veluGx_add_veluGx_negY W P.1 P.2
 

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq
+Based on Prove2Me node
+ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq
 (5e6b5c98-6dea-5d8d-8237-b7fb1ea0c6af) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 8c98db1a-3e2c-5d24-8dcc-dd75b4c7938c
@@ -46,11 +47,14 @@ This is the holomorphy criterion that a meromorphic modular object of weight $k$
 whose square is a holomorphic form of weight $2k$ is itself holomorphic and bounded at the cusps,
 stated at the level of $q$-expansions; the element $X$ of the function field of $X_1(M)$, base
 changed to $\mathbb{C}$, is written as a ratio of forms of a common weight by
-[`ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC`](thm.html#ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC),
+[`ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC`]
+(thm.html#ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC),
 and the resulting weight-$k$ form is produced by
-[`ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex`](thm.html#ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex).
+[`ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex`]
+(thm.html#ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex).
 It feeds the construction of many linearly independent forms of odd weight in
-[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`](thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd).
+[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`]
+(thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd).
 
 ## Explanation of the source proof
 
@@ -75,7 +79,8 @@ noncomputable section
 namespace SqrtFormAux
 
 theorem one_mem_strictPeriods_gamma1 (M : ℕ) :
-    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1 M)).strictPeriods := by
+    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1
+      M)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma1]
   exact AddSubgroup.mem_zmultiples 1
 
@@ -90,7 +95,8 @@ theorem coe_eq_of_qExpansion_eq {M : ℕ} {a b : ℤ} (f : ModularForm (Gamma1 M
     (g : ModularForm (Gamma1 M) b)
     (h : qExpansion 1 (f : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ)) : (f : ℍ → ℂ) = g := by
   have h1 := one_mem_strictPeriods_gamma1 M
-  have : Fact (IsCusp OnePoint.infty (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1 M))) :=
+  have : Fact (IsCusp OnePoint.infty (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ)
+    (CongruenceSubgroup.Gamma1 M))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
   funext z
   have hf := hasSum_qExpansion one_pos (SlashInvariantFormClass.periodic_comp_ofComplex f h1)
@@ -123,7 +129,8 @@ open SqrtFormAux in
 theorem solution
     (M : ℕ) [NeZero M] (k : ℕ) (w : ModularForm (Gamma1 M) 1)
     (X : LaurentSeries ℂ)
-    (hX : X ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+    (hX : X ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))
     (F₂ : ModularForm (Gamma1 M) (2 * (k : ℤ)))
     (hF₂ : HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 F₂) =
       (X * HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ k) ^ 2) :
@@ -148,9 +155,11 @@ theorem solution
     rw [hΦdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_pow one_pos h1]
   obtain ⟨L, hLdef⟩ : ∃ L : ModularForm (Gamma1 M) (2 * (k : ℤ) + (a + a)), L = F₂.mul (h.mul h) :=
     ⟨_, rfl⟩
-  obtain ⟨R, hRdef⟩ : ∃ R : ModularForm (Gamma1 M) ((a + (k : ℤ) * 1) + (a + (k : ℤ) * 1)), R = Φ.mul Φ :=
+  obtain ⟨R, hRdef⟩ : ∃ R : ModularForm (Gamma1 M) ((a + (k : ℤ) * 1) + (a + (k : ℤ) * 1)), R =
+    Φ.mul Φ :=
     ⟨_, rfl⟩
-  have hqL : qExpansion 1 (L : ℍ → ℂ) = qExpansion 1 (F₂ : ℍ → ℂ) * (qExpansion 1 (h : ℍ → ℂ) * qExpansion 1 (h : ℍ → ℂ)) :=
+  have hqL : qExpansion 1 (L : ℍ → ℂ) = qExpansion 1 (F₂ : ℍ → ℂ) * (qExpansion 1 (h : ℍ → ℂ) *
+    qExpansion 1 (h : ℍ → ℂ)) :=
     by
     rw [hLdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1]
   have hqR : qExpansion 1 (R : ℍ → ℂ) = qExpansion 1 (Φ : ℍ → ℂ) * qExpansion 1 (Φ : ℍ → ℂ) := by
@@ -171,7 +180,8 @@ theorem solution
     have ha := analyticAt_comp_ofComplex h τ
     have hb := analyticAt_comp_ofComplex Φ τ
     have hc := analyticAt_comp_ofComplex F₂ τ
-    have hid : ((F₂ : ℍ → ℂ) ∘ ofComplex) * (((h : ℍ → ℂ) ∘ ofComplex) * ((h : ℍ → ℂ) ∘ ofComplex)) =
+    have hid : ((F₂ : ℍ → ℂ) ∘ ofComplex) * (((h : ℍ → ℂ) ∘ ofComplex) * ((h : ℍ → ℂ) ∘ ofComplex))
+      =
         ((Φ : ℍ → ℂ) ∘ ofComplex) * ((Φ : ℍ → ℂ) ∘ ofComplex) := by
       funext c
       exact hfun (ofComplex c)
@@ -180,7 +190,8 @@ theorem solution
       hb] at e
     exact le_of_add_eq_two e
   have hcusp : ∀ A : SL(2, ℤ), ∃ C : ℝ, ∀ᶠ τ : ℍ in atImInfty,
-      ‖((Φ : ℍ → ℂ) ∣[a + (k : ℤ) * 1] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((h : ℍ → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ := by
+      ‖((Φ : ℍ → ℂ) ∣[a + (k : ℤ) * 1] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((h : ℍ → ℂ) ∣[a] (A : GL (Fin
+        2) ℝ)) τ‖ := by
     intro A
     have hbd : IsBoundedAtImInfty ((F₂ : ℍ → ℂ) ∣[2 * (k : ℤ)] (A : GL (Fin 2) ℝ)) := by
       have := ModularFormClass.bdd_at_infty_slash F₂ A
@@ -205,7 +216,8 @@ theorem solution
     have e3 := congr_fun e2 τ
     simp only [Pi.mul_apply, ModularForm.SL_slash] at e3
     have hsq : (((Φ : ℍ → ℂ) ∣[a + (k : ℤ) * 1] (A : GL (Fin 2) ℝ)) τ) ^ 2 =
-        ((F₂ : ℍ → ℂ) ∣[2 * (k : ℤ)] (A : GL (Fin 2) ℝ)) τ * (((h : ℍ → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ) ^ 2 := by
+        ((F₂ : ℍ → ℂ) ∣[2 * (k : ℤ)] (A : GL (Fin 2) ℝ)) τ * (((h : ℍ → ℂ) ∣[a] (A : GL (Fin 2) ℝ))
+          τ) ^ 2 := by
       rw [sq, sq]
       exact e3
     have hnn : 0 ≤ Real.sqrt (max C 0) * ‖((h : ℍ → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ := by positivity
@@ -227,10 +239,13 @@ theorem solution
     have h0' : qExpansion 1 (h : ℍ → ℂ) = 0 :=
       HahnSeries.ofPowerSeries_injective (by rw [h0, map_zero])
     exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 h).mp h0'
-  have e : ofPowerSeries ℤ ℂ (qExpansion 1 (f : ℍ → ℂ)) * ofPowerSeries ℤ ℂ (qExpansion 1 (h : ℍ → ℂ)) =
-      ofPowerSeries ℤ ℂ (qExpansion 1 (g : ℍ → ℂ)) * ofPowerSeries ℤ ℂ (qExpansion 1 (w : ℍ → ℂ)) ^ k := by
+  have e : ofPowerSeries ℤ ℂ (qExpansion 1 (f : ℍ → ℂ)) * ofPowerSeries ℤ ℂ (qExpansion 1 (h : ℍ →
+    ℂ)) =
+      ofPowerSeries ℤ ℂ (qExpansion 1 (g : ℍ → ℂ)) * ofPowerSeries ℤ ℂ (qExpansion 1 (w : ℍ → ℂ)) ^
+        k := by
     rw [← map_pow, ← map_mul, ← map_mul, hq, hqΦ]
-  have key : (ofPowerSeries ℤ ℂ (qExpansion 1 (f : ℍ → ℂ)) - X * ofPowerSeries ℤ ℂ (qExpansion 1 (w : ℍ → ℂ)) ^ k) *
+  have key : (ofPowerSeries ℤ ℂ (qExpansion 1 (f : ℍ → ℂ)) - X * ofPowerSeries ℤ ℂ (qExpansion 1 (w
+    : ℍ → ℂ)) ^ k) *
       ofPowerSeries ℤ ℂ (qExpansion 1 (h : ℍ → ℂ)) = 0 := by
     rw [sub_mul, e, ← hXh]
     ring
@@ -239,7 +254,8 @@ theorem solution
 end
 end S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq
 end P2MW
-export P2MW.S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq (solution)
+export P2MW.S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq
+  (solution)
 
 end privateSection
 
@@ -251,7 +267,8 @@ open scoped MatrixGroups ModularForm
 theorem ModularCurve.exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq
     (M : ℕ) [NeZero M] (k : ℕ) (w : ModularForm (Gamma1 M) 1)
     (X : LaurentSeries ℂ)
-    (hX : X ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+    (hX : X ∈ ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))
     (F₂ : ModularForm (Gamma1 M) (2 * (k : ℤ)))
     (hF₂ : HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 F₂) =
       (X * HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ k) ^ 2) :

@@ -355,7 +355,8 @@ theorem natCast_residueField_ne_zero {N : ℕ} (hN : N ≠ 0) :
 theorem specialise_injOn_nsmul_eq_zero (hΔ : (specialFibre E).Δ ≠ 0) {N : ℕ} (hN : N ≠ 0)
     {P Q : E.toAffine.Point} (hP : N • P = 0) (hQ : N • Q = 0)
     (h : specialise E hE hΔ P = specialise E hE hΔ Q) : P = Q :=
-  reduceHom_injOn_nsmul_eq_zero (W := liftModel E hE) (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ)
+  reduceHom_injOn_nsmul_eq_zero (W := liftModel E hE) (map_residue_Δ_ne_zero_of_specialFibre E hE
+    hΔ)
     (natCast_residueField_ne_zero hN) hP hQ (specialFibrePointMap_injective E hE h)
 
 theorem addOrderOf_specialise (hΔ : (specialFibre E).Δ ≠ 0) {N : ℕ} (hN : N ≠ 0)

@@ -113,7 +113,8 @@ def assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) : ↥(BinaryFor
     (mem_homogeneousSubmodule n _).mpr (isHomogeneous_monomial _ ((mem_degExps_iff n d).mp hd))⟩
 
 theorem coeff_assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) (d : Fin 2 →₀ ℕ) :
-    AddMonoidAlgebra.coeff (assemble n g τ : MvPolynomial (Fin 2) ℂ) d = if d ∈ degExps n then g d (τ : ℂ) else 0 := by
+    AddMonoidAlgebra.coeff (assemble n g τ : MvPolynomial (Fin 2) ℂ) d = if d ∈ degExps n then g d
+      (τ : ℂ) else 0 := by
   change AddMonoidAlgebra.coeff (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) d = _
   simp only [coeff_sum, coeff_monomial, Finset.sum_ite_eq']
 
@@ -121,7 +122,8 @@ end EichlerIntegralExistence
 
 end HeckeEis
 
-open _root_.HeckeEis _root_.P2MW.S_HeckeEis_exists_isEichlerIntegral.HeckeEis HeckeEis.EichlerIntegralExistence UpperHalfPlane MvPolynomial in
+open _root_.HeckeEis _root_.P2MW.S_HeckeEis_exists_isEichlerIntegral.HeckeEis
+  HeckeEis.EichlerIntegralExistence UpperHalfPlane MvPolynomial in
 theorem solution (n : ℕ) {f : UpperHalfPlane → ℂ}
     (hf : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) f) :
     ∃ F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n), HeckeEis.IsEichlerIntegral n f F := by
@@ -142,14 +144,16 @@ theorem solution (n : ℕ) {f : UpperHalfPlane → ℂ}
   by_cases hd : d ∈ degExps n
   · simp only [ite_eq_left hd]
     have h2 : (f ∘ ofComplex) (τ : ℂ) * (AddMonoidAlgebra.coeff (linePowPoly n) d).eval (τ : ℂ)
-        = f τ * AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d := by
+        = f τ * AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin
+          2) ℂ) d := by
       rw [Function.comp_apply, ofComplex_apply, coe_linePow, coeff_linePow_eq_eval]
     rw [← h2]
     refine (hg d (τ : ℂ) τ.im_pos).congr_of_eventuallyEq ?_
     filter_upwards [hU.mem_nhds τ.im_pos] with z hz
     rw [ofComplex_apply_of_im_pos hz]
   · simp only [ite_eq_right hd]
-    have h0 : AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d = 0 :=
+    have h0 : AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2)
+      ℂ) d = 0 :=
       (isHomogeneous_linePow n τ).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
     rw [h0, mul_zero]
     exact hasDerivAt_const _ _

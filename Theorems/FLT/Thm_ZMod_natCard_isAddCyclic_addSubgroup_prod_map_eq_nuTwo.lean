@@ -139,7 +139,8 @@ theorem range_shift_le {k : ZMod n} (hk : k * k = s * k - 1) :
 theorem sq_le_card_mul_card {k : ZMod n} (hk : k * k = s * k - 1) :
     n ^ 2 ≤ Nat.card (eig τ k) * Nat.card (eig τ (s - k)) := by
   have hN2 : Nat.card (ZMod n × ZMod n) = n ^ 2 := by rw [Nat.card_prod, Nat.card_zmod, sq]
-  have hfirst : Nat.card (ZMod n × ZMod n) = Nat.card (shift τ k).ker * Nat.card (shift τ k).range :=
+  have hfirst : Nat.card (ZMod n × ZMod n) = Nat.card (shift τ k).ker * Nat.card (shift τ k).range
+    :=
     by
     rw [mul_comm, ← Nat.card_congr (QuotientAddGroup.quotientKerEquivRange (shift τ k)).toEquiv,
       ← AddSubgroup.card_eq_card_quotient_mul_card_addSubgroup]
@@ -174,7 +175,8 @@ theorem card_pTorsion_le {p : ℕ} (hp : p.Prime) :
     calc Nat.card {x : ZMod n // p • x = 0} = Nat.card S := rfl
       _ = AddMonoid.exponent S := IsAddCyclic.exponent_eq_card.symm
       _ ≤ p := Nat.le_of_dvd hp.pos hexp
-  have e : {v : (ZMod n × ZMod n) // p • v = 0} ≃ {x : ZMod n // p • x = 0} × {y : ZMod n // p • y = 0} :=
+  have e : {v : (ZMod n × ZMod n) // p • v = 0} ≃ {x : ZMod n // p • x = 0} × {y : ZMod n // p • y =
+    0} :=
     by
     refine ⟨fun v => (⟨v.1.1, (Prod.mk_inj.mp v.2).1⟩, ⟨v.1.2, (Prod.mk_inj.mp v.2).2⟩),
       fun z => ⟨(z.1.1, z.2.1), Prod.ext z.1.2 z.2.2⟩, ?_, ?_⟩
@@ -298,7 +300,8 @@ theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (
 section Count
 
 variable (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (s : ZMod n) (hτ : ∀ v, τ (τ v) = s • τ v - v)
-  (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m • v)
+  (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m •
+    v)
 include hτ hns
 
 omit hτ in
@@ -325,7 +328,8 @@ theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (e
   have hcyc := isAddCyclic_of_card_pTorsion_le step1
   refine ⟨hcyc, ?_⟩
   have hexp : AddMonoid.exponent (eig τ k) ∣ n :=
-    AddMonoid.exponent_dvd_of_forall_nsmul_eq_zero (fun g => Subtype.ext (nsmul_self_eq_zero (g : (ZMod n × ZMod n))))
+    AddMonoid.exponent_dvd_of_forall_nsmul_eq_zero (fun g => Subtype.ext (nsmul_self_eq_zero (g :
+      (ZMod n × ZMod n))))
   calc Nat.card (eig τ k) = AddMonoid.exponent (eig τ k) := IsAddCyclic.exponent_eq_card.symm
     _ ≤ n := Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne n)) hexp
 
@@ -358,7 +362,8 @@ theorem card_stable_eq_card_roots :
   refine Nat.card_eq_of_bijective
     (fun k : {k : ZMod n // k * k = s * k - 1} =>
       (⟨eig τ k.1, (eig_cyclic_card_eq τ s hτ hns k.2).1, (eig_cyclic_card_eq τ s hτ hns k.2).2,
-        map_eig_eq τ s hτ k.1⟩ : {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}))
+        map_eig_eq τ s hτ k.1⟩ : {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H =
+          n ∧ H.map τ = H}))
     ⟨?_, ?_⟩
   · intro k k' h
     have h' : eig τ k.1 = eig τ k'.1 := congrArg Subtype.val h
@@ -391,7 +396,8 @@ end L3zCore
 open L3zCore in
 theorem solution (n : ℕ) [NeZero n]
     (τ : ZMod n × ZMod n →+ ZMod n × ZMod n) (hτ : ∀ v, τ (τ v) = -v)
-    (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, τ v ≠ k • v) :
+    (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, τ v ≠ k •
+      v) :
     Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}
       = nuTwo n := by
   have hτ' : ∀ v, τ (τ v) = (0 : ZMod n) • τ v - v := fun v => by rw [hτ, zero_smul, zero_sub]
@@ -411,7 +417,8 @@ public section publicSection
 open ModularCurve
 theorem ZMod.natCard_isAddCyclic_addSubgroup_prod_map_eq_nuTwo (n : ℕ) [NeZero n]
     (τ : ZMod n × ZMod n →+ ZMod n × ZMod n) (hτ : ∀ v, τ (τ v) = -v)
-    (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, τ v ≠ k • v) :
+    (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, τ v ≠ k •
+      v) :
     Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}
       = nuTwo n :=
   solution n τ hτ hns

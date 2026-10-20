@@ -64,7 +64,8 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
       ⟨v.algebraMap_residueField_injective, hv⟩
     change Module.finrank K v.ResidueField = 1
     rw [← Module.finrank_self K]
-    exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).toLinearEquiv.finrank_eq).symm
+    exact ((AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField)
+      hbij).toLinearEquiv.finrank_eq).symm
   · intro h x
     have hbot : (⊥ : Subalgebra K v.ResidueField) = ⊤ :=
       Subalgebra.bot_eq_top_iff_finrank_eq_one.mpr h

@@ -136,7 +136,8 @@ centred sum along the difference and applying Step 1 to each half gives the clos
 
 $$\sum_{t=0}^{j}\binom jt(-a)^{j-t}M_{s,t}(n,a)
 =\frac{p^{nj}}{\alpha^{n}}\,\iota_p\Bigl(P_{s,j}\bigl(-a/p^{n}\bigr)\Bigr)
--\frac{\iota_p(\varepsilon(p))\,p^{k-2}}{\alpha^{n+1}}\,p^{(n-1)j}\,\iota_p\Bigl(P_{s,j}\bigl(-a/p^{n-1}\bigr)\Bigr).$$
+-\frac{\iota_p(\varepsilon(p))\,p^{k-2}}{\alpha^{n+1}}\,p^{(n-1)j}\,\iota_p\Bigl(P_{s,j}
+\bigl(-a/p^{n-1}\bigr)\Bigr).$$
 
 Every modular symbol of degree $<j$ has disappeared; two algebraic values remain.
 

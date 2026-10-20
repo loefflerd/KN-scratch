@@ -47,9 +47,11 @@ This is the arithmetic core of the classical Riemann–Hurwitz computation of th
 carrying a $j$-type map of degree $\psi$, in the form $g = 1 + \psi/12 - \varepsilon_2/4 -
 \varepsilon_3/3 - \varepsilon_\infty/2$, with $g$ and $\psi$ entering only as parameters and nothing
 assumed about $K$. It is used by
-[`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula`](thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula)
+[`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula`]
+(thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula)
 and
-[`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula_of_prime`](thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula_of_prime)
+[`ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula_of_prime`]
+(thm.html#ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula_of_prime)
 to obtain the genus formula for the modular curves once the local order data of the $j$-map has been
 established.
 
@@ -69,8 +71,16 @@ namespace P2MW.S_AlgebraicCurve_twelve_mul_eq_of_sum_ordDiff_eq
 
 open AlgebraicCurve
 
-theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S₁ Sinf : Finset (Place K F)) (ψ : ℕ) (g : ℤ) (h₀ : ∀ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ 0 < v.ord t ∧ v.ord t ∣ 3) (h₁ : ∀ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) = v.ord (t - algebraMap K F 1728) - 1 ∧ 0 < v.ord (t - algebraMap K F 1728) ∧ v.ord (t - algebraMap K F 1728) ∣ 2) (hinf : ∀ v ∈ Sinf, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ v.ord t < 0) (hψ₀ : ∑ v ∈ S₀, v.ord t = ψ) (hψ₁ : ∑ v ∈ S₁, v.ord (t - algebraMap K F 1728) = ψ) (hψinf : ∑ v ∈ Sinf, -v.ord t = ψ) (S : Finset (Place K F)) (hS : ∀ v, v ∈ S ↔ v ∈ S₀ ∨ v ∈ S₁ ∨ v ∈ Sinf) (hcan : ∑ v ∈ S, v.ordDiff (KaehlerDifferential.D K F t) = 2 * g - 2) :
-    12 * g = 12 + ψ - 3 * ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) - 4 * ((S₀.filter fun v => v.ord t = 1).card : ℤ) - 6 * (Sinf.card : ℤ) := by
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S₁ Sinf : Finset (Place
+  K F)) (ψ : ℕ) (g : ℤ) (h₀ : ∀ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ 0 <
+  v.ord t ∧ v.ord t ∣ 3) (h₁ : ∀ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) = v.ord (t -
+  algebraMap K F 1728) - 1 ∧ 0 < v.ord (t - algebraMap K F 1728) ∧ v.ord (t - algebraMap K F 1728) ∣
+  2) (hinf : ∀ v ∈ Sinf, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ v.ord t < 0) (hψ₀ :
+  ∑ v ∈ S₀, v.ord t = ψ) (hψ₁ : ∑ v ∈ S₁, v.ord (t - algebraMap K F 1728) = ψ) (hψinf : ∑ v ∈ Sinf,
+  -v.ord t = ψ) (S : Finset (Place K F)) (hS : ∀ v, v ∈ S ↔ v ∈ S₀ ∨ v ∈ S₁ ∨ v ∈ Sinf) (hcan : ∑ v
+  ∈ S, v.ordDiff (KaehlerDifferential.D K F t) = 2 * g - 2) :
+    12 * g = 12 + ψ - 3 * ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) - 4 *
+      ((S₀.filter fun v => v.ord t = 1).card : ℤ) - 6 * (Sinf.card : ℤ) := by
   let : DecidableEq (Place K F) := Classical.decEq _
   have houter : Disjoint (S₀ ∪ S₁) Sinf := by
     rw [Finset.disjoint_left]
@@ -100,10 +110,12 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
     omega
   have hzero : ∑ v ∈ S₀ ∩ S₁, v.ordDiff (KaehlerDifferential.D K F t) = 0 := by
     rw [Finset.sum_congr rfl hov, Finset.sum_const, smul_zero]
-  have hinner : ∑ v ∈ S₀ ∪ S₁, v.ordDiff (KaehlerDifferential.D K F t) = (∑ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t)) + ∑ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) :=
+  have hinner : ∑ v ∈ S₀ ∪ S₁, v.ordDiff (KaehlerDifferential.D K F t) = (∑ v ∈ S₀, v.ordDiff
+    (KaehlerDifferential.D K F t)) + ∑ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) :=
     by
     have h :=
-      Finset.sum_union_inter (s₁ := S₀) (s₂ := S₁) (f := fun v => v.ordDiff (KaehlerDifferential.D K F t))
+      Finset.sum_union_inter (s₁ := S₀) (s₂ := S₁) (f := fun v => v.ordDiff (KaehlerDifferential.D K
+        F t))
     rw [hzero] at h
     omega
   rw [hSeq, Finset.sum_union houter, hinner] at hcan
@@ -112,21 +124,25 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
       intro v hv
       have h := (h₀ v hv).1
       omega
-    have hdist : ∑ v ∈ S₀, (v.ordDiff (KaehlerDifferential.D K F t) + 1) = (∑ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t)) + (S₀.card : ℤ) :=
+    have hdist : ∑ v ∈ S₀, (v.ordDiff (KaehlerDifferential.D K F t) + 1) = (∑ v ∈ S₀, v.ordDiff
+      (KaehlerDifferential.D K F t)) + (S₀.card : ℤ) :=
       by
       rw [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul, mul_one]
     rw [← hdist, Finset.sum_congr rfl hpt, hψ₀]
   have hE1 : (∑ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t)) + (S₁.card : ℤ) = (ψ : ℤ) := by
-    have hpt : ∀ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) + 1 = v.ord (t - algebraMap K F 1728) :=
+    have hpt : ∀ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) + 1 = v.ord (t - algebraMap K F
+      1728) :=
       by
       intro v hv
       have h := (h₁ v hv).1
       omega
-    have hdist : ∑ v ∈ S₁, (v.ordDiff (KaehlerDifferential.D K F t) + 1) = (∑ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t)) + (S₁.card : ℤ) :=
+    have hdist : ∑ v ∈ S₁, (v.ordDiff (KaehlerDifferential.D K F t) + 1) = (∑ v ∈ S₁, v.ordDiff
+      (KaehlerDifferential.D K F t)) + (S₁.card : ℤ) :=
       by
       rw [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul, mul_one]
     rw [← hdist, Finset.sum_congr rfl hpt, hψ₁]
-  have hEinf : (∑ v ∈ Sinf, v.ordDiff (KaehlerDifferential.D K F t)) + (Sinf.card : ℤ) + (ψ : ℤ) = 0 :=
+  have hEinf : (∑ v ∈ Sinf, v.ordDiff (KaehlerDifferential.D K F t)) + (Sinf.card : ℤ) + (ψ : ℤ) = 0
+    :=
     by
     have hpt : ∀ v ∈ Sinf, (v.ordDiff (KaehlerDifferential.D K F t) + 1) + -v.ord t = 0 := by
       intro v hv
@@ -148,37 +164,47 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
       rw [h] at hd
       omega
     omega
-  have hsplit0 : (∑ v ∈ S₀.filter (fun v => v.ord t = 1), v.ord t) + ∑ v ∈ S₀.filter (fun v => ¬ v.ord t = 1), v.ord t = ∑ v ∈ S₀, v.ord t :=
+  have hsplit0 : (∑ v ∈ S₀.filter (fun v => v.ord t = 1), v.ord t) + ∑ v ∈ S₀.filter (fun v => ¬
+    v.ord t = 1), v.ord t = ∑ v ∈ S₀, v.ord t :=
     by
     rw [Finset.sum_filter_add_sum_filter_not]
-  have hA0 : ∑ v ∈ S₀.filter (fun v => v.ord t = 1), v.ord t = ((S₀.filter fun v => v.ord t = 1).card : ℤ) :=
+  have hA0 : ∑ v ∈ S₀.filter (fun v => v.ord t = 1), v.ord t = ((S₀.filter fun v => v.ord t =
+    1).card : ℤ) :=
     by
     rw [Finset.sum_congr rfl (fun v hv => (Finset.mem_filter.mp hv).2), Finset.sum_const,
       nsmul_eq_mul, mul_one]
-  have hB0 : ∑ v ∈ S₀.filter (fun v => ¬ v.ord t = 1), v.ord t = ((S₀.filter (fun v => ¬ v.ord t = 1)).card : ℤ) * 3 :=
+  have hB0 : ∑ v ∈ S₀.filter (fun v => ¬ v.ord t = 1), v.ord t = ((S₀.filter (fun v => ¬ v.ord t =
+    1)).card : ℤ) * 3 :=
     by
     rw [Finset.sum_congr rfl key0, Finset.sum_const, nsmul_eq_mul]
-  have hcards0 : (S₀.filter fun v => v.ord t = 1).card + (S₀.filter (fun v => ¬ v.ord t = 1)).card = S₀.card :=
+  have hcards0 : (S₀.filter fun v => v.ord t = 1).card + (S₀.filter (fun v => ¬ v.ord t = 1)).card =
+    S₀.card :=
     by
     rw [Finset.card_filter_add_card_filter_not]
-  have key1 : ∀ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K F 1728) = 2 :=
+  have key1 : ∀ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord (t -
+    algebraMap K F 1728) = 2 :=
     by
     intro v hv
     obtain ⟨hvS, hne⟩ := Finset.mem_filter.mp hv
     obtain ⟨-, hp, hd⟩ := h₁ v hvS
     have hle : v.ord (t - algebraMap K F 1728) ≤ 2 := Int.le_of_dvd (by omega) hd
     omega
-  have hsplit1 : (∑ v ∈ S₁.filter (fun v => v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K F 1728)) + ∑ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K F 1728) = ∑ v ∈ S₁, v.ord (t - algebraMap K F 1728) :=
+  have hsplit1 : (∑ v ∈ S₁.filter (fun v => v.ord (t - algebraMap K F 1728) = 1), v.ord (t -
+    algebraMap K F 1728)) + ∑ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord
+    (t - algebraMap K F 1728) = ∑ v ∈ S₁, v.ord (t - algebraMap K F 1728) :=
     by
     rw [Finset.sum_filter_add_sum_filter_not]
-  have hA1 : ∑ v ∈ S₁.filter (fun v => v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K F 1728) = ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) :=
+  have hA1 : ∑ v ∈ S₁.filter (fun v => v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K
+    F 1728) = ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) :=
     by
     rw [Finset.sum_congr rfl (fun v hv => (Finset.mem_filter.mp hv).2), Finset.sum_const,
       nsmul_eq_mul, mul_one]
-  have hB1 : ∑ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K F 1728) = ((S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1)).card : ℤ) * 2 :=
+  have hB1 : ∑ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap
+    K F 1728) = ((S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1)).card : ℤ) * 2 :=
     by
     rw [Finset.sum_congr rfl key1, Finset.sum_const, nsmul_eq_mul]
-  have hcards1 : (S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card + (S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1)).card = S₁.card :=
+  have hcards1 : (S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card + (S₁.filter (fun v
+    => ¬ v.ord (t - algebraMap K F 1728) = 1)).card = S₁.card :=
     by
     rw [Finset.card_filter_add_card_filter_not]
   omega
@@ -193,8 +219,17 @@ public section publicSection
 
 
 open AlgebraicCurve
-theorem AlgebraicCurve.twelve_mul_eq_of_sum_ordDiff_eq {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S₁ Sinf : Finset (Place K F)) (ψ : ℕ) (g : ℤ) (h₀ : ∀ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ 0 < v.ord t ∧ v.ord t ∣ 3) (h₁ : ∀ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) = v.ord (t - algebraMap K F 1728) - 1 ∧ 0 < v.ord (t - algebraMap K F 1728) ∧ v.ord (t - algebraMap K F 1728) ∣ 2) (hinf : ∀ v ∈ Sinf, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ v.ord t < 0) (hψ₀ : ∑ v ∈ S₀, v.ord t = ψ) (hψ₁ : ∑ v ∈ S₁, v.ord (t - algebraMap K F 1728) = ψ) (hψinf : ∑ v ∈ Sinf, -v.ord t = ψ) (S : Finset (Place K F)) (hS : ∀ v, v ∈ S ↔ v ∈ S₀ ∨ v ∈ S₁ ∨ v ∈ Sinf) (hcan : ∑ v ∈ S, v.ordDiff (KaehlerDifferential.D K F t) = 2 * g - 2) :
-    12 * g = 12 + ψ - 3 * ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) - 4 * ((S₀.filter fun v => v.ord t = 1).card : ℤ) - 6 * (Sinf.card : ℤ) :=
+theorem AlgebraicCurve.twelve_mul_eq_of_sum_ordDiff_eq {K F : Type*} [Field K] [Field F] [Algebra K
+  F] (t : F) (S₀ S₁ Sinf : Finset (Place K F)) (ψ : ℕ) (g : ℤ) (h₀ : ∀ v ∈ S₀, v.ordDiff
+  (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ 0 < v.ord t ∧ v.ord t ∣ 3) (h₁ : ∀ v ∈ S₁, v.ordDiff
+  (KaehlerDifferential.D K F t) = v.ord (t - algebraMap K F 1728) - 1 ∧ 0 < v.ord (t - algebraMap K
+  F 1728) ∧ v.ord (t - algebraMap K F 1728) ∣ 2) (hinf : ∀ v ∈ Sinf, v.ordDiff
+  (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ v.ord t < 0) (hψ₀ : ∑ v ∈ S₀, v.ord t = ψ) (hψ₁ : ∑
+  v ∈ S₁, v.ord (t - algebraMap K F 1728) = ψ) (hψinf : ∑ v ∈ Sinf, -v.ord t = ψ) (S : Finset (Place
+  K F)) (hS : ∀ v, v ∈ S ↔ v ∈ S₀ ∨ v ∈ S₁ ∨ v ∈ Sinf) (hcan : ∑ v ∈ S, v.ordDiff
+  (KaehlerDifferential.D K F t) = 2 * g - 2) :
+    12 * g = 12 + ψ - 3 * ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) - 4 *
+      ((S₀.filter fun v => v.ord t = 1).card : ℤ) - 6 * (Sinf.card : ℤ) :=
   solution t S₀ S₁ Sinf ψ g h₀ h₁ hinf hψ₀ hψ₁ hψinf S hS hcan
 
 end publicSection

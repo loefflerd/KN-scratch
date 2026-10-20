@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+Based on Prove2Me node
+WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
 (0ba6c717-ebcf-50c6-806e-c735eb48a2e9) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 285a9016-3821-511c-ba86-36440e5c0200
@@ -332,9 +333,11 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
     WeierstrassCurve.variableChange_j _ _
   have hj' : WeierstrassCurve.j (C' • L'.weierstrassCurve) = L'.weierstrassCurve.j :=
     WeierstrassCurve.variableChange_j _ _
-  have hjE : (show WeierstrassCurve.Affine ℂ from C • L.weierstrassCurve).j = L.weierstrassCurve.j :=
+  have hjE : (show WeierstrassCurve.Affine ℂ from C • L.weierstrassCurve).j = L.weierstrassCurve.j
+    :=
     hj
-  have hjE' : (show WeierstrassCurve.Affine ℂ from C' • L'.weierstrassCurve).j = L'.weierstrassCurve.j :=
+  have hjE' : (show WeierstrassCurve.Affine ℂ from C' • L'.weierstrassCurve).j =
+    L'.weierstrassCurve.j :=
     hj'
   rw [hjE, hjE']
   exact hroot
@@ -374,9 +377,11 @@ theorem solution0
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
   have : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
-  have : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀.baseChange (AlgebraicClosure K₀)).toAffine.FunctionField :=
+  have : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀.baseChange (AlgebraicClosure
+    K₀)).toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
-  have : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.FunctionField :=
+  have : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀'.baseChange (AlgebraicClosure
+    K₀)).toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
   obtain ⟨g₁, c₁, a₁⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (E₀.baseChange (AlgebraicClosure K₀)).toAffine)
@@ -396,7 +401,8 @@ theorem solution0
   have : Module.IsTorsionFree K₀ ℂ :=
     Module.isTorsionFree_iff_algebraMap_injective.mpr φ₀.injective
   have : Module.IsTorsionFree K₀ (AlgebraicClosure K₀) :=
-    Module.isTorsionFree_iff_algebraMap_injective.mpr (algebraMap K₀ (AlgebraicClosure K₀)).injective
+    Module.isTorsionFree_iff_algebraMap_injective.mpr (algebraMap K₀ (AlgebraicClosure
+      K₀)).injective
   let σ : AlgebraicClosure K₀ →ₐ[K₀] ℂ := IsAlgClosed.lift
   have : (E₀.baseChange ℂ).IsElliptic := isElliptic_map E₀ _
   have : (E₀'.baseChange ℂ).IsElliptic := isElliptic_map E₀' _
@@ -458,7 +464,9 @@ theorem solution
 
 end S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward (solution)
+export
+  P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+  (solution)
 
 end privateSection
 
@@ -466,7 +474,8 @@ public section publicSection
 
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
-theorem WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+theorem
+  WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
     (K : Type) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]

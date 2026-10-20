@@ -49,7 +49,8 @@ each of its elements.
 This is the odd-weight companion of the Eichler–Shimura statements: since $-1 \in \Gamma_0(N)$ acts
 on binary forms of odd degree $n$ by $-1$, the parabolic cohomology group degenerates. It is used to
 dispose of the odd case in
-[`HeckeEis.isCompl_range_eichlerShimuraMap_range_conj`](thm.html#HeckeEis.isCompl_range_eichlerShimuraMap_range_conj).
+[`HeckeEis.isCompl_range_eichlerShimuraMap_range_conj`]
+(thm.html#HeckeEis.isCompl_range_eichlerShimuraMap_range_conj).
 
 ## Explanation of the source proof
 
@@ -98,29 +99,43 @@ theorem rho_m {K : Type*} [CommRing K] (N n : ℕ) (hn : Odd n) (P : ↥(BinaryF
 end HeckeEis.OddSol
 
 theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Odd n)
-    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : x = 0 := by
+    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0
+      N).subtype)) : x = 0 := by
   obtain ⟨z, rfl⟩ := HeckeEis.coeffH1parMk_surjective _ x
   rw [HeckeEis.coeffH1parMk_eq_zero_iff, HeckeEis.mem_coeffCoboundaries_iff]
-  have hz : ∀ g h : CongruenceSubgroup.Gamma0 N, (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (g * h)
-      = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) h) :=
+  have hz : ∀ g h : CongruenceSubgroup.Gamma0 N, (z : CongruenceSubgroup.Gamma0 N →
+    ↥(HeckeEis.BinaryForm K n)) (g * h)
+      = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g +
+        ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z :
+        CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) h) :=
     (HeckeEis.mem_coeffCocycles_iff _ _).mp z.2.1
   have key : ∀ g : CongruenceSubgroup.Gamma0 N,
-      (2 : K) • (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)
-        - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by
+      (2 : K) • (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g = (z :
+        CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)
+        - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z :
+          CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by
     intro g
     have h1 := hz g (HeckeEis.OddSol.m N)
-    have h3 : (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (g * HeckeEis.OddSol.m N) = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N) - (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g :=
+    have h3 : (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (g * HeckeEis.OddSol.m
+      N) = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N) - (z
+      : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g :=
       by
       rw [← HeckeEis.OddSol.m_mul, hz, HeckeEis.OddSol.rho_m N n hn]; abel
     have e := h1.symm.trans h3
     rw [two_smul]
-    calc (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g
-        = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)))
+    calc (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + (z :
+      CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g
+        = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g +
+          ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z :
+          CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)))
             + (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by abel
-      _ = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N) - (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g) + (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g
+      _ = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N) - (z
+        : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g) + (z :
+        CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g
             - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by rw [e]
       _ = _ := by abel
-  refine ⟨-((2 : K)⁻¹ • (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)), funext fun g => ?_⟩
+  refine ⟨-((2 : K)⁻¹ • (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n))
+    (HeckeEis.OddSol.m N)), funext fun g => ?_⟩
   apply smul_right_injective ↥(HeckeEis.BinaryForm K n) h2
   dsimp only
   rw [map_neg, LinearMap.map_smul, key g, smul_sub, smul_neg, smul_neg, smul_smul, smul_smul,
@@ -139,7 +154,8 @@ public section publicSection
 open scoped MatrixGroups
 theorem HeckeEis.coeffH1par_binaryFormRepSL_eq_zero_of_odd (K : Type*) [Field K] (h2 : (2 : K) ≠ 0)
     (N n : ℕ) (hn : Odd n)
-    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : x = 0 :=
+    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0
+      N).subtype)) : x = 0 :=
   solution K h2 N n hn x
 
 end publicSection

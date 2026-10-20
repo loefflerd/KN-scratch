@@ -41,10 +41,12 @@ bounded by $n\cdot\delta_Q$ and of diagonal (principal) adeles vanishes.
 
 This is the Strong Approximation Theorem in the currency of the index of specialty: for $n$ large,
 $\mathcal{A}_F = \mathcal{A}_F(nQ) + F$. It feeds
-[`AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists`](thm.html#AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists),
+[`AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists`]
+(thm.html#AlgebraicCurve.exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists),
 where combined with the index formula it shows that the genus bound is already attained at a
 multiple of a single place, and is also used in
-[`AlgebraicCurve.eq_genusFF_of_forall_ell_sub_ell_eq`](thm.html#AlgebraicCurve.eq_genusFF_of_forall_ell_sub_ell_eq).
+[`AlgebraicCurve.eq_genusFF_of_forall_ell_sub_ell_eq`]
+(thm.html#AlgebraicCurve.eq_genusFF_of_forall_ell_sub_ell_eq).
 
 ## Explanation of the source proof
 

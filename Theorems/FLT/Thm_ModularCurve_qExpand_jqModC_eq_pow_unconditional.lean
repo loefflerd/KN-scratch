@@ -159,7 +159,8 @@ end CharLRows
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpand_jqModC_eq_pow_unconditional.ModularCurve in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpand_jqModC_eq_pow_unconditional.ModularCurve
+  in
 theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ] :
     qExpand K ℓ (jqModC K) = (jqModC K) ^ ℓ :=
   CharLRows.qExpand_jqModC_eq_pow K ℓ

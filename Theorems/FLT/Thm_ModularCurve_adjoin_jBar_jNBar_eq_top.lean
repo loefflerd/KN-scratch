@@ -254,7 +254,8 @@ private theorem adjoin_jBar_jNBar_eq_top :
           laurentBaseChange L (modularFunctionFieldFull N))).mpr
         (IntermediateField.subset_adjoin _ _ (Set.mem_insert _ _))
     · exact (IntermediateField.mem_lift
-        (⟨coeffEmb L (qExpand ℚ N jq), coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩ :
+        (⟨coeffEmb L (qExpand ℚ N jq), coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl
+          N))⟩ :
           laurentBaseChange L (modularFunctionFieldFull N))).mpr
         (IntermediateField.subset_adjoin _ _ (Set.mem_insert_of_mem _ rfl))
   exact hle x.2
@@ -276,7 +277,8 @@ private theorem ModularCurve.ord_jBar_sub_pos_and_dvd_of_forall_isRoot_hasRamBou
       (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ L))
         (HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : L)))).IsRoot r →
         HahnSeries.HasRamBound d r)
-    (v : AlgebraicCurve.Place L (ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N)))
+    (v : AlgebraicCurve.Place L (ModularCurve.laurentBaseChange L
+      (ModularCurve.modularFunctionFieldFull N)))
     (φ : ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N)
       →ₐ[L] HahnSeries ℚ L)
     (hφj : φ ⟨ModularCurve.coeffEmb L ModularCurve.jq,
@@ -341,9 +343,11 @@ theorem algebraMap_eq_C_algebraMap (k : K) :
 
 omit [Algebra K L] in
 theorem eval₂_C_single_one_eq_ofPowerSeries (r : L[X]) :
-    r.eval₂ (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) (1 : L)) = ofPowerSeries ℚ L (r : PowerSeries L) := by
+    r.eval₂ (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) (1 : L)) = ofPowerSeries ℚ L (r : PowerSeries
+      L) := by
   have h : (Polynomial.eval₂RingHom (C : L →+* HahnSeries ℚ L) (single (1 : ℚ) 1))
-      = (ofPowerSeries ℚ L).comp (Polynomial.coeToPowerSeries.ringHom : L[X] →+* PowerSeries L) := by
+      = (ofPowerSeries ℚ L).comp (Polynomial.coeToPowerSeries.ringHom : L[X] →+* PowerSeries L)
+        := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
     · rw [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C, RingHom.comp_apply,
         Polynomial.coeToPowerSeries.ringHom_apply, Polynomial.coe_C, ofPowerSeries_C]
@@ -391,7 +395,8 @@ theorem eval₂_C_add_single_ne_zero_and_order_eq_one (p : K[X]) (a : L)
     (ha : Polynomial.aeval a p = 0)
     (ha' : Polynomial.aeval a (Polynomial.derivative p) ≠ 0) :
     p.eval₂ ((C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) (C a + single (1 : ℚ) (1 : L)) ≠ 0 ∧
-      (p.eval₂ ((C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) (C a + single (1 : ℚ) (1 : L))).order = 1 := by
+      (p.eval₂ ((C : L →+* HahnSeries ℚ L).comp (algebraMap K L)) (C a + single (1 : ℚ) (1 :
+        L))).order = 1 := by
   have hshift := eval₂_C_comp_add_single_eq_taylor p a
   have h0 : (Polynomial.taylor a (p.map (algebraMap K L))).coeff 0 = 0 := by
     rw [Polynomial.taylor_coeff_zero, Polynomial.eval_map, ← Polynomial.aeval_def, ha]
@@ -425,9 +430,11 @@ private theorem AlgebraicCurve.RationalFunctionField.eq_finitePlace_of_ord_pos {
     (hv : 0 < v.ord (algebraMap K[X] (RatFunc K) p)) :
     v = AlgebraicCurve.RationalFunctionField.finitePlace K hp := by
   classical
-  rcases AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, rfl⟩ | rfl
+  rcases AlgebraicCurve.RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w,
+    rfl⟩ | rfl
   · have hmem : p ∈ w.asIdeal :=
-      (AlgebraicCurve.Place.ord_ofHeightOneSpectrum_ne_zero_iff (K := K) (F := RatFunc K) w hp.ne_zero).mp hv.ne'
+      (AlgebraicCurve.Place.ord_ofHeightOneSpectrum_ne_zero_iff (K := K) (F := RatFunc K) w
+        hp.ne_zero).mp hv.ne'
     have heq : w = AlgebraicCurve.RationalFunctionField.heightOneSpectrumOfIrreducible K hp := by
       refine IsDedekindDomain.HeightOneSpectrum.ext ?_
       rw [AlgebraicCurve.RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal]
@@ -453,7 +460,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
     (W : AlgebraicCurve.Place K M)
     (hW : 0 < W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p))) :
     W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) := by
-  have hχ : (((ψ : M →+* HahnSeries ℚ L).comp (algebraMap (RatFunc K) M)).comp (algebraMap K[X] (RatFunc K)))
+  have hχ : (((ψ : M →+* HahnSeries ℚ L).comp (algebraMap (RatFunc K) M)).comp (algebraMap K[X]
+    (RatFunc K)))
       = Polynomial.eval₂RingHom ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L))
           (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L)) := by
     refine Polynomial.ringHom_ext (fun k => ?_) ?_
@@ -511,7 +519,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   classical
   let φ₀ : K[X] →ₐ[K] HahnSeries ℚ L :=
     Polynomial.aeval (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L))
-  have hφ₀ : ∀ q : K[X], φ₀ q = q.eval₂ ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L))
+  have hφ₀ : ∀ q : K[X], φ₀ q = q.eval₂ ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K
+    L))
       (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L)) := by
     intro q
     change Polynomial.aeval _ q = _
@@ -521,7 +530,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   have hφ₀inj : Function.Injective φ₀ := by
     intro q₁ q₂ h
     have key : ∀ q : K[X], φ₀ q = HahnSeries.ofPowerSeries ℚ L
-        ((Polynomial.taylor a (q.map (algebraMap K L)) : PowerSeries L) : PowerSeries L) := fun q => by
+        ((Polynomial.taylor a (q.map (algebraMap K L)) : PowerSeries L) : PowerSeries L) := fun q
+          => by
       rw [hφ₀, HahnSeries.eval₂_C_comp_add_single_eq_taylor,
         HahnSeries.eval₂_C_single_one_eq_ofPowerSeries]
     rw [key, key] at h
@@ -533,7 +543,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   have hψ₀ : ∀ q : K[X], ψ₀ (algebraMap K[X] (RatFunc K) q) = φ₀ q := fun q => by
     have h := RatFunc.liftAlgHom_apply_div φ₀ hφ₀' q 1
     rwa [map_one, div_one, map_one, div_one] at h
-  have hψ₀X : ψ₀ (algebraMap K[X] (RatFunc K) Polynomial.X) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) :=
+  have hψ₀X : ψ₀ (algebraMap K[X] (RatFunc K) Polynomial.X) = HahnSeries.C a + HahnSeries.single (1
+    : ℚ) (1 : L) :=
     by
     rw [hψ₀]; exact Polynomial.aeval_X _
   have : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite (RatFunc K) F
@@ -559,9 +570,11 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     induction r using RatFunc.induction_on with
     | f p₁ q₁ _ => rw [map_div₀, hψ₀, hψ₀]; exact div_mem (hφ₀P p₁) (hφ₀P q₁)
   let S : IntermediateField (RatFunc K) (AlgebraicClosure F) :=
-    ((HahnSeries.puiseuxRamSubfield L hd).comap (Ψ : AlgebraicClosure F →+* HahnSeries ℚ L)).toIntermediateField
+    ((HahnSeries.puiseuxRamSubfield L hd).comap (Ψ : AlgebraicClosure F →+* HahnSeries ℚ
+      L)).toIntermediateField
       (fun r => by
-        change Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) ∈ HahnSeries.puiseuxRamSubfield L hd
+        change Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) ∈ HahnSeries.puiseuxRamSubfield L
+          hd
         rw [hΨr]; exact hψ₀P r)
   have hMS : normalClosure (RatFunc K) F (AlgebraicClosure F) ≤ S := by
     rw [normalClosure_le_iff]
@@ -573,19 +586,23 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   have : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
   have : IsGalois (RatFunc K) (AlgebraicClosure F) := ⟨⟩
   have : IsScalarTower K F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
-    IsScalarTower.of_algebraMap_eq (R := K) (S := F) (A := ↥(normalClosure (RatFunc K) F (AlgebraicClosure F)))
+    IsScalarTower.of_algebraMap_eq (R := K) (S := F) (A := ↥(normalClosure (RatFunc K) F
+      (AlgebraicClosure F)))
       (fun k => Subtype.ext (show algebraMap K (AlgebraicClosure F) k
-        = algebraMap F (AlgebraicClosure F) (algebraMap K F k) from IsScalarTower.algebraMap_apply K F _ k))
+        = algebraMap F (AlgebraicClosure F) (algebraMap K F k) from IsScalarTower.algebraMap_apply K
+          F _ k))
   have : Module.Finite F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
     Module.Finite.of_restrictScalars_finite (RatFunc K) F _
   have : Algebra.IsAlgebraic F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
     Algebra.IsAlgebraic.of_finite F _
   let ΨM : normalClosure (RatFunc K) F (AlgebraicClosure F) →ₐ[K] HahnSeries ℚ L :=
     Ψ.comp ((normalClosure (RatFunc K) F (AlgebraicClosure F)).val.restrictScalars K)
-  have hΨM : ∀ m : normalClosure (RatFunc K) F (AlgebraicClosure F), HahnSeries.HasRamBound d (ΨM m) :=
+  have hΨM : ∀ m : normalClosure (RatFunc K) F (AlgebraicClosure F), HahnSeries.HasRamBound d (ΨM m)
+    :=
     fun m => (HahnSeries.mem_puiseuxRamSubfield_iff hd).mp (hMS m.2)
   have hΨMX : ΨM (algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F))
-      (algebraMap K[X] (RatFunc K) Polynomial.X)) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) := by
+      (algebraMap K[X] (RatFunc K) Polynomial.X)) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 :
+        L) := by
     change Ψ ((algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F))
       (algebraMap K[X] (RatFunc K) Polynomial.X) : AlgebraicClosure F)) = _
     rw [IntermediateField.coe_algebraMap_apply, hΨr, hψ₀X]
@@ -593,18 +610,21 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     (M := normalClosure (RatFunc K) F (AlgebraicClosure F)) w
   have hpM : algebraMap F (normalClosure (RatFunc K) F (AlgebraicClosure F))
         (algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) p))
-      = algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F)) (algebraMap K[X] (RatFunc K) p) :=
+      = algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F)) (algebraMap K[X]
+        (RatFunc K) p) :=
     (IsScalarTower.algebraMap_apply (RatFunc K) F _ _).symm
   have hordW : W.ord (algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F))
         (algebraMap K[X] (RatFunc K) p))
-      = W.ramificationIndex F * w.ord (algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) p)) := by
+      = W.ramificationIndex F * w.ord (algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) p))
+        := by
     rw [← hpM, W.ord_restrict (F := F), hWw]
   have he := W.ramificationIndex_pos (F := F)
   have hWpos : 0 < W.ord (algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F))
       (algebraMap K[X] (RatFunc K) p)) := by
     rw [hordW]; exact mul_pos (by exact_mod_cast he) hw
   have hdvd :=
-    AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois p hp a ha ha' hd ΨM hΨMX hΨM W hWpos
+    AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois p hp a ha ha' hd ΨM hΨMX hΨM W
+      hWpos
   rw [hordW] at hdvd
   exact dvd_of_mul_left_dvd hdvd
 

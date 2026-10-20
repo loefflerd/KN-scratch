@@ -43,7 +43,8 @@ This is the statement that the constants of $K$ lie in the subfield of series wi
 $\tfrac{1}{e}\mathbb{Z}$, the first of the closure properties of the Puiseux-type subfield of
 `HahnSeries ℚ K` cut out by a ramification bound. It is used when polynomials with constant
 coefficients are evaluated at series of bounded ramification, and in particular in
-[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`](thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
+[`ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound`]
+(thm.html#ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound).
 
 ## Explanation of the source proof
 

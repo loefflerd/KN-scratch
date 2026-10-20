@@ -161,7 +161,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
       fun z : ℂ => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (ofComplex z))
     (hcusp : ∀ σ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧
       Filter.Tendsto (fun τ : ℍ => F (σ • τ)) atImInfty (𝓝 L))
-    (v : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)))
+    (v : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      Γ)))
     (y : ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ))
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (hv : y ∉ v.toValuationSubring) :
@@ -183,7 +184,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
       Γ hT (x : LaurentSeries ℂ) x.2
   have hlim : ∀ γ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧
       Filter.Tendsto (fun τ : ℍ => (g : ℍ → ℂ) (γ • τ) / (h : ℍ → ℂ) (γ • τ)) atImInfty (𝓝 L) :=
-    ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto Γ hT g h hh (x : LaurentSeries ℂ)
+    ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto Γ hT g h hh (x :
+      LaurentSeries ℂ)
       hxgh F hFx hcusp
   set z : K := Ψ x with hzdef
   set qg : LaurentSeries ℂ := ModularCurve.qExpand ℂ M
@@ -204,7 +206,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
       exact AddSubgroup.mem_zmultiples _
     have hg : g = 0 := (ModularForm.qExpansion_eq_zero_iff one_pos h1 g).mp hg0
     obtain ⟨L, hL, hL'⟩ := hlim 1
-    have : Filter.Tendsto (fun τ : ℍ => (g : ℍ → ℂ) ((1 : SL(2, ℤ)) • τ) / (h : ℍ → ℂ) ((1 : SL(2, ℤ)) • τ))
+    have : Filter.Tendsto (fun τ : ℍ => (g : ℍ → ℂ) ((1 : SL(2, ℤ)) • τ) / (h : ℍ → ℂ) ((1 : SL(2,
+      ℤ)) • τ))
         atImInfty (𝓝 0) := by
       simp only [hg, FunLike.coe_zero, Pi.zero_apply, zero_div]
       exact tendsto_const_nhds
@@ -221,7 +224,8 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     apply hEz
     have hqg0 : qg = 0 := by
       rw [hqg, hg0]
-      have : UpperHalfPlane.qExpansion 1 ((0 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) : ℍ → ℂ) = 0 :=
+      have : UpperHalfPlane.qExpansion 1 ((0 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) : ℍ → ℂ)
+        = 0 :=
         by
         have h1 : (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
           rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem hT]
@@ -283,7 +287,8 @@ theorem solution
   obtain ⟨M, hM0, hΓM⟩ := hΓ
   have : NeZero M := ⟨hM0⟩
   have : IsDomain (ModularCurve.LevelN.ring M) := ModularCurve.LevelN.isDomain_ring M
-  exact ModularCurve.CuspPlaceGlue.ord_eq_zero_aux Γ hT M hΓM (FractionRing (ModularCurve.LevelN.ring M))
+  exact ModularCurve.CuspPlaceGlue.ord_eq_zero_aux Γ hT M hΓM (FractionRing
+    (ModularCurve.LevelN.ring M))
     x F hFx hcusp v y hy hv
 
 end

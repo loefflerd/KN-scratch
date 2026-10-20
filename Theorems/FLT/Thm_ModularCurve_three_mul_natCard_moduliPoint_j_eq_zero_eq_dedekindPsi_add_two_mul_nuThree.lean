@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
+Based on Prove2Me node
+ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
 (1e8e845b-4f4e-52ea-8350-7247b1885b38) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 1a818f27-07a9-55f2-9fc6-6ba043e6af07
@@ -88,7 +89,8 @@ omit [DecidableEq L] in
 @[scoped simp] theorem coords_zero {W : WeierstrassCurve L} :
     coords (0 : W.toAffine.Point) = none := rfl
 omit [DecidableEq L] in
-@[scoped simp] theorem coords_some {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
+@[scoped simp] theorem coords_some {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x
+  y) :
     coords (Point.some x y h) = some (x, y) := rfl
 
 omit [DecidableEq L] in
@@ -125,7 +127,8 @@ theorem coords_castPt {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) (P : W�
 
 def autPt {W : WeierstrassCurve L} (γ : VariableChange L) (hγ : γ • W = W) :
     W.toAffine.Point →+ W.toAffine.Point :=
-  (castPt hγ).toAddMonoidHom.comp (AddMonoidHom.mk' (Point.vcInvFun γ W.toAffine) (Point.vcInvFun_add γ W.toAffine))
+  (castPt hγ).toAddMonoidHom.comp (AddMonoidHom.mk' (Point.vcInvFun γ W.toAffine)
+    (Point.vcInvFun_add γ W.toAffine))
 
 theorem autPt_apply {W : WeierstrassCurve L} (γ : VariableChange L) (hγ : γ • W = W)
     (P : W.toAffine.Point) :
@@ -150,7 +153,8 @@ theorem autPt_injective {W : WeierstrassCurve L} (γ : VariableChange L) (hγ : 
 theorem coords_autPt {W : WeierstrassCurve L} (v : Lˣ)
     (hγ : (⟨v, 0, 0, 0⟩ : VariableChange L) • W = W)
     (P : W.toAffine.Point) :
-    coords (autPt ⟨v, 0, 0, 0⟩ hγ P) = (coords P).map (fun q => (((v⁻¹ : Lˣ) : L) ^ 2 * q.1, ((v⁻¹ : Lˣ) : L) ^ 3 * q.2)) := by
+    coords (autPt ⟨v, 0, 0, 0⟩ hγ P) = (coords P).map (fun q => (((v⁻¹ : Lˣ) : L) ^ 2 * q.1, ((v⁻¹ :
+      Lˣ) : L) ^ 3 * q.2)) := by
   rw [autPt_apply, coords_castPt]
   rcases P with _ | ⟨x, y, h⟩
   · rfl
@@ -350,8 +354,10 @@ def τ (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (H : CycSub L N) : CycSub L N 
     obtain ⟨hc, hcard⟩ := H.2
     refine ⟨?_, ?_⟩
     · have := hc
-      exact isAddCyclic_of_surjective ((σ u hu).addSubgroupMap H.1) ((σ u hu).addSubgroupMap_surjective H.1)
-    · exact (Nat.card_congr (H.1.equivMapOfInjective (σ u hu) (σ_injective u hu)).symm.toEquiv).trans hcard⟩
+      exact isAddCyclic_of_surjective ((σ u hu).addSubgroupMap H.1) ((σ u
+        hu).addSubgroupMap_surjective H.1)
+    · exact (Nat.card_congr (H.1.equivMapOfInjective (σ u hu) (σ_injective u
+        hu)).symm.toEquiv).trans hcard⟩
 
 omit [Algebra ℚ L] in
 theorem τ_val (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (H : CycSub L N) :
@@ -387,7 +393,8 @@ def actC3 (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) :
     change act u hu N (Multiplicative.toAdd (1 : Multiplicative (ZMod 3))) H = H
     simp [act]
   mul_smul a b H := by
-    change act u hu N (Multiplicative.toAdd (a * b)) H = act u hu N (Multiplicative.toAdd a) (act u hu N (Multiplicative.toAdd b) H)
+    change act u hu N (Multiplicative.toAdd (a * b)) H = act u hu N (Multiplicative.toAdd a) (act u
+      hu N (Multiplicative.toAdd b) H)
     have hτ := τ_τ_τ u hu N H
     have hτ' := τ_τ_τ u hu N (τ u hu N H)
     rw [toAdd_mul]
@@ -408,7 +415,8 @@ theorem natCard_C3 : Nat.card (Multiplicative (ZMod 3)) = 3 := by
 
 omit [Algebra ℚ L] in
 theorem mem_fixedPoints_iff (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (H : CycSub L N) :
-    (letI := actC3 u hu N; H ∈ MulAction.fixedPoints (Multiplicative (ZMod 3)) (CycSub L N)) ↔ τ u hu N H = H := by
+    (letI := actC3 u hu N; H ∈ MulAction.fixedPoints (Multiplicative (ZMod 3)) (CycSub L N)) ↔ τ u
+      hu N H = H := by
   let := actC3 u hu N
   rw [MulAction.mem_fixedPoints]
   have h10 : (1 : ZMod 3) ≠ 0 := by decide
@@ -503,9 +511,11 @@ theorem map_autPt_eq_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1) (
 
 omit [Algebra ℚ L] in
 theorem R_iff (T T' : {T : (W0 L).toAffine.Point // addOrderOf T = N}) :
-    R N T T' ↔ ∃ γ : VariableChange L, ∃ hγ : γ • W0 L = W0 L, ∃ k : ℕ, k.Coprime N ∧ T'.1 = k • autPt γ hγ T.1 := by
+    R N T T' ↔ ∃ γ : VariableChange L, ∃ hγ : γ • W0 L = W0 L, ∃ k : ℕ, k.Coprime N ∧ T'.1 = k •
+      autPt γ hγ T.1 := by
   unfold R
-  refine exists_congr (fun γ => exists_congr (fun hγ => exists_congr (fun k => and_congr_right (fun _ => ?_))))
+  refine exists_congr (fun γ => exists_congr (fun hγ => exists_congr (fun k => and_congr_right (fun
+    _ => ?_))))
   rw [autPt_apply, ← map_nsmul (castPt hγ), eq_comm, castPt_eq_iff_heq]
   exact heq_comm
 
@@ -536,7 +546,8 @@ omit [Algebra ℚ L] in
 theorem cyc_rel_of_or (u : Lˣ) (hu : (u : L) ^ 3 = 1)
     {T T' : {T : (W0 L).toAffine.Point // addOrderOf T = N}}
     (hN : N ≠ 0) :
-    (cyc N T' = cyc N T ∨ cyc N T' = τ u hu N (cyc N T) ∨ cyc N T' = τ u hu N (τ u hu N (cyc N T))) → R N T T' := by
+    (cyc N T' = cyc N T ∨ cyc N T' = τ u hu N (cyc N T) ∨ cyc N T' = τ u hu N (τ u hu N (cyc N T)))
+      → R N T T' := by
   rw [R_iff]
   have hu6 : (u : L) ^ 6 = 1 := by rw [show 6 = 3 * 2 from rfl, pow_mul, hu, one_pow]
   rintro (h | h | h)
@@ -556,7 +567,8 @@ theorem cyc_rel_of_or (u : Lˣ) (hu : (u : L) ^ 3 = 1)
   · have h' : AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples (σ u hu (σ u hu T.1)) := by
       have := congrArg Subtype.val h
       rw [τ_val, τ_val] at this
-      change AddSubgroup.zmultiples T'.1 = ((AddSubgroup.zmultiples T.1).map (σ u hu)).map (σ u hu) at this
+      change AddSubgroup.zmultiples T'.1 = ((AddSubgroup.zmultiples T.1).map (σ u hu)).map (σ u hu)
+        at this
       rw [this, AddMonoidHom.map_zmultiples, AddMonoidHom.map_zmultiples]
     have hordσ : addOrderOf (σ u hu (σ u hu T.1)) = N := by
       rw [addOrderOf_injective (σ u hu) (σ_injective u hu), addOrderOf_injective (σ u hu)
@@ -581,7 +593,8 @@ theorem cyc_rel_of_or (u : Lˣ) (hu : (u : L) ^ 3 = 1)
 
 theorem R_imp_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1)
     {T T' : {T : (W0 L).toAffine.Point // addOrderOf T = N}} (h : R N T T') :
-    cyc N T' = cyc N T ∨ cyc N T' = τ u hu N (cyc N T) ∨ cyc N T' = τ u hu N (τ u hu N (cyc N T)) := by
+    cyc N T' = cyc N T ∨ cyc N T' = τ u hu N (cyc N T) ∨ cyc N T' = τ u hu N (τ u hu N (cyc N T))
+      := by
   rw [R_iff] at h
   obtain ⟨γ, hγ, k, hk, hkT⟩ := h
   have hord : addOrderOf (autPt γ hγ T.1) = N := by
@@ -589,30 +602,37 @@ theorem R_imp_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1)
   have hz : AddSubgroup.zmultiples T'.1 = (AddSubgroup.zmultiples T.1).map (autPt γ hγ) := by
     rw [hkT, zmultiples_nsmul_eq_of_coprime hk hord, AddMonoidHom.map_zmultiples]
   rcases map_autPt_eq_or u hu hu1 γ hγ (AddSubgroup.zmultiples T.1) with h | h | h
-  · left; apply Subtype.ext; change AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples T.1; rw [hz, h]
+  · left; apply Subtype.ext; change AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples T.1; rw
+      [hz, h]
   · right; left; apply Subtype.ext
     change AddSubgroup.zmultiples T'.1 = (AddSubgroup.zmultiples T.1).map (σ u hu); rw [hz, h]
   · right; right; apply Subtype.ext
-    change AddSubgroup.zmultiples T'.1 = ((AddSubgroup.zmultiples T.1).map (σ u hu)).map (σ u hu); rw [hz, h]
+    change AddSubgroup.zmultiples T'.1 = ((AddSubgroup.zmultiples T.1).map (σ u hu)).map (σ u hu);
+      rw [hz, h]
 
 theorem natCard_quot_R_eq (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1) (hN : N ≠ 0) :
     Nat.card (Quot (R (L := L) N)) =
-      (letI := actC3 u hu N; Nat.card (MulAction.orbitRel.Quotient (Multiplicative (ZMod 3)) (CycSub L N))) := by
+      (letI := actC3 u hu N; Nat.card (MulAction.orbitRel.Quotient (Multiplicative (ZMod 3)) (CycSub
+        L N))) := by
   let := actC3 u hu N
   have h10 : (1 : ZMod 3) ≠ 0 := by decide
   have h20 : (2 : ZMod 3) ≠ 0 := by decide
   have h21 : (2 : ZMod 3) ≠ 1 := by decide
-  let F : Quot (R (L := L) N) → MulAction.orbitRel.Quotient (Multiplicative (ZMod 3)) (CycSub L N) :=
-    Quot.lift (fun T => (Quotient.mk _ (cyc N T) : MulAction.orbitRel.Quotient _ _)) (fun T T' h => by
+  let F : Quot (R (L := L) N) → MulAction.orbitRel.Quotient (Multiplicative (ZMod 3)) (CycSub L N)
+    :=
+    Quot.lift (fun T => (Quotient.mk _ (cyc N T) : MulAction.orbitRel.Quotient _ _)) (fun T T' h
+      => by
       apply Quotient.sound
       change cyc N T ∈ MulAction.orbit (Multiplicative (ZMod 3)) (cyc N T')
       rcases R_imp_or N u hu hu1 h with h1 | h1 | h1
       · rw [h1]; exact MulAction.mem_orbit_self _
       · refine ⟨Multiplicative.ofAdd 2, ?_⟩
-        change act u hu N (Multiplicative.toAdd (Multiplicative.ofAdd (2 : ZMod 3))) (cyc N T') = cyc N T
+        change act u hu N (Multiplicative.toAdd (Multiplicative.ofAdd (2 : ZMod 3))) (cyc N T') =
+          cyc N T
         rw [h1]; simp [act, τ_τ_τ, h20, h21]
       · refine ⟨Multiplicative.ofAdd 1, ?_⟩
-        change act u hu N (Multiplicative.toAdd (Multiplicative.ofAdd (1 : ZMod 3))) (cyc N T') = cyc N T
+        change act u hu N (Multiplicative.toAdd (Multiplicative.ofAdd (1 : ZMod 3))) (cyc N T') =
+          cyc N T
         rw [h1]; simp [act, τ_τ_τ, h10])
   refine Nat.card_congr (Equiv.ofBijective F ⟨?_, ?_⟩)
   · intro a b
@@ -644,7 +664,8 @@ open Polynomial in
 open P2MWs13.R2b in
 theorem solution
     (N : ℕ) [NeZero N] (L : Type*) [Field L] [DecidableEq L] [Algebra ℚ L] [IsAlgClosed L] :
-    3 * Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = dedekindPsi N + 2 * nuThree N := by
+    3 * Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = dedekindPsi N + 2 * nuThree N
+      := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   have := isElliptic_W0 (L := L)
   have hN : N ≠ 0 := NeZero.ne N
@@ -664,7 +685,8 @@ theorem solution
   set u : Lˣ := Units.mk0 uu hu0 with hudef
   have hu : (u : L) ^ 3 = 1 := hu3
   have hu1' : (u : L) ≠ 1 := hu1
-  have h1 : Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = Nat.card (Quot (R (L := L) N)) :=
+  have h1 : Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = Nat.card (Quot (R (L := L)
+    N)) :=
     by
     have e : Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)}
         = Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (W0 L).j} :=
@@ -681,14 +703,16 @@ theorem solution
     rw [hb] at hc
     have : Finite (Submodule.torsionBy ℤ (W0 L).toAffine.Point N) :=
       Nat.finite_of_card_ne_zero (by rw [hc]; positivity)
-    refine Finite.of_injective (fun T => (⟨T.1, ?_⟩ : Submodule.torsionBy ℤ (W0 L).toAffine.Point N)) ?_
+    refine Finite.of_injective (fun T => (⟨T.1, ?_⟩ : Submodule.torsionBy ℤ (W0 L).toAffine.Point
+      N)) ?_
     · rw [Submodule.mem_torsionBy_iff]; change (N : ℤ) • T.1 = 0
       have hT0 := addOrderOf_nsmul_eq_zero T.1
       rw [T.2] at hT0
       rw [natCast_zsmul]; exact hT0
     · intro a b h; exact Subtype.ext (congrArg Subtype.val h :)
   have : Finite (CycSub L N) := by
-    refine Finite.of_surjective (fun T : {T : (W0 L).toAffine.Point // addOrderOf T = N} => cyc N T) ?_
+    refine Finite.of_surjective (fun T : {T : (W0 L).toAffine.Point // addOrderOf T = N} => cyc N T)
+      ?_
     intro H
     obtain ⟨T, hT, hTH⟩ := exists_generator N hN H
     exact ⟨⟨T, hT⟩, Subtype.ext hTH⟩
@@ -697,7 +721,8 @@ theorem solution
     (X := CycSub L N) Nat.prime_three natCard_C3
   have h4 : Nat.card (CycSub L N) = dedekindPsi N := by
     have h :=
-      (W0 L).natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed (K := L) (n := N) hNL
+      (W0 L).natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed (K := L) (n := N)
+        hNL
     have hb : ((W0 L)⁄L) = (W0 L).toAffine := by
       change ((W0 L).baseChange L).toAffine = (W0 L).toAffine
       rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
@@ -707,7 +732,8 @@ theorem solution
     by
     rw [← WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
       (1 : L) one_ne_zero u hu hu1' N hN]
-    refine Nat.card_congr ⟨fun H => ⟨H.1.1, H.1.2.1, H.1.2.2, ?_⟩, fun H => ⟨⟨H.1, H.2.1, H.2.2.1⟩, ?_⟩, ?_, ?_⟩
+    refine Nat.card_congr ⟨fun H => ⟨H.1.1, H.1.2.1, H.1.2.2, ?_⟩, fun H => ⟨⟨H.1, H.2.1, H.2.2.1⟩,
+      ?_⟩, ?_, ?_⟩
     · have hfix : τ u hu N H.1 = H.1 := (mem_fixedPoints_iff u hu N H.1).mp H.2
       intro T hT
       refine ⟨σ u hu T, (τ_eq_iff u hu N hN H.1).mp hfix T hT, ?_⟩
@@ -724,7 +750,9 @@ theorem solution
 
 end S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
 end P2MW
-export P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree (solution)
+export
+  P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
+  (solution)
 
 end privateSection
 
@@ -734,7 +762,8 @@ public section publicSection
 open ModularCurve
 theorem ModularCurve.three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
     (N : ℕ) [NeZero N] (L : Type*) [Field L] [DecidableEq L] [Algebra ℚ L] [IsAlgClosed L] :
-    3 * Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = dedekindPsi N + 2 * nuThree N :=
+    3 * Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = dedekindPsi N + 2 * nuThree N
+      :=
   solution N L
 
 end publicSection

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
+Based on Prove2Me node
+WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
 (b73ed81b-39ad-56ed-892a-17f591c0295e) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 6fe9cd27-d100-525e-9614-ff8b526979ae
@@ -733,7 +734,8 @@ theorem solution
 
 end S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 (solution)
+export P2MW.S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
+  (solution)
 
 end privateSection
 

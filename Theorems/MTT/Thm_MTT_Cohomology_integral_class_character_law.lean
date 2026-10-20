@@ -178,7 +178,8 @@ theorem MTT.Cohomology.integral_class_character_law
     (φ : Hc N (k - 2) ℂ) (hφ : IntegralClass f.form φ)
     (γ : CongruenceSubgroup.Gamma0 N) (x y : Cusp) :
     φ.val (cuspAct γ.val x, cuspAct γ.val y)
-      = ι (f.epsilon (γ.val 1 1 : ZMod N)) • act γ.val.val (φ.val (x, y)) := _root_.solution hN hk ι f φ hφ γ x y
+      = ι (f.epsilon (γ.val 1 1 : ZMod N)) • act γ.val.val (φ.val (x, y)) := _root_.solution hN hk ι
+        f φ hφ γ x y
 end
 
 end publicSection

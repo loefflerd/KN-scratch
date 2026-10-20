@@ -48,7 +48,8 @@ q-orders zero and one for $A$ and $B$.
 The proved weighted-monomial theorem gives
 
 $$\dim
-S_k(\Gamma_1(3))\ge\left\lfloor\frac{k-6}{3}\right\rfloor+1=\left\lfloor\frac{k}{3}\right\rfloor-1.$$
+S_k(\Gamma_1(3))\ge\left\lfloor\frac{k-6}{3}\right\rfloor+1=\left\lfloor\frac{k}{3}\right
+\rfloor-1.$$
 
 Finite-dimensionality follows from the already-Proved arithmetic modular-form theorem by injecting
 cusp forms into modular forms. The strict period is one. The submitted Lean reduction compiles at

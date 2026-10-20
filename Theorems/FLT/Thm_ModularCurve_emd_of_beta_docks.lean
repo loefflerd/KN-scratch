@@ -57,9 +57,11 @@ which the Hecke correspondence enters the local analysis of the covering $X_0(N)
 $j_0$. Here it is derived purely formally from a geometric input, a finiteness input, and the
 existence, counting and uniqueness of the place induced by a normalised embedding; it is used in the
 determination of the numbers of elliptic points, via
-[`ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo),
+[`ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo),
 and in [`ModularCurve.emd_holds`](thm.html#ModularCurve.emd_holds).
 
 ## Explanation of the source proof
@@ -115,18 +117,21 @@ private theorem emd_of_beta_docks (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure
     : EMD N j₀ := by
   classical
   obtain ⟨E₀, hell, hj, f, hiff, hsize⟩ := hβ
-  have hInd : ∀ ψ : Emb N j₀, ∃ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), Induces ψ.1 w :=
+  have hInd : ∀ ψ : Emb N j₀, ∃ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), Induces
+    ψ.1 w :=
     by
     intro ψ
     obtain ⟨w, g, hg, hx⟩ := hEP ψ
     exact ⟨w, g, hg, hx⟩
   choose wOf hwOf using hInd
-  have hC : ∀ c : (AlgebraicClosure ℚ), algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) c = HahnSeries.C c :=
+  have hC : ∀ c : (AlgebraicClosure ℚ), algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ
+    (AlgebraicClosure ℚ)) c = HahnSeries.C c :=
     by
     intro c
     rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
   have habove : ∀ ψ : Emb N j₀,
-      0 < (wOf ψ).ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) := by
+      0 < (wOf ψ).ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)
+        := by
     intro ψ
     obtain ⟨g, hg, hx⟩ := hwOf ψ
     have h1 := hx (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)
@@ -136,10 +141,12 @@ private theorem emd_of_beta_docks (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure
       ring
     rw [himg, HahnSeries.order_single one_ne_zero] at h1
     have hgne : g ≠ 0 := ne_of_gt hg
-    have h2 : ((wOf ψ).ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) : ℚ) =
+    have h2 : ((wOf ψ).ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)
+      : ℚ) =
         1 / g := (eq_div_iff hgne).mpr h1
     have h3 : (0 : ℚ) <
-        ((wOf ψ).ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) : ℚ) := by
+        ((wOf ψ).ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) : ℚ)
+          := by
       rw [h2]
       exact div_pos one_pos hg
     exact_mod_cast h3
@@ -154,16 +161,19 @@ private theorem emd_of_beta_docks (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure
     · intro h
       exact Subtype.ext (hC535 (hwOf ψ) h)
   have hcardψ : ∀ w, Nat.card {ψ : Emb N j₀ // F ψ = w} =
-      (w.1.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat := by
+      (w.1.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat
+        := by
     intro w
     have e1 : {ψ : Emb N j₀ // F ψ = w} ≃ {ψ : Emb N j₀ // Induces ψ.1 w.1} :=
       Equiv.subtypeEquivRight fun ψ => hFiff ψ w
     have e2 : {ψ : Emb N j₀ // Induces ψ.1 w.1} ≃
-        {ψ : ↥(modularFunctionFieldBar N) →ₐ[(AlgebraicClosure ℚ)] HahnSeries ℚ (AlgebraicClosure ℚ) //
+        {ψ : ↥(modularFunctionFieldBar N) →ₐ[(AlgebraicClosure ℚ)] HahnSeries ℚ (AlgebraicClosure ℚ)
+          //
           ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : (AlgebraicClosure ℚ)) ∧
           Induces ψ w.1} :=
       Equiv.subtypeSubtypeEquivSubtypeInter
-        (fun ψ : ↥(modularFunctionFieldBar N) →ₐ[(AlgebraicClosure ℚ)] HahnSeries ℚ (AlgebraicClosure ℚ) =>
+        (fun ψ : ↥(modularFunctionFieldBar N) →ₐ[(AlgebraicClosure ℚ)] HahnSeries ℚ
+          (AlgebraicClosure ℚ) =>
           ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : (AlgebraicClosure ℚ)))
         (fun ψ => Induces ψ w.1)
     rw [Nat.card_congr (e1.trans e2)]

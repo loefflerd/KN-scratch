@@ -29,7 +29,8 @@ public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 public import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
-public import Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+public import
+  Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 public import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
@@ -341,11 +342,13 @@ open WeierstrassCurve.Affine.IsogenyEndDatum
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) :
+public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
+  IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
-@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) :
+@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum
+  W) :
     AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
 
 
@@ -395,7 +398,8 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-public theorem _root_.AlgebraicCurve.Place.evalAt_add (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
+public theorem _root_.AlgebraicCurve.Place.evalAt_add (hv : v.IsRational) {f g : F} (hf : f ∈
+  v.toValuationSubring)
     (hg : g ∈ v.toValuationSubring) :
     v.evalAt (f + g) = v.evalAt f + v.evalAt g := by
   apply v.algebraMap_residueField_injective
@@ -411,7 +415,8 @@ theorem _root_.AlgebraicCurve.Place.evalAt_neg (hv : v.IsRational) {f : F}
     _root_.map_neg]
   rfl
 
-public theorem _root_.AlgebraicCurve.Place.evalAt_sub (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
+public theorem _root_.AlgebraicCurve.Place.evalAt_sub (hv : v.IsRational) {f g : F} (hf : f ∈
+  v.toValuationSubring)
     (hg : g ∈ v.toValuationSubring) :
     v.evalAt (f - g) = v.evalAt f - v.evalAt g := by
   rw [sub_eq_add_neg, v.evalAt_add hv hf (neg_mem hg), v.evalAt_neg hv hg, sub_eq_add_neg]
@@ -487,11 +492,13 @@ open WeierstrassCurve.Affine.IsogenyEndDatum
 
 variable {W}
 
-@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.geomMorph (D : IsogenyEndDatum W) :
+@[expose] public def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.geomMorph (D : IsogenyEndDatum
+  W) :
     W.Point → W.Point :=
   fun P => (placeOfPointEquiv W).symm ((placeOfPoint P).restrictAlong D.ι D.hι)
 
-public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.placeOfPoint_geomMorph (D : IsogenyEndDatum W) (P : W.Point) :
+public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.placeOfPoint_geomMorph (D :
+  IsogenyEndDatum W) (P : W.Point) :
     (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (D.geomMorph P) :=
   (placeOfPoint_placeOfPointEquiv_symm W _).symm
 
@@ -641,7 +648,9 @@ theorem pushforwardAlongHom_pointClass_eq_sub (D : IsogenyEndDatum W) (P : W.Poi
   rw [Pic0.pushforwardAlongHom_mk, pushforwardAlongDegZero_pointDivisor_geomMorph D P]
   rfl
 
-public theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd_eq_geomMorph_sub_geomMorph_zero (D : IsogenyEndDatum W) (P : W.Point) :
+public theorem
+  _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd_eq_geomMorph_sub_geomMorph_zero (D :
+  IsogenyEndDatum W) (P : W.Point) :
     D.pointEnd' P = D.geomMorph P - D.geomMorph 0 := by
   rw [IsogenyEndDatum.pointEnd'_apply, pushforwardAlongHom_pointClass_eq_sub D P, map_sub,
     genusOnePic0Equiv_apply, genusOnePic0Equiv_apply, pic0ToPoint_pointClass,
@@ -717,7 +726,8 @@ public theorem ord_X_neg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) :
   by_contra hcon
   push Not at hcon
   exact hv (isFinitePlace_of_mem v
-    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero) hcon))
+    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero)
+      hcon))
 
 theorem exists_equation [IsAlgClosed F] (W : Affine F) (x₀ : F) :
     ∃ y₀ : F, W.Equation x₀ y₀ := by
@@ -950,7 +960,8 @@ variable (W) in
 public lemma point_infinite : Infinite W.toAffine.Point := by
   refine Infinite.of_injective
     (fun x : F => Affine.Point.some x (WeierstrassCurve.Affine.exists_equation W x).choose
-      ((Affine.equation_iff_nonsingular (W := W)).mp (WeierstrassCurve.Affine.exists_equation W x).choose_spec))
+      ((Affine.equation_iff_nonsingular (W := W)).mp (WeierstrassCurve.Affine.exists_equation W
+        x).choose_spec))
     fun x x' hxx' => ?_
   exact (Affine.Point.some.inj hxx').1
 

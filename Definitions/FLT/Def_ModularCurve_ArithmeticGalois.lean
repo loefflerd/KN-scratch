@@ -188,7 +188,8 @@ theorem JZero.torsionGaloisRep_apply {n : ℕ} (σ : AlgebraicClosure ℚ ≃ₐ
 
 theorem JZero.coe_torsionGaloisRep_apply {n : ℕ} (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     (x : Pic0.torsion (AlgebraicClosure ℚ) (modularFunctionFieldBar N) n) :
-    ((JZero.torsionGaloisRep N n σ x : Pic0.torsion (AlgebraicClosure ℚ) (modularFunctionFieldBar N) n) :
+    ((JZero.torsionGaloisRep N n σ x : Pic0.torsion (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
+      n) :
         JZero N) = σ • (x : JZero N) :=
   rfl
 

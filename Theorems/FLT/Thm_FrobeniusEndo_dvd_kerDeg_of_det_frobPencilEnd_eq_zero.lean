@@ -43,9 +43,11 @@ $(W⁄K).\mathrm{Point}$, this cardinality being $0$ when the kernel is infinite
 This is the forward half of the dictionary between the $\mathbb{F}_p$-spectrum of a Galois
 automorphism acting on the $p$-torsion and the kernel counts $\#\ker([m]-[n]\sigma)$, the counts
 through which the trace of Frobenius is read off modulo $p$. It is used in the equivalence
-[`FrobeniusEndo.det_frobPencilEnd_eq_zero_iff_dvd_kerDeg`](thm.html#FrobeniusEndo.det_frobPencilEnd_eq_zero_iff_dvd_kerDeg)
+[`FrobeniusEndo.det_frobPencilEnd_eq_zero_iff_dvd_kerDeg`]
+(thm.html#FrobeniusEndo.det_frobPencilEnd_eq_zero_iff_dvd_kerDeg)
 and in
-[`FrobeniusEndo.trace_det_frob_of_line_of_isotropic`](thm.html#FrobeniusEndo.trace_det_frob_of_line_of_isotropic).
+[`FrobeniusEndo.trace_det_frob_of_line_of_isotropic`]
+(thm.html#FrobeniusEndo.trace_det_frob_of_line_of_isotropic).
 
 ## Explanation of the source proof
 

@@ -44,7 +44,8 @@ This is the doubling case $P = S$ of the transport of adic valuations along the 
 pull-back: pulling back by translation by $S$ moves the order of vanishing at $2S$ to an order of
 vanishing at least as large at $S$. It is used in the verification of the valuation-theoretic
 properties of the functions entering the Weil pairing, being cited by
-[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`](thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
+[`WeierstrassCurve.Affine.valuation_transEquiv_weilFun`]
+(thm.html#WeierstrassCurve.Affine.valuation_transEquiv_weilFun).
 
 ## Explanation of the source proof
 
@@ -87,14 +88,18 @@ theorem genericX_ne_algebraMap (c : K) : genericX W K ≠ algebraMap K (W⁄K).F
   apply IsFractionRing.injective (W⁄K).CoordinateRing (W⁄K).FunctionField
   have e1 : algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (C X)) =
       genericX W K := rfl
-  have e2 : algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (C (C c))) =
-      algebraMap K _ c := (IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField c).symm
+  have e2 : algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (C (C c)))
+    =
+      algebraMap K _ c := (IsScalarTower.algebraMap_apply K (W⁄K).CoordinateRing (W⁄K).FunctionField
+        c).symm
   rw [CoordinateRing.XClass, map_sub, map_sub, map_sub, _root_.map_zero, e1, e2, h, sub_self]
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem baseChange_a_eq :
-    (W⁄(W⁄K).FunctionField).a₁ = algebraMap K _ (W⁄K).a₁ ∧ (W⁄(W⁄K).FunctionField).a₂ = algebraMap K _ (W⁄K).a₂ ∧
-    (W⁄(W⁄K).FunctionField).a₃ = algebraMap K _ (W⁄K).a₃ ∧ (W⁄(W⁄K).FunctionField).a₄ = algebraMap K _ (W⁄K).a₄ ∧
+    (W⁄(W⁄K).FunctionField).a₁ = algebraMap K _ (W⁄K).a₁ ∧ (W⁄(W⁄K).FunctionField).a₂ = algebraMap K
+      _ (W⁄K).a₂ ∧
+    (W⁄(W⁄K).FunctionField).a₃ = algebraMap K _ (W⁄K).a₃ ∧ (W⁄(W⁄K).FunctionField).a₄ = algebraMap K
+      _ (W⁄K).a₄ ∧
     (W⁄(W⁄K).FunctionField).a₆ = algebraMap K _ (W⁄K).a₆ :=
   ⟨IsScalarTower.algebraMap_apply R K _ W.a₁, IsScalarTower.algebraMap_apply R K _ W.a₂,
     IsScalarTower.algebraMap_apply R K _ W.a₃, IsScalarTower.algebraMap_apply R K _ W.a₄,
@@ -115,7 +120,8 @@ theorem cong_addX_addY {P : (W⁄K).Point} (hP : P ≠ 0) {x₁ x₂ y₁ ℓ : 
   set v := (placeOf W K P hP).valuation (W⁄K).FunctionField
   have hc := valuation_algebraMap_le_one W K P hP
   obtain ⟨e1, e2, e3, -, -⟩ := baseChange_a_eq W K
-  have hX : v.Cong ((W⁄(W⁄K).FunctionField).addX x₁ x₂ ℓ) (algebraMap K _ ((W⁄K).addX x₁' x₂' ℓ')) :=
+  have hX : v.Cong ((W⁄(W⁄K).FunctionField).addX x₁ x₂ ℓ) (algebraMap K _ ((W⁄K).addX x₁' x₂' ℓ'))
+    :=
     by
     simp only [addX, map_sub, map_add, map_mul, map_pow, e1, e2]
     exact ((((h₄.pow (hc _) 2).add ((Valuation.Cong.refl _).mul h₄ (hc _) (hc _))).sub
@@ -154,11 +160,13 @@ variable {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [A
   [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
 
 noncomputable def wAtY (b : K) : K[X] :=
-  C b ^ 2 + (C (W⁄K).a₁ * X + C (W⁄K).a₃) * C b - (X ^ 3 + C (W⁄K).a₂ * X ^ 2 + C (W⁄K).a₄ * X + C (W⁄K).a₆)
+  C b ^ 2 + (C (W⁄K).a₁ * X + C (W⁄K).a₃) * C b - (X ^ 3 + C (W⁄K).a₂ * X ^ 2 + C (W⁄K).a₄ * X + C
+    (W⁄K).a₆)
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem eval_wAtY (a b : K) : (wAtY W K b).eval a =
-    b ^ 2 + (W⁄K).a₁ * a * b + (W⁄K).a₃ * b - (a ^ 3 + (W⁄K).a₂ * a ^ 2 + (W⁄K).a₄ * a + (W⁄K).a₆) := by
+    b ^ 2 + (W⁄K).a₁ * a * b + (W⁄K).a₃ * b - (a ^ 3 + (W⁄K).a₂ * a ^ 2 + (W⁄K).a₄ * a + (W⁄K).a₆)
+      := by
   simp only [wAtY, eval_add, eval_sub, eval_mul, eval_pow, eval_C, eval_X]
   ring
 
@@ -200,7 +208,8 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
           (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
     rw [genericPoint, Point.baseChange, Point.map_some, Point.add_of_X_ne hγx', Point.xc_some]; rfl
   have hQy : (genericPoint W K + Point.baseChange K (W⁄K).FunctionField (.some xS yS hSns)).yc =
-      (W⁄(W⁄K).FunctionField).addY (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W K)
+      (W⁄(W⁄K).FunctionField).addY (genericX W K) (algebraMap K (W⁄K).FunctionField xS) (genericY W
+        K)
         ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K (W⁄K).FunctionField xS)
           (genericY W K) (algebraMap K (W⁄K).FunctionField yS)) := by
     rw [genericPoint, Point.baseChange, Point.map_some, Point.add_of_X_ne hγx', Point.yc_some]; rfl
@@ -211,10 +220,12 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
   have hD : v.Cong ((W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS)
       (algebraMap K _ ((W⁄K).negY xS yS - yS)) := by
     simp only [negY, map_sub, map_neg, map_mul, e1, e3]
-    exact (((hY.neg).sub ((Valuation.Cong.refl _).mul hX (hc _) (hc _))).sub (Valuation.Cong.refl _)).sub
+    exact (((hY.neg).sub ((Valuation.Cong.refl _).mul hX (hc _) (hc _))).sub (Valuation.Cong.refl
+      _)).sub
       (Valuation.Cong.refl _)
   have hD0 : (W⁄K).negY xS yS - yS ≠ 0 := sub_ne_zero.mpr (Ne.symm hy)
-  have hD1 : v ((W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS) = 1 :=
+  have hD1 : v ((W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS) = 1
+    :=
     hD.eq_of_eq_one (valuation_algebraMap_eq_one W K _ hS hD0)
   have hDL : (W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS ≠ 0 :=
     by
@@ -228,22 +239,26 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
   have hwq : (X - C xS) * q = wAtY W K yS := mul_divByMonic_eq_iff_isRoot.mpr hroot
   have hqxS : q.eval xS = (W⁄K).a₁ * yS - (3 * xS ^ 2 + 2 * (W⁄K).a₂ * xS + (W⁄K).a₄) := by
     have key :=
-      congrArg (eval xS) (divByMonic_add_X_sub_C_mul_derivative_divByMonic_eq_derivative (wAtY W K yS) xS)
+      congrArg (eval xS) (divByMonic_add_X_sub_C_mul_derivative_divByMonic_eq_derivative (wAtY W K
+        yS) xS)
     rw [eval_add, eval_mul, eval_sub, eval_X, eval_C, sub_self, zero_mul, add_zero] at key
     rw [key, eval_derivative_wAtY]
-  have hΛ : (W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K _ xS) (genericY W K) (algebraMap K _ yS) =
+  have hΛ : (W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K _ xS) (genericY W K)
+    (algebraMap K _ yS) =
       q.eval₂ (algebraMap K (W⁄K).FunctionField) (genericX W K) /
         ((W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS) := by
     rw [slope_of_X_ne hγx, div_eq_div_iff (sub_ne_zero.mpr hγx) hDL, ← eval₂_wAtY_generic, ← hwq,
       eval₂_mul, eval₂_sub, eval₂_X, eval₂_C]
     ring
-  have hslope : v.Cong ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K _ xS) (genericY W K)
+  have hslope : v.Cong ((W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K _ xS) (genericY W
+    K)
       (algebraMap K _ yS)) (algebraMap K _ ((W⁄K).slope xS xS yS yS)) := by
     rw [hΛ, slope_of_Y_ne rfl hy]
     have hq' := Valuation.Cong.eval₂ (v := v) (algebraMap K _) hc hX (hc _) q
     rw [eval₂_at_apply, hqxS] at hq'
     have : (3 * xS ^ 2 + 2 * (W⁄K).a₂ * xS + (W⁄K).a₄ - (W⁄K).a₁ * yS) / (yS - (W⁄K).negY xS yS) =
-        ((W⁄K).a₁ * yS - (3 * xS ^ 2 + 2 * (W⁄K).a₂ * xS + (W⁄K).a₄)) / ((W⁄K).negY xS yS - yS) := by
+        ((W⁄K).a₁ * yS - (3 * xS ^ 2 + 2 * (W⁄K).a₂ * xS + (W⁄K).a₄)) / ((W⁄K).negY xS yS - yS) :=
+          by
       rw [← neg_sub ((W⁄K).negY xS yS) yS, ← neg_sub ((W⁄K).a₁ * yS), neg_div_neg_eq]
     rw [this, map_div₀]
     exact hq'.1.div hD hq'.2 (valuation_algebraMap_eq_one W K _ hS hD0)
@@ -260,7 +275,11 @@ end TransportTauSelf
 
 end WeierstrassCurve.Affine
 
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le_self.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le_self.WeierstrassCurve.Affine IsDedekindDomain WithZero in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le_self.WeierstrassCurve
+  _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_le_self.WeierstrassCurve.Affine
+  IsDedekindDomain WithZero in
 theorem solution {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K]
     [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
     {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : S + S ≠ 0) (h : (W⁄K).FunctionField) (k : ℕ)

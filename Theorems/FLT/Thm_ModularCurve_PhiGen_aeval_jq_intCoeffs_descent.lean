@@ -43,7 +43,8 @@ $j$-invariant: since $q\,\mathrm{jq}$ is an integral power series with constant 
 passage from $P$ to the $q$-expansion of $P(j)$ is unitriangular with respect to the degree
 filtration, so integrality of the expansion forces integrality of the coefficients. It is used in
 the construction of the integral modular polynomial data for $\Phi_\ell$, being cited by
-[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`](thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq)
+[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`]
+(thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq)
 and by [`ModularCurve.kroneckerPairIntegral`](thm.html#ModularCurve.kroneckerPairIntegral).
 
 ## Explanation of the source proof
@@ -354,7 +355,9 @@ end ModularCurve
 end
 
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve.PhiGen in
 theorem solution (P : Polynomial ℚ) (hP : IntCoeffs (Polynomial.aeval jq P)) (k : ℕ) :
     ∃ z : ℤ, P.coeff k = (z : ℚ) :=
   ModularCurve.PhiGen.aeval_jq_intCoeffs_descent P hP k

@@ -155,7 +155,8 @@ private theorem finrank_frobeniusSubfield_eq [FiniteDimensional E M]
     have h1 : E' = (⊤ : Subfield E).map (algebraMap E M) := by
       rw [hE', ← RingHom.fieldRange_eq_map]
     rw [hEp', h1, Subfield.relfinrank_map_map, Subfield.relfinrank_top_right]
-  have hMpTop : Subfield.relfinrank Mp (⊤ : Subfield M) = Module.finrank (frobeniusSubfield M p) M :=
+  have hMpTop : Subfield.relfinrank Mp (⊤ : Subfield M) = Module.finrank (frobeniusSubfield M p) M
+    :=
     Subfield.relfinrank_top_right _
   have hE'pos : 0 < Subfield.relfinrank E' (⊤ : Subfield M) := by
     rw [Subfield.relfinrank_top_right, hE', finrank_algebraMapRange_eq (E := E) (M := M)]

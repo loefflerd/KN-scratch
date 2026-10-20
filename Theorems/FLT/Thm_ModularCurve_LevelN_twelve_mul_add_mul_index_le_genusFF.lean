@@ -58,7 +58,8 @@ This is the classical genus formula for the modular curve $X(N)$, $N \ge 2$, in 
 inequality $g \ge 1 + \mu_N(N-6)/(12N)$ obtained from the ramification of $K/\mathbb{C}(j)$ above $j
 = 0, 1728, \infty$ and the Riemann–Hurwitz bound, with $g$ taken in the adelic (function-field)
 sense. It is used to bound from below the dimension of the space of cusp forms for $\Gamma(N)$, in
-[`ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma`](thm.html#ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma).
+[`ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma`]
+(thm.html#ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma).
 
 ## Explanation of the source proof
 
@@ -165,7 +166,8 @@ theorem S_smul_I : ModularGroup.S • UpperHalfPlane.I = UpperHalfPlane.I := by
 
 theorem E₆_I : ModularForm.E₆ UpperHalfPlane.I = 0 := by
   have hmem : ((ModularGroup.S : SL(2, ℤ)) : GL (Fin 2) ℝ) ∈ 𝒮ℒ := ⟨ModularGroup.S, rfl⟩
-  have h6 : (ModularForm.E₆ : ℍ → ℂ) (((ModularGroup.S : SL(2, ℤ)) : GL (Fin 2) ℝ) • UpperHalfPlane.I) =
+  have h6 : (ModularForm.E₆ : ℍ → ℂ) (((ModularGroup.S : SL(2, ℤ)) : GL (Fin 2) ℝ) •
+    UpperHalfPlane.I) =
       denom ((ModularGroup.S : SL(2, ℤ)) : GL (Fin 2) ℝ) UpperHalfPlane.I ^ (6 : ℤ) *
         ModularForm.E₆ UpperHalfPlane.I :=
     SlashInvariantForm.slash_action_eqn'' _ hmem UpperHalfPlane.I
@@ -335,12 +337,14 @@ theorem orbit_package (t : L) [FiniteDimensional ℂ⟮t⟯ L] [IsGalois ℂ⟮t
         T.card * e = Module.finrank ℂ⟮t⟯ L := by
   classical
   let : MulAction (L ≃ₐ[ℂ⟮t⟯] L) (AlgebraicCurve.Place ℂ L) := MulAction.compHom _ (toSemi ℂ⟮t⟯)
-  have hsmul : ∀ (g' : (L ≃ₐ[ℂ⟮t⟯] L)) (P : AlgebraicCurve.Place ℂ L), g' • P = toSemi ℂ⟮t⟯ g' • P :=
+  have hsmul : ∀ (g' : (L ≃ₐ[ℂ⟮t⟯] L)) (P : AlgebraicCurve.Place ℂ L), g' • P = toSemi ℂ⟮t⟯ g' • P
+    :=
     fun _ _ => rfl
   have hDH := (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ t t c
     (AlgHom.id ℂ L) rfl inferInstance inferInstance hint W hW).1
   set D := MulAction.stabilizer (L ≃ₐ[ℂ⟮t⟯] L) W with hD
-  have hcardD : Nat.card {σ : (L ≃ₐ[ℂ⟮t⟯] L) // AlgebraicCurve.SemilinearAut.ofAlgAut (σ.restrictScalars ℂ) • W = W} =
+  have hcardD : Nat.card {σ : (L ≃ₐ[ℂ⟮t⟯] L) // AlgebraicCurve.SemilinearAut.ofAlgAut
+    (σ.restrictScalars ℂ) • W = W} =
       Nat.card D := Nat.card_congr (Equiv.subtypeEquivRight fun σ => by
         rw [hD, MulAction.mem_stabilizer_iff, hsmul, toSemi_apply])
   rw [hcardD] at hDH
@@ -627,7 +631,9 @@ end Main
 
 end ModularCurve.LevelN.GenusBound
 
-open _root_.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN ModularCurve.LevelN.GenusBound in
+open _root_.ModularCurve.LevelN
+  _root_.P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN
+  ModularCurve.LevelN.GenusBound in
 theorem solution (N : ℕ) [NeZero N] (hN : 2 ≤ N)
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]
     [IsScalarTower ℂ (ModularCurve.LevelN.ring N) K]

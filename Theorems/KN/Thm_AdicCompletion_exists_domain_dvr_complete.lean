@@ -11,7 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Theorems.FLT.Thm_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
+public import
+  Theorems.FLT.Thm_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
 public import Theorems.FLT.Thm_Ideal_IsMaximal_exists_adicCompletion_localization_ringEquiv
 public import Mathlib.RingTheory.DedekindDomain.Dvr
 public import Mathlib.RingTheory.AdicCompletion.Topology
@@ -137,7 +138,8 @@ theorem exists_domain_dvr_complete
     (P : Ideal R) [P.IsPrime] (hP : P ≠ ⊥) :
     ∃ (_ : IsDomain (AdicCompletion P R))
       (_ : IsDiscreteValuationRing (AdicCompletion P R)),
-      IsAdicComplete (maximalIdeal (AdicCompletion P R)) (AdicCompletion P R) := _root_.solution P hP
+      IsAdicComplete (maximalIdeal (AdicCompletion P R)) (AdicCompletion P R) := _root_.solution P
+        hP
 
 end AdicCompletion
 end

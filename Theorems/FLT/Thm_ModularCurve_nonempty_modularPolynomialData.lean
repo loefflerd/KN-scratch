@@ -77,7 +77,8 @@ abbrev K : IntermediateField ℚ (LaurentSeries ℚ) := ℚ⟮jq⟯
 abbrev LS := LaurentSeries ℚ
 
 scoped instance algIntPolyK : Algebra (Polynomial ℤ) K := evalAtJGen.toAlgebra
-scoped instance algKF (N : ℕ) [NeZero N] : Algebra K (modularFunctionField N) := (jAdjoinRingHom N).toAlgebra
+scoped instance algKF (N : ℕ) [NeZero N] : Algebra K (modularFunctionField N) := (jAdjoinRingHom
+  N).toAlgebra
 attribute [local instance] ModularCurve.algebraIntPolyModularFunctionField
 scoped instance ist1 (N : ℕ) [NeZero N] : IsScalarTower (Polynomial ℤ) K (modularFunctionField N) :=
   IsScalarTower.of_algebraMap_eq (fun _ => rfl)
@@ -134,7 +135,8 @@ variable (N : ℕ) [NeZero N]
 def jN : modularFunctionField N := ⟨jqN N, jqN_mem N⟩
 
 theorem hcomp :
-    (algebraMap (modularFunctionField N) LS).comp (algebraMap (Polynomial ℤ) (modularFunctionField N))
+    (algebraMap (modularFunctionField N) LS).comp (algebraMap (Polynomial ℤ) (modularFunctionField
+      N))
     = evalAtJ := RingHom.ext fun P => by
   rw [RingHom.comp_apply, ← algebraMap_comp_evalAtJGen]; rfl
 
@@ -152,14 +154,16 @@ theorem main : Nonempty (ModularPolynomialData N) := by
   have hint := isIntegral_jN N
   refine ⟨⟨minpoly (Polynomial ℤ) (jN N), minpoly.monic hint, ?_, ?_⟩⟩
   · have hintK : IsIntegral K (jN N) := hint.tower_top
-    have h1 : minpoly K (jN N) = (minpoly (Polynomial ℤ) (jN N)).map (algebraMap (Polynomial ℤ) K) :=
+    have h1 : minpoly K (jN N) = (minpoly (Polynomial ℤ) (jN N)).map (algebraMap (Polynomial ℤ) K)
+      :=
       minpoly.isIntegrallyClosed_eq_field_fractions' K hint
     have h2 : (minpoly (Polynomial ℤ) (jN N)).natDegree = (minpoly K (jN N)).natDegree := by
       rw [h1, (minpoly.monic hint).natDegree_map]
     have hintK' : IsIntegral K (jqN N) :=
       hintK.map (IsScalarTower.toAlgHom K (modularFunctionField N) LS)
     have hmin : minpoly K (jqN N) = minpoly K (jN N) :=
-      minpoly.algHom_eq _ (IsScalarTower.toAlgHom K (modularFunctionField N) LS).toRingHom.injective (jN N)
+      minpoly.algHom_eq _ (IsScalarTower.toAlgHom K (modularFunctionField N) LS).toRingHom.injective
+        (jN N)
     rw [h2, ← hmin, ← IntermediateField.adjoin.finrank hintK']
     exact ModularCurve.finrank_adjoin_jqN_eq_dedekindPsi N
   · have h := minpoly.aeval (Polynomial ℤ) (jN N)

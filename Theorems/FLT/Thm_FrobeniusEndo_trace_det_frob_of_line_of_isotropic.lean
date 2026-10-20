@@ -47,9 +47,11 @@ This is the standard determination of the trace and determinant of a Frobenius-t
 $E[p]$ from the kernel counts $\#\ker([m]-\sigma) = m^2 - am + q$, here in the case where the
 quadratic $X^2 - \bar aX + \bar q$ already has a root modulo $p$. It feeds the
 characteristic-polynomial statement
-[`FrobeniusEndo.charEq_on_torsionBy_of_line_of_isotropic`](thm.html#FrobeniusEndo.charEq_on_torsionBy_of_line_of_isotropic)
+[`FrobeniusEndo.charEq_on_torsionBy_of_line_of_isotropic`]
+(thm.html#FrobeniusEndo.charEq_on_torsionBy_of_line_of_isotropic)
 and the variant
-[`FrobeniusEndo.trace_det_frob_of_line_of_charEqOnPoints`](thm.html#FrobeniusEndo.trace_det_frob_of_line_of_charEqOnPoints),
+[`FrobeniusEndo.trace_det_frob_of_line_of_charEqOnPoints`]
+(thm.html#FrobeniusEndo.trace_det_frob_of_line_of_charEqOnPoints),
 which remove the isotropy hypothesis.
 
 ## Explanation of the source proof
@@ -306,8 +308,15 @@ end Endgame
 
 end FrobeniusEndo
 
-theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) :
-    galoisTrace S W p σ = (a : ZMod p) ∧ LinearMap.det (galoisRepModuleEnd S W p σ) = (q : ZMod p) :=
+theorem solution {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
+  [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W :
+  WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy
+  ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p
+  → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1
+  ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a :
+  ZMod p) * c + (q : ZMod p) = 0) :
+    galoisTrace S W p σ = (a : ZMod p) ∧ LinearMap.det (galoisRepModuleEnd S W p σ) = (q : ZMod p)
+      :=
   FrobeniusEndo.trace_det_of_line_of_isotropic W σ p hfull hpK hline hpos hiso
 
 end S_FrobeniusEndo_trace_det_frob_of_line_of_isotropic
@@ -321,8 +330,15 @@ public section publicSection
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 
-theorem FrobeniusEndo.trace_det_frob_of_line_of_isotropic {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 - a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) :
-    galoisTrace S W p σ = (a : ZMod p) ∧ LinearMap.det (galoisRepModuleEnd S W p σ) = (q : ZMod p) :=
+theorem FrobeniusEndo.trace_det_frob_of_line_of_isotropic {R : Type*} {S : Type*} {K : Type*}
+  [CommRing R] [CommRing S] [Field K] [DecidableEq K] [Algebra R S] [Algebra R K] [Algebra S K]
+  [IsScalarTower R S K] (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ) [Fact p.Prime] (hfull :
+  Nat.card (Submodule.torsionBy ℤ (W⁄K).Point p) = p ^ 2) (hpK : (p : K) ≠ 0) (a : ℤ) (q : ℕ) (hline
+  : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → ((kerDeg (frobEnd W σ) m 1 : ℕ) : ℤ) = (m : ℤ) ^ 2 -
+  a * m + q) (hpos : ∀ m : ℕ, 1 ≤ m → m ≤ 2 * p → (m : K) ≠ 0 → kerDeg (frobEnd W σ) m 1 ≠ 0) (hiso
+  : ∃ c : ZMod p, c ^ 2 - (a : ZMod p) * c + (q : ZMod p) = 0) :
+    galoisTrace S W p σ = (a : ZMod p) ∧ LinearMap.det (galoisRepModuleEnd S W p σ) = (q : ZMod p)
+      :=
   solution W σ p hfull hpK a q hline hpos hiso
 
 end publicSection

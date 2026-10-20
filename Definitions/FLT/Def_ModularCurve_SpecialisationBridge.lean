@@ -270,7 +270,8 @@ def cycScale (p : ℕ) (j₀ : Qbar) : CycSubH (nearCurve j₀) p ≃ CycSubH (g
 
 def fibreAddEquiv (j₀ : Qbar) :
     (specialFibre (goodModel j₀)).toAffine.Point ≃+ (WeierstrassCurve.ofJ j₀).toAffine.Point :=
-  (vcAddEquiv (fibreVC j₀) (specialFibre (goodModel j₀))).trans (pointAddEquivOfEq (fibreVC_smul j₀))
+  (vcAddEquiv (fibreVC j₀) (specialFibre (goodModel j₀))).trans (pointAddEquivOfEq (fibreVC_smul
+    j₀))
 
 theorem fibreAddEquiv_apply (j₀ : Qbar) (P : (specialFibre (goodModel j₀)).toAffine.Point) :
     fibreAddEquiv j₀ P =

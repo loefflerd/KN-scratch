@@ -232,7 +232,8 @@ theorem solution (N : ℕ) [NeZero N] :
             algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) c)}.Finite) ∧
       ({v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) |
         v.ord ⟨coeffEmb (AlgebraicClosure ℚ) jq,
-          coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ < 0}.Finite) := by
+          coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ <
+            0}.Finite) := by
   have hcusp : (cuspInftyBar N).ord
       ⟨coeffEmb (AlgebraicClosure ℚ) jq,
         coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ = -1 :=
@@ -291,7 +292,8 @@ theorem ModularCurve.jCoordinate_spec_modularFunctionFieldBar (N : ℕ) [NeZero 
             algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) c)}.Finite) ∧
       ({v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) |
         v.ord ⟨coeffEmb (AlgebraicClosure ℚ) jq,
-          coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ < 0}.Finite) :=
+          coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ <
+            0}.Finite) :=
   solution N
 
 end publicSection

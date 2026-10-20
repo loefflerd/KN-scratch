@@ -102,12 +102,14 @@ lemma cexp_phase_eq_one (s : ℤ) (h : (24 : ℤ) ∣ s) : cexp (π * I * s / 12
   rw [this, Complex.exp_int_mul_two_pi_mul_I]
 
 lemma Fc_add_int (a b c : ℕ) (w : ℂ) (m : ℤ) :
-    Fc a b c (w + m) = cexp (π * I * ((m * (a + 2 * b + 4 * c : ℕ) : ℤ) : ℂ) / 12) * Fc a b c w := by
+    Fc a b c (w + m) = cexp (π * I * ((m * (a + 2 * b + 4 * c : ℕ) : ℤ) : ℂ) / 12) * Fc a b c w :=
+      by
   unfold Fc
   have h2 : 2 * (w + m) = 2 * w + ((2 * m : ℤ) : ℂ) := by push_cast; ring
   have h4 : 4 * (w + m) = 4 * w + ((4 * m : ℤ) : ℂ) := by push_cast; ring
   rw [h2, h4, eta_add_int_pow, eta_add_int_pow, eta_add_int_pow]
-  have : cexp (π * I * (m * a) / 12) * η w ^ a * (cexp (π * I * (((2 * m : ℤ) : ℂ) * b) / 12) * η (2 * w) ^ b) *
+  have : cexp (π * I * (m * a) / 12) * η w ^ a * (cexp (π * I * (((2 * m : ℤ) : ℂ) * b) / 12) * η (2
+    * w) ^ b) *
       (cexp (π * I * (((4 * m : ℤ) : ℂ) * c) / 12) * η (4 * w) ^ c) =
       (cexp (π * I * (m * a) / 12) * cexp (π * I * (((2 * m : ℤ) : ℂ) * b) / 12) *
         cexp (π * I * (((4 * m : ℤ) : ℂ) * c) / 12)) * (η w ^ a * η (2 * w) ^ b * η (4 * w) ^ c) := by ring
@@ -117,12 +119,14 @@ lemma Fc_add_int (a b c : ℕ) (w : ℂ) (m : ℤ) :
   ring
 
 lemma Gc_add_four_mul_int (a b c : ℕ) (w : ℂ) (m : ℤ) :
-    Gc a b c (w + ((4 * m : ℤ) : ℂ)) = cexp (π * I * ((m * (4 * a + 2 * b + c : ℕ) : ℤ) : ℂ) / 12) * Gc a b c w := by
+    Gc a b c (w + ((4 * m : ℤ) : ℂ)) = cexp (π * I * ((m * (4 * a + 2 * b + c : ℕ) : ℤ) : ℂ) / 12) *
+      Gc a b c w := by
   unfold Gc
   have h2 : (w + ((4 * m : ℤ) : ℂ)) / 2 = w / 2 + ((2 * m : ℤ) : ℂ) := by push_cast; ring
   have h4 : (w + ((4 * m : ℤ) : ℂ)) / 4 = w / 4 + ((m : ℤ) : ℂ) := by push_cast; ring
   rw [h2, h4, eta_add_int_pow, eta_add_int_pow, eta_add_int_pow]
-  have : cexp (π * I * (((4 * m : ℤ) : ℂ) * a) / 12) * η w ^ a * (cexp (π * I * (((2 * m : ℤ) : ℂ) * b) / 12) * η (w / 2) ^ b) *
+  have : cexp (π * I * (((4 * m : ℤ) : ℂ) * a) / 12) * η w ^ a * (cexp (π * I * (((2 * m : ℤ) : ℂ) *
+    b) / 12) * η (w / 2) ^ b) *
       (cexp (π * I * ((m : ℂ) * c) / 12) * η (w / 4) ^ c) =
       (cexp (π * I * (((4 * m : ℤ) : ℂ) * a) / 12) * cexp (π * I * (((2 * m : ℤ) : ℂ) * b) / 12) *
         cexp (π * I * ((m : ℂ) * c) / 12)) * (η w ^ a * η (w / 2) ^ b * η (w / 4) ^ c) := by ring
@@ -186,16 +190,19 @@ lemma coe_S_smul (z : ℍ) : ((ModularGroup.S • z : ℍ) : ℂ) = -((z : ℂ))
   rw [UpperHalfPlane.modular_S_smul]; simp [inv_neg]
 
 lemma denom_SL (γ : SL(2, ℤ)) (z : ℍ) :
-    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) γ)) (z : ℂ) =
+    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map
+      (Int.castRingHom ℝ)) γ)) (z : ℂ) =
       (γ 1 0 : ℂ) * z + (γ 1 1 : ℂ) := by
   simp [UpperHalfPlane.denom]
 
 lemma denom_S (z : ℍ) :
-    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) ModularGroup.S)) (z : ℂ) = z := by
+    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map
+      (Int.castRingHom ℝ)) ModularGroup.S)) (z : ℂ) = z := by
   rw [denom_SL]; simp [ModularGroup.coe_S]
 
 lemma denom_T_zpow (n : ℤ) (z : ℍ) :
-    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) (ModularGroup.T ^ n))) (z : ℂ) = 1 := by
+    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map
+      (Int.castRingHom ℝ)) (ModularGroup.T ^ n))) (z : ℂ) = 1 := by
   rw [denom_SL]; simp [ModularGroup.coe_T_zpow]
 
 lemma coe_T_zpow_smul (n : ℤ) (z : ℍ) : ((ModularGroup.T ^ n • z : ℍ) : ℂ) = (z : ℂ) + n := by
@@ -211,7 +218,8 @@ lemma F_slash_S (a' b' c' : ℕ) :
   field_simp
 
 lemma F_slash_S_slash_T (a' b' c' : ℕ) (h₂ : 24 ∣ 4 * (2 * a') + 2 * (2 * b') + 2 * c') :
-    ((F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] ModularGroup.S) ∣[((a' + b' + c' : ℕ) : ℤ)]
+    ((F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] ModularGroup.S) ∣[((a' + b' + c' :
+      ℕ) : ℤ)]
       (ModularGroup.T ^ (-4 : ℤ)) =
       (F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] ModularGroup.S := by
   rw [F_slash_S]
@@ -253,7 +261,8 @@ lemma mul_T_zpow_apply (A : SL(2, ℤ)) (n : ℤ) :
     (A * ModularGroup.T ^ n) 1 0 = A 1 0 ∧ (A * ModularGroup.T ^ n) 1 1 = A 1 0 * n + A 1 1 ∧
     (A * ModularGroup.T ^ n) 0 0 = A 0 0 ∧ (A * ModularGroup.T ^ n) 0 1 = A 0 0 * n + A 0 1 := by
   refine ⟨?_, ?_, ?_, ?_⟩ <;>
-  · change ((A : Matrix (Fin 2) (Fin 2) ℤ) * ((ModularGroup.T ^ n : SL(2,ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) _ _ = _
+  · change ((A : Matrix (Fin 2) (Fin 2) ℤ) * ((ModularGroup.T ^ n : SL(2,ℤ)) : Matrix (Fin 2) (Fin
+      2) ℤ)) _ _ = _
     rw [ModularGroup.coe_T_zpow]
     simp [Matrix.mul_apply, Fin.sum_univ_two]
 
@@ -339,7 +348,8 @@ lemma mem_H_of_four_dvd :
     rw [hc']; linarith
   have hc'_lb : -((((4 * d₁).natAbs : ℕ) : ℤ) / 2) ≤ c' := Int.le_bmod hm'0
   have hc'_ub : c' < ((((4 * d₁).natAbs : ℕ) : ℤ) + 1) / 2 := Int.bmod_lt hm'0
-  obtain ⟨n₂, hn₂⟩ : ∃ n₂ : ℤ, d₁ * (4 * n₂) = -((((4 * d₁).natAbs : ℕ) : ℤ) * Int.bdiv c (4 * d₁).natAbs) :=
+  obtain ⟨n₂, hn₂⟩ : ∃ n₂ : ℤ, d₁ * (4 * n₂) = -((((4 * d₁).natAbs : ℕ) : ℤ) * Int.bdiv c (4 *
+    d₁).natAbs) :=
     by
     rw [hmm']
     rcases abs_cases d₁ with ⟨h, -⟩ | ⟨h, -⟩ <;> rw [h]
@@ -356,7 +366,8 @@ lemma mem_H_of_four_dvd :
     zify
     rw [hmc] at hm4 hd₁_lb hd₁_ub
     rw [hmm'] at hc'_lb hc'_ub
-    rcases abs_cases c with ⟨habs, _⟩ | ⟨habs, _⟩ <;> rcases abs_cases d₁ with ⟨habs₁, _⟩ | ⟨habs₁, _⟩ <;>
+    rcases abs_cases c with ⟨habs, _⟩ | ⟨habs, _⟩ <;> rcases abs_cases d₁ with ⟨habs₁, _⟩ | ⟨habs₁,
+      _⟩ <;>
       rcases abs_cases c' with ⟨habs', _⟩ | ⟨habs', _⟩ <;> omega
   have hA₂H : A₂ ∈ H := ih _ hlt A₂ (by rw [hA₂c']) (by rw [hA₂c']; exact h4c')
   have : A = A₂ * R ^ (-n₂) * ModularGroup.T ^ (-n₁) := by
@@ -384,7 +395,8 @@ lemma coe_T_smul (z : ℍ) : ((ModularGroup.T • z : ℍ) : ℂ) = (z : ℂ) + 
   rw [UpperHalfPlane.modular_T_smul, UpperHalfPlane.coe_vadd]; push_cast; ring
 
 lemma denom_T (z : ℍ) :
-    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) ModularGroup.T)) (z : ℂ) = 1 := by
+    UpperHalfPlane.denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map
+      (Int.castRingHom ℝ)) ModularGroup.T)) (z : ℂ) = 1 := by
   rw [denom_SL]; simp [ModularGroup.coe_T]
 
 lemma F_slash_T (a b c : ℕ) (k : ℤ) (h₁ : 24 ∣ a + 2 * b + 4 * c) :
@@ -409,7 +421,8 @@ lemma F_slash_neg_one (a b c : ℕ) (k : ℤ) (hk : Even k) :
   rw [zero_mul, zero_add, (Even.neg hk).neg_one_zpow, mul_one]
 
 lemma F_slash_R (a' b' c' : ℕ) (h₂ : 24 ∣ 4 * (2 * a') + 2 * (2 * b') + 2 * c') :
-    (F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] R = F (2 * a') (2 * b') (2 * c') := by
+    (F (2 * a') (2 * b') (2 * c')) ∣[((a' + b' + c' : ℕ) : ℤ)] R = F (2 * a') (2 * b') (2 * c') :=
+      by
   have hR : R = ModularGroup.S * ModularGroup.T ^ (-4 : ℤ) * ModularGroup.S⁻¹ := by
     ext i j
     rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul,
@@ -422,7 +435,8 @@ lemma F_slash_R (a' b' c' : ℕ) (h₂ : 24 ∣ 4 * (2 * a') + 2 * (2 * b') + 2 
     mul_inv_cancel, SlashAction.slash_one]
 
 def genGL :
-    Set (GL (Fin 2) ℝ) := (Matrix.SpecialLinearGroup.mapGL ℝ : SL(2, ℤ) →* GL (Fin 2) ℝ) '' {ModularGroup.T, R, -1}
+    Set (GL (Fin 2) ℝ) := (Matrix.SpecialLinearGroup.mapGL ℝ : SL(2, ℤ) →* GL (Fin 2) ℝ) ''
+      {ModularGroup.T, R, -1}
 
 lemma map_H : H.map (Matrix.SpecialLinearGroup.mapGL ℝ) = Subgroup.closure genGL := by
   rw [H, MonoidHom.map_closure]; rfl
@@ -430,7 +444,8 @@ lemma map_H : H.map (Matrix.SpecialLinearGroup.mapGL ℝ) = Subgroup.closure gen
 lemma slash_eq_of_generators {f : ℍ → ℂ} {k : ℤ} (hT : f ∣[k] ModularGroup.T = f)
     (hR : f ∣[k] R = f)
     (hN : f ∣[k] (-1 : SL(2, ℤ)) = f) :
-    ∀ γ ∈ ((CongruenceSubgroup.Gamma0 4 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)), f ∣[k] γ = f := by
+    ∀ γ ∈ ((CongruenceSubgroup.Gamma0 4 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)), f ∣[k] γ =
+      f := by
   have hgen : ∀ γ ∈ Subgroup.closure genGL, f ∣[k] γ = f := by
     rw [SlashInvariantForm.slash_action_generators (rfl : Subgroup.closure genGL = Subgroup.closure
       genGL)]
@@ -516,7 +531,8 @@ lemma isZeroAtImInfty_triple {f₁ f₂ f₄ : ℍ → ℂ} (h₁ : UpperHalfPla
   rcases Nat.eq_zero_or_pos α with hα | hα
   · rcases Nat.eq_zero_or_pos β with hβ | hβ
     · have hγ : 0 < γ := by omega
-      exact Filter.BoundedAtFilter.mul_zeroAtFilter (Filter.BoundedAtFilter.mul b₁ b₂) (isZeroAtImInfty_pow h₄ hγ)
+      exact Filter.BoundedAtFilter.mul_zeroAtFilter (Filter.BoundedAtFilter.mul b₁ b₂)
+        (isZeroAtImInfty_pow h₄ hγ)
     · exact Filter.ZeroAtFilter.mul_boundedAtFilter
         (Filter.BoundedAtFilter.mul_zeroAtFilter b₁ (isZeroAtImInfty_pow h₂ hβ)) b₄
   · exact Filter.ZeroAtFilter.mul_boundedAtFilter
@@ -544,13 +560,15 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
   have hD : Dt ≠ 0 := by
     rw [hDt]; exact_mod_cast abs_ne_zero.mpr (Matrix.GeneralLinearGroup.det g).ne_zero
   have key : ∀ τ : ℍ, ((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) τ ^ 6 * Dt ^ 6 =
-      (((⇑g₁) ∣[(12 : ℤ)] g) τ) ^ α * (((⇑g₂) ∣[(12 : ℤ)] g) τ) ^ β * (((⇑g₄) ∣[(12 : ℤ)] g) τ) ^ γ * Dt ^ E := by
+      (((⇑g₁) ∣[(12 : ℤ)] g) τ) ^ α * (((⇑g₂) ∣[(12 : ℤ)] g) τ) ^ β * (((⇑g₄) ∣[(12 : ℤ)] g) τ) ^ γ
+        * Dt ^ E := by
     intro τ
     simp only [ModularForm.slash_def]
     rw [hg₁, hg₂, hg₄]
     have hd : UpperHalfPlane.denom g τ ≠ 0 := UpperHalfPlane.denom_ne_zero g τ
     have hF : UpperHalfPlane.σ g (F (4 * α) (4 * β) (4 * γ) (g • τ)) ^ 6 =
-        UpperHalfPlane.σ g (η (1 * ((g • τ : ℍ) : ℂ)) ^ 24) ^ α * UpperHalfPlane.σ g (η (2 * ((g • τ : ℍ) : ℂ)) ^ 24) ^ β *
+        UpperHalfPlane.σ g (η (1 * ((g • τ : ℍ) : ℂ)) ^ 24) ^ α * UpperHalfPlane.σ g (η (2 * ((g • τ
+          : ℍ) : ℂ)) ^ 24) ^ β *
           UpperHalfPlane.σ g (η (4 * ((g • τ : ℍ) : ℂ)) ^ 24) ^ γ := by
       rw [← map_pow, ← map_pow, ← map_pow, ← map_pow, ← map_mul, ← map_mul]
       congr 1
@@ -564,17 +582,20 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
     set s₁ := UpperHalfPlane.σ g (η (1 * ((g • τ : ℍ) : ℂ)) ^ 24)
     set s₂ := UpperHalfPlane.σ g (η (2 * ((g • τ : ℍ) : ℂ)) ^ 24)
     set s₄ := UpperHalfPlane.σ g (η (4 * ((g • τ : ℍ) : ℂ)) ^ 24)
-    have hX : (X * (Dt ^ (2 * E) * Dt⁻¹) * (d ^ (2 * E))⁻¹) ^ 6 * Dt ^ 6 = X ^ 6 * Dt ^ (12 * E) * (d ^ (12 * E))⁻¹ :=
+    have hX : (X * (Dt ^ (2 * E) * Dt⁻¹) * (d ^ (2 * E))⁻¹) ^ 6 * Dt ^ 6 = X ^ 6 * Dt ^ (12 * E) *
+      (d ^ (12 * E))⁻¹ :=
       by
       field_simp
       ring
     rw [hX, hF, hEdef]
     simp only [← inv_pow]
     ring
-  have h6 : UpperHalfPlane.IsZeroAtImInfty (((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) ^ 6) :=
+  have h6 : UpperHalfPlane.IsZeroAtImInfty (((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) ^
+    6) :=
     by
     have hfun : ((F (4 * α) (4 * β) (4 * γ)) ∣[((2 * E : ℕ) : ℤ)] g) ^ 6 = fun τ =>
-        ((((⇑g₁) ∣[(12 : ℤ)] g) ^ α * ((⇑g₂) ∣[(12 : ℤ)] g) ^ β * ((⇑g₄) ∣[(12 : ℤ)] g) ^ γ) τ) * (Dt ^ E * (Dt ^ 6)⁻¹) := by
+        ((((⇑g₁) ∣[(12 : ℤ)] g) ^ α * ((⇑g₂) ∣[(12 : ℤ)] g) ^ β * ((⇑g₄) ∣[(12 : ℤ)] g) ^ γ) τ) *
+          (Dt ^ E * (Dt ^ 6)⁻¹) := by
       funext τ
       have := key τ
       simp only [Pi.pow_apply, Pi.mul_apply]
@@ -609,7 +630,8 @@ theorem solution (a b c : ℕ) (h0 : 0 < a + b + c)
   obtain ⟨g₂, hg₂⟩ := CuspForm.exists_gamma0_apply_eq_eta_mul_pow_twentyfour 2
   obtain ⟨g₄, hg₄⟩ := CuspForm.exists_gamma0_apply_eq_eta_mul_pow_twentyfour 4
   push_cast at hg₁ hg₂ hg₄
-  have hslash : ∀ γ' ∈ ((CongruenceSubgroup.Gamma0 4 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)),
+  have hslash : ∀ γ' ∈ ((CongruenceSubgroup.Gamma0 4 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2)
+    ℝ)),
       (F (2 * (2 * α)) (2 * (2 * β)) (2 * (2 * γ))) ∣[((2 * α + 2 * β + 2 * γ : ℕ) : ℤ)] γ' =
         F (2 * (2 * α)) (2 * (2 * β)) (2 * (2 * γ)) := by
     refine slash_eq_of_generators (F_slash_T _ _ _ _ (by omega)) (F_slash_R _ _ _ (by omega))

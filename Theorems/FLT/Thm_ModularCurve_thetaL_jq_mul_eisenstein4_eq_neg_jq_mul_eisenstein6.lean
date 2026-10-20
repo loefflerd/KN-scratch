@@ -71,8 +71,10 @@ p2m_open_scoped "ModularCurve" in
 theorem ModularCurve.RC18Face.jq_mul_deltaSeries :
     jq * deltaSeries = laurentOfInt ℚ (eisenstein4 ^ 3) := by
   have hι : ∀ f : PowerSeries ℤ,
-      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun f => rfl
-  rw [jq, deltaSeries, dedekindEtaUnitQ, jNumQ, jNum, hι, hι, mul_mul_mul_comm, HahnSeries.single_mul_single,
+      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun
+        f => rfl
+  rw [jq, deltaSeries, dedekindEtaUnitQ, jNumQ, jNum, hι, hι, mul_mul_mul_comm,
+    HahnSeries.single_mul_single,
     ← map_mul, mul_assoc, mul_comm dedekindEtaUnitInv, dedekindEtaUnit_mul_inv, mul_one, mul_one,
     show (-1 : ℤ) + 1 = 0 by norm_num, HahnSeries.single_zero_one, one_mul]
 
@@ -80,7 +82,8 @@ theorem solution :
     thetaL ℚ jq * HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4) =
       -(jq * HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6)) := by
   have hι : ∀ f : PowerSeries ℤ,
-      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun f => rfl
+      HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun
+        f => rfl
   have hC3 := ModularCurve.thetaL_jq_mul_deltaSeries
   have hjΔ := ModularCurve.RC18Face.jq_mul_deltaSeries
   rw [hι, map_mul, map_pow] at hC3

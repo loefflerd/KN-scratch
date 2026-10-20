@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.exists_intermediateField_countable_map_eq_and_finrankAlong_eq
+Based on Prove2Me node
+WeierstrassCurve.exists_intermediateField_countable_map_eq_and_finrankAlong_eq
 (78a53ccc-520e-56d2-9896-7cdc04f3b6d3) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 24efc664-8750-5b05-9475-4139047b081d
@@ -1329,7 +1330,8 @@ def kw_coordinateRingMapAlongGeneralNoAC :
   commutes' r := by
     simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
       MonoidHom.coe_ofClass]
-    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
+    change CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _
+      r
     rw [IsScalarTower.algebraMap_apply F F[X] CR,
       show (algebraMap F F[X] r) = Polynomial.C r from rfl,
       show (algebraMap F[X] CR) (C r) = (C r : F[X]) • (1 : CR) by
@@ -1851,7 +1853,8 @@ theorem kw_iotaSubd_countable_of_fg {K : Type uK} [Field K] [Algebra ℚ K]
     {K₀ : IntermediateField ℚ K} (hfg : K₀.FG) : Countable (↥K₀) := by
   obtain ⟨s, hs⟩ := hfg
   rw [← hs]
-  have h2 : Cardinal.lift.{0} (Cardinal.mk ↥(IntermediateField.adjoin ℚ (↑s : Set K))) ≤ Cardinal.aleph0 :=
+  have h2 : Cardinal.lift.{0} (Cardinal.mk ↥(IntermediateField.adjoin ℚ (↑s : Set K))) ≤
+    Cardinal.aleph0 :=
     (IntermediateField.lift_cardinalMk_adjoin_le ℚ (↑s : Set K)).trans
       (max_le (max_le (Cardinal.lift_le_aleph0.mpr Cardinal.mk_le_aleph0)
         (Cardinal.lift_le_aleph0.mpr (Set.Countable.le_aleph0 s.countable_toSet))) le_rfl)
@@ -2699,7 +2702,11 @@ end ModularCurve
 end
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve
+  _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve
+  in
 theorem solution {K : Type uK} [Field K] [CharZero K] [IsAlgClosed K]
     (E : WeierstrassCurve K) [E.IsElliptic]
     (ι : E.toAffine.FunctionField →ₐ[K] E.toAffine.FunctionField)
@@ -2720,7 +2727,8 @@ end
 end
 end S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq (solution)
+export P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
+  (solution)
 
 end privateSection
 
@@ -2742,6 +2750,7 @@ theorem WeierstrassCurve.exists_intermediateField_countable_map_eq_and_finrankAl
           ι₀.toRingHom.IsIntegral ∧
           ∃ (_ : FiniteAlong (AlgebraicClosure K₀) ι₀),
             finrankAlong (AlgebraicClosure K₀) ι₀ = finrankAlong K ι :=
-  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.solution E ι hι hfin
+  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.solution
+    E ι hι hfin
 
 end publicSection

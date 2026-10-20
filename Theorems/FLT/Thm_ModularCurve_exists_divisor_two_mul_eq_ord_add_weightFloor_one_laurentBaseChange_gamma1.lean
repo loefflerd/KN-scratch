@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
+Based on Prove2Me node
+ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
 (999eb0f0-c36f-54fe-9d6f-784051a0f2d8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 4f37cd1a-11d8-50da-ac64-2fff07b58792
@@ -59,7 +60,8 @@ integral: the right-hand side, which is $\operatorname{div}(v) + \operatorname{d
 written through the weight-floor recipe at $m = 1$, is divisible by $2$ at every place, reflecting
 the absence of elliptic points for $M \ge 4$ and the regularity of all cusps for $M \ge 5$. It feeds
 the dimension estimate for spaces of weight-one forms on $\Gamma_1(M)$ used in
-[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`](thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd).
+[`ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd`]
+(thm.html#ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd).
 
 ## Explanation of the source proof
 
@@ -95,16 +97,20 @@ end O2Asm
 
 theorem solution
     (M : ℕ) [NeZero M] (hM : 5 ≤ M)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0)
-    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hv : (v : LaurentSeries ℂ) * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2) :
     ∃ D : AlgebraicCurve.Divisor ℂ
-        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M))),
       ∀ P : AlgebraicCurve.Place ℂ
-        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M))),
         2 * D P = P.ord v +
           ((if 0 < P.ord y then (2 * P.ord y) / 3 else 0)
             + (if 0 < P.ord (y - 1728) then (P.ord (y - 1728)) / 2 else 0)
@@ -113,7 +119,8 @@ theorem solution
   have := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   obtain ⟨W, hW⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y 1
   obtain ⟨Dv, hDv⟩ : ∃ Dv : AlgebraicCurve.Divisor ℂ
-      ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+      ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M))),
       ∀ P, Dv P = P.ord v := by
     rcases eq_or_ne v 0 with h0 | h0
     · exact ⟨0, fun P => by simp [h0]⟩
@@ -133,10 +140,12 @@ theorem solution
     have hneg : P.ord y < 0 := by
       by_contra hge
       exact hP (AlgebraicCurve.Place.mem_of_ord_nonneg P hy0 (not_lt.1 hge))
-    have e1728 : (1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) =
+    have e1728 : (1728 : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))) =
         algebraMap ℂ _ 1728 := (map_ofNat (algebraMap ℂ _) 1728).symm
     have hc : P.ord (algebraMap ℂ _ (-1728)) = 0 := O2Asm.ord_const P (by norm_num)
-    have hc0 : algebraMap ℂ (↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    have hc0 : algebraMap ℂ (↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
         (-1728) ≠ 0 := (map_ne_zero _).2 (by norm_num)
     have h1728 : P.ord (y - 1728) = P.ord y := by
       rw [e1728, sub_eq_add_neg, ← map_neg]
@@ -147,7 +156,9 @@ theorem solution
 
 end S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
 end P2MW
-export P2MW.S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1 (solution)
+export
+  P2MW.S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
+  (solution)
 
 end privateSection
 
@@ -158,16 +169,20 @@ open CongruenceSubgroup ModularCurve
 open scoped MatrixGroups ModularForm
 theorem ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
     (M : ℕ) [NeZero M] (hM : 5 ≤ M)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (y : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
     (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0)
-    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
+    (v : ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))))
     (hv : (v : LaurentSeries ℂ) * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) =
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ 2) :
     ∃ D : AlgebraicCurve.Divisor ℂ
-        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M))),
       ∀ P : AlgebraicCurve.Place ℂ
-        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
+        ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ
+          (CongruenceSubgroup.Gamma1 M))),
         2 * D P = P.ord v +
           ((if 0 < P.ord y then (2 * P.ord y) / 3 else 0)
             + (if 0 < P.ord (y - 1728) then (P.ord (y - 1728)) / 2 else 0)

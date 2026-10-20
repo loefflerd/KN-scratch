@@ -845,7 +845,8 @@ theorem solution (N : ℕ) [NeZero N]
         T (MvPolynomial.aeval g (MvPolynomial.map (algebraMap ↥K ℂ) R))
           (MvPolynomial.aeval g' (MvPolynomial.map φ R))) ∧
     (∀ g g' : ℍ → ℂ, T g g' → (g = 0 ↔ g' = 0)) ∧
-    ∀ jf : ℍ → ℂ, (∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) → T jf jf := by
+    ∀ jf : ℍ → ℂ, (∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) → T jf jf :=
+      by
   have hT' : ∀ g g' : ℍ → ℂ, T g g' ↔ Trans K φ N g g' := fun g g' => hT g g'
   refine ⟨fun g g' hg R => ?_, fun g g' h => ?_, fun jf hjf => (hT' jf jf).mpr (trans_jf hjf)⟩
   · exact (hT' _ _).mpr (trans_aeval hφK (fun i => (hT' _ _).mp (hg i)) R)

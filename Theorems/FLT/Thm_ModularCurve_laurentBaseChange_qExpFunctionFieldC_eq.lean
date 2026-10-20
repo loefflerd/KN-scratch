@@ -73,7 +73,8 @@ namespace BCEqProof
 p2m_open "ModularCurve"
 
 theorem ofPowerSeries_coeff_int {A : Type*} [CommRing A] (x : PowerSeries A) (k : ℤ) :
-    (HahnSeries.ofPowerSeries ℤ A x).coeff k = if 0 ≤ k then PowerSeries.coeff k.toNat x else 0 := by
+    (HahnSeries.ofPowerSeries ℤ A x).coeff k = if 0 ≤ k then PowerSeries.coeff k.toNat x else 0 :=
+      by
   split_ifs with h
   · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le h
     rw [Int.toNat_natCast, HahnSeries.ofPowerSeries_apply_coeff]
@@ -130,7 +131,8 @@ theorem coeffEmb_mem_adjoin (S : Set (LaurentSeries ℚ)) {x : LaurentSeries ℚ
 
 theorem main : laurentBaseChange L (qExpFunctionFieldC ℚ Γ) = qExpFunctionFieldC L Γ := by
   apply le_antisymm
-  · change IntermediateField.adjoin L (⇑(coeffEmb L) '' (qExpFunctionFieldC ℚ Γ : Set (LaurentSeries ℚ))) ≤ _
+  · change IntermediateField.adjoin L (⇑(coeffEmb L) '' (qExpFunctionFieldC ℚ Γ : Set (LaurentSeries
+      ℚ))) ≤ _
     rw [IntermediateField.adjoin_le_iff]
     rintro _ ⟨x, hx, rfl⟩
     have h := coeffEmb_mem_adjoin L (intFormRatiosC ℚ Γ) hx
@@ -145,7 +147,8 @@ end ModularCurve.BCEqProof
 
 theorem solution
     (L : Type*) [Field L] [Algebra ℚ L] (Γ : Subgroup SL(2, ℤ)) :
-    ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) = ModularCurve.qExpFunctionFieldC L Γ :=
+    ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) =
+      ModularCurve.qExpFunctionFieldC L Γ :=
   ModularCurve.BCEqProof.main L Γ
 
 end S_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq
@@ -161,7 +164,8 @@ open scoped MatrixGroups
 open ModularCurve
 theorem ModularCurve.laurentBaseChange_qExpFunctionFieldC_eq
     (L : Type*) [Field L] [Algebra ℚ L] (Γ : Subgroup SL(2, ℤ)) :
-    ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) = ModularCurve.qExpFunctionFieldC L Γ :=
+    ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ) =
+      ModularCurve.qExpFunctionFieldC L Γ :=
   solution L Γ
 
 end publicSection

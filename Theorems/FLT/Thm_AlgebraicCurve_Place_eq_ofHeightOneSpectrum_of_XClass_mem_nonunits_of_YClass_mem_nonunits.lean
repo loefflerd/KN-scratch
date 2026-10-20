@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+Based on Prove2Me node
+AlgebraicCurve.Place.eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 (719fe46e-a7ed-5a9e-b7d7-c19777574935) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 9d89dec3-40df-5919-86a2-b424db66fe70
@@ -43,8 +44,10 @@ This is the statement that a place of the function field whose valuation ring ha
 y$ in its maximal ideal — a place centred at the affine point $(x,y)$ — is the place given by the
 order of vanishing at the corresponding height-one prime of the coordinate ring. It is used to
 identify the place attached to an affine point of a Weierstrass curve with an adic place, in
-[`WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits`](thm.html#WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits),
-[`WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum`](thm.html#WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum)
+[`WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits`]
+(thm.html#WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits),
+[`WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum`]
+(thm.html#WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum)
 and in the comparison of places under a variable change.
 
 ## Explanation of the source proof
@@ -105,10 +108,12 @@ theorem solution
   obtain ⟨w', hw'⟩ := WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem
     W v.toValuationSubring v.ne_top' v.algebraMap_mem' hXO
   have hXmem : CoordinateRing.XClass W x ∈ w'.asIdeal := by
-    refine (IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem (K := W.FunctionField) w' _).mp ?_
+    refine (IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem (K := W.FunctionField) w'
+      _).mp ?_
     exact adic_lt_one_of_mem_nonunits w' (hw' ▸ hX)
   have hYmem : CoordinateRing.YClass W (C y) ∈ w'.asIdeal := by
-    refine (IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem (K := W.FunctionField) w' _).mp ?_
+    refine (IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem (K := W.FunctionField) w'
+      _).mp ?_
     exact adic_lt_one_of_mem_nonunits w' (hw' ▸ hY)
   have hle : w.asIdeal ≤ w'.asIdeal := by
     rw [hw, CoordinateRing.XYIdeal, Ideal.span_le]
@@ -122,7 +127,9 @@ theorem solution
 
 end S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits (solution)
+export
+  P2MW.S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+  (solution)
 
 end privateSection
 

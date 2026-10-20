@@ -64,7 +64,8 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgClosed K]
     v.deg = 1 := by
   have : Module.Finite K v.ResidueField := Module.finite_of_finrank_pos (Nat.pos_of_ne_zero hv)
   have e : K ≃ₗ[K] v.ResidueField :=
-    LinearEquiv.ofBijective (Algebra.linearMap K v.ResidueField) (IsAlgClosed.algebraMap_bijective_of_isIntegral)
+    LinearEquiv.ofBijective (Algebra.linearMap K v.ResidueField)
+      (IsAlgClosed.algebraMap_bijective_of_isIntegral)
   unfold Place.deg
   rw [← e.finrank_eq, Module.finrank_self]
 

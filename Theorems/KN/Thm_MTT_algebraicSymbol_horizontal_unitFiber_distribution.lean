@@ -128,7 +128,8 @@ theorem MTT.algebraicSymbol_horizontal_unitFiber_distribution
         algebraicSymbol P s j (c : ℚ) (q : ℚ) / (q : Qbar) ^ j -
         f.epsilon ℓ *
           (algebraicSymbol P s j ((ℓ : ℚ) * (a : ℚ)) (q : ℚ) /
-            (q : Qbar) ^ j) := _root_.solution hN hk ι f P s j hj hcentral ℓ q hℓ hq hcop a c b₀ hb₀ hlift
+            (q : Qbar) ^ j) := _root_.solution hN hk ι f P s j hj hcentral ℓ q hℓ hq hcop a c b₀ hb₀
+              hlift
 end
 
 end publicSection

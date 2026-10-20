@@ -89,10 +89,12 @@ theorem mem_gens_iff (L : Type*) [Field L] (N : ℕ) [NeZero N] (x : LaurentSeri
     obtain ⟨d, -, rfl⟩ := Finset.mem_image.mp hx
     exact ⟨d.1, ⟨Nat.ne_of_gt (Nat.pos_of_mem_divisors d.2)⟩, Nat.dvd_of_mem_divisors d.2, rfl⟩
   · rintro ⟨d, hd, hdN, rfl⟩
-    exact Finset.mem_image.mpr ⟨⟨d, Nat.mem_divisors.mpr ⟨hdN, NeZero.ne N⟩⟩, Finset.mem_univ _, rfl⟩
+    exact Finset.mem_image.mpr ⟨⟨d, Nat.mem_divisors.mpr ⟨hdN, NeZero.ne N⟩⟩, Finset.mem_univ _,
+      rfl⟩
 
 theorem insert_gens (L : Type*) [Field L] (N : ℕ) [NeZero N] :
-    insert (jqModC L) (gens L N : Set (LaurentSeries L)) = {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = jqNModC L d} := by
+    insert (jqModC L) (gens L N : Set (LaurentSeries L)) = {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x
+      = jqNModC L d} := by
   ext x
   simp only [Set.mem_insert_iff, Finset.mem_coe, mem_gens_iff, Set.mem_ofPred_eq]
   constructor
@@ -113,7 +115,8 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L]
     HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   rw [laurentBaseChange_modularFunctionFieldFull, ← ModularCurve.R8.insert_gens]
-  refine AlgebraicCurve.hasPrincipalDivisors_adjoin_of_transcendental L (jqModC L) (transcendental_jqModC L)
+  refine AlgebraicCurve.hasPrincipalDivisors_adjoin_of_transcendental L (jqModC L)
+    (transcendental_jqModC L)
     (ModularCurve.R8.gens L N) ?_
   intro t ht
   obtain ⟨d, hd, -, rfl⟩ := (ModularCurve.R8.mem_gens_iff L N t).mp ht
@@ -123,7 +126,8 @@ end
 
 end S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull
 end P2MW
-export P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull (solution)
+export P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull
+  (solution)
 
 end privateSection
 

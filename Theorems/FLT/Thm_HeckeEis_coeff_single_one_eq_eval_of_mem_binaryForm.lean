@@ -39,10 +39,13 @@ evaluation at the point $(0:1)$, which in the row-vector convention used for the
 $\mathrm{SL}_2$ on binary forms is the cusp at infinity and is fixed by the upper triangular
 unipotent matrices. It is used in the computations with Eichler integrals and with coefficient
 cocycles, for instance by
-[`HeckeEis.IsEichlerIntegral.coeff_binaryFormRepSL_inv_apply_sub_eq_intervalIntegral_slash`](thm.html#HeckeEis.IsEichlerIntegral.coeff_binaryFormRepSL_inv_apply_sub_eq_intervalIntegral_slash),
-[`HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range`](thm.html#HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range)
+[`HeckeEis.IsEichlerIntegral.coeff_binaryFormRepSL_inv_apply_sub_eq_intervalIntegral_slash`]
+(thm.html#HeckeEis.IsEichlerIntegral.coeff_binaryFormRepSL_inv_apply_sub_eq_intervalIntegral_slash),
+[`HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range`]
+(thm.html#HeckeEis.IsEichlerIntegral.vadd_sub_T_zpow_apply_mem_range)
 and
-[`HeckeEis.exists_modularForm_coeffCocycles_sub_cocycle_mem_coeffParabolicCocycles`](thm.html#HeckeEis.exists_modularForm_coeffCocycles_sub_cocycle_mem_coeffParabolicCocycles).
+[`HeckeEis.exists_modularForm_coeffCocycles_sub_cocycle_mem_coeffParabolicCocycles`]
+(thm.html#HeckeEis.exists_modularForm_coeffCocycles_sub_cocycle_mem_coeffParabolicCocycles).
 
 ## Explanation of the source proof
 

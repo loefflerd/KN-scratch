@@ -46,9 +46,11 @@ the displayed product is monic of degree $\ell+1$. The proof uses the commutatio
 This records the normalisation of the descended coefficient family attached to the modular equation
 of level $\ell$: the top coefficient of the polynomial whose roots are the conjugates is $1$. It
 feeds into
-[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`](thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq)
+[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`]
+(thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq)
 and into the weighted support bound
-[`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le),
+[`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le),
 which package the descended coefficients as modular polynomial data.
 
 ## Explanation of the source proof
@@ -379,7 +381,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_top.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_top.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_top.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_top.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) :
     c (ℓ + 1) = 1 :=

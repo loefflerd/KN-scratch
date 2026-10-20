@@ -47,7 +47,8 @@ $\bar\Gamma$ of $\Gamma$ in $\mathrm{PSL}_2(\mathbb Z)$ is free of rank $1 + [\m
 Z):\Gamma]/6$; this statement converts that freeness into the dimension of the space of $K$-valued
 characters, i.e. of $H^1(\Gamma,K)$ with trivial action. It feeds the count of parabolic
 homomorphisms on $\Gamma$ used in the numerics of modular curves, being cited by
-[`ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq`](thm.html#ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq).
+[`ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq`]
+(thm.html#ModularCurve.six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq).
 
 ## Explanation of the source proof
 
@@ -130,7 +131,8 @@ theorem exists_gens [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
         ∃ f : Γ →* L, ∀ i, f (gens i) = v i := by
   classical
   obtain ⟨b⟩ :=
-    Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne Γ hneg hΓ
+    Matrix.SpecialLinearGroup.nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne Γ hneg
+      hΓ
   have hsurj := (QuotientGroup.mk' (Subgroup.center SL(2, ℤ))).subgroupMap_surjective Γ
   choose gens hgens using fun i => hsurj (b i)
   refine ⟨gens, ?_, ?_⟩

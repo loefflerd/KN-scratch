@@ -53,9 +53,11 @@ t\,(\mathrm{D}_{K,F} f)\bigr)$.
 This is the local statement that, for a uniformiser $t$ at $v$, the derivation $d/dt$ carries the
 valuation ring of $v$ into itself: the coefficient of $df$ against $dt$ is regular at $v$ whenever
 $f$ is. It underlies the companion results computing the order of a differential, among them
-[`AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one`](thm.html#AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one),
+[`AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one`]
+(thm.html#AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one),
 [`AlgebraicCurve.Place.ordDiff_D_nonneg`](thm.html#AlgebraicCurve.Place.ordDiff_D_nonneg) and
-[`AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff`](thm.html#AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff),
+[`AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff`]
+(thm.html#AlgebraicCurve.Place.ordDiff_eq_ord_diffCoeff),
 and hence the independence of that order from the chosen uniformiser.
 
 ## Explanation of the source proof

@@ -39,9 +39,11 @@ This is the classical fact that the points with $x = 0$ on a curve $y^2 = x^3 + 
 points, hence three-torsion: the tangent there is horizontal and meets the curve at the same point
 again. It is used in the analysis of the three-torsion and of the action of the cube-root-of-unity
 automorphism on curves with $j = 0$, in particular by
-[`WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three`](thm.html#WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three)
+[`WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three`]
+(thm.html#WeierstrassCurve.exists_j_eq_zero_torsion_basis_heq_vcInvFun_of_order_three)
 and the two counting statements
-[`WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree`](thm.html#WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree)
+[`WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree`]
+(thm.html#WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree)
 and its variant.
 
 ## Explanation of the source proof
@@ -68,7 +70,8 @@ theorem ws13_some_congr' {k : Type*} [Field k] {V : Affine k} {x₁ x₂ y₁ y�
 theorem solution
     {k : Type*} [Field k] [DecidableEq k] (B : k) (h2 : (2 : k) ≠ 0) {y : k} (hy0 : y ≠ 0)
     (h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Nonsingular 0 y) :
-    (WeierstrassCurve.Affine.Point.some 0 y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Point)
+    (WeierstrassCurve.Affine.Point.some 0 y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve
+      k).toAffine.Point)
       + WeierstrassCurve.Affine.Point.some 0 y h
       = -(WeierstrassCurve.Affine.Point.some 0 y h) := by
   have hyne : y ≠ Affine.negY (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k) 0 y := by
@@ -98,7 +101,8 @@ public section publicSection
 theorem WeierstrassCurve.Affine.Point.some_zero_add_self_eq_neg_of_a6_model
     {k : Type*} [Field k] [DecidableEq k] (B : k) (h2 : (2 : k) ≠ 0) {y : k} (hy0 : y ≠ 0)
     (h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Nonsingular 0 y) :
-    (WeierstrassCurve.Affine.Point.some 0 y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve k).toAffine.Point)
+    (WeierstrassCurve.Affine.Point.some 0 y h : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve
+      k).toAffine.Point)
       + WeierstrassCurve.Affine.Point.some 0 y h
       = -(WeierstrassCurve.Affine.Point.some 0 y h) :=
   solution B h2 hy0 h

@@ -39,9 +39,11 @@ This is the finiteness of the set of cyclic subgroups of order $N$ on a fixed el
 $\overline{\mathbb{Q}}$, the finiteness underlying the fact that a point of the modular curve of
 level $N$ has only finitely many level structures above a given $j$-invariant. It is used in the
 counting of elliptic points, in
-[`ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree`](thm.html#ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree)
+[`ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree`]
+(thm.html#ModularCurve.card_filter_ord_jBar_eq_one_eq_nuThree)
 and
-[`ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo`](thm.html#ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo),
+[`ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo`]
+(thm.html#ModularCurve.card_filter_ord_jBar_sub_1728_eq_one_eq_nuTwo),
 and in [`ModularCurve.emd_holds`](thm.html#ModularCurve.emd_holds).
 
 ## Explanation of the source proof

@@ -48,9 +48,11 @@ Weierstrass invariants $g_2$ and $g_3$
 ([`PeriodPair.lattice_eq_of_g2_eq_of_g3_eq`](thm.html#PeriodPair.lattice_eq_of_g2_eq_of_g3_eq)), and
 the result is used in the analysis of the modular curve at the level of stabilisers and
 ramification, by
-[`ModularCurve.ComplexPlaceDictionaryOf.two_mul_ramification_eq_card_stabilizer`](thm.html#ModularCurve.ComplexPlaceDictionaryOf.two_mul_ramification_eq_card_stabilizer)
+[`ModularCurve.ComplexPlaceDictionaryOf.two_mul_ramification_eq_card_stabilizer`]
+(thm.html#ModularCurve.ComplexPlaceDictionaryOf.two_mul_ramification_eq_card_stabilizer)
 and
-[`ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two`](thm.html#ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two).
+[`ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two`]
+(thm.html#ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two).
 
 ## Explanation of the source proof
 
@@ -268,7 +270,8 @@ theorem solution (τ τ' : ℍ)
       (ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') :
     ∃ γ : SL(2, ℤ), γ • τ = τ' := by
   have R1 : E₄ τ ^ 3 * E₆ τ' ^ 2 = E₄ τ' ^ 3 * E₆ τ ^ 2 := by
-    rw [ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq, ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq,
+    rw [ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq,
+      ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq,
       div_eq_div_iff (by simpa using E₄_cube_sub_E₆_sq_ne_zero τ)
         (by simpa using E₄_cube_sub_E₆_sq_ne_zero τ')] at h
     change E₄ τ ^ 3 * ((E₄ τ' ^ 3 - E₆ τ' ^ 2) / 1728) =

@@ -129,7 +129,8 @@ private theorem mapGL_T_zpow (N : ℕ) :
 theorem natCast_mem_strictPeriods_translate (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
     (σ : SL(2, ℤ)) :
     (wd Γ : ℝ) ∈ Subgroup.strictPeriods
-      (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ • ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))) := by
+      (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ • ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2)
+        ℝ))) := by
   rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff,
     ConjAct.toConjAct_smul, ← mapGL_T_zpow (wd Γ), coe_eq_mapGL, ← map_inv, ← map_mul, ← map_mul]
   exact Subgroup.mem_map_of_mem _ (conj_T_zpow_mem Γ σ)
@@ -283,7 +284,8 @@ private theorem tendsto_div_mul_qParam_zpow {N : ℕ} [NeZero N] {G H : ℍ → 
     (pH : Periodic (H ∘ ofComplex) N) (dH : MDiff H) (bH : IsBoundedAtImInfty H)
     (hG0 : qExpansion N G ≠ 0) (hH0 : qExpansion N H ≠ 0) :
     ∃ L : ℂ, L ≠ 0 ∧ Tendsto (fun τ : ℍ => G τ / H τ *
-        Periodic.qParam N τ ^ (-(((qExpansion N G).order.toNat : ℤ) - ((qExpansion N H).order.toNat : ℤ))))
+        Periodic.qParam N τ ^ (-(((qExpansion N G).order.toNat : ℤ) - ((qExpansion N H).order.toNat
+          : ℤ))))
       atImInfty (𝓝 L) := by
   have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   obtain ⟨uG, cG, -, nG, idG⟩ := exists_chart pG dG bG hG0
@@ -315,14 +317,16 @@ private theorem exists_tendsto_div_of_le {N : ℕ} [NeZero N] {G H : ℍ → ℂ
     cG.tendsto.comp (qParam_tendsto_atImInfty hN)
   have hTH : Tendsto (fun τ : ℍ => uH (Periodic.qParam N τ)) atImInfty (𝓝 (uH 0)) :=
     cH.tendsto.comp (qParam_tendsto_atImInfty hN)
-  have hTq : Tendsto (fun τ : ℍ => Periodic.qParam N τ ^ (a - b)) atImInfty (𝓝 ((0 : ℂ) ^ (a - b))) :=
+  have hTq : Tendsto (fun τ : ℍ => Periodic.qParam N τ ^ (a - b)) atImInfty (𝓝 ((0 : ℂ) ^ (a - b)))
+    :=
     (qParam_tendsto_atImInfty hN).pow (a - b)
   refine ⟨(0 : ℂ) ^ (a - b) * (uG 0 / uH 0), ((hTq.mul (hTG.div hTH nH)).congr' ?_)⟩
   filter_upwards [chart_eventually_ne_zero (N := N) cH nH] with τ hτ
   have hq : Periodic.qParam N (τ : ℂ) ≠ 0 := Complex.exp_ne_zero _
   change Periodic.qParam N τ ^ (a - b) * (uG (Periodic.qParam N τ) / uH (Periodic.qParam N τ)) = _
   rw [idG τ, idH τ]
-  have : (Periodic.qParam N (τ : ℂ)) ^ a = Periodic.qParam N (τ : ℂ) ^ (a - b) * Periodic.qParam N (τ : ℂ) ^ b :=
+  have : (Periodic.qParam N (τ : ℂ)) ^ a = Periodic.qParam N (τ : ℂ) ^ (a - b) * Periodic.qParam N
+    (τ : ℂ) ^ b :=
     by
     rw [← pow_add, Nat.sub_add_cancel hle]
   rw [this]
@@ -849,7 +853,8 @@ private theorem Lq_natCast_eq_qExpand (N : ℕ) [NeZero N] {F : ℍ → ℂ}
     · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hk
       rw [show ((N : ℤ) * (n : ℤ)) = ((N * n : ℕ) : ℤ) by push_cast; ring,
         HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff, hcoeff,
-        ite_eq_left (dvd_mul_right N n), Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero (NeZero.ne N))]
+        ite_eq_left (dvd_mul_right N n), Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero (NeZero.ne
+          N))]
   · rw [ModularCurve.qExpand_coeff_of_not_dvd N _ hdvd]
     rcases lt_or_ge m 0 with hm | hm
     · exact ModularCurve.ofPowerSeries_coeff_of_neg _ hm
@@ -1095,7 +1100,8 @@ private theorem reindexN (N : ℕ) [NeZero N] : S3c.Reindex N := fun k f n => by
 variable (σ : SL(2, ℤ))
 
 private theorem hNσ :
-    ((S3CuspLimit.wd Γ : ℕ) : ℝ) ∈ (ConjAct.toConjAct (σ : GL (Fin 2) ℝ)⁻¹ • S3c.Γ0 Γ).strictPeriods :=
+    ((S3CuspLimit.wd Γ : ℕ) : ℝ) ∈ (ConjAct.toConjAct (σ : GL (Fin 2) ℝ)⁻¹ • S3c.Γ0 Γ).strictPeriods
+      :=
   S3CuspLimit.natCast_mem_strictPeriods_translate Γ σ
 
 private theorem realizeOf_smul_eventuallyEq_div {k : ℤ}
@@ -1178,7 +1184,8 @@ private theorem order_Φ_eq_sub {x : S3c.CF Γ} (hx : x ≠ 0) {k : ℤ} {g h : 
     have h1 : (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = 0 := by
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
         FunLike.coe_zero, qExpansion_zero, map_zero]
-    exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
+    exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ)
+      hh)
   have hgq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑g ∣[k] σ) ≠ 0 :=
     S3CuspLimit.qExpansion_slash_ne_zero g σ hg
   have hhq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑h ∣[k] σ) ≠ 0 :=
@@ -1196,7 +1203,8 @@ private theorem realizeOf_smul_eventuallyEq {x : S3c.CF Γ} {k : ℤ} {g h : Mod
       fun τ : ℍ => (⇑g ∣[k] σ) τ / (⇑h ∣[k] σ) τ := by
   have hne := S3glue.eventually_apply_smul_ne_zero Γ σ h hh
   have heq := S3glue.realizeOf_smul_eventuallyEq_div Γ σ g h (x : LaurentSeries ℂ) hxgh hne
-  exact heq.trans (Filter.Eventually.of_forall fun τ => S3CuspLimit.div_comp_smul_eq_div_slash k (⇑g) (⇑h) σ τ)
+  exact heq.trans (Filter.Eventually.of_forall fun τ => S3CuspLimit.div_comp_smul_eq_div_slash k
+    (⇑g) (⇑h) σ τ)
 
 private theorem leading_term {x : S3c.CF Γ} (hx : x ≠ 0) :
     ∃ L : ℂ, L ≠ 0 ∧ Tendsto (fun τ : ℍ => realizeOf Γ (x : LaurentSeries ℂ) (σ • τ) *
@@ -1207,10 +1215,13 @@ private theorem leading_term {x : S3c.CF Γ} (hx : x ≠ 0) :
     have h1 : (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = 0 := by
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
         FunLike.coe_zero, qExpansion_zero, map_zero]
-    exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
+    exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ)
+      hh)
   obtain ⟨L, hL, hT⟩ := S3CuspLimit.tendsto_div_mul_qParam_zpow
-    (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty g σ)
-    (S3CuspLimit.slash_periodic h σ) (S3CuspLimit.slash_mdiff h σ) (S3CuspLimit.slash_bddAtImInfty h σ)
+    (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty g
+      σ)
+    (S3CuspLimit.slash_periodic h σ) (S3CuspLimit.slash_mdiff h σ) (S3CuspLimit.slash_bddAtImInfty h
+      σ)
     (S3CuspLimit.qExpansion_slash_ne_zero g σ hg) (S3CuspLimit.qExpansion_slash_ne_zero h σ hh)
   refine ⟨L, hL, ?_⟩
   rw [order_Φ_eq_sub Γ σ hx hh hxgh]
@@ -1220,14 +1231,16 @@ private theorem leading_term {x : S3c.CF Γ} (hx : x ≠ 0) :
 
 private theorem mem_P_iff_tendsto {x : S3c.CF Γ} (hx : x ≠ 0) :
     x ∈ (P Γ σ).toValuationSubring ↔
-      ∃ L : ℂ, Tendsto (fun τ : ℍ => realizeOf Γ (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L) := by
+      ∃ L : ℂ, Tendsto (fun τ : ℍ => realizeOf Γ (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L)
+        := by
   obtain ⟨k, g, h, hh, hxgh⟩ := S3glue.presN Γ (x : LaurentSeries ℂ) x.2
   have hg : g ≠ 0 := by
     intro hc; apply hx; apply Subtype.ext
     have h1 : (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = 0 := by
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
         FunLike.coe_zero, qExpansion_zero, map_zero]
-    exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
+    exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ)
+      hh)
   have hgq := S3CuspLimit.qExpansion_slash_ne_zero g σ hg
   have hhq := S3CuspLimit.qExpansion_slash_ne_zero h σ hh
   have heq := realizeOf_smul_eventuallyEq Γ σ hh hxgh
@@ -1235,23 +1248,28 @@ private theorem mem_P_iff_tendsto {x : S3c.CF Γ} (hx : x ≠ 0) :
   constructor
   · intro hle
     obtain ⟨L, hL⟩ := S3CuspLimit.exists_tendsto_div_of_le
-      (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty g σ)
-      (S3CuspLimit.slash_periodic h σ) (S3CuspLimit.slash_mdiff h σ) (S3CuspLimit.slash_bddAtImInfty h σ)
+      (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty
+        g σ)
+      (S3CuspLimit.slash_periodic h σ) (S3CuspLimit.slash_mdiff h σ) (S3CuspLimit.slash_bddAtImInfty
+        h σ)
       hgq hhq hle
     exact ⟨L, hL.congr' heq.symm⟩
   · rintro ⟨L, hL⟩
     by_contra hlt
     rw [not_le] at hlt
     exact S3CuspLimit.not_tendsto_div_of_lt
-      (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty g σ)
-      (S3CuspLimit.slash_periodic h σ) (S3CuspLimit.slash_mdiff h σ) (S3CuspLimit.slash_bddAtImInfty h σ)
+      (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty
+        g σ)
+      (S3CuspLimit.slash_periodic h σ) (S3CuspLimit.slash_mdiff h σ) (S3CuspLimit.slash_bddAtImInfty
+        h σ)
       hgq hhq hlt L (hL.congr' heq)
 
 private theorem tendsto_realizeOf_zero :
     Tendsto (fun τ : ℍ => realizeOf Γ (0 : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 0) := by
   set h₀ := S3c.presDen Γ (S3glue.presN Γ) 1
   have hh₀ : h₀ ≠ 0 := S3c.presDen_ne_zero Γ (S3glue.presN Γ) 1
-  have hpres : (0 : LaurentSeries ℂ) * S3c.Lq 1 ⇑h₀ = S3c.Lq 1 ⇑(0 : ModularForm (S3c.Γ0 Γ) (S3c.presWt Γ (S3glue.presN Γ) 1)) :=
+  have hpres : (0 : LaurentSeries ℂ) * S3c.Lq 1 ⇑h₀ = S3c.Lq 1 ⇑(0 : ModularForm (S3c.Γ0 Γ)
+    (S3c.presWt Γ (S3glue.presN Γ) 1)) :=
     by
     rw [zero_mul, S3c.Lq_def, FunLike.coe_zero, qExpansion_zero, map_zero]
   have hne := S3glue.eventually_apply_smul_ne_zero Γ σ h₀ hh₀
@@ -1282,12 +1300,15 @@ theorem solution
       (∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ∈ P.toValuationSubring ↔ 0 ≤ (Φ x).order) ∧
       (∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ∈ P.toValuationSubring ↔
         ∃ L : ℂ, Filter.Tendsto
-          (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L)) ∧
+          (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
+            atImInfty (𝓝 L)) ∧
       (∀ (x : ModularCurve.laurentBaseChange ℂ F₀) (k : ℤ)
           (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 →
         (x : LaurentSeries ℂ) *
-            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) →
+            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries
+              ℂ) =
+          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+            →
         Φ x * ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
               ((h : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) =
           ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
@@ -1300,13 +1321,15 @@ theorem solution
       (∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ≠ 0 → ∃ L : ℂ, L ≠ 0 ∧
         Filter.Tendsto
           (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ) *
-            Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * P.ord x : ℂ) * (τ : ℂ) / (Γ.normalCore.index : ℂ))))
+            Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * P.ord x : ℂ) * (τ : ℂ) /
+              (Γ.normalCore.index : ℂ))))
           atImInfty (𝓝 L)) := by
   subst hF
   have hTΓ : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
   obtain ⟨e, he, hord⟩ := S3c.exists_order_eq_mul_ord (S3readout.Φ Γ σ) (S3readout.Φ_algebraMap Γ σ)
     (S3readout.order_Φ_J_neg Γ σ)
-  refine ⟨S3readout.Φ Γ σ, S3readout.P Γ σ, e, he, S3readout.mem_P_iff Γ σ, ?_, ?_, S3readout.Φ_algebraMap Γ σ,
+  refine ⟨S3readout.Φ Γ σ, S3readout.P Γ σ, e, he, S3readout.mem_P_iff Γ σ, ?_, ?_,
+    S3readout.Φ_algebraMap Γ σ,
     hord, ?_, ?_⟩
   · intro x
     by_cases hx : x = 0
@@ -1318,7 +1341,8 @@ theorem solution
     have hhL : S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) ≠ 0 :=
       (S3c.Lq_eq_zero_iff _ _).not.mpr (S3CuspLimit.qExpansion_slash_ne_zero h σ hh)
     have := S3readout.Φ_eq Γ σ (x := x) hh hxgh
-    change S3readout.Φ Γ σ x * S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) = S3c.Lq (S3CuspLimit.wd Γ) (⇑g ∣[k] σ)
+    change S3readout.Φ Γ σ x * S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) = S3c.Lq (S3CuspLimit.wd Γ) (⇑g
+      ∣[k] σ)
     rw [this, div_mul_cancel₀ _ hhL]
   · intro y hy
     have hyeq : (y : LaurentSeries ℂ) = coeffEmb ℂ jq := hy.trans S3glue.jqModC_complex_eq_coeffEmb
@@ -1368,12 +1392,15 @@ theorem ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash
       (∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ∈ P.toValuationSubring ↔ 0 ≤ (Φ x).order) ∧
       (∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ∈ P.toValuationSubring ↔
         ∃ L : ℂ, Filter.Tendsto
-          (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L)) ∧
+          (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
+            atImInfty (𝓝 L)) ∧
       (∀ (x : ModularCurve.laurentBaseChange ℂ F₀) (k : ℤ)
           (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 →
         (x : LaurentSeries ℂ) *
-            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) →
+            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries
+              ℂ) =
+          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+            →
         Φ x * ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
               ((h : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) =
           ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
@@ -1386,7 +1413,8 @@ theorem ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash
       (∀ x : ModularCurve.laurentBaseChange ℂ F₀, x ≠ 0 → ∃ L : ℂ, L ≠ 0 ∧
         Filter.Tendsto
           (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ) *
-            Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * P.ord x : ℂ) * (τ : ℂ) / (Γ.normalCore.index : ℂ))))
+            Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * P.ord x : ℂ) * (τ : ℂ) /
+              (Γ.normalCore.index : ℂ))))
           atImInfty (𝓝 L)) :=
   solution Γ hT F₀ hF σ
 

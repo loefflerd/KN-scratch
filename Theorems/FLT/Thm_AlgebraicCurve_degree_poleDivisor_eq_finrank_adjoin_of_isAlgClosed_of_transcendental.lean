@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
+Based on Prove2Me node
+AlgebraicCurve.degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
 (18dcfd3c-c55b-56e7-b305-233aea765b0a) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 419acd1f-06d4-5020-9ab6-e2f9276ad4df
@@ -78,7 +79,8 @@ theorem solution
 
 end S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
 end P2MW
-export P2MW.S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental (solution)
+export P2MW.S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
+  (solution)
 
 end privateSection
 

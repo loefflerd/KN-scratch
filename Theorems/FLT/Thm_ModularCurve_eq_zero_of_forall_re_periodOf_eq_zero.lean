@@ -332,7 +332,8 @@ theorem apply_eq_zero [Γ.FiniteIndex] (hF : ModularCurve.HasEquivariantPrimitiv
     (h : ∀ γ : Γ, (ModularCurve.periodOf Γ γ f).re = 0) (τ : ℍ) :
     f τ = 0 := by
   obtain ⟨c, hc⟩ := exp_F_const hM hTM hF h
-  have h1 : HasDerivAt (fun z : ℂ => cexp ((F ∘ ofComplex) z)) (cexp ((F ∘ ofComplex) ↑τ) * f τ) ↑τ :=
+  have h1 : HasDerivAt (fun z : ℂ => cexp ((F ∘ ofComplex) z)) (cexp ((F ∘ ofComplex) ↑τ) * f τ) ↑τ
+    :=
     (hF.1 τ).cexp
   have h2 : HasDerivAt (fun z : ℂ => cexp ((F ∘ ofComplex) z)) 0 ↑τ := by
     refine (hasDerivAt_const (↑τ : ℂ) c).congr_of_eventuallyEq ?_

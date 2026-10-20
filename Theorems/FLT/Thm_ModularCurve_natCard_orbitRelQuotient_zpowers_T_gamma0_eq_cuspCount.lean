@@ -44,10 +44,13 @@ T\rangle$-orbits on $\mathrm{SL}_2(\mathbb Z)/\Gamma_0(N)$, which is the shape n
 $\mathrm{SL}_2(\mathbb Z)$ is treated via its amalgam decomposition. It feeds the bounds on
 parabolic cohomology and on spaces of homomorphisms used for genus and dimension formulas, being
 cited by
-[`ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula`](thm.html#ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula),
-[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`](thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
+[`ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula`]
+(thm.html#ModularCurve.finrank_parabolicHoms_gamma0_le_two_mul_genusFormula),
+[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`]
+(thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
 and
-[`ModularCurve.FullLevel.two_mul_natCard_doubleCoset_gammaH_levelH_zpowers_T_eq`](thm.html#ModularCurve.FullLevel.two_mul_natCard_doubleCoset_gammaH_levelH_zpowers_T_eq).
+[`ModularCurve.FullLevel.two_mul_natCard_doubleCoset_gammaH_levelH_zpowers_T_eq`]
+(thm.html#ModularCurve.FullLevel.two_mul_natCard_doubleCoset_gammaH_levelH_zpowers_T_eq).
 
 ## Explanation of the source proof
 
@@ -68,7 +71,8 @@ open scoped MatrixGroups
 
 namespace BassSerreCuspCount
 
-open Matrix Matrix.SpecialLinearGroup CongruenceSubgroup ModularCurve ModularCurve.CuspSpace MulAction
+open Matrix Matrix.SpecialLinearGroup CongruenceSubgroup ModularCurve ModularCurve.CuspSpace
+  MulAction
 
 theorem eq_T_zpow_or_neg (δ : SL(2, ℤ)) (h : δ 1 0 = 0) :
     ∃ n : ℤ, δ = ModularGroup.T ^ n ∨ δ = -(ModularGroup.T ^ n) := by

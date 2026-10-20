@@ -93,7 +93,8 @@ theorem solution {X R : Type*} [TopologicalSpace X] [CompactSpace X] [T2Space X]
     simp only [g,map_sum,map_smul]
     exact Finset.sum_congr rfl (fun i _ => congrArg (fun z => v i • z) (h (U i)))
   have hgp (x : X) : g x = ∑ i : Fin n, (U i : Set X).indicator (fun _ => v i) x := by
-    simp only [g,ContinuousMap.sum_apply,ContinuousMap.smul_apply,e,ContinuousMap.coe_mk,smul_eq_mul]
+    simp only [g,ContinuousMap.sum_apply, ContinuousMap.smul_apply, e,
+     ContinuousMap.coe_mk,smul_eq_mul]
     apply Finset.sum_congr rfl
     intro i _
     by_cases hx : x ∈ U i <;> simp [hx]
@@ -109,8 +110,7 @@ open scoped BigOperators
 open Set Filter UniformSpace ContinuousMap TopologicalSpace
 
 theorem ProfiniteMeasure.ext_of_clopen_masses {X R : Type*} [TopologicalSpace X] [CompactSpace X]
-    [T2Space X]
-    [TotallyDisconnectedSpace X] [NormedField R]
+    [T2Space X] [TotallyDisconnectedSpace X] [NormedField R]
     (μ ν : AbstractMeasure X R R)
     (h : ∀ U : Clopens X,
       μ ⟨(U : Set X).indicator (fun _ => (1 : R)),

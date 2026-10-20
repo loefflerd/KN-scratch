@@ -41,7 +41,8 @@ This identifies the normalised (discretely valued) valuation canonically attache
 the place's own valuation ring, so that the two descriptions of a place — as a valuation subring and
 as a $\mathbb{Z}$-valued valuation — agree. It is used in the treatment of the rational function
 field, where places are recognised by their valuation subrings, via
-[`AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum`](thm.html#AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum).
+[`AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum`]
+(thm.html#AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum).
 
 ## Explanation of the source proof
 
@@ -88,7 +89,8 @@ end AlgebraicCurve
 
 end
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_adicValuation_valuationSubring.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_Place_adicValuation_valuationSubring.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) :
     v.adicValuation.valuationSubring = v.toValuationSubring :=
   AlgebraicCurve.Place.rowMain v

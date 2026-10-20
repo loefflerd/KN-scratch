@@ -45,7 +45,8 @@ the case where $h$ and the integers $1,\dots,n$ are invertible enough to be nonz
 fixed vectors form the line spanned by $X_1^n$. It is applied to
 $\begin{pmatrix}1&0\\N&1\end{pmatrix} \in \Gamma_0(N)$ in the proof that certain parabolic
 cohomology classes vanish, namely in
-[`HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero`](thm.html#HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero).
+[`HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero`]
+(thm.html#HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero).
 The group element is specified by its matrix rather than by a fixed presentation, so any element
 with that matrix may be used.
 

@@ -155,7 +155,8 @@ end CoordinateRing
 end Affine
 end WeierstrassCurve
 
-open P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing
+open
+  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing
 
 section
 
@@ -1561,7 +1562,8 @@ theorem unitIdealOfPoint_some {x y : F} (h : W.Nonsingular x y) :
 
 omit [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem classGroup_mk_unitIdealOfPoint (P : W.Point) :
-    ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) := by
+    ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) :=
+      by
   cases P with
   | zero => exact map_one _
   | some x y h => rfl
@@ -1702,7 +1704,8 @@ universe u in
 open _root_.WeierstrassCurve _root_.WeierstrassCurve.Affine
   _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve
   _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine
-  _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve
+  _root_.AlgebraicCurve
+    _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve
   in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F}
@@ -1715,7 +1718,8 @@ theorem solution
     { pointEquivPlace := WeierstrassCurve.Affine.geomPointEquivPlace
       deg_eq_one := fun v => by
         obtain ⟨P, rfl⟩ :=
-          WeierstrassCurve.Affine.geomPlaceOfPoint_surjective (WeierstrassCurve.Affine.isElliptic_Δ_ne_zero (W := W)) v
+          WeierstrassCurve.Affine.geomPlaceOfPoint_surjective
+            (WeierstrassCurve.Affine.isElliptic_Δ_ne_zero (W := W)) v
         exact WeierstrassCurve.Affine.deg_geomPlaceOfPoint P }
   refine ⟨g, ⟨?_, ?_⟩, ⟨?_⟩⟩
   · intro x y h

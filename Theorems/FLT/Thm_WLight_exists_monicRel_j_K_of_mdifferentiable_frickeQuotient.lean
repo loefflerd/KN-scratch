@@ -1031,7 +1031,8 @@ end AevalKit
 
 end WLight
 
-open _root_.WLight _root_.P2MW.S_WLight_exists_monicRel_j_K_of_mdifferentiable_frickeQuotient.WLight WLight.R8cGlue in
+open _root_.WLight _root_.P2MW.S_WLight_exists_monicRel_j_K_of_mdifferentiable_frickeQuotient.WLight
+  WLight.R8cGlue in
 theorem solution
     (N : ℕ) [NeZero N]
     (L : ℍ → PeriodPair) (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1)

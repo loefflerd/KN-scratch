@@ -45,7 +45,8 @@ compatibility with the $G$-action beyond the defining equivariance condition ent
 This is the dimension count underlying Shapiro-type comparisons between the cohomology of $G$ on a
 coinduced module and that of the finite-index subgroup $S$ on $N$. It is used by
 [`Rep.exists_shortExact_coind_res`](thm.html#Rep.exists_shortExact_coind_res) and, through it, in
-[`groupCohomology.euler_poincare_identity_of_hypotheses`](thm.html#groupCohomology.euler_poincare_identity_of_hypotheses),
+[`groupCohomology.euler_poincare_identity_of_hypotheses`]
+(thm.html#groupCohomology.euler_poincare_identity_of_hypotheses),
 where the multiplicativity of dimensions by the index supplies the numerical input to the
 Euler–Poincaré argument.
 
@@ -92,7 +93,8 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
     { toFun := fun f q => (f : G → N) q.out
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl
-      invFun := fun F => ⟨fun g => N.ρ ⟨g * (rep g)⁻¹, rep_spec g⟩ (F (Quotient.mk _ g)), fun s h => by
+      invFun := fun F => ⟨fun g => N.ρ ⟨g * (rep g)⁻¹, rep_spec g⟩ (F (Quotient.mk _ g)), fun s h =>
+        by
         simp only [Subgroup.coe_subtype]
         have hq : (Quotient.mk (QuotientGroup.rightRel S) ((s : G) * h)) = Quotient.mk _ h :=
           Quotient.sound (by
@@ -100,7 +102,8 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
             rw [QuotientGroup.rightRel_apply]; simp)
         rw [← Module.End.mul_apply, ← map_mul]
         have hmem : (s : G) * h * (rep ((s : G) * h))⁻¹ ∈ S := rep_spec _
-        have : (⟨(s : G) * h * (rep ((s : G) * h))⁻¹, hmem⟩ : S) = s * ⟨h * (rep h)⁻¹, rep_spec h⟩ :=
+        have : (⟨(s : G) * h * (rep ((s : G) * h))⁻¹, hmem⟩ : S) = s * ⟨h * (rep h)⁻¹, rep_spec h⟩
+          :=
           by
           apply Subtype.ext
           simp only [Subgroup.coe_mul, rep_mul, mul_assoc]
@@ -110,7 +113,8 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
       left_inv := fun f => by
         apply Subtype.ext
         funext g
-        change N.ρ ⟨g * (rep g)⁻¹, rep_spec g⟩ ((f : G → N) (Quotient.mk (QuotientGroup.rightRel S) g).out) = (f : G → N) g
+        change N.ρ ⟨g * (rep g)⁻¹, rep_spec g⟩ ((f : G → N) (Quotient.mk (QuotientGroup.rightRel S)
+          g).out) = (f : G → N) g
         have := f.2 ⟨g * (rep g)⁻¹, rep_spec g⟩ (rep g)
         rw [← this]
         change (f : G → N) (g * (rep g)⁻¹ * rep g) = (f : G → N) g

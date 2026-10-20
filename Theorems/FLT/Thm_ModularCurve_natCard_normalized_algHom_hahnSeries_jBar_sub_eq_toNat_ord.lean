@@ -51,7 +51,8 @@ w.\mathtt{ord}(x)$ for all $x$, equals $e_w$.
 This counts, place by place, the normalised fractional-exponent expansions of the modular function
 field lying over a given value $j_0$ of the $j$-line, the ramification index at a place being
 exactly the order of vanishing of $\bar j - j_0$ there. It is an input to
-[`ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord`](thm.html#ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord)
+[`ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord`]
+(thm.html#ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord)
 in the analysis of the fibres of the map to the $j$-line.
 
 ## Explanation of the source proof

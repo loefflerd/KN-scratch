@@ -1603,7 +1603,8 @@ theorem indexOfSpecialty_eq_ell_sub_of_rankOne_max [HasPrincipalDivisors K F]
     indexOfSpecialty D = ell (W - D) := by
   rw [← finrank_omegaSpace_eq_indexOfSpecialty]
   exact (LinearEquiv.ofBijective (residuePairing K F W D hφ)
-    ⟨residuePairing_injective W D hφ hφ0, residuePairing_surjective_of_rankOne_max hRankOne hφ hφ0 hWmax D⟩).finrank_eq.symm
+    ⟨residuePairing_injective W D hφ hφ0, residuePairing_surjective_of_rankOne_max hRankOne hφ hφ0
+      hWmax D⟩).finrank_eq.symm
 
 theorem exists_genus_riemannIndex_of_stichtenothGenusExists_port [IsCurveOver K F]
     (h : StichtenothGenusExists K F) :
@@ -1615,7 +1616,8 @@ theorem exists_genus_riemannIndex_of_stichtenothGenusExists_port [IsCurveOver K 
   exact ⟨γ, fun D => indexOfSpecialty_eq_of_genusReached hγ D⟩
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_exists_genus_riemannIndex_of_stichtenothGenusExists.AlgebraicCurve in
+open _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_exists_genus_riemannIndex_of_stichtenothGenusExists.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]
     (h : StichtenothGenusExists K F) :
     ∃ γ : ℤ, ∀ D : Divisor K F,

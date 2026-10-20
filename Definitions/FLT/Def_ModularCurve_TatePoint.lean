@@ -140,7 +140,8 @@ def W3Proper : Prop :=
   ∀ i, (veluSlotSet i).card = (p - 1) / 2 ∧
     ∃ g : (basePoint K p).toAffine.Point, addOrderOf g = p ∧
       ∀ P ∈ veluSlotSet i, ∃ (k : ℕ) (h : (basePoint K p).toAffine.Nonsingular P.1 P.2),
-        0 < k ∧ (k • g : (basePoint K p).toAffine.Point) = WeierstrassCurve.Affine.Point.some P.1 P.2 h
+        0 < k ∧ (k • g : (basePoint K p).toAffine.Point) = WeierstrassCurve.Affine.Point.some P.1
+          P.2 h
 
 end TatePoint
 

@@ -111,11 +111,13 @@ def polyEquiv [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
     ℂ[X] ≃ₐ[ℂ] A Γ x :=
   Polynomial.algEquivOfTranscendental ℂ x (transcendental_jX Γ x)
 
-scoped instance instIsPrincipalIdealRingA [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsPrincipalIdealRing (A Γ x) :=
+scoped instance instIsPrincipalIdealRingA [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx :
+  Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsPrincipalIdealRing (A Γ x) :=
   IsPrincipalIdealRing.of_surjective (polyEquiv Γ x).toRingEquiv.toRingHom
     (polyEquiv Γ x).toRingEquiv.surjective
 
-scoped instance instIsDedekindDomainA [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsDedekindDomain (A Γ x) := inferInstance
+scoped instance instIsDedekindDomainA [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact
+  ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsDedekindDomain (A Γ x) := inferInstance
 
 scoped instance instAlgebraAKj : Algebra (A Γ x) (Kj Γ x) := inferInstance
 scoped instance instSMulAKj : SMul (A Γ x) (Kj Γ x) := Algebra.toSMul
@@ -123,7 +125,8 @@ scoped instance instIsScalarTowerAKjCF : IsScalarTower (A Γ x) (Kj Γ x) (CF Γ
   Subalgebra.inclusion.isScalarTower_right
     (IntermediateField.algebra_adjoin_le_adjoin ℂ ({x} : Set (CF Γ))) _
 
-scoped instance instFiniteDimensionalKjCF [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : FiniteDimensional (Kj Γ x) (CF Γ) :=
+scoped instance instFiniteDimensionalKjCF [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx :
+  Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : FiniteDimensional (Kj Γ x) (CF Γ) :=
   (transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
     ℂ Γ hT.out x hx.out).2
 
@@ -145,7 +148,8 @@ scoped instance instIsDedekindDomainB [Γ.FiniteIndex] [hT : Fact (ModularGroup.
     [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsDedekindDomain (B Γ x) :=
   integralClosure.isDedekindDomain (A Γ x) (Kj Γ x) (CF Γ)
 
-scoped instance instIsFractionRingB [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsFractionRing (B Γ x) (CF Γ) := by
+scoped instance instIsFractionRingB [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x
+  : LaurentSeries ℂ) = jqModC ℂ)] : IsFractionRing (B Γ x) (CF Γ) := by
   unfold B; exact integralClosure.isFractionRing_of_finite_extension (Kj Γ x) (CF Γ)
 
 theorem algebraMap_B_apply (b : B Γ x) : algebraMap (B Γ x) (CF Γ) b = (b : CF Γ) := rfl
@@ -338,7 +342,8 @@ theorem eq_of_center_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
   apply Place.ext
   rw [Place.toValuationSubring_eq_of_forall_mem Q hQ, Place.toValuationSubring_eq_of_forall_mem Q'
     hQ']
-  have hc : Place.centerHeightOneSpectrum (B Γ x) Q hQ = Place.centerHeightOneSpectrum (B Γ x) Q' hQ' :=
+  have hc : Place.centerHeightOneSpectrum (B Γ x) Q hQ = Place.centerHeightOneSpectrum (B Γ x) Q'
+    hQ' :=
     IsDedekindDomain.HeightOneSpectrum.ext h
   rw [hc]
 
@@ -401,7 +406,8 @@ theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
       (fun z : ℍ => ‖(g : ℍ → ℂ) z / (h : ℍ → ℂ) z‖) :=
     fun τ => isBoundedUnder_div_of_realizeOf Γ g h hh (y : LaurentSeries ℂ) hgh τ (hbdd τ)
   have hint0 :=
-    ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex Γ hT.out g h hh hb'
+    ModularCurve.isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex Γ
+      hT.out g h hh hb'
   have hyeq : (y : LaurentSeries ℂ) = qL Γ g / qL Γ h := by
     rw [eq_div_iff (qL_ne_zero Γ h hh)]
     exact hgh

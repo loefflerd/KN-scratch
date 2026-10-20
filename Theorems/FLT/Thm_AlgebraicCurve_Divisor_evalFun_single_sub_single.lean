@@ -62,7 +62,8 @@ open AlgebraicCurve AlgebraicCurve.Divisor
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (f : F) {v₁ v₂ : Place K F}
     (h₁ : v₁.evalAt f ≠ 0) (h₂ : v₂.evalAt f ≠ 0) :
-    Divisor.evalFun f (Finsupp.single v₁ 1 + Finsupp.single v₂ (-1)) = v₁.evalAt f / v₂.evalAt f := by
+    Divisor.evalFun f (Finsupp.single v₁ 1 + Finsupp.single v₂ (-1)) = v₁.evalAt f / v₂.evalAt f :=
+      by
   have hsupp : ∀ (w : Place K F) (n : ℤ), w.evalAt f ≠ 0 →
       ∀ v ∈ (Finsupp.single w n).support, Place.evalAt v f ≠ 0 := by
     intro w n hw v hv

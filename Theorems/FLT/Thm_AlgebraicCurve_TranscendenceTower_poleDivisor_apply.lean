@@ -1824,7 +1824,8 @@ p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Place.ord_zero Divisor D
   Place.sum_ramificationIndex_mul_inertiaDeg"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 
-scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
+scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Field F] [Field F']
+  [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
     [HasPrincipalDivisors K F'] : SumRamificationInertia K F F' :=
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg v⟩
@@ -1913,7 +1914,8 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.degree_poleDivisor_eq_f
 
 p2m_export "AlgebraicCurve.TranscendenceTower" "degree_poleDivisor_eq_finrank"
 omit [FiniteDimensional E F] in
-private theorem _root_.AlgebraicCurve.TranscendenceTower.mem_lSpace_nsmul_poleDivisor_of_regular_outside {f : F}
+private theorem
+  _root_.AlgebraicCurve.TranscendenceTower.mem_lSpace_nsmul_poleDivisor_of_regular_outside {f : F}
     (hreg : ∀ w : Place K F, w.restrict E ≠ T.v → 0 ≤ w.ord f)
     {c : ℕ} (hc : ∀ w ∈ T.v.fiber F, -(c : ℤ) ≤ w.ord f) :
     f ∈ LSpace (c • T.poleDivisor) := by
@@ -2263,7 +2265,8 @@ theorem stichtenothGenusExists_of_hasRegularFractionSubring [IsCurveOver K F]
 namespace TranscendenceTower
 p2m_open_scoped "AlgebraicCurve.TranscendenceTower" in
 omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
-private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F) :
+private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T :
+  TranscendenceTower K E F) :
     ∀ u : Place K E, u ≠ T.v →
       ∀ a ∈ Algebra.adjoin K {T.x}, a ∈ u.toValuationSubring := by
   intro u hu a ha
@@ -2356,7 +2359,8 @@ theorem solution {K : Type*} {E : Type*} {F : Type*} [Field K] [Field E] [Field 
     [Algebra K F] [Algebra E F] [IsScalarTower K E F] [Algebra.IsSeparable E F]
     [HasPrincipalDivisors K F] (T : TranscendenceTower K E F) (w : Place K F) :
     T.poleDivisor w = (w.ramificationIndex E : ℤ) * (Finsupp.single T.v 1) (w.restrict E) :=
-  AlgebraicCurve.TranscendenceTower.poleDivisor_apply_port (K := K) (F := F) (E := E) (T := T) (w := w)
+  AlgebraicCurve.TranscendenceTower.poleDivisor_apply_port (K := K) (F := F) (E := E) (T := T) (w :=
+    w)
 
 end S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply
 end P2MW

@@ -920,7 +920,9 @@ end Affine
 end WeierstrassCurve
 end
 
-open P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine
+open
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing
+  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine
 
 section
 
@@ -1284,7 +1286,8 @@ theorem ord_X_neg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) :
   by_contra hcon
   push Not at hcon
   exact hv (isFinitePlace_of_mem v
-    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero) hcon))
+    (AlgebraicCurve.Place.mem_of_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero)
+      hcon))
 
 theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
     2 * v.ord (algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y))
@@ -1828,7 +1831,8 @@ theorem unitIdealOfPoint_some {x y : F} (h : W.Nonsingular x y) :
 
 omit [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem classGroup_mk_unitIdealOfPoint (P : W.Point) :
-    ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) := by
+    ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P)
+      := by
   cases P with
   | zero => exact map_one _
   | some x y h => rfl
@@ -1854,7 +1858,8 @@ theorem unitIdealOfDivisor_single (v : AlgebraicCurve.Place F W.FunctionField) (
   Finsupp.prod_single_index (zpow_zero _)
 
 theorem classGroup_mk_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField) :
-    ClassGroup.mk (K := W.FunctionField) (unitIdealOfDivisor D) = Additive.toMul (Point.toClass (geomDivisorSum D)) := by
+    ClassGroup.mk (K := W.FunctionField) (unitIdealOfDivisor D) = Additive.toMul (Point.toClass
+      (geomDivisorSum D)) := by
   induction D using Finsupp.induction with
   | zero =>
       rw [unitIdealOfDivisor_zero, map_one, _root_.map_zero, _root_.map_zero]

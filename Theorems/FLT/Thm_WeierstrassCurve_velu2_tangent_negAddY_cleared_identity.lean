@@ -39,7 +39,8 @@ This is the tangent (doubling) companion of the corresponding secant identity: a
 polynomial relation on the curve, for a kernel point $(x_0,y_0)$ of order $2$, expressing the
 alignment of ordinates under Vélu's quotient map associated with that kernel. It is used in the
 proof of
-[`WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2`](thm.html#WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2),
+[`WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2`]
+(thm.html#WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2),
 which produces the additive homomorphism realising the order-$2$ Vélu point map.
 
 ## Explanation of the source proof

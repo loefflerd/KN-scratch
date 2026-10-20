@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.Place.ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
+Based on Prove2Me node
+AlgebraicCurve.Place.ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
 (a3cc0f5a-ee93-5487-81f1-c26e1a71e350) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 2ead6451-88b8-5b4f-af04-e79cd8ad8fb3
@@ -43,7 +44,8 @@ This is the local statement that an element of $F$ which, together with its inve
 over the local ring of the $j$-line at $j = \infty$ has order zero at every place where $j$ has a
 pole; the integrality is presented concretely through monic equations whose coefficients are ratios
 of polynomials in $j^{-1}$ with invertible denominator. It is used by
-[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`](thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto).
+[`ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto`]
+(thm.html#ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto).
 
 ## Explanation of the source proof
 
@@ -201,7 +203,9 @@ theorem solution
 
 end S_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div (solution)
+export
+  P2MW.S_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
+  (solution)
 
 end privateSection
 

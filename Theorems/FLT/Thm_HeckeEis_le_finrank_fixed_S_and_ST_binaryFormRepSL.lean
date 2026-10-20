@@ -46,7 +46,8 @@ truncated at $0$. Only lower bounds are asserted, although both are in fact equa
 These are the two elliptic-point contributions appearing in the dimension formula for modular forms,
 expressed as the dimensions of the fixed subspaces of the order-$4$ element $S$ and the order-$6$
 element $ST$ acting on degree-$n$ binary forms. The bounds are used by
-[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`](thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
+[`HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula`]
+(thm.html#HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula)
 to control the dimension of a parabolic cohomology group by twice the dimension-formula value.
 
 ## Explanation of the source proof
@@ -139,7 +140,8 @@ theorem linearIndependent_monomials {ι : Type*} (n : ℕ) (a : ι → ℕ) (ha 
     have := congrArg (fun f : Fin 2 →₀ ℕ => f 0) h
     simpa [d, Finsupp.single_apply] using this
   have hb := (MvPolynomial.basisMonomials (Fin 2) ℂ).linearIndependent.comp d hd
-  have hmon : ∀ t, (X 0 ^ a t * X 1 ^ (n - a t) : MvPolynomial (Fin 2) ℂ) = MvPolynomial.monomial (d t) 1 :=
+  have hmon : ∀ t, (X 0 ^ a t * X 1 ^ (n - a t) : MvPolynomial (Fin 2) ℂ) = MvPolynomial.monomial (d
+    t) 1 :=
     by
     intro t
     simp only [d]
@@ -161,7 +163,8 @@ theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c�
 theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := by
   classical
   have hsub : (HeckeEis.BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) ≤
-      Submodule.span ℂ ((Finset.range (n + 1)).image fun a => (X 0 ^ a * X 1 ^ (n - a) : MvPolynomial (Fin 2) ℂ)) := by
+      Submodule.span ℂ ((Finset.range (n + 1)).image fun a => (X 0 ^ a * X 1 ^ (n - a) :
+        MvPolynomial (Fin 2) ℂ)) := by
     intro F hF
     rw [MvPolynomial.mem_homogeneousSubmodule] at hF
     rw [MvPolynomial.as_sum F]
@@ -228,10 +231,14 @@ theorem subst_bvec (M : Matrix (Fin 2) (Fin 2) ℤ) (c₁ c₂ μ₁ μ₂ : ℂ
   exact mul_mul_mul_comm _ _ _ _
 
 theorem le_finrank_ker (n : ℕ) (g : SL(2, ℤ)) (c₁ c₂ μ₁ μ₂ : ℂ) (hc : c₁ ≠ c₂)
-    (h11 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℤ) : ℂ) + c₁ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℤ) : ℂ) = μ₁)
-    (h12 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ℂ) + c₁ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℤ) : ℂ) = μ₁ * c₁)
-    (h21 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℤ) : ℂ) + c₂ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℤ) : ℂ) = μ₂)
-    (h22 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ℂ) + c₂ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℤ) : ℂ) = μ₂ * c₂)
+    (h11 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℤ) : ℂ) + c₁ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 0
+      1 : ℤ) : ℂ) = μ₁)
+    (h12 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ℂ) + c₁ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 1
+      1 : ℤ) : ℂ) = μ₁ * c₁)
+    (h21 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℤ) : ℂ) + c₂ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 0
+      1 : ℤ) : ℂ) = μ₂)
+    (h22 : (((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℤ) : ℂ) + c₂ * (((g : Matrix (Fin 2) (Fin 2) ℤ) 1
+      1 : ℤ) : ℂ) = μ₂ * c₂)
     {B : ℕ} (a : Fin B → ℕ) (ha : Function.Injective a) (hle : ∀ t, a t ≤ n)
     (heig : ∀ t, μ₁ ^ a t * μ₂ ^ (n - a t) = 1) :
     B ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n g - 1)) := by
@@ -245,14 +252,17 @@ theorem le_finrank_ker (n : ℕ) (g : SL(2, ℤ)) (c₁ c₂ μ₁ μ₂ : ℂ) 
       change binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (bvec c₁ c₂ n (a t)) = bvec c₁ c₂ n (a t)
       rw [subst_bvec _ c₁ c₂ μ₁ μ₂ h11 h12 h21 h22, heig t, C_1, one_mul]⟩
   have hli : LinearIndependent ℂ e := by
-    apply LinearIndependent.of_comp ((BinaryForm ℂ n).subtype ∘ₗ (LinearMap.ker (binaryFormRepSL ℂ n g - 1)).subtype)
+    apply LinearIndependent.of_comp ((BinaryForm ℂ n).subtype ∘ₗ (LinearMap.ker (binaryFormRepSL ℂ n
+      g - 1)).subtype)
     exact linearIndependent_bvec c₁ c₂ hc n a ha
   have h := hli.fintype_card_le_finrank
   rwa [Fintype.card_fin] at h
 
 theorem S_entries :
-    ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 0 = 0 ∧ ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 1 = -1 ∧
-    ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 ∧ ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0 := by
+    ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 0 0 = 0 ∧ ((ModularGroup.S : SL(2, ℤ))
+      : Matrix (Fin 2) (Fin 2) ℤ) 0 1 = -1 ∧
+    ((ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 ∧ ((ModularGroup.S : SL(2, ℤ))
+      : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0 := by
   simp [ModularGroup.coe_S]
 
 theorem ST_entries :
@@ -264,13 +274,16 @@ theorem ST_entries :
     Fin.sum_univ_two]
 
 theorem main (n : ℕ) (hn : Even n) :
-    n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
+    n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n ModularGroup.S
+      - 1)) ∧
     n + 1 - 2 * ((n + 2) / 3)
-      ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)) := by
+      ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) -
+        1)) := by
   obtain ⟨p, hp⟩ := hn
   constructor
   · obtain ⟨e00, e01, e10, e11⟩ := S_entries
-    refine le_finrank_ker n ModularGroup.S Complex.I (-Complex.I) (-Complex.I) Complex.I ?_ ?_ ?_ ?_ ?_
+    refine le_finrank_ker n ModularGroup.S Complex.I (-Complex.I) (-Complex.I) Complex.I ?_ ?_ ?_ ?_
+      ?_
       (fun t : Fin (n + 1 - 2 * ((n + 2) / 4)) => 2 * (t : ℕ) + p % 2) ?_ ?_ ?_
     · intro h
       have := congrArg Complex.im h
@@ -331,19 +344,23 @@ theorem main (n : ℕ) (hn : Even n) :
       have h3 : p % 3 = 0 ∨ p % 3 = 1 ∨ p % 3 = 2 := by omega
       have hle : 3 * (t : ℕ) + (2 * n) % 3 ≤ n :=
         by have := t.2; rcases h3 with h3 | h3 | h3 <;> omega
-      obtain ⟨q, hq⟩ : ∃ q, 3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3)) = 3 * q :=
+      obtain ⟨q, hq⟩ : ∃ q, 3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3)) = 3 *
+        q :=
         ⟨(3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3))) / 3, by rcases h3 with h3 | h3 | h3 <;> omega⟩
       have hev : Even n := ⟨p, hp⟩
       rw [neg_pow ω, neg_pow (ω ^ 2), mul_mul_mul_comm, ← pow_add, show (3 * (t : ℕ) + (2 * n) % 3) + (n - (3 * (t : ℕ) + (2 * n) % 3)) = n by omega,
-        Even.neg_one_pow hev, one_mul, ← pow_mul, ← pow_add, show 3 * (t : ℕ) + 2 * n % 3 + 2 * (n - (3 * (t : ℕ) + 2 * n % 3))
+        Even.neg_one_pow hev, one_mul, ← pow_mul, ← pow_add, show 3 * (t : ℕ) + 2 * n % 3 + 2 * (n -
+          (3 * (t : ℕ) + 2 * n % 3))
           = 3 * q by omega, pow_mul, hω3, one_pow]
 
 end UH1
 
 theorem solution (n : ℕ) (hn : Even n) :
-    n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
+    n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n
+      ModularGroup.S - 1)) ∧
     n + 1 - 2 * ((n + 2) / 3)
-      ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)) :=
+      ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S *
+        ModularGroup.T) - 1)) :=
   UH1.main n hn
 
 end S_HeckeEis_le_finrank_fixed_S_and_ST_binaryFormRepSL
@@ -357,9 +374,11 @@ public section publicSection
 
 open scoped MatrixGroups
 theorem HeckeEis.le_finrank_fixed_S_and_ST_binaryFormRepSL (n : ℕ) (hn : Even n) :
-    n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1)) ∧
+    n + 1 - 2 * ((n + 2) / 4) ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n
+      ModularGroup.S - 1)) ∧
     n + 1 - 2 * ((n + 2) / 3)
-      ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)) :=
+      ≤ Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S *
+        ModularGroup.T) - 1)) :=
   solution n hn
 
 end publicSection

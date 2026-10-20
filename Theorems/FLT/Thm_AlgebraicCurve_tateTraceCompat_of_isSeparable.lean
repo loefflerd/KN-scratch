@@ -53,9 +53,11 @@ $h_E$.
 This is Tate's trace formula for the local residue symbol: the residue at a place $w$ of $F$
 computed against a uniformiser pulled back from $E$ agrees with the residue at the place $v$ below
 of the local trace. It is used in the proofs that taking residues commutes with the trace map,
-[`AlgebraicCurve.residueTraceCompletionCommute`](thm.html#AlgebraicCurve.residueTraceCompletionCommute)
+[`AlgebraicCurve.residueTraceCompletionCommute`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute)
 and
-[`AlgebraicCurve.residueTraceCompletionCommute_v2`](thm.html#AlgebraicCurve.residueTraceCompletionCommute_v2);
+[`AlgebraicCurve.residueTraceCompletionCommute_v2`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute_v2);
 the finiteness witnesses appear explicitly as arguments because the proposition asserted depends on
 them.
 

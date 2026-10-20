@@ -56,7 +56,8 @@ This is the computation of the divisor of the translate $\tau_S^{*} g_T$ of the 
 at the finite places of the affine coordinate ring: the order of $g_T \circ \tau_S$ at $P$ is the
 order of $g_T$ at $P+S$, so that $\tau_S^{*}g_T$ has a simple zero exactly at the points $P$ with
 $n(P+S) = T$ and a simple pole exactly where $n(P+S) = 0$. It is used in
-[`WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq`](thm.html#WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq)
+[`WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq`]
+(thm.html#WeierstrassCurve.Affine.exists_transEquiv_weilFun_eq)
 and thence in the identities `weilPairing0_add_right` and `weilPairing0_self` for the Weil pairing.
 
 ## Explanation of the source proof
@@ -137,7 +138,8 @@ theorem valuation_transEquiv_eq {P S : (W⁄K).Point} (hP : P ≠ 0) (hPS : P + 
   rfl
 
 theorem natDegree_norm_weilNum {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) :
-    ((Algebra.norm (Polynomial K) (weilNum W K n T)).natDegree : ℤ) = n ^ 2 - if T = 0 then 1 else 0 := by
+    ((Algebra.norm (Polynomial K) (weilNum W K n T)).natDegree : ℤ) = n ^ 2 - if T = 0 then 1 else 0
+      := by
   classical
   have ha := weilNum_ne_zero W hn hT
   rw [CoordinateRing.natDegree_norm_eq_finsum_count (W.baseChange K) ha]
@@ -200,7 +202,8 @@ theorem natDegree_norm_weilNum {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point
 theorem valuation_weilFun' {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0)
     (P : (W⁄K).Point) (hP : P ≠ 0) :
     (placeOf W K P hP).valuation (W⁄K).FunctionField (weilFun W K n T) =
-      (if (n : ℤ) • P = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • P = 0 then exp (-1 : ℤ) else 1) := by
+      (if (n : ℤ) • P = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • P = 0 then exp (-1 : ℤ) else 1)
+        := by
   rw [weilFun, map_div₀, valuation_weilNum W hn hT P hP, valuation_weilNum W hn (smul_zero _) P hP]
 
 end WeierstrassCurve.Affine.DivTau
@@ -210,7 +213,9 @@ theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [Deci
     [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
     {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0)
     (P : (W⁄K).Point) (hP : P ≠ 0) :
-    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) := by
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n :
+      ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else
+      1) := by
   by_cases hPS : P + S = 0
   · have hS : S ≠ 0 := by rintro rfl; exact hP (by simpa using hPS)
     have hPe : P = -S := eq_neg_of_add_eq_zero_left hPS
@@ -242,7 +247,9 @@ theorem WeierstrassCurve.Affine.valuation_transEquiv_weilFun {F : Type*} {K : Ty
     [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic]
     [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point)
     {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) :
-    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) :=
+    (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n :
+      ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else
+      1) :=
   solution W hn S hT P hP
 
 end publicSection

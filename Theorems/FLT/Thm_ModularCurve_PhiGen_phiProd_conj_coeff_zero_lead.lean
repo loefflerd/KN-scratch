@@ -44,9 +44,11 @@ This records the normalisation of the constant term of the generic modular polyn
 the $q$-expansion model: the product of the $\ell+1$ conjugates, taken with the sign $(-1)^{\ell+1}$
 coming from expanding the product, has leading term exactly $t^{-(\ell^2+\ell)}$. It is used in the
 control of the weighted support of the modular polynomial data
-([`ModularCurve.ModularPolynomialData.weighted_support_le`](thm.html#ModularCurve.ModularPolynomialData.weighted_support_le))
+([`ModularCurve.ModularPolynomialData.weighted_support_le`]
+(thm.html#ModularCurve.ModularPolynomialData.weighted_support_le))
 and in
-[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`](thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq).
+[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`]
+(thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq).
 
 ## Explanation of the source proof
 
@@ -423,7 +425,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
     ((phiProd ℓ (conj ℓ ζ)).coeff 0).coeff (-((ℓ * ℓ + ℓ : ℕ) : ℤ)) = 1 :=

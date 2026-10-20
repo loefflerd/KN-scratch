@@ -343,7 +343,8 @@ theorem hasSum_heckeU (k : ℤ) (τ : ℍ) :
 
 include hp hper hhol hbdd in
 theorem hasSum_heckeT (k : ℤ) (τ : ℍ) :
-    HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) := by
+    HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) :=
+      by
   rw [heckeT_apply k hp]
   convert (hasSum_average hp hper hhol hbdd τ).add (hasSum_diag hp hper hhol hbdd k τ) using 1
   funext n
@@ -392,7 +393,8 @@ theorem solution {f : UpperHalfPlane → ℂ}
     (hper : Function.Periodic (f ∘ UpperHalfPlane.ofComplex) 1)
     (hhol : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f)
     (hbdd : UpperHalfPlane.IsBoundedAtImInfty f) (k : ℤ) {p : ℕ} (hp : p ≠ 0) (n : ℕ) :
-    ModularFormClass.qCoeff (ModularForm.heckeU k p f) n = ModularForm.coeffHeckeU p (ModularFormClass.qCoeff f) n :=
+    ModularFormClass.qCoeff (ModularForm.heckeU k p f) n = ModularForm.coeffHeckeU p
+      (ModularFormClass.qCoeff f) n :=
   M4cP1W2.qCoeff_heckeU_bare hp hper hhol hbdd k n
 
 end S_UpperHalfPlane_qCoeff_heckeU
@@ -407,7 +409,8 @@ theorem UpperHalfPlane.qCoeff_heckeU {f : UpperHalfPlane → ℂ}
     (hper : Function.Periodic (f ∘ UpperHalfPlane.ofComplex) 1)
     (hhol : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f)
     (hbdd : UpperHalfPlane.IsBoundedAtImInfty f) (k : ℤ) {p : ℕ} (hp : p ≠ 0) (n : ℕ) :
-    ModularFormClass.qCoeff (ModularForm.heckeU k p f) n = ModularForm.coeffHeckeU p (ModularFormClass.qCoeff f) n :=
+    ModularFormClass.qCoeff (ModularForm.heckeU k p f) n = ModularForm.coeffHeckeU p
+      (ModularFormClass.qCoeff f) n :=
   solution hper hhol hbdd k hp n
 
 end publicSection

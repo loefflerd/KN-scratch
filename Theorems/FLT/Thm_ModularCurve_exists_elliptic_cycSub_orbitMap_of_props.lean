@@ -66,7 +66,8 @@ above $j_0$, described by cyclic subgroups of order $N$ up to automorphisms of $
 of the level-$N$ modular function field at which $\bar{j} - j_0$ has positive order, with the order
 computing the fibre multiplicity. It is stated conditionally on three properties of the full-kernel
 (Vélu) quotient and one monodromy-equivariance property, and is the form from which
-[`ModularCurve.exists_elliptic_cycSub_orbitMap`](thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap)
+[`ModularCurve.exists_elliptic_cycSub_orbitMap`]
+(thm.html#ModularCurve.exists_elliptic_cycSub_orbitMap)
 is obtained once those inputs are discharged.
 
 ## Explanation of the source proof

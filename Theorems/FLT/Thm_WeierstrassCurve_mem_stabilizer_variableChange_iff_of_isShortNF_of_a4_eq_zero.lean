@@ -151,7 +151,8 @@ theorem solution
 
 end S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero
 end P2MW
-export P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero (solution)
+export P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero
+  (solution)
 
 end privateSection
 

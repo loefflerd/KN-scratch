@@ -218,14 +218,16 @@ theorem vcFun_add (P Q : (C • W).toAffine.Point) :
   · rfl
   by_cases hxy : x₁ = x₂ ∧ y₁ = (C • W).toAffine.negY x₂ y₂
   · rw [add_of_Y_eq hxy.1 hxy.2, vcFun_zero]
-    change (0 : W.Point) = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂ y₂) _
+    change (0 : W.Point) = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂
+      y₂) _
     have hxyW := (Yeq_variableChange_iff (W := W) x₁ x₂ y₁ y₂).mpr hxy
     exact (add_of_Y_eq hxyW.1 hxyW.2).symm
   · have hxyW : ¬(vcX C x₁ = vcX C x₂ ∧ vcY C x₁ y₁ = W.negY (vcX C x₂) (vcY C x₂ y₂)) :=
       fun h => hxy ((Yeq_variableChange_iff x₁ x₂ y₁ y₂).mp h)
     have hslope := slope_variableChange (W := W) x₁ x₂ y₁ y₂ h₁.1 h₂.1 hxy
     rw [add_some hxy]
-    change Point.some _ _ _ = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C x₂ y₂) _
+    change Point.some _ _ _ = Point.some (vcX C x₁) (vcY C x₁ y₁) _ + Point.some (vcX C x₂) (vcY C
+      x₂ y₂) _
     rw [add_some hxyW]
     refine some_of_eq_of_eq' ?_ ?_
     · rw [hslope, addX_variableChange]

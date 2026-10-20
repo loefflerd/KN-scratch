@@ -55,7 +55,8 @@ This is the cuspidal-decay half of the identification of regular differentials o
 forms: integrality of the displayed Laurent series over $\mathbb{C}[j^{-1}]$ is the algebraic form
 of regularity at the cusps, and the conclusion says $(gE_4^2E_6)\mid A = o\bigl((h\Delta)\mid
 A\bigr)$ at $i\infty$ for every $A \in \mathrm{SL}_2(\mathbb{Z})$. It is used by
-[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral`](thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral).
+[`ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral`]
+(thm.html#ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral).
 
 ## Explanation of the source proof
 
@@ -169,7 +170,8 @@ def ofMF {F : Type*} {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [FunLike F ℍ �
     ((ofMF f h1 : 𝒩) : ℍ → ℂ) = f := rfl
 
 theorem one_mem_strictPeriods_gamma0 (N : ℕ) :
-    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N)).strictPeriods := by
+    (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0
+      N)).strictPeriods := by
   rw [CongruenceSubgroup.strictPeriods_Gamma0]
   exact AddSubgroup.mem_zmultiples 1
 
@@ -235,7 +237,8 @@ theorem A_cube_sub_B_sq : ψ 𝔞 ^ 3 - ψ 𝔟 ^ 2 = 1728 * ψ 𝔡 := by
       qB1]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant :=
+  have hZΔ : qExpansion 1 (Z : ℍ → ℂ) = PowerSeries.C 1728 * qExpansion 1 ModularForm.discriminant
+    :=
     by
     ext n
     rw [PowerSeries.coeff_C_mul]
@@ -281,12 +284,14 @@ theorem le_analyticOrderAt_sum {ι : Type*} (s : Finset ι) (F : ι → ℂ → 
   | insert a s ha ih =>
     rw [Finset.sum_insert ha]
     refine le_trans ?_ le_analyticOrderAt_add
-    exact le_min (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+    exact le_min (h a (Finset.mem_insert_self a s)) (ih fun i hi => h i (Finset.mem_insert_of_mem
+      hi))
 
 theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ → ℂ} {z : ℂ}
     (hp : AnalyticAt ℂ p z) (hq : AnalyticAt ℂ q z) (hd : AnalyticAt ℂ d z)
     (hC : ∀ i ∈ Finset.range n, AnalyticAt ℂ (C i) z) (hd0 : d z ≠ 0)
-    (hid : p ^ (6 * n) * d ^ m + ∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)) = 0) :
+    (hid : p ^ (6 * n) * d ^ m + ∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i)) =
+      0) :
     analyticOrderAt q z ≤ analyticOrderAt p z := by
   by_contra hlt'
   have hlt := not_le.mp hlt'
@@ -318,7 +323,8 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
       simp only [nsmul_eq_mul]
       push_cast
       ring
-    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) :=
+    have h2 : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞)
+      :=
       by
       have e : ((6 * i) • (k : ℕ∞)) + ((6 * (n - i) * (k + 1) : ℕ) : ℕ∞) =
           ((6 * i * k + 6 * (n - i) * (k + 1) : ℕ) : ℕ∞) := by
@@ -336,7 +342,8 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
       _ ≤ analyticOrderAt (C i) z + ((6 * i) • (k : ℕ∞) + (n - i) • (6 • analyticOrderAt q z)) :=
           self_le_add_left _ _
   have hsum := le_analyticOrderAt_sum (Finset.range n) _ z _ hR
-  have heq : p ^ (6 * n) * d ^ m = -(∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i))) :=
+  have heq : p ^ (6 * n) * d ^ m = -(∑ i ∈ Finset.range n, C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n -
+    i))) :=
     eq_neg_of_add_eq_zero_left hid
   have : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * n * k : ℕ) : ℕ∞) := by
     rw [← hL, heq, analyticOrderAt_neg]
@@ -389,7 +396,8 @@ theorem levelOne_apply_smul {k : ℤ} {F : Type*} [FunLike F ℍ ℂ]
   have h1 := congrFun (SlashInvariantForm.slash_action_eqn f (A : GL (Fin 2) ℝ) ⟨A, rfl⟩) τ
   rw [slash_coe_apply] at h1
   have hδ := denom_ne_zero (A : GL (Fin 2) ℝ) τ
-  calc f (A • τ) = f (A • τ) * denom (A : GL (Fin 2) ℝ) τ ^ (-k) * denom (A : GL (Fin 2) ℝ) τ ^ k := by
+  calc f (A • τ) = f (A • τ) * denom (A : GL (Fin 2) ℝ) τ ^ (-k) * denom (A : GL (Fin 2) ℝ) τ ^ k
+    := by
         rw [mul_assoc, ← zpow_add₀ hδ, neg_add_cancel, zpow_zero, mul_one]
     _ = denom (A : GL (Fin 2) ℝ) τ ^ k * f τ := by rw [h1, mul_comm]
 
@@ -410,7 +418,8 @@ theorem 𝔡_apply_smul (A : SL(2, ℤ)) (τ : ℍ) :
   exact this
 
 theorem tendsto_nice (f : 𝒩) :
-    Filter.Tendsto (f : ℍ → ℂ) atImInfty (nhds (PowerSeries.coeff 0 (qExpansion 1 (f : ℍ → ℂ)))) := by
+    Filter.Tendsto (f : ℍ → ℂ) atImInfty (nhds (PowerSeries.coeff 0 (qExpansion 1 (f : ℍ → ℂ))))
+      := by
   refine ModularCurve.tendsto_atImInfty_of_hasSum_qParam 1 one_pos (f : ℍ → ℂ)
     (fun m => PowerSeries.coeff m (qExpansion 1 (f : ℍ → ℂ))) fun τ => ?_
   have := UpperHalfPlane.hasSum_qExpansion one_pos f.2.1 f.2.2.1 f.2.2.2 τ
@@ -459,7 +468,8 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
       (ψ 𝔥 ^ (2 * M) * ψ 𝔡 ^ (2 * M + 1)) = ψ 𝔤 ^ (2 * M) * ψ 𝔞 ^ (3 * M + 3) * ψ 𝔟 ^ (2 * M) := by
     calc (X ^ (2 * M) * 𝐉 ^ (M + 1) * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M) *
           (ψ 𝔥 ^ (2 * M) * ψ 𝔡 ^ (2 * M + 1))
-        = (X * ψ 𝔥) ^ (2 * M) * (𝐉 * ψ 𝔡) ^ (M + 1) * ((𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) * ψ 𝔡) ^ M := by
+        = (X * ψ 𝔥) ^ (2 * M) * (𝐉 * ψ 𝔡) ^ (M + 1) * ((𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) * ψ
+          𝔡) ^ M := by
           rw [mul_pow (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) (ψ 𝔡) M, mul_pow X (ψ 𝔥), mul_pow
             (𝐉) (ψ 𝔡)]
           ring
@@ -478,7 +488,8 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
   have hmem : ∀ i, ∃ c : Polynomial ℂ,
       Polynomial.aeval ((𝐉)⁻¹) c = algebraMap R (LaurentSeries ℂ) (p.coeff i) := by
     intro i
-    have hi' : algebraMap R (LaurentSeries ℂ) (p.coeff i) ∈ (Polynomial.aeval (R := ℂ) ((𝐉)⁻¹)).range :=
+    have hi' : algebraMap R (LaurentSeries ℂ) (p.coeff i) ∈ (Polynomial.aeval (R := ℂ)
+      ((𝐉)⁻¹)).range :=
       by
       rw [← Algebra.adjoin_singleton_eq_range_aeval]
       exact (p.coeff i).2
@@ -489,8 +500,10 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
     Finset.single_le_sum (f := fun j => (c j).natDegree) (fun j _ => Nat.zero_le _) hi
   clear_value m
   let K : ℕ → 𝒩 := fun i =>
-    ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ l * 𝔞 ^ (3 * (m - l)))
-  have key3 : ∀ i ∈ Finset.range n, ψ 𝔞 ^ (3 * m) * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (K i) :=
+    ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ l * 𝔞 ^ (3 * (m
+      - l)))
+  have key3 : ∀ i ∈ Finset.range n, ψ 𝔞 ^ (3 * m) * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ
+    (K i) :=
     by
     intro i hi
     simp only [K, map_sum, map_mul, map_pow, AlgHom.commutes]
@@ -546,13 +559,19 @@ end ANb
 open ANb in
 theorem solution (N : ℕ) {k : ℤ}
     (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k) (X : LaurentSeries ℂ)
-    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) (M : ℕ)
-    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set (LaurentSeries ℂ)))
-      (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) * (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M))
+    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ)) (M : ℕ)
+    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set
+      (LaurentSeries ℂ)))
+      (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) * (ModularCurve.coeffEmb ℂ
+        ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M))
     (A : Matrix.SpecialLinearGroup (Fin 2) ℤ) (ε : ℝ) (hε : 0 < ε) :
     ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
-      ‖((fun z : UpperHalfPlane => g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∣[k + 14] (A : GL (Fin 2) ℝ)) τ‖ ≤
-        ε * ‖((fun z : UpperHalfPlane => h z * ModularForm.discriminant z) ∣[k + 12] (A : GL (Fin 2) ℝ)) τ‖ := by
+      ‖((fun z : UpperHalfPlane => g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∣[k + 14] (A : GL
+        (Fin 2) ℝ)) τ‖ ≤
+        ε * ‖((fun z : UpperHalfPlane => h z * ModularForm.discriminant z) ∣[k + 12] (A : GL (Fin 2)
+          ℝ)) τ‖ := by
   classical
   obtain ⟨n, m, K, hK, hE⟩ := ANb.coreC (ANb.ofMF g (ANb.one_mem_strictPeriods_gamma0 N))
     (ANb.ofMF h (ANb.one_mem_strictPeriods_gamma0 N)) X hX M h₂
@@ -736,7 +755,8 @@ theorem solution (N : ℕ) {k : ℤ}
     rw [← hT] at h2
     nlinarith
   · have h2M : 2 * M ≠ 0 := by omega
-    have hrhs : ‖U‖ * Q ^ (2 * M) * ‖d‖ * ‖a‖ ^ (4 * M) ≤ C * Q ^ (2 * M) * η₀ * (3 / 2) ^ (4 * M) :=
+    have hrhs : ‖U‖ * Q ^ (2 * M) * ‖d‖ * ‖a‖ ^ (4 * M) ≤ C * Q ^ (2 * M) * η₀ * (3 / 2) ^ (4 * M)
+      :=
       by
       refine mul_le_mul ?_ (pow_le_pow_left₀ (norm_nonneg _) ha_hi.le _) (by positivity) ?_
       · exact mul_le_mul (mul_le_mul_of_nonneg_right hUC (pow_nonneg hQnn _)) hd.le (norm_nonneg _)
@@ -780,13 +800,19 @@ open ModularCurve
 open scoped MatrixGroups ModularForm
 theorem ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv (N : ℕ) {k : ℤ}
     (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k) (X : LaurentSeries ℂ)
-    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) (M : ℕ)
-    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set (LaurentSeries ℂ)))
-      (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) * (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M))
+    (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) :
+      LaurentSeries ℂ)) (M : ℕ)
+    (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set
+      (LaurentSeries ℂ)))
+      (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) * (ModularCurve.coeffEmb ℂ
+        ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M))
     (A : Matrix.SpecialLinearGroup (Fin 2) ℤ) (ε : ℝ) (hε : 0 < ε) :
     ∀ᶠ τ : UpperHalfPlane in UpperHalfPlane.atImInfty,
-      ‖((fun z : UpperHalfPlane => g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∣[k + 14] (A : GL (Fin 2) ℝ)) τ‖ ≤
-        ε * ‖((fun z : UpperHalfPlane => h z * ModularForm.discriminant z) ∣[k + 12] (A : GL (Fin 2) ℝ)) τ‖ :=
+      ‖((fun z : UpperHalfPlane => g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ∣[k + 14] (A : GL
+        (Fin 2) ℝ)) τ‖ ≤
+        ε * ‖((fun z : UpperHalfPlane => h z * ModularForm.discriminant z) ∣[k + 12] (A : GL (Fin 2)
+          ℝ)) τ‖ :=
   solution N g h X hX M h₂ A ε hε
 
 end publicSection

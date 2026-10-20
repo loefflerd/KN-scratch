@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
+Based on Prove2Me node
+ModularCurve.finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
 (da6f3bde-beb3-5d0b-b5b9-58f863f595fa) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission d37a3798-d506-5900-a157-8796984b00d1
@@ -168,13 +169,15 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     (x' : Fk) (hx' : (x' : LaurentSeries k) = jqModC k)
     (hfd : FiniteDimensional (adjoin κ ({x} : Set Fκ)) Fκ) :
     FiniteDimensional (adjoin k ({x'} : Set Fk)) Fk ∧
-      Module.finrank (adjoin k ({x'} : Set Fk)) Fk ≤ Module.finrank (adjoin κ ({x} : Set Fκ)) Fκ := by
+      Module.finrank (adjoin k ({x'} : Set Fk)) Fk ≤ Module.finrank (adjoin κ ({x} : Set Fκ)) Fκ
+        := by
   classical
   have hjk : jqModC k ∈ Fk := intFormRatiosC_subset k Γ (ModularCurve.jqModC_mem_intFormRatiosC k Γ)
   have hΦx : Φ φ (x : LaurentSeries κ) = jqModC k := by rw [hx, coeffMap_jqModC]
   set Lκ : IntermediateField κ Fκ := adjoin κ ({x} : Set Fκ) with hLκ
   set K₀ : IntermediateField k Fk := adjoin k ({x'} : Set Fk) with hK₀
-  set K₁ : IntermediateField k (LaurentSeries k) := adjoin k ({jqModC k} : Set (LaurentSeries k)) with hK₁
+  set K₁ : IntermediateField k (LaurentSeries k) := adjoin k ({jqModC k} : Set (LaurentSeries k))
+    with hK₁
   have : FiniteDimensional Lκ Fκ := hfd
   let ψ₀ : Lκ →+* LaurentSeries k :=
     (Φ φ).comp (((qExpFunctionFieldC κ Γ).val : Fκ →+* LaurentSeries κ).comp (algebraMap Lκ Fκ))
@@ -315,7 +318,8 @@ variable (p : ℕ) [Fact p.Prime] (A : ValuationSubring (AlgebraicClosure ℚ)) 
 
 include hA in
 theorem isAlgebraic_residueField :
-    letI : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
+    letI : CharP (IsLocalRing.ResidueField A) p :=
+      ValuationSubring.charP_residueField_of_liesOverPrime_def
       (Fact.out : p.Prime) hA
     letI := ZMod.algebra (IsLocalRing.ResidueField A) p
     Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := by
@@ -380,7 +384,8 @@ theorem coe_eq_zero_of_mem_maximalIdeal_top {a : (⊤ : ValuationSubring K)}
   · exact Subtype.ext (inv_mul_cancel₀ h)
 
 def residueTopHom : IsLocalRing.ResidueField (⊤ : ValuationSubring K) →+* K :=
-  Ideal.Quotient.lift (IsLocalRing.maximalIdeal (⊤ : ValuationSubring K)) (⊤ : ValuationSubring K).subtype
+  Ideal.Quotient.lift (IsLocalRing.maximalIdeal (⊤ : ValuationSubring K)) (⊤ : ValuationSubring
+    K).subtype
     fun _ ha => coe_eq_zero_of_mem_maximalIdeal_top K ha
 
 end CharZero
@@ -479,7 +484,8 @@ theorem solution
 
 end S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
 end P2MW
-export P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index (solution)
+export P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
+  (solution)
 
 end privateSection
 

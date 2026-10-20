@@ -82,7 +82,8 @@ variable (L : Type*) [Field L] [Algebra ℚ L]
 variable (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (t : LaurentSeries ℚ)
 
 abbrev K₀ :
-    IntermediateField ℚ (LaurentSeries ℚ) := IntermediateField.adjoin ℚ ({t} : Set (LaurentSeries ℚ))
+    IntermediateField ℚ (LaurentSeries ℚ) := IntermediateField.adjoin ℚ ({t} : Set (LaurentSeries
+      ℚ))
 
 abbrev K : IntermediateField L (LaurentSeries L) :=
   IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries L))
@@ -116,13 +117,15 @@ abbrev E (ht : t ∈ F₀) : IntermediateField (K L t) (LaurentSeries L) := exte
 def φ : K₀ t →+* K L t := (coeffEmb L).restrict _ _ fun _ hx => coeffEmb_mem_K L hx
 
 def ψ (ht : t ∈ F₀) : E₀ F₀ t ht →+* E L F₀ t ht :=
-  (coeffEmb L).restrict _ _ fun _ hx => coeffEmb_mem_laurentBaseChange L ((mem_extendScalars _).mp hx)
+  (coeffEmb L).restrict _ _ fun _ hx => coeffEmb_mem_laurentBaseChange L ((mem_extendScalars _).mp
+    hx)
 
 theorem coe_φ (x : K₀ t) : (φ L x : LaurentSeries L) = coeffEmb L x := rfl
 theorem coe_ψ (ht : t ∈ F₀) (x : E₀ F₀ t ht) : (ψ L ht x : LaurentSeries L) = coeffEmb L x := rfl
 
 theorem ψ_compat (ht : t ∈ F₀) :
-    (algebraMap (K L t) (E L F₀ t ht)).comp (φ L) = (ψ L ht).comp (algebraMap (K₀ t) (E₀ F₀ t ht)) := by
+    (algebraMap (K L t) (E L F₀ t ht)).comp (φ L) = (ψ L ht).comp (algebraMap (K₀ t) (E₀ F₀ t ht))
+      := by
   apply RingHom.ext
   intro x
   apply Subtype.ext
@@ -135,27 +138,33 @@ theorem isAlgebraic_coeffEmb (ht : t ∈ F₀) [FiniteDimensional (K₀ t) (E₀
   have h1 : IsIntegral (K₀ t) (⟨f, (mem_extendScalars _).mpr hf⟩ : E₀ F₀ t ht) :=
     Algebra.IsIntegral.isIntegral _
   have h2 := h1.map_of_comp_eq (φ L) (ψ L ht) (ψ_compat L ht)
-  have h3 : IsIntegral (K L t) ((ψ L ht ⟨f, (mem_extendScalars _).mpr hf⟩ : E L F₀ t ht) : LaurentSeries L) :=
+  have h3 : IsIntegral (K L t) ((ψ L ht ⟨f, (mem_extendScalars _).mpr hf⟩ : E L F₀ t ht) :
+    LaurentSeries L) :=
     h2.algebraMap
   exact h3.isAlgebraic
 
 theorem laurentBaseChange_eq_adjoin :
-    laurentBaseChange L F₀ = IntermediateField.adjoin L (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ))) := rfl
+    laurentBaseChange L F₀ = IntermediateField.adjoin L (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)))
+      := rfl
 
 theorem restrictScalars_adjoin_K (ht : t ∈ F₀) :
-    (IntermediateField.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)))).restrictScalars L
+    (IntermediateField.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)))).restrictScalars
+      L
       = laurentBaseChange L F₀ := by
-  have h1 : IntermediateField.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ))) ≤ E L F₀ t ht :=
+  have h1 : IntermediateField.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ))) ≤ E L F₀ t
+    ht :=
     adjoin_le_iff.mpr (subset_adjoin L _)
   have h2 : laurentBaseChange L F₀ ≤
-      (IntermediateField.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)))).restrictScalars L :=
+      (IntermediateField.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries
+        ℚ)))).restrictScalars L :=
     adjoin_le_iff.mpr (subset_adjoin (K L t) _)
   exact le_antisymm (fun x hx => h1 hx) h2
 
 theorem closure_image_eq :
     (Submonoid.closure (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ))) : Set (LaurentSeries L))
       = coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)) := by
-  have : (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ))) = ((F₀.toSubfield.map (coeffEmb L)).toSubmonoid : Set (LaurentSeries L)) :=
+  have : (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ))) = ((F₀.toSubfield.map (coeffEmb
+    L)).toSubmonoid : Set (LaurentSeries L)) :=
     by
     ext x; simp
   rw [this, Submonoid.closure_eq]
@@ -172,20 +181,23 @@ theorem mem_span_image (x : LaurentSeries L) (hx : x ∈ laurentBaseChange L F�
   have halg : ∀ y ∈ coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)), IsAlgebraic (K L t) y := by
     rintro _ ⟨f, hf, rfl⟩; exact isAlgebraic_coeffEmb L ht f hf
   rw [← mem_toSubalgebra, adjoin_toSubalgebra_of_isAlgebraic halg] at hx'
-  have hx'' : x ∈ Subalgebra.toSubmodule (Algebra.adjoin (K L t) (coeffEmb L '' (F₀ : Set (LaurentSeries ℚ)))) :=
+  have hx'' : x ∈ Subalgebra.toSubmodule (Algebra.adjoin (K L t) (coeffEmb L '' (F₀ : Set
+    (LaurentSeries ℚ)))) :=
     hx'
   rw [Algebra.adjoin_eq_span] at hx''
   rwa [closure_image_eq] at hx''
 
 theorem mem_span_range {ι : Type*} (b : Module.Basis ι (K₀ t) (E₀ F₀ t ht)) (x : LaurentSeries L)
     (hx : x ∈ laurentBaseChange L F₀) :
-    x ∈ Submodule.span (K L t) (Set.range fun i => ((ψ L ht (b i) : E L F₀ t ht) : LaurentSeries L)) := by
+    x ∈ Submodule.span (K L t) (Set.range fun i => ((ψ L ht (b i) : E L F₀ t ht) : LaurentSeries L))
+      := by
   refine Submodule.span_le.mpr ?_ (mem_span_image L ht x hx)
   rintro _ ⟨f, hf, rfl⟩
   have hrepr := b.linearCombination_repr ⟨f, (mem_extendScalars _).mpr hf⟩
   rw [Finsupp.linearCombination_apply, Finsupp.sum] at hrepr
   have : coeffEmb L f = ∑ i ∈ (b.repr ⟨f, (mem_extendScalars _).mpr hf⟩).support,
-      (φ L (b.repr ⟨f, (mem_extendScalars _).mpr hf⟩ i)) • ((ψ L ht (b i) : E L F₀ t ht) : LaurentSeries L) := by
+      (φ L (b.repr ⟨f, (mem_extendScalars _).mpr hf⟩ i)) • ((ψ L ht (b i) : E L F₀ t ht) :
+        LaurentSeries L) := by
     have h2 := congrArg (fun z : E₀ F₀ t ht => coeffEmb L (z : LaurentSeries ℚ)) hrepr
     dsimp only at h2
     rw [← h2, AddSubmonoidClass.coe_finsetSum, map_sum]
@@ -241,7 +253,8 @@ theorem linearIndependent_pow_mul (ht : t ∈ F₀) (htr : Transcendental ℚ t)
     rw [AddSubmonoidClass.coe_finsetSum, ZeroMemClass.coe_zero]
     have h1 : ∀ i, ((((⟨c i, hcmem i⟩ : K₀ t) • v i : E₀ F₀ t ht)) : LaurentSeries ℚ)
         = ∑ q ∈ S, if q.2 = i then
-            algebraMap ℚ (LaurentSeries ℚ) (μ q) * t ^ q.1 * ((v i : E₀ F₀ t ht) : LaurentSeries ℚ) else 0 := by
+            algebraMap ℚ (LaurentSeries ℚ) (μ q) * t ^ q.1 * ((v i : E₀ F₀ t ht) : LaurentSeries ℚ)
+              else 0 := by
       intro i
       change c i * ((v i : E₀ F₀ t ht) : LaurentSeries ℚ) = _
       rw [Finset.sum_mul]
@@ -275,7 +288,8 @@ theorem linearIndependent_pow_mul (ht : t ∈ F₀) (htr : Transcendental ℚ t)
 
 theorem exists_common_denom {ι : Type*} (s : Finset ι) (g : ι → K L t) :
     ∃ d : L[X], aeval (coeffEmb L t) d ≠ 0 ∧
-      ∀ i ∈ s, ∃ p : L[X], aeval (coeffEmb L t) d * (g i : LaurentSeries L) = aeval (coeffEmb L t) p := by
+      ∀ i ∈ s, ∃ p : L[X], aeval (coeffEmb L t) d * (g i : LaurentSeries L) = aeval (coeffEmb L t) p
+        := by
   classical
   induction s using Finset.induction_on with
   | empty => exact ⟨1, by simp, by simp⟩
@@ -306,7 +320,8 @@ theorem linearIndependent_ψ (ht : t ∈ F₀) (htr : Transcendental ℚ t) {ι 
   intro s g hg i hi
   obtain ⟨d, hd, hs⟩ := exists_common_denom L Finset.univ g
   choose! P hP using hs
-  have hg' : ∑ j ∈ s, aeval (coeffEmb L t) (P j) * coeffEmb L ((v j : E₀ F₀ t ht) : LaurentSeries ℚ) = 0 :=
+  have hg' : ∑ j ∈ s, aeval (coeffEmb L t) (P j) * coeffEmb L ((v j : E₀ F₀ t ht) : LaurentSeries ℚ)
+    = 0 :=
     by
     have := congrArg (fun z : E L F₀ t ht => aeval (coeffEmb L t) d * (z : LaurentSeries L)) hg
     beta_reduce at this
@@ -314,7 +329,8 @@ theorem linearIndependent_ψ (ht : t ∈ F₀) (htr : Transcendental ℚ t) {ι 
     rw [← this]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [IntermediateField.coe_smul]
-    change _ = aeval (coeffEmb L t) d * (((g j : K L t) : LaurentSeries L) * ((ψ L ht (v j) : E L F₀ t ht) : LaurentSeries L))
+    change _ = aeval (coeffEmb L t) d * (((g j : K L t) : LaurentSeries L) * ((ψ L ht (v j) : E L F₀
+      t ht) : LaurentSeries L))
     rw [← mul_assoc, hP j (Finset.mem_univ j)]
     rfl
   let n : ℕ := (s.sup fun j => (P j).natDegree) + 1
@@ -329,7 +345,8 @@ theorem linearIndependent_ψ (ht : t ∈ F₀) (htr : Transcendental ℚ t) {ι 
     rw [← HahnSeries.single_zero_mul_eq_smul, map_mul, map_pow, Algebra.smul_def,
       algebraMap_laurentSeries_eq_single, mul_assoc]
   have hcoeff : ∀ j ∈ s, ∀ k ∈ Finset.range n, (P j).coeff k = 0 := fun j hj k hk =>
-    hw ((Finset.range n) ×ˢ s) (fun p => (P p.2).coeff p.1) hrel (k, j) (Finset.mem_product.mpr ⟨hk, hj⟩)
+    hw ((Finset.range n) ×ˢ s) (fun p => (P p.2).coeff p.1) hrel (k, j) (Finset.mem_product.mpr ⟨hk,
+      hj⟩)
   have hP0 : P i = 0 := by
     ext k
     by_cases hk : k < n
@@ -373,14 +390,18 @@ open TransportDev
 theorem relfinrank_laurentBaseChange (L : Type*) [Field L] [Algebra ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (t : LaurentSeries ℚ) (ht : t ∈ F₀)
     (htr : Transcendental ℚ t) :
-    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries L))) (laurentBaseChange L F₀)
-      = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({t} : Set (LaurentSeries ℚ))) F₀ :=
+    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries
+      L))) (laurentBaseChange L F₀)
+      = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({t} : Set (LaurentSeries ℚ))) F₀
+        :=
   relfinrank_eq L ht htr
 
 theorem relfinrank_laurentBaseChange_full (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :
-    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L jq} : Set (LaurentSeries L)))
+    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L jq} : Set (LaurentSeries
+      L)))
         (laurentBaseChange L (modularFunctionFieldFull N))
-      = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (modularFunctionFieldFull N) :=
+      = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+        (modularFunctionFieldFull N) :=
   relfinrank_eq L (jq_mem_full N) transcendental_jq
 
 theorem relfinrank_restrictScalars {K X : Type*} [Field K] [Field X] [Algebra K X]
@@ -392,7 +413,8 @@ theorem relfinrank_restrictScalars {K X : Type*} [Field K] [Field X] [Algebra K 
   rw [this]
 
 theorem relfinrank_full_prime (ℓ : ℕ) [Fact ℓ.Prime] :
-    IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (modularFunctionFieldFull ℓ)
+    IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
+      (modularFunctionFieldFull ℓ)
       = ℓ + 1 := by
   rw [← relfinrank_laurentBaseChange_full (AlgebraicClosure ℚ) ℓ, ←
     finrank_adjoin_jqNModC_eq_of_prime ℓ]
@@ -408,7 +430,9 @@ end
 open ModularCurve in
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
     (t : LaurentSeries ℚ) (ht : t ∈ F₀) (htr : Transcendental ℚ t) :
-    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries L))) (laurentBaseChange L F₀) = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({t} : Set (LaurentSeries ℚ))) F₀ :=
+    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries
+      L))) (laurentBaseChange L F₀) = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({t}
+      : Set (LaurentSeries ℚ))) F₀ :=
   TransportRows.relfinrank_laurentBaseChange L F₀ t ht htr
 
 end S_ModularCurve_relfinrank_laurentBaseChange
@@ -424,7 +448,9 @@ open ModularCurve
 theorem ModularCurve.relfinrank_laurentBaseChange (L : Type*) [Field L] [Algebra ℚ L]
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (t : LaurentSeries ℚ) (ht : t ∈ F₀)
     (htr : Transcendental ℚ t) :
-    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries L))) (laurentBaseChange L F₀) = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({t} : Set (LaurentSeries ℚ))) F₀ :=
+    IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L t} : Set (LaurentSeries
+      L))) (laurentBaseChange L F₀) = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({t}
+      : Set (LaurentSeries ℚ))) F₀ :=
   solution L F₀ t ht htr
 
 end publicSection

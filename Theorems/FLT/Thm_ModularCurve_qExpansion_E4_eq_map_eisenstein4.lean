@@ -69,7 +69,8 @@ end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpansion_E4_eq_map_eisenstein4.ModularCurve in
 theorem solution :
-    UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₄ = PowerSeries.map (Int.castRingHom ℂ) ModularCurve.eisenstein4 := by
+    UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₄ = PowerSeries.map (Int.castRingHom ℂ)
+      ModularCurve.eisenstein4 := by
   ext m
   rw [EisensteinSeries.E_qExpansion_coeff _ ⟨2, rfl⟩ m, PowerSeries.coeff_map, eisenstein4,
     PowerSeries.coeff_mk]
@@ -92,7 +93,8 @@ end privateSection
 public section publicSection
 
 theorem ModularCurve.qExpansion_E4_eq_map_eisenstein4 :
-    UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₄ = PowerSeries.map (Int.castRingHom ℂ) ModularCurve.eisenstein4 :=
+    UpperHalfPlane.qExpansion 1 ⇑ModularForm.E₄ = PowerSeries.map (Int.castRingHom ℂ)
+      ModularCurve.eisenstein4 :=
   solution
 
 end publicSection

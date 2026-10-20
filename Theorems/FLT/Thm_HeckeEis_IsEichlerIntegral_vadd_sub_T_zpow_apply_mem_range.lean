@@ -49,7 +49,8 @@ denotes the translation action of the real number $h$ on $\mathfrak{H}$.
 This is the parabolic (cusp at $\infty$) condition satisfied by the Eichler–Shimura cocycle attached
 to an Eichler integral of a cusp form, stated here for an arbitrary non-zero translation length $h$
 and without reference to any congruence subgroup. It feeds into
-[`HeckeEis.isParabolicCocycle_cocycle_of_isEichlerIntegral`](thm.html#HeckeEis.isParabolicCocycle_cocycle_of_isEichlerIntegral),
+[`HeckeEis.isParabolicCocycle_cocycle_of_isEichlerIntegral`]
+(thm.html#HeckeEis.isParabolicCocycle_cocycle_of_isEichlerIntegral),
 where the cocycle built from $G$ is shown to be parabolic.
 
 ## Explanation of the source proof
@@ -82,30 +83,36 @@ p2m_open "UpperHalfPlane MvPolynomial HeckeEis \
 open scoped Manifold MatrixGroups
 
 theorem eval_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) ℂ) :
-    MvPolynomial.eval ![0, 1] (binarySubst ℂ ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P)
+    MvPolynomial.eval ![0, 1] (binarySubst ℂ ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin
+      2) ℤ) P)
       = MvPolynomial.eval ![0, 1] P := by
   have key : (fun j : Fin 2 => MvPolynomial.eval₂Hom (RingHom.id ℂ) (![0, 1] : Fin 2 → ℂ)
-      (∑ i : Fin 2, C ((((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ) * X i))
+      (∑ i : Fin 2, C ((((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ) *
+        X i))
       = (![0, 1] : Fin 2 → ℂ) := by
     funext j
     fin_cases j <;> simp [ModularGroup.coe_T_zpow, Fin.sum_univ_two]
   rw [binarySubst, MvPolynomial.aeval_eq_bind₁, MvPolynomial.eval, MvPolynomial.eval₂Hom_bind₁, key]
 
 theorem coeff_single_one_binaryFormRepSL_T_zpow (n : ℕ) (h : ℤ) (P : ↥(BinaryForm ℂ n)) :
-    AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n (ModularGroup.T ^ h) P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n)
+    AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n (ModularGroup.T ^ h) P : ↥(BinaryForm ℂ n)) :
+      MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n)
       = AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) := by
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (binaryFormRepSL ℂ n _ P).2,
     coeff_single_one_eq_eval_of_mem_binaryForm P.2, binaryFormRepSL_apply_coe,
     eval_binarySubst_T_zpow]
 
 theorem coeff_single_one_linePow (n : ℕ) (z : ℂ) :
-    AddMonoidAlgebra.coeff ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) = 1 := by
+    AddMonoidAlgebra.coeff ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+      (Finsupp.single 1 n) = 1 := by
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (linePow n z).2, coe_linePow]
   simp
 
 end HeckeEis.CuspInftySol
 
-open _root_.HeckeEis _root_.P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis HeckeEis.CuspInftySol UpperHalfPlane MvPolynomial in
+open _root_.HeckeEis
+  _root_.P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.HeckeEis
+  HeckeEis.CuspInftySol UpperHalfPlane MvPolynomial in
 theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
     {g : UpperHalfPlane → ℂ} {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hG : HeckeEis.IsEichlerIntegral n g G)
@@ -117,7 +124,8 @@ theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
   apply mem_range_binaryFormRepSL_T_zpow_sub_one n hh
   rw [Submodule.coe_sub, coeff_sub, coeff_single_one_binaryFormRepSL_T_zpow, sub_eq_zero]
   set φ : ℂ → ℂ := fun z =>
-    AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) with hφdef
+    AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+      (Finsupp.single 1 n) with hφdef
   have hφ : ∀ σ : ℍ, HasDerivAt φ (g σ) ↑σ := fun σ => by
     have := hG (Finsupp.single 1 n) σ
     rw [coeff_single_one_linePow, mul_one] at this

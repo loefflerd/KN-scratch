@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+Based on Prove2Me node
+CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
 (ada43ca0-92a2-54ff-9dd3-dd3210222059) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 739c700b-2696-57cd-b5e1-f0321c11c27f
@@ -326,7 +327,9 @@ theorem solution
 
 end S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
 end P2MW
-export P2MW.S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul (solution)
+export
+  P2MW.S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+  (solution)
 
 end privateSection
 
@@ -334,7 +337,8 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+theorem
+  CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
     (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index =
         3 * Nat.card (DoubleCoset.Quotient

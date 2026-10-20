@@ -71,7 +71,8 @@ $$\sum_{b=0}^{p-1} A_s(b,p)=\bigl(a_p-\epsilon(p)p^{k-2-j}\bigr)V_s.$$
 The zero residue contributes $A_s(0,p)=p^j V_s$. Periodicity gives $A_s(b,1)=V_s$ for every integer
 $b$. Therefore the sum over unit residues of the signed disk moments equals
 
-$$\left[\alpha^{-1}\bigl(a_p-\epsilon(p)p^{k-2-j}-p^j\bigr)-\frac{\epsilon(p)p^{k-2}(p-1)}{\alpha^2}\right]\iota_p(V_s),$$
+$$\left[\alpha^{-1}\bigl(a_p-\epsilon(p)p^{k-2-j}-p^j\bigr)-\frac{\epsilon(p)p^{k-2}(p-1)}{\alpha^2}
+\right]\iota_p(V_s),$$
 
 where algebraic coefficients in this display are understood through $\iota_p$. Using the
 ordinary-root relation $\alpha^2-a_p\alpha+\epsilon(p)p^{k-1}=0$, the bracket is exactly
@@ -1032,7 +1033,8 @@ theorem solution {p N k : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
     simp only [hg,specialFunction,conductor_one_character_value,map_one,one_mul]
   · have h := complex_interpolation_sum hN hk f P 0 χ hχ j hj
     have hv : (∑ a : ZMod (p ^ 0), χ a *
-        (algebraicSymbol P true j a.val (p ^ 0) + algebraicSymbol P false j a.val (p ^ 0))) = v := by
+        (algebraicSymbol P true j a.val (p ^ 0) + algebraicSymbol P false j a.val (p ^ 0))) = v :=
+          by
       simp only [conductor_one_character_value,one_mul]
       have hval (a : ZMod (p ^ 0)) : a.val = 0 := by
         have ha := ZMod.val_lt a
@@ -1066,7 +1068,8 @@ theorem MTT.interpolation_conductor_one_of_moments
     ∃ (g : C((ℤ_[p])ˣ, ℂ_[p])) (v : Qbar),
       (∀ x, g x = specialFunction ιp 0 χ j x) ∧
       ι v = normalizedCriticalValue f P.omega 0 χ j ∧
-      (μ true + μ false) g = eulerMultiplier f ιp α 0 χ j * ιp v := _root_.solution hN hk ι ιp f P α hα μ hμ χ hχ j hj
+      (μ true + μ false) g = eulerMultiplier f ιp α 0 χ j * ιp v := _root_.solution hN hk ι ιp f P α
+        hα μ hμ χ hχ j hj
 end
 
 end publicSection

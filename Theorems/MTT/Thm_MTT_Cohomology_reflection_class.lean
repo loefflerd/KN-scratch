@@ -45,7 +45,8 @@ $$\mathcal R\bigl(T_\ell^{(e)}\varphi\bigr)=T_\ell^{(e)}\bigl(\mathcal R\varphi\
 The identity comes from
 $J\begin{pmatrix}1&b\\0&\ell\end{pmatrix}J=\begin{pmatrix}1&-b\\0&\ell\end{pmatrix}$
 together with
-$\begin{pmatrix}1&-b\\0&\ell\end{pmatrix}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}\begin{pmatrix}1&\ell-b\\0&\ell\end{pmatrix}$:
+$\begin{pmatrix}1&-b\\0&\ell\end{pmatrix}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}\begin{pmatrix}1&
+\ell-b\\0&\ell\end{pmatrix}$:
 the coset representatives are permuted by $b\mapsto \ell-b \pmod \ell$, and the leftover unipotent
 matrix lies in $\Gamma_1(N)$, so it acts trivially on $\varphi$. The second term is fixed because
 $J$ commutes with $\operatorname{diag}(\ell,1)$.
@@ -124,7 +125,8 @@ therefore absorbed by the equivariance of $\varphi$; the second identity then ma
 coefficient actions.
 
 For
-$T_\ell^{(e)}=\sum_{b=0}^{\ell-1}\big|_{\left(\begin{smallmatrix}1&b\\0&\ell\end{smallmatrix}\right)}
+$T_\ell^{(e)}=\sum_{b=0}^{\ell-1}\big|_{\left(\begin{smallmatrix}1&b\\0&\ell\end{smallmatrix}
+\right)}
 +\,e\big|_{\left(\begin{smallmatrix}\ell&0\\0&1\end{smallmatrix}\right)}$ the hypotheses hold with
 
 * $A=A'=\begin{pmatrix}1&0\\0&\ell\end{pmatrix}$, $t=0$;

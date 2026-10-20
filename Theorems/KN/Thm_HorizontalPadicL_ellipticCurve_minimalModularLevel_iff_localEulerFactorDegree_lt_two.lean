@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node HorizontalPadicL.ellipticCurve_minimalModularLevel_iff_localEulerFactorDegree_lt_two
+Based on Prove2Me node
+HorizontalPadicL.ellipticCurve_minimalModularLevel_iff_localEulerFactorDegree_lt_two
 (c7f83142-37ef-43e3-9262-ef2e86ce5f10) by davidloeffler (2026-09-18).
 
 Proof based on Prove2Me submission 83f8c962-dce9-46d1-8654-71f5794dcf04

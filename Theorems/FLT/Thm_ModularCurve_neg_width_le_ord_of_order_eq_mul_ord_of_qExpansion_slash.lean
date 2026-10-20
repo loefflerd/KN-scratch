@@ -53,7 +53,8 @@ T^h \sigma^{-1} \in \Gamma \sqcup \langle -1\rangle$ one has $-h \le \operatorna
 This is one half of the computation of the order of the $j$-invariant at the place of the function
 field of $X(\Gamma)$ corresponding to the cusp $\sigma\infty$: the bound holds for any period $h$ of
 that cusp in $\pm\Gamma$, with no minimality or degree condition imposed. It is used by
-[`ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash`](thm.html#ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash),
+[`ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash`]
+(thm.html#ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash),
 where the matching upper bound turns it into the equality $\operatorname{ord}_P(y) = -h$ for the
 exact cusp width.
 
@@ -100,7 +101,8 @@ theorem mapGL_T_zpow (n : ℕ) :
 theorem natCast_mem_strictPeriods_of_conj_mem (Δ : Subgroup SL(2, ℤ)) (σ : SL(2, ℤ)) (n : ℕ)
     (hn : σ * ModularGroup.T ^ n * σ⁻¹ ∈ Δ) :
     (n : ℝ) ∈ Subgroup.strictPeriods
-      (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ • ((Δ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))) := by
+      (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ • ((Δ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2)
+        ℝ))) := by
   rw [Subgroup.mem_strictPeriods_iff, map_inv, Subgroup.mem_inv_pointwise_smul_iff,
     ConjAct.toConjAct_smul, ← mapGL_T_zpow n, coe_eq_mapGL, ← map_inv, ← map_mul, ← map_mul]
   refine Subgroup.mem_map_of_mem _ ?_
@@ -148,7 +150,8 @@ theorem neg_one_mem_stab {k : ℤ} (hk : Even k) (F : ℍ → ℂ) : (-1 : SL(2,
   rw [mem_stab_iff]
   funext τ
   rw [SL_slash_apply, ModularGroup.SL_neg_smul, one_smul]
-  have hd : denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ))
+  have hd : denom (Matrix.SpecialLinearGroup.toGL ((Matrix.SpecialLinearGroup.map (Int.castRingHom
+    ℝ))
       (-1 : SL(2, ℤ)))) (τ : ℂ) = -1 := by
     simp [denom]
   rw [hd, Even.neg_one_zpow (Even.neg hk), mul_one]
@@ -253,7 +256,8 @@ theorem dvd_order_coe {p : PowerSeries ℂ} (hp : p ≠ 0) (m : ℕ)
 theorem dvd_order_qExpansion {F : ℍ → ℂ} {N : ℕ} (hN : 0 < N) (h : ℕ) (hh : 0 < h)
     (pN : Periodic (F ∘ ofComplex) (N : ℝ)) (ph : Periodic (F ∘ ofComplex) (h : ℝ))
     (dF : MDiff F) (bF : IsBoundedAtImInfty F) (hF0 : qExpansion (N : ℝ) F ≠ 0) :
-    ((N / Nat.gcd h N : ℕ) : ℤ) ∣ ((qExpansion (N : ℝ) F : PowerSeries ℂ) : LaurentSeries ℂ).order := by
+    ((N / Nat.gcd h N : ℕ) : ℤ) ∣ ((qExpansion (N : ℝ) F : PowerSeries ℂ) : LaurentSeries ℂ).order
+      := by
   set d := Nat.gcd h N with hd
   have hdpos : 0 < d := Nat.gcd_pos_of_pos_left N hh
   have hdN : d ∣ N := Nat.gcd_dvd_right h N
@@ -286,7 +290,8 @@ theorem dvd_order_qExpansion_slash {k : ℤ} (hk : Even k)
     (h : ℕ) (hh : 0 < h)
     (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) :
     ((Γ.normalCore.index / Nat.gcd h Γ.normalCore.index : ℕ) : ℤ) ∣
-      ((qExpansion (Γ.normalCore.index : ℝ) (⇑G ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ).order := by
+      ((qExpansion (Γ.normalCore.index : ℝ) (⇑G ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ).order
+        := by
   have ph : Periodic ((⇑G ∣[k] σ) ∘ ofComplex) (h : ℝ) :=
     periodic_of_slash_T_pow_eq _ h (slash_T_pow_eq ⇑G σ h (sup_le_stab hk G hmem))
   exact dvd_order_qExpansion (Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero) h hh
@@ -307,8 +312,10 @@ theorem solution
     (hpres : ∀ (x : ModularCurve.laurentBaseChange ℂ F₀) (k : ℤ)
           (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 →
         (x : LaurentSeries ℂ) *
-            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) →
+            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries
+              ℂ) =
+          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+            →
         Φ x * ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
               ((h : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) =
           ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
@@ -332,7 +339,8 @@ theorem solution
   have key : ∀ x : ↥(ModularCurve.laurentBaseChange ℂ F₀), x ≠ 0 → (m : ℤ) ∣ (Φ x).order := by
     intro x hx
     obtain ⟨k, g, h₁, hh₁, hxgh⟩ :=
-      ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC Γ hT
+      ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
+        Γ hT
         (x : LaurentSeries ℂ) (by rw [← hF]; exact x.2)
     have hH : h₁.mul h₁ ≠ 0 := by
       intro h0
@@ -351,8 +359,10 @@ theorem solution
         map_mul,
         ← mul_assoc, hxgh]
     have e1 := hpres x (k + k) (g.mul h₁) (h₁.mul h₁) hH hxGH
-    set A := ((qExpansion (N : ℝ) (⇑(g.mul h₁) ∣[k + k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) with hA
-    set B := ((qExpansion (N : ℝ) (⇑(h₁.mul h₁) ∣[k + k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) with hB
+    set A := ((qExpansion (N : ℝ) (⇑(g.mul h₁) ∣[k + k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) with
+      hA
+    set B := ((qExpansion (N : ℝ) (⇑(h₁.mul h₁) ∣[k + k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) with
+      hB
     have hBq : qExpansion (N : ℝ) (⇑(h₁.mul h₁) ∣[k + k] σ) ≠ 0 :=
       qExpansion_slash_ne_zero (h₁.mul h₁) σ hH
     have hB0 : B ≠ 0 := by
@@ -421,8 +431,10 @@ theorem ModularCurve.neg_width_le_ord_of_order_eq_mul_ord_of_qExpansion_slash
     (hpres : ∀ (x : ModularCurve.laurentBaseChange ℂ F₀) (k : ℤ)
           (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 →
         (x : LaurentSeries ℂ) *
-            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
-          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) →
+            ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries
+              ℂ) =
+          ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
+            →
         Φ x * ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)
               ((h : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) =
           ((UpperHalfPlane.qExpansion (Γ.normalCore.index : ℝ)

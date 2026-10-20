@@ -46,7 +46,8 @@ This records that a family of rational Laurent series descending the product of 
 conjugates is supported in degrees at most $\ell+1$, the product being a monic polynomial of degree
 $\ell+1$; it is the degree bound used in the construction of the modular polynomial data, and it is
 cited by
-[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`](thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq).
+[`ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq`]
+(thm.html#ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq).
 
 ## Explanation of the source proof
 
@@ -376,7 +377,9 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve.PhiGen in
+open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) {k : ℕ} (hk : ℓ + 1 < k) :
     c k = 0 :=

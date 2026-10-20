@@ -45,7 +45,8 @@ This is the automorphy half of the classical description of differentials of the
 modular curve $X(N)$: a function of the form $(a/b)\,d(c/e)/d\tau$ with $a,b,c,e$ modular functions
 of level $N$ transforms with weight $2$ under $\Gamma(N)$. It is used in the construction of an
 injective linear map from regular differentials to cusp forms,
-[`ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective`](thm.html#ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective).
+[`ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective`]
+(thm.html#ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective).
 
 ## Explanation of the source proof
 
@@ -266,7 +267,8 @@ theorem slash_apply_eq_of_ne {F : ℍ → ℂ} {a b c e : ℍ → ℂ} (ha : a �
   rw [slash_two_apply]
   have h3 : F (γ • τ) * (b τ * e τ ^ 2) = (F τ * D⁻¹) * (b τ * e τ ^ 2) := by
     calc F (γ • τ) * (b τ * e τ ^ 2) = F (γ • τ) * b τ * e τ ^ 2 := by ring
-      _ = a τ * (e τ * (deriv (c ∘ ofComplex) τ * D⁻¹) - c τ * (deriv (e ∘ ofComplex) τ * D⁻¹)) := h1
+      _ = a τ * (e τ * (deriv (c ∘ ofComplex) τ * D⁻¹) - c τ * (deriv (e ∘ ofComplex) τ * D⁻¹)) :=
+        h1
       _ = (a τ * (e τ * deriv (c ∘ ofComplex) τ - c τ * deriv (e ∘ ofComplex) τ)) * D⁻¹ := by ring
       _ = (F τ * b τ * e τ ^ 2) * D⁻¹ := by rw [h2]
       _ = (F τ * D⁻¹) * (b τ * e τ ^ 2) := by ring

@@ -79,7 +79,8 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
   have := hfin
   have : Algebra.IsAlgebraic K⟮x⟯ F := Algebra.IsAlgebraic.of_finite K⟮x⟯ F
   have hirr := (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
-  have hπ₀ : v.ord ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F) = 1 :=
+  have hπ₀ : v.ord ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F) =
+    1 :=
     v.ord_coe_irreducible hirr
   have hd : v.dCoord = KaehlerDifferential.D K F
       ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F) := rfl

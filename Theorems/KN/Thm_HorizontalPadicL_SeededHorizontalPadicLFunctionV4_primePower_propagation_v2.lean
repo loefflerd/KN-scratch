@@ -108,7 +108,8 @@ theorem SeededHorizontalPadicLFunctionV4.primePower_propagation_v2
       (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0) :
     ∃ α : ℝ, 0 < α ∧
       HasLogPowerLowerBound
-        (seededPrimePowerNonvanishingCount ι f η p m B) α := _root_.solution ν hpodd m hm hexponent hinterp htriv
+        (seededPrimePowerNonvanishingCount ι f η p m B) α := _root_.solution ν hpodd m hm hexponent
+          hinterp htriv
 
 end HorizontalPadicL
 

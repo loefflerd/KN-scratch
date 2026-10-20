@@ -1293,9 +1293,14 @@ end RationalFunctionField
 end AlgebraicCurve
 end
 
-open Polynomial _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve _root_.AlgebraicCurve.RationalFunctionField _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField in
+open Polynomial _root_.AlgebraicCurve
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve
+  _root_.AlgebraicCurve.RationalFunctionField
+  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField
+  in
 theorem solution {K : Type*} [Field K] (a : K) {q : Polynomial K} (hq : q ≠ 0) :
-    (placeOfPoint K a).ord (algebraMap (Polynomial K) (RatFunc K) q) = Polynomial.rootMultiplicity a q :=
+    (placeOfPoint K a).ord (algebraMap (Polynomial K) (RatFunc K) q) = Polynomial.rootMultiplicity a
+      q :=
   AlgebraicCurve.RationalFunctionField.ord_placeOfPoint_algebraMap a hq
 
 end S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap
@@ -1310,7 +1315,8 @@ public section publicSection
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
 theorem AlgebraicCurve.RationalFunctionField.ord_placeOfPoint_algebraMap {K : Type*} [Field K]
     (a : K) {q : Polynomial K} (hq : q ≠ 0) :
-    (placeOfPoint K a).ord (algebraMap (Polynomial K) (RatFunc K) q) = Polynomial.rootMultiplicity a q :=
+    (placeOfPoint K a).ord (algebraMap (Polynomial K) (RatFunc K) q) = Polynomial.rootMultiplicity a
+      q :=
   solution a hq
 
 end publicSection

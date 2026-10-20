@@ -246,7 +246,8 @@ theorem exists_separating_transcendental_s6 [PerfectField K] [Algebra.EssFiniteT
 end IsCurveOver
 end AlgebraicCurve
 
-open IntermediateField _root_.Algebra _root_.TensorProduct.Algebra _root_.Algebra.TensorProduct.Algebra in
+open IntermediateField _root_.Algebra _root_.TensorProduct.Algebra
+  _root_.Algebra.TensorProduct.Algebra in
 theorem _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.solution
     {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F] :

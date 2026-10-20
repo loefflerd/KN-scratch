@@ -170,7 +170,8 @@ def qTwistEquiv (u : Kˣ) : LaurentSeries K ≃+* LaurentSeries K where
     qTwistEquiv u f = qTwist u f := rfl
 
 theorem coe_qTwistEquiv (u : Kˣ) :
-    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
+    ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) =
+      qTwist u :=
   RingHom.ext fun _ => rfl
 
 theorem qTwist_TS_one_cycle (ζ : Kˣ) {p : ℕ} (hζp : ζ ^ p = 1) (b : ℕ) :
@@ -377,7 +378,8 @@ theorem qTwist_pow_jqModC_injective (hζ : IsPrimitiveRoot (ζ : K) p) :
 
 theorem sum_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
     (h : Polynomial.aeval (jqModC K) P = jqNModC K p) :
-    ∑ b : Fin p, qTwist (ζ ^ (b : ℕ)) (jqModC K) = algebraMap K (LaurentSeries K) (-P.coeff (p - 1)) := by
+    ∑ b : Fin p, qTwist (ζ ^ (b : ℕ)) (jqModC K) = algebraMap K (LaurentSeries K) (-P.coeff (p - 1))
+      := by
   have hPdeg : P.natDegree = p := natDegree_eq_of_aeval_eq h
   have hPmonic : P.Monic := monic_of_aeval_eq h
   set A : Polynomial (LaurentSeries K) := P.map (algebraMap K (LaurentSeries K)) with hA
@@ -390,7 +392,8 @@ theorem sum_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
     rw [hB, Polynomial.natDegree_prod_of_monic _ _ fun i _ => Polynomial.monic_X_sub_C _]
     simp
   have key : A - B = Polynomial.C (jqNModC K p) := by
-    refine Polynomial.eq_of_natDegree_lt_card_of_eval_eq _ _ (qTwist_pow_jqModC_injective hζ) (fun b => ?_) ?_
+    refine Polynomial.eq_of_natDegree_lt_card_of_eval_eq _ _ (qTwist_pow_jqModC_injective hζ) (fun b
+      => ?_) ?_
     · have hAev : A.eval (qTwist (ζ ^ (b : ℕ)) (jqModC K)) = jqNModC K p := by
         rw [hA, Polynomial.eval_map_algebraMap]
         exact aeval_qTwist_jqModC_eq_of_aeval_eq hζ h b
@@ -435,7 +438,8 @@ theorem coeff_sum_qTwist_jqModC (hζ : IsPrimitiveRoot (ζ : K) p) (m : ℕ) :
   have hζp : ζ ^ p = 1 := units_pow_eq_one_of_isPrimitiveRoot hζ
   rw [HahnSeries.coeff_sum]
   have hterm : ∀ b : Fin p,
-      (qTwist (ζ ^ (b : ℕ)) (jqModC K)).coeff ((p * m : ℕ) : ℤ) = (jqModC K).coeff ((p * m : ℕ) : ℤ) := by
+      (qTwist (ζ ^ (b : ℕ)) (jqModC K)).coeff ((p * m : ℕ) : ℤ) = (jqModC K).coeff ((p * m : ℕ) : ℤ)
+        := by
     intro b
     rw [qTwist_coeff, zpow_natCast, ← pow_mul, Nat.mul_comm (b : ℕ), Nat.mul_assoc, pow_mul, hζp,
       one_pow,
@@ -467,7 +471,8 @@ private theorem coeffMap_algebraMap' {K' : Type*} [Field K'] (σ : K →+* K') (
 theorem coeffMap_aeval_jqModC {K' : Type*} [Field K'] (σ : K →+* K') (P : Polynomial K) :
     coeffMap σ (Polynomial.aeval (jqModC K) P) = Polynomial.aeval (jqModC K') (P.map σ) := by
   rw [Polynomial.aeval_def, Polynomial.aeval_def, Polynomial.hom_eval₂, Polynomial.eval₂_map]
-  have hcomp : (coeffMap σ).comp (algebraMap K (LaurentSeries K)) = (algebraMap K' (LaurentSeries K')).comp σ :=
+  have hcomp : (coeffMap σ).comp (algebraMap K (LaurentSeries K)) = (algebraMap K' (LaurentSeries
+    K')).comp σ :=
     RingHom.ext fun c => coeffMap_algebraMap' σ c
   rw [hcomp]
   congr 1
@@ -490,7 +495,8 @@ theorem aeval_jqModC_ne_jqNModC (hpK : (p : K) ≠ 0) {m : ℕ} (hm : 0 < m)
   have hw' : (jqModC (AlgebraicClosure K)).coeff ((p * m : ℕ) : ℤ) ≠ 0 := by
     rw [← map_jqModC σ]
     exact (map_ne_zero σ).mpr hw
-  have h' : Polynomial.aeval (jqModC (AlgebraicClosure K)) (P.map σ) = jqNModC (AlgebraicClosure K) p :=
+  have h' : Polynomial.aeval (jqModC (AlgebraicClosure K)) (P.map σ) = jqNModC (AlgebraicClosure K)
+    p :=
     by
     rw [← coeffMap_aeval_jqModC, h, jqNModC, jqNModC, ModularCurve.coeffMap_qExpand]
     congr 1
@@ -521,10 +527,12 @@ theorem jqNModC_not_mem_adjoin_of_forall_aeval_ne
       = phiAtSeed data (jqModC K) := by
     rw [phiAtSeed_map]
     rfl
-  have hroot : Polynomial.aeval (⟨jqNModC K p, hmem⟩ : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+  have hroot : Polynomial.aeval (⟨jqNModC K p, hmem⟩ : IntermediateField.adjoin K ({jqModC K} : Set
+    (LaurentSeries K)))
       (phiAtSeed data (⟨jqModC K, Algebra.self_mem_adjoin_singleton K (jqModC K)⟩ :
         Algebra.adjoin K ({jqModC K} : Set (LaurentSeries K)))) = 0 := by
-    apply (algebraMap (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (LaurentSeries K)).injective
+    apply (algebraMap (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)))
+      (LaurentSeries K)).injective
     rw [map_zero, Polynomial.aeval_def, Polynomial.hom_eval₂, ← IsScalarTower.algebraMap_eq, ←
       Polynomial.eval_map,
       hQmap]
@@ -532,8 +540,10 @@ theorem jqNModC_not_mem_adjoin_of_forall_aeval_ne
   obtain ⟨a, ha, -⟩ := exists_integer_of_is_root_of_monic (phiAtSeed_monic data _) hroot
   have hcoe : jqNModC K p = (a : LaurentSeries K) := by
     have h1 := congrArg
-      (fun t : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) => (t : LaurentSeries K)) ha
-    exact h1.trans (IntermediateField.algebraAdjoinAdjoin.coe_algebraMap K ({jqModC K} : Set (LaurentSeries K)) a)
+      (fun t : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) => (t : LaurentSeries
+        K)) ha
+    exact h1.trans (IntermediateField.algebraAdjoinAdjoin.coe_algebraMap K ({jqModC K} : Set
+      (LaurentSeries K)) a)
   have hmemA : jqNModC K p ∈ Algebra.adjoin K ({jqModC K} : Set (LaurentSeries K)) := by
     rw [hcoe]
     exact a.2
@@ -574,7 +584,8 @@ open ModularCurve.W1 in
 private theorem ModularCurve.jqNModC_prime_not_mem_adjoin_of_charZero {K : Type*} [Field K]
     [CharZero K] (p : ℕ) [hp : Fact (Nat.Prime p)] :
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) := by
-  refine ModularCurve.jqNModC_prime_not_mem_adjoin_of_coeff_ne_zero p (Nat.cast_ne_zero.mpr hp.out.ne_zero)
+  refine ModularCurve.jqNModC_prime_not_mem_adjoin_of_coeff_ne_zero p (Nat.cast_ne_zero.mpr
+    hp.out.ne_zero)
     ⟨1, Nat.one_pos, ?_⟩
   have hz : (jqModC ℤ).coeff ((p * 1 : ℕ) : ℤ) ≠ 0 := by
     intro h0
@@ -593,7 +604,8 @@ private theorem ModularCurve.jqNModC_prime_not_mem_adjoin_of_charZero {K : Type*
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve in
 theorem solution {K : Type*} [Field K] [CharZero K] (p : ℕ) [hp : Fact (Nat.Prime p)] :
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
   ModularCurve.jqNModC_prime_not_mem_adjoin_of_charZero p

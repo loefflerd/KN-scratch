@@ -338,7 +338,8 @@ theorem MTT.birch_mellin_formula
     criticalLValue ι f.form m χ j =
       ((-2 * Real.pi * Complex.I) ^ j * gaussSum ι m χ⁻¹ /
         ((j.factorial : ℂ) * (m : ℂ) ^ (j + 1))) *
-        ∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m := _root_.solution hN hk ι f χ hχ j hj
+        ∑ a : ZMod m, ι (χ a) * modularSymbol f.form j a.val m := _root_.solution hN hk ι f χ hχ j
+          hj
 end
 
 end publicSection

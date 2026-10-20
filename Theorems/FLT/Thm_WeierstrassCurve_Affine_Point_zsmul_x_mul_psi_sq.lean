@@ -229,7 +229,9 @@ end M4WilesOmegaXY
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
+theorem solution {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n :
+  ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn
+  : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
     x' * ((W.ψ n).evalEval x y) ^ 2 = (W.φ n).evalEval x y :=
   (M4Wiles.zsmul_coords W h h' hn).2.1
 
@@ -245,7 +247,10 @@ public section publicSection
 open Polynomial
 open scoped Polynomial.Bivariate
 
-theorem WeierstrassCurve.Affine.Point.zsmul_x_mul_psi_sq {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F} (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h = WeierstrassCurve.Affine.Point.some x' y' h') :
+theorem WeierstrassCurve.Affine.Point.zsmul_x_mul_psi_sq {F : Type*} [Field F] [DecidableEq F] (W :
+  WeierstrassCurve F) [W.IsElliptic] (n : ℤ) {x y : F} (h : W.toAffine.Nonsingular x y) {x' y' : F}
+  (h' : W.toAffine.Nonsingular x' y') (hn : n • WeierstrassCurve.Affine.Point.some x y h =
+  WeierstrassCurve.Affine.Point.some x' y' h') :
     x' * ((W.ψ n).evalEval x y) ^ 2 = (W.φ n).evalEval x y :=
   solution W n h h' hn
 

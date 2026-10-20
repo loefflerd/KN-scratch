@@ -95,7 +95,8 @@ theorem seededHorizontalPadicLFunction_assemble_v4
       (trivialHorizontalCharacterV2 p L.toConstructionData.exponent) ≠ 0) :
     ∃ ν : SeededHorizontalPadicLFunctionV4 (B := B) p ιp f η,
       ν.primes = L ∧ ν.InterpolatesSeededCriticalValuesV4 ∧
-      ν.measure.eval (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0 := _root_.solution f hnew η ιp L μ hcharacters hinterp htrivial
+      ν.measure.eval (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0 := _root_.solution f
+        hnew η ιp L μ hcharacters hinterp htrivial
 
 end HorizontalPadicL
 end

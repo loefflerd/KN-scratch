@@ -46,7 +46,8 @@ rather than pointwise form: it transfers the analytic identity $\Delta =
 q\prod_{m\ge1}(1-q^{m})^{24}$ into an identity of formal power series, where the coefficients
 $\tau(n)$ can be manipulated algebraically. It is used to identify the $q$-expansion of $\Delta$
 with the image of $X$ times the Dedekind eta unit, in
-[`ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit`](thm.html#ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit).
+[`ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit`]
+(thm.html#ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit).
 
 ## Explanation of the source proof
 
@@ -97,7 +98,8 @@ private lemma coeff_mul_factor_eq {m n : ℕ} (hmn : m < n + 1) (Q : PowerSeries
     PowerSeries.coeff_X_pow_mul', ite_eq_right (not_le.mpr hmn), add_zero]
 
 private lemma coeff_trunc_eq_coeff_etaPow (m : ℕ) {N : ℕ} (hN : m < N) :
-    PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) =
+    PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24)
+      =
       PowerSeries.coeff m etaPow := by
   have hlim : Tendsto (fun N => PowerSeries.coeff m
       (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24)) atTop
@@ -105,8 +107,10 @@ private lemma coeff_trunc_eq_coeff_etaPow (m : ℕ) {N : ℕ} (hN : m < N) :
     ((PowerSeries.WithPiTopology.continuous_coeff ℂ m).tendsto _).comp
       multipliable_factor_pow.hasProd.tendsto_prod_nat
   have hconst : ∀ N', m < N' → ∀ N, N' ≤ N →
-      PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) =
-      PowerSeries.coeff m (∏ n ∈ Finset.range N', ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) := by
+      PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^
+        24) =
+      PowerSeries.coeff m (∏ n ∈ Finset.range N', ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^
+        24) := by
     intro N' hN' N hle
     induction N, hle using Nat.le_induction with
     | base => rfl
@@ -232,9 +236,11 @@ end ModularCurve
 
 open ModularCurve in
 theorem solution :
-    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 := by
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 :
+      PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 := by
   have hsum : ∀ τ : ℍ, HasSum (fun m : ℕ =>
-      PowerSeries.coeff m (PowerSeries.X * etaPow) • 𝕢 1 (τ : ℂ) ^ m) (CuspForm.discriminant τ) := by
+      PowerSeries.coeff m (PowerSeries.X * etaPow) • 𝕢 1 (τ : ℂ) ^ m) (CuspForm.discriminant τ) :=
+        by
     intro τ
     simp_rw [smul_eq_mul, CuspForm.coe_discriminant, discriminant_eq_qParam_mul_gfun τ]
     exact hasSum_coeff_X_mul_etaPow (by exact_mod_cast UpperHalfPlane.norm_qParam_lt_one 1 τ)
@@ -257,7 +263,8 @@ public section publicSection
 
 open scoped PowerSeries.WithPiTopology
 theorem ModularCurve.qExpansion_discriminant_eq_X_mul_tprod :
-    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 :=
+    UpperHalfPlane.qExpansion 1 ModularForm.discriminant = PowerSeries.X * ∏' n : ℕ, ((1 :
+      PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 :=
   solution
 
 end publicSection

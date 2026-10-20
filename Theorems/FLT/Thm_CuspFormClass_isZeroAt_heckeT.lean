@@ -80,7 +80,8 @@ theorem isCusp_ratCast_smul {c : OnePoint ℝ} (hc : IsCusp c Γ) (g : GL (Fin 2
 
 theorem isBoundedAt_slash_ratCast [ModularFormClass F Γ k] (f : F) (g : GL (Fin 2) ℚ)
     {c : OnePoint ℝ}
-    (hc : IsCusp c Γ) : c.IsBoundedAt (⇑f ∣[k] (Matrix.GeneralLinearGroup.map (Rat.castHom ℝ) g)) k :=
+    (hc : IsCusp c Γ) : c.IsBoundedAt (⇑f ∣[k] (Matrix.GeneralLinearGroup.map (Rat.castHom ℝ) g)) k
+      :=
   OnePoint.IsBoundedAt.smul_iff.mp (ModularFormClass.bdd_at_cusps f (isCusp_ratCast_smul hc g))
 
 theorem isZeroAt_slash_ratCast [CuspFormClass F Γ k] (f : F) (g : GL (Fin 2) ℚ) {c : OnePoint ℝ}
@@ -138,7 +139,8 @@ theorem isBoundedAt_sum {ι : Type*} {c : OnePoint ℝ} {k : ℤ} (s : Finset ι
     exact Filter.const_boundedAtFilter _ (0 : ℂ)
   | insert a s ha ih =>
     rw [Finset.sum_insert ha]
-    exact (hf a (Finset.mem_insert_self a s)).add (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
+    exact (hf a (Finset.mem_insert_self a s)).add (ih fun i hi => hf i (Finset.mem_insert_of_mem
+      hi))
 
 theorem isZeroAt_sum {ι : Type*} {c : OnePoint ℝ} {k : ℤ} (s : Finset ι)
     {f : ι → ℍ → ℂ} (hf : ∀ i ∈ s, c.IsZeroAt (f i) k) : c.IsZeroAt (∑ i ∈ s, f i) k := by
@@ -150,7 +152,8 @@ theorem isZeroAt_sum {ι : Type*} {c : OnePoint ℝ} {k : ℤ} (s : Finset ι)
     exact Filter.zero_zeroAtFilter _
   | insert a s ha ih =>
     rw [Finset.sum_insert ha]
-    exact (hf a (Finset.mem_insert_self a s)).add (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
+    exact (hf a (Finset.mem_insert_self a s)).add (ih fun i hi => hf i (Finset.mem_insert_of_mem
+      hi))
 
 theorem isBoundedAt_heckeU [ModularFormClass F Γ k] (f : F) (p : ℕ) {c : OnePoint ℝ}
     (hc : IsCusp c Γ) :

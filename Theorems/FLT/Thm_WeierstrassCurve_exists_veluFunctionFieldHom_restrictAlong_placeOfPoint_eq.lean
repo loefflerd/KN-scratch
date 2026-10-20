@@ -98,7 +98,8 @@ variable {F : Type*} [Field F] {W : Affine F}
 theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDomain R]
     [Algebra R W.FunctionField] [IsFractionRing R W.FunctionField] [Algebra F R]
     [IsScalarTower F R W.FunctionField] :
-    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F := W.FunctionField)) := by
+    Function.Injective (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (R := R) (F :=
+      W.FunctionField)) := by
   intro w₁ w₂ h
   refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := W.FunctionField) ?_
   rw [Valuation.isEquiv_iff_valuationSubring]
@@ -504,7 +505,8 @@ theorem veluXClearedPoly_monic (S : Finset (F × F)) :
       _ ≤ 1 + 2 * (S.card - 1) := add_le_add h2 (le_of_eq h1)
       _ ≤ 2 * S.card - 1 := by omega
   have hlt : (∑ P ∈ S, (C (W.veluT P.1 P.2) * (X - C P.1) + C (W.veluU P.1 P.2))
-      * (∏ A ∈ S.erase P, (X - C A.1)) ^ 2).degree < (X * (veluXDenomPoly (F := F) S) ^ 2).degree := by
+      * (∏ A ∈ S.erase P, (X - C A.1)) ^ 2).degree < (X * (veluXDenomPoly (F := F) S) ^ 2).degree
+        := by
     rw [Polynomial.degree_eq_natDegree hlead.ne_zero, hleaddeg]
     refine lt_of_le_of_lt (degree_sum_le _ _) ?_
     have hbot : (⊥ : WithBot ℕ) < (2 * S.card + 1 : ℕ) := WithBot.bot_lt_coe _
@@ -512,7 +514,8 @@ theorem veluXClearedPoly_monic (S : Finset (F × F)) :
     refine lt_of_le_of_lt (Polynomial.degree_le_natDegree) ?_
     exact_mod_cast lt_of_le_of_lt (htraildeg P hP) (by omega)
   refine ⟨hlead.add_of_left hlt, ?_⟩
-  have hdegeq : (veluXClearedPoly W S).natDegree = (X * (veluXDenomPoly (F := F) S) ^ 2).natDegree :=
+  have hdegeq : (veluXClearedPoly W S).natDegree = (X * (veluXDenomPoly (F := F) S) ^ 2).natDegree
+    :=
     natDegree_add_eq_left_of_degree_lt hlt
   rw [hdegeq, hleaddeg]
 
@@ -720,7 +723,8 @@ theorem kw_kwVeluXGenFun_notMem_of_not_isFinitePlace
     exact h
   have hxneg := ord_X_neg_of_not_isFinitePlace (W := W) (v := v) hv
   exact absurd
-    ((AlgebraicCurve.Place.mem_iff_ord_nonneg v (polyToFunctionField_ne_zero Polynomial.X_ne_zero)).mp hx)
+    ((AlgebraicCurve.Place.mem_iff_ord_nonneg v (polyToFunctionField_ne_zero
+      Polynomial.X_ne_zero)).mp hx)
     (not_le.mpr hxneg)
 
 end GenericVeluFun
@@ -1380,7 +1384,11 @@ theorem kw_kwVeluYGenFun_ne_algebraMap_odd (c : F) :
   exact hYne (hinj (by
     rw [kw_map_YClass_oddOrderSummingSet_odd hp3 hpodd hord, heq, sub_self, _root_.map_zero]))
 
-variable [(W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2)))] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2)))] [WeierstrassCurve.Affine.AbelTheorem (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2)))]
+variable [(W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).IsElliptic]
+  [WeierstrassCurve.Affine.GenusOnePlaceGate (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) /
+  2)))] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred (W.veluQuotient (W.oddOrderSummingSet Q
+  ((p - 1) / 2)))] [WeierstrassCurve.Affine.AbelTheorem (W.veluQuotient (W.oddOrderSummingSet Q ((p
+  - 1) / 2)))]
 
 include hp3 hpodd hord in
 theorem kw_restrictAlong_infinitePlace_oddOrderSummingSet_odd :
@@ -1579,7 +1587,8 @@ theorem s2c_key (hp3 : 3 ≤ p) (hpodd : Odd p) (hord : addOrderOf Q = p)
             (pointMapOfPushforward ι hι hfin hN).ker = AddSubgroup.zmultiples Q)
         ∧ (∀ P : W.toAffine.Point, P ∈ AddSubgroup.zmultiples Q →
             (placeOfPoint P).restrictAlong ι hι
-              = placeOfPoint (0 : (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).toAffine.Point))
+              = placeOfPoint (0 : (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) /
+                2))).toAffine.Point))
         ∧ (∀ (x y : F) (h : W.toAffine.Nonsingular x y),
             Point.some x y h ∉ AddSubgroup.zmultiples Q →
             ∃ h' : (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).toAffine.Nonsingular
@@ -1674,7 +1683,8 @@ theorem s2c_zero (V : WeierstrassCurve F) (hVW : V = W)
     rw [AddSubgroup.zmultiples_zero_eq_bot, AddMonoidHom.ker_eq_bot_iff]
     intro P₁ P₂ h12
     have h1 :=
-      pointMapOfPushforward_eq_of_seam (AlgHom.id F _) (IsogenyEndDatum.isIntegral_algHomId V.toAffine)
+      pointMapOfPushforward_eq_of_seam (AlgHom.id F _) (IsogenyEndDatum.isIntegral_algHomId
+        V.toAffine)
       (IsogenyEndDatum.finiteAlong_algHomId V.toAffine) hN id rfl
       (fun P => IsogenyEndDatum.restrictAlong_algHomId V.toAffine (placeOfPoint P))
     rw [h1, h1] at h12
@@ -1724,8 +1734,10 @@ theorem solution
             WeierstrassCurve.Affine.Point.some x y h ∉ AddSubgroup.zmultiples Q →
             ∃ h' : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.Nonsingular
                 (W.veluX (W.oddOrderSummingSet Q n) x) (W.veluY (W.oddOrderSummingSet Q n) x y),
-              (WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some x y h)).restrictAlong ι hι
-                = WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some _ _ h')) := by
+              (WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some x y
+                h)).restrictAlong ι hι
+                = WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some _ _ h'))
+                  := by
   have : W.toAffine.IsElliptic := ‹W.IsElliptic›
   rw [← hord]
   rcases Nat.eq_zero_or_pos n with hn0 | hnpos
@@ -1784,7 +1796,9 @@ theorem WeierstrassCurve.exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_
             WeierstrassCurve.Affine.Point.some x y h ∉ AddSubgroup.zmultiples Q →
             ∃ h' : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.Nonsingular
                 (W.veluX (W.oddOrderSummingSet Q n) x) (W.veluY (W.oddOrderSummingSet Q n) x y),
-              (WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some x y h)).restrictAlong ι hι
-                = WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some _ _ h')) := _root_.solution hord hΔ'
+              (WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some x y
+                h)).restrictAlong ι hι
+                = WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some _ _ h'))
+                  := _root_.solution hord hΔ'
 
 end publicSection

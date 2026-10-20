@@ -572,7 +572,8 @@ theorem MTT.Cohomology.eigenclass_descent
       ∃ u v : ℂ, (u ≠ 0 ∨ v ≠ 0) ∧ u • φ + v • ψ = 0)
     (φ : Hc N n ℂ)
     (hφ : Packet (fun d => ι (e d)) (fun l => ι (a l)) s φ) :
-    ∃ ω : ℂ, ω ≠ 0 ∧ ∃ ψ : Hc N n MTT.Qbar, Extends ι ψ (ω⁻¹ • φ) := _root_.solution hZ hQ hC ι e a s hdim φ hφ
+    ∃ ω : ℂ, ω ≠ 0 ∧ ∃ ψ : Hc N n MTT.Qbar, Extends ι ψ (ω⁻¹ • φ) := _root_.solution hZ hQ hC ι e a
+      s hdim φ hφ
 end
 
 end publicSection

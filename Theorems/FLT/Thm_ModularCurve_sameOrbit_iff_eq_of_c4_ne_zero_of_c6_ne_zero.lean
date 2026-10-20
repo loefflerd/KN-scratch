@@ -45,7 +45,8 @@ description of cyclic subgroups up to automorphisms of a fixed Weierstrass model
 and $c_6\neq 0$ (for an elliptic curve, $j\notin\{0,1728\}$) the only changes of variables
 preserving the model are the identity and $[-1]$, so the orbit relation on cyclic subgroups
 collapses to equality. It is used in the computation of the order of vanishing of $\bar{j}-j_0$ in
-[`ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne`](thm.html#ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne).
+[`ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne`]
+(thm.html#ModularCurve.ord_jBar_sub_eq_one_of_ne_zero_of_ne).
 
 ## Explanation of the source proof
 
@@ -111,7 +112,8 @@ theorem solution (E₀ : WeierstrassCurve (AlgebraicClosure ℚ))
     refine ⟨?_, g, rfl⟩
     have h2 : (2 : AlgebraicClosure ℚ) ≠ 0 := by norm_num
     have h3 : (3 : AlgebraicClosure ℚ) ≠ 0 := by norm_num
-    rcases (WeierstrassCurve.variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero h2 h3 E₀ hc₄ hc₆ γ).mp hγ
+    rcases (WeierstrassCurve.variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero h2 h3 E₀
+      hc₄ hc₆ γ).mp hγ
       with rfl | rfl
     · rw [eq_of_heq (hheq.trans (vcInvFun_one_heq' E₀ g))]
     · exact zmultiples_eq_of_heq_vcInvFun_neg' E₀ g g' hheq
@@ -128,7 +130,8 @@ public section publicSection
 
 
 open ModularCurve WeierstrassCurve
-theorem ModularCurve.sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero (E₀ : WeierstrassCurve (AlgebraicClosure ℚ))
+theorem ModularCurve.sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero (E₀ : WeierstrassCurve
+  (AlgebraicClosure ℚ))
     (hc₄ : E₀.c₄ ≠ 0) (hc₆ : E₀.c₆ ≠ 0) (H H' : AddSubgroup E₀.toAffine.Point) :
     SameOrbit E₀ H H' ↔ H' = H ∧ ∃ g : E₀.toAffine.Point, H = AddSubgroup.zmultiples g :=
   solution E₀ hc₄ hc₆ H H'

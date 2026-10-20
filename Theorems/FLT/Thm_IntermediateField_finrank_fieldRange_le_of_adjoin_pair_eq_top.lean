@@ -43,7 +43,8 @@ This is an abstract form of the degree bound for the pullback of functions along
 $K$-endomorphism $\mu$ of a quadratic extension $L = K(X,Y)$ of a rational function field has index
 at most $d$ in $L$, where $d$ controls the degree of $\Phi - c\Psi$ and $\iota$ plays the role of
 the hyperelliptic involution witnessing that $\mu Y \notin K(X)$. It is applied, via
-[`WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le`](thm.html#WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le),
+[`WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le`]
+(thm.html#WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le),
 to multiplication by $n$ on the function field of an elliptic curve with $\Phi, \Psi$ built from
 division polynomials and $d = n^2$.
 
@@ -191,7 +192,12 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
 
 end WeilPairingDEGN
 
-theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) :
+theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen :
+  IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B
+  ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X)
+  (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d)
+  (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L)
+  (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) :
     FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d :=
   WeilPairingDEGN.finrank_fieldRange_le X Y hgen A B hA hB hY μ ι hιX hιY hιμ Φ Ψ hd hroot hdeg
 
@@ -204,7 +210,13 @@ end privateSection
 public section publicSection
 
 
-theorem IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top {K L : Type*} [Field K] [Field L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈ IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ) (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map (algebraMap K M)).natDegree = d) :
+theorem IntermediateField.finrank_fieldRange_le_of_adjoin_pair_eq_top {K L : Type*} [Field K] [Field
+  L] [Algebra K L] (X Y : L) (hgen : IntermediateField.adjoin K {X, Y} = ⊤) (A B : L) (hA : A ∈
+  IntermediateField.adjoin K {X}) (hB : B ∈ IntermediateField.adjoin K {X}) (hY : Y ^ 2 + A * Y + B
+  = 0) (μ ι : L →ₐ[K] L) (hιX : ι X = X) (hιY : ι Y ^ 2 + A * ι Y + B = 0) (hιμ : ι (μ Y) ≠ μ Y) (Φ
+  Ψ : Polynomial K) {d : ℕ} (hd : 0 < d) (hroot : Polynomial.aeval X Φ = μ X * Polynomial.aeval X Ψ)
+  (hdeg : ∀ (M : IntermediateField K L) (c : M), (Φ.map (algebraMap K M) - Polynomial.C c * Ψ.map
+  (algebraMap K M)).natDegree = d) :
     FiniteDimensional μ.fieldRange L ∧ Module.finrank μ.fieldRange L ≤ d :=
   solution X Y hgen A B hA hB hY μ ι hιX hιY hιμ Φ Ψ hd hroot hdeg
 

@@ -35,7 +35,8 @@ adapted.
 Let $N$ be a non-zero natural number. For $v=(v_0,v_1)\in\mathbb Z^2$ write $g_1^{v}$ for the
 function on the upper half-plane given by
 [`EisensteinSeries.eisensteinG1`](def/EisensteinSeries_WeierstrassZeta.html#L9), namely
-$$g_1^{v}(\tau)=\frac1N\Bigl(Z\bigl(\tau,\tfrac{v_0\tau+v_1}{N}\bigr)-\frac{v_0\,(\tau\,G_2(\tau)-2\pi
+$$g_1^{v}(\tau)=\frac1N\Bigl(Z\bigl(\tau,\tfrac{v_0\tau+v_1}{N}\bigr)-\frac{v_0\,(\tau\,G_2(\tau)-2
+\pi
 i)+v_1\,G_2(\tau)}{N}\Bigr),$$ where $Z(\tau,z)=\frac1z+\sum_{v\in\mathbb
 Z^2,\,v\neq0}\bigl(\frac1{z-(v_0\tau+v_1)}+\frac1{v_0\tau+v_1}+\frac{z}{(v_0\tau+v_1)^2}\bigr)$ is
 the Weierstrass zeta function of the lattice $\mathbb Z\tau+\mathbb Z$ (the sum being a `tsum`), and
@@ -54,7 +55,8 @@ $g_1^{v}(\gamma\tau)=(c\tau+d)\,g_1^{v\gamma}(\tau)$ gives boundedness at all cu
 $q$-expansion in the case $v=(0,b)$, which has no fractional powers of $q$. It is used in the
 construction of weight-one Eisenstein series with nebentypus and their $q$-expansion coefficients,
 via
-[`ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd`](thm.html#ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd).
+[`ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd`]
+(thm.html#ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd).
 
 ## Explanation of the source proof
 
@@ -431,7 +433,8 @@ lemma hasSum_Fterm_row {z : ℂ} (hz : z.im = 0) (m : ℕ+) :
   have hw2 : 0 < (((m : ℕ) : ℂ) * τ - z).im := by simp [hz]; positivity
   have h1 := hasSum_pi_cot_add hw1
   have h2 := hasSum_pi_cot_add hw2
-  have h2' : HasSum (fun k : ℕ+ => -(-2 * π * I * cexp (2 * π * I * (((m : ℕ) : ℂ) * τ - z)) ^ (k : ℕ)))
+  have h2' : HasSum (fun k : ℕ+ => -(-2 * π * I * cexp (2 * π * I * (((m : ℕ) : ℂ) * τ - z)) ^ (k :
+    ℕ)))
       (π * Complex.cot (π * (z - ((m : ℕ) : ℂ) * τ)) - π * I) := by
     convert h2.neg using 1
     rw [show π * (((m : ℕ) : ℂ) * τ - z) = -(π * (z - ((m : ℕ) : ℂ) * τ)) by ring, cot_neg]

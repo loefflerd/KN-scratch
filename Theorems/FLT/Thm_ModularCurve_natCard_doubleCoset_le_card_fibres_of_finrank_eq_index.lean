@@ -875,7 +875,8 @@ theorem adjoin_range_eq_top
     IntermediateField.adjoin ℂ (Set.range (algebraMap F E)) = ⊤ := by
   let f : E →ₐ[ℂ] L := E.val.restrictScalars ℂ
   set A := IntermediateField.adjoin ℂ (Set.range (algebraMap F E)) with hA
-  have hmapA : A.map f = IntermediateField.adjoin ℂ (Set.range fun u : F => (algebraMap F E u : L)) :=
+  have hmapA : A.map f = IntermediateField.adjoin ℂ (Set.range fun u : F => (algebraMap F E u : L))
+    :=
     by
     rw [hA, IntermediateField.adjoin_map, ← Set.range_comp]
     rfl
@@ -941,7 +942,8 @@ theorem finrank_fixedField_map (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgr
   have hcard : 0 < Nat.card H := Nat.card_pos
   rw [h1, h3, ← h4] at h2
   rw [← hidx]
-  have : Module.finrank ℂ⟮jK M K⟯ (IntermediateField.fixedField H) * Nat.card H = H.index * Nat.card H :=
+  have : Module.finrank ℂ⟮jK M K⟯ (IntermediateField.fixedField H) * Nat.card H = H.index * Nat.card
+    H :=
     by
     rw [h2, mul_comm]
   exact Nat.eq_of_mul_eq_mul_right hcard this
@@ -1134,7 +1136,9 @@ end Main
 end ModularCurve.SpecialFibresLB
 end
 
-open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve ModularCurve.SpecialFibresLB in
+open AlgebraicCurve _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve
+  ModularCurve.SpecialFibresLB in
 theorem solution
     (M : ℕ) [NeZero M] (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
     (hΓ : CongruenceSubgroup.Gamma1 M ≤ Γ)
@@ -1144,25 +1148,29 @@ theorem solution
           (IntermediateField.adjoin (AlgebraicClosure ℚ)
             ({y} : Set (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
               (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) =
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) =
         (Γ ⊔ Subgroup.zpowers (-1)).index) :
     Nat.card (DoubleCoset.Quotient (Γ : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))
         (Subgroup.zpowers (ModularGroup.S * ModularGroup.T) :
           Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord y} ∧
       Nat.card (DoubleCoset.Quotient (Γ : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))
           (Subgroup.zpowers ModularGroup.S : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord (y - 1728)} ∧
       Nat.card (DoubleCoset.Quotient (Γ : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))
           ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) :
               Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
             Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             P.ord y < 0} :=
   ModularCurve.SpecialFibresLB.main M Γ hΓ y hy hfull
 
@@ -1185,25 +1193,29 @@ theorem ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index
           (IntermediateField.adjoin (AlgebraicClosure ℚ)
             ({y} : Set (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
               (ModularCurve.qExpFunctionFieldC ℚ Γ))))
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) =
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) =
         (Γ ⊔ Subgroup.zpowers (-1)).index) :
     Nat.card (DoubleCoset.Quotient (Γ : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))
         (Subgroup.zpowers (ModularGroup.S * ModularGroup.T) :
           Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord y} ∧
       Nat.card (DoubleCoset.Quotient (Γ : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))
           (Subgroup.zpowers ModularGroup.S : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             0 < P.ord (y - 1728)} ∧
       Nat.card (DoubleCoset.Quotient (Γ : Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))
           ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) :
               Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
             Set (Matrix.SpecialLinearGroup (Fin 2) ℤ))) ≤
         Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
-          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
+          (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+            Γ)) //
             P.ord y < 0} :=
   solution M Γ hΓ y hy hfull
 

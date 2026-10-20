@@ -69,7 +69,8 @@ theorem transcendental_of_order_ne_zero {L : Type*} [Field L] (x : LaurentSeries
   have hx0 : x ≠ 0 := fun h => hx (by rw [h, HahnSeries.order_zero])
   rintro ⟨p, hp0, hpx⟩
   obtain ⟨i₀, hi₀, hmin⟩ :=
-    p.support.exists_min_image (fun i : ℕ => (i : ℤ) * x.order) (Polynomial.support_nonempty.mpr hp0)
+    p.support.exists_min_image (fun i : ℕ => (i : ℤ) * x.order) (Polynomial.support_nonempty.mpr
+      hp0)
   have hord : ∀ i : ℕ, (x ^ i).order = (i : ℤ) * x.order := fun i => by
     rw [HahnSeries.order_pow, nsmul_eq_mul]
   have hinj : ∀ i : ℕ, (i : ℤ) * x.order = (i₀ : ℤ) * x.order → i = i₀ := fun i h => by
@@ -81,7 +82,8 @@ theorem transcendental_of_order_ne_zero {L : Type*} [Field L] (x : LaurentSeries
     · rw [hci, zero_smul, HahnSeries.coeff_zero]
     · rw [HahnSeries.coeff_smul, HahnSeries.coeff_eq_zero_of_lt_order, smul_zero]
       rw [hord]
-      exact lt_of_le_of_ne (hmin i (Polynomial.mem_support_iff.mpr hci)) (fun h => hne (hinj i h.symm))
+      exact lt_of_le_of_ne (hmin i (Polynomial.mem_support_iff.mpr hci)) (fun h => hne (hinj i
+        h.symm))
   have halg : ∀ c : L, algebraMap L (LaurentSeries L) c = HahnSeries.C c := fun c => by
     rw [HahnSeries.algebraMap_apply', ← PowerSeries.C_eq_algebraMap]
     exact PowerSeries.coe_C c

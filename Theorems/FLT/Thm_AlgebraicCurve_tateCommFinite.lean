@@ -42,9 +42,11 @@ three endomorphisms, restricted to the range of the projection, which it preserv
 This is the finite-potence (finite rank) input in Tate's construction of the abstract residue on a
 curve, where $\operatorname{res}_u(f\,dg)$ is the trace of the commutator $[p_u\mu_f, p_u\mu_g]$:
 without the finiteness of the range of that commutator the trace is not defined. It is used by
-[`AlgebraicCurve.residueTraceCompletionCommute`](thm.html#AlgebraicCurve.residueTraceCompletionCommute)
+[`AlgebraicCurve.residueTraceCompletionCommute`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute)
 and
-[`AlgebraicCurve.residueTraceCompletionCommute_v2`](thm.html#AlgebraicCurve.residueTraceCompletionCommute_v2),
+[`AlgebraicCurve.residueTraceCompletionCommute_v2`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute_v2),
 which compare the residue–trace construction with completion.
 
 ## Explanation of the source proof

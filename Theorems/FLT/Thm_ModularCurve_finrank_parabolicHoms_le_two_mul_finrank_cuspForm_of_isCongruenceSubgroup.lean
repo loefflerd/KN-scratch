@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
+Based on Prove2Me node
+ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
 (0ecd14cb-bbeb-5b1a-98cb-394f76c9069f) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 09ede4ab-19ee-54df-ac68-c9f7b3ab0b3e
@@ -92,7 +93,8 @@ theorem solution (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgroup.IsCongruen
 
 end S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
 end P2MW
-export P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup (solution)
+export P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
+  (solution)
 
 end privateSection
 

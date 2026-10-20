@@ -45,7 +45,8 @@ This is the coefficientwise form of the bound on the order of the pole at the cu
 non-leading coefficients of the modular-equation-type polynomial $\prod_i (X -
 \mathrm{conj}\,\ell\,\zeta\,i)$: each such coefficient, a Laurent series in $t$, has pole order
 strictly less than $\ell^2 + \ell$. It supplies the degree input used by
-[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`](thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq)
+[`ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq`]
+(thm.html#ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq)
 when the symmetric functions of the conjugates are expressed through the $j$-series.
 
 ## Explanation of the source proof
@@ -423,7 +424,10 @@ end ModularCurve
 
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_eq_zero_of_le.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_eq_zero_of_le.ModularCurve.PhiGen in
+open _root_.ModularCurve
+  _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_eq_zero_of_le.ModularCurve
+  _root_.ModularCurve.PhiGen
+  _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_eq_zero_of_le.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     (k : ℕ) (hk : k ≠ 0) (m : ℕ) (hm : ℓ * ℓ + ℓ ≤ m) :
     ((phiProd ℓ (conj ℓ ζ)).coeff k).coeff (-(m : ℤ)) = 0 :=

@@ -50,11 +50,14 @@ This is the weight-two ($n=0$) instance of the bound $\dim H^1_{\mathrm{par}}(\G
 \mathrm{Sym}^n) \le 2g(X_0(N))$, stated in the binary-form vocabulary: for trivial coefficients a
 parabolic cocycle is a homomorphism $\Gamma_0(N) \to \mathbb{C}$ killing the parabolic elements, so
 the count reduces to
-[`ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula`](thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula)
+[`ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula`]
+(thm.html#ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula)
 together with the integral basis statement
-[`ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp`](thm.html#ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp).
+[`ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp`]
+(thm.html#ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp).
 It supplies the degree-zero slice used by
-[`HeckeEis.isCompl_range_eichlerShimuraMap_range_conj`](thm.html#HeckeEis.isCompl_range_eichlerShimuraMap_range_conj).
+[`HeckeEis.isCompl_range_eichlerShimuraMap_range_conj`]
+(thm.html#HeckeEis.isCompl_range_eichlerShimuraMap_range_conj).
 
 ## Explanation of the source proof
 
@@ -111,7 +114,8 @@ theorem ext0 {P Q : ↥(BinaryForm ℂ 0)}
 
 theorem rho0_apply (g : Gamma0 N) (P : ↥(BinaryForm ℂ 0)) : ρ0 N g P = P := by
   apply Subtype.ext
-  change binarySubst ℂ (((g : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) ℂ) = P
+  change binarySubst ℂ (((g : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial
+    (Fin 2) ℂ) = P
   conv_lhs => rw [coe_eq_C P]
   rw [binarySubst_C, ← coe_eq_C P]
 
@@ -188,7 +192,8 @@ theorem φ_injective : Function.Injective (φ (N := N)) := by
   apply Subtype.ext; funext g
   apply ext0
   have :=
-    congrArg (fun ψ : ↥(parabolicHoms ℂ (Gamma0 N) ℂ) => (ψ : Additive (Gamma0 N) →+ ℂ) (Additive.ofMul g)) h
+    congrArg (fun ψ : ↥(parabolicHoms ℂ (Gamma0 N) ℂ) => (ψ : Additive (Gamma0 N) →+ ℂ)
+      (Additive.ofMul g)) h
   simpa [φ_apply_coe] using this
 
 theorem eq_of_mk_eq {a b : ↥(coeffParabolicCocycles (ρ0 N))}
@@ -235,18 +240,22 @@ end HeckeEis.N0Sol
 end
 
 theorem solution (N : ℕ) [NeZero N] :
-    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
+    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
       ≤ 2 * ModularCurve.genusFormula N := by
   obtain ⟨t, b, hb⟩ :=
     ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp (CongruenceSubgroup.Gamma0 N)
   obtain ⟨bK, -⟩ := hb ℂ
-  have : FiniteDimensional ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) :=
+  have : FiniteDimensional ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ)
+    :=
     Module.Finite.of_basis bK
-  have h1 : Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype))
+  have h1 : Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp
+    (CongruenceSubgroup.Gamma0 N).subtype))
       ≤ Module.finrank ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) :=
     LinearMap.finrank_le_finrank_of_injective (HeckeEis.N0Sol.Ψ_injective (N := N))
   have h2 := ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula N ℂ
-  calc (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
+  calc (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp
+    (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
       ≤ Module.finrank ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) := by exact_mod_cast h1
     _ ≤ 2 * ModularCurve.genusFormula N := h2
 
@@ -261,7 +270,8 @@ public section publicSection
 
 open scoped MatrixGroups
 theorem HeckeEis.finrank_coeffH1par_zero_le_two_mul_genusFormula (N : ℕ) [NeZero N] :
-    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
+    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
       ≤ 2 * ModularCurve.genusFormula N :=
   solution N
 

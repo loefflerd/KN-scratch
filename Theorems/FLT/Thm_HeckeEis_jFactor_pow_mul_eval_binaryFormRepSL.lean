@@ -34,7 +34,8 @@ n`](def/HeckeEis_BinaryFormRep.html#L61) is the representation of $\mathrm{SL}_2
 degree-$n$ binary forms obtained by restricting to that submodule the algebra endomorphism of
 $\mathbb{C}[X_0,X_1]$ that substitutes $X_j\mapsto\sum_{i}g_{ij}X_i$, i.e. substitution of the row
 vector times the matrix $g$. The assertion is the identity of complex numbers
-$$\big(g_{10}\tau+g_{11}\big)^{n}\cdot\big(\rho_n(g)P\big)\big(1,\,-(g\cdot\tau)\big)=P\big(1,\,-\tau\big),$$
+$$\big(g_{10}\tau+g_{11}\big)^{n}\cdot\big(\rho_n(g)P\big)\big(1,\,-(g\cdot\tau)\big)=P\big(1,\,-
+\tau\big),$$
 where both sides are evaluations of the underlying polynomials at the indicated points of
 $\mathbb{C}^2$ (given as `Fin 2`-vectors), $\rho_n(g)P$ is the image of $P$ under the above
 representation, and $g\cdot\tau$ is the Möbius action of $g$ on the upper half-plane.
@@ -45,7 +46,8 @@ produces a scalar function transforming with weight $-n$, which is the mechanism
 Eichler–Shimura period map. It is used in the proof that the Eichler–Shimura map is injective
 ([`HeckeEis.eichlerShimuraMap_injective`](thm.html#HeckeEis.eichlerShimuraMap_injective)) and in the
 boundedness of such evaluations towards the cusp $i\infty$
-([`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`](thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval)).
+([`HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval`]
+(thm.html#HeckeEis.IsEichlerIntegral.isBoundedAtImInfty_eval)).
 
 ## Explanation of the source proof
 
@@ -74,14 +76,16 @@ theorem eval_binarySubst {K : Type*} [CommRing K] (M : Matrix (Fin 2) (Fin 2) �
     (P : MvPolynomial (Fin 2) K) :
     MvPolynomial.eval v (binarySubst K M P)
       = MvPolynomial.eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : K) * v i) P := by
-  have key : (MvPolynomial.eval v).comp (binarySubst K M : MvPolynomial (Fin 2) K →ₐ[K] MvPolynomial (Fin 2) K).toRingHom
+  have key : (MvPolynomial.eval v).comp (binarySubst K M : MvPolynomial (Fin 2) K →ₐ[K] MvPolynomial
+    (Fin 2) K).toRingHom
       = MvPolynomial.eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : K) * v i) :=
     MvPolynomial.ringHom_ext (fun a => by simp) (fun j => by simp [binarySubst_X])
   exact RingHom.congr_fun key P
 
 theorem det_entries (g : SL(2, ℤ)) :
     ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
-      - ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 := by
+      - ((g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 :=
+        by
   have h := Matrix.SpecialLinearGroup.det_coe g
   rw [Matrix.det_fin_two] at h
   exact_mod_cast h
@@ -93,11 +97,13 @@ theorem jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : �
       = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] (P : MvPolynomial (Fin 2) ℂ) := by
   rw [binaryFormRepSL_apply_coe, eval_binarySubst]
   have hj : jFactor g τ ≠ 0 := jFactor_ne_zero g τ
-  have hJ : jFactor g τ = ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ) :=
+  have hJ : jFactor g τ = ((g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) * (τ : ℂ) + ((g : Matrix (Fin 2)
+    (Fin 2) ℤ) 1 1 : ℂ) :=
     rfl
   have hmul := coe_smul_mul_jFactor g τ
   have hdet := det_entries g
-  have hrow : ∀ j : Fin 2, jFactor g τ * (∑ i : Fin 2, (((g : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) : ℂ)
+  have hrow : ∀ j : Fin 2, jFactor g τ * (∑ i : Fin 2, (((g : Matrix (Fin 2) (Fin 2) ℤ) i j : ℤ) :
+    ℂ)
         * (![(1 : ℂ), -(((g • τ : ℍ)) : ℂ)]) i) = (![(1 : ℂ), -(τ : ℂ)]) j := by
     intro j
     fin_cases j

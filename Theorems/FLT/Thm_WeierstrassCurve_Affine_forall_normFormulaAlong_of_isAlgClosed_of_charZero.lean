@@ -49,7 +49,8 @@ This is the divisor-pushforward norm formula $\iota_*(\operatorname{div} f) = \o
 f)$, specialised to self-embeddings of the function field of an elliptic curve over an algebraically
 closed field of characteristic zero. It is the form of the norm formula consumed downstream, for
 instance by
-[`ModularCurve.ModularPolynomialData.separable_map_eval2_of_not_isIntegral_of_isAlgClosed`](thm.html#ModularCurve.ModularPolynomialData.separable_map_eval2_of_not_isIntegral_of_isAlgClosed)
+[`ModularCurve.ModularPolynomialData.separable_map_eval2_of_not_isIntegral_of_isAlgClosed`]
+(thm.html#ModularCurve.ModularPolynomialData.separable_map_eval2_of_not_isIntegral_of_isAlgClosed)
 and [`ModularCurve.TatePoint.fullKernelInjAt`](thm.html#ModularCurve.TatePoint.fullKernelInjAt).
 
 ## Explanation of the source proof

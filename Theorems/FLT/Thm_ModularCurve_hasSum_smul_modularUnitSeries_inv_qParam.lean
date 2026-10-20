@@ -38,7 +38,8 @@ by [`ModularCurve.modularUnitSeries N`](def/ModularCurve_ModularUnit.html#L127) 
 $\cdot$ `deltaSeriesN N`$^{-1}$, where `deltaSeries` is $q$ times the power series
 `dedekindEtaUnitQ` — that is, the $q$-expansion $q\prod_{n\ge1}(1-q^n)^{24}$ of the discriminant
 form, the integral model of whose unit factor satisfies
-[`ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit`](thm.html#ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit)
+[`ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit`]
+(thm.html#ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit)
 — and `deltaSeriesN N` is its image under $q\mapsto q^N$ (`qExpand`); thus `modularUnitSeries N`
 $=\Delta(q)/\Delta(q^N)$. The theorem asserts that, for the Laurent series
 $N^{12}\cdot(\mathtt{modularUnitSeries }N)^{-1}$, with the scalar $N^{12}\in\mathbb Q$ acting
@@ -57,10 +58,12 @@ This identifies the $q$-expansion, in the local parameter $e^{2\pi i\tau/N}$ at 
 $0$, of Ogg's modular unit $\Delta(\tau)/\Delta(N\tau)$ on $X_0(N)$, the factor $N^{12}$ arising
 from applying $\Delta(-1/\tau)=\tau^{12}\Delta(\tau)$ at the two arguments. It feeds the computation
 of the Fricke involution on the unit
-([`ModularCurve.coe_frickeInvolutionFull_modularUnitSeries`](thm.html#ModularCurve.coe_frickeInvolutionFull_modularUnitSeries)
+([`ModularCurve.coe_frickeInvolutionFull_modularUnitSeries`]
+(thm.html#ModularCurve.coe_frickeInvolutionFull_modularUnitSeries)
 and its variant under a non-vanishing hypothesis) and the integrality of the unit over $\mathbb
 Q[j]$
-([`ModularCurve.isIntegral_adjoin_jq_modularUnitSeries`](thm.html#ModularCurve.isIntegral_adjoin_jq_modularUnitSeries)).
+([`ModularCurve.isIntegral_adjoin_jq_modularUnitSeries`]
+(thm.html#ModularCurve.isIntegral_adjoin_jq_modularUnitSeries)).
 
 ## Explanation of the source proof
 
@@ -125,11 +128,13 @@ private lemma discriminant_eq_qParam_mul_gfun (τ : ℍ) :
   rw [ModularForm.discriminant_eq_q_prod, gfun]
 
 private theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : ℂ} (hq : q ≠ 0) (t : ℂ) :
-    HasSum (fun m : ℤ => (HahnSeries.single k (1 : ℂ) * (P : LaurentSeries ℂ)).coeff m * q ^ m) (t * q ^ k) ↔
+    HasSum (fun m : ℤ => (HahnSeries.single k (1 : ℂ) * (P : LaurentSeries ℂ)).coeff m * q ^ m) (t *
+      q ^ k) ↔
       HasSum (fun n : ℕ => PowerSeries.coeff n P * q ^ n) t := by
   have hinj : Function.Injective (fun n : ℕ => (n : ℤ) + k) := fun a b hab => by simpa using hab
   rw [← hinj.hasSum_iff]
-  · have hfg : (fun m : ℤ => (HahnSeries.single k (1 : ℂ) * (P : LaurentSeries ℂ)).coeff m * q ^ m) ∘
+  · have hfg : (fun m : ℤ => (HahnSeries.single k (1 : ℂ) * (P : LaurentSeries ℂ)).coeff m * q ^ m)
+      ∘
         (fun n : ℕ => (n : ℤ) + k) = fun n : ℕ => (PowerSeries.coeff n P * q ^ n) * q ^ k := by
       funext n
       simp only [Function.comp_apply]
@@ -200,7 +205,8 @@ private theorem hasSum_theta_deltaSeriesN (N : ℕ) [NeZero N] (τ : ℍ) :
   rw [← hinj.hasSum_iff]
   · have hfg : (fun m : ℤ => (theta (deltaSeriesN N)).coeff m * 𝕢 1 (τ : ℂ) ^ m) ∘
         (fun m : ℤ => ((N : ℕ) : ℤ) * m)
-        = fun m : ℤ => (theta deltaSeries).coeff m * 𝕢 1 ((ModularForm.heckeDiagMatrix N • τ : ℍ) : ℂ) ^ m := by
+        = fun m : ℤ => (theta deltaSeries).coeff m * 𝕢 1 ((ModularForm.heckeDiagMatrix N • τ : ℍ) :
+          ℂ) ^ m := by
       funext m
       simp only [Function.comp_apply, theta_coeff, deltaSeriesN]
       rw [ModularCurve.qExpand_coeff_mul, e, ← zpow_mul]
@@ -392,7 +398,9 @@ end ModularCurve
 end
 
 theorem solution (N : ℕ) [NeZero N] (τ : UpperHalfPlane) :
-    HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) * Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
+    HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) *
+      Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) /
+      ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
   ModularCurve.QexpN.hasSum_smul_inv N τ
 
 end S_ModularCurve_hasSum_smul_modularUnitSeries_inv_qParam
@@ -405,7 +413,9 @@ public section publicSection
 
 theorem ModularCurve.hasSum_smul_modularUnitSeries_inv_qParam (N : ℕ) [NeZero N]
     (τ : UpperHalfPlane) :
-    HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) * Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) / ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
+    HasSum (fun m : ℤ => ((((N : ℚ) ^ 12 • (ModularCurve.modularUnitSeries N)⁻¹).coeff m : ℚ) : ℂ) *
+      Function.Periodic.qParam N (τ : ℂ) ^ m) (ModularForm.discriminant (ModularGroup.S • τ) /
+      ModularForm.discriminant (ModularForm.heckeDiagMatrix N • ModularGroup.S • τ)) :=
   solution N τ
 
 end publicSection

@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
+Based on Prove2Me node
+WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
 (012791e6-9417-5e9d-b060-7ab6c0060cd8) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 4d7ded92-6949-5c83-832a-9fae9dc5d7cf
@@ -68,7 +69,8 @@ This is the injectivity-on-cyclic-subgroups statement for $j$ of Vélu quotients
 endomorphisms are all integer multiples (Silverman, AEC III.4.12 in the form
 $\operatorname{Hom}(E,E')\cong\mathbb{Z}$): distinct cyclic subgroups of the same odd order give
 quotients with distinct $j$-invariants. It feeds the companion statement
-[`WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental`](thm.html#WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental),
+[`WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental`]
+(thm.html#WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental),
 where the hypotheses on endomorphisms are replaced by transcendence of the parameter.
 
 ## Explanation of the source proof
@@ -560,27 +562,37 @@ end
 
 p2m_open "WeierstrassCurve.Affine~pointHom\
   " in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve.Affine AlgebraicCurve in
+open _root_.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve.Affine
+  AlgebraicCurve in
 theorem solution
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))] [CharZero (HahnSeries ℚ (AlgebraicClosure ℚ))]
     [IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ))]
     (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
     [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine] [AbelTheorem W.toAffine]
-    (hNs : ∀ D : IsogenyEndDatum W.toAffine, NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ)) D.ι D.hfin)
-    (hEnd : ∀ D : IsogenyEndDatum W.toAffine, ∃ m : ℤ, ∀ P : W.toAffine.Point, D.pointEnd (hNs D) P = m • P)
+    (hNs : ∀ D : IsogenyEndDatum W.toAffine, NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ))
+      D.ι D.hfin)
+    (hEnd : ∀ D : IsogenyEndDatum W.toAffine, ∃ m : ℤ, ∀ P : W.toAffine.Point, D.pointEnd (hNs D) P
+      = m • P)
     (n : ℕ) (Q Q' : W.toAffine.Point)
     (hQ : addOrderOf Q = 2 * n + 1) (hQ' : addOrderOf Q' = 2 * n + 1)
     (hΔ : (W.veluQuotient (W.oddOrderSummingSet Q n)).Δ ≠ 0)
     (hΔ' : (W.veluQuotient (W.oddOrderSummingSet Q' n)).Δ ≠ 0)
-    (hj : haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-      haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
-      (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q' n)).j) :
+    (hj : haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr
+      hΔ⟩
+      haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr
+        hΔ'⟩
+      (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q'
+        n)).j) :
     AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' :=
   ModularCurve.kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt W hNs hEnd n Q Q' hQ hQ' hΔ hΔ' hj
 
 end S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
 end P2MW
-export P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int (solution)
+export
+  P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
+  (solution)
 
 end privateSection
 
@@ -593,15 +605,20 @@ theorem WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEnd
     [IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ))]
     (W : WeierstrassCurve (HahnSeries ℚ (AlgebraicClosure ℚ))) [W.IsElliptic]
     [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine] [AbelTheorem W.toAffine]
-    (hNs : ∀ D : IsogenyEndDatum W.toAffine, NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ)) D.ι D.hfin)
-    (hEnd : ∀ D : IsogenyEndDatum W.toAffine, ∃ m : ℤ, ∀ P : W.toAffine.Point, D.pointEnd (hNs D) P = m • P)
+    (hNs : ∀ D : IsogenyEndDatum W.toAffine, NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ))
+      D.ι D.hfin)
+    (hEnd : ∀ D : IsogenyEndDatum W.toAffine, ∃ m : ℤ, ∀ P : W.toAffine.Point, D.pointEnd (hNs D) P
+      = m • P)
     (n : ℕ) (Q Q' : W.toAffine.Point)
     (hQ : addOrderOf Q = 2 * n + 1) (hQ' : addOrderOf Q' = 2 * n + 1)
     (hΔ : (W.veluQuotient (W.oddOrderSummingSet Q n)).Δ ≠ 0)
     (hΔ' : (W.veluQuotient (W.oddOrderSummingSet Q' n)).Δ ≠ 0)
-    (hj : haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-      haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
-      (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q' n)).j) :
+    (hj : haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr
+      hΔ⟩
+      haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr
+        hΔ'⟩
+      (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q'
+        n)).j) :
     AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' :=
   solution W hNs hEnd n Q Q' hQ hQ' hΔ hΔ' hj
 

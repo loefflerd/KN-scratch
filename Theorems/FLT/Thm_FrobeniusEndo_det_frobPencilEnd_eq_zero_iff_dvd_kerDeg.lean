@@ -46,7 +46,8 @@ This is the dictionary between the kernel counts $\#\ker(m-n\sigma)$ on $K$-poin
 eigenvalues of $\sigma$ on the $p$-torsion: $\bar m/\bar n$ is an eigenvalue of the mod $p$ Galois
 representation exactly when $p$ divides the kernel count. It is used in the computation of the trace
 and determinant of Frobenius on $p$-torsion from kernel degrees, via
-[`FrobeniusEndo.trace_det_frob_of_line_of_isotropic`](thm.html#FrobeniusEndo.trace_det_frob_of_line_of_isotropic).
+[`FrobeniusEndo.trace_det_frob_of_line_of_isotropic`]
+(thm.html#FrobeniusEndo.trace_det_frob_of_line_of_isotropic).
 
 ## Explanation of the source proof
 

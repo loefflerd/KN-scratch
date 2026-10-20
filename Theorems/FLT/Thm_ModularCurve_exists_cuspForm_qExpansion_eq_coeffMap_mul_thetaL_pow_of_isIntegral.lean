@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral
+Based on Prove2Me node
+ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral
 (f988ed30-c954-549b-ba26-aba2e1c343ed) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission aaea5d3d-15d7-53ac-a57f-7b8bdc8050c5
@@ -109,7 +110,8 @@ theorem coeffMap_mem_laurentBaseChange_complex (ι₀ : AlgebraicClosure ℚ →
 
 noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) :
     modularFunctionFieldBar N →+* LaurentSeries ℂ :=
-  (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)).toSubfield.subtype
+  (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull
+    N)).toSubfield.subtype
 
 omit [NeZero N] in
 theorem phi_apply (ι₀ : AlgebraicClosure ℚ →+* ℂ) (x : modularFunctionFieldBar N) :
@@ -129,7 +131,8 @@ theorem phi_jBar (ι₀ : AlgebraicClosure ℚ →+* ℂ) : phi N ι₀ (jBar N)
 omit [NeZero N] in
 theorem isIntegral_phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) (a : modularFunctionFieldBar N)
     {y : modularFunctionFieldBar N}
-    (hy : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N))) y) :
+    (hy : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N)))
+      y) :
     IsIntegral (Algebra.adjoin ℂ ({phi N ι₀ a} : Set (LaurentSeries ℂ))) (phi N ι₀ y) := by
   have hmem : ∀ r : modularFunctionFieldBar N,
       r ∈ Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N)) →
@@ -147,7 +150,8 @@ theorem isIntegral_phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) (a : modularFunc
     | mul r s _ _ hr hs => rw [map_mul]; exact mul_mem hr hs
   let ψ : Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N)) →+*
       Algebra.adjoin ℂ ({phi N ι₀ a} : Set (LaurentSeries ℂ)) :=
-    ((phi N ι₀).comp (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N))).val.toRingHom).codRestrict
+    ((phi N ι₀).comp (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar
+      N))).val.toRingHom).codRestrict
       (Algebra.adjoin ℂ ({phi N ι₀ a} : Set (LaurentSeries ℂ))) (fun r => hmem r r.2)
   refine IsIntegral.map_of_comp_eq ψ (phi N ι₀) ?_ hy
   ext r
@@ -160,15 +164,21 @@ end
 open LMapGlue in
 theorem solution (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m)
     (ι₀ : AlgebraicClosure ℚ →+* ℂ) (x : ↥(ModularCurve.modularFunctionFieldBar N))
-    (h₁ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({ModularCurve.jBar N} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
+    (h₁ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({ModularCurve.jBar N} : Set
+      ↥(ModularCurve.modularFunctionFieldBar N)))
       (x ^ 6 * ModularCurve.jBar N ^ (4 * m) *
-        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (3 * m)))
-    (h₂ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(ModularCurve.jBar N)⁻¹} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
-      (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N + 1) *
-        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N))) :
+        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+          ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (3 * m)))
+    (h₂ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(ModularCurve.jBar N)⁻¹} : Set
+      ↥(ModularCurve.modularFunctionFieldBar N)))
+      (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N
+        + 1) *
+        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+          ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N))) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
-        ModularCurve.coeffMap ι₀ ((x : ↥(ModularCurve.modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) *
+        ModularCurve.coeffMap ι₀ ((x : ↥(ModularCurve.modularFunctionFieldBar N)) : LaurentSeries
+          (AlgebraicClosure ℚ)) *
           ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m := by
   classical
   have hXmem : phi N ι₀ x ∈ laurentBaseChange ℂ (modularFunctionFieldFull N) :=
@@ -183,13 +193,15 @@ theorem solution (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m)
   rw [hJ] at h₁'
   simp only [map_mul, map_pow, map_sub, hJ, h1728] at h₁' h₂'
   obtain ⟨f, hf⟩ :=
-    ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral N m hm (phi N ι₀ x) hXmem
+    ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral N m hm (phi N ι₀ x)
+      hXmem
     (dedekindPsi N) h₁' h₂'
   exact ⟨f, by rw [hf, phi_apply]⟩
 
 end S_ModularCurve_exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral
 end P2MW
-export P2MW.S_ModularCurve_exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral (solution)
+export P2MW.S_ModularCurve_exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral
+  (solution)
 
 end privateSection
 
@@ -200,15 +212,21 @@ open ModularCurve
 theorem ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral (N : ℕ)
     [NeZero N] (m : ℕ) (hm : 1 ≤ m)
     (ι₀ : AlgebraicClosure ℚ →+* ℂ) (x : ↥(ModularCurve.modularFunctionFieldBar N))
-    (h₁ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({ModularCurve.jBar N} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
+    (h₁ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({ModularCurve.jBar N} : Set
+      ↥(ModularCurve.modularFunctionFieldBar N)))
       (x ^ 6 * ModularCurve.jBar N ^ (4 * m) *
-        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (3 * m)))
-    (h₂ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(ModularCurve.jBar N)⁻¹} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
-      (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N + 1) *
-        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N))) :
+        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+          ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (3 * m)))
+    (h₂ : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(ModularCurve.jBar N)⁻¹} : Set
+      ↥(ModularCurve.modularFunctionFieldBar N)))
+      (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N
+        + 1) *
+        (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ)
+          ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N))) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
-        ModularCurve.coeffMap ι₀ ((x : ↥(ModularCurve.modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) *
+        ModularCurve.coeffMap ι₀ ((x : ↥(ModularCurve.modularFunctionFieldBar N)) : LaurentSeries
+          (AlgebraicClosure ℚ)) *
           ModularCurve.thetaL ℂ (ModularCurve.coeffEmb ℂ ModularCurve.jq) ^ m :=
   solution N m hm ι₀ x h₁ h₂
 

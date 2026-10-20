@@ -209,14 +209,16 @@ private lemma qExpansion_Dq' : qExpansion 1 Dq = dedekindEtaUnit.map (Int.castRi
 private lemma qExpansion_qJ : qExpansion 1 qJ = jNum.map (Int.castRingHom ℂ) := by
   have hmul := qExpansion_mul analyticAt_cuspFunction_qJ analyticAt_cuspFunction_Dq
   rw [qJ_mul_Dq, qExpansion_Dq'] at hmul
-  have hE3 : qExpansion 1 (fun τ => ModularForm.E₄ τ ^ 3) = (eisenstein4.map (Int.castRingHom ℂ)) ^ 3 :=
+  have hE3 : qExpansion 1 (fun τ => ModularForm.E₄ τ ^ 3) = (eisenstein4.map (Int.castRingHom ℂ)) ^
+    3 :=
     by
     rw [← qExpansion_E4_eq_map_eisenstein4,
       ← ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL ModularForm.E₄ 3,
       ModularForm.coe_pow]
     rfl
   rw [hE3] at hmul
-  have hinv : dedekindEtaUnit.map (Int.castRingHom ℂ) * dedekindEtaUnitInv.map (Int.castRingHom ℂ) = 1 :=
+  have hinv : dedekindEtaUnit.map (Int.castRingHom ℂ) * dedekindEtaUnitInv.map (Int.castRingHom ℂ) =
+    1 :=
     by
     rw [← map_mul, dedekindEtaUnit_mul_inv, map_one]
   calc qExpansion 1 qJ
@@ -288,7 +290,9 @@ end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_hasSum_jNum_qParam.ModularCurve in
 theorem solution (τ : UpperHalfPlane) :
-    HasSum (fun m : ℕ => ((PowerSeries.coeff m ModularCurve.jNum : ℤ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (Function.Periodic.qParam 1 (τ : ℂ) * (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ)) := by
+    HasSum (fun m : ℕ => ((PowerSeries.coeff m ModularCurve.jNum : ℤ) : ℂ) *
+      Function.Periodic.qParam 1 (τ : ℂ) ^ m) (Function.Periodic.qParam 1 (τ : ℂ) * (ModularForm.E₄
+      τ ^ 3 / ModularForm.discriminant τ)) := by
   have h := hasSum_qExpansion one_pos periodic_qJ mdiff_qJ isBoundedAtImInfty_qJ τ
   rw [qExpansion_qJ] at h
   refine h.congr_fun fun m => ?_
@@ -304,7 +308,9 @@ end privateSection
 public section publicSection
 
 theorem ModularCurve.hasSum_jNum_qParam (τ : UpperHalfPlane) :
-    HasSum (fun m : ℕ => ((PowerSeries.coeff m ModularCurve.jNum : ℤ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (Function.Periodic.qParam 1 (τ : ℂ) * (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ)) :=
+    HasSum (fun m : ℕ => ((PowerSeries.coeff m ModularCurve.jNum : ℤ) : ℂ) *
+      Function.Periodic.qParam 1 (τ : ℂ) ^ m) (Function.Periodic.qParam 1 (τ : ℂ) * (ModularForm.E₄
+      τ ^ 3 / ModularForm.discriminant τ)) :=
   solution τ
 
 end publicSection

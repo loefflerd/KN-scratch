@@ -51,7 +51,8 @@ underlies the comparison of these groups across coefficient rings: it is used fo
 the change-of-coefficients map from $\mathbb{Z}$ to $\mathbb{Q}$, for the construction of a basis of
 the complex parabolic cohomology compatible with the integral one, and for the divisibility
 statement
-[`HeckeEis.exists_eq_prime_smul_of_coeffH1par_map_eq_zero`](thm.html#HeckeEis.exists_eq_prime_smul_of_coeffH1par_map_eq_zero).
+[`HeckeEis.exists_eq_prime_smul_of_coeffH1par_map_eq_zero`]
+(thm.html#HeckeEis.exists_eq_prime_smul_of_coeffH1par_map_eq_zero).
 
 ## Explanation of the source proof
 
@@ -106,7 +107,8 @@ theorem binaryFormRepSL_apply_of_zero {R : Type*} [CommRing R] (g : SL(2, ℤ))
     binaryFormRepSL R 0 g P = P := by
   apply Subtype.ext
   rw [binaryFormRepSL_apply_coe]
-  have hP : (P : MvPolynomial (Fin 2) R) = MvPolynomial.C (AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) 0) :=
+  have hP : (P : MvPolynomial (Fin 2) R) = MvPolynomial.C (AddMonoidAlgebra.coeff (P : MvPolynomial
+    (Fin 2) R) 0) :=
     by
     have h := (MvPolynomial.mem_homogeneousSubmodule 0 (P : MvPolynomial (Fin 2) R)).mp P.2
     rw [← MvPolynomial.totalDegree_zero_iff_isHomogeneous] at h
@@ -144,7 +146,8 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
   obtain ⟨z, rfl⟩ := coeffH1parMk_surjective _ x
   rw [← map_zsmul, coeffH1parMk_eq_zero_iff, mem_coeffCoboundaries_iff] at hx
   obtain ⟨v, hv⟩ := hx
-  have hv' : ∀ g : Gamma0 N, binaryFormRepSL ℤ n (g : SL(2, ℤ)) v - v = m • (z : Gamma0 N → ↥(BinaryForm ℤ n)) g :=
+  have hv' : ∀ g : Gamma0 N, binaryFormRepSL ℤ n (g : SL(2, ℤ)) v - v = m • (z : Gamma0 N →
+    ↥(BinaryForm ℤ n)) g :=
     fun g => by simpa using congrFun hv g
   rw [coeffH1parMk_eq_zero_iff, mem_coeffCoboundaries_iff]
   rcases Nat.eq_zero_or_pos n with hn0 | hnpos
@@ -158,7 +161,8 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     exact binaryFormRepSL_apply_of_zero _ _
   · obtain ⟨w₁, hw₁⟩ := z.2.2 (gammaT N) (trace_sq_gammaT N)
     obtain ⟨w₂, hw₂⟩ := z.2.2 (gammaL N) (trace_sq_gammaL N)
-    have hfix : ∀ (γ : Gamma0 N) (w : ↥(BinaryForm ℤ n)), (((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) γ - 1) w = (z : Gamma0 N → _) γ →
+    have hfix : ∀ (γ : Gamma0 N) (w : ↥(BinaryForm ℤ n)), (((binaryFormRepSL ℤ n).comp (Gamma0
+      N).subtype) γ - 1) w = (z : Gamma0 N → _) γ →
         binaryFormRepSL ℤ n (γ : SL(2, ℤ)) (v - m • w) = v - m • w :=
       fun γ w hw => aux_fix (binaryFormRepSL ℤ n (γ : SL(2, ℤ))).toAddMonoidHom m v w _ (hv' γ)
         (by rw [LinearMap.sub_apply, Module.End.one_apply] at hw; exact hw)
@@ -169,14 +173,17 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
       (v - m • w₁) (by simpa using hfix (gammaT N) w₁ hw₁)
     have hN : ((N : ℤ) : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne N
     obtain ⟨c₂, hc₂⟩ :=
-      exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self (R := ℤ) n (h := (N : ℤ)) hN hjR
+      exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self (R := ℤ) n (h := (N : ℤ)) hN
+        hjR
       (lowerSL N) (coe_lowerSL N) (v - m • w₂) (hfix (gammaL N) w₂ hw₂)
     have hX0 : MvPolynomial.X 0 ^ n ∈ BinaryForm ℤ n :=
       (MvPolynomial.mem_homogeneousSubmodule n _).mpr (MvPolynomial.isHomogeneous_X_pow 0 n)
     set e : ↥(BinaryForm ℤ n) := ⟨MvPolynomial.X 0 ^ n, hX0⟩ with he
     have hc₁' : v - m • w₁ = c₁ • e := Subtype.ext (by rw [hc₁]; rfl)
-    set cf : ↥(BinaryForm ℤ n) →ₗ[ℤ] ℤ := (MvPolynomial.lcoeff ℤ (Finsupp.single 0 n)).comp (BinaryForm ℤ n).subtype with hcf
-    have hcf_apply : ∀ Q : ↥(BinaryForm ℤ n), cf Q = AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin 2) ℤ) (Finsupp.single 0 n) :=
+    set cf : ↥(BinaryForm ℤ n) →ₗ[ℤ] ℤ := (MvPolynomial.lcoeff ℤ (Finsupp.single 0 n)).comp
+      (BinaryForm ℤ n).subtype with hcf
+    have hcf_apply : ∀ Q : ↥(BinaryForm ℤ n), cf Q = AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin
+      2) ℤ) (Finsupp.single 0 n) :=
       fun Q => rfl
     have hcfe : cf e = 1 := by rw [hcf_apply]; simp [e, MvPolynomial.coeff_X_pow]
     have h2 : cf (v - m • w₂) = 0 := by
@@ -196,7 +203,8 @@ end HeckeEis
 
 open scoped MatrixGroups in
 theorem solution (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
-    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
+    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0
+      N).subtype))
     (hx : m • x = 0) : x = 0 :=
   HeckeEis.SolMain.A4 n N m hm x hx
 
@@ -212,7 +220,8 @@ public section publicSection
 open scoped MatrixGroups
 theorem HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero (n N : ℕ) [NeZero N] (m : ℤ)
     (hm : m ≠ 0)
-    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
+    (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0
+      N).subtype))
     (hx : m • x = 0) : x = 0 :=
   solution n N m hm x hx
 

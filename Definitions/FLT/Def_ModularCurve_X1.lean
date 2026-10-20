@@ -101,7 +101,8 @@ theorem IsIntegralQExp.coeff {f : ℍ → ℂ} {p : PowerSeries ℤ} (h : IsInte
   rw [← h, PowerSeries.coeff_map, eq_intCast]
 
 theorem isIntegralQExp_iff {f : ℍ → ℂ} {p : PowerSeries ℤ} :
-    IsIntegralQExp f p ↔ ∀ n : ℕ, ((PowerSeries.coeff n p : ℤ) : ℂ) = PowerSeries.coeff n (qExpansion 1 f) := by
+    IsIntegralQExp f p ↔ ∀ n : ℕ, ((PowerSeries.coeff n p : ℤ) : ℂ) = PowerSeries.coeff n
+      (qExpansion 1 f) := by
   refine ⟨fun h n => h.coeff n, fun h => ?_⟩
   ext n
   rw [PowerSeries.coeff_map, eq_intCast]

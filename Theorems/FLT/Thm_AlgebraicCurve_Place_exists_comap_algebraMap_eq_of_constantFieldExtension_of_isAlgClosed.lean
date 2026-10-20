@@ -1,5 +1,6 @@
 /-
-Based on Prove2Me node AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
+Based on Prove2Me node
+AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
 (7ead4d7e-17fa-5fb5-9ba3-c3e580b25b5a) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission e760e9dc-997b-55bd-a7c6-056654207c4b
@@ -420,7 +421,8 @@ theorem sum_ne_of_not_mem_span
       Submodule.range_subtype]
   have hyv : y ∉ Submodule.span K (Set.range v) := by rwa [hspan]
   have hLI :=
-    AlgebraicCurve.linearIndependent_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen
+    AlgebraicCurve.linearIndependent_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg'
+      hgen
     (hv.option hyv)
   have ho : ∀ j, o j ∈ M := fun j => Submodule.subset_span ⟨j, rfl⟩
   let R : ι → (Module.Basis.ofVectorSpaceIndex K M →₀ K) := fun j => bM.repr ⟨o j, ho j⟩
@@ -469,7 +471,8 @@ theorem solution (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K]
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F]
@@ -597,7 +600,8 @@ theorem solution (K F K' F' : Type*)
     have ha' : Psi F' B P w * algebraMap F F' (π : F) = 1 := by
       have := congrArg Subtype.val ha
       simpa [hw] using this
-    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F)) :=
+    have hy : (π : F)⁻¹ ∉ Submodule.span K (Set.range fun j => ((w j : P.toValuationSubring) : F))
+      :=
       by
       let OK : Submodule K F :=
         { carrier := P.toValuationSubring
@@ -666,7 +670,9 @@ theorem solution (K F K' F' : Type*)
 
 end S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed (solution)
+export
+  P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
+  (solution)
 
 end privateSection
 
@@ -679,7 +685,8 @@ theorem AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtensio
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K]
-    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
+    (hfg : ∃ x : F, Transcendental K x ∧ FiniteDimensional (IntermediateField.adjoin K ({x} : Set
+      F)) F)
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F]

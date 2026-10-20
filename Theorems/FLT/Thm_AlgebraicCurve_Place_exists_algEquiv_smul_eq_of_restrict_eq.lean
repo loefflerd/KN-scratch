@@ -109,7 +109,8 @@ end Restrict
 end Place
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve.Place _root_.P2MW.S_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq.AlgebraicCurve.Place in
+open _root_.AlgebraicCurve.Place
+  _root_.P2MW.S_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq.AlgebraicCurve.Place in
 theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
     [FiniteDimensional F' M] [IsGalois F' M] (W W' : Place K M)

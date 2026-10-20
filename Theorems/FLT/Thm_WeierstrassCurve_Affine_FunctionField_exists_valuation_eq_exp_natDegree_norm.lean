@@ -44,10 +44,13 @@ This is the valuation $\mathrm{ord}_{\mathcal{O}}$ at the point at infinity of a
 in the multiplicative normalisation $v = \exp \circ (-\mathrm{ord}_{\mathcal{O}})$, so that $x$ and
 $y$ (of norm degrees $2$ and $3$) have poles at infinity. It supplies the place at infinity in the
 divisor theory of the function field of a Weierstrass curve, and is used in
-[`WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one`](thm.html#WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one),
-[`WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed`](thm.html#WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed)
+[`WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one`]
+(thm.html#WeierstrassCurve.Affine.exists_infinitePlace_deg_eq_one),
+[`WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed`]
+(thm.html#WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed)
 and
-[`WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap`](thm.html#WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap).
+[`WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap`]
+(thm.html#WeierstrassCurve.Affine.valuation_placeOf_neg_transEquiv_algebraMap).
 
 ## Explanation of the source proof
 
@@ -161,13 +164,16 @@ lemma valuationInfty_algebraMap_of_ne_zero {f : W.CoordinateRing} (hf : f ≠ 0)
 end WeierstrassCurve.Affine
 
 theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) :
-    ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
+    ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f :
+      W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing
+      W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
   ⟨WeierstrassCurve.Affine.valuationInfty W.toAffine, fun _ hf =>
     WeierstrassCurve.Affine.valuationInfty_algebraMap_of_ne_zero W.toAffine hf⟩
 
 end S_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm (solution)
+export P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
+  (solution)
 
 end privateSection
 
@@ -175,7 +181,9 @@ public section publicSection
 
 theorem WeierstrassCurve.Affine.FunctionField.exists_valuation_eq_exp_natDegree_norm {K : Type*}
     [Field K] (W : WeierstrassCurve K) :
-    ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f : W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
+    ∃ v : Valuation W.toAffine.FunctionField (WithZero (Multiplicative ℤ)), ∀ f :
+      W.toAffine.CoordinateRing, f ≠ 0 → v (algebraMap W.toAffine.CoordinateRing
+      W.toAffine.FunctionField f) = WithZero.exp ((Algebra.norm (Polynomial K) f).natDegree : ℤ) :=
   solution W
 
 end publicSection

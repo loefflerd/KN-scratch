@@ -63,7 +63,8 @@ open IntermediateField Algebra
 
 theorem solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] :
-    AlgebraicCurve.IsCurveOver K F ↔ ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F := by
+    AlgebraicCurve.IsCurveOver K F ↔ ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧
+      Algebra.IsSeparable K⟮t⟯ F := by
   constructor
   · intro h
     exact AlgebraicCurve.IsCurveOver.exists_separating_transcendental
@@ -85,7 +86,8 @@ namespace AlgebraicCurve
 theorem isCurveOver_iff_exists_transcendental_finiteDimensional {K : Type*} {F : Type*} [Field K]
     [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] :
-    IsCurveOver K F ↔ ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F :=
+    IsCurveOver K F ↔ ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable
+      K⟮t⟯ F :=
   solution
 end AlgebraicCurve
 

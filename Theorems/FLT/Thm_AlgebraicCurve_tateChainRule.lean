@@ -51,9 +51,11 @@ corresponding to Tate's axiom (R4): changing the second argument from a uniformi
 below to a uniformiser of the place above is compensated by multiplying the first argument by the
 coordinate of the pulled-back differential. It is used in the comparison of residues with traces
 over completions, in
-[`AlgebraicCurve.residueTraceCompletionCommute`](thm.html#AlgebraicCurve.residueTraceCompletionCommute)
+[`AlgebraicCurve.residueTraceCompletionCommute`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute)
 and
-[`AlgebraicCurve.residueTraceCompletionCommute_v2`](thm.html#AlgebraicCurve.residueTraceCompletionCommute_v2).
+[`AlgebraicCurve.residueTraceCompletionCommute_v2`]
+(thm.html#AlgebraicCurve.residueTraceCompletionCommute_v2).
 
 ## Explanation of the source proof
 

@@ -84,7 +84,8 @@ theorem UHAsm.finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.Binar
     MvPolynomial.homogeneousSubmodule_eq_finsupp_supported,
     AddMonoidAlgebra.supported_eq_span_single]
   refine Submodule.fg_span (Set.Finite.image _ ?_)
-  refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i + Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
+  refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i +
+    Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
   intro d hd
   have hsum : d 0 + d 1 = n := by
     have : d.degree = n := hd
@@ -95,9 +96,12 @@ theorem UHAsm.finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.Binar
   · simp; omega
 
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
-    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
-      ≤ 2 * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)) := by
+    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
+      ≤ 2 * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) *
+        (ModularCurve.nuTwo N : ℚ)
+        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) *
+          (ModularCurve.cuspCount N : ℚ)) := by
   classical
   have : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := UHAsm.finite_binaryForm n
   have : (CongruenceSubgroup.Gamma0 N).FiniteIndex := inferInstance
@@ -113,36 +117,47 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
   have hν₃ := ModularCurve.natCard_fixedPoints_ST_cosets_Gamma0_eq_nuThree N
   have hc := ModularCurve.natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount N
   have hμ := ModularCurve.Gamma0_index N
-  have hle₂ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index :=
+  have hle₂ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x} ≤
+    (CongruenceSubgroup.Gamma0 N).index :=
     by
     rw [Subgroup.index]; exact Finite.card_subtype_le _
-  have hle₃ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index :=
+  have hle₃ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S *
+    ModularGroup.T) • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index :=
     by
     rw [Subgroup.index]; exact Finite.card_subtype_le _
   have hq4 : 2 * ((n + 2) / 4) ≤ n + 1 := by omega
   have hq3 : 2 * ((n + 2) / 3) ≤ n + 1 := by omega
-  set Hn := Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) with hHn
+  set Hn := Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+    (CongruenceSubgroup.Gamma0 N).subtype)) with hHn
   set Pw := Module.finrank ℂ (HeckeEis.coeffH1par W)
   set A := Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1))
-  set Bk := Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩ - 1))
+  set Bk := Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top
+    _⟩ - 1))
   set Tk := Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1))
   set aS := Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n ModularGroup.S - 1))
-  set aU := Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1))
+  set aU := Module.finrank ℂ ↥(LinearMap.ker (HeckeEis.binaryFormRepSL ℂ n (ModularGroup.S *
+    ModularGroup.T) - 1))
   set ν₂ := Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x}
-  set ν₃ := Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}
-  set cc := Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))
+  set ν₃ := Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S *
+    ModularGroup.T) • x = x}
+  set cc := Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸
+    CongruenceSubgroup.Gamma0 N))
   set μ := (CongruenceSubgroup.Gamma0 N).index
-  have hmain : 6 * Hn + 3 * (2 * (ν₂ * aS) + (μ - ν₂) * (n + 1)) + 2 * (3 * (ν₃ * aU) + (μ - ν₃) * (n + 1)) + 6 * cc
+  have hmain : 6 * Hn + 3 * (2 * (ν₂ * aS) + (μ - ν₂) * (n + 1)) + 2 * (3 * (ν₃ * aU) + (μ - ν₃) *
+    (n + 1)) + 6 * cc
       ≤ 6 * ((n + 1) * μ) := by
     rw [hW0] at hA
     linarith [hB, hA, hS, hU, hT]
   have hmain' : 6 * Hn + 3 * (2 * (ν₂ * (n + 1 - 2 * ((n + 2) / 4))) + (μ - ν₂) * (n + 1))
-      + 2 * (3 * (ν₃ * (n + 1 - 2 * ((n + 2) / 3))) + (μ - ν₃) * (n + 1)) + 6 * cc ≤ 6 * ((n + 1) * μ) := by
+      + 2 * (3 * (ν₃ * (n + 1 - 2 * ((n + 2) / 3))) + (μ - ν₃) * (n + 1)) + 6 * cc ≤ 6 * ((n + 1) *
+        μ) := by
     have e1 : ν₂ * (n + 1 - 2 * ((n + 2) / 4)) ≤ ν₂ * aS := Nat.mul_le_mul_left _ h1
     have e2 : ν₃ * (n + 1 - 2 * ((n + 2) / 3)) ≤ ν₃ * aU := Nat.mul_le_mul_left _ h2
     omega
-  have hQ : (6 : ℚ) * Hn + 3 * (2 * ((ν₂ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ))) + ((μ : ℚ) - ν₂) * ((n : ℚ) + 1))
-      + 2 * (3 * ((ν₃ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 3 : ℕ) : ℚ))) + ((μ : ℚ) - ν₃) * ((n : ℚ) + 1)) + 6 * (cc : ℚ)
+  have hQ : (6 : ℚ) * Hn + 3 * (2 * ((ν₂ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ))) + ((μ :
+    ℚ) - ν₂) * ((n : ℚ) + 1))
+      + 2 * (3 * ((ν₃ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 3 : ℕ) : ℚ))) + ((μ : ℚ) - ν₃) * ((n :
+        ℚ) + 1)) + 6 * (cc : ℚ)
       ≤ 6 * (((n : ℚ) + 1) * μ) := by
     have := hmain'
     have c1 : ((n + 1 - 2 * ((n + 2) / 4) : ℕ) : ℚ) = (n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ) :=
@@ -157,10 +172,13 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
     push_cast [c1, c2, c3, c4] at this
     linarith
   rw [hν₂] at hQ; rw [hν₃] at hQ; rw [hc] at hQ; rw [hμ] at hQ
-  have hg : ModularCurve.genusFormula N = 1 + (ModularCurve.dedekindPsi N : ℚ) / 12 - (ModularCurve.nuTwo N : ℚ) / 4
+  have hg : ModularCurve.genusFormula N = 1 + (ModularCurve.dedekindPsi N : ℚ) / 12 -
+    (ModularCurve.nuTwo N : ℚ) / 4
       - (ModularCurve.nuThree N : ℚ) / 3 - (ModularCurve.cuspCount N : ℚ) / 2 := rfl
-  have key : (12 : ℚ) * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ))
+  have key : (12 : ℚ) * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 :
+    ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
+        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) *
+          (ModularCurve.cuspCount N : ℚ))
       = 6 * (((n : ℚ) + 1) * (ModularCurve.dedekindPsi N : ℚ))
         - (3 * (2 * ((ModularCurve.nuTwo N : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ)))
               + ((ModularCurve.dedekindPsi N : ℚ) - ModularCurve.nuTwo N) * ((n : ℚ) + 1))
@@ -182,9 +200,12 @@ public section publicSection
 open scoped MatrixGroups
 theorem HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n)
     (hne : Even n) :
-    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
-      ≤ 2 * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
-        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)) :=
+    (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
+      (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
+      ≤ 2 * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) *
+        (ModularCurve.nuTwo N : ℚ)
+        + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) *
+          (ModularCurve.cuspCount N : ℚ)) :=
   solution N n hn hne
 
 end publicSection
