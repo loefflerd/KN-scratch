@@ -112,7 +112,9 @@ lemma Fc_add_int (a b c : ℕ) (w : ℂ) (m : ℤ) :
     * w) ^ b) *
       (cexp (π * I * (((4 * m : ℤ) : ℂ) * c) / 12) * η (4 * w) ^ c) =
       (cexp (π * I * (m * a) / 12) * cexp (π * I * (((2 * m : ℤ) : ℂ) * b) / 12) *
-        cexp (π * I * (((4 * m : ℤ) : ℂ) * c) / 12)) * (η w ^ a * η (2 * w) ^ b * η (4 * w) ^ c) := by ring
+        cexp (π * I * (((4 * m : ℤ) : ℂ) * c) / 12)) * (η w ^ a * η (2 * w) ^ b * η (4 * w) ^ c)
+          := by
+          ring
   rw [this, ← Complex.exp_add, ← Complex.exp_add]
   congr 2
   push_cast
@@ -172,7 +174,8 @@ def CS (a' b' c' : ℕ) : ℂ := (I⁻¹) ^ (a' + b' + c') * (2⁻¹ : ℂ) ^ b'
 
 lemma CS_ne_zero (a' b' c' : ℕ) : CS a' b' c' ≠ 0 := by
   unfold CS
-  exact mul_ne_zero (mul_ne_zero (pow_ne_zero _ (inv_ne_zero I_ne_zero)) (pow_ne_zero _ (by norm_num)))
+  exact mul_ne_zero (mul_ne_zero (pow_ne_zero _ (inv_ne_zero I_ne_zero)) (pow_ne_zero _ (by
+    norm_num)))
     (pow_ne_zero _ (by norm_num))
 
 lemma Fc_neg_inv (a' b' c' : ℕ) (z : ℂ) (hz : 0 < z.im) :
@@ -312,7 +315,8 @@ lemma mem_H_of_four_dvd :
   have hd2 : ¬ (2 : ℤ) ∣ d := by
     intro hd
     have : (2 : ℤ) ∣ A 0 0 * A 1 1 - A 0 1 * A 1 0 :=
-      dvd_sub (dvd_mul_of_dvd_right hd _) (dvd_mul_of_dvd_right ((by norm_num : (2:ℤ) ∣ 4).trans h4) _)
+      dvd_sub (dvd_mul_of_dvd_right hd _) (dvd_mul_of_dvd_right ((by
+        norm_num : (2:ℤ) ∣ 4).trans h4) _)
     rw [hdet] at this
     norm_num at this
   have hm0 : 0 < c.natAbs := Int.natAbs_pos.mpr hc
@@ -467,8 +471,12 @@ lemma F_mdifferentiable (a b c : ℕ) :
     intro z hz
     apply DifferentiableAt.differentiableWithinAt
     have hz' : 0 < z.im := hz
-    have h2 : 0 < (2 * z).im := by simp [Complex.mul_im]; positivity
-    have h4 : 0 < (4 * z).im := by simp [Complex.mul_im]; positivity
+    have h2 : 0 < (2 * z).im := by
+      simp only [mul_im, re_ofNat, im_ofNat, zero_mul, add_zero, Nat.ofNat_pos,
+        mul_pos_iff_of_pos_left]; positivity
+    have h4 : 0 < (4 * z).im := by
+      simp only [mul_im, re_ofNat, im_ofNat, zero_mul, add_zero, Nat.ofNat_pos,
+        mul_pos_iff_of_pos_left]; positivity
     unfold Fc
     refine ((ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet hz').pow _ |>.mul
       (((ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet h2).comp z
@@ -574,7 +582,8 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
       congr 1
       simp only [F, Fc, one_mul]
       ring
-    rw [show ((2 * E : ℕ) : ℤ) - 1 = ((2 * E : ℕ) : ℤ) + (-1) by ring, zpow_add₀ hD, zpow_natCast, zpow_neg_one,
+    rw [show ((2 * E : ℕ) : ℤ) - 1 = ((2 * E : ℕ) : ℤ) + (-1) by
+      ring, zpow_add₀ hD, zpow_natCast, zpow_neg_one,
       zpow_neg, zpow_natCast, show (12 : ℤ) - 1 = 11 by norm_num, zpow_ofNat, zpow_neg, zpow_ofNat]
     rw [← hDt]
     set d := UpperHalfPlane.denom g τ
@@ -603,7 +612,7 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
       linear_combination this
     rw [hfun]
     have := (isZeroAtImInfty_triple hz₁ hz₂ hz₄ hE).mul_const (Dt ^ E * (Dt ^ 6)⁻¹)
-    simp at this
+    simp only [Pi.mul_apply, Pi.pow_apply, zero_mul] at this
     exact this
   exact isZeroAtImInfty_of_pow (by norm_num) h6
 

@@ -66,7 +66,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane Filter Topology Function
@@ -690,10 +689,12 @@ open Classical in
 def ordFun (F : ring N) : WithZero (Multiplicative ℤ) :=
   if (F : ℍ → ℂ) = 0 then 0 else WithZero.exp (-ordInf N (F : ℍ → ℂ))
 
+omit [NeZero N] in
 theorem ordFun_of_ne_zero {F : ring N} (hF : (F : ℍ → ℂ) ≠ 0) :
     ordFun N F = WithZero.exp (-ordInf N (F : ℍ → ℂ)) := by
   simp [ordFun, hF]
 
+omit [NeZero N] in
 theorem ordFun_zero' {F : ring N} (hF : (F : ℍ → ℂ) = 0) : ordFun N F = 0 := by
   simp [ordFun, hF]
 
@@ -772,10 +773,12 @@ def ordValuationK : Valuation K (WithZero (Multiplicative ℤ)) :=
   (ordValuation N).extendToLocalization (S := nonZeroDivisors (ring N))
     (nonZeroDivisors_le_supp_primeCompl N) K
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ordValuationK_algebraMap (F : ring N) :
     ordValuationK N K (algebraMap (ring N) K F) = ordFun N F :=
   Valuation.extendToLocalization_apply_map_apply _ _ K F
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ordValuationK_jK :
     ordValuationK N K (algebraMap (ring N) K (jGen N)) = WithZero.exp (ordB N (Δ : ℍ → ℂ) : ℤ) := by
   have hj0 : ((jGen N : ring N) : ℍ → ℂ) ≠ 0 := by
@@ -787,15 +790,18 @@ theorem ordValuationK_jK :
     exact Polynomial.X_ne_zero this
   rw [ordValuationK_algebraMap, ordFun_of_ne_zero N hj0, coe_jGen, ordInf_jAnalytic, neg_neg]
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem one_lt_ordValuationK_jK : 1 < ordValuationK N K (algebraMap (ring N) K (jGen N)) := by
   rw [ordValuationK_jK, ← WithZero.exp_zero, WithZero.exp_lt_exp]
   exact_mod_cast ordB_discriminant_pos N
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem isNontrivial_ordValuationK : (ordValuationK N K).IsNontrivial := by
   refine ⟨algebraMap (ring N) K (jGen N), ?_, ?_⟩
   · rw [ordValuationK_jK]; exact WithZero.exp_ne_zero
   · exact (one_lt_ordValuationK_jK N K).ne'
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem nontrivial_valueGroup :
     Nontrivial (ordValuationK N K).toMonoidWithZeroHom.valueGroup := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
@@ -891,6 +897,7 @@ theorem ordFun_comp_T_inv (F : ring N)
     congr 2
     exact ordInf_comp_T_inv N F.2 hF₁
 
+omit [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ordValuationK_algEquiv
     (hst : ∀ F ∈ ring N, (fun τ : ℍ => F (ModularGroup.T⁻¹ • τ)) ∈ ring N) (φ : K ≃ₐ[ℂ] K)
     (hφ : ∀ (F : ℍ → ℂ) (hF : F ∈ ring N),

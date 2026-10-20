@@ -338,7 +338,7 @@ private theorem discriminant_S_smul (z : ℍ) :
       = UpperHalfPlane.denom (Matrix.SpecialLinearGroup.mapGL ℝ ModularGroup.S) (z : ℂ) ^ (12 : ℤ)
         * ModularForm.discriminant z := by
     have h__af := SlashInvariantForm.slash_action_eqn'' CuspForm.discriminant hS z
-    simp [CuspForm.coe_discriminant] at h__af
+    simp only [CuspForm.coe_discriminant, zpow_ofNat] at h__af
     exact h__af
   rw [show UpperHalfPlane.denom (Matrix.SpecialLinearGroup.mapGL ℝ ModularGroup.S) (z : ℂ)
       = (z : ℂ) from ModularGroup.denom_S z,

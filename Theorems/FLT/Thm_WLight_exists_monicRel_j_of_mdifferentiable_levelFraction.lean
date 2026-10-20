@@ -139,9 +139,8 @@ end JfFacts
 
 section AdjoinFacts
 
-variable {N : ℕ} [NeZero N] {jf : ℍ → ℂ} {fricke : (Fin 2 → ZMod N) → ℍ → ℂ}
+variable {N : ℕ} {jf : ℍ → ℂ} {fricke : (Fin 2 → ZMod N) → ℍ → ℂ}
 
-omit [NeZero N] in
 lemma map_castRingHom_eq_one {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ}
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) :
     ((Matrix.SpecialLinearGroup.map (Int.castRingHom (ZMod N)) γ :
@@ -149,7 +148,6 @@ lemma map_castRingHom_eq_one {γ : Matrix.SpecialLinearGroup (Fin 2) ℤ}
   rw [CongruenceSubgroup.Gamma_mem'] at hγ
   rw [hγ, Matrix.SpecialLinearGroup.coe_one]
 
-omit [NeZero N] in
 lemma mdiff_of_mem_adjoin
     (hjmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) jf)
     (hfmd : ∀ v : Fin 2 → ZMod N, v ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (fricke v))
@@ -166,7 +164,6 @@ lemma mdiff_of_mem_adjoin
   | add x y _ _ ihx ihy => exact ihx.add ihy
   | mul x y _ _ ihx ihy => exact ihx.mul ihy
 
-omit [NeZero N] in
 lemma invariant_of_mem_adjoin
     (hjinv : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : ℍ), jf (γ • τ) = jf τ)
     (hfslash : ∀ (v : Fin 2 → ZMod N) (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : ℍ),

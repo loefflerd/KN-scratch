@@ -684,7 +684,8 @@ theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(Binary
     (F := fun q z => cosetOp N ℓ n q (F (heckeCosetRep N ℓ q • z)))
     (fun q _ => by
       have hq := hF.binarySubst_adjugate_comp_smul (M := cosetMat (ℓ := ℓ) q)
-        (by rw [det_cosetMat]; exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne ℓ)) (coe_heckeCosetRep q)
+        (by
+          rw [det_cosetMat]; exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne ℓ)) (coe_heckeCosetRep q)
       intro d τ
       have := hq d τ
       simp only [← cosetOp_apply_eq] at this

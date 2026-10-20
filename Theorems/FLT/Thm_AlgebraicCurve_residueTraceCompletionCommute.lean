@@ -146,7 +146,6 @@ p2m_export "Valued" "v"
 end Valued
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "LinearMap P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.LinearMap Submodule \
   P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Submodule"
@@ -475,7 +474,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 
 noncomputable section
@@ -506,7 +504,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve \
   P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.ModularCurve.GF24a9RRDx AlgebraicCurve.Place \
@@ -564,7 +561,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place \
@@ -590,7 +586,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve.Place \

@@ -68,7 +68,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces
+namespace P2MW.S_OVERLONG_63ec6564
 
 
 open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField Polynomial
@@ -174,10 +174,10 @@ theorem solution (N : ℕ) [NeZero N] :
   refine ⟨p, hpirr, hpmon, hroot 0 h0', hroot 1728 h1728', ?_, hordw.symm⟩
   rw [hordw]; exact hepos
 
-end S_ModularCurve_exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces
+end S_OVERLONG_63ec6564
 end P2MW
 export
-  P2MW.S_ModularCurve_exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces
+  P2MW.S_OVERLONG_63ec6564
   (solution)
 
 end privateSection

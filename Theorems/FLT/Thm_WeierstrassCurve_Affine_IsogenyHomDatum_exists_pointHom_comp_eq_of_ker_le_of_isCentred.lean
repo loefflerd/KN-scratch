@@ -80,10 +80,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred
+namespace P2MW.S_OVERLONG_c76b33b5
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -186,6 +185,8 @@ variable [V.IsElliptic] [GenusOnePlaceGate V] [AbelTheorem V]
 def hmap (η : IsogenyHomDatum U V) (P : U.Point) : V.Point :=
   (pointEquivPlace (W := V)).symm ((placeOfPoint P).restrictAlong η.ι η.hι)
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic U] [U.AbelTheorem]
+  [WeierstrassCurve.IsElliptic V] [V.AbelTheorem] in
 theorem hmap_seam (η : IsogenyHomDatum U V) (P : U.Point) :
     (placeOfPoint P).restrictAlong η.ι η.hι = placeOfPoint (hmap η P) :=
   ((pointEquivPlace (W := V)).apply_symm_apply _).symm
@@ -204,6 +205,7 @@ theorem hmap_add_of_ker (η : IsogenyHomDatum U V) (hN : NormFormulaAlong F η.�
   exact (sub_left_inj.mp h1).symm
 
 omit [DecidableEq F] in
+omit [IsAlgClosed F] [CharZero F] in
 theorem placeOfPoint_inj {W : WeierstrassCurve.Affine F} [GenusOnePlaceGate W] {P Q : W.Point}
     (h : placeOfPoint P = placeOfPoint Q) : P = Q := by
   classical
@@ -222,6 +224,7 @@ variable [V₂.IsElliptic] [GenusOnePlaceGate V₂] [AbelTheorem V₂]
 variable [GenusOnePlaceGate.IsCentred V₀]
 
 omit [DecidableEq F] in
+omit [IsAlgClosed F] [CharZero F] in
 theorem hrat_of_gate {V : WeierstrassCurve.Affine F} [V.IsElliptic] [GenusOnePlaceGate V] :
     ∀ w : Place F V.FunctionField, w.IsRational := by
   classical
@@ -238,6 +241,8 @@ theorem τ_seam (R Q : V₀.Point) :
     (placeOfPoint Q).restrictAlong (τ R).toAlgHom (τ_isIntegral R) = placeOfPoint (Q + R) :=
   (exists_algEquiv_restrictAlong_placeOfPoint_eq_add (W := V₀) R).choose_spec.choose_spec Q
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀]
+  [V₀.GenusOnePlaceGate] [V₀.AbelTheorem] [GenusOnePlaceGate.IsCentred V₀] in
 theorem algEquiv_isIntegral (e : V₀.FunctionField ≃ₐ[F] V₀.FunctionField) :
     e.toAlgHom.toRingHom.IsIntegral :=
   RingHom.isIntegral_of_surjective _ e.surjective
@@ -296,9 +301,11 @@ def kerActHom :
     change τ (((Multiplicative.toAdd (S * T)) : (φ.pointHom hNφ).ker) : V₀.Point) = _
     rw [toAdd_mul, AddSubgroup.coe_add, τ_add]
 
+omit [WeierstrassCurve.IsElliptic V₁] in
 theorem kerActHom_apply (T : (φ.pointHom hNφ).ker) :
     kerActHom φ hNφ (Multiplicative.ofAdd T) = τ (T : V₀.Point) := rfl
 
+omit [WeierstrassCurve.IsElliptic V₁] in
 theorem kerActHom_injective : Function.Injective (kerActHom φ hNφ) := by
   rw [injective_iff_map_eq_one]
   intro T hT
@@ -310,12 +317,15 @@ scoped instance instMulSemiringActionKer :
     MulSemiringAction (Multiplicative (φ.pointHom hNφ).ker) V₀.FunctionField :=
   MulSemiringAction.compHom _ (kerActHom φ hNφ)
 
+omit [WeierstrassCurve.IsElliptic V₁] in
 theorem ker_smul_def (T : Multiplicative (φ.pointHom hNφ).ker) (f : V₀.FunctionField) :
     T • f = kerActHom φ hNφ T f := rfl
 
-scoped instance instFaithfulKer : FaithfulSMul (Multiplicative (φ.pointHom hNφ).ker) V₀.FunctionField where
+scoped instance instFaithfulKer :
+    FaithfulSMul (Multiplicative (φ.pointHom hNφ).ker) V₀.FunctionField where
   eq_of_smul_eq_smul h := kerActHom_injective φ hNφ (AlgEquiv.ext h)
 
+omit [WeierstrassCurve.IsElliptic V₁] in
 theorem mem_fixedPoints_iff (f : V₀.FunctionField) :
     f ∈ FixedPoints.subfield (Multiplicative (φ.pointHom hNφ).ker) V₀.FunctionField ↔
       ∀ T : V₀.Point, φ.pointHom hNφ T = 0 → τ T f = f := by
@@ -346,9 +356,13 @@ theorem fieldRange_le_fixedPoints :
     simpa [AlgHom.fieldRange, IntermediateField.mem_toSubfield] using hf
   exact DFunLike.congr_fun (τ_comp_eq_of_ker φ hNφ T hT) g
 
+omit [GenusOnePlaceGate.IsCentred V₀] in
 theorem natCard_ker : Nat.card (φ.pointHom hNφ).ker = finrankAlong F φ.ι :=
   natCard_ker_pointMapOfPushforward_eq_finrankAlong V₀ V₁ φ.ι φ.hι φ.hfin hNφ
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀]
+  [V₀.GenusOnePlaceGate] [V₀.AbelTheorem] [WeierstrassCurve.IsElliptic V₁] [V₁.GenusOnePlaceGate]
+  [V₁.AbelTheorem] [GenusOnePlaceGate.IsCentred V₀] in
 theorem finrankAlong_pos : 0 < finrankAlong F φ.ι := by
   let := algebraAlong φ.ι
   have : Module.Finite V₁.FunctionField V₀.FunctionField := φ.hfin
@@ -437,9 +451,9 @@ theorem solution
   abel
 
 end
-end S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred
+end S_OVERLONG_c76b33b5
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred
+export P2MW.S_OVERLONG_c76b33b5
   (solution)
 
 end privateSection

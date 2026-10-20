@@ -157,7 +157,6 @@ theorem exists_pow_of_aut (σ : (kN N) ≃ₐ[ℚ] (kN N)) : ∃ s : ℕ, σ (ze
   have hμ := isPrimitiveRoot_zetaK N
   exact ⟨((hμ.autToPow ℚ σ : (ZMod N)ˣ) : ZMod N).val, by rw [hμ.autToPow_spec ℚ σ]⟩
 
-set_option linter.unusedSectionVars false in
 theorem exists_rat_of_fixed (x : kN N) (hx : ∀ σ : (kN N) ≃ₐ[ℚ] (kN N), σ x = x) :
     ∃ r : ℚ, x = algebraMap ℚ (kN N) r := by
   have := (IsGalois.mem_bot_iff_fixed x).2 hx
@@ -214,7 +213,8 @@ theorem aut_mem_AZ (σ : (kN N) ≃ₐ[ℚ] (kN N)) (x : kN N) (hx : (x : ℂ) �
     rw [map_mul, map_pow, map_pow, map_intCast, ← hcoe, coe_zetaK]
   rw [hσc]
   refine sum_mem fun i _ => ?_
-  refine mul_mem (by exact_mod_cast (AZ N).algebraMap_mem (p.coeff i)) (pow_mem (pow_mem (zetaN_mem_AZ N) s) _)
+  refine mul_mem (by
+    exact_mod_cast (AZ N).algebraMap_mem (p.coeff i)) (pow_mem (pow_mem (zetaN_mem_AZ N) s) _)
 
 theorem exists_int_of_mem_AZ_of_rat (r : ℚ) (hr : ((r : ℂ)) ∈ AZ N) :
     ∃ z : ℤ, (r : ℂ) = (z : ℂ) := by
@@ -575,7 +575,9 @@ def P4 : PowerSeries ℤ :=
 
 theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) := by
   ext n
-  rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
+  rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by
+    norm_num) (by
+      decide) n,
     P4, PowerSeries.coeff_mk, eq_intCast]
   split_ifs with h
   · simp

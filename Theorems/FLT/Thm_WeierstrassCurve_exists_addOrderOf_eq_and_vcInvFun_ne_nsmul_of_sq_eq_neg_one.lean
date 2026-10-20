@@ -284,7 +284,7 @@ theorem solution
     have hns : W.toAffine.Nonsingular a 0 := by
       rw [WeierstrassCurve.Affine.nonsingular_iff']
       refine ⟨heq, Or.inl ?_⟩
-      simp [hWdef]
+      simp only [hWdef, mul_zero, zero_mul, add_zero, zero_sub, neg_add_rev, ne_eq]
       intro h3a
       apply ha0
       have : (2 : L) * a ^ 2 = 0 := by linear_combination -h3a - ha
@@ -429,7 +429,8 @@ theorem solution
     let s : Finset Ep := Finset.univ.filter (fun T => T ≠ 0)
     have hs_card : s.card = p ^ 2 - 1 := by
       have : s.card + 1 = p ^ 2 := by
-        rw [show s = Finset.univ.erase 0 by ext T; simp [s], Finset.card_erase_of_mem (Finset.mem_univ _),
+        rw [show s = Finset.univ.erase 0 by
+          ext T; simp [s], Finset.card_erase_of_mem (Finset.mem_univ _),
           Finset.card_univ, ← Nat.card_eq_fintype_card, show Nat.card Ep = p ^ 2 from hcard]
         have : 1 ≤ p ^ 2 := Nat.one_le_iff_ne_zero.mpr (by positivity); omega
       omega

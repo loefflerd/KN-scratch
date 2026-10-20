@@ -61,7 +61,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
 
-set_option linter.unusedSectionVars false
 noncomputable section
 
 open KaehlerDifferential Algebra IntermediateField
@@ -248,7 +247,7 @@ end AlgebraicCurve
 
 open IntermediateField _root_.Algebra _root_.TensorProduct.Algebra
   _root_.Algebra.TensorProduct.Algebra in
-theorem _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.solution
+theorem solution
     {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]
     [PerfectField K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F] :
     ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F :=

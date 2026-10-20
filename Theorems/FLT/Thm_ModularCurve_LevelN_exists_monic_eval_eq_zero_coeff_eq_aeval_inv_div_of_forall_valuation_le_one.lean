@@ -63,7 +63,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
+namespace P2MW.S_OVERLONG_b34f3d51
 
 open scoped MatrixGroups IntermediateField
 open Polynomial
@@ -291,10 +291,10 @@ theorem solution
   exact valinf_draft M K E hEj (P.coeff i) (hfixed ▸ hPfix i)
     ((Valuation.mem_integer_iff _ _).mp (hPint i))
 
-end S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
+end S_OVERLONG_b34f3d51
 end P2MW
 export
-  P2MW.S_ModularCurve_LevelN_exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
+  P2MW.S_OVERLONG_b34f3d51
   (solution)
 
 end privateSection

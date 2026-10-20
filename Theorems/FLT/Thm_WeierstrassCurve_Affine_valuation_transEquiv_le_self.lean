@@ -78,10 +78,9 @@ open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero Polynomial
 section TransportTau
 
 variable {R : Type*} [Field R] (W : WeierstrassCurve R) (K : Type*) [Field K] [Algebra R K]
-  [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing]
+  [IsDedekindDomain (W⁄K).CoordinateRing]
 
-omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic]
-  [IsDedekindDomain (W⁄K).CoordinateRing] in
+omit [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem genericX_ne_algebraMap (c : K) : genericX W K ≠ algebraMap K (W⁄K).FunctionField c := by
   intro h
   apply CoordinateRing.XClass_ne_zero (W' := W⁄K) c
@@ -94,7 +93,7 @@ theorem genericX_ne_algebraMap (c : K) : genericX W K ≠ algebraMap K (W⁄K).F
         c).symm
   rw [CoordinateRing.XClass, map_sub, map_sub, map_sub, _root_.map_zero, e1, e2, h, sub_self]
 
-omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
+omit [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem baseChange_a_eq :
     (W⁄(W⁄K).FunctionField).a₁ = algebraMap K _ (W⁄K).a₁ ∧ (W⁄(W⁄K).FunctionField).a₂ = algebraMap K
       _ (W⁄K).a₂ ∧
@@ -106,7 +105,6 @@ theorem baseChange_a_eq :
     IsScalarTower.algebraMap_apply R K _ W.a₆⟩
 
 variable {W K} in
-omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] in
 theorem cong_addX_addY {P : (W⁄K).Point} (hP : P ≠ 0) {x₁ x₂ y₁ ℓ : (W⁄K).FunctionField}
     {x₁' x₂' y₁' ℓ' : K}
     (h₁ : ((placeOf W K P hP).valuation _).Cong x₁ (algebraMap K _ x₁'))

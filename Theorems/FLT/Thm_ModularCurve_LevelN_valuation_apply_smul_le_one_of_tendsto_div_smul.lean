@@ -71,7 +71,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_valuation_apply_smul_le_one_of_tendsto_div_smul
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane Filter Topology Function
@@ -854,10 +853,14 @@ theorem solution
       pow_ne_zero _ (ModularForm.discriminant_ne_zero τ)
     have := mul_right_cancel₀ hΔ (by
       calc af τ * (h : UpperHalfPlane → ℂ) τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n
-          = af τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (h : UpperHalfPlane → ℂ) τ := by ring
+          = af τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (h : UpperHalfPlane → ℂ)
+            τ := by
+            ring
         _ = bf τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (g : UpperHalfPlane → ℂ)
           τ := this
-        _ = bf τ * (g : UpperHalfPlane → ℂ) τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n := by ring)
+        _ = bf τ * (g : UpperHalfPlane → ℂ) τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^
+          n := by
+          ring)
     exact this
   have hev1 : ∀ᶠ τ : UpperHalfPlane in atImInfty,
       (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ) ≠ 0 :=

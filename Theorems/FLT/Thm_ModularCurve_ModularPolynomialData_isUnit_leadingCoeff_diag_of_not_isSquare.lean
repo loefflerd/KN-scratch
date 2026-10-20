@@ -71,12 +71,12 @@ open _root_.ModularCurve.W1
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare
+namespace P2MW.S_OVERLONG_9658fb33
 
 noncomputable section
 
 p2m_open "ModularCurve~coeffEmb_qExpand \
-  P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve \
+  P2MW.S_OVERLONG_9658fb33.ModularCurve \
   ModularCurve.PhiGen"
 
 namespace ModularCurve
@@ -247,9 +247,8 @@ p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qE
 namespace W1
 p2m_open "ModularCurve~coeffEmb_qExpand"
 
-variable {K : Type*} [Field K] [Algebra ℚ K]
+variable {K : Type*} [Field K]
 
-omit [Algebra ℚ K] in
 theorem isPrimitiveRoot_pow_div {N : ℕ} [NeZero N] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) N)
     {p : ℕ} (hpN : p ∣ N) : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := by
   have hN : N ≠ 0 := NeZero.ne N
@@ -262,7 +261,6 @@ theorem isPrimitiveRoot_pow_div {N : ℕ} [NeZero N] {ζ : Kˣ} (hζ : IsPrimiti
   rw [Nat.div_div_self hpN hN] at h
   rwa [← Units.val_pow_eq_pow_val] at h
 
-omit [Algebra ℚ K] in
 theorem qExpand_qTwist_TS (e : ℕ) [NeZero e] (u : Kˣ) (m : ℕ) [NeZero m] (w : Kˣ) :
     qExpand K e (qTwist u (TS K m w)) = TS K (e * m) (u ^ (m : ℤ) * w) := by
   rw [qTwist_TS, qExpand_TS]
@@ -424,9 +422,8 @@ p2m_open "ModularCurve~coeffEmb_qExpand"
 
 section U2Kit
 
-variable {K : Type*} [Field K] [Algebra ℚ K]
+variable {K : Type*} [Field K]
 
-omit [Algebra ℚ K] in
 private theorem w1_order_eq {x : LaurentSeries K} {a : ℤ}
     (hne : x.coeff a ≠ 0) (hlow : ∀ k, k < a → x.coeff k = 0) :
     x.order = a ∧ x.leadingCoeff = x.coeff a := by
@@ -436,14 +433,12 @@ private theorem w1_order_eq {x : LaurentSeries K} {a : ℤ}
     exact hx0 (HahnSeries.coeff_order_eq_zero.mp (hlow _ hlt))
   exact ⟨h1, by rw [HahnSeries.leadingCoeff_eq, h1]⟩
 
-omit [Algebra ℚ K] in
 private theorem w1_order_TS (e : ℕ) [NeZero e] (u : Kˣ) :
     (TS K e u).order = -(e : ℤ) ∧ (TS K e u).leadingCoeff = ((u⁻¹ : Kˣ) : K) := by
   have h := w1_order_eq (x := TS K e u) (a := -(e : ℤ))
     (by rw [TS_coeff_neg]; exact Units.ne_zero _) (fun k hk => TS_coeff_of_lt (K := K) e u hk)
   exact ⟨h.1, by rw [h.2, TS_coeff_neg]⟩
 
-omit [Algebra ℚ K] in
 private theorem w1_order_sub_right {x y : LaurentSeries K}
     (h : y.order < x.order) (hy : y ≠ 0) :
     (x - y).order = y.order ∧ (x - y).leadingCoeff = -y.leadingCoeff := by
@@ -457,7 +452,6 @@ private theorem w1_order_sub_right {x y : LaurentSeries K}
         HahnSeries.coeff_eq_zero_of_lt_order hk, sub_zero])
   exact ⟨h'.1, by rw [h'.2, hat]⟩
 
-omit [Algebra ℚ K] in
 private theorem w1_order_sub_left {x y : LaurentSeries K}
     (h : x.order < y.order) (hx : x ≠ 0) :
     (x - y).order = x.order ∧ (x - y).leadingCoeff = x.leadingCoeff := by
@@ -471,7 +465,6 @@ private theorem w1_order_sub_left {x y : LaurentSeries K}
         HahnSeries.coeff_eq_zero_of_lt_order (hk.trans h), sub_zero])
   exact ⟨h'.1, by rw [h'.2, hat]⟩
 
-omit [Algebra ℚ K] in
 private theorem w1_prod_ne_zero_leadingCoeff {α : Type*} (s : Finset α)
     (F : α → LaurentSeries K) (h : ∀ i ∈ s, F i ≠ 0) :
     (∏ i ∈ s, F i) ≠ 0 ∧ (∏ i ∈ s, F i).leadingCoeff = ∏ i ∈ s, (F i).leadingCoeff := by
@@ -488,7 +481,6 @@ private theorem w1_prod_ne_zero_leadingCoeff {α : Type*} (s : Finset α)
     exact ⟨mul_ne_zero ha0 h0,
       by rw [HahnSeries.leadingCoeff_mul_of_ne_zero hne, hlc]⟩
 
-omit [Algebra ℚ K] in
 private theorem w1_slot_factor (N a b : ℕ) [NeZero N] [NeZero a] (hN : ¬ IsSquare N)
     (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N) :
     (TS K N 1 - TS K (a * a) (ζ ^ (b * a))) ≠ 0 ∧
@@ -739,16 +731,16 @@ end
 p2m_open "ModularCurve~coeffEmb_qExpand\
   " in
 open
-  _root_.P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve
+  _root_.P2MW.S_OVERLONG_9658fb33.ModularCurve
   in
 theorem solution (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
     (data : ModularCurve.ModularPolynomialData N) :
     IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=
   ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare N hN data
 
-end S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare
+end S_OVERLONG_9658fb33
 end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare (solution)
+export P2MW.S_OVERLONG_9658fb33 (solution)
 
 end privateSection
 

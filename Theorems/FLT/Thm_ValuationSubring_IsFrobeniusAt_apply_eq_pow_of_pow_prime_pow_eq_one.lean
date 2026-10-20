@@ -128,7 +128,8 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
   have hn' : (n : IsLocalRing.ResidueField A) = 0 := (mul_eq_zero.mp hsum).resolve_right htne
   have hchar : CharP (IsLocalRing.ResidueField A) q := by
     rw [CharP.charP_iff_prime_eq_zero hq]
-    have hqA : ((q : A) : AlgebraicClosure ℚ) ∈ A.nonunits := by simp at hA ⊢; exact hA
+    have hqA : ((q : A) : AlgebraicClosure ℚ) ∈ A.nonunits := by
+      simp only [SubringClass.coe_natCast] at hA ⊢; exact hA
     have hmax : (q : A) ∈ IsLocalRing.maximalIdeal A := A.coe_mem_nonunits_iff.mp hqA
     have hc : ((q : ℕ) : IsLocalRing.ResidueField A) = IsLocalRing.residue A ((q : ℕ) : A) := by
       simp

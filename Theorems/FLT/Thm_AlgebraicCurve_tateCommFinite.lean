@@ -153,7 +153,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateCommFinite.LinearMap Submodule \
   P2MW.S_AlgebraicCurve_tateCommFinite.Submodule"
@@ -316,7 +315,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap \
@@ -373,7 +371,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap \
@@ -623,7 +620,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -736,7 +732,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap \
@@ -865,7 +860,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap \
@@ -1008,7 +1002,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap \

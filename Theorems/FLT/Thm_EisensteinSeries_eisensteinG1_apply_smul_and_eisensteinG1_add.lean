@@ -84,7 +84,10 @@ lemma om_smul (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
 lemma coe_smul_eq (γ : SL(2, ℤ)) :
     ((γ • τ : ℍ) : ℂ) = (((γ 0 0 : ℤ) : ℂ) * τ + ((γ 0 1 : ℤ) : ℂ)) / denom γ τ := by
   have := om_smul τ γ ![1, 0]
-  simp [om, Matrix.vecMul] at this
+  simp only [om, Fin.isValue, Matrix.cons_val_zero, Int.cast_one, ModularGroup.sl_moeb, one_mul,
+    Matrix.cons_val_one, Matrix.cons_val_fin_one, Int.cast_zero, add_zero, Matrix.vecMul,
+    Matrix.cons_dotProduct, Matrix.head_val', Matrix.tail_val', zero_mul,
+    Matrix.dotProduct_of_isEmpty] at this
   exact this
 
 lemma denom_eq (γ : SL(2, ℤ)) :

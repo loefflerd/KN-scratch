@@ -107,7 +107,8 @@ private lemma gfun_ne_zero {q : ℂ} (hq : ‖q‖ < 1) : gfun q ≠ 0 := by
   · simpa [summable_nat_add_iff 1] using summable_geometric_of_lt_one (norm_nonneg _) hq
 
 private lemma continuousAt_gfun {q : ℂ} (hq : ‖q‖ < 1) : ContinuousAt gfun q :=
-  (differentiableOn_gfun.differentiableAt (Metric.isOpen_ball.mem_nhds (by simpa using hq))).continuousAt
+  (differentiableOn_gfun.differentiableAt (Metric.isOpen_ball.mem_nhds (by
+    simpa using hq))).continuousAt
 
 private lemma qJ_eq (τ : ℍ) : qJ τ = ModularForm.E₄ τ ^ 3 / gfun (𝕢 1 (τ : ℂ)) := by
   have hq : 𝕢 1 (τ : ℂ) ≠ 0 := Function.Periodic.qParam_ne_zero _

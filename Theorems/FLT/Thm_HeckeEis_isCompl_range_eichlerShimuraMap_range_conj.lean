@@ -235,14 +235,17 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
       rw [ISCAsm.finrank_cuspForm_congr N (show (2 : ℤ) = ((0 : ℕ) : ℤ) + 2 by norm_num)] at hL
       have : (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp
         (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
-          ≤ 2 * (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (((0 : ℕ) : ℤ) + 2)) : ℚ) := by linarith
+          ≤ 2 * (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (((0 : ℕ) : ℤ) + 2)) : ℚ)
+            := by
+            linarith
       exact_mod_cast this
     · have hn2 : 2 ≤ n := by
         obtain ⟨m, rfl⟩ := hne
         omega
       have hU := HeckeEis.finrank_coeffH1par_le_two_mul_dimFormula N n hn2 hne
       have hL := CuspForm.dimFormula_le_finrank_gamma0 N (n + 2) (by omega) (hne.add even_two)
-      rw [ISCAsm.finrank_cuspForm_congr N (show ((n + 2 : ℕ) : ℤ) = (n : ℤ) + 2 by push_cast; ring)] at hL
+      rw [ISCAsm.finrank_cuspForm_congr N (show ((n + 2 : ℕ) : ℤ) = (n : ℤ) + 2 by
+        push_cast; ring)] at hL
       have : (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp
         (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ) ≤ 2 * (Module.finrank ℂ (CuspForm
         (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) : ℚ) :=

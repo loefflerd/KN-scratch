@@ -66,7 +66,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
+namespace P2MW.S_OVERLONG_c0856186
 
 
 open ModularCurve CongruenceSubgroup AlgebraicCurve
@@ -101,10 +101,10 @@ theorem solution
       M)))
   exact AlgebraicCurve.finiteDimensional_lSpace D
 
-end S_ModularCurve_finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
+end S_OVERLONG_c0856186
 end P2MW
 export
-  P2MW.S_ModularCurve_finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1
+  P2MW.S_OVERLONG_c0856186
   (solution)
 
 end privateSection

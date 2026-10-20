@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_Velu
 
-import Definitions.FLT.Def_P2M_Util
-
 /-!
 # Additivity of the Vélu weight across a 2-isogeny fibre
 
@@ -58,15 +56,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen
-
-set_option Elab.async false
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ a₄ a₂ a₆ toAffine Affine.equation_iff veluGx veluGy"
-p2m_open "WeierstrassCurve"
 
 -- Translating by the two-torsion point makes the cleared chord coordinates linear in veluGx.
 private theorem fiberAdd_coordinates {R : Type*} [CommRing R]
@@ -135,8 +125,8 @@ private theorem fiberAdd_asymWeight_cleared_sixteen_aux {R : Type*} [CommRing R]
 
 end WeierstrassCurve
 
-open _root_.WeierstrassCurve
-    _root_.P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen.WeierstrassCurve in
+open WeierstrassCurve
+
 theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
@@ -161,10 +151,6 @@ theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y�
           ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀
           y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) :=
   WeierstrassCurve.fiberAdd_asymWeight_cleared_sixteen_aux W x y x₀ y₀ hP hQ hgy
-
-end S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen
-end P2MW
-export P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen (solution)
 
 end privateSection
 
@@ -194,7 +180,6 @@ theorem WeierstrassCurve.fiberAdd_asymWeight_cleared_sixteen {R : Type*} [CommRi
           - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀)
           ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀
           y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) :=
-          _root_.P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen.solution W x y x₀ y₀ hP
-          hQ hgy
+  solution W x y x₀ y₀ hP hQ hgy
 
 end publicSection

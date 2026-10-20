@@ -75,9 +75,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
+namespace P2MW.S_OVERLONG_6989a05c
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -99,9 +98,9 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
   finiteDimensional_ratFunc_functionField"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate"
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -250,23 +249,22 @@ end WeierstrassCurve.Affine.Point
 
 section
 
-set_option linter.unusedSectionVars false
 
 section
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurv\
+  P2MW.S_OVERLONG_6989a05c.ModularCurv\
   e"
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 p2m_open_scoped "TensorProduct \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.TensorProdu\
+  P2MW.S_OVERLONG_6989a05c.TensorProdu\
   ct Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 namespace ModularCurve
 
@@ -298,25 +296,24 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 section
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurv\
+  P2MW.S_OVERLONG_6989a05c.ModularCurv\
   e AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve"
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 p2m_open_scoped "TensorProduct \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.TensorProdu\
+  P2MW.S_OVERLONG_6989a05c.TensorProdu\
   ct Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate"
 
 namespace WeierstrassCurve
@@ -398,20 +395,19 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial \
+  P2MW.S_OVERLONG_6989a05c.Polynomial \
   WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate"
 
 universe u
@@ -434,7 +430,7 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine.CoordinateRing"
 
 variable {F : Type u} [Field F]
@@ -529,9 +525,9 @@ end WeierstrassCurve.Affine
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine"
 
 local notation "Qbar" => AlgebraicClosure ℚ
@@ -547,13 +543,13 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial \
+  P2MW.S_OVERLONG_6989a05c.Polynomial \
   IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IsDedekindD\
+  P2MW.S_OVERLONG_6989a05c.IsDedekindD\
   omain"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate"
 
 namespace WeierstrassCurve
@@ -574,9 +570,9 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine.CoordinateRing AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve"
 
 universe u
@@ -651,16 +647,15 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.FreyPackag\
+  P2MW.S_OVERLONG_6989a05c.FreyPackag\
   e WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine"
 
 namespace WeierstrassCurve
@@ -692,9 +687,9 @@ namespace ModularCurve
 namespace ElevenA1
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurv\
+  P2MW.S_OVERLONG_6989a05c.ModularCurv\
   e"
 
 local notation "Qbar" => AlgebraicClosure ℚ
@@ -712,7 +707,7 @@ end WeierstrassCurve
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve"
 
 local notation "Qbar" => AlgebraicClosure ℚ
@@ -727,10 +722,10 @@ section
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate"
 
 namespace WeierstrassCurve
@@ -755,7 +750,7 @@ end
 section
 
 p2m_open "IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField"
 
 namespace IntermediateField
@@ -783,17 +778,17 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial \
+  P2MW.S_OVERLONG_6989a05c.Polynomial \
   WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine WeierstrassCurve.Affine.Point \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine.Point"
 
 p2m_open_scoped "WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate"
 
 section
@@ -816,9 +811,9 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine.CoordinateRing AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve"
 
 universe u
@@ -866,11 +861,11 @@ section
 universe u
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine HahnSeries \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.HahnSeries"
+  P2MW.S_OVERLONG_6989a05c.HahnSeries"
 
 namespace ModularCurve
 
@@ -888,20 +883,19 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve"
 
 def KwIsogenyEndDatumSubfieldDescent'' (K : Type uK) [Field K] [Algebra ℚ K]
@@ -937,28 +931,26 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurv\
+  P2MW.S_OVERLONG_6989a05c.ModularCurv\
   e AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve"
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 p2m_open_scoped "TensorProduct \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.TensorProdu\
+  P2MW.S_OVERLONG_6989a05c.TensorProdu\
   ct Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.\
+  P2MW.S_OVERLONG_6989a05c.Polynomial.\
   Bivariate Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial \
+  P2MW.S_OVERLONG_6989a05c.Polynomial \
   Polynomial.Bivariate.Polynomial"
 
 namespace ModularCurve
@@ -974,6 +966,7 @@ variable (F' : Type u) [Field F'] [Algebra R₀ F'] [DecidableEq F'] [CharZero F
 variable [Algebra F F'] [IsScalarTower R₀ F F']
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [Algebra R₀ F] [CharZero F] [CharZero F'] [IsScalarTower R₀ F F'] in
 theorem kw_transcendental_polyToFunctionField_X_over_baseGeneralNoAC :
     Transcendental F (polyToFunctionField (W⁄F') X) := by
   classical
@@ -982,6 +975,7 @@ theorem kw_transcendental_polyToFunctionField_X_over_baseGeneralNoAC :
       (transcendental_polyToFunctionField_X (W := (W⁄F')))
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_equation_map_polyToFunctionField_yGen_over_baseGeneralNoAC :
     ((W⁄F).map (algebraMap F (W⁄F').FunctionField)).toAffine.Equation
       (polyToFunctionField (W⁄F') X) (yGen (W⁄F')) := by
@@ -1002,6 +996,7 @@ def kw_functionFieldMapAlongGeneralNoAC : (W⁄F).FunctionField →ₐ[F] (W⁄F
         hp)
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X :
     kw_functionFieldMapAlongGeneralNoAC W F F' (polyToFunctionField (W⁄F) X)
       = polyToFunctionField (W⁄F') X := by
@@ -1010,6 +1005,7 @@ theorem kw_functionFieldMapAlongGeneralNoAC_polyToFunctionField_X :
     pointPullbackHomTo_polyToFunctionField_X _ _
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_functionFieldMapAlongGeneralNoAC_yGen :
     kw_functionFieldMapAlongGeneralNoAC W F F' (yGen (W⁄F)) = yGen (W⁄F') := by
   classical
@@ -1048,6 +1044,7 @@ scoped instance kw_isScalarTower_base_right_fracTensorGeneralNoAC :
         (FractionRing ((W⁄F).FunctionField ⊗[F] F')) (algebraMap R₀ F' r)).symm
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] [IsDomain ((W⁄F).FunctionField ⊗[F] F')] in
 theorem kw_equation_tensorFracXYGeneralNoAC :
     ((W⁄F').map (algebraMap F' (FractionRing ((W⁄F).FunctionField ⊗[F] F')))).toAffine.Equation
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
@@ -1069,6 +1066,8 @@ theorem kw_equation_tensorFracXYGeneralNoAC :
     (equation_map_polyToFunctionField_yGen (W := (W⁄F)))
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F']
+  [IsDomain ((W⁄F).FunctionField ⊗[F] F')] in
 theorem kw_transcendental_tensorFracXGeneralNoAC :
     Function.Injective (Polynomial.aeval (R := F')
       (algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing ((W⁄F).FunctionField ⊗[F] F'))
@@ -1125,6 +1124,7 @@ def kw_functionFieldTensorFracHomGeneralNoAC :
     (kw_transcendental_tensorFracXGeneralNoAC W F F')
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_functionFieldTensorFracHomGeneralNoAC_X :
     kw_functionFieldTensorFracHomGeneralNoAC W F F' (polyToFunctionField (W⁄F') X)
       = algebraMap ((W⁄F).FunctionField ⊗[F] F') _
@@ -1134,6 +1134,7 @@ theorem kw_functionFieldTensorFracHomGeneralNoAC_X :
     pointPullbackHomTo_polyToFunctionField_X _ _
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_functionFieldTensorFracHomGeneralNoAC_yGen :
     kw_functionFieldTensorFracHomGeneralNoAC W F F' (yGen (W⁄F'))
       = algebraMap ((W⁄F).FunctionField ⊗[F] F') _ ((yGen (W⁄F)) ⊗ₜ[F] (1 : F')) := by
@@ -1142,6 +1143,7 @@ theorem kw_functionFieldTensorFracHomGeneralNoAC_yGen :
     pointPullbackHomTo_yGen _ _
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_functionFieldTensorFracHomGeneralNoAC_bijective :
     Function.Bijective (kw_functionFieldTensorFracHomGeneralNoAC W F F') := by
   classical
@@ -1188,6 +1190,8 @@ def kw_tensorIotaRingHomGeneralNoAC (D : TreeIsogenyEndDatum (W⁄F)) :
   (Algebra.TensorProduct.map D.ι (AlgHom.id F F')).toRingHom
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F']
+  [IsDomain ((W⁄F).FunctionField ⊗[F] F')] in
 theorem kw_tensorIotaRingHomGeneralNoAC_tmul (D : TreeIsogenyEndDatum (W⁄F))
     (a : (W⁄F).FunctionField)
     (c : F') : kw_tensorIotaRingHomGeneralNoAC W F F' D (a ⊗ₜ[F] c) = (D.ι a) ⊗ₜ[F] c := by
@@ -1195,6 +1199,8 @@ theorem kw_tensorIotaRingHomGeneralNoAC_tmul (D : TreeIsogenyEndDatum (W⁄F))
   simp [kw_tensorIotaRingHomGeneralNoAC, Algebra.TensorProduct.map_tmul]
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F']
+  [IsDomain ((W⁄F).FunctionField ⊗[F] F')] in
 theorem kw_tensorIotaRingHomGeneralNoAC_injective (D : TreeIsogenyEndDatum (W⁄F)) :
     Function.Injective (kw_tensorIotaRingHomGeneralNoAC W F F' D) := by
   classical
@@ -1209,6 +1215,7 @@ def kw_tensorFracIotaRingHomGeneralNoAC (D : TreeIsogenyEndDatum (W⁄F)) :
     (kw_tensorIotaRingHomGeneralNoAC_injective W F F' D)
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F'] in
 theorem kw_tensorFracIotaRingHomGeneralNoAC_algebraMap (D : TreeIsogenyEndDatum (W⁄F))
     (t : (W⁄F).FunctionField ⊗[F] F') :
     kw_tensorFracIotaRingHomGeneralNoAC W F F' D
@@ -1251,6 +1258,7 @@ def KwIsogenyEndDatumBaseChangeAlongGeneralNoAC (_σ : F →ₐ[R₀] F') (N : �
     ∃ D' : TreeIsogenyEndDatum (W⁄F'), D'.degree = N
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneralNoAC
     (hseam : KwTensorFracIotaFinrankSeamGeneralNoAC W F F')
     (σ : F →ₐ[R₀] F') (N : ℕ) : KwIsogenyEndDatumBaseChangeAlongGeneralNoAC W F F' σ N := by
@@ -1280,6 +1288,7 @@ theorem kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneralNoAC
 end FracHom
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_isogenyEndDatumBaseChangeAlong_of_tensorIsDomainGeneralNoAC
     (htens : KwFunctionFieldTensorIsDomainGeneralNoAC W F F')
     (hseam : haveI : IsDomain ((W⁄F).FunctionField ⊗[F] F') := htens
@@ -1309,6 +1318,7 @@ local notation3 "CR" => (W⁄F).toAffine.CoordinateRing
 local notation3 "FFₗ" => (W⁄F).FunctionField
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F'] in
 theorem kw_coordinateRingMap_basisGeneralNoAC (i : ℕ × Fin 2) :
     CoordinateRing.map (W⁄F).toAffine (algebraMap F F')
         (kw_coordinateRingBasis (W⁄F).toAffine i)
@@ -1345,6 +1355,7 @@ def kw_coordinateRingMapAlongGeneralNoAC :
       Algebra.smul_def, mul_one]
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F'] in
 theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') := by
   classical
   suffices h : IsDomain (F' ⊗[F] CR) by
@@ -1368,6 +1379,7 @@ theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') :=
   exact Function.Injective.isDomain θ.toRingHom hθ
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F'] in
 theorem kw_functionFieldTensorIsDomain_dischargeGeneralNoAC :
     KwFunctionFieldTensorIsDomainGeneralNoAC W F F' := by
   classical
@@ -1391,7 +1403,8 @@ theorem kw_functionFieldTensorIsDomain_dischargeGeneralNoAC :
     refine mem_nonZeroDivisors_of_ne_zero ?_
     have hinj : Function.Injective (algebraMap CR (CR ⊗[F] F')) :=
       Algebra.TensorProduct.includeLeft_injective (S := F) (algebraMap F F').injective
-    exact fun h => (nonZeroDivisors.ne_zero hc) (hinj (by simp only [_root_.map_zero] at h ⊢; exact h))
+    exact fun h => (nonZeroDivisors.ne_zero hc) (hinj (by
+      simp only [_root_.map_zero] at h ⊢; exact h))
   exact IsLocalization.isDomain_of_le_nonZeroDivisors
     (M := Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) _ hle
 
@@ -1402,6 +1415,8 @@ section Seam
 variable [IsDomain ((W⁄F).FunctionField ⊗[F] F')]
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F']
+  [IsDomain ((W⁄F).FunctionField ⊗[F] F')] in
 theorem kw_tensorIotaRingHom_finiteGeneralNoAC (D : TreeIsogenyEndDatum (W⁄F)) :
     (kw_tensorIotaRingHomGeneralNoAC W F F' D).Finite := by
   classical
@@ -1409,6 +1424,7 @@ theorem kw_tensorIotaRingHom_finiteGeneralNoAC (D : TreeIsogenyEndDatum (W⁄F))
     RingHom.Finite.tensorProductMap (f := D.ι) D.hfin (g := AlgHom.id F F') (RingHom.Finite.id F')
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [Algebra R₀ F'] [CharZero F'] [IsScalarTower R₀ F F'] in
 theorem kw_tensorFracIotaFinrankSeam_dischargeGeneralNoAC :
     KwTensorFracIotaFinrankSeamGeneralNoAC W F F' := by
   classical
@@ -1482,7 +1498,7 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneralNoAC :
           · exact TensorProduct.zero_tmul _ c'
         · change b.repr (D.ι x * b i) j = if i = j then x else 0
           rw [hrepr_mul, b.repr_self, Finsupp.single_apply]
-          split_ifs with h <;> simp [h]
+          split_ifs with h <;> simp
     have hc' : Ej (∑ i, ιT (c i) * e i) = 0 := by rw [hc, _root_.map_zero]
     simpa only [map_sum, hEj_key, Finset.sum_ite_eq', Finset.mem_univ, ite_true] using hc'
   have hint : ∀ s : T, s ≠ 0 → ∃ (u s₀ : T), s₀ ≠ 0 ∧ s * u = ιT s₀ := by
@@ -1564,6 +1580,7 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneralNoAC :
 end Seam
 
 omit [DecidableEq F] [DecidableEq F'] in
+omit [W.IsElliptic] [CharZero F] [CharZero F'] in
 theorem kw_isogenyEndDatumBaseChangeAlong_dischargeGeneralNoAC (σ : F →ₐ[R₀] F') (N : ℕ) :
     KwIsogenyEndDatumBaseChangeAlongGeneralNoAC W F F' σ N := by
   classical
@@ -1606,23 +1623,21 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section Carriers
 
@@ -1655,6 +1670,7 @@ def kw_iA_crDescend (c : (E).toAffine.CoordinateRing) (hmem : kw_iA_crCoeffsIn E
     • (CoordinateRing.basis E₀.toAffine) i
 
 omit [DecidableEq K] in
+omit [E₀.IsElliptic] in
 theorem kw_iA_crDescend_map (c : (E).toAffine.CoordinateRing)
     (hmem : kw_iA_crCoeffsIn E₀ c) :
     CoordinateRing.map E₀.toAffine (algebraMap K₀ K) (kw_iA_crDescend E₀ c hmem) = c := by
@@ -1670,6 +1686,7 @@ theorem kw_iA_crDescend_map (c : (E).toAffine.CoordinateRing)
         CoordinateRing.map_mk, Polynomial.map_X]
 
 omit [DecidableEq K] in
+omit [E₀.IsElliptic] in
 theorem kw_iA_phiEquation :
     (E₀.map (algebraMap K₀ (E).toAffine.FunctionField)).toAffine.Equation
       (polyToFunctionField (E).toAffine X) (yGen (E).toAffine) := by
@@ -1683,6 +1700,7 @@ theorem kw_iA_phiEquation :
   exact h ▸ equation_map_polyToFunctionField_yGen (W := (E).toAffine)
 
 omit [DecidableEq K] in
+omit [E₀.IsElliptic] in
 theorem kw_iA_phiTranscendental :
     Function.Injective
       (Polynomial.aeval (R := K₀) (polyToFunctionField (E).toAffine X)) := by
@@ -1696,6 +1714,7 @@ def kw_iA_phi : E₀.toAffine.FunctionField →ₐ[K₀] (E).toAffine.FunctionFi
   pointPullbackHomTo (kw_iA_phiEquation E₀) (kw_iA_phiTranscendental E₀)
 
 omit [DecidableEq K] in
+omit [Algebra ℚ K] in
 theorem kw_iA_polyToFF_eq_aeval (W : WeierstrassCurve.Affine K) :
     polyToFunctionField W = (Polynomial.aeval (R := K) (polyToFunctionField W X)).toRingHom := by
   classical
@@ -1709,6 +1728,7 @@ theorem kw_iA_polyToFF_eq_aeval (W : WeierstrassCurve.Affine K) :
   · rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Polynomial.aeval_X]
 
 omit [DecidableEq K] in
+omit [E₀.IsElliptic] in
 theorem kw_iA_phiCRCompat (c₀ : E₀.toAffine.CoordinateRing) :
     kw_iA_phi E₀ (algebraMap E₀.toAffine.CoordinateRing E₀.toAffine.FunctionField c₀)
       = algebraMap (E).toAffine.CoordinateRing (E).toAffine.FunctionField
@@ -1742,6 +1762,7 @@ theorem kw_iA_phiCRCompat (c₀ : E₀.toAffine.CoordinateRing) :
     rw [pointPullbackCoordHomTo_mk, Polynomial.eval₂_X]; rfl
 
 omit [DecidableEq K] in
+omit [E₀.IsElliptic] in
 theorem kw_iA_ffDescend_exists (x : (E).toAffine.FunctionField)
     (hnum : kw_iA_crCoeffsIn E₀
       (IsLocalization.sec (nonZeroDivisors (E).toAffine.CoordinateRing) x).1)
@@ -1804,15 +1825,15 @@ section
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine HahnSeries \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.HahnSeries \
+  P2MW.S_OVERLONG_6989a05c.HahnSeries \
   IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField Cardinal \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Cardinal"
+  P2MW.S_OVERLONG_6989a05c.Cardinal"
 
 def KwIsogenyEndDatumSubfieldDescent (K : Type uK) [Field K] [Algebra ℚ K]
     [DecidableEq K] [IsAlgClosed K] [CharZero K] (E : WeierstrassCurve K) [E.IsElliptic]
@@ -1876,23 +1897,21 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section Pinned
 
@@ -1913,6 +1932,8 @@ def kw_iP_yP : E₀.toAffine.FunctionField :=
     hcoeffs.2.1 hcoeffs.2.2)
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iP_xP_spec :
     kw_iA_phi E₀ (kw_iP_xP E₀ D hcoeffs) = D.ι (polyToFunctionField (E).toAffine X) := by
   classical
@@ -1920,6 +1941,8 @@ theorem kw_iP_xP_spec :
     Classical.choose_spec (kw_iA_ffDescend_exists E₀ _ hcoeffs.1.1 hcoeffs.1.2)
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iP_yP_spec :
     kw_iA_phi E₀ (kw_iP_yP E₀ D hcoeffs) = D.ι (yGen (E).toAffine) := by
   classical
@@ -1927,6 +1950,8 @@ theorem kw_iP_yP_spec :
     Classical.choose_spec (kw_iA_ffDescend_exists E₀ _ hcoeffs.2.1 hcoeffs.2.2)
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iP_equation :
     (E₀.map (algebraMap K₀ E₀.toAffine.FunctionField)).toAffine.Equation
       (kw_iP_xP E₀ D hcoeffs) (kw_iP_yP E₀ D hcoeffs) := by
@@ -1961,6 +1986,8 @@ theorem kw_iP_equation :
   exact hDι
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iP_transcendental :
     Function.Injective (Polynomial.aeval (R := K₀) (kw_iP_xP E₀ D hcoeffs)) := by
   classical
@@ -1987,6 +2014,8 @@ def kw_iP_ι₀ : E₀.toAffine.FunctionField →ₐ[K₀] E₀.toAffine.Functio
   pointPullbackHomTo (kw_iP_equation E₀ D hcoeffs) (kw_iP_transcendental E₀ D hcoeffs)
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iP_ι₀_X :
     kw_iP_ι₀ E₀ D hcoeffs (polyToFunctionField E₀.toAffine X) = kw_iP_xP E₀ D hcoeffs := by
   classical
@@ -1994,6 +2023,8 @@ theorem kw_iP_ι₀_X :
     pointPullbackHomTo_polyToFunctionField_X _ _
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iP_ι₀_yGen :
     kw_iP_ι₀ E₀ D hcoeffs (yGen E₀.toAffine) = kw_iP_yP E₀ D hcoeffs := by
   classical
@@ -2012,23 +2043,21 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section CoeffSet
 
@@ -2080,6 +2109,7 @@ def kw_iCa_genSet : Set K :=
     ↑(kw_iCa_ffCoeffSet E (D.ι (polyToFunctionField E.toAffine X))) ∪
     ↑(kw_iCa_ffCoeffSet E (D.ι (yGen E.toAffine)))
 
+omit [Algebra ℚ K] [IsAlgClosed K] [CharZero K] [E.IsElliptic] in
 theorem kw_iCa_genSet_finite : (kw_iCa_genSet E D).Finite := by
   unfold kw_iCa_genSet
   exact ((((Set.finite_singleton _).insert _ |>.insert _ |>.insert _ |>.insert _).union
@@ -2087,9 +2117,11 @@ theorem kw_iCa_genSet_finite : (kw_iCa_genSet E D).Finite := by
 
 def kw_iCa_K₀ : IntermediateField ℚ K := IntermediateField.adjoin ℚ (kw_iCa_genSet E D)
 
+omit [IsAlgClosed K] [CharZero K] [E.IsElliptic] in
 theorem kw_iCa_K₀_fg : (kw_iCa_K₀ E D).FG :=
   ⟨(kw_iCa_genSet_finite E D).toFinset, by rw [Set.Finite.coe_toFinset]; rfl⟩
 
+omit [IsAlgClosed K] [CharZero K] [E.IsElliptic] in
 theorem kw_iCa_K₀_mem_aᵢ :
     E.a₁ ∈ kw_iCa_K₀ E D ∧ E.a₂ ∈ kw_iCa_K₀ E D ∧ E.a₃ ∈ kw_iCa_K₀ E D ∧
     E.a₄ ∈ kw_iCa_K₀ E D ∧ E.a₆ ∈ kw_iCa_K₀ E D := by
@@ -2105,6 +2137,7 @@ def kw_iCa_E₀ : WeierstrassCurve (kw_iCa_K₀ E D) where
   a₄ := ⟨E.a₄, (kw_iCa_K₀_mem_aᵢ E D).2.2.2.1⟩
   a₆ := ⟨E.a₆, (kw_iCa_K₀_mem_aᵢ E D).2.2.2.2⟩
 
+omit [IsAlgClosed K] [CharZero K] [E.IsElliptic] in
 theorem kw_iCa_E₀_map :
     (kw_iCa_E₀ E D).map (algebraMap (kw_iCa_K₀ E D) K) = E := by ext <;> rfl
 
@@ -2114,6 +2147,7 @@ scoped instance kw_iCa_E₀_isElliptic : (kw_iCa_E₀ E D).IsElliptic := by
     rw [← WeierstrassCurve.map_Δ, kw_iCa_E₀_map]
   rw [h0, _root_.map_zero] at this; exact E.isUnit_Δ.ne_zero this.symm
 
+omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iCa_crCoeffsIn_of_ffCoeffSet_subset (E' : WeierstrassCurve K)
     (x : E'.toAffine.FunctionField) {K₀' : IntermediateField ℚ K}
     (hsub : (↑(kw_iCa_ffCoeffSet E' x) : Set K) ⊆ K₀') (i : Fin 2) (j : ℕ) :
@@ -2138,11 +2172,13 @@ def KwIotaCanonicalFinrank : Prop :=
   ∀ hcoeffs : kw_iA_CoeffsHyp (kw_iCa_E₀ E D) (kw_iCa_D' E D),
     KwIotaPinnedFinrank (kw_iCa_E₀ E D) (kw_iCa_D' E D) hcoeffs
 
+omit [IsAlgClosed K] [CharZero K] [E.IsElliptic] in
 theorem kw_iCa_ffCoeffSet_subset_X :
     (↑(kw_iCa_ffCoeffSet E (D.ι (polyToFunctionField E.toAffine X))) : Set K)
       ⊆ kw_iCa_K₀ E D :=
   fun _ hc => IntermediateField.subset_adjoin ℚ _ (Or.inl (Or.inr hc))
 
+omit [IsAlgClosed K] [CharZero K] [E.IsElliptic] in
 theorem kw_iCa_ffCoeffSet_subset_Y :
     (↑(kw_iCa_ffCoeffSet E (D.ι (yGen E.toAffine))) : Set K) ⊆ kw_iCa_K₀ E D :=
   fun _ hc => IntermediateField.subset_adjoin ℚ _ (Or.inr hc)
@@ -2154,23 +2190,21 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section Commute
 
@@ -2183,6 +2217,8 @@ variable (hcoeffs : kw_iA_CoeffsHyp E₀ D)
 local notation "E" => E₀.map (algebraMap K₀ K)
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iPF_phi_X :
     kw_iA_phi E₀ (polyToFunctionField E₀.toAffine X)
       = polyToFunctionField (E).toAffine X := by
@@ -2191,6 +2227,8 @@ theorem kw_iPF_phi_X :
     pointPullbackHomTo_polyToFunctionField_X _ _
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iPF_phi_yGen :
     kw_iA_phi E₀ (yGen E₀.toAffine) = yGen (E).toAffine := by
   classical
@@ -2202,6 +2240,8 @@ def KwIotaPinnedFiniteSeam : Prop :=
     ∧ finrankAlong K₀ (kw_iP_ι₀ E₀ D hcoeffs) = D.degree
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iotaPinnedFinrank_of_finiteSeam
     (hSeam : KwIotaPinnedFiniteSeam E₀ D hcoeffs) :
     KwIotaPinnedFinrank E₀ D hcoeffs := by
@@ -2217,35 +2257,35 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section Cast
 
 variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
 
 omit [DecidableEq K] in
+omit [Algebra ℚ K] [IsAlgClosed K] [CharZero K] in
 theorem kw_iCaW_degree_mpr {W W' : WeierstrassCurve K}
     (heq : W = W') (D : TreeIsogenyEndDatum W'.toAffine) :
     (Eq.mpr (congrArg (fun V => TreeIsogenyEndDatum V.toAffine) heq) D).degree = D.degree := by
   classical
   subst heq; rfl
 
+omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iCaW_coeffsHyp_of_subset_cast {K₀ : IntermediateField ℚ K}
     (E₀ : WeierstrassCurve K₀) [E₀.IsElliptic]
     {W' : WeierstrassCurve K} (heq : E₀.map (algebraMap K₀ K) = W')
@@ -2284,6 +2324,7 @@ section Wire
 variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
 variable (E : WeierstrassCurve K) [E.IsElliptic] (D : TreeIsogenyEndDatum E.toAffine)
 
+omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iCaW_hcoeffs_canonical :
     kw_iA_CoeffsHyp (kw_iCa_E₀ E D) (kw_iCa_D' E D) :=
   kw_iCaW_coeffsHyp_of_subset_cast (kw_iCa_E₀ E D) (kw_iCa_E₀_map E D) D
@@ -2303,23 +2344,21 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section Exchange
 
@@ -2430,6 +2469,8 @@ variable (D : TreeIsogenyEndDatum (E₀.map (algebraMap K₀ K)).toAffine)
 variable (hcoeffs : kw_iA_CoeffsHyp E₀ D)
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iPFA_finiteAlong :
     FiniteAlong K₀ (kw_iP_ι₀ E₀ D hcoeffs) := by
   classical
@@ -2468,6 +2509,8 @@ def KwIotaPinnedFinrankEq : Prop :=
   finrankAlong K₀ (kw_iP_ι₀ E₀ D hcoeffs) = D.degree
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iotaPinnedFiniteSeam_of_finrankEq
     (hdeg : KwIotaPinnedFinrankEq E₀ D hcoeffs) :
     KwIotaPinnedFiniteSeam E₀ D hcoeffs := by
@@ -2482,25 +2525,23 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 p2m_open_scoped "TensorProduct \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.TensorProdu\
+  P2MW.S_OVERLONG_6989a05c.TensorProdu\
   ct"
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
@@ -2528,6 +2569,8 @@ theorem kw_iPFE_functionField_ringHom_ext {F : Type*} [Field F] {W : Affine F}
 
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   classical
   set ι₀ := kw_iP_ι₀ E₀ D hcoeffs
@@ -2611,6 +2654,8 @@ theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   rw [show D.degree = finrankAlong K D.ι from rfl, hfin_eq, hD₀_deg]
 
 omit [DecidableEq K] in
+omit [IsAlgClosed K] [CharZero K] in
+omit [E₀.IsElliptic] in
 theorem kw_iPFE_pinnedFinrank_uncond : KwIotaPinnedFinrank E₀ D hcoeffs := by
   classical
   exact
@@ -2622,13 +2667,13 @@ end FinrankEq
 
 section Uncond
 
-variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable (E : WeierstrassCurve K) [E.IsElliptic] (D : TreeIsogenyEndDatum E.toAffine)
+variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K]
+variable (E : WeierstrassCurve K) (D : TreeIsogenyEndDatum E.toAffine)
 
 theorem kw_iPFE_canonicalFinrank_uncond : KwIotaCanonicalFinrank E D :=
   fun hcoeffs => kw_iPFE_pinnedFinrank_uncond (kw_iCa_E₀ E D) (kw_iCa_D' E D) hcoeffs
 
-theorem kw_iPFE_iotaDescendToFG_uncond :
+theorem kw_iPFE_iotaDescendToFG_uncond [IsAlgClosed K] [CharZero K] [E.IsElliptic] :
     KwIsogenyEndDatumIotaDescendToFG'' K E D :=
   kw_iotaDescendToFG_of_canonicalFinrank E D (kw_iPFE_canonicalFinrank_uncond E D)
 
@@ -2639,23 +2684,21 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Weierstrass\
+  P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine IntermediateField \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Intermediat\
+  P2MW.S_OVERLONG_6989a05c.Intermediat\
   eField AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCu\
+  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
   rve Polynomial \
-  P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
+  P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 section E2EChain
 
@@ -2703,9 +2746,9 @@ end
 end
 
 open _root_.AlgebraicCurve
-  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_6989a05c.AlgebraicCurve
   _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_6989a05c.WeierstrassCurve
   in
 theorem solution {K : Type uK} [Field K] [CharZero K] [IsAlgClosed K]
     (E : WeierstrassCurve K) [E.IsElliptic]
@@ -2725,9 +2768,9 @@ theorem solution {K : Type uK} [Field K] [CharZero K] [IsAlgClosed K]
 
 end
 end
-end S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
+end S_OVERLONG_6989a05c
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
+export P2MW.S_OVERLONG_6989a05c
   (solution)
 
 end privateSection
@@ -2750,7 +2793,7 @@ theorem WeierstrassCurve.exists_intermediateField_countable_map_eq_and_finrankAl
           ι₀.toRingHom.IsIntegral ∧
           ∃ (_ : FiniteAlong (AlgebraicClosure K₀) ι₀),
             finrankAlong (AlgebraicClosure K₀) ι₀ = finrankAlong K ι :=
-  _root_.P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.solution
+  _root_.P2MW.S_OVERLONG_6989a05c.solution
     E ι hι hfin
 
 end publicSection

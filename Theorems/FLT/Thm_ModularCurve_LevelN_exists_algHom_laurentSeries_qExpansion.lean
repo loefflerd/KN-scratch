@@ -71,7 +71,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane Filter Topology Function

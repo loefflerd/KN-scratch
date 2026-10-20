@@ -54,8 +54,10 @@ points with $\mathrm{Pic}^0$, is exactly the subgroup of integer multiples of $Q
 This is the kernel half of Vélu's construction of the quotient isogeny $W \to W/\langle Q\rangle$
 for a point $Q$ of odd order, realised on function fields and transported to point groups through
 $\mathrm{Pic}^0$. It feeds the construction of isogenies with prescribed full kernel, via
-[`WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`]
-(thm.html#WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
+[`WeierstrassCurve.
+exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`]
+(thm.html#WeierstrassCurve.
+exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
 
 ## Explanation of the source proof
 
@@ -69,7 +71,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
+namespace P2MW.S_OVERLONG_2f26e239
 
 theorem solution
     {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
@@ -96,10 +98,10 @@ theorem solution
     WeierstrassCurve.exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq hord hΔ'
   exact ⟨ι, hι, hfin, hker⟩
 
-end S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
+end S_OVERLONG_2f26e239
 end P2MW
 export
-  P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder
+  P2MW.S_OVERLONG_2f26e239
   (solution)
 
 end privateSection

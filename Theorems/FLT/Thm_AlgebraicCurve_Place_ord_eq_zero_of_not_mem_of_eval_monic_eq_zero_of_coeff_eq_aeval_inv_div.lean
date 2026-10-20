@@ -59,7 +59,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
+namespace P2MW.S_OVERLONG_b7453246
 
 noncomputable section
 
@@ -201,10 +201,10 @@ theorem solution
     v.ord x = 0 :=
   ModularCurve.Ws49.N3.ord_eq_zero_of_not_mem v hj hP hQ hPc hQc hx hx'
 
-end S_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
+end S_OVERLONG_b7453246
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
+  P2MW.S_OVERLONG_b7453246
   (solution)
 
 end privateSection

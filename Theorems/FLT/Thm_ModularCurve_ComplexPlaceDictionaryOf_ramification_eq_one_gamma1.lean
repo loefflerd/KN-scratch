@@ -154,7 +154,7 @@ lemma ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
   rw [UpperHalfPlane.coe_im] at this
-  simp at this
+  simp only [one_im] at this
   exact ρ.im_pos.ne' this
 
 lemma E₄_ρ : E₄ ρ = 0 := by
@@ -452,7 +452,8 @@ theorem solution
     intro h0
     have h1 : (jqModC ℂ - HahnSeries.C c).coeff (-1) = 0 := by
       rw [← hxcoe, h0, ZeroMemClass.coe_zero, HahnSeries.coeff_zero]
-    rw [HahnSeries.coeff_sub, HahnSeries.C_apply, HahnSeries.coeff_single_of_ne (by norm_num : (-1 : ℤ) ≠ 0),
+    rw [HahnSeries.coeff_sub, HahnSeries.C_apply, HahnSeries.coeff_single_of_ne (by
+      norm_num : (-1 : ℤ) ≠ 0),
       sub_zero] at h1
     have hord := order_jqModC' ℂ
     have hne : jqModC ℂ ≠ 0 := by
@@ -485,7 +486,8 @@ theorem solution
       rw [hxdef, hcval, map_ofNat]
     rw [hx'] at hkey
     have hpos : 0 < (D.pt (γ • UpperHalfPlane.I)).ord (y - 1728) :=
-      (mul_pos_iff_of_pos_left (show (0 : ℤ) < D.ramification (γ • UpperHalfPlane.I) by exact_mod_cast he)).mp
+      (mul_pos_iff_of_pos_left (show (0 : ℤ) < D.ramification (γ • UpperHalfPlane.I) by
+        exact_mod_cast he)).mp
         (by rw [hkey]; norm_num)
     have h2 :=
       (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M hM y

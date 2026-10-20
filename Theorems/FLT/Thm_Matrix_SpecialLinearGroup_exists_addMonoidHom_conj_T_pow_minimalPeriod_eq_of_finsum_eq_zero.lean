@@ -69,9 +69,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
+namespace P2MW.S_OVERLONG_0e0b1d23
 
-set_option linter.unusedSectionVars false
 
 open Matrix MatrixGroups Subgroup MulAction
 
@@ -262,10 +261,10 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
   rw [Equiv.symm_apply_apply]
 
 end
-end S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
+end S_OVERLONG_0e0b1d23
 end P2MW
 export
-  P2MW.S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
+  P2MW.S_OVERLONG_0e0b1d23
   (solution)
 
 end privateSection

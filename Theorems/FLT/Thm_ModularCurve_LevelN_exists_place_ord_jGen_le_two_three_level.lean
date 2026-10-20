@@ -68,7 +68,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane
@@ -134,7 +133,7 @@ theorem ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
   rw [UpperHalfPlane.coe_im] at this
-  simp at this
+  simp only [Complex.one_im] at this
   exact ρ.im_pos.ne' this
 
 theorem E₄_ρ : ModularForm.E₄ ρ = 0 := by
@@ -243,11 +242,13 @@ theorem analyticOrderAt_jsub (τ₀ : ℍ) :
     simp only [ENat.map_natCast, WithTop.coe_eq_coe, Nat.cast_inj] at hmero
     exact_mod_cast hmero
 
+omit [NeZero M] in
 theorem coe_algebraMap_ring (c : ℂ) :
     ((algebraMap ℂ (LevelN.ring M) c : LevelN.ring M) : ℍ → ℂ) = fun _ => c := by
   funext τ
   simp [Algebra.algebraMap_eq_smul_one]
 
+omit [NeZero M] in
 theorem jsub_mem (c : ℂ) : (fun τ : ℍ => LevelN.jAnalytic τ - c) ∈ LevelN.ring M := by
   have : (fun τ : ℍ => LevelN.jAnalytic τ - c) =
       ((LevelN.jGen M - algebraMap ℂ (LevelN.ring M) c : LevelN.ring M) : ℍ → ℂ) := by
@@ -256,6 +257,8 @@ theorem jsub_mem (c : ℂ) : (fun τ : ℍ => LevelN.jAnalytic τ - c) ∈ Level
   rw [this]
   exact (LevelN.jGen M - algebraMap ℂ (LevelN.ring M) c).2
 
+omit [IsFractionRing (↥(ring M)) K] in
+omit [NeZero M] in
 theorem algebraMap_jsub (c : ℂ) :
     algebraMap (LevelN.ring M) K ⟨fun τ : ℍ => LevelN.jAnalytic τ - c, jsub_mem M c⟩ =
       jK M K - algebraMap ℂ K c := by

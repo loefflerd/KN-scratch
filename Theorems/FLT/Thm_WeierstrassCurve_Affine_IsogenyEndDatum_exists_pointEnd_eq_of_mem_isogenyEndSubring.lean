@@ -78,11 +78,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
+namespace P2MW.S_OVERLONG_7915af21
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 noncomputable section
 
@@ -110,16 +108,16 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -207,7 +205,7 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 end CoordinateRing
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
@@ -349,12 +347,14 @@ namespace InfinitePlace
 def place : AlgebraicCurve.Place F W.FunctionField := placeOfPoint (0 : W.Point)
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem deg_eq_one : (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 := by
   classical
   exact
     deg_placeOfPoint (W := W) 0
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] in
 theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
     ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := by
   classical
@@ -377,6 +377,7 @@ theorem eq_of_not_isFinitePlace
 end InfinitePlace
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 @[scoped simp]
 theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := by
   classical
@@ -384,24 +385,28 @@ theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place
     rfl
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := by
   classical
   exact
     rfl
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) := by
   classical
   exact
     (pointEquivPlace (W := W)).injective
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) : Function.Surjective (placeOfPoint (W := W)) := by
   classical
   exact
     (pointEquivPlace (W := W)).surjective
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) := by
   classical
   exact
@@ -432,7 +437,7 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
@@ -440,10 +445,10 @@ scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] 
   hasPrincipalDivisors_functionField W
 
 section AutoNorm
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type*} [Field F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
-omit [DecidableEq F] in
+omit [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
   classical
@@ -468,6 +473,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
+omit [DecidableEq F] [W.GenusOnePlaceGate] [W.AbelTheorem] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
   IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
@@ -479,14 +486,17 @@ private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : Isogen
     AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd'"
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd_eq_pointEnd' (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
     D.pointEnd hN = D.pointEnd' := rfl
 
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd'_apply (D : IsogenyEndDatum W) (P : W.Point) :
     D.pointEnd' P = genusOnePic0Equiv W
       (Pic0.pushforwardAlongHom D.ι D.hι D.hfin D.normFormulaAlong_auto (pointClass P)) :=
   pointEnd_apply D _ P
 
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd'_eq_of_seam
     (D : IsogenyEndDatum W) (g : W.Point → W.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (g P)) (P : W.Point) :
@@ -621,11 +631,11 @@ end WithZero
 section
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine AddMonoid.End \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.AddMon\
+  P2MW.S_OVERLONG_7915af21.AddMon\
   oid.End"
 
 namespace ModularCurve
@@ -652,7 +662,7 @@ end
 section
 
 p2m_open "IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
 namespace AlgebraicCurve
@@ -725,14 +735,13 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -767,10 +776,14 @@ p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply po
   hfin hι mk ι exists_pointEnd_eq_add"
 p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem isIntegral_algHomId :
     (AlgHom.id F W.FunctionField).toRingHom.IsIntegral :=
   RingHom.isIntegral_of_surjective _ Function.surjective_id
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem finiteAlong_algHomId : FiniteAlong F (AlgHom.id F W.FunctionField) := by
   unfold FiniteAlong algebraAlong
   exact Module.Finite.self _
@@ -780,14 +793,20 @@ def idDatum : IsogenyEndDatum W where
   hι := isIntegral_algHomId W
   hfin := finiteAlong_algHomId W
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem restrictAlong_algHomId (w : AlgebraicCurve.Place F W.FunctionField) :
     w.restrictAlong (AlgHom.id F W.FunctionField) (isIntegral_algHomId W) = w :=
   AlgebraicCurve.Place.ext (SetLike.ext fun _ => Iff.rfl)
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem idDatum_pointEnd : (idDatum W).pointEnd' = 1 := by
   refine AddMonoidHom.ext fun P => ?_
   exact (idDatum W).pointEnd'_eq_of_seam id rfl (fun Q => restrictAlong_algHomId W _) P
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem one_mem_range_pointEnd :
     (1 : AddMonoid.End W.Point) ∈ Set.range (IsogenyEndDatum.pointEnd' (W := W)) :=
   ⟨idDatum W, idDatum_pointEnd W⟩
@@ -819,14 +838,13 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 namespace AlgebraicCurve
@@ -892,10 +910,14 @@ p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply po
   hfin hι mk ι exists_pointEnd_eq_add"
 p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem isIntegral_comp (D₁ D₂ : IsogenyEndDatum W) :
     (D₂.ι.comp D₁.ι).toRingHom.IsIntegral :=
   RingHom.IsIntegral.trans D₁.ι.toRingHom D₂.ι.toRingHom D₁.hι D₂.hι
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.finiteAlong_comp (D₁ D₂ :
   IsogenyEndDatum W) :
     FiniteAlong F (D₂.ι.comp D₁.ι) :=
@@ -921,11 +943,11 @@ end
 section
 
 p2m_open "IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain WithZero \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WithZe\
+  P2MW.S_OVERLONG_7915af21.WithZe\
   ro IsLocalRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsLoca\
+  P2MW.S_OVERLONG_7915af21.IsLoca\
   lRing"
 
 namespace AlgebraicCurve
@@ -959,7 +981,7 @@ section
 namespace ModularCurve
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 section Engines
@@ -986,7 +1008,7 @@ end
 section
 
 p2m_open "IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
 namespace AlgebraicCurve
@@ -1095,14 +1117,13 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -1132,12 +1153,15 @@ variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
     [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.GenusOnePlaceGate]
+  [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem Δ_ne_zero_of_isElliptic : W.Δ ≠ 0 := W.isUnit_Δ.ne_zero
 
 def placeOfPointEquiv : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
   Equiv.ofBijective placeOfPoint
     ⟨placeOfPoint_injective, placeOfPoint_surjective (Δ_ne_zero_of_isElliptic W)⟩
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem placeOfPoint_placeOfPointEquiv_symm (w : AlgebraicCurve.Place F W.FunctionField) :
     placeOfPoint ((placeOfPointEquiv W).symm w) = w :=
   (placeOfPointEquiv W).apply_symm_apply w
@@ -1155,6 +1179,7 @@ private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.geomMorph (D : Isogen
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "geomMorph"
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.placeOfPoint_geomMorph
     (D : IsogenyEndDatum W) (P : W.Point) :
     (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (D.geomMorph P) :=
@@ -1162,6 +1187,7 @@ private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.placeOfPoint_geom
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "placeOfPoint_geomMorph"
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem geomMorph_compDatum (D₁ D₂ : IsogenyEndDatum W) (P : W.Point) :
     (compDatum W D₁ D₂).geomMorph P = D₁.geomMorph (D₂.geomMorph P) := by
   refine placeOfPoint_injective ?_
@@ -1176,13 +1202,13 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 namespace AlgebraicCurve
@@ -1226,9 +1252,9 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -1341,14 +1367,13 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 namespace AlgebraicCurve
@@ -1418,6 +1443,8 @@ p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply po
   hfin hι mk ι exists_pointEnd_eq_add"
 p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem isIntegral_comp_ι (D₁ D₂ : IsogenyEndDatum W) :
     (D₂.ι.comp D₁.ι).toRingHom.IsIntegral :=
   RingHom.IsIntegral.trans (f := D₁.ι.toRingHom) (g := D₂.ι.toRingHom) D₁.hι D₂.hι
@@ -1430,6 +1457,8 @@ private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.comp (D₁ D₂ : Iso
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "comp"
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem comp_pointEnd (D₁ D₂ : IsogenyEndDatum W) :
     (D₁.comp D₂).pointEnd' = D₁.pointEnd' * D₂.pointEnd' := by
   refine AddMonoidHom.ext fun P => ?_
@@ -1453,6 +1482,8 @@ theorem comp_pointEnd (D₁ D₂ : IsogenyEndDatum W) :
         D₂.hfin))
       ((genusOnePic0Equiv W).symm P))
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem mul_mem_range_pointEnd
     {f g : AddMonoid.End W.Point}
     (hf : f ∈ Set.range (IsogenyEndDatum.pointEnd' (W := W)))
@@ -1471,21 +1502,29 @@ def isogenyEndSubmonoid : Submonoid (AddMonoid.End W.Point) where
   one_mem' := IsogenyEndDatum.one_mem_range_pointEnd W
   mul_mem' := IsogenyEndDatum.mul_mem_range_pointEnd
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 @[scoped simp] theorem coe_isogenyEndSubmonoid :
     (isogenyEndSubmonoid W : Set (AddMonoid.End W.Point))
       = Set.range (IsogenyEndDatum.pointEnd' (W := W)) := rfl
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem submonoid_closure_range_pointEnd :
     Submonoid.closure (Set.range (IsogenyEndDatum.pointEnd' (W := W)))
       = isogenyEndSubmonoid W := by
   rw [← coe_isogenyEndSubmonoid]; exact Submonoid.closure_eq _
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem coe_submonoid_closure_range_pointEnd :
     (Submonoid.closure (Set.range (IsogenyEndDatum.pointEnd' (W := W)))
         : Set (AddMonoid.End W.Point))
       = Set.range (IsogenyEndDatum.pointEnd' (W := W)) :=
   congrArg SetLike.coe (submonoid_closure_range_pointEnd W)
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem mem_isogenyEndSubring_iff_mem_addSubgroup_closure {f : AddMonoid.End W.Point} :
     f ∈ isogenyEndSubring W (fun D => D.normFormulaAlong_auto) ↔
       f ∈ AddSubgroup.closure (Set.range (IsogenyEndDatum.pointEnd' (W := W))) := by
@@ -1499,14 +1538,13 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -1533,8 +1571,8 @@ p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable (W : Affine F) [W.IsElliptic] [GenusOnePlaceGate W]
+    [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem]
 
 namespace IsogenyEndDatum
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam \
@@ -1543,6 +1581,7 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
 variable {W}
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem pushforwardAlongDegZero_pointDivisor_geomMorph (D : IsogenyEndDatum W)
     (P : W.Point) :
     Pic0.pushforwardAlongDegZero D.ι D.hι (pointDivisor P)
@@ -1554,6 +1593,7 @@ theorem pushforwardAlongDegZero_pointDivisor_geomMorph (D : IsogenyEndDatum W)
   push_cast
   rw [coe_pointDivisor, coe_pointDivisor, sub_sub_sub_cancel_right]
 
+omit [DecidableEq F] [IsAlgClosed F] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem pushforwardAlongHom_pointClass_eq_sub (D : IsogenyEndDatum W) (P : W.Point) :
     Pic0.pushforwardAlongHom D.ι D.hι D.hfin (normFormulaAlong_of_elliptic D.ι D.hfin)
         (pointClass P)
@@ -1563,16 +1603,19 @@ theorem pushforwardAlongHom_pointClass_eq_sub (D : IsogenyEndDatum W) (P : W.Poi
   rw [Pic0.pushforwardAlongHom_mk, pushforwardAlongDegZero_pointDivisor_geomMorph D P]
   rfl
 
+omit [IsAlgClosed F] [GenusOnePlaceGate.IsCentred W] in
 theorem pointEnd_eq_geomMorph_sub_geomMorph_zero (D : IsogenyEndDatum W) (P : W.Point) :
     D.pointEnd' P = D.geomMorph P - D.geomMorph 0 := by
   rw [IsogenyEndDatum.pointEnd'_apply, pushforwardAlongHom_pointClass_eq_sub D P, map_sub,
     genusOnePic0Equiv_apply, genusOnePic0Equiv_apply, pic0ToPoint_pointClass,
     pic0ToPoint_pointClass]
 
+omit [IsAlgClosed F] [GenusOnePlaceGate.IsCentred W] in
 theorem geomMorph_eq_pointEnd_add_geomMorph_zero (D : IsogenyEndDatum W) (P : W.Point) :
     D.geomMorph P = D.pointEnd' P + D.geomMorph 0 := by
   rw [pointEnd_eq_geomMorph_sub_geomMorph_zero, sub_add_cancel]
 
+omit [IsAlgClosed F] [GenusOnePlaceGate.IsCentred W] in
 theorem geomMorph_add_geomMorph_zero (D : IsogenyEndDatum W) (P Q : W.Point) :
     D.geomMorph (P + Q) + D.geomMorph 0 = D.geomMorph P + D.geomMorph Q := by
   rw [geomMorph_eq_pointEnd_add_geomMorph_zero D (P + Q),
@@ -1581,12 +1624,14 @@ theorem geomMorph_add_geomMorph_zero (D : IsogenyEndDatum W) (P Q : W.Point) :
     show D.pointEnd' (P + Q) = D.pointEnd' P + D.pointEnd' Q from map_add _ P Q]
   abel
 
+omit [IsAlgClosed F] [GenusOnePlaceGate.IsCentred W] in
 theorem geomMorph_sub (D : IsogenyEndDatum W) (P Q : W.Point) :
     D.geomMorph (P - Q) = D.geomMorph P - D.geomMorph Q + D.geomMorph 0 := by
   have h := geomMorph_add_geomMorph_zero D (P - Q) Q
   rw [sub_add_cancel] at h
   rw [eq_sub_of_add_eq h.symm, add_sub_right_comm]
 
+omit [IsAlgClosed F] [GenusOnePlaceGate.IsCentred W] in
 theorem compDatum_pointEnd (D₁ D₂ : IsogenyEndDatum W) :
     (compDatum W D₁ D₂).pointEnd' = D₁.pointEnd' * D₂.pointEnd' := by
   refine AddMonoidHom.ext fun P => ?_
@@ -1605,13 +1650,13 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 namespace AlgebraicCurve
@@ -1680,9 +1725,9 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -1793,9 +1838,9 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 variable {F : Type*} [Field F] (W : Affine F)
@@ -1844,20 +1889,19 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 universe u
@@ -1884,7 +1928,7 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing"
 
 variable {F : Type u} [Field F]
@@ -2016,13 +2060,13 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 namespace WeierstrassCurve
@@ -2047,9 +2091,9 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 universe u
@@ -2096,13 +2140,13 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.IsDede\
+  P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 namespace WeierstrassCurve
@@ -2127,9 +2171,9 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 universe u
@@ -2167,15 +2211,11 @@ theorem map_YClass (c : F) :
 
 section Cases
 
-variable [DecidableEq F] [IsAlgClosed F] [W.IsElliptic]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate W]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
-variable [IsDedekindDomain V.CoordinateRing] [WeierstrassCurve.Affine.GenusOnePlaceGate V]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred V] [WeierstrassCurve.Affine.AbelTheorem V]
+variable [IsDedekindDomain V.CoordinateRing]
 
 include hX hY in
-theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
-    (h' : V.Equation a b)
+theorem restrictAlong_placeOfEquation [IsAlgClosed F] [W.IsElliptic]
+    {x y : F} (h : W.Equation x y) {a b : F} (h' : V.Equation a b)
     (hreg : ξ ∈ (placeOfEquation h).toValuationSubring)
     (hdx : 0 < (placeOfEquation h).ord (ξ - algebraMap F W.FunctionField a))
     (hdy : 0 < (placeOfEquation h).ord (η - algebraMap F W.FunctionField b)) :
@@ -2197,7 +2237,8 @@ theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
     omega
 
 include hX in
-theorem restrictAlong_eq_infinitePlace (v : AlgebraicCurve.Place F W.FunctionField)
+theorem restrictAlong_eq_infinitePlace [V.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred V]
+    (v : AlgebraicCurve.Place F W.FunctionField)
     (hpole : ξ ∉ v.toValuationSubring) :
     v.restrictAlong ι hι = InfinitePlace.place := by
   refine InfinitePlace.eq_of_not_isFinitePlace _ ?_
@@ -2211,12 +2252,12 @@ end AbstractSeam
 end WeierstrassCurve.Affine
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial Polynomial.Bivariate.Polynomial \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -2230,17 +2271,17 @@ end
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine WeierstrassCurve.Affine.Point \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.Point"
 
 p2m_open_scoped "WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 section
@@ -2267,9 +2308,9 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 universe u
@@ -2313,24 +2354,23 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 section
 
 p2m_open "Polynomial \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine AddMonoid.End \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.AddMon\
+  P2MW.S_OVERLONG_7915af21.AddMon\
   oid.End"
 
 p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Polyno\
+  P2MW.S_OVERLONG_7915af21.Polyno\
   mial.Bivariate"
 
 namespace ModularCurve
@@ -2434,6 +2474,8 @@ def es1a4_negDatum (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusO
 variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
     [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
+omit [CharZero F] in
+omit [DecidableEq F] [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem es1a4_negDatum_seam_some {x₀ y₀ : F} (h : W.Nonsingular x₀ y₀) :
     (placeOfEquation h.left).restrictAlong (es1a4_negPullbackHom W)
         (es1a4_negPullbackHom_isIntegral W)
@@ -2481,6 +2523,8 @@ theorem es1a4_negDatum_seam_some {x₀ y₀ : F} (h : W.Nonsingular x₀ y₀) :
     (es1a4_negPullbackHom_yGen W) h.left ((nonsingular_neg x₀ y₀).mpr h).left
     hreg hdx hdy
 
+omit [CharZero F] in
+omit [DecidableEq F] [W.AbelTheorem] in
 theorem es1a4_negDatum_seam_zero :
     (InfinitePlace.place : AlgebraicCurve.Place F W.FunctionField).restrictAlong
         (es1a4_negPullbackHom W) (es1a4_negPullbackHom_isIntegral W)
@@ -2496,6 +2540,7 @@ theorem es1a4_negDatum_seam_zero :
     ord_X_neg_of_not_isFinitePlace _ InfinitePlace.not_isFinitePlace
   omega
 
+omit [CharZero F] in
 theorem es1a4_negDatum_seam (P : W.Point) :
     (placeOfPoint P).restrictAlong (es1a4_negDatum W).ι (es1a4_negDatum W).hι
       = placeOfPoint (-P) := by
@@ -2519,14 +2564,13 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Weiers\
+  P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.Algebr\
+  P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
 
 namespace ModularCurve
@@ -2585,10 +2629,10 @@ end
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg\
   " in
 open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_7915af21.WeierstrassCurve
   _root_.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_7915af21.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_7915af21.AlgebraicCurve
   in
 universe u in
 theorem solution
@@ -2606,9 +2650,9 @@ theorem solution
   exact ModularCurve.kw_isogenyEndDatumOfNonzeroEnd_of_addDatumSupply W hadd ψ hψ hne
 
 end
-end S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
+end S_OVERLONG_7915af21
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
+export P2MW.S_OVERLONG_7915af21
   (solution)
 
 end privateSection

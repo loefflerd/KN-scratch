@@ -68,7 +68,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -191,7 +190,7 @@ theorem coeff_algebraMap_mul (K : Type*) [Field K] (r : K) (z : LaurentSeries K)
     (algebraMap K (LaurentSeries K) r * z).coeff n = r * z.coeff n := by
   rw [ModularCurve.algebraMap_laurentSeries_eq_single, HahnSeries.coeff_single_zero_mul]
 
-variable {L : Type*} [Field L] [Algebra ℚ L]
+variable {L : Type*} [Field L]
 variable {k : Type*} [Field k]
 
 theorem exists_reduced_relation (A : ValuationSubring L) (π : A →+* k)

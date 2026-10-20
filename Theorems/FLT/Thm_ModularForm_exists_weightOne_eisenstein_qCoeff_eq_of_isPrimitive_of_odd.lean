@@ -715,7 +715,9 @@ lemma periodic_E1MF (hL : 3 ≤ L) : Function.Periodic (⇑(E1MF L χ hL) ∘ of
       apply UpperHalfPlane.ext; simp [UpperHalfPlane.coe_vadd, add_comm]
     have h2 := congr_fun hT ⟨w, hw⟩
     rw [ModularForm.SL_slash_apply, UpperHalfPlane.modular_T_smul, ModularGroup.denom_apply] at h2
-    simp [ModularGroup.coe_T] at h2
+    simp only [Fin.isValue, ModularGroup.coe_T, Matrix.of_apply, Matrix.cons_val',
+      Matrix.cons_val_zero, Matrix.cons_val_fin_one, Matrix.cons_val_one, Int.cast_zero, zero_mul,
+      Int.cast_one, zero_add, Int.reduceNeg, zpow_neg, zpow_ofNat, one_pow, inv_one, mul_one] at h2
     rw [h1, ← h2]
   · have hw' : (w + ((1 : ℝ) : ℂ)).im ≤ 0 := by simpa using hw
     simp only [Function.comp_apply]

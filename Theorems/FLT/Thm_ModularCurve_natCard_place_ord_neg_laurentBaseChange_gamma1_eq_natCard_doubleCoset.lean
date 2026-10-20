@@ -82,11 +82,8 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane
@@ -447,7 +444,7 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF)
     change algebraMap ℂ K (ι c) = Φ (algebraMap ℚ̄ FF c)
     rw [hΦc])
   obtain ⟨hyT, hfin⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℚ̄ (CongruenceSubgroup.Gamma1 M) hT y hy
   have := hfin
   have : AlgebraicCurve.IsCurveOver ℚ̄ FF :=
@@ -618,7 +615,6 @@ theorem jqModC_mem_laurentBaseChange (L : Type*) [Field L] [Algebra ℚ L]
   exact e ▸ coeffEmb_mem_laurentBaseChange L h
 
 open scoped MatrixGroups in
-set_option synthInstance.maxHeartbeats 1600000 in
 theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M]
     (yK : ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))
@@ -650,10 +646,10 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     rw [CongruenceSubgroup.Gamma1_mem]
     simp [ModularGroup.T]
   obtain ⟨htr, hfin⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M) hT y hy
   obtain ⟨htrK, hfinK⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       K (CongruenceSubgroup.Gamma1 M) hT yK hyK
   have : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfin

@@ -124,7 +124,9 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
         change N.ρ ⟨q.out * (rep q.out)⁻¹, rep_spec q.out⟩ (F (Quotient.mk _ q.out)) = F q
         have hout : Quotient.mk (QuotientGroup.rightRel S) q.out = q := Quotient.out_eq q
         rw [hout]
-        exact key _ _ _ (by change q.out * ((Quotient.mk (QuotientGroup.rightRel S) q.out).out)⁻¹ = 1; rw [hout, mul_inv_cancel]) }
+        exact key _ _ _ (by
+          change q.out * ((Quotient.mk (QuotientGroup.rightRel S) q.out).out)⁻¹ = 1; rw [hout,
+            mul_inv_cancel]) }
   have : FiniteDimensional k (Rep.coind S.subtype N) := LinearEquiv.finiteDimensional e.symm
   refine ⟨inferInstance, ?_⟩
   rw [LinearEquiv.finrank_eq e, Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ,

@@ -222,8 +222,10 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
           * (x.num * (((b * x.den.factorial) / x.den : ℕ) : ℤ)))
       = x.num * ((((b * x.den.factorial) / x.den : ℕ) : ℤ) * x.den)
           * (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) := by ring
-    _ = x.num * (b * x.den.factorial) * (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) := by rw [e2]
-    _ = x.num * b * ((((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * x.den.factorial) := by ring
+    _ = x.num * (b * x.den.factorial) * (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) := by
+      rw [e2]
+    _ = x.num * b * ((((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * x.den.factorial) := by
+      ring
     _ = x.num * b * ((x.den + m).factorial : ℤ) := by rw [e1]
     _ = x.num * b * ((((x.den + m).factorial / m.factorial : ℕ) : ℤ) * m.factorial) := by rw [e3]
     _ = (x.num * (b * m.factorial : ℕ)) * (((x.den + m).factorial / m.factorial : ℕ) : ℤ) := by
@@ -345,7 +347,8 @@ theorem solution
   have hfix : twist (char ζ q.den) x = x := by
     have h := hx (twistRingEquiv (char ζ q.den))
       (fun z => by rw [twistRingEquiv_apply]; exact orderTop_twist _ z)
-      (fun z hz => by rw [twistRingEquiv_apply]; exact twist_eq_self_of_hasRamBound_one (char_intCast ζ hζ1) hz)
+      (fun z hz => by
+        rw [twistRingEquiv_apply]; exact twist_eq_self_of_hasRamBound_one (char_intCast ζ hζ1) hz)
     rwa [twistRingEquiv_apply] at h
   have hc : ((char ζ q.den (Multiplicative.ofAdd q) : Kˣ) : K) * x.coeff q = x.coeff q := by
     have h := congrArg (fun y : HahnSeries ℚ K => y.coeff q) hfix

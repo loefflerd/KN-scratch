@@ -104,7 +104,9 @@ theorem isCusp_heckeDiagMatrix_smul (hℓ : ℓ ≠ 0) {c : OnePoint ℝ} (hc : 
   rw [isCusp_SL2Z_iff] at hc ⊢
   obtain ⟨c₀, rfl⟩ := hc
   let gQ : GL (Fin 2) ℚ := Matrix.GeneralLinearGroup.mkOfDetNeZero !![(ℓ : ℚ), 0; 0, 1]
-    (by rw [Matrix.det_fin_two_of]; simp; exact_mod_cast hℓ)
+    (by
+      rw [Matrix.det_fin_two_of]; simp only [mul_one, mul_zero, sub_zero, ne_eq, Nat.cast_eq_zero];
+        exact_mod_cast hℓ)
   have hg : gQ.map (Rat.castHom ℝ) = heckeDiagMatrix ℓ := by
     apply Units.ext
     rw [val_heckeDiagMatrix hℓ]

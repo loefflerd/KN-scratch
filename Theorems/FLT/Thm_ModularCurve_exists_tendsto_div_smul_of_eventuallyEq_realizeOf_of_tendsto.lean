@@ -67,7 +67,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex \
@@ -127,6 +126,7 @@ theorem natCast_mem_strictPeriods_translate (Γ : Subgroup SL(2, ℤ)) [Γ.Finit
 
 variable {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex]
 
+omit [Γ.FiniteIndex] in
 theorem coe_translate_SL (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     ⇑(ModularForm.translate g (σ : GL (Fin 2) ℝ)) = ⇑g ∣[k] σ := by
   rw [SL_slash]
@@ -139,6 +139,7 @@ theorem slash_periodic (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ 
     (ModularForm.translate g (σ : GL (Fin 2) ℝ))
     (natCast_mem_strictPeriods_translate Γ σ)
 
+omit [Γ.FiniteIndex] in
 theorem slash_mdiff (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     MDiff (⇑g ∣[k] σ) := by
   rw [← coe_translate_SL g σ]

@@ -239,8 +239,10 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
           * (x.num * (((b * x.den.factorial) / x.den : ℕ) : ℤ)))
       = x.num * ((((b * x.den.factorial) / x.den : ℕ) : ℤ) * x.den)
           * (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) := by ring
-    _ = x.num * (b * x.den.factorial) * (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) := by rw [e2]
-    _ = x.num * b * ((((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * x.den.factorial) := by ring
+    _ = x.num * (b * x.den.factorial) * (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) := by
+      rw [e2]
+    _ = x.num * b * ((((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * x.den.factorial) := by
+      ring
     _ = x.num * b * ((x.den + m).factorial : ℤ) := by rw [e1]
     _ = x.num * b * ((((x.den + m).factorial / m.factorial : ℕ) : ℤ) * m.factorial) := by rw [e3]
     _ = (x.num * (b * m.factorial : ℕ)) * (((x.den + m).factorial / m.factorial : ℕ) : ℤ) := by

@@ -65,7 +65,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-namespace P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
+namespace P2MW.S_OVERLONG_a3e19da5
 
 p2m_open "Ideal~map_mul"
 
@@ -156,7 +156,7 @@ end Affine
 end WeierstrassCurve
 
 open
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing
+  P2MW.S_OVERLONG_a3e19da5.WeierstrassCurve.Affine.CoordinateRing
 
 section
 
@@ -318,7 +318,7 @@ section
 section
 
 p2m_open "FractionalIdeal \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.FractionalIdea\
+  P2MW.S_OVERLONG_a3e19da5.FractionalIdea\
   l Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
@@ -598,7 +598,7 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 end CoordinateRing
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurv\
+  P2MW.S_OVERLONG_a3e19da5.WeierstrassCurv\
   e.Affine.CoordinateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
@@ -630,7 +630,7 @@ theorem IsFinitePlace.inv_mem {v : AlgebraicCurve.Place F W.FunctionField}
   obtain ⟨t, ht⟩ := hunit.exists_right_inv
   have ht' : algebraMap W.CoordinateRing W.FunctionField r * (t : W.FunctionField) = 1 := by
     have := congrArg (fun a : v.toValuationSubring => (a : W.FunctionField)) ht
-    simp at this
+    simp only [MulMemClass.coe_mul, OneMemClass.coe_one] at this
     exact this
   rw [inv_eq_of_mul_eq_one_right ht']
   exact t.2
@@ -766,7 +766,7 @@ section
 noncomputable section
 
 p2m_open "AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
+  P2MW.S_OVERLONG_a3e19da5.AlgebraicCurve"
 
 namespace WeierstrassCurve
 namespace Affine
@@ -913,9 +913,9 @@ namespace Affine
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurv\
+  P2MW.S_OVERLONG_a3e19da5.WeierstrassCurv\
   e.Affine.CoordinateRing AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
+  P2MW.S_OVERLONG_a3e19da5.AlgebraicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -1446,9 +1446,9 @@ section
 noncomputable section
 
 p2m_open "AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve \
+  P2MW.S_OVERLONG_a3e19da5.AlgebraicCurve \
   IsDedekindDomain FractionalIdeal \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.FractionalIdea\
+  P2MW.S_OVERLONG_a3e19da5.FractionalIdea\
   l WithZero Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
@@ -1532,9 +1532,9 @@ variable {F : Type u} [Field F] [DecidableEq F] {W : Affine F}
 variable [IsAlgClosed F] [W.IsElliptic] [InfinitePlace W]
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurv\
+  P2MW.S_OVERLONG_a3e19da5.WeierstrassCurv\
   e.Affine.CoordinateRing AlgebraicCurve \
-  P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
+  P2MW.S_OVERLONG_a3e19da5.AlgebraicCurve"
 
 omit [DecidableEq F] [InfinitePlace W] in
 theorem isFinitePlace_ofHeightOneSpectrum (w : HeightOneSpectrum W.CoordinateRing) :
@@ -1702,10 +1702,10 @@ section
 
 universe u in
 open _root_.WeierstrassCurve _root_.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_a3e19da5.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_a3e19da5.WeierstrassCurve.Affine
   _root_.AlgebraicCurve
-    _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve
+    _root_.P2MW.S_OVERLONG_a3e19da5.AlgebraicCurve
   in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F}
@@ -1749,9 +1749,9 @@ end
 end
 end
 end
-end S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
+end S_OVERLONG_a3e19da5
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem (solution)
+export P2MW.S_OVERLONG_a3e19da5 (solution)
 
 end privateSection
 

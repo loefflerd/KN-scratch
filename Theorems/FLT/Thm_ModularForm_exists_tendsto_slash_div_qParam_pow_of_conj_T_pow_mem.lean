@@ -89,7 +89,7 @@ theorem exists_tendsto_div_qParam_pow {Γ' : Subgroup (GL (Fin 2) ℝ)} {k : ℤ
     rw [← ModularForm.qExpansion_eq_zero_iff hh hΓ F]
     ext m
     have e := congrArg (fun p : FormalMultilinearSeries ℂ ℂ ℂ => p.coeff m) hp0
-    simp [FormalMultilinearSeries.coeff_ofScalars] at e
+    simp only [FormalMultilinearSeries.coeff_ofScalars] at e
     exact e
   obtain ⟨n, g, hg, hg0, hfg⟩ := hG.exists_eventuallyEq_pow_smul_nonzero_iff.mpr hne
   refine ⟨n, g 0, hg0, ?_⟩

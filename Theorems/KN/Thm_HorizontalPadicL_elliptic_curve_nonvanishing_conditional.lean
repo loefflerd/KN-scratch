@@ -8,6 +8,13 @@ import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_nonvanishingCount_eq
 import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_hasContinuousLocalFieldRepresentations
 import Theorems.KN.Thm_HorizontalPadicL_corollary_5_17_of_quadratic_twist
 
+/-!
+# Conditional horizontal non-vanishing for elliptic curves
+
+Elliptic-curve L-value nonvanishing conditional on a quadratic-twist seed for the
+specific eigenform attached to the curve.
+-/
+
 public section publicSection
 
 namespace HorizontalPadicL

@@ -64,7 +64,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+namespace P2MW.S_OVERLONG_b3f4ad70
 
 open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
@@ -94,9 +94,9 @@ theorem solution
       h2])
   exact absurd h3 (by rintro ⟨⟩)
 
-end S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+end S_OVERLONG_b3f4ad70
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
+export P2MW.S_OVERLONG_b3f4ad70
   (solution)
 
 end privateSection

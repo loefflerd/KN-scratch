@@ -76,7 +76,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
+namespace P2MW.S_OVERLONG_06a8d469
 
 open CongruenceSubgroup ModularCurve UpperHalfPlane HahnSeries Filter Topology
 open scoped MatrixGroups ModularForm
@@ -180,11 +180,14 @@ theorem solution
       funext z
       rw [← CuspForm.toModularFormₗ_eq_coe, CuspForm.toModularFormₗ_apply]
       rfl
-    obtain ⟨P4, hP4def⟩ : ∃ P4 : ModularForm (Gamma1 M) 12, P4 = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E4N) :=
+    obtain ⟨P4, hP4def⟩ : ∃ P4 : ModularForm (Gamma1 M) 12, P4 = ModularForm.mcast (by
+      norm_num) ((E4N.mul E4N).mul E4N) :=
       ⟨_, rfl⟩
-    obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E6N) :=
+    obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by
+      norm_num) ((E4N.mul E4N).mul E6N) :=
       ⟨_, rfl⟩
-    obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by norm_num) (-((w.mul w).mul DN)) :=
+    obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by
+      norm_num) (-((w.mul w).mul DN)) :=
       ⟨_, rfl⟩
     obtain ⟨P17, hP17def⟩ : ∃ P17 : ModularForm (Gamma1 M) 12, P17 = P4 - (1728 : ℂ) • DN :=
       ⟨_, rfl⟩
@@ -345,7 +348,8 @@ theorem solution
         ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M) (v : LaurentSeries ℂ) z =
           -(w z ^ 2 * ModularForm.discriminant z) / (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) := by
       intro z hz
-      rw [ModularCurve.realizeOf_eq_div (CongruenceSubgroup.Gamma1 M) hT Gv Hh _ pres_v z (by rw [hHhcoe]; exact hz),
+      rw [ModularCurve.realizeOf_eq_div (CongruenceSubgroup.Gamma1 M) hT Gv Hh _ pres_v z (by
+        rw [hHhcoe]; exact hz),
         hGvcoe, hHhcoe]
     have haw := analyticAt_comp_ofComplex w τ
     have ha4 := analyticAt_comp_ofComplex ModularForm.E₄ τ
@@ -448,10 +452,10 @@ theorem solution
     omega
 
 end
-end S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
+end S_OVERLONG_06a8d469
 end P2MW
 export
-  P2MW.S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
+  P2MW.S_OVERLONG_06a8d469
   (solution)
 
 end privateSection

@@ -99,15 +99,14 @@ set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve Divisor
 
-namespace P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
+namespace P2MW.S_OVERLONG_7a292264
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
 open scoped MatrixGroups
 p2m_open "AlgebraicCurve IntermediateField KaehlerDifferential ModularCurve \
-  P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve"
+  P2MW.S_OVERLONG_7a292264.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpFunctionFieldC coeffMap coeffMap_single coeffMap_coeffMap \
@@ -659,6 +658,7 @@ local notation "ℚbar" => AlgebraicClosure ℚ
 
 variable (M : ℕ) [NeZero M] (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgroup.Gamma1 M ≤ Γ)
 
+omit [NeZero M] in
 theorem T_mem_Gamma1 : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
   rw [CongruenceSubgroup.Gamma1_mem]
   simp [ModularGroup.T]
@@ -835,7 +835,7 @@ end ModularCurve.RiemannHurwitzCount
 end
 
 open AlgebraicCurve _root_.ModularCurve
-  _root_.P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve
+  _root_.P2MW.S_OVERLONG_7a292264.ModularCurve
   in
 theorem solution
     (M : ℕ) [NeZero M] (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
@@ -866,9 +866,9 @@ theorem solution
         2 :=
   ModularCurve.RiemannHurwitzCount.main M Γ hΓ y hy
 
-end S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
+end S_OVERLONG_7a292264
 end P2MW
-export P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
+export P2MW.S_OVERLONG_7a292264
   (solution)
 
 end privateSection

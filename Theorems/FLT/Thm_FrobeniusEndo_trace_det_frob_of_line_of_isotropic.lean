@@ -113,7 +113,8 @@ theorem finrank_eq_two_of_natCard (hV : Nat.card V = p ^ 2) : Module.finrank (ZM
   exact (Nat.pow_right_injective (Fact.out : p.Prime).two_le h).symm
 
 noncomputable def basisOfNatCard (hV : Nat.card V = p ^ 2) : Module.Basis (Fin 2) (ZMod p) V :=
-  haveI : Finite V := Nat.finite_of_card_ne_zero (by rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
+  haveI : Finite V := Nat.finite_of_card_ne_zero (by
+    rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
   Module.finBasisOfFinrankEq (ZMod p) V (finrank_eq_two_of_natCard hV)
 
 end RankTwo
@@ -226,7 +227,9 @@ theorem det_smul_one_sub_eq_zero_of_quadratic_eq_zero
     exact_mod_cast this
   have hdet' : LinearMap.det (frobPencilEnd W σ p (m : ℤ) 1) = 0 :=
     (det_frobPencilEnd_eq_zero_iff_dvd_kerDeg W σ p
-      (by rw [hfull]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero) (hpos m hm1 hmle hmk)).mpr hdvd
+      (by
+        rw [hfull]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero) (hpos m hm1 hmle hmk)).mpr
+          hdvd
   rwa [frobPencilEnd_natCast_one, hmc] at hdet'
 
 end Dictionary

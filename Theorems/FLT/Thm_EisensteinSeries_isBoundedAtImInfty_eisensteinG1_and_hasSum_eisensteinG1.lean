@@ -429,8 +429,12 @@ lemma hasSum_Fterm_row {z : ℂ} (hz : z.im = 0) (m : ℕ+) :
         π * Complex.cot (π * (z - ((m : ℕ) : ℂ) * τ))) := by
   have hτ : 0 < τ.im := τ.2
   have hmpos : (0 : ℝ) < ((m : ℕ) : ℝ) := by exact_mod_cast m.2
-  have hw1 : 0 < (z + ((m : ℕ) : ℂ) * τ).im := by simp [hz]; positivity
-  have hw2 : 0 < (((m : ℕ) : ℂ) * τ - z).im := by simp [hz]; positivity
+  have hw1 : 0 < (z + ((m : ℕ) : ℂ) * τ).im := by
+    simp only [add_im, hz, mul_im, natCast_re, coe_im, natCast_im, coe_re, zero_mul, add_zero,
+      zero_add, Nat.cast_pos, PNat.pos, mul_pos_iff_of_pos_left]; positivity
+  have hw2 : 0 < (((m : ℕ) : ℂ) * τ - z).im := by
+    simp only [sub_im, mul_im, natCast_re, coe_im, natCast_im, coe_re, zero_mul, add_zero, hz,
+      sub_zero, Nat.cast_pos, PNat.pos, mul_pos_iff_of_pos_left]; positivity
   have h1 := hasSum_pi_cot_add hw1
   have h2 := hasSum_pi_cot_add hw2
   have h2' : HasSum (fun k : ℕ+ => -(-2 * π * I * cexp (2 * π * I * (((m : ℕ) : ℂ) * τ - z)) ^ (k :

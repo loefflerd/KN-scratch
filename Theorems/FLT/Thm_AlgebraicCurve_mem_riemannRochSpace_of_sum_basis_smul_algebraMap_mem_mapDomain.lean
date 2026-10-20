@@ -43,8 +43,10 @@ every $g_j$ lies in the Riemann–Roch space of $D$ in $F$.
 
 This is the descent half of the identification $L'(\mathrm{Con}\,D)=K'\otimes_K L_K(D)$ for a
 constant field extension, as in Stichtenoth, Theorem 3.6.3(a). It is used in
-[`AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed`]
-(thm.html#AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed),
+[`AlgebraicCurve.
+lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed`]
+(thm.html#AlgebraicCurve.
+lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed),
 which expresses the Riemann–Roch space of the lifted divisor as the $K'$-span of the image of the
 original Riemann–Roch space.
 

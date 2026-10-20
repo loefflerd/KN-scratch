@@ -74,7 +74,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -133,12 +132,14 @@ theorem isBoundedUnder_nhdsNE_coe_iff {u : ℍ → ℝ} {τ : ℍ} :
   rw [← map_coe_nhdsNE, Filter.isBoundedUnder_map_iff]
   simp only [Function.comp_def, ofComplex_apply]
 
+omit hT in
 theorem analyticAt_comp_ofComplex {k : ℤ} (f : ModularForm Γ k)
     (τ : ℍ) : AnalyticAt ℂ (fun z : ℂ => (f : ℍ → ℂ) (ofComplex z)) (τ : ℂ) := by
   have hf : DifferentiableOn ℂ ((f : ℍ → ℂ) ∘ ofComplex) {z : ℂ | 0 < z.im} :=
     UpperHalfPlane.mdifferentiable_iff.mp (ModularFormClass.holo f)
   exact hf.analyticAt (isOpen_upperHalfPlaneSet.mem_nhds τ.im_pos)
 
+omit hT in
 theorem coe_eq_zero_iff {k : ℤ} (f : ModularForm Γ k) :
     (f : ℍ → ℂ) = 0 ↔ f = 0 := by
   constructor
@@ -146,6 +147,7 @@ theorem coe_eq_zero_iff {k : ℤ} (f : ModularForm Γ k) :
     exact DFunLike.coe_injective (h.trans (FunLike.coe_zero).symm)
   · rintro rfl; rfl
 
+omit hT in
 theorem eventually_ne_zero {k : ℤ} (f : ModularForm Γ k)
     (hf : f ≠ 0) (τ : ℍ) : ∀ᶠ w in 𝓝[≠] τ, (f : ℍ → ℂ) w ≠ 0 := by
   by_contra hcon
@@ -153,10 +155,12 @@ theorem eventually_ne_zero {k : ℤ} (f : ModularForm Γ k)
     simpa [Filter.not_eventually] using hcon
   exact hf ((coe_eq_zero_iff f).mp (eq_zero_of_frequently (ModularFormClass.holo f) hfr))
 
+omit hT in
 theorem eventually_ne_zero_ofComplex {k : ℤ} (f : ModularForm Γ k)
     (hf : f ≠ 0) (τ : ℍ) : ∀ᶠ z in 𝓝[≠] (τ : ℂ), (f : ℍ → ℂ) (ofComplex z) ≠ 0 :=
   eventually_nhdsNE_coe_iff.mpr (eventually_ne_zero f hf τ)
 
+omit hT in
 theorem meromorphicOrderAt_comp_ofComplex_ne_top {k : ℤ}
     (f : ModularForm Γ k) (hf : f ≠ 0) (τ : ℍ) :
     meromorphicOrderAt (fun z : ℂ => (f : ℍ → ℂ) (ofComplex z)) (τ : ℂ) ≠ ⊤ :=
@@ -177,6 +181,7 @@ theorem realize_eventuallyEq {x : LaurentSeries ℂ} (P : Pres Γ x) (τ : ℍ) 
   filter_upwards [eventually_ne_zero_ofComplex P.h P.h_ne τ] with z hz
   exact ModularCurve.realizeOf_eq_div Γ hT.out P.g P.h x P.eq (ofComplex z) hz
 
+omit hT in
 theorem meromorphicAt_div (x : LaurentSeries ℂ) (P : Pres Γ x) (τ : ℍ) :
     MeromorphicAt (fun z : ℂ => (P.g : ℍ → ℂ) (ofComplex z) / (P.h : ℍ → ℂ) (ofComplex z))
       (τ : ℂ) :=
@@ -219,6 +224,7 @@ theorem qL_add {a : ℤ} (f g : ModularForm Γ a) :
   simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT.out), PowerSeries.coe_add]
 
+omit hT in
 theorem qL_one : qL (1 : ModularForm Γ 0) = 1 := by
   simp only [qL, ModularForm.qExpansion_one, PowerSeries.coe_one]
 
@@ -228,6 +234,7 @@ theorem qL_const (c : ℂ) :
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods hT.out), ModularForm.qExpansion_one,
     Algebra.smul_def, mul_one, HahnSeries.algebraMap_apply']
 
+omit hT in
 theorem mul_ne_zero_of_ne_zero {a b : ℤ} (f : ModularForm Γ a)
     (g : ModularForm Γ b) (hf : f ≠ 0) (hg : g ≠ 0) :
     f.mul g ≠ 0 := by
@@ -239,6 +246,7 @@ theorem mul_ne_zero_of_ne_zero {a b : ℤ} (f : ModularForm Γ a)
     mul_eq_zero] at this
   exact this.elim hw.1 hw.2
 
+omit hT in
 theorem one_ne_zero' : (1 : ModularForm Γ 0) ≠ 0 := by
   intro h
   have := congrArg (fun F : ModularForm Γ 0 => (F : ℍ → ℂ) UpperHalfPlane.I) h
@@ -325,10 +333,8 @@ abbrev CF (Γ : Subgroup SL(2, ℤ)) : Type :=
   ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ Γ))
 
 def pres (x : CF Γ) : Pres Γ (x : LaurentSeries ℂ) :=
-  let E :=
-    ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
-      Γ hT.out
-    (x : LaurentSeries ℂ) x.2
+  let E := exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
+      Γ hT.out (x : LaurentSeries ℂ) x.2
   ⟨E.choose, E.choose_spec.choose, E.choose_spec.choose_spec.choose,
     E.choose_spec.choose_spec.choose_spec.1, E.choose_spec.choose_spec.choose_spec.2⟩
 
@@ -406,6 +412,7 @@ def X (Γ : Subgroup SL(2, ℤ)) : CF Γ :=
   ⟨coeffEmb ℂ (jqModC ℚ), coeffEmb_mem_laurentBaseChange ℂ
     (intFormRatiosC_subset ℚ Γ (ModularCurve.jqModC_mem_intFormRatiosC ℚ Γ))⟩
 
+omit hT in
 theorem X_ne_algebraMap (c : ℂ) : X Γ ≠ algebraMap ℂ (CF Γ) c := by
   intro h
   have h1 := congrArg (fun y : CF Γ => (y : LaurentSeries ℂ).coeff (-1)) h
@@ -417,6 +424,7 @@ theorem X_ne_algebraMap (c : ℂ) : X Γ ≠ algebraMap ℂ (CF Γ) c := by
     (by norm_num)] at h1
   exact one_ne_zero h1
 
+omit hT in
 theorem X_ne_zero : X Γ ≠ 0 := by
   simpa using X_ne_algebraMap (Γ := Γ) 0
 
@@ -440,7 +448,7 @@ theorem exists_mu_pos (τ : ℍ) : ∃ x : CF Γ, 0 < mu τ x ∧ mu τ x ≠ �
     have hlim : Tendsto ((fun z : ℂ => realizeOf Γ ((X Γ : CF Γ) : LaurentSeries ℂ) (ofComplex z)) +
         fun _ => -c) (𝓝[≠] (τ : ℂ)) (𝓝 0) := by
       have h__af := hc.add (tendsto_const_nhds (x := -c))
-      simp at h__af
+      simp only [add_neg_cancel] at h__af
       exact h__af
     refine hlim.congr' ?_
     have hcoe : ((X Γ - algebraMap ℂ (CF Γ) c : CF Γ) : LaurentSeries ℂ) =

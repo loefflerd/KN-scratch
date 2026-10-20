@@ -80,8 +80,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 noncomputable section
 
@@ -120,10 +118,10 @@ scoped instance instHasPrincipalDivisorsFunctionField_a68p {F : Type*} [Field F]
 
 section AutoNorm
 
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type*} [Field F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
-omit [DecidableEq F] in
+omit [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
   classical
@@ -143,12 +141,15 @@ section Functoriality
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [DecidableEq F]
 variable {A B C : Affine F}
   [A.IsElliptic] [GenusOnePlaceGate A] [AbelTheorem A]
   [B.IsElliptic] [GenusOnePlaceGate B] [AbelTheorem B]
   [C.IsElliptic] [GenusOnePlaceGate C] [AbelTheorem C]
 
+omit [DecidableEq F] [WeierstrassCurve.IsElliptic A]
+  [A.GenusOnePlaceGate] [A.AbelTheorem] [WeierstrassCurve.IsElliptic B] [B.GenusOnePlaceGate]
+  [B.AbelTheorem] [WeierstrassCurve.IsElliptic C] [C.GenusOnePlaceGate] [C.AbelTheorem] in
 theorem Pic0_pushforwardAlongHom_comp
     (f : B.FunctionField →ₐ[F] A.FunctionField) (hf : f.toRingHom.IsIntegral)
     (hfinf : FiniteAlong F f) (hNf : NormFormulaAlong F f hfinf)
@@ -167,6 +168,8 @@ theorem Pic0_pushforwardAlongHom_comp
     Pic0.coe_pushforwardAlongDegZero]
   exact Divisor.pushforwardAlong_pushforwardAlong g f hg hf hfg (D : Divisor F A.FunctionField)
 
+omit [WeierstrassCurve.IsElliptic A] [WeierstrassCurve.IsElliptic B]
+  [WeierstrassCurve.IsElliptic C] in
 theorem pointMapOfPushforward_comp
     (f : B.FunctionField →ₐ[F] A.FunctionField) (hf : f.toRingHom.IsIntegral)
     (hfinf : FiniteAlong F f) (hNf : NormFormulaAlong F f hfinf)
@@ -199,6 +202,7 @@ section Generic
 
 variable {F : Type} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 
+omit [IsAlgClosed F] [CharZero F] in
 theorem oddOrderSummingSet_coords_mem (W : WeierstrassCurve F) (L : Subfield F) {n : ℕ}
     {Q : W.toAffine.Point} (hord : addOrderOf Q = 2 * n + 1)
     (hcoord : ∀ (k : ℕ) (x y : F) (h : W.toAffine.Nonsingular x y),
@@ -270,6 +274,7 @@ theorem isoTarget_odd (n : ℕ) (W : WeierstrassCurve F) [W.IsElliptic]
            j_mem := hj, ker_eq := hker }⟩
 
 omit [DecidableEq F] in
+omit [IsAlgClosed F] [CharZero F] in
 theorem veluGx_mem (W : WeierstrassCurve F) (L : Subfield F)
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₄ : W.a₄ ∈ L) {x₀ y₀ : F} (hx : x₀ ∈ L) (hy : y₀ ∈ L) :
     W.veluGx x₀ y₀ ∈ L := by
@@ -517,8 +522,7 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
       rw [hker]; infer_instance
     have hcard : Nat.card (pointMapOfPushforward (T H).ι (T H).hι (T H).hfin hN').ker = N := by
       rw [hker, Nat.card_zmultiples, hgenord]
-    exact
-      WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+    exact eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
       F W.toAffine (T H).V.toAffine (T H).ι (T H).hι (T H).hfin hN' N hcyc hcard data
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq

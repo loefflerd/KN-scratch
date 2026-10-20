@@ -72,11 +72,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
+namespace P2MW.S_OVERLONG_45662e8e
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 noncomputable section
 
@@ -246,7 +244,7 @@ p2m_export "WeierstrassCurve.Affine" "map FunctionField Point polynomial \
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve"
+  P2MW.S_OVERLONG_45662e8e.AlgebraicCurve"
 
 section Gate
 
@@ -286,10 +284,9 @@ section GeneralW
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic]
 
-omit [DecidableEq F] in
 theorem kw_point_infinite : Infinite W.Point := by
   classical
   rw [← not_finite_iff_infinite]
@@ -324,11 +321,11 @@ end WeierstrassCurve.Affine
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurv\
+  P2MW.S_OVERLONG_45662e8e.WeierstrassCurv\
   e WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve\
+  P2MW.S_OVERLONG_45662e8e.WeierstrassCurve\
   .Affine Polynomial AlgebraicCurve~Place.mem_of_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve"
+  P2MW.S_OVERLONG_45662e8e.AlgebraicCurve"
 
 universe u
 
@@ -500,10 +497,14 @@ def kw_fdn2_qephod_hend7_geomMorphBC : E.Point → E'.Point :=
 
 local notation "gBC" => kw_fdn2_qephod_hend7_geomMorphBC ι hι
 
+omit [DecidableEq K] [IsAlgClosed K] [CharZero K] [WeierstrassCurve.IsElliptic E] [E.AbelTheorem]
+  [WeierstrassCurve.IsElliptic E'] [E'.AbelTheorem] in
 theorem kw_fdn2_qephod_hend7_placeOfPoint_geomMorphBC (P : E.Point) :
     (placeOfPoint P).restrictAlong ι hι = placeOfPoint (gBC P) :=
   (placeOfPoint_placeOfPointEquiv_symm E' _).symm
 
+omit [DecidableEq K] [IsAlgClosed K] [CharZero K] [WeierstrassCurve.IsElliptic E] [E.AbelTheorem]
+  [WeierstrassCurve.IsElliptic E'] [E'.AbelTheorem] in
 theorem kw_fdn2_qephod_hend7_pushforwardDegZero_pointDivisor_geomMorphBC (P : E.Point) :
     Pic0.pushforwardAlongDegZero ι hι (pointDivisor P)
       = pointDivisor (gBC P) - pointDivisor (gBC 0) := by
@@ -516,6 +517,8 @@ theorem kw_fdn2_qephod_hend7_pushforwardDegZero_pointDivisor_geomMorphBC (P : E.
   rw [coe_pointDivisor, coe_pointDivisor, sub_sub_sub_cancel_right]
 
 include hfin in
+omit [DecidableEq K] [IsAlgClosed K] [CharZero K] [WeierstrassCurve.IsElliptic E] [E.AbelTheorem]
+  [WeierstrassCurve.IsElliptic E'] [E'.AbelTheorem] in
 theorem kw_fdn2_qephod_hend7_pushforwardHom_pointClass_eq_sub (P : E.Point) :
     Pic0.pushforwardAlongHom ι hι hfin hN
         (pointClass P)
@@ -527,6 +530,8 @@ theorem kw_fdn2_qephod_hend7_pushforwardHom_pointClass_eq_sub (P : E.Point) :
   rfl
 
 include hfin in
+omit [IsAlgClosed K] [CharZero K] [WeierstrassCurve.IsElliptic E]
+  [WeierstrassCurve.IsElliptic E'] in
 theorem kw_fdn2_qephod_hend7_pmop_eq_geomMorphBC_sub (P : E.Point) :
     pointMapOfPushforward ι hι hfin hN P
       = gBC P - gBC 0 := by
@@ -598,10 +603,10 @@ end
 p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg\
   " in
 open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_45662e8e.WeierstrassCurve
   _root_.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_45662e8e.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_45662e8e.AlgebraicCurve
   in
 universe u in
 theorem solution
@@ -613,9 +618,9 @@ theorem solution
     Nat.card (pointMapOfPushforward ι hι hfin hN).ker = finrankAlong F ι :=
   ModularCurve.kw_fdn2_qephod_hend7_pmopKerCard_proved F E E' ι hι hfin hN
 
-end S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
+end S_OVERLONG_45662e8e
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong (solution)
+export P2MW.S_OVERLONG_45662e8e (solution)
 
 end privateSection
 

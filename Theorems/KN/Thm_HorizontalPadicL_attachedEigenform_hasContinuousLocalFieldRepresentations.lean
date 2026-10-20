@@ -169,7 +169,8 @@ theorem representation_solution (ι : MTT.Qbar →+* ℂ) (E : WeierstrassCurve 
         X ^ 2 - C (E.LFunction ℓ : K) * X + C (ℓ : K) := by
       change ((LinearMap.toMatrix b b (s.ρ σ)).map (algebraMap R K)).charpoly = _
       rw [Matrix.charpoly_map, LinearMap.charpoly_toMatrix, hs]
-      simp [Polynomial.C_eq_intCast]
+      simp only [C_eq_intCast, Polynomial.map_add, Polynomial.map_sub, Polynomial.map_pow, map_X,
+        Polynomial.map_mul, Polynomial.map_intCast, map_C, add_right_inj, C_inj]
       exact map_natCast (algebraMap R K) ℓ
     have hcoeff := integralCoeff_eq ι E hmod hN hk ℓ
     have heps := integralNebentype_eq ι E hmod ℓ hℓ hNℓ

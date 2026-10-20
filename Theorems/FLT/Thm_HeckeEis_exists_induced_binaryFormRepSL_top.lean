@@ -334,7 +334,8 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
     · exact this
     · intro h
       have := congrArg (fun d => d 0) h
-      simp at this; exact hn0 this
+      simp only [Fin.isValue, Finsupp.single_eq_same, ne_eq, zero_ne_one, not_false_eq_true,
+        Finsupp.single_eq_of_ne] at this; exact hn0 this
   apply Subtype.ext
   rw [e1, hc0, monomial_zero]
   simp
@@ -362,7 +363,8 @@ theorem Sinv_TN_S_mem :
     (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N : ℤ) * ModularGroup.S ∈
       CongruenceSubgroup.Gamma0 N := by
   rw [CongruenceSubgroup.Gamma0_mem]
-  have hS : ((ModularGroup.S : SL(2, ℤ))⁻¹ : SL(2, ℤ)) = ⟨!![0, 1; -1, 0], by norm_num [Matrix.det_fin_two_of]⟩ :=
+  have hS : ((ModularGroup.S : SL(2, ℤ))⁻¹ : SL(2, ℤ)) = ⟨!![0, 1; -1, 0], by
+    norm_num [Matrix.det_fin_two_of]⟩ :=
     by
     apply Subtype.ext
     rw [Matrix.SpecialLinearGroup.coe_inv]

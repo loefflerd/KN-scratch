@@ -21,7 +21,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen
 import Theorems.FLT.Thm_ModularCurve_TatePoint_fullKernelDiscAt_of_odd
 import Theorems.FLT.Thm_WeierstrassCurve_isElliptic_veluQuotient2_of_isElliptic
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_two_smul_some_eq_zero_iff
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Nonvanishing discriminant of the full-kernel quotient at every level
@@ -62,11 +61,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt
-
-set_option Elab.async false
 namespace KernelTower
 
 theorem mem_zmultiples_iff_of_two_nsmul_eq_zero {A : Type*} [AddCommGroup A] {T : A}
@@ -202,18 +196,8 @@ example : ((AddMonoidHom.mulLeft (2 : ZMod 4)).comp (AddMonoidHom.mulLeft (2 : Z
 end KernelTower
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk a₄ \
-  a₂ Affine.Point.some Affine.negAddY toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero \
-  Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.Point.zero j veluGx veluGy \
-  veluU veluU_eq_Ψ₂Sq_eval Affine.Point.coordsOrZero_some oddOrderSummingSet fullKernelQuotient \
-  veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluQuotient2 veluQuotient2_a₁ \
-  veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X \
-  velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne \
-  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
-  fiberAdd_asymWeight_cleared_sixteen isElliptic_veluQuotient2_of_isElliptic \
-  Affine.Point.two_smul_some_eq_zero_iff"
+
 namespace VeluTwoKernel
-p2m_open "WeierstrassCurve"
 
 theorem negY_eq_of_veluGy_eq_zero {R : Type*} [CommRing R] {W : WeierstrassCurve R}
     {x₀ y₀ : R} (hgy : W.veluGy x₀ y₀ = 0) : W.toAffine.negY x₀ y₀ = y₀ := by
@@ -273,17 +257,6 @@ theorem ker_eq_zmultiples {F : Type*} [Field F] [DecidableEq F] {W : Weierstrass
 end WeierstrassCurve.VeluTwoKernel
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne mk.injEq a₃ a₁ map b₂ mk a₄ \
-  a₂ Affine.Point.some Affine.negAddY toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero \
-  Δ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.Point.zero j veluGx veluGy \
-  veluU veluU_eq_Ψ₂Sq_eval Affine.Point.coordsOrZero_some oddOrderSummingSet fullKernelQuotient \
-  veluQuotientOfSums veluQuotientOfSums_a₄ veluQuotientOfSums_a₆ veluQuotient2 veluQuotient2_a₁ \
-  veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluQuotient2_a₆ veluQuotient2_b₂ velu2X \
-  velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne \
-  exists_addMonoidHom_coe_eq_veluPointMap2 fiberAdd_veluGx_cleared_four \
-  fiberAdd_asymWeight_cleared_sixteen isElliptic_veluQuotient2_of_isElliptic \
-  Affine.Point.two_smul_some_eq_zero_iff"
-p2m_open "WeierstrassCurve"
 
 section FiberField
 
@@ -297,7 +270,6 @@ private theorem _root_.WeierstrassCurve.xnum_eq {x y x₀ y₀ l x' : F}
   rw [hx'd]
   linear_combination (l * (x - x₀) + (y - y₀) + W.a₁ * (x - x₀)) * hl
 
-p2m_export "WeierstrassCurve" "xnum_eq"
 private theorem _root_.WeierstrassCurve.ynum_eq {x y x₀ y₀ l x' y' : F}
     (hl : l * (x - x₀) = y - y₀)
     (hx'd : x' = l ^ 2 + W.a₁ * l - W.a₂ - x - x₀)
@@ -311,7 +283,6 @@ private theorem _root_.WeierstrassCurve.ynum_eq {x y x₀ y₀ l x' y' : F}
     x₀) * (x - x₀) ^ 2)) * hl
     - (l + W.a₁) * (x - x₀) * hXn
 
-p2m_export "WeierstrassCurve" "ynum_eq"
 private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) ≠ 0)
     {x y x₀ y₀ l x' y' : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
@@ -336,8 +307,16 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
       = y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) := by field_simp
   refine mul_right_cancel₀ (mul_ne_zero h4 (pow_ne_zero 4 hd)) ?_
   calc (W.veluGx x y + W.veluGx x' y') * (4 * (x - x₀) ^ 4)
-      = 4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * (x' * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀))) := by simp only [veluGx]; ring
-    _ = 4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x - x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y * (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀))) := by rw [hXn, hYn]
+      = 4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * (x' * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * (x' * (x - x₀)
+        ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * (y' * (x - x₀) ^ 3) * (x - x₀))) := by
+        simp only [veluGx]; ring
+    _ = 4 * (W.veluGx x y * (x - x₀) ^ 4 + (3 * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ +
+      x + x₀) * (x - x₀) ^ 2) ^ 2 + 2 * W.a₂ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ +
+      x + x₀) * (x - x₀) ^ 2) * (x - x₀) ^ 2 + W.a₄ * (x - x₀) ^ 4 - W.a₁ * ((y - y₀) * (x * (x -
+      x₀) ^ 2 - ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀) ^ 2)) - y *
+      (x - x₀) ^ 3 - W.a₁ * ((y - y₀) ^ 2 + W.a₁ * (y - y₀) * (x - x₀) - (W.a₂ + x + x₀) * (x - x₀)
+      ^ 2) * (x - x₀) - W.a₃ * (x - x₀) ^ 3) * (x - x₀))) := by
+      rw [hXn, hYn]
     _ = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 +
       W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁
       * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) :=
@@ -353,10 +332,11 @@ private theorem _root_.WeierstrassCurve.fiberAdd_veluGx_field (hchar : (2 : F) �
           = 4 * (3 * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) ^ 2 * (x - x₀) ^ 2
             + 2 * W.a₂ * ((x + W.veluGx x₀ y₀ / (x - x₀)) * (x - x₀)) * (x - x₀) ^ 3
             + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4
-            - W.a₁ * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^ 2) * (x - x₀) ^ 2) from by ring, hXd, hYd]
+            - W.a₁ * ((y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2) * (x - x₀) ^
+              2) * (x - x₀) ^ 2) from by
+              ring, hXd, hYd]
         ring
 
-p2m_export "WeierstrassCurve" "fiberAdd_veluGx_field"
 private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : F) ≠ 0) {x y x₀ y₀ l
     x' y' : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
@@ -436,7 +416,6 @@ private theorem _root_.WeierstrassCurve.fiberAdd_asymWeight_field (hchar : (2 : 
                 + W.a₃ * (x - x₀) ^ 2))
               * (x - x₀) ^ 2) from by ring, hXd, hYd]
 
-p2m_export "WeierstrassCurve" "fiberAdd_asymWeight_field"
 end FiberField
 
 section EvenStage
@@ -683,17 +662,13 @@ theorem fullKernelQuotient_eq_fullKernelQuotient_veluPointMap2
 
 end WeierstrassCurve
 
-p2m_open "Polynomial WeierstrassCurve \
-  P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.WeierstrassCurve"
-
-open scoped Classical
+open Polynomial WeierstrassCurve
 
 namespace ModularCurve
-p2m_export "ModularCurve" "TatePoint.FullKernelDiscAt TatePoint.fullKernelDiscAt_of_odd"
+
 namespace TatePoint
-p2m_export "ModularCurve.TatePoint" "FullKernelDiscAt fullKernelDiscAt_of_odd"
+
 namespace DiscEvenEngine
-p2m_open "ModularCurve.TatePoint ModularCurve"
 
 private theorem c4_entry
     {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F}
@@ -761,27 +736,21 @@ private theorem _root_.ModularCurve.TatePoint.DiscEvenEngine.fullKernelDiscAt_of
   · exact ModularCurve.TatePoint.fullKernelDiscAt_of_odd M hMO h2
       (W.veluQuotient2 x₀ y₀) (veluPointMap2 h2 h₀.1 hgy hΔ₂ Q) hQ₁
 
-p2m_export "ModularCurve.TatePoint.DiscEvenEngine" "fullKernelDiscAt_of_even"
 end ModularCurve.TatePoint.DiscEvenEngine
 
-namespace ModularCurve
-p2m_export "ModularCurve" "TatePoint.FullKernelDiscAt TatePoint.fullKernelDiscAt_of_odd"
-namespace TatePoint
-p2m_export "ModularCurve.TatePoint" "FullKernelDiscAt fullKernelDiscAt_of_odd"
-end ModularCurve.TatePoint
 namespace ModularCurve.TatePoint
-p2m_open_scoped "ModularCurve ModularCurve.TatePoint" in
+
 private theorem _root_.ModularCurve.TatePoint.fullKernelDiscAt_of_even
     (N : ℕ) [NeZero N] (hE : Even N) :
     ModularCurve.TatePoint.FullKernelDiscAt N :=
   ModularCurve.TatePoint.DiscEvenEngine.fullKernelDiscAt_of_even N hE
 
 end ModularCurve.TatePoint
-p2m_export "" "ModularCurve.TatePoint.fullKernelDiscAt_of_even"
 
 section Char3Gate
 
-example (h2 : (2 : AlgebraicClosure (ZMod 3)) ≠ 0)
+example [DecidableEq (AlgebraicClosure (ZMod 3))]
+    (h2 : (2 : AlgebraicClosure (ZMod 3)) ≠ 0)
     (W : WeierstrassCurve (AlgebraicClosure (ZMod 3))) [W.IsElliptic]
     (Q : W.toAffine.Point) (hQ : addOrderOf Q = 6) :
     (W.fullKernelQuotient Q 6).Δ ≠ 0 :=
@@ -789,30 +758,16 @@ example (h2 : (2 : AlgebraicClosure (ZMod 3)) ≠ 0)
 
 end Char3Gate
 
-p2m_open_scoped "ModularCurve ModularCurve.TatePoint" in
-private theorem ModularCurve.TatePoint.fullKernelDiscAt_aux
-    (N : ℕ) [NeZero N] : ModularCurve.TatePoint.FullKernelDiscAt N := by
+open ModularCurve TatePoint in
+theorem solution (N : ℕ) [NeZero N] : FullKernelDiscAt N := by
   rcases Nat.even_or_odd N with hE | hO
   · exact ModularCurve.TatePoint.fullKernelDiscAt_of_even N hE
   · exact ModularCurve.TatePoint.fullKernelDiscAt_of_odd N hO
-
-open scoped Classical
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.ModularCurve
-  _root_.ModularCurve.TatePoint
-  _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.ModularCurve.TatePoint in
-theorem solution (N : ℕ) [NeZero N] : FullKernelDiscAt N :=
-  ModularCurve.TatePoint.fullKernelDiscAt_aux N
-
-end S_ModularCurve_TatePoint_fullKernelDiscAt
-end P2MW
-export P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt (solution)
 
 end privateSection
 
 public section publicSection
 
-
-open scoped Classical
 theorem ModularCurve.TatePoint.fullKernelDiscAt (N : ℕ) [NeZero N] :
     FullKernelDiscAt N :=
   solution N

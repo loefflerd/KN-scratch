@@ -283,7 +283,7 @@ theorem exists_trans (D : IDatum M H w) (γ : SL(2, ℤ)) (hγ : γ ∈ Congruen
 def texp (D : IDatum M H w) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M) : ℤ :=
   (exists_trans D γ hγ).choose
 
-private def _root_.ModularCurve.DiamondActZero.trans (D : IDatum M H w) (γ : SL(2, ℤ))
+private def trans (D : IDatum M H w) (γ : SL(2, ℤ))
     (hγ : γ ∈ CongruenceSubgroup.Gamma0 M) :
     IDatum M H w :=
   (exists_trans D γ hγ).choose_spec.choose

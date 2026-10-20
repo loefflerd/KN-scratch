@@ -73,9 +73,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728
+namespace P2MW.S_OVERLONG_29084bdf
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -609,7 +608,7 @@ theorem exists_mu_pos (τ : ℍ) (X : CF Γ) (hX : ∀ c : ℂ, X ≠ algebraMap
       z)) +
         fun _ => -c) (𝓝[≠] (τ : ℂ)) (𝓝 0) := by
       have h__af := hc.add (tendsto_const_nhds (x := -c))
-      simp at h__af
+      simp only [add_neg_cancel] at h__af
       exact h__af
     refine hlim.congr' ?_
     have hcoe : ((X - algebraMap ℂ (CF Γ) c : CF Γ) : LaurentSeries ℂ) =
@@ -713,7 +712,7 @@ lemma ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
   rw [UpperHalfPlane.coe_im] at this
-  simp at this
+  simp only [Complex.one_im] at this
   exact ρ.im_pos.ne' this
 
 lemma E₄_ρ : E₄ ρ = 0 := by
@@ -1160,7 +1159,7 @@ end ModularCurve.UnramifiedGamma
 end
 
 open _root_.ModularCurve
-  _root_.P2MW.S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728.ModularCurve
+  _root_.P2MW.S_OVERLONG_29084bdf.ModularCurve
   ModularCurve.UnramifiedGamma in
 theorem solution
     (M : ℕ) [NeZero M] (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
@@ -1175,10 +1174,10 @@ theorem solution
   have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   exact ord_sub_le_one (Γ := Γ) (hΓ (T_mem_Gamma1 M)) y hy M hΓ a ha₀ ha₁₇₂₈ P
 
-end S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728
+end S_OVERLONG_29084bdf
 end P2MW
 export
-  P2MW.S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728
+  P2MW.S_OVERLONG_29084bdf
   (solution)
 
 end privateSection

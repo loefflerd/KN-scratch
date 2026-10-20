@@ -256,7 +256,7 @@ theorem ψ𝔡_ne_zero : ψ 𝔡 ≠ 0 := by
   have h0 : (𝔡 : 𝒩) = 0 := (ψ_eq_zero_iff _).mp h
   have : ModularForm.discriminant UpperHalfPlane.I = 0 := by
     have := congrArg (fun f : 𝒩 => (f : ℍ → ℂ) UpperHalfPlane.I) h0
-    simp at this
+    simp only [ZeroMemClass.coe_zero, Pi.zero_apply] at this
     exact this
   exact ModularForm.discriminant_ne_zero _ this
 
@@ -810,7 +810,8 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
   set ρ : ℝ := ‖δ ^ (-(k + 14 * (m : ℤ)))‖ with hρ
   have hρ0 : 0 < ρ := norm_pos_iff.mpr (zpow_ne_zero _ hδ)
   have hρ1 : ‖δ ^ (-(k + 12 * (m : ℤ)))‖ = ρ * t ^ (2 * m) := by
-    rw [show -(k + 12 * (m : ℤ)) = -(k + 14 * (m : ℤ)) + ((2 * m : ℕ) : ℤ) by push_cast; ring, zpow_add₀ hδ, norm_mul,
+    rw [show -(k + 12 * (m : ℤ)) = -(k + 14 * (m : ℤ)) + ((2 * m : ℕ) : ℤ) by
+      push_cast; ring, zpow_add₀ hδ, norm_mul,
       ← hρ, zpow_natCast, norm_pow, ← ht]
   set P : ℝ := ‖g z * (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ^ m * δ ^ (-(k + 14 * (m : ℤ)))‖
     with hP
@@ -831,7 +832,8 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
     ring
   have hT : P ^ 2 = ‖U‖ * ‖a‖ ^ m * Q ^ 2 := by
     have hUn : ‖U‖ = ‖u‖ / ‖v‖ := by rw [hU, norm_div]
-    rw [hUn, show ‖u‖ / ‖v‖ * ‖a‖ ^ m * Q ^ 2 = (‖u‖ * ‖a‖ ^ m * Q ^ 2) / ‖v‖ by ring, eq_div_iff hv'.ne']
+    rw [hUn, show ‖u‖ / ‖v‖ * ‖a‖ ^ m * Q ^ 2 = (‖u‖ * ‖a‖ ^ m * Q ^ 2) / ‖v‖ by
+      ring, eq_div_iff hv'.ne']
     exact hT'
   have hPnn : 0 ≤ P := norm_nonneg _
   have hQnn : 0 ≤ Q := norm_nonneg _

@@ -64,7 +64,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
+namespace P2MW.S_OVERLONG_9a1867b9
 
 
 noncomputable section
@@ -191,10 +191,10 @@ theorem solution
 
 end
 
-end S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
+end S_OVERLONG_9a1867b9
 end P2MW
 export
-  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
+  P2MW.S_OVERLONG_9a1867b9
   (solution)
 
 end privateSection

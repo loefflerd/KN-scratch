@@ -86,11 +86,11 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex \
-  Matrix.SpecialLinearGroup"
+open ModularCurve UpperHalfPlane ModularForm Filter Function Complex
+  Matrix.SpecialLinearGroup
+
 open scoped MatrixGroups Topology Pointwise Manifold ModularForm
 
 noncomputable section
@@ -178,9 +178,11 @@ abbrev KT : Subgroup SL(2, ℤ) := Subgroup.zpowers ModularGroup.T ⊔ Subgroup.
 
 scoped instance pm_finiteIndex : (pm Γ).FiniteIndex := Subgroup.finiteIndex_of_le le_sup_left
 
+omit [Γ.FiniteIndex] in
 theorem neg_one_mem_pm : (-1 : SL(2, ℤ)) ∈ pm Γ :=
   Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
 
+omit [Γ.FiniteIndex] in
 theorem neg_mem_pm {g : SL(2, ℤ)} (hg : g ∈ pm Γ) : -g ∈ pm Γ := by
   have : -g = g * (-1) := by simp
   rw [this]; exact (pm Γ).mul_mem hg (neg_one_mem_pm Γ)
@@ -198,6 +200,7 @@ scoped instance zpowers_neg_one_normal : (Subgroup.zpowers (-1 : SL(2, ℤ))).No
   · have : g * -1 * g⁻¹ = (-1 : SL(2, ℤ)) := by simp
     rw [this]; exact Subgroup.mem_zpowers _
 
+omit [Γ.FiniteIndex] in
 theorem mem_pm_iff {g : SL(2, ℤ)} : g ∈ pm Γ ↔ g ∈ Γ ∨ -g ∈ Γ := by
   constructor
   · intro hg
@@ -251,9 +254,11 @@ def toCusp : RC Γ → Cusp Γ :=
         (Subgroup.mem_zpowers _), ?_⟩
       simp)
 
+omit [Γ.FiniteIndex] in
 theorem toCusp_mk (a : SL(2, ℤ)) :
     toCusp Γ (Quotient.mk'' a) = DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT a := rfl
 
+omit [Γ.FiniteIndex] in
 theorem toCusp_surjective : Function.Surjective (toCusp Γ) := by
   intro d
   induction d using Quotient.inductionOn' with
@@ -270,6 +275,7 @@ theorem mk_mul_T_zpow_eq_iff (a : SL(2, ℤ)) (m n : ℤ) :
     rw [mul_inv_rev, zpow_sub]; group
   rw [this]
 
+omit [Γ.FiniteIndex] in
 theorem fibre_eq_range (a : SL(2, ℤ)) :
     {q : RC Γ | toCusp Γ q = toCusp Γ (Quotient.mk'' a)} =
       Set.range (fun m : ℤ => (Quotient.mk'' (a * ModularGroup.T ^ m) : RC Γ)) := by
@@ -376,6 +382,7 @@ theorem mapGL_T_zpow (n : ℤ) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [Matrix.GeneralLinearGroup.upperRightHom]
 
+omit [Γ.FiniteIndex] in
 theorem mem_strictPeriods_translate (σ : SL(2, ℤ)) (h : ℤ)
     (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :
     ((h : ℝ)) ∈ Subgroup.strictPeriods
@@ -386,11 +393,13 @@ theorem mem_strictPeriods_translate (σ : SL(2, ℤ)) (h : ℤ)
     ← map_inv, ← map_mul, ← map_mul]
   exact Subgroup.mem_map_of_mem _ hmem
 
+omit [Γ.FiniteIndex] in
 theorem coe_translate_SL (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     ⇑(ModularForm.translate g (σ : GL (Fin 2) ℝ)) = ⇑g ∣[k] σ := by
   rw [SL_slash]
   exact ModularForm.coe_translate g _
 
+omit [Γ.FiniteIndex] in
 theorem slash_periodic_of_conj_mem (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ))
     (h : ℤ) (hmem : σ * ModularGroup.T ^ h * σ⁻¹ ∈ Γ) :
     Periodic ((⇑g ∣[k] σ) ∘ ofComplex) ((h : ℝ)) := by
@@ -398,18 +407,21 @@ theorem slash_periodic_of_conj_mem (g : ModularForm (Γ : Subgroup (GL (Fin 2) �
   exact SlashInvariantFormClass.periodic_comp_ofComplex
     (ModularForm.translate g (σ : GL (Fin 2) ℝ)) (mem_strictPeriods_translate σ h hmem)
 
+omit [Γ.FiniteIndex] in
 theorem slash_periodic_nat (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ))
     (h : ℕ) (hmem : σ * ModularGroup.T ^ (h : ℤ) * σ⁻¹ ∈ Γ) :
     Periodic ((⇑g ∣[k] σ) ∘ ofComplex) ((h : ℝ)) := by
   have := slash_periodic_of_conj_mem g σ h hmem
   simpa using this
 
+omit [Γ.FiniteIndex] in
 theorem conj_T_zpow_index_mem (σ : SL(2, ℤ)) :
     σ * ModularGroup.T ^ (Γ.normalCore.index : ℤ) * σ⁻¹ ∈ Γ := by
   have h1 : ModularGroup.T ^ (Γ.normalCore.index : ℤ) ∈ Γ.normalCore := by
     rw [zpow_natCast]; exact Subgroup.pow_index_mem Γ.normalCore ModularGroup.T
   exact Subgroup.normalCore_le Γ ((Subgroup.normalCore_normal Γ).conj_mem _ h1 σ)
 
+omit [Γ.FiniteIndex] in
 theorem slash_mdiff (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (⇑g ∣[k] σ) := by
   rw [← coe_translate_SL g σ]
@@ -763,6 +775,7 @@ open CongruenceSubgroup
 
 variable (M : ℕ) [NeZero M]
 
+omit [NeZero M] in
 theorem T_mem_Gamma1 : ModularGroup.T ∈ Gamma1 M := by
   rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
 
@@ -815,6 +828,7 @@ theorem not_mem_of_ord_neg {F : Type*} [Field F] [Algebra ℂ F] (P : AlgebraicC
     (hx : P.ord x < 0) : x ∉ P.toValuationSubring := fun hmem =>
   ((P.not_adicValuation_le_one_iff).mpr hx) (P.adicValuation_le_one_of_mem hmem)
 
+omit [NeZero M] in
 theorem four_not_dvd (hM : 5 ≤ M) : ¬ M ∣ 4 := fun h => by
   have := Nat.le_of_dvd (by norm_num) h; omega
 
@@ -823,7 +837,7 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
     (Pl M σ).ord y = -(cw (Gamma1 M) σ : ℤ) := by
   have hT := T_mem_Gamma1 M
   obtain ⟨htr, hfin⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ (Gamma1 M) hT y hy
   have := hfin
   have hfull :=
@@ -1023,7 +1037,7 @@ theorem place_eq_of_readouts (σ : SL(2, ℤ))
   · simp
   · have hΦ : Φ' x = Φ x := by
       obtain ⟨k, g, hf, hf0, hxp⟩ :=
-        ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
+        exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
           Γ hT (x : LaurentSeries ℂ) x.2
       have h1 := hpres x k g hf hf0 hxp
       have h2 := hpres' x k g hf hf0 hxp
@@ -1119,7 +1133,7 @@ theorem ord_PlG_eq_neg_cw (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) (y 
     (σ : SL(2, ℤ)) :
     (PlG Γ hT σ).ord y = -(cw Γ σ : ℤ) := by
   obtain ⟨htr, hfin⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ Γ hT y hy
   have := hfin
   have hE2 : ∀ (σ : SL(2, ℤ)) (x : CF Γ), x ∈ (PlG Γ hT σ).toValuationSubring ↔

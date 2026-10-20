@@ -44,8 +44,10 @@ comparison involved is a cross-universe one.
 This is the set-theoretic half of the Lefschetz principle for countable fields of characteristic
 zero. It is used to transfer a statement about $j$-invariants and modular polynomials from an
 arbitrary countable characteristic-zero base field to $\mathbb{C}$, in the proof of
-[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
-(thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward).
+[`WeierstrassCurve.Affine.
+eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
+(thm.html#WeierstrassCurve.Affine.
+eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward).
 
 ## Explanation of the source proof
 

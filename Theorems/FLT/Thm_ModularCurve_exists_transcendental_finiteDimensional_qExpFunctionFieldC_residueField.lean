@@ -73,9 +73,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
+namespace P2MW.S_OVERLONG_560e3206
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -326,6 +325,7 @@ theorem laurentBaseChange_le_adjoin_gensZ : FF ≤ adjoin L (gensZ L Γ) := by
     exact div_mem (IntermediateField.subset_adjoin L _ ⟨k, f, pf, hf, rfl⟩)
       (IntermediateField.subset_adjoin L _ ⟨k, g, pg, hg, rfl⟩)
 
+omit [Algebra ℚ L] in
 theorem exists_intSeriesC_coeff_eq_intCast (p : PowerSeries ℤ) (n : ℤ) :
     ∃ m : ℤ, (intSeriesC L p).coeff n = (m : L) := by
   rcases le_or_gt 0 n with hn | hn
@@ -334,6 +334,7 @@ theorem exists_intSeriesC_coeff_eq_intCast (p : PowerSeries ℤ) (n : ℤ) :
     rw [intSeriesC, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map, eq_intCast]
   · exact ⟨0, by rw [intSeriesC, ofPowerSeries_coeff_of_neg _ hn, Int.cast_zero]⟩
 
+omit [Algebra ℚ L] in
 theorem exists_fg_coeff_mem {x : LaurentSeries L} (hx : x ∈ Algebra.adjoin L (gensZ L Γ)) :
     ∃ M : Submodule ℤ L, M.FG ∧ ∀ n, x.coeff n ∈ M := by
   induction hx using Algebra.adjoin_induction with
@@ -517,6 +518,7 @@ theorem resHom_eq_zero_iff (f : gaussRing A Γ) :
 theorem coe_algebraMap (c : L) :
     ((algebraMap L FF c : FF) : LaurentSeries L) = algebraMap L (LaurentSeries L) c := rfl
 
+omit [Algebra ℚ L] in
 theorem exists_inv_mem_maximalIdeal {c : L} (hc : c ∉ A) :
     ∃ h : c⁻¹ ∈ A, (⟨c⁻¹, h⟩ : A) ∈ IsLocalRing.maximalIdeal A := by
   have hc0 : c ≠ 0 := by rintro rfl; exact hc A.zero_mem
@@ -569,6 +571,7 @@ local notation "FF" => laurentBaseChange L (qExpFunctionFieldC ℚ Γ)
 local notation "kk" => IsLocalRing.ResidueField A
 local notation "Fb" => qExpFunctionFieldC (IsLocalRing.ResidueField A) Γ
 
+omit [Algebra ℚ L] in
 theorem exists_primitive_poly {r : L[X]} (hr : r ≠ 0) :
     ∃ c : L, c ≠ 0 ∧ ∃ r₀ : A[X], r = C c * r₀.map A.subtype ∧ r₀.map (IsLocalRing.residue A) ≠ 0
       := by
@@ -604,11 +607,13 @@ theorem exists_primitive_poly {r : L[X]} (hr : r ≠ 0) :
     rw [h3, map_one] at h1
     exact one_ne_zero h1
 
+omit [Algebra ℚ L] in
 theorem algebraMap_laurentSeries_A (a : A) : algebraMap A (LaurentSeries A) a = HahnSeries.C a := by
   rw [HahnSeries.algebraMap_apply']
   have h1 : algebraMap A (PowerSeries A) a = PowerSeries.C a := by simp
   rw [h1, HahnSeries.ofPowerSeries_C]
 
+omit [Algebra ℚ L] in
 theorem ι_aeval (p : A[X]) : ι A (aeval (jqModC A) p) = aeval (jqModC L) (p.map A.subtype) := by
   rw [aeval_def, aeval_def, hom_eval₂, eval₂_map, coeffMap_jqModC]
   congr 1
@@ -617,6 +622,7 @@ theorem ι_aeval (p : A[X]) : ι A (aeval (jqModC A) p) = aeval (jqModC L) (p.ma
   rw [algebraMap_laurentSeries_A]
   exact ι_C A a
 
+omit [Algebra ℚ L] in
 theorem ϖ_aeval (p : A[X]) :
     ϖ A (aeval (jqModC A) p) = aeval (jqModC kk) (p.map (IsLocalRing.residue A)) := by
   rw [aeval_def, aeval_def, hom_eval₂, eval₂_map, coeffMap_jqModC]
@@ -1077,9 +1083,9 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (A : ValuationSubring L)
 
 end
 
-end S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
+end S_OVERLONG_560e3206
 end P2MW
-export P2MW.S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
+export P2MW.S_OVERLONG_560e3206
   (solution)
 
 end privateSection

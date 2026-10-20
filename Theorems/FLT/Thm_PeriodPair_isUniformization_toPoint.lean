@@ -73,7 +73,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_isUniformization_toPoint
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 namespace Bornology

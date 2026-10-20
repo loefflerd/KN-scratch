@@ -130,7 +130,12 @@ lemma rational_translate_integrable
     change (⇑f ∣[(k : ℤ)] gr) _ = _
     rw [slash_def, hr]
     simp only [Matrix.GeneralLinearGroup.val_det_apply]
-    simp [σ, denom, Matrix.GeneralLinearGroup.upperRightHom]
+    simp only [σ, Matrix.GeneralLinearGroup.upperRightHom, AddChar.coe_mk,
+      Matrix.GeneralLinearGroup.val_det_apply, Matrix.det_fin_two_of, mul_one, mul_zero, sub_zero,
+      zero_lt_one, ↓reduceIte, ContinuousAlgEquiv.refl_apply, abs_one, ofReal_one, one_zpow, denom,
+      Fin.isValue, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_fin_one,
+      Matrix.cons_val_one, ofReal_zero, zero_mul, zero_add, zpow_neg, zpow_natCast, one_pow,
+      inv_one]
     congr 1
     ext
     simp [coe_smul, σ, num, denom, ofComplex_apply_of_im_pos, ht]

@@ -78,7 +78,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane ModularForm Filter Function Complex Matrix.SpecialLinearGroup OnePoint
@@ -137,6 +136,7 @@ theorem natCast_mem_strictPeriods_translate (Γ : Subgroup SL(2, ℤ)) [Γ.Finit
 
 variable {Γ : Subgroup SL(2, ℤ)} [Γ.FiniteIndex]
 
+omit [Γ.FiniteIndex] in
 theorem coe_translate_SL (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     ⇑(ModularForm.translate g (σ : GL (Fin 2) ℝ)) = ⇑g ∣[k] σ := by
   rw [SL_slash]
@@ -149,6 +149,7 @@ theorem slash_periodic (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ 
     (ModularForm.translate g (σ : GL (Fin 2) ℝ))
     (natCast_mem_strictPeriods_translate Γ σ)
 
+omit [Γ.FiniteIndex] in
 theorem slash_mdiff (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     MDiff (⇑g ∣[k] σ) := by
   rw [← coe_translate_SL g σ]
@@ -425,7 +426,6 @@ end S3CuspLimit
 
 namespace S3c
 
-set_option linter.unusedSectionVars false
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
@@ -475,13 +475,16 @@ private def orderValuationSubring : ValuationSubring F where
     rw [map_inv₀, order_inv_laurent ((map_ne_zero_iff' Φ).2 hx0)]
     omega
 
+omit [Algebra K F] in
 private theorem mem_orderValuationSubring_iff {x : F} :
     x ∈ orderValuationSubring Φ ↔ 0 ≤ (Φ x).order :=
   Iff.rfl
 
+omit [Algebra K F] in
 private theorem coe_ne_zero_of_ne_zero {x : orderValuationSubring Φ} (hx : x ≠ 0) : (x : F) ≠ 0 :=
   fun h => hx (Subtype.ext h)
 
+omit [Algebra K F] in
 private theorem order_eq_zero_of_isUnit {x : orderValuationSubring Φ} (hu : IsUnit x) :
     (Φ (x : F)).order = 0 := by
   obtain ⟨u, rfl⟩ := hu
@@ -504,6 +507,7 @@ private theorem order_eq_zero_of_isUnit {x : orderValuationSubring Φ} (hu : IsU
   rw [HahnSeries.order_mul ((map_ne_zero_iff' Φ).2 hx0) ((map_ne_zero_iff' Φ).2 hy0)] at this
   omega
 
+omit [Algebra K F] in
 private theorem isUnit_of_order_eq_zero {x : orderValuationSubring Φ} (hx : (x : F) ≠ 0)
     (h0 : (Φ (x : F)).order = 0) : IsUnit x := by
   have hinv : (x : F)⁻¹ ∈ orderValuationSubring Φ := by
@@ -512,6 +516,7 @@ private theorem isUnit_of_order_eq_zero {x : orderValuationSubring Φ} (hx : (x 
   exact ⟨⟨x, ⟨(x : F)⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hx),
     Subtype.ext (inv_mul_cancel₀ hx)⟩, rfl⟩
 
+omit [Algebra K F] in
 private theorem isPrincipalIdealRing_orderValuationSubring :
     IsPrincipalIdealRing (orderValuationSubring Φ) := by
   classical
@@ -939,9 +944,11 @@ private def presNum (x : CF Γ) :
 private def presDen (x : CF Γ) : ModularForm (Γ0 Γ) (presWt Γ pres x) :=
   (pres x x.2).choose_spec.choose_spec.choose
 
+omit hTΓ in
 private theorem presDen_ne_zero (x : CF Γ) : presDen Γ pres x ≠ 0 :=
   (pres x x.2).choose_spec.choose_spec.choose_spec.1
 
+omit hTΓ in
 private theorem pres_eq (x : CF Γ) :
     (x : LaurentSeries ℂ) * Lq 1 ⇑(presDen Γ pres x) = Lq 1 ⇑(presNum Γ pres x) :=
   (pres x x.2).choose_spec.choose_spec.choose_spec.2
@@ -1017,6 +1024,7 @@ private theorem Φσ_algebraMap (c : ℂ) :
       simp [ModularCurve.algebraMap_laurentSeries_eq_single, HahnSeries.C_apply])
   rw [Φσ_apply, h, cuspRatio_smul σ N hN c (presDen_ne_zero Γ pres 1)]
 
+omit hTΓ in
 private theorem Gamma0_le_Gamma0_one : Γ0 Γ ≤ Γ1top :=
   Subgroup.map_mono fun _ _ => CongruenceSubgroup.Gamma0_mem.mpr (Subsingleton.elim _ _)
 
@@ -1028,6 +1036,7 @@ private def restrictOne {k : ℤ} (f : ModularForm (Γ1top) k) : ModularForm (Γ
   holo' := ModularFormClass.holo f
   bdd_at_cusps' hc := ModularFormClass.bdd_at_cusps f (hc.mono (Gamma0_le_Gamma0_one Γ))
 
+omit hTΓ in
 @[scoped simp]
 private theorem coe_restrictOne {k : ℤ} (f : ModularForm (Γ1top) k) : ⇑(restrictOne Γ f) = ⇑f := rfl
 
@@ -1099,11 +1108,13 @@ private theorem reindexN (N : ℕ) [NeZero N] : S3c.Reindex N := fun k f n => by
 
 variable (σ : SL(2, ℤ))
 
+omit hTΓ in
 private theorem hNσ :
     ((S3CuspLimit.wd Γ : ℕ) : ℝ) ∈ (ConjAct.toConjAct (σ : GL (Fin 2) ℝ)⁻¹ • S3c.Γ0 Γ).strictPeriods
       :=
   S3CuspLimit.natCast_mem_strictPeriods_translate Γ σ
 
+omit [Γ.FiniteIndex] in
 private theorem realizeOf_smul_eventuallyEq_div {k : ℤ}
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (x : LaurentSeries ℂ)
     (hxgh : x * ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
@@ -1114,6 +1125,7 @@ private theorem realizeOf_smul_eventuallyEq_div {k : ℤ}
   filter_upwards [hne] with τ hτ
   exact realizeOf_eq_div Γ hTΓ.out g h x hxgh (σ • τ) hτ
 
+omit hTΓ in
 private theorem eventually_apply_smul_ne_zero {k : ℤ}
     (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) :
     ∀ᶠ τ in atImInfty, (h : ℍ → ℂ) (σ • τ) ≠ 0 := by
@@ -1151,6 +1163,7 @@ private theorem Φ_eq {x : S3c.CF Γ} {k : ℤ} {g h : ModularForm (S3c.Γ0 Γ) 
 private theorem Φ_algebraMap (c : ℂ) : Φ Γ σ (algebraMap ℂ (S3c.CF Γ) c) = HahnSeries.C c :=
   S3c.Φσ_algebraMap Γ (S3CuspLimit.wd Γ) σ (S3glue.presN Γ) (S3glue.hNσ Γ σ) c
 
+omit [Γ.FiniteIndex] hTΓ in
 private theorem jq_mem : coeffEmb ℂ jq ∈ S3c.CF Γ := by
   apply ModularCurve.coeffEmb_mem_laurentBaseChange ℂ
   have h := ModularCurve.jqModC_mem_intFormRatiosC ℚ Γ

@@ -61,12 +61,12 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty
+namespace P2MW.S_OVERLONG_cb6c3088
 
 p2m_open "Polynomial IsDedekindDomain AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint \
-  P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve \
+  P2MW.S_OVERLONG_cb6c3088.AlgebraicCurve \
   AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint \
-  P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.Ratio\
+  P2MW.S_OVERLONG_cb6c3088.AlgebraicCurve.Ratio\
   nalFunctionField"
 
 open scoped Polynomial
@@ -106,8 +106,8 @@ p2m_open "AlgebraicCurve.\
   RationalFunctionField~exists_eq_placeOfPoint\
   " in
 open
-  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve
-  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.AlgebraicCurve.RationalFunctionField
+  _root_.P2MW.S_OVERLONG_cb6c3088.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_cb6c3088.AlgebraicCurve.RationalFunctionField
   in
 theorem solution (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
     (v : Place K (RatFunc K)) :
@@ -118,9 +118,9 @@ theorem solution (K : Type*) [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
     exact Or.inl ⟨a, hw.trans ha⟩
   · exact Or.inr hw
 
-end S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty
+end S_OVERLONG_cb6c3088
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty (solution)
+export P2MW.S_OVERLONG_cb6c3088 (solution)
 
 end privateSection
 

@@ -274,7 +274,8 @@ theorem coeff_aeval_jqModC_of_lt (P : Polynomial K) {m : ℤ} (hm : m < -(P.natD
   rw [Polynomial.aeval_def, Polynomial.eval₂_eq_sum_range, HahnSeries.coeff_sum]
   refine Finset.sum_eq_zero fun i hi => ?_
   have hi' : i ≤ P.natDegree := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
-  rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_of_lt K (b := i) (m := m) (by omega), mul_zero]
+  rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_of_lt K (b := i) (m := m) (by
+    omega), mul_zero]
 
 theorem coeff_aeval_jqModC_neg_natDegree (P : Polynomial K) :
     (Polynomial.aeval (jqModC K) P).coeff (-(P.natDegree : ℤ)) = P.coeff P.natDegree := by
@@ -283,7 +284,9 @@ theorem coeff_aeval_jqModC_neg_natDegree (P : Polynomial K) :
   · rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_self K P.natDegree, mul_one]
   · intro i hi hin
     have hilt : i < P.natDegree := lt_of_le_of_ne (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)) hin
-    rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_of_lt K (b := i) (m := -(P.natDegree : ℤ)) (by omega),
+    rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_of_lt K (b := i) (m := -(P.natDegree :
+      ℤ)) (by
+      omega),
       mul_zero]
   · intro hn
     exact absurd (Finset.self_mem_range_succ P.natDegree) hn
@@ -414,7 +417,8 @@ theorem sum_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
   have hcoeff := congrArg (fun Q : Polynomial (LaurentSeries K) => Q.coeff (p - 1)) key
   have hp2 : 2 ≤ p := hp.out.two_le
-  simp only [Polynomial.coeff_sub, Polynomial.coeff_C, ite_eq_right (by omega : ¬(p - 1 = 0))] at hcoeff
+  simp only [Polynomial.coeff_sub, Polynomial.coeff_C, ite_eq_right (by
+    omega : ¬(p - 1 = 0))] at hcoeff
   have hBcoeff : B.coeff (p - 1) = -∑ b : Fin p, qTwist (ζ ^ (b : ℕ)) (jqModC K) := by
     have hv := Polynomial.prod_X_sub_C_coeff_card_pred (Finset.univ : Finset (Fin p))
       (fun b => qTwist (ζ ^ (b : ℕ)) (jqModC K)) (by simp [hp.out.pos])

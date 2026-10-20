@@ -108,7 +108,7 @@ theorem solution
     rw [← ModularCurve.GammaH_bot M]; exact ModularCurve.translation_mem_GammaH M ⊥
   have hT : ModularGroup.T ∈ Γ := hΓ hT1
   obtain ⟨htr, hfin⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) Γ hT y hy
   have := hfin
   have hle :=
@@ -172,7 +172,8 @@ theorem solution
     have hlt : P.ord (algebraMap (AlgebraicClosure ℚ)
         ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))
           (1728 : AlgebraicClosure ℚ)) <
-        P.ord (y - algebraMap (AlgebraicClosure ℚ) _ (1728 : AlgebraicClosure ℚ)) := by rw [hc]; exact hy1
+        P.ord (y - algebraMap (AlgebraicClosure ℚ) _ (1728 : AlgebraicClosure ℚ)) := by
+          rw [hc]; exact hy1
     have hsum := AlgebraicCurve.Place.ord_add_eq_of_lt P hc0 hg0 hlt
     rw [add_sub_cancel, hc] at hsum
     rw [hsum] at hy0

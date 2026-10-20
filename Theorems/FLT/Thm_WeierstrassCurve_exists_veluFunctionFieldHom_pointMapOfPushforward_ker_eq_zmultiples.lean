@@ -66,7 +66,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
+namespace P2MW.S_OVERLONG_88898e12
 
 theorem solution
     {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
@@ -94,9 +94,9 @@ theorem solution
     WeierstrassCurve.exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq hord hΔ'
   exact ⟨ι, hι, hfin, hrank, hker⟩
 
-end S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
+end S_OVERLONG_88898e12
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
+export P2MW.S_OVERLONG_88898e12
   (solution)
 
 end privateSection

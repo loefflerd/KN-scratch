@@ -59,7 +59,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
+namespace P2MW.S_OVERLONG_6c405002
 
 
 open AlgebraicCurve
@@ -77,9 +77,9 @@ theorem solution
     FiniteDimensional.of_finrank_eq_succ (n := 0) hℓ0
   exact Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord x hx D hD
 
-end S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
+end S_OVERLONG_6c405002
 end P2MW
-export P2MW.S_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
+export P2MW.S_OVERLONG_6c405002
   (solution)
 
 end privateSection

@@ -72,9 +72,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
+namespace P2MW.S_OVERLONG_55825ce2
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -482,9 +481,9 @@ theorem solution
       (algebraMap K (AlgebraicClosure K)) Γ x ⟨_, hjK'⟩ hxt hxx'
   exact ⟨hfdK, hleK.trans hle'⟩
 
-end S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
+end S_OVERLONG_55825ce2
 end P2MW
-export P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
+export P2MW.S_OVERLONG_55825ce2
   (solution)
 
 end privateSection

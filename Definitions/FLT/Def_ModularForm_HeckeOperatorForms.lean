@@ -89,7 +89,8 @@ def heckeTLin (k : ℤ) (hp : p.Prime) (hpN : ¬ p ∣ N) :
       show heckeT k p ⇑(c • f) = c • heckeT k p ⇑f by rw [FunLike.coe_smul, heckeT_smul] }
 
 def heckeULin (k : ℤ) [NeZero N] (hpN : p ∣ N) :
-    ModularForm (CongruenceSubgroup.Gamma0 N) k →ₗ[ℂ] ModularForm (CongruenceSubgroup.Gamma0 N) k where
+    ModularForm (CongruenceSubgroup.Gamma0 N) k →ₗ[ℂ]
+      ModularForm (CongruenceSubgroup.Gamma0 N) k where
   toFun f :=
     { toFun := heckeU k p ⇑f
       slash_action_eq' := fun γ hγ => heckeU_slash_eq_self_of_mem_Gamma0 k hpN

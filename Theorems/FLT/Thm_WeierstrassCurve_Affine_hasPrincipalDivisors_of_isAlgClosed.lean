@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_eq_valuationSubring_of_X_not_mem
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Principal divisors have degree zero on an elliptic curve
@@ -61,12 +60,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 -/
 
 section privateSection
-
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
-
-set_option Elab.async false
 
 noncomputable section
 
@@ -451,10 +444,6 @@ end
 theorem solution {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F)
     [W.IsElliptic] : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
   D5S.hasPrincipalDivisors_impl
-
-end S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
-end P2MW
-export P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed (solution)
 
 end privateSection
 

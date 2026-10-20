@@ -69,7 +69,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
+namespace P2MW.S_OVERLONG_e21b3de7
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
@@ -79,7 +79,6 @@ noncomputable section
 
 namespace Ws13S7
 
-set_option linter.unusedSectionVars false
 
 open AddMonoid.End
 
@@ -223,6 +222,8 @@ theorem finrankAlong_pos {K L L' : Type*} [Field K] [Field L] [Field L']
 
 variable [GenusOnePlaceGate W] [AbelTheorem W] [GenusOnePlaceGate.IsCentred W]
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [W.AbelTheorem] [GenusOnePlaceGate.IsCentred W] in
 theorem finrankAlong_datum_pos (D : IsogenyEndDatum W) : 0 < finrankAlong F D.ι :=
   finrankAlong_pos D.ι D.hfin
 
@@ -550,10 +551,10 @@ theorem solution
         (finrankAlong F D.ι : ℤ) = a ^ 2 + t * a * b + n * b ^ 2 :=
   Ws13S7.s7_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq W hNs D₀ hD₀
 
-end S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
+end S_OVERLONG_e21b3de7
 end P2MW
 export
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
+  P2MW.S_OVERLONG_e21b3de7
   (solution)
 
 end privateSection

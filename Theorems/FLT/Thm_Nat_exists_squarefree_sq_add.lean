@@ -61,7 +61,6 @@ section privateSection
 
 namespace P2MW.S_Nat_exists_squarefree_sq_add
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 

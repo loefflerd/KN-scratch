@@ -166,7 +166,8 @@ theorem solution {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     refine Finset.sum_congr rfl fun d hd => ?_
     obtain ⟨hdn, hd1⟩ := hdeg d hd
     rw [Submodule.coe_smul, coe_mono K n hd1.le, monomial_eq, smul_eq_C_mul,
-      Finsupp.prod_fintype _ _ (fun i => pow_zero _), Fin.prod_univ_two, show n - d 1 = d 0 by omega]
+      Finsupp.prod_fintype _ _ (fun i => pow_zero _), Fin.prod_univ_two, show n - d 1 = d 0 by
+        omega]
   rw [hrepr]
   exact Submodule.sum_mem _ fun d hd => Submodule.smul_mem _ _ (mono_mem_range_T_zpow_sub_one n hh _
     (hdeg d hd).2)

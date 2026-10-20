@@ -71,7 +71,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
+namespace P2MW.S_OVERLONG_a521858c
 
 
 open AlgebraicCurve IsLocalRing
@@ -236,10 +236,10 @@ theorem solution
     linarith
   exact ⟨hTotne, fun j hj => hTotord ▸ hmle j hj⟩
 
-end S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
+end S_OVERLONG_a521858c
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
+  P2MW.S_OVERLONG_a521858c
   (solution)
 
 end privateSection

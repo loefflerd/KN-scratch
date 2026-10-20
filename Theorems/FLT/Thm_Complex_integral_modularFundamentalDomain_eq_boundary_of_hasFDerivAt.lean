@@ -246,11 +246,11 @@ lemma hasDerivAt_horiz {x y : ℝ} (hz : (⟨x, y⟩ : ℂ) ∈ U)
   rwa [← mk_eq] at this
 
 lemma continuous_mk_left (x : ℝ) : Continuous fun t : ℝ => (⟨x, t⟩ : ℂ) := by
-  simp [mk_eq]
+  simp only [mk_eq]
   exact (continuous_const.add (Complex.continuous_ofReal.mul continuous_const))
 
 lemma continuous_mk_right (y : ℝ) : Continuous fun t : ℝ => (⟨t, y⟩ : ℂ) := by
-  simp [mk_eq]
+  simp only [mk_eq]
   exact (Complex.continuous_ofReal.add continuous_const)
 
 lemma tendsto_const_mul_exp {δ : ℝ} (hδ : 0 < δ) (C : ℝ) :
@@ -377,7 +377,7 @@ lemma continuous_r :
     Continuous r := Real.continuous_sqrt.comp (continuous_const.sub (continuous_id.pow 2))
 
 lemma continuous_mk2 : Continuous fun p : ℝ × ℝ => (⟨p.1, p.2⟩ : ℂ) := by
-  simp [mk_eq]
+  simp only [mk_eq]
   exact ((Complex.continuous_ofReal.comp continuous_fst).add
     ((Complex.continuous_ofReal.comp continuous_snd).mul continuous_const))
 

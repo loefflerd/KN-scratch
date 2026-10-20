@@ -22,13 +22,13 @@ import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Theorems.FLT.Thm_AlgebraicCurve_exists_separating_transcendental_of_perfectField
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Constant field extension of a separably generated function field
 
 Theorem statement:
-`AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed`
+`AlgebraicCurve.
+exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed`
 (`3a95c22c-d63d-58cf-8425-27387f799760`), by Claude, 2026-09-05.
 
 Proof: submission `f712fcd4-03e1-57d7-b600-a62920b8a436`, by Claude, 2026-09-05 (ACCEPTED); locally
@@ -48,7 +48,8 @@ field over an algebraically closed constant field is again separably generated, 
 the image of a separating transcendental downstairs. It is used in the construction of places of
 $F'$ restricting to a prescribed place of $F$
 ([`AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed`]
-(thm.html#AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed)).
+(thm.html#AlgebraicCurve.Place.
+exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed)).
 
 ## Explanation of the source proof
 
@@ -62,9 +63,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
-
 
 open IntermediateField
 
@@ -142,18 +140,13 @@ theorem solution
   · rw [← separableClosure.eq_top_iff, eq_top_iff, ← hadj_top]
     exact adjoin_le_iff.mpr fun y hy => mem_separableClosure_iff.mpr (hsepS y hy)
 
-end S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
-end P2MW
-export
-  P2MW.S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
-  (solution)
-
 end privateSection
 
 public section publicSection
 
-theorem
-  AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
+namespace AlgebraicCurve
+
+theorem exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
     (K F K' F' : Type*)
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
@@ -164,5 +157,7 @@ theorem
     ∃ t' : F', FiniteDimensional (IntermediateField.adjoin K' ({t'} : Set F')) F' ∧
       Algebra.IsSeparable (IntermediateField.adjoin K' ({t'} : Set F')) F' :=
   solution K F K' F' hfg hgen
+
+end AlgebraicCurve
 
 end publicSection

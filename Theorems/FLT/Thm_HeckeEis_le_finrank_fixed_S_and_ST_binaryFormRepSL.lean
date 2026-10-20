@@ -304,7 +304,9 @@ theorem main (n : ℕ) (hn : Even n) :
         ⟨(2 * (t : ℕ) + p % 2 + p) / 2, by omega⟩
       have hle : 2 * (t : ℕ) + p % 2 ≤ n := by have := t.2; omega
       have hIn : Complex.I ^ n = (-1) ^ p := by rw [hp, ← two_mul, pow_mul, Complex.I_sq]
-      rw [neg_pow Complex.I, mul_assoc, ← pow_add, show (2 * (t : ℕ) + p % 2) + (n - (2 * (t : ℕ) + p % 2)) = n by omega, hIn,
+      rw [neg_pow Complex.I, mul_assoc, ← pow_add, show (2 * (t : ℕ) + p % 2) + (n - (2 * (t : ℕ) +
+        p % 2)) = n by
+        omega, hIn,
         ← pow_add, hq, pow_mul, neg_one_sq, one_pow]
   · obtain ⟨e00, e01, e10, e11⟩ := ST_entries
     obtain ⟨ω, hω⟩ : ∃ ω : ℂ, IsPrimitiveRoot ω 3 :=
@@ -346,9 +348,12 @@ theorem main (n : ℕ) (hn : Even n) :
         by have := t.2; rcases h3 with h3 | h3 | h3 <;> omega
       obtain ⟨q, hq⟩ : ∃ q, 3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3)) = 3 *
         q :=
-        ⟨(3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3))) / 3, by rcases h3 with h3 | h3 | h3 <;> omega⟩
+        ⟨(3 * (t : ℕ) + (2 * n) % 3 + 2 * (n - (3 * (t : ℕ) + (2 * n) % 3))) / 3, by
+          rcases h3 with h3 | h3 | h3 <;> omega⟩
       have hev : Even n := ⟨p, hp⟩
-      rw [neg_pow ω, neg_pow (ω ^ 2), mul_mul_mul_comm, ← pow_add, show (3 * (t : ℕ) + (2 * n) % 3) + (n - (3 * (t : ℕ) + (2 * n) % 3)) = n by omega,
+      rw [neg_pow ω, neg_pow (ω ^ 2), mul_mul_mul_comm, ← pow_add, show (3 * (t : ℕ) + (2 * n) % 3)
+        + (n - (3 * (t : ℕ) + (2 * n) % 3)) = n by
+        omega,
         Even.neg_one_pow hev, one_mul, ← pow_mul, ← pow_add, show 3 * (t : ℕ) + 2 * n % 3 + 2 * (n -
           (3 * (t : ℕ) + 2 * n % 3))
           = 3 * q by omega, pow_mul, hω3, one_pow]

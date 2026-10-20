@@ -257,7 +257,7 @@ theorem ψ𝔡_ne_zero : ψ 𝔡 ≠ 0 := by
   have h0 : (𝔡 : 𝒩) = 0 := (ψ_eq_zero_iff _).mp h
   have : ModularForm.discriminant UpperHalfPlane.I = 0 := by
     have := congrArg (fun f : 𝒩 => (f : ℍ → ℂ) UpperHalfPlane.I) h0
-    simp at this
+    simp only [ZeroMemClass.coe_zero, Pi.zero_apply] at this
     exact this
   exact ModularForm.discriminant_ne_zero _ this
 

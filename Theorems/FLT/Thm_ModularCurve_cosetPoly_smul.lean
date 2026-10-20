@@ -101,7 +101,12 @@ theorem heckeMatrix_mul_of_eq (g : SL(2, ℤ)) (j j' : ℕ) (e : ℤ)
     linear_combination hdet + (g 1 0) * he
   · ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [hp, Matrix.mul_apply, Fin.sum_univ_two]
+      simp only [Fin.zero_eta, Fin.isValue, Units.val_mul, ne_eq, hp, not_false_eq_true,
+        val_heckeMatrix, mapGL_coe_matrix, algebraMap_int_eq, map_apply_coe,
+        RingHom.mapMatrix_apply, Int.coe_castRingHom, Matrix.mul_apply, Matrix.of_apply,
+        Matrix.cons_val', Matrix.cons_val_fin_one, Matrix.cons_val_zero, Matrix.map_apply,
+        Fin.sum_univ_two, one_mul, Matrix.cons_val_one, Int.cast_add, Int.cast_mul,
+        Int.cast_natCast, mul_one, mul_zero, add_zero, Fin.mk_one, zero_mul, zero_add, Int.cast_sub]
     all_goals first
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination this)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)
@@ -116,7 +121,12 @@ theorem heckeMatrix_mul_of_eq' (g : SL(2, ℤ)) (j : ℕ) (e : ℤ)
     linear_combination hdet - (g 1 1) * he
   · ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [hp, Matrix.mul_apply, Fin.sum_univ_two]
+      simp only [Fin.zero_eta, Fin.isValue, Units.val_mul, ne_eq, hp, not_false_eq_true,
+        val_heckeMatrix, mapGL_coe_matrix, algebraMap_int_eq, map_apply_coe,
+        RingHom.mapMatrix_apply, Int.coe_castRingHom, Matrix.mul_apply, Matrix.of_apply,
+        Matrix.cons_val', Matrix.cons_val_fin_one, Matrix.cons_val_zero, Matrix.map_apply,
+        Fin.sum_univ_two, one_mul, Matrix.cons_val_one, val_heckeDiagMatrix, Int.cast_add,
+        Int.cast_mul, Int.cast_natCast, mul_zero, add_zero, Fin.mk_one, mul_one, zero_add, zero_mul]
     all_goals first
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination this)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)
@@ -131,7 +141,12 @@ theorem heckeDiagMatrix_mul_of_eq (g : SL(2, ℤ)) (j' : ℕ) (e : ℤ)
     linear_combination hdet - (g 0 0) * he
   · ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [hp, Matrix.mul_apply, Fin.sum_univ_two]
+      simp only [Fin.zero_eta, Fin.isValue, Units.val_mul, ne_eq, hp, not_false_eq_true,
+        val_heckeDiagMatrix, mapGL_coe_matrix, algebraMap_int_eq, map_apply_coe,
+        RingHom.mapMatrix_apply, Int.coe_castRingHom, Matrix.mul_apply, Matrix.of_apply,
+        Matrix.cons_val', Matrix.cons_val_fin_one, Matrix.cons_val_zero, Matrix.map_apply,
+        Fin.sum_univ_two, Matrix.cons_val_one, zero_mul, add_zero, val_heckeMatrix, Int.cast_mul,
+        Int.cast_natCast, mul_one, Int.cast_sub, mul_zero, Fin.mk_one, one_mul, zero_add]
     all_goals first
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination this)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)
@@ -145,7 +160,12 @@ theorem heckeDiagMatrix_mul_of_eq' (g : SL(2, ℤ)) (e : ℤ) (he : g 1 0 = p * 
     linear_combination hdet + (g 0 1) * he
   · ext i j
     fin_cases i <;> fin_cases j <;>
-      simp [hp, Matrix.mul_apply, Fin.sum_univ_two]
+      simp only [Fin.zero_eta, Fin.isValue, Units.val_mul, ne_eq, hp, not_false_eq_true,
+        val_heckeDiagMatrix, mapGL_coe_matrix, algebraMap_int_eq, map_apply_coe,
+        RingHom.mapMatrix_apply, Int.coe_castRingHom, Matrix.mul_apply, Matrix.of_apply,
+        Matrix.cons_val', Matrix.cons_val_fin_one, Matrix.cons_val_zero, Matrix.map_apply,
+        Fin.sum_univ_two, Matrix.cons_val_one, zero_mul, add_zero, Int.cast_mul, Int.cast_natCast,
+        mul_zero, Fin.mk_one, mul_one, zero_add, one_mul]
     all_goals first
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination this)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)

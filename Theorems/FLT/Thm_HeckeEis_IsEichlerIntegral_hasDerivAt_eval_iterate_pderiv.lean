@@ -211,7 +211,8 @@ theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : 
       · simp [ex]; omega
       · simp [ex]
     rw [hex]
-  · rw [iterate_pderiv_one_eq_zero_of_lt hP hi, map_zero, show n + 1 - i = 0 by omega, Finset.range_zero,
+  · rw [iterate_pderiv_one_eq_zero_of_lt hP hi, map_zero, show n + 1 - i = 0 by
+    omega, Finset.range_zero,
       Finset.sum_empty]
 
 theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
@@ -349,7 +350,8 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
       = - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
           ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) :=
             by
-    rw [eval_iterate_pderiv_eq_sum (hhom τ) (j + 1), show n + 1 - j = (n - j) + 1 by omega, Finset.sum_range_succ',
+    rw [eval_iterate_pderiv_eq_sum (hhom τ) (j + 1), show n + 1 - j = (n - j) + 1 by
+      omega, Finset.sum_range_succ',
       show n + 1 - (j + 1) = n - j by omega]
     simp only [CharP.cast_eq_zero, zero_mul, mul_zero, add_zero]
     rw [← Finset.sum_neg_distrib]

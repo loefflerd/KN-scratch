@@ -69,7 +69,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -210,6 +209,7 @@ theorem apply_smul_of_mem {γ : SL(2, ℤ)} (hγ : γ ∈ CongruenceSubgroup.Gam
   rw [AlgHom.mem_equalizer, AlgHom.id_apply] at this
   exact congrFun this τ
 
+omit [NeZero N] in
 theorem T_pow_mem_Gamma : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
   rw [CongruenceSubgroup.Gamma_mem, ModularGroup.coe_T_zpow]
   simp
@@ -279,6 +279,7 @@ private def _root_.ModularCurve.LevelN.CuspVanish.T (q : ℂ) :
     ℍ := ofComplex (Periodic.invQParam (N : ℝ) q)
 
 p2m_export "ModularCurve.LevelN.CuspVanish" "T"
+omit [NeZero N] in
 theorem cf_eq_T (P : ℍ → ℂ) {q : ℂ} (hq : q ≠ 0) : cf N P q = P (T N q) := by
   rw [cf, UpperHalfPlane.cuspFunction, Periodic.cuspFunction_eq_of_nonzero _ _ hq]
   rfl
@@ -289,12 +290,15 @@ theorem cf_qParam {P : ℍ → ℂ} (hP : P ∈ ring N) (τ : ℍ) : cf N P (�
 theorem tendsto_qParam : Tendsto (fun τ : ℍ => 𝕢 N (τ : ℂ)) atImInfty (𝓝[≠] 0) :=
   (Periodic.qParam_tendsto (hN N)).comp tendsto_coe_atImInfty
 
+omit [NeZero N] in
 theorem cf_mul_of_ne (P Q : ℍ → ℂ) {q : ℂ} (hq : q ≠ 0) : cf N (P * Q) q = cf N P q * cf N Q q := by
   simp only [cf_eq_T N _ hq, Pi.mul_apply]
 
+omit [NeZero N] in
 theorem cf_pow_of_ne (P : ℍ → ℂ) (m : ℕ) {q : ℂ} (hq : q ≠ 0) : cf N (P ^ m) q = cf N P q ^ m := by
   simp only [cf_eq_T N _ hq, Pi.pow_apply]
 
+omit [NeZero N] in
 theorem periodic_discriminant : Periodic (ModularForm.discriminant ∘ ofComplex) (N : ℝ) := by
   have hΓ : ((N : ℕ) : ℝ) ∈ (𝒮ℒ).strictPeriods := by
     rw [Subgroup.strictPeriods_SL2Z]
@@ -310,6 +314,7 @@ theorem cf_discriminant_zero : cf N ModularForm.discriminant 0 = 0 := by
     (periodic_discriminant N)]
   exact ModularForm.discriminant_isZeroAtImInfty.valueAtInfty_eq_zero
 
+omit [NeZero N] in
 theorem eventually_cf_discriminant_ne_zero :
     ∀ᶠ q in 𝓝[≠] (0 : ℂ), cf N ModularForm.discriminant q ≠ 0 := by
   filter_upwards [self_mem_nhdsWithin] with q hq
@@ -383,14 +388,17 @@ section OrderMap
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring N) K] [IsScalarTower ℂ (ring N) K]
   [IsFractionRing (ring N) K]
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem algebraMap_injective : Function.Injective (algebraMap (ring N) K) :=
   IsFractionRing.injective (ring N) K
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem algebraMap_ne_zero {b : ring N} (hb : (b : ℍ → ℂ) ≠ 0) : algebraMap (ring N) K b ≠ 0 :=
   fun h => hb (by
     have : b = 0 := algebraMap_injective N K (by rw [h, map_zero])
     simp [this])
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem exists_rep (k : K) :
     ∃ ab : ring N × ring N, (ab.2 : ℍ → ℂ) ≠ 0 ∧
       algebraMap (ring N) K ab.1 / algebraMap (ring N) K ab.2 = k := by
@@ -405,13 +413,16 @@ def num (k : K) : ring N := (exists_rep N K k).choose.1
 
 def den (k : K) : ring N := (exists_rep N K k).choose.2
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem den_ne_zero (k : K) : ((den N K k : ring N) : ℍ → ℂ) ≠ 0 :=
   (exists_rep N K k).choose_spec.1
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem num_div_den (k : K) :
     algebraMap (ring N) K (num N K k) / algebraMap (ring N) K (den N K k) = k :=
   (exists_rep N K k).choose_spec.2
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem cross_mul_eq {a b a' b' : ring N} (hb : (b : ℍ → ℂ) ≠ 0) (hb' : (b' : ℍ → ℂ) ≠ 0)
     (h : algebraMap (ring N) K a / algebraMap (ring N) K b =
       algebraMap (ring N) K a' / algebraMap (ring N) K b') :
@@ -436,9 +447,11 @@ theorem eventually_cfδ_ne_zero {P : ℍ → ℂ} (hP : P ∈ ring N) (hP0 : P �
 def realq (k : K) : ℂ → ℂ :=
   fun q => cfδ N δ (num N K k : ℍ → ℂ) q / cfδ N δ (den N K k : ℍ → ℂ) q
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem meromorphicAt_realq (k : K) : MeromorphicAt (realq N K δ k) 0 :=
   (meromorphicAt_cfδ N δ (num N K k).2).div (meromorphicAt_cfδ N δ (den N K k).2)
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem realq_eventuallyEq {k : K} {a b : ring N} (hb : (b : ℍ → ℂ) ≠ 0)
     (h : algebraMap (ring N) K a / algebraMap (ring N) K b = k) :
     realq N K δ k =ᶠ[𝓝[≠] (0 : ℂ)] fun q => cfδ N δ (a : ℍ → ℂ) q / cfδ N δ (b : ℍ → ℂ) q := by
@@ -451,6 +464,7 @@ theorem realq_eventuallyEq {k : K} {a b : ring N} (hb : (b : ℍ → ℂ) ≠ 0)
   field_simp
   linear_combination this
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem realq_algebraMap (a : ring N) :
     realq N K δ (algebraMap (ring N) K a) =ᶠ[𝓝[≠] (0 : ℂ)] cfδ N δ (a : ℍ → ℂ) := by
   have h : algebraMap (ring N) K a / algebraMap (ring N) K 1 = algebraMap (ring N) K a := by simp
@@ -467,6 +481,7 @@ theorem realq_const (c : ℂ) : realq N K δ (algebraMap ℂ K c) =ᶠ[𝓝[≠]
   simp only [cfδ, cf_eq_T N _ hq0, precomp_apply]
   simp [Algebra.algebraMap_eq_smul_one]
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem realq_mul (k l : K) :
     realq N K δ (k * l) =ᶠ[𝓝[≠] (0 : ℂ)] fun q => realq N K δ k q * realq N K δ l q := by
   have hb := mul_ne_zero_of_mem N (den N K k).2 (den N K l).2 (den_ne_zero N K k)
@@ -480,6 +495,7 @@ theorem realq_mul (k l : K) :
   simp only [realq, Subalgebra.coe_mul, cf_eq_T N _ hq0, precomp_apply, Pi.mul_apply]
   rw [mul_div_mul_comm]
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem realq_add (k l : K) :
     realq N K δ (k + l) =ᶠ[𝓝[≠] (0 : ℂ)] fun q => realq N K δ k q + realq N K δ l q := by
   have hb := mul_ne_zero_of_mem N (den N K k).2 (den N K l).2 (den_ne_zero N K k)
@@ -503,10 +519,12 @@ theorem realq_add (k l : K) :
 
 def ν (k : K) : WithTop ℤ := meromorphicOrderAt (realq N K δ k) 0
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_mul (x y : K) : ν N K δ (x * y) = ν N K δ x + ν N K δ y := by
   rw [ν, meromorphicOrderAt_congr (realq_mul N K δ x y)]
   exact meromorphicOrderAt_mul (meromorphicAt_realq N K δ x) (meromorphicAt_realq N K δ y)
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_add (x y : K) : min (ν N K δ x) (ν N K δ y) ≤ ν N K δ (x + y) := by
   rw [ν, ν, ν, meromorphicOrderAt_congr (realq_add N K δ x y)]
   exact meromorphicOrderAt_add (meromorphicAt_realq N K δ x) (meromorphicAt_realq N K δ y)
@@ -561,6 +579,7 @@ theorem tendsto_E4_atImInfty : Tendsto (fun τ : ℍ => ModularForm.E₄ τ) atI
 
 def G : ℍ → ℂ := fun τ => ModularForm.E₄ τ ^ 3
 
+omit [NeZero N] in
 theorem periodic_G : Periodic (G ∘ ofComplex) (N : ℝ) := by
   have hΓ : ((N : ℕ) : ℝ) ∈ (𝒮ℒ).strictPeriods := by
     rw [Subgroup.strictPeriods_SL2Z]
@@ -587,7 +606,7 @@ theorem cf_G_zero : cf N G 0 = 1 := by
   rw [cf, UpperHalfPlane.cuspFunction_apply_zero (hN N) (analyticAt_cf_G N) (periodic_G N)]
   have : Tendsto G atImInfty (𝓝 1) := by
     have h__ := (tendsto_E4_atImInfty).pow 3
-    try simp [] at h__
+    try simp only [one_pow] at h__
     exact h__
   exact this.limUnder_eq
 
@@ -607,6 +626,7 @@ theorem meromorphicOrderAt_cf_discriminant_pos :
 
 def jK : K := algebraMap (ring N) K (jGen N)
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem jK_ne_zero : jK N K ≠ 0 := by
   apply algebraMap_ne_zero N K
   intro h
@@ -617,6 +637,7 @@ theorem jK_ne_zero : jK N K ≠ 0 := by
     simp [this])
   exact Polynomial.X_ne_zero this
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_jK_neg : ν N K δ (jK N K) < 0 := by
   have hev : realq N K δ (jK N K) =ᶠ[𝓝[≠] (0 : ℂ)]
       (cf N G * (cf N ModularForm.discriminant)⁻¹) := by

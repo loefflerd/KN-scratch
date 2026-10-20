@@ -58,7 +58,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
+namespace P2MW.S_OVERLONG_ab69e50a
 
 
 open ModularCurve
@@ -149,10 +149,10 @@ theorem solution
   rw [l3x_transport n ι hι hιr σ T hT]
   exact ZMod.natCard_isAddCyclic_addSubgroup_prod_map_eq_nuThree n T hT2 hnsT
 
-end S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
+end S_OVERLONG_ab69e50a
 end P2MW
 export
-  P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
+  P2MW.S_OVERLONG_ab69e50a
   (solution)
 
 end privateSection

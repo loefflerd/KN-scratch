@@ -59,11 +59,11 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg
+namespace P2MW.S_OVERLONG_c0635b7f
 
 noncomputable section
 p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.AlgebraicCurve \
+  P2MW.S_OVERLONG_c0635b7f.AlgebraicCurve \
   IsDedekindDomain"
 open scoped Pointwise
 
@@ -79,7 +79,7 @@ end Place
 end AlgebraicCurve
 
 open _root_.AlgebraicCurve.Place
-  _root_.P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place
+  _root_.P2MW.S_OVERLONG_c0635b7f.AlgebraicCurve.Place
   in
 theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     [Algebra K F'] [Algebra K M] [Algebra F' M] [IsScalarTower K F' M]
@@ -99,9 +99,9 @@ theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
 
 end
 
-end S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg
+end S_OVERLONG_c0635b7f
 end P2MW
-export P2MW.S_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg (solution)
+export P2MW.S_OVERLONG_c0635b7f (solution)
 
 end privateSection
 

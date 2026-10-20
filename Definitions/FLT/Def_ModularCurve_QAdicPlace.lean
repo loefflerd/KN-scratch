@@ -63,7 +63,8 @@ open IntermediateField HahnSeries AlgebraicCurve
 namespace ModularCurve
 
 theorem order_jq : jq.order = -1 := by
-  refine le_antisymm (HahnSeries.order_le_of_coeff_ne_zero (by rw [coeff_jq_neg_one]; exact one_ne_zero)) ?_
+  refine le_antisymm (HahnSeries.order_le_of_coeff_ne_zero (by
+    rw [coeff_jq_neg_one]; exact one_ne_zero)) ?_
   by_contra! h
   exact HahnSeries.coeff_order_eq_zero.not.mpr jq_ne_zero (coeff_jq_of_lt h)
 
@@ -163,7 +164,8 @@ theorem qSeriesBar_algebraMap (c : L) :
     IsScalarTower.algebraMap_apply L F (LaurentSeries L) c
   rw [IntermediateField.algebraMap_apply] at h
   change ((algebraMap L F c : F) : LaurentSeries L) = _
-  rw [← h, HahnSeries.algebraMap_apply', show algebraMap L (PowerSeries L) c = PowerSeries.C c by simp,
+  rw [← h, HahnSeries.algebraMap_apply', show algebraMap L (PowerSeries L) c = PowerSeries.C c by
+    simp,
     HahnSeries.ofPowerSeries_C]
   rfl
 

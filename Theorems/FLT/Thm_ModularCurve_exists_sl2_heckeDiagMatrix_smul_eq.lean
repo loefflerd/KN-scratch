@@ -87,7 +87,12 @@ private theorem heckeDiagMatrix_mul_mapGL {p : ℕ} (hp : p ≠ 0) (g : SL(2, �
     heckeDiagMatrix p * mapGL ℝ g = mapGL ℝ (conjSL g e he) * heckeDiagMatrix p := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [hp, conjSL, Matrix.mul_apply, Fin.sum_univ_two]
+    simp only [Fin.zero_eta, Fin.isValue, Units.val_mul, ne_eq, hp, not_false_eq_true,
+      val_heckeDiagMatrix, mapGL_coe_matrix, algebraMap_int_eq, map_apply_coe,
+      RingHom.mapMatrix_apply, Int.coe_castRingHom, Matrix.mul_apply, Matrix.of_apply,
+      Matrix.cons_val', Matrix.cons_val_fin_one, Matrix.cons_val_zero, Matrix.map_apply,
+      Fin.sum_univ_two, Matrix.cons_val_one, zero_mul, add_zero, conjSL, Int.cast_mul,
+      Int.cast_natCast, mul_zero, Fin.mk_one, mul_one, zero_add, one_mul]
   all_goals first
     | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination this)
     | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)

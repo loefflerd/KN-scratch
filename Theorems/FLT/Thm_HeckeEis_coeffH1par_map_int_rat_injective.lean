@@ -113,7 +113,9 @@ theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fi
       AddMonoidAlgebra.coeff P d' := by
   conv_lhs => rw [P.as_sum, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun d' _ => ?_
-  rw [show monomial d' (AddMonoidAlgebra.coeff P d') = C (AddMonoidAlgebra.coeff P d') * monomial d' 1 by rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
+  rw [show monomial d' (AddMonoidAlgebra.coeff P d') = C (AddMonoidAlgebra.coeff P d') * monomial d'
+    1 by
+    rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
     coeff_C_mul, binarySubst_monomial_one, coeff_map, substCoeff, mul_comm]
   rfl
 
@@ -274,7 +276,8 @@ theorem mk_pushPar_congr {a b : ↥(coeffParabolicCocycles ((binaryFormRepSL R n
   exact pushForm_comp_mem_coeffCoboundaries f n h
 
 def pushH1par :
-    coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+ coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
+    coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+
+      coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
   toFun x := coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) x))
   map_zero' := by
     have h0 : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp

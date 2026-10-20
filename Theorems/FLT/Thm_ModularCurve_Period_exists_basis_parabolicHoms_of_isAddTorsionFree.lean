@@ -63,7 +63,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree
 
-set_option linter.unusedSectionVars false
 
 namespace ParInt
 
@@ -81,6 +80,7 @@ scoped instance : AddGroup.FG (A Γ) := by
 
 def cls (γ : ↥Γ) : A Γ := Additive.ofMul (Abelianization.of γ)
 
+omit [Γ.FiniteIndex] in
 theorem cls_mul (γ δ : ↥Γ) : cls Γ (γ * δ) = cls Γ γ + cls Γ δ := by
   simp [cls, ofMul_mul]
 
@@ -94,15 +94,18 @@ scoped instance : AddGroup.FG (Q Γ) := inferInstance
 
 def π (γ : ↥Γ) : Q Γ := (cls Γ γ : A Γ)
 
+omit [Γ.FiniteIndex] in
 theorem π_mul (γ δ : ↥Γ) : π Γ (γ * δ) = π Γ γ + π Γ δ := by
   simp [π, cls_mul]
 
+omit [Γ.FiniteIndex] in
 theorem π_one : π Γ 1 = 0 := by
   have h := π_mul Γ 1 1
   rw [mul_one] at h
   have : π Γ 1 + π Γ 1 = π Γ 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
+omit [Γ.FiniteIndex] in
 theorem π_eq_zero_of_trace (γ : ↥Γ) (hγ : ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4)
     :
     π Γ γ = 0 := by
@@ -110,6 +113,7 @@ theorem π_eq_zero_of_trace (γ : ↥Γ) (hγ : ((γ : SL(2, ℤ)) : Matrix (Fin
   rw [QuotientAddGroup.eq_zero_iff]
   exact AddSubgroup.subset_closure ⟨γ, hγ, rfl⟩
 
+omit [Γ.FiniteIndex] in
 theorem π_surjective : Function.Surjective (π Γ) := by
   intro q
   induction q using QuotientAddGroup.induction_on with
@@ -125,9 +129,11 @@ variable {Γ} {R : Type*} [AddCommGroup R]
 def liftA (φ : Additive ↥Γ →+ R) : A Γ →+ R :=
   MonoidHom.toAdditiveLeft (Abelianization.lift (AddMonoidHom.toMultiplicativeRight φ))
 
+omit [Γ.FiniteIndex] in
 theorem liftA_cls (φ : Additive ↥Γ →+ R) (γ : ↥Γ) : liftA φ (cls Γ γ) = φ (Additive.ofMul γ) := by
   simp [liftA, cls, Abelianization.lift_apply_of]
 
+omit [Γ.FiniteIndex] in
 theorem P_le_ker (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) : P Γ ≤ (liftA φ).ker := by
   rw [P, AddSubgroup.closure_le]
   rintro a ⟨γ, hγ, rfl⟩
@@ -138,6 +144,7 @@ theorem P_le_ker (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) : P �
 def liftQ (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) : Q Γ →+ R :=
   QuotientAddGroup.lift (P Γ) (liftA φ) (P_le_ker φ hφ)
 
+omit [Γ.FiniteIndex] in
 theorem liftQ_π (φ : Additive ↥Γ →+ R) (hφ : IsParabolicHom Γ φ) (γ : ↥Γ) :
     liftQ φ hφ (π Γ γ) = φ (Additive.ofMul γ) := by
   change QuotientAddGroup.lift (P Γ) (liftA φ) (P_le_ker φ hφ) ((cls Γ γ : A Γ) : Q Γ) = _
@@ -176,15 +183,19 @@ variable {Γ} (D : Decomp Γ)
 noncomputable def coord (i : Fin D.n) : Q Γ →+ ℤ :=
   (Finsupp.applyAddHom i).comp ((AddMonoidHom.fst _ _).comp D.E.toAddMonoidHom)
 
+omit [Γ.FiniteIndex] in
 @[scoped simp] theorem coord_apply (i : Fin D.n) (q : Q Γ) : coord D i q = (D.E q).1 i := rfl
 
 noncomputable def sect (v : Fin D.n →₀ ℤ) : Q Γ := D.E.symm (v, 0)
 
+omit [Γ.FiniteIndex] in
 @[scoped simp] theorem E_sect (v : Fin D.n →₀ ℤ) : D.E (sect D v) = (v, 0) := D.E.apply_symm_apply _
 
+omit [Γ.FiniteIndex] in
 theorem coord_sect (i : Fin D.n) (v : Fin D.n →₀ ℤ) : coord D i (sect D v) = v i := by
   rw [coord_apply, E_sect]
 
+omit [Γ.FiniteIndex] in
 theorem isOfFinAddOrder_sub_sect (q : Q Γ) :
     IsOfFinAddOrder (q - sect D (D.E q).1) := by
   have h : D.E (q - sect D (D.E q).1) = (0, (D.E q).2) := by
@@ -216,13 +227,16 @@ noncomputable def chi (i : Fin D.n) : Additive ↥Γ →+ R where
     change ((coord D i (π Γ (Additive.toMul x * Additive.toMul y)) : ℤ) : R) = _
     rw [π_mul, map_add, Int.cast_add]
 
+omit [Γ.FiniteIndex] in
 theorem chi_apply (i : Fin D.n) (γ : ↥Γ) :
     chi D R i (Additive.ofMul γ) = (coord D i (π Γ γ) : R) := rfl
 
+omit [Γ.FiniteIndex] in
 theorem chi_mem (i : Fin D.n) : chi D R i ∈ parabolicHoms R Γ R := by
   intro γ hγ
   rw [chi_apply, π_eq_zero_of_trace Γ γ hγ, map_zero, Int.cast_zero]
 
+omit [Γ.FiniteIndex] in
 theorem chi_int_cast (i : Fin D.n) :
     (Int.castAddHom R).comp (chi D ℤ i) = chi D R i := by
   refine AddMonoidHom.ext fun x => ?_
@@ -239,12 +253,14 @@ noncomputable def Θ : (Fin D.n → R) →ₗ[R] ↥(parabolicHoms R Γ R) where
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [Pi.smul_apply, smul_eq_mul, mul_smul, RingHom.id_apply]
 
+omit [Γ.FiniteIndex] in
 theorem Θ_apply_apply (c : Fin D.n → R) (γ : ↥Γ) :
     ((Θ D R c : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R) (Additive.ofMul γ) =
       ∑ i, c i * (coord D i (π Γ γ) : R) := by
   simp only [Θ, LinearMap.coe_mk, AddHom.coe_mk, Submodule.coe_sum, Submodule.coe_smul,
     AddMonoidHom.finsetSum_apply, AddMonoidHom.smul_apply, chi_apply, smul_eq_mul]
 
+omit [Γ.FiniteIndex] in
 theorem Θ_single (i : Fin D.n) :
     ((Θ D R (Pi.single i 1) : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R) = chi D R i := by
   refine AddMonoidHom.ext fun x => ?_
@@ -254,6 +270,7 @@ theorem Θ_single (i : Fin D.n) :
   · intro j _ hji; simp [Pi.single_eq_of_ne hji]
   · intro h; exact absurd (Finset.mem_univ i) h
 
+omit [Γ.FiniteIndex] in
 theorem exists_coord_eq_single (j : Fin D.n) :
     ∃ γ : ↥Γ, ∀ i, coord D i (π Γ γ) = if i = j then 1 else 0 := by
   obtain ⟨γ, hγ⟩ := π_surjective Γ (sect D (Finsupp.single j 1))
@@ -263,6 +280,7 @@ theorem exists_coord_eq_single (j : Fin D.n) :
   · subst h; simp
   · rw [ite_eq_right (Ne.symm h), ite_eq_right h]
 
+omit [Γ.FiniteIndex] in
 theorem Θ_injective : Function.Injective (Θ D R) := by
   intro c c' h
   funext j
@@ -271,6 +289,7 @@ theorem Θ_injective : Function.Injective (Θ D R) := by
   simp only [Θ_apply_apply, hγ] at this
   simpa [Finset.sum_ite_eq', Finset.mem_univ] using this
 
+omit [Γ.FiniteIndex] in
 theorem Θ_surjective [IsAddTorsionFree R] : Function.Surjective (Θ D R) := by
   intro φ
   set ψ : Q Γ →+ R := liftQ (φ : Additive ↥Γ →+ R) φ.2 with hψ
@@ -304,6 +323,7 @@ noncomputable def basisR [IsAddTorsionFree R] : Module.Basis (Fin D.n) R ↥(par
   Module.Basis.map (Pi.basisFun R (Fin D.n)) (LinearEquiv.ofBijective (Θ D R) ⟨Θ_injective D R,
     Θ_surjective D R⟩)
 
+omit [Γ.FiniteIndex] in
 theorem coe_basisR [IsAddTorsionFree R] (i : Fin D.n) :
     ((basisR D R i : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R) = chi D R i := by
   rw [basisR, Module.Basis.map_apply, Pi.basisFun_apply, LinearEquiv.ofBijective_apply, Θ_single]

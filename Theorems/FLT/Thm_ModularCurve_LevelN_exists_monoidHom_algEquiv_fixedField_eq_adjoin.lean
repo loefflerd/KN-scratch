@@ -69,7 +69,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField_eq_adjoin
 
-set_option linter.unusedSectionVars false
 
 open UpperHalfPlane
 open scoped MatrixGroups
@@ -350,6 +349,7 @@ theorem σHom_jK (γ : SL(2, ℤ)) : σHom N K γ (jK N K) = jK N K := by
   change σHom N K γ (algebraMap (ring N) K (jGen N)) = algebraMap (ring N) K (jGen N)
   rw [σHom_algebraMap, ρHom_jGen]
 
+omit [NeZero N] in
 theorem coe_aeval_jGen (p : Polynomial ℂ) (τ : ℍ) :
     ((Polynomial.aeval (jGen N) p : ring N) : ℍ → ℂ) τ = p.eval (jAnalytic τ) := by
   have h1 : ((Polynomial.aeval (jGen N) p : ring N) : ℍ → ℂ) =
@@ -361,6 +361,7 @@ theorem coe_aeval_jGen (p : Polynomial ℂ) (τ : ℍ) :
   rw [h2, ← Polynomial.aeval_algHom_apply, Polynomial.coe_aeval_eq_eval]
   rfl
 
+omit [NeZero N] in
 theorem transcendental_jK : Transcendental ℂ (jK N K) := by
   rw [transcendental_iff]
   intro P hP
@@ -372,6 +373,7 @@ theorem transcendental_jK : Transcendental ℂ (jK N K) := by
   rw [← coe_aeval_jGen N P τ, hP]
   rfl
 
+omit [NeZero N] in
 theorem aeval_jK_ne_zero {q : Polynomial ℂ} (hq : q ≠ 0) : Polynomial.aeval (jK N K) q ≠ 0 :=
   fun h => hq ((transcendental_iff.mp (transcendental_jK N K)) q h)
 

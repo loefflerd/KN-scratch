@@ -696,7 +696,8 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
       have h2 := two_mul_ediv_two_le ((m : ℤ) * v.ord (J - c1728))
       rw [hzero]
       push_cast
-      nlinarith [mul_le_mul_of_nonneg_left (show -( (m : ℤ) * v.ord (J - c1728) / 2) ≤ v.ord x by linarith)
+      nlinarith [mul_le_mul_of_nonneg_left (show -( (m : ℤ) * v.ord (J - c1728) / 2) ≤ v.ord x by
+        linarith)
         (by positivity : (0 : ℤ) ≤ 2 * (ψ : ℤ))]
 
 end ModularCurve.LDivIntegral

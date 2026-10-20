@@ -73,7 +73,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
 
-set_option linter.unusedSectionVars false
 
 open scoped MatrixGroups ModularForm
 
@@ -162,6 +161,7 @@ theorem finite_and_finrank_parabolicHoms_real_eq :
 scoped instance finiteDimensional_cuspForm : FiniteDimensional ℂ (CuspForm Δ 2) :=
   CuspForm.finiteDimensional_of_isArithmetic (Δ : Subgroup (GL (Fin 2) ℝ)) 2
 
+omit [Δ.FiniteIndex] in
 theorem finrank_real_cuspForm :
     Module.finrank ℝ (CuspForm Δ 2) = 2 * Module.finrank ℂ (CuspForm Δ 2) :=
   finrank_real_of_complex (CuspForm Δ 2)

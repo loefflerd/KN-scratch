@@ -77,7 +77,9 @@ variable {R : Type*} [CommRing R] {n : ℕ}
 private theorem _root_.HeckeEis.UnipotentFixedAux.monomial_eq (n j : ℕ) :
     (MvPolynomial.monomial (Finsupp.single 0 (n - j) + Finsupp.single 1 j) (1 : R))
       = MvPolynomial.X 0 ^ (n - j) * MvPolynomial.X 1 ^ j := by
-  rw [MvPolynomial.monomial_eq, MvPolynomial.C_1, one_mul, Finsupp.prod_add_index' (by simp) (by simp [pow_add]),
+  rw [MvPolynomial.monomial_eq, MvPolynomial.C_1, one_mul, Finsupp.prod_add_index' (by
+    simp) (by
+      simp [pow_add]),
     Finsupp.prod_single_index (by simp), Finsupp.prod_single_index (by simp)]
 
 p2m_export "HeckeEis.UnipotentFixedAux" "monomial_eq"

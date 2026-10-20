@@ -254,7 +254,7 @@ def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictScalars ℤ
 
 @[scoped simp] theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-theorem _root_.PeriodPair.scale_lattice :
+theorem scale_lattice :
     (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
@@ -263,7 +263,7 @@ theorem _root_.PeriodPair.scale_lattice :
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_image, mulLeftZ_apply]
   grind
 
-def _root_.PeriodPair.scaleLatticeEquiv : L.lattice ≃ₗ[ℤ] (L.scale α).lattice :=
+def scaleLatticeEquiv : L.lattice ≃ₗ[ℤ] (L.scale α).lattice :=
   (Submodule.equivMapOfInjective (mulLeftZ (α : ℂ))
     (fun _ _ h => mul_left_cancel₀ α.ne_zero (by simpa using h)) L.lattice).trans
     (LinearEquiv.ofEq _ _ (L.scale_lattice α).symm)
@@ -363,7 +363,7 @@ theorem kw_span_neg_fst (a b : ℂ) :
     exact ⟨by assumption,
       Set.singleton_subset_iff.mpr (Submodule.subset_span (Set.mem_insert_of_mem _ rfl))⟩
 
-theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.DiscriminantNeZero := by
+theorem kw_discriminantNeZero (L : PeriodPair) : L.DiscriminantNeZero := by
   have hω₂ : L.ω₂ ≠ 0 := by have := L.indep.ne_zero 1; simpa using this
   set α : ℂˣ := (Units.mk0 L.ω₂ hω₂)⁻¹
   have hα : (α : ℂ) = (L.ω₂)⁻¹ := by

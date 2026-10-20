@@ -86,11 +86,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
+namespace P2MW.S_OVERLONG_9421e021
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 noncomputable section
 
@@ -168,10 +166,8 @@ scoped instance instHasPrincipalDivisorsFunctionField_s13jb {F : Type*} [Field F
 
 section AutoNorm
 
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
+variable {F : Type*} [Field F] [CharZero F] {V W : Affine F}
 
-omit [DecidableEq F] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
   classical
@@ -277,6 +273,7 @@ theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
     (Nat.cast_ne_zero.mpr (Int.natAbs_ne_zero.mpr hN))
 
 variable {W} in
+omit [CharZero F] in
 theorem kw_eq_zero_of_zsmul_eq_zero {N : ℤ} (hN : N ≠ 0) {G : Type*} [AddCommGroup G]
     (δ : W.Point →+ G) (hδ : ∀ P, N • δ P = 0) : δ = 0 := by
   refine AddMonoidHom.ext fun P => ?_
@@ -290,12 +287,14 @@ section Functoriality
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [DecidableEq F]
 variable {A B C : Affine F}
-  [A.IsElliptic] [GenusOnePlaceGate A] [AbelTheorem A]
-  [B.IsElliptic] [GenusOnePlaceGate B] [AbelTheorem B]
-  [C.IsElliptic] [GenusOnePlaceGate C] [AbelTheorem C]
+  [GenusOnePlaceGate A] [AbelTheorem A]
+  [GenusOnePlaceGate B] [AbelTheorem B]
+  [GenusOnePlaceGate C] [AbelTheorem C]
 
+omit [DecidableEq F] [A.GenusOnePlaceGate] [A.AbelTheorem] [B.GenusOnePlaceGate]
+  [B.AbelTheorem] [C.GenusOnePlaceGate] [C.AbelTheorem] in
 theorem Pic0_pushforwardAlongHom_comp
     (f : B.FunctionField →ₐ[F] A.FunctionField) (hf : f.toRingHom.IsIntegral)
     (hfinf : FiniteAlong F f) (hNf : NormFormulaAlong F f hfinf)
@@ -339,6 +338,9 @@ variable {A B : Affine F}
   [A.IsElliptic] [GenusOnePlaceGate A] [AbelTheorem A]
   [B.IsElliptic] [GenusOnePlaceGate B] [AbelTheorem B]
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic A]
+  [A.GenusOnePlaceGate] [A.AbelTheorem] [WeierstrassCurve.IsElliptic B] [B.GenusOnePlaceGate]
+  [B.AbelTheorem] in
 theorem finrankAlong_eq_one_of_bijective (τ : B.FunctionField →ₐ[F] A.FunctionField)
     (hτ : Function.Bijective τ) : finrankAlong F τ = 1 := by
   let := algebraAlong τ
@@ -373,9 +375,9 @@ end WeierstrassCurve.Affine
 namespace ModularCurve
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.W\
+  P2MW.S_OVERLONG_9421e021.W\
   eierstrassCurve WeierstrassCurve.Affine~pointHom \
-  P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.W\
+  P2MW.S_OVERLONG_9421e021.W\
   eierstrassCurve.Affine AlgebraicCurve"
 
 universe u
@@ -563,8 +565,8 @@ end
 p2m_open "WeierstrassCurve.Affine~pointHom\
   " in
 open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_9421e021.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_9421e021.WeierstrassCurve.Affine
   AlgebraicCurve in
 theorem solution
     [DecidableEq (HahnSeries ℚ (AlgebraicClosure ℚ))] [CharZero (HahnSeries ℚ (AlgebraicClosure ℚ))]
@@ -588,10 +590,10 @@ theorem solution
     AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' :=
   ModularCurve.kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt W hNs hEnd n Q Q' hQ hQ' hΔ hΔ' hj
 
-end S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
+end S_OVERLONG_9421e021
 end P2MW
 export
-  P2MW.S_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
+  P2MW.S_OVERLONG_9421e021
   (solution)
 
 end privateSection

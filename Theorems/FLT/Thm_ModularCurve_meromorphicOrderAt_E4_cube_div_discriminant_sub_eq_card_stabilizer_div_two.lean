@@ -65,7 +65,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
+namespace P2MW.S_OVERLONG_4bffc378
 
 noncomputable section
 
@@ -168,7 +168,7 @@ lemma ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
   rw [UpperHalfPlane.coe_im] at this
-  simp at this
+  simp only [one_im] at this
   exact ρ.im_pos.ne' this
 
 lemma E₄_ρ : E₄ ρ = 0 := by
@@ -341,7 +341,7 @@ lemma isZeroAtImInfty_D_jf_mul_Δ_sq : IsZeroAtImInfty (fun z => D jf z * Δ z ^
   have hEb : IsBoundedAtImInfty ((E₄ : ℍ → ℂ) ^ 3) := by
     have h := ModularFormClass.bdd_at_infty E₄
     have h__af := (h.mul h).mul h
-    simp [pow_succ] at h__af ⊢
+    simp only [pow_succ, pow_zero, one_mul] at h__af ⊢
     exact h__af
   have hΔz : IsZeroAtImInfty Δ := CuspFormClass.zero_at_infty CuspForm.discriminant
   have h1 : IsZeroAtImInfty (D ((E₄ : ℍ → ℂ) ^ 3) * Δ) :=
@@ -349,7 +349,7 @@ lemma isZeroAtImInfty_D_jf_mul_Δ_sq : IsZeroAtImInfty (fun z => D jf z * Δ z ^
   have h2 : IsZeroAtImInfty ((E₄ : ℍ → ℂ) ^ 3 * D Δ) :=
     hEb.mul_zeroAtFilter (isZeroAtImInfty_D CuspForm.discriminant.holo' hΔz)
   have h__af := (ZeroAtFilter.add h1 h2.neg : IsZeroAtImInfty _)
-  simp at h__af
+  simp only at h__af
   exact h__af
 
 lemma D_jf_mul_Δ_sq_slash (γ : SL(2, ℤ)) :
@@ -660,10 +660,10 @@ theorem solution
       ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ) / 2 : ℕ) : ℤ) :=
   ModularCurve.JMultiplicity.main τ
 
-end S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
+end S_OVERLONG_4bffc378
 end P2MW
 export
-  P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
+  P2MW.S_OVERLONG_4bffc378
   (solution)
 
 end privateSection

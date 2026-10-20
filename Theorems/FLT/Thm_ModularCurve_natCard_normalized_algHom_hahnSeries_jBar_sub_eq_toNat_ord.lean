@@ -190,14 +190,11 @@ private theorem order_puiseuxAlgEmb {e : ℕ} (he : 0 < e) {z : LaurentSeries K}
 
 section Lower
 
-variable [IsAlgClosed K] [CharZero K]
 
-omit [IsAlgClosed K] [CharZero K] in
 private theorem exists_ord_eq_one (w : Place K F) : ∃ π : F, w.ord π = 1 := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   exact ⟨π, w.ord_coe_irreducible hπ⟩
 
-omit [IsAlgClosed K] [CharZero K] in
 private theorem normEmb_spec {e : ℕ} (he : 0 < e) (u : Kˣ) (hue : u ^ e = 1)
     (t : F) (c : K) (w : Place K F)
     (φ' : F →ₐ[K] LaurentSeries K)
@@ -245,7 +242,6 @@ private theorem normEmb_spec {e : ℕ} (he : 0 < e) (u : Kˣ) (hue : u ^ e = 1)
         show qTwistAlg (K := K) u (φ' x) = qTwist u (φ' x) from rfl,
         order_puiseuxAlgEmb he hqx, order_qTwist, hφord, div_eq_mul_inv]
 
-omit [IsAlgClosed K] [CharZero K] in
 private theorem normEmb_coeff_at {e : ℕ} (he : 0 < e) (u : Kˣ)
     (φ' : F →ₐ[K] LaurentSeries K) (π : F) :
     (((puiseuxAlgEmb he).comp ((qTwistAlg u).comp φ')) π).coeff
@@ -254,7 +250,6 @@ private theorem normEmb_coeff_at {e : ℕ} (he : 0 < e) (u : Kˣ)
     show qTwistAlg (K := K) u (φ' π) = qTwist u (φ' π) from rfl,
     puiseuxAlgEmb_coeff, qTwist_coeff, zpow_one]
 
-omit [IsAlgClosed K] [CharZero K] in
 private theorem coeff_one_ne_zero_of_ord_one (φ' : F →ₐ[K] LaurentSeries K) (w : Place K F)
     (hφord : ∀ x : F, (φ' x).order = w.ord x) {π : F} (hπ : w.ord π = 1) :
     (φ' π).coeff 1 ≠ 0 := by

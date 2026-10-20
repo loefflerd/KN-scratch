@@ -71,8 +71,10 @@ $\iota''$ is cyclic as well, and that the two kernels have the same cardinality.
 This is the transport statement saying that the cyclicity of the kernel of a pushforward point map,
 and the order of that kernel, depend only on the function-field data up to $\mathbb{C}$-algebra
 isomorphism of the source and target function fields. It feeds the step
-[`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
-(thm.html#WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward),
+[`WeierstrassCurve.Affine.
+eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`]
+(thm.html#WeierstrassCurve.Affine.
+eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward),
 where a cyclic kernel of prescribed order between two complex elliptic curves is converted into the
 vanishing of the corresponding modular polynomial at the pair of $j$-invariants.
 
@@ -88,11 +90,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
+namespace P2MW.S_OVERLONG_b277e395
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 noncomputable section
 
@@ -117,10 +117,10 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map baseChang
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "Polynomial IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing~evalAt \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine.CoordinateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve"
 open scoped Polynomial.Bivariate
 
@@ -208,7 +208,7 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 end CoordinateRing
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine.CoordinateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
@@ -350,6 +350,7 @@ namespace InfinitePlace
 def place : AlgebraicCurve.Place F W.FunctionField := placeOfPoint (0 : W.Point)
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one :
     (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 := by
   classical
@@ -359,6 +360,7 @@ private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one :
 p2m_export "WeierstrassCurve.Affine.InfinitePlace" "deg_eq_one"
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] in
 theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
     ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := by
   classical
@@ -381,6 +383,7 @@ theorem eq_of_not_isFinitePlace
 end InfinitePlace
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 @[scoped simp]
 theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := by
   classical
@@ -388,24 +391,28 @@ theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place
     rfl
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := by
   classical
   exact
     rfl
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) := by
   classical
   exact
     (pointEquivPlace (W := W)).injective
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) : Function.Surjective (placeOfPoint (W := W)) := by
   classical
   exact
     (pointEquivPlace (W := W)).surjective
 
 omit [DecidableEq F] in
+omit [IsDedekindDomain W.CoordinateRing] [GenusOnePlaceGate.IsCentred W] in
 theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) := by
   classical
   exact
@@ -418,9 +425,9 @@ end
 
 section
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve"
 
 namespace WeierstrassCurve
@@ -442,7 +449,7 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map baseChang
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve"
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
@@ -450,10 +457,10 @@ scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] 
   hasPrincipalDivisors_functionField W
 
 section AutoNorm
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type*} [Field F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
-omit [DecidableEq F] in
+omit [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
   classical
@@ -478,6 +485,8 @@ p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
+omit [DecidableEq F] [W.GenusOnePlaceGate] [W.AbelTheorem] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D :
   IsogenyEndDatum W) :
     NormFormulaAlong F D.ι D.hfin :=
@@ -489,14 +498,17 @@ private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : Isogen
     AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
 
 p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd'"
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd_eq_pointEnd' (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
     D.pointEnd hN = D.pointEnd' := rfl
 
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd'_apply (D : IsogenyEndDatum W) (P : W.Point) :
     D.pointEnd' P = genusOnePic0Equiv W
       (Pic0.pushforwardAlongHom D.ι D.hι D.hfin D.normFormulaAlong_auto (pointClass P)) :=
   pointEnd_apply D _ P
 
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd'_eq_of_seam
     (D : IsogenyEndDatum W) (g : W.Point → W.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (g P)) (P : W.Point) :
@@ -620,10 +632,10 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing map baseChang
   algebraMap_smul_basis"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine.CoordinateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve Polynomial"
 open scoped Polynomial.Bivariate
 
@@ -684,10 +696,9 @@ theorem isFinitePlace_of_mem
 end FinitePlaceOfMem
 
 section RationalPlaceOfEquation
-variable {F : Type*} [Field F] [DecidableEq F] {W : Affine F} [W.IsElliptic]
+variable {F : Type*} [Field F] {W : Affine F} [W.IsElliptic]
   [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [IsDedekindDomain W.CoordinateRing]
 
-omit [DecidableEq F] in
 theorem isRational_placeOfEquation {r s : F} (hrs : W.Equation r s) :
     (placeOfEquation hrs).IsRational := by
   classical
@@ -703,10 +714,10 @@ namespace ModularCurve
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
 open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_b277e395.WeierstrassCurve
   _root_.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_b277e395.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_b277e395.AlgebraicCurve
   in
 theorem kw_fdn2_qephod_hend7_pmopKerCard_proved
     (K : Type*) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
@@ -720,14 +731,13 @@ theorem kw_fdn2_qephod_hend7_pmopKerCard_proved
   natCard_ker_pointMapOfPushforward_eq_finrankAlong E E' ι hι hfin _
 end ModularCurve
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 section
 open Complex Filter Set
 
 p2m_open_scoped "PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair"
+  P2MW.S_OVERLONG_b277e395.PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe \
@@ -1068,14 +1078,14 @@ end
 
 namespace ModularCurve
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair"
+  P2MW.S_OVERLONG_b277e395.PeriodPair"
 
 def KwD5BetweenCurvesHoloLift : Prop :=
   ∀ (L L' : PeriodPair)
@@ -1098,12 +1108,12 @@ end ModularCurve
 section
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve"
 
 namespace ModularCurve
@@ -1334,14 +1344,13 @@ section
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine"
 
 namespace WeierstrassCurve
@@ -1373,10 +1382,14 @@ p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply po
   hfin hι mk ι"
 p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem isIntegral_algHomId :
     (AlgHom.id F W.FunctionField).toRingHom.IsIntegral :=
   RingHom.isIntegral_of_surjective _ Function.surjective_id
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem finiteAlong_algHomId : FiniteAlong F (AlgHom.id F W.FunctionField) := by
   unfold FiniteAlong algebraAlong
   exact Module.Finite.self _
@@ -1386,10 +1399,14 @@ def idDatum : IsogenyEndDatum W where
   hι := isIntegral_algHomId W
   hfin := finiteAlong_algHomId W
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W]
+  [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
 theorem restrictAlong_algHomId (w : AlgebraicCurve.Place F W.FunctionField) :
     w.restrictAlong (AlgHom.id F W.FunctionField) (isIntegral_algHomId W) = w :=
   AlgebraicCurve.Place.ext (SetLike.ext fun _ => Iff.rfl)
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem idDatum_pointEnd : (idDatum W).pointEnd' = 1 := by
   refine AddMonoidHom.ext fun P => ?_
   exact (idDatum W).pointEnd'_eq_of_seam id rfl (fun Q => restrictAlong_algHomId W _) P
@@ -1434,14 +1451,13 @@ section
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine"
 
 namespace AlgebraicCurve
@@ -1515,19 +1531,19 @@ section
 section
 
 p2m_open_scoped "PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair \
+  P2MW.S_OVERLONG_b277e395.PeriodPair \
   UpperHalfPlane MatrixGroups"
 p2m_open "PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair \
+  P2MW.S_OVERLONG_b277e395.PeriodPair \
   Polynomial QuaternionAlgebra \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.ModularCurv\
+  P2MW.S_OVERLONG_b277e395.ModularCurv\
   e"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine Matrix"
 
 namespace ModularCurve
@@ -1567,7 +1583,7 @@ section
 namespace ModularCurve
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve"
 
 section Engines
@@ -1593,24 +1609,23 @@ end
 section
 
 p2m_open_scoped "PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair \
+  P2MW.S_OVERLONG_b277e395.PeriodPair \
   UpperHalfPlane MatrixGroups"
 p2m_open "PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair \
+  P2MW.S_OVERLONG_b277e395.PeriodPair \
   Polynomial QuaternionAlgebra \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.ModularCurv\
+  P2MW.S_OVERLONG_b277e395.ModularCurv\
   e"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCu\
+  P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.Weierstrass\
+  P2MW.S_OVERLONG_b277e395.Weierstrass\
   Curve.Affine Matrix"
 
 section
 
-set_option linter.unusedSectionVars false
 
 namespace ModularCurve
 
@@ -1624,6 +1639,10 @@ variable {W₁ W₂ W₃ : WeierstrassCurve.Affine ℂ}
   [W₃.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W₃]
   [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W₃] [WeierstrassCurve.Affine.AbelTheorem W₃]
 
+omit [GenusOnePlaceGate.IsCentred W₁] [GenusOnePlaceGate.IsCentred W₂]
+  [GenusOnePlaceGate.IsCentred W₃] in
+omit [WeierstrassCurve.IsElliptic W₁] [WeierstrassCurve.IsElliptic W₂]
+  [WeierstrassCurve.IsElliptic W₃] in
 theorem kw_surgehgf4_pck_pmop_comp_apply
     (φ : W₂.FunctionField →ₐ[ℂ] W₃.FunctionField)
     (χ : W₁.FunctionField →ₐ[ℂ] W₂.FunctionField)
@@ -1658,6 +1677,8 @@ variable {W V : WeierstrassCurve.Affine ℂ} [W.IsElliptic]
     [V.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate V]
     [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred V] [WeierstrassCurve.Affine.AbelTheorem V]
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [WeierstrassCurve.IsElliptic W] in
 theorem kw_surgehgf4_pck_pmop_id
     (hι : (AlgHom.id ℂ W.FunctionField).toRingHom.IsIntegral)
     (hfin : FiniteAlong ℂ (AlgHom.id ℂ W.FunctionField)) (P : W.Point) :
@@ -1669,11 +1690,17 @@ theorem kw_surgehgf4_pck_pmop_id
       = (IsogenyEndDatum.idDatum W).pointEnd' P := rfl
     _ = P := by rw [h]; rfl
 
+omit [WeierstrassCurve.IsElliptic W] [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W]
+  [W.AbelTheorem] [WeierstrassCurve.IsElliptic V] [V.GenusOnePlaceGate]
+  [GenusOnePlaceGate.IsCentred V] [V.AbelTheorem] in
 theorem kw_surgehgf4_pck_algEquiv_isIntegral
     (e : W.FunctionField ≃ₐ[ℂ] V.FunctionField) :
     e.toAlgHom.toRingHom.IsIntegral :=
   RingHom.isIntegral_of_surjective _ e.surjective
 
+omit [WeierstrassCurve.IsElliptic W] [W.GenusOnePlaceGate] [GenusOnePlaceGate.IsCentred W]
+  [W.AbelTheorem] [WeierstrassCurve.IsElliptic V] [V.GenusOnePlaceGate]
+  [GenusOnePlaceGate.IsCentred V] [V.AbelTheorem] in
 theorem kw_surgehgf4_pck_algEquiv_finiteAlong
     (e : W.FunctionField ≃ₐ[ℂ] V.FunctionField) :
     FiniteAlong ℂ (e.toAlgHom (R := ℂ)) := by
@@ -1682,6 +1709,8 @@ theorem kw_surgehgf4_pck_algEquiv_finiteAlong
   exact Module.Finite.of_surjective
     (Algebra.linearMap W.FunctionField V.FunctionField) e.surjective
 
+omit [GenusOnePlaceGate.IsCentred W] [GenusOnePlaceGate.IsCentred V] in
+omit [WeierstrassCurve.IsElliptic W] [WeierstrassCurve.IsElliptic V] in
 theorem kw_surgehgf4_pck_pmop_congr
     {ι ι' : W.FunctionField →ₐ[ℂ] V.FunctionField} (h : ι = ι')
     {hι : ι.toRingHom.IsIntegral} {hfin : FiniteAlong ℂ ι}
@@ -1690,6 +1719,10 @@ theorem kw_surgehgf4_pck_pmop_congr
       = pointMapOfPushforward ι' hι' hfin' (normFormulaAlong_of_elliptic ι' hfin') P := by
   subst h; rfl
 
+omit [GenusOnePlaceGate.IsCentred V] in
+omit [WeierstrassCurve.IsElliptic V] in
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [WeierstrassCurve.IsElliptic W] in
 theorem kw_surgehgf4_pck_pmop_equiv_left_inv
     (e : W.FunctionField ≃ₐ[ℂ] V.FunctionField) (P : W.Point) :
     pointMapOfPushforward e.toAlgHom
@@ -1718,6 +1751,10 @@ theorem kw_surgehgf4_pck_pmop_equiv_left_inv
   exact kw_surgehgf4_pck_pmop_id (IsogenyEndDatum.idDatum W).hι
     (IsogenyEndDatum.idDatum W).hfin P
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [WeierstrassCurve.IsElliptic W] in
+omit [GenusOnePlaceGate.IsCentred V] in
+omit [WeierstrassCurve.IsElliptic V] in
 theorem kw_surgehgf4_pck_pmop_equiv_right_inv
     (e : W.FunctionField ≃ₐ[ℂ] V.FunctionField) (P : V.Point) :
     pointMapOfPushforward e.symm.toAlgHom
@@ -1734,6 +1771,9 @@ theorem kw_surgehgf4_pck_pmop_equiv_right_inv
       (show e.symm.symm.toAlgHom = e.toAlgHom from congrArg _ e.symm_symm)] at h
   exact h
 
+omit [GenusOnePlaceGate.IsCentred W] in
+omit [WeierstrassCurve.IsElliptic W] [GenusOnePlaceGate.IsCentred V] in
+omit [WeierstrassCurve.IsElliptic V] in
 theorem kw_surgehgf4_pck_pmop_equiv_bijective
     (e : W.FunctionField ≃ₐ[ℂ] V.FunctionField) :
     Function.Bijective (pointMapOfPushforward e.toAlgHom
@@ -1773,6 +1813,10 @@ variable (eE : F.FunctionField ≃ₐ[ℂ] E.FunctionField)
   (ι : E'.FunctionField →ₐ[ℂ] E.FunctionField)
   (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong ℂ ι)
 
+omit [GenusOnePlaceGate.IsCentred E] [GenusOnePlaceGate.IsCentred E']
+  [GenusOnePlaceGate.IsCentred F] [GenusOnePlaceGate.IsCentred F'] in
+omit [WeierstrassCurve.IsElliptic E] [WeierstrassCurve.IsElliptic E']
+  [WeierstrassCurve.IsElliptic F] [WeierstrassCurve.IsElliptic F'] in
 theorem kw_surgehgf4_pck_pmop_conjSeam_factor
     (hι'' : (kw_fdn2_qephod_hend21_conjSeam eE eE' ι).toRingHom.IsIntegral)
     (hfin'' : FiniteAlong ℂ (kw_fdn2_qephod_hend21_conjSeam eE eE' ι))
@@ -1809,6 +1853,10 @@ theorem kw_surgehgf4_pck_pmop_conjSeam_factor
     _ = _ := congrArg _ h2
 
 
+omit [GenusOnePlaceGate.IsCentred E] [GenusOnePlaceGate.IsCentred F'] in
+omit [WeierstrassCurve.IsElliptic E] [GenusOnePlaceGate.IsCentred E']
+  [GenusOnePlaceGate.IsCentred F] [WeierstrassCurve.IsElliptic F'] in
+omit [WeierstrassCurve.IsElliptic E'] [WeierstrassCurve.IsElliptic F] in
 theorem kw_surgehgf4_pck_proved_core
     (hι'' : (kw_fdn2_qephod_hend21_conjSeam eE eE' ι).toRingHom.IsIntegral)
     (hfin'' : FiniteAlong ℂ (kw_fdn2_qephod_hend21_conjSeam eE eE' ι)) :
@@ -1869,10 +1917,10 @@ theorem pck_s17 :
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
 open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_b277e395.WeierstrassCurve
   _root_.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_b277e395.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_b277e395.AlgebraicCurve
   in
 theorem solution
     (E E' D D' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsElliptic] [D.IsElliptic]
@@ -1911,9 +1959,9 @@ end
 end
 end
 end
-end S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
+end S_OVERLONG_b277e395
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
+export P2MW.S_OVERLONG_b277e395
   (solution)
 
 end privateSection

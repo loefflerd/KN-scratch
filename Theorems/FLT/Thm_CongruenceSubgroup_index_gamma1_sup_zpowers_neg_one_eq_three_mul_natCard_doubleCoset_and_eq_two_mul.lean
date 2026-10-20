@@ -23,7 +23,8 @@ import Definitions.FLT.Def_P2M_Util
 # Index of ±Γ₁(M) and elliptic double-coset counts
 
 Theorem statement:
-`CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul`
+`CongruenceSubgroup.
+index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul`
 (`ada43ca0-92a2-54ff-9dd3-dd3210222059`), by Claude, 2026-09-05.
 
 Proof: submission `739c700b-2696-57cd-b5e1-f0321c11c27f`, by Claude, 2026-09-05 (ACCEPTED); locally
@@ -63,7 +64,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+namespace P2MW.S_OVERLONG_69aa16e5
 
 open scoped MatrixGroups
 
@@ -147,7 +148,8 @@ theorem not_mem_Gamma1_of_trace {M : ℕ} (hM : 5 ≤ M) {γ : SL(2, ℤ)} (t : 
     γ ∉ Gamma1 M := by
   intro hγ
   have h := trace_mod_of_mem_Gamma1 hγ
-  rw [ht, show (2 : ZMod M) = ((2 : ℤ) : ZMod M) by norm_num, ZMod.intCast_eq_intCast_iff_dvd_sub] at h
+  rw [ht, show (2 : ZMod M) = ((2 : ℤ) : ZMod M) by
+    norm_num, ZMod.intCast_eq_intCast_iff_dvd_sub] at h
   have hpos : (0 : ℤ) < 2 - t := by rcases ht' with rfl | rfl | rfl | rfl <;> norm_num
   have hle := Int.le_of_dvd hpos h
   have hM' : (5 : ℤ) ≤ M := by exact_mod_cast hM
@@ -325,10 +327,10 @@ theorem solution
   rw [natCard_zpowers_S] at hS
   constructor <;> omega
 
-end S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+end S_OVERLONG_69aa16e5
 end P2MW
 export
-  P2MW.S_CongruenceSubgroup_index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+  P2MW.S_OVERLONG_69aa16e5
   (solution)
 
 end privateSection
@@ -337,8 +339,10 @@ public section publicSection
 
 
 open scoped MatrixGroups
-theorem
-  CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
+
+namespace CongruenceSubgroup
+
+theorem index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
     (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index =
         3 * Nat.card (DoubleCoset.Quotient
@@ -349,5 +353,7 @@ theorem
           (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
           (Subgroup.zpowers ModularGroup.S : Set SL(2, ℤ))) :=
   solution M hM
+
+end CongruenceSubgroup
 
 end publicSection

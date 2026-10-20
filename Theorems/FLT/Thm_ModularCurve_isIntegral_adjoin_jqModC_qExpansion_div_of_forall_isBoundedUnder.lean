@@ -48,8 +48,10 @@ This is the classical statement that a modular function for a congruence subgrou
 holomorphic on the upper half-plane is integral over $\mathbb{C}[j]$, here in the form of an
 integrality assertion about the $q$-expansion of such a function, obtained from the level-one case
 by multiplying by a power of $\Delta$. It feeds into the estimate
-[`ModularCurve.ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728`]
-(thm.html#ModularCurve.ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728),
+[`ModularCurve.
+ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728`]
+(thm.html#ModularCurve.
+ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728),
 which controls orders of vanishing of elements of the function field of the modular curve.
 
 ## Explanation of the source proof

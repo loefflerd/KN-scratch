@@ -331,7 +331,8 @@ theorem compMap_injective (hΦ : ∀ f x, Φ f x = A (f (σ⁻¹ x))) {p : ℕ} 
     :=
     by
     have := congrArg Subtype.val huv
-    simp [compMap] at this
+    simp only [compMap, LinearMap.codRestrict_apply, LinearMap.coprod_apply, LinearMap.coe_comp,
+      Function.comp_apply, ZeroMemClass.coe_zero] at this
     exact this
   have hv : v = 0 := by
     funext ⟨r, hr⟩

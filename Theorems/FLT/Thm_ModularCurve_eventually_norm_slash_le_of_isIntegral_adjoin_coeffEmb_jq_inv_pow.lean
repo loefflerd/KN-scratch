@@ -258,7 +258,7 @@ theorem ψ𝔡_ne_zero : ψ 𝔡 ≠ 0 := by
   have h0 : (𝔡 : 𝒩) = 0 := (ψ_eq_zero_iff _).mp h
   have : ModularForm.discriminant UpperHalfPlane.I = 0 := by
     have := congrArg (fun f : 𝒩 => (f : ℍ → ℂ) UpperHalfPlane.I) h0
-    simp at this
+    simp only [ZeroMemClass.coe_zero, Pi.zero_apply] at this
     exact this
   exact ModularForm.discriminant_ne_zero _ this
 
@@ -729,7 +729,8 @@ theorem solution (N : ℕ) {k : ℤ} (m : ℕ)
   set ρ : ℝ := ‖δ ^ (-(k + 14 * (m : ℤ)))‖ with hρ
   have hρ0 : 0 < ρ := norm_pos_iff.mpr (zpow_ne_zero _ hδ)
   have hρ1 : ‖δ ^ (-(k + 12 * (m : ℤ)))‖ = ρ * t ^ (2 * m) := by
-    rw [show -(k + 12 * (m : ℤ)) = -(k + 14 * (m : ℤ)) + ((2 * m : ℕ) : ℤ) by push_cast; ring, zpow_add₀ hδ, norm_mul,
+    rw [show -(k + 12 * (m : ℤ)) = -(k + 14 * (m : ℤ)) + ((2 * m : ℕ) : ℤ) by
+      push_cast; ring, zpow_add₀ hδ, norm_mul,
       ← hρ, zpow_natCast, norm_pow, ← ht]
   set P : ℝ := ‖g z * (ModularForm.E₄ z ^ 2 * ModularForm.E₆ z) ^ m * δ ^ (-(k + 14 * (m : ℤ)))‖
     with hP
@@ -792,8 +793,11 @@ theorem solution (N : ℕ) {k : ℤ} (m : ℕ)
         _ = C * η₀ * (2 ^ (3 * (m * M) + 3) * 2 ^ (4 * (m * M))) * (1 / 2) ^ (3 * (m * M) + 3) := by
             rw [show C * η₀ * (2 ^ (3 * (m * M) + 3) * 2 ^ (4 * (m * M))) * (1 / 2 : ℝ) ^ (3 * (m *
               M) + 3) =
-              C * η₀ * 2 ^ (4 * (m * M)) * ((1 / 2 : ℝ) ^ (3 * (m * M) + 3) * 2 ^ (3 * (m * M) + 3)) by ring, hhalf2, mul_one]
-        _ ≤ ε ^ (2 * M) * (1 / 2) ^ (3 * (m * M) + 3) := mul_le_mul_of_nonneg_right hCη (by positivity)
+              C * η₀ * 2 ^ (4 * (m * M)) * ((1 / 2 : ℝ) ^ (3 * (m * M) + 3) * 2 ^ (3 * (m * M) +
+                3)) by
+                ring, hhalf2, mul_one]
+        _ ≤ ε ^ (2 * M) * (1 / 2) ^ (3 * (m * M) + 3) := mul_le_mul_of_nonneg_right hCη (by
+          positivity)
     have hpow : P ^ (2 * M) ≤ (ε * Q) ^ (2 * M) := by
       have hhalf : (0 : ℝ) < (1 / 2) ^ (3 * (m * M) + 3) := by positivity
       have : P ^ (2 * M) * (1 / 2) ^ (3 * (m * M) + 3) ≤ (ε * Q) ^ (2 * M) * (1 / 2) ^ (3 * (m * M)

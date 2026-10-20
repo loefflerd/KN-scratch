@@ -77,7 +77,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1
+namespace P2MW.S_OVERLONG_a7405910
 
 
 open CongruenceSubgroup ModularCurve UpperHalfPlane HahnSeries Filter Topology
@@ -128,9 +128,11 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
     funext z
     rw [← CuspForm.toModularFormₗ_eq_coe, CuspForm.toModularFormₗ_apply]
     rfl
-  obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by norm_num) ((E4N.mul E4N).mul E6N) :=
+  obtain ⟨Hh, hHhdef⟩ : ∃ Hh : ModularForm (Gamma1 M) 14, Hh = ModularForm.mcast (by
+    norm_num) ((E4N.mul E4N).mul E6N) :=
     ⟨_, rfl⟩
-  obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by norm_num) (-((w.mul w).mul DN)) :=
+  obtain ⟨Gv, hGvdef⟩ : ∃ Gv : ModularForm (Gamma1 M) 14, Gv = ModularForm.mcast (by
+    norm_num) (-((w.mul w).mul DN)) :=
     ⟨_, rfl⟩
   have hHhcoe : (Hh : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 2 * ModularForm.E₆ z := by
     funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4,
@@ -201,7 +203,8 @@ theorem realizeOf_eq (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠ 0) (V 
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   obtain ⟨Gv, Hh, -, hHhcoe, hGvcoe, hpres⟩ := exists_presentation M w hw V hv
-  rw [ModularCurve.realizeOf_eq_div (CongruenceSubgroup.Gamma1 M) hT Gv Hh _ hpres z (by rw [hHhcoe]; exact hz),
+  rw [ModularCurve.realizeOf_eq_div (CongruenceSubgroup.Gamma1 M) hT Gv Hh _ hpres z (by
+    rw [hHhcoe]; exact hz),
     hGvcoe, hHhcoe]
 
 end PresVAux
@@ -485,9 +488,9 @@ theorem solution
   exact ⟨n, by ring⟩
 
 end
-end S_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1
+end S_OVERLONG_a7405910
 end P2MW
-export P2MW.S_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1
+export P2MW.S_OVERLONG_a7405910
   (solution)
 
 end privateSection

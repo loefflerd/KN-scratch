@@ -493,8 +493,12 @@ lemma F_mdifferentiable (a b c : ℕ) :
     intro z hz
     apply DifferentiableAt.differentiableWithinAt
     have hz' : 0 < z.im := hz
-    have h2 : 0 < (2 * z).im := by simp [Complex.mul_im]; positivity
-    have h4 : 0 < (4 * z).im := by simp [Complex.mul_im]; positivity
+    have h2 : 0 < (2 * z).im := by
+      simp only [mul_im, re_ofNat, im_ofNat, zero_mul, add_zero, Nat.ofNat_pos,
+        mul_pos_iff_of_pos_left]; positivity
+    have h4 : 0 < (4 * z).im := by
+      simp only [mul_im, re_ofNat, im_ofNat, zero_mul, add_zero, Nat.ofNat_pos,
+        mul_pos_iff_of_pos_left]; positivity
     unfold Fc
     refine ((ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet hz').pow _ |>.mul
       (((ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet h2).comp z

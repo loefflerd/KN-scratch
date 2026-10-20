@@ -41,8 +41,7 @@ This is the standard fact, in the language of algebraic function fields, that a 
 place over $K$, so that the base field consists of $v$-units; it records the triviality of $v$ on
 $K$ in a form usable as an instance or hypothesis elsewhere. It is used in the analysis of valuation
 subrings of a rational function field, via
-[`AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum`]
-(thm.html#AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum).
+(`AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum`).
 
 ## Explanation of the source proof
 

@@ -74,7 +74,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index
+namespace P2MW.S_OVERLONG_b0db17b1
 
 namespace ModularCurve
 p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset \
@@ -89,7 +89,7 @@ namespace FullnessGamma1
 p2m_open "ModularCurve~coeffEmb_injective"
 
 p2m_open "ModularCurve~coeffEmb_injective \
-  P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.Mo\
+  P2MW.S_OVERLONG_b0db17b1.Mo\
   dularCurve IntermediateField"
 
 theorem finrank_adjoin_eq_relfinrank {K E : Type*} [Field K] [Field E] [Algebra K E]
@@ -260,7 +260,7 @@ end Groups
 end ModularCurve.FullnessGamma1
 
 p2m_open "ModularCurve~coeffEmb_injective \
-  P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.Mo\
+  P2MW.S_OVERLONG_b0db17b1.Mo\
   dularCurve CongruenceSubgroup AlgebraicCurve"
 open scoped MatrixGroups
 
@@ -348,10 +348,10 @@ theorem solution
         (laurentBaseChange K (qExpFunctionFieldC ℚ (Gamma1 M))) := key
     _ = _ := eJE'.symm
 
-end S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index
+end S_OVERLONG_b0db17b1
 end P2MW
 export
-  P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index
+  P2MW.S_OVERLONG_b0db17b1
   (solution)
 
 end privateSection

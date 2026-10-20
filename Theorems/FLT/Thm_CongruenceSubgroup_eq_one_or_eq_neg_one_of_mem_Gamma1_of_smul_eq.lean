@@ -44,8 +44,10 @@ in the computation of genera and orders of vanishing on modular curves of level 
 specifically by
 [`ModularCurve.FullLevel.genusFF_fieldBar_eq`](thm.html#ModularCurve.FullLevel.genusFF_fieldBar_eq)
 and by
-[`ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure`]
-(thm.html#ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure).
+[`ModularCurve.
+ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure`]
+(thm.html#ModularCurve.
+ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure).
 
 ## Explanation of the source proof
 

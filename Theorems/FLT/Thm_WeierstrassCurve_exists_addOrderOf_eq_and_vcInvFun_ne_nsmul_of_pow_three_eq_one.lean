@@ -447,7 +447,8 @@ theorem solution
     let s : Finset Ep := Finset.univ.filter (fun T => T ≠ 0)
     have hs_card : s.card = p ^ 2 - 1 := by
       have : s.card + 1 = p ^ 2 := by
-        rw [show s = Finset.univ.erase 0 by ext T; simp [s], Finset.card_erase_of_mem (Finset.mem_univ _),
+        rw [show s = Finset.univ.erase 0 by
+          ext T; simp [s], Finset.card_erase_of_mem (Finset.mem_univ _),
           Finset.card_univ, ← Nat.card_eq_fintype_card, show Nat.card Ep = p ^ 2 from hcard]
         have : 1 ≤ p ^ 2 := Nat.one_le_iff_ne_zero.mpr (by positivity); omega
       omega

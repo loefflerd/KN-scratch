@@ -102,7 +102,9 @@ theorem finite_doubleCoset_quotient {G : Type*} [Group G] (H K : Subgroup G) [H.
     rw [QuotientGroup.rightRel_apply] at hab
     apply DoubleCoset.mk_eq_of_doubleCoset_eq
     refine DoubleCoset.doubleCoset_eq_of_mem ?_
-    refine DoubleCoset.mem_doubleCoset.mpr ⟨a * b⁻¹, by simpa using H.inv_mem hab, 1, K.one_mem, by group⟩
+    refine DoubleCoset.mem_doubleCoset.mpr ⟨a * b⁻¹, by
+      simpa using H.inv_mem hab, 1, K.one_mem, by
+        group⟩
   · intro q
     induction q using Quotient.inductionOn' with
     | h g => exact ⟨Quotient.mk'' g, rfl⟩
@@ -194,7 +196,7 @@ theorem solution
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   obtain ⟨htr, hfin⟩ :=
-    ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ (CongruenceSubgroup.Gamma1 M) hT y hy
   have := hfin
   have hfull :=
@@ -204,12 +206,13 @@ theorem solution
         (CongruenceSubgroup.Gamma1 M)))))
       ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := inferInstance
   obtain ⟨h0, h1728⟩ :=
-    ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M (by omega) y hy
+    ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M (by
+      omega) y hy
   have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
     :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   have hg :=
-    ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
+    twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
       ℂ M hM
   obtain ⟨w, v0, hw0, hv0mem, hv0⟩ :=
     ModularForm.exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq M hM

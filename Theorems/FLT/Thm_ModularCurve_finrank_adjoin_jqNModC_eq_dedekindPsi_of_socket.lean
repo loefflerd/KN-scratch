@@ -295,7 +295,9 @@ theorem coeff_aeval_jqModC_neg_natDegree (P : Polynomial K) :
   · rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_self K P.natDegree, mul_one]
   · intro i hi hin
     have hilt : i < P.natDegree := lt_of_le_of_ne (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)) hin
-    rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_of_lt K (b := i) (m := -(P.natDegree : ℤ)) (by omega),
+    rw [coeff_algebraMap_mul, ModularCurve.coeff_jqModC_pow_of_lt K (b := i) (m := -(P.natDegree :
+      ℤ)) (by
+      omega),
       mul_zero]
   · intro hn
     exact absurd (Finset.self_mem_range_succ P.natDegree) hn

@@ -1,6 +1,7 @@
 /-
 Based on Prove2Me node
-ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
+ModularCurve.
+twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
 (b4f27b99-307c-5f18-a0d8-4ac198590a9c) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission a53e31a1-4a29-5b8b-b2f0-57aea1672210
@@ -21,13 +22,13 @@ import Theorems.FLT.Thm_AlgebraicCurve_genusFF_eq_of_constantFieldExtension_of_i
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Genus of X₁(M) over an algebraically closed field of characteristic 0
 
 Theorem statement:
-`ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed`
+`ModularCurve.
+twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed`
 (`b4f27b99-307c-5f18-a0d8-4ac198590a9c`), by Claude, 2026-09-05.
 
 Proof: submission `a53e31a1-4a29-5b8b-b2f0-57aea1672210`, by Claude, 2026-09-05 (ACCEPTED); locally
@@ -68,17 +69,16 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
+local notation "Kb" => AlgebraicClosure ℚ
 
+open  ModularCurve CongruenceSubgroup AlgebraicCurve
 
-p2m_open "ModularCurve CongruenceSubgroup AlgebraicCurve~genus"
 open scoped MatrixGroups
 
 namespace GenusK
 
 variable (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M]
 
-local notation "Kb" => AlgebraicClosure ℚ
 local notation "F₀" => (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
 
 omit [NeZero M] in
@@ -100,9 +100,11 @@ theorem coeffMap_mem (x : LaurentSeries Kb) (hx : x ∈ ModularCurve.laurentBase
     · rintro _ ⟨a, rfl⟩
       rw [SetLike.mem_coe, Subfield.mem_comap]
       have hC1 : algebraMap Kb (LaurentSeries Kb) a = HahnSeries.single 0 a := by
-        rw [show algebraMap Kb (LaurentSeries Kb) a = HahnSeries.C a by simp [HahnSeries.algebraMap_apply']]; rfl
+        rw [show algebraMap Kb (LaurentSeries Kb) a = HahnSeries.C a by
+          simp [HahnSeries.algebraMap_apply']]; rfl
       have hC2 : algebraMap K (LaurentSeries K) (ι K a) = HahnSeries.single 0 (ι K a) := by
-        rw [show algebraMap K (LaurentSeries K) (ι K a) = HahnSeries.C (ι K a) by simp [HahnSeries.algebraMap_apply']]; rfl
+        rw [show algebraMap K (LaurentSeries K) (ι K a) = HahnSeries.C (ι K a) by
+          simp [HahnSeries.algebraMap_apply']]; rfl
       have : ModularCurve.coeffMap ((ι K).toRingHom) (algebraMap Kb (LaurentSeries Kb) a)
           = algebraMap K (LaurentSeries K) (ι K a) := by
         rw [hC1, hC2, ModularCurve.coeffMap_single]; rfl
@@ -121,50 +123,45 @@ theorem coeffMap_mem (x : LaurentSeries Kb) (hx : x ∈ ModularCurve.laurentBase
   exact hle hx
 
 noncomputable def φ :
-    ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
-      (CongruenceSubgroup.Gamma1 M))) →+* ↥(ModularCurve.laurentBaseChange K
-      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+    ↥(ModularCurve.laurentBaseChange Kb (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M))) →+* ↥(ModularCurve.laurentBaseChange K F₀) :=
   ((ModularCurve.coeffMap ((ι K).toRingHom)).comp (ModularCurve.laurentBaseChange Kb
     F₀).toSubfield.subtype).codRestrict
     (ModularCurve.laurentBaseChange K F₀).toSubfield (fun x => coeffMap_mem K M x.1 x.2)
 
 omit [NeZero M] in
-theorem φ_apply_coe (x : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
-  (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
+theorem φ_apply_coe (x : ↥(ModularCurve.laurentBaseChange Kb F₀)) :
     ((φ K M x : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
       (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries K) = ModularCurve.coeffMap ((ι K).toRingHom)
       x := rfl
 
 end GenusK
 
-theorem solution
-    (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
-    (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
-    12 * AlgebraicCurve.genusFF K ↥(ModularCurve.laurentBaseChange K
-      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) +
+variable (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M]
+
+local notation "F₀" => (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
+
+theorem solution (hM : 5 ≤ M) :
+    12 * AlgebraicCurve.genusFF K ↥(ModularCurve.laurentBaseChange K F₀) +
       6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
           ℤ))) =
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 := by
   classical
   have hQ :=
-    ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
+    twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
       M hM
-  let algQK : Algebra (AlgebraicClosure ℚ) K := (GenusK.ι K).toRingHom.toAlgebra
-  let algFF : Algebra ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
-    (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+  let algQK : Algebra Kb K := (GenusK.ι K).toRingHom.toAlgebra
+  let algFF : Algebra ↥(ModularCurve.laurentBaseChange Kb F₀)
     ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
     M))) :=
     (GenusK.φ K M).toAlgebra
-  let algQF : Algebra (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange K
-    (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+  let algQF : Algebra Kb ↥(ModularCurve.laurentBaseChange K F₀) :=
     ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
       (CongruenceSubgroup.Gamma1 M)))).comp (GenusK.ι K).toRingHom).toAlgebra
-  have : IsScalarTower (AlgebraicClosure ℚ) K ↥(ModularCurve.laurentBaseChange K
-    (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+  have : IsScalarTower Kb K ↥(ModularCurve.laurentBaseChange K F₀) :=
     IsScalarTower.of_algebraMap_eq (fun a => rfl)
-  have : IsScalarTower (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
-    (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+  have : IsScalarTower Kb ↥(ModularCurve.laurentBaseChange Kb F₀)
     ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
     M))) :=
     by
@@ -172,26 +169,28 @@ theorem solution
     apply Subtype.ext
     change ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
       (CongruenceSubgroup.Gamma1 M))) (GenusK.ι K a) : ↥(ModularCurve.laurentBaseChange K
-      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries K)
-      = ModularCurve.coeffMap ((GenusK.ι K).toRingHom) ((algebraMap (AlgebraicClosure ℚ)
-        ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
-        (CongruenceSubgroup.Gamma1 M))) a : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
-        (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries
-        (AlgebraicClosure ℚ))
-    rw [show ((algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
-      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) a :
-      ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
-      (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries (AlgebraicClosure ℚ)) = algebraMap
-      (AlgebraicClosure ℚ) (LaurentSeries (AlgebraicClosure ℚ)) a from rfl,
+      F₀)) : LaurentSeries K)
+      = ModularCurve.coeffMap ((GenusK.ι K).toRingHom) ((algebraMap Kb
+        ↥(ModularCurve.laurentBaseChange Kb (ModularCurve.qExpFunctionFieldC ℚ
+        (CongruenceSubgroup.Gamma1 M))) a : ↥(ModularCurve.laurentBaseChange Kb
+        F₀)) : LaurentSeries
+        Kb)
+    rw [show ((algebraMap Kb ↥(ModularCurve.laurentBaseChange Kb F₀) a :
+      ↥(ModularCurve.laurentBaseChange Kb (ModularCurve.qExpFunctionFieldC ℚ
+      (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries Kb) = algebraMap
+      Kb (LaurentSeries Kb) a from rfl,
       show ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ
         (CongruenceSubgroup.Gamma1 M))) (GenusK.ι K a) : ↥(ModularCurve.laurentBaseChange K
-        (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries K) =
+        F₀)) : LaurentSeries K) =
         algebraMap K (LaurentSeries K) (GenusK.ι K a) from rfl,
-      show algebraMap (AlgebraicClosure ℚ) (LaurentSeries (AlgebraicClosure ℚ)) a =
+      show algebraMap Kb (LaurentSeries Kb) a =
         HahnSeries.single 0 a by
-        rw [show algebraMap (AlgebraicClosure ℚ) (LaurentSeries (AlgebraicClosure ℚ)) a = HahnSeries.C a by simp [HahnSeries.algebraMap_apply']]; rfl,
+        rw [show algebraMap Kb (LaurentSeries Kb) a =
+          HahnSeries.C a by
+          simp [HahnSeries.algebraMap_apply']]; rfl,
       show algebraMap K (LaurentSeries K) (GenusK.ι K a) = HahnSeries.single 0 (GenusK.ι K a) by
-        rw [show algebraMap K (LaurentSeries K) (GenusK.ι K a) = HahnSeries.C (GenusK.ι K a) by simp [HahnSeries.algebraMap_apply']]; rfl,
+        rw [show algebraMap K (LaurentSeries K) (GenusK.ι K a) = HahnSeries.C (GenusK.ι K a) by
+          simp [HahnSeries.algebraMap_apply']]; rfl,
       ModularCurve.coeffMap_single]
     rfl
   have hfg :=
@@ -200,7 +199,7 @@ theorem solution
     (CongruenceSubgroup.Gamma1 M) (GenusK.hT M)
   have hfg' := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange K
     (CongruenceSubgroup.Gamma1 M) (GenusK.hT M)
-  have : IsCurveOver (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
+  have : IsCurveOver Kb ↥(ModularCurve.laurentBaseChange Kb
     (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     by
     obtain ⟨x, htr, hfd⟩ :=
@@ -211,7 +210,7 @@ theorem solution
     obtain ⟨x, htr, hfd⟩ :=
       hfg'; exact AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfd
   have hgen : IntermediateField.adjoin K (Set.range (algebraMap ↥(ModularCurve.laurentBaseChange
-    (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
+    Kb (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
     ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1
     M))))) = ⊤ :=
     by
@@ -230,45 +229,41 @@ theorem solution
       rw [IntermediateField.adjoin_le_iff]
       rintro _ ⟨y, hy, rfl⟩
       refine IntermediateField.subset_adjoin K _ ⟨GenusK.φ K M ⟨ModularCurve.coeffEmb
-        (AlgebraicClosure ℚ) y,
-        ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) hy⟩, ⟨_, rfl⟩, ?_⟩
+        Kb y,
+        ModularCurve.coeffEmb_mem_laurentBaseChange Kb hy⟩, ⟨_, rfl⟩, ?_⟩
       change ModularCurve.coeffMap ((GenusK.ι K).toRingHom) (ModularCurve.coeffEmb (AlgebraicClosure
         ℚ) y) = ModularCurve.coeffEmb K y
       ext n
       simp [ModularCurve.coeffMap, ModularCurve.coeffEmb_coeff]
   have hinv :=
-    AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed (AlgebraicClosure ℚ)
-      ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ
+    AlgebraicCurve.genusFF_eq_of_constantFieldExtension_of_isAlgClosed Kb
+      ↥(ModularCurve.laurentBaseChange Kb (ModularCurve.qExpFunctionFieldC ℚ
       (CongruenceSubgroup.Gamma1 M))) K ↥(ModularCurve.laurentBaseChange K
       (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) hfg hfg' hgen
   rw [hinv]
   exact hQ
-
-end S_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
-end P2MW
-export
-  P2MW.S_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
-  (solution)
 
 end privateSection
 
 public section publicSection
 
 
-open CongruenceSubgroup
-open ModularCurve
-open AlgebraicCurve
+open CongruenceSubgroup ModularCurve AlgebraicCurve
 open scoped MatrixGroups
+
+namespace ModularCurve
+
 theorem
-  ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
+twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) :
-    12 * AlgebraicCurve.genusFF K ↥(ModularCurve.laurentBaseChange K
-      (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) +
-      6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
+    12 * genusFF K ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (Gamma1 M))) +
+      6 * Nat.card (DoubleCoset.Quotient (Gamma1 M)
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2,
           ℤ))) =
-      (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 :=
+      (Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 :=
   solution K M hM
+
+end ModularCurve
 
 end publicSection

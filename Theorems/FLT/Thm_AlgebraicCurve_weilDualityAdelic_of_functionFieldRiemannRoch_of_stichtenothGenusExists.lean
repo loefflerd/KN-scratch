@@ -64,7 +64,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
+namespace P2MW.S_OVERLONG_de39a060
 
 
 open AlgebraicCurve
@@ -108,9 +108,9 @@ theorem solution
   rw [hγg] at h₁
   linarith
 
-end S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
+end S_OVERLONG_de39a060
 end P2MW
-export P2MW.S_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
+export P2MW.S_OVERLONG_de39a060
   (solution)
 
 end privateSection

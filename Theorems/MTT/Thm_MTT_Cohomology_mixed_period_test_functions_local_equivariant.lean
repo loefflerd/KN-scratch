@@ -647,7 +647,8 @@ lemma first_test_equivariant {N k : ℕ} (hk : 2 ≤ k)
   have hd : conj (denom γ z) ≠ 0 := (map_ne_zero (starRingEnd ℂ)).mpr (denom_ne_zero γ z)
   calc
     _ = (conj (denom γ z) ^ k * ((conj (denom γ z))⁻¹) ^ (k - 2)) *
-        (conj (q z) * periodContraction (k - 2) (U z) (periodPower (k - 2) (conj (z : ℂ)))) := by ring
+        (conj (q z) * periodContraction (k - 2) (U z) (periodPower (k - 2) (conj (z : ℂ)))) := by
+          ring
     _ = _ := by rw [weight_cancel hk hd]
 
 lemma second_test_equivariant {N k : ℕ} (hk : 2 ≤ k)

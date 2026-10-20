@@ -82,7 +82,7 @@ lemma hasSum_cuspFunction_punctured (hh : 0 < h)
   let τ : ℍ := ⟨Periodic.invQParam h q, h1⟩
   have h2 := Periodic.cuspFunction_eq_of_nonzero h (F ∘ ofComplex) hq1
   have h3 : cuspFunction h F q = F τ := by
-    simp [UpperHalfPlane.ofComplex_apply_of_im_pos h1] at h2
+    simp only [comp_apply, UpperHalfPlane.ofComplex_apply_of_im_pos h1] at h2
     exact h2
   have h4 : 𝕢 h (τ : ℂ) = q := Periodic.qParam_right_inv hh.ne' hq1
   rw [h3, ← h4]

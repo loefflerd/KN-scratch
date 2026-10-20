@@ -246,7 +246,8 @@ theorem frac_upper_comp (a b : ℤ) (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) 
       rw [frac_infty g, frac_infty (!![a, b; 0, 1] * g), e00, e10]
       by_cases h : g 1 0 = 0
       · rw [ite_eq_left h, ite_eq_left h, frac_infty, u10, ite_eq_left rfl]
-      · rw [ite_eq_right h, ite_eq_right h, frac_coe, u10, u11, u00, u01, ite_eq_right (by norm_num)]
+      · rw [ite_eq_right h, ite_eq_right h, frac_coe, u10, u11, u00, u01, ite_eq_right (by
+        norm_num)]
         have hq : ((g 1 0 : ℤ) : ℚ) ≠ 0 := Int.cast_ne_zero.mpr h
         congr 1
         push_cast
@@ -257,7 +258,8 @@ theorem frac_upper_comp (a b : ℤ) (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) 
       by_cases h : ((g 1 0 : ℤ) : ℚ) * r + ((g 1 1 : ℤ) : ℚ) = 0
       · rw [ite_eq_left h, ite_eq_left h, frac_infty, u10, ite_eq_left rfl]
       · have hD : ((g 1 0 : ℤ) : ℚ) * r + ((g 1 1 : ℤ) : ℚ) ≠ 0 := h
-        rw [ite_eq_right h, ite_eq_right h, frac_coe, u10, u11, u00, u01, ite_eq_right (by norm_num)]
+        rw [ite_eq_right h, ite_eq_right h, frac_coe, u10, u11, u00, u01, ite_eq_right (by
+          norm_num)]
         congr 1
         push_cast
         rw [zero_mul, zero_add, div_one, eq_div_iff hD, add_mul, mul_assoc,

@@ -79,7 +79,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open scoped IntermediateField
@@ -111,7 +110,8 @@ theorem linearIndependent_pow_of_transcendental {k A : Type*} [Field k] [Ring A]
     hinj (by rw [hpoly, map_zero])
   have hcoeff := congrArg (fun p : Polynomial k => p.coeff (m : ℕ)) hzero
   simp only [Polynomial.finsetSum_coeff, Polynomial.coeff_monomial, Polynomial.coeff_zero] at hcoeff
-  rw [Finset.sum_eq_single m (fun n _ hn => ite_eq_right (fun h => hn (Fin.ext h))) (by simp)] at hcoeff
+  rw [Finset.sum_eq_single m (fun n _ hn => ite_eq_right (fun h => hn (Fin.ext h))) (by
+    simp)] at hcoeff
   simpa using hcoeff
 
 variable {k : Type*} [Field k] [IsAlgClosed k] [CharZero k]

@@ -628,7 +628,8 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
     calc ‖wpMonCoeff N a₁ a₂ (Sum.inr (Sum.inr ((c, m), i)))‖ *
           ‖q‖ ^ wpMonExp N a₁ (Sum.inr (Sum.inr ((c, m), i)))
         ≤ (2 * (m : ℕ)) * ‖q‖ ^ ((c : ℕ) * (m : ℕ)) := by gcongr
-      _ ≤ 4 * ((m : ℕ) * ‖q‖ ^ ((c : ℕ) * (m : ℕ))) := by nlinarith [pow_nonneg (norm_nonneg q) ((c : ℕ) * (m : ℕ))]
+      _ ≤ 4 * ((m : ℕ) * ‖q‖ ^ ((c : ℕ) * (m : ℕ))) := by
+        nlinarith [pow_nonneg (norm_nonneg q) ((c : ℕ) * (m : ℕ))]
   have hs3 : Summable (G ∘ Sum.inr ∘ Sum.inr) := Summable.of_norm_bounded hmaj hbound
   have h3 : HasSum (G ∘ Sum.inr ∘ Sum.inr) (∑' p : ℕ+ × ℕ+, wpTail N a₁ a₂ p τ) := by
     rw [hs3.hasSum_iff, hs3.tsum_prod]
@@ -988,7 +989,9 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
       by_contra hne
       rcases lt_or_gt_of_ne hne with hlt | hlt
       · have hb := eval b₂ hb₁ hB hka0 hlt.le
-        rw [ite_eq_right (by omega : ¬ b₁ = ka), ite_eq_right (by omega : ¬ N - b₁ = ka), add_zero] at hb
+        rw [ite_eq_right (by
+          omega : ¬ b₁ = ka), ite_eq_right (by
+            omega : ¬ N - b₁ = ka), add_zero] at hb
         have ha := eval a₂ ha₁ hA hka0 le_rfl
         rw [h ka, hb] at ha
         have : a₁ = ka ∨ N - a₁ = ka := by omega
@@ -1002,7 +1005,9 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
           · rw [ite_eq_right e', ite_eq_left e, zero_add] at ha
             exact pow_ne_zero _ (inv_ne_zero hζ0) ha.symm
       · have ha := eval a₂ ha₁ hA hkb0 hlt.le
-        rw [ite_eq_right (by omega : ¬ a₁ = kb), ite_eq_right (by omega : ¬ N - a₁ = kb), add_zero] at ha
+        rw [ite_eq_right (by
+          omega : ¬ a₁ = kb), ite_eq_right (by
+            omega : ¬ N - a₁ = kb), add_zero] at ha
         have hb := eval b₂ hb₁ hB hkb0 le_rfl
         rw [← h kb, ha] at hb
         have : b₁ = kb ∨ N - b₁ = kb := by omega

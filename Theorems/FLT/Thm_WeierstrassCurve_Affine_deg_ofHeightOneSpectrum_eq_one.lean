@@ -19,7 +19,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places of a Weierstrass function field over ̄ F have degree one
@@ -61,12 +60,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 -/
 
 section privateSection
-
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one
-
-set_option Elab.async false
 
 open AlgebraicCurve IsDedekindDomain Polynomial WeierstrassCurve WeierstrassCurve.Affine
 open WeierstrassCurve.Affine.CoordinateRing
@@ -195,9 +188,6 @@ theorem solution {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Aff
   exact ⟨c, hw ▸ hc⟩
 
 end
-end S_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one
-end P2MW
-export P2MW.S_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one (solution)
 
 end privateSection
 

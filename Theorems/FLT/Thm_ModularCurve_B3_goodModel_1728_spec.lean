@@ -253,7 +253,8 @@ theorem specialFibre_1728 : specialFibre (goodModel 1728) = ⟨0, 0, 0, -36, 0�
     rw [goodModel_1728_a₄, show (-36 : H) = -(36 : H) from rfl, HahnSeries.coeff_neg,
       coeff_zero_ofNat]
   · change (goodModel 1728).a₆.coeff 0 = 0
-    rw [goodModel_1728_a₆, HahnSeries.coeff_neg, HahnSeries.coeff_single_of_ne (by norm_num), neg_zero]
+    rw [goodModel_1728_a₆, HahnSeries.coeff_neg, HahnSeries.coeff_single_of_ne (by
+      norm_num), neg_zero]
 
 theorem integralCoeffs_1728 : IntegralCoeffs (goodModel 1728) := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩

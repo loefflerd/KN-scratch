@@ -76,7 +76,7 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-public theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h :
+public theorem ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h :
   v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
@@ -120,7 +120,7 @@ section Ultrametric
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-theorem _root_.AlgebraicCurve.Place.ord_add_eq_left {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
+theorem ord_add_eq_left {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : v.ord f < v.ord g) :
     v.ord (f + g) = v.ord f := by
   have hfv := v.adicValuation_ne_zero hf
@@ -348,16 +348,16 @@ open AlgebraicCurve.Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-theorem _root_.AlgebraicCurve.Place.isUnit_algebraMap {c : K} (hc : c ≠ 0) :
+theorem isUnit_algebraMap {c : K} (hc : c ≠ 0) :
     IsUnit (algebraMap K v.toValuationSubring c) :=
   (isUnit_iff_ne_zero.mpr hc).map _
 
-theorem _root_.AlgebraicCurve.Place.adicValuation_algebraMap {c : K} (hc : c ≠ 0) :
+theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) :
     v.adicValuation (algebraMap K F c) = 1 := by
   rw [← v.coe_algebraMap]
   exact (v.adicValuation_coe_eq_one_iff _).mpr (v.isUnit_algebraMap hc)
 
-theorem _root_.AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_eq (w : Valuation F ℤᵐ⁰)
+theorem ord_eq_neg_log_of_valuationSubring_eq (w : Valuation F ℤᵐ⁰)
     (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = exp (-1 : ℤ))
     {f : F} (hf : f ≠ 0) : v.ord f = -log (w f) := by
   have hequiv : w.IsEquiv v.adicValuation :=
@@ -1539,7 +1539,6 @@ end AlgebraicCurve
 end
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -1547,7 +1546,7 @@ namespace AlgebraicCurve
 
 section SmulReduction
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable [∀ v : Place K F, v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
 
 public theorem kaehlerResidueTermKFam_smul_diagonal

@@ -57,7 +57,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum
+namespace P2MW.S_OVERLONG_20cd8cfe
 
 noncomputable section
 
@@ -190,16 +190,16 @@ end AlgebraicCurve
 end
 
 open _root_.AlgebraicCurve
-  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_20cd8cfe.AlgebraicCurve
   in
 theorem solution {K : Type*} [Field K] :
     ∃ v : Place K (RatFunc K), ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠
       Place.ofHeightOneSpectrum w :=
   AlgebraicCurve.RationalFunctionField.rowMain
 
-end S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum
+end S_OVERLONG_20cd8cfe
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_exists_forall_ne_ofHeightOneSpectrum (solution)
+export P2MW.S_OVERLONG_20cd8cfe (solution)
 
 end privateSection
 

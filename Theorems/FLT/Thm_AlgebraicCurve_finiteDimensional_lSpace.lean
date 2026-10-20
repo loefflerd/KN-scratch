@@ -810,9 +810,8 @@ theorem adeleBddPrincipal_mono {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂) :
 
 section FiniteLSpace
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
 
-omit [Nonempty (Place K F)] in
 theorem finiteDimensional_lSpace_port [hL0 : FiniteDimensional K (LSpace (0 : Divisor K F))]
     (D : Divisor K F) : FiniteDimensional K (LSpace D) := by
   have h0D : (0 : Divisor K F) ≤ D ⊔ 0 := le_sup_right

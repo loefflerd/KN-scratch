@@ -284,12 +284,16 @@ theorem solution
       rcases lt_or_eq_of_le hj with hneg | hzero
       · have hc : w.ord (j - algebraMap K _ 1728) = w.ord j :=
           ord_sub_algebraMap_eq_of_ord_neg w hj0 1728 hneg
-        rw [ite_eq_right (show ¬ 0 < w.ord j from by omega), ite_eq_right (show ¬ 0 < w.ord (j - algebraMap K _ 1728) from by omega),
+        rw [ite_eq_right (show ¬ 0 < w.ord j from by
+          omega), ite_eq_right (show ¬ 0 < w.ord (j - algebraMap K _ 1728) from by
+            omega),
           ite_eq_left hneg, zero_add, zero_add] at hDw
         rw [hc]; nlinarith
       · have hc0 : 0 ≤ w.ord (j - algebraMap K _ 1728) :=
           ord_nonneg_of_mem w (w.toValuationSubring.sub_mem (hjm hzero.ge) (w.algebraMap_mem' _))
-        rw [ite_eq_right (show ¬ 0 < w.ord j from by omega), ite_eq_right (show ¬ w.ord j < 0 from by omega), zero_add, add_zero] at hDw
+        rw [ite_eq_right (show ¬ 0 < w.ord j from by
+          omega), ite_eq_right (show ¬ w.ord j < 0 from by
+            omega), zero_add, add_zero] at hDw
         by_cases h1 : 0 < w.ord (j - algebraMap K _ 1728)
         · rw [ite_eq_left h1] at hDw
           have e2 :=

@@ -64,7 +64,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+namespace P2MW.S_OVERLONG_8889c9fb
 
 
 open AlgebraicCurve
@@ -212,10 +212,10 @@ theorem solution
   rw [← Algebra.smul_def]
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨g j, hgD j, rfl⟩)
 
-end S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+end S_OVERLONG_8889c9fb
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+  P2MW.S_OVERLONG_8889c9fb
   (solution)
 
 end privateSection

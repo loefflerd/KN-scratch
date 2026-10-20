@@ -113,7 +113,8 @@ theorem finrank_eq_two_of_natCard (hV : Nat.card V = p ^ 2) : Module.finrank (ZM
   exact (Nat.pow_right_injective (Fact.out : p.Prime).two_le h).symm
 
 noncomputable def basisOfNatCard (hV : Nat.card V = p ^ 2) : Module.Basis (Fin 2) (ZMod p) V :=
-  haveI : Finite V := Nat.finite_of_card_ne_zero (by rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
+  haveI : Finite V := Nat.finite_of_card_ne_zero (by
+    rw [hV]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero)
   Module.finBasisOfFinrankEq (ZMod p) V (finrank_eq_two_of_natCard hV)
 
 end RankTwo

@@ -75,7 +75,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
+namespace P2MW.S_OVERLONG_4bc05415
 
 
 open CongruenceSubgroup ModularCurve
@@ -150,14 +150,15 @@ theorem solution
     have h1728 : P.ord (y - 1728) = P.ord y := by
       rw [e1728, sub_eq_add_neg, ← map_neg]
       exact AlgebraicCurve.Place.ord_add_eq_of_lt P hy0 hc0 (by rw [hc]; exact hneg)
-    rw [ite_eq_right (not_lt.2 hneg.le), ite_eq_right (by rw [h1728]; exact not_lt.2 hneg.le), ite_eq_left hneg,
+    rw [ite_eq_right (not_lt.2 hneg.le), ite_eq_right (by
+      rw [h1728]; exact not_lt.2 hneg.le), ite_eq_left hneg,
       zero_add, zero_add]
     exact h2
 
-end S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
+end S_OVERLONG_4bc05415
 end P2MW
 export
-  P2MW.S_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1
+  P2MW.S_OVERLONG_4bc05415
   (solution)
 
 end privateSection

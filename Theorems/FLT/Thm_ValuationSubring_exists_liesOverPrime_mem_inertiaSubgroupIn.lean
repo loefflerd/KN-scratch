@@ -257,7 +257,7 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
     h𝔔A ⟨c, hc, rfl⟩
   have hA : A.LiesOverPrime q := by
     have := h𝔔nu _ hq𝔔
-    simp at this
+    simp only [SubringClass.coe_natCast] at this
     exact this
   let φ : integralClosure ℤ (AlgebraicClosure ℚ) →+* A :=
     (integralClosure ℤ (AlgebraicClosure ℚ)).val.toRingHom.codRestrict A.toSubring hmemA

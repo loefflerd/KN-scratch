@@ -60,7 +60,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
+namespace P2MW.S_OVERLONG_3bbd935a
 
 universe u
 
@@ -198,7 +198,8 @@ theorem irreducible_algebraMap (ϖ : C) (hϖ : Irreducible ϖ) :
       (v : AdicCompletion (maximalIdeal C) C) * w * algebraMap C _ ϖ ^ (k + 1) :=
     mul_left_cancel₀ hπ0 h2
   have hu : IsUnit (algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ ^ (k + 1)) :=
-    isUnit_iff_exists_inv.mpr ⟨(v : AdicCompletion (maximalIdeal C) C) * w, by rw [mul_comm]; exact h3.symm⟩
+    isUnit_iff_exists_inv.mpr ⟨(v : AdicCompletion (maximalIdeal C) C) * w, by
+      rw [mul_comm]; exact h3.symm⟩
   exact hπnu ((isUnit_pow_iff (Nat.succ_ne_zero k)).mp hu)
 
 theorem isDiscreteValuationRing (ϖ : C) (hϖ : Irreducible ϖ) :
@@ -251,9 +252,9 @@ theorem solution
       AdicCompletion.ker_evalₐ_eq_map_pow _ AdicCompletion.maximalIdeal_fg]
     exact hy
 
-end S_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
+end S_OVERLONG_3bbd935a
 end P2MW
-export P2MW.S_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
+export P2MW.S_OVERLONG_3bbd935a
   (solution)
 
 end privateSection

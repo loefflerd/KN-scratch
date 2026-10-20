@@ -195,7 +195,7 @@ theorem solution
     have hφE : ∀ e : E, φ (e : L) = ψ' e := by
       intro e
       have h := AlgHom.liftNormal_commutes ψ'' L e
-      simp at h
+      simp only [IntermediateField.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply] at h
       exact h
     have hφinj : Function.Injective φ := φ.toRingHom.injective
     have hφsurj : Function.Surjective φ :=

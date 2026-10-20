@@ -514,7 +514,12 @@ lemma rational_translate_integrable
     change (⇑f ∣[(k : ℤ)] gr) _ = _
     rw [ModularForm.slash_def, hr]
     simp only [Matrix.GeneralLinearGroup.val_det_apply]
-    simp [σ, denom, Matrix.GeneralLinearGroup.upperRightHom]
+    simp only [σ, Matrix.GeneralLinearGroup.upperRightHom, AddChar.coe_mk,
+      Matrix.GeneralLinearGroup.val_det_apply, Matrix.det_fin_two_of, mul_one, mul_zero, sub_zero,
+      zero_lt_one, ↓reduceIte, ContinuousAlgEquiv.refl_apply, abs_one, ofReal_one, one_zpow, denom,
+      Fin.isValue, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_fin_one,
+      Matrix.cons_val_one, ofReal_zero, zero_mul, zero_add, zpow_neg, zpow_natCast, one_pow,
+      inv_one]
     congr 1
     ext
     simp [coe_smul, σ, num, denom, ofComplex_apply_of_im_pos, ht]
@@ -1348,7 +1353,8 @@ lemma normPrim_strip_bound {F : ℂ → ℂ} (hF : DifferentiableOn ℂ F UHP)
         _ = _ := by ring
     have hb : ‖normPrim F z‖ ≤ |D| * W + 1 := by
       calc
-        _ = ‖(normPrim F z - normPrim F ((z.im : ℂ) * I)) + normPrim F ((z.im : ℂ) * I)‖ := by rw [sub_add_cancel]
+        _ = ‖(normPrim F z - normPrim F ((z.im : ℂ) * I)) + normPrim F ((z.im : ℂ) * I)‖ := by
+          rw [sub_add_cancel]
         _ ≤ _ := (norm_add_le _ _).trans (add_le_add hib' (hT₁ z.im hy1))
     exact hb.trans ((le_max_right _ _).trans (le_max_right _ _))
 
@@ -1361,7 +1367,8 @@ lemma coeff_act_Gvec_strip_bound (h : UpperHalfPlane → ℂ)
   choose C hC0 hC using fun j => normPrim_strip_bound (differentiableOn_Fj hh j) (hd j) W hW
   let b : ℕ → ℝ := fun j => ‖(n.choose j : ℂ)‖ * C j *
     ‖AddMonoidAlgebra.coeff (act (R := ℂ) A (MvPolynomial.monomial (binaryExponent n j) 1)) e‖
-  refine ⟨∑ j ∈ Finset.range (n+1), b j, Finset.sum_nonneg (fun j _ => by dsimp [b]; exact mul_nonneg (mul_nonneg (norm_nonneg _) (hC0 j)) (norm_nonneg _)), ?_⟩
+  refine ⟨∑ j ∈ Finset.range (n+1), b j, Finset.sum_nonneg (fun j _ => by
+    dsimp [b]; exact mul_nonneg (mul_nonneg (norm_nonneg _) (hC0 j)) (norm_nonneg _)), ?_⟩
   intro z hz hzr
   rw [Gvec, vecOfFun, coeff_act_vecOfConst]
   apply (norm_sum_le _ _).trans

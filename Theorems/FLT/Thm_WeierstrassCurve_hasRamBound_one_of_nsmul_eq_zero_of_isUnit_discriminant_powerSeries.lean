@@ -71,7 +71,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
+namespace P2MW.S_OVERLONG_73f0b7c4
 
 open scoped Pointwise
 
@@ -347,9 +347,9 @@ theorem solution
   exact ⟨HahnSeries.hasRamBound_one_of_forall_ringEquiv_apply_eq (fun σ hv h1 => (step σ hv h1).1),
     HahnSeries.hasRamBound_one_of_forall_ringEquiv_apply_eq (fun σ hv h1 => (step σ hv h1).2)⟩
 
-end S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
+end S_OVERLONG_73f0b7c4
 end P2MW
-export P2MW.S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
+export P2MW.S_OVERLONG_73f0b7c4
   (solution)
 
 end privateSection

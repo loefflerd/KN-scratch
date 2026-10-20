@@ -69,7 +69,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
 
-set_option linter.unusedSectionVars false
 
 open Subgroup Monoid Monoid.CoprodI MulAction
 
@@ -338,12 +337,15 @@ variable [H.FiniteIndex]
 theorem wd_pos (x : X H) : 0 < wd H x :=
   Nat.pos_of_ne_zero (MulAction.minimalPeriod_pos τ x).ne
 
+omit [H.FiniteIndex] in
 theorem τ_pow_wd_smul (x : X H) : τ ^ wd H x • x = x :=
   (MulAction.pow_smul_eq_iff_minimalPeriod_dvd).mpr dvd_rfl
 
+omit [H.FiniteIndex] in
 theorem τ_zpow_smul_eq_iff (x : X H) (n : ℤ) : τ ^ n • x = x ↔ (wd H x : ℤ) ∣ n :=
   MulAction.zpow_smul_eq_iff_minimalPeriod_dvd
 
+omit [H.FiniteIndex] in
 theorem gen_mem (g : Gp) : g⁻¹ * τ ^ wd H (g : X H) * g ∈ H := by
   have h1 : ((τ ^ wd H (g : X H) * g : Gp) : X H) = (g : X H) := τ_pow_wd_smul H (g : X H)
   rw [QuotientGroup.eq] at h1
@@ -352,19 +354,24 @@ theorem gen_mem (g : Gp) : g⁻¹ * τ ^ wd H (g : X H) * g ∈ H := by
 
 def genAt (g : Gp) : H := ⟨g⁻¹ * τ ^ wd H (g : X H) * g, gen_mem H g⟩
 
+omit [H.FiniteIndex] in
 @[scoped simp] theorem genAt_coe (g : Gp) : (genAt H g : Gp) = g⁻¹ * τ ^ wd H (g : X H) * g := rfl
 
 def enum (g : Gp) (j : ℕ) : X H := (((τ ^ j)⁻¹ * g : Gp) : X H)
 
+omit [H.FiniteIndex] in
 theorem enum_eq_zpow_smul (g : Gp) (j : ℕ) : enum H g j = τ ^ (-(j : ℤ)) • (g : X H) := by
   rw [enum, zpow_neg, zpow_natCast]; rfl
 
+omit [H.FiniteIndex] in
 @[scoped simp] theorem cusp_enum (g : Gp) (j : ℕ) : cusp H (enum H g j) = cusp H (g : X H) := by
   rw [enum_eq_zpow_smul, cusp_τ_zpow_smul]
 
+omit [H.FiniteIndex] in
 theorem enum_zero (g : Gp) : enum H g 0 = (g : X H) := by
   rw [enum, pow_zero, inv_one, one_mul]
 
+omit [H.FiniteIndex] in
 theorem edgeChainHom_genAt_raw (g : Gp) :
     edgeChainHom H (Additive.ofMul (genAt H g))
       = ∑ j ∈ Finset.range (wd H (g : X H)),
@@ -406,10 +413,12 @@ theorem enum_injOn_range (g : Gp) :
   rw [hm0, mul_zero, sub_eq_zero] at hm
   exact_mod_cast hm.symm
 
+omit [H.FiniteIndex] in
 theorem enum_width (g : Gp) : enum H g (wd H (g : X H)) = enum H g 0 := by
   rw [enum_eq_zpow_smul, enum_zero]
   exact (τ_zpow_smul_eq_iff H _ _).mpr (by simp)
 
+omit [H.FiniteIndex] in
 theorem sum_enum_succ {M : Type*} [AddCommGroup M] (g : Gp) (f : X H → M) :
     ∑ j ∈ Finset.range (wd H (g : X H)), f (enum H g (j + 1))
       = ∑ j ∈ Finset.range (wd H (g : X H)), f (enum H g j) := by
@@ -491,6 +500,7 @@ theorem edgeChar_genAt (e : X H) (g : Gp) :
   rw [edgeChainHom_genAt_apply, cuspDiffAt, Pi.sub_apply, Pi.single_apply, Pi.single_apply]
   simp only [@eq_comm _ (cusp H (g : X H))]
 
+omit [H.FiniteIndex] in
 theorem single_sub_single_mem_span_of_smul (k : Gp) (e : X H) :
     (Pi.single (cusp H (k • e)) 1 - Pi.single (cusp H e) 1 : Cu H → ℤ)
       ∈ Submodule.span ℤ (Set.range (cuspDiffAt H)) := by
@@ -518,6 +528,7 @@ theorem single_sub_single_mem_span_of_smul (k : Gp) (e : X H) :
       · rw [cusp_τ_smul, sub_self]; exact Submodule.zero_mem _
   exact key e
 
+omit [H.FiniteIndex] in
 theorem single_sub_single_mem_span_cuspDiffAt (c c' : Cu H) :
     (Pi.single c' 1 - Pi.single c 1 : Cu H → ℤ)
       ∈ Submodule.span ℤ (Set.range (cuspDiffAt H)) := by

@@ -69,7 +69,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
+namespace P2MW.S_OVERLONG_44f45b4b
 
 
 open WeierstrassCurve WeierstrassCurve.Affine ModularCurve
@@ -748,10 +748,10 @@ theorem solution
   have h31 : (3 - 1) * nuThree N = 2 * nuThree N := by norm_num
   rw [h1, h2, h3, h4, h5, h31]
 
-end S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
+end S_OVERLONG_44f45b4b
 end P2MW
 export
-  P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
+  P2MW.S_OVERLONG_44f45b4b
   (solution)
 
 end privateSection

@@ -77,7 +77,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane Filter Topology Function
@@ -630,6 +629,7 @@ theorem mdifferentiable_sl_smul (γ : SL(2, ℤ)) : MDiff (fun τ : ℍ => γ �
   apply UpperHalfPlane.mdifferentiable_smul
   simp
 
+omit [NeZero M] in
 theorem famS_stable (γ : SL(2, ℤ)) : ∀ G ∈ famS M, (G ∘ (γ • ·)) ∈ famS M := by
   rintro G ⟨hG, hinv, hpb⟩
   have : (CongruenceSubgroup.Gamma M).Normal := CongruenceSubgroup.Gamma_normal M
@@ -659,6 +659,7 @@ theorem exists_levelFraction {G : ℍ → ℂ} (hG : G ∈ famS M) :
 
 variable {Γ : Subgroup SL(2, ℤ)} {k : ℤ}
 
+omit [NeZero M] in
 theorem FF_mem_famS (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) [Γ.FiniteIndex]
     (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) : FF k f g ∈ famS M :=
   ⟨mdifferentiable_FF k f.holo' g.holo', fun δ hδ τ => FF_smul_of_mem f g (hΓ hδ) τ,
@@ -674,6 +675,7 @@ theorem periodic_FF (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
   simp only [Function.comp_apply, Complex.ofReal_one] at hf hg hΔ ⊢
   rw [FF_apply, FF_apply, hf, hg, hΔ]
 
+omit [NeZero M] in
 theorem good_FF_mul_pow (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
     (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
     Good M (FF k f g * (Δ : ℍ → ℂ) ^ k.toNat) where
@@ -687,6 +689,7 @@ theorem good_FF_mul_pow (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]
   mdiff := (mdifferentiable_FF k f.holo' g.holo').mul ((good_discriminant M).pow _).mdiff
   bdd := by simpa using isBoundedAtImInfty_FF_smul f g 1
 
+omit [NeZero M] in
 theorem Good.of_one {f : ℍ → ℂ} (hf : Good 1 f) : Good M f where
   periodic := by simpa using hf.periodic.nat_mul M
   mdiff := hf.mdiff
@@ -725,6 +728,7 @@ theorem E_mul_pow
 
 theorem E_injective : Function.Injective (E M K) := (E M K).toRingHom.injective
 
+omit [NeZero M] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring M)) K] in
 theorem algebraMap_ne_zero {b : ℍ → ℂ} (hb : b ∈ ring M) (hb0 : b ≠ 0) :
     algebraMap (ring M) K ⟨b, hb⟩ ≠ 0 := by
   intro h
@@ -850,6 +854,7 @@ def fixedSub : Subfield K where
   neg_mem' {x} hx := fun γ hγ hst φ hφ => by rw [map_neg, hx γ hγ hst φ hφ]
   inv_mem' x hx := fun γ hγ hst φ hφ => by rw [map_inv₀, hx γ hγ hst φ hφ]
 
+omit [NeZero M] [IsScalarTower ℂ (↥(ring M)) K] [IsFractionRing (↥(ring M)) K] in
 theorem algebraMap_mem_fixedSub (c : ℂ) : algebraMap ℂ K c ∈ fixedSub M K Γ :=
   fun γ hγ hst φ hφ => φ.commutes c
 

@@ -60,7 +60,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
+namespace P2MW.S_OVERLONG_d34bfdc7
 
 open AlgebraicCurve
 open IsDedekindDomain WithZero IsLocalRing
@@ -79,10 +79,10 @@ theorem solution {K : Type*} [Field K] (v : Place K (RatFunc K))
         v hv).symm hπ hf,
     RatFunc.inftyValuation_apply, RatFunc.inftyValuation_of_nonzero K hf, log_exp]
 
-end S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
+end S_OVERLONG_d34bfdc7
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
+  P2MW.S_OVERLONG_d34bfdc7
   (solution)
 
 end privateSection

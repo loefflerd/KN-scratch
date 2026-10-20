@@ -264,10 +264,9 @@ end SupportTransfer
 section Chart
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
+variable {R : Type*} [CommRing R] [Algebra R F]
 variable (w : Place K F)
 
-omit [IsDedekindDomain R] [IsFractionRing R F] in
 private theorem inv_algebraMap_mem (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring)
     {s : R} (hs : IsUnit (chartHom w hw s)) :
     (algebraMap R F s)⁻¹ ∈ w.toValuationSubring := by

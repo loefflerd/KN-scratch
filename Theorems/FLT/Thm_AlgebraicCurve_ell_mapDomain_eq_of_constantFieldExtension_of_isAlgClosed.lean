@@ -166,7 +166,7 @@ theorem solution
     rw [eq_top_iff]
     rintro ⟨f', hf'⟩ -
     have hmem_img : f' ∈ Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) :=
-      AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
+      lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
         K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj D hf'
     have heq : Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) =
         Submodule.span K' (Set.range fun i => algebraMap F F' (b i : F)) := by

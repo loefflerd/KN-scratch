@@ -377,7 +377,9 @@ theorem solution (N : ℕ) [NeZero N]
     rw [hHcoe]
     obtain ⟨-, hq⟩ := qExpansion_finset_sum_smul idx (fun p => ((c p.1 p.2 : ℝ) : ℂ))
       (fun p => ((mono e δ eN δN m n p.1 p.2) : ℍ → ℂ)) (fun p _ => an_mf' _)
-      (by simpa [FunLike.coe_zero] using an_of_modularForm hΓ (0 : ModularForm (CongruenceSubgroup.Gamma0 N) 0))
+      (by
+        simpa [FunLike.coe_zero] using an_of_modularForm hΓ (0 : ModularForm
+          (CongruenceSubgroup.Gamma0 N) 0))
     rw [hq, map_sum]
     have hterm : ∀ p ∈ idx, ((((c p.1 p.2 : ℝ) : ℂ) • qExpansion 1 ((mono e δ eN δN m n p.1 p.2) : ℍ
       → ℂ) : PowerSeries ℂ) :
@@ -429,7 +431,9 @@ theorem solution (N : ℕ) [NeZero N]
             ((ModularForm.E₄ : ℍ → ℂ) σ' ^ 3 / ModularForm.discriminant σ') ^ p.1)
         = (((c p.1 p.2 : ℝ) : ℂ)) * (ModularForm.discriminant σ ^ m *
             ((ModularForm.E₄ : ℍ → ℂ) σ ^ 3 / ModularForm.discriminant σ) ^ p.2) *
-          (ModularForm.discriminant σ' ^ n * ((ModularForm.E₄ : ℍ → ℂ) σ' ^ 3 / ModularForm.discriminant σ') ^ p.1) by ring,
+          (ModularForm.discriminant σ' ^ n * ((ModularForm.E₄ : ℍ → ℂ) σ' ^ 3 /
+            ModularForm.discriminant σ') ^ p.1) by
+            ring,
       pow_mul_div_pow _ _ hd1 hk, pow_mul_div_pow _ _ hd2 hi]
     ring
   rw [Finset.sum_congr rfl hterm', ← Finset.mul_sum] at hpt

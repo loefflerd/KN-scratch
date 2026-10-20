@@ -250,7 +250,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule \
   P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -891,7 +890,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.GF24a9RRDx \
@@ -910,7 +908,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -970,7 +967,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1103,7 +1099,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -1215,7 +1210,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1341,7 +1335,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1393,7 +1386,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1443,7 +1435,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1574,8 +1565,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1608,8 +1597,8 @@ theorem finrankTrace_eq_trace_on_superspace
   let i : LinearMap.range φ →ₗ[K] W := Submodule.inclusion hrange
   let π : W →ₗ[K] LinearMap.range φ :=
     { toFun := fun w => ⟨φ (w : V), LinearMap.mem_range_self φ (w : V)⟩
-      map_add' := fun w₁ w₂ => by simp [Subtype.ext_iff]
-      map_smul' := fun c w => by simp [Subtype.ext_iff] }
+      map_add' := fun w₁ w₂ => by simp
+      map_smul' := fun c w => by simp }
   have hip : i ∘ₗ π = φ.restrict hW := by
     apply LinearMap.ext; intro w; apply Subtype.ext; rfl
   have hpi : π ∘ₗ i = φ.restrict (fun x _ => LinearMap.mem_range_self φ x) := by
@@ -1656,7 +1645,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1795,7 +1783,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -1873,8 +1860,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -1941,8 +1926,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -2024,8 +2007,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -2164,8 +2145,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -2435,8 +2414,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -2574,8 +2551,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -2778,7 +2753,6 @@ section Headline
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
 
 theorem kwF4gRRTate_traceCompat_of_blockSum
     (hfinF : KwF4gRRTateCommFinite K F) (hfinE : KwF4gRRTateCommFinite K E)
@@ -2820,8 +2794,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -3017,8 +2989,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -3240,8 +3210,7 @@ theorem kwF4gRRTate_blockSum_of_integralBasisCompat
   have hPconj : eD.conj pI = P := by
     apply LinearMap.ext; intro x
     simp only [heD, hpI, integralProdProj, hP, LinearEquiv.conj_apply, LinearMap.comp_apply,
-      LinearEquiv.coe_coe, LinearEquiv.symm_symm, LinearEquiv.apply_symm_apply,
-      LinearEquiv.symm_apply_apply]
+      LinearEquiv.coe_coe, LinearEquiv.symm_symm, LinearEquiv.apply_symm_apply]
     rfl
   have hTCDconj : eD.conj (tateCommDual pI (lmulK w (algebraMap F W₀ g)) (lmulK w ghF))
       = tateCommDual P (matMulLin (w.restrict E) M') (scalarLin (w.restrict E) πv) := by
@@ -3342,8 +3311,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
@@ -3442,7 +3409,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -3492,6 +3458,7 @@ def kwF4R1V384a_semilocalComponent (v : Place K E) (w' : v.fiber F) :
   Algebra.TensorProduct.lift (Algebra.ofId v.adicCompletion w'.1.adicCompletion)
     (IsScalarTower.toAlgHom E F w'.1.adicCompletion) (fun _ _ => mul_comm _ _)
 
+omit [HasPrincipalDivisors K E] in
 @[scoped simp]
 theorem kwF4R1V384a_semilocalComponent_tmul (v : Place K E) (w' : v.fiber F)
     (c : v.adicCompletion) (g : F) :
@@ -3509,9 +3476,10 @@ section PerComponentSurjective
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F] [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
+variable [Algebra.IsIntegral E F] [HasPrincipalDivisors K F]
 variable [FiniteDimensional E F]
 
+omit [HasPrincipalDivisors K F] [FiniteDimensional E F] in
 theorem kwF4R1V384a_completionLinearCombination_surjective
     (w' : Place K F) {ι : Type*} [Fintype ι] (b : Module.Basis ι E F) :
     Function.Surjective (kw_ffgc_completionLinearCombination E w' b) := by
@@ -3561,7 +3529,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
@@ -3647,8 +3614,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \

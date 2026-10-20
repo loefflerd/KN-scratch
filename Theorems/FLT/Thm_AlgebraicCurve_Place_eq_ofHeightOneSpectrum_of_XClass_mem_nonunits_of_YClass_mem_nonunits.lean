@@ -45,7 +45,8 @@ y$ in its maximal ideal — a place centred at the affine point $(x,y)$ — is t
 order of vanishing at the corresponding height-one prime of the coordinate ring. It is used to
 identify the place attached to an affine point of a Weierstrass curve with an adic place, in
 [`WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits`]
-(thm.html#WeierstrassCurve.Affine.eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits),
+(thm.html#WeierstrassCurve.Affine.
+eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits),
 [`WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum`]
 (thm.html#WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum)
 and in the comparison of places under a variable change.
@@ -62,7 +63,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+namespace P2MW.S_OVERLONG_d1e0a4c0
 
 open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine Polynomial
 
@@ -125,10 +126,10 @@ theorem solution
   subst heq
   exact AlgebraicCurve.Place.ext (by rw [Place.ofHeightOneSpectrum_toValuationSubring]; exact hw')
 
-end S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+end S_OVERLONG_d1e0a4c0
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+  P2MW.S_OVERLONG_d1e0a4c0
   (solution)
 
 end privateSection

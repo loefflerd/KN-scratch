@@ -217,7 +217,6 @@ end WithZero
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule \
   P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -513,7 +512,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero \
@@ -532,7 +530,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsLocalRing \
@@ -584,7 +581,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve \
   P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.GF24a9RRDx AlgebraicCurve.Place \
@@ -661,7 +657,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -721,7 +716,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -855,7 +849,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -1072,7 +1065,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1198,7 +1190,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1250,7 +1241,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1300,7 +1290,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1431,8 +1420,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1464,8 +1451,8 @@ theorem finrankTrace_eq_trace_on_superspace
   let i : LinearMap.range φ →ₗ[K] W := Submodule.inclusion hrange
   let π : W →ₗ[K] LinearMap.range φ :=
     { toFun := fun w => ⟨φ (w : V), LinearMap.mem_range_self φ (w : V)⟩
-      map_add' := fun w₁ w₂ => by simp [Subtype.ext_iff]
-      map_smul' := fun c w => by simp [Subtype.ext_iff] }
+      map_add' := fun w₁ w₂ => by simp
+      map_smul' := fun c w => by simp }
   have hip : i ∘ₗ π = φ.restrict hW := by
     apply LinearMap.ext; intro w; apply Subtype.ext; rfl
   have hpi : π ∘ₗ i = φ.restrict (fun x _ => LinearMap.mem_range_self φ x) := by
@@ -1513,7 +1500,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1651,7 +1637,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1729,8 +1714,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -1797,8 +1780,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap \
@@ -1880,8 +1861,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -2020,8 +1999,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -2291,8 +2268,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -2362,8 +2337,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -2509,7 +2482,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place FunctionField \
@@ -2531,8 +2503,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
 variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [HasPrincipalDivisors K E] [HasPrincipalDivisors K F] [FiniteDimensional E F]
-variable [Nontrivial Ω[E⁄K]]
+variable [HasPrincipalDivisors K F] [FiniteDimensional E F]
 
 theorem kwF4R1V394a_localResidueCompletion_smul
     (v : Place K E) (c : K) (xh : v.adicCompletion) :
@@ -2561,7 +2532,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -3007,7 +2977,6 @@ p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRR
 namespace KwOdaDHDR
 p2m_open "ModularCurve"
 
-set_option linter.unusedSectionVars false
 section Generic
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -3117,7 +3086,6 @@ p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRR
 namespace KwOdaDHDR
 p2m_open "ModularCurve"
 
-set_option linter.unusedSectionVars false
 section Generic
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -3243,7 +3211,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -3376,6 +3343,7 @@ theorem kwTateRR3_localResidueCompletion_sub (u : Place K L) (xh yh : u.adicComp
         - kwHgfV352_localResidueCompletion u yh := by
   rw [eq_sub_iff_add_eq, ← kwHgfV352_localResidueCompletion_add, sub_add_cancel]
 
+omit [IsCurveOver K L] [PerfectField K] in
 theorem algebraMap_sub_cohenSectionHat_eq_v410a (u : Place K L)
     (S : Lg37CompletionSection u) (ℓ : u.toValuationSubring) :
     algebraMap L u.adicCompletion (ℓ : L)
@@ -3535,7 +3503,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place \
@@ -3782,7 +3749,7 @@ end Disjoint
 section Codisjoint
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
-variable [IsCurveOver K L] [PerfectField K] (u : Place K L)
+variable (u : Place K L)
 variable (S : Lg37CompletionSection u)
 
 theorem uniformizerHat_inv_mul_mem_integers_of_valued_le

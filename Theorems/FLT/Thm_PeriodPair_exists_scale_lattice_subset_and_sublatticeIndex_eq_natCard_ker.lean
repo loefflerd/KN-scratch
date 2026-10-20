@@ -49,7 +49,8 @@ homotheties between lattices: a homomorphism of the point groups lifting $z \map
 produces a homothety $\beta\Lambda' \subseteq \Lambda$ whose index matches the degree $\#\ker\psi$.
 It feeds into
 [`PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient`]
-(thm.html#PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient),
+(thm.html#PeriodPair.
+exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient),
 where the quotient is in addition shown to be cyclic.
 
 ## Explanation of the source proof
@@ -67,7 +68,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 namespace PeriodPair
@@ -496,7 +496,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -536,7 +535,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -567,11 +565,13 @@ def kw_surgehgf4_hID_kerIndexHom : L'.lattice.toAddSubgroup →+ ψ.ker where
     push_cast; rw [mul_add]; exact map_add L.kw_toPointHom _ _
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_kerIndexHom_apply (l' : L'.lattice.toAddSubgroup) :
     (kw_surgehgf4_hID_kerIndexHom L L' α ψ hint l' : L.weierstrassCurve.toAffine.Point)
       = L.kw_toPointHom ((α : ℂ)⁻¹ * (l' : ℂ)) := rfl
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_scale_subset :
     ((L.scale α).lattice : Set ℂ) ⊆ L'.lattice := by
   intro z hz
@@ -584,6 +584,7 @@ theorem kw_surgehgf4_hID_scale_subset :
   rw [hl0, _root_.map_zero]
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_kerIndexHom_surjective :
     Function.Surjective (kw_surgehgf4_hID_kerIndexHom L L' α ψ hint) := by
   rintro ⟨P, hP⟩
@@ -596,6 +597,7 @@ theorem kw_surgehgf4_hID_kerIndexHom_surjective :
       L.kw_toPointHom_apply, hz]⟩
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_ker_kerIndexHom :
     (kw_surgehgf4_hID_kerIndexHom L L' α ψ hint).ker
       = (L.scale α).lattice.toAddSubgroup.addSubgroupOf L'.lattice.toAddSubgroup := by
@@ -617,6 +619,7 @@ theorem kw_surgehgf4_hID_ker_kerIndexHom :
     exact hv
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_forwardIndex_eq_card_ker :
     PeriodPair.sublatticeIndex L' (L.scale α) = Nat.card ψ.ker := by
   unfold PeriodPair.sublatticeIndex
@@ -626,6 +629,7 @@ theorem kw_surgehgf4_hID_forwardIndex_eq_card_ker :
   rfl
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_card_smul_subset :
     ∀ l' ∈ L'.lattice, (Nat.card ψ.ker : ℂ) * l' ∈ (L.scale α).lattice := by
   intro l' hl'
@@ -663,6 +667,7 @@ variable (L L' : PeriodPair)
   (hint : ∀ z, L'.kw_toPointHom ((α : ℂ) * z) = ψ (L.kw_toPointHom z))
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_dual_subset (hN : 0 < Nat.card ψ.ker) :
     ((L'.scale (kw_surgehgf4_hID_dualUnit α ψ hN)).lattice : Set ℂ) ⊆ L.lattice := by
   intro z hz
@@ -699,7 +704,8 @@ def kw_surgehgf4_hID_scaleIndexHom (M : PeriodPair) {N : ℕ} (hN : 0 < N) :
 
 theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
     {N : ℕ} (hN : 0 < N) :
-    PeriodPair.sublatticeIndex M (M.scale (Units.mk0 (N : ℂ) (by exact_mod_cast hN.ne'))) = N ^ 2 := by
+    PeriodPair.sublatticeIndex M (M.scale (Units.mk0 (N : ℂ) (by
+      exact_mod_cast hN.ne'))) = N ^ 2 := by
   set Nu := Units.mk0 (N : ℂ) (by exact_mod_cast hN.ne') with hNudef
   have hNuval : (Nu : ℂ) = (N : ℂ) := by rw [hNudef, Units.val_mk0]
   have hNinv : (Nu : ℂ)⁻¹ = (N : ℂ)⁻¹ := by rw [hNuval]
@@ -745,6 +751,7 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
   rfl
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_card_ker_pos : 0 < Nat.card ψ.ker := by
   rw [← kw_surgehgf4_hID_forwardIndex_eq_card_ker L L' α ψ hint]
   refine Nat.pos_of_ne_zero ?_
@@ -766,6 +773,7 @@ theorem kw_surgehgf4_hID_card_ker_pos : 0 < Nat.card ψ.ker := by
   exact absurd h0R (ne_of_gt hratio)
 
 include hint in
+omit [L.weierstrassCurve.IsElliptic] [L'.weierstrassCurve.IsElliptic] in
 theorem kw_surgehgf4_hID_dualIndex_eq (hN : 0 < Nat.card ψ.ker) :
     PeriodPair.sublatticeIndex L (L'.scale (kw_surgehgf4_hID_dualUnit α ψ hN))
       = Nat.card ψ.ker := by

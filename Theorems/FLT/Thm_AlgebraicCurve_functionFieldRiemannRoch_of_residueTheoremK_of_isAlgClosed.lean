@@ -79,7 +79,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 noncomputable section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
-set_option linter.unusedSectionVars false
 
 open AlgebraicCurve Divisor Polynomial IsDedekindDomain WithZero IsLocalRing
   Module Module.IsLocalRing
@@ -257,7 +256,7 @@ namespace Place
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.isUnit_mk_of_ord_eq_zero {f : F} (hf : f ≠ 0)
+private theorem isUnit_mk_of_ord_eq_zero {f : F} (hf : f ≠ 0)
     (h : v.ord f = 0) :
     IsUnit (⟨f, v.mem_of_ord_nonneg hf h.ge⟩ : v.toValuationSubring) := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -268,7 +267,7 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_mk_of_ord_eq_zero {f : F} (hf
   rw [huf]
   exact u.isUnit
 
-private theorem _root_.AlgebraicCurve.Place.residue_ne_zero_of_ord_eq_zero {f : F} (hf : f ≠ 0)
+private theorem residue_ne_zero_of_ord_eq_zero {f : F} (hf : f ≠ 0)
     (h : v.ord f = 0) :
     residue v.toValuationSubring (⟨f, v.mem_of_ord_nonneg hf h.ge⟩ : v.toValuationSubring)
       ≠ 0 :=
@@ -470,7 +469,7 @@ namespace Place
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.mk_mem_maximalIdeal_iff {f : F}
+private theorem mk_mem_maximalIdeal_iff {f : F}
     (hf : f ∈ v.toValuationSubring) :
     (⟨f, hf⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring
       ↔ f = 0 ∨ 0 < v.ord f := by
@@ -1368,9 +1367,8 @@ theorem adeleBddPrincipal_eq_comap [HasPrincipalDivisors K F] (D : Divisor K F) 
 
 section FiniteLSpace
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
 
-omit [Nonempty (Place K F)] in
 theorem finiteDimensional_lSpace [hL0 : FiniteDimensional K (LSpace (0 : Divisor K F))]
     (D : Divisor K F) : FiniteDimensional K (LSpace D) := by
   have h0D : (0 : Divisor K F) ≤ D ⊔ 0 := le_sup_right
@@ -1526,7 +1524,7 @@ end Index
 
 namespace RiemannGenusReachedAt
 
-private theorem _root_.AlgebraicCurve.RiemannGenusReachedAt.eq_of_ge [IsCurveOver K F]
+private theorem eq_of_ge [IsCurveOver K F]
     [Nonempty (Place K F)]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
@@ -1888,11 +1886,10 @@ section Identification
 
 variable [IsCurveOver K F] [Nonempty (Place K F)]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]
-  [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
-  [HasCanonicalLocalResidueKStar K F]
+  [HasCanonicalDivisor (K := K) (F := F)]
 
-omit [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
-  [HasCanonicalLocalResidueKStar K F] in
+omit [HasCanonicalDivisor (K := K) (F := F)]
+  in
 theorem stichtenothGenus_nonneg
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     (hC : ConstantsAreBase K F) : 0 ≤ γ := by
@@ -1902,7 +1899,7 @@ theorem stichtenothGenus_nonneg
   push_cast at hi0; linarith
 
 omit [Nonempty (Place K F)] [FiniteDimensional K (LSpace (0 : Divisor K F))]
-  [∀ v : Place K F, v.DCoordGenerates] [HasCanonicalLocalResidueKStar K F] in
+  in
 theorem genus_eq_degree_div :
     ∃ (ω₀ : Ω[F⁄K]) (hω₀ : ω₀ ≠ 0),
       genus K F = (Divisor.degree (canonicalDivisorOf hω₀) + 2).toNat / 2 := by
@@ -2011,13 +2008,12 @@ section
 namespace AlgebraicCurve
 
 section CanonicalKResidueTerm
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 section SupportMachinery
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
 variable (K F)
 variable {K F}
 
-omit [HasCanonicalLocalResidueKStar K F] in
 theorem weilOfKaehlerK_mem_omegaSpace_of_residueTheoremK [HasPrincipalDivisors K F]
     (hRT : ResidueTheoremK K F) (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK)
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
@@ -2082,7 +2078,7 @@ end SimplePoleProbe
 
 namespace Place
 
-private theorem _root_.AlgebraicCurve.Place.exists_trace_residue_ne_zero [HasSeparableResidue K F]
+private theorem exists_trace_residue_ne_zero [HasSeparableResidue K F]
     (v : Place K F) :
     ∃ c : v.toValuationSubring,
       Algebra.trace K v.ResidueField (IsLocalRing.residue _ c) ≠ 0 := by
@@ -2515,13 +2511,13 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral {f : F}
+private theorem mem_of_isIntegral {f : F}
     (hf : _root_.IsIntegral w.toValuationSubring f) :
     f ∈ w.toValuationSubring := by
   obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hf
   exact hy ▸ y.2
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral_of_algebraMap_mem {A : Type*}
+private theorem mem_of_isIntegral_of_algebraMap_mem {A : Type*}
     [CommRing A] [Algebra A F]
     (hA : ∀ a : A, algebraMap A F a ∈ w.toValuationSubring)
     {f : F} (hf : _root_.IsIntegral A f) : f ∈ w.toValuationSubring := by
@@ -2541,7 +2537,7 @@ variable {A : Type*} [CommRing A] [Algebra A E] [Algebra A F] [IsScalarTower A E
 
 namespace Place
 
-private theorem _root_.AlgebraicCurve.Place.mem_of_isIntegral_of_restrict [Algebra.IsIntegral E F]
+private theorem mem_of_isIntegral_of_restrict [Algebra.IsIntegral E F]
     (w : Place K F)
     {u : Place K E} (hw : w.restrict E = u)
     (hA : ∀ a : A, algebraMap A E a ∈ u.toValuationSubring)
@@ -2554,7 +2550,7 @@ end Place
 
 namespace Place
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_isIntegral_of_restrict
+private theorem ord_nonneg_of_isIntegral_of_restrict
     [Algebra.IsIntegral E F] (w : Place K F)
     {u : Place K E} (hw : w.restrict E = u)
     (hA : ∀ a : A, algebraMap A E a ∈ u.toValuationSubring)
@@ -2830,10 +2826,8 @@ end RationalFunctionField
 
 namespace RationalFunctionField
 
-variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
-variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
-  [IsScalarTower K (RatFunc K) F]
-omit [DecidableEq (RatFunc K)] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] in
+variable (K : Type*) [Field K]
+variable (F : Type*) [Field F] [Algebra K F]
 theorem finiteDimensional_lSpace_zero_of_constantsAreBase (hC : ConstantsAreBase K F) :
     FiniteDimensional K (LSpace (0 : Divisor K F)) := by
   rw [show LSpace (0 : Divisor K F) = LinearMap.range (Algebra.linearMap K F) from hC]
@@ -2849,13 +2843,12 @@ namespace AlgebraicCurve
 
 namespace RationalFunctionField
 
-variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
+variable (K : Type*) [Field K]
 variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
   [IsScalarTower K (RatFunc K) F]
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsCurveOver K F]
 
-omit [DecidableEq (RatFunc K)] in
 theorem stichtenothGenusExists (hC : ConstantsAreBase K F) :
     StichtenothGenusExists K F := by
   classical
@@ -2877,13 +2870,11 @@ section
 namespace ModularCurve
 
 section AlgClosedEngine
-variable (K F : Type*) [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable [DecidableEq (RatFunc K)]
+variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsAlgClosed K] [IsCurveOver K F]
 
-omit [DecidableEq (RatFunc K)] in
 theorem p0n20_rr_constantsAreBase_of_isAlgClosed : ConstantsAreBase K F := by
   classical
   obtain ⟨v⟩ := RationalFunctionField.nonempty_place_of_ratFunc_tower K F
@@ -2904,6 +2895,7 @@ section CanonicalProbe
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
 
 open scoped Classical in
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem p0n25_wkc_kaehlerResidueTermKFam_single_of_ne
     (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK) (ω : Ω[F⁄K])
     {v : Place K F} (g : F) {w : Place K F} (hw : w ≠ v) :
@@ -2911,6 +2903,7 @@ theorem p0n25_wkc_kaehlerResidueTermKFam_single_of_ne
   rw [kaehlerResidueTermKFam_apply, Pi.single_eq_of_ne hw, zero_mul, _root_.map_zero,
     _root_.map_zero]
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem p0n25_wkc_localResidueData_res_mul_uniformizer_inv
     {v : Place K F} (R : v.LocalResidueData) (c : v.toValuationSubring) :
     R.res ((c : F) * v.uniformizer⁻¹) = IsLocalRing.residue _ c := by
@@ -2925,6 +2918,7 @@ theorem p0n25_wkc_localResidueData_res_mul_uniformizer_inv
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
 
 open scoped Classical in
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem p0n25_wkc_weilOfKaehlerK_single
     (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK)
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) (v : Place K F) (g : F) :
@@ -2935,6 +2929,7 @@ theorem p0n25_wkc_weilOfKaehlerK_single
     fun w hw => p0n25_wkc_kaehlerResidueTermKFam_single_of_ne Rfam ω g hw).trans ?_
   rw [kaehlerResidueTermKFam_apply, Pi.single_eq_same]
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem p0n25_wkc_weilOfKaehlerK_simplePoleProbe
     (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK)
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) (v : Place K F) (c : v.toValuationSubring) :
@@ -2950,7 +2945,7 @@ end CanonicalProbe
 
 section CanonicalNonvanishingMaximality
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
 
 theorem p0n25_wkc_weilOfKaehlerK_ne_zero [HasSeparableResidue K F] [Nonempty (Place K F)]
@@ -2988,7 +2983,7 @@ end CanonicalNonvanishingMaximality
 
 section CanonicalSupply
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
 
 theorem p0n25_wkc_exists_weilMax_of_residueTheoremK
@@ -3006,11 +3001,12 @@ end CanonicalSupply
 
 section MirrorIdentification
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable [IsCurveOver K F] [HasCanonicalDivisor (K := K) (F := F)]
 variable [∀ v : Place K F, v.DCoordGenerates]
 variable [Nonempty (Place K F)] [FiniteDimensional K (LSpace (0 : Divisor K F))]
 
+omit [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_finrank_omegaSpace_eq_ell_of_genusReached_of_weilMax
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     {ω : Ω[F⁄K]} (hω : ω ≠ 0)
@@ -3024,6 +3020,7 @@ theorem p0n25_wkc_finrank_omegaSpace_eq_ell_of_genusReached_of_weilMax
     (weilDifferentialRankOne_of_genusReached h) hmem hne hmax D
   exact (LinearEquiv.ofBijective _ ⟨hinj, hsurj⟩).finrank_eq.symm
 
+omit [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_ell_canonicalDivisor_eq_gamma_of_weilMax
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
@@ -3041,6 +3038,7 @@ theorem p0n25_wkc_ell_canonicalDivisor_eq_gamma_of_weilMax
   push_cast at hi0
   linarith
 
+omit [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_degree_canonicalDivisor_eq_of_weilMax
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
@@ -3059,6 +3057,7 @@ theorem p0n25_wkc_degree_canonicalDivisor_eq_of_weilMax
   push_cast at hiW
   linarith
 
+omit [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_stichtenothGenus_eq_genus_of_weilMax
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
@@ -3078,15 +3077,14 @@ end MirrorIdentification
 
 section MirrorAssembly
 
-variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
-variable (F : Type*) [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-    [Algebra (RatFunc K) F]
-  [IsScalarTower K (RatFunc K) F]
+variable (K : Type*) [Field K]
+variable (F : Type*) [Field F] [Algebra K F]
+    [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsCurveOver K F] [HasCanonicalDivisor (K := K) (F := F)]
 variable [∀ v : Place K F, v.DCoordGenerates]
 
-omit [DecidableEq (RatFunc K)] in
+omit [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_riemannGenusReached_of_weilMax
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
@@ -3100,7 +3098,7 @@ theorem p0n25_wkc_riemannGenusReached_of_weilMax
   have hγeq := p0n25_wkc_stichtenothGenus_eq_genus_of_weilMax hD₀ hsup hC
   exact ⟨hne, hL0, D₀, hγeq ▸ hD₀⟩
 
-omit [DecidableEq (RatFunc K)] in
+omit [IsCurveOver K F] [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_riemannIndexFormula_of_weilMax
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
@@ -3112,7 +3110,9 @@ theorem p0n25_wkc_riemannIndexFormula_of_weilMax
   intro _ _
   exact p0n25_wkc_riemannGenusReached_of_weilMax K F hsup hC
 
-omit [DecidableEq (RatFunc K)] in
+omit [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
+  [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
+  [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_weilOmegaEllAgrees_of_weilMax [Nonempty (Place K F)]
     (hRI : RiemannIndexFormula K F)
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
@@ -3129,7 +3129,7 @@ theorem p0n25_wkc_weilOmegaEllAgrees_of_weilMax [Nonempty (Place K F)]
   exact_mod_cast (LinearEquiv.ofBijective
     (residuePairing K F (canonicalDivisorOf hω) D hmem) ⟨hinj, hsurj⟩).finrank_eq.symm
 
-omit [DecidableEq (RatFunc K)] in
+omit [IsCurveOver K F] [∀ (v : Place K F), v.DCoordGenerates] in
 theorem p0n25_wkc_functionFieldRiemannRoch_of_weilMax_of_constantsAreBase
     (hsup : ∀ {ω : Ω[F⁄K]} (hω : ω ≠ 0), ∃ φ : Module.Dual K (adeleSpace K F),
       φ ≠ 0 ∧ φ ∈ omegaSpace (canonicalDivisorOf hω) ∧
@@ -3147,7 +3147,7 @@ theorem p0n25_wkc_functionFieldRiemannRoch_of_weilMax_of_constantsAreBase
   intro _ _ _ ω hω D
   exact functionFieldRiemannRoch_of_riemann_and_duality K F hWD hω D
 
-omit [DecidableEq (RatFunc K)] in
+omit [IsCurveOver K F] in
 theorem p0n25_wkc_functionFieldRiemannRoch_of_residueTheoremK
     [HasSeparableResidue K F]
     (hRTK : ResidueTheoremK K F) (hC : ConstantsAreBase K F) :

@@ -48,7 +48,8 @@ construction of curves over a field in this development, being cited by
 (thm.html#AlgebraicCurve.isCurveOver_of_transcendental)
 and by
 [`AlgebraicCurve.exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one`]
-(thm.html#AlgebraicCurve.exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one).
+(thm.html#AlgebraicCurve.
+exists_isCurveOver_adjoin_range_eq_top_apply_algEquiv_eq_pow_of_pow_eq_one).
 
 ## Explanation of the source proof
 

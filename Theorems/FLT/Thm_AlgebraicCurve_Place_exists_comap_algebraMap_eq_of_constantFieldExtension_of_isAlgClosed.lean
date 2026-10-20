@@ -70,7 +70,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
+namespace P2MW.S_OVERLONG_a5384eef
 
 open AlgebraicCurve
 
@@ -632,7 +632,7 @@ theorem solution (K F K' F' : Type*)
       (by rw [inv_inv]; exact hnu)
     exact this.resolve_left (inv_ne_zero ((map_ne_zero _).2 hπ0))
   obtain ⟨t', hfin', hsep'⟩ :=
-    AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
+    exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hgen
   have := hfin'; have := hsep'
   obtain ⟨P', hP'⟩ :=
@@ -668,10 +668,10 @@ theorem solution (K F K' F' : Type*)
     exact mul_mem (mul_mem (hAV' _ (algebraMap_coe_mem_rangePsi F' B P _)) hfV) (pow_mem hπV _)
   exact ⟨P', hover, ordEq P' hover, fun Q' hQ' => uniq Q' P' hQ' hover⟩
 
-end S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
+end S_OVERLONG_a5384eef
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
+  P2MW.S_OVERLONG_a5384eef
   (solution)
 
 end privateSection

@@ -140,7 +140,8 @@ lemma rec_quad (a q : ℤ) (F : PowerSeries ℤ)
     simp only [coeff_zero_X_mul, mul_zero, add_zero, zero_add] at this
     linarith
   · have := congrArg (coeff (r + 1 + 1)) h
-    rw [e, coeff_succ_X_mul, coeff_succ_X_mul, coeff_succ_X_mul, coeff_one, ite_eq_right (by omega)] at this
+    rw [e, coeff_succ_X_mul, coeff_succ_X_mul, coeff_succ_X_mul, coeff_one, ite_eq_right (by
+      omega)] at this
     linarith
 
 lemma rec_linear_of_not_good (E : WeierstrassCurve ℚ)
@@ -246,4 +247,3 @@ end HorizontalPadicL
 end
 
 end publicSection
-

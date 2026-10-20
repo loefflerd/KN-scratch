@@ -111,7 +111,8 @@ def restrictToBase (hint : (incl K₀ a).toRingHom.IsIntegral) (w : Place κ (ig
 def ramificationIndexOverBase (w : Place κ (igusaFunctionField K₀ a)) : ℕ :=
   w.ramificationIndexAlong (incl K₀ a)
 
-structure IgusaDiamondData (p : ℕ) [Fact p.Prime] [CharP κ p] (k : ℤ) (K₀ : IntermediateField κ Ω) (a : Ω) where
+structure IgusaDiamondData (p : ℕ) [Fact p.Prime] [CharP κ p]
+    (k : ℤ) (K₀ : IntermediateField κ Ω) (a : Ω) where
   act : (ZMod p)ˣ →* (igusaFunctionField K₀ a ≃ₐ[κ] igusaFunctionField K₀ a)
   act_apply_of_mem : ∀ (b : (ZMod p)ˣ) (x : igusaFunctionField K₀ a), (x : Ω) ∈ K₀ → act b x = x
   act_gen : ∀ b : (ZMod p)ˣ,

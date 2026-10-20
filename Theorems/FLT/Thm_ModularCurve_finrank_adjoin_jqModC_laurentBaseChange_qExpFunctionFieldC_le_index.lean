@@ -79,7 +79,6 @@ attribute [-instance] DivisionRing.toRatAlgebra
 
 namespace P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 namespace FIdxAlg
@@ -298,6 +297,7 @@ abbrev Cos (Γ : Subgroup SL(2, ℤ)) : Type := ↥𝒮ℒ ⧸ (Γ : Subgroup (G
 
 noncomputable scoped instance : Fintype (Cos Γ) := Fintype.ofFinite _
 
+omit [Γ.FiniteIndex] in
 theorem card_cos_eq_index : Nat.card (Cos Γ) = Γ.index := by
   rw [← Subgroup.index, ← Subgroup.relIndex, MonoidHom.range_eq_map,
     show ((Γ : Subgroup (GL (Fin 2) ℝ))) = Γ.map (Matrix.SpecialLinearGroup.mapGL ℝ) from rfl,
@@ -316,6 +316,7 @@ section Linear
 
 variable (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
 
+omit [Γ.FiniteIndex] in
 theorem quotientFunc_smul_sub (c : ℂ) (q : (Cos Γ)) :
     quotientFunc (c • g - f) q = c • quotientFunc g q - quotientFunc f q := by
   induction q using Quotient.inductionOn with
@@ -507,6 +508,7 @@ theorem qExpansion_sum' {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (h
 variable (hT : ModularGroup.T ∈ Γ)
 include hT
 
+omit [Γ.FiniteIndex] in
 theorem nice_of_modularForm {k' : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k') :
     Nice (h : ℍ → ℂ) :=
   ModularFormClass.analyticAt_cuspFunction_zero _ one_pos (one_mem_strictPeriods hT)
@@ -796,6 +798,7 @@ theorem algebraMap_mem_intFormRatiosC (c : ℚ) :
     push_cast
     exact Rat.mul_den_eq_num c
 
+omit [Γ.FiniteIndex] in
 theorem mem_qExpFunctionFieldC_iff {y : LaurentSeries ℚ} :
     y ∈ qExpFunctionFieldC ℚ Γ ↔ y ∈ intFormRatiosC ℚ Γ := by
   let R : IntermediateField ℚ (LaurentSeries ℚ) :=

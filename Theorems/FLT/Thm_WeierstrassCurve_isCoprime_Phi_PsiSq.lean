@@ -99,9 +99,8 @@ theorem ΨSq_eval_eq_zero_of_preΨ {m : ℕ} {x₀ : K}
   rw [preΨ_ofNat] at h
   rw [ΨSq_ofNat, eval_mul, eval_pow, h, zero_pow two_ne_zero, zero_mul]
 
-variable [IsAlgClosed K] [DecidableEq K]
+variable [IsAlgClosed K]
 
-omit [DecidableEq K] in
 theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     IsCoprime ((W.baseChange K).ΨSq n) ((W.baseChange K).ΨSq (n + 1)) := by
   classical

@@ -123,7 +123,9 @@ theorem solution
     rcases lt_or_ge (v.ord x) 0 with h | h
     · rw [FibreDegE96.ord_sub_algebraMap_of_neg v hx0 a hxa h]
     · have h' := FibreDegE96.ord_sub_algebraMap_nonneg v hx0 a hxa h
-      rw [max_eq_left (by omega : -v.ord (x - algebraMap K F a) ≤ 0), max_eq_left (by omega : -v.ord x ≤ 0)]
+      rw [max_eq_left (by
+        omega : -v.ord (x - algebraMap K F a) ≤ 0), max_eq_left (by
+          omega : -v.ord x ≤ 0)]
   have hsplit : D - Dinf = P := by
     ext v
     rw [Finsupp.sub_apply, hD v]

@@ -72,7 +72,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
+namespace P2MW.S_OVERLONG_9c064c5e
 
 open Matrix MatrixGroups ModularGroup Subgroup
 open scoped Pointwise
@@ -247,10 +247,10 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
       (Γ.map (QuotientGroup.mk' (Subgroup.center (Matrix.SpecialLinearGroup (Fin 2) ℤ))))) :=
   ModularCurve.FreeTransport.nonempty_freeGroupBasis Γ hΓ hneg
 
-end S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
+end S_OVERLONG_9c064c5e
 end P2MW
 export
-  P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
+  P2MW.S_OVERLONG_9c064c5e
   (solution)
 
 end privateSection

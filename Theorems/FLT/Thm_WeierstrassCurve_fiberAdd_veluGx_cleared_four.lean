@@ -49,8 +49,10 @@ computations
 [`ModularCurve.TatePoint.fullKernelDiscAt_univ`]
 (thm.html#ModularCurve.TatePoint.fullKernelDiscAt_univ)
 and the construction
-[`WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`]
-(thm.html#WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
+[`WeierstrassCurve.
+exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples`]
+(thm.html#WeierstrassCurve.
+exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples).
 
 ## Explanation of the source proof
 
@@ -62,15 +64,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four
-
-set_option Elab.async false
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine a₃ a₁ a₄ a₂ a₆ toAffine Affine.equation_iff veluGx veluGy"
-p2m_open "WeierstrassCurve"
 
 -- Translating by the two-torsion point makes the cleared chord coordinates linear in veluGx.
 private theorem fiberAdd_coordinates {R : Type*} [CommRing R]
@@ -122,8 +116,6 @@ private theorem fiberAdd_veluGx_cleared_four_aux {R : Type*} [CommRing R] (W : W
 
 end WeierstrassCurve
 
-open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four.WeierstrassCurve in
 theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
@@ -138,10 +130,6 @@ theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y�
         W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x -
         x₀)) :=
   WeierstrassCurve.fiberAdd_veluGx_cleared_four_aux W x y x₀ y₀ hP hQ hgy
-
-end S_WeierstrassCurve_fiberAdd_veluGx_cleared_four
-end P2MW
-export P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four (solution)
 
 end privateSection
 

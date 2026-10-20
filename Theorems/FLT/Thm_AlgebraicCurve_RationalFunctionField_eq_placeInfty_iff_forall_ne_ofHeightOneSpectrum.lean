@@ -60,7 +60,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
+namespace P2MW.S_OVERLONG_e6aa63aa
 
 open IsDedekindDomain AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
@@ -74,9 +74,9 @@ theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (R
     exact AlgebraicCurve.RationalFunctionField.subsingleton_setOf_forall_ne_ofHeightOneSpectrum h
       (AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum K)
 
-end S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
+end S_OVERLONG_e6aa63aa
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum
+export P2MW.S_OVERLONG_e6aa63aa
   (solution)
 
 end privateSection

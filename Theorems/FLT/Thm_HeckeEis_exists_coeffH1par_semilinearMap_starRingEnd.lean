@@ -280,7 +280,8 @@ theorem mk_pushPar_congr {a b : ↥(coeffParabolicCocycles ((binaryFormRepSL R n
   exact pushForm_comp_mem_coeffCoboundaries f n h
 
 def pushH1par :
-    coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+ coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
+    coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+
+      coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
   toFun x := coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) x))
   map_zero' := by
     have h0 : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp
@@ -399,7 +400,8 @@ theorem pushH1par_cj_cj (x : coeffH1par ((binaryFormRepSL ℂ n).comp Γ.subtype
   rw [pushH1par_mk, pushH1par_mk, pushPar_cj_cj]
 
 def conjH1par :
-    coeffH1par ((binaryFormRepSL ℂ n).comp Γ.subtype) →ₛₗ[starRingEnd ℂ] coeffH1par ((binaryFormRepSL ℂ n).comp Γ.subtype) where
+    coeffH1par ((binaryFormRepSL ℂ n).comp Γ.subtype) →ₛₗ[starRingEnd ℂ]
+      coeffH1par ((binaryFormRepSL ℂ n).comp Γ.subtype) where
   toFun := pushH1par cj n
   map_add' x y := map_add _ x y
   map_smul' c x := pushH1par_cj_smul n c x

@@ -50,11 +50,10 @@ width $1$.
 This is the $\Omega \to S_2$ half of the $q$-expansion dictionary between global regular
 differentials on $X_0(N)$ over $\overline{\mathbb Q}$ and weight-two cusp forms on $\Gamma_0(N)$, in
 the direction producing a cusp form from a differential. It is used in the proof of the genus bound
-[`CuspForm.genusFormula_le_finrank_gamma0_weight_two`]
-(thm.html#CuspForm.genusFormula_le_finrank_gamma0_weight_two)
+`CuspForm.genusFormula_le_finrank_gamma0_weight_two`
 and in the construction of the linear equivalence
-[`ModularCurve.exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero`]
-(thm.html#ModularCurve.exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero)
+`ModularCurve.
+exists_linearEquiv_kaehlerH0_baseChange_intLattice_of_ratCurveModel_of_cuspSection_compat_of_neZero`
 between the differentials of a rational model and the integral lattice of cusp forms.
 
 ## Explanation of the source proof
@@ -69,7 +68,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
+namespace P2MW.S_OVERLONG_d269e8da
 
 open ModularCurve AlgebraicCurve HahnSeries KaehlerDifferential
 
@@ -240,10 +239,10 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
 
 end
 
-end S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
+end S_OVERLONG_d269e8da
 end P2MW
 export
-  P2MW.S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
+  P2MW.S_OVERLONG_d269e8da
   (solution)
 
 end privateSection

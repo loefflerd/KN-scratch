@@ -22,7 +22,6 @@ import Mathlib.RingTheory.Polynomial.DegreeLT
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_eq_valuationSubring_of_X_not_mem
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Unique degree-one place at infinity of a Weierstrass function field
@@ -60,12 +59,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 -/
 
 section privateSection
-
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
-
-set_option Elab.async false
 
 noncomputable section
 
@@ -529,10 +522,6 @@ theorem solution {F : Type*} [Field F] (W : WeierstrassCurve.Affine F) :
         (¬ ∀ r : W.CoordinateRing,
           algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
   D5S.exists_infinitePlace_deg_eq_one_impl W
-
-end S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
-end P2MW
-export P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one (solution)
 
 end privateSection
 

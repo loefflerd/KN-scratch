@@ -256,7 +256,9 @@ theorem solution (N : ℕ) [NeZero N] :
   have h2 := ModularCurve.finrank_parabolicHoms_le_two_mul_genusFormula N ℂ
   calc (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp
     (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
-      ≤ Module.finrank ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) := by exact_mod_cast h1
+      ≤ Module.finrank ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ)
+        := by
+        exact_mod_cast h1
     _ ≤ 2 * ModularCurve.genusFormula N := h2
 
 end S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula

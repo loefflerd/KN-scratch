@@ -84,7 +84,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open UpperHalfPlane
@@ -149,7 +148,7 @@ theorem ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
   rw [UpperHalfPlane.coe_im] at this
-  simp at this
+  simp only [Complex.one_im] at this
   exact ρ.im_pos.ne' this
 
 theorem E₄_ρ : ModularForm.E₄ ρ = 0 := by
@@ -894,6 +893,7 @@ section Main
 
 variable (M : ℕ) [NeZero M]
 
+omit [NeZero M] in
 theorem T_mem_Gamma1 : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
   rw [CongruenceSubgroup.Gamma1_mem]
   refine ⟨?_, ?_, ?_⟩ <;> simp [ModularGroup.coe_T]

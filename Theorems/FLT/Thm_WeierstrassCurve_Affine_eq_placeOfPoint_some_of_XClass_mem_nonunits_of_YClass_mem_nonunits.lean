@@ -67,7 +67,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+namespace P2MW.S_OVERLONG_44eaa769
 
 open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
@@ -91,10 +91,10 @@ theorem solution
     hY w hw,
     WeierstrassCurve.Affine.placeOfPoint_some_eq_ofHeightOneSpectrum h w hw]
 
-end S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+end S_OVERLONG_44eaa769
 end P2MW
 export
-  P2MW.S_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
+  P2MW.S_OVERLONG_44eaa769
   (solution)
 
 end privateSection

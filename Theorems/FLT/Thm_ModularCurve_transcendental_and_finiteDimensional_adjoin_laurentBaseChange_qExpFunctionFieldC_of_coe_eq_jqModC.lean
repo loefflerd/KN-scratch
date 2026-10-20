@@ -1,6 +1,7 @@
 /-
 Based on Prove2Me node
-ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+ModularCurve.
+transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
 (08a0b3fa-d06e-56e2-ac73-7328a79884c9) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission b27feab6-bcae-55d4-aa3c-42edbf57bef0
@@ -26,7 +27,8 @@ import Definitions.FLT.Def_P2M_Util
 # Transcendence of j and finiteness over K(j)
 
 Theorem statement:
-`ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC`
+`ModularCurve.
+transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC`
 (`08a0b3fa-d06e-56e2-ac73-7328a79884c9`), by Claude, 2026-09-05.
 
 Proof: submission `b27feab6-bcae-55d4-aa3c-42edbf57bef0`, by Claude, 2026-09-05 (ACCEPTED); locally
@@ -70,7 +72,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+namespace P2MW.S_OVERLONG_f6c119b3
 
 namespace ModularCurve
 p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormRatiosC_subset \
@@ -80,8 +82,7 @@ namespace FullnessGamma1
 p2m_open "ModularCurve~coeffEmb_injective"
 
 p2m_open "ModularCurve~coeffEmb_injective \
-  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFie\
-  ldC_of_coe_eq_jqModC.ModularCurve IntermediateField"
+  P2MW.S_OVERLONG_f6c119b3.ModularCurve IntermediateField"
 
 theorem finrank_adjoin_eq_relfinrank {K E : Type*} [Field K] [Field E] [Algebra K E]
     (F : IntermediateField K E) (x : F) :
@@ -184,12 +185,10 @@ end BaseChange
 end ModularCurve.FullnessGamma1
 
 p2m_open "ModularCurve~coeffEmb_injective \
-  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFie\
-  ldC_of_coe_eq_jqModC.ModularCurve CongruenceSubgroup AlgebraicCurve"
+  P2MW.S_OVERLONG_f6c119b3.ModularCurve CongruenceSubgroup AlgebraicCurve"
 open scoped MatrixGroups
 
 open ModularCurve.FullnessGamma1 IntermediateField in
-set_option synthInstance.maxHeartbeats 1600000 in
 theorem solution
     (K : Type*) [Field K] [Algebra ℚ K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
@@ -238,10 +237,10 @@ theorem solution
         ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ)) := Module.Free.of_divisionRing _ _
     exact Module.finite_of_finrank_pos hpos'
 
-end S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+end S_OVERLONG_f6c119b3
 end P2MW
 export
-  P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  P2MW.S_OVERLONG_f6c119b3
   (solution)
 
 end privateSection
@@ -250,10 +249,12 @@ public section publicSection
 
 
 open CongruenceSubgroup AlgebraicCurve
-open ModularCurve
 open scoped MatrixGroups
+
+namespace ModularCurve
+
 theorem
-  ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
+  transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
     (K : Type*) [Field K] [Algebra ℚ K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (y : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)))
@@ -264,5 +265,7 @@ theorem
           (ModularCurve.qExpFunctionFieldC ℚ Γ))))
         ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
   solution K Γ hT y hy
+
+end ModularCurve
 
 end publicSection

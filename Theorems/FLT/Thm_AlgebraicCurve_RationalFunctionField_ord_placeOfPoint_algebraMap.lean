@@ -81,7 +81,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap
+namespace P2MW.S_OVERLONG_3fd9514a
 
 noncomputable section
 
@@ -1294,18 +1294,18 @@ end AlgebraicCurve
 end
 
 open Polynomial _root_.AlgebraicCurve
-  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_3fd9514a.AlgebraicCurve
   _root_.AlgebraicCurve.RationalFunctionField
-  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField
+  _root_.P2MW.S_OVERLONG_3fd9514a.AlgebraicCurve.RationalFunctionField
   in
 theorem solution {K : Type*} [Field K] (a : K) {q : Polynomial K} (hq : q ≠ 0) :
     (placeOfPoint K a).ord (algebraMap (Polynomial K) (RatFunc K) q) = Polynomial.rootMultiplicity a
       q :=
   AlgebraicCurve.RationalFunctionField.ord_placeOfPoint_algebraMap a hq
 
-end S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap
+end S_OVERLONG_3fd9514a
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap (solution)
+export P2MW.S_OVERLONG_3fd9514a (solution)
 
 end privateSection
 

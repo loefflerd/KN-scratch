@@ -180,7 +180,9 @@ theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fi
       AddMonoidAlgebra.coeff P d' := by
   conv_lhs => rw [P.as_sum, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun d' _ => ?_
-  rw [show monomial d' (AddMonoidAlgebra.coeff P d') = C (AddMonoidAlgebra.coeff P d') * monomial d' 1 by rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
+  rw [show monomial d' (AddMonoidAlgebra.coeff P d') = C (AddMonoidAlgebra.coeff P d') * monomial d'
+    1 by
+    rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
     coeff_C_mul, binarySubst_monomial_one, coeff_map, substCoeff, mul_comm]
   rfl
 
@@ -341,7 +343,8 @@ theorem mk_pushPar_congr {a b : ↥(coeffParabolicCocycles ((binaryFormRepSL R n
   exact pushForm_comp_mem_coeffCoboundaries f n h
 
 def pushH1par :
-    coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+ coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
+    coeffH1par ((binaryFormRepSL R n).comp Γ.subtype) →+
+      coeffH1par ((binaryFormRepSL R' n).comp Γ.subtype) where
   toFun x := coeffH1parMk _ (pushPar f n (Function.surjInv (coeffH1parMk_surjective _) x))
   map_zero' := by
     have h0 : coeffH1parMk _ (Function.surjInv (coeffH1parMk_surjective ((binaryFormRepSL R n).comp
@@ -695,7 +698,8 @@ theorem apply_conj_mem_range (hy : y ∈ coeffCocycles ρ) {v : G} {w : V} (hv :
   refine ⟨ρ g w - y g, ?_⟩
   rw [apply_conj hy, hv, LinearMap.sub_apply, Module.End.one_apply, map_sub, map_sub]
   have : ρ (g * v * g⁻¹) (ρ g w) = ρ g (ρ v w) := by
-    rw [← Module.End.mul_apply, ← map_mul, show g * v * g⁻¹ * g = g * v by group, map_mul, Module.End.mul_apply]
+    rw [← Module.End.mul_apply, ← map_mul, show g * v * g⁻¹ * g = g * v by
+      group, map_mul, Module.End.mul_apply]
   rw [this]
   abel
 
@@ -744,7 +748,8 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N]
     hW
   have hzp : ∀ v ∈ Subgroup.zpowers (cuspGen N q),
       y v = ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) v W - W := fun v hv =>
-    mem_range_of_mem_closure hycoc W (s := {cuspGen N q}) (fun v hv => by rw [Set.mem_singleton_iff.mp hv]; exact hW')
+    mem_range_of_mem_closure hycoc W (s := {cuspGen N q}) (fun v hv => by
+      rw [Set.mem_singleton_iff.mp hv]; exact hW')
       (by rwa [Subgroup.zpowers_eq_closure] at hv)
   have hpar' : y γ' ∈ LinearMap.range (((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) γ' - 1) :=
     apply_conj_mem_range hycoc (hzp _ (Subgroup.zpow_mem_zpowers _ _)) g₀
@@ -848,7 +853,8 @@ theorem main
     have hD : D₁ * D₂ ≠ 0 := mul_ne_zero hD₁ hD₂
     let M : AddSubgroup ↥(BinaryForm ℚ n) :=
       { carrier := {P | IsInt (P : MvPolynomial (Fin 2) ℚ)}
-        zero_mem' := by change IsInt ((0 : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ); simpa using IsInt.zero
+        zero_mem' := by
+          change IsInt ((0 : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ); simpa using IsInt.zero
         add_mem' := by
           intro P Q hP hQ
           change IsInt ((P + Q : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ)

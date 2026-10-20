@@ -199,7 +199,8 @@ lemma periodic_eisensteinG (k : ℤ) (a : Fin 2 → ZMod N) :
       simpa using CongruenceSubgroup.ModularGroup_T_pow_mem_Gamma (N : ℤ) (N : ℤ) dvd_rfl
     have := SlashInvariantForm.slash_action_eqn (eisensteinGSIF N k a)
       (Matrix.SpecialLinearGroup.mapGL ℝ (ModularGroup.T ^ (N : ℤ))) ⟨_, hmem, rfl⟩
-    simp [ModularForm.SL_slash, Matrix.SpecialLinearGroup.mapGL] at this ⊢
+    simp only [Matrix.SpecialLinearGroup.mapGL, algebraMap_int_eq, zpow_natCast, MonoidHom.coe_comp,
+      Function.comp_apply, map_pow, ModularForm.SL_slash] at this ⊢
     exact this
   intro w
   by_cases hw : 0 < w.im
@@ -222,7 +223,7 @@ theorem qExpansion_coeff_eq [NeZero N] (hk : 3 ≤ k) (a : Fin 2 → ZMod N) {c 
     analyticAt_cuspFunction_zero hN (periodic_eisensteinG k a) (eisensteinGSIF_mdifferentiable hk a)
       (isBoundedAtImInfty_eisensteinG a hk)
   have := qExpansion_coeff_unique (eisensteinGSIF N k a) hN hA (c := c)
-    (fun τ => by have h__af := hsum τ; simp [smul_eq_mul] at h__af ⊢; exact h__af) n
+    (fun τ => by have h__af := hsum τ; simp only [smul_eq_mul] at h__af ⊢; exact h__af) n
   rw [coe_eisensteinGSIF] at this
   exact this.symm
 
@@ -543,7 +544,8 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
       (-1) ^ k * (kappa N k * ∑' m : ℕ+, ((m : ℕ) : ℂ) ^ (k - 1) *
         (ZMod.stdAddChar (-a 1 * ((m : ℕ) : ZMod N)) * q ^ ((m : ℕ) * (c : ℕ)))) := by
     intro c
-    rw [tsum_cls_neg_eq (a 1) (c : ℕ) τ, tsum_cls_eq (show 2 ≤ k by omega) (-a 1) (c : ℕ) c.2 τ, kappa]
+    rw [tsum_cls_neg_eq (a 1) (c : ℕ) τ, tsum_cls_eq (show 2 ≤ k by
+      omega) (-a 1) (c : ℕ) c.2 τ, kappa]
   simp only [Int.cast_zero, zero_mul, zero_add]
   have e0 : (if (0 : ZMod N) = a 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0) =
       (if a 0 = 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0) := by

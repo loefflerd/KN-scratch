@@ -42,10 +42,12 @@ square, the source of integrality of singular moduli and of the $j$-invariants o
 cyclic endomorphism of degree $N$. It is used in the construction of integral models for isogeny
 endomorphism data, in
 [`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j`]
-(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j)
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.
+exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j)
 and
 [`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j`]
-(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j).
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.
+exists_forall_pointEnd_eq_zsmul_of_transcendental_j).
 
 ## Explanation of the source proof
 

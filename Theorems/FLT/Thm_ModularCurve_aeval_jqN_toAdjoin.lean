@@ -95,7 +95,6 @@ end ModularCurve
 
 end
 
-set_option pp.universes true in
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_aeval_jqN_toAdjoin.ModularCurve
   ModularCurve.PhiGen in
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :

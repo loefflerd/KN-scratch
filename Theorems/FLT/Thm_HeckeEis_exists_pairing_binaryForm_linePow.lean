@@ -247,7 +247,9 @@ theorem jFactor_mul_jFactor_mul_sub (g : SL(2, ℤ)) (τ σ : ℍ) :
   have hσ := coe_smul_mul_jFactor g σ
   have hdet := det_coe_complex g
   have e : jFactor g τ * jFactor g σ * (((g • τ : ℍ) : ℂ) - ((g • σ : ℍ) : ℂ))
-      = jFactor g σ * (((g • τ : ℍ) : ℂ) * jFactor g τ) - jFactor g τ * (((g • σ : ℍ) : ℂ) * jFactor g σ) := by ring
+      = jFactor g σ * (((g • τ : ℍ) : ℂ) * jFactor g τ) - jFactor g τ * (((g • σ : ℍ) : ℂ) * jFactor
+        g σ) := by
+        ring
   rw [e, hτ, hσ, jFactor, jFactor]
   linear_combination ((τ : ℂ) - (σ : ℂ)) * hdet
 

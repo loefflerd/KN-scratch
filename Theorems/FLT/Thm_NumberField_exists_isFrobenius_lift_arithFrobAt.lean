@@ -213,7 +213,8 @@ theorem solution
     simpa using h2
   have : Fact ℓ.Prime := ⟨hℓ⟩
   have hchar : CharP (𝓞 ℚ̄ ⧸ Qt) ℓ :=
-    (CharP.charP_iff_prime_eq_zero hℓ).mpr ((Ideal.Quotient.eq_zero_iff_mem).mpr (by simpa using hℓQt))
+    (CharP.charP_iff_prime_eq_zero hℓ).mpr ((Ideal.Quotient.eq_zero_iff_mem).mpr (by
+      simpa using hℓQt))
   let F : 𝓞 ℚ̄ ⧸ Qt →+* 𝓞 ℚ̄ ⧸ Qt := frobenius (𝓞 ℚ̄ ⧸ Qt) ℓ
   have hFbij : Function.Bijective F := by
     refine ⟨frobenius_inj _ _, fun y => ?_⟩

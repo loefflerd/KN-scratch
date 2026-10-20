@@ -72,7 +72,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
+namespace P2MW.S_OVERLONG_9269c335
 
 
 open AlgebraicCurve
@@ -146,10 +146,10 @@ theorem solution
   rw [hmap]
   exact indexOfSpecialty_eq_zero_of_genusReached hRGA
 
-end S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
+end S_OVERLONG_9269c335
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
+  P2MW.S_OVERLONG_9269c335
   (solution)
 
 end privateSection

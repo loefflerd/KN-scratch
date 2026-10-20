@@ -70,7 +70,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion
+namespace P2MW.S_OVERLONG_45c886fb
 
 noncomputable section
 
@@ -952,9 +952,9 @@ end
 
 
 open _root_.ModularCurve
-  _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve
+  _root_.P2MW.S_OVERLONG_45c886fb.ModularCurve
   _root_.ModularCurve.PhiGen
-  _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve.PhiGen
+  _root_.P2MW.S_OVERLONG_45c886fb.ModularCurve.PhiGen
   in
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
     (h0top : (evalAtJ (data.Φ.coeff 0)).coeff (-(dedekindPsi N : ℤ)) = 1)
@@ -965,9 +965,9 @@ theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N)
       dedekindPsi N :=
   ModularCurve.ModularPolynomialData.transposeToAdjoin_monic_of_qExpansion data h0top h0le hk
 
-end S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion
+end S_OVERLONG_45c886fb
 end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion (solution)
+export P2MW.S_OVERLONG_45c886fb (solution)
 
 end privateSection
 

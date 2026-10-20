@@ -497,7 +497,9 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
         rw [slash_factor e g γ hg none none γ' (by
           ext i j
           fin_cases i <;> fin_cases j <;>
-            simp [-ZMod.natCast_val, Mx, α, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+            simp only [Mx, α, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+              cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, cons_val_one, zero_mul, add_zero,
+              mkGamma0, mul_zero, γ', Fin.mk_one, mul_one, zero_add, one_mul] <;>
             first | ring1 | linear_combination hcl | linear_combination -hcl)]
         simp only [cx_none, smul_smul]
         congr 1
@@ -520,7 +522,9 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
       rw [slash_factor e g γ hg none (some b') γ' (by
         ext i j
         fin_cases i <;> fin_cases j <;>
-          simp [-ZMod.natCast_val, Mx, α, β, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+          simp only [Mx, α, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+            cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, cons_val_one, zero_mul, add_zero,
+            mkGamma0, β, mul_one, mul_zero, γ', Fin.mk_one, one_mul, zero_add] <;>
           first | ring1 | linear_combination hld' | linear_combination -hld')]
       simp only [cx_none, cx_some, smul_smul, mul_one]
       congr 1
@@ -547,7 +551,9 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
       rw [slash_factor e g γ hg (some b₀) none γ' (by
         ext i j
         fin_cases i <;> fin_cases j <;>
-          simp [-ZMod.natCast_val, Mx, α, β, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+          simp only [Mx, β, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+            cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, one_mul, cons_val_one, mkGamma0, α,
+            mul_zero, add_zero, γ', Fin.mk_one, mul_one, zero_add, zero_mul] <;>
           first | ring1 | linear_combination hlu | linear_combination -hlu)]
       simp only [cx_none, cx_some, smul_smul, one_mul]
       congr 1
@@ -580,7 +586,9 @@ lemma key (e : DirichletCharacter ℂ N) {k : ℤ} (g : ℍ → ℂ)
       rw [slash_factor e g γ hg (some b₀) (some b') γ' (by
         ext i j
         fin_cases i <;> fin_cases j <;>
-          simp [-ZMod.natCast_val, Mx, β, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+          simp only [Mx, β, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+            cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, one_mul, cons_val_one, mkGamma0,
+            mul_one, mul_zero, add_zero, γ', Fin.mk_one, zero_mul, zero_add] <;>
           first | ring1 | linear_combination hlq | linear_combination -hlq)]
       simp only [cx_some, smul_smul, one_mul, mul_one]
       congr 1

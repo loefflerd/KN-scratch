@@ -106,7 +106,6 @@ end ModularCurve
 
 end
 
-set_option pp.universes true in
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime.ModularCurve
   ModularCurve.PhiGen in
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :

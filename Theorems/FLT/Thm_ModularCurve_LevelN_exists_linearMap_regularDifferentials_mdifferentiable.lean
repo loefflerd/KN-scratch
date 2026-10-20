@@ -73,7 +73,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -241,14 +240,17 @@ section Real
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring N) K] [IsScalarTower ℂ (ring N) K]
   [IsFractionRing (ring N) K]
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem algebraMap_injective : Function.Injective (algebraMap (ring N) K) :=
   IsFractionRing.injective (ring N) K
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem algebraMap_ne_zero {b : ring N} (hb : (b : ℍ → ℂ) ≠ 0) : algebraMap (ring N) K b ≠ 0 :=
   fun h => hb (by
     have : b = 0 := algebraMap_injective N K (by rw [h, map_zero])
     simp [this])
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem exists_rep (k : K) :
     ∃ ab : ring N × ring N, (ab.2 : ℍ → ℂ) ≠ 0 ∧
       algebraMap (ring N) K ab.1 / algebraMap (ring N) K ab.2 = k := by
@@ -263,15 +265,18 @@ def num (k : K) : ring N := (exists_rep N K k).choose.1
 
 def den (k : K) : ring N := (exists_rep N K k).choose.2
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem den_ne_zero (k : K) : ((den N K k : ring N) : ℍ → ℂ) ≠ 0 :=
   (exists_rep N K k).choose_spec.1
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem num_div_den (k : K) :
     algebraMap (ring N) K (num N K k) / algebraMap (ring N) K (den N K k) = k :=
   (exists_rep N K k).choose_spec.2
 
 def real (k : K) : ℂ → ℂ := fun z => up (num N K k : ℍ → ℂ) z / up (den N K k : ℍ → ℂ) z
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem cross_mul_eq {a b a' b' : ring N} (hb : (b : ℍ → ℂ) ≠ 0) (hb' : (b' : ℍ → ℂ) ≠ 0)
     (h : algebraMap (ring N) K a / algebraMap (ring N) K b =
       algebraMap (ring N) K a' / algebraMap (ring N) K b') :
@@ -281,6 +286,7 @@ theorem cross_mul_eq {a b a' b' : ring N} (hb : (b : ℍ → ℂ) ≠ 0) (hb' : 
   have := algebraMap_injective N K h
   simpa using congrArg Subtype.val this
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem real_eventuallyEq {k : K} {a b : ring N} (hb : (b : ℍ → ℂ) ≠ 0)
     (h : algebraMap (ring N) K a / algebraMap (ring N) K b = k) :
     real N K k =ᶠ[𝓕] fun z => up (a : ℍ → ℂ) z / up (b : ℍ → ℂ) z := by
@@ -293,6 +299,7 @@ theorem real_eventuallyEq {k : K} {a b : ring N} (hb : (b : ℍ → ℂ) ≠ 0)
   field_simp
   linear_combination this
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem real_algebraMap (a : ring N) : real N K (algebraMap (ring N) K a) =ᶠ[𝓕] up (a : ℍ → ℂ) := by
   have h : algebraMap (ring N) K a / algebraMap (ring N) K 1 = algebraMap (ring N) K a := by simp
   filter_upwards [real_eventuallyEq N K (a := a) (b := 1) (by simp) h] with z hz
@@ -304,6 +311,7 @@ theorem real_const (c : ℂ) : real N K (algebraMap ℂ K c) =ᶠ[𝓕] fun _ =>
   rw [hz]
   simp [up, Algebra.algebraMap_eq_smul_one]
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem real_mul (k l : K) : real N K (k * l) =ᶠ[𝓕] fun z => real N K k z * real N K l z := by
   have hb := mul_ne_zero_of_mem N (den N K k).2 (den N K l).2 (den_ne_zero N K k)
     (den_ne_zero N K l)
@@ -316,6 +324,7 @@ theorem real_mul (k l : K) : real N K (k * l) =ᶠ[𝓕] fun z => real N K k z *
   simp only [real, Subalgebra.coe_mul, up_mul, Pi.mul_apply]
   rw [mul_div_mul_comm]
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem real_add (k l : K) : real N K (k + l) =ᶠ[𝓕] fun z => real N K k z + real N K l z := by
   have hb := mul_ne_zero_of_mem N (den N K k).2 (den N K l).2 (den_ne_zero N K k)
     (den_ne_zero N K l)
@@ -334,11 +343,13 @@ theorem real_add (k l : K) : real N K (k + l) =ᶠ[𝓕] fun z => real N K k z +
     Pi.add_apply]
   field_simp
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem eventually_differentiableAt_real (k : K) :
     ∀ᶠ z in 𝓕, DifferentiableAt ℂ (real N K k) z := by
   filter_upwards [eventually_ne_zero N (den N K k).2 (den_ne_zero N K k), 𝕌_mem_𝓕] with z hz hzU
   exact (differentiableAt_up N (num N K k).2 hzU).div (differentiableAt_up N (den N K k).2 hzU) hz
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem meromorphicAt_real (k : K) {z : ℂ} (hz : z ∈ 𝕌) : MeromorphicAt (real N K k) z :=
   ((analyticAt_up N (num N K k).2 hz).meromorphicAt).div
     ((analyticAt_up N (den N K k).2 hz).meromorphicAt)
@@ -357,22 +368,40 @@ scoped instance instCommRingGm : CommRing (Gm N K) := inferInstanceAs (CommRing 
 
 def germ (f : ℂ → ℂ) : Gm N K := ((f : Filter.Germ 𝓕 ℂ) : Gm N K)
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_eq_iff {f g : ℂ → ℂ} : germ N K f = germ N K g ↔ f =ᶠ[𝓕] g := Filter.Germ.coe_eq
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_mul (f g : ℂ → ℂ) : germ N K (fun z => f z * g z) = germ N K f * germ N K g := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_mul' (f g : ℂ → ℂ) : germ N K (f * g) = germ N K f * germ N K g := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_add (f g : ℂ → ℂ) : germ N K (fun z => f z + g z) = germ N K f + germ N K g := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_add' (f g : ℂ → ℂ) : germ N K (f + g) = germ N K f + germ N K g := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_zero : germ N K (fun _ => (0 : ℂ)) = 0 := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_zero' : germ N K (0 : ℂ → ℂ) = 0 := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_one : germ N K (fun _ => (1 : ℂ)) = 1 := rfl
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_surjective (m : Gm N K) : ∃ f : ℂ → ℂ, germ N K f = m := by
   induction m using Filter.Germ.inductionOn with
   | h f => exact ⟨f, rfl⟩
@@ -468,15 +497,18 @@ def ν (τ₀ : ℍ) (k : K) : WithTop ℤ := meromorphicOrderAt (real N K k) τ
 
 variable (τ₀ : ℍ)
 
+omit [NeZero N] [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_congr {k : K} {g : ℂ → ℂ} (h : real N K k =ᶠ[𝓕] g) :
     ν N K τ₀ k = meromorphicOrderAt g τ₀ :=
   meromorphicOrderAt_congr (eventually_nhdsNE_of_𝓕 h (coe_mem_𝕌 τ₀))
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_mul (x y : K) : ν N K τ₀ (x * y) = ν N K τ₀ x + ν N K τ₀ y := by
   rw [ν_congr N K τ₀ (real_mul N K x y)]
   exact meromorphicOrderAt_mul (meromorphicAt_real N K x (coe_mem_𝕌 τ₀))
     (meromorphicAt_real N K y (coe_mem_𝕌 τ₀))
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_add (x y : K) : min (ν N K τ₀ x) (ν N K τ₀ y) ≤ ν N K τ₀ (x + y) := by
   rw [ν_congr N K τ₀ (real_add N K x y)]
   exact meromorphicOrderAt_add (meromorphicAt_real N K x (coe_mem_𝕌 τ₀))
@@ -515,6 +547,7 @@ theorem ν_ne_top {x : K} (hx : x ≠ 0) : ν N K τ₀ x ≠ ⊤ := fun h => hx
 
 def jSub : ring N := jGen N - algebraMap ℂ (ring N) (jAnalytic τ₀)
 
+omit [NeZero N] in
 theorem coe_jSub : ((jSub N τ₀ : ring N) : ℍ → ℂ) = fun τ => jAnalytic τ - jAnalytic τ₀ := by
   funext τ
   simp [jSub, jGen, Algebra.algebraMap_eq_smul_one]
@@ -529,6 +562,7 @@ theorem jSub_ne_zero : ((jSub N τ₀ : ring N) : ℍ → ℂ) ≠ 0 := by
   have := congrArg (Polynomial.eval (jAnalytic τ₀ + 1)) htr
   simp at this
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ν_jSub_pos : 0 < ν N K τ₀ (algebraMap (ring N) K (jSub N τ₀)) := by
   rw [ν_congr N K τ₀ (real_algebraMap N K (jSub N τ₀))]
   have han := analyticAt_up N (jSub N τ₀).2 (coe_mem_𝕌 τ₀)
@@ -608,6 +642,8 @@ theorem locAnalytic_Φ₀ {ω : Ω[K⁄ℂ]} (hω : ω ∈ AlgebraicCurve.regula
 
 variable {K}
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem tendsto_of_germ_eq {m : Gm N K} {g G : ℂ → ℂ} {z : ℂ} (hz : z ∈ 𝕌) (hg : germ N K g = m)
     (hG : ContinuousAt G z) (hgG : g =ᶠ[𝓝[≠] z] G) {g' : ℂ → ℂ} (hg' : germ N K g' = m) :
     Tendsto g' (𝓝[≠] z) (𝓝 (G z)) := by
@@ -616,6 +652,8 @@ theorem tendsto_of_germ_eq {m : Gm N K} {g G : ℂ → ℂ} {z : ℂ} (hz : z �
   have h2 : g' =ᶠ[𝓝[≠] z] G := h1'.trans hgG
   exact (hG.tendsto.mono_left nhdsWithin_le_nhds).congr' h2.symm
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem value_unique {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g₁ G₁ g₂ G₂ : ℂ → ℂ}
     (hg₁ : germ N K g₁ = m) (hG₁ : ContinuousAt G₁ z) (h₁ : g₁ =ᶠ[𝓝[≠] z] G₁)
     (hg₂ : germ N K g₂ = m) (hG₂ : ContinuousAt G₂ z) (h₂ : g₂ =ᶠ[𝓝[≠] z] G₂) : G₁ z = G₂ z :=
@@ -630,6 +668,8 @@ def glue (m : Gm N K) (z : ℂ) : ℂ :=
     h.2.choose_spec.choose z
   else 0
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem glue_eq {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g G : ℂ → ℂ} (hg : germ N K g = m)
     (hG : AnalyticAt ℂ G z) (hgG : g =ᶠ[𝓝[≠] z] G) : glue N K m z = G z := by
   have h : z ∈ 𝕌 ∧ ∃ g G : ℂ → ℂ, germ N K g = m ∧ AnalyticAt ℂ G z ∧ g =ᶠ[𝓝[≠] z] G :=
@@ -638,6 +678,8 @@ theorem glue_eq {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g G : ℂ → ℂ} (hg
   obtain ⟨hg', hG', hgG'⟩ := h.2.choose_spec.choose_spec
   exact value_unique N hz hg' hG'.continuousAt hgG' hg hG.continuousAt hgG
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem glue_eventuallyEq {m : Gm N K} (hm : LocAnalytic N K m) {z : ℂ} (hz : z ∈ 𝕌) {g G : ℂ → ℂ}
     (hg : germ N K g = m) (hG : AnalyticAt ℂ G z) (hgG : g =ᶠ[𝓝[≠] z] G) :
     glue N K m =ᶠ[𝓝 z] G := by
@@ -653,12 +695,16 @@ theorem glue_eventuallyEq {m : Gm N K} (hm : LocAnalytic N K m) {z : ℂ} (hz : 
   · rw [hwz, h0]
   · exact hw hwz
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem analyticOnNhd_glue {m : Gm N K} (hm : LocAnalytic N K m) :
     AnalyticOnNhd ℂ (glue N K m) 𝕌 := by
   intro z hz
   obtain ⟨g, G, hg, hG, hgG⟩ := hm z hz
   exact hG.congr (glue_eventuallyEq N K hm hz hg hG hgG).symm
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem germ_glue {m : Gm N K} (hm : LocAnalytic N K m) : germ N K (glue N K m) = m := by
   obtain ⟨g₀, hg₀⟩ := germ_surjective N K m
   suffices h : germ N K (glue N K m) = germ N K g₀ by rw [h, hg₀]
@@ -671,11 +717,15 @@ theorem germ_glue {m : Gm N K} (hm : LocAnalytic N K m) : germ N K (glue N K m) 
     eventuallyEq_𝓕_iff.mp ((germ_eq_iff N K).mp (hg₀.trans hg.symm)) z hz
   exact h1.trans (hgG.symm.trans h2.symm)
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem eqOn_glue {m : Gm N K} (hm : LocAnalytic N K m) {F : ℂ → ℂ} (hF : AnalyticOnNhd ℂ F 𝕌)
     (hFm : germ N K F = m) : Set.EqOn F (glue N K m) 𝕌 :=
   eqOn_of_eventuallyEq_𝓕 hF (analyticOnNhd_glue N K hm)
     ((germ_eq_iff N K).mp (hFm.trans (germ_glue N K hm).symm))
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem locAnalytic_add {m₁ m₂ : Gm N K} (h₁ : LocAnalytic N K m₁) (h₂ : LocAnalytic N K m₂) :
     LocAnalytic N K (m₁ + m₂) := by
   intro z hz
@@ -694,6 +744,8 @@ theorem locAnalytic_smul (c : ℂ) {m : Gm N K} (h : LocAnalytic N K m) :
   filter_upwards [e] with w hw
   rw [hw]
 
+omit [NeZero N] [Field K] [Algebra ℂ K] [Algebra (↥(ring N)) K] [IsScalarTower ℂ (↥(ring N)) K]
+  [IsFractionRing (↥(ring N)) K] in
 theorem glue_add {m₁ m₂ : Gm N K} (h₁ : LocAnalytic N K m₁) (h₂ : LocAnalytic N K m₂) :
     Set.EqOn (glue N K m₁ + glue N K m₂) (glue N K (m₁ + m₂)) 𝕌 :=
   eqOn_glue N K (locAnalytic_add N K h₁ h₂) ((analyticOnNhd_glue N K h₁).add (analyticOnNhd_glue N K

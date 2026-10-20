@@ -198,7 +198,8 @@ theorem solution (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m)
       ‖((Φ : ℍ → ℂ) ∣[k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6)] (A : GL (Fin 2) ℝ)) τ‖ ≤
         ε * ‖((Ψ : ℍ → ℂ) ∣[k + ((m + 1 : ℕ) : ℤ) * 12] (A : GL (Fin 2) ℝ)) τ‖ := by
     intro A ε hε
-    rw [hΦcoe, hΨcoe, show k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6) = k + 14 * ((m + 1 : ℕ) : ℤ) by ring,
+    rw [hΦcoe, hΨcoe, show k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6) = k + 14 * ((m + 1 : ℕ) : ℤ) by
+      ring,
       show k + ((m + 1 : ℕ) : ℤ) * 12 = k + 12 * ((m + 1 : ℕ) : ℤ) by ring]
     exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv_pow N (m + 1) g
       h X hXh M h₂ A ε hε

@@ -48,7 +48,8 @@ whose square is a holomorphic form of weight $2k$ is itself holomorphic and boun
 stated at the level of $q$-expansions; the element $X$ of the function field of $X_1(M)$, base
 changed to $\mathbb{C}$, is written as a ratio of forms of a common weight by
 [`ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC`]
-(thm.html#ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC),
+(thm.html#ModularCurve.
+exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC),
 and the resulting weight-$k$ form is produced by
 [`ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex`]
 (thm.html#ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex).

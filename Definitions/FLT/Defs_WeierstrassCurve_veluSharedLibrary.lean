@@ -149,7 +149,7 @@ namespace Point
 
 variable {R : Type u} [CommRing R] {W : Affine R}
 
-def _root_.WeierstrassCurve.Affine.Point.xOrZero : W.Point → R
+def xOrZero : W.Point → R
   | .zero => 0
   | .some x _ _ => x
 
@@ -3429,9 +3429,8 @@ section
 namespace WeierstrassCurve
 section Constancy
 
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
+variable {F : Type*} [Field F] [IsAlgClosed F]
 
-omit [DecidableEq F] in
 public theorem kw_infinite_of_isAlgClosed : Infinite F := by
   rw [← not_finite_iff_infinite]
   intro hfin
@@ -3449,7 +3448,6 @@ public theorem kw_infinite_of_isAlgClosed : Infinite F := by
   rw [Polynomial.IsRoot, heval] at hx
   exact one_ne_zero hx
 
-omit [DecidableEq F] in
 public theorem kw_hDDTerm :
     ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing :=
   fun _W hΔ => Affine.CoordinateRing.isDedekindDomain_of_Δ_ne_zero hΔ

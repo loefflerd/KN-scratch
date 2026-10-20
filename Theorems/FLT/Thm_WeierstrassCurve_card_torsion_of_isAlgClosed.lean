@@ -94,9 +94,8 @@ open scoped WeierstrassCurve.Affine
 
 section Engine
 
-variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve.Affine F)
+variable {F : Type*} [Field F] (W : WeierstrassCurve.Affine F)
 
-omit [DecidableEq F] in
 theorem sub_negY_sq_eq_Ψ₂Sq_eval {x y : F} (e : W.Equation x y) :
     (y - W.negY x y) ^ 2 = (WeierstrassCurve.Ψ₂Sq W).eval x := by
   rw [equation_iff] at e
@@ -126,9 +125,8 @@ theorem ΨSq_eval_eq_zero_of_preΨ {m : ℕ} {x₀ : K}
   rw [preΨ_ofNat] at h
   rw [ΨSq_ofNat, eval_mul, eval_pow, h, zero_pow two_ne_zero, zero_mul]
 
-variable [IsAlgClosed K] [DecidableEq K]
+variable [IsAlgClosed K]
 
-omit [DecidableEq K] in
 theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     IsCoprime ((W.baseChange K).ΨSq n) ((W.baseChange K).ΨSq (n + 1)) := by
   classical

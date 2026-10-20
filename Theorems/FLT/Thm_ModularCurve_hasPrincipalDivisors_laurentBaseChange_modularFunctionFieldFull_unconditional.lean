@@ -61,7 +61,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
+namespace P2MW.S_OVERLONG_b19fcf9a
 
 open ModularCurve AlgebraicCurve
 
@@ -70,10 +70,10 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L]
     : HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) :=
   hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull L modularPolynomialFamily N
 
-end S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
+end S_OVERLONG_b19fcf9a
 end P2MW
 export
-  P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
+  P2MW.S_OVERLONG_b19fcf9a
   (solution)
 
 end privateSection

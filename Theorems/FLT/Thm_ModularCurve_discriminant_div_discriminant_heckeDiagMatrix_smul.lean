@@ -88,7 +88,7 @@ theorem discriminant_div_discriminant_heckeDiagMatrix_smul' (N : ℕ) [NeZero N]
       = UpperHalfPlane.denom (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (τ : ℂ) ^ (12 : ℤ)
         * ModularForm.discriminant τ := by
     have h := SlashInvariantForm.slash_action_eqn'' CuspForm.discriminant hγSL τ
-    simp [CuspForm.coe_discriminant] at h
+    simp only [CuspForm.coe_discriminant, zpow_ofNat] at h
     exact h
   have hΔγ' : ModularForm.discriminant (γ' • ModularForm.heckeDiagMatrix N • τ)
       = UpperHalfPlane.denom (γ' : Matrix.GeneralLinearGroup (Fin 2) ℝ)
@@ -96,7 +96,7 @@ theorem discriminant_div_discriminant_heckeDiagMatrix_smul' (N : ℕ) [NeZero N]
         * ModularForm.discriminant (ModularForm.heckeDiagMatrix N • τ) := by
     have h := SlashInvariantForm.slash_action_eqn'' CuspForm.discriminant hγ'SL
         (ModularForm.heckeDiagMatrix N • τ)
-    simp [CuspForm.coe_discriminant] at h
+    simp only [CuspForm.coe_discriminant, zpow_ofNat] at h
     exact h
   rw [hact τ, hΔγ, hΔγ', hden τ,
     mul_div_mul_left _ _ (zpow_ne_zero 12 (UpperHalfPlane.denom_ne_zero _ _))]

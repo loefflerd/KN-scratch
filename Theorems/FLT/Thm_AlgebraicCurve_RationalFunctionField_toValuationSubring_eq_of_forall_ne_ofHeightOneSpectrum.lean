@@ -62,7 +62,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+namespace P2MW.S_OVERLONG_168df5ef
 
 open AlgebraicCurve
 open IsDedekindDomain WithZero IsLocalRing
@@ -81,10 +81,10 @@ theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (R
     exact absurd (Place.ext (v.adicValuation_valuationSubring.symm.trans
       ((Valuation.isEquiv_iff_valuationSubring _ _).mp hw))) (hv w)
 
-end S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+end S_OVERLONG_168df5ef
 end P2MW
 export
-  P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+  P2MW.S_OVERLONG_168df5ef
   (solution)
 
 end privateSection

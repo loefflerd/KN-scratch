@@ -64,10 +64,12 @@ $N$) yields a point of $X_0(N)$ lying over $(j(E),j(E))$, so that $j(E)$ is a ro
 modular polynomial $\Phi_N(X,X)$. It is used to rule out endomorphisms of degree $N>1$ when $j(W)$
 is transcendental or non-integral, in
 [`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j`]
-(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j)
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.
+exists_forall_pointEnd_eq_zsmul_of_transcendental_j)
 and
 [`WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j`]
-(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j).
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.
+exists_forall_pointEnd_eq_zsmul_of_not_isIntegral_j).
 
 ## Explanation of the source proof
 
@@ -82,10 +84,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq
+namespace P2MW.S_OVERLONG_e162e25a
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -174,10 +175,10 @@ scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] 
   hasPrincipalDivisors_functionField W
 
 section AutoNorm
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type*} [Field F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
-omit [DecidableEq F] in
+omit [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
   classical
@@ -201,9 +202,9 @@ p2m_export "ModularCurve" "ModularPolynomialData \
   ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic"
 p2m_open "ModularCurve"
 p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.Weierstras\
+  P2MW.S_OVERLONG_e162e25a.Weierstras\
   sCurve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.Weierstras\
+  P2MW.S_OVERLONG_e162e25a.Weierstras\
   sCurve.Affine AlgebraicCurve"
 
 section ConjHelpers
@@ -259,14 +260,13 @@ theorem kw_fdn2_qephod_hend21_finrankAlong_conj
 end ConjHelpers
 end ModularCurve
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 section
 open Complex Filter Set
 
 p2m_open_scoped "PeriodPair \
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.PeriodPair"
+  P2MW.S_OVERLONG_e162e25a.PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe \
@@ -633,11 +633,11 @@ theorem s13_j_weierstrassCurve_eq_jLattice (L : PeriodPair) [L.weierstrassCurve.
     div_eq_mul_inv, mul_comm, Units.val_inv_eq_inv_val]
 
 open _root_.WeierstrassCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve
+  _root_.P2MW.S_OVERLONG_e162e25a.WeierstrassCurve
   _root_.WeierstrassCurve.Affine
-  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine
+  _root_.P2MW.S_OVERLONG_e162e25a.WeierstrassCurve.Affine
   AlgebraicCurve _root_.ModularCurve
-  _root_.P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.ModularCurve
+  _root_.P2MW.S_OVERLONG_e162e25a.ModularCurve
   in
 theorem solution
     {K : Type u} [Field K] [IsAlgClosed K] [CharZero K]
@@ -713,9 +713,9 @@ theorem solution
   exact hroot
 
 end
-end S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq
+end S_OVERLONG_e162e25a
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq
+export P2MW.S_OVERLONG_e162e25a
   (solution)
 
 end privateSection

@@ -463,7 +463,8 @@ theorem ord_jb_sub_dvd (data : ModularPolynomialData N) (c : AlgebraicClosure �
   have key := AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound
     (K := AlgebraicClosure ℚ) (L := AlgebraicClosure ℚ) (F := ↥(modularFunctionFieldBar N))
     (X - C c) (Polynomial.irreducible_X_sub_C c) c (by simp) (by simp) hd
-    (fun ψ hψ => forall_hasRamBound_of_roots N data c hd hroots ψ (by rwa [algebraMap_RF_X] at hψ)) v
+    (fun ψ hψ => forall_hasRamBound_of_roots N data c hd hroots ψ (by
+      rwa [algebraMap_RF_X] at hψ)) v
     (by rwa [algebraMap_RF_X_sub_C])
   rwa [algebraMap_RF_X_sub_C] at key
 

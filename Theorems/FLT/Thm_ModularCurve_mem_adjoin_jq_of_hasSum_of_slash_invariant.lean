@@ -119,7 +119,7 @@ lemma C (h : ℝ) (a : ℂ) : RealL h (HahnSeries.C a) (fun _ => a) := by
 
 lemma one (h : ℝ) : RealL h 1 1 := by
   have h__af := C h 1
-  simp at h__af
+  simp only [HahnSeries.C_apply, HahnSeries.single_zero_one] at h__af
   exact h__af
 
 lemma zero (h : ℝ) : RealL h 0 0 := fun τ => by simp [hasSum_zero]
@@ -132,7 +132,7 @@ lemma prod (hh : 0 < h) {ι : Type} (s : Finset ι) {A : ι → LaurentSeries �
     (hAF : ∀ i ∈ s, RealL h (A i) (F i)) : RealL h (∏ i ∈ s, A i) (fun τ => ∏ i ∈ s, F i τ) := by
   classical
   induction s using Finset.induction_on with
-  | empty => (have h__af := one h; simp at h__af ⊢; exact h__af)
+  | empty => (have h__af := one h; simp only [Finset.prod_empty] at h__af ⊢; exact h__af)
   | insert a s ha ih =>
     have h1 :=
       (hAF a (Finset.mem_insert_self a s)).mul hh (ih fun i hi => hAF i (Finset.mem_insert_of_mem
@@ -149,9 +149,9 @@ lemma coeff_prod_X_sub_C (hh : 0 < h) {ι : Type} (s : Finset ι) {a : ι → La
   | empty =>
     simp only [Finset.prod_empty, Polynomial.coeff_one]
     by_cases hk : k = 0
-    · subst hk; (have h__af := one h; simp at h__af ⊢; exact h__af)
+    · subst hk; (have h__af := one h; simp only [↓reduceIte] at h__af ⊢; exact h__af)
     · have h__af := zero h
-      simp [hk] at h__af ⊢
+      simp only [hk, ↓reduceIte] at h__af ⊢
       exact h__af
   | insert b s hb ih =>
     have ih' := fun k => ih (fun i hi => haα i (Finset.mem_insert_of_mem hi)) k

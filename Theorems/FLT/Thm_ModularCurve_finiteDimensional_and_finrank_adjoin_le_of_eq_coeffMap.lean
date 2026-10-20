@@ -62,7 +62,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_le_of_eq_coeffMap
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 noncomputable section

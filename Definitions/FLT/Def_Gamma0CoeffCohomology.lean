@@ -112,7 +112,7 @@ def coeffCoboundaries (ρ : Representation K G V) : Submodule K (G → V) :=
 
 theorem mem_coeffCoboundaries_iff (ρ : Representation K G V) (z : G → V) :
     z ∈ coeffCoboundaries ρ ↔ ∃ v : V, (fun g => ρ g v - v) = z := by
-  simp [coeffCoboundaries, LinearMap.mem_range]
+  simp only [coeffCoboundaries, LinearMap.mem_range]
   constructor
   · rintro ⟨v, hv⟩
     exact ⟨v, by rw [← hv]; rfl⟩

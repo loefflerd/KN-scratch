@@ -67,7 +67,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j
+namespace P2MW.S_OVERLONG_9616a762
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
@@ -113,10 +113,10 @@ theorem solution
       show (algebraMap ℚ F).comp (Int.castRingHom ℚ) = algebraMap ℤ F from Subsingleton.elim _ _]
     exact hpe⟩
 
-end S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j
+end S_OVERLONG_9616a762
 end P2MW
 export
-  P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_pointEnd_eq_zsmul_of_transcendental_j
+  P2MW.S_OVERLONG_9616a762
   (solution)
 
 end privateSection

@@ -1,6 +1,7 @@
 /-
 Based on Prove2Me node
-WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+WeierstrassCurve.Affine.
+eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
 (0ba6c717-ebcf-50c6-806e-c735eb48a2e9) by Claude (2026-09-05).
 
 Proof based on Prove2Me submission 285a9016-3821-511c-ba86-36440e5c0200
@@ -31,13 +32,13 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_intermediateField_countab
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cyclic kernel of order N forces Φ_N(j(E),j(E'))=0
 
 Theorem statement:
-`WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`
+`WeierstrassCurve.Affine.
+eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward`
 (`0ba6c717-ebcf-50c6-806e-c735eb48a2e9`), by Claude, 2026-09-05.
 
 Proof: submission `285a9016-3821-511c-ba86-36440e5c0200`, by Claude, 2026-09-05 (ACCEPTED); locally
@@ -80,19 +81,12 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
-
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ g₃ ω₂ G g₂ weierstrassCurve DiscriminantNeZero jLattice \
-  jLattice_eq_c₄_pow_three_div_Δ scale_indep scale exists_variableChange_smul_weierstrassCurve_eq \
-  exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient \
-  discriminant_ne_zero"
-p2m_open "PeriodPair"
+
 open Complex
 variable (L : PeriodPair)
 section Scale
@@ -124,7 +118,6 @@ private theorem _root_.PeriodPair.scale_lattice :
     · exact ⟨L.ω₂, Or.inr rfl, rfl⟩
   · rintro ⟨w, hw | hw, rfl⟩ <;> simp [hw]
 
-p2m_export "PeriodPair" "scale_lattice"
 theorem mem_scale_lattice_iff {z : ℂ} :
     z ∈ (L.scale α).lattice ↔ ∃ l ∈ L.lattice, z = (α : ℂ) * l := by
   rw [scale_lattice, Submodule.mem_map]; simp only [mulLeftZ_apply]; tauto
@@ -134,7 +127,6 @@ private def _root_.PeriodPair.scaleLatticeEquiv : L.lattice ≃ₗ[ℤ] (L.scale
     (fun _ _ h => mul_left_cancel₀ α.ne_zero (by simpa using h)) L.lattice).trans
     (LinearEquiv.ofEq _ _ (L.scale_lattice α).symm)
 
-p2m_export "PeriodPair" "scaleLatticeEquiv"
 @[scoped simp] theorem scaleLatticeEquiv_apply (l : L.lattice) :
     ((L.scaleLatticeEquiv α l : (L.scale α).lattice) : ℂ) = (α : ℂ) * (l : ℂ) := rfl
 
@@ -362,7 +354,7 @@ theorem solution0
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K) E.j)).eval E'.j = 0 := by
   let : Algebra ℚ K := DivisionRing.toRatAlgebra
   obtain ⟨K₀, hK₀, E₀, E₀', hE₀, hE₀', hE, hE', hEb, hEb', ι₀, hι₀, hfin₀, H⟩ :=
-    WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
+    exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
       E E' ι hι hfin hN N hcyc hcard
   have := hE₀
   have := hE₀'
@@ -462,20 +454,15 @@ theorem solution
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K) E.j)).eval E'.j = 0 :=
   F4Proof.solution0 E E' ι hι hfin hN N hcyc hcard data
 
-end S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
-end P2MW
-export
-  P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
-  (solution)
-
 end privateSection
 
 public section publicSection
 
+namespace WeierstrassCurve.Affine
+open AlgebraicCurve
 
-open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 theorem
-  WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
+  eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
     (K : Type) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
     [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
@@ -488,5 +475,7 @@ theorem
     (data : ModularCurve.ModularPolynomialData N) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K) E.j)).eval E'.j = 0 :=
   solution K E E' ι hι hfin hN N hcyc hcard data
+
+end WeierstrassCurve.Affine
 
 end publicSection

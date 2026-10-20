@@ -128,11 +128,16 @@ theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Od
         = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g +
           ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z :
           CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)))
-            + (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by abel
+            + (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g -
+              ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z :
+              CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by
+              abel
       _ = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N) - (z
         : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g) + (z :
         CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g
-            - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by rw [e]
+            - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z :
+              CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by
+              rw [e]
       _ = _ := by abel
   refine ⟨-((2 : K)⁻¹ • (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n))
     (HeckeEis.OddSol.m N)), funext fun g => ?_⟩

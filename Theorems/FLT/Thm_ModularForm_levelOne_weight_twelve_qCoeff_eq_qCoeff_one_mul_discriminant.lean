@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_FLTPrelim_Modularity
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Level-one weight-12 forms with vanishing constant term are τ-multiples
@@ -53,10 +52,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_ModularForm_levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
-set_option Elab.async false
 open scoped MatrixGroups
 
 namespace WL12Pen
@@ -93,11 +88,7 @@ private theorem qCoeff_one_eq (Z : ModularForm 𝒮ℒ 12) (c : ℂ)
 
 end WL12Pen
 
-namespace ModularForm
-p2m_export "ModularForm" "toCuspForm discriminant discriminant_qExpansion_coeff_one"
-end ModularForm
-p2m_open_scoped "ModularForm" in
-private theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
+private theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant'
     (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) :
     ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff
       ModularForm.discriminant n := by
@@ -109,11 +100,7 @@ private theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_disc
 theorem solution (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) :
     ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff
       ModularForm.discriminant n :=
-  ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0
-
-end S_ModularForm_levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
-end P2MW
-export P2MW.S_ModularForm_levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant (solution)
+  ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant' Z h0
 
 end privateSection
 

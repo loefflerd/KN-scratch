@@ -546,7 +546,9 @@ lemma key_factor (γ : Gamma0 N) (x : Option (ZMod l))
         refine ⟨γ', ?_, ?_, ?_⟩
         · ext i j
           fin_cases i <;> fin_cases j <;>
-            simp [-ZMod.natCast_val, Mx, α, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+            simp only [Mx, α, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+              cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, cons_val_one, zero_mul, add_zero,
+              mkGamma0, mul_zero, γ', Fin.mk_one, mul_one, zero_add, one_mul] <;>
             first | ring1 | linear_combination hcl | linear_combination -hcl
         · simp [γ', mkGamma0]
         · simp [γ', mkGamma0]
@@ -568,7 +570,9 @@ lemma key_factor (γ : Gamma0 N) (x : Option (ZMod l))
       refine ⟨γ', ?_, ?_, ?_⟩
       · ext i j
         fin_cases i <;> fin_cases j <;>
-          simp [-ZMod.natCast_val, Mx, α, β, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+          simp only [Mx, α, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+            cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, cons_val_one, zero_mul, add_zero,
+            mkGamma0, β, mul_one, mul_zero, γ', Fin.mk_one, one_mul, zero_add] <;>
           first | ring1 | linear_combination hld' | linear_combination -hld'
       · simp [γ', mkGamma0]
       · simp only [γ', mkGamma0_coe, lpow_none, lpow_some, Matrix.of_apply, Matrix.cons_val',
@@ -592,7 +596,9 @@ lemma key_factor (γ : Gamma0 N) (x : Option (ZMod l))
       refine ⟨γ', ?_, ?_, ?_⟩
       · ext i j
         fin_cases i <;> fin_cases j <;>
-          simp [-ZMod.natCast_val, Mx, α, β, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+          simp only [Mx, β, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+            cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, one_mul, cons_val_one, mkGamma0, α,
+            mul_zero, add_zero, γ', Fin.mk_one, mul_one, zero_add, zero_mul] <;>
           first | ring1 | linear_combination hlu | linear_combination -hlu
       · simp only [γ', mkGamma0_coe, lpow_none, lpow_some, Matrix.of_apply, Matrix.cons_val',
           Matrix.cons_val_zero, Matrix.empty_val', Matrix.cons_val_fin_one,
@@ -625,7 +631,9 @@ lemma key_factor (γ : Gamma0 N) (x : Option (ZMod l))
       refine ⟨γ', ?_, ?_, ?_⟩
       · ext i j
         fin_cases i <;> fin_cases j <;>
-          simp [-ZMod.natCast_val, Mx, β, γ', mkGamma0, Matrix.mul_apply, Fin.sum_univ_two] <;>
+          simp only [Mx, β, Fin.zero_eta, Fin.isValue, Matrix.mul_apply, of_apply, cons_val',
+            cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, one_mul, cons_val_one, mkGamma0,
+            mul_one, mul_zero, add_zero, γ', Fin.mk_one, zero_mul, zero_add] <;>
           first | ring1 | linear_combination hlq | linear_combination -hlq
       · simp [γ', mkGamma0, hcN]
       · simp [γ', mkGamma0, hcN]

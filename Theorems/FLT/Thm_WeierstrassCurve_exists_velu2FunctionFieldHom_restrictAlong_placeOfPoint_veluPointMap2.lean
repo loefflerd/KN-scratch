@@ -70,7 +70,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
+namespace P2MW.S_OVERLONG_6938b70c
 
 open Polynomial AlgebraicCurve
 open scoped Polynomial.Bivariate
@@ -260,18 +260,16 @@ section transcendence
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
+variable {F : Type u} [Field F] [IsAlgClosed F]
 variable {W : WeierstrassCurve F} [W.IsElliptic] {x₀ y₀ : F}
 variable [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine]
 
-omit [DecidableEq F] in
 theorem xK_notMem_placeOfPoint_zero :
     xK W.toAffine ∉ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring := by
   classical
   exact
     algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 
-omit [DecidableEq F] in
 theorem corr_mem_placeOfPoint_zero (x₀ y₀ : F) :
     algebraMap F _ (W.veluGx x₀ y₀) / (xK W.toAffine - algebraMap F _ x₀)
       ∈ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring := by
@@ -286,7 +284,6 @@ theorem corr_mem_placeOfPoint_zero (x₀ y₀ : F) :
   rw [map_div₀, hsub, div_le_one₀ (lt_trans zero_lt_one hx)]
   exact le_trans (valuation_algebraMap_le_one (placeOfPoint (0 : W.toAffine.Point)) _) hx.le
 
-omit [DecidableEq F] in
 theorem ξ_notMem_placeOfPoint_zero (x₀ y₀ : F) :
     ξ W x₀ y₀ ∉ (placeOfPoint (0 : W.toAffine.Point)).toValuationSubring := by
   classical
@@ -295,7 +292,6 @@ theorem ξ_notMem_placeOfPoint_zero (x₀ y₀ : F) :
   have := sub_mem h (corr_mem_placeOfPoint_zero (W := W) x₀ y₀)
   rwa [ξ, add_sub_cancel_right] at this
 
-omit [DecidableEq F] in
 theorem transcendental_ξ (x₀ y₀ : F) : Transcendental F (ξ W x₀ y₀) := by
   classical
   intro halg
@@ -307,7 +303,6 @@ theorem transcendental_ξ (x₀ y₀ : F) : Transcendental F (ξ W x₀ y₀) :=
   rw [← hc]
   exact algebraMap_mem _ c
 
-omit [DecidableEq F] in
 theorem aeval_ξ_injective (x₀ y₀ : F) :
     Function.Injective (Polynomial.aeval (R := F) (ξ W x₀ y₀)) := by
   classical
@@ -569,19 +564,19 @@ section seam
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [IsAlgClosed F] [CharZero F]
 variable {W : WeierstrassCurve F} [W.IsElliptic] {x₀ y₀ : F}
 variable [GenusOnePlaceGate W.toAffine] [GenusOnePlaceGate.IsCentred W.toAffine]
 variable (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0)
 
-omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic] in
+omit [IsAlgClosed F] [CharZero F] [W.IsElliptic] in
 theorem val_xK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
     (placeOfPoint (Point.some x y h)).toValuationSubring.valuation
       (xK W.toAffine - algebraMap F _ x) < 1 := by
   rw [← ValuationSubring.mem_nonunits_iff, ← algebraMap_XClass]
   exact GenusOnePlaceGate.IsCentred.algebraMap_XClass_mem_nonunits h
 
-omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic] in
+omit [IsAlgClosed F] [CharZero F] [W.IsElliptic] in
 theorem val_yK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
     (placeOfPoint (Point.some x y h)).toValuationSubring.valuation
       (yK W.toAffine - algebraMap F _ y) < 1 := by
@@ -591,7 +586,6 @@ theorem val_yK_sub_lt_one {x y : F} (h : W.toAffine.Nonsingular x y) :
 variable [GenusOnePlaceGate (W.veluQuotient2 x₀ y₀).toAffine]
 variable [GenusOnePlaceGate.IsCentred (W.veluQuotient2 x₀ y₀).toAffine]
 
-omit [DecidableEq F] in
 theorem restrictAlong_eq_placeOfPoint_zero_of_notMem (v : Place F W.toAffine.FunctionField)
     (hv : ξ W x₀ y₀ ∉ v.toValuationSubring) :
     v.restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
@@ -609,7 +603,6 @@ theorem restrictAlong_eq_placeOfPoint_zero_of_notMem (v : Place F W.toAffine.Fun
     have := add_mem (ValuationSubring.nonunits_subset hX) (algebraMap_mem v x')
     rwa [sub_add_cancel] at this
 
-omit [DecidableEq F] in
 theorem restrictAlong_placeOfPoint_zero (h2 : (2 : F) ≠ 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) :
     (placeOfPoint (0 : W.toAffine.Point)).restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
@@ -618,7 +611,6 @@ theorem restrictAlong_placeOfPoint_zero (h2 : (2 : F) ≠ 0)
   exact
     restrictAlong_eq_placeOfPoint_zero_of_notMem hQ hgy _ (ξ_notMem_placeOfPoint_zero x₀ y₀)
 
-omit [DecidableEq F] in
 theorem restrictAlong_placeOfPoint_some_of_eq (h2 : (2 : F) ≠ 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) {x y : F} (h : W.toAffine.Nonsingular x y)
     (hx : x = x₀) :
@@ -645,7 +637,6 @@ theorem restrictAlong_placeOfPoint_some_of_eq (h2 : (2 : F) ≠ 0)
 
 variable [(W.veluQuotient2 x₀ y₀).IsElliptic]
 
-omit [DecidableEq F] in
 theorem restrictAlong_placeOfPoint_some_of_ne (h2 : (2 : F) ≠ 0)
     (hΔ' : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) {x y : F} (h : W.toAffine.Nonsingular x y)
     (hx : x ≠ x₀) :
@@ -732,9 +723,9 @@ theorem solution
   ⟨ffHom hQ hgy, isIntegral_ffHom hQ hgy, finiteAlong_ffHom hQ hgy,
     restrictAlong_placeOfPoint_veluPointMap2 hQ hgy hΔ' two_ne_zero⟩
 
-end S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
+end S_OVERLONG_6938b70c
 end P2MW
-export P2MW.S_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2
+export P2MW.S_OVERLONG_6938b70c
   (solution)
 
 end privateSection

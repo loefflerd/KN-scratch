@@ -71,7 +71,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_AlgebraicCurve_RationalFunctionField_finiteDimensional_lSpace_zero_of_constantsAreBase
+namespace P2MW.S_OVERLONG_b9c3c6d1
 
 
 open Polynomial
@@ -885,9 +885,8 @@ theorem adeleBddPrincipal_mono {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂) :
 
 section FiniteLSpace
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
 
-omit [Nonempty (Place K F)] in
 theorem finiteDimensional_lSpace [hL0 : FiniteDimensional K (LSpace (0 : Divisor K F))]
     (D : Divisor K F) : FiniteDimensional K (LSpace D) := by
   have h0D : (0 : Divisor K F) ≤ D ⊔ 0 := le_sup_right
@@ -2647,7 +2646,7 @@ end
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg\
   " in
 open
-  _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_finiteDimensional_lSpace_zero_of_constantsAreBase.AlgebraicCurve
+  _root_.P2MW.S_OVERLONG_b9c3c6d1.AlgebraicCurve
   Polynomial in
 theorem solution (K : Type*) [Field K] (F : Type*) [Field F] [Algebra K F]
     (hC : ConstantsAreBase K F) :
@@ -2655,9 +2654,9 @@ theorem solution (K : Type*) [Field K] (F : Type*) [Field F] [Algebra K F]
   AlgebraicCurve.RationalFunctionField.finiteDimensional_lSpace_zero_of_constantsAreBase_port (K :=
     K) (F := F) (hC := hC)
 
-end S_AlgebraicCurve_RationalFunctionField_finiteDimensional_lSpace_zero_of_constantsAreBase
+end S_OVERLONG_b9c3c6d1
 end P2MW
-export P2MW.S_AlgebraicCurve_RationalFunctionField_finiteDimensional_lSpace_zero_of_constantsAreBase
+export P2MW.S_OVERLONG_b9c3c6d1
   (solution)
 
 end privateSection

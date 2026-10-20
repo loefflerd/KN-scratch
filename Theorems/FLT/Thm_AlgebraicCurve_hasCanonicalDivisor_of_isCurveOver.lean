@@ -69,7 +69,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 open IsDedekindDomain
@@ -1176,7 +1175,6 @@ end AlgebraicCurve
 
 noncomputable section
 
-set_option linter.unusedSectionVars false
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors \

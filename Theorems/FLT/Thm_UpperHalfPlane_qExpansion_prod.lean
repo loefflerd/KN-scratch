@@ -76,7 +76,7 @@ theorem solution {h : ℝ} {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ}
     have h1 : cuspFunction h (1 : ℍ → ℂ) = 1 := by
       ext q
       rcases eq_or_ne q 0 with rfl | hq
-      · simp [cuspFunction, Periodic.cuspFunction]
+      · simp only [cuspFunction, Periodic.cuspFunction, Pi.one_comp, update_self, Pi.one_apply]
         exact Filter.Tendsto.limUnder_eq tendsto_const_nhds
       · simp [cuspFunction, Periodic.cuspFunction_eq_of_nonzero h _ hq]
     refine ⟨by simpa using qExpansion_one h, ?_⟩

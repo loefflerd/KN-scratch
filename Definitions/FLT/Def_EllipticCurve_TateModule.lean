@@ -491,7 +491,8 @@ theorem liftFun_mem
     · by_cases hk' : n ≤ k + 1
       · have hn : n = k + 1 := by omega
         subst hn
-        rw [liftFun_of_le le_rfl, liftFun_of_lt (by omega : k < k + 1), coe_liftAux_congr (Nat.sub_self _),
+        rw [liftFun_of_le le_rfl, liftFun_of_lt (by
+          omega : k < k + 1), coe_liftAux_congr (Nat.sub_self _),
           Nat.add_sub_cancel_left, pow_one]
         rfl
       · rw [liftFun_of_lt (not_le.mp hk'), liftFun_of_lt (not_le.mp hk), smul_smul, ← Nat.cast_mul,

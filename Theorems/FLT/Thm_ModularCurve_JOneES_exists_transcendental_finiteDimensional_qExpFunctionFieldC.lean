@@ -847,7 +847,8 @@ theorem sum_div_pow_eq {K : Type*} [Field K] {n : ℕ} (a : ℕ → K) (F G : K)
 omit [Γ.FiniteIndex] hT in
 theorem monomial_eq {K : Type*} [Field K] {m b : ℕ} (hb : b ≤ m) (Q4 Q6 : K) (h4 : Q4 ≠ 0) :
     Q4 ^ (3 * (m - b)) * Q6 ^ (2 * b) = Q4 ^ (3 * m) * (Q6 ^ 2 / Q4 ^ 3) ^ b := by
-  rw [show 3 * m = 3 * (m - b) + 3 * b by omega, _root_.pow_add, div_pow, ← pow_mul, ← pow_mul, mul_assoc]
+  rw [show 3 * m = 3 * (m - b) + 3 * b by
+    omega, _root_.pow_add, div_pow, ← pow_mul, ← pow_mul, mul_assoc]
   congr 1
   rw [mul_div_assoc', mul_comm (Q4 ^ (3 * b)), mul_div_assoc, div_self (pow_ne_zero _ h4), mul_one]
 

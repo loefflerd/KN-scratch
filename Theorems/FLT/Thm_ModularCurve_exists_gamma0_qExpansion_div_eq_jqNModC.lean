@@ -182,7 +182,7 @@ theorem solution (ℓ : ℕ) [NeZero ℓ] : ∃ G H : ModularForm (CongruenceSub
     have h1 := congrFun hH UpperHalfPlane.I
     rw [h0] at h1
     have h__af := h1.symm
-    simp at h__af
+    simp only [zero_apply] at h__af
     exact h__af
   · have he4 : qExpansion 1 (SolJJLAux.e4cube : ℍ → ℂ) =
         (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) ^ 3 := by

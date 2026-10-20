@@ -86,13 +86,14 @@ def tauPair (τ : ℍ) : PeriodPair where
     intro s t h
     have h1 := congrArg Complex.im h
     have h2 := congrArg Complex.re h
-    simp at h1 h2
+    simp only [real_smul, mul_one, add_im, mul_im, ofReal_re, coe_im, ofReal_im, coe_re, zero_mul,
+      add_zero, zero_im, mul_eq_zero, add_re, mul_re, sub_zero, zero_re] at h1 h2
     have hs : s = 0 := by
       rcases h1 with h1 | h1
       · exact h1
       · exact absurd h1 τ.im_pos.ne'
     subst hs
-    simp at h2
+    simp only [zero_mul, zero_add] at h2
     exact ⟨rfl, h2⟩
 
 theorem tauPair_spec (τ : ℍ) : (tauPair τ).ω₁ = (τ : ℂ) ∧ (tauPair τ).ω₂ = 1 := ⟨rfl, rfl⟩

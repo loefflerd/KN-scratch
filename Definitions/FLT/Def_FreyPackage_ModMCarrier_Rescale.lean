@@ -153,7 +153,9 @@ variable {R M d : ℕ}
 
 def heckeDiagMatrixQ (hd : d ≠ 0) : GL (Fin 2) ℚ :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero !![(d : ℚ), 0; 0, 1]
-    (by rw [Matrix.det_fin_two_of]; simp; exact_mod_cast hd)
+    (by
+      rw [Matrix.det_fin_two_of]; simp only [mul_one, mul_zero, sub_zero, ne_eq, Nat.cast_eq_zero];
+        exact_mod_cast hd)
 
 lemma heckeDiagMatrixQ_map (hd : d ≠ 0) :
     (heckeDiagMatrixQ hd).map (Rat.castHom ℝ) = heckeDiagMatrix d := by

@@ -81,11 +81,9 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
+namespace P2MW.S_OVERLONG_072510fc
 
 set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 noncomputable section
 
@@ -162,10 +160,10 @@ scoped instance instHasPrincipalDivisorsFunctionField_a68c2 {F : Type*} [Field F
 
 section AutoNorm
 
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type*} [Field F] [CharZero F]
 variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
-omit [DecidableEq F] in
+omit [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
   classical
@@ -271,6 +269,7 @@ theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
     (Nat.cast_ne_zero.mpr (Int.natAbs_ne_zero.mpr hN))
 
 variable {W} in
+omit [CharZero F] in
 theorem kw_eq_zero_of_zsmul_eq_zero {N : ℤ} (hN : N ≠ 0) {G : Type*} [AddCommGroup G]
     (δ : W.Point →+ G) (hδ : ∀ P, N • δ P = 0) : δ = 0 := by
   refine AddMonoidHom.ext fun P => ?_
@@ -284,12 +283,15 @@ section Functoriality
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [DecidableEq F]
 variable {A B C : Affine F}
   [A.IsElliptic] [GenusOnePlaceGate A] [AbelTheorem A]
   [B.IsElliptic] [GenusOnePlaceGate B] [AbelTheorem B]
   [C.IsElliptic] [GenusOnePlaceGate C] [AbelTheorem C]
 
+omit [DecidableEq F] [WeierstrassCurve.IsElliptic A]
+  [A.GenusOnePlaceGate] [A.AbelTheorem] [WeierstrassCurve.IsElliptic B] [B.GenusOnePlaceGate]
+  [B.AbelTheorem] [WeierstrassCurve.IsElliptic C] [C.GenusOnePlaceGate] [C.AbelTheorem] in
 theorem Pic0_pushforwardAlongHom_comp
     (f : B.FunctionField →ₐ[F] A.FunctionField) (hf : f.toRingHom.IsIntegral)
     (hfinf : FiniteAlong F f) (hNf : NormFormulaAlong F f hfinf)
@@ -308,6 +310,8 @@ theorem Pic0_pushforwardAlongHom_comp
     Pic0.coe_pushforwardAlongDegZero]
   exact Divisor.pushforwardAlong_pushforwardAlong g f hg hf hfg (D : Divisor F A.FunctionField)
 
+omit [WeierstrassCurve.IsElliptic A] [WeierstrassCurve.IsElliptic B]
+  [WeierstrassCurve.IsElliptic C] in
 theorem pointMapOfPushforward_comp
     (f : B.FunctionField →ₐ[F] A.FunctionField) (hf : f.toRingHom.IsIntegral)
     (hfinf : FiniteAlong F f) (hNf : NormFormulaAlong F f hfinf)
@@ -333,6 +337,9 @@ variable {A B : Affine F}
   [A.IsElliptic] [GenusOnePlaceGate A] [AbelTheorem A]
   [B.IsElliptic] [GenusOnePlaceGate B] [AbelTheorem B]
 
+omit [DecidableEq F] [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic A]
+  [A.GenusOnePlaceGate] [A.AbelTheorem] [WeierstrassCurve.IsElliptic B] [B.GenusOnePlaceGate]
+  [B.AbelTheorem] in
 theorem finrankAlong_eq_one_of_bijective (τ : B.FunctionField →ₐ[F] A.FunctionField)
     (hτ : Function.Bijective τ) : finrankAlong F τ = 1 := by
   let := algebraAlong τ
@@ -565,10 +572,10 @@ theorem solution
   WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     W hNs hEnd V V' ι hι hfin hN ι' hι' hfin' hN' hcard hj
 
-end S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
+end S_OVERLONG_072510fc
 end P2MW
 export
-  P2MW.S_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul
+  P2MW.S_OVERLONG_072510fc
   (solution)
 
 end privateSection

@@ -90,7 +90,8 @@ lemma ModularForm.le_order_of_qExpansionCoeffs_eq_zero_W2D {𝒢 : Subgroup (GL 
     [𝒢.HasDetOne]
     {k : ℤ} {h : ℝ} (hh : 0 < h) (h𝒢 : h ∈ 𝒢.strictPeriods) {B : ℕ} {f : ModularForm 𝒢 k}
     (hf : ModularForm.qExpansionCoeffs_W2D k hh h𝒢 B f = 0) : (B : ℕ∞) ≤ (qExpansion h f).order :=
-  PowerSeries.nat_le_order _ _ fun n hn ↦ by have h__af := congr_fun hf ⟨n, hn⟩; simp at h__af; exact h__af
+  PowerSeries.nat_le_order _ _ fun n hn ↦ by
+    have h__af := congr_fun hf ⟨n, hn⟩; simp only [Pi.zero_apply] at h__af; exact h__af
 
 theorem solution (𝒢 : Subgroup (GL (Fin 2) ℝ)) [𝒢.IsArithmetic] [𝒢.HasDetOne] (k : ℤ) :
     FiniteDimensional ℂ (ModularForm 𝒢 k) := by

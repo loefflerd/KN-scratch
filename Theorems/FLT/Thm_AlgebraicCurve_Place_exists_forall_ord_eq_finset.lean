@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add
 import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
 import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Prescribing orders at finitely many places
@@ -55,19 +54,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset
-
-set_option Elab.async false
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.ord"
-p2m_open "AlgebraicCurve"
 
 namespace WC1bSolAW
 
@@ -321,18 +312,12 @@ end WC1bSolAW
 
 end AlgebraicCurve
 
-open _root_.AlgebraicCurve
-  _root_.P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset.AlgebraicCurve in
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (S : Finset (AlgebraicCurve.Place K F)) (n : AlgebraicCurve.Place K F → ℤ) :
     ∃ g : F, g ≠ 0 ∧ ∀ v ∈ S, v.ord g = n v :=
   AlgebraicCurve.WC1bSolAW.exists_forall_ord_eq_finset S n
 
 end
-
-end S_AlgebraicCurve_Place_exists_forall_ord_eq_finset
-end P2MW
-export P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq_finset (solution)
 
 end privateSection
 

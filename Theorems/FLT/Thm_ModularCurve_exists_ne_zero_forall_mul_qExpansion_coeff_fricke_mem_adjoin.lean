@@ -667,7 +667,9 @@ def P6 : PowerSeries ℤ :=
 
 theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) := by
   ext n
-  rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
+  rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by
+    norm_num) (by
+      decide) n,
     P4, PowerSeries.coeff_mk, eq_intCast]
   split_ifs with h
   · simp
@@ -687,7 +689,9 @@ theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
 
 theorem map_P6 : P6.map (Int.castRingHom ℂ) = qExpansion 1 (E₆ : ℍ → ℂ) := by
   ext n
-  rw [PowerSeries.coeff_map, ModularForm.E₆, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
+  rw [PowerSeries.coeff_map, ModularForm.E₆, EisensteinSeries.E_qExpansion_coeff (by
+    norm_num) (by
+      decide) n,
     P6, PowerSeries.coeff_mk, eq_intCast]
   split_ifs with h
   · simp

@@ -62,7 +62,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
+namespace P2MW.S_OVERLONG_4773a672
 
 open scoped MatrixGroups
 
@@ -91,9 +91,9 @@ theorem solution (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgroup.IsCongruen
       2 * Module.finrank ℂ (CuspForm Γ 2) :=
   ModularCurve.ESSurjCongruence.main Γ hΓ
 
-end S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
+end S_OVERLONG_4773a672
 end P2MW
-export P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
+export P2MW.S_OVERLONG_4773a672
   (solution)
 
 end privateSection

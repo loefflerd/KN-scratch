@@ -51,7 +51,8 @@ $\Delta^{N}$; the hypothesis that the constant term be non-zero is what forces t
 exactly $N$. It is used in the construction of modular units on $X_0(N)$, in particular by
 [`ModularCurve.StarBank.starBank`](thm.html#ModularCurve.StarBank.starBank) and by
 [`ModularCurve.exists_natDegree_eq_sub_one_and_modularUnit_intCast_eq_aeval_jqModC_of_charP`]
-(thm.html#ModularCurve.exists_natDegree_eq_sub_one_and_modularUnit_intCast_eq_aeval_jqModC_of_charP),
+(thm.html#ModularCurve.
+exists_natDegree_eq_sub_one_and_modularUnit_intCast_eq_aeval_jqModC_of_charP),
 and rests on the corresponding statement over $\mathbb{C}$ together with the identifications of the
 $q$-expansions of $\Delta$ and of $E_4^3/\Delta$.
 

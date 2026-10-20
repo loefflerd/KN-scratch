@@ -193,7 +193,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule \
   P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -453,7 +452,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 
 noncomputable section
@@ -492,7 +490,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -551,7 +548,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -682,7 +678,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -794,7 +789,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -919,7 +913,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -968,8 +961,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -1001,8 +992,8 @@ theorem finrankTrace_eq_trace_on_superspace
   let i : LinearMap.range φ →ₗ[K] W := Submodule.inclusion hrange
   let π : W →ₗ[K] LinearMap.range φ :=
     { toFun := fun w => ⟨φ (w : V), LinearMap.mem_range_self φ (w : V)⟩
-      map_add' := fun w₁ w₂ => by simp [Subtype.ext_iff]
-      map_smul' := fun c w => by simp [Subtype.ext_iff] }
+      map_add' := fun w₁ w₂ => by simp
+      map_smul' := fun c w => by simp }
   have hip : i ∘ₗ π = φ.restrict hW := by
     apply LinearMap.ext; intro w; apply Subtype.ext; rfl
   have hpi : π ∘ₗ i = φ.restrict (fun x _ => LinearMap.mem_range_self φ x) := by
@@ -1049,7 +1040,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -1187,7 +1177,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -1264,8 +1253,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
@@ -1302,8 +1289,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
@@ -1384,8 +1369,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
@@ -1485,8 +1468,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
@@ -1623,8 +1604,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
@@ -1967,7 +1946,6 @@ section Reprice
 variable {K F E : Type*} [Field K] [Field F] [Algebra K F]
 variable [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
 
 theorem kwF4gRRTate_chainRule_of_derivationFactor
     (hfinF : KwF4gRRTateCommFinite K F)
@@ -2006,8 +1984,6 @@ end
 
 section
 
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
@@ -2084,7 +2060,7 @@ end DualDom
 
 section GenericFactor
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [Nontrivial Ω[F⁄K]]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {M : Type*} [AddCommGroup M] [Module K M] [Module F M] [IsScalarTower K F M]
 
 theorem derivation_apply_eq_diffCoeff_smul (w : Place K F) [w.DCoordGenerates]
@@ -2134,8 +2110,7 @@ theorem tateCommRestrict_smul_snd {V : Type*} [AddCommGroup V] [Module K V]
   change (tateCommRestrict pA φ (c • ψ) a : V) = (c • tateCommRestrict pA φ ψ a : V)
   rw [tateCommRestrict_apply, tateCommRestrict_apply]
   unfold tateComm
-  simp only [LinearMap.smul_apply, LinearMap.sub_apply, LinearMap.comp_apply, map_smul,
-    smul_sub, Submodule.coe_smul]
+  simp only [LinearMap.smul_apply, LinearMap.sub_apply, LinearMap.comp_apply, map_smul, smul_sub]
 
 theorem tateCommRestrict_smul_fst {V : Type*} [AddCommGroup V] [Module K V]
     (pA φ ψ : V →ₗ[K] V) (c : K) :
@@ -2144,8 +2119,7 @@ theorem tateCommRestrict_smul_fst {V : Type*} [AddCommGroup V] [Module K V]
   change (tateCommRestrict pA (c • φ) ψ a : V) = (c • tateCommRestrict pA φ ψ a : V)
   rw [tateCommRestrict_apply, tateCommRestrict_apply]
   unfold tateComm
-  simp only [LinearMap.smul_apply, LinearMap.sub_apply, LinearMap.comp_apply, map_smul,
-    smul_sub, Submodule.coe_smul]
+  simp only [LinearMap.smul_apply, LinearMap.sub_apply, LinearMap.comp_apply, map_smul, smul_sub]
 
 theorem tateRes_congr_snd (u : Place K F) {fh gh₁ gh₂ : u.adicCompletion} (heq : gh₁ = gh₂)
     [h₁ : FiniteDimensional K (LinearMap.range
@@ -2220,8 +2194,7 @@ def tateResSndDer (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
         unfold tateRes tateCommTrace
         rw [finrankTrace_congr heq, finrankTrace_smul] }
     (fun g h => DualDom.ext fun f => by
-      simp only [LinearMap.coe_mk, AddHom.coe_mk, tateResFstLM_apply, DualDom.smul_apply,
-        DualDom.toLM_add]
+      simp only [LinearMap.coe_mk, AddHom.coe_mk, tateResFstLM_apply, DualDom.toLM_add]
       have := hfin w f (algebraMap F _ (g * h))
       have := hfin w (algebraMap F _ g * f) (algebraMap F _ h)
       have := hfin w (algebraMap F _ h * f) (algebraMap F _ g)
@@ -2236,6 +2209,7 @@ def tateResSndDer (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
         tateRes_congr_fst w (mul_comm f (algebraMap F _ g)),
         tateRes_congr_fst w (mul_comm f (algebraMap F _ h))])
 
+omit [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]] in
 @[scoped simp] theorem tateResSndDer_apply (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
     (hfin : KwF4gRRTateCommFinite K F) (g : F) (f : w.adicCompletion) :
     ((tateResSndDer w hfin) g).toLM f

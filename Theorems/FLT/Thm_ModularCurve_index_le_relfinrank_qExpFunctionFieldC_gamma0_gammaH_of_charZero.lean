@@ -75,7 +75,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero
+namespace P2MW.S_OVERLONG_e39f7e7d
 
 namespace ModularCurve
 p2m_export "ModularCurve" "intSeriesC qExpFunctionFieldC intFormRatiosC_subset \
@@ -193,7 +193,7 @@ end CohCarrier
 
 open scoped MatrixGroups in
 open _root_.ModularCurve
-  _root_.P2MW.S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero.ModularCurve
+  _root_.P2MW.S_OVERLONG_e39f7e7d.ModularCurve
   ModularCurve.IgusaGammaH IntermediateField in
 set_option synthInstance.maxHeartbeats 1600000 in
 theorem solution
@@ -347,9 +347,9 @@ theorem solution
         Nat.le_mul_of_pos_left _ (Nat.pos_of_ne_zero hne2)
     _ = _ := t2
 
-end S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero
+end S_OVERLONG_e39f7e7d
 end P2MW
-export P2MW.S_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero
+export P2MW.S_OVERLONG_e39f7e7d
   (solution)
 
 end privateSection

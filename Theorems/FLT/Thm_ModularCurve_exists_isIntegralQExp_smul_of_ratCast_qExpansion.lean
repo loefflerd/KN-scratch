@@ -349,7 +349,9 @@ def P6 : PowerSeries ℤ :=
 
 theorem map_P4 : P4.map (Int.castRingHom ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) := by
   ext n
-  rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
+  rw [PowerSeries.coeff_map, ModularForm.E₄, EisensteinSeries.E_qExpansion_coeff (by
+    norm_num) (by
+      decide) n,
     P4, PowerSeries.coeff_mk, eq_intCast]
   split_ifs with h
   · simp
@@ -369,7 +371,9 @@ theorem bernoulli'_six : bernoulli' 6 = 1 / 42 := by
 
 theorem map_P6 : P6.map (Int.castRingHom ℂ) = qExpansion 1 (E₆ : ℍ → ℂ) := by
   ext n
-  rw [PowerSeries.coeff_map, ModularForm.E₆, EisensteinSeries.E_qExpansion_coeff (by norm_num) (by decide) n,
+  rw [PowerSeries.coeff_map, ModularForm.E₆, EisensteinSeries.E_qExpansion_coeff (by
+    norm_num) (by
+      decide) n,
     P6, PowerSeries.coeff_mk, eq_intCast]
   split_ifs with h
   · simp
@@ -477,9 +481,11 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
     have hS : Summable (fun n : ℕ => ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n) := by
       apply Summable.of_norm_bounded (g := fun n : ℕ => (6 * n + 1) * ‖Periodic.qParam 1 z‖ ^ n)
       · have h1 :=
-          summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by simpa using hq)
+          summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by
+            simpa using hq)
         have h2 :=
-          summable_geometric_of_norm_lt_one (R := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
+          summable_geometric_of_norm_lt_one (R := ℝ) (by
+            simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
         have := (h1.mul_left 6).add h2
         refine this.congr fun n => ?_
         simp only [pow_one]; ring

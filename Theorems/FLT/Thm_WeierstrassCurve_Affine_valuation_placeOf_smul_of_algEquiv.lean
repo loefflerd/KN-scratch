@@ -191,20 +191,12 @@ section GalA2
 
 variable {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F)
   (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField)
-  (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk
-    (W⁄K) p)) =
-    algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField
-      (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K)))))
 
-include hΦ
-
-omit hΦ in
 theorem xc_smul (P : (W⁄K).Point) : (σ • P).xc = σ P.xc := by
   rcases P with _ | ⟨x, y, h⟩
   · exact (map_zero σ).symm
   · rfl
 
-omit hΦ in
 theorem yc_smul (P : (W⁄K).Point) : (σ • P).yc = σ P.yc := by
   rcases P with _ | ⟨x, y, h⟩
   · exact (map_zero σ).symm

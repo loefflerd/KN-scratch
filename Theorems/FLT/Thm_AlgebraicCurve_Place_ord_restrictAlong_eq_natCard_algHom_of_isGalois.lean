@@ -77,7 +77,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois
 
-set_option linter.unusedSectionVars false
 
 open AlgebraicCurve IsDedekindDomain WithZero
 open scoped IntermediateField
@@ -556,12 +555,14 @@ variable {K : Type*} [Field K] [IsAlgClosed K] {F M : Type*} [Field F] [Field M]
 
 attribute [local instance] placeAction
 
+omit [IsAlgClosed K] [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 theorem algebraMap_gen_sub :
     algebraMap K⟮t⟯ M (IntermediateField.AdjoinSimple.gen K t - algebraMap K K⟮t⟯ j₀) =
       t - algebraMap K M j₀ := by
   rw [map_sub, IntermediateField.AdjoinSimple.algebraMap_gen K t, ← IsScalarTower.algebraMap_apply]
 
 include hW₀ in
+omit [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 theorem transcendental_t : Transcendental K t := by
   intro halg
   obtain ⟨c, hc⟩ : t ∈ (algebraMap K M).range := by
@@ -570,6 +571,7 @@ theorem transcendental_t : Transcendental K t := by
   rw [← hc, ← map_sub, Place.ord_algebraMap] at hW₀
   exact lt_irrefl _ hW₀
 
+omit [IsAlgClosed K] [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 theorem psi_sub (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
     ψ (x - algebraMap K F j₀) = t - algebraMap K M j₀ := by
   rw [map_sub, hψ, ψ.commutes]
@@ -589,6 +591,7 @@ theorem ord_eq_card_stabilizer :
   exact_mod_cast (card_stabilizer_eq (K := K) (E := K⟮t⟯) W₀ hdeg).symm
 
 include hW₀ in
+omit [IsAlgClosed K] [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 theorem ord_restrictAlong_pos (ψ : F →ₐ[K] M) (hψ : ψ x = t) (h : ψ.toRingHom.IsIntegral) :
     0 < (W₀.restrictAlong ψ h).ord (x - algebraMap K F j₀) := by
   have hf := Place.ord_restrictAlong ψ h W₀ (x - algebraMap K F j₀)
@@ -604,6 +607,7 @@ theorem exists_smul_eq_of_ord_pos (W : Place K M) (hW : 0 < W.ord (t - algebraMa
   obtain ⟨h1, -⟩ := restrict_eq_basePlace (F := M) t htr W j₀ hW
   exact Place.exists_algEquiv_smul_eq_of_restrict_eq (K := K) (F' := K⟮t⟯) W₀ W (h1.trans h0.symm)
 
+omit [IsAlgClosed K] [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 theorem inv_comp_apply (σ : M ≃ₐ[K⟮t⟯] M) (hι : ι x = t) :
     (((σ⁻¹ : M ≃ₐ[K⟮t⟯] M) : M →ₐ[K⟮t⟯] M).restrictScalars K).comp ι x = t := by
   change σ⁻¹ (ι x) = t
@@ -637,9 +641,11 @@ def toGal (ψ : F →ₐ[K] M) (hψ : ψ x = t) (u : M ≃+* M) (hu : ∀ f, u (
     rw [← psi_baseHom x t ψ hψ r]
     exact hu _
 
+omit [IsAlgClosed K] [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 @[scoped simp] theorem toGal_apply (ψ : F →ₐ[K] M) (hψ : ψ x = t) (u : M ≃+* M)
     (hu : ∀ f, u (ψ f) = ψ f) (y : M) : toGal x t ψ hψ u hu y = u y := rfl
 
+omit [IsAlgClosed K] in
 theorem restrictAlong_eq_iff (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t) (hψ' : ψ' x = t) :
     W₀.restrictAlong ψ (hint ψ hψ) = W₀.restrictAlong ψ' (hint ψ' hψ') ↔
       ∃ σ : M ≃ₐ[K⟮t⟯] M, SemilinearAut.ofAlgAut (σ.restrictScalars K) • W₀ = W₀ ∧
@@ -689,9 +695,11 @@ abbrev Emb : Type _ := {ψ : F →ₐ[K] M // ψ x = t}
 
 attribute [local instance] embAction
 
+omit [IsAlgClosed K] [FiniteDimensional (↥K⟮t⟯) M] [IsGalois (↥K⟮t⟯) M] in
 theorem smul_emb_val (σ : M ≃ₐ[K⟮t⟯] M) (ψ : Emb x t (K := K)) :
     (σ • ψ).1 = ((σ : M →ₐ[K⟮t⟯] M).restrictScalars K).comp ψ.1 := rfl
 
+omit [IsAlgClosed K] in
 theorem setOf_sameClass_eq_orbit (ψ : Emb x t (K := K)) :
     {ψ' : Emb x t (K := K) | W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ.1 (hint ψ.1
       ψ.2)} =

@@ -69,9 +69,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
+namespace P2MW.S_OVERLONG_46337943
 
-set_option linter.unusedSectionVars false
 
 open Matrix MatrixGroups Subgroup MulAction ModularCurve.Period
 
@@ -85,10 +84,12 @@ abbrev Cu : Type := orbitRel.Quotient (zpowers ModularGroup.T) (SL(2, ℤ) ⧸ �
 
 def cusp (x : SL(2, ℤ) ⧸ Γ) : Cu Γ := Quotient.mk (orbitRel (zpowers ModularGroup.T) _) x
 
+omit [Γ.FiniteIndex] in
 theorem cusp_surjective : Function.Surjective (cusp Γ) := Quotient.mk_surjective
 
 def wd (x : SL(2, ℤ) ⧸ Γ) : ℕ := Function.minimalPeriod (fun y => ModularGroup.T • y) x
 
+omit [Γ.FiniteIndex] in
 theorem gen_mem (g : SL(2, ℤ)) : g⁻¹ * ModularGroup.T ^ wd Γ (g : SL(2, ℤ) ⧸ Γ) * g ∈ Γ := by
   have h0 : ModularGroup.T ^ wd Γ (g : SL(2, ℤ) ⧸ Γ) • (g : SL(2, ℤ) ⧸ Γ) = (g : SL(2, ℤ) ⧸ Γ) :=
     (MulAction.pow_smul_eq_iff_minimalPeriod_dvd).mpr dvd_rfl
@@ -100,11 +101,13 @@ theorem gen_mem (g : SL(2, ℤ)) : g⁻¹ * ModularGroup.T ^ wd Γ (g : SL(2, �
 
 def rep (c : Cu Γ) : SL(2, ℤ) := Quotient.out (Quotient.out c)
 
+omit [Γ.FiniteIndex] in
 theorem cusp_rep (c : Cu Γ) : cusp Γ (rep Γ c : SL(2, ℤ) ⧸ Γ) = c := by
   rw [rep, QuotientGroup.out_eq', cusp]; exact Quotient.out_eq c
 
 def genOf (c : Cu Γ) : Γ := ⟨_, gen_mem Γ (rep Γ c)⟩
 
+omit [Γ.FiniteIndex] in
 theorem trace_genOf (c : Cu Γ) :
     ((genOf Γ c : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace = 2 := by
   change (((rep Γ c)⁻¹ * ModularGroup.T ^ wd Γ (rep Γ c : SL(2, ℤ) ⧸ Γ) * rep Γ c : SL(2, ℤ)) :
@@ -119,6 +122,7 @@ def ev : (Additive Γ →+ K) →ₗ[K] (Cu Γ → K) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+omit [Γ.FiniteIndex] in
 theorem parabolicHoms_le_ker : parabolicHoms K Γ K ≤ LinearMap.ker (ev Γ K) := by
   intro φ hφ
   rw [LinearMap.mem_ker]
@@ -205,9 +209,9 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
   BassSerreCuspDim.main Γ K hneg
 
 end
-end S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
+end S_OVERLONG_46337943
 end P2MW
-export P2MW.S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
+export P2MW.S_OVERLONG_46337943
   (solution)
 
 end privateSection

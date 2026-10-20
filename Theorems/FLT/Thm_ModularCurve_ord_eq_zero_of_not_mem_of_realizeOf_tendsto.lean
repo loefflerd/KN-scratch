@@ -180,7 +180,7 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     apply hEinj
     rw [hΨ, hy, hEj]
   obtain ⟨k, g, h, hh, hxgh⟩ :=
-    ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
+    exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
       Γ hT (x : LaurentSeries ℂ) x.2
   have hlim : ∀ γ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧
       Filter.Tendsto (fun τ : ℍ => (g : ℍ → ℂ) (γ • τ) / (h : ℍ → ℂ) (γ • τ)) atImInfty (𝓝 L) :=

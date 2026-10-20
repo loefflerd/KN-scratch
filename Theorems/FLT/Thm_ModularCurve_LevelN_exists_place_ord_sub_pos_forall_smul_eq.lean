@@ -69,9 +69,8 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq
+namespace P2MW.S_OVERLONG_3959a5e7
 
-set_option linter.unusedSectionVars false
 
 open UpperHalfPlane Filter Topology
 open scoped MatrixGroups Manifold
@@ -170,10 +169,12 @@ open Classical in
 def ordFun (τ₀ : ℍ) (F : ring N) : WithZero (Multiplicative ℤ) :=
   if (F : ℍ → ℂ) = 0 then 0 else WithZero.exp (-(ordAt τ₀ (F : ℍ → ℂ) : ℤ))
 
+omit [NeZero N] in
 theorem ordFun_of_ne_zero (τ₀ : ℍ) {F : ring N} (hF : (F : ℍ → ℂ) ≠ 0) :
     ordFun N τ₀ F = WithZero.exp (-(ordAt τ₀ (F : ℍ → ℂ) : ℤ)) := by
   simp [ordFun, hF]
 
+omit [NeZero N] in
 theorem ordFun_zero' (τ₀ : ℍ) {F : ring N} (hF : (F : ℍ → ℂ) = 0) : ordFun N τ₀ F = 0 := by
   simp [ordFun, hF]
 
@@ -255,12 +256,14 @@ def ordValuationK (τ₀ : ℍ) : Valuation K (WithZero (Multiplicative ℤ)) :=
   (ordValuation N τ₀).extendToLocalization (S := nonZeroDivisors (ring N))
     (nonZeroDivisors_le_supp_primeCompl N τ₀) K
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ordValuationK_algebraMap (τ₀ : ℍ) (F : ring N) :
     ordValuationK N K τ₀ (algebraMap (ring N) K F) = ordFun N τ₀ F :=
   Valuation.extendToLocalization_apply_map_apply _ _ K F
 
 def jSub (τ₀ : ℍ) : ring N := jGen N - algebraMap ℂ (ring N) (jAnalytic τ₀)
 
+omit [NeZero N] in
 theorem coe_jSub (τ₀ : ℍ) :
     ((jSub N τ₀ : ring N) : ℍ → ℂ) = fun τ => jAnalytic τ - jAnalytic τ₀ := by
   funext τ
@@ -292,6 +295,7 @@ theorem ordAt_jSub_pos (τ₀ : ℍ) : 0 < ordAt τ₀ ((jSub N τ₀ : ring N) 
     rw [ext_apply_coe, coe_jSub]
     simp
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ordValuationK_jSub_lt_one (τ₀ : ℍ) :
     ordValuationK N K τ₀ (algebraMap (ring N) K (jSub N τ₀)) < 1 := by
   rw [ordValuationK_algebraMap, ordFun_of_ne_zero N τ₀ (fun h => jSub_ne_zero N τ₀ (Subtype.ext h)),
@@ -299,12 +303,14 @@ theorem ordValuationK_jSub_lt_one (τ₀ : ℍ) :
   have := ordAt_jSub_pos N τ₀
   omega
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem isNontrivial_ordValuationK (τ₀ : ℍ) : (ordValuationK N K τ₀).IsNontrivial := by
   refine ⟨algebraMap (ring N) K (jSub N τ₀), ?_, ?_⟩
   · rw [ordValuationK_algebraMap]
     exact ordValuation_ne_zero N τ₀ (jSub_ne_zero N τ₀)
   · exact (ordValuationK_jSub_lt_one N K τ₀).ne
 
+omit [Algebra ℂ K] [IsScalarTower ℂ (↥(ring N)) K] in
 theorem nontrivial_valueGroup (τ₀ : ℍ) :
     Nontrivial (ordValuationK N K τ₀).toMonoidWithZeroHom.valueGroup := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
@@ -477,6 +483,7 @@ theorem comp_smul_eq_zero_iff (δ : SL(2, ℤ)) (F : ℍ → ℂ) :
   · rintro rfl
     rfl
 
+omit [NeZero N] in
 theorem ordFun_comp_smul (τ₀ : ℍ) (δ : SL(2, ℤ)) (hδ : δ • τ₀ = τ₀) (F : ring N)
     (hFδ : (fun τ : ℍ => (F : ℍ → ℂ) (δ • τ)) ∈ ring N) :
     ordFun N τ₀ ⟨fun τ : ℍ => (F : ℍ → ℂ) (δ • τ), hFδ⟩ = ordFun N τ₀ F := by
@@ -496,6 +503,7 @@ section Stabiliser
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring N) K] [IsScalarTower ℂ (ring N) K]
   [IsFractionRing (ring N) K]
 
+omit [IsScalarTower ℂ (↥(ring N)) K] in
 theorem ordValuationK_algEquiv (τ₀ : ℍ) (δ : SL(2, ℤ)) (hδ : δ • τ₀ = τ₀)
     (hst : ∀ F ∈ ring N, (fun τ : ℍ => F (δ • τ)) ∈ ring N) (φ : K ≃ₐ[ℂ] K)
     (hφ : ∀ (F : ℍ → ℂ) (hF : F ∈ ring N),
@@ -553,8 +561,8 @@ end Stabiliser
 end ModularCurve.LevelN.AnalyticPlaces
 
 open _root_.ModularCurve.LevelN
-  _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN
-  _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN.AnalyticPlaces
+  _root_.P2MW.S_OVERLONG_3959a5e7.ModularCurve.LevelN
+  _root_.P2MW.S_OVERLONG_3959a5e7.ModularCurve.LevelN.AnalyticPlaces
   in
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]
@@ -580,9 +588,9 @@ theorem solution (N : ℕ) [NeZero N]
   exact smul_analyticPlace_eq N K τ₀ γ⁻¹ hδ hst φ hφ
 
 end
-end S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq
+end S_OVERLONG_3959a5e7
 end P2MW
-export P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq (solution)
+export P2MW.S_OVERLONG_3959a5e7 (solution)
 
 end privateSection
 

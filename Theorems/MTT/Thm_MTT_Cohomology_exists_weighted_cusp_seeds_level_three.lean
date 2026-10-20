@@ -551,7 +551,9 @@ theorem D_mdifferentiable :
     intro z hz
     apply DifferentiableAt.differentiableWithinAt
     have hz' : 0 < z.im := hz
-    have h3 : 0 < (3 * z).im := by simp [Complex.mul_im]; positivity
+    have h3 : 0 < (3 * z).im := by
+      simp only [Complex.mul_im, Complex.re_ofNat, Complex.im_ofNat, zero_mul, add_zero,
+        Nat.ofNat_pos, mul_pos_iff_of_pos_left]; positivity
     exact ((ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet hz').pow _).mul
       (((ModularForm.differentiableAt_eta_of_mem_upperHalfPlaneSet h3).comp z
         (differentiableAt_id.const_mul _)).pow _)

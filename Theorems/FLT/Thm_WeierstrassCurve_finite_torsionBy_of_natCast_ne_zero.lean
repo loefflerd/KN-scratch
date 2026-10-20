@@ -47,7 +47,8 @@ algebraically closed field the $n$-torsion has exactly $n^2$ elements. It serves
 guarantee underlying the torsion-subgroup counts used in the modular-curve part of the development,
 and is cited by [`ModularCurve.finite_cycSub`](thm.html#ModularCurve.finite_cycSub) and by
 [`WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong`]
-(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.exists_dualEndData_dual_mem_and_norm_eq_finrankAlong).
+(thm.html#WeierstrassCurve.Affine.IsogenyEndDatum.
+exists_dualEndData_dual_mem_and_norm_eq_finrankAlong).
 
 ## Explanation of the source proof
 

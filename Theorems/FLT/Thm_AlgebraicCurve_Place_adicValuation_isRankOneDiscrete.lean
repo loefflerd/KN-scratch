@@ -37,8 +37,7 @@ This records that the normalised valuation of a place of a function field $F/K$ 
 one, the basic fact underlying the definition of the order function $\operatorname{ord}_v$ and hence
 of divisors and the divisor class group. It is used in the identification of valuation subrings of a
 rational function field with the points of the height-one spectrum, namely in
-[`AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum`]
-(thm.html#AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum).
+(`AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum`).
 
 ## Explanation of the source proof
 

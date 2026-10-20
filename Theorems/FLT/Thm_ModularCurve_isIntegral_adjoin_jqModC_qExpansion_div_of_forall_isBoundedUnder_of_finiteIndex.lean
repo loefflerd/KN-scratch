@@ -67,7 +67,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
+namespace P2MW.S_OVERLONG_5b0eac03
 
 noncomputable section
 
@@ -588,10 +588,10 @@ theorem solution
   ModularCurve.Ws49.IntFI.isIntegral_of_forall_isBoundedUnder Γ hT g h hh hb
 
 end
-end S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
+end S_OVERLONG_5b0eac03
 end P2MW
 export
-  P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder_of_finiteIndex
+  P2MW.S_OVERLONG_5b0eac03
   (solution)
 
 end privateSection

@@ -48,7 +48,8 @@ holomorphic, $N$-periodic, bounded functions transfers relations among coefficie
 relations among the functions. It is used in the $q$-expansion-principle arguments for cusp forms,
 in particular by
 [`CuspForm.exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice`]
-(thm.html#CuspForm.exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice),
+(thm.html#CuspForm.
+exists_qCoeff_alSlash_heckeULinH_add_qCoeff_diamondLinH_eq_mul_of_mem_twoCuspLattice),
 [`CuspForm.exists_ratCast_qCoeff_alSlash_of_forall_qCoeff_ratCast_gammaH`]
 (thm.html#CuspForm.exists_ratCast_qCoeff_alSlash_of_forall_qCoeff_ratCast_gammaH)
 and
@@ -429,7 +430,7 @@ private lemma mdpb_finsetSum_smul [NeZero N] {ι : Type*}
   | empty =>
     refine ⟨?_, fun _ ↦ rfl, const_boundedAtFilter _ 0⟩
     have h__af := (mdifferentiable_const : MDiff (fun _ : ℍ ↦ (0 : ℂ)))
-    simp at h__af ⊢
+    simp only [Finset.sum_empty] at h__af ⊢
     exact h__af
   | cons a t hat ih =>
     have ⟨hh, hp, hb⟩ := ih (fun i hi ↦ hhol i (Finset.mem_cons_of_mem hi))

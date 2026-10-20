@@ -49,7 +49,8 @@ Theorem 1.4.11), packaged as an explicit finite sum rather than as an equality o
 It is used for the ramification estimates for the covering $X_1(M) \to \mathbb{P}^1_j$ and for
 counting zeros against supersingular points; among its consumers are
 [`AlgebraicCurve.finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le`]
-(thm.html#AlgebraicCurve.finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le)
+(thm.html#AlgebraicCurve.
+finrank_adjoin_le_mul_natCard_place_ord_sub_algebraMap_pos_of_forall_ord_le)
 and lemmas on cuspidal and non-cuspidal specialisations of modular curves.
 
 ## Explanation of the source proof

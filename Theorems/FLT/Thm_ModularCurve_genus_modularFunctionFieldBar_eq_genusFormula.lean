@@ -212,7 +212,8 @@ theorem solution (N : ℕ) [NeZero N]
         = KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)
             (j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c) := by
       rw [map_sub, Derivation.map_algebraMap, sub_zero]
-    rw [hD, AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one j v (by rw [hone]; exact one_ne_zero), hone]
+    rw [hD, AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one j v (by
+      rw [hone]; exact one_ne_zero), hone]
     norm_num
   have hcan : ∑ v ∈ S, v.ordDiff (KaehlerDifferential.D (AlgebraicClosure ℚ)
     ↥(modularFunctionFieldBar N) j)
@@ -232,7 +233,8 @@ theorem solution (N : ℕ) [NeZero N]
       rw [Divisor.degree, Finsupp.liftAddHom_apply, Finsupp.sum]
       refine Finset.sum_congr rfl (fun v _ => ?_)
       rw [AddMonoidHom.mulRight_apply, hdeg v, Nat.cast_one, mul_one]
-    rw [hdegsum, Finset.sum_subset hsupp (fun v _ hv => by simpa [Finsupp.mem_support_iff] using hv)]
+    rw [hdegsum, Finset.sum_subset hsupp (fun v _ hv => by
+      simpa [Finsupp.mem_support_iff] using hv)]
     exact Finset.sum_congr rfl (fun v _ => hseam v)
   have hHE := AlgebraicCurve.twelve_mul_eq_of_sum_ordDiff_eq j S0 S1 Sinf (dedekindPsi N)
     (genus (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℤ) h₀ h₁ hinf hψ₀ hψ₁ hψinf S hS hcan

@@ -1414,7 +1414,8 @@ private theorem CNT_squeeze (c : ℚ) :
     obtain ⟨w, hw, v, hv, hne⟩ := hcon
     have hlt : ∑ w ∈ W, ∑ v ∈ S w, w.ord jc < ∑ w ∈ W, ∑ v ∈ S w, a w v * w.ord jc := by
       refine Finset.sum_lt_sum (fun w' hw' => Finset.sum_le_sum fun v' hv' =>
-        le_mul_of_one_le_left (hjc_pos w' hw').le (by have := hapos w' hw' v' hv'; omega)) ⟨w, hw, ?_⟩
+        le_mul_of_one_le_left (hjc_pos w' hw').le (by
+          have := hapos w' hw' v' hv'; omega)) ⟨w, hw, ?_⟩
       refine Finset.sum_lt_sum (fun v' hv' =>
         le_mul_of_one_le_left (hjc_pos w hw).le (by have := hapos w hw v' hv'; omega)) ⟨v, hv, ?_⟩
       exact lt_mul_of_one_lt_left (hjc_pos w hw) (by have := hapos w hw v hv; omega)

@@ -28,7 +28,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar_coeffEmb_jq
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
 import Theorems.FLT.Thm_ModularCurve_hasPrincipalDivisors_modularFunctionFieldBar_unconditional
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Values of the j-coordinate at places of X₀(N)
@@ -71,11 +70,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 -/
 
 section privateSection
-
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_ModularCurve_jCoordinate_spec_modularFunctionFieldBar
-set_option Elab.async false
 
 open ModularCurve AlgebraicCurve
 
@@ -169,7 +163,7 @@ private theorem mwP2_exists_unique_coord [IsAlgClosed K] {x : L}
         = Polynomial.aeval x p := by
     intro p
     have h := RatFunc.liftAlgHom_apply_div (Polynomial.aeval x) hφ0 p 1
-    simp at h
+    simp only [map_one, div_one] at h
     exact h
   have : IsScalarTower K (RatFunc K) L :=
     IsScalarTower.of_algebraMap_eq fun c =>
@@ -266,10 +260,6 @@ theorem solution (N : ℕ) [NeZero N] :
   · refine Set.Finite.subset (mwP2_finite_ord_support hjb0) fun v hv => ?_
     simp only [Set.mem_ofPred_eq] at hv ⊢
     omega
-
-end S_ModularCurve_jCoordinate_spec_modularFunctionFieldBar
-end P2MW
-export P2MW.S_ModularCurve_jCoordinate_spec_modularFunctionFieldBar (solution)
 
 end privateSection
 

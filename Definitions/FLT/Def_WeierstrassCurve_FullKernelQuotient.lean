@@ -118,7 +118,9 @@ theorem oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : We
   · rintro ⟨k, hk1, hk2, rfl⟩
     by_cases hkn : k ≤ n
     · exact Or.inl ⟨k, hk1, hkn, rfl⟩
-    · refine Or.inr ⟨((2 * n + 1 - k) • Q).coordsOrZero, ⟨2 * n + 1 - k, by omega, by omega, rfl⟩, ?_⟩
+    · refine Or.inr ⟨((2 * n + 1 - k) • Q).coordsOrZero, ⟨2 * n + 1 - k, by
+      omega, by
+        omega, rfl⟩, ?_⟩
       rw [hrefl k hk1 hk2, coordsOrZero_neg _ (hne k hk1 hk2), Affine.negY_negY]
   · rintro (⟨k, hk1, hk2, rfl⟩ | ⟨P', ⟨k, hk1, hk2, rfl⟩, rfl⟩)
     · exact ⟨k, hk1, by omega, rfl⟩

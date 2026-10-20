@@ -91,7 +91,8 @@ theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
 theorem qParam_add_period (h : ℝ) (hh : h ≠ 0) (z : ℂ) : 𝕢 h (z + h) = 𝕢 h z := by
   simp only [Function.Periodic.qParam]
   have hne : (h : ℂ) ≠ 0 := ofReal_ne_zero.mpr hh
-  rw [show 2 * ↑π * Complex.I * (z + ↑h) / ↑h = 2 * ↑π * Complex.I * z / ↑h + 2 * ↑π * Complex.I by field_simp,
+  rw [show 2 * ↑π * Complex.I * (z + ↑h) / ↑h = 2 * ↑π * Complex.I * z / ↑h + 2 * ↑π * Complex.I by
+    field_simp,
     Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]
 
 theorem apply_eq_apply_of_hasDerivAt_zero {D : ℂ → ℂ}

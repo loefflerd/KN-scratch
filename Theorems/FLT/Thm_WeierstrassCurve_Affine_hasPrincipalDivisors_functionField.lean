@@ -69,7 +69,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+namespace P2MW.S_OVERLONG_b3a5cd3d
 
 section
 
@@ -414,7 +414,7 @@ section
 section
 
 p2m_open "FractionalIdeal \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.FractionalIdeal Polynomial"
+  P2MW.S_OVERLONG_b3a5cd3d.FractionalIdeal Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
 
@@ -743,7 +743,7 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
 end CoordinateRing
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  P2MW.S_OVERLONG_b3a5cd3d.WeierstrassCurve.Affine.Coordin\
   ateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
@@ -775,7 +775,7 @@ theorem IsFinitePlace.inv_mem {v : AlgebraicCurve.Place F W.FunctionField}
   obtain ⟨t, ht⟩ := hunit.exists_right_inv
   have ht' : algebraMap W.CoordinateRing W.FunctionField r * (t : W.FunctionField) = 1 := by
     have := congrArg (fun a : v.toValuationSubring => (a : W.FunctionField)) ht
-    simp at this
+    simp only [MulMemClass.coe_mul, OneMemClass.coe_one] at this
     exact this
   rw [inv_eq_of_mul_eq_one_right ht']
   exact t.2
@@ -921,8 +921,8 @@ end WeierstrassCurve
 end
 
 open
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine
+  P2MW.S_OVERLONG_b3a5cd3d.WeierstrassCurve.Affine.CoordinateRing
+  P2MW.S_OVERLONG_b3a5cd3d.WeierstrassCurve.Affine
 
 section
 
@@ -930,7 +930,7 @@ noncomputable section
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
   lace.ord_algebraMap \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+  P2MW.S_OVERLONG_b3a5cd3d.AlgebraicCurve"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' \
@@ -1132,10 +1132,10 @@ p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYId
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  P2MW.S_OVERLONG_b3a5cd3d.WeierstrassCurve.Affine.Coordin\
   ateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
-  _algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+  _algebraMap P2MW.S_OVERLONG_b3a5cd3d.AlgebraicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -1684,9 +1684,9 @@ noncomputable section
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
   lace.ord_algebraMap \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve \
+  P2MW.S_OVERLONG_b3a5cd3d.AlgebraicCurve \
   IsDedekindDomain FractionalIdeal \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.FractionalIdeal WithZero \
+  P2MW.S_OVERLONG_b3a5cd3d.FractionalIdeal WithZero \
   Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
@@ -1799,10 +1799,10 @@ variable {F : Type u} [Field F] [DecidableEq F] {W : Affine F}
 variable [IsAlgClosed F] [W.IsElliptic] [InfinitePlace W]
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  P2MW.S_OVERLONG_b3a5cd3d.WeierstrassCurve.Affine.Coordin\
   ateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
-  _algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+  _algebraMap P2MW.S_OVERLONG_b3a5cd3d.AlgebraicCurve"
 
 omit [DecidableEq F] [InfinitePlace W] in
 theorem isFinitePlace_ofHeightOneSpectrum (w : HeightOneSpectrum W.CoordinateRing) :
@@ -1986,10 +1986,10 @@ p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYId
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.Coordin\
+  P2MW.S_OVERLONG_b3a5cd3d.WeierstrassCurve.Affine.Coordin\
   ateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
-  _algebraMap P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.AlgebraicCurve"
+  _algebraMap P2MW.S_OVERLONG_b3a5cd3d.AlgebraicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -2116,9 +2116,9 @@ end
 end
 end
 end
-end S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+end S_OVERLONG_b3a5cd3d
 end P2MW
-export P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField (solution)
+export P2MW.S_OVERLONG_b3a5cd3d (solution)
 
 end privateSection
 

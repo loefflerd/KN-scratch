@@ -69,13 +69,12 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers
+namespace P2MW.S_OVERLONG_d9a2a124
 
-set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
 p2m_open "UpperHalfPlane AlgebraicCurve \
-  P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.Algeb\
+  P2MW.S_OVERLONG_d9a2a124.Algeb\
   raicCurve"
 open scoped MatrixGroups IntermediateField Manifold
 
@@ -335,10 +334,11 @@ end Moebius
 
 section Places
 
-variable (N : ℕ) [NeZero N]
+variable (N : ℕ)
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (LevelN.ring N) K]
   [IsScalarTower ℂ (LevelN.ring N) K] [IsFractionRing (LevelN.ring N) K]
 
+omit [IsScalarTower ℂ (↥(ring N)) K] [IsFractionRing (↥(ring N)) K] in
 theorem smul_place_analyticOrderAt
     (hst : ∀ (δ : SL(2, ℤ)), ∀ G ∈ LevelN.ring N, (fun τ : ℍ => G (δ • τ)) ∈ LevelN.ring N)
     (σ : K ≃ₐ[ℂ] K) (γ : SL(2, ℤ))
@@ -375,6 +375,7 @@ theorem smul_place_analyticOrderAt
   refine ⟨hfin, ?_⟩
   rw [hord, ← hσinv, ← AlgebraicCurve.Place.ord_smul σ W (σ.symm _), AlgEquiv.apply_symm_apply]
 
+omit [IsScalarTower ℂ (↥(ring N)) K] [IsFractionRing (↥(ring N)) K] in
 theorem ord_smul_place_eq_of_smul_eq
     (hst : ∀ (δ : SL(2, ℤ)), ∀ G ∈ LevelN.ring N, (fun τ : ℍ => G (δ • τ)) ∈ LevelN.ring N)
     (σ : K ≃ₐ[ℂ] K) (γ : SL(2, ℤ))
@@ -457,7 +458,7 @@ theorem ρ_ne_one : (ρ : ℂ) ≠ 1 := by
   intro h
   have := congrArg Complex.im h
   rw [UpperHalfPlane.coe_im] at this
-  simp at this
+  simp only [Complex.one_im] at this
   exact ρ.im_pos.ne' this
 
 theorem E₄_ρ : ModularForm.E₄ ρ = 0 := by
@@ -566,11 +567,13 @@ theorem analyticOrderAt_jsub (τ₀ : ℍ) :
     simp only [ENat.map_natCast, WithTop.coe_eq_coe, Nat.cast_inj] at hmero
     exact_mod_cast hmero
 
+omit [NeZero M] in
 theorem coe_algebraMap_ring (c : ℂ) :
     ((algebraMap ℂ (LevelN.ring M) c : LevelN.ring M) : ℍ → ℂ) = fun _ => c := by
   funext τ
   simp [Algebra.algebraMap_eq_smul_one]
 
+omit [NeZero M] in
 theorem jsub_mem (c : ℂ) : (fun τ : ℍ => LevelN.jAnalytic τ - c) ∈ LevelN.ring M := by
   have : (fun τ : ℍ => LevelN.jAnalytic τ - c) =
       ((LevelN.jGen M - algebraMap ℂ (LevelN.ring M) c : LevelN.ring M) : ℍ → ℂ) := by
@@ -579,6 +582,8 @@ theorem jsub_mem (c : ℂ) : (fun τ : ℍ => LevelN.jAnalytic τ - c) ∈ Level
   rw [this]
   exact (LevelN.jGen M - algebraMap ℂ (LevelN.ring M) c).2
 
+omit [IsFractionRing (↥(ring M)) K] in
+omit [NeZero M] in
 theorem algebraMap_jsub (c : ℂ) :
     algebraMap (LevelN.ring M) K ⟨fun τ : ℍ => LevelN.jAnalytic τ - c, jsub_mem M c⟩ =
       jK M K - algebraMap ℂ K c := by
@@ -589,6 +594,8 @@ theorem algebraMap_jsub (c : ℂ) :
     simp [LevelN.coe_jGen, Algebra.algebraMap_eq_smul_one]
   rw [this, map_sub, ← IsScalarTower.algebraMap_apply]
 
+omit [IsFractionRing (↥(ring M)) K] in
+omit [NeZero M] in
 theorem ord_jsub_bounds (τ₀ : ℍ) (W : Place ℂ K) (e : ℕ) (he : 0 < e)
     (hW : ∀ (F : ℍ → ℂ) (hF : F ∈ LevelN.ring M), F ≠ 0 →
       analyticOrderAt (F ∘ ofComplex) (τ₀ : ℂ) ≠ ⊤ ∧
@@ -609,7 +616,9 @@ theorem ord_jsub_bounds (τ₀ : ℍ) (W : Place ℂ K) (e : ℕ) (he : 0 < e)
       (τ₀ : ℂ) ≠ 0 :=
       by
       rw [analyticOrderAt_ne_zero]
-      exact ⟨analyticAt_comp_ofComplex ((mdifferentiable_jAnalytic).sub mdifferentiable_const) τ₀, by simp⟩
+      exact ⟨analyticAt_comp_ofComplex ((mdifferentiable_jAnalytic).sub mdifferentiable_const)
+        τ₀, by
+        simp⟩
     rw [h] at hne
     exact Nat.pos_of_ne_zero fun h0 => hne (by rw [h0]; rfl)
   refine ⟨?_, hord.symm⟩
@@ -628,6 +637,7 @@ variable (M : ℕ) [NeZero M]
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (LevelN.ring M) K]
   [IsScalarTower ℂ (LevelN.ring M) K] [IsFractionRing (LevelN.ring M) K]
 
+omit [NeZero M] in
 theorem isDomain_ring (K' : Type*) [Field K'] [Algebra (LevelN.ring M) K']
     [IsFractionRing (LevelN.ring M) K'] :
     IsDomain (LevelN.ring M) :=
@@ -848,9 +858,9 @@ theorem solution
         ∃ k : ℕ, g.restrictScalars ℂ = σ ModularGroup.S ^ k) :=
   ModularCurve.LevelN.Wall.main M K hM hst σ hσ hker hfixed hfin hgal
 
-end S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers
+end S_OVERLONG_d9a2a124
 end P2MW
-export P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers
+export P2MW.S_OVERLONG_d9a2a124
   (solution)
 
 end privateSection

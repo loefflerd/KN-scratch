@@ -147,7 +147,6 @@ theorem coe_liftHom (x : ↥(laurentBaseChange L F₀)) :
 theorem liftHom_toRingHom :
     letI := algebraOfLift τ F₀; (liftHom τ F₀).toRingHom = liftRingHom τ F₀ := rfl
 
-set_option synthInstance.maxHeartbeats 1600000 in
 theorem adjoin_range_liftRingHom_eq_top :
     IntermediateField.adjoin Ω (Set.range (liftRingHom τ F₀)) = ⊤ := by
   rw [eq_top_iff]
@@ -176,7 +175,6 @@ end CoeffLift
 end ModularCurve.NoEllK
 
 open ModularCurve.NoEllK in
-set_option synthInstance.maxHeartbeats 1600000 in
 theorem solution
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)
@@ -226,7 +224,7 @@ theorem solution
       (CongruenceSubgroup.Gamma1 M) hT τ Ψ hΨ P ⟨y₀, hpos.ne'⟩
     rw [hP₀] at hpos ⊢
     exact
-      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
+      (ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
       M hM
       y₀ hy₀ P₀).1 hpos
   · have hsub : y - 1728 = Ψ (y₀ - 1728) := by rw [map_sub, map_ofNat, hΨy]
@@ -236,7 +234,7 @@ theorem solution
       (CongruenceSubgroup.Gamma1 M) hT τ Ψ hΨ P ⟨y₀ - 1728, hpos.ne'⟩
     rw [hP₀] at hpos ⊢
     exact
-      (ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
+      (ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
       M hM
       y₀ hy₀ P₀).2 hpos
 
