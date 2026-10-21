@@ -105,9 +105,8 @@ lemma evaluation_of_integrationCochain {N k : ℕ} (hk : 2 ≤ k)
 
 end MTT.Cohomology
 
-set_option linter.unusedVariables false in
 theorem solution
-    {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
+    {N k : ℕ} (hk : 2 ≤ k)
     (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, (I f).val = integrationCochain f) :
     ∀ f, IntegralClass f (I f) := by
@@ -123,10 +122,10 @@ noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology
 theorem MTT.Cohomology.integration_cochain_integral_class
-    {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
+    {N k : ℕ} (hk : 2 ≤ k)
     (I : CuspForm (MTT.GammaOne N) (k : ℤ) →ₗ[ℂ] Hc N (k - 2) ℂ)
     (hI : ∀ f, (I f).val = integrationCochain f) :
-    ∀ f, IntegralClass f (I f) := _root_.solution hN hk I hI
+    ∀ f, IntegralClass f (I f) := _root_.solution hk I hI
 end
 
 end publicSection

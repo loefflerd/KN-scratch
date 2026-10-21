@@ -111,9 +111,8 @@ private lemma unit_root {K : Type*} [NormedField K] [IsAlgClosed K]
     exact choose_root y x (by rw [add_comm]; exact hs) (by rw [mul_comm]; exact hp) hy
 
 open MTT in
-set_option linter.unusedVariables false in
 theorem solution
-    {p N k : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
+    {p N k : ℕ} [Fact p.Prime] (hk : 2 ≤ k)
     (ι : Qbar →+* ℂ) (ιp : Qbar →+* ℂ_[p]) (f : Eigenform N k ι)
     (hord : ‖ιp (f.coeff p)‖ = 1) :
     ∃! α : ℂ_[p], IsOrdinaryRoot f ιp α := by
@@ -140,10 +139,10 @@ open scoped BigOperators
 
 open MTT in
 theorem MTT.ordinary_root_exists_unique
-    {p N k : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
+    {p N k : ℕ} [Fact p.Prime] (hk : 2 ≤ k)
     (ι : Qbar →+* ℂ) (ιp : Qbar →+* ℂ_[p]) (f : Eigenform N k ι)
     (hord : ‖ιp (f.coeff p)‖ = 1) :
-    ∃! α : ℂ_[p], IsOrdinaryRoot f ιp α := _root_.solution hN hk ι ιp f hord
+    ∃! α : ℂ_[p], IsOrdinaryRoot f ιp α := _root_.solution hk ι ιp f hord
 end
 
 end publicSection

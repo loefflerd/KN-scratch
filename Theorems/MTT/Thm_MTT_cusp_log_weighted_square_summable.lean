@@ -401,9 +401,8 @@ theorem exists_sum_range_norm_sq_qExpansion_coeff_le [NeZero N]
 
 end MTT
 
-set_option linter.unusedVariables false in
 theorem solution
-    {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
+    {N k : ℕ} (hN : 0 < N)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     Summable (fun m : ℕ =>
       ‖(UpperHalfPlane.qExpansion 1 f).coeff m‖ ^ 2 * Real.log m /
@@ -422,11 +421,11 @@ open scoped BigOperators
 open MTT.Cohomology
 
 theorem MTT.cusp_log_weighted_square_summable
-    {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
+    {N k : ℕ} (hN : 0 < N)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     Summable (fun m : ℕ =>
       ‖(UpperHalfPlane.qExpansion 1 f).coeff m‖ ^ 2 * Real.log m /
-        (m : ℝ) ^ (k+1)) := _root_.solution hN hk f
+        (m : ℝ) ^ (k+1)) := _root_.solution hN f
 end
 
 end publicSection

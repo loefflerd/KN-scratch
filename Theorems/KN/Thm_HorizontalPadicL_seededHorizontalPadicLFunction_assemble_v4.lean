@@ -48,10 +48,9 @@ noncomputable section
 
 open HorizontalPadicL
 
-set_option linter.unusedVariables false in
 theorem solution
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
-    (f : MTT.Eigenform N k ι) (hnew : IsNewEigenform f)
+    (f : MTT.Eigenform N k ι)
     (η : DirichletCharacterWithLevel) (ιp : MTT.Qbar →+* ℂ_[p])
     (L : SeededHorizontalPrimeSystemV3 p ιp f η B)
     (μ : SeededNormalizedThetaMeasureV3 L.toConstructionData)
@@ -85,7 +84,7 @@ namespace HorizontalPadicL
 positive-density prime system. -/
 theorem seededHorizontalPadicLFunction_assemble_v4
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
-    (f : MTT.Eigenform N k ι) (hnew : IsNewEigenform f)
+    (f : MTT.Eigenform N k ι)
     (η : DirichletCharacterWithLevel) (ιp : MTT.Qbar →+* ℂ_[p])
     (L : SeededHorizontalPrimeSystemV3 p ιp f η B)
     (μ : SeededNormalizedThetaMeasureV3 L.toConstructionData)
@@ -96,7 +95,7 @@ theorem seededHorizontalPadicLFunction_assemble_v4
     ∃ ν : SeededHorizontalPadicLFunctionV4 (B := B) p ιp f η,
       ν.primes = L ∧ ν.InterpolatesSeededCriticalValuesV4 ∧
       ν.measure.eval (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0 := _root_.solution f
-        hnew η ιp L μ hcharacters hinterp htrivial
+         η ιp L μ hcharacters hinterp htrivial
 
 end HorizontalPadicL
 end

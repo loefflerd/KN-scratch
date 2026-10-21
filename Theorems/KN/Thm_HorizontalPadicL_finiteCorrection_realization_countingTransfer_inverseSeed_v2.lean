@@ -615,7 +615,6 @@ end Fibre
 end HorizontalPadicL.CountingTransfer
 
 open HorizontalPadicL HorizontalPadicL.CountingTransfer in
-set_option linter.unusedVariables false in
 theorem solution
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     {ιp : MTT.Qbar →+* ℂ_[p]} {f : MTT.Eigenform N k ι}
@@ -624,7 +623,7 @@ theorem solution
     (R : SeededHorizontalCharacterRealizationV3 L)
     (hR : R.HasExpectedProperties)
     {C : Subring ℂ_[p]} (μ : HorizontalMeasure C p L.exponent)
-    (hpodd : p ≠ 2) (m : ℕ) (hm : 0 < m)
+    (hpodd : p ≠ 2) (m : ℕ)
     (hinterp : ∀ χ,
       μ.eval χ ≠ 0 ↔
         let θ := primitiveProductV2 η (R.realized χ)
@@ -687,7 +686,7 @@ theorem finiteCorrection_realization_countingTransfer_inverseSeed_v2
     (R : SeededHorizontalCharacterRealizationV3 L)
     (hR : R.HasExpectedProperties)
     {C : Subring ℂ_[p]} (μ : HorizontalMeasure C p L.exponent)
-    (hpodd : p ≠ 2) (m : ℕ) (hm : 0 < m)
+    (hpodd : p ≠ 2) (m : ℕ)
     (hinterp : ∀ χ,
       μ.eval χ ≠ 0 ↔
         let θ := primitiveProductV2 η (R.realized χ)
@@ -696,7 +695,7 @@ theorem finiteCorrection_realization_countingTransfer_inverseSeed_v2
     (A : Finset ℕ) (hcorr : μ.HasFiniteCorrection m A) :
     Nonempty (CharacterCountingTransfer
       (supportedPrimePowerCharacters L.primeAt A p m)
-      (seededPrimePowerTwists ι f η p m B)) := _root_.solution L R hR μ hpodd m hm hinterp A hcorr
+      (seededPrimePowerTwists ι f η p m B)) := _root_.solution L R hR μ hpodd m hinterp A hcorr
 
 end HorizontalPadicL
 end

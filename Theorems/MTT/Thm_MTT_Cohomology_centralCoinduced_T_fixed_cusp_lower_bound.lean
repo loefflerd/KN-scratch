@@ -260,8 +260,6 @@ end MTT.Cohomology
 
 section
 
-open scoped Classical
-
 namespace MulAction
 
 variable {G X K V : Type*} [Group G] [MulAction G X] [Field K]
@@ -272,43 +270,42 @@ theorem orbit_mk_smul (H : Subgroup G) {g : G} (hg : g ∈ H) (x : X) :
   apply Quotient.sound
   exact orbitRel_apply.mpr (mem_orbit_iff.mpr ⟨⟨g, hg⟩, rfl⟩)
 
-def orbitSeed (H J : Subgroup G) (v : V) :
+variable (H : Subgroup G) [DecidableEq (orbitRel.Quotient H X)]
+
+def orbitSeed (J : Subgroup G) (v : V) :
     (orbitRel.Quotient J X → K) →ₗ[K] (X → V) where
-  toFun c x := by
-    classical
-    exact if (Quotient.mk'' x : orbitRel.Quotient H X) =
+  toFun c x := if (Quotient.mk'' x : orbitRel.Quotient H X) =
         Quotient.mk'' (Quotient.mk'' x : orbitRel.Quotient J X).out then
       c (Quotient.mk'' x) • v else 0
   map_add' c d := by
-    classical
     funext x
     dsimp
     split_ifs <;> simp [add_smul]
   map_smul' a c := by
-    classical
     funext x
     dsimp
     split_ifs <;> simp [mul_smul]
 
-theorem orbitSeed_apply (H J : Subgroup G) (v : V) (c : orbitRel.Quotient J X → K)
+theorem orbitSeed_apply (J : Subgroup G) (v : V) (c : orbitRel.Quotient J X → K)
     (x : X) : orbitSeed H J v c x =
       if (Quotient.mk'' x : orbitRel.Quotient H X) =
           Quotient.mk'' (Quotient.mk'' x : orbitRel.Quotient J X).out then
-        c (Quotient.mk'' x) • v else 0 := by classical exact rfl
+        c (Quotient.mk'' x) • v else 0 :=
+  rfl
 
-theorem orbitSeed_out (H J : Subgroup G) (v : V) (c : orbitRel.Quotient J X → K)
+theorem orbitSeed_out (J : Subgroup G) (v : V) (c : orbitRel.Quotient J X → K)
     (d : orbitRel.Quotient J X) : orbitSeed H J v c d.out = c d • v := by
   classical
   have hd : (Quotient.mk'' d.out : orbitRel.Quotient J X) = d := Quotient.out_eq d
   rw [orbitSeed_apply, hd, ite_eq_left rfl]
 
-theorem orbitSeed_smul (H J : Subgroup G) (hHJ : H ≤ J) (v : V)
+theorem orbitSeed_smul (J : Subgroup G) (hHJ : H ≤ J) (v : V)
     (c : orbitRel.Quotient J X → K) {g : G} (hg : g ∈ H) (x : X) :
     orbitSeed H J v c (g • x) = orbitSeed H J v c x := by
   classical
   simp only [orbitSeed_apply, orbit_mk_smul H hg, orbit_mk_smul J (hHJ hg)]
 
-theorem orbitSeed_smul_out_eq_zero (H J : Subgroup G) (v : V)
+theorem orbitSeed_smul_out_eq_zero (J : Subgroup G) (v : V)
     (c : orbitRel.Quotient J X → K) {z : G} (hz : z ∈ J)
     (hfree : ∀ x : X, (Quotient.mk'' (z • x) : orbitRel.Quotient H X) ≠ Quotient.mk'' x)
     (d : orbitRel.Quotient J X) : orbitSeed H J v c (z • d.out) = 0 := by
@@ -367,7 +364,7 @@ end Rep
 
 section
 
-open scoped MatrixGroups Classical
+open scoped MatrixGroups
 
 namespace MTT.Cohomology
 
@@ -395,19 +392,21 @@ theorem fullCoinducedCoordinates_action (N n : ℕ) (g : SL(2, ℤ))
       (fullSymRep n).ρ g (fullCoinducedCoordinates N n v (g⁻¹ • x)) :=
   Rep.coindCosetCoordinates_action _ _ _ _ _
 
-def coinducedCuspSeed (N n : ℕ) : (signedTranslationOrbits N → ℂ) →ₗ[ℂ]
-    fullCoinduced N n :=
+variable (N : ℕ) [DecidableEq (MulAction.orbitRel.Quotient ((Subgroup.zpowers ModularGroup.T))
+      (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N))]
+
+def coinducedCuspSeed (n : ℕ) : (signedTranslationOrbits N → ℂ) →ₗ[ℂ] fullCoinduced N n :=
   (fullCoinducedCoordinates N n).symm.toLinearMap.comp
     (MulAction.orbitSeed (Subgroup.zpowers ModularGroup.T)
       (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) (fullXPower n))
 
-theorem coinducedCuspSeed_coordinates (N n : ℕ) (c : signedTranslationOrbits N → ℂ) :
+theorem coinducedCuspSeed_coordinates (n : ℕ) (c : signedTranslationOrbits N → ℂ) :
     fullCoinducedCoordinates N n (coinducedCuspSeed N n c) =
       MulAction.orbitSeed (Subgroup.zpowers ModularGroup.T)
         (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) (fullXPower n) c :=
   (fullCoinducedCoordinates N n).apply_symm_apply _
 
-theorem coinducedCuspSeed_T (N n : ℕ) (c : signedTranslationOrbits N → ℂ) :
+theorem coinducedCuspSeed_T (n : ℕ) (c : signedTranslationOrbits N → ℂ) :
     (fullCoinduced N n).ρ ModularGroup.T (coinducedCuspSeed N n c) =
       coinducedCuspSeed N n c := by
   apply (fullCoinducedCoordinates N n).injective
@@ -421,12 +420,11 @@ theorem coinducedCuspSeed_T (N n : ℕ) (c : signedTranslationOrbits N → ℂ) 
     (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) (fullXPower n) c x]
   split_ifs <;> simp only [map_smul, fullXPower_T, map_zero]
 
-def centralCuspSeed (N n : ℕ) : (signedTranslationOrbits N → ℂ) →ₗ[ℂ]
-    centralCoinduced N n :=
+def centralCuspSeed (n : ℕ) : (signedTranslationOrbits N → ℂ) →ₗ[ℂ] centralCoinduced N n :=
   (Rep.centralAverage (fullCoinduced N n) (-1) neg_one_central (by simp)).comp
     (coinducedCuspSeed N n)
 
-theorem centralCuspSeed_T (N n : ℕ) (c : signedTranslationOrbits N → ℂ) :
+theorem centralCuspSeed_T (n : ℕ) (c : signedTranslationOrbits N → ℂ) :
     (centralCoinduced N n).ρ ModularGroup.T (centralCuspSeed N n c) =
       centralCuspSeed N n c := by
   have h := Rep.centralAverage_comm (fullCoinduced N n) (-1) neg_one_central
@@ -434,7 +432,8 @@ theorem centralCuspSeed_T (N n : ℕ) (c : signedTranslationOrbits N → ℂ) :
   rw [coinducedCuspSeed_T] at h
   exact h.symm
 
-theorem centralCuspSeed_evaluate {N n : ℕ} (hN : 5 ≤ N)
+variable {N} in
+theorem centralCuspSeed_evaluate {n : ℕ} (hN : 5 ≤ N)
     (c : signedTranslationOrbits N → ℂ) (d : signedTranslationOrbits N) :
     fullCoinducedCoordinates N n (centralCuspSeed N n c).val d.out =
       (2 : ℂ)⁻¹ • (c d • fullXPower n) := by
@@ -455,11 +454,12 @@ theorem centralCuspSeed_evaluate {N n : ℕ} (hN : 5 ≤ N)
     (Subgroup.mem_sup_right (Subgroup.mem_zpowers _)) (gammaOne_central_translation_orbit_ne hN) d,
     map_zero, add_zero]
 
-def centralCuspSeedFixed (N n : ℕ) : (signedTranslationOrbits N → ℂ) →ₗ[ℂ]
+def centralCuspSeedFixed (n : ℕ) : (signedTranslationOrbits N → ℂ) →ₗ[ℂ]
     ((centralCoinduced N n).ρ ModularGroup.T - LinearMap.id).ker :=
   (centralCuspSeed N n).codRestrict _ fun c => sub_eq_zero.mpr (centralCuspSeed_T N n c)
 
-theorem centralCuspSeedFixed_injective {N n : ℕ} (hN : 5 ≤ N) :
+variable {N} in
+theorem centralCuspSeedFixed_injective {n : ℕ} (hN : 5 ≤ N) :
     Function.Injective (centralCuspSeedFixed N n) := by
   intro c e h
   funext d
@@ -475,6 +475,7 @@ theorem centralCuspSeedFixed_injective {N n : ℕ} (hN : 5 ≤ N) :
 theorem signedTranslationOrbits_le_T_fixed {N n : ℕ} (hN : 5 ≤ N) :
     Nat.card (signedTranslationOrbits N) ≤
       Module.finrank ℂ ((centralCoinduced N n).ρ ModularGroup.T - LinearMap.id).ker := by
+  classical
   have : NeZero N := ⟨by omega⟩
   let := Fintype.ofFinite (signedTranslationOrbits N)
   have hd := LinearMap.finrank_le_finrank_of_injective (centralCuspSeedFixed_injective (n := n) hN)

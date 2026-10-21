@@ -11,6 +11,14 @@ import Theorems.FLT.Thm_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodP
 import Theorems.FLT.Thm_WeierstrassCurve_tateModuleRep_charpoly_frobenius
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
 
+/-!
+# Unramifiedness of the Tate module
+
+One fixed Tate-module representation of `E` is unramified outside the modular
+conductor and `p`, with the expected Frobenius characteristic polynomial there.
+The integral good-reduction models used to prove this may depend on the prime.
+-/
+
 section privateSection
 
 namespace TateModelTransferAux

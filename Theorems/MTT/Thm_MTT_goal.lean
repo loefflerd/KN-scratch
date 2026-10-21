@@ -18,7 +18,7 @@ theorem solution
     (hord : ‖ιp (f.coeff p)‖ = 1) :
     ∃ (α : ℂ_[p]) (P : Periods k ι f.form) (μ : UnitMeasure p),
       IsOrdinaryRoot f ιp α ∧ Interpolates f ιp P.omega α μ := by
-  obtain ⟨α, hα, _⟩ := ordinary_root_exists_unique hN hk ι ιp f hord
+  obtain ⟨α, hα, _⟩ := ordinary_root_exists_unique hk ι ιp f hord
   obtain ⟨P⟩ := periods_exist hN hk ι f
   have hm : ∀ s, ∃ μ : UnitMeasure p, RealizesMoments f ιp P α s μ :=
     fun s => (measure_extension hN hk ι ιp f P α hα s).exists

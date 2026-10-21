@@ -103,9 +103,8 @@ local instance LinearEquiv.instAddMonoidHomClass {R M N : Type*} [Semiring R]
     AddMonoidHomClass (M ≃ₗ[R] N) M N :=
   (SemilinearMapClass.distribMulActionSemiHomClass _).toAddMonoidHomClass
 
-set_option linter.unusedVariables false in
 open P2MLat in
-theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
+theorem solution {N n : ℕ}
     (hQ : BaseChange N n MTT.Qbar) (ψ : Bool → Hc N n MTT.Qbar) :
     (Submodule.span ℤ {v : MTT.Qbar | ∃ s j r, j ≤ n ∧
       v = evaluation j r (ψ s) / (n.choose j : MTT.Qbar)}).FG := by
@@ -159,10 +158,10 @@ open scoped BigOperators TensorProduct
 open MTT.Cohomology
 
 theorem MTT.Cohomology.evaluation_lattice
-    {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
+    {N n : ℕ}
     (hQ : BaseChange N n MTT.Qbar) (ψ : Bool → Hc N n MTT.Qbar) :
     (Submodule.span ℤ {v : MTT.Qbar | ∃ s j r, j ≤ n ∧
-      v = evaluation j r (ψ s) / (n.choose j : MTT.Qbar)}).FG := _root_.solution hZ hQ ψ
+      v = evaluation j r (ψ s) / (n.choose j : MTT.Qbar)}).FG := _root_.solution hQ ψ
 end
 
 end publicSection

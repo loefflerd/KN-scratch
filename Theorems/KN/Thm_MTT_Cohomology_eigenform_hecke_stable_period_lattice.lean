@@ -862,7 +862,7 @@ theorem solution
   obtain ⟨φ, hφ⟩ := MTT.Cohomology.signed_evaluation hN hk I hI hT ι f
   have hdesc : ∀ s : Bool, ∃ ω : ℂ, ω ≠ 0 ∧
       ∃ ψ : Hc N (k - 2) MTT.Qbar, Extends ι ψ (ω⁻¹ • φ s) := fun s =>
-    MTT.Cohomology.eigenclass_descent hZ hQ hC ι f.epsilon f.coeff s
+    MTT.Cohomology.eigenclass_descent hQ hC ι f.epsilon f.coeff s
       (fun a b ha hb =>
         MTT.Cohomology.signed_packet_multiplicity_one hN hk ι f s a b ha hb)
       (φ s) (hφ s).2
@@ -871,7 +871,7 @@ theorem solution
     intro s
     exact packet_of_extends ι f.epsilon f.coeff s (ψ s) ((ω s)⁻¹ • φ s) (hψ s)
       (packet_smul _ _ _ _ (hφ s).2 (ω s)⁻¹)
-  refine ⟨ψ, hpacket, ?_, MTT.Cohomology.evaluation_lattice hZ hQ ψ, ?_⟩
+  refine ⟨ψ, hpacket, ?_, MTT.Cohomology.evaluation_lattice hQ ψ, ?_⟩
   · intro hL
     have hevalψ : ∀ s j r, j ≤ k - 2 → evaluation j r (ψ s) = 0 := by
       intro s j r hj

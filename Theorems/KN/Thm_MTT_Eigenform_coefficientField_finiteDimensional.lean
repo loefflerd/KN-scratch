@@ -192,7 +192,7 @@ theorem _root_.solution
             have hprod : f.coeff q * f.coeff m ∈ K :=
               K.mul_mem (hprime q hq) (ih m hm_lt)
             have hsub := K.sub_mem hprod hcorr
-            have heq := MTT.Eigenform.hecke_recurrence hN ι f q hq m
+            have heq := MTT.Eigenform.hecke_recurrence ι f q hq m
             rw [← heq] at hsub
             rw [hqm] at hsub
             simpa using hsub

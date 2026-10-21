@@ -103,14 +103,11 @@ private theorem exists_value_orderOf_eq_v2 (n : ℕ)
   rw [hfa]
   exact MulChar.mulEquivToUnitHom.orderOf_eq chi
 
-set_option linter.unusedVariables false in
 theorem _root_.solution
     {N p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (η : DirichletCharacterWithLevel)
-    (hηprim : η.2.IsPrimitive) (m : ℕ) (hm : 0 < m)
-    (hηorder : 2 ≤ orderOf η.2)
-    (horderCoprime : Nat.Coprime (orderOf η.2) p)
-    (hηcoprime : Nat.Coprime (N * p) η.2.conductor) :
+    (m : ℕ)
+     :
     Nonempty (SeedCyclotomicGaloisCharacterDataV2 N p m η) := by
   let n := η.1.1
   let q := p ^ m * N
@@ -190,12 +187,10 @@ and the seed image contains an element of full order. -/
 theorem seedCyclotomicGaloisCharacters_exist_v4
     {N p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (η : DirichletCharacterWithLevel)
-    (hηprim : η.2.IsPrimitive) (m : ℕ) (hm : 0 < m)
-    (hηorder : 2 ≤ orderOf η.2)
-    (horderCoprime : Nat.Coprime (orderOf η.2) p)
-    (hηcoprime : Nat.Coprime (N * p) η.2.conductor) :
+    (m : ℕ)
+     :
     Nonempty (SeedCyclotomicGaloisCharacterDataV2 N p m η) :=
-  solution hN η hηprim m hm hηorder horderCoprime hηcoprime
+  solution hN η m
 
 end HorizontalPadicL
 

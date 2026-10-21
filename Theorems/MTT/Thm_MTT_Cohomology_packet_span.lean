@@ -198,7 +198,7 @@ theorem solution
   obtain ⟨d, hd⟩ := MTT.Cohomology.image_packet_unique hN hk I hI hT ι f h hh' hH'
   -- the boundary summand vanishes
   have hb0 : boundaryCochain Φ = 0 :=
-    MTT.Cohomology.boundary_packet_zero hN hk ι f Φ hΦ hb (fun l hl => (hH l hl).2.2)
+    MTT.Cohomology.boundary_packet_zero hN hk ι f Φ hΦ (fun l hl => (hH l hl).2.2)
   refine ⟨c, d, ?_⟩
   rw [hdec, hb0, hc, hd, map_smul, map_smul, add_zero]
   simp [reflection_smul]

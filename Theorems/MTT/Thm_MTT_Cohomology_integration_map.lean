@@ -63,7 +63,7 @@ theorem solution {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) :
   exact ⟨I,
     integration_cochain_injective hN hk I hI,
     integration_cochain_hecke_equivariant hN hk I hI,
-    integration_cochain_integral_class hN hk I hI⟩
+    integration_cochain_integral_class hk I hI⟩
 
 end privateSection
 

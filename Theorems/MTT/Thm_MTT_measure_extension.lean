@@ -141,7 +141,7 @@ theorem solution
     (P : Periods k ι f.form) (α : ℂ_[p]) (hα : IsOrdinaryRoot f ιp α)
     (s : Bool) :
     ∃! μ : UnitMeasure p, RealizesMoments f ιp P α s μ := by
-  obtain ⟨C, hC, hbound⟩ := ordinary_centered_disk_bound hN hk ι ιp f P α hα
+  obtain ⟨C, hC, hbound⟩ := ordinary_centered_disk_bound ι ιp f P α hα
   have hres : ∀ (n : ℕ), 0 < n → ∀ (a b : ℤ),
       IsCoprime a (p : ℤ) → IsCoprime b (p : ℤ) →
       (a : ZMod (p ^ n)) = (b : ZMod (p ^ n)) →

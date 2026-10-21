@@ -51,12 +51,10 @@ noncomputable section
 
 attribute [local instance] AlgebraicClosure.isAlgebraic
 
-set_option linter.unusedVariables false in
 theorem _root_.solution
     {N k p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
-    (hnew : HorizontalPadicL.IsNewEigenform f)
     (η : HorizontalPadicL.DirichletCharacterWithLevel) :
     Nonempty (HorizontalPadicL.SeededEigenformPadicPlaceData (p := p) f η) := by
   let : Algebra.IsAlgebraic ℚ MTT.Qbar := AlgebraicClosure.isAlgebraic ℚ
@@ -94,8 +92,8 @@ theorem seededEigenform_padicPlace_exists_v2
     {N k p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
-    (hnew : IsNewEigenform f) (η : DirichletCharacterWithLevel) :
-    Nonempty (SeededEigenformPadicPlaceData (p := p) f η) := _root_.solution hN hk ι f hnew η
+     (η : DirichletCharacterWithLevel) :
+    Nonempty (SeededEigenformPadicPlaceData (p := p) f η) := _root_.solution hN hk ι f η
 
 end HorizontalPadicL
 

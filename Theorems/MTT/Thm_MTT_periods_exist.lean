@@ -169,7 +169,7 @@ theorem solution {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
   obtain ⟨φ, hφ⟩ := MTT.Cohomology.signed_evaluation hN hk I hI hT ι f
   have hdesc : ∀ s : Bool, ∃ ω : ℂ, ω ≠ 0 ∧
       ∃ ψ : Hc N (k - 2) MTT.Qbar, Extends ι ψ (ω⁻¹ • φ s) := fun s =>
-    MTT.Cohomology.eigenclass_descent hZ hQ hC ι f.epsilon f.coeff s
+    MTT.Cohomology.eigenclass_descent hQ hC ι f.epsilon f.coeff s
       (fun a b ha hb => MTT.Cohomology.signed_packet_multiplicity_one hN hk ι f s a b ha hb)
       (φ s) (hφ s).2
   choose ω hω ψ hψ using hdesc
@@ -184,7 +184,7 @@ theorem solution {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
       exact map_smul (evaluation j r) _ (φ s)
     rw [map_div₀, map_natCast, hkey, (hφ s).1 j r hj]
     field_simp
-  · exact MTT.Cohomology.evaluation_lattice hZ hQ ψ
+  · exact MTT.Cohomology.evaluation_lattice hQ ψ
 end
 
 end privateSection

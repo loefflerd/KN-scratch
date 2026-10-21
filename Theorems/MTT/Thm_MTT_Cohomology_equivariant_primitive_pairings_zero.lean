@@ -80,7 +80,7 @@ theorem solution
     (Γ := CongruenceSubgroup.Gamma1 N) hR hA₂ hinv₂ hdecay₂ hint₂
   obtain ⟨hp₁, hp₂⟩ :=
     period_pairings_eq_wirtinger_sums_of_weight_ge_two
-      hk g v q R hR hint₁ hint₂ hderiv₁ hderiv₂
+      hk g v q R hR hderiv₁ hderiv₂
   constructor
   · rw [hp₁]
     exact hz₁

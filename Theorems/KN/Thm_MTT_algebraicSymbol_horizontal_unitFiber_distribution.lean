@@ -47,7 +47,6 @@ section privateSection
 noncomputable section
 open scoped BigOperators
 
-set_option linter.unusedVariables false in
 open MTT in
 /-- Removing the unique lift divisible by `ℓ` from the arbitrary-denominator
 symbol distribution relation gives the coefficientwise horizontal norm
@@ -56,7 +55,7 @@ theorem _root_.solution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (ι : Qbar →+* ℂ) (f : Eigenform N k ι) (P : Periods k ι f.form)
     (s : Bool) (j : ℕ) (hj : j ≤ k - 2) (hcentral : 2 * j = k - 2)
-    (ℓ q : ℕ) (hℓ : ℓ.Prime) (hq : 0 < q) (hcop : Nat.Coprime ℓ q)
+    (ℓ q : ℕ) (hℓ : ℓ.Prime) (hq : 0 < q)
     (a c b₀ : ℕ) (hb₀ : b₀ < ℓ) (hlift : a + b₀ * q = ℓ * c) :
     (∑ b ∈ (Finset.range ℓ).erase b₀,
       algebraicSymbol P s j
@@ -117,7 +116,7 @@ theorem MTT.algebraicSymbol_horizontal_unitFiber_distribution
     {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     (ι : Qbar →+* ℂ) (f : Eigenform N k ι) (P : Periods k ι f.form)
     (s : Bool) (j : ℕ) (hj : j ≤ k - 2) (hcentral : 2 * j = k - 2)
-    (ℓ q : ℕ) (hℓ : ℓ.Prime) (hq : 0 < q) (hcop : Nat.Coprime ℓ q)
+    (ℓ q : ℕ) (hℓ : ℓ.Prime) (hq : 0 < q)
     (a c b₀ : ℕ) (hb₀ : b₀ < ℓ) (hlift : a + b₀ * q = ℓ * c) :
     (∑ b ∈ (Finset.range ℓ).erase b₀,
       algebraicSymbol P s j
@@ -128,7 +127,7 @@ theorem MTT.algebraicSymbol_horizontal_unitFiber_distribution
         algebraicSymbol P s j (c : ℚ) (q : ℚ) / (q : Qbar) ^ j -
         f.epsilon ℓ *
           (algebraicSymbol P s j ((ℓ : ℚ) * (a : ℚ)) (q : ℚ) /
-            (q : Qbar) ^ j) := _root_.solution hN hk ι f P s j hj hcentral ℓ q hℓ hq hcop a c b₀ hb₀
+            (q : Qbar) ^ j) := _root_.solution hN hk ι f P s j hj hcentral ℓ q hℓ hq a c b₀ hb₀
               hlift
 end
 

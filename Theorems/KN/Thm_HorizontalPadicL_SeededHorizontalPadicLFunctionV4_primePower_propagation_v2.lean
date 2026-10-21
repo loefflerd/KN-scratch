@@ -73,13 +73,13 @@ theorem solution
     (fun n => hexponent ▸ ν.primes.orderExponent_le_exponent_v2 n) htriv
   obtain ⟨R, hR, hvalues⟩ := hinterp
   obtain ⟨F⟩ := finiteCorrection_realization_countingTransfer_inverseSeed_v2
-    ν.primes.toConstructionData R hR ν.measure hpodd m hm hvalues A hcorr
+    ν.primes.toConstructionData R hR ν.measure hpodd m hvalues A hcorr
   obtain ⟨α, hα, _hαlt, hcount⟩ := supportedPrimePowerCharacters_logLowerBound_v2
     p m hm ν.primes.primeAt ν.primes.primeAt_prime ν.primes.primeAt_injective
     (fun n => hexponent ▸ (ν.primes.primeAt_orderly n).2.1)
     ν.primes.naturalDensity ν.primes.naturalDensity_pos
     ν.primes.has_naturalDensity A
-  refine ⟨α, hα, F.logLowerBound_v2 ?_ ?_ α hα hcount⟩
+  refine ⟨α, hα, F.logLowerBound_v2 ?_ ?_ α hcount⟩
   · intro X
     exact (primitiveCharacters_boundedConductor_finite_v2 X).subset
       (fun χ hχ => ⟨hχ.1.1, hχ.2⟩)

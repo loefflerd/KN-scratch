@@ -1206,7 +1206,7 @@ theorem projection_relation
                 simpa using
                   (DirichletCharacter.apply_ne_zero_iff η.2 (ℓ : ℤ)).2 hcop'
               have hdist := MTT.algebraicSymbol_horizontal_unitFiber_distribution
-                hN hk ι f P s j hj hcentral ℓ q hℓ hq hcopq
+                hN hk ι f P s j hj hcentral ℓ q hℓ hq
                 a.val.val c b₀ hb₀ hlift
               have hscaled := congrArg
                 (fun z : MTT.Qbar =>
@@ -1672,7 +1672,7 @@ theorem seededFiniteThetaSystem_exists_with_fullSupportInterpolation_anyParity
 theorem seededNormalizedThetaMeasure_exists_with_interpolation_anyParity
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k) (heven : Even k)
-    (f : MTT.Eigenform N k ι) (hnew : IsNewEigenform f)
+    (f : MTT.Eigenform N k ι)
     (P : MTT.Periods k ι f.form) (η : DirichletCharacterWithLevel)
     (hηprim : η.2.IsPrimitive)
     (ιp : MTT.Qbar →+* ℂ_[p]) (hpodd : p ≠ 2)
@@ -1696,7 +1696,7 @@ theorem seededNormalizedThetaMeasure_exists_with_interpolation_anyParity
   have hΘexpected : Θ.characters.HasExpectedProperties := by
     rw [hΘcharacters]
     exact hcharacters
-  have hΘunit : Θ.HasUnitEulerFactors := seededEulerFactors_areUnits_v4 f hnew η ιp L Θ
+  have hΘunit : Θ.HasUnitEulerFactors := seededEulerFactors_areUnits_v4 f η ιp L Θ
   have hΘzero := fullSupportCriticalZeroSet_descends_inverseSeed_v3
     Θ hΘexpected hΘnorm hΘunit hΘfull
   obtain ⟨μ, hμΘ, hμinterp⟩ :=
@@ -1734,12 +1734,12 @@ theorem seededHorizontalPadicLFunction_exists_of_primeSystem_anyParity
     exact algebraicSymbol_eq_signedModularSymbol_v3 hN hk f P s j a m hj hm
   obtain ⟨μ, hμcharacters, hinterp, htrivial⟩ :=
     seededNormalizedThetaMeasure_exists_with_interpolation_anyParity
-      hN hk heven f hnew P η hηprim ιp hpodd D characters
+      hN hk heven f P η hηprim ιp hpodd D characters
       hcharacters scale hcomparison
   have hμproperties : μ.characters.HasExpectedProperties := by
     rw [hμcharacters]
     exact hcharacters
-  exact seededHorizontalPadicLFunction_assemble_v4 f hnew η ιp L μ
+  exact seededHorizontalPadicLFunction_assemble_v4 f η ιp L μ
     hμproperties hinterp (htrivial.mpr hseedNonzero)
 
 end HorizontalPadicL
@@ -1761,7 +1761,6 @@ theorem HorizontalPadicL.seededPositiveDensityPrimeSystem_exists_anyParity
     [f.HasContinuousLocalFieldRepresentations]
     (hnew : IsNewEigenform f)
     (η : DirichletCharacterWithLevel)
-    (hηprim : η.2.IsPrimitive)
     (m B : ℕ) (hm : 0 < m) (hB : 0 < B)
     (hηorder : 2 ≤ orderOf η.2)
     (horderCoprime : Nat.Coprime (orderOf η.2) p)
@@ -1769,10 +1768,9 @@ theorem HorizontalPadicL.seededPositiveDensityPrimeSystem_exists_anyParity
     ∃ (ιp : MTT.Qbar →+* ℂ_[p])
       (L : SeededHorizontalPrimeSystemV3 p ιp f η B),
       L.orderExponent = m := by
-  rcases seededEigenform_padicPlace_exists_v2 (p := p) hN hk ι f hnew η with ⟨V⟩
+  rcases seededEigenform_padicPlace_exists_v2 (p := p) hN hk ι f η with ⟨V⟩
   rcases newEigenform_residualRepresentation_exists_v2 hN hk ι f hnew η V with ⟨R⟩
-  rcases seedCyclotomicGaloisCharacters_exist_v4 hN η hηprim m hm hηorder
-      horderCoprime hηcoprime with ⟨C⟩
+  rcases seedCyclotomicGaloisCharacters_exist_v4 (p := p) hN η m with ⟨C⟩
   rcases disjointRamification_seededFrobeniusClass_exists_v4 hN hk heven ι f η
       m B hB hηcoprime V R C with ⟨D⟩
   rcases seededFrobeniusClass_positiveDensity_v2 D with ⟨δ, hδ, hdensity⟩
@@ -2144,7 +2142,7 @@ theorem eigenform_seededHorizontalPadicLConstruction_anyParity
   obtain ⟨P⟩ := MTT.periods_exist hN hk ι f
   intro η hηprim p m B _ hpodd hm hB hηorder horderCoprime hηcoprime hseedNonzero
   obtain ⟨ιp, L, hLm⟩ := seededPositiveDensityPrimeSystem_exists_anyParity
-    hN hk heven ι f hnew η hηprim m B hm hB hηorder horderCoprime hηcoprime
+    hN hk heven ι f hnew η m B hm hB hηorder horderCoprime hηcoprime
   obtain ⟨ν, hνL, hνinterp, hνzero⟩ :=
     seededHorizontalPadicLFunction_exists_of_primeSystem_anyParity
       hN hk heven ι f hnew P η hηprim ιp hpodd L hseedNonzero

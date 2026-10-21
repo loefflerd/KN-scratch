@@ -48,10 +48,9 @@ noncomputable section
 
 open HorizontalPadicL
 
-set_option linter.unusedVariables false in
 theorem solution
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
-    (f : MTT.Eigenform N k ι) (hnew : IsNewEigenform f)
+    (f : MTT.Eigenform N k ι)
     (η : DirichletCharacterWithLevel) (ιp : MTT.Qbar →+* ℂ_[p])
     (L : SeededHorizontalPrimeDataV3 p ιp f η B)
     (Θ : SeededFiniteThetaDataV3 L) :
@@ -80,11 +79,11 @@ namespace HorizontalPadicL
 theta system a unit. -/
 theorem seededEulerFactors_areUnits_v4
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
-    (f : MTT.Eigenform N k ι) (hnew : IsNewEigenform f)
+    (f : MTT.Eigenform N k ι)
     (η : DirichletCharacterWithLevel) (ιp : MTT.Qbar →+* ℂ_[p])
     (L : SeededHorizontalPrimeDataV3 p ιp f η B)
     (Θ : SeededFiniteThetaDataV3 L) :
-    Θ.HasUnitEulerFactors := _root_.solution f hnew η ιp L Θ
+    Θ.HasUnitEulerFactors := _root_.solution f η ιp L Θ
 
 end HorizontalPadicL
 end

@@ -336,9 +336,8 @@ local instance LinearEquiv.instAddMonoidHomClass {R M N : Type*} [Semiring R]
     AddMonoidHomClass (M ≃ₗ[R] N) M N :=
   (SemilinearMapClass.distribMulActionSemiHomClass _).toAddMonoidHomClass
 
-set_option linter.unusedVariables false in
 open P2MDesc MvPolynomial in
-theorem solution {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
+theorem solution {N n : ℕ}
     (hQ : BaseChange N n MTT.Qbar) (hC : BaseChange N n ℂ)
     (ι : MTT.Qbar →+* ℂ) (e : DirichletCharacter MTT.Qbar N)
     (a : ℕ → MTT.Qbar) (s : Bool)
@@ -562,7 +561,7 @@ open scoped BigOperators TensorProduct
 open MTT.Cohomology
 
 theorem MTT.Cohomology.eigenclass_descent
-    {N n : ℕ} (hZ : Module.Finite ℤ (Hc N n ℤ))
+    {N n : ℕ}
     (hQ : BaseChange N n MTT.Qbar) (hC : BaseChange N n ℂ)
     (ι : MTT.Qbar →+* ℂ) (e : DirichletCharacter MTT.Qbar N)
     (a : ℕ → MTT.Qbar) (s : Bool)
@@ -572,7 +571,7 @@ theorem MTT.Cohomology.eigenclass_descent
       ∃ u v : ℂ, (u ≠ 0 ∨ v ≠ 0) ∧ u • φ + v • ψ = 0)
     (φ : Hc N n ℂ)
     (hφ : Packet (fun d => ι (e d)) (fun l => ι (a l)) s φ) :
-    ∃ ω : ℂ, ω ≠ 0 ∧ ∃ ψ : Hc N n MTT.Qbar, Extends ι ψ (ω⁻¹ • φ) := _root_.solution hZ hQ hC ι e a
+    ∃ ω : ℂ, ω ≠ 0 ∧ ∃ ψ : Hc N n MTT.Qbar, Extends ι ψ (ω⁻¹ • φ) := _root_.solution hQ hC ι e a
       s hdim φ hφ
 end
 

@@ -127,13 +127,12 @@ lemma log_rpow_le (s X β : ℝ) (hs : 1 ≤ s) (hX2 : s ^ 2 ≤ X) (hX3 : 3 ≤
 end CountAux
 
 open HorizontalPadicL CountAux in
-set_option linter.unusedVariables false in
 theorem solution
     {S T : Set DirichletCharacterWithLevel}
     (F : CharacterCountingTransfer S T)
     (hS : ∀ X : ℝ, {χ | χ ∈ S ∧ (χ.2.conductor : ℝ) ≤ X}.Finite)
     (hT : ∀ X : ℝ, {χ | χ ∈ T ∧ (χ.2.conductor : ℝ) ≤ X}.Finite)
-    (α : ℝ) (hα : 0 < α)
+    (α : ℝ)
     (hcount : HasLogPowerLowerBound (characterConductorCount S) α) :
     HasLogPowerLowerBound (characterConductorCount T) α := by
   obtain ⟨c, X₀, hc, hX₀, hbound⟩ := hcount
@@ -201,9 +200,9 @@ theorem CharacterCountingTransfer.logLowerBound_v2
     (F : CharacterCountingTransfer S T)
     (hS : ∀ X : ℝ, {χ | χ ∈ S ∧ (χ.2.conductor : ℝ) ≤ X}.Finite)
     (hT : ∀ X : ℝ, {χ | χ ∈ T ∧ (χ.2.conductor : ℝ) ≤ X}.Finite)
-    (α : ℝ) (hα : 0 < α)
+    (α : ℝ)
     (hcount : HasLogPowerLowerBound (characterConductorCount S) α) :
-    HasLogPowerLowerBound (characterConductorCount T) α := _root_.solution F hS hT α hα hcount
+    HasLogPowerLowerBound (characterConductorCount T) α := _root_.solution F hS hT α hcount
 
 end HorizontalPadicL
 end

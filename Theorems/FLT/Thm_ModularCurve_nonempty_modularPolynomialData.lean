@@ -82,8 +82,11 @@ scoped instance algKF (N : ℕ) [NeZero N] : Algebra K (modularFunctionField N) 
 attribute [local instance] ModularCurve.algebraIntPolyModularFunctionField
 scoped instance ist1 (N : ℕ) [NeZero N] : IsScalarTower (Polynomial ℤ) K (modularFunctionField N) :=
   IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-scoped instance ist2 (N : ℕ) [NeZero N] : IsScalarTower K (modularFunctionField N) LS :=
-  IsScalarTower.of_algebraMap_eq (fun _ => rfl)
+scoped instance ist2 (N : ℕ) [NeZero N] : IsScalarTower K (modularFunctionField N) LS where
+  -- Avoid expensive kernel reduction through `IsScalarTower.of_algebraMap_eq`.
+  smul_assoc x y z := by
+    change ((x : LS) * (y : LS)) * z = (x : LS) * ((y : LS) * z)
+    exact mul_assoc _ _ _
 
 theorem algebraMap_evalAtJGen (p : Polynomial ℤ) :
     algebraMap K LS (evalAtJGen p) = Polynomial.aeval jq p := by
