@@ -61,7 +61,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0
 
@@ -134,6 +133,7 @@ section Level
 
 variable {M : ℕ} {k : ℤ}
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem T_mem_Gamma1 (M : ℕ) : ModularGroup.T ∈ Gamma1 M := by
   simp [Gamma1_mem, ModularGroup.T]
 
@@ -192,6 +192,7 @@ theorem coe_diamondSlash [NeZero M] (γ : SL(2, ℤ)) (hγ : γ ∈ Gamma0 M) (f
     (⇑(diamondSlash γ hγ f) : ℍ → ℂ) = (⇑f : ℍ → ℂ) ∣[k] γ := by
   rw [ModularForm.SL_slash]; rfl
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem mul_inv_mem_Gamma1 {γ γ' : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) (hγ' : γ' ∈ Gamma0 M)
     (h : ((γ 1 1 : ℤ) : ZMod M) = ((γ' 1 1 : ℤ) : ZMod M)) : γ * γ'⁻¹ ∈ Gamma1 M := by
   have hc : ((γ 1 0 : ℤ) : ZMod M) = 0 := Gamma0_mem.mp hγ

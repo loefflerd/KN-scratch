@@ -71,7 +71,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_B3_exists_variableChange_specialFibre_goodModel
 
@@ -1420,6 +1419,7 @@ theorem bridge3Specialise_apply_coe (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : 
             :=
   rfl
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : Qbar)
     (g : (nearCurve j₀).toAffine.Point) (hg : addOrderOf g = p) :
     (bridge3Specialise p j₀ ⟨AddSubgroup.zmultiples g, g, hg, rfl⟩).1 =

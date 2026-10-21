@@ -56,7 +56,6 @@ Prove2Me submission: `a1c720ca-353d-5914-9331-55d4d08f3909` (ACCEPTED).
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_coeffHeckeFun_mem_coeffParabolicCocycles
 
@@ -303,7 +302,6 @@ end privateSection
 
 public section publicSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 

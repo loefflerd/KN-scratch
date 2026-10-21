@@ -60,12 +60,12 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) [W.IsElliptic]
     (n : ℕ) (hn : (n : k) ≠ 0) :
     Finite (Submodule.torsionBy ℤ W.toAffine.Point n) := by

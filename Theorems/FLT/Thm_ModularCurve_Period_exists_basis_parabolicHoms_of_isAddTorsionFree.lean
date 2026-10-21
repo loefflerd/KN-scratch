@@ -59,7 +59,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree
 
@@ -324,6 +323,7 @@ noncomputable def basisR [IsAddTorsionFree R] : Module.Basis (Fin D.n) R ↥(par
     Θ_surjective D R⟩)
 
 omit [Γ.FiniteIndex] in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem coe_basisR [IsAddTorsionFree R] (i : Fin D.n) :
     ((basisR D R i : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R) = chi D R i := by
   rw [basisR, Module.Basis.map_apply, Pi.basisFun_apply, LinearEquiv.ofBijective_apply, Θ_single]

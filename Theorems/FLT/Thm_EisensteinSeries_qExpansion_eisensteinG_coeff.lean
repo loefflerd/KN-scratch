@@ -64,7 +64,6 @@ Chris Birkbeck; Authors: Chris Birkbeck). See ATTRIBUTION.md and NOTICE in the s
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_EisensteinSeries_qExpansion_eisensteinG_coeff
 
@@ -628,6 +627,7 @@ theorem hasSum_coefFun (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ) :
     simp [coefFun]
   exact htsum ▸ hsumN.hasSum
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem qExpansion_coeff_formula (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (n : ℕ) :
     (qExpansion N (EisensteinSeries.eisensteinG N k a)).coeff n =
       if n = 0 then

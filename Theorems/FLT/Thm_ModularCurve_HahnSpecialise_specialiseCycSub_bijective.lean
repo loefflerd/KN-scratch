@@ -57,7 +57,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_HahnSpecialise_specialiseCycSub_bijective
 
@@ -83,6 +82,7 @@ theorem addOrderOf_map_eq_of_injOn {g : G} (hg : N • g = 0) : addOrderOf (f g)
   · rw [map_nsmul, addOrderOf_nsmul_eq_zero, map_zero]
 
 include hf in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem map_surjective_of_surjOn
     (hs : ∀ P' : G', N • P' = 0 → ∃ P : G, N • P = 0 ∧ f P = P') :
     Function.Surjective (map f hf) := by

@@ -57,7 +57,6 @@ Prove2Me submission: `424062d0-1ce2-5345-9953-29cf4d1db00e` (ACCEPTED).
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_exists_coeffH1par_linearMap_coeffHeckeFun
 
@@ -146,7 +145,6 @@ end privateSection
 
 public section publicSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 

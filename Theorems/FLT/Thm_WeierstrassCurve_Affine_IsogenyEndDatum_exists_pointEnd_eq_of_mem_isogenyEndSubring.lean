@@ -76,7 +76,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_OVERLONG_7915af21
 
@@ -1056,6 +1055,7 @@ def restrictResidueMapAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral
 
 variable (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'')
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem inertiaDegAlong_comp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral)
     (hχφ : (χ.comp φ).toRingHom.IsIntegral) :
     InertiaDegComp K φ χ hφ hχ hχφ := by

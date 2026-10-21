@@ -65,7 +65,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_OVERLONG_5b0eac03
 
@@ -414,6 +413,7 @@ scoped instance isArithmetic_map [Γ.FiniteIndex] :
 abbrev qL (f : ℍ → ℂ) : LaurentSeries ℂ := ((qExpansion 1 f : PowerSeries ℂ) : LaurentSeries ℂ)
 
 include hT in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem one_mem_strictPeriods :
     (1 : ℝ) ∈ ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.mem_strictPeriods_iff]

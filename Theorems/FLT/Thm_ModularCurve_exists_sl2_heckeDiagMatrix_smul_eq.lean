@@ -58,7 +58,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_sl2_heckeDiagMatrix_smul_eq
 
@@ -82,6 +81,7 @@ private def conjSL {p : ℕ} (g : SL(2, ℤ)) (e : ℤ) (he : g 1 0 = p * e) : S
     rw [Matrix.det_fin_two_of]
     linear_combination det_eq g + g 0 1 * he⟩
 
+set_option backward.isDefEq.respectTransparency.types false in
 private theorem heckeDiagMatrix_mul_mapGL {p : ℕ} (hp : p ≠ 0) (g : SL(2, ℤ)) (e : ℤ)
     (he : g 1 0 = p * e) :
     heckeDiagMatrix p * mapGL ℝ g = mapGL ℝ (conjSL g e he) * heckeDiagMatrix p := by

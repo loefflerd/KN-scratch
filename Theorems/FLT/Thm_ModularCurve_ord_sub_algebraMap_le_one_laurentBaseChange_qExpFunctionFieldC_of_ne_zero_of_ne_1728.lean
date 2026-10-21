@@ -71,7 +71,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_OVERLONG_29084bdf
 
@@ -99,6 +98,7 @@ theorem T_mem_Gamma1 (M : ℕ) : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M 
   rw [CongruenceSubgroup.Gamma1_mem]
   simp [ModularGroup.T]
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem one_mem_strictPeriods (hT : ModularGroup.T ∈ Γ) :
     (1 : ℝ) ∈ ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.mem_strictPeriods_iff]

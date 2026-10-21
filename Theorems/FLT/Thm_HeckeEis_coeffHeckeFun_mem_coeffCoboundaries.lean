@@ -50,7 +50,6 @@ Prove2Me submission: `ef4c7cb3-2936-51c4-953d-94be9ec44797` (ACCEPTED).
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_coeffHeckeFun_mem_coeffCoboundaries
 
@@ -212,7 +211,6 @@ end privateSection
 
 public section publicSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 

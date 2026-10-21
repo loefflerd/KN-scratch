@@ -62,7 +62,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_NumberField_exists_lift_mem_inertia_integralClosure
 
@@ -71,6 +70,7 @@ open scoped NumberField Pointwise
 local notation "ℚ̄" => AlgebraicClosure ℚ
 local notation "𝔅" => integralClosure ℤ (AlgebraicClosure ℚ)
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem solution
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L] [IsGalois ℚ L]
     (Q : Ideal (NumberField.RingOfIntegers L)) [Q.IsMaximal] {q : ℕ}

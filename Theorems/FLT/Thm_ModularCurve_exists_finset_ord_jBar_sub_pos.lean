@@ -75,7 +75,6 @@ section privateSection
 
 open AlgebraicCurve Place
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_finset_ord_jBar_sub_pos
 

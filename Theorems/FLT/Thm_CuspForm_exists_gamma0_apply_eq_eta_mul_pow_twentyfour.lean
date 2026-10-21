@@ -62,7 +62,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour
 
@@ -350,6 +349,7 @@ theorem etaMultiplier_mul {γ₁ γ₂ : SL(2, ℤ)} (h₁ : γ₁ ∈ Gamma0 11
   simp only [Pi.smul_apply, smul_eq_mul] at h
   exact mul_right_cancel₀ (etaProductEleven_ne_zero UpperHalfPlane.I.2) h
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem etaMultiplier_T : etaMultiplier ModularGroup.T = 1 := by
   rw [etaMultiplier, etaRatio]
   have hsmul : ((ModularGroup.T • UpperHalfPlane.I : ℍ) : ℂ) = (UpperHalfPlane.I : ℂ) + 1 := by

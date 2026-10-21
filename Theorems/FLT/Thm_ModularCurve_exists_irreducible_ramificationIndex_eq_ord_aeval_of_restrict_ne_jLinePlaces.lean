@@ -66,7 +66,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_OVERLONG_63ec6564
 
@@ -107,6 +106,7 @@ theorem equiv_algebraMap (p : ℚ[X]) :
 end ModularCurve.JLineFiniteAux
 
 open ModularCurve.JLineFiniteAux in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem solution (N : ℕ) [NeZero N] :
     letI := ModularCurve.jAdjoinAlgebra N
     ∀ [Algebra.IsIntegral ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N)]

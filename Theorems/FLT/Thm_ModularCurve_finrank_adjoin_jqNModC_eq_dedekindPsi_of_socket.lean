@@ -74,7 +74,6 @@ section privateSection
 
 open _root_.ModularCurve.W1
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket
 

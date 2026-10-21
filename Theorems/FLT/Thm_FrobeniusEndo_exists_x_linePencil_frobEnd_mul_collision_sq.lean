@@ -63,7 +63,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_FrobeniusEndo_exists_x_linePencil_frobEnd_mul_collision_sq
 
@@ -540,6 +539,7 @@ section OnCurve
 
 variable {K : Type*} [Field K] (W : WeierstrassCurve K)
 
+set_option backward.isDefEq.respectTransparency.types false in
 lemma evalEval_eq_of_mk_eq {x y : K} (h : W.toAffine.Equation x y) {a b : K[X][Y]}
     (hab : CoordinateRing.mk W a = CoordinateRing.mk W b) : a.evalEval x y = b.evalEval x y := by
   have e := congrArg (AdjoinRoot.evalEval (p := W.toAffine.polynomial) h) hab

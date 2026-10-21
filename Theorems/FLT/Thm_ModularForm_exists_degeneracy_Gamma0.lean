@@ -54,7 +54,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_degeneracy_Gamma0
 
@@ -93,6 +92,7 @@ def restrictCF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : CuspFo
   k) :
     ⇑(restrictCF h F) = ⇑F := rfl
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) :
     ((CongruenceSubgroup.Gamma0 N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤
       ConjAct.toConjAct (heckeDiagMatrix d)⁻¹ •

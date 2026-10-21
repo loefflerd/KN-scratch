@@ -73,7 +73,6 @@ set_option maxHeartbeats 25600000
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_OVERLONG_6989a05c
 
@@ -2570,6 +2569,7 @@ set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 omit [DecidableEq K] in
 omit [IsAlgClosed K] [CharZero K] in
 omit [E₀.IsElliptic] in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   classical
   set ι₀ := kw_iP_ι₀ E₀ D hcoeffs

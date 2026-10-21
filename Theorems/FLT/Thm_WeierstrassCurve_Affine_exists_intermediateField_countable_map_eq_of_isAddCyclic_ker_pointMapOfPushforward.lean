@@ -97,7 +97,6 @@ open WeierstrassCurve Affine CoordinateRing
 
 open scoped Polynomial.Bivariate TensorProduct
 
-set_option backward.isDefEq.respectTransparency.types false
 
 
 noncomputable section
@@ -2048,6 +2047,7 @@ end KerTransportMint
 section Reduce
 
 set_option synthInstance.maxHeartbeats 8000000 in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
     (hKT : KwD5BetweenCurvesKerTransportAlongEmbed.{uK})
     (hχB : KwD5BetweenCurvesChiCompChiEqPhi.{uK}) :
@@ -2817,6 +2817,7 @@ variable (ι : (E₀'.map (algebraMap K₀ K)).toAffine.FunctionField
 variable (hcoeffs : kw_surgehgf4_hSD_CoeffsHyp E₀ E₀' ι)
 
 omit [DecidableEq K] [IsAlgClosed K] [CharZero K] in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem kw_surgehgf4_cfe_bcIota₁NoAC_eq_ι :
     kw_surgehgf4_hfgkd_bcIota₁NoAC E₀ E₀' (↥K₀) K
         (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) = ι := by

@@ -79,7 +79,6 @@ set_option maxHeartbeats 6400000
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_odd
 

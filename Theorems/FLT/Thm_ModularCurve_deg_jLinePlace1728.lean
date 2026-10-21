@@ -53,7 +53,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_deg_jLinePlace1728
 
@@ -62,6 +61,7 @@ open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 attribute [local instance] ModularCurve.instDecidableEqRatFuncRat
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem solution : ModularCurve.jLinePlace1728.deg = 1 := by
   unfold ModularCurve.jLinePlace1728
   rw [Place.deg_congrRingEquiv]

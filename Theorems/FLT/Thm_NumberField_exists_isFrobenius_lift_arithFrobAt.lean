@@ -69,7 +69,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_NumberField_exists_isFrobenius_lift_arithFrobAt
 
@@ -140,6 +139,7 @@ end C6P1T2
 end
 
 open C6P1T2 in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem solution
     (E : IntermediateField ℚ (AlgebraicClosure ℚ)) [NumberField E] [IsGalois ℚ E]
     (ℓ : ℕ) (hℓ : ℓ.Prime) (Q : Ideal (𝓞 E)) [Q.IsPrime]

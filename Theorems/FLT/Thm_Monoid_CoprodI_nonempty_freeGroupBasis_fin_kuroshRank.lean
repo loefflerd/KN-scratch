@@ -65,7 +65,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank
 
@@ -1436,6 +1435,7 @@ theorem isAcyclic_induce_transversal : ((graph G).induce D).IsAcyclic := by
   exact isAcyclic_two (c.map (SimpleGraph.Embedding.induce D).toHom)
     (hc.map Subtype.val_injective)
 
+set_option backward.isDefEq.respectTransparency.types false in
 noncomputable def treeRepEquivEdgeSet
     (hfree : ∀ (η : H) (v : Vertex G), η • v = v → η = 1) :
     treeRep H hD ≃ ((graph G).induce D).edgeSet := by

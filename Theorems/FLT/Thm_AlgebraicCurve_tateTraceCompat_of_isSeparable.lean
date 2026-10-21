@@ -77,7 +77,6 @@ Salvatore Mercuri, Kevin Buzzard). See ATTRIBUTION.md and NOTICE in the source r
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable
 
@@ -1183,6 +1182,7 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
   rw [hsub, Valuation.map_sub_swap]
   exact hz
 
+set_option backward.isDefEq.respectTransparency.types false in
 def kwF4R1V410a_quotientEquiv (n : ℕ) :
     (O_w) ⧸ (𝔪_w) ^ n ≃+* (O_W) ⧸ (𝔪_W) ^ n :=
   RingEquiv.ofBijective
@@ -3451,6 +3451,7 @@ def kwF4R1V384a_semilocalComponent (v : Place K E) (w' : v.fiber F) :
     (IsScalarTower.toAlgHom E F w'.1.adicCompletion) (fun _ _ => mul_comm _ _)
 
 omit [HasPrincipalDivisors K E] in
+set_option backward.isDefEq.respectTransparency.types false in
 @[scoped simp]
 theorem kwF4R1V384a_semilocalComponent_tmul (v : Place K E) (w' : v.fiber F)
     (c : v.adicCompletion) (g : F) :

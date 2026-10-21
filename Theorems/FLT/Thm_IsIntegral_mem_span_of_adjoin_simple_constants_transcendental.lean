@@ -62,7 +62,6 @@ set_option maxHeartbeats 3200000
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental
 

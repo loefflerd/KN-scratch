@@ -62,7 +62,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_eq_jLinePlaceZero_iff_ord_jGen_pos
 
@@ -92,6 +91,7 @@ theorem exists_eq_congr (v : Place ℚ ↥ℚ⟮ModularCurve.jq⟯) :
       (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom)).symm v,
     ((Place.congrEquiv _ _).apply_symm_apply v).symm⟩
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem ord_congr_jGen_sub (b : ℚ) (v' : Place ℚ (RatFunc ℚ)) :
     (Place.congrRingEquiv ModularCurve.jLineRingEquiv
         (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) v').ord

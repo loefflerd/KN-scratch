@@ -72,7 +72,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 -- Avoid an instance diamond involving subfields.
 attribute [-instance] DivisionRing.toRatAlgebra
@@ -304,6 +303,7 @@ theorem card_cos_eq_index : Nat.card (Cos Γ) = Γ.index := by
     Subgroup.relIndex_top_right]
 
 omit [Γ.FiniteIndex] in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem one_mem_strictPeriods (hT : ModularGroup.T ∈ Γ) :
     (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.mem_strictPeriods_iff]

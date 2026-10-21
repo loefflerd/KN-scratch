@@ -57,7 +57,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero
 
@@ -142,6 +141,7 @@ theorem slash_Tq_apply {q : ℕ} (f : ℍ → ℂ) (τ : ℍ) :
   rw [ModularForm.slash_apply, hσ, hdet, hdenom, hsmul]
   simp
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem exists_inv_cocycle {q R : ℕ} {γ : SL(2, ℤ)}
     (hc : (R : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0)
     (hb : (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1) :

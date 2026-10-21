@@ -74,7 +74,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_B3_specialisationEquivariance_level
 
@@ -1042,6 +1041,7 @@ theorem bridge3Specialise_apply_coe (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : 
             :=
   rfl
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : Qbar)
     (g : (nearCurve j₀).toAffine.Point) (hg : addOrderOf g = p) :
     (bridge3Specialise p j₀ ⟨AddSubgroup.zmultiples g, g, hg, rfl⟩).1 =
@@ -2016,6 +2016,7 @@ theorem bridge3SpecialiseN_coe_eq_of_coe_eq (N : ℕ) [NeZero N] (j₀ : Qbar)
     rw [h]
   rw [bridge3SpecialiseN_apply_coe, bridge3SpecialiseN_apply_coe, hs]
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem bridge3SpecialiseN_zmultiples (N : ℕ) [NeZero N] (j₀ : Qbar)
     (g : (nearCurve j₀).toAffine.Point) (hg : addOrderOf g = N) :
     (bridge3SpecialiseN N j₀ ⟨AddSubgroup.zmultiples g, g, hg, rfl⟩).1 =

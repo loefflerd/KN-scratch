@@ -59,7 +59,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm
 
@@ -83,6 +82,8 @@ theorem trace_neg_one_sq : ((-1 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trac
   simp
 
 theorem S_mul_S : (ModularGroup.S : SL(2, ℤ)) * ModularGroup.S = -1 := by
+  apply Subtype.ext
+  rw [Matrix.SpecialLinearGroup.coe_mul]
   ext i j
   fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, Matrix.mul_apply, Fin.sum_univ_two]
 

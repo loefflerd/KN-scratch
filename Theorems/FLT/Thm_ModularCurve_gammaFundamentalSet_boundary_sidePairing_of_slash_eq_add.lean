@@ -64,7 +64,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add
 
@@ -133,8 +132,10 @@ theorem slash2_tile_pair (φ : ℍ → ℂ) (g : SL(2, ℤ)) (q : SL(2, ℤ) ⧸
 
 def tilePull (φ : ℍ → ℂ) (σ : SL(2, ℤ)) (z : ℂ) : ℂ := slash2 φ σ (ofComplex z)
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem D_T (z : ℂ) : D ModularGroup.T z = 1 := by simp [D, ModularGroup.T, denom]
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem D_S (z : ℂ) : D ModularGroup.S z = 1 / z ^ 2 := by simp [D, ModularGroup.S, denom]
 
 theorem T_smul_coe (w : ℍ) : ((ModularGroup.T • w : ℍ) : ℂ) = (w : ℂ) + 1 := by

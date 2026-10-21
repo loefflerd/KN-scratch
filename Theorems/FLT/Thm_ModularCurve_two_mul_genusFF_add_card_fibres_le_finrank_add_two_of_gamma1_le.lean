@@ -95,7 +95,6 @@ set_option maxHeartbeats 3200000
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve Divisor
 

@@ -73,7 +73,6 @@ set_option maxHeartbeats 1600000
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow
 

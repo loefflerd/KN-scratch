@@ -58,7 +58,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
 
@@ -88,6 +87,7 @@ section commutation
 variable {p : ℕ} (hp : p ≠ 0)
 include hp
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem heckeMatrix_mul_of_eq (g : SL(2, ℤ)) (j j' : ℕ) (e : ℤ)
     (he : g 0 1 + j * g 1 1 = j' * (g 0 0 + j * g 1 0) + p * e) :
     ∃ g' : SL(2, ℤ), g' 1 0 = p * g 1 0 ∧
@@ -109,6 +109,7 @@ theorem heckeMatrix_mul_of_eq (g : SL(2, ℤ)) (j j' : ℕ) (e : ℤ)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)
       | ring1
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem heckeMatrix_mul_of_eq' (g : SL(2, ℤ)) (j : ℕ) (e : ℤ)
     (he : g 0 0 + j * g 1 0 = p * e) :
     ∃ g' : SL(2, ℤ), g' 1 0 = g 1 0 ∧
@@ -130,6 +131,7 @@ theorem heckeMatrix_mul_of_eq' (g : SL(2, ℤ)) (j : ℕ) (e : ℤ)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)
       | ring1
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem heckeDiagMatrix_mul_of_eq (g : SL(2, ℤ)) (j' : ℕ) (e : ℤ)
     (he : g 1 1 = g 1 0 * j' + p * e) :
     ∃ g' : SL(2, ℤ), g' 1 0 = g 1 0 ∧
@@ -151,6 +153,7 @@ theorem heckeDiagMatrix_mul_of_eq (g : SL(2, ℤ)) (j' : ℕ) (e : ℤ)
       | (have := congrArg (Int.cast : ℤ → ℝ) he; push_cast at this ⊢; linear_combination -this)
       | ring1
 
+set_option backward.isDefEq.respectTransparency.types false in
 theorem heckeDiagMatrix_mul_of_eq' (g : SL(2, ℤ)) (e : ℤ) (he : g 1 0 = p * e) :
     ∃ g' : SL(2, ℤ), g' 1 0 = e ∧
       heckeDiagMatrix p * mapGL ℝ g = mapGL ℝ g' * heckeDiagMatrix p := by

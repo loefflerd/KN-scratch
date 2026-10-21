@@ -48,7 +48,6 @@ Prove2Me submission: `0e225520-8f2c-5b33-894a-9f2b9a1b7c36` (ACCEPTED).
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Function_exists_eq_apply_sub_of_sum_range_minimalPeriod_eq_zero
 
@@ -129,6 +128,7 @@ theorem minimalPeriod_base (x : X) : minimalPeriod f (base f hf x) = minimalPeri
   rw [minimalPeriod_apply_iterate (minimalPeriod_pos_iff_mem_periodicPts.mp (hf _))]
 
 open Classical in
+set_option backward.isDefEq.respectTransparency.types false in
 theorem idx_apply (x : X) :
     (idx f hf (f x) = idx f hf x + 1 ∧ idx f hf x + 1 < minimalPeriod f (base f hf x)) ∨
     (idx f hf (f x) = 0 ∧ idx f hf x + 1 = minimalPeriod f (base f hf x)) := by
@@ -191,7 +191,6 @@ end privateSection
 
 public section publicSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 

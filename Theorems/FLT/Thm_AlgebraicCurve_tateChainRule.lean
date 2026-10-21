@@ -74,7 +74,6 @@ Salvatore Mercuri, Kevin Buzzard). See ATTRIBUTION.md and NOTICE in the source r
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_tateChainRule
 
@@ -762,6 +761,7 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
   rw [hsub, Valuation.map_sub_swap]
   exact hz
 
+set_option backward.isDefEq.respectTransparency.types false in
 def kwF4R1V410a_quotientEquiv (n : ℕ) :
     (O_w) ⧸ (𝔪_w) ^ n ≃+* (O_W) ⧸ (𝔪_W) ^ n :=
   RingEquiv.ofBijective
