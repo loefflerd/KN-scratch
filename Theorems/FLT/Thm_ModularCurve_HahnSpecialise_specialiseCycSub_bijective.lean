@@ -82,7 +82,6 @@ theorem addOrderOf_map_eq_of_injOn {g : G} (hg : N • g = 0) : addOrderOf (f g)
   · rw [map_nsmul, addOrderOf_nsmul_eq_zero, map_zero]
 
 include hf in
-set_option backward.isDefEq.respectTransparency.types false in
 theorem map_surjective_of_surjOn
     (hs : ∀ P' : G', N • P' = 0 → ∃ P : G, N • P = 0 ∧ f P = P') :
     Function.Surjective (map f hf) := by
@@ -91,7 +90,8 @@ theorem map_surjective_of_surjOn
   obtain ⟨g, hgN, hgg'⟩ := hs g' (by rw [← hg']; exact addOrderOf_nsmul_eq_zero g')
   have hg : addOrderOf g = N := by rw [← addOrderOf_map_eq_of_injOn f hf hgN, hgg', hg']
   refine ⟨⟨AddSubgroup.zmultiples g, g, hg, rfl⟩, Subtype.ext ?_⟩
-  rw [coe_map, hT, AddMonoidHom.map_zmultiples, hgg']
+  change (AddSubgroup.zmultiples g).map f = T.1
+  rw [hT, AddMonoidHom.map_zmultiples, hgg']
 
 end CycSubOf
 

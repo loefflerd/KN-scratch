@@ -141,7 +141,6 @@ theorem slash_Tq_apply {q : ℕ} (f : ℍ → ℂ) (τ : ℍ) :
   rw [ModularForm.slash_apply, hσ, hdet, hdenom, hsmul]
   simp
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem exists_inv_cocycle {q R : ℕ} {γ : SL(2, ℤ)}
     (hc : (R : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0)
     (hb : (q : ℤ) ∣ (γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1) :
@@ -162,8 +161,7 @@ theorem exists_inv_cocycle {q R : ℕ} {γ : SL(2, ℤ)}
   have hdetδ : Matrix.det !![a, b₁; c * (q : ℤ), e] = 1 := by
     rw [Matrix.det_fin_two_of]; linear_combination hdet + c * hb₁
   refine ⟨⟨_, hdetδ⟩, ?_, ?_⟩
-  · rw [CongruenceSubgroup.Gamma0_mem]
-    change ((c * (q : ℤ) : ℤ) : ZMod (q * R)) = 0
+  · change ((c * (q : ℤ) : ℤ) : ZMod (q * R)) = 0
     rw [ZMod.intCast_zmod_eq_zero_iff_dvd, hc₁]
     exact ⟨c₁, by push_cast; ring⟩
   · change (γ : Matrix (Fin 2) (Fin 2) ℤ) * FreyPackage.ModMCarrier.diagMatInt q

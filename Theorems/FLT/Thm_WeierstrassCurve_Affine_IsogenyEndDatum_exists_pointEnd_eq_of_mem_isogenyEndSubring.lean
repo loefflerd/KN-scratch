@@ -1055,7 +1055,6 @@ def restrictResidueMapAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral
 
 variable (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'')
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem inertiaDegAlong_comp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral)
     (hχφ : (χ.comp φ).toRingHom.IsIntegral) :
     InertiaDegComp K φ χ hφ hχ hχφ := by
@@ -1071,13 +1070,7 @@ theorem inertiaDegAlong_comp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom
       w.ResidueField W.ResidueField := by
     refine IsScalarTower.of_algebraMap_eq fun x => ?_
     obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective x
-    change restrictResidueMapAlong (χ.comp φ) hχφ W (IsLocalRing.residue _ a)
-      = restrictResidueMapAlong χ hχ W
-          (restrictResidueMapAlong φ hφ w (IsLocalRing.residue _ a))
-    rw [restrictResidueMapAlong, restrictResidueMapAlong, restrictResidueMapAlong,
-      IsLocalRing.ResidueField.map_residue, IsLocalRing.ResidueField.map_residue,
-      IsLocalRing.ResidueField.map_residue]
-    exact congrArg _ (Subtype.ext rfl)
+    rfl
   change Module.finrank (W.restrictAlong (χ.comp φ) hχφ).ResidueField W.ResidueField
     = Module.finrank w.ResidueField W.ResidueField
         * Module.finrank (W.restrictAlong (χ.comp φ) hχφ).ResidueField w.ResidueField

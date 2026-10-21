@@ -539,11 +539,11 @@ section OnCurve
 
 variable {K : Type*} [Field K] (W : WeierstrassCurve K)
 
-set_option backward.isDefEq.respectTransparency.types false in
 lemma evalEval_eq_of_mk_eq {x y : K} (h : W.toAffine.Equation x y) {a b : K[X][Y]}
     (hab : CoordinateRing.mk W a = CoordinateRing.mk W b) : a.evalEval x y = b.evalEval x y := by
-  have e := congrArg (AdjoinRoot.evalEval (p := W.toAffine.polynomial) h) hab
-  rwa [AdjoinRoot.evalEval_mk, AdjoinRoot.evalEval_mk] at e
+  exact (AdjoinRoot.evalEval_mk h a).symm.trans
+    ((congrArg (AdjoinRoot.evalEval (p := W.toAffine.polynomial) h) hab).trans
+      (AdjoinRoot.evalEval_mk h b))
 
 lemma evalEval_eq_zero_of_mk_eq_zero {x y : K} (h : W.toAffine.Equation x y) {a : K[X][Y]}
     (ha : CoordinateRing.mk W a = 0) : a.evalEval x y = 0 := by

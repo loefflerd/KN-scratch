@@ -323,10 +323,10 @@ noncomputable def basisR [IsAddTorsionFree R] : Module.Basis (Fin D.n) R ↥(par
     Θ_surjective D R⟩)
 
 omit [Γ.FiniteIndex] in
-set_option backward.isDefEq.respectTransparency.types false in
 theorem coe_basisR [IsAddTorsionFree R] (i : Fin D.n) :
     ((basisR D R i : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R) = chi D R i := by
-  rw [basisR, Module.Basis.map_apply, Pi.basisFun_apply, LinearEquiv.ofBijective_apply, Θ_single]
+  exact (congrArg (fun c => ((Θ D R c : ↥(parabolicHoms R Γ R)) : Additive ↥Γ →+ R))
+    (Pi.basisFun_apply R (Fin D.n) i)).trans (Θ_single D R i)
 
 end Basis
 

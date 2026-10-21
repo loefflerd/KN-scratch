@@ -128,7 +128,6 @@ theorem minimalPeriod_base (x : X) : minimalPeriod f (base f hf x) = minimalPeri
   rw [minimalPeriod_apply_iterate (minimalPeriod_pos_iff_mem_periodicPts.mp (hf _))]
 
 open Classical in
-set_option backward.isDefEq.respectTransparency.types false in
 theorem idx_apply (x : X) :
     (idx f hf (f x) = idx f hf x + 1 ∧ idx f hf x + 1 < minimalPeriod f (base f hf x)) ∨
     (idx f hf (f x) = 0 ∧ idx f hf x + 1 = minimalPeriod f (base f hf x)) := by
@@ -153,7 +152,7 @@ theorem idx_apply (x : X) :
       rw [← hstep, heq]
       exact (isPeriodicPt_minimalPeriod f _).eq
     unfold idx
-    rw [Nat.find_eq_zero]
+    apply (Nat.find_eq_zero (rel_base f hf (f x))).mpr
     show f^[0] (base f hf (f x)) = f x
     rw [hb, iterate_zero_apply, this]
 

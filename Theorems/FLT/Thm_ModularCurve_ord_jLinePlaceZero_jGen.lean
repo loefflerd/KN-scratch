@@ -90,14 +90,16 @@ theorem exists_eq_congr (v : Place ℚ ↥ℚ⟮ModularCurve.jq⟯) :
       (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom)).symm v,
     ((Place.congrEquiv _ _).apply_symm_apply v).symm⟩
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem ord_congr_jGen_sub (b : ℚ) (v' : Place ℚ (RatFunc ℚ)) :
     (Place.congrRingEquiv ModularCurve.jLineRingEquiv
         (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) v').ord
       (ModularCurve.jGen - algebraMap ℚ ↥ℚ⟮ModularCurve.jq⟯ b)
     = (Finsupp.single (placeOfPoint ℚ b) (1 : ℤ) + Finsupp.single (placeInfty ℚ) (-1 : ℤ)) v' := by
-  rw [← equiv_X_sub_C, Place.ord_congrRingEquiv]
-  exact ord_X_sub_C ℚ b v'
+  rw [← equiv_X_sub_C]
+  exact (Place.ord_congrRingEquiv ModularCurve.jLineRingEquiv
+    (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) v'
+    (algebraMap (Polynomial ℚ) (RatFunc ℚ) (Polynomial.X - Polynomial.C b))).trans
+      (ord_X_sub_C ℚ b v')
 
 theorem injective_congr : Function.Injective (Place.congrRingEquiv ModularCurve.jLineRingEquiv
       (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom) : Place ℚ (RatFunc ℚ) → _)

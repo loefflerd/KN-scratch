@@ -349,14 +349,15 @@ theorem etaMultiplier_mul {γ₁ γ₂ : SL(2, ℤ)} (h₁ : γ₁ ∈ Gamma0 11
   simp only [Pi.smul_apply, smul_eq_mul] at h
   exact mul_right_cancel₀ (etaProductEleven_ne_zero UpperHalfPlane.I.2) h
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem etaMultiplier_T : etaMultiplier ModularGroup.T = 1 := by
   rw [etaMultiplier, etaRatio]
   have hsmul : ((ModularGroup.T • UpperHalfPlane.I : ℍ) : ℂ) = (UpperHalfPlane.I : ℂ) + 1 := by
     rw [modular_T_smul]
     simp [UpperHalfPlane.coe_vadd, add_comm]
   have hden : denom ModularGroup.T (UpperHalfPlane.I : ℂ) = 1 := by
-    simp [UpperHalfPlane.denom, ModularGroup.T]
+    change ((ModularGroup.T 1 0 : ℤ) : ℂ) * (UpperHalfPlane.I : ℂ) +
+      (ModularGroup.T 1 1 : ℤ) = 1
+    norm_num [ModularGroup.T]
   rw [hsmul, hden, etaProductEleven_T_invariant, one_zpow, one_mul, div_self]
   exact etaProductEleven_ne_zero (by simp [UpperHalfPlane.coe_I])
 

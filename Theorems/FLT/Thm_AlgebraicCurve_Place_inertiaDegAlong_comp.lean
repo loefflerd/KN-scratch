@@ -59,7 +59,6 @@ namespace P2MW.S_AlgebraicCurve_Place_inertiaDegAlong_comp
 
 open IsDedekindDomain AlgebraicCurve
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F]
     [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral)
     (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') :
@@ -80,11 +79,7 @@ theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F'']
   have : IsScalarTower v.ResidueField w.ResidueField W.ResidueField := by
     refine IsScalarTower.of_algebraMap_eq fun x => ?_
     obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective x
-    change Place.restrictResidueMap F W (IsLocalRing.residue _ a)
-      = Place.restrictResidueMap F' W (Place.restrictResidueMap F w (IsLocalRing.residue _ a))
-    rw [Place.restrictResidueMap_residue, Place.restrictResidueMap_residue,
-      Place.restrictResidueMap_residue]
-    exact congrArg _ (Subtype.ext rfl)
+    rfl
   change Module.finrank v.ResidueField W.ResidueField
     = Module.finrank w.ResidueField W.ResidueField * Module.finrank v.ResidueField w.ResidueField
   rw [mul_comm]

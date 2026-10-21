@@ -85,13 +85,17 @@ def eT : ↥Gt := ⟨T, Subgroup.mem_top _⟩
 def eU : ↥Gt := ⟨S * T, Subgroup.mem_top _⟩
 def eN : ↥Gt := ⟨-1, Subgroup.mem_top _⟩
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem S_mul_S : S * S = -1 := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S]
+  apply Subtype.ext
+  rw [Matrix.SpecialLinearGroup.coe_mul]
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, Matrix.mul_apply, Fin.sum_univ_two]
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem ST_pow_three : S * T * (S * T) * (S * T) = -1 := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, ModularGroup.T, Matrix.mul_apply,
+  apply Subtype.ext
+  simp only [Matrix.SpecialLinearGroup.coe_mul]
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [ModularGroup.S, ModularGroup.T, Matrix.mul_apply,
     Fin.sum_univ_two]
 
 theorem eS_mul_eS : eS * eS = eN := Subtype.ext S_mul_S

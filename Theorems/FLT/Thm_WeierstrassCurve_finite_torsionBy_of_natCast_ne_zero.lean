@@ -65,7 +65,6 @@ namespace P2MW.S_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) [W.IsElliptic]
     (n : ℕ) (hn : (n : k) ≠ 0) :
     Finite (Submodule.torsionBy ℤ W.toAffine.Point n) := by
@@ -90,8 +89,7 @@ theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) 
     have hP := P.2
     rw [Submodule.mem_torsionBy_iff] at hP ⊢
     change (n : ℤ) • φ P.1 = 0
-    rw [← map_zsmul φ]
-    exact (congrArg φ hP).trans (map_zero φ)
+    exact (map_zsmul φ (n : ℤ) P.1).symm.trans ((congrArg φ hP).trans (map_zero φ))
   refine Finite.of_injective (fun P => (⟨φ P.1, hmem P⟩ : Submodule.torsionBy ℤ (W⁄K).Point n)) ?_
   intro P Q h
   exact Subtype.ext (hφ (congrArg Subtype.val h))

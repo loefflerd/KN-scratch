@@ -1435,7 +1435,6 @@ theorem isAcyclic_induce_transversal : ((graph G).induce D).IsAcyclic := by
   exact isAcyclic_two (c.map (SimpleGraph.Embedding.induce D).toHom)
     (hc.map Subtype.val_injective)
 
-set_option backward.isDefEq.respectTransparency.types false in
 noncomputable def treeRepEquivEdgeSet
     (hfree : ∀ (η : H) (v : Vertex G), η • v = v → η = 1) :
     treeRep H hD ≃ ((graph G).induce D).edgeSet := by
@@ -1444,8 +1443,8 @@ noncomputable def treeRepEquivEdgeSet
        (⟨Vertex.mk 1 (g : CoprodI G), mk_one_mem_of_mem_treeRep hD hfree g.2⟩ : D)),
      adj_mk (by decide : (0 : Fin 2) ≠ 1) (g : CoprodI G)⟩) ⟨?_, ?_⟩
   · intro g g' hgg'
-    rw [Subtype.mk.injEq, Sym2.eq_iff] at hgg'
-    rcases hgg' with ⟨h1, h2⟩ | ⟨h1, h2⟩
+    have hedge := congrArg Subtype.val hgg'
+    rcases Sym2.eq_iff.mp hedge with ⟨h1, h2⟩ | ⟨h1, h2⟩
     · exact Subtype.ext (eq_of_mk_eq_mk (by decide : (0 : Fin 2) ≠ 1)
         (congrArg Subtype.val h1) (congrArg Subtype.val h2))
     · have hcon : (0 : Fin 2) = 1 := congrArg (fun v => (Subtype.val v).1) h1

@@ -67,11 +67,10 @@ open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 attribute [local instance] ModularCurve.instDecidableEqRatFuncRat
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem solution : ModularCurve.jLinePlaceZero.deg = 1 := by
-  unfold ModularCurve.jLinePlaceZero
-  rw [Place.deg_congrRingEquiv]
-  exact deg_placeOfPoint ℚ 0
+  exact (Place.deg_congrRingEquiv ModularCurve.jLineRingEquiv
+    (RingHom.map_rat_algebraMap ModularCurve.jLineRingEquiv.toRingHom)
+    (placeOfPoint ℚ 0)).trans (deg_placeOfPoint ℚ 0)
 
 end S_ModularCurve_deg_jLinePlaceZero
 end P2MW

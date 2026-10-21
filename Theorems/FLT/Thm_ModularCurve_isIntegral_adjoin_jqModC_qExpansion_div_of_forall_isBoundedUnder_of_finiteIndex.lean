@@ -413,13 +413,15 @@ scoped instance isArithmetic_map [Γ.FiniteIndex] :
 abbrev qL (f : ℍ → ℂ) : LaurentSeries ℂ := ((qExpansion 1 f : PowerSeries ℂ) : LaurentSeries ℂ)
 
 include hT in
-set_option backward.isDefEq.respectTransparency.types false in
 theorem one_mem_strictPeriods :
     (1 : ℝ) ∈ ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
   rw [Subgroup.mem_strictPeriods_iff]
   refine ⟨ModularGroup.T, hT, ?_⟩
+  apply Units.ext
+  rw [Matrix.SpecialLinearGroup.mapGL_coe_matrix, Matrix.SpecialLinearGroup.map_apply_coe]
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [ModularGroup.T, Matrix.GeneralLinearGroup.upperRightHom]
+  fin_cases i <;> fin_cases j <;> norm_num [ModularGroup.T,
+    Matrix.GeneralLinearGroup.upperRightHom]
 
 theorem le_SL : ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤ 𝒮ℒ :=
   Subgroup.map_le_range _ _

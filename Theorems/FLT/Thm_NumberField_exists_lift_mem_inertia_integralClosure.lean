@@ -70,7 +70,6 @@ open scoped NumberField Pointwise
 local notation "ℚ̄" => AlgebraicClosure ℚ
 local notation "𝔅" => integralClosure ℤ (AlgebraicClosure ℚ)
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem solution
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L] [IsGalois ℚ L]
     (Q : Ideal (NumberField.RingOfIntegers L)) [Q.IsMaximal] {q : ℕ}
@@ -175,7 +174,6 @@ theorem solution
       convert hp0 using 2
       rfl
     refine ⟨⟨y, hyint⟩, Subtype.ext ?_⟩
-    rw [hf_coe]
     exact hy⟩
   have : Algebra.IsIntegral (𝓞 L) 𝔅 :=
     Algebra.IsInvariant.isIntegral_of_profinite (G := ℚ̄ ≃ₐ[L] ℚ̄)

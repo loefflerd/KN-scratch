@@ -1410,7 +1410,6 @@ theorem bridge3Specialise_apply_coe (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : 
             :=
   rfl
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ : Qbar)
     (g : (nearCurve j₀).toAffine.Point) (hg : addOrderOf g = p) :
     (bridge3Specialise p j₀ ⟨AddSubgroup.zmultiples g, g, hg, rfl⟩).1 =
@@ -1423,7 +1422,8 @@ theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ :
             (specialFibre (goodModel j₀)).toAffine.Point)) := by
   have hmem : scaleAddEquiv j₀ g ∈ Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ) :=
     mem_torsionBy_of_addOrderOf_eq ((AddEquiv.addOrderOf_eq _ g).trans hg)
-  rw [bridge3Specialise_apply_coe]
+  refine (bridge3Specialise_apply_coe p j₀
+    (⟨AddSubgroup.zmultiples g, g, hg, rfl⟩ : CycSubH (nearCurve j₀) p)).trans ?_
   simp only [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_ofClass, comap_subtype_zmultiples _ hmem,
     LinearMap.toAddMonoidHom_coe, Submodule.subtype_apply]
 

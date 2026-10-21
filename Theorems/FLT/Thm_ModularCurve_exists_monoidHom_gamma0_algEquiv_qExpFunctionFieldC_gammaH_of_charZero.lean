@@ -104,9 +104,10 @@ scoped instance GammaH_finiteIndex' : (CohCarrier.GammaH M H).FiniteIndex :=
   Subgroup.finiteIndex_of_le (Gamma1_le_GammaH M H)
 
 omit [NeZero M] in
-set_option backward.isDefEq.respectTransparency.types false in
-theorem T_mem_GammaH : ModularGroup.T ∈ CohCarrier.GammaH M H :=
-  Gamma1_le_GammaH M H (by simp [CongruenceSubgroup.Gamma1_mem, ModularGroup.T])
+theorem T_mem_GammaH : ModularGroup.T ∈ CohCarrier.GammaH M H := by
+  apply Gamma1_le_GammaH M H
+  apply (CongruenceSubgroup.Gamma1_mem M ModularGroup.T).mpr
+  norm_num [ModularGroup.T]
 
 omit [NeZero M] in
 theorem one_mem_strictPeriods : (1 : ℝ) ∈ (Γᴴℝ M, H).strictPeriods := by

@@ -359,7 +359,6 @@ section Germs
 variable (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring N) K] [IsScalarTower ℂ (ring N) K]
   [IsFractionRing (ring N) K]
 
-@[nolint unusedArguments]
 def Gm (_N : ℕ) (_K : Type*) : Type := Filter.Germ 𝓕 ℂ
 
 scoped instance instCommRingGm : CommRing (Gm N K) := inferInstanceAs (CommRing (Filter.Germ 𝓕 ℂ))

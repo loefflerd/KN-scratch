@@ -1182,7 +1182,6 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
   rw [hsub, Valuation.map_sub_swap]
   exact hz
 
-set_option backward.isDefEq.respectTransparency.types false in
 def kwF4R1V410a_quotientEquiv (n : ℕ) :
     (O_w) ⧸ (𝔪_w) ^ n ≃+* (O_W) ⧸ (𝔪_W) ^ n :=
   RingEquiv.ofBijective
@@ -1195,7 +1194,8 @@ def kwF4R1V410a_quotientEquiv (n : ℕ) :
       obtain ⟨y', rfl⟩ := Ideal.Quotient.mk_surjective y
       obtain ⟨x, hx⟩ := kwF4R1V410a_exists_sub_mem_completionIdeal_pow w n y'
       refine ⟨Ideal.Quotient.mk _ x, ?_⟩
-      rw [Ideal.quotientMap_mk]
+      change Ideal.Quotient.mk ((𝔪_W) ^ n) (algebraMap (O_w) (O_W) x) =
+        Ideal.Quotient.mk ((𝔪_W) ^ n) y'
       exact (Ideal.Quotient.mk_eq_mk_iff_sub_mem _ _).mpr (by
         rw [← neg_sub, neg_mem_iff]; exact hx)⟩
 
@@ -3451,15 +3451,12 @@ def kwF4R1V384a_semilocalComponent (v : Place K E) (w' : v.fiber F) :
     (IsScalarTower.toAlgHom E F w'.1.adicCompletion) (fun _ _ => mul_comm _ _)
 
 omit [HasPrincipalDivisors K E] in
-set_option backward.isDefEq.respectTransparency.types false in
 @[scoped simp]
 theorem kwF4R1V384a_semilocalComponent_tmul (v : Place K E) (w' : v.fiber F)
     (c : v.adicCompletion) (g : F) :
     kwF4R1V384a_semilocalComponent F v w' (c ⊗ₜ[E] g)
       = algebraMap v.adicCompletion w'.1.adicCompletion c
           * algebraMap F w'.1.adicCompletion g := by
-  unfold kwF4R1V384a_semilocalComponent
-  rw [Algebra.TensorProduct.lift_tmul]
   rfl
 
 end SemilocalDiag

@@ -208,7 +208,6 @@ end WeierstrassCurve.Affine
 open _root_.WeierstrassCurve.Affine
   _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine
   in
-set_option backward.isDefEq.respectTransparency.types false in
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W :
   WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p :
   K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) =
@@ -226,7 +225,9 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have hv : (placeOf W K (σ • P) hσP).comap (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing)
       φ.surjective = placeOf W K P hP := by
     apply IsDedekindDomain.HeightOneSpectrum.ext
-    rw [IsDedekindDomain.HeightOneSpectrum.comap_asIdeal, placeOf_asIdeal, placeOf_asIdeal, xc_smul
+    change Ideal.comap (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing)
+      (placeOf W K (σ • P) hσP).asIdeal = (placeOf W K P hP).asIdeal
+    rw [placeOf_asIdeal, placeOf_asIdeal, xc_smul
       W σ,
       yc_smul W σ, ← galRing_map_XYIdeal W σ (φ : (W⁄K).CoordinateRing →+* (W⁄K).CoordinateRing) hφ]
     exact Ideal.comap_map_of_bijective _ φ.bijective

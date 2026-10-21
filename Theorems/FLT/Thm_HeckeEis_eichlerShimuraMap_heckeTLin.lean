@@ -107,7 +107,6 @@ def repMat (ℓ : ℕ) : Option (Fin ℓ) → Matrix (Fin 2) (Fin 2) ℤ
 lemma det_repMat (ℓ : ℕ) (i : Option (Fin ℓ)) : (repMat ℓ i).det = (ℓ : ℤ) := by
   cases i <;> simp [repMat, Matrix.det_fin_two_of]
 
-set_option backward.isDefEq.respectTransparency.types false in
 lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) {g : SL(2, ℤ)}
     (hg : g ∈ Gamma0 N) (i : Option (Fin ℓ)) :
     ∃ δ : SL(2, ℤ), δ ∈ Gamma0 N ∧ ∃ m : Option (Fin ℓ),
@@ -154,8 +153,7 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
         rw [Matrix.det_fin_two_of]
         linear_combination hdetG + b * hc'
       refine ⟨⟨_, hdetδ⟩, ?_, none, ?_⟩
-      · rw [Gamma0_mem]
-        change ((c' : ℤ) : ZMod N) = 0
+      · change ((c' : ℤ) : ZMod N) = 0
         have hcopN : Nat.Coprime N ℓ := ((Nat.Prime.coprime_iff_not_dvd hℓ).mpr hℓN).symm
         have hcop : IsCoprime (N : ℤ) (ℓ : ℤ) := Int.isCoprime_iff_gcd_eq_one.mpr (by
           simpa [Int.gcd_natCast_natCast] using hcopN)
@@ -183,8 +181,7 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
         rw [Matrix.det_fin_two_of]
         linear_combination hdetG - a * he
       refine ⟨⟨_, hdetδ⟩, ?_, some j', ?_⟩
-      · rw [Gamma0_mem]
-        change ((c : ℤ) : ZMod N) = 0
+      · change ((c : ℤ) : ZMod N) = 0
         rwa [ZMod.intCast_zmod_eq_zero_iff_dvd]
       · change repMat ℓ none * (g : Matrix (Fin 2) (Fin 2) ℤ)
           = !![(ℓ : ℤ) * a, b - a * (j' : ℤ); c, e] * repMat ℓ (some j')
@@ -206,8 +203,7 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
         rw [Matrix.det_fin_two_of]
         linear_combination hdetG - d * hp'
       refine ⟨⟨_, hdetδ⟩, ?_, none, ?_⟩
-      · rw [Gamma0_mem]
-        change ((c : ℤ) : ZMod N) = 0
+      · change ((c : ℤ) : ZMod N) = 0
         rwa [ZMod.intCast_zmod_eq_zero_iff_dvd]
       · change repMat ℓ (some j) * (g : Matrix (Fin 2) (Fin 2) ℤ)
           = !![p', b + (j : ℤ) * d; c, (ℓ : ℤ) * d] * repMat ℓ none
@@ -229,8 +225,7 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
         rw [Matrix.det_fin_two_of]
         linear_combination hdetG + c * he
       refine ⟨⟨_, hdetδ⟩, ?_, some j', ?_⟩
-      · rw [Gamma0_mem]
-        change (((ℓ : ℤ) * c : ℤ) : ZMod N) = 0
+      · change (((ℓ : ℤ) * c : ℤ) : ZMod N) = 0
         push_cast
         rw [show ((c : ℤ) : ZMod N) = 0 from (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr hNc,
           mul_zero]
@@ -429,10 +424,8 @@ open HeckeAnalytic
 
 section Representatives
 
-set_option backward.isDefEq.respectTransparency.types false in
 def unipotentUpper (N : ℕ) (t : ℤ) : Gamma0 N :=
   ⟨⟨!![1, t; 0, 1], by rw [Matrix.det_fin_two_of]; ring⟩, by
-    rw [Gamma0_mem]
     change ((0 : ℤ) : ZMod N) = 0
     exact Int.cast_zero⟩
 
@@ -479,12 +472,10 @@ theorem not_dvd_gcdB (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : ¬ (ℓ : ℤ) 
   have h3 : (1 : ℤ) < (ℓ : ℤ) := by exact_mod_cast hℓ.one_lt
   omega
 
-set_option backward.isDefEq.respectTransparency.types false in
 def bezoutRep (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : Gamma0 N :=
   ⟨⟨!![Nat.gcdA ℓ N, -Nat.gcdB ℓ N; (N : ℤ), (ℓ : ℤ)], by
     rw [Matrix.det_fin_two_of]
     linear_combination hecke_bezout hℓ hℓN⟩, by
-    rw [Gamma0_mem]
     change ((N : ℤ) : ZMod N) = 0
     rw [Int.cast_natCast]
     exact ZMod.natCast_self N⟩
@@ -503,13 +494,11 @@ theorem cosetRep_some (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (j : Fin ℓ) :
     cosetRep hℓ hℓN (some j) = unipotentUpper N (-(j : ℤ)) :=
   rfl
 
-set_option backward.isDefEq.respectTransparency.types false in
 def rawDelta (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : Option (Fin ℓ) → Gamma0 N
   | none =>
     ⟨⟨!![(ℓ : ℤ) * Nat.gcdA ℓ N, -Nat.gcdB ℓ N; (N : ℤ), 1], by
       rw [Matrix.det_fin_two_of]
       linear_combination hecke_bezout hℓ hℓN⟩, by
-      rw [Gamma0_mem]
       change ((N : ℤ) : ZMod N) = 0
       rw [Int.cast_natCast]
       exact ZMod.natCast_self N⟩

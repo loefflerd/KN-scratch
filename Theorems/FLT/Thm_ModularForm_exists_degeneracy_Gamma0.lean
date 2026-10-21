@@ -92,7 +92,6 @@ def restrictCF {Γ Γ' : Subgroup (GL (Fin 2) ℝ)} (h : Γ' ≤ Γ) (F : CuspFo
   k) :
     ⇑(restrictCF h F) = ⇑F := rfl
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) :
     ((CongruenceSubgroup.Gamma0 N : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤
       ConjAct.toConjAct (heckeDiagMatrix d)⁻¹ •
@@ -123,7 +122,8 @@ theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) 
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ M).mpr hMc'
   · rw [eq_mul_inv_iff_mul_eq]
     apply Units.ext
-    simp only [Units.val_mul, Matrix.SpecialLinearGroup.mapGL_coe_matrix, val_heckeDiagMatrix hd]
+    simp only [Units.val_mul, Matrix.SpecialLinearGroup.mapGL_coe_matrix,
+      Matrix.SpecialLinearGroup.map_apply_coe, val_heckeDiagMatrix hd]
     ext i j
     fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Fin.sum_univ_two, B, hc', mul_comm]
