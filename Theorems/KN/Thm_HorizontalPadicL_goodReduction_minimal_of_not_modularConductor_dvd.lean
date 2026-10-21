@@ -6,6 +6,21 @@ public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 import Mathlib.NumberTheory.Padics.RingHoms
 import Theorems.KN.Thm_HorizontalPadicL_not_minimalModularLevel_dvd_iff_localEulerFactorDegreeTwo
 
+/-!
+# Good reduction of local minimal models and the modular conductor
+
+This file relates the coefficients of a rational elliptic curve's global L-series to its
+local minimal models. It first identifies the coefficients at prime powers with those of
+the corresponding local power series. Their recurrence is quadratic precisely when the
+local minimal model has good reduction.
+
+For a modular elliptic curve, this gives
+`HorizontalPadicL.not_modularConductor_dvd_iff_hasGoodReduction_minimal`: a prime is outside
+the modular conductor if and only if the local minimal model has good reduction.
+The theorem `HorizontalPadicL.LFunction_prime_eq_trace_minimal_reduction` also identifies
+the L-series coefficient at a good prime with the Frobenius trace computed by point counting.
+-/
+
 section privateSection
 
 open IsDedekindDomain NumberField ArithmeticFunction PowerSeries

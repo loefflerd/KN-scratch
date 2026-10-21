@@ -13,6 +13,20 @@ import Mathlib.Tactic.Choose
 import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.Ring
 
+/-!
+# Integral models realizing the L-series coefficients at good primes
+
+For a modular elliptic curve `E` over `ℚ` and a prime `ℓ` outside its modular conductor,
+`HorizontalPadicL.exists_good_integral_model_with_ap` constructs a Weierstrass model over `ℤ`
+which is isomorphic to `E` over `ℚ`, has good reduction at `ℓ`, and satisfies
+`W.apOfModel ℓ = E.LFunction ℓ`.
+
+The construction starts with a rational model minimal at `ℓ` and at its completion, then
+clears denominators using a scaling factor prime to `ℓ`. Comparisons of minimal models and
+their reductions transfer the point count from the local minimal model to the integral model.
+The resulting integral model may depend on `ℓ`; no global minimal-model theorem is needed.
+-/
+
 section privateSection
 
 open WeierstrassCurve IsDedekindDomain NumberField IsLocalRing

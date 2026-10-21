@@ -7,6 +7,19 @@ import Theorems.MTT.Thm_MTT_ordinary_root_exists_unique
 import Theorems.MTT.Thm_MTT_measure_extension
 import Theorems.MTT.Thm_MTT_interpolation_of_moments
 
+/-!
+# The ordinary p-adic L-function: assembling the interpolation theorem
+
+The theorem `MTT.goal` constructs an ordinary root, a system of complex periods, and a
+`ℂ_[p]`-valued measure on the p-adic units satisfying the interpolation property for a
+normalized algebraic cuspidal eigenform of positive level and weight at least two.
+The ordinarity hypothesis is that the image of its coefficient at `p` has p-adic norm one.
+
+The proof combines the existence of the ordinary root and periods with the measure-extension
+theorem for each sign. Adding the two signed measures gives the measure in the conclusion,
+and the interpolation formula follows from the theorem relating interpolation to moments.
+-/
+
 section privateSection
 
 noncomputable section

@@ -7,6 +7,21 @@ import Definitions.FLT.Def_EllipticCurve_TateModule
 import Theorems.KN.Thm_HorizontalPadicL_tateModuleRep_good_primes
 import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 
+/-!
+# Continuous local-field representations for the eigenform attached to an elliptic curve
+
+For a modular elliptic curve over `ℚ`,
+`HorizontalPadicL.attachedEigenform_hasContinuousLocalFieldRepresentations` proves that its
+attached weight-two eigenform has the Galois representations required by
+`MTT.Eigenform.HasContinuousLocalFieldRepresentations`.
+
+The representations are obtained from the elliptic curve's Tate modules by extending scalars
+to the coefficient completion and then its fraction field. A basis gives matrix-valued
+representations; adic continuity implies their continuity in the local-field topology.
+At primes away from the level and the residue characteristic, the Tate-module results give
+unramifiedness and the required Frobenius trace and determinant identities.
+-/
+
 section privateSection
 
 namespace EllipticRepresentationAux

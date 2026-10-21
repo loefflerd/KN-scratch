@@ -136,7 +136,7 @@ theorem eq_zero_of_mem_parabolicHoms_gamma_one (φ : Additive (Gamma 1) →+ ℤ
     | inv x _ hx => rw [hψ_inv, hx, neg_zero]
   ext γ
   have h := hall (Additive.toMul γ : Gamma 1)
-  simp only [ψ, toGammaOne_coe, ofMul_toMul] at h
+  simp only [ψ, toGammaOne_coe] at h
   simp only [AddMonoidHom.toMultiplicativeRight_apply_apply, toAdd_ofAdd, AddMonoidHom.zero_apply,
     ofAdd_zero, toAdd_one] at h ⊢
   exact h

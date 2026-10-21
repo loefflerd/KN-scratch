@@ -8,6 +8,21 @@ import Mathlib.RingTheory.DedekindDomain.Dvr
 import Mathlib.Tactic.FunProp
 import Mathlib.Tactic.FinCases
 
+/-!
+# Rational minimal models and completion
+
+For a Weierstrass curve over `ℚ` and a finite place `v`, minimality over the rational
+valuation subring is preserved by base change to the completion at `v`.
+
+The key step approximates a change of variables over the completion by a rational change,
+preserving integrality of the transformed coefficients and the valuation of the scaling
+parameter. A change lowering the discriminant valuation after completion would therefore
+give such a change before completion.
+
+The public theorem `WeierstrassCurve.exists_minimal_rational_model_and_completion` supplies
+a single rational change of variables giving a minimal model both before and after completion.
+-/
+
 section privateSection
 
 -- Rational approximation will descend completed changes of variables.

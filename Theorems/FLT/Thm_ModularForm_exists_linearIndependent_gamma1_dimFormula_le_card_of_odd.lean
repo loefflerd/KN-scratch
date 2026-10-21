@@ -211,7 +211,7 @@ theorem solution
     :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   have hg :=
-    twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed
+    genusFF_gamma1_formula_of_isAlgClosed
       ℂ M hM
   obtain ⟨w, v0, hw0, hv0mem, hv0⟩ :=
     ModularForm.exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq M hM

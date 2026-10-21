@@ -4,8 +4,7 @@ open Lake DSL
 package «KNIndependent» where
   allowNonModules := true
   leanOptions := #[
-    ⟨`autoImplicit, false⟩,
-    ⟨`weak.linter.mathlibStandardSet, true⟩ ]
+    ⟨`autoImplicit, false⟩ ]
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4" @
