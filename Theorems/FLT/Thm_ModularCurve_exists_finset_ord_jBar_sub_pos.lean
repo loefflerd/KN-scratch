@@ -80,8 +80,7 @@ namespace P2MW.S_ModularCurve_exists_finset_ord_jBar_sub_pos
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_exists_finset_ord_jBar_sub_pos.ModularCurve IsDedekindDomain WithZero"
+p2m_open "AlgebraicCurve ModularCurve IsDedekindDomain WithZero"
 
 namespace B2Peo3
 

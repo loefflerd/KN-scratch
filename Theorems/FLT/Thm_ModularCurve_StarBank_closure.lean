@@ -62,7 +62,7 @@ namespace P2MW.S_ModularCurve_StarBank_closure
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_closure.ModularCurve"
+p2m_open "ModularCurve"
 
 local notation "𝓓[" K "]" =>
   (HahnSeries.single (1 : ℤ) (1 : K) *

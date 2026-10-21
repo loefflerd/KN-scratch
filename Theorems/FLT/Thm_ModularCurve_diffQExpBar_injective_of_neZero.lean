@@ -59,8 +59,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero
 
-p2m_open "KaehlerDifferential ModularCurve \
-  P2MW.S_ModularCurve_diffQExpBar_injective_of_neZero.ModularCurve"
+p2m_open "KaehlerDifferential ModularCurve"
 
 section Engine
 

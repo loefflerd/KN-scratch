@@ -72,8 +72,7 @@ namespace P2MW.S_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGaloi
 
 noncomputable section
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGalois.AlgebraicCurve Polynomial"
+p2m_open "AlgebraicCurve Polynomial"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.ord_ofHeightOneSpectrum_ne_zero_iff \

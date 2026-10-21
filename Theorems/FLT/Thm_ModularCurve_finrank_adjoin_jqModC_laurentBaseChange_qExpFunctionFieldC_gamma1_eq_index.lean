@@ -85,9 +85,9 @@ p2m_export "ModularCurve" "intSeriesC intFormRatiosC qExpFunctionFieldC intFormR
   finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed Gamma0_index \
   jqModC_mem_intFormRatiosC"
 namespace FullnessGamma1
-p2m_open "ModularCurve~coeffEmb_injective"
+p2m_open "ModularCurve"
 
-p2m_open "ModularCurve~coeffEmb_injective \
+p2m_open "ModularCurve \
   P2MW.S_OVERLONG_b0db17b1.Mo\
   dularCurve IntermediateField"
 
@@ -258,7 +258,7 @@ end Groups
 
 end ModularCurve.FullnessGamma1
 
-p2m_open "ModularCurve~coeffEmb_injective \
+p2m_open "ModularCurve \
   P2MW.S_OVERLONG_b0db17b1.Mo\
   dularCurve CongruenceSubgroup AlgebraicCurve"
 open scoped MatrixGroups

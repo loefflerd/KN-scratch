@@ -65,8 +65,7 @@ namespace P2MW.S_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mu
 
 noncomputable section
 
-p2m_open "ModularCurve \
-  P2MW.S_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta.ModularCurve"
+p2m_open "ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "eisenstein6 eisenstein4 dedekindEtaUnit ofPowerSeries_coeff_of_neg \

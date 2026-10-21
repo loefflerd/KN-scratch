@@ -72,7 +72,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq_pow
 
-p2m_open "UpperHalfPlane ModularCurve~coeffEmb_jq"
+p2m_open "UpperHalfPlane ModularCurve"
 open scoped MatrixGroups ModularForm Manifold
 
 noncomputable section

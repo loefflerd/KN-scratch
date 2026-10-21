@@ -79,7 +79,7 @@ namespace P2MW.S_ModularCurve_isRoot_map_Phi_apply_jBar
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_isRoot_map_Phi_apply_jBar.ModularCurve"
+p2m_open "ModularCurve"
 
 namespace HahnSeries
 p2m_export "HahnSeries" "support algebraMap_apply' ofPowerSeries_C support_embDomain_subset single \

@@ -60,8 +60,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum.AlgebraicCurve"
+p2m_open "AlgebraicCurve"
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 

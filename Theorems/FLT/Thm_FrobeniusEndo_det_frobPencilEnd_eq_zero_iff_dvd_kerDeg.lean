@@ -62,8 +62,7 @@ section privateSection
 
 namespace P2MW.S_FrobeniusEndo_det_frobPencilEnd_eq_zero_iff_dvd_kerDeg
 
-p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo \
-  P2MW.S_FrobeniusEndo_det_frobPencilEnd_eq_zero_iff_dvd_kerDeg.FrobeniusEndo"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo"
 
 namespace FrobeniusEndo
 p2m_export "FrobeniusEndo" "linePencil linePencil_apply kerDeg kerDeg_def frobEnd frobEnd_apply \

@@ -67,7 +67,7 @@ section privateSection
 
 namespace P2MW.S_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_torsion
 
-p2m_open "Polynomial WeierstrassCurve~evalEval_ψ_sq~evalEval_φ WeierstrassCurve.Affine \
+p2m_open "Polynomial WeierstrassCurve WeierstrassCurve.Affine \
   WeierstrassCurve.Affine.Point FrobeniusEndo"
 
 open scoped Polynomial.Bivariate

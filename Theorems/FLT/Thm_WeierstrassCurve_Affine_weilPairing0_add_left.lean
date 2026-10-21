@@ -58,10 +58,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.WeierstrassCurve \
-  WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_weilPairing0_add_left.WeierstrassCurve.Affine IsDedekindDomain \
-  WithZero"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine"

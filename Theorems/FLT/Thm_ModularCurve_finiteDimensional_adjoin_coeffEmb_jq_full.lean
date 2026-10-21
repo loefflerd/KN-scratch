@@ -63,8 +63,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full
 
-p2m_open "ModularCurve~modularFunctionFieldBar \
-  P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full.ModularCurve"
+p2m_open "ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jq dedekindPsi modularFunctionFieldFull coeffEmb laurentBaseChange \
@@ -126,7 +125,7 @@ private theorem ModularCurve.isSeparable_adjoin_coeffEmb_jq_full (L : Type*) [Fi
   have : CharZero X := charZero_of_injective_algebraMap (algebraMap L X).injective
   infer_instance
 
-p2m_open "ModularCurve~modularFunctionFieldBar\
+p2m_open "ModularCurve\
   " in
 open _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full.ModularCurve in
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] :

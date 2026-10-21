@@ -67,7 +67,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_finrank_adjoin_jqModC_modularFunctionFieldFullC_eq_dedekindPsi
 
-p2m_open "ModularCurve~dedekindPsi_prime IntermediateField Polynomial Module"
+p2m_open "ModularCurve IntermediateField Polynomial Module"
 
 namespace W7E2_IGUSA_H3
 

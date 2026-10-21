@@ -56,8 +56,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_theta_mul
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_theta_mul.ModularCurve ModularCurve.PhiGen \
-  P2MW.S_ModularCurve_theta_mul.ModularCurve.PhiGen"
+p2m_open "ModularCurve ModularCurve.PhiGen"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_coeff_mul \

@@ -56,8 +56,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq.AlgebraicCurve"
+p2m_open "AlgebraicCurve"
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 

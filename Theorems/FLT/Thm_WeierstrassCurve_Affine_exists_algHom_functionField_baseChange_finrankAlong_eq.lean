@@ -151,13 +151,8 @@ section
 
 section
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_OVERLONG_7837151f.Weierstrass\
-  Curve WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_7837151f.Weierstrass\
-  Curve.Affine \
-  P2MW.S_OVERLONG_7837151f.ModularCurv\
-  e"
+p2m_open "WeierstrassCurve P2MW.S_OVERLONG_7837151f.WeierstrassCurve WeierstrassCurve.Affine \
+  P2MW.S_OVERLONG_7837151f.WeierstrassCurve.Affine"
 p2m_open "Polynomial \
   P2MW.S_OVERLONG_7837151f.Polynomial"
 p2m_open_scoped "TensorProduct \

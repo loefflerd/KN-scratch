@@ -80,9 +80,7 @@ namespace P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosur
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve \
-  IsDedekindDomain"
+p2m_open "AlgebraicCurve ModularCurve IsDedekindDomain"
 
 namespace B2Places
 

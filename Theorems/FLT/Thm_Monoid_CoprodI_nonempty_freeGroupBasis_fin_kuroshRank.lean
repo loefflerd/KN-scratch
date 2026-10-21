@@ -213,8 +213,7 @@ end Core
 end Kurosh
 end GroupTheory
 
-p2m_open "Subgroup SimpleGraph \
-  P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph"
+p2m_open "Subgroup SimpleGraph"
 
 namespace GroupTheory
 
@@ -444,8 +443,7 @@ theorem isAcyclic_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsA
 
 end GroupTheory.BassSerre
 
-p2m_open "Subgroup MulAction SimpleGraph \
-  P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
+p2m_open "Subgroup MulAction SimpleGraph Monoid"
 
 namespace GroupTheory
 
@@ -862,8 +860,7 @@ theorem kuroshRankFormula_of_freeActionRankFormula (hfree : FreeActionRankFormul
 end Residual
 end FreeActionTree
 end GroupTheory
-p2m_open "Subgroup MulAction SimpleGraph \
-  P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
+p2m_open "Subgroup MulAction SimpleGraph Monoid"
 
 namespace SimpleGraph
 p2m_export "SimpleGraph" "IsAcyclic Walk.edges_append induce Walk.support_reverse loopless \
@@ -949,6 +946,8 @@ theorem farSide_subset_farSide {p q x y : V} (hx : x ∈ G.farSide p q)
   exact hv (hp.trans ⟨W.transfer _ hW⟩)
 
 end SimpleGraph
+
+open SimpleGraph
 
 namespace GroupTheory
 

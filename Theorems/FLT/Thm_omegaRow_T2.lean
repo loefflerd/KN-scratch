@@ -74,9 +74,9 @@ section privateSection
 
 namespace P2MW.S_omegaRow_T2
 
-p2m_open "UpperHalfPlane ModularCurve~coeffEmb_jq AlgebraicCurve"
+p2m_open "UpperHalfPlane ModularCurve AlgebraicCurve"
 
-p2m_open "UpperHalfPlane ModularCurve~coeffEmb_jq"
+p2m_open "UpperHalfPlane ModularCurve"
 open scoped MatrixGroups ModularForm Manifold
 
 noncomputable section

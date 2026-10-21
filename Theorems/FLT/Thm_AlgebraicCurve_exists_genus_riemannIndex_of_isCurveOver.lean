@@ -62,8 +62,7 @@ section privateSection
 namespace P2MW.S_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver
 
 open IntermediateField
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver.AlgebraicCurve"
+p2m_open "AlgebraicCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Divisor Divisor.degree IsCurveOver ell ConstantsAreBase adeleSpace \

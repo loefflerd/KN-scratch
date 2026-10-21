@@ -73,11 +73,8 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.WeierstrassCurve \
-  WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_valuation_transEquiv_weilFun.WeierstrassCurve.Affine \
-  IsDedekindDomain IsDedekindDomain.HeightOneSpectrum WithZero Polynomial"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain \
+  IsDedekindDomain.HeightOneSpectrum WithZero Polynomial"
 open scoped nonZeroDivisors
 
 namespace WeierstrassCurve

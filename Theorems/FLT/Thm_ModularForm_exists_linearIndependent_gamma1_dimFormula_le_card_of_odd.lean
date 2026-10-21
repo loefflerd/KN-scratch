@@ -83,7 +83,7 @@ section privateSection
 namespace P2MW.S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_odd
 
 
-p2m_open "ModularCurve CongruenceSubgroup AlgebraicCurve~genus UpperHalfPlane"
+p2m_open "ModularCurve CongruenceSubgroup AlgebraicCurve UpperHalfPlane"
 open scoped MatrixGroups ModularForm Manifold
 
 noncomputable section

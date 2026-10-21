@@ -104,8 +104,7 @@ namespace P2MW.S_OVERLONG_7a292264
 noncomputable section
 
 open scoped MatrixGroups
-p2m_open "AlgebraicCurve IntermediateField KaehlerDifferential ModularCurve \
-  P2MW.S_OVERLONG_7a292264.ModularCurve"
+p2m_open "AlgebraicCurve IntermediateField KaehlerDifferential ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpFunctionFieldC coeffMap coeffMap_single coeffMap_coeffMap \

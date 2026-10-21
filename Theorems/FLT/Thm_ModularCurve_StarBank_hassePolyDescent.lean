@@ -69,8 +69,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_StarBank_hassePolyDescent
 
-p2m_open "Polynomial HahnSeries ModularCurve \
-  P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
+p2m_open "Polynomial HahnSeries ModularCurve UpperHalfPlane"
 open scoped MatrixGroups
 
 namespace ModularCurve

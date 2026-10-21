@@ -64,8 +64,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.WeierstrassCurve"
+p2m_open "WeierstrassCurve"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "twoTorsionPolynomial_discr map twoTorsionPolynomial Ψ₂Sq map_id \

@@ -63,8 +63,7 @@ namespace P2MW.S_ModularForm_exists_rankinCohen_one_qExpansion_eq
 
 open UpperHalfPlane Filter
 open scoped Real
-p2m_open_scoped "MatrixGroups Manifold Topology ModularForm \
-  P2MW.S_ModularForm_exists_rankinCohen_one_qExpansion_eq.ModularForm"
+p2m_open_scoped "MatrixGroups Manifold Topology ModularForm"
 
 noncomputable section
 

@@ -66,9 +66,7 @@ namespace P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminan
 
 noncomputable section
 
-p2m_open "ModularCurve \
-  P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero.ModularCurv\
-  e UpperHalfPlane Polynomial"
+p2m_open "ModularCurve UpperHalfPlane Polynomial"
 open scoped MatrixGroups
 
 namespace ModularCurve

@@ -67,8 +67,7 @@ section privateSection
 
 namespace P2MW.S_FrobeniusEndo_trace_det_frob_of_line_of_isotropic
 
-p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo \
-  P2MW.S_FrobeniusEndo_trace_det_frob_of_line_of_isotropic.FrobeniusEndo"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo"
 
 namespace FrobeniusEndo
 p2m_export "FrobeniusEndo" "linePencil linePencil_apply kerDeg frobEnd frobEnd_apply frobPencilEnd \

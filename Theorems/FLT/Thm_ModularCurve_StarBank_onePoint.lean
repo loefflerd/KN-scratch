@@ -56,7 +56,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_StarBank_onePoint
 
-p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve"
+p2m_open "Polynomial HahnSeries ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jqModC etaProd"

@@ -95,8 +95,7 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
   polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis \
   finiteDimensional_ratFunc_functionField"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-p2m_open "Polynomial \
-  P2MW.S_OVERLONG_6989a05c.Polynomial"
+p2m_open "Polynomial"
 p2m_open_scoped "Polynomial.Bivariate"
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -248,13 +247,8 @@ section
 
 section
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve.Affine \
-  P2MW.S_OVERLONG_6989a05c.ModularCurv\
-  e"
+p2m_open "WeierstrassCurve P2MW.S_OVERLONG_6989a05c.WeierstrassCurve WeierstrassCurve.Affine \
+  P2MW.S_OVERLONG_6989a05c.WeierstrassCurve.Affine"
 p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Polynomial"
 p2m_open_scoped "TensorProduct \

@@ -71,9 +71,7 @@ namespace P2MW.S_ModularCurve_ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurent
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1.ModularCu\
-  rve"
+p2m_open "AlgebraicCurve ModularCurve"
 open scoped MatrixGroups
 
 namespace ModularCurve

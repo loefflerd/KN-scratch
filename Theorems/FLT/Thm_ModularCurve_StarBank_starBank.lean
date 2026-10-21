@@ -72,7 +72,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_StarBank_starBank
 
-p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_starBank.ModularCurve"
+p2m_open "Polynomial HahnSeries ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul \

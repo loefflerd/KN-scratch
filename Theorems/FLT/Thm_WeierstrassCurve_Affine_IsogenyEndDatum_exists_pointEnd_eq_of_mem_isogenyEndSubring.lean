@@ -105,15 +105,8 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
   hasPrincipalDivisors_functionField IsogenyEndDatum.exists_pointEnd_eq_add"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "Polynomial \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial IsDedekindDomain \
-  P2MW.S_OVERLONG_7915af21.IsDede\
-  kindDomain WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_OVERLONG_7915af21.Weiers\
-  trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_OVERLONG_7915af21.Algebr\
-  aicCurve"
+p2m_open "Polynomial IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg"
 p2m_open_scoped "Polynomial.Bivariate"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -432,9 +425,7 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY CoordinateRing.smul_basis_eq
   hasPrincipalDivisors_functionField IsogenyEndDatum.exists_pointEnd_eq_add"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_OVERLONG_7915af21.Algebr\
-  aicCurve"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg"
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
     {W : Affine F} : HasPrincipalDivisors F W.FunctionField :=

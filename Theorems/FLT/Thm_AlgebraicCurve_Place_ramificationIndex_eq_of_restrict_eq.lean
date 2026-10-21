@@ -60,8 +60,7 @@ section privateSection
 namespace P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq
 
 noncomputable section
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.AlgebraicCurve IsDedekindDomain"
+p2m_open "AlgebraicCurve IsDedekindDomain"
 open scoped Pointwise
 
 namespace AlgebraicCurve

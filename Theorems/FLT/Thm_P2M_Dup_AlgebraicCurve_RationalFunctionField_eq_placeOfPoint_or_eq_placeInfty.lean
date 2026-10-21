@@ -63,10 +63,7 @@ section privateSection
 namespace P2MW.S_OVERLONG_cb6c3088
 
 p2m_open "Polynomial IsDedekindDomain AlgebraicCurve~RationalFunctionField.exists_eq_placeOfPoint \
-  P2MW.S_OVERLONG_cb6c3088.AlgebraicCurve \
-  AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint \
-  P2MW.S_OVERLONG_cb6c3088.AlgebraicCurve.Ratio\
-  nalFunctionField"
+  AlgebraicCurve.RationalFunctionField~exists_eq_placeOfPoint"
 
 open scoped Polynomial
 

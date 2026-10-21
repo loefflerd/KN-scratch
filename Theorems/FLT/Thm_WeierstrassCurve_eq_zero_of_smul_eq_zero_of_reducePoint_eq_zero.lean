@@ -61,7 +61,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero
 
-p2m_open "WeierstrassCurve~evalEval_ψ_sq IsDiscreteValuationRing IsLocalRing \
+p2m_open "WeierstrassCurve IsDiscreteValuationRing IsLocalRing \
   IsDedekindDomain.HeightOneSpectrum"
 open Polynomial
 open scoped Polynomial.Bivariate

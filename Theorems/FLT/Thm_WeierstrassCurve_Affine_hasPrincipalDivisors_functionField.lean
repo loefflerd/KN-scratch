@@ -412,8 +412,7 @@ section
 
 section
 
-p2m_open "FractionalIdeal \
-  P2MW.S_OVERLONG_b3a5cd3d.FractionalIdeal Polynomial"
+p2m_open "FractionalIdeal Polynomial"
 
 open scoped nonZeroDivisors Polynomial.Bivariate
 
@@ -480,6 +479,8 @@ theorem isUnit_of_forall_isMaximal [IsNoetherianRing R]
     simp at hI
 
 end FractionalIdeal
+
+open FractionalIdeal
 
 theorem isDedekindDomain_of_forall_isMaximal_isUnit {R : Type*} (K : Type*) [CommRing R]
     [IsDomain R] [Field K] [Algebra R K] [IsFractionRing R K] [IsNoetherianRing R]

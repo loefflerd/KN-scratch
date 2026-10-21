@@ -71,11 +71,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.WeierstrassCurve \
-  WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero.WeierstrassCurve.Affine \
-  Polynomial IsDedekindDomain WithZero"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine Polynomial IsDedekindDomain WithZero"
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve

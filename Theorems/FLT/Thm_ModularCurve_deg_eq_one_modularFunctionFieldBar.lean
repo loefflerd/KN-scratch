@@ -70,8 +70,7 @@ namespace P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar.ModularCurve Polynomial"
+p2m_open "AlgebraicCurve ModularCurve Polynomial"
 
 namespace B2Deg
 

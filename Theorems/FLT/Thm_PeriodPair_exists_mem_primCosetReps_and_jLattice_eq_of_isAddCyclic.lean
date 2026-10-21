@@ -80,8 +80,7 @@ end WeierstrassCurve.Affine
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair \
-  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
+p2m_open_scoped "PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ ω₂ indep latticeEquiv_symm_apply \
@@ -585,9 +584,7 @@ p2m_open "PeriodPair \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 p2m_open "WeierstrassCurve \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve \
-  WeierstrassCurve.Affine \
-  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve.Affine\
-   Matrix"
+  WeierstrassCurve.Affine"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \

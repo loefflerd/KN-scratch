@@ -71,7 +71,7 @@ section privateSection
 namespace P2MW.S_ModularCurve_LevelN_Descent_fixer_le
 
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_LevelN_Descent_fixer_le.ModularCurve"
+p2m_open "ModularCurve"
 open scoped MatrixGroups IntermediateField
 
 noncomputable section

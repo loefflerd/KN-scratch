@@ -86,9 +86,7 @@ section PortCardMulXY
 
 namespace PortCard
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq.WeierstrassCurve WeierstrassCurve.Affine \
-  WeierstrassCurve.Affine.Point Polynomial"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point Polynomial"
 open scoped Polynomial.Bivariate
 
 theorem zsmul_some_eq_some_jac {F : Type*} [Field F] [DecidableEq F] (V : WeierstrassCurve F)

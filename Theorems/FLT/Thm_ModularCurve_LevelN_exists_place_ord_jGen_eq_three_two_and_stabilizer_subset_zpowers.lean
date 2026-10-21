@@ -71,9 +71,7 @@ section privateSection
 namespace P2MW.S_OVERLONG_d9a2a124
 
 
-p2m_open "UpperHalfPlane AlgebraicCurve \
-  P2MW.S_OVERLONG_d9a2a124.Algeb\
-  raicCurve"
+p2m_open "UpperHalfPlane AlgebraicCurve"
 open scoped MatrixGroups IntermediateField Manifold
 
 open ModularGroup Filter Topology
@@ -245,6 +243,8 @@ theorem eq_of_ord_algebraMap_eq {A : Type*} [CommRing A] [IsDomain A] [Algebra A
 
 end AlgebraicCurve.Place
 
+open AlgebraicCurve
+
 noncomputable section
 
 namespace ModularCurve
@@ -255,7 +255,7 @@ namespace LevelN
 p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen \
   exists_place_analyticOrderAt_eq_mul_ord"
 namespace PlaceTransport
-p2m_open "ModularCurve.LevelN ModularCurve~jGen"
+p2m_open "ModularCurve.LevelN ModularCurve"
 
 section Moebius
 
@@ -407,7 +407,7 @@ namespace LevelN
 p2m_export "ModularCurve.LevelN" "jAnalytic ring jGen coe_jGen \
   exists_place_analyticOrderAt_eq_mul_ord"
 namespace Wall
-p2m_open "ModularCurve.LevelN ModularCurve~jGen"
+p2m_open "ModularCurve.LevelN ModularCurve"
 
 theorem E₄_smul (γ : SL(2, ℤ)) (τ : ℍ) :
     ModularForm.E₄ (γ • τ) = denom γ τ ^ (4 : ℤ) * ModularForm.E₄ τ := by

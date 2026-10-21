@@ -61,9 +61,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve \
-  WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 noncomputable section
 

@@ -91,9 +91,7 @@ namespace P2MW.S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo.ModularCurve IsDedekindDomain \
-  IsLocalRing"
+p2m_open "AlgebraicCurve ModularCurve IsDedekindDomain IsLocalRing"
 
 section Generic
 

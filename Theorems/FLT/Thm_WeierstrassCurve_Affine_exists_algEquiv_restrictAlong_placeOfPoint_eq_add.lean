@@ -111,16 +111,8 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY evalEval_polynomial equation
   hasPrincipalDivisors_functionField"
 p2m_open "WeierstrassCurve.Affine~genericPoint WeierstrassCurve~Affine.genericPoint"
 
-p2m_open "Polynomial \
-  P2MW.S_OVERLONG_e431601d.Polynomial \
-  IsDedekindDomain \
-  P2MW.S_OVERLONG_e431601d.IsDedekindDomai\
-  n WeierstrassCurve.Affine.CoordinateRing \
-  P2MW.S_OVERLONG_e431601d.WeierstrassCurve\
-  .Affine.CoordinateRing \
-  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord\
-  _algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq \
-  P2MW.S_OVERLONG_e431601d.AlgebraicCurve"
+p2m_open "Polynomial IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing \
+  AlgebraicCurve"
 p2m_open_scoped "Polynomial.Bivariate"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -443,11 +435,7 @@ p2m_export "WeierstrassCurve.Affine" "Equation negY evalEval_polynomial equation
   algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain \
   CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot \
   hasPrincipalDivisors_functionField"
-p2m_open "WeierstrassCurve.Affine~genericPoint WeierstrassCurve~Affine.genericPoint"
-
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
-  lace.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq \
-  P2MW.S_OVERLONG_e431601d.AlgebraicCurve"
+p2m_open "AlgebraicCurve WeierstrassCurve.Affine~genericPoint WeierstrassCurve~Affine.genericPoint"
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
     {W : Affine F} : HasPrincipalDivisors F W.FunctionField :=
@@ -869,14 +857,7 @@ end
 section
 
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
-  lace.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq \
-  P2MW.S_OVERLONG_e431601d.AlgebraicCurve \
-  WeierstrassCurve~Affine.genericPoint \
-  P2MW.S_OVERLONG_e431601d.WeierstrassCurv\
-  e WeierstrassCurve.Affine~genericPoint \
-  P2MW.S_OVERLONG_e431601d.WeierstrassCurve\
-  .Affine"
+p2m_open "AlgebraicCurve"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ a₁ \
@@ -1157,8 +1138,7 @@ p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower
   Place.ext Place.ord Place.ord_zero HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum \
   Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring \
   Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
-  lace.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq"
+p2m_open "AlgebraicCurve"
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong \
@@ -1191,8 +1171,7 @@ p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower
   Place.ext Place.ord Place.ord_zero HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum \
   Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring \
   Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~P\
-  lace.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq"
+p2m_open "AlgebraicCurve"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
@@ -1211,8 +1190,7 @@ p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_rest
   mem_of_eval_monic_eq_zero isEquiv_adicValuation_of_valuationSubring_eq \
   ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective \
   ord_ofHeightOneSpectrum_ne_zero_iff"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMa\
-  p~ord_eq_neg_log_of_valuationSubring_eq"
+p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
@@ -4366,17 +4344,8 @@ end WeierstrassCurve
 end
 end
 
-p2m_open "WeierstrassCurve~Affine.genericPoint" in
-p2m_open "WeierstrassCurve.Affine~genericPoint\
-  " in
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_n\
-  onneg~Place.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq\
-  " in
-open
-  _root_.P2MW.S_OVERLONG_e431601d.WeierstrassCurve
-  _root_.P2MW.S_OVERLONG_e431601d.WeierstrassCurve.Affine
-  _root_.P2MW.S_OVERLONG_e431601d.AlgebraicCurve
-  in
+open P2MW.S_OVERLONG_e431601d.WeierstrassCurve P2MW.S_OVERLONG_e431601d.WeierstrassCurve.Affine
+  P2MW.S_OVERLONG_e431601d.AlgebraicCurve in
 universe u in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]

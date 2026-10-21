@@ -75,9 +75,7 @@ namespace P2MW.S_AlgebraicCurve_Place_ord_dvd_of_forall_hahnSeries_embedding_has
 
 noncomputable section
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_ord_dvd_of_forall_hahnSeries_embedding_hasRamBound.AlgebraicCurve \
-  Polynomial"
+p2m_open "AlgebraicCurve Polynomial"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.ord_dvd_of_hahnSeries_embedding_of_isGalois \

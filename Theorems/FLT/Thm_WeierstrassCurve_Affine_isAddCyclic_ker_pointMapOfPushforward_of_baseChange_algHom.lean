@@ -129,16 +129,8 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' Coor
   polyToFunctionField_C algebraMap_smul_basis yCoord"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "Polynomial \
-  P2MW.S_OVERLONG_55b03433.Polynom\
-  ial IsDedekindDomain \
-  P2MW.S_OVERLONG_55b03433.IsDedek\
-  indDomain WeierstrassCurve.Affine.CoordinateRing~evalAt \
-  P2MW.S_OVERLONG_55b03433.Weierst\
-  rassCurve.Affine.CoordinateRing \
-  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_OVERLONG_55b03433.Algebra\
-  icCurve"
+p2m_open "Polynomial IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 p2m_open_scoped "Polynomial.Bivariate"
 
 variable {F : Type*} [Field F] {W : Affine F}
@@ -461,10 +453,7 @@ theorem WeierstrassCurve.nonempty_pointTorsionBy_zmod {K : Type*} [Field K] [Dec
 
 section
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_OVERLONG_55b03433.Algebra\
-  icCurve WeierstrassCurve \
-  P2MW.S_OVERLONG_55b03433.Weierst\
-  rassCurve"
+  WeierstrassCurve P2MW.S_OVERLONG_55b03433.WeierstrassCurve"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY a₃ map_map a₁ map Affine.CoordinateRing mk a₄ a₂ \
@@ -493,9 +482,7 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' Coor
   polyToFunctionField_C algebraMap_smul_basis yCoord"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_OVERLONG_55b03433.Algebra\
-  icCurve"
+p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
     {W : Affine F} : HasPrincipalDivisors F W.FunctionField :=
@@ -701,13 +688,9 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' Coor
   polyToFunctionField_C algebraMap_smul_basis yCoord"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt \
-  P2MW.S_OVERLONG_55b03433.Weierst\
-  rassCurve.Affine.CoordinateRing \
+  P2MW.S_OVERLONG_55b03433.WeierstrassCurve.Affine.CoordinateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_OVERLONG_55b03433.Algebra\
-  icCurve Polynomial \
-  P2MW.S_OVERLONG_55b03433.Polynom\
-  ial"
+  P2MW.S_OVERLONG_55b03433.AlgebraicCurve Polynomial"
 p2m_open_scoped "Polynomial.Bivariate"
 
 section FinitePlaceOfMem
@@ -806,9 +789,7 @@ end ModularCurve
 section
 open Complex Filter Set
 
-p2m_open_scoped "PeriodPair \
-  P2MW.S_OVERLONG_55b03433.PeriodP\
-  air"
+p2m_open_scoped "PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe \
@@ -1208,16 +1189,10 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' Coor
   polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective \
   polyToFunctionField_C algebraMap_smul_basis yCoord"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-p2m_open "Polynomial \
-  P2MW.S_OVERLONG_55b03433.Polynom\
-  ial IsDedekindDomain \
-  P2MW.S_OVERLONG_55b03433.IsDedek\
-  indDomain WeierstrassCurve.Affine.CoordinateRing~evalAt \
-  P2MW.S_OVERLONG_55b03433.Weierst\
-  rassCurve.Affine.CoordinateRing \
+p2m_open "Polynomial IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing~evalAt \
+  P2MW.S_OVERLONG_55b03433.WeierstrassCurve.Affine.CoordinateRing \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
-  P2MW.S_OVERLONG_55b03433.Algebra\
-  icCurve"
+  P2MW.S_OVERLONG_55b03433.AlgebraicCurve"
 p2m_open_scoped "Polynomial.Bivariate"
 variable {F : Type*} [Field F] {W : Affine F}
 namespace CoordinateRing

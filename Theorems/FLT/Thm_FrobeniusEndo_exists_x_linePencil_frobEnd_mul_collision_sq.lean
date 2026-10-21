@@ -68,7 +68,7 @@ namespace P2MW.S_FrobeniusEndo_exists_x_linePencil_frobEnd_mul_collision_sq
 
 open Polynomial
 open scoped Polynomial.Bivariate
-p2m_open "WeierstrassCurve~evalEval_ψ_sq~evalEval_φ WeierstrassCurve.Affine \
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine \
   WeierstrassCurve.Affine.Point FrobeniusEndo"
 
 namespace FrobLineH3
@@ -857,7 +857,7 @@ end Main
 
 end FrobLineH3
 
-p2m_open "WeierstrassCurve~evalEval_ψ_sq~evalEval_φ" in
+p2m_open "WeierstrassCurve" in
 open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo in
 theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
     [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k] [IsAlgClosed k]

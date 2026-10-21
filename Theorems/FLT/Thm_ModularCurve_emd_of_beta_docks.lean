@@ -79,7 +79,7 @@ namespace P2MW.S_ModularCurve_emd_of_beta_docks
 
 noncomputable section
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_emd_of_beta_docks.ModularCurve AlgebraicCurve"
+p2m_open "ModularCurve AlgebraicCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar modularFunctionFieldBar"

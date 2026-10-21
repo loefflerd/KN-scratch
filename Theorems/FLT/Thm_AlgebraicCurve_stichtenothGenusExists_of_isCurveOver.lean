@@ -61,7 +61,7 @@ section privateSection
 namespace P2MW.S_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver
 
 open IntermediateField
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver.AlgebraicCurve"
+p2m_open "AlgebraicCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver ConstantsAreBase StichtenothGenusExists \

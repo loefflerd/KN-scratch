@@ -60,8 +60,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_exists_isFrickeAutFull
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_exists_isFrickeAutFull.ModularCurve AlgebraicCurve \
-  IntermediateField"
+p2m_open "ModularCurve AlgebraicCurve IntermediateField"
 
 noncomputable section
 

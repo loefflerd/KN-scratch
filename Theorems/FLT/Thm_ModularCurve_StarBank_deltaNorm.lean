@@ -64,7 +64,7 @@ noncomputable section
 
 open scoped PowerSeries.WithPiTopology
 
-p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_deltaNorm.ModularCurve"
+p2m_open "ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qExpand qExpand_coeff_mul \

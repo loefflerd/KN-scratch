@@ -70,8 +70,7 @@ namespace P2MW.S_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_of_laure
 
 noncomputable section
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange.ModularCurve"
+p2m_open "AlgebraicCurve ModularCurve"
 open scoped MatrixGroups
 
 namespace ModularCurve

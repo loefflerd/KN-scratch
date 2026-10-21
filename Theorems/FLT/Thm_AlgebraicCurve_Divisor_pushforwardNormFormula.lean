@@ -68,7 +68,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
+p2m_open "AlgebraicCurve"
 
 
 noncomputable section

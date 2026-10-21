@@ -65,7 +65,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_constantsAreBase_of_exists_isRational
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_constantsAreBase_of_exists_isRational.AlgebraicCurve"
+p2m_open "AlgebraicCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "mem_lSpace_iff_ord algebraMap_mem_lSpace_zero ConstantsAreBase Place \

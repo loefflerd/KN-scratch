@@ -75,8 +75,7 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
 
-p2m_open "AlgebraicCurve ModularCurve \
-  P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord.ModularCurve"
+p2m_open "AlgebraicCurve ModularCurve"
 
 private theorem finrankAdjoinJBar (N : ℕ) [NeZero N] :
     Module.finrank

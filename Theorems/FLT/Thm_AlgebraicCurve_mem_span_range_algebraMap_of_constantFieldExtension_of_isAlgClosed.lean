@@ -72,9 +72,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.Algebrai\
-  cCurve Polynomial"
+p2m_open "AlgebraicCurve Polynomial"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.ord Place.ord_zero Divisor Divisor.degree \

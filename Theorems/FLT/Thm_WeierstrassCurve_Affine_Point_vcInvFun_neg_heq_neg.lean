@@ -57,10 +57,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg.WeierstrassCurve \
-  WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg.WeierstrassCurve.Affine"
+p2m_open "WeierstrassCurve WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY a₃ a₁ variableChange_a₃ variableChange_a₆ \
