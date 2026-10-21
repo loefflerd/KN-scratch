@@ -134,7 +134,7 @@ end AlgebraicCurve
 
 noncomputable section
 
-p2m_open "Module IsLocalRing Module.IsLocalRing IsDedekindDomain WithZero"
+p2m_open "Module IsLocalRing IsDedekindDomain WithZero"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree \
@@ -387,7 +387,7 @@ end
 
 noncomputable section
 
-p2m_open "Module IsLocalRing Module.IsLocalRing IsDedekindDomain WithZero"
+p2m_open "Module IsLocalRing IsDedekindDomain WithZero"
 
 namespace Submodule
 p2m_export "Submodule" "quotEquivOfEq Quotient.eq inclusion mk mem_bot subtype_injective \

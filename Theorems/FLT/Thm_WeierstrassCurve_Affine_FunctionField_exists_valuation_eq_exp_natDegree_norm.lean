@@ -66,7 +66,7 @@ section privateSection
 namespace P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
 
 open scoped Polynomial.Bivariate WithZero nonZeroDivisors
-p2m_open "Polynomial Polynomial.Bivariate.Polynomial"
+p2m_open "Polynomial"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine mk Affine.FunctionField toAffine Affine.Point"

@@ -64,11 +64,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one
 
-p2m_open "Polynomial WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.Weierstrass\
-  Curve WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one.Weierstrass\
-  Curve.Affine"
+p2m_open "Polynomial WeierstrassCurve WeierstrassCurve.Affine"
 open scoped Polynomial.Bivariate nonZeroDivisors
 
 namespace WeierstrassCurve

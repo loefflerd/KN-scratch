@@ -190,9 +190,6 @@ end privateSection
 
 public section publicSection
 
-
-set_option autoImplicit false
-
 theorem Function.exists_eq_apply_sub_of_sum_range_minimalPeriod_eq_zero {X : Type*} {A : Type*}
   [AddCommGroup A]
     (f : X → X) (hf : ∀ x : X, 0 < Function.minimalPeriod f x) (v : X → A)

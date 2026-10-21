@@ -55,7 +55,7 @@ section privateSection
 
 namespace P2MW.S_Polynomial_mem_range_of_unique_common_root
 
-p2m_open "Polynomial P2MW.S_Polynomial_mem_range_of_unique_common_root.Polynomial"
+p2m_open "Polynomial"
 
 namespace Polynomial
 p2m_export "Polynomial" "C Splits.of_dvd card_roots' coeff_map natDegree_mul coeff unique aeval \

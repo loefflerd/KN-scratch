@@ -64,7 +64,6 @@ noncomputable section
 
 open ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise
 open ModularCurve.TatePoint (Qbar H CycSubH)
-open scoped Classical
 
 namespace CycSubOf
 p2m_export "CycSubOf" "map coe_map"
@@ -95,6 +94,7 @@ theorem map_surjective_of_surjOn
 
 end CycSubOf
 
+open scoped Classical in
 theorem solution (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
     (hΔ : (specialFibre E).Δ ≠ 0) (N : ℕ) [NeZero N] :
     Function.Bijective (specialiseCycSub E hE hΔ N) := by
@@ -117,7 +117,7 @@ public section publicSection
 
 open ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise
 open ModularCurve.TatePoint (Qbar H CycSubH)
-open scoped Classical
+
 theorem ModularCurve.HahnSpecialise.specialiseCycSub_bijective (E : WeierstrassCurve H)
     (hE : IntegralCoeffs E)
     (hΔ : (specialFibre E).Δ ≠ 0) (N : ℕ) [NeZero N] :

@@ -61,8 +61,6 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_isCurveOver_ratFunc
 
-set_option linter.style.longFile 0
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing

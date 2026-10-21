@@ -574,8 +574,7 @@ section
 
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateCommFinite.WithZero Multiplicative \
-  P2MW.S_AlgebraicCurve_tateCommFinite.Multiplicative Topology \
-  P2MW.S_AlgebraicCurve_tateCommFinite.Topology"
+  P2MW.S_AlgebraicCurve_tateCommFinite.Multiplicative Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateCommFinite.Filter"
 
 namespace IsDedekindDomain
@@ -627,8 +626,7 @@ p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateCommFinite.IsDedekindDomain
   P2MW.S_AlgebraicCurve_tateCommFinite.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
   P2MW.S_AlgebraicCurve_tateCommFinite.IsLocalRing WithZero \
   P2MW.S_AlgebraicCurve_tateCommFinite.WithZero"
-p2m_open "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.Lg37 AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place"
 
 namespace ModularCurve

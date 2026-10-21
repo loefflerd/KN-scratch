@@ -59,9 +59,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count
 
-p2m_open "IsDedekindDomain \
-  P2MW.S_WeierstrassCurve_Affine_CoordinateRing_natDegree_norm_eq_finsum_count.IsDedekindDomain \
-  Module"
+p2m_open "IsDedekindDomain Module"
 
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.quotientEquivPiOfProdEq quotientEquivPiOfProdEq \

@@ -62,8 +62,7 @@ section privateSection
 namespace P2MW.S_KaehlerDifferential_D_ne_zero_of_transcendental
 
 noncomputable section
-p2m_open "Polynomial KaehlerDifferential \
-  P2MW.S_KaehlerDifferential_D_ne_zero_of_transcendental.KaehlerDifferential"
+p2m_open "Polynomial KaehlerDifferential"
 
 namespace KaehlerDifferential
 p2m_export "KaehlerDifferential" "tensorKaehlerEquivOfFormallyEtale polynomialEquiv \

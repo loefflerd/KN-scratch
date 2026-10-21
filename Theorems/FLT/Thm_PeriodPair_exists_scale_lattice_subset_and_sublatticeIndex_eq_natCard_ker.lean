@@ -153,10 +153,8 @@ section
 noncomputable section
 
 p2m_open "WeierstrassCurve \
-  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurv\
-  e \
-  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve \
-  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve\
+   P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 namespace ModularCurve
 
@@ -499,12 +497,11 @@ noncomputable section
 
 p2m_open "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularC\
   urve WeierstrassCurve \
-  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurv\
-  e WeierstrassCurve.Affine \
+  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve\
+   WeierstrassCurve.Affine \
   P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve\
   .Affine Polynomial \
   P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Polynomial \
-  P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve \
   PeriodPair \
   P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 

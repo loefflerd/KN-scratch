@@ -59,9 +59,7 @@ namespace P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord
 
 noncomputable section
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.AlgebraicCurve IsLocalRing \
-  ModularCurve"
+p2m_open "AlgebraicCurve IsLocalRing ModularCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"

@@ -509,7 +509,7 @@ public section publicSection
 
 
 open AlgebraicCurve ModularCurve
-set_option maxSynthPendingDepth 3
+
 theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ)
     (hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1) :

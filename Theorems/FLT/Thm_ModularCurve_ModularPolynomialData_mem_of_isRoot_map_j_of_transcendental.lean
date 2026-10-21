@@ -229,7 +229,6 @@ theorem exists_generator_of_isAddCyclic {G : Type*} [AddCommGroup G] (H : AddSub
   refine ⟨g, hzm, ?_⟩
   rw [← Nat.card_zmultiples g, hzm, hm]
 
-set_option genInjectivity false in
 structure IsoTarget (W : WeierstrassCurve F) [W.IsElliptic] [GenusOnePlaceGate W.toAffine]
     [AbelTheorem W.toAffine] (g : W.toAffine.Point) (L : Subfield F) where
   V : WeierstrassCurve F

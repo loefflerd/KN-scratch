@@ -635,8 +635,7 @@ section
 
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateChainRule.WithZero Multiplicative \
-  P2MW.S_AlgebraicCurve_tateChainRule.Multiplicative Topology \
-  P2MW.S_AlgebraicCurve_tateChainRule.Topology"
+  P2MW.S_AlgebraicCurve_tateChainRule.Multiplicative Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateChainRule.Filter"
 
 namespace IsDedekindDomain
@@ -685,8 +684,7 @@ p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateChainRule.IsDedekindDomain 
   P2MW.S_AlgebraicCurve_tateChainRule.IsDedekindDomain.HeightOneSpectrum IsLocalRing \
   P2MW.S_AlgebraicCurve_tateChainRule.IsLocalRing WithZero \
   P2MW.S_AlgebraicCurve_tateChainRule.WithZero"
-p2m_open "P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.Lg37 AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place \
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place"
 
 namespace ModularCurve
@@ -1985,8 +1983,7 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve Alge
   P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap \
   P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule \
   P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
-p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate \
-  P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V473a"
+p2m_open "ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 noncomputable section
 

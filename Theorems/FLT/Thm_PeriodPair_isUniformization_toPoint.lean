@@ -114,8 +114,7 @@ end WeierstrassCurve
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
-  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology"
 p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
   P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
@@ -305,8 +304,7 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
-  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology"
 p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
   P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
@@ -406,8 +404,7 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
-  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology"
 p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
   P2MW.S_PeriodPair_isUniformization_toPoint.Set Bornology \
   P2MW.S_PeriodPair_isUniformization_toPoint.Bornology Complex \
@@ -542,8 +539,7 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
-  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology"
 p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
   P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
@@ -776,8 +772,7 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
-  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology"
 p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
   P2MW.S_PeriodPair_isUniformization_toPoint.Set"
 
@@ -927,8 +922,7 @@ end
 
 noncomputable section
 
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology \
-  P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
+p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology"
 p2m_open "Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set \
   P2MW.S_PeriodPair_isUniformization_toPoint.Set Complex \
   P2MW.S_PeriodPair_isUniformization_toPoint.Complex WeierstrassCurve \

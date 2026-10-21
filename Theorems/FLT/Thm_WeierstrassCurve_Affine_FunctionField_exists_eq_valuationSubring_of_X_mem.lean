@@ -60,7 +60,7 @@ section privateSection
 namespace P2MW.S_WeierstrassCurve_Affine_FunctionField_exists_eq_valuationSubring_of_X_mem
 
 open scoped Polynomial.Bivariate nonZeroDivisors
-p2m_open "Polynomial Polynomial.Bivariate.Polynomial IsDedekindDomain"
+p2m_open "Polynomial IsDedekindDomain"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine a₃ a₁ Affine.CoordinateRing mk a₄ a₂ a₆ Affine.FunctionField \

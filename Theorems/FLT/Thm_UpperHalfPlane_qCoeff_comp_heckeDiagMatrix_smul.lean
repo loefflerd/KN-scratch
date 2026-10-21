@@ -58,8 +58,7 @@ section privateSection
 
 namespace P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul
 
-p2m_open "Complex Filter Function UpperHalfPlane \
-  P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane ModularForm"
+p2m_open "Complex Filter Function UpperHalfPlane ModularForm"
 open scoped Real MatrixGroups Topology Manifold ModularForm
 
 noncomputable section

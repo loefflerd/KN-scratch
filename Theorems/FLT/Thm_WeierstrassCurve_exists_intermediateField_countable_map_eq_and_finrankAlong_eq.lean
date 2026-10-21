@@ -97,9 +97,7 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Polynomial"
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 variable {F : Type*} [Field F] {W : Affine F}
 
 theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
@@ -308,11 +306,7 @@ p2m_open "WeierstrassCurve \
   rve"
 p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Polynomial"
-p2m_open_scoped "TensorProduct \
-  P2MW.S_OVERLONG_6989a05c.TensorProdu\
-  ct Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate"
+p2m_open_scoped "TensorProduct P2MW.S_OVERLONG_6989a05c.TensorProduct Polynomial.Bivariate"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk \
@@ -404,9 +398,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 universe u
 
@@ -546,9 +538,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.IsDedekindD\
   omain"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk \
@@ -646,15 +636,9 @@ end
 section
 
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_OVERLONG_6989a05c.AlgebraicCu\
-  rve \
-  P2MW.S_OVERLONG_6989a05c.FreyPackag\
-  e WeierstrassCurve \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve.Affine"
+p2m_open "AlgebraicCurve P2MW.S_OVERLONG_6989a05c.AlgebraicCurve WeierstrassCurve \
+  P2MW.S_OVERLONG_6989a05c.WeierstrassCurve WeierstrassCurve.Affine \
+  P2MW.S_OVERLONG_6989a05c.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk \
@@ -722,9 +706,7 @@ section
 p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Polynomial"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk \
@@ -783,11 +765,8 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Weierstrass\
   Curve.Affine.Point"
 
-p2m_open_scoped "WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve.Affine Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate"
+p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_OVERLONG_6989a05c.WeierstrassCurve.Affine \
+  Polynomial.Bivariate"
 
 section
 
@@ -858,12 +837,8 @@ section
 
 universe u
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve.Affine HahnSeries \
-  P2MW.S_OVERLONG_6989a05c.HahnSeries"
+p2m_open "WeierstrassCurve P2MW.S_OVERLONG_6989a05c.WeierstrassCurve WeierstrassCurve.Affine \
+  P2MW.S_OVERLONG_6989a05c.WeierstrassCurve.Affine P2MW.S_OVERLONG_6989a05c.HahnSeries"
 
 namespace ModularCurve
 
@@ -943,13 +918,8 @@ p2m_open "WeierstrassCurve \
   rve"
 p2m_open "Polynomial \
   P2MW.S_OVERLONG_6989a05c.Polynomial"
-p2m_open_scoped "TensorProduct \
-  P2MW.S_OVERLONG_6989a05c.TensorProdu\
-  ct Polynomial.Bivariate \
-  P2MW.S_OVERLONG_6989a05c.Polynomial.\
-  Bivariate Polynomial \
-  P2MW.S_OVERLONG_6989a05c.Polynomial \
-  Polynomial.Bivariate.Polynomial"
+p2m_open_scoped "TensorProduct P2MW.S_OVERLONG_6989a05c.TensorProduct Polynomial.Bivariate \
+  Polynomial P2MW.S_OVERLONG_6989a05c.Polynomial"
 
 namespace ModularCurve
 
@@ -1822,15 +1792,9 @@ section
 
 namespace ModularCurve
 
-p2m_open "WeierstrassCurve \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_6989a05c.Weierstrass\
-  Curve.Affine HahnSeries \
-  P2MW.S_OVERLONG_6989a05c.HahnSeries \
-  IntermediateField \
-  P2MW.S_OVERLONG_6989a05c.Intermediat\
-  eField Cardinal \
+p2m_open "WeierstrassCurve P2MW.S_OVERLONG_6989a05c.WeierstrassCurve WeierstrassCurve.Affine \
+  P2MW.S_OVERLONG_6989a05c.WeierstrassCurve.Affine P2MW.S_OVERLONG_6989a05c.HahnSeries \
+  IntermediateField P2MW.S_OVERLONG_6989a05c.IntermediateField Cardinal \
   P2MW.S_OVERLONG_6989a05c.Cardinal"
 
 def KwIsogenyEndDatumSubfieldDescent (K : Type uK) [Field K] [Algebra ℚ K]

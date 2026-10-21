@@ -68,7 +68,7 @@ namespace P2MW.S_PeriodPair_lattice_eq_of_g2_eq_of_g3_eq
 noncomputable section
 
 open Complex Filter Topology
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_lattice_eq_of_g2_eq_of_g3_eq.PeriodPair"
+p2m_open_scoped "PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "analyticAt_weierstrassPExcept isClosed_lattice \

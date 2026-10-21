@@ -67,10 +67,7 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv
 
-p2m_open "Polynomial WeierstrassCurve \
-  P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve \
-  WeierstrassCurve.Affine \
-  P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine"
+p2m_open "Polynomial WeierstrassCurve WeierstrassCurve.Affine"
 open scoped Polynomial.Bivariate
 open scoped nonZeroDivisors
 

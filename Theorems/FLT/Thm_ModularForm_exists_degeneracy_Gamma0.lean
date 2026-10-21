@@ -57,8 +57,7 @@ section privateSection
 
 namespace P2MW.S_ModularForm_exists_degeneracy_Gamma0
 
-p2m_open_scoped "MatrixGroups ModularForm P2MW.S_ModularForm_exists_degeneracy_Gamma0.ModularForm \
-  Pointwise"
+p2m_open_scoped "MatrixGroups ModularForm Pointwise"
 
 noncomputable section
 

@@ -1248,14 +1248,10 @@ section
 
 section
 
-p2m_open_scoped "PeriodPair \
-  P2MW.S_OVERLONG_96bd748a.PeriodPair UpperHalfPlane \
-  P2MW.S_OVERLONG_96bd748a.UpperHalfPlane MatrixGroups \
-  P2MW.S_OVERLONG_96bd748a.MatrixGroups"
-p2m_open "PeriodPair \
-  P2MW.S_OVERLONG_96bd748a.PeriodPair Polynomial \
-  P2MW.S_OVERLONG_96bd748a.Polynomial QuaternionAlgebra \
-  P2MW.S_OVERLONG_96bd748a.QuaternionAlgebra \
+p2m_open_scoped "PeriodPair P2MW.S_OVERLONG_96bd748a.PeriodPair UpperHalfPlane \
+  P2MW.S_OVERLONG_96bd748a.UpperHalfPlane MatrixGroups"
+p2m_open "PeriodPair P2MW.S_OVERLONG_96bd748a.PeriodPair Polynomial \
+  P2MW.S_OVERLONG_96bd748a.Polynomial P2MW.S_OVERLONG_96bd748a.QuaternionAlgebra \
   P2MW.S_OVERLONG_96bd748a.ModularCurve"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
   P2MW.S_OVERLONG_96bd748a.AlgebraicCurve WeierstrassCurve \

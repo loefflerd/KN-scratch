@@ -64,8 +64,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring
 
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring.AlgebraicCurve \
-  IsDedekindDomain"
+p2m_open "AlgebraicCurve IsDedekindDomain"
 open scoped IntermediateField.algebraAdjoinAdjoin
 
 section Crux

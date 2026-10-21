@@ -576,20 +576,18 @@ noncomputable section
 
 p2m_open_scoped "PeriodPair \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair \
-  UpperHalfPlane MatrixGroups \
-  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.MatrixGroups"
+  UpperHalfPlane MatrixGroups"
 p2m_open "PeriodPair \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair Polynomial \
   QuaternionAlgebra \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra \
   ModularCurve \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-p2m_open "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.AlgebraicCurve \
-  WeierstrassCurve \
+p2m_open "WeierstrassCurve \
   P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve \
   WeierstrassCurve.Affine \
-  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve.Affin\
-  e Matrix"
+  P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.WeierstrassCurve.Affine\
+   Matrix"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData \

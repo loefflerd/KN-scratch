@@ -84,7 +84,7 @@ p2m_export "ModularCurve" "qExpFunctionFieldC qExpand qExpand_single coeffMap co
   finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index"
 namespace LevelN
 namespace Descent
-p2m_open "ModularCurve.LevelN ModularCurve"
+p2m_open "ModularCurve"
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 

@@ -79,8 +79,7 @@ noncomputable section
 
 namespace WidthLE
 
-p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex \
-  Matrix.SpecialLinearGroup OnePoint"
+p2m_open "UpperHalfPlane ModularForm Filter Function Complex Matrix.SpecialLinearGroup OnePoint"
 open scoped Topology Pointwise Manifold
 
 theorem coe_eq_mapGL (γ : SL(2, ℤ)) : (γ : GL (Fin 2) ℝ) = mapGL ℝ γ := rfl

@@ -891,7 +891,6 @@ section
 
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.GF24a9RRDx \
   AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place \
   IsDedekindDomain P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain"
 
@@ -1055,8 +1054,7 @@ section
 
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.WithZero \
-  Multiplicative P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Multiplicative Topology \
-  P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Topology"
+  Multiplicative P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Multiplicative Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Filter"
 
 namespace IsDedekindDomain
@@ -1106,9 +1104,8 @@ p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.
   P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain.HeightOneSpectrum \
   IsLocalRing P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsLocalRing WithZero \
   P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.WithZero"
-p2m_open "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.Lg37 AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place \
-  P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
+p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve \
+  AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"

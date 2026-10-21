@@ -65,7 +65,7 @@ section privateSection
 namespace P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap
 
 open scoped WithZero Polynomial.Bivariate
-p2m_open "Polynomial Polynomial.Bivariate.Polynomial IsDedekindDomain"
+p2m_open "Polynomial IsDedekindDomain"
 
 namespace Valuation
 p2m_export "Valuation" "map_add_eq_of_lt_left valuationSubring ext mem_valuationSubring_iff \

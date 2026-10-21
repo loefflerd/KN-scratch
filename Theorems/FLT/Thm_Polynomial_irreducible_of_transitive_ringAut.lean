@@ -55,7 +55,7 @@ section privateSection
 
 namespace P2MW.S_Polynomial_irreducible_of_transitive_ringAut
 
-p2m_open "Polynomial P2MW.S_Polynomial_irreducible_of_transitive_ringAut.Polynomial"
+p2m_open "Polynomial"
 
 namespace Polynomial
 p2m_export "Polynomial" "C Splits.of_dvd card_roots' coeff_map natDegree_mul coeff unique aeval \

@@ -123,7 +123,7 @@ end MTT.Cohomology
 
 noncomputable section
 
-open scoped MatrixGroups Classical
+open scoped MatrixGroups
 
 namespace MTT.Cohomology
 
@@ -139,15 +139,19 @@ theorem eq_of_eq_or_neg {a b : SL(2, ℤ)} (ha : a ∈ H) (hb : b ∈ H)
     have hm := H.mul_mem ha (H.inv_mem hb)
     simpa only [h, neg_mul, mul_inv_cancel] using hm
 
-def centralSignRep (g : (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))) : H :=
+
+def centralSignRep [DecidablePred (· ∈ H)]
+    (g : (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))) : H :=
   if hg : g.val ∈ H then ⟨g.val, hg⟩ else
     ⟨-g.val, ((mem_sup_neg_one_iff H g.val).mp g.property).resolve_left hg⟩
 
-theorem centralSignRep_eq_or (g : (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))) :
+theorem centralSignRep_eq_or [DecidablePred (· ∈ H)]
+    (g : (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))) :
     (centralSignRep H g).val = g.val ∨ (centralSignRep H g).val = -g.val := by
   by_cases hg : g.val ∈ H <;> simp [centralSignRep, hg]
 
-def centralSignRetraction : (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) →* H where
+def centralSignRetraction [DecidablePred (· ∈ H)] :
+    (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) →* H where
   toFun := centralSignRep H
   map_one' := by
     apply Subtype.ext
@@ -161,7 +165,7 @@ def centralSignRetraction : (H ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) 
       rcases centralSignRep_eq_or H h with hh | hh <;>
       simp only [Subgroup.coe_mul] at hgh ⊢ <;> simp [hgh, hg, hh]
 
-theorem centralSignRetraction_inclusion (g : H) :
+theorem centralSignRetraction_inclusion [DecidablePred (· ∈ H)] (g : H) :
     centralSignRetraction H hz (Subgroup.inclusion le_sup_left g) = g := by
   apply Subtype.ext
   simp [centralSignRetraction, centralSignRep, g.property]
@@ -338,6 +342,10 @@ open scoped MatrixGroups
 
 namespace MTT.Cohomology
 
+instance (N : ℕ) : DecidablePred (· ∈ CongruenceSubgroup.Gamma1 N) := by
+  simp only [CongruenceSubgroup.Gamma1_mem]
+  exact fun x ↦ instDecidableAnd
+
 def smallLevelRetraction {N : ℕ} (hN : 3 ≤ N) (hN' : N ≤ 4) :
     CongruenceSubgroup.Gamma0 N →* CongruenceSubgroup.Gamma1 N :=
   (centralSignRetraction (CongruenceSubgroup.Gamma1 N)
@@ -347,8 +355,9 @@ def smallLevelRetraction {N : ℕ} (hN : 3 ≤ N) (hN' : N ≤ 4) :
 theorem smallLevelRetraction_eq_or {N : ℕ} (hN : 3 ≤ N) (hN' : N ≤ 4)
     (g : CongruenceSubgroup.Gamma0 N) :
     (smallLevelRetraction hN hN' g).val = g.val ∨
-      (smallLevelRetraction hN hN' g).val = -g.val :=
-  centralSignRep_eq_or (CongruenceSubgroup.Gamma1 N) _
+      (smallLevelRetraction hN hN' g).val = -g.val := by
+  classical
+  exact centralSignRep_eq_or (CongruenceSubgroup.Gamma1 N) _
 
 theorem smallLevelRetraction_inclusion {N : ℕ} (hN : 3 ≤ N) (hN' : N ≤ 4)
     (g : CongruenceSubgroup.Gamma1 N) :

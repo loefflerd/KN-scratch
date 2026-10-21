@@ -62,9 +62,7 @@ section privateSection
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom
 
-p2m_open "AlgebraicCurve \
-  P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom.AlgebraicCurve \
-  IsDedekindDomain"
+p2m_open "AlgebraicCurve IsDedekindDomain"
 open scoped IntermediateField.algebraAdjoinAdjoin
 
 section Crux

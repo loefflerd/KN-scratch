@@ -114,9 +114,7 @@ p2m_open "Polynomial \
   trassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
   P2MW.S_OVERLONG_7915af21.Algebr\
   aicCurve"
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -1199,9 +1197,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
@@ -1647,9 +1643,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero \
@@ -1892,9 +1886,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 universe u
 
@@ -2057,9 +2049,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction IsIntegral \
@@ -2137,9 +2127,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.IsDede\
   kindDomain"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction IsIntegral \
@@ -2243,14 +2231,10 @@ end Cases
 end AbstractSeam
 end WeierstrassCurve.Affine
 
-p2m_open "Polynomial \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial Polynomial.Bivariate.Polynomial \
+p2m_open "Polynomial P2MW.S_OVERLONG_7915af21.Polynomial \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg \
-  P2MW.S_OVERLONG_7915af21.Algebr\
-  aicCurve WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_7915af21.Weiers\
-  trassCurve.Affine"
+  P2MW.S_OVERLONG_7915af21.AlgebraicCurve WeierstrassCurve.Affine \
+  P2MW.S_OVERLONG_7915af21.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction IsIntegral \
@@ -2270,11 +2254,8 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.Weiers\
   trassCurve.Affine.Point"
 
-p2m_open_scoped "WeierstrassCurve.Affine \
-  P2MW.S_OVERLONG_7915af21.Weiers\
-  trassCurve.Affine Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_OVERLONG_7915af21.WeierstrassCurve.Affine \
+  Polynomial.Bivariate"
 
 section
 
@@ -2361,9 +2342,7 @@ p2m_open "Polynomial \
   P2MW.S_OVERLONG_7915af21.AddMon\
   oid.End"
 
-p2m_open_scoped "Polynomial.Bivariate \
-  P2MW.S_OVERLONG_7915af21.Polyno\
-  mial.Bivariate"
+p2m_open_scoped "Polynomial.Bivariate"
 
 namespace ModularCurve
 namespace Es1a1

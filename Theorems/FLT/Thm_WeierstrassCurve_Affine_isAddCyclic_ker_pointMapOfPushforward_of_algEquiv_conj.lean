@@ -1524,11 +1524,8 @@ section
 p2m_open_scoped "PeriodPair \
   P2MW.S_OVERLONG_b277e395.PeriodPair \
   UpperHalfPlane MatrixGroups"
-p2m_open "PeriodPair \
-  P2MW.S_OVERLONG_b277e395.PeriodPair \
-  Polynomial QuaternionAlgebra \
-  P2MW.S_OVERLONG_b277e395.ModularCurv\
-  e"
+p2m_open "PeriodPair P2MW.S_OVERLONG_b277e395.PeriodPair Polynomial \
+  P2MW.S_OVERLONG_b277e395.ModularCurve"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
   P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
@@ -1602,11 +1599,8 @@ section
 p2m_open_scoped "PeriodPair \
   P2MW.S_OVERLONG_b277e395.PeriodPair \
   UpperHalfPlane MatrixGroups"
-p2m_open "PeriodPair \
-  P2MW.S_OVERLONG_b277e395.PeriodPair \
-  Polynomial QuaternionAlgebra \
-  P2MW.S_OVERLONG_b277e395.ModularCurv\
-  e"
+p2m_open "PeriodPair P2MW.S_OVERLONG_b277e395.PeriodPair Polynomial \
+  P2MW.S_OVERLONG_b277e395.ModularCurve"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
   P2MW.S_OVERLONG_b277e395.AlgebraicCu\
   rve WeierstrassCurve \
