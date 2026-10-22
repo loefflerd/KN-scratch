@@ -12,6 +12,7 @@ public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Mathlib.FieldTheory.Relrank
 public import Mathlib.RingTheory.AdjoinRoot
+public import Mathlib.Analysis.Meromorphic.Basic
 
 import Mathlib.Algebra.Polynomial.Eval.Irreducible
 import Mathlib.Algebra.Algebra.Hom.Rat
@@ -25,6 +26,8 @@ import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_aeval_jqN_toAdjoin
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
+import Theorems.FLT.Thm_ModularCurve_exists_modularForm_eventuallyEq_div_of_meromorphic_of_finiteIndex
+import Theorems.FLT.Thm_ModularCurve_LevelN_exists_frickeFraction_of_modularForm
 
 /-!
 # Explicit function-field models for X₀(N) and X(N)
@@ -45,6 +48,10 @@ over `ℂ`. The ring `LevelN.ring N` is `ℂ[j, f_v : v ≠ 0]`, where the `f_v`
 Weierstrass ℘-values at N-torsion points. For any fraction field of this ring, the theorem gives
 the action by precomposition, its kernel `±Γ(N)`, fixed field `ℂ(j)`, and the Galois property with
 degree `[SL₂(ℤ) : ±Γ(N)]`. The model is expressed over `ℂ`, not as an arithmetic model over `ℚ`.
+It also includes `LevelN.FrickeGeneration`: every Γ(N)-invariant meromorphic function of
+at most exponential growth at all cusps is a fraction of elements of this ring. Equality is
+on punctured neighbourhoods, and the denominator is nonzero there. Thus the claim concerns
+all such modular functions, not only functions assumed in advance to be Fricke-rational.
 -/
 
 open scoped IntermediateField MatrixGroups
@@ -230,12 +237,42 @@ theorem x0_modularPolynomialPresentation (N : ℕ) [NeZero N] :
   · exact heY
 namespace LevelN
 
+open UpperHalfPlane
+open scoped Topology
+
+/-- Every meromorphic modular function for Γ(N), with at most exponential growth at all
+cusps, is a rational expression in j and the nonzero Fricke functions. Equality is as
+meromorphic functions: locally on punctured neighbourhoods, not at arbitrarily assigned
+values at poles. -/
+def FrickeGeneration (N : ℕ) : Prop :=
+  ∀ (F : ℍ → ℂ)
+    (_ : ∀ τ : ℍ, MeromorphicAt (fun z : ℂ => F (ofComplex z)) (τ : ℂ))
+    (_ : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, F (γ • τ) = F τ)
+    (_ : ∀ σ : SL(2, ℤ), ∃ C : ℝ,
+      Asymptotics.IsBigO atImInfty (fun τ : ℍ => F (σ • τ))
+        (fun τ : ℍ => Real.exp (C * τ.im))),
+    ∃ a b : ℍ → ℂ, a ∈ ring N ∧ b ∈ ring N ∧ b ≠ 0 ∧ ∀ τ : ℍ,
+      (∀ᶠ z in 𝓝[≠] (τ : ℂ), b (ofComplex z) ≠ 0) ∧
+      (fun z : ℂ => F (ofComplex z)) =ᶠ[𝓝[≠] (τ : ℂ)]
+        fun z : ℂ => a (ofComplex z) / b (ofComplex z)
+
+/-- Fricke functions generate all meromorphic modular functions of level N. -/
+theorem frickeGeneration (N : ℕ) [NeZero N] : FrickeGeneration N := by
+  intro F hmer hinv hcusp
+  obtain ⟨k, f, g, hg, hfg⟩ :=
+    exists_modularForm_eventuallyEq_div_of_meromorphic_of_finiteIndex
+      (CongruenceSubgroup.Gamma N) F hmer hinv hcusp
+  obtain ⟨a, b, ha, hb, hb0, hab⟩ := exists_frickeFraction_of_modularForm N
+    (CongruenceSubgroup.Gamma N) le_rfl k f g hg
+  exact ⟨a, b, ha, hb, hb0, fun τ => ⟨(hab τ).1, (hfg τ).trans (hab τ).2⟩⟩
+
 /-- The full-level Fricke-function field is Galois over the j-line, with the standard modular
-action, kernel ±Γ(N), and degree equal to the corresponding subgroup index. -/
+action, kernel ±Γ(N), and degree equal to the corresponding subgroup index. The generation
+clause includes every meromorphic modular function of controlled cusp growth. -/
 theorem frickeFunctionFieldModel (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ring N) K]
     [IsScalarTower ℂ (ring N) K] [IsFractionRing (ring N) K] :
-    ∃ (hst : ∀ γ : SL(2, ℤ), ∀ f ∈ ring N,
+    FrickeGeneration N ∧ ∃ (hst : ∀ γ : SL(2, ℤ), ∀ f ∈ ring N,
         (fun τ : UpperHalfPlane => f (γ • τ)) ∈ ring N)
       (σ : SL(2, ℤ) →* (K ≃ₐ[ℂ] K)),
       (∀ (γ : SL(2, ℤ)) (f : UpperHalfPlane → ℂ) (hf : f ∈ ring N),
@@ -249,7 +286,7 @@ theorem frickeFunctionFieldModel (N : ℕ) [NeZero N]
       Module.finrank (IntermediateField.adjoin ℂ {algebraMap (ring N) K (jGen N)}) K =
         (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index ∧
       IsGalois (IntermediateField.adjoin ℂ {algebraMap (ring N) K (jGen N)}) K :=
-  exists_monoidHom_algEquiv_fixedField_eq_adjoin N K
+  ⟨frickeGeneration N, exists_monoidHom_algEquiv_fixedField_eq_adjoin N K⟩
 
 end LevelN
 
