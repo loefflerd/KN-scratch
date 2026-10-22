@@ -22,7 +22,6 @@ import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd
 import Theorems.FLT.Thm_WeierstrassCurve_exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
 import Theorems.FLT.Thm_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Roots of Φ_N(t,Y) over ℚ̄ have ramification bound 3 (N odd)
@@ -70,11 +69,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
-namespace P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd
-
-
-p2m_open "HahnSeries Polynomial WeierstrassCurve~specialize"
+open HahnSeries Polynomial WeierstrassCurve
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 local notation "𝕂" => HahnSeries ℚ (AlgebraicClosure ℚ)
@@ -248,10 +243,10 @@ theorem j_eq_1728_add_single_two_one (𝓔 : WeierstrassCurve (PowerSeries K)) (
     simp [nsmul_eq_mul]
   exact hWΔ.mul_left_cancel (hΔj.trans hc4')
 
-end P2MWs13.Wire
+end Wire
+end P2MWs13
 end
 
-p2m_open "WeierstrassCurve~specialize" in
 open P2MWs13.Wire HahnSeries Polynomial in
 theorem solution
     {N : ℕ} [NeZero N] (hN : Odd N) (data : ModularCurve.ModularPolynomialData N)
@@ -296,11 +291,6 @@ theorem solution
           (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
       exact ⟨(hmemL x).mpr h.1, (hmemL y).mpr h.2⟩
   exact (hasRamBound_one_hahnExpMul_iff 3 (by norm_num) r).mp ((hmemL _).mp hτrL)
-
-end S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd
-end P2MW
-export P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd
-  (solution)
 
 end privateSection
 

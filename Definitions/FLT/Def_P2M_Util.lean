@@ -35,7 +35,16 @@ meta def p2mOpenCore (s : String) : CommandElabM Unit := do
     if w.isEmpty then continue
     let parts := w.splitOn "~"
     let ns := parts.head!.toName
+    unless (← getEnv).isNamespace ns do
+      logWarning m!"p2m_open: namespace `{ns}` does not exist"
     let hidden := (parts.drop 1).filter (· ≠ "") |>.map (fun h => h.toName)
+    for h in hidden do
+      let target := ns ++ h
+      unless (← getEnv).contains target do
+        try
+          discard <| resolveGlobalConstNoOverloadCore target
+        catch _ =>
+          logWarning m!"p2m_open: hiding target `{target}` does not resolve to a unique declaration"
     modifyScope fun sc => { sc with openDecls := OpenDecl.simple ns hidden :: sc.openDecls }
     activateScoped ns
 
@@ -52,7 +61,10 @@ Use `p2m_open_scoped "N M" in cmd` to restrict activation to one command. -/
 elab "p2m_open_scoped " s:str : command => do
   for w in s.getString.splitOn " " do
     if w.isEmpty then continue
-    activateScoped ((w.splitOn "~").head!).toName
+    let ns := ((w.splitOn "~").head!).toName
+    unless (← getEnv).isNamespace ns do
+      logWarning m!"p2m_open_scoped: namespace `{ns}` does not exist"
+    activateScoped ns
 
 /-- `p2m_open "N M" in cmd` opens namespaces and activates their scoped extensions only
 within `cmd`, by wrapping the opening and command in a temporary section.
