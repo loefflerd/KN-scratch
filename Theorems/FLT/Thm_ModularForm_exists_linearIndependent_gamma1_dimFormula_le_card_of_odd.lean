@@ -87,6 +87,11 @@ noncomputable section
 
 namespace DimLBOddE96
 
+private def vectorSpaceSMul {K V : Type*}
+    [Field K] [AddCommGroup V] [Module K V] (a : K) (v : V) : V :=
+  a • v
+
+
 theorem finite_doubleCoset_quotient {G : Type*} [Group G] (H K : Subgroup G) [H.FiniteIndex] :
     Finite (DoubleCoset.Quotient (H : Set G) (K : Set G)) := by
   classical
@@ -194,19 +199,20 @@ private theorem linearIndependent_of_qExpansion_basis
   have hq : qExpansion 1 (⇑(∑ i, g i • f i) : ℍ → ℂ) = 0 := by
     rw [hg0]; exact qExpansion_zero 1
   rw [qExpansion_sum_smul M] at hq
-  have h3 : (((∑ i, g i • b i : ↥(riemannRochSpace D)) :
+  have h3 : (((∑ i, vectorSpaceSMul (g i) (b i) : ↥(riemannRochSpace D)) :
         ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
           LaurentSeries ℂ) =
       ∑ i, algebraMap ℂ (LaurentSeries ℂ) (g i) *
         (((b i : ↥(riemannRochSpace D)) :
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
             LaurentSeries ℂ) := by
+    dsimp only [vectorSpaceSMul]
     rw [Submodule.coe_sum, AddSubmonoidClass.coe_finsetSum]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [Submodule.coe_smul, IntermediateField.coe_smul]
     first
       | rw [Algebra.smul_def]
-  have hL : (((∑ i, g i • b i : ↥(riemannRochSpace D)) :
+  have hL : (((∑ i, vectorSpaceSMul (g i) (b i) : ↥(riemannRochSpace D)) :
         ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
           LaurentSeries ℂ) * W ^ k = 0 := by
     have h1 := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hq
@@ -221,7 +227,7 @@ private theorem linearIndependent_of_qExpansion_basis
     rw [← Finset.sum_mul] at h1
     rw [h3]; exact h1
   have hsum := (mul_eq_zero.1 hL).resolve_right (pow_ne_zero _ hW)
-  have hsumF : (∑ i, g i • b i) = 0 := by
+  have hsumF : (∑ i, vectorSpaceSMul (g i) (b i)) = 0 := by
     apply Subtype.val_injective; apply Subtype.val_injective
     rw [hsum]; rfl
   exact Fintype.linearIndependent_iff.1 b.linearIndependent g hsumF i
@@ -277,6 +283,11 @@ private theorem mul_weightFloor (k : ℕ) (a b : ℤ)
     split_ifs <;> simp
   rw [← t1, ← t2, ← t3]
   ring_nf
+
+private noncomputable def vectorSpaceFinBasis (K V : Type*)
+    [Field K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] :
+    Module.Basis (Fin (Module.finrank K V)) K V :=
+  Module.finBasis K V
 
 -- Abstract fields prevent instance search from exploring unrelated intermediate-field towers.
 private theorem isSeparable_of_finiteDimensional {K F : Type*}
@@ -403,7 +414,7 @@ theorem solution
       (k • Dw)
   set d : ℕ := Module.finrank ℂ ↥(riemannRochSpace (k • Dw)) with hddef
   have hell : (ell (k • Dw) : ℤ) = d := rfl
-  let b := Module.finBasis ℂ ↥(riemannRochSpace (k • Dw))
+  let b := vectorSpaceFinBasis ℂ ↥(riemannRochSpace (k • Dw))
   have hEk : ∀ P : AlgebraicCurve.Place ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ
     (CongruenceSubgroup.Gamma1 M))),
       (k : ℤ) * D1 P = Dk P := by
