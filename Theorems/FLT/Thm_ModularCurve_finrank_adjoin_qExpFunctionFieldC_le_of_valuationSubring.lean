@@ -515,6 +515,7 @@ private theorem span_monomials_eq_top
       (SMulMemClass.toModule _)) :
     Submodule.span k⟮x⟯ (monomials L k Γ) = ⊤ := by
   classical
+  let : Algebra k k⟮x⟯ := (k⟮x⟯).toSubalgebra.algebra
   let V : Submodule k⟮x⟯ (FK k Γ) := Submodule.span k⟮x⟯ (monomials L k Γ)
   have hmul : ∀ u ∈ V, ∀ v ∈ V, u * v ∈ V := by
     intro u hu v hv

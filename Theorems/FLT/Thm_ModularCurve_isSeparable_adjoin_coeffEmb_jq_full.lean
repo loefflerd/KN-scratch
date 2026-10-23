@@ -58,6 +58,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
+private theorem charZero_intermediateField {K F : Type*}
+    [Field K] [Field F] [Algebra K F] [CharZero K]
+    (A : IntermediateField K F) : CharZero A := by
+  infer_instance
+
 
 namespace P2MW.S_ModularCurve_isSeparable_adjoin_coeffEmb_jq_full
 
@@ -130,7 +135,7 @@ private theorem ModularCurve.isSeparable_adjoin_coeffEmb_jq_full (L : Type*) [Fi
   have : FiniteDimensional X (laurentBaseChange L (modularFunctionFieldFull N)) :=
     finiteDimensional_adjoin_coeffEmb_jq_full L N
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  have : CharZero X := charZero_of_injective_algebraMap (algebraMap L X).injective
+  have : CharZero X := charZero_intermediateField X
   exact isSeparable_of_finiteDimensional
 
 p2m_open "ModularCurve\
