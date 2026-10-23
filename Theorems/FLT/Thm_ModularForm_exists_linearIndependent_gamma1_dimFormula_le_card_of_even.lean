@@ -178,12 +178,17 @@ theorem ofPowerSeries_smul (a : ℂ) (p : PowerSeries ℂ) :
   rw [PowerSeries.smul_eq_C_mul, map_mul]
   congr 1
 
+-- Abstract fields prevent instance search from exploring unrelated intermediate-field towers.
+private theorem isSeparable_of_finiteDimensional {K F : Type*}
+    [Field K] [Field F] [Algebra K F] [FiniteDimensional K F] [CharZero K] :
+    Algebra.IsSeparable K F := by
+  infer_instance
+
 end DimLBEven
 
 end
 
 open DimLBEven in
-set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem solution
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) (k : ℕ) (hk : 3 ≤ k) (hke : Even k) :
     ∃ (d : ℕ) (f : Fin d → ModularForm (Gamma1 M) (k : ℤ)), LinearIndependent ℂ f ∧
@@ -222,7 +227,8 @@ theorem solution
     ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
   have hsep : Algebra.IsSeparable ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(laurentBaseChange ℂ
     (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
-      ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := inferInstance
+      ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+    isSeparable_of_finiteDimensional
   obtain ⟨h0, h1728⟩ :=
     ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M (by
       omega) y hy

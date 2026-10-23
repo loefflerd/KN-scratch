@@ -15,17 +15,14 @@ public import Definitions.FLT.Def_ModularCurve_SpecialisationBridge
 
 import Mathlib.Algebra.Category.Grp.Injective
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
-import Definitions.FLT.Def_ModularCurve_EMD
 import Definitions.FLT.Def_HahnSeries_Monodromy
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
+import Definitions.FLT.Def_ModularCurve_HahnSpecialise
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
-import Theorems.FLT.Thm_HahnSeries_isAlgClosed_rat
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_zsmul_some_eq_some_div
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_evalEval_psi_sq
 import Theorems.FLT.Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero
 import Theorems.FLT.Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero
-import Definitions.FLT.Def_ModularCurve_HahnSpecialise
 import Theorems.FLT.Thm_ModularCurve_HahnSpecialise_specialiseCycSub_bijective
 
 /-!
@@ -1742,4 +1739,3 @@ theorem ModularCurve.B3.specialisationEquivariance_level (N : ℕ) [NeZero N] (j
   solution N j₀
 
 end publicSection
-#min_imports

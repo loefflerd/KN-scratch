@@ -84,7 +84,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 50000 -- was 400k, 50k seems to suffice
 
 namespace P2MW.S_ModularCurve_exists_slot_of_isCusp
 
@@ -773,6 +772,8 @@ open Polynomial IntermediateField
 
 theorem slots_isIntegral_jqN (N : ℕ) [NeZero N] :
     IsIntegral (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) := by
+  have : Module.Free ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ {jqN N}) :=
+    Module.Free.of_divisionRing _ _
   have hfin : FiniteDimensional (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
       (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
         ({jqN N} : Set (LaurentSeries ℚ))) :=
