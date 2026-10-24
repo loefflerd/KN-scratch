@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Mathlib.Algebra.CharP.Invertible
 import Mathlib.RingTheory.Henselian

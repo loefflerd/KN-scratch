@@ -9,8 +9,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformCoefficientCompletion
-public import Theorems.KN.Thm_AdicCompletion_exists_domain_dvr_complete
 public import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
+
+import Theorems.KN.Thm_AdicCompletion_exists_domain_dvr_complete
+import Theorems.KN.Thm_MTT_numberField_coefficientField
+import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # The canonical local coefficient field and its discrete valuation

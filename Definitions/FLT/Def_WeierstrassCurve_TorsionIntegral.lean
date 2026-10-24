@@ -8,7 +8,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
+public import Mathlib.RingTheory.Valuation.RamificationGroup
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+
+import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
 
 /-!
 # Valuation estimates for Weierstrass points with non-integral coordinates

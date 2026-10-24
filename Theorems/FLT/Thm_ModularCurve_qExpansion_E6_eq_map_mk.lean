@@ -11,8 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
-public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
+public import Mathlib.NumberTheory.ModularForms.QExpansion
+
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+import Mathlib.CategoryTheory.Category.Init
 
 
 /-!

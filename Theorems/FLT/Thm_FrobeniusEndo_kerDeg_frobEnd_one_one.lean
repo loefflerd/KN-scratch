@@ -12,7 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
-public import Mathlib.FieldTheory.Finite.Basic
+
+import Mathlib.FieldTheory.Finite.Basic
 
 
 /-!

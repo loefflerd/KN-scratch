@@ -9,7 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_Eisenstein
-public import Definitions.FLT.Def_ModularCurve_MazurStepThree
+public import Definitions.FLT.Def_EllipticCurve_ZeroComponentAt
 
 /-!
 # Named inputs for Mazur's step three over X0​(p)

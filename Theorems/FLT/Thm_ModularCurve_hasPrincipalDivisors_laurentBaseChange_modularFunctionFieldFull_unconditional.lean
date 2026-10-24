@@ -12,7 +12,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+public import Definitions.FLT.Def_ModularCurve_X0
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_modularPolynomialFamily

@@ -12,6 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
+public import Definitions.KN.Def_KN_HorizontalPadicLAux
 
 /-!
 # Equality of elliptic-curve and attached-eigenform nonvanishing counts

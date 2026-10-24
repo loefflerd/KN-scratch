@@ -11,7 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.RingTheory.PowerSeries.Order
+
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
 
 /-!

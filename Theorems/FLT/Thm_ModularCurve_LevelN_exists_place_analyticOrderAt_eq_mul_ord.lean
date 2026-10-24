@@ -19,6 +19,7 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Analytic order at τ₀ is e times the order at a place

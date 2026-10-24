@@ -17,6 +17,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_of_span
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_algebraMap
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Divisor of X-b on the rational function field

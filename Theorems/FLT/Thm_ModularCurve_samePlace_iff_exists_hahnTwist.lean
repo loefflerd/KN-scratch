@@ -23,6 +23,7 @@ import Theorems.FLT.Thm_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Same induced place iff related by a monodromy twist

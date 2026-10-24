@@ -12,11 +12,10 @@ Licensed under Apache License 2.0
 
 module
 
-import Mathlib.FieldTheory.Relrank
-
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_X1
 
+import Mathlib.FieldTheory.Relrank
 import Mathlib.Algebra.Algebra.ZMod
 import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
 import Theorems.FLT.Thm_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
@@ -26,6 +25,9 @@ import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ValuationSubring_exists_liesOverPrime_algebraicClosure_rat
 import Definitions.FLT.Def_ModularCurve_X0ModL
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Degree of the q-expansion function field over the j-line

@@ -9,9 +9,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_Compat_Mathlib430
-public import Mathlib.Data.Fin.Tuple.Sort
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Jacobian.Point
-public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
+public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
+
+import Mathlib.Data.Fin.Tuple.Sort
 
 /-!
 # Elliptic divisibility sequences, universal Weierstrass curve, division polynomial ω

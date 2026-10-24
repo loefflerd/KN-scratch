@@ -22,6 +22,7 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 import Theorems.FLT.Thm_WeierstrassCurve_veluGx_ne_zero_of_two_torsion
+import Mathlib.RingTheory.Henselian
 
 
 /-!

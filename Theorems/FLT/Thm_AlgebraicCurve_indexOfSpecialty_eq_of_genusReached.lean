@@ -18,6 +18,10 @@ import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Index of specialty at an attained Riemann genus

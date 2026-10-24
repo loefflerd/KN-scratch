@@ -11,11 +11,16 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
-public import Mathlib.NumberTheory.ModularForms.Discriminant
+public import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
+public import Mathlib.Analysis.CStarAlgebra.Classes
 
 import Theorems.FLT.Thm_WLight_exists_analyticOnNhd_div_of_monicRel
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.NormNum.Parity
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Holomorphic divisibility from a cleared monic relation on H
@@ -64,8 +69,8 @@ namespace P2MW.S_WLight_exists_mdifferentiable_div_of_monicRel
 
 noncomputable section
 
-p2m_open "Complex Real UpperHalfPlane ModularForm Polynomial Real.Polynomial"
-open scoped Topology Manifold MatrixGroups ModularForm
+p2m_open "Complex Real UpperHalfPlane Polynomial Real.Polynomial"
+open scoped Topology Manifold MatrixGroups
 
 namespace WLight
 p2m_export "WLight" "exists_analyticOnNhd_div_of_monicRel"
@@ -244,7 +249,7 @@ public section publicSection
 
 
 open Complex Real UpperHalfPlane
-open scoped Manifold MatrixGroups ModularForm
+open scoped Manifold MatrixGroups
 theorem WLight.exists_mdifferentiable_div_of_monicRel {a b : ℍ → ℂ} {c : ℕ → ℍ → ℂ} {d : ℕ}
     (hahol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) a) (hbhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b)
     (hb0 : b ≠ 0) (hc : ∀ k < d, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (c k))

@@ -16,6 +16,7 @@ public import Definitions.FLT.Def_ModularCurve_X1
 import Theorems.FLT.Thm_EisensteinWeightOne_e1Chi3IsModular
 import Theorems.FLT.Thm_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Bounded denominators for rational q-expansions on Γ₁(M)

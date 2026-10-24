@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Mathlib.Algebra.CharP.Invertible
 import Mathlib.RingTheory.PicardGroup
@@ -26,6 +25,7 @@ import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Theorems.FLT.Thm_WeierstrassCurve_exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries
 import Theorems.FLT.Thm_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Ramification over j = 1728 divides 2 on X₀(N)

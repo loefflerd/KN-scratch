@@ -11,8 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_JZeroHeightForm
-public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+public import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
+public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 
 import Theorems.FLT.Thm_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
@@ -20,6 +21,9 @@ import Theorems.FLT.Thm_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
 import Theorems.FLT.Thm_AlgebraicCurve_dCoordGenerates_of_isCurveOver
 import Theorems.FLT.Thm_ModularCurve_genus_eq_genusFF_modularFunctionFieldBar
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Riemann's inequality for the function field of X₀(N) over ℚ̄

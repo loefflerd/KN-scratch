@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-public import Mathlib.FieldTheory.Relrank
 
 import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_map_eq_prod_slots
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi

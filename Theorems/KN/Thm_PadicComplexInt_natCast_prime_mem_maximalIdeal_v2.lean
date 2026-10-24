@@ -11,7 +11,13 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
+public import Mathlib.NumberTheory.Padics.Complex
+
+import Mathlib.Tactic.ArithMult.Init
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # The rational prime lies in the maximal ideal of the C_p integers

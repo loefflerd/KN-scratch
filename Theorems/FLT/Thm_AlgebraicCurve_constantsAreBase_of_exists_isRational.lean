@@ -18,6 +18,8 @@ import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Constants are the base field, given a rational place

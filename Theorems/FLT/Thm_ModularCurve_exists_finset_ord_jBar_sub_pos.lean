@@ -12,14 +12,14 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Finiteness of the zero locus of jmath̄ - j₀

@@ -11,9 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 public import Mathlib.FieldTheory.Perfect
 public import Mathlib.Algebra.CharP.Algebra
+public import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
 
 import Mathlib.FieldTheory.Relrank
 import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas

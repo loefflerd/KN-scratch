@@ -12,10 +12,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
-public import Mathlib.NumberTheory.ModularForms.Bounds
+public import Mathlib.NumberTheory.ModularForms.NormTrace
 
 import Definitions.MTT.Def_MTT_ParabolicCohomology
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_local_equivariant
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Cusp decay of mixed-period test functions at positive level

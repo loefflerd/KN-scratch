@@ -17,6 +17,8 @@ import Theorems.MTT.Thm_MTT_sum_integral_wirtinger_smul_fd_eq_zero
 import Theorems.MTT.Thm_MTT_Cohomology_gammaOne_has_finset_complement
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_wirtinger_data_of_pos_level
 import Theorems.MTT.Thm_MTT_Cohomology_period_pairings_eq_wirtinger_sums_of_weight_ge_two
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Stokes vanishing for an equivariant mixed primitive

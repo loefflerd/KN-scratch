@@ -12,9 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
-public import Mathlib.NumberTheory.ModularForms.Bounds
 
 import Theorems.MTT.Thm_MTT_Cohomology_periodPairing_eq_sum_tiles
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Period pairing as a finite transversal integral in weight at least two

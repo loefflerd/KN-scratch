@@ -12,8 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
-
 public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
+
+import Mathlib.Tactic.Continuity.Init
+import Mathlib.CategoryTheory.Category.Init
+import Mathlib.Data.Rat.Floor
 
 
 /-!

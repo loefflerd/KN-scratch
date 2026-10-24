@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_ModularCurve_PeriodOf
 
 import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Period maps of weight-2 cusp forms are parabolic

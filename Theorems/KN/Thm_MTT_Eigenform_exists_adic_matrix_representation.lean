@@ -12,10 +12,19 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
+public import Definitions.FLT.Def_GaloisRep_Residual
 
 import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Theorems.KN.Thm_MTT_Eigenform_exists_continuous_localField_representation
+import Theorems.KN.Thm_MTT_numberField_coefficientField
+import Theorems.KN.Thm_MTT_Eigenform_p_mem_coefficientPrime
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Deligne's integral representation over the canonical coefficient completion

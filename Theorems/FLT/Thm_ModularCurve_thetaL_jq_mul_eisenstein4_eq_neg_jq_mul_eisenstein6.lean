@@ -13,6 +13,7 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 public import Definitions.FLT.Def_ModularCurve_TateFormal
+public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_thetaL_jq_mul_deltaSeries
 import Definitions.FLT.Def_P2M_Util

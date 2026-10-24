@@ -11,9 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Algebra.Polynomial.Splits
+public import Mathlib.Algebra.Polynomial.AlgebraMap
 
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Algebra.Polynomial.Splits
 
 /-!
 # A value attained too often lies in the base field

@@ -7,6 +7,8 @@ import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_isNew
 import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_nonvanishingCount_eq
 import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_hasContinuousLocalFieldRepresentations
 import Theorems.KN.Thm_HorizontalPadicL_corollary_5_17_of_quadratic_twist
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 
 /-!
 # Conditional horizontal non-vanishing for elliptic curves

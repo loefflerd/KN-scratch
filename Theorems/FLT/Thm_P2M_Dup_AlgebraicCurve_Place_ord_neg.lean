@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Definitions.FLT.Def_P2M_Util

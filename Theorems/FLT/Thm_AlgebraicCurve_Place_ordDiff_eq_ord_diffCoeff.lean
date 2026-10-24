@@ -22,6 +22,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_add_eq_of_lt
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_natCast
 import Definitions.FLT.Def_P2M_Util
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.RingTheory.Flat.TorsionFree
 
 /-!
 # Order of a differential is independent of the uniformiser

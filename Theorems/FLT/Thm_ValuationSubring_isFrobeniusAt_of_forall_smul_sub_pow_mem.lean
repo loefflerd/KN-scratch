@@ -13,6 +13,7 @@ module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 public import Mathlib.NumberTheory.NumberField.Basic
+public import Definitions.FLT.Def_FLTPrelim_Ramification
 
 
 /-!

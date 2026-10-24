@@ -17,6 +17,8 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_ModularCurve_exists_isIntegralQExp_smul_slash_of_mem_Gamma0
 import Theorems.FLT.Thm_ModularFormClass_eq_of_forall_qCoeff_eq
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Diamond action of Γ₀(M) on the q-expansion function field

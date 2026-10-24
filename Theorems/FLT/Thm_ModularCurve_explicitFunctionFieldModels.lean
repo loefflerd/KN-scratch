@@ -24,6 +24,9 @@ import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_eventuallyEq_div_of_meromorphic_of_finiteIndex
 import Theorems.FLT.Thm_ModularCurve_LevelN_exists_frickeFraction_of_modularForm
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Explicit function-field models for X₀(N) and X(N)

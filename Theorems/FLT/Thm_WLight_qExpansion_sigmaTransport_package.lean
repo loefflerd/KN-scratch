@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing

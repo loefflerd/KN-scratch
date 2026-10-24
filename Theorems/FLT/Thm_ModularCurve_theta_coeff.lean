@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_PhiGen
+public import Mathlib.RingTheory.LaurentSeries
 
 import Theorems.FLT.Thm_ModularCurve_PhiGen_sum_qTwist_coeff
 import Definitions.FLT.Def_P2M_Util

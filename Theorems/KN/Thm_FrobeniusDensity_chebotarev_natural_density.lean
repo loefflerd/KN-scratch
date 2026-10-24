@@ -12,7 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
-public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 
 import TauCeti.NumberTheory.Chebotarev.PrimeCounting.FrobeniusPrimeCount
 import TauCeti.NumberTheory.NumberField.Frobenius.DecompositionGroup

@@ -8,8 +8,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_HorizontalPadicLAux
 public import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
+public import Mathlib.NumberTheory.Padics.Complex
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 /-!
 # Seeded prime Galois data, rebased

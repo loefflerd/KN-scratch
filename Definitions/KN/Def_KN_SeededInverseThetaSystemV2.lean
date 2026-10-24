@@ -8,7 +8,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededThetaFullSupportModularSymbolZeroSetV2
+public import Definitions.KN.Def_KN_InverseSeedConventionV2
+public import Definitions.MTT.Def_MTT_Measures
 
 /-!
 # Inverse-seed theta systems over rebased data

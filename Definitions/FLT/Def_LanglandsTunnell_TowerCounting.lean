@@ -9,7 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_TaylorWiles_Primes
-public import Mathlib.FieldTheory.Galois.IsGaloisGroup
+public import Mathlib.FieldTheory.Galois.IsGaloisGroup -- shake: keep
 public import Mathlib.RingTheory.Frobenius
 
 /-!

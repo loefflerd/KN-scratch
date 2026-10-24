@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
 import Mathlib.RingTheory.SimpleRing.Principal
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.Positivity.Finset
+import Mathlib.Algebra.Order.Field.Basic
 
 /-!
 # Forms with no X₁ⁿ term lie in the image of T^h-1

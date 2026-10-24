@@ -11,8 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 public import Mathlib.FieldTheory.RatFunc.Basic
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.RingTheory.Henselian
@@ -23,6 +23,8 @@ import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_hasPrincipalDivisors
 import Theorems.FLT.Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 
 /-!
 # Degree-zero principal divisors for separable extensions of K(t)

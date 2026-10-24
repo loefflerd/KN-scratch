@@ -8,10 +8,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.RatFunc.Ostrowski
-
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+
+import Mathlib.NumberTheory.RatFunc.Ostrowski
 
 /-!
 # Classification of places of the rational function field

@@ -12,12 +12,26 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-
+public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.Algebra.Polynomial.PartialFractions
+import Mathlib.Algebra.BigOperators.Field
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Unramified.Field
+import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
+import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 /-!
 # Residue theorem for K(x), K algebraically closed

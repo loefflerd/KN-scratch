@@ -12,6 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
+public import Definitions.KN.Def_KN_HorizontalPadicLAux
 
 import Theorems.KN.Thm_FrobeniusDensity_chebotarev_natural_density
 

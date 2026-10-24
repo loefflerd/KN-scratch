@@ -12,14 +12,15 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Places above a finite j-value as ℚ̄-points of the coordinate ring

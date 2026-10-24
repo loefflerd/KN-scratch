@@ -8,7 +8,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_HorizontalPadicL
+public import Mathlib.AlgebraicGeometry.EllipticCurve.LFunction
+
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 
 /-!
 # Degree of an elliptic curve local Euler factor

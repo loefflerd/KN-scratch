@@ -8,9 +8,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Theorems.FLT.Thm_CuspForm_heckeTLin_comm
-public import Theorems.FLT.Thm_CuspForm_heckeTLin_heckeULin_comm
-public import Theorems.FLT.Thm_CuspForm_heckeULin_comm
+public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
+
+import Theorems.FLT.Thm_CuspForm_heckeULin_comm
+import Theorems.FLT.Thm_CuspForm_heckeTLin_heckeULin_comm
+import Theorems.FLT.Thm_CuspForm_heckeTLin_comm
 
 /-!
 # Hecke algebras acting on cusp forms for Γ0​(N)

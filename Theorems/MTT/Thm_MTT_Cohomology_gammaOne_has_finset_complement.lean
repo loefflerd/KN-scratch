@@ -11,7 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_PeriodPairing
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.GroupTheory.Complement
+
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.Combinatorics.Matroid.Init
 
 
 /-!

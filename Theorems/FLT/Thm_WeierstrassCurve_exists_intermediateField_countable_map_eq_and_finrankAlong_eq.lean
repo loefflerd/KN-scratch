@@ -22,6 +22,14 @@ import Mathlib.LinearAlgebra.Countable
 import Mathlib.RingTheory.PicardGroup
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_finiteDimensional_ratFunc_functionField
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Data.Rat.Encodable
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Descent of an elliptic curve with a function-field endomorphism to a countable subfield

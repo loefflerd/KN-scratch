@@ -2,6 +2,7 @@ module
 
 public import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 import Mathlib.NumberTheory.Padics.RingHoms
 import Theorems.KN.Thm_HorizontalPadicL_not_minimalModularLevel_dvd_iff_localEulerFactorDegreeTwo

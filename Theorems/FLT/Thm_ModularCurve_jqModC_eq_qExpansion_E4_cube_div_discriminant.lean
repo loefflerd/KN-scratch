@@ -12,7 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+public import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Theorems.FLT.Thm_ModularCurve_hasSum_jq_qParam
 import Theorems.FLT.Thm_ModularCurve_hasSum_qParam_mul_laurent

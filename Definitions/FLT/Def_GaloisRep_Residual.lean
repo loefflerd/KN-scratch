@@ -10,6 +10,7 @@ module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 public import Definitions.FLT.Def_FLTPrelim_Modularity
+public import Definitions.FLT.Def_FLTPrelim_Ramification
 
 /-!
 # Two-dimensional residual Galois representations and their properties

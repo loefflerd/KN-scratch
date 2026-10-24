@@ -14,6 +14,7 @@ module
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.NumberTheory.RatFunc.Ostrowski
@@ -24,6 +25,23 @@ import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.Etale.Weakly
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Order.Int.LeastGreatest
 
 /-!
 # Riemann–Roch from the residue theorem, K algebraically closed

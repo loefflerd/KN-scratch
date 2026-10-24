@@ -14,9 +14,6 @@ public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
 public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 
-import Mathlib.FieldTheory.PurelyInseparable.Exponent
-import Mathlib.RingTheory.TotallySplit
-
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
@@ -28,6 +25,16 @@ import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_alge
 import Theorems.FLT.Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.RingTheory.Norm.Transitivity
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Mathlib.RingTheory.DedekindDomain.Factorization
+import Mathlib.RingTheory.RamificationInertia.Basic
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Vélu's formulas land on the quotient curve (odd order)

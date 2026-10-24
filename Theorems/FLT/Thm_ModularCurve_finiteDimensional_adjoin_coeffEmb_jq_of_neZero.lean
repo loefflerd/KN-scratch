@@ -11,7 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_CuspidalClass
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs

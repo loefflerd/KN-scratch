@@ -14,6 +14,7 @@ module
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Theorems.FLT.Thm_AlgebraicCurve_residueTheoremK_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed

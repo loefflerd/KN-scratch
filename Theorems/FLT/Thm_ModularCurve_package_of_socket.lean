@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 

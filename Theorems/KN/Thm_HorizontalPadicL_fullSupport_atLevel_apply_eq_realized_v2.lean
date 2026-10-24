@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededInverseThetaSystemV2
+public import Definitions.KN.Def_KN_InverseSeedConventionV2
 
 /-!
 # Full support identifies the level character with its primitive realization

@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_ModularCurve_JLinePlaces
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 public import Definitions.FLT.Def_ModularCurve_ModuliPoint
 
@@ -66,8 +65,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField ModularCurve
-  IsDedekindDomain WithZero
+open IntermediateField AlgebraicCurve ModularCurve IsDedekindDomain WithZero
 
 section EFIX
 

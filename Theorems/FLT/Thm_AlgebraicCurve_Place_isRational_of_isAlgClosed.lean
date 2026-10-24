@@ -13,11 +13,13 @@ module
 
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Mathlib.Algebra.BigOperators.Field
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_iff_deg_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Places of a function field over an algebraically closed constant field are rational

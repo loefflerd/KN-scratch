@@ -17,6 +17,8 @@ import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Degree of a divisor as a sum over its support

@@ -12,8 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_ModuliPoint
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
 
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
+import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
 
 /-!
 # Fibre of Y₀(N) over j(W) as order-N points modulo Aut(W)

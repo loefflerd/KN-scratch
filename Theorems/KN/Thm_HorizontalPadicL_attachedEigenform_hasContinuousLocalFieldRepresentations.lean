@@ -4,6 +4,10 @@ public import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 
 import Theorems.KN.Thm_HorizontalPadicL_tateModuleRep_good_primes
+import Theorems.KN.Thm_MTT_Eigenform_p_mem_coefficientPrime
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 /-!
 # Continuous local-field representations for the eigenform attached to an elliptic curve

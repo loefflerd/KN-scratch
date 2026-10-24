@@ -19,6 +19,7 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Definitions.FLT.Def_ModularCurve_GeometricBaseChange
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
 
 /-!
 # Transcendence and finiteness under constant field extension of F₀

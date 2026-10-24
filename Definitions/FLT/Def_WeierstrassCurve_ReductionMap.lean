@@ -8,8 +8,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FreyPackage_GaloisRep
-public import Mathlib.RingTheory.Valuation.LocalSubring
+public import Definitions.FLT.Def_FLTPrelim_Ramification
+
+import Mathlib.RingTheory.Valuation.LocalSubring
 
 /-!
 # Reduction of Weierstrass points along a valuation subring

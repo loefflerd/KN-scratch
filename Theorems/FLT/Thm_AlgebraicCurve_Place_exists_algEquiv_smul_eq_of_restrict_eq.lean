@@ -17,6 +17,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Mathlib.NumberTheory.RamificationInertia.Galois
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Valuation.LocalSubring
 
 /-!
 # Galois transitivity on places above a fixed place

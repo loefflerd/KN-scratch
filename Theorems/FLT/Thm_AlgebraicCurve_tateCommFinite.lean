@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_AlgebraicCurve_TateResidueCurrency
 
 import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Algebra.Order.Algebra
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Tate's commutator has finite K-rank at every place

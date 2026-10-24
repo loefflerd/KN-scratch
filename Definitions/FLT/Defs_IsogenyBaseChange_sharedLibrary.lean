@@ -14,11 +14,13 @@ Extracted from Prove2Me proofs by Claude (2026-09-05):
 
 module
 
-import Mathlib.Algebra.Algebra.Field
-
 public import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 
+import Mathlib.Algebra.Algebra.Field
 import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.Tactic.NormNum.Prime
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
 
 /-!
 # Base change of finite elliptic-curve function-field maps

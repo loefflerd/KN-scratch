@@ -20,6 +20,7 @@ import Theorems.FLT.Thm_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
 import Theorems.FLT.Thm_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle
 import Theorems.FLT.Thm_HeckeEis_isParabolicCocycle_cocycle_of_isEichlerIntegral
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Data.Nat.Prime.Int
 
 /-!
 # Eichler–Shimura map intertwines U_ℓ for ℓ ∣ N

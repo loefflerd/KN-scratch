@@ -10,7 +10,6 @@ module
 
 public import Definitions.KN.Def_KN_HorizontalPadicL
 public import Mathlib.NumberTheory.Padics.Complex
-public import Mathlib.NumberTheory.Padics.RingHoms
 
 /-!
 # Auxiliary definitions for horizontal p-adic L-functions

@@ -9,8 +9,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-public import Mathlib.RingTheory.Etale.Weakly
-public import Mathlib.RingTheory.TotallySplit
+
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Traced Kähler residue functional on adèles; residue-theorem predicates

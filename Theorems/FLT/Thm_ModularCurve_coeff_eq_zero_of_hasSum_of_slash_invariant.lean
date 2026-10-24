@@ -11,8 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
+public import Mathlib.Analysis.Complex.Periodic
 
 import Mathlib.NumberTheory.ModularForms.NormTrace
 

@@ -9,7 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV2B
-public import Definitions.MTT.Def_MTT_Measures
 
 /-!
 # Seeded theta construction over the rebased V2 data

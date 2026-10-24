@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
-public import Mathlib.RingTheory.Flat.Basic
 
 /-!
 # Manin's unimodular paths span: every value of a modular symbol is an integral combination of its

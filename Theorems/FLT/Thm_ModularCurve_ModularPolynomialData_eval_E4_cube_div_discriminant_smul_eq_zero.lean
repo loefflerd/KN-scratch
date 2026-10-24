@@ -20,6 +20,7 @@ import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discrimina
 import Theorems.FLT.Thm_ModularForm_exists_degeneracy_Gamma0
 import Theorems.FLT.Thm_ModularForm_qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 
 /-!
 # Modular equation on H: Φ_N(j(σ),j(Nσ))=0

@@ -9,8 +9,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Mathlib.RingTheory.Valuation.LocalSubring
-public import Mathlib.RingTheory.Norm.Basic
+
+import Mathlib.RingTheory.Norm.Basic
+import Mathlib.RingTheory.Valuation.LocalSubring
 
 /-!
 # Restriction of places, ramification and inertia, divisor pull-back and push-forward

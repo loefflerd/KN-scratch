@@ -12,10 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
-public import Mathlib.NumberTheory.ModularForms.Bounds
 
 import Theorems.MTT.Thm_MTT_Cohomology_periodDensity_integrableOn_tile
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_local_equivariant
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Tile integrability of mixed-period Wirtinger densities at positive level

@@ -17,6 +17,7 @@ import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_isSeparable_adjoin_coeffEmb_jq_full
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Injectivity of the q-expansion map on differentials

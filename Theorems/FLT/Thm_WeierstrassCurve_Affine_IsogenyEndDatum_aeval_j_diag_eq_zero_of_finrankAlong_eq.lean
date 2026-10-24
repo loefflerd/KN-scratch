@@ -32,6 +32,8 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforwar
 import Theorems.FLT.Thm_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 
 /-!
 # Degree-N endomorphism forces Φ_N(j(E),j(E))=0

@@ -11,12 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_OmegaOf
-public import Definitions.FLT.Def_ModularCurve_EigenformIdeal
-public import Definitions.FLT.Def_ModularCurve_HeckeModule
-public import Definitions.FLT.Def_AlgebraicCurve_Differentials
-public import Definitions.FLT.Def_CuspForm_IntegralStructure
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
+public import Mathlib.NumberTheory.ModularForms.Discriminant
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+public import Definitions.FLT.Def_ModularCurve_X0
+public import Definitions.FLT.Def_FLTPrelim_Modularity
 
 import Theorems.FLT.Thm_ModularCurve_thetaL_coeffMap_eq_coeffMap_single_mul_derivative
 import Theorems.FLT.Thm_ModularCurve_theta_mul
@@ -24,8 +23,8 @@ import Theorems.FLT.Thm_ModularForm_exists_gamma0_qExpansion_eq_of_levelOne
 import Theorems.FLT.Thm_ModularForm_exists_rankinCohen_one_qExpansion_eq
 import Theorems.FLT.Thm_ModularForm_levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant
 import Definitions.FLT.Def_P2M_Util
-
 import Definitions.FLT.Defs_UpperHalfPlane_niceFunctionSubalgebra
+import Theorems.FLT.Thm_ModularCurve_theta_coeff
 
 /-!
 # q dj/dq · Δ = -E₄²E₆ as q-expansions

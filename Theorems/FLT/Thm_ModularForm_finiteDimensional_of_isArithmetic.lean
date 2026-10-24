@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.NumberTheory.ModularForms.Basic
 
 import Theorems.FLT.Thm_Subgroup_IsArithmetic_exists_nat_mem_strictPeriods_conj
 import Theorems.FLT.Thm_ModularForm_eq_zero_of_lt_order_qExpansion_of_isArithmetic

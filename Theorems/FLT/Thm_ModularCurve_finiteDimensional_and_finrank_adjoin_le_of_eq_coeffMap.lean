@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_ModularCurve_X0ModL
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Finiteness and degree bound descend under coefficientwise field maps

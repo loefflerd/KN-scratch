@@ -23,6 +23,9 @@ import Theorems.FLT.Thm_AlgebraicCurve_IsCurveOver_exists_separating_transcenden
 import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
 import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.DedekindDomain.Factorization
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Existence of canonical divisors on a curve over a perfect field

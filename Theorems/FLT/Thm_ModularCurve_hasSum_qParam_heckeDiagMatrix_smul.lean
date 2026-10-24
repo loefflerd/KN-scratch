@@ -11,9 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
+public import Mathlib.Analysis.Complex.Periodic
 
 import Definitions.FLT.Def_P2M_Util
 

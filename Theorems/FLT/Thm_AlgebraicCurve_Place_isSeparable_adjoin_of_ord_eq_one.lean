@@ -11,11 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_Differentials
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.FieldTheory.Relrank
 import Mathlib.RingTheory.Unramified.Field
-
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
 import Definitions.FLT.Def_P2M_Util

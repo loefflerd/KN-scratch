@@ -18,6 +18,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # The place at infinity of K(t) has degree one

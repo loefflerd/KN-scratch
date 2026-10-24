@@ -9,7 +9,10 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.RingTheory.Valuation.ValuationSubring
-public import Definitions.FLT.Def_FLTPrelim_GaloisRep
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
+import Mathlib.Data.Rat.Floor
 
 /-!
 # Points in the identity component at a place of Q​

@@ -11,7 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FLTPrelim_GaloisRep
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
+public import Mathlib.Algebra.Module.Torsion.Basic
 
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 

@@ -11,9 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.RamificationInertia.Galois
 public import Mathlib.RingTheory.Frobenius
 public import Definitions.FLT.Def_TaylorWiles_Primes
+public import Mathlib.FieldTheory.Galois.IsGaloisGroup
 
 import Definitions.FLT.Def_FieldTheory_RatAlgClosureGalois
 import Mathlib.RingTheory.Invariant.Profinite

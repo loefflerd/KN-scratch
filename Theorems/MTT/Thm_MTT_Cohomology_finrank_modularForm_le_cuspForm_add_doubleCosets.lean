@@ -11,11 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 public import Mathlib.GroupTheory.DoubleCoset
+public import Mathlib.NumberTheory.ModularForms.Basic
 
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
 import Mathlib.NumberTheory.ModularForms.NormTrace
+import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 
 /-!
 # The cusp-condition codimension is at most the cusp double-coset count

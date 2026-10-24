@@ -14,6 +14,7 @@ module
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_iff_deg_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_of_isAlgClosed

@@ -23,6 +23,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBo
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_algebraMap
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Puiseux bound d forces ord_W(p)∣ d

@@ -12,10 +12,18 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
-public import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.Algebra.MvPolynomial.Funext
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Analysis.Complex.Polynomial.Basic
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Data.Nat.Prime.Int
+import Mathlib.Data.Nat.Factorial.DoubleFactorial
+import Mathlib.Algebra.MvPolynomial.CommRing
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Boundary Hecke sum at a single cusp

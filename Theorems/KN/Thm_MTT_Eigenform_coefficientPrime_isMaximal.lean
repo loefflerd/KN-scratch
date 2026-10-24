@@ -11,9 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isPrime
-public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
-public import Theorems.KN.Thm_MTT_numberField_coefficientField
+public import Definitions.KN.Def_MTT_EigenformCoefficientPrime
+
+import Theorems.KN.Thm_MTT_numberField_coefficientField
+import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
+import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isPrime
 
 /-!
 # The coefficient prime selected by a p-adic embedding is maximal

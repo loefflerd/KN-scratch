@@ -18,6 +18,13 @@ public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_add
 import Definitions.FLT.Def_P2M_Util
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Nonzero elements of the isogeny subring come from isogeny data

@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.NumberTheory.ModularForms.Basic
 
 import Theorems.FLT.Thm_CuspForm_finiteDimensional_of_isArithmetic
 

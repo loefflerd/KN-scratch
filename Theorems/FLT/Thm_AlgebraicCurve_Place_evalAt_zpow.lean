@@ -16,6 +16,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_inv
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Evaluation at a rational place respects integer powers

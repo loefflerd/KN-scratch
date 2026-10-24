@@ -14,6 +14,7 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_of_span
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Order at the place t=a equals root multiplicity

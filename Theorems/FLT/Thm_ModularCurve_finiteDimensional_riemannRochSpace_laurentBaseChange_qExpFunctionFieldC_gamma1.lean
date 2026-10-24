@@ -21,6 +21,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_lSpace_zero
 import Theorems.FLT.Thm_AlgebraicCurve_nonempty_place_of_transcendental_of_finiteDimensional
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Riemann–Roch spaces of K·ℚ(X₁(M)) are finite-dimensional

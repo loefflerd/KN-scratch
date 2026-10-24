@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
-
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_of_orderMap
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_adjoin_of_transcendental
@@ -28,6 +27,7 @@ import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin
 import Theorems.FLT.Thm_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Zeros of j-a are simple for a≠ 0,1728

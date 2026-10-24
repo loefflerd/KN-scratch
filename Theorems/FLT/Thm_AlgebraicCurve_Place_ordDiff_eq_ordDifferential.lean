@@ -21,6 +21,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_diffCoeff_smul_D_eq
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ordDiff_eq_ord_diffCoeff
 import Theorems.FLT.Thm_AlgebraicCurve_dCoordGenerates_of_isCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_iff_exists_transcendental_finiteDimensional
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # The two orders of a differential at a place agree

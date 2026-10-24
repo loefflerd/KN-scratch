@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
-public import Definitions.FLT.Def_ModularCurve_PhiGen
 
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
@@ -20,6 +19,7 @@ import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
 import Mathlib.Algebra.Polynomial.Bivariate
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_ModularCurve_PhiGen
 
 /-!
 # Integrality of ̄ j(q^N) over K(̄ j(q))

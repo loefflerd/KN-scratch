@@ -13,10 +13,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_TruncatedHorizontalCoefficientsV2
+public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
+public import Definitions.KN.Def_KN_PrimePowerPropagationV2
 
 import Mathlib.GroupTheory.FiniteAbelian.Duality
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
 /-!
 # Primitive Fourier vanishing contracts truncated marginal coefficients by $1/p$

@@ -12,9 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
-public import Mathlib.NumberTheory.ModularForms.Bounds
 
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+import Mathlib.NumberTheory.ModularForms.Bounds
 
 /-!
 # Integrability of period-contraction densities on modular tiles

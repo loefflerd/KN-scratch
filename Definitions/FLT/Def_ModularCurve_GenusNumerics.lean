@@ -8,7 +8,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.LegendreSymbol.Basic
 public import Definitions.FLT.Def_ModularCurve_X0
 
 /-!

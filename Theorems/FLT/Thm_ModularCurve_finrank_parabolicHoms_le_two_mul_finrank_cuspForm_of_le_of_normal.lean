@@ -23,6 +23,9 @@ import Theorems.FLT.Thm_ModularCurve_periodMapOf_apply_eq_periodOf
 import Theorems.FLT.Thm_ModularCurve_periodMapOf_mem_parabolicHoms
 import Theorems.FLT.Thm_ModularCurve_periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.ModularForms.NormTrace
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Descent of the parabolic rank bound along a normal subgroup

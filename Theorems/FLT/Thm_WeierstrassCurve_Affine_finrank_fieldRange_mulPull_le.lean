@@ -11,8 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.RingTheory.Henselian
-public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 

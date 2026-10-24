@@ -11,14 +11,15 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
+public import Definitions.FLT.Def_ModularCurve_X0
 
 import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_frickeFunction_orbit_package
 import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Valuation bound for E(σ_γ z) under a non-zero limit

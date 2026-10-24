@@ -12,10 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+public import Mathlib.RingTheory.LaurentSeries
 
 import Mathlib.RingTheory.PowerSeries.Trunc
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
 /-!
 # Degree-one places arise from embeddings into K((T))

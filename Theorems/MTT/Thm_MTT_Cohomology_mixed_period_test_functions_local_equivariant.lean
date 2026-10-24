@@ -12,9 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
-public import Mathlib.NumberTheory.ModularForms.Bounds
 
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Local calculus and equivariance of mixed-period test functions

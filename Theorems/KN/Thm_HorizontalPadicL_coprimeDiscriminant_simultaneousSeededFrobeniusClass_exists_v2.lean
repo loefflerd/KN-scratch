@@ -14,10 +14,12 @@ module
 
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
+public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 
 import Theorems.KN.Thm_NumberField_not_dvd_discr_sup_of_not_dvd_discr
 import Theorems.KN.Thm_IsCyclotomicExtension_Rat_prime_dvd_discr_dvd_conductor
 import Theorems.KN.Thm_HorizontalPadicL_coprimeRamification_productFrobeniusClass_exists_v2
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 
 /-!
 # Coprime discriminants give the simultaneous seeded Frobenius class

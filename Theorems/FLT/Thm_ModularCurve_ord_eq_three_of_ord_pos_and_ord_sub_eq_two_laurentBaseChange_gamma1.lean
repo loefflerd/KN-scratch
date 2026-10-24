@@ -20,6 +20,7 @@ import Theorems.FLT.Thm_ModularCurve_exists_place_algebraicClosure_ord_comp_eq_o
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Orders of j and j-1728 on X₁(M) for M≥ 4

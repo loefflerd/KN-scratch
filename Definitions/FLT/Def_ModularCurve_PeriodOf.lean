@@ -12,6 +12,9 @@ public import Definitions.FLT.Def_CuspForm_Petersson
 public import Definitions.FLT.Def_ModularCurve_PeriodLattice
 public import Definitions.FLT.Def_ModularCurve_PeriodMapBundled
 
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
+
 /-!
 # Periods, period lattice and Petersson product for general Γ
 

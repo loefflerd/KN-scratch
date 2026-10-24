@@ -8,7 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
+public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 
 /-!
 # Prime-power propagation over the rebased horizontal construction

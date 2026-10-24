@@ -10,6 +10,8 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
+
+import Mathlib.Algebra.Order.Algebra
 /-!
 # Tate's abstract residue and cotrace–residue identities
 

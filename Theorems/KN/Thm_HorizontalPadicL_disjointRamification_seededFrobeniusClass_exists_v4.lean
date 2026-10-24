@@ -13,11 +13,14 @@ module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 public import Definitions.KN.Def_KN_SeedCyclotomicGaloisCharactersV3B
+public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
 import Theorems.KN.Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2
 import Theorems.KN.Thm_HorizontalPadicL_residualKernel_discr_prime_dvd_level_mul_p
 import Theorems.KN.Thm_HorizontalPadicL_SeedCyclotomicGaloisCharacterDataV2_exists_fullOrder_value_v2
 import Theorems.KN.Thm_HorizontalPadicL_coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 
 /-!
 # Simultaneous Frobenius class from faithful Galois characters

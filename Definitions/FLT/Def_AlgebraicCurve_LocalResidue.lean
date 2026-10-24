@@ -10,7 +10,12 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-public import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+
+import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Local residues at places and Weil differentials of Kähler forms

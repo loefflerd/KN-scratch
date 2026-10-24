@@ -12,6 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
+public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
+
+import Mathlib.NumberTheory.NumberField.Discriminant.Different
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Prime divisors of a residual kernel-field discriminant divide Np

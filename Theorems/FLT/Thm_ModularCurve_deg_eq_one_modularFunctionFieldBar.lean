@@ -19,6 +19,7 @@ import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctio
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
+import Definitions.FLT.Def_ModularCurve_QAdicPlace
 
 /-!
 # All places of ℚ̄·F_M have degree one

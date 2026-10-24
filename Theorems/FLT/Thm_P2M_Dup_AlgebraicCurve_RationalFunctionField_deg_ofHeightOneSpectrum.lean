@@ -11,9 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+public import Mathlib.FieldTheory.RatFunc.Basic
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 /-!
 # Degree of a finite place of K(t) equals deg p

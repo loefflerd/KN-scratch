@@ -11,7 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.NumberField.Cyclotomic.Basic
+public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
+public import Mathlib.NumberTheory.Cyclotomic.Basic
+
+import Mathlib.NumberTheory.NumberField.Cyclotomic.Basic
 
 /-!
 # Prime divisors of a cyclotomic discriminant divide its conductor

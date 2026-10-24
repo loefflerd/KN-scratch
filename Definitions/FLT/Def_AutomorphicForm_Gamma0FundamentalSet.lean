@@ -8,8 +8,15 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AutomorphicForm_FundamentalDomainVolume
-public import Definitions.FLT.Def_AutomorphicForm_SiegelSetCover
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.NumberTheory.Modular
+public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
+
+import Definitions.FLT.Def_AutomorphicForm_SiegelSetCover
+import Definitions.FLT.Def_AutomorphicForm_FundamentalDomainVolume
+import Definitions.FLT.Def_AutomorphicForm_HyperbolicMeasure
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Order.CompletePartialOrder
 
 /-!
 # Fundamental sets for subgroups of SL2​(Z) on H

@@ -23,6 +23,17 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentr
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
+import Mathlib.Data.Rat.Encodable
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Cyclic degree-N function-field seams descend to countable subfields

@@ -8,8 +8,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_EMD
 public import Definitions.FLT.Def_ModularCurve_TatePoint
+public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 
 /-!
 # Integral Hahn series, specialisation and good Weierstrass models

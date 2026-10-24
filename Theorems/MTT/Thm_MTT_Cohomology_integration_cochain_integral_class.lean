@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Integration
-public import Mathlib.RingTheory.Flat.Basic
 
 /-!
 # Coefficient formula for the integration class

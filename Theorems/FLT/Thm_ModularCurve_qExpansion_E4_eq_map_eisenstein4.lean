@@ -12,9 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_X0
-public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
+public import Mathlib.NumberTheory.ModularForms.QExpansion
 
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 
 /-!
 # q-expansion of E₄ equals 1+240sumσ₃(n)qⁿ

@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
-public import Mathlib.RingTheory.Flat.Basic
 
 import Theorems.MTT.Thm_MTT_Cohomology_integration_linear_map_exists
 import Theorems.MTT.Thm_MTT_Cohomology_integration_cochain_injective

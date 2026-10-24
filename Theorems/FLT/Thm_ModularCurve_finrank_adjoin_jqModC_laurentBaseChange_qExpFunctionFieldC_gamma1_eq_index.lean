@@ -25,6 +25,7 @@ import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqModC_qExpFunctionFieldC_le
 import Theorems.FLT.Thm_ModularCurve_index_le_relfinrank_qExpFunctionFieldC_gamma0_gammaH_of_charZero
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Degree of the j-cover of X₁(M) equals [SL₂(ℤ):±Γ₁(M)]

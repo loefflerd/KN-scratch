@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_JqCoeff
+public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_map_intCast_pow_char_eq_qExpand
 import Definitions.FLT.Def_P2M_Util

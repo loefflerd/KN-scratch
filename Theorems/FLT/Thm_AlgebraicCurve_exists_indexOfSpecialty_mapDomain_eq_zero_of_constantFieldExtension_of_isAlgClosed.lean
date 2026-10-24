@@ -21,6 +21,8 @@ import Theorems.FLT.Thm_AlgebraicCurve_essFiniteType_of_transcendental_of_finite
 import Theorems.FLT.Thm_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_zero_of_genusReached
 import Theorems.FLT.Thm_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Vanishing index of specialty for a lifted divisor

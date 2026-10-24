@@ -11,11 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_EllipticCurve_DivisionPolynomialOmega
+public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
 
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff
 import Definitions.FLT.Def_WeierstrassCurve_EDSEngine
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_EllipticCurve_DivisionPolynomialOmega
 
 /-!
 # x([n]P) ψₙ(P)²=φₙ(P) for affine points

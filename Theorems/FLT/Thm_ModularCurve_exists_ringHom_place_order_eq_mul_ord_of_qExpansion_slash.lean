@@ -21,6 +21,8 @@ import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_coeffE
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Cuspidal place and q_N-expansion at σ∞ on X(Γ)

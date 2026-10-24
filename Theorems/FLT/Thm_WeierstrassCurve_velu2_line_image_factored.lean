@@ -6,6 +6,8 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap2
 
+import Mathlib.RingTheory.SimpleRing.Principal
+
 
 /-!
 # Vélu sends curve intersections with a line to another line

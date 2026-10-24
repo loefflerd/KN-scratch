@@ -10,8 +10,9 @@ module
 
 public import Definitions.FLT.Def_Gamma0HeckeOperatorHom
 public import Definitions.FLT.Def_ModularCurve_PeriodMap
-public import Mathlib.GroupTheory.Schreier
-public import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+
+import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 
 /-!
 # Integral Hecke algebra on characters of Γ0​(N)

@@ -11,8 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_ParabolicCohomology
 public import Mathlib.RingTheory.MvPowerSeries.Order
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.Discriminant

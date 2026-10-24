@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.RingTheory.SimpleRing.Principal

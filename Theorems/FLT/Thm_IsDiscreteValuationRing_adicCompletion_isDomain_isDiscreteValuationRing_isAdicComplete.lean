@@ -13,8 +13,9 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.RingTheory.RegularLocalRing.Defs
-
 public import Definitions.FLT.Def_AdicCompletionLocalRing
+
+import Mathlib.RingTheory.AdicCompletion.LocalRing
 
 
 /-!

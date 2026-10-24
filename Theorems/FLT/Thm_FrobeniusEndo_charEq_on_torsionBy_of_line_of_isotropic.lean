@@ -12,6 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
+public import Mathlib.Algebra.Field.ZMod
 
 import Theorems.FLT.Thm_FrobeniusEndo_trace_det_frob_of_line_of_isotropic
 import Definitions.FLT.Def_P2M_Util

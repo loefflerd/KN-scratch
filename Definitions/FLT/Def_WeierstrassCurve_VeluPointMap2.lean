@@ -8,9 +8,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.RingTheory.SimpleRing.Principal
-
 public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
+
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Vélu coordinate maps for a point of order two

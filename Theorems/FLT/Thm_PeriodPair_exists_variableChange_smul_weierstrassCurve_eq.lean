@@ -16,6 +16,7 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Theorems.FLT.Thm_PeriodPair_jLattice_surjective
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Every complex elliptic curve is a lattice curve

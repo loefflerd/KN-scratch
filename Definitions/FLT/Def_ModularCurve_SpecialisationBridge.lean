@@ -9,15 +9,17 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_HahnSeries_Monodromy
-public import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
-public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_zero_spec
-public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_1728_spec
-public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_generic_spec
-public import Theorems.FLT.Thm_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728
 public import Theorems.FLT.Thm_ModularCurve_B3_exists_variableChange_specialFibre_goodModel
 public import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre_goodModel
-public import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre
 public import Theorems.FLT.Thm_ModularCurve_B3_exists_torsionBy_reduction_addEquiv
+public import Definitions.FLT.Def_ModularCurve_EMD
+public import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add -- shake: keep
+
+import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre
+import Theorems.FLT.Thm_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728
+import Theorems.FLT.Thm_ModularCurve_B3_goodModel_generic_spec
+import Theorems.FLT.Thm_ModularCurve_B3_goodModel_1728_spec
+import Theorems.FLT.Thm_ModularCurve_B3_goodModel_zero_spec
 
 /-!
 # Reduction of points and specialisation of cyclic p-subgroups

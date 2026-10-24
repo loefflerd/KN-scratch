@@ -10,6 +10,9 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_ReduceHom
 public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
+public import Definitions.FLT.Def_ModularCurve_EMD
+
+import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
 
 /-!
 # Specialisation of points and cyclic subgroups over Hahn series

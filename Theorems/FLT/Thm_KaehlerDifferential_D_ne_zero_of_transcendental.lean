@@ -12,7 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.RingTheory.Kaehler.Basic
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
+public import Mathlib.FieldTheory.Separable
+public import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
 
 import Mathlib.RingTheory.Etale.Field
 import Mathlib.FieldTheory.RatFunc.AsPolynomial

@@ -15,6 +15,7 @@ public import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 
 import Definitions.FLT.Def_ModularCurve_ModuliPoint
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Combinatorics.Matroid.Init
 
 /-!
 # The variable change (-1,0,-a₁,-a₃) acts as negation on points

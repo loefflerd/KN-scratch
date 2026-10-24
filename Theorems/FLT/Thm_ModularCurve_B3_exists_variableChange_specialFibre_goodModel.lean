@@ -13,6 +13,8 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
 
+import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
+
 /-!
 # Special fibre of the good model is ofJ j₀ up to coordinate change
 

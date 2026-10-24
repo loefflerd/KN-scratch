@@ -11,7 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_Differentials
+public import Mathlib.RingTheory.Kaehler.Basic
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental

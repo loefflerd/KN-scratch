@@ -8,7 +8,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.RingTheory.AdicCompletion.LocalRing
+public import Mathlib.RingTheory.AdicCompletion.Algebra
+public import Mathlib.RingTheory.LocalRing.MaximalIdeal.Defs
+
+import Mathlib.RingTheory.AdicCompletion.LocalRing
 
 /-!
 # Adic completion of a Noetherian local ring

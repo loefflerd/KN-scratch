@@ -8,9 +8,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.RingTheory.Etale.Field
-
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+public import Mathlib.RingTheory.Etale.Field -- shake: keep
 
 /-!
 # Pull-back, trace and correspondence maps on Kähler differentials

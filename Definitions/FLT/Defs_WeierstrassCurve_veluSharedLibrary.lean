@@ -19,12 +19,18 @@ public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 public import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
-
-
 import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
-
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
+import Mathlib.Tactic.NormNum.Prime
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.RingTheory.Etale.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Logic.Equiv.PartialEquiv
 
 /-!
 # Shared library for the odd-order Vélu construction

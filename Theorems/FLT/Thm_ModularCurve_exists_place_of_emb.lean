@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_EMD
-public import Definitions.FLT.Def_HahnSeries_RamificationBound
 
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
@@ -20,6 +19,7 @@ import Theorems.FLT.Thm_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot
 import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff
 import Theorems.FLT.Thm_ModularCurve_adjoin_jBar_jNBar_eq_top
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Normalised Hahn-series embeddings induce places of F_N

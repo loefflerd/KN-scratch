@@ -21,6 +21,7 @@ import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Theorems.FLT.Thm_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Degree of the weight-m floor divisor without elliptic places

@@ -20,6 +20,7 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_evalEval_psi_sq
 import Theorems.FLT.Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero
 import Theorems.FLT.Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero
 import Theorems.FLT.Thm_ModularCurve_HahnSpecialise_specialiseCycSub_bijective
+import Theorems.FLT.Thm_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728
 
 /-!
 # Level-N specialisation is monodromy-to-automorphism equivariant

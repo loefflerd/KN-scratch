@@ -27,6 +27,7 @@ import Theorems.FLT.Thm_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField
 import Theorems.FLT.Thm_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq
 import Theorems.FLT.Thm_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Genus lower bound for the level-N modular function field

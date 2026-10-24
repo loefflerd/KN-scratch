@@ -11,8 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_DegeneracyTower
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_modularFunctionField
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration_iff_full_eq

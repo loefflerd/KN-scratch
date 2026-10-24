@@ -10,7 +10,10 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-public import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+
+import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 
 /-!
 # The j-line inside the base-changed modular function field

@@ -26,6 +26,11 @@ import Theorems.FLT.Thm_ModularCurve_StarBank_press
 import Theorems.FLT.Thm_ModularCurve_StarBank_starK
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.NormNum.Parity
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.NumberTheory.ModularForms.LevelOne.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 
 /-!
 # In characteristic ℓ, j(qᵖ)notin K(j(q)) for p≠ℓ

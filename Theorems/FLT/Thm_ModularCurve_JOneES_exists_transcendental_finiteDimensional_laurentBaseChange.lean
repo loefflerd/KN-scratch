@@ -15,6 +15,9 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.RingTheory.Valuation.Integral
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Base change of the q-expansion function field is a function field

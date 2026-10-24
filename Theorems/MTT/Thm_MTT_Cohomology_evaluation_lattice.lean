@@ -12,7 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
-public import Mathlib.RingTheory.Flat.Basic
+
+import Mathlib.LinearAlgebra.TensorProduct.Finiteness
 
 /-!
 # Finite integral lattice for algebraic cohomology evaluations

@@ -12,6 +12,9 @@ public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+
 /-!
 # Riemann–Roch rows for function fields: named statements
 

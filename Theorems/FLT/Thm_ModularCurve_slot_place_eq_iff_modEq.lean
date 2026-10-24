@@ -22,6 +22,7 @@ import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 /-!
 # Places of X₀(N) labelled by pairs (a,b)

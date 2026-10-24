@@ -46,6 +46,11 @@ import Theorems.FLT.Thm_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Riemann–Hurwitz inequality for j on X(Γ) over ℚ̄

@@ -11,7 +11,8 @@ module
 public import Definitions.KN.Def_MTT_EigenformCoefficientField
 public import Mathlib.NumberTheory.NumberField.Basic
 public import Mathlib.NumberTheory.Padics.Complex
-public import Mathlib.RingTheory.Valuation.Integral
+
+import Mathlib.RingTheory.Valuation.Integral
 
 /-!
 # The coefficient-field prime selected by a p-adic embedding

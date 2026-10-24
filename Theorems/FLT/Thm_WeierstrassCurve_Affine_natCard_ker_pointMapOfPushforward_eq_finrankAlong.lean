@@ -21,6 +21,15 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDe
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_pointMapOfPushforward_surjective
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
 import Definitions.FLT.Def_P2M_Util
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Kernel of a pushforward point map has order the degree

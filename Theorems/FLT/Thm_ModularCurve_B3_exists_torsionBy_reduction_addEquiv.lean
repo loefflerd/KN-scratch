@@ -14,6 +14,7 @@ module
 public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
 
 import Theorems.FLT.Thm_ModularCurve_HahnSpecialise_specialise_bijOn_torsion
+import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
 
 /-!
 # Reduction is an isomorphism on p-torsion

@@ -18,6 +18,7 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_WeierstrassCurve_velu2_line_image_factored
 import Theorems.FLT.Thm_WeierstrassCurve_veluQuotient2_Delta_eq
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Vélu's order-2 quotient map is additive

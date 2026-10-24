@@ -17,6 +17,9 @@ import Mathlib.RingTheory.DedekindDomain.Factorization
 import Mathlib.RingTheory.RamificationInertia.Basic
 import Definitions.FLT.Def_P2M_Util
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Fundamental identity sum_{w∣ v} e f = [F':F]

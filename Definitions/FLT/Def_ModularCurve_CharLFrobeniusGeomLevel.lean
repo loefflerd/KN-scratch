@@ -8,13 +8,18 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Data.Finsupp.Pointwise
-public import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndoPic0
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
 public import Definitions.FLT.Def_ModularCurve_KroneckerTransport
-public import Theorems.FLT.Thm_ModularCurve_frobenius_identity_geom_unconditional
+public import Definitions.FLT.Def_ModularCurve_JqCoeff
+public import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndo
+public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+
+import Theorems.FLT.Thm_ModularCurve_frobenius_identity_geom_unconditional
+import Mathlib.Data.Finsupp.Pointwise
+import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndoPic0
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Characteristic-ℓ Frobenius and Hecke operators on modular function fields

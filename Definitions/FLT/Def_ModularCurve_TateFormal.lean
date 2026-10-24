@@ -8,8 +8,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Weierstrass
+public import Mathlib.RingTheory.LaurentSeries
 
 /-!
 # Formal Tate curve over ℤ⟦q⟧ and over K((q))

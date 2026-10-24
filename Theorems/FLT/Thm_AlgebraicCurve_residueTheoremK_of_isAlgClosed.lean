@@ -14,6 +14,7 @@ module
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Analysis.Normed.Unbundled.SpectralNorm
@@ -23,6 +24,13 @@ import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_residueTraceCompletionCommute
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
+import Mathlib.RingTheory.RamificationInertia.Basic
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Valuation.Integral
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 
 /-!

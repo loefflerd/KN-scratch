@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
-public import Mathlib.RingTheory.Flat.Basic
 
 import Theorems.MTT.Thm_MTT_Cohomology_integration_map
 import Theorems.MTT.Thm_MTT_Cohomology_packet_span

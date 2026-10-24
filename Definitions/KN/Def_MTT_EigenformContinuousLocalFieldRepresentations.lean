@@ -6,7 +6,13 @@ module
 
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 public import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
-public import Definitions.FLT.Def_GaloisRep_Residual
+public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
+public import Definitions.FLT.Def_FLTPrelim_Ramification
+public import Mathlib.FieldTheory.KrullTopology
+
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Continuous compatible local-field representations of an eigenform

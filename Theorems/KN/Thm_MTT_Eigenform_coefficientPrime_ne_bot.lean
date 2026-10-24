@@ -11,7 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Theorems.KN.Thm_MTT_Eigenform_p_mem_coefficientPrime
+public import Definitions.KN.Def_MTT_EigenformCoefficientPrime
+
+import Theorems.KN.Thm_MTT_Eigenform_p_mem_coefficientPrime
 
 /-!
 # The selected coefficient prime is nonzero

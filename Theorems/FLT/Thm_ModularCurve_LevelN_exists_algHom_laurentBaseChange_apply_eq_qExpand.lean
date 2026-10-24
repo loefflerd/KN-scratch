@@ -17,6 +17,10 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Theorems.FLT.Thm_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Level-M realisation of the q-expansion function field

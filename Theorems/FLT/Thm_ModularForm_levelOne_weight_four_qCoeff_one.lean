@@ -12,9 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_FLTPrelim_Modularity
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
 /-!
 # Weight four level one: a₁ = 240 a₀

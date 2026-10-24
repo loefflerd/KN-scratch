@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_CohCarrier_Level
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Diamond operators act faithfully on reduced q-expansions

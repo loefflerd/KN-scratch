@@ -9,7 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 /-!
 # Cyclotomic and seed Galois characters over rebased data

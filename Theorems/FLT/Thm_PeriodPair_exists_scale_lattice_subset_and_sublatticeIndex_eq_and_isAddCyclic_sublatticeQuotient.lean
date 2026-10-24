@@ -24,6 +24,9 @@ import Theorems.FLT.Thm_PeriodPair_isUniformization_toPoint
 import Mathlib.LinearAlgebra.FreeModule.ModN
 import Definitions.FLT.Def_P2M_Util
 import Mathlib.Analysis.Complex.Liouville
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.RingTheory.Flat.TorsionFree
 
 /-!
 # Cyclic N-isogeny of lattice curves comes from index-N sublattice

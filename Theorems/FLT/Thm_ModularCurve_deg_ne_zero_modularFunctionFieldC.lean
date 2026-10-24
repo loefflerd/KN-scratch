@@ -20,6 +20,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos_of_finiteDimensional
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_adjoin_jqNModC
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Places of K(j,j_N) have nonzero degree

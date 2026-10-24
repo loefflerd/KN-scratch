@@ -16,6 +16,7 @@ public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 
 import Definitions.FLT.Def_WeierstrassCurve_EDSEngine
+import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree -- shake: keep
 
 /-!
 # The n-torsion of an elliptic curve has n² points

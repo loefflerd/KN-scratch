@@ -14,6 +14,9 @@ module
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.Positivity.Finset
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Algebra.Order.Field.Basic
 
 /-!
 # Forms fixed by T^h are multiples of X₀ⁿ

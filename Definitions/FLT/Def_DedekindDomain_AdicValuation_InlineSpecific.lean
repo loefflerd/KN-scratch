@@ -8,10 +8,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Algebra.Group.Int.TypeTags
 public import Mathlib.RingTheory.DedekindDomain.AdicValuation
 public import Mathlib.RingTheory.RamificationInertia.Inertia
+
 import Mathlib.RingTheory.Valuation.Discrete.RankOne
+import Mathlib.Algebra.Group.Int.TypeTags
 
 /-!
 # Adic completions of Dedekind domains: integers, uniformizers, residue fields

@@ -23,8 +23,9 @@ import Mathlib.RingTheory.Flat.TorsionFree
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
-
 import Definitions.FLT.Defs_UpperHalfPlane_niceFunctionSubalgebra
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Degree over L(j) bounded by the index of Γ'

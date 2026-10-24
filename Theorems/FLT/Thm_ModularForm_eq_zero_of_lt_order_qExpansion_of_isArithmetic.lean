@@ -18,6 +18,12 @@ import Mathlib.NumberTheory.ModularForms.NormTrace
 import Theorems.FLT.Thm_UpperHalfPlane_qExpansion_prod
 import Theorems.FLT.Thm_ModularForm_levelOne_eq_zero_of_lt_order_qExpansion
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.NormNum.Parity
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Sturm bound at width M for arithmetic groups

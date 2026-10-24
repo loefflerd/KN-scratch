@@ -5,9 +5,13 @@ Released under Apache 2.0 license as described in the file LICENSE.
 
 module
 
-public import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
-public import Theorems.FLT.Thm_HeckeEis_exists_coeffH1par_linearMap_coeffHeckeFun
-public import Theorems.FLT.Thm_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj
+public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+public import Definitions.FLT.Def_Gamma0CoeffCohomology
+public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
+
+import Theorems.FLT.Thm_HeckeEis_exists_coeffH1par_linearMap_coeffHeckeFun
+import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
+import Theorems.FLT.Thm_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj
 
 /-!
 # Eichler–Shimura decomposition with Hecke operators at every prime

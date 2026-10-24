@@ -20,6 +20,7 @@ public import Definitions.FLT.Def_HahnSeries_RamificationBound
 import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
 import Theorems.FLT.Thm_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff
+import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
 
 /-!
 # Torsion coordinates of a good-reduction model are Laurent

@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_ModularCurve_PeriodOf
 
 import Theorems.FLT.Thm_ModularCurve_exists_hasEquivariantPrimitiveOf
 import Theorems.FLT.Thm_ModularCurve_periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Period homomorphism of a weight-2 cusp form equals its segment period

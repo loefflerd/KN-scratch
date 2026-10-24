@@ -12,7 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+public import Mathlib.NumberTheory.ModularForms.QExpansion
 
 import Theorems.FLT.Thm_ModularForm_exists_qExpansion_eq_aeval_mul_pow_levelOne
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit

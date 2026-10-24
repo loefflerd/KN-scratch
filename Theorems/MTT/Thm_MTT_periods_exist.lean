@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_Measures
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.RingTheory.Flat.Localization
 import Theorems.MTT.Thm_MTT_Cohomology_integral_finite_generation

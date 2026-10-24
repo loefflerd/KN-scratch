@@ -14,6 +14,7 @@ module
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_degree_canonicalDivisor_eq_of_riemannRoch

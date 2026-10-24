@@ -30,6 +30,7 @@ import Theorems.FLT.Thm_ModularCurve_neg_width_le_ord_of_order_eq_mul_ord_of_qEx
 import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
 import Theorems.FLT.Thm_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
 import Theorems.FLT.Thm_UpperHalfPlane_qExpansion_coeff_mul_width
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Order of j at a cusp place equals minus its width

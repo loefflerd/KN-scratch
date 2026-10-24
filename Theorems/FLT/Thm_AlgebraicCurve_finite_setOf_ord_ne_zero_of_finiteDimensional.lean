@@ -11,14 +11,15 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 public import Mathlib.FieldTheory.RatFunc.Basic
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero
 import Definitions.FLT.Def_P2M_Util
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 
 /-!
 # Finiteness of zeros and poles in a finite separable extension of K(X)

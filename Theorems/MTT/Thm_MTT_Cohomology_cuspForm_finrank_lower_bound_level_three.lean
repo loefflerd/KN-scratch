@@ -11,12 +11,13 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_ParabolicCohomology
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
 import Theorems.MTT.Thm_CuspForm_finrank_lower_bound_of_weighted_forms
 import Theorems.MTT.Thm_MTT_Cohomology_exists_weighted_cusp_seeds_level_three
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # The level-three cusp-form dimension lower bound

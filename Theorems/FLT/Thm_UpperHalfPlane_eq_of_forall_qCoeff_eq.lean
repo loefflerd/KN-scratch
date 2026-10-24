@@ -12,10 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.Analysis.CStarAlgebra.Classes
-
 public import Definitions.FLT.Def_FLTPrelim_Modularity
 
-import Mathlib.NumberTheory.ModularForms.QExpansion
 import Definitions.FLT.Def_P2M_Util
 
 /-!

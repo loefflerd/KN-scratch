@@ -11,8 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Data.Nat.Prime.Basic
 public import Mathlib.Basic.Complex.Basic
+public import Mathlib.Data.Nat.Prime.Defs
 
 import Mathlib.Data.Rat.Cast.Order
 import Mathlib.Tactic.NormNum.Abs

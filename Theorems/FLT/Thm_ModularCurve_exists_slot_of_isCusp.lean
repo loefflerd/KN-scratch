@@ -12,12 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_PhiGen
-public import Definitions.FLT.Def_ModularCurve_AtkinLehner
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-public import Mathlib.FieldTheory.Relrank
-public import Mathlib.Data.Int.CardIntervalMod
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos
@@ -37,6 +33,10 @@ import Theorems.FLT.Thm_ModularCurve_order_qExpand
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
+import Mathlib.Data.Int.CardIntervalMod
+import Definitions.FLT.Def_ModularCurve_AtkinLehner
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Every cusp place of X₀(N) arises from a slot

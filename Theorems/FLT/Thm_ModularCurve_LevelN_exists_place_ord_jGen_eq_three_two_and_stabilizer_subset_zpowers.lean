@@ -17,11 +17,11 @@ public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
-
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois
 import Theorems.FLT.Thm_ModularCurve_LevelN_exists_place_analyticOrderAt_eq_mul_ord
 import Theorems.FLT.Thm_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Ramification of X(M)→ X(1) at j=0 and j=1728

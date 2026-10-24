@@ -23,6 +23,7 @@ import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_frickeFunction_orbit_package
 import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Embedding the ℚ̄-rational q-expansion field of X(Γ) into ℂ(X(M))

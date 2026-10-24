@@ -13,9 +13,13 @@ module
 
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
+public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
+public import Mathlib.NumberTheory.Cyclotomic.Basic
 
 import Mathlib.NumberTheory.NumberField.Cyclotomic.Galois
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+import Mathlib.NumberTheory.NumberField.Cyclotomic.Basic
+import Mathlib.RingTheory.Ideal.Int
 
 /-!
 # Product automorphism and Chebotarev class from coprime ramification

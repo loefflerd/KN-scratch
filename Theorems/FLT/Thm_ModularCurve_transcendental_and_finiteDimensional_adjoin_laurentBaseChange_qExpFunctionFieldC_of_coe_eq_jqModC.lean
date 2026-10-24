@@ -22,6 +22,8 @@ import Definitions.FLT.Def_ModularCurve_X0ModL
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Transcendence of j and finiteness over K(j)

@@ -11,10 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
-public import Mathlib.NumberTheory.ModularForms.Discriminant
+public import Mathlib.Analysis.Analytic.Basic
 
 import Mathlib.Analysis.Meromorphic.NormalForm
+import Mathlib.NumberTheory.ModularForms.Discriminant -- shake: keep
 import Definitions.FLT.Def_P2M_Util
 
 /-!

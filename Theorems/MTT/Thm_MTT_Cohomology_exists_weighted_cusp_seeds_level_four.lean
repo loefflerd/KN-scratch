@@ -11,11 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_ParabolicCohomology
 public import Mathlib.RingTheory.MvPowerSeries.Order
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Theorems.MTT.Thm_MTT_Cohomology_exists_weighted_modular_seeds_level_four
 import Theorems.MTT.Thm_MTT_Cohomology_exists_nonzero_cuspForm_weight_five_level_four
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Low-weight modular and cusp-form seeds at level four

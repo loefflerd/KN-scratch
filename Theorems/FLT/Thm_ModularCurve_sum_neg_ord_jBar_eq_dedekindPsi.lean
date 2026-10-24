@@ -12,12 +12,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
+import Mathlib.RingTheory.Henselian
 
 /-!
 # The polar divisor of jmath̄ has degree ψ(N)

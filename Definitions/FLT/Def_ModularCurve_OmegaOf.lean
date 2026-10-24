@@ -11,9 +11,10 @@ module
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-public import Theorems.FLT.Thm_ModularCurve_theta_coeff
-public import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
 public import Mathlib.NumberTheory.ModularForms.QExpansion
+
+import Theorems.FLT.Thm_ModularCurve_theta_coeff
+import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
 
 /-!
 # The differential attached to a q-expansion

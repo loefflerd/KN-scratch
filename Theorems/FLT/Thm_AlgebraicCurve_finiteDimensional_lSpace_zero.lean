@@ -14,6 +14,10 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+
 
 /-!
 # Finite-dimensionality of L(0) on a curve

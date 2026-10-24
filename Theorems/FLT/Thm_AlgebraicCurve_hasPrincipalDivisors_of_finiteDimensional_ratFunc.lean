@@ -21,6 +21,7 @@ import Definitions.FLT.Def_P2M_Util
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Valuation.LocalSubring
 
 /-!
 # Principal divisors of degree zero on finite extensions of K(X)

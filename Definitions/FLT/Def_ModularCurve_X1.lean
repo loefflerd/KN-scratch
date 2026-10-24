@@ -9,11 +9,9 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
-public import Mathlib.RingTheory.Henselian
-public import Mathlib.RingTheory.RegularLocalRing.Defs
-public import Mathlib.RingTheory.SimpleRing.Principal
-
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Function fields of X1​(M) via q-expansions, and J1​(M)

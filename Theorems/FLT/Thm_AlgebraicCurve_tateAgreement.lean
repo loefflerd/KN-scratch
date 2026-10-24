@@ -16,6 +16,16 @@ public import Definitions.FLT.Def_AlgebraicCurve_TateResidueCurrency
 
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.AdicCompletion.RingHom
+import Mathlib.Algebra.Order.Algebra
+import Mathlib.RingTheory.PicardGroup
+import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Tate's residue agrees with the local residue trace

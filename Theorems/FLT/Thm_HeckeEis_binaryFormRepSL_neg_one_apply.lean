@@ -13,6 +13,9 @@ module
 
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
+import Mathlib.Tactic.Positivity.Finset
+import Mathlib.Algebra.Order.Field.Basic
+
 
 /-!
 # The central element -1 of SL₂(ℤ) acts by (-1)ⁿ

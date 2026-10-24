@@ -11,9 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Theorems.MTT.Thm_MTT_birch_mellin_formula
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.Analysis.Fourier.ZMod
+import Theorems.MTT.Thm_MTT_birch_mellin_formula
 
 /-!
 # Birch--Mellin detects nonvanishing

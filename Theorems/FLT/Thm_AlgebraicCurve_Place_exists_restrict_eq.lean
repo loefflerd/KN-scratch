@@ -15,6 +15,8 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 
 /-!
 # Every place extends to a finite separable extension

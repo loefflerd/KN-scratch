@@ -11,8 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Basic
 public import Mathlib.FieldTheory.IntermediateField.Basic
+public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
+
+import Mathlib.RingTheory.IntegralClosure.IsIntegral.Basic
 
 
 /-!

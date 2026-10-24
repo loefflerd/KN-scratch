@@ -15,6 +15,7 @@ public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
 
 import Definitions.FLT.Def_WeierstrassCurve_EDSEngine
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 
 /-!
 # Frobenius characteristic relation on all points from large torsion

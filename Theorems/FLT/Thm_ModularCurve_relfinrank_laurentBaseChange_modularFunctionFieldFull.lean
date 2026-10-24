@@ -11,9 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Mathlib.FieldTheory.Relrank
+public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_transcendental_jq
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqNModC_eq_of_prime

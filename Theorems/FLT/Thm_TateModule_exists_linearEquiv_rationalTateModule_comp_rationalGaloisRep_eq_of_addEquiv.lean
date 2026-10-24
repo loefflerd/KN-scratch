@@ -13,7 +13,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_JZeroTateModule
-public import Definitions.FLT.Def_P2M_Util
 
 import Theorems.FLT.Thm_TateModule_exists_linearMap_apply_eq_of_addMonoidHom
 

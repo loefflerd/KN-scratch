@@ -16,9 +16,10 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 import Mathlib.Analysis.Complex.Liouville
 import Mathlib.Analysis.Complex.RemovableSingularity
 import Mathlib.Analysis.Normed.Module.Connected
-
 import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Uniformisation: z ↦ (wp(z), wp'(z)/2) parametrises E_Λ(ℂ)

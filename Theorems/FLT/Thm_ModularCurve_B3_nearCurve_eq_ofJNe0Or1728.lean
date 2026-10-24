@@ -11,9 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
+public import Definitions.FLT.Def_ModularCurve_TatePoint
 
 import Mathlib.RingTheory.SimpleRing.Principal
+import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
 
 /-!
 # The near-curve is the explicit model at j₀+s

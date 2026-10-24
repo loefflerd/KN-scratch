@@ -37,6 +37,9 @@ import Theorems.FLT.Thm_ModularCurve_sum_neg_ord_jBar_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # A weight-2m divisor on X₀(N)_ℚ̄ with integrality

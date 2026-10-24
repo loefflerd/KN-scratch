@@ -9,12 +9,12 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.Algebra.Algebra.ZMod
-public import Mathlib.FieldTheory.PurelyInseparable.Basic
 public import Mathlib.RingTheory.Flat.TorsionFree
-public import Mathlib.RingTheory.Henselian
-public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
-public import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
+public import Definitions.FLT.Def_WeierstrassCurve_ReductionMap -- shake: keep
+
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.Combinatorics.Matroid.Init
 
 /-!
 # Residue field as Fℓ​ and the reduction map reduceAt

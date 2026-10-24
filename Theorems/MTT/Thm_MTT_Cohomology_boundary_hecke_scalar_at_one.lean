@@ -12,9 +12,13 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
-public import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 import Theorems.MTT.Thm_MTT_Cohomology_boundary_hecke_cusp_sum_at_one
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Data.Nat.Factorial.DoubleFactorial
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Hecke acts scalarly on boundary symbols at primes congruent to one

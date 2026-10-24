@@ -14,6 +14,8 @@ module
 public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Non-vanishing of the discriminant g₂³-27g₃²

@@ -21,6 +21,9 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegra
 import Theorems.FLT.Thm_AlgebraicCurve_ell_le_degree_add_ellZero
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_lSpace
 import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_pow_mul
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Lower bound [F:K(x)] ≤ deg of the pole divisor

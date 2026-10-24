@@ -11,12 +11,16 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.Complex.Polynomial.Basic
+public import Mathlib.Basic.Complex.Basic
+public import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
+public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
+public import Mathlib.RingTheory.Algebraic.Defs
 
 import Mathlib.RingTheory.DedekindDomain.IntegralClosure
 import Mathlib.RingTheory.Polynomial.IsIntegral
 import Mathlib.CategoryTheory.Category.Init
 import Mathlib.RingTheory.Adjoin.Polynomial.Transcendental
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 /-!
 # Descent of integrality along a transcendental constant

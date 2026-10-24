@@ -12,11 +12,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+public import Mathlib.NumberTheory.ModularForms.QExpansion
 
 import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant
 import Theorems.FLT.Thm_ModularForm_exists_degeneracy_Gamma0
 import Theorems.FLT.Thm_ModularCurve_laurent_qParam_coeff_unique
+import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 
 /-!
 # j(q^ℓ) as a ratio of weight-12 forms on Γ₀(ℓ)

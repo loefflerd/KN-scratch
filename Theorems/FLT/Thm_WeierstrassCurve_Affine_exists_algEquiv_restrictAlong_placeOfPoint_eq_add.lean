@@ -19,6 +19,12 @@ import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.LocalProperties.Reduced
 import Definitions.FLT.Def_P2M_Util
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Translation by R as a function-field automorphism on places

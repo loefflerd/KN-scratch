@@ -25,6 +25,10 @@ import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed_o
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_ratFunc
 import Theorems.FLT.Thm_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Regular differentials form a space of dimension the genus

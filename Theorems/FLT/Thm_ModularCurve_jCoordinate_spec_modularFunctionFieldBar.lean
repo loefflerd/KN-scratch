@@ -11,7 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_AtkinLehner
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.NumberTheory.Height.Projectivization
@@ -25,6 +26,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar_coeffEmb_jq
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
 import Theorems.FLT.Thm_ModularCurve_hasPrincipalDivisors_modularFunctionFieldBar_unconditional
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Values of the j-coordinate at places of X₀(N)

@@ -12,11 +12,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
-public import Mathlib.NumberTheory.ModularForms.Bounds
 
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_local_equivariant
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_cusp_decay_of_pos_level
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_tile_integrable_of_pos_level
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Wirtinger data for mixed-period test functions at positive level

@@ -8,7 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededThetaFullSupportInterpolationV3
+public import Definitions.KN.Def_KN_InverseSeedConventionV2
 
 /-!
 # Full-support modular-symbol zero sets over rebased data

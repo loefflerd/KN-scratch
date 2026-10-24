@@ -13,8 +13,11 @@ module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
+public import Definitions.KN.Def_KN_HorizontalPadicLAux
 
 import Theorems.KN.Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 
 /-!
 # Residual representation data for a new eigenform (clean spine)
@@ -68,7 +71,8 @@ theorem _root_.solution
   have : NumberField L := D.kernelField_numberField
   have : IsGalois ℚ L := D.kernelField_galois
   let : Field 𝕜 := f.coefficientResidueFieldField hN hk V.embedding
-  let : Fintype 𝕜 := f.coefficientResidueFieldFintype hN hk V.embedding
+  let : Finite 𝕜 := f.coefficientResidueFieldFinite hN hk V.embedding
+  let : Fintype 𝕜 := Fintype.ofFinite _
   let S : Finset ℕ := (N * p).primeFactors
   let A : Set ℕ := {ℓ : ℕ |
     ℓ ∉ S ∧ LanglandsTunnell.classIndicator (1 : L ≃ₐ[ℚ] L) ℓ = 1}

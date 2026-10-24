@@ -11,6 +11,7 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DifferentialPushPull
 public import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
 public import Definitions.FLT.Def_ModularCurve_HeckeOperator
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 /-!
 # Euler derivation, q-expansion of differentials, Hecke action

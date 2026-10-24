@@ -10,6 +10,10 @@ module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+
 /-!
 # Deligne's continuous representation over the canonical local coefficient field
 

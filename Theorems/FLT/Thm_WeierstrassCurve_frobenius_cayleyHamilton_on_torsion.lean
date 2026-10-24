@@ -12,10 +12,14 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
+public import Definitions.FLT.Def_FLTPrelim_Ramification
 
 import Definitions.FLT.Def_WeierstrassCurve_ReduceHom
 import Definitions.FLT.Def_ValuationSubring_ReduceAt
 import Theorems.FLT.Thm_FrobeniusEndo_frobCharEqOnPoints_of_frobenius
+import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
+import Mathlib.Combinatorics.Matroid.Init
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Frobenius satisfies its characteristic equation on prime-to-ℓ torsion

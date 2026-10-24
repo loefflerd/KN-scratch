@@ -19,6 +19,10 @@ import Theorems.FLT.Thm_ValuationSubring_exists_liesOverPrime_mem_inertiaSubgrou
 import Theorems.FLT.Thm_NumberField_exists_isFrobenius_lift_arithFrobAt
 import Theorems.FLT.Thm_NumberField_exists_valuationSubring_eq_localization
 import Theorems.FLT.Thm_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.FieldTheory.Galois.Infinite
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # The residual Galois representation of a normalized eigenform

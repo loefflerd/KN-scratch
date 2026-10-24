@@ -1,6 +1,9 @@
 module
 
-public import Theorems.KN.Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional
+public import Definitions.KN.Def_KN_QuadraticTwistSeed
+public import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
+
+import Theorems.KN.Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional
 
 
 /-!+# Infinitely many nonvanishing twists of a modular elliptic curve

@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_ParabolicCohomology
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Theorems.MTT.Thm_CuspForm_finrank_lower_bound_of_weighted_forms
 import Theorems.MTT.Thm_MTT_Cohomology_exists_weighted_cusp_seeds_level_four

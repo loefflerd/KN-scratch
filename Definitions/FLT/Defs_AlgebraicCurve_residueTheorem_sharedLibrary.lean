@@ -14,23 +14,26 @@ Extracted from Prove2Me proofs by Claude (2026-09-05):
 
 module
 
-public import Mathlib.Algebra.BigOperators.Field
-public import Mathlib.Algebra.Polynomial.PartialFractions
-public import Mathlib.Analysis.Normed.Ring.Lemmas
-public import Mathlib.FieldTheory.Galois.Abelian
-public import Mathlib.RingTheory.Artinian.Instances
-public import Mathlib.RingTheory.Norm.Transitivity
-public import Mathlib.RingTheory.PicardGroup
-
-public import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-
 public import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
+public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
+public import Mathlib.RingTheory.Henselian
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X
+import Mathlib.RingTheory.Artinian.Instances
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Mathlib.RingTheory.DedekindDomain.Factorization
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
+import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Shared library for the residue theorems

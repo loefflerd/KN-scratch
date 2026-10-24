@@ -17,8 +17,6 @@ Ported from the Imperial College London FLT formalization
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Weierstrass
 public import Mathlib.Algebra.Field.ZMod
-public import Mathlib.RingTheory.Int.Basic
-public import Mathlib.Tactic.ModCases
 
 /-!
 # The Frey package and its Frey curve

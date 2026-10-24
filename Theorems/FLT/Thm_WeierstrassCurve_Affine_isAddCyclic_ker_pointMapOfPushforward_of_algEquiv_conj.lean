@@ -25,6 +25,9 @@ import Theorems.FLT.Thm_PeriodPair_isUniformization_toPoint
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
 import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Definitions.FLT.Def_P2M_Util
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Cyclic kernel and its order transport along function-field isomorphisms

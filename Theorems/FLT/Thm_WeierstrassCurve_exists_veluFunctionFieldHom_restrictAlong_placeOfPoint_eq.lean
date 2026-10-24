@@ -20,6 +20,16 @@ import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_GenusOnePlaceGate_ext_of_isCentred
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
 import Theorems.FLT.Thm_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Etale.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Vélu quotient isogeny via places, odd order case

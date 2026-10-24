@@ -19,7 +19,6 @@ public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.RingTheory.DedekindDomain.Different
 import Mathlib.RingTheory.LocalProperties.Reduced
-
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
@@ -28,6 +27,15 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
+import Mathlib.Tactic.NormNum.Prime
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 /-!
 # Existence of dual endomorphism data with norm the degree

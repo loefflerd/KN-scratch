@@ -14,6 +14,7 @@ module
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Mathlib.Algebra.Polynomial.Basis
 import Mathlib.Order.Int.LeastGreatest
@@ -26,6 +27,11 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDe
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Existence of the genus for separable extensions of K(X)

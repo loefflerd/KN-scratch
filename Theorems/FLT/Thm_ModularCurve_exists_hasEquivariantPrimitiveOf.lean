@@ -16,6 +16,9 @@ public import Definitions.FLT.Def_ModularCurve_PeriodOf
 import Mathlib.Analysis.Complex.HasPrimitives
 import Theorems.FLT.Thm_Subgroup_IsArithmetic_exists_nat_mem_strictPeriods_conj
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.ModularForms.NormTrace
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Existence of an admissible equivariant primitive of a weight-2 cusp form

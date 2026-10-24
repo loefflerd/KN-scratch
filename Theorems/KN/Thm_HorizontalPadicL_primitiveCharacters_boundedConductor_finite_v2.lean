@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_PrimePowerPropagationV2
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 import Mathlib.NumberTheory.MulChar.Duality
 

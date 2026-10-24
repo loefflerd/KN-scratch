@@ -24,6 +24,9 @@ import Theorems.FLT.Thm_ModularCurve_genus_eq_genusFF_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_genus_modularFunctionFieldBar_eq_genusFormula
 import Theorems.FLT.Thm_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_theta_coeff
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Lower bound for dim S_k(Γ₀(N)), k≥ 4 even

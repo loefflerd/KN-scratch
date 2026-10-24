@@ -18,6 +18,13 @@ public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Base change of a finite self-embedding preserves its degree

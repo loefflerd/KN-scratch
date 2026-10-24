@@ -23,6 +23,8 @@ import Theorems.FLT.Thm_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_zero_of_genusReached
 import Theorems.FLT.Thm_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Genus does not drop under algebraically closed constant field extension

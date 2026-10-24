@@ -15,6 +15,9 @@ public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
+import Mathlib.Tactic.Continuity.Init
+import Mathlib.CategoryTheory.Category.Init
+import Mathlib.Data.Rat.Floor
 
 /-!
 # The function field of a Weierstrass curve is finite over F(x)

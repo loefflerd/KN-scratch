@@ -8,7 +8,20 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
+
+import Mathlib.Combinatorics.Matroid.Init
+import Mathlib.Basic.NNReal.Defs
+import Mathlib.Tactic.Positivity.Finset
+import Mathlib.Tactic.Continuity.Init
+import Mathlib.CategoryTheory.Category.Init
+import Mathlib.Tactic.ContinuousFunctionalCalculus
+import Mathlib.Algebra.Polynomial.Monic
+import Mathlib.Data.Nat.Totient
+import Mathlib.Tactic.NormNum.GCD
+import Mathlib.Data.Sym.Sym2.Init
+import Mathlib.Algebra.Field.IsField
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-!
 # Frobenius endomorphisms of function fields and their norms

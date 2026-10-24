@@ -12,9 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_X0
-public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.Analysis.Complex.Periodic
 
 import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand

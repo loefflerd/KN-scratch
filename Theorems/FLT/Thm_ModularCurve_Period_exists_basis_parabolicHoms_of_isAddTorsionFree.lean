@@ -15,6 +15,7 @@ public import Definitions.FLT.Def_ModularCurve_PeriodMap
 
 import Mathlib.GroupTheory.FiniteAbelian.Basic
 import Definitions.FLT.Def_ModularCurve_HeckeAlgebraHom
+import Mathlib.GroupTheory.Schreier
 
 /-!
 # Integral parabolic characters base-change to torsion-free rings

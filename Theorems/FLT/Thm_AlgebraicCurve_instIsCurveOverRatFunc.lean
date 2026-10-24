@@ -20,6 +20,7 @@ import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_hasPrincipalDivisors
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # The rational function field K(X) is a curve over K

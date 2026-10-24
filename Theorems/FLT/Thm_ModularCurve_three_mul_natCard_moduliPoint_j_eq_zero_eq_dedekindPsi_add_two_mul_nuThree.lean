@@ -25,6 +25,7 @@ import Theorems.FLT.Thm_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq
 import Theorems.FLT.Thm_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
 import Theorems.FLT.Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Algebra.Field.ZMod
 
 /-!
 # Moduli points with j = 0: 3#=ψ(N)+2ν₃(N)

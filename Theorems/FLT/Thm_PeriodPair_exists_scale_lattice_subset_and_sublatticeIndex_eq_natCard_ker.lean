@@ -18,6 +18,8 @@ import Mathlib.LinearAlgebra.FreeModule.ModN
 import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Theorems.FLT.Thm_PeriodPair_isUniformization_toPoint
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Dual homothety for a homomorphism of lattice curves

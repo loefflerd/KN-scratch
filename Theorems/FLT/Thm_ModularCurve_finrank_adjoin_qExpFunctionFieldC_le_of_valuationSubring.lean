@@ -16,6 +16,8 @@ public import Definitions.FLT.Def_ModularCurve_X1
 import Mathlib.Order.CompletePartialOrder
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_adjoin_of_transcendental
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Degree inequality for reduced q-expansion function fields

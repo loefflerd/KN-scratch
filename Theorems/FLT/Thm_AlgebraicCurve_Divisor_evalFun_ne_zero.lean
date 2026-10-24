@@ -13,6 +13,8 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
+import Mathlib.RingTheory.SimpleRing.Principal
+
 
 /-!
 # Non-vanishing of f(D) when f avoids the support of D

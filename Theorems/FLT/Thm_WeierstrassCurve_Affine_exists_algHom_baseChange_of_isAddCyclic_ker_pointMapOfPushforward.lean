@@ -15,11 +15,10 @@ module
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
-
 import Definitions.FLT.Defs_IsogenyBaseChange_sharedLibrary
-
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
 import Mathlib.MeasureTheory.Integral.Bochner.Basic
+import Mathlib.Tactic.NormNum.Prime
 
 /-!
 # Base change of a cyclic kernel of order N

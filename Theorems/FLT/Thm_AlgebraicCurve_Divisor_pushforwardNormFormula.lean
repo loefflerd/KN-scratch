@@ -16,6 +16,9 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Mathlib.RingTheory.Ideal.Norm.RelNorm
 import Definitions.FLT.Def_P2M_Util
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Push-forward of a principal divisor is the norm

@@ -26,6 +26,10 @@ import Theorems.FLT.Thm_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField
 import Theorems.FLT.Thm_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers
 import Theorems.FLT.Thm_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion
 import Theorems.FLT.Thm_WLight_levelN_structure_package
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
+import Mathlib.RingTheory.Henselian
 
 /-!
 # No elliptic points on X₁(M), M ≥ 4, over ℚ̄

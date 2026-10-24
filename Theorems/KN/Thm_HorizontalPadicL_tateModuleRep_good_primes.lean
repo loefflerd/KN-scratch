@@ -1,7 +1,7 @@
 module
 
-public import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
 public import Definitions.FLT.Def_EllipticCurve_TateModule
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 import Theorems.KN.Thm_HorizontalPadicL_exists_good_integral_model_with_ap
 import Theorems.FLT.Thm_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq

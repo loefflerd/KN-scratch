@@ -11,12 +11,14 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 import Definitions.FLT.Def_P2M_Util
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.Logic.Equiv.PartialEquiv
 
 /-!
 # Positivity of the inertia degree f(w∣ v)

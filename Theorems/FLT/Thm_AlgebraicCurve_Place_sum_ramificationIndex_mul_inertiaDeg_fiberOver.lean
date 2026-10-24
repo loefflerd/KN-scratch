@@ -17,6 +17,7 @@ import Definitions.FLT.Def_P2M_Util
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Logic.Equiv.PartialEquiv
 
 /-!
 # Fundamental equality sum e(w|v)f(w|v)=[F':F] for places

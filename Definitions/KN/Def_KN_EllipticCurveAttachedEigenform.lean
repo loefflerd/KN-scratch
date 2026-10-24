@@ -8,9 +8,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_HorizontalPadicLAux
-public import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 public import Theorems.KN.Thm_HorizontalPadicL_ellipticCurve_attachedForm_isNormalizedEigenform
+
+import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 
 /-!
 # The specific eigenform attached to a modular elliptic curve at its least modular level

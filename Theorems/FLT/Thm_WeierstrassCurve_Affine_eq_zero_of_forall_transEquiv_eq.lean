@@ -19,6 +19,7 @@ import Theorems.FLT.Thm_IsDedekindDomain_HeightOneSpectrum_exists_eq_span_single
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_finrank_fieldRange_mulPull_le
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_zsmul_genericPoint_good
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Invariant function with divisor on an [n]-fibre forces T=0

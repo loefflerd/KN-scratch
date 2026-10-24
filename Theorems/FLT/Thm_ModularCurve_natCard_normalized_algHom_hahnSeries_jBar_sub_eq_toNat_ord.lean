@@ -11,11 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_HahnSeries_RamificationBound
-public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 
 import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
+import Definitions.FLT.Def_ModularCurve_PhiGen
+import Definitions.FLT.Def_HahnSeries_RamificationBound
 
 /-!
 # Normalised Hahn-series embeddings inducing a place above j₀

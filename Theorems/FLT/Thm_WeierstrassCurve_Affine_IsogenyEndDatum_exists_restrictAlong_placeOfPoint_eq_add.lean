@@ -16,6 +16,11 @@ public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
 
 /-!
 # Pointwise sum of two isogeny end data is realised

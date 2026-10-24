@@ -11,7 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Data.Nat.Prime.Defs
+public import Mathlib.Data.ZMod.Defs
 
 import Mathlib.Tactic.LinearCombination
 meta import Lean.Meta.Tactic.NormCast
@@ -23,6 +24,7 @@ import Mathlib.Tactic.NormNum.DivMod
 import Mathlib.Tactic.NormNum.OfScientific
 import Mathlib.Tactic.Positivity.Finset
 import Mathlib.Tactic.Ring.RingNF
+import Mathlib.Data.ZMod.Basic
 
 /-!
 # Roots of X²-aX+q modulo arbitrarily large primes

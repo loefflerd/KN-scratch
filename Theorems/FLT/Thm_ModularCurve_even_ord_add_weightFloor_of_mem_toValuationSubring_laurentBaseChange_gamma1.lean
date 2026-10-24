@@ -28,6 +28,7 @@ import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
 import Theorems.FLT.Thm_ModularCurve_thetaL_coeffMap_eq_coeffMap_single_mul_derivative
 import Theorems.FLT.Thm_ModularForm_exists_coe_eq_of_levelOne
 import Theorems.FLT.Thm_omegaRow_T2
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 /-!
 # Interior parity of ord_P(v) plus the weight-floor term

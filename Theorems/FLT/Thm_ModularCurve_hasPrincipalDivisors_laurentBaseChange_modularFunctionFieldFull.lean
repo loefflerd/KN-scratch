@@ -11,8 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Definitions.FLT.Def_ModularCurve_PhiGen
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental
 import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_all_of_modularPolynomialFamily

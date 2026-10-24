@@ -13,6 +13,9 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
+
 /-!
 # Degree of a canonical divisor is 2g-2
 

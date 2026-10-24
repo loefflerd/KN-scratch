@@ -15,9 +15,18 @@ public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Mathlib.RingTheory.Polynomial.DegreeLT
+import Mathlib.RingTheory.DedekindDomain.Factorization -- shake: keep
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 import Definitions.FLT.Def_P2M_Util
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
+import Mathlib.Tactic.NormNum.Prime
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Henselian
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Existence of a centred genus-one place gate with Abel's theorem

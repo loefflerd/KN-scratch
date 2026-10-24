@@ -25,6 +25,9 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_restrictAlong_surjective
 import Theorems.FLT.Thm_AlgebraicCurve_Place_restrict_ofAlgAut_smul
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Hilbert decomposition over a rational place of K(t)

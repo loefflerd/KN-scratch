@@ -12,10 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.Discriminant
-
 public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Lattice j-invariant of ℤτ+ℤ equals E₄³/Δ

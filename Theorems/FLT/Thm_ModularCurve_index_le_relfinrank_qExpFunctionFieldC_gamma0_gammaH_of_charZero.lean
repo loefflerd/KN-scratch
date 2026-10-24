@@ -23,6 +23,8 @@ import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_qExpFunctionFieldC_le_of_val
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Index of H{±1} bounds the degree of F_H/F₀

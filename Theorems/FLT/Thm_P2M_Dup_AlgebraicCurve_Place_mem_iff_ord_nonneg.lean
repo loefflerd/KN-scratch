@@ -11,9 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_CharLFrobeniusGeomLevel
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 /-!
 # Valuation ring membership iff non-negative order

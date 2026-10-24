@@ -13,6 +13,7 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 public import Definitions.FLT.Def_ModularCurve_TateFormal
+public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_qExpansion_E4_eq_map_eisenstein4
 import Theorems.FLT.Thm_ModularCurve_qExpansion_E6_eq_map_mk

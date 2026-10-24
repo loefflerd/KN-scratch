@@ -15,6 +15,7 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Surjectivity of the j-invariant of period pairs

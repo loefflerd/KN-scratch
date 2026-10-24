@@ -31,6 +31,8 @@ import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_lSpace_eq_bot_of_degree_neg
 import Theorems.FLT.Thm_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Ring.Star
 
 /-!
 # Riemann–Roch equality for deg D ≥ 2g-1

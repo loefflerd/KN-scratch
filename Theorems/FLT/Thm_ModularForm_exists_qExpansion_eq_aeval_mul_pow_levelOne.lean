@@ -11,8 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 public import Mathlib.RingTheory.LaurentSeries
+public import Mathlib.NumberTheory.ModularForms.Discriminant
+
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
 
 /-!

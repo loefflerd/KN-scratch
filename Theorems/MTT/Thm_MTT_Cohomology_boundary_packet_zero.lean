@@ -15,6 +15,7 @@ public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 
 import Theorems.MTT.Thm_MTT_Cohomology_boundary_hecke_scalar_at_one
 import Theorems.MTT.Thm_MTT_cusp_log_weighted_square_summable
+import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 /-!
 # No boundary symbol carries the full eigenpacket of a cusp form

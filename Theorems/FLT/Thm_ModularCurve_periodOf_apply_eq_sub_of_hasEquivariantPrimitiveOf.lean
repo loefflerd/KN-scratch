@@ -14,6 +14,9 @@ module
 public import Definitions.FLT.Def_ModularCurve_PeriodOf
 
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.MeasureTheory.Covering.Besicovitch
 
 /-!
 # Segment period equals difference of primitive values

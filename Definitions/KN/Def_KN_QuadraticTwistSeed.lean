@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 
 module
 
-public import Definitions.KN.Def_KN_HorizontalPadicLAux
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 /-!
 # A nonvanishing quadratic-twist seed

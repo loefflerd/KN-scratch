@@ -23,6 +23,7 @@ import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.NumberTheory.ModularForms.Cusps
 
 /-!
 # Signature form of the Eichler–Shimura Betti bound

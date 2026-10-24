@@ -11,7 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_Cohomology_Boundary
+public import Definitions.MTT.Def_MTT_Cohomology
 
 import Theorems.MTT.Thm_MTT_Cohomology_character_law_of_class
 import Theorems.MTT.Thm_MTT_exists_cuspForm_heckePrime_pos

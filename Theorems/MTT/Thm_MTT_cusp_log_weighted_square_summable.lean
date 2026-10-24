@@ -11,10 +11,13 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.MTT.Def_MTT_Cohomology_Boundary
-public import Mathlib.NumberTheory.LSeries.PrimesInAP
+public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.NumberTheory.ModularForms.Bounds
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Factorial.DoubleFactorial
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Logarithmically weighted square summability of cusp-form coefficients
@@ -119,7 +122,6 @@ bound `y ^ k * ‖f (x + i y)‖ ^ 2 ≤ C` (Lemma 1.1(b), available in Mathlib 
 
 noncomputable section
 open scoped BigOperators
-open MTT.Cohomology
 
 open UpperHalfPlane hiding I
 open Complex Finset MeasureTheory
@@ -415,7 +417,6 @@ public section publicSection
 
 noncomputable section
 open scoped BigOperators
-open MTT.Cohomology
 
 theorem MTT.cusp_log_weighted_square_summable
     {N k : ℕ} (hN : 0 < N)

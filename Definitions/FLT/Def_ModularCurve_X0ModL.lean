@@ -9,9 +9,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-public import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-public import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
+public import Definitions.FLT.Def_ModularCurve_JqCoeff
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+
+import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
+import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
+import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 
 /-!
 # j-expansions and modular function fields over an arbitrary field

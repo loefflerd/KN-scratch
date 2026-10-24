@@ -10,6 +10,7 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_HeckeOperatorTotal
 public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 /-!
 # Hecke algebra action on J0​(N)(Q​), guarded by commutation

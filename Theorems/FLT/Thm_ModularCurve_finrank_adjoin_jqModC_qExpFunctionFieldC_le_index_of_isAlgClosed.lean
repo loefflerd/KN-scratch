@@ -24,6 +24,8 @@ import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ValuationSubring_exists_liesOverPrime_algebraicClosure_rat
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Deuring's inequality for the q-expansion function field over K(jmath̄)

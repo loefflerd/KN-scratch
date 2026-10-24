@@ -20,6 +20,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_genusFF_eq_of_constantFieldExtension_of_i
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Genus of X₁(M) over an algebraically closed field of characteristic 0

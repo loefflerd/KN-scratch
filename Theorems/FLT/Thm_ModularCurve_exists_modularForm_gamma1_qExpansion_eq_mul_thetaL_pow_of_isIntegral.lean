@@ -24,6 +24,7 @@ import Theorems.FLT.Thm_ModularCurve_thetaL_coeffMap_eq_coeffMap_single_mul_deri
 import Theorems.FLT.Thm_ModularForm_exists_coe_eq_of_levelOne
 import Theorems.FLT.Thm_ModularForm_exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex
 import Theorems.FLT.Thm_omegaRow_T2
+import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 
 /-!
 # Weight-2m criterion on Γ₁(M): X·(vartheta j)^m is a q-expansion

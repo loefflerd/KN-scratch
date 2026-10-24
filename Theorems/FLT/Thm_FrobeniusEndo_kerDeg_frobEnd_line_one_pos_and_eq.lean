@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
-public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
 
 import Theorems.FLT.Thm_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_torsion
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff

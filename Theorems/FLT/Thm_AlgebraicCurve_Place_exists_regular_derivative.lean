@@ -12,7 +12,8 @@ AlgebraicCurve.Place.ord_diffCoeff_D_nonneg_of_isSeparable (submission
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_Differentials
+public import Mathlib.RingTheory.Kaehler.Basic
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
@@ -20,6 +21,7 @@ import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.Unramified.LocalRing
 
 /-!
 # Regular derivatives with respect to a uniformizer

@@ -24,6 +24,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_algebraMap
 import Theorems.FLT.Thm_HahnSeries_isAlgClosed_rat
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Any algebra image of j(q^N) is a root of Φ

@@ -9,6 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndo
+public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 /-!
 # Frobenius push-forward and pull-back on degree-zero Picard groups

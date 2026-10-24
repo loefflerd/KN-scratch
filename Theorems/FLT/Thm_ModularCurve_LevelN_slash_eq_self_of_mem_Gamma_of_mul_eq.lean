@@ -16,6 +16,8 @@ public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Weight-two Γ(N)-invariance of (a/b) (c/e)'

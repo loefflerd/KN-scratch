@@ -10,6 +10,7 @@ public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
 import Theorems.FLT.Thm_WLight_exists_levelFraction_of_stable_family
 import Theorems.FLT.Thm_WLight_levelN_structure_package
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Ratios of modular forms as Fricke fractions

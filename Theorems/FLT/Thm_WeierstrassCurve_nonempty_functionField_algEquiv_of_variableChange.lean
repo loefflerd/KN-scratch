@@ -15,6 +15,12 @@ public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Analysis.Normed.Group.Basic
+import Mathlib.Topology.MetricSpace.Bounded
+import Mathlib.Data.EReal.Operations
+import Mathlib.Topology.Algebra.InfiniteSum.Order
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Variable changes induce isomorphic Weierstrass function fields

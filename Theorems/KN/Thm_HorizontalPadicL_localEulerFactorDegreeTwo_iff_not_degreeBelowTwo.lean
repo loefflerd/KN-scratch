@@ -12,9 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
+public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 import Mathlib.NumberTheory.Padics.RingHoms
-public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 
 /-!
 # Degree-two and subquadratic local Euler factors are complementary

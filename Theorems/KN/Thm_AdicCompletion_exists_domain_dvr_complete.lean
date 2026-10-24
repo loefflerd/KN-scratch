@@ -11,9 +11,14 @@ Licensed under Apache License 2.0
 
 module
 
-public import Theorems.FLT.Thm_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
-public import Theorems.FLT.Thm_Ideal_IsMaximal_exists_adicCompletion_localization_ringEquiv
-public import Mathlib.RingTheory.AdicCompletion.Topology
+public import Mathlib.RingTheory.DedekindDomain.Basic
+public import Mathlib.RingTheory.DiscreteValuationRing.Basic
+public import Mathlib.RingTheory.AdicCompletion.Algebra
+
+import Theorems.FLT.Thm_Ideal_IsMaximal_exists_adicCompletion_localization_ringEquiv
+import Theorems.FLT.Thm_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
+import Mathlib.RingTheory.AdicCompletion.Topology
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # The completion of a Dedekind domain at a nonzero prime is a complete DVR

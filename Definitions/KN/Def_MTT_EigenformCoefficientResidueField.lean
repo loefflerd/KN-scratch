@@ -9,7 +9,9 @@ Licensed under Apache License 2.0
 module
 
 public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isMaximal
-public import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Norm
+
+import Theorems.KN.Thm_MTT_numberField_coefficientField
+import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
 
 /-!
 # The finite coefficient residue field of an MTT eigenform
@@ -52,24 +54,22 @@ noncomputable abbrev coefficientResidueFieldField
     {N k p : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     (f : MTT.Eigenform N k ι) (ιp : MTT.Qbar →+* ℂ_[p]) :
-    Field (f.coefficientResidueField ιp) := by
+    Field (f.coefficientResidueField ιp) :=
   letI : (f.coefficientPrime ιp).IsMaximal :=
     f.coefficientPrime_isMaximal hN hk ιp
-  exact Ideal.Quotient.field (f.coefficientPrime ιp)
+  Ideal.Quotient.field (f.coefficientPrime ιp)
 
 /-- The coefficient residue field is finite. This is a derived structure,
 not additional data attached to the eigenform. -/
-noncomputable abbrev coefficientResidueFieldFintype
+lemma coefficientResidueFieldFinite
     {N k p : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
     {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     (f : MTT.Eigenform N k ι) (ιp : MTT.Qbar →+* ℂ_[p]) :
-    Fintype (f.coefficientResidueField ιp) := by
-  letI : NumberField f.coefficientField :=
+    Finite (f.coefficientResidueField ιp) :=
+  let : NumberField f.coefficientField :=
     MTT.numberField_coefficientField hN hk ι f
-  letI : Finite (f.coefficientResidueField ιp) :=
-    Ring.HasFiniteQuotients.finiteQuotient
-      (f.coefficientPrime_ne_bot ιp)
-  exact Fintype.ofFinite _
+  Ring.HasFiniteQuotients.finiteQuotient
+    (f.coefficientPrime_ne_bot ιp)
 
 end MTT.Eigenform
 end

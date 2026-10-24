@@ -38,6 +38,9 @@ import Theorems.KN.Thm_HorizontalPadicL_unitNormRelationThetaSystem_to_normalize
 import Theorems.KN.Thm_MTT_algebraicSymbol_horizontal_unitFiber_distribution
 import Theorems.KN.Thm_MTT_criticalLValue_ne_zero_iff_modularSymbol_sum_ne_zero
 import Theorems.MTT.Thm_MTT_periods_exist
+import Definitions.KN.Def_KN_SeededInverseThetaSystemV2
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 
 /-!
 # Corollary 5.17 with a supplied quadratic twist

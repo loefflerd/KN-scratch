@@ -12,6 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
+public import Definitions.KN.Def_KN_HorizontalPadicL
 
 import Theorems.KN.Thm_HorizontalPadicL_minimalModularLevel_dvd_iff_localEulerFactorDegreeBelowTwo
 import Theorems.KN.Thm_HorizontalPadicL_localEulerFactorDegreeTwo_iff_not_degreeBelowTwo

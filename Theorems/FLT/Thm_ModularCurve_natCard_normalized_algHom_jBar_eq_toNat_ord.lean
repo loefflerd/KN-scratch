@@ -11,8 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_HahnSeries_RamificationBound
-public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 
 import Theorems.FLT.Thm_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
@@ -25,6 +23,7 @@ import Theorems.FLT.Thm_LaurentSeries_exists_algHom_comp_map_eq_single
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
 
 /-!
 # Normalised Hahn-series embeddings at a place above j₀

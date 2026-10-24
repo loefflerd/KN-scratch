@@ -13,9 +13,11 @@ module
 
 public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
+public import Mathlib.RingTheory.SimpleRing.Principal
 
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Riemann–Roch over an algebraically closed constant field

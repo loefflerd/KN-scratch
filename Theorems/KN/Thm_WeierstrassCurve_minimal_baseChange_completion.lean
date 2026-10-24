@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
-public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 public import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
 
 

@@ -8,7 +8,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
+public import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
+
+import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
 
 /-!
 # Reduction of points as an additive group homomorphism
