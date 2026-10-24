@@ -15,20 +15,17 @@ public import Mathlib.LinearAlgebra.LinearIndependent.Defs
 public import Mathlib.RingTheory.Algebraic.Defs
 
 import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.Order.Int.LeastGreatest
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.RingTheory.PicardGroup
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
-import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
-import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
-import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty
-import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
-import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
-import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+import Mathlib.Basic.NNReal.Defs
+import Mathlib.CategoryTheory.Category.Init
+import Mathlib.Combinatorics.Matroid.Init
+import Mathlib.Data.Nat.Totient
+import Mathlib.Data.Sym.Sym2.Init
+import Mathlib.RingTheory.Algebraic.Basic
+import Mathlib.Tactic.Continuity.Init
+import Mathlib.Tactic.ContinuousFunctionalCalculus
+import Mathlib.Tactic.NormNum.GCD
+import Mathlib.Tactic.Positivity.Finset
 
 /-!
 # Powers of a transcendental element are linearly independent

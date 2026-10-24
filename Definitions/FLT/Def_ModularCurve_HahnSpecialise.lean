@@ -10,9 +10,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_ReduceHom
 public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
-public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-public import Mathlib.RingTheory.Ideal.Quotient.Operations
-public import Mathlib.GroupTheory.OrderOfElement
 
 /-!
 # Specialisation of points and cyclic subgroups over Hahn series

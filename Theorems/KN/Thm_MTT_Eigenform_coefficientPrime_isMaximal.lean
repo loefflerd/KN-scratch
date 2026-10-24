@@ -14,7 +14,6 @@ module
 public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isPrime
 public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
 public import Theorems.KN.Thm_MTT_numberField_coefficientField
-public import Mathlib.RingTheory.DedekindDomain.Basic
 
 /-!
 # The coefficient prime selected by a p-adic embedding is maximal

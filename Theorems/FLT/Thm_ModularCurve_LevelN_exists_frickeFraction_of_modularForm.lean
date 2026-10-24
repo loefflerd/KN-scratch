@@ -7,8 +7,6 @@ Authors: David Loeffler
 module
 
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
-public import Mathlib.NumberTheory.ModularForms.Basic
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 import Theorems.FLT.Thm_WLight_exists_levelFraction_of_stable_family
 import Theorems.FLT.Thm_WLight_levelN_structure_package

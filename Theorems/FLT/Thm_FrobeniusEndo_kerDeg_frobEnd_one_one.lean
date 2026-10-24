@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
 public import Mathlib.FieldTheory.Finite.Basic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Fixed points of the q-power Frobenius are the F-rational points

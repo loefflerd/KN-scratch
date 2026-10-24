@@ -14,8 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 
-import Mathlib.NumberTheory.Bernoulli
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integral q-expansion of E₆

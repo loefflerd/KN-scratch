@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
 import Mathlib.Algebra.Field.ZMod
 import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # SL₂(ℤ)-invariance of the Hecke coset polynomial at ℓ

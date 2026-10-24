@@ -17,8 +17,6 @@ import Theorems.MTT.Thm_MTT_exists_cuspForm_slash_gamma0
 import Theorems.MTT.Thm_MTT_Cohomology_cuspPrimitive_slash_relation
 import Theorems.MTT.Thm_MTT_period_vanishing
 import Theorems.MTT.Thm_MTT_Cohomology_evaluation_faithful
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.RingTheory.Flat.Basic
 
 /-!
 # The nebentype law on the modular symbol $I(g)$ descends to the cusp form $g$

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Non-vanishing of the discriminant g₂³-27g₃²

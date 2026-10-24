@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_coset_eq_zero
 import Theorems.FLT.Thm_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic
 import Theorems.FLT.Thm_PeriodPair_jLattice_ofTau
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Φ_N(j(Λ),j(Λ'))=0 for cyclic sublattices of index N

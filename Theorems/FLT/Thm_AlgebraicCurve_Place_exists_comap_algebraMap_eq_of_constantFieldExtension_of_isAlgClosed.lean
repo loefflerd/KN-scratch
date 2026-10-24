@@ -21,7 +21,6 @@ import Mathlib.RingTheory.Valuation.LocalSubring
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
 import Theorems.FLT.Thm_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_of_constantFieldExtension_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Unique place above P in a constant field extension

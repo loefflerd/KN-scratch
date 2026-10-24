@@ -11,17 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FLTPrelim_Modularity
 public import Definitions.FLT.Def_EllipticCurve_TateModule
-public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
-public import Mathlib.LinearAlgebra.Charpoly.Basic
 
 import Theorems.FLT.Thm_WeierstrassCurve_frobenius_cayleyHamilton_on_torsion
 import Theorems.FLT.Thm_LinearMap_charpoly_eq_iff_of_finrank_eq_two
 import Theorems.FLT.Thm_WeierstrassCurve_tateModuleRep_det_frobenius
 import Theorems.FLT.Thm_LinearMap_trace_eq_of_sq_sub_smul_add_eq_zero_of_det_eq
-import Mathlib.Algebra.Module.NatInt
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Frobenius characteristic polynomial on the p-adic Tate module

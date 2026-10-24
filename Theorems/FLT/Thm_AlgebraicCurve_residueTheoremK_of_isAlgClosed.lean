@@ -18,10 +18,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Analysis.Normed.Unbundled.SpectralNorm
 import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Norm.Transitivity
 import Mathlib.RingTheory.TotallySplit
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_residueTraceCompletionCommute

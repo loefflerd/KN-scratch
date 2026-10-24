@@ -15,7 +15,6 @@ public import Mathlib.GroupTheory.Index
 
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Group
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Free double-coset count: #(Hbackslash M/K)·|K|=[M:H]

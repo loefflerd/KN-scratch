@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_ModularCurve_thetaL_coeffMap_eq_coeffMap_single_mul_deri
 import Theorems.FLT.Thm_ModularForm_exists_cuspForm_mul_eq_of_analyticOrderAt_le
 import Theorems.FLT.Thm_ModularForm_exists_gamma0_qExpansion_eq_of_levelOne
 import Theorems.FLT.Thm_omegaRow_T2
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality criterion making X θ j a weight-two cusp form

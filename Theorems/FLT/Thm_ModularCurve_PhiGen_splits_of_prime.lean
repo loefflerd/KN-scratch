@@ -11,11 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eq_of_prime

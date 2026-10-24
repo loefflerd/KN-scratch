@@ -12,8 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_EMD
-public import Mathlib.RingTheory.HahnSeries.PowerSeries
-public import Mathlib.SetTheory.Cardinal.Finite
 
 import Definitions.FLT.Def_P2M_Util
 

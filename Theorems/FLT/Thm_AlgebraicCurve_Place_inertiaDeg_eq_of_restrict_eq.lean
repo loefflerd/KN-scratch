@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-public import Mathlib.FieldTheory.Galois.Basic
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq
 import Theorems.FLT.Thm_AlgebraicCurve_SemilinearAut_inertiaDeg_smul

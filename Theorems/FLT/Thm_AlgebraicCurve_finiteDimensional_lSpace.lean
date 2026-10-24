@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
-import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
 import Definitions.FLT.Def_P2M_Util
 

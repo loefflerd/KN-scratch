@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
 
-import Definitions.FLT.Def_WeierstrassCurve_FullKernelQuotient
 import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeOdd
 
 /-!

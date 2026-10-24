@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of the divisor of zeros of x-a

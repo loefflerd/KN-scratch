@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_Gamma0CoeffCohomology
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
-import Mathlib.Algebra.Order.Star.Rat
 import Theorems.FLT.Thm_HeckeEis_exists_induced_binaryFormRepSL_top
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_top_add_le
@@ -26,7 +25,6 @@ import Theorems.FLT.Thm_ModularCurve_Gamma0_index
 import Theorems.FLT.Thm_ModularCurve_natCard_fixedPoints_ST_cosets_Gamma0_eq_nuThree
 import Theorems.FLT.Thm_ModularCurve_natCard_fixedPoints_S_cosets_Gamma0_eq_nuTwo
 import Theorems.FLT.Thm_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Upper bound for parabolic H¹ of Γ₀(N) in binary forms

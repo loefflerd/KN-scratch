@@ -12,12 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.RingTheory.LaurentSeries
 
 import Theorems.FLT.Thm_ModularForm_exists_degeneracy_Gamma0
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # A level-one form is a form for Γ₀(N)

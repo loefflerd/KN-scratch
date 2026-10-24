@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
 import Theorems.FLT.Thm_WLight_levelN_structure_package
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The level-M modular function algebra is a domain

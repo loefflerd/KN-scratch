@@ -11,13 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_CuspidalClass
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_le_finrank
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum
@@ -35,6 +31,7 @@ import Theorems.FLT.Thm_ModularCurve_isCusp_cuspZeroBar
 import Theorems.FLT.Thm_ModularCurve_isCusp_cuspInftyBar
 import Theorems.FLT.Thm_ModularCurve_isFrickeAutFull_frickeInvolutionFull_prime
 import Definitions.FLT.Def_P2M_Util
+public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 
 /-!
 # Geometric degree of X₀(ℓ)→ X(1) is ℓ+1

@@ -18,7 +18,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_degree_canonicalDivisor_eq_of_riemannRoch
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree of a canonical divisor is 2g-2 over ̄ K

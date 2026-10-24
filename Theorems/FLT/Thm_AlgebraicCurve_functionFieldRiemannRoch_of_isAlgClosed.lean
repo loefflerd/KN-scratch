@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 import Theorems.FLT.Thm_AlgebraicCurve_residueTheoremK_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Riemann–Roch over an algebraically closed base field

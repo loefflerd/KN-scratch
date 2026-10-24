@@ -12,16 +12,12 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_EMD
-public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 
-import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
-import Definitions.FLT.Def_ModularCurve_SpecialisationBridge
 import Theorems.FLT.Thm_ModularCurve_exists_elliptic_cycSub_orbitMap_of_props
 import Theorems.FLT.Thm_ModularCurve_TatePoint_fullKernelIsRootAt
 import Theorems.FLT.Thm_ModularCurve_TatePoint_fullKernelInjAt
 import Theorems.FLT.Thm_ModularCurve_TatePoint_fullKernelDiscAt
 import Theorems.FLT.Thm_ModularCurve_TatePoint_b3Act_dictN_of_monodromy
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places above j₀ and orbits of cyclic N-subgroups

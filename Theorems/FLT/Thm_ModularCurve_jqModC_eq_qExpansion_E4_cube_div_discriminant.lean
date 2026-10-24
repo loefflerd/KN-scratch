@@ -13,14 +13,11 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_hasSum_jq_qParam
 import Theorems.FLT.Thm_ModularCurve_hasSum_qParam_mul_laurent
 import Theorems.FLT.Thm_ModularCurve_laurent_qParam_coeff_unique
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # j-series over ℂ equals E₄³/Δ in ℂ((q))

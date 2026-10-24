@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.Ideal.GoingUp
 import Definitions.FLT.Def_P2M_Util
 
 /-!

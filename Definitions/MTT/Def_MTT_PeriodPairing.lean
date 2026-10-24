@@ -10,7 +10,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Integration
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
-public import Mathlib.Analysis.Calculus.FDeriv.Basic
 public import Mathlib.NumberTheory.Modular
 
 /-!

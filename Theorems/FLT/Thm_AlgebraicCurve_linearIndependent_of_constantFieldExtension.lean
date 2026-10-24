@@ -21,7 +21,6 @@ import Mathlib.RingTheory.Nullstellensatz
 import Mathlib.RingTheory.Polynomial.IsIntegral
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Function fields are linearly disjoint from constant field extensions

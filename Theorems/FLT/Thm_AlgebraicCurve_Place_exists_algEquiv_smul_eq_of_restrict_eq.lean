@@ -13,11 +13,9 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 public import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
-public import Mathlib.FieldTheory.Galois.Basic
 
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Mathlib.NumberTheory.RamificationInertia.Galois
-import Mathlib.RingTheory.Invariant.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

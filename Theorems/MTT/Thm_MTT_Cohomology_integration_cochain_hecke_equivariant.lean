@@ -15,7 +15,6 @@ public import Definitions.MTT.Def_MTT_Cohomology_Integration
 public import Mathlib.RingTheory.Flat.Basic
 
 import Mathlib.NumberTheory.ModularForms.LFunction
-import Mathlib.NumberTheory.ModularForms.Identities
 
 /-!
 # Hecke equivariance of cusp-to-cusp integration

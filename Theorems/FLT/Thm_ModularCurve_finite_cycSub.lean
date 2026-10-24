@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_EMD
 
 import Theorems.FLT.Thm_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finitely many cyclic subgroups of order N on an elliptic curve over ℚ̄

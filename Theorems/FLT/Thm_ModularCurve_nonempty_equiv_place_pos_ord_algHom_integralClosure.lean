@@ -12,8 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
@@ -22,14 +20,6 @@ import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctio
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
-import Mathlib.FieldTheory.Relrank
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
-import Mathlib.FieldTheory.Perfect
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.DedekindDomain.AdicValuation
-import Mathlib.RingTheory.Localization.Integral
-import Mathlib.RingTheory.Adjoin.Polynomial.Basic
 
 /-!
 # Places above a finite j-value as ℚ̄-points of the coordinate ring

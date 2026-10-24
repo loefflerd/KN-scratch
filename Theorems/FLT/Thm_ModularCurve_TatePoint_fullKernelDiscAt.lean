@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
 
 import Mathlib.Algebra.Field.ZMod
-import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap2
 import Theorems.FLT.Thm_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2
 import Theorems.FLT.Thm_WeierstrassCurve_fiberAdd_veluGx_cleared_four
 import Theorems.FLT.Thm_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen

@@ -22,7 +22,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndDa
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Non-integral isogeny endomorphism forces an imaginary quadratic degree form

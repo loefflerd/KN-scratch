@@ -15,7 +15,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Mathlib.Algebra.Lie.OfAssociative
-import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom

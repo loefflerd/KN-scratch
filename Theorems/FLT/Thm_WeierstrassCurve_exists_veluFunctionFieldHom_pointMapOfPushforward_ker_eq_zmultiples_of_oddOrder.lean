@@ -18,7 +18,6 @@ public import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
 public import Definitions.FLT.Def_WeierstrassCurve_Velu
 
 import Theorems.FLT.Thm_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Vélu pushforward point map has kernel ℤQ

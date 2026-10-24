@@ -14,7 +14,6 @@ module
 public import Mathlib.NumberTheory.ModularForms.Basic
 public import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
-import Mathlib.NumberTheory.ModularForms.QExpansion
 import Mathlib.NumberTheory.ModularForms.NormTrace
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range

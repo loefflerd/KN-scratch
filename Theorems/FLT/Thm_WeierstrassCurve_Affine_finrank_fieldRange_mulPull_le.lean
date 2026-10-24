@@ -16,8 +16,6 @@ public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_adjoin_X_Y_eq_top
 import Theorems.FLT.Thm_IntermediateField_finrank_fieldRange_le_of_adjoin_pair_eq_top
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff
@@ -26,7 +24,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_evalEval_psi_sq
 import Theorems.FLT.Thm_WeierstrassCurve_Psi2Sq_ne_zero_of_isElliptic
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_zsmul_some_eq_some_div
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_two_smul_some_eq_zero_iff
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Pull-back by [n] has index at most n²

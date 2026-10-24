@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
-import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_of_span
 
 /-!

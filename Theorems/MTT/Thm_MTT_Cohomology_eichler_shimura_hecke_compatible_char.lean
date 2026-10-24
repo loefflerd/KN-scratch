@@ -19,7 +19,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_character_law_of_class
 import Theorems.MTT.Thm_MTT_exists_cuspForm_heckePrime_pos
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_involutive
-import Mathlib.RingTheory.Flat.Basic
 
 /-!
 # The Eichler–Shimura decomposition is compatible with the prime Hecke operators

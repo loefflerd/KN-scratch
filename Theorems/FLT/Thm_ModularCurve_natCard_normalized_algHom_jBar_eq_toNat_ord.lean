@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_HahnSeries_RamificationBound
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
@@ -25,9 +24,6 @@ import Theorems.FLT.Thm_ModularCurve_natCard_normalized_algHom_hahnSeries_jBar_s
 import Theorems.FLT.Thm_LaurentSeries_exists_algHom_comp_map_eq_single
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
-import Mathlib.FieldTheory.Relrank
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
-import Mathlib.RingTheory.LaurentSeries
 import Definitions.FLT.Def_P2M_Util
 
 /-!

@@ -13,24 +13,13 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-import Theorems.FLT.Thm_ModularCurve_order_jqModC
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_mul_eq_zero
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_of_mul_eq_zero
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_self
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
 import Theorems.FLT.Thm_ModularCurve_one_le_coeff_jq
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
-import Mathlib.RingTheory.Polynomial.RationalRoot
-import Mathlib.Algebra.Polynomial.Roots
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

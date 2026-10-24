@@ -20,7 +20,6 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finiteness of n-torsion when n ≠ 0 in k

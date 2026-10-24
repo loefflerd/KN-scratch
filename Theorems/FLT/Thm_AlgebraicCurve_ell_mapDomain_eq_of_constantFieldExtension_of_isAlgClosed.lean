@@ -18,7 +18,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_exists_separating_transcendental_of_perfe
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
 import Theorems.FLT.Thm_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_of_constantFieldExtension_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Invariance of ℓ(D) under constant field extension

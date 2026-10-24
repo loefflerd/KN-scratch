@@ -13,7 +13,6 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
 
-import Mathlib.RingTheory.PowerSeries.Order
 import Theorems.FLT.Thm_Subgroup_IsArithmetic_exists_nat_mem_strictPeriods_conj
 import Theorems.FLT.Thm_ModularForm_eq_zero_of_lt_order_qExpansion_of_isArithmetic
 import Definitions.FLT.Def_P2M_Util

@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Pic0_mk_eq_zero_iff
 import Theorems.FLT.Thm_AlgebraicCurve_Pic0_zsmul_mk
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Torsion criterion in Pic⁰: mD principal kills m[D]

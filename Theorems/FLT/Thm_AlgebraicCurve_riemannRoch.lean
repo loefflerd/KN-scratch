@@ -7,7 +7,6 @@ Authors: David Loeffler
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
-public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Theorems.FLT.Thm_AlgebraicCurve_IsCurveOver_exists_separating_transcendental

@@ -21,8 +21,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_reducePoint_some
 import Theorems.FLT.Thm_WeierstrassCurve_reducePoint_some_eq_zero_iff
 import Theorems.FLT.Thm_WeierstrassCurve_reducePoint_add
 import Theorems.FLT.Thm_WeierstrassCurve_eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero
-import Definitions.FLT.Def_EllipticCurve_PointReduction
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Néron–Ogg–Shafarevich: good reduction gives E[n] unramified at q

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_ModularUnit
 
 import Theorems.FLT.Thm_ModularCurve_modularUnitSeries_mem_modularFunctionField
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Ogg's modular unit lies in the full level-N function field

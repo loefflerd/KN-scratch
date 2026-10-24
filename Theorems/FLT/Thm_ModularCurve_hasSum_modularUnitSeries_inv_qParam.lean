@@ -15,8 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_ModularUnit
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.NumberTheory.ModularForms.LevelOne.Basic
 import Mathlib.Analysis.Complex.TaylorSeries
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
 import Theorems.FLT.Thm_ModularCurve_hasSum_qParam_mul_laurent

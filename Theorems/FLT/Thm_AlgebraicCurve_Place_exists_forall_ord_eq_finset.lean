@@ -14,8 +14,10 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Prescribing orders at finitely many places

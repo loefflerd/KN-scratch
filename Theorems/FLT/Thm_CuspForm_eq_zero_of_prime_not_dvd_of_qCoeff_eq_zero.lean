@@ -19,7 +19,6 @@ import Theorems.FLT.Thm_CongruenceSubgroup_Gamma0_le_closure_T_union_setOf_dvd
 import Theorems.FLT.Thm_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul
 import Theorems.FLT.Thm_CuspForm_finiteDimensional_Gamma0
 import Theorems.FLT.Thm_ModularFormClass_eq_of_forall_qCoeff_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Vanishing of a cusp form supported on multiples of p ∤ m

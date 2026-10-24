@@ -13,11 +13,8 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 
-import Mathlib.FieldTheory.RatFunc.Degree
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order at the infinite place is minus the degree

@@ -11,16 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
-public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 public import Mathlib.NumberTheory.Cyclotomic.Basic
 
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
-import Mathlib.NumberTheory.ModularForms.Discriminant
 import Theorems.FLT.Thm_ModularCurve_PhiGen_PhiGenDescends_hasSum_cosetPoly_coeff
 import Theorems.FLT.Thm_ModularCurve_mem_adjoin_jq_of_hasSum_of_slash_invariant
 import Theorems.FLT.Thm_ModularCurve_cosetPoly_smul

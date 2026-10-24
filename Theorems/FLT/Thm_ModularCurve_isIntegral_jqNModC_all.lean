@@ -13,10 +13,8 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_all_of_modularPolynomialFamily
 import Theorems.FLT.Thm_ModularCurve_modularPolynomialFamily
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality of ̄ j(q^N) over K(̄ j(q))

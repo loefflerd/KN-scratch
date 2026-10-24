@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.Algebra.Module.ZLattice.Covolume
-import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Mathlib.LinearAlgebra.FreeModule.ModN
 import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Theorems.FLT.Thm_PeriodPair_isUniformization_toPoint

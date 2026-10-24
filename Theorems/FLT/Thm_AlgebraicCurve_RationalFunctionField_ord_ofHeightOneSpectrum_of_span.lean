@@ -15,7 +15,6 @@ public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_eq_neg_log
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # A generator of a height-one prime of K[X] has order 1

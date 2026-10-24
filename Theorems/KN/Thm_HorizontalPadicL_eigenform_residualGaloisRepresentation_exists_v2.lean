@@ -12,17 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
-public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 
 import Theorems.KN.Thm_MTT_Eigenform_exists_adic_matrix_representation
 import Theorems.FLT.Thm_NumberField_exists_lift_mem_inertia_integralClosure
 import Theorems.FLT.Thm_ValuationSubring_exists_liesOverPrime_mem_inertiaSubgroupIn
-import Definitions.FLT.Def_TaylorWiles_Primes
-import Mathlib.FieldTheory.Galois.Infinite
-import Mathlib.FieldTheory.Galois.Basic
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Mathlib.NumberTheory.NumberField.Basic
-import Mathlib.Topology.Algebra.OpenSubgroup
 import Theorems.FLT.Thm_NumberField_exists_isFrobenius_lift_arithFrobAt
 import Theorems.FLT.Thm_NumberField_exists_valuationSubring_eq_localization
 import Theorems.FLT.Thm_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem

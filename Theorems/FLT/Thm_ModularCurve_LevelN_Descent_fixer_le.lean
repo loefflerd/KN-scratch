@@ -18,7 +18,6 @@ import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.RingTheory.PicardGroup
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index
 import Definitions.FLT.Def_P2M_Util
 

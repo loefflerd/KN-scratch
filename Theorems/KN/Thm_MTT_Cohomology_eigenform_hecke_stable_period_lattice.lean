@@ -22,8 +22,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_eigenclass_descent
 import Theorems.MTT.Thm_MTT_Cohomology_evaluation_lattice
 import Theorems.MTT.Thm_MTT_period_vanishing
 import Mathlib.RingTheory.Flat.Localization
-import Mathlib.LinearAlgebra.Basis.VectorSpace
-import Mathlib.NumberTheory.ModularForms.LevelOne.Basic
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 
 /-!

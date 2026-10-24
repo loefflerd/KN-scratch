@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
-public import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 
 import Theorems.KN.Thm_MTT_Cohomology_eigenform_hecke_stable_period_lattice
 

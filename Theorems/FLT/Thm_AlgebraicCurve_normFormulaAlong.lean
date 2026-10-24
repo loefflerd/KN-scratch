@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_pushforwardNormFormula
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Pushforward norm formula along a finite separable K-morphism

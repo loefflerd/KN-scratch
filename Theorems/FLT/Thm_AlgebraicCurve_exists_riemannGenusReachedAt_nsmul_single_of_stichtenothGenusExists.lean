@@ -18,7 +18,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_lSpace
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Genus bound attained at a multiple of any single place

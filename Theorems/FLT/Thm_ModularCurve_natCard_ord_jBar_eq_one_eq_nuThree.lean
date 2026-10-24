@@ -12,8 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 public import Definitions.FLT.Def_ModularCurve_JLinePlaces
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 public import Definitions.FLT.Def_ModularCurve_ModuliPoint
@@ -22,7 +20,6 @@ import Theorems.FLT.Thm_ModularCurve_deg_eq_one_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_exists_finset_ord_jBar_sub_pos
 import Theorems.FLT.Thm_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree
-import Theorems.FLT.Thm_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo
 
 /-!
 # Simple zeros of ̄ j on level-N curve count ν₃(N)

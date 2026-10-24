@@ -19,7 +19,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 import Theorems.FLT.Thm_AlgebraicCurve_separableAlong_of_charZero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Norm formula along isogeny endomorphism data in characteristic zero

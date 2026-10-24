@@ -9,8 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
-public import Mathlib.Algebra.Ring.Action.Submonoid
-public import Mathlib.FieldTheory.Galois.Basic
 public import Mathlib.NumberTheory.Height.NumberField
 public import Definitions.FLT.Def_Compat_Mathlib430
 

@@ -15,7 +15,6 @@ public import Definitions.KN.Def_KN_PrimePowerPropagationV2
 
 import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.MulChar.Duality
-import Mathlib.RingTheory.IntegralDomain
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
 /-!

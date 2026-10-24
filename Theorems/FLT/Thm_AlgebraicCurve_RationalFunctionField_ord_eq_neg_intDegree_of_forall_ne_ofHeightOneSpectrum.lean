@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # At the infinite place of K(X), ord = -deg

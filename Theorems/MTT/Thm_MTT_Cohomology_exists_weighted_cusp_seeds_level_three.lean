@@ -12,14 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.RingTheory.MvPowerSeries.Order
 
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.Discriminant
 import Mathlib.RingTheory.PowerSeries.Expand
-import Mathlib.RingTheory.PowerSeries.Order
-import Definitions.MTT.Def_MTT_Arithmetic
 import Theorems.FLT.Thm_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
 import Theorems.FLT.Thm_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour
 import Theorems.FLT.Thm_EisensteinSeries_exists_modularForm_coe_eq_eisensteinG

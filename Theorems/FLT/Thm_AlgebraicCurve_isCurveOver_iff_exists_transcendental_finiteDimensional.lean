@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Curves over a perfect field: separating transcendence element

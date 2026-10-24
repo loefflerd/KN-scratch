@@ -15,7 +15,6 @@ public import Mathlib.FieldTheory.Relrank
 public import Definitions.FLT.Def_CohCarrier_Level
 public import Definitions.FLT.Def_ModularCurve_X1
 
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Flat.TorsionFree
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_exists_intSeriesC_mul_ne_of_gamma0Units_not_mem

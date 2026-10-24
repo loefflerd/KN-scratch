@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 
 import Theorems.FLT.Thm_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cusp forms from ℚ̄-rational modular functions via ι₀(x)(vartheta j)^m

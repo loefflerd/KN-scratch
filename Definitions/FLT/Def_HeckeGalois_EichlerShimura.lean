@@ -8,12 +8,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FLTPrelim_Ramification
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 public import Mathlib.Algebra.MvPolynomial.CommRing
-public import Mathlib.Algebra.Module.Torsion.Basic
-public import Mathlib.LinearAlgebra.Determinant
-public import Mathlib.LinearAlgebra.Dimension.Finrank
 
 /-!
 # Hecke polynomial algebra, mod-𝔪 Galois action, Eichler–Shimura hypotheses

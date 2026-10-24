@@ -14,14 +14,10 @@ module
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
-import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.DedekindDomain.Different
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_pointMapOfPushforward_surjective
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
 import Definitions.FLT.Def_P2M_Util

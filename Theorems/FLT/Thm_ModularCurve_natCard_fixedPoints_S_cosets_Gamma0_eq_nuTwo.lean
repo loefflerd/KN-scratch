@@ -14,7 +14,6 @@ module
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cosets of Γ₀(N) fixed by S number ν₂(N)

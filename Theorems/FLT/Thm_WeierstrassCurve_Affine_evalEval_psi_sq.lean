@@ -13,7 +13,6 @@ module
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Division polynomial identity ψₙ(x,y)²=Ψ²ₙ(x) on the curve

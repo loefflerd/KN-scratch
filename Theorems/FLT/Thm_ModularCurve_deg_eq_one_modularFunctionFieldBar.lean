@@ -12,20 +12,13 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
-import Mathlib.FieldTheory.Relrank
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.FieldTheory.Minpoly.Basic
-import Mathlib.RingTheory.Algebraic.Integral
 
 /-!
 # All places of ℚ̄·F_M have degree one

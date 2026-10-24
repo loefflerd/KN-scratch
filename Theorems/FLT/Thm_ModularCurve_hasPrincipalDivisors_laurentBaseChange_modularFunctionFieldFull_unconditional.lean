@@ -14,10 +14,8 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_modularPolynomialFamily
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Principal divisors of degree zero on L· F_N^{full}

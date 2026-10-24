@@ -15,9 +15,7 @@ public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Complex.Periodic
 public import Mathlib.NumberTheory.ModularForms.Basic
 
-import Mathlib.NumberTheory.ModularForms.QExpansion
 import Mathlib.NumberTheory.ModularForms.NormTrace
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finite order of a non-zero modular form at a cusp

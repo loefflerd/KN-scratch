@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 
 import Theorems.FLT.Thm_AlgebraicCurve_genusFF_le_of_constantFieldExtension_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_le_genusFF_of_constantFieldExtension_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Genus invariance under algebraically closed constant field extension

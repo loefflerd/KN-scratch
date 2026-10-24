@@ -14,8 +14,6 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
-import Mathlib.NumberTheory.Cyclotomic.Gal
-import Mathlib.RingTheory.RootsOfUnity.Complex
 import Theorems.FLT.Thm_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem
 import Theorems.FLT.Thm_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
@@ -24,6 +22,7 @@ import Theorems.FLT.Thm_WLight_exists_monicRel_j_K_of_mdifferentiable_frickeQuot
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_linearIndependent_complex_of_qExpansion_rational
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.Cyclotomic.Basic
 
 /-!
 # Bounded denominators for rational q-expansions of level N

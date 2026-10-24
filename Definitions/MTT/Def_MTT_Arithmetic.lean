@@ -9,11 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Mathlib.NumberTheory.DirichletCharacter.Basic
-public import Mathlib.MeasureTheory.Integral.Bochner.Set
-public import Mathlib.RingTheory.Finiteness.Defs
-public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 
 /-!
 # MTT: cusp forms, modular integrals, periods, and complex critical values

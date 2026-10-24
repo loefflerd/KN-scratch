@@ -9,9 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.Bounds
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
-public import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 /-!
 # Petersson inner product of cusp forms for Γ₀(N)

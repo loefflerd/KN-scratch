@@ -13,7 +13,6 @@ module
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Nonvanishing of the ideals (X-x, Y-y) in R[W]

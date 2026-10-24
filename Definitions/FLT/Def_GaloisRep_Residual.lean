@@ -10,12 +10,6 @@ module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 public import Definitions.FLT.Def_FLTPrelim_Modularity
-public import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
-public import Mathlib.LinearAlgebra.Charpoly.Basic
-public import Mathlib.LinearAlgebra.Determinant
-public import Mathlib.LinearAlgebra.TensorProduct.Tower
-public import Mathlib.LinearAlgebra.Dimension.Constructions
-public import Mathlib.FieldTheory.Finiteness
 
 /-!
 # Two-dimensional residual Galois representations and their properties

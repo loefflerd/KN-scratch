@@ -16,7 +16,6 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Mathlib.RingTheory.Valuation.ValuationSubring
 
 import Mathlib.RingTheory.Norm.Basic
-import Mathlib.Algebra.Polynomial.Degree.SmallDegree
 import Definitions.FLT.Def_P2M_Util
 
 /-!

@@ -14,10 +14,7 @@ module
 public import Definitions.MTT.Def_MTT_Measures
 
 import Mathlib.NumberTheory.ModularForms.LFunction
-import Mathlib.NumberTheory.ModularForms.Identities
-import Mathlib.Tactic.FinCases
 import Mathlib.Analysis.Fourier.ZMod
-import Mathlib.Algebra.Ring.Periodic
 import Theorems.MTT.Thm_MTT_birch_mellin_formula
 import Theorems.MTT.Thm_MTT_character_integral_of_disk_moments
 

@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Cohomology
 
-import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Theorems.MTT.Thm_MTT_Cohomology_eichler_shimura_span
 import Theorems.MTT.Thm_MTT_Cohomology_eichler_shimura_nebentype_compatible
 import Theorems.MTT.Thm_MTT_Cohomology_eichler_shimura_hecke_compatible_char

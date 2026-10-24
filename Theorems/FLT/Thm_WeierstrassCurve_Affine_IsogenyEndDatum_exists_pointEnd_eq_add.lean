@@ -20,7 +20,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_restrictAlong_placeOfPoint_eq_add
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_pointEnd_apply_eq_sub
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Isogeny-induced endomorphisms of E(F) are closed under addition

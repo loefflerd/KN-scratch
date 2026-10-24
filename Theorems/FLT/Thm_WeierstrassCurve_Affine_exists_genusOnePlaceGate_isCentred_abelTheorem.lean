@@ -22,7 +22,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_eq_valuatio
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of a centred genus-one place gate with Abel's theorem

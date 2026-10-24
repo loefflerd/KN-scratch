@@ -25,7 +25,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
 import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_of_neZero
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree of a canonical divisor on X₀(N) over ℚ̄ is 2g-2

@@ -13,19 +13,13 @@ AlgebraicCurve.Place.ord_diffCoeff_D_nonneg_of_isSeparable (submission
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_Differentials
-public import Mathlib.FieldTheory.Perfect
 
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
-import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_adjoin_of_transcendental
-import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
-import Mathlib.RingTheory.Unramified.Basic
-import Mathlib.RingTheory.Unramified.LocalRing
-import Mathlib.RingTheory.Kaehler.Polynomial
-import Mathlib.RingTheory.EssentialFiniteness
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Regular derivatives with respect to a uniformizer

@@ -15,7 +15,6 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
 
 import Mathlib.NumberTheory.ModularForms.NormTrace
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # SL₂(ℤ)-invariance plus holomorphic q-expansion forces constancy

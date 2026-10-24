@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.RingTheory.Henselian
@@ -21,7 +20,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_finite_residueField_of_finiteDimens
 import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_of_transcendental_of_isSeparable
 import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
 import Theorems.FLT.Thm_AlgebraicCurve_kaehlerRankOne_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finite separable extensions of K(x) are curves over K

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 
-import Definitions.FLT.Def_ModularCurve_X0
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos

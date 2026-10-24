@@ -15,7 +15,6 @@ public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order at a finite place of K(t) equals the adic valuation

@@ -14,8 +14,7 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
-import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 /-!
 # Value of an inverse at a rational place

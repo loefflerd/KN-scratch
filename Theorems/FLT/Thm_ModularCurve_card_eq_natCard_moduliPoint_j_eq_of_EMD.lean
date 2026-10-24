@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_EMD
 import Theorems.FLT.Thm_ModularCurve_card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord
 import Theorems.FLT.Thm_ModularCurve_exists_natCard_quot_samePlace_eq_natCard_quot_sameOrbit_of_EMD
 import Theorems.FLT.Thm_ModularCurve_natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places above j=j₀ count moduli points with that j-invariant

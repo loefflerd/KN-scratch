@@ -20,7 +20,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Theorems.FLT.Thm_ModularCurve_exists_elliptic_cycSub_orbitMap
 import Theorems.FLT.Thm_ModularCurve_finite_cycSub
 import Theorems.FLT.Thm_ModularCurve_sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order one for jmath̄ - c when c ≠ 0, 1728

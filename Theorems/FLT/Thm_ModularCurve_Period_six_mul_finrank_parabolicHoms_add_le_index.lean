@@ -23,7 +23,6 @@ import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Signature form of the Eichler–Shimura Betti bound

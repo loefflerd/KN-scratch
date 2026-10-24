@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_Velu
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Additivity of the Vélu weight gₓ over 2-isogeny fibres

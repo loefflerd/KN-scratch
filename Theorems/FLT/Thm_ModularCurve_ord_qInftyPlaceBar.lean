@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order at the q-adic place equals q-expansion order

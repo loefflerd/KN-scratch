@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Mathlib.RingTheory.PowerSeries.Expand
-import Mathlib.FieldTheory.Finite.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

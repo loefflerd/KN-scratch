@@ -14,7 +14,6 @@ module
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.RingTheory.LaurentSeries
 
-import Mathlib.NumberTheory.ModularForms.QExpansion
 import Theorems.FLT.Thm_ModularCurve_hasSum_qParam_mul
 import Definitions.FLT.Def_P2M_Util
 

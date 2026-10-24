@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
 
 import Theorems.FLT.Thm_ModularFormClass_heckeT_heckeT_comm
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Hecke operators Tₚ, T_q commute on cusp forms

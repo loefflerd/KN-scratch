@@ -14,12 +14,9 @@ module
 
 public import Definitions.KN.Def_KN_TruncatedHorizontalCoefficientsV2
 
-import Mathlib.Analysis.Normed.Group.Ultra
-import Mathlib.NumberTheory.Padics.Complex
-import Mathlib.GroupTheory.OrderOfElement
-import Mathlib.Algebra.BigOperators.Group.Finset.Pi
 import Mathlib.GroupTheory.FiniteAbelian.Duality
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
 /-!
 # Primitive Fourier vanishing contracts truncated marginal coefficients by $1/p$

@@ -20,7 +20,6 @@ import Mathlib.Analysis.Normed.Ring.Lemmas
 import Theorems.FLT.Thm_ModularGroup_exists_mulEquiv_freeProduct_quotient_center
 import Theorems.FLT.Thm_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank
 import Theorems.FLT.Thm_Subgroup_card_orbitRelQuotient_mul_card_eq_index
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Free image in PSL₂(ℤ) of a torsion-free congruence-type subgroup

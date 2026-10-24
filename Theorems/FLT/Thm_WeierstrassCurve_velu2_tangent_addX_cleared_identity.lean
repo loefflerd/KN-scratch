@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_Velu
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cleared identity behind the Vélu 2-isogeny doubling abscissa

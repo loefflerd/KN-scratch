@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
 
 import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Hecke-equivariant Eichler–Shimura decomposition of parabolic cohomology

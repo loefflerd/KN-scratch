@@ -11,7 +11,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_JZeroNaiveHeight
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-public import Definitions.FLT.Def_Compat_Mathlib430
 
 /-!
 # Height form on divisors; divisor representatives in J_0(N)

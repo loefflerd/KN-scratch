@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 
-import Mathlib.Analysis.RCLike.Sqrt
 import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.NumberTheory.ModularForms.Discriminant

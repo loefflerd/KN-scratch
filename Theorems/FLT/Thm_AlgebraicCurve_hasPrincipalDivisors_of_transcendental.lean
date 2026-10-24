@@ -13,17 +13,14 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord
-import Mathlib.FieldTheory.Minpoly.Field
 import Mathlib.RingTheory.Ideal.Norm.RelNorm
-import Mathlib.FieldTheory.Perfect
-import Mathlib.Algebra.CharP.Algebra
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Degree-zero principal divisors over K(x), characteristic 0

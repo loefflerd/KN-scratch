@@ -13,10 +13,8 @@ module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
 public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
-public import Mathlib.Algebra.Polynomial.Derivative
 
 import Theorems.FLT.Thm_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finiteness of ker([m]-π) on W(k)

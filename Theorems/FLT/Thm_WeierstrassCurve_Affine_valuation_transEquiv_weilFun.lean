@@ -24,7 +24,6 @@ import Theorems.FLT.Thm_Valuation_eq_comap_of_valuationSubring_le_comap
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_placeOf_neg_transEquiv_algebraMap
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_transEquiv_le
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_transEquiv_le_self
-import Mathlib.Data.Set.Card.Arithmetic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

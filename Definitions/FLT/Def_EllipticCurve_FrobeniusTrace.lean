@@ -9,8 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.LinearAlgebra.Trace
-public import Mathlib.RingTheory.Valuation.RamificationGroup
-public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 public import Definitions.FLT.Def_FLTPrelim_Ramification
 
 /-!

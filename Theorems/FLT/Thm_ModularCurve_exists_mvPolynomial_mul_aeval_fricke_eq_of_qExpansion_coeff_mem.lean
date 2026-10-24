@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_WLight_exists_qExpansion_coeff_mem_of_mdifferentiable_le
 import Theorems.FLT.Thm_WLight_frickeFunction_intBaseChange
 import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Theorems.FLT.Thm_WLight_linearIndependent_complex_of_qExpansion_rational
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Descent by Fourier coefficients to K(j,fᵥ)

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.RingTheory.Valuation.Integral
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Valuation subrings containing j are integrally closed over K[j]

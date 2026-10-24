@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
 import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Injectivity of the coefficient embedding ℚ((q)) → L((q))

@@ -7,7 +7,6 @@ module
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 public import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
 public import Definitions.FLT.Def_GaloisRep_Residual
-public import Mathlib.FieldTheory.KrullTopology
 
 /-!
 # Continuous compatible local-field representations of an eigenform

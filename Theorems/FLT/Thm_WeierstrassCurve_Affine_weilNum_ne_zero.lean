@@ -13,12 +13,7 @@ module
 
 public import Definitions.FLT.Def_EllipticCurve_WeilPairingFun
 
-import Mathlib.Data.Set.Card
-import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.FieldSimp
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_weilNum
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Non-vanishing of the Weil numerator at n-torsion

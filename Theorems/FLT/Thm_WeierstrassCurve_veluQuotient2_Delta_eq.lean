@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Discriminant of the order-two Vélu quotient

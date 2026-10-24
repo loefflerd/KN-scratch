@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_HeckeDifferential
 
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_isSeparable_adjoin_coeffEmb_jq_full

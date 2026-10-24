@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_evalFun_add
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Evaluation of f at a two-point divisor (v₁)-(v₂)

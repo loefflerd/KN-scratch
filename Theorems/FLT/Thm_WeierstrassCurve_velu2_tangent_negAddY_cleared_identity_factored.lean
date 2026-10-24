@@ -6,8 +6,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_Velu
 
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Ring
 
 /-!
 # A factored proof of the tangent identity for Vélu's order-two map

@@ -14,8 +14,6 @@ module
 public import Definitions.MTT.Def_MTT_Measures
 
 import Mathlib.NumberTheory.ModularForms.LFunction
-import Mathlib.NumberTheory.ModularForms.Identities
-import Mathlib.Tactic.FinCases
 
 /-!
 # Algebraic-symbol Hecke distribution at an arbitrary denominator

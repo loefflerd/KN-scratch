@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 
-import Mathlib.RingTheory.LaurentSeries
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
 
 /-!

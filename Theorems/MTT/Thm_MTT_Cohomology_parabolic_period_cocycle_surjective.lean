@@ -13,14 +13,11 @@ module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Integration
 
-import Definitions.MTT.Def_MTT_ParabolicCohomology
 import Theorems.MTT.Thm_MTT_Cohomology_integration_map
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finiteDimensional
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finrank_le
-import Definitions.MTT.Def_MTT_Cohomology
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_period_cocycle_injective
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-!
 # Parabolic Eichler–Shimura surjectivity in explicit period-cocycle form

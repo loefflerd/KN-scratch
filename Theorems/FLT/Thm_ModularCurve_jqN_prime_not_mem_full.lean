@@ -13,26 +13,9 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_of_prime
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime_pow
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_mul_of_coprime
-import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration_of_squarefree
-import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration_iff_full_eq
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
-import Mathlib.FieldTheory.Extension
-import Mathlib.Data.Nat.Factorization.Induction
-import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Defs_modularFunctionField_sharedLibrary
+import Mathlib.Algebra.Order.Algebra
 
 /-!
 # Non-membership of j(qᵖ) in the level-M divisor-expansion field

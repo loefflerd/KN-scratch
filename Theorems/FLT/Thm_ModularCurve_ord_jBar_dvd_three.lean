@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Theorems.FLT.Thm_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound
 import Theorems.FLT.Thm_WeierstrassCurve_exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
 import Theorems.FLT.Thm_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order of jmath̄ at a zero divides 3

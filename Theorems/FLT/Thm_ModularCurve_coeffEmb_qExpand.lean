@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Coefficient extension commutes with q↦ qⁿ

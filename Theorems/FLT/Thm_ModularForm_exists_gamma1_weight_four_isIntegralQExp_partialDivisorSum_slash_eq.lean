@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_EisensteinSeries_exists_modularForm_coe_eq_eisensteinG
 import Theorems.FLT.Thm_EisensteinSeries_sum_eisensteinG_vecCons_eq_mul_tsum_divisorSum_mul_cexp_pow
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Weight-four Eisenstein series with partial divisor-sum q-expansions

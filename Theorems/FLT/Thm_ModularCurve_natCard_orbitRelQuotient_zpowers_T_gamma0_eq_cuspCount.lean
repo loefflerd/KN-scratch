@@ -15,7 +15,6 @@ public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Theorems.FLT.Thm_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Number of ⟨ T⟩-orbits on SL₂(ℤ)/Γ₀(N)

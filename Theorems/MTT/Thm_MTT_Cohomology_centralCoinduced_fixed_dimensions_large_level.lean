@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_FullParabolicCohomology
 public import Mathlib.GroupTheory.DoubleCoset
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Theorems.MTT.Thm_MTT_Cohomology_centralCoinduced_elliptic_dimensions
 import Theorems.MTT.Thm_MTT_Cohomology_centralCoinduced_T_fixed_cusp_lower_bound

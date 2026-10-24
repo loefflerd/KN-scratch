@@ -15,11 +15,8 @@ public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 public import Mathlib.FieldTheory.Perfect
 public import Mathlib.Algebra.CharP.Algebra
 
-import Mathlib.FieldTheory.KummerPolynomial
 import Mathlib.FieldTheory.Relrank
 import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.LinearAlgebra.Dimension.Free
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # [M:Mᵖ]=p for a one-variable function field over a perfect field

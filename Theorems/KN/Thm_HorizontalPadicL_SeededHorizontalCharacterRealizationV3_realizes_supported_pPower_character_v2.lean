@@ -12,12 +12,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededHorizontalCharacterRealizationV2B
 public import Definitions.KN.Def_KN_InverseSeedConventionV2
 
-import Mathlib.GroupTheory.Index
-import Mathlib.NumberTheory.Padics.PadicVal.Basic
-import Mathlib.Algebra.Group.Pi.Units
 
 /-!
 # Supported p-power characters are realized horizontally (inverse-seed convention)

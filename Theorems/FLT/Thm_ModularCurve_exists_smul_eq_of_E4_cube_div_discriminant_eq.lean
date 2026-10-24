@@ -18,7 +18,6 @@ import Mathlib.NumberTheory.LSeries.Nonvanishing
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 import Definitions.FLT.Def_PeriodPair_Uniformization
 import Theorems.FLT.Thm_PeriodPair_lattice_eq_of_g2_eq_of_g3_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # E₄³/Δ separates SL₂(ℤ)-orbits on H

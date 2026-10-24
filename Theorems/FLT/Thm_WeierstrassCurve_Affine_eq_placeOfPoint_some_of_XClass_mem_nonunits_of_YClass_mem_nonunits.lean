@@ -20,7 +20,6 @@ import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 import Theorems.FLT.Thm_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # A place centred at (x,y) is the gate's place of (x,y)

@@ -13,7 +13,6 @@ module
 
 public import Theorems.FLT.Thm_IsDiscreteValuationRing_adicCompletion_isDomain_isDiscreteValuationRing_isAdicComplete
 public import Theorems.FLT.Thm_Ideal_IsMaximal_exists_adicCompletion_localization_ringEquiv
-public import Mathlib.RingTheory.DedekindDomain.Dvr
 public import Mathlib.RingTheory.AdicCompletion.Topology
 
 /-!

@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_ModularCurve_exists_isIntegralQExp_smul_of_ratCast_qExpansion
 import Theorems.FLT.Thm_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Slash by Γ₀(M) has integral q-expansion after scaling

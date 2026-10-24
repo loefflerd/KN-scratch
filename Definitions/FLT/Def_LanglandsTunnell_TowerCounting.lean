@@ -10,6 +10,7 @@ module
 
 public import Definitions.FLT.Def_TaylorWiles_Primes
 public import Mathlib.FieldTheory.Galois.IsGaloisGroup
+public import Mathlib.RingTheory.Frobenius
 
 /-!
 # Frobenius-labelled prime counts over a cyclic subgroup

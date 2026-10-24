@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # ℓ of a canonical divisor equals the genus

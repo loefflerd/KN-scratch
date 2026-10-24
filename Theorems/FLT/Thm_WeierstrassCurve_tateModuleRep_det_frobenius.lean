@@ -12,14 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_TateModule
-public import Definitions.FLT.Def_FLTPrelim_Ramification
-public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
-public import Mathlib.LinearAlgebra.Determinant
 
-import Definitions.FLT.Def_GaloisRep_LocalConditions
 import Theorems.FLT.Thm_WeierstrassCurve_tateModuleRep_detIsCyclotomic
 import Theorems.FLT.Thm_ValuationSubring_IsFrobeniusAt_apply_eq_pow_of_pow_prime_pow_eq_one
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Determinant of Frobenius at ℓ ≠ p on the Tate module

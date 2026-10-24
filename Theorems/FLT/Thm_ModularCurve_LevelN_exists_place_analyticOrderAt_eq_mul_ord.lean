@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
-import Mathlib.Algebra.CharP.Pi
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs

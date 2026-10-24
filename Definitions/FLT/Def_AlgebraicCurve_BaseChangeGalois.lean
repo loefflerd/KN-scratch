@@ -9,8 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Mathlib.Algebra.Ring.Action.End
-public import Mathlib.LinearAlgebra.Dimension.Finrank
 
 /-!
 # Semilinear automorphisms acting on places, divisors and Pic⁰-torsion

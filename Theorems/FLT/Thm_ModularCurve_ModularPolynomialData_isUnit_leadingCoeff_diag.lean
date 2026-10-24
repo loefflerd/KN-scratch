@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Diagonal modular polynomial has unit leading coefficient

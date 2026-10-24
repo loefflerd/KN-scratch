@@ -8,9 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FLTPrelim_Ramification
 public import Definitions.FLT.Def_FreyPackage_GaloisRep
-public import Mathlib.RingTheory.Valuation.RamificationGroup
 public import Mathlib.RingTheory.Valuation.LocalSubring
 
 /-!

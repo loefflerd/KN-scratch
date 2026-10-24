@@ -13,9 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 public import Mathlib.NumberTheory.ModularForms.Derivative
-public import Mathlib.NumberTheory.ModularForms.QExpansion
-public import Mathlib.Analysis.Calculus.FDeriv.Analytic
-public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 
 import Theorems.FLT.Thm_ModularCurve_theta_coeff
 import Definitions.FLT.Def_P2M_Util

@@ -11,10 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-public import Mathlib.FieldTheory.Galois.Basic
 
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Definitions.FLT.Def_P2M_Util

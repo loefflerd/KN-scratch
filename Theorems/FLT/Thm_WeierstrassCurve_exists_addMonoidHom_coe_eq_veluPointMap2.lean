@@ -15,8 +15,6 @@ public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap2
 
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
-import Theorems.FLT.Thm_WeierstrassCurve_velu2_tangent_addX_cleared_identity
-import Theorems.FLT.Thm_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity
 import Theorems.FLT.Thm_WeierstrassCurve_velu2_line_image_factored
 import Theorems.FLT.Thm_WeierstrassCurve_veluQuotient2_Delta_eq
 import Definitions.FLT.Def_P2M_Util

@@ -12,9 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-public import Mathlib.FieldTheory.Separable
 
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
 import Definitions.FLT.Def_P2M_Util
 

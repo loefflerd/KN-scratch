@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JLinePlaces
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The j-line place at j=1728 has degree 1

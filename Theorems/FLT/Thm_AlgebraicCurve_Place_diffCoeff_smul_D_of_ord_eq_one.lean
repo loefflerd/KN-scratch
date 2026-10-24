@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_Differentials
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isSeparable_adjoin_of_ord_eq_one
 import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # A uniformiser's differential spans Ω_{F/K} over a perfect field

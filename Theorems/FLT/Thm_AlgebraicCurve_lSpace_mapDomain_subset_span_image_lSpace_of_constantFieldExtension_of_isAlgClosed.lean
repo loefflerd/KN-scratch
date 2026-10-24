@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain
 import Theorems.FLT.Thm_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Descent of Riemann–Roch spaces along a constant field extension

@@ -12,12 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
-public import Definitions.FLT.Def_ModularCurve_TatePoint
 
-import Definitions.FLT.Def_ModularCurve_HahnSpecialise
 import Theorems.FLT.Thm_ModularCurve_HahnSpecialise_specialise_bijOn_torsion
-import Mathlib.Algebra.Module.Torsion.Basic
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Reduction is an isomorphism on p-torsion

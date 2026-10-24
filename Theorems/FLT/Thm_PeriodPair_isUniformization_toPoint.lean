@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_PeriodPair_Uniformization
 
-import Mathlib.Analysis.Calculus.Deriv.Pow
-import Mathlib.Analysis.Complex.CauchyIntegral
 import Mathlib.Analysis.Complex.Liouville
 import Mathlib.Analysis.Complex.RemovableSingularity
 import Mathlib.Analysis.Normed.Module.Connected

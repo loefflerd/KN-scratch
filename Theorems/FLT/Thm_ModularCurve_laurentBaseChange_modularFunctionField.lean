@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Base change of the modular function field along ℚ↪ L

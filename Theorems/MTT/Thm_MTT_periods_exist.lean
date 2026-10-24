@@ -13,10 +13,7 @@ module
 
 public import Definitions.MTT.Def_MTT_Measures
 
-import Definitions.MTT.Def_MTT_Cohomology
-import Definitions.MTT.Def_MTT_Arithmetic
 import Mathlib.RingTheory.Flat.Localization
-import Mathlib.LinearAlgebra.Basis.VectorSpace
 import Theorems.MTT.Thm_MTT_Cohomology_integral_finite_generation
 import Theorems.MTT.Thm_MTT_Cohomology_base_change
 import Theorems.MTT.Thm_MTT_Cohomology_integration_map

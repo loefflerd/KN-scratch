@@ -18,7 +18,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_deg_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_exists_separating_transcendental_of_perfectField
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_isAlgClosed_of_transcendental
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Constants are the base field when K is algebraically closed

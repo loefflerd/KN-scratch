@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 
 import Theorems.FLT.Thm_ModularCurve_frickeInvolutionBar_coeffEmb_qExpand
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar_coeffEmb_qExpand
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order of j(qᵇ) at the cusp ̄ 0

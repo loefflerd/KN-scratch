@@ -15,13 +15,11 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos_of_finiteDimensional
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_adjoin_jqNModC
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places of K(j,j_N) have nonzero degree

@@ -11,9 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.FieldTheory.RatFunc.Basic
-public import Mathlib.RingTheory.SimpleRing.Principal
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification

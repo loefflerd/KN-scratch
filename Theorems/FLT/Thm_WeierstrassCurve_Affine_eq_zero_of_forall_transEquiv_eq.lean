@@ -14,14 +14,11 @@ module
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 
-import Mathlib.FieldTheory.Galois.Basic
-import Mathlib.FieldTheory.Fixed
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 import Theorems.FLT.Thm_IsDedekindDomain_HeightOneSpectrum_exists_eq_span_singleton_of_map_eq
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_finrank_fieldRange_mulPull_le
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_zsmul_genericPoint_good
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Invariant function with divisor on an [n]-fibre forces T=0

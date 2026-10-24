@@ -9,9 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.LegendreSymbol.Basic
-public import Mathlib.FieldTheory.Finite.Basic
-public import Mathlib.Data.Nat.Totient
-public import Mathlib.NumberTheory.Divisors
 public import Definitions.FLT.Def_ModularCurve_X0
 
 /-!

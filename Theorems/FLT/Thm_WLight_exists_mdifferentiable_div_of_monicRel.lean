@@ -13,10 +13,7 @@ module
 
 public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
 public import Mathlib.NumberTheory.ModularForms.Discriminant
-public import Mathlib.Geometry.Manifold.Notation
 
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.Analysis.Meromorphic.NormalForm
 import Theorems.FLT.Thm_WLight_exists_analyticOnNhd_div_of_monicRel
 import Definitions.FLT.Def_P2M_Util
 

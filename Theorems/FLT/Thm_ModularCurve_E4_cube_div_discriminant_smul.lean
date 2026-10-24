@@ -11,10 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # SL₂(ℤ)-invariance of E₄³/Δ

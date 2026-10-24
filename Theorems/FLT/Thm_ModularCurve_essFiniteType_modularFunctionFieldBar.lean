@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 import Theorems.FLT.Thm_ModularCurve_adjoin_jBar_jNBar_eq_top
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Essential finite type of ℚ̄-function field of X₀(N)

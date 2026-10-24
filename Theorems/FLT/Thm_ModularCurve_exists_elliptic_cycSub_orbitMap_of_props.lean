@@ -11,13 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_EMD
-public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 public import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
 public import Definitions.FLT.Def_ModularCurve_SpecialisationBridge
 
-import Definitions.FLT.Def_ModularCurve_TatePoint
-import Definitions.FLT.Def_HahnSeries_Monodromy
 import Theorems.FLT.Thm_ModularCurve_exists_place_of_emb
 import Theorems.FLT.Thm_ModularCurve_samePlace_iff_exists_monodromy
 import Theorems.FLT.Thm_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
@@ -25,8 +21,6 @@ import Theorems.FLT.Thm_ModularCurve_place_eq_of_induces
 import Theorems.FLT.Thm_ModularCurve_exists_emb_equiv_rootsAt
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Theorems.FLT.Thm_ModularCurve_B3_specialisationEquivariance_level
-import Mathlib.RingTheory.HahnSeries.PowerSeries
-import Mathlib.SetTheory.Cardinal.Finite
 
 /-!
 # Orbit correspondence for cyclic N-subgroups over a given j₀

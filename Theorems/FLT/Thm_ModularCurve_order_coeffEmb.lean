@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Coefficientwise base change preserves the order of a Laurent series

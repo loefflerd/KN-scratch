@@ -15,7 +15,6 @@ public import Definitions.MTT.Def_MTT_Arithmetic
 public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 
 import Mathlib.NumberTheory.NumberField.Discriminant.Different
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 import Mathlib.RingTheory.DedekindDomain.Instances
 import Mathlib.RingTheory.Finiteness.Quotient
 

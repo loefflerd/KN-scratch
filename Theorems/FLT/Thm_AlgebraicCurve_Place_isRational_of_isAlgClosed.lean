@@ -18,7 +18,6 @@ import Mathlib.Algebra.BigOperators.Field
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_iff_deg_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places of a function field over an algebraically closed constant field are rational

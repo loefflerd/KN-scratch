@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Fricke involution over ℚ̄ exchanges j(qᵃ) and j(qᵇ)

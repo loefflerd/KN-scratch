@@ -13,9 +13,6 @@ module
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
 
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
-import Mathlib.Tactic.LinearCombination
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # 2P=O iff x is a root of Ψ₂²

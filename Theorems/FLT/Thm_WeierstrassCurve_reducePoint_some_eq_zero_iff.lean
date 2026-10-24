@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_EllipticCurve_PointReduction
 
 import Theorems.FLT.Thm_WeierstrassCurve_valuation_le_one_of_equation
 import Theorems.FLT.Thm_WeierstrassCurve_reducePoint_some
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Affine point reduces to O iff x is non-integral

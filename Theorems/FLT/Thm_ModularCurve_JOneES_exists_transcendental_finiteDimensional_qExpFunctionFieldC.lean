@@ -19,7 +19,6 @@ import Mathlib.LinearAlgebra.Lagrange
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 import Mathlib.NumberTheory.ModularForms.NormTrace
 import Mathlib.RingTheory.Valuation.Integral
-import Definitions.FLT.Def_P2M_Util
 
 import Definitions.FLT.Defs_UpperHalfPlane_niceFunctionSubalgebra
 

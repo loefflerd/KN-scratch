@@ -17,18 +17,14 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Mathlib.Algebra.Polynomial.Basis
 import Mathlib.Order.Int.LeastGreatest
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
-import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
-import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
 
 /-!
 # Riemann's theorem over a rational function subfield

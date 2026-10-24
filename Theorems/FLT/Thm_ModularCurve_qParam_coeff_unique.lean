@@ -16,7 +16,6 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
 public import Mathlib.Analysis.Complex.UpperHalfPlane.FunctionsBoundedAtInfty
 
 import Mathlib.NumberTheory.ModularForms.QExpansion
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Uniqueness of q-expansion coefficients at period h

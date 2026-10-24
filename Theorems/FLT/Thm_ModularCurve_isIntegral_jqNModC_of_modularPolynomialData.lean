@@ -17,9 +17,7 @@ public import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import Mathlib.Algebra.Polynomial.Bivariate
-import Mathlib.FieldTheory.Separable
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Def_P2M_Util
 

@@ -12,10 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 import Theorems.FLT.Thm_CuspForm_finiteDimensional_of_isArithmetic
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finite-dimensionality of S_k(Γ₀(N))

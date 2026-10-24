@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X1
 
-import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 import Mathlib.Order.CompletePartialOrder
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_adjoin_of_transcendental
 import Definitions.FLT.Def_P2M_Util

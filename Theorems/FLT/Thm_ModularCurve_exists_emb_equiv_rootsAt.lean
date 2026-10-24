@@ -19,7 +19,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Theorems.FLT.Thm_ModularCurve_adjoin_jBar_jNBar_eq_top
 import Theorems.FLT.Thm_ModularCurve_exists_algHom_of_isRoot
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Normalised embeddings at j₀ versus roots of Φ_N(j₀+t,Y)

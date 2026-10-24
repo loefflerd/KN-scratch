@@ -15,10 +15,8 @@ public import Mathlib.Algebra.Algebra.Defs
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
 
 import Mathlib.Order.Int.LeastGreatest
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PicardGroup
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support

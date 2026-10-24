@@ -14,13 +14,7 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-import Theorems.FLT.Thm_ModularCurve_order_jqModC
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_mul_eq_zero
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_of_mul_eq_zero
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_self
 import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
@@ -30,7 +24,6 @@ import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_of_modularPolynomialData
 import Theorems.FLT.Thm_ModularCurve_jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne
 import Theorems.FLT.Thm_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero
 import Theorems.FLT.Thm_ModularCurve_package_of_socket
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.Algebra.Polynomial.Eval.Irreducible
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary

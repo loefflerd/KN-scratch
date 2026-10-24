@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne
 import Theorems.FLT.Thm_ModularCurve_StarBank_closure
 import Theorems.FLT.Thm_ModularCurve_StarBank_count
@@ -25,10 +24,7 @@ import Theorems.FLT.Thm_ModularCurve_StarBank_hassePolyDescent
 import Theorems.FLT.Thm_ModularCurve_StarBank_onePoint
 import Theorems.FLT.Thm_ModularCurve_StarBank_press
 import Theorems.FLT.Thm_ModularCurve_StarBank_starK
-import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Algebra.CharP.Algebra
 import Definitions.FLT.Def_P2M_Util
 
 /-!

@@ -12,10 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Mathlib.RingTheory.Algebraic.Defs
 
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Mathlib.RingTheory.Algebraic.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

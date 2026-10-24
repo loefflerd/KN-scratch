@@ -13,9 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Mathlib.Data.Nat.Squarefree
-import Mathlib.NumberTheory.Divisors
-import Mathlib.Tactic.IntervalCases
 import Definitions.FLT.Def_P2M_Util
 
 /-!

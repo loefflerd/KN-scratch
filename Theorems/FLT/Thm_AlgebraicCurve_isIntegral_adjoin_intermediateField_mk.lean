@@ -14,8 +14,6 @@ module
 public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Basic
 public import Mathlib.FieldTheory.IntermediateField.Basic
 
-import Mathlib.Algebra.Algebra.Subalgebra.Lattice
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality over L[j] descends to an intermediate field

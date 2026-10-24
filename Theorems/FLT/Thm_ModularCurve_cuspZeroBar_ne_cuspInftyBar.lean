@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 
 import Theorems.FLT.Thm_ModularCurve_ord_cuspZeroBar_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar_coeffEmb_jq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The cusps ̄ 0 and ∞̄ are distinct for N>1

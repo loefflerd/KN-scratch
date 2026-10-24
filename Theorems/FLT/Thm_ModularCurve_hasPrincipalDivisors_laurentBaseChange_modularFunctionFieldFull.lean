@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental
 import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_all_of_modularPolynomialFamily
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_modularFunctionFieldFull

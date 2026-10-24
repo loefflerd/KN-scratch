@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_JLinePlaces
 
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree ψ(N) of the j-cover on function fields

@@ -16,7 +16,6 @@ public import Mathlib.NumberTheory.ModularForms.Discriminant
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 import Mathlib.RingTheory.SimpleRing.Principal
 import Theorems.FLT.Thm_ModularForm_exists_rankinCohen_one_qExpansion_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # First Rankin–Cohen bracket of E₄ and Δ

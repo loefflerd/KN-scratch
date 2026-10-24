@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Point map of an isogeny datum: restriction minus value at O

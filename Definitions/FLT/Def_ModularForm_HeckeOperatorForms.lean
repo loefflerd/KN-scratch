@@ -8,8 +8,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-public import Definitions.FLT.Def_ModularForm_HeckeOperator
 public import Theorems.FLT.Thm_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0
 public import Theorems.FLT.Thm_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
 public import Theorems.FLT.Thm_ModularForm_mdifferentiable_heckeT

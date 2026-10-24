@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 public import Mathlib.FieldTheory.Relrank
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
 import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_map_eq_prod_slots
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
@@ -28,7 +27,6 @@ import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cusp-label embedding of the base-changed modular function field

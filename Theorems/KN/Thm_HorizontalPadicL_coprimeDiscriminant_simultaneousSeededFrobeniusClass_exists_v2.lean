@@ -14,7 +14,6 @@ module
 
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
-public import Mathlib.NumberTheory.NumberField.Discriminant.Different
 
 import Theorems.KN.Thm_NumberField_not_dvd_discr_sup_of_not_dvd_discr
 import Theorems.KN.Thm_IsCyclotomicExtension_Rat_prime_dvd_discr_dvd_conductor

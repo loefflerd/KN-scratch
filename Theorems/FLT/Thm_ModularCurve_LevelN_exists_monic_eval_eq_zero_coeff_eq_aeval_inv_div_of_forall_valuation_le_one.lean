@@ -15,7 +15,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality over the j-line at j=∞

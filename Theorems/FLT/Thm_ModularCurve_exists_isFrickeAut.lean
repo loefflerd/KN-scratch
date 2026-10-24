@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 
 import Theorems.FLT.Thm_ModularCurve_exists_isFrickeAut_of_modularPolynomialData
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of a Fricke automorphism at prime level

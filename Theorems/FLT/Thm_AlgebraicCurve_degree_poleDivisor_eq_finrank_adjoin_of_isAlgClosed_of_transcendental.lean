@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_neg_ord
 import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_isAlgClosed_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_isAlgClosed_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree of the pole divisor of x equals [F:K(x)]

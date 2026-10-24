@@ -13,12 +13,8 @@ module
 
 public import Mathlib.LinearAlgebra.Charpoly.Basic
 public import Mathlib.LinearAlgebra.Trace
-public import Mathlib.LinearAlgebra.Determinant
 
-import Mathlib.LinearAlgebra.Charpoly.ToMatrix
-import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 import Theorems.FLT.Thm_LinearMap_charpoly_of_finrank_eq_two
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Characteristic polynomial of a rank-two endomorphism: coefficient criterion

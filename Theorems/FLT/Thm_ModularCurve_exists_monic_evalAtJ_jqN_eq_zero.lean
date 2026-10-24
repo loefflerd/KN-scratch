@@ -14,8 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
-import Mathlib.Data.Nat.Factorization.Induction
-import Mathlib.RingTheory.IntegralClosure.IsIntegralClosure.Basic
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

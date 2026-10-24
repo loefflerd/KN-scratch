@@ -13,11 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Mathlib.Data.Nat.GCD.Basic
-import Mathlib.Basic.Complex.Basic
-import Mathlib.Algebra.Lie.OfAssociative
-import Mathlib.Algebra.Algebra.Rat
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Coefficient operators Tₚ and U_q commute for coprime p,q

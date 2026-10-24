@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.RingTheory.Valuation.LocalSubring
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_of_valuationSubring_of_isSeparable
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality over K[t] from membership in all places containing t

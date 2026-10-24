@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_dimension_upper_bound_large_level
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finrank_le_levels_two_three_four

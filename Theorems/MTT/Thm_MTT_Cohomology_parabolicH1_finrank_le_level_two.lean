@@ -12,15 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
 
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
-import Mathlib.Tactic.LinearCombination
 
 /-!
 # MTT parabolic cohomology dimension bound at level two

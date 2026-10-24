@@ -13,14 +13,16 @@ module
 
 public import Mathlib.Data.ZMod.Basic
 
-import Mathlib.Data.Nat.Factorial.Basic
-import Mathlib.Data.Nat.Prime.Basic
-import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Positivity
-import Definitions.FLT.Def_P2M_Util
+meta import Lean.Meta.Tactic.NormCast
+import Mathlib.Algebra.Order.Field.Basic
+import Mathlib.Data.Rat.Cast.Order
+import Mathlib.Tactic.Linarith.Frontend
+import Mathlib.Tactic.NormNum.Abs
+import Mathlib.Tactic.NormNum.DivMod
+import Mathlib.Tactic.NormNum.OfScientific
+import Mathlib.Tactic.Positivity.Finset
+import Mathlib.Tactic.Ring.RingNF
 
 /-!
 # Roots of X²-aX+q modulo arbitrarily large primes

@@ -15,7 +15,6 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.RingTheory.LaurentSeries
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Twisted q-expansion at period ℓ under τ↦(τ+b)/ℓ

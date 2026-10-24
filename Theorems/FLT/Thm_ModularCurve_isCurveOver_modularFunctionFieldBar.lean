@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Theorems.FLT.Thm_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
@@ -23,9 +22,6 @@ import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_all
 import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
 import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
-import Mathlib.FieldTheory.Perfect
-import Mathlib.Algebra.CharP.Algebra
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

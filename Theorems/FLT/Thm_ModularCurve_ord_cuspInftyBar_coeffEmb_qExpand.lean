@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar
 import Theorems.FLT.Thm_ModularCurve_order_coeffEmb
 import Theorems.FLT.Thm_ModularCurve_order_qExpand
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order of j(qᵈ) at the cusp at infinity

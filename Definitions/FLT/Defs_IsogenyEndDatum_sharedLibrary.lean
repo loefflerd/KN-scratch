@@ -33,7 +33,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 public import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 public import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
@@ -44,7 +43,6 @@ public import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHe
 public import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 
 public import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.RingTheory.Flat.TorsionFree
 import Theorems.FLT.Thm_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
 
@@ -53,7 +51,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place
-import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
+import Mathlib.Data.Nat.Choose.Multinomial
 
 /-!
 # Shared library for isogeny endomorphism data

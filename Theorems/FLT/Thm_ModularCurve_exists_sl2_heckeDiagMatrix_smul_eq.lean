@@ -11,11 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Conjugating Γ₀(N) past diag(N,1) with equal denominators

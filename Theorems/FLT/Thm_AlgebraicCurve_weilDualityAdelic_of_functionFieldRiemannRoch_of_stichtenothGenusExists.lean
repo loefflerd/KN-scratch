@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Weil duality from Riemann–Roch and existence of the genus

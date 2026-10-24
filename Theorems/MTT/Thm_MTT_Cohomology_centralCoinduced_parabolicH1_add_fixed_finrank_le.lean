@@ -12,11 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_FullParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Combinatorics.Quiver.ReflQuiver
-import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.RepresentationTheory.FiniteIndex
 import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles

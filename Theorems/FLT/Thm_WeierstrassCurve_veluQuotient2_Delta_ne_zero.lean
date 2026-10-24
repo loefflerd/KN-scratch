@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
 import Theorems.FLT.Thm_WeierstrassCurve_velu2QuadDisc_ne_zero_of_two_torsion
 import Theorems.FLT.Thm_WeierstrassCurve_veluGx_ne_zero_of_two_torsion
 import Theorems.FLT.Thm_WeierstrassCurve_veluQuotient2_Delta_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Nonvanishing discriminant of the order-two Vélu quotient

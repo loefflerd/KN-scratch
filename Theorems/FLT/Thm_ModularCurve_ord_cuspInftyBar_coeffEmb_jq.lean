@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The q-expansion of j has order -1 at ∞

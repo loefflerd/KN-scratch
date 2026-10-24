@@ -14,26 +14,17 @@ Extracted from Prove2Me proofs by Claude (2026-09-05):
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
-public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 public import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
 public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
-public import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
 public import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 
 import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
 
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
-import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 
 /-!
 # Shared library for the odd-order Vélu construction

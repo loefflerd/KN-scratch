@@ -8,11 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_MTT_EigenformCoefficientPrime
 public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isMaximal
-public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
-public import Theorems.KN.Thm_MTT_numberField_coefficientField
-public import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Basic
 public import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Norm
 
 /-!

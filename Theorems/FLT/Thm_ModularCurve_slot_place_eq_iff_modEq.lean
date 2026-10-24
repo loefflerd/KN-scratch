@@ -14,14 +14,14 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-public import Mathlib.Tactic.LinearCombination
 
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg
-import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Places of X₀(N) labelled by pairs (a,b)

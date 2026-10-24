@@ -13,7 +13,6 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # q-expansion of a finite product of functions on H

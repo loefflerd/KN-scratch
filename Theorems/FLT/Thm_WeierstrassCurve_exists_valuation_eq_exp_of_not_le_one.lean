@@ -14,8 +14,6 @@ module
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Basic
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
 
-import Mathlib.RingTheory.DedekindDomain.AdicValuation
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Poles of order 2s and 3s on an integral Weierstrass model

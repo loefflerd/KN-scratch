@@ -12,9 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
-public import Mathlib.LinearAlgebra.Determinant
 
-import Mathlib.GroupTheory.Perm.Cycle.Type
 import Theorems.FLT.Thm_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero
 import Definitions.FLT.Def_P2M_Util
 

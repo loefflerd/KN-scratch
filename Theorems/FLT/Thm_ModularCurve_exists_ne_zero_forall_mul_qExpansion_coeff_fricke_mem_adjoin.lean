@@ -17,7 +17,6 @@ public import Mathlib.NumberTheory.ModularForms.Discriminant
 import Mathlib.RingTheory.RootsOfUnity.Complex
 import Mathlib.Topology.UniformSpace.Uniformizable
 import Theorems.FLT.Thm_WLight_weierstrassP_qExpansion_package
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Bounded denominators for Fricke functions of level N

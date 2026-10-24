@@ -19,7 +19,6 @@ import Mathlib.FieldTheory.IsAlgClosed.Classification
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Countable fields of characteristic zero embed into ℂ

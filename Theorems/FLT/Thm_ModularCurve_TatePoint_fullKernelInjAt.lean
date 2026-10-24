@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
 
-import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem
 import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 import Theorems.FLT.Thm_AlgebraicCurve_separableAlong_of_charZero
@@ -23,7 +21,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_po
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_forall_normFormulaAlong_of_isAlgClosed_of_charZero
 import Theorems.FLT.Thm_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Injectivity of the full-kernel quotient at level N

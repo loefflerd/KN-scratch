@@ -16,8 +16,6 @@ public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Theorems.MTT.Thm_MTT_Cohomology_eichler_shimura_direct
 import Theorems.MTT.Thm_MTT_Cohomology_cuspPrimitive_slash_relation
 import Theorems.MTT.Thm_MTT_exists_cuspForm_slash_gamma0
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.RingTheory.Flat.Basic
 
 /-!
 # The Eichler–Shimura decomposition is compatible with the nebentype operators

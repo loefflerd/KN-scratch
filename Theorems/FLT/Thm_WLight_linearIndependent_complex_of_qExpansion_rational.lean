@@ -11,17 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.FieldTheory.IntermediateField.Basic
-public import Mathlib.LinearAlgebra.Dimension.DivisionRing
-public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.NumberTheory.ModularForms.Discriminant
-public import Mathlib.Geometry.Manifold.Notation
 
 import Mathlib.LinearAlgebra.LinearIndependent.BaseChange
-import Mathlib.LinearAlgebra.Basis.VectorSpace
-import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
-import Mathlib.NumberTheory.ModularForms.LevelOne.Basic
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # ℂ-independence from K-independence for q-rational families

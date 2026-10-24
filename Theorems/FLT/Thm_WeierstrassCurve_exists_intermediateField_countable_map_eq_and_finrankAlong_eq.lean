@@ -17,12 +17,8 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
-import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
-import Mathlib.Data.Rat.Encodable
 import Mathlib.FieldTheory.RatFunc.IntermediateField
 import Mathlib.LinearAlgebra.Countable
-import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PicardGroup
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_finiteDimensional_ratFunc_functionField
 import Definitions.FLT.Def_P2M_Util

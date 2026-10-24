@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Mathlib.Algebra.Polynomial.Basis
 import Mathlib.Order.Int.LeastGreatest
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
@@ -27,8 +26,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDe
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
-import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
-import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
 
 /-!
 # Existence of the genus for separable extensions of K(X)

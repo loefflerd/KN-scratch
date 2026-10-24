@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Measures
 
-import Mathlib.RingTheory.Coprime.Lemmas
 
 /-!
 # Character integrals are finite sums of prescribed disk moments

@@ -11,14 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Basic
 public import Mathlib.Analysis.Complex.Polynomial.Basic
 
-import Mathlib.FieldTheory.AlgebraicClosure
-import Mathlib.FieldTheory.Perfect
 import Mathlib.LinearAlgebra.Lagrange
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Adjoining an algebraic constant does not enlarge the span

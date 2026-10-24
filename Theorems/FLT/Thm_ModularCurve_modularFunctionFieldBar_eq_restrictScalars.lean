@@ -14,8 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_ModularUnit
-import Definitions.FLT.Def_ModularCurve_CuspidalClass
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar
 import Theorems.FLT.Thm_ModularCurve_order_coeffEmb
 import Theorems.FLT.Thm_ModularCurve_coe_frickeInvolutionFull_modularUnitSeries
@@ -27,7 +25,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_smul_of_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_isIntegral_adjoin_map_algHom
 import Theorems.FLT.Thm_AlgebraicCurve_isIntegral_adjoin_of_isScalarTower
 import Theorems.FLT.Thm_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg
 import Theorems.FLT.Thm_AlgebraicCurve_Pic0_zsmul_mk_eq_zero_of_isPrincipal
 import Theorems.FLT.Thm_AlgebraicCurve_Pic0_addOrderOf_mk_dvd_of_isPrincipal
 import Theorems.FLT.Thm_ModularCurve_isFrickeAutFull_frickeInvolutionFull_prime
@@ -40,10 +37,10 @@ import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_modularFunctionField
 import Theorems.FLT.Thm_ModularCurve_full_eq_of_prime
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData_of_squarefree
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_adjoin_jqNModC
-import Mathlib.Algebra.Algebra.Rat
 import Theorems.FLT.Thm_ModularCurve_isCusp_cuspZeroBar
 import Theorems.FLT.Thm_ModularCurve_isCusp_cuspInftyBar
-import Definitions.FLT.Def_P2M_Util
+public import Definitions.FLT.Def_ModularCurve_ModularUnit
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Geometric function field of X₀(ℓ) as ℚ̄(j)(j_ℓ)

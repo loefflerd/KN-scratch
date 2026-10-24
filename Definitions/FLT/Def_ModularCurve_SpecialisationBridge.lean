@@ -8,10 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
-public import Definitions.FLT.Def_ModularCurve_TatePoint
 public import Definitions.FLT.Def_HahnSeries_Monodromy
-public import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
 public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_zero_spec
 public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_1728_spec

@@ -13,8 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Definitions.MTT.Def_MTT_Cohomology
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_parabolic_period_cocycle_surjective
 

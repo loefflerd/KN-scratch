@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Evaluation at an integer multiple of a divisor

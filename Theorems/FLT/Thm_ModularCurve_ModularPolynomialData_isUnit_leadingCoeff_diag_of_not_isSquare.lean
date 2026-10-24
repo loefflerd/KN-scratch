@@ -13,19 +13,12 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
 import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_map_eq_prod_slots
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_modularFunctionField_eq_full
 import Theorems.FLT.Thm_ModularCurve_PhiGen_evalAtJ_injective
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.FieldTheory.Minpoly.Field
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

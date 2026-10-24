@@ -28,7 +28,6 @@ import Theorems.FLT.Thm_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_le_two_mul_dimFormula
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula
 import Theorems.FLT.Thm_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Eichler–Shimura: images of ES and ̄ES are complementary

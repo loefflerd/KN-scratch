@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_FibrePoly
 
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Monic fibres have exactly degΦ roots over ̄ K

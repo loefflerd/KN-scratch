@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformCoefficientField
-public import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 
 import Theorems.KN.Thm_MTT_Eigenform_coeff_isIntegral
 import Mathlib.Algebra.Algebra.Hom.Rat

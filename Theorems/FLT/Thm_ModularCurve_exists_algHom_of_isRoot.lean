@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_ModularCurve_QAdicPlace
@@ -22,12 +21,7 @@ import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Mathlib.FieldTheory.Relrank
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.FieldTheory.Minpoly.Field
-import Mathlib.Algebra.Polynomial.Div
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
-import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Definitions.FLT.Def_P2M_Util
 
 /-!

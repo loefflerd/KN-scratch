@@ -15,10 +15,24 @@ public import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
 public import Mathlib.Topology.Instances.Real.Lemmas
 
 import TauCeti.NumberTheory.Chebotarev.PrimeCounting.FrobeniusPrimeCount
-import TauCeti.NumberTheory.NumberField.Ideal.IntegersRat
 import TauCeti.NumberTheory.NumberField.Frobenius.DecompositionGroup
-import TauCeti.NumberTheory.RamificationInertia.Galois
-import Mathlib.Tactic
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Rational
+import Mathlib.Tactic.NormNum.Irrational
+import Mathlib.Tactic.NormNum.IsCoprime
+import Mathlib.Tactic.NormNum.IsSquare
+import Mathlib.Tactic.NormNum.LegendreSymbol
+import Mathlib.Tactic.NormNum.ModEq
+import Mathlib.Tactic.NormNum.NatFib
+import Mathlib.Tactic.NormNum.NatLog
+import Mathlib.Tactic.NormNum.NatSqrt
+import Mathlib.Tactic.NormNum.Ordinal
+import Mathlib.Tactic.NormNum.Parity
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 /-!
 # Chebotarev natural density for a Frobenius conjugacy class

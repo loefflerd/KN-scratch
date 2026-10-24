@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_Differentials
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isSeparable_adjoin_of_ord_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Differentiation by a uniformiser preserves the valuation ring

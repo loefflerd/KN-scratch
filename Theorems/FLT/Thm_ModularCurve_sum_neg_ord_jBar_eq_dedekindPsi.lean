@@ -18,7 +18,6 @@ import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The polar divisor of jmath̄ has degree ψ(N)

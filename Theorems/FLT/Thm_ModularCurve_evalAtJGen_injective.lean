@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_PhiGen_evalAtJ_injective
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Injectivity of evaluation at the formal j-invariant

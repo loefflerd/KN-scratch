@@ -8,11 +8,14 @@ Licensed under Apache License 2.0
 
 module
 
+public import Mathlib.NumberTheory.NumberField.Ideal.Basic
+public import Mathlib.RingTheory.Frobenius
+
 public import Definitions.FLT.Def_TaylorWiles_Primes
 public import Definitions.KN.Def_MTT_EigenformCoefficientResidueField
+
 public import Theorems.KN.Thm_MTT_Eigenform_coeff_mem_ringOfIntegers
 public import Theorems.KN.Thm_MTT_Eigenform_nebentype_mem_ringOfIntegers
-public import Mathlib.NumberTheory.NumberField.Ideal.Basic
 
 /-!
 # Residual Galois representations of eigenforms at a p-adic place

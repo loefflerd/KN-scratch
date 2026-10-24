@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
 import Theorems.FLT.Thm_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Principal divisors on the function field of X₀(N) over ℚ̄

@@ -13,13 +13,10 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Theorems.FLT.Thm_ModularCurve_modularPolynomialFamily
 import Mathlib.NumberTheory.ArithmeticFunction.Misc
 import Mathlib.RingTheory.Polynomial.Resultant.Basic
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 import Definitions.FLT.Def_P2M_Util
 
 /-!

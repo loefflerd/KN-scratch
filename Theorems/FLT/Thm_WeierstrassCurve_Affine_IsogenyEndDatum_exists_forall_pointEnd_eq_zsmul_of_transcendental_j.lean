@@ -20,7 +20,6 @@ import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_d
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_sq_lt_four_mul_and_forall_exists_finrankAlong_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Transcendental j forces every isogeny endomorphism to be an integer

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_le_dedekindPsi
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Positivity of ψ(N) for N ≠ 0

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
-import Mathlib.Algebra.CharP.Pi
 import Mathlib.Order.CompletePartialOrder
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_frickeFunction_orbit_package

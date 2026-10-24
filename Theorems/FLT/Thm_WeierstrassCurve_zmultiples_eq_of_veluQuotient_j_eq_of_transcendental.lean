@@ -24,7 +24,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_forall_po
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 import Theorems.FLT.Thm_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Odd cyclic subgroups determined by the Vélu quotient's j

@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
-public import Mathlib.GroupTheory.PGroup
 
 /-!
 # Finite horizontal quotients are p-groups

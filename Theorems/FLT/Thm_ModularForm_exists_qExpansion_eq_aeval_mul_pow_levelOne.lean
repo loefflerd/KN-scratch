@@ -14,7 +14,6 @@ module
 public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 public import Mathlib.RingTheory.LaurentSeries
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Level one: weight 12N forms are P(j) Δ^N in ℂ((q))

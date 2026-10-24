@@ -15,28 +15,20 @@ Extracted from Prove2Me proofs by Claude (2026-09-05):
 module
 
 public import Mathlib.Algebra.BigOperators.Field
-public import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 public import Mathlib.Algebra.Polynomial.PartialFractions
 public import Mathlib.Analysis.Normed.Ring.Lemmas
 public import Mathlib.FieldTheory.Galois.Abelian
-public import Mathlib.FieldTheory.RatFunc.Basic
-public import Mathlib.NumberTheory.RatFunc.Ostrowski
-public import Mathlib.RingTheory.AdicCompletion.Completeness
 public import Mathlib.RingTheory.Artinian.Instances
 public import Mathlib.RingTheory.Norm.Transitivity
 public import Mathlib.RingTheory.PicardGroup
 
 public import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
-public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 public import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
-import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X
 

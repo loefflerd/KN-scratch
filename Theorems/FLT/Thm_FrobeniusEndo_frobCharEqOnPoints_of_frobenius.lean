@@ -12,14 +12,11 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
-public import Mathlib.LinearAlgebra.Determinant
-public import Mathlib.FieldTheory.IsAlgClosed.Basic
 
 import Theorems.FLT.Thm_FrobeniusEndo_frobCharEqOnPoints_of_line
 import Theorems.FLT.Thm_FrobeniusEndo_kerDeg_frobEnd_line_one
 import Theorems.FLT.Thm_FrobeniusEndo_kerDeg_frobEnd_line_one_ne_zero
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Frobenius satisfies π²-aπ+q=0 on all k-points

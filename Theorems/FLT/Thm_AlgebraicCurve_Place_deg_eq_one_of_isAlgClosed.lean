@@ -12,9 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-public import Mathlib.FieldTheory.IsAlgClosed.Basic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places over an algebraically closed field have degree one

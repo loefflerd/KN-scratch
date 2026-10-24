@@ -13,8 +13,6 @@ module
 
 public import Mathlib.NumberTheory.Padics.Complex
 
-import Mathlib.RingTheory.Coprime.Lemmas
-import Mathlib.Analysis.SpecificLimits.Basic
 
 /-!
 # Compatible disk values with uniform depth decay vanish

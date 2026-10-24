@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 
-import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Theorems.MTT.Thm_MTT_Cohomology_period_cocycle_injective
 
 /-!

@@ -6,12 +6,7 @@ public import Definitions.KN.Def_KN_HorizontalPadicL
 import Theorems.KN.Thm_WeierstrassCurve_minimal_baseChange_completion
 import Theorems.KN.Thm_HorizontalPadicL_goodReduction_minimal_of_not_modularConductor_dvd
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
-import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
-import Mathlib.RingTheory.DedekindDomain.Dvr
 import Mathlib.NumberTheory.Padics.RingHoms
-import Mathlib.Tactic.Choose
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Ring
 
 /-!
 # Integral models realizing the L-series coefficients at good primes

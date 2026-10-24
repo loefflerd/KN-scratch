@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
-import Mathlib.RingTheory.Algebraic.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

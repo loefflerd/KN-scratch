@@ -19,8 +19,6 @@ import Theorems.FLT.Thm_ModularCurve_relfinrank_full_of_squarefree
 import Theorems.FLT.Thm_ModularCurve_relfinrank_modularFunctionField
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration_iff_full_eq
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_of_squarefree
-import Mathlib.FieldTheory.Relrank
-import Mathlib.FieldTheory.Minpoly.Field
 import Definitions.FLT.Def_P2M_Util
 
 /-!

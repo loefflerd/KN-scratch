@@ -15,7 +15,6 @@ public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.NumberTheory.RatFunc.Ostrowski
-import Mathlib.RingTheory.DedekindDomain.Factorization
 import Definitions.FLT.Def_P2M_Util
 
 /-!

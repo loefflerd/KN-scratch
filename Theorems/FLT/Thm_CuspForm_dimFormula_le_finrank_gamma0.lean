@@ -24,7 +24,6 @@ import Theorems.FLT.Thm_ModularCurve_genus_eq_genusFF_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_genus_modularFunctionFieldBar_eq_genusFormula
 import Theorems.FLT.Thm_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_theta_coeff
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Lower bound for dim S_k(Γ₀(N)), k≥ 4 even

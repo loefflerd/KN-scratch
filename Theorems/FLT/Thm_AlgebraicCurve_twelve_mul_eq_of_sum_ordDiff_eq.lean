@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_Differentials
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Riemann–Hurwitz bookkeeping for a j-type map

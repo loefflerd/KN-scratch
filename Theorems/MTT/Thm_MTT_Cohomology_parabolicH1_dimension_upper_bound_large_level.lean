@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
 public import Mathlib.GroupTheory.DoubleCoset
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finrank_le_centralCoinduced
 import Theorems.MTT.Thm_MTT_Cohomology_centralCoinduced_parabolicH1_dimension_upper_bound

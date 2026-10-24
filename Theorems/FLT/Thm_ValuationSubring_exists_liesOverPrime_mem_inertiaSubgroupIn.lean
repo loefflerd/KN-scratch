@@ -13,15 +13,9 @@ module
 
 public import Definitions.FLT.Def_FLTPrelim_Ramification
 
-import Mathlib.Algebra.Algebra.Rat
 import Mathlib.NumberTheory.NumberField.Basic
 import Mathlib.RingTheory.DedekindDomain.Dvr
-import Mathlib.RingTheory.Valuation.ValuationRing
-import Mathlib.RingTheory.Valuation.ValuationSubring
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Inertial automorphism lies in inertia of a place above q

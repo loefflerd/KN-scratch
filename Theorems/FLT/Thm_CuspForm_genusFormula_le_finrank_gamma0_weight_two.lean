@@ -26,7 +26,6 @@ import Theorems.FLT.Thm_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qEx
 import Theorems.FLT.Thm_ModularCurve_genus_modularFunctionFieldBar_eq_genusFormula
 import Theorems.FLT.Thm_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Genus formula bounds dim_ℂ S₂(Γ₀(N)) from below

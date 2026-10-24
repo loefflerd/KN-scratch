@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
-import Mathlib.Algebra.BigOperators.Intervals
 import Definitions.FLT.Def_P2M_Util
 
 /-!

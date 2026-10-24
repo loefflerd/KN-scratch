@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 
 import Mathlib.Algebra.CharP.Invertible
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
-import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff
@@ -27,7 +26,10 @@ import Theorems.FLT.Thm_WeierstrassCurve_exists_addEquiv_point_variableChange
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
+import Mathlib.Algebra.CharP.Algebra
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+import Mathlib.Basic.NNReal.Defs
+import Mathlib.Combinatorics.Matroid.Init
 
 /-!
 # [ω] acts non-scalarly on p-torsion of y²=x³+B

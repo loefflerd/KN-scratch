@@ -14,26 +14,8 @@ module
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-import Theorems.FLT.Thm_ModularCurve_order_jqModC
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_mul_eq_zero
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_of_mul_eq_zero
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime_pow
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_mul_of_coprime
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
-import Mathlib.FieldTheory.Extension
-import Mathlib.Data.Nat.Factorization.Induction
-import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Defs_modularFunctionField_sharedLibrary
+import Mathlib.Algebra.Order.Algebra
 
 /-!
 # Non-membership of j(qᵖ) in the level-M field, p ∤ M

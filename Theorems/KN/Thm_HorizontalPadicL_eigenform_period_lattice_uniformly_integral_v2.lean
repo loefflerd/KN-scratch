@@ -13,8 +13,6 @@ module
 
 public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 
-import Mathlib.RingTheory.Algebraic.Integral
-import Mathlib.RingTheory.Localization.Integral
 import Mathlib.RingTheory.Valuation.Integral
 
 /-!

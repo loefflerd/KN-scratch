@@ -14,15 +14,10 @@ module
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_EllipticCurve_WeilPairingFun
 
-import Mathlib.Data.Set.Card
-import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.FieldSimp
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isPrincipal_prod_XYIdeal_zpow_iff
 import Theorems.FLT.Thm_WeierstrassCurve_sum_eq_zero_of_forall_mem_iff_smul_eq_zero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_fibSet_finite
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Divisor of `weilNum`: simple zeros on the [n]-fibre over T

@@ -15,19 +15,12 @@ public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
-import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.Order.Int.LeastGreatest
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.NumberTheory.RatFunc.Ostrowski
 import Mathlib.RingTheory.PicardGroup
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
-import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 import Definitions.FLT.Def_AlgebraicCurve_WeilOfKaehler
-import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
-import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached

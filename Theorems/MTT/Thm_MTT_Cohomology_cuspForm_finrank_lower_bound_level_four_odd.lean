@@ -12,14 +12,27 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Theorems.MTT.Thm_CuspForm_finrank_lower_bound_of_weighted_forms
 import Theorems.MTT.Thm_MTT_Cohomology_exists_weighted_cusp_seeds_level_four
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
 import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
-import Mathlib.RingTheory.PowerSeries.Order
-import Mathlib.Tactic
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Rational
+import Mathlib.Tactic.NormNum.Irrational
+import Mathlib.Tactic.NormNum.IsCoprime
+import Mathlib.Tactic.NormNum.IsSquare
+import Mathlib.Tactic.NormNum.LegendreSymbol
+import Mathlib.Tactic.NormNum.ModEq
+import Mathlib.Tactic.NormNum.NatFib
+import Mathlib.Tactic.NormNum.NatLog
+import Mathlib.Tactic.NormNum.NatSqrt
+import Mathlib.Tactic.NormNum.Ordinal
+import Mathlib.Tactic.NormNum.Parity
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Tactic.NormNum.RealSqrt
 
 /-!
 # Odd-weight cusp-form lower bound at level four

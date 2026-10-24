@@ -10,7 +10,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 
 /-!

@@ -10,8 +10,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 public import Mathlib.AlgebraicGeometry.EllipticCurve.LFunction
-public import Mathlib.Analysis.SpecialFunctions.Log.Basic
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 /-!
 # Twisted critical values of a modular elliptic curve

@@ -11,7 +11,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
-public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 
 /-!
 # Coefficientwise Galois action on base-changed Laurent subfields; J0​(N)

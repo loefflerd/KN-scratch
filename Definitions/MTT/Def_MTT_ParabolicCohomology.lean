@@ -9,10 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
-public import Mathlib.RepresentationTheory.Rep.Basic
-public import Mathlib.Tactic.Module
-public import Mathlib.Tactic.FinCases
-public import Mathlib.Tactic.Ring
 public import Mathlib.RepresentationTheory.Homological.GroupCohomology.LowDegree
 
 /-!

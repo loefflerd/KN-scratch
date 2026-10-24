@@ -11,16 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
-public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 public import Mathlib.NumberTheory.Cyclotomic.Basic
-public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
-import Mathlib.RingTheory.RootsOfUnity.Complex
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_hasSum_jq_qParam
 import Theorems.FLT.Thm_ModularCurve_hasSum_qParam_mul_laurent

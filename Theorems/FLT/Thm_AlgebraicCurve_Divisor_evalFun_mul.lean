@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Multiplicativity of f ↦ f(D) at rational places

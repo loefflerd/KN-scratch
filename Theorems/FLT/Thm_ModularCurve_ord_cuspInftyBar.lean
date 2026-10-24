@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 
 import Theorems.FLT.Thm_ModularCurve_ord_qInftyPlaceBar
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order at the cusp ∞ is the q-order

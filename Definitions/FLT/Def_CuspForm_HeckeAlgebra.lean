@@ -8,7 +8,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
 public import Theorems.FLT.Thm_CuspForm_heckeTLin_comm
 public import Theorems.FLT.Thm_CuspForm_heckeTLin_heckeULin_comm
 public import Theorems.FLT.Thm_CuspForm_heckeULin_comm

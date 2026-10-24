@@ -8,7 +8,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.Algebra.MonoidAlgebra.Basic
 public import Mathlib.RingTheory.Valuation.ValuationSubring
 
 /-!

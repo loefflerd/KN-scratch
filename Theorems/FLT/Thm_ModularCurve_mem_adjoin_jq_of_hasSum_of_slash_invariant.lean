@@ -15,13 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
-import Mathlib.NumberTheory.ModularForms.Discriminant
 import Theorems.FLT.Thm_ModularCurve_hasSum_jq_qParam
 import Theorems.FLT.Thm_ModularCurve_coeff_eq_zero_of_hasSum_of_slash_invariant
 import Theorems.FLT.Thm_ModularCurve_hasSum_qParam_mul_laurent

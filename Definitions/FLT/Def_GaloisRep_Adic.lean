@@ -8,10 +8,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.LinearAlgebra.Charpoly.BaseChange
-public import Mathlib.LinearAlgebra.Trace
-public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-public import Definitions.FLT.Def_GaloisRep_Residual
 public import Definitions.FLT.Def_GaloisRep_ResidualEquiv
 
 /-!

@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.Modular
 import Mathlib.NumberTheory.ModularForms.NormTrace
 import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Theorems.FLT.Thm_AlgebraicCurve_exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
@@ -31,7 +30,6 @@ import Theorems.FLT.Thm_ModularCurve_neg_width_le_ord_of_order_eq_mul_ord_of_qEx
 import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
 import Theorems.FLT.Thm_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
 import Theorems.FLT.Thm_UpperHalfPlane_qExpansion_coeff_mul_width
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order of j at a cusp place equals minus its width

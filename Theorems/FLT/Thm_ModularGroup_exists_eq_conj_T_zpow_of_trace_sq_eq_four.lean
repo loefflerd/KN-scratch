@@ -19,7 +19,6 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.LinearCombination.Lemmas
 import Definitions.FLT.Def_P2M_Util
 
 /-!

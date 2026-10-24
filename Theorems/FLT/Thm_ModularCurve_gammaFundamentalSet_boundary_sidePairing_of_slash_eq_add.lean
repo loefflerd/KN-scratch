@@ -15,7 +15,6 @@ public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Topology
 public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Side pairing on the boundary of a tiled fundamental set

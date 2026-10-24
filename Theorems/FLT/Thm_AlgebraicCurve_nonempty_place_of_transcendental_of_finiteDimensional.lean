@@ -17,7 +17,6 @@ import Mathlib.Algebra.Lie.OfAssociative
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.RingTheory.PicardGroup
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_tower
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of a place for a finite separable extension of k(x)

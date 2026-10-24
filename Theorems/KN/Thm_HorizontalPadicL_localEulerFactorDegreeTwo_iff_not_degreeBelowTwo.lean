@@ -13,8 +13,8 @@ module
 
 public import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 
-import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 import Mathlib.NumberTheory.Padics.RingHoms
+public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 /-!
 # Degree-two and subquadratic local Euler factors are complementary

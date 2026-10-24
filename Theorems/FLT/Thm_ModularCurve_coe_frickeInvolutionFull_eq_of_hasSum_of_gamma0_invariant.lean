@@ -11,22 +11,12 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
 import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.FieldTheory.Galois.Basic
-import Mathlib.GroupTheory.Perm.Fin
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
-import Mathlib.NumberTheory.ModularForms.Discriminant
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
 import Theorems.FLT.Thm_ModularCurve_PhiGen_exists_galoisPerm

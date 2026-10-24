@@ -8,10 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Mathlib.RingTheory.Valuation.ValuationSubring
-public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 
 /-!

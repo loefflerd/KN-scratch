@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # K·ℚ(X₁(M)) is a curve over K

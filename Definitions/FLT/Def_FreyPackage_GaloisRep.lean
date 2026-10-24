@@ -8,10 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FLTPrelim_FreyPackage
-public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 /-!
 # Mod-n Galois representation of a Weierstrass curve; Frey case

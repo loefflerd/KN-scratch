@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_EMD
 
 import Theorems.FLT.Thm_ModularCurve_natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Orbits of cyclic N-subgroups count moduli points over j(E₀)

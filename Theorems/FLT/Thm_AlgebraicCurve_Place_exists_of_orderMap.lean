@@ -18,7 +18,6 @@ import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Discrete order functions trivial on K come from places

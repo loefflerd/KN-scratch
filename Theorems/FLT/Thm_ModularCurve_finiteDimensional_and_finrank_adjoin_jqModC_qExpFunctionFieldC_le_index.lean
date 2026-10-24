@@ -18,7 +18,6 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Algebra.Algebra.ZMod
-import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
 import Theorems.FLT.Thm_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_and_finrank_adjoin_le_of_eq_coeffMap
@@ -27,7 +26,6 @@ import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ValuationSubring_exists_liesOverPrime_algebraicClosure_rat
 import Definitions.FLT.Def_ModularCurve_X0ModL
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree of the q-expansion function field over the j-line

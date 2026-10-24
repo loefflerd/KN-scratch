@@ -12,21 +12,30 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-import Mathlib.GroupTheory.Index
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.NumberTheory.ModularForms.Basic
 import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
-import Mathlib.RepresentationTheory.Rep.Res
-import Mathlib.Tactic
-import Mathlib.Tactic.LinearCombination
 import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Rational
+import Mathlib.Tactic.NormNum.Irrational
+import Mathlib.Tactic.NormNum.IsCoprime
+import Mathlib.Tactic.NormNum.IsSquare
+import Mathlib.Tactic.NormNum.LegendreSymbol
+import Mathlib.Tactic.NormNum.ModEq
+import Mathlib.Tactic.NormNum.NatFib
+import Mathlib.Tactic.NormNum.NatLog
+import Mathlib.Tactic.NormNum.NatSqrt
+import Mathlib.Tactic.NormNum.Ordinal
+import Mathlib.Tactic.NormNum.Parity
+import Mathlib.Tactic.NormNum.Prime
+import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 /-!
 # Even-weight parabolic cohomology bound at levels three and four

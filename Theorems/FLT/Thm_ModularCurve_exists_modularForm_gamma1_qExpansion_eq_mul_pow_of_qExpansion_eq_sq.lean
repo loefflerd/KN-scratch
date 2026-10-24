@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 import Mathlib.Order.CompletePartialOrder
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 import Theorems.FLT.Thm_ModularForm_exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Weight-k form from a square on Γ₁(M)

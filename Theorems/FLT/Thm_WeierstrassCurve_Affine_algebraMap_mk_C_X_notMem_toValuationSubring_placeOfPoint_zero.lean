@@ -20,7 +20,6 @@ import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_eq_valuationSubring_of_X_mem
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # At the place of the origin, x is not integral

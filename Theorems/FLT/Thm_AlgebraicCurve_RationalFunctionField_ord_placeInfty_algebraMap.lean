@@ -13,9 +13,7 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 
-import Mathlib.FieldTheory.RatFunc.Degree
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order at infinity of a polynomial is -deg q

@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # A class in Pic⁰ vanishes iff the divisor is principal

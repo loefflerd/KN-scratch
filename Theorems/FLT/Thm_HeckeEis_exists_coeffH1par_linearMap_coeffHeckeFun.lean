@@ -11,10 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_Gamma0HeckeOperatorHom
 public import Definitions.FLT.Def_Gamma0CoeffCohomology
 
-import Theorems.FLT.Thm_HeckeEis_coeffHeckeFun_mem_coeffCocycles
 import Theorems.FLT.Thm_HeckeEis_coeffHeckeFun_mem_coeffCoboundaries
 import Theorems.FLT.Thm_HeckeEis_coeffHeckeFun_mem_coeffParabolicCocycles
 import Definitions.FLT.Def_P2M_Util

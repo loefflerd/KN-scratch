@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integer multiples commute with passage to divisor classes

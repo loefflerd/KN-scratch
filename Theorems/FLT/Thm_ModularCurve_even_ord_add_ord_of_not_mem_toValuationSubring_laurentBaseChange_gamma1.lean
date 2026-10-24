@@ -25,7 +25,6 @@ import Theorems.FLT.Thm_ModularCurve_thetaL_coeffMap_eq_coeffMap_single_mul_deri
 import Theorems.FLT.Thm_ModularForm_exists_coe_eq_of_levelOne
 import Theorems.FLT.Thm_ModularForm_exists_tendsto_slash_div_qParam_pow_of_conj_T_pow_mem
 import Theorems.FLT.Thm_omegaRow_T2
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Even parity of ord_P v+ord_P y at cusp places

@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_EllipticCurve_TateModule
-public import Definitions.FLT.Def_FLTPrelim_Modularity
 
 import Theorems.FLT.Thm_WeierstrassCurve_galoisRepUnramifiedAt_of_hasGoodReduction
 import Definitions.FLT.Def_P2M_Util

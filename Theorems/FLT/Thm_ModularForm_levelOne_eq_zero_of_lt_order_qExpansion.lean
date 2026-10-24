@@ -13,7 +13,6 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Level-one vanishing from q-expansion order at width M

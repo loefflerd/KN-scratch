@@ -16,7 +16,6 @@ public import Mathlib.RingTheory.RegularLocalRing.Defs
 
 public import Definitions.FLT.Def_AdicCompletionLocalRing
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Adic completion of a DVR is a complete DVR

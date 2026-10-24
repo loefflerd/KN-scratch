@@ -18,17 +18,15 @@ public import Mathlib.MeasureTheory.Integral.IntegrableOn
 public import Mathlib.MeasureTheory.Measure.Haar.OfBasis
 public import Mathlib.NumberTheory.Modular
 
-import Mathlib.NumberTheory.ModularForms.Bounds
-import Mathlib.MeasureTheory.Function.Jacobian
 import Mathlib.MeasureTheory.Measure.Lebesgue.Complex
-import Mathlib.MeasureTheory.Measure.Lebesgue.Integral
 import Mathlib.MeasureTheory.Integral.Prod
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 import Mathlib.Analysis.Complex.RealDeriv
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts
-import Mathlib.GroupTheory.Complement
 import Mathlib.RingTheory.Complex
+import Mathlib.Analysis.Calculus.Deriv.Inv
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Combinatorics.Matroid.Init
 
 /-!
 # Stokes' theorem on $\Gamma\backslash\mathfrak H$ for an $(0,1)$-form vanishing at the cusps

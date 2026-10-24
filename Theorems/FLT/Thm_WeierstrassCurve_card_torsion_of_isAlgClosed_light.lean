@@ -11,11 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The n-torsion of an elliptic curve has n² points

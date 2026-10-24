@@ -13,9 +13,7 @@ module
 
 public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
 public import Mathlib.NumberTheory.ModularForms.Discriminant
-public import Mathlib.Geometry.Manifold.Notation
 
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 import Mathlib.Analysis.Meromorphic.NormalForm
 import Definitions.FLT.Def_P2M_Util
 

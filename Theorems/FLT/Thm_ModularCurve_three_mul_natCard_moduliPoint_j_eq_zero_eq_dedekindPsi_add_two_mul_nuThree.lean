@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 public import Definitions.FLT.Def_ModularCurve_ModuliPoint
 
 import Mathlib.Algebra.CharP.Invertible
-import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
 import Theorems.FLT.Thm_ModularCurve_natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq
 import Theorems.FLT.Thm_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add

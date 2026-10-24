@@ -14,21 +14,16 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Definitions.FLT.Def_ModularCurve_X0
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_DegeneracyTower
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_of_prime
 import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_eq_toAdjoin
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible
 import Theorems.FLT.Thm_ModularCurve_aeval_jqN_toAdjoin
-import Mathlib.RingTheory.Trace.Basic
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.NumberTheory.Cyclotomic.PrimitiveRoots
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_ModularCurve_HeckeOperator
+import Mathlib.Algebra.Order.Algebra
 
 /-!
 # Summing q-twists over the ℓ-th roots of unity

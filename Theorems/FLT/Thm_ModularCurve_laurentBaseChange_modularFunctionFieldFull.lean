@@ -12,12 +12,10 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Base change of the full modular function field to L

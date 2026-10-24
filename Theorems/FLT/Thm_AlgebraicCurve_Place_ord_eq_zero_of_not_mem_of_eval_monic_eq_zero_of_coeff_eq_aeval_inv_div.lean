@@ -18,7 +18,6 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order zero for elements integral over K[1/j]_{(1/j)} and inverse

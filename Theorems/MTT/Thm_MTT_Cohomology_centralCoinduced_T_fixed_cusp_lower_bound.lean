@@ -13,7 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_FullParabolicCohomology
 public import Mathlib.GroupTheory.DoubleCoset
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 /-!
 # Cusp lower bound for the central coinduced T-fixed space

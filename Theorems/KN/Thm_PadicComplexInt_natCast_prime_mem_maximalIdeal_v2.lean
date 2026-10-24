@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
-public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
 
 /-!
 # The rational prime lies in the maximal ideal of the C_p integers

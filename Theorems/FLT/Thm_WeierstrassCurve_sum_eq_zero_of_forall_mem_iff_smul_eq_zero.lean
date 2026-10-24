@@ -15,7 +15,6 @@ public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The n-torsion points of an elliptic curve sum to O

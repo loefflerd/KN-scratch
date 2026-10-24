@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_ModularCurve_X0ModL
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finiteness and degree bound descend under coefficientwise field maps

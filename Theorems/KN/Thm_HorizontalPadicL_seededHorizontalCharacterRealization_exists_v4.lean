@@ -11,14 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededHorizontalCharacterRealizationV2B
 public import Definitions.KN.Def_KN_InverseSeedConventionV2
 
 import Theorems.KN.Thm_HorizontalPadicL_SeededHorizontalCharacterRealizationV3_realizes_supported_pPower_character_v2
 import Mathlib.RingTheory.ZMod.UnitsCyclic
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.Algebra.Group.Pi.Units
 
 /-!
 # Faithful realization of horizontal characters exists (clean inverse-seed spine)

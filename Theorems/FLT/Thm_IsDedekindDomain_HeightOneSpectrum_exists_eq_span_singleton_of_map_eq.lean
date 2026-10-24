@@ -13,7 +13,6 @@ module
 
 public import Mathlib.RingTheory.DedekindDomain.AdicValuation
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Principality of a height-one prime from a pulled-back simple zero

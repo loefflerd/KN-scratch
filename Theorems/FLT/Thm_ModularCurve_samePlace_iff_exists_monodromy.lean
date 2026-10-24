@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_EMD
 public import Definitions.FLT.Def_HahnSeries_Monodromy
 
 import Theorems.FLT.Thm_ModularCurve_samePlace_iff_exists_hahnTwist
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places of normalised Hahn-series embeddings differ by monodromy

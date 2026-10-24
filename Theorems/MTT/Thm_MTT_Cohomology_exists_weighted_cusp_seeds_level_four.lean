@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.RingTheory.MvPowerSeries.Order
 
 import Theorems.MTT.Thm_MTT_Cohomology_exists_weighted_modular_seeds_level_four

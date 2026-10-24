@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_neg_ord
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Zero divisor of x-a has degree [F:K(x)]

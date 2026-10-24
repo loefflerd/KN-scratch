@@ -32,7 +32,7 @@ import Theorems.FLT.Thm_ModularCurve_ord_jBar_dvd_three
 import Theorems.FLT.Thm_ModularCurve_ord_jBar_sub_1728_dvd_two
 import Theorems.FLT.Thm_ModularCurve_ord_jBar_sub_eq_one_of_ne_zero_of_ne
 import Theorems.FLT.Thm_ModularCurve_sum_neg_ord_jBar_eq_dedekindPsi
-import Definitions.FLT.Def_P2M_Util
+public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 
 /-!
 # Integrality bounds from regularity of x djmath̄ on X₀(N)_ℚ̄

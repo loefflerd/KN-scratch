@@ -21,7 +21,6 @@ import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff
 import Theorems.FLT.Thm_ModularCurve_adjoin_jBar_jNBar_eq_top
 import Theorems.FLT.Thm_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
-import Mathlib.RingTheory.RootsOfUnity.EnoughRootsOfUnity
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Def_P2M_Util
 

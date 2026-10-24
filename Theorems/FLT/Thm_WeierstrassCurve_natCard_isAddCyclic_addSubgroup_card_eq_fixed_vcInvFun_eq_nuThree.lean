@@ -15,7 +15,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 public import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 
-import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
@@ -26,7 +25,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
 import Theorems.FLT.Thm_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cyclic N-subgroups of y²=x³+B stable under [ω]

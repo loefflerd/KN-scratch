@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_finrank_adjoin_le_degree_of_eq_max_neg_ord
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_le_finrank_adjoin_of_eq_max_neg_ord
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree of the pole divisor of x equals [F:K(x)]

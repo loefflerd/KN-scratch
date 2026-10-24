@@ -13,10 +13,8 @@ module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
 public import Mathlib.NumberTheory.ModularForms.Bounds
-public import Mathlib.GroupTheory.Complement
 
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.NumberTheory.ModularForms.Petersson
 
 /-!
 # Period pairing as Euclidean integrals over arbitrary coset tiles

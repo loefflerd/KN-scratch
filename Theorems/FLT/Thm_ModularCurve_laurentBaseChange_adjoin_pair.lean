@@ -14,19 +14,11 @@ module
 public import Definitions.FLT.Def_ModularCurve_DegeneracyTower
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_modularFunctionField
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration_iff_full_eq
-import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_mono
-import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_mul
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Base change of the full divisor-expansion field equals L(j,j_M)
@@ -67,7 +59,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-open ModularCurve W1 PhiGen
+open ModularCurve
 
 private theorem ModularCurve.laurentBaseChange_adjoin_pair' (L : Type*) [Field L] [Algebra ℚ L]
     (M : ℕ) [NeZero M] (hgenQ : FunctionFieldGeneration M) :

@@ -12,11 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_PeriodMap
-public import Mathlib.LinearAlgebra.Basis.Defs
 
 import Mathlib.GroupTheory.FiniteAbelian.Basic
 import Definitions.FLT.Def_ModularCurve_HeckeAlgebraHom
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integral parabolic characters base-change to torsion-free rings

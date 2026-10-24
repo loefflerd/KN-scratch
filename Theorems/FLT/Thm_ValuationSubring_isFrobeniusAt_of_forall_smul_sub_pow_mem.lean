@@ -14,10 +14,6 @@ module
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 public import Mathlib.NumberTheory.NumberField.Basic
 
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-import Mathlib.Algebra.Lie.OfAssociative
-import Mathlib.Algebra.Algebra.Rat
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Localisation at a maximal ideal of ℤ̄ gives a Frobenius

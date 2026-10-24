@@ -19,7 +19,6 @@ import Theorems.FLT.Thm_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_of
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar
 import Theorems.FLT.Thm_ModularCurve_theta_coeff
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Regular differentials on X₀(N)_ℚ̄ are weight-two cusp forms

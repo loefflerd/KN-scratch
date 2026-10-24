@@ -9,8 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
-public import Mathlib.Data.ZMod.QuotientRing
-public import Mathlib.Algebra.Group.Units.Hom
 
 /-!
 # Horizontal character realization over rebased theta data

@@ -15,7 +15,6 @@ public import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
 
 public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The function field is generated over F(x) by y

@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cyclic subgroups of order n number ψ(n)

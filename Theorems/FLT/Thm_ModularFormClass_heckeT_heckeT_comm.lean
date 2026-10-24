@@ -14,7 +14,6 @@ module
 public import Mathlib.NumberTheory.ModularForms.Basic
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Definitions.FLT.Def_FLTPrelim_Modularity
 import Theorems.FLT.Thm_UpperHalfPlane_qCoeff_heckeT
 import Theorems.FLT.Thm_ModularForm_mdifferentiable_heckeT
 import Theorems.FLT.Thm_ModularForm_isBoundedAtImInfty_heckeT

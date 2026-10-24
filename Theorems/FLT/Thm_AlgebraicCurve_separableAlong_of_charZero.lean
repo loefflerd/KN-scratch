@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integral extensions in characteristic zero are separable along φ

@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 
-import Mathlib.Tactic.Ring
-import Definitions.FLT.Def_EllipticCurve_WeilPairingFun
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_eq_zero_of_forall_transEquiv_eq
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_mulPull_le_of_ne_zero
@@ -24,7 +22,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_weilPairing0_add_right
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_weilPairing0_self
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_weilFun
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_weilPairing0_galois
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of the Weil pairing on n-torsion

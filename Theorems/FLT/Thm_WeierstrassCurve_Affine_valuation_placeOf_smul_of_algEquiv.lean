@@ -15,8 +15,6 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 
-import Mathlib.RingTheory.DedekindDomain.AdicValuation
-import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
 import Definitions.FLT.Def_P2M_Util
 
 /-!

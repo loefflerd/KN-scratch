@@ -14,8 +14,7 @@ module
 public import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 public import Mathlib.RingTheory.PowerSeries.Basic
 
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Definitions.FLT.Def_P2M_Util
+import Mathlib.Combinatorics.Matroid.Init
 
 /-!
 # Products of convergent q-expansions on H

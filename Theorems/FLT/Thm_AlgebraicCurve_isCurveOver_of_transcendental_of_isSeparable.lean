@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finite separable extensions of K(x) are curves over K

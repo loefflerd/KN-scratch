@@ -17,7 +17,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_transEquiv_weilFun
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_weilFun
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_weilFun_ne_zero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Translation invariance of the Weil function g_T up to a constant

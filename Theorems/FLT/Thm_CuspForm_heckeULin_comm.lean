@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
 
 import Theorems.FLT.Thm_ModularFormClass_heckeU_heckeU_comm
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Commutativity of Uₚ and U_q on S_k(Γ₀(N))

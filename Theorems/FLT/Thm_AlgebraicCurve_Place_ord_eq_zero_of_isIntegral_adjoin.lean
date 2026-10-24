@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegral_adjoin
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integral with integral inverse over K[j] implies order zero

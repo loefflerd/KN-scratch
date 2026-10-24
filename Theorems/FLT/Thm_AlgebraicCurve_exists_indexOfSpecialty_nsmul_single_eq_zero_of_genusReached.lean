@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_omegaSpace_finite_of_genusReached
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Strong approximation: i(nQ)=0 for some n

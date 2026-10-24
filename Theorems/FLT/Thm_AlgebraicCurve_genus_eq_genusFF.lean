@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 import Theorems.FLT.Thm_AlgebraicCurve_ell_canonicalDivisor_eq_genus_of_riemannRoch
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Canonical-degree genus equals the adelic genus dim_K H¹(0)

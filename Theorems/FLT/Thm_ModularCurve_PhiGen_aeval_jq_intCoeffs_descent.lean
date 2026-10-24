@@ -11,11 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Tactic.Linarith
 import Definitions.FLT.Def_P2M_Util
 
 /-!

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Definitions.FLT.Def_ModularCurve_PhiGen
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

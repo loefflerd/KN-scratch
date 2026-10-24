@@ -13,14 +13,8 @@ module
 
 public import Definitions.MTT.Def_MTT_Measures
 
-import Definitions.MTT.Def_MTT_Arithmetic
 import Mathlib.NumberTheory.ModularForms.LFunction
-import Mathlib.NumberTheory.ModularForms.Identities
 import Mathlib.Analysis.Fourier.ZMod
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
 
 /-!
 # Birch–Mellin formula for primitive twists

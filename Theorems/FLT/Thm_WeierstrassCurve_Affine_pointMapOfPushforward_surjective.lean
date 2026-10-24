@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Theorems.FLT.Thm_AlgebraicCurve_Place_restrictAlong_surjective
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Pushforward map on points of an elliptic curve is surjective

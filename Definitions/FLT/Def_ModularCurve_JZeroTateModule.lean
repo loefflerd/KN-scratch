@@ -11,9 +11,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
 public import Definitions.FLT.Def_EllipticCurve_TateModule
-public import Mathlib.LinearAlgebra.TensorProduct.Tower
-public import Mathlib.Algebra.Algebra.Subalgebra.Lattice
-public import Mathlib.LinearAlgebra.Basis.Defs
 
 /-!
 # Rational Tate module, Hecke action, rank-two cyclotomic predicate

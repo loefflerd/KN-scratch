@@ -11,10 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_FLTPrelim_Ramification
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Frobenius at q raises p^k-th roots of unity to the q-th power

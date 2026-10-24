@@ -13,14 +13,10 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.NormTrace
 public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.RingTheory.LaurentSeries
-public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
 
 import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.RingTheory.Adjoin.Polynomial.Basic
 import Theorems.FLT.Thm_ModularForm_exists_qExpansion_eq_aeval_mul_pow_levelOne
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality of ̃ g/Δ̃^{ m} over ℂ[jmath̃]

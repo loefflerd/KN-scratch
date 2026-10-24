@@ -14,7 +14,6 @@ module
 public import Mathlib.Dynamics.PeriodicPts.Defs
 public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
-import Mathlib.Tactic.Push
 import Definitions.FLT.Def_P2M_Util
 
 /-!

@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.Algebra.MvPolynomial.CommRing
 import Mathlib.Algebra.MvPolynomial.Funext

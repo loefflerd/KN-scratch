@@ -11,7 +11,6 @@ module
 public import Definitions.KN.Def_KN_HorizontalPadicL
 public import Mathlib.NumberTheory.Padics.Complex
 public import Mathlib.NumberTheory.Padics.RingHoms
-public import Mathlib.Topology.Instances.Real.Lemmas
 
 /-!
 # Auxiliary definitions for horizontal p-adic L-functions

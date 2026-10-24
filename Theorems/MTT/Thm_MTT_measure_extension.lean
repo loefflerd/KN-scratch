@@ -16,9 +16,6 @@ public import Definitions.MTT.Def_MTT_Measures
 import Theorems.MTT.Thm_PadicMeasure_colmez_r0_moment_extension
 import Theorems.MTT.Thm_MTT_ordinary_centered_disk_bound
 import Theorems.MTT.Thm_MTT_distribution_relation
-import Mathlib.NumberTheory.ModularForms.Identities
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Ring
 
 /-!
 # Unique bounded measure realizing the critical polynomial moments

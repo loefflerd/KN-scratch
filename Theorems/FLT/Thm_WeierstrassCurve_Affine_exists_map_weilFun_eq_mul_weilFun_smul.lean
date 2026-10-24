@@ -14,12 +14,10 @@ module
 public import Definitions.FLT.Def_EllipticCurve_WeilPairingFun
 public import Definitions.FLT.Def_FLTPrelim_GaloisRep
 
-import Mathlib.Tactic.Ring
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_valuation_weilFun
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_weilFun_ne_zero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_eq_algebraMap_of_valuation_eq_one
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Galois conjugation of the Weil function up to a constant

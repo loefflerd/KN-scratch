@@ -13,10 +13,8 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X1
 
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Valuation.Integral
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Base change of the q-expansion function field is a function field

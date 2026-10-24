@@ -14,7 +14,6 @@ module
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Parallelogram law for degrees of abscissa maps

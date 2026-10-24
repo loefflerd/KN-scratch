@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_ModularCurve_JZeroTateModule
 public import Definitions.FLT.Def_P2M_Util
 

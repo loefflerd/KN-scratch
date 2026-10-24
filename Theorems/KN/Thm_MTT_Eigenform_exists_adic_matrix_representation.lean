@@ -12,27 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
-public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
-public import Definitions.KN.Def_MTT_EigenformCoefficientCompletion
-public import Definitions.FLT.Def_GaloisRep_Residual
 
-import Mathlib.RingTheory.Localization.FractionRing
-import Mathlib.Topology.Algebra.Ring.Basic
-import Mathlib.Topology.Compactness.Compact
-import Mathlib.LinearAlgebra.Matrix.Defs
-import Mathlib.LinearAlgebra.FreeModule.PID
-import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.RingTheory.Localization.Integer
-import Mathlib.Tactic.Ring
-import Mathlib.Topology.Instances.Matrix
-import Mathlib.FieldTheory.KrullTopology
-import Mathlib.Topology.Algebra.GroupWithZero
-import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
-import Mathlib.Topology.Algebra.Valued.ValuationTopology
 import Mathlib.FieldTheory.Galois.Profinite
-import Mathlib.FieldTheory.Perfect
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Mathlib.Algebra.CharP.Basic
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Theorems.KN.Thm_MTT_Eigenform_exists_continuous_localField_representation
 

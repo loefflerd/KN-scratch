@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The central element -1 of SL₂(ℤ) acts by (-1)ⁿ

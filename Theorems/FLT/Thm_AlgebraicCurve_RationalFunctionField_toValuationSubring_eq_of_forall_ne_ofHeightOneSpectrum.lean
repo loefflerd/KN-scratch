@@ -16,10 +16,9 @@ public import Mathlib.FieldTheory.RatFunc.Valuation
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.NumberTheory.RatFunc.Ostrowski
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_adicValuation_valuationSubring
 import Theorems.FLT.Thm_AlgebraicCurve_Place_adicValuation_isRankOneDiscrete
 import Theorems.FLT.Thm_AlgebraicCurve_Place_adicValuation_isTrivialOn
-import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 /-!
 # Places of K(t)/K other than the finite ones lie at infinity

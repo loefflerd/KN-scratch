@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 public import Definitions.KN.Def_KN_InverseSeedConventionV2
 
 import Theorems.KN.Thm_HorizontalPadicL_horizontalGroupAlgebra_isUnit_of_augmentation_norm_one_v2

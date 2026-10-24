@@ -13,8 +13,6 @@ module
 
 public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Basic
 
-import Mathlib.Algebra.Algebra.Subalgebra.Lattice
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality over K[j] transports along K-algebra maps

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

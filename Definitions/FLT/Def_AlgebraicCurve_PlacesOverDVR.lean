@@ -9,10 +9,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-public import Mathlib.RingTheory.DedekindDomain.IntegralClosure
 public import Mathlib.RingTheory.RamificationInertia.Basic
 public import Mathlib.RingTheory.DedekindDomain.Factorization
-public import Mathlib.Algebra.Polynomial.Lifts
 
 /-!
 # Places above a place via primes of the integral closure

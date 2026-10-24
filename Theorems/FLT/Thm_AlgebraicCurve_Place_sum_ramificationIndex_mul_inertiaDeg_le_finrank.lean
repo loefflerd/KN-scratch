@@ -13,9 +13,10 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Fundamental inequality sum_w e_w f_w ≤ [F':F]

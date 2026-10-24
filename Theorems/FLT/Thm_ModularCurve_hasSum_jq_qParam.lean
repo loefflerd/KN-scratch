@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.NumberTheory.ModularForms.Discriminant
-public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
 
 import Theorems.FLT.Thm_ModularCurve_hasSum_jNum_qParam
 import Definitions.FLT.Def_P2M_Util

@@ -15,11 +15,8 @@ public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Mathlib.RingTheory.Polynomial.DegreeLT
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
-import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 import Definitions.FLT.Def_P2M_Util
 
 /-!

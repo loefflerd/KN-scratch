@@ -14,9 +14,6 @@ module
 public import Definitions.MTT.Def_MTT_Measures
 
 import Mathlib.NumberTheory.DirichletCharacter.Bounds
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
 
 /-!
 # Existence and uniqueness of the ordinary p-root

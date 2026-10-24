@@ -12,12 +12,8 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_X0
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_of_prime
@@ -25,10 +21,6 @@ import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
 import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
 import Theorems.FLT.Thm_Polynomial_mem_range_of_eval_eq_const
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.FieldTheory.Minpoly.Field
-import Mathlib.RingTheory.PowerBasis
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

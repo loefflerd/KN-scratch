@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_HahnSeries_RamificationBound
 
 import Mathlib.Order.CompletePartialOrder
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Membership in the e-ramified Puiseux subfield

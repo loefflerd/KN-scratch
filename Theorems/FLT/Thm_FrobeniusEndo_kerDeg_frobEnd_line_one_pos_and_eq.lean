@@ -18,7 +18,6 @@ import Theorems.FLT.Thm_FrobeniusEndo_kerDeg_frobEnd_line_one_pos_and_eq_of_tors
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_evalEval_psi_sq
 import Theorems.FLT.Thm_WeierstrassCurve_isCoprime_Phi_PsiSq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree formula for the Frobenius pencil [m]-π

@@ -13,10 +13,7 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 
-import Mathlib.NumberTheory.Bernoulli
 import Mathlib.Algebra.GCDMonoid.FinsetLemmas
-import Mathlib.Data.Rat.Lemmas
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # A prime ℓ ≥ 5 does not divide num(B_{ℓ-1})

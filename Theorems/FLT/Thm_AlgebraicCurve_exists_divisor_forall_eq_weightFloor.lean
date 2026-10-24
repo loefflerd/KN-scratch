@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of the weight-m floor divisor on a curve

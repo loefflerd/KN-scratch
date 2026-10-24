@@ -13,10 +13,7 @@ module
 
 public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 
-import Definitions.MTT.Def_MTT_Measures
 import Mathlib.NumberTheory.ModularForms.LFunction
-import Mathlib.NumberTheory.ModularForms.Identities
-import Mathlib.Tactic.FinCases
 
 /-!
 # Algebraic symbols equal signed modular symbols at nonzero modulus

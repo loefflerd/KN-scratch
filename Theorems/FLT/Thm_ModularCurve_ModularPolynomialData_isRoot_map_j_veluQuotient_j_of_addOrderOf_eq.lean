@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 import Theorems.FLT.Thm_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Forward modular equation for odd Vélu quotients

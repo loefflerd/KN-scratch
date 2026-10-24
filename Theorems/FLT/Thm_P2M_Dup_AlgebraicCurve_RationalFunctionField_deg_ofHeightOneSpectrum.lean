@@ -11,14 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.FieldTheory.RatFunc.Basic
-public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
-import Mathlib.RingTheory.AdjoinRoot
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_adicValuation_le_one
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_maximalIdeal_iff_adicValuation_lt_one
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum
 import Definitions.FLT.Def_P2M_Util
 
 /-!

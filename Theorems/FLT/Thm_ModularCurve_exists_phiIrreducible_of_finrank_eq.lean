@@ -11,14 +11,10 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
-public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
 import Theorems.FLT.Thm_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero
 import Theorems.FLT.Thm_ModularCurve_PhiGen_evalAtJ_injective
-import Mathlib.FieldTheory.Minpoly.IsIntegrallyClosed
-import Mathlib.RingTheory.Localization.Integral
 import Definitions.FLT.Def_P2M_Util
 
 /-!

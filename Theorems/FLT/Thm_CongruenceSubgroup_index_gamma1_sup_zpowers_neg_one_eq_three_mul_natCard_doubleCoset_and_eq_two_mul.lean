@@ -17,7 +17,6 @@ public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Order.Star.Int
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Index of ±Γ₁(M) and elliptic double-coset counts

@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_degree_eq_zero_of_forall_eq_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Divisors of rational functions on P¹ have degree zero

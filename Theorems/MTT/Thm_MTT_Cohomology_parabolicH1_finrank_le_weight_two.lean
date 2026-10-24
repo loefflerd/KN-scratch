@@ -12,12 +12,7 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.Tactic.LinearCombination
 import Theorems.FLT.Thm_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree
 import Theorems.FLT.Thm_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
 

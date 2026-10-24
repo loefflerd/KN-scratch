@@ -14,7 +14,6 @@ module
 public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Algebra.Field.GeomSum
 
 /-!
 # $q$-expansion of the pointwise prime Hecke operator $T_p$ (with $U_p$ when $p\mid N$)

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
 import Theorems.FLT.Thm_ModularCurve_map_intCast_pow_char_eq_qExpand
-import Mathlib.RingTheory.Algebraic.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

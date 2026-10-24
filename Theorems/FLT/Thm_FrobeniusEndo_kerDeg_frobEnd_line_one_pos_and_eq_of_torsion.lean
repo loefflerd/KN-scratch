@@ -19,10 +19,7 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_natDegree_parallelogram_la
 import Theorems.FLT.Thm_FrobeniusEndo_exists_x_linePencil_frobEnd_mul_collision_sq
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_zsmul_x_mul_psi_sq
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
-import Mathlib.Algebra.Polynomial.Derivative
 import Mathlib.FieldTheory.RatFunc.Basic
-import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.Tactic.LinearCombination
 import Definitions.FLT.Def_P2M_Util
 
 /-!

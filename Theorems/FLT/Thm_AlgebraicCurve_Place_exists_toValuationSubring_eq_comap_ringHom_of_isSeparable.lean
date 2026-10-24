@@ -14,12 +14,7 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.DedekindDomain.Dvr
-import Mathlib.RingTheory.DiscreteValuationRing.TFAE
-import Mathlib.RingTheory.Localization.Integral
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
 import Definitions.FLT.Def_P2M_Util
 
 /-!

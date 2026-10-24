@@ -19,7 +19,6 @@ import Mathlib.Algebra.Order.Star.Int
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Theorems.FLT.Thm_AlgebraicCurve_isIntegral_adjoin_of_forall_mem_toValuationSubring
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Integrality shape for the weight-m floor Riemann–Roch space

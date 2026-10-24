@@ -21,7 +21,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.Valuation.LocalSubring
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom
 import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_of_constantFieldExtension
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Unique unramified place above P in a constant-field extension

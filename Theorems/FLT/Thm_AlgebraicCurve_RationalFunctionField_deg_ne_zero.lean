@@ -15,8 +15,7 @@ public import Mathlib.FieldTheory.RatFunc.Basic
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_forall_ne_ofHeightOneSpectrum
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum
-import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 /-!
 # Places of K(t) have nonzero degree

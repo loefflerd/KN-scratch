@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_forall_ord_eq_finset
 import Theorems.FLT.Thm_ModularCurve_ord_eq_zero_of_not_mem_of_realizeOf_tendsto
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cusp places of ℂ·ℚ(X(Γ)) are exhausted by Pl

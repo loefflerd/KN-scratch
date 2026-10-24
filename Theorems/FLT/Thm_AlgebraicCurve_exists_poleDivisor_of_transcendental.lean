@@ -17,7 +17,6 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_isAlgClosed_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Existence of the pole divisor of a transcendental element

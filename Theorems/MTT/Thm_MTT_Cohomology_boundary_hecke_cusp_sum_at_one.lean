@@ -15,9 +15,7 @@ public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 public import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.Algebra.Field.ZMod
 import Mathlib.Algebra.MvPolynomial.Funext
-import Mathlib.Data.Nat.Prime.Int
 
 /-!
 # Boundary Hecke sum at a single cusp

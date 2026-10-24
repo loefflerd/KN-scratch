@@ -16,6 +16,7 @@ public import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.PicardGroup
 public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
+public import Mathlib.RingTheory.Valuation.Discrete.RankOne
 public import Mathlib.Topology.Algebra.Module.FiniteDimension
 public import Mathlib.Topology.Algebra.Valued.NormedValued
 public import Mathlib.Topology.UniformSpace.Uniformizable

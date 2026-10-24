@@ -9,7 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_KN_HorizontalPadicLAux
-public import Definitions.FLT.Def_FLTPrelim_Modularity
 public import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 public import Theorems.KN.Thm_HorizontalPadicL_ellipticCurve_attachedForm_isNormalizedEigenform
 

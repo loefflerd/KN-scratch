@@ -14,9 +14,6 @@ module
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
-import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 
 /-!

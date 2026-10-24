@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_of_valuationSubring
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # No poles where t is regular implies integrality over K[t]

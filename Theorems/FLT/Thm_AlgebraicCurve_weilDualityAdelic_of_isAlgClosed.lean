@@ -21,7 +21,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Adelic Weil duality over an algebraically closed constant field

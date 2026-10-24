@@ -13,15 +13,10 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_ModularUnit
 
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Mathlib.NumberTheory.ModularForms.Discriminant
-import Theorems.FLT.Thm_ModularCurve_hasSum_modularUnitSeries_qParam
-import Theorems.FLT.Thm_ModularCurve_hasSum_smul_modularUnitSeries_inv_qParam
 import Theorems.FLT.Thm_ModularCurve_hasSum_modularUnitSeries_inv_qParam
 import Theorems.FLT.Thm_ModularCurve_hasSum_smul_modularUnitSeries_qParam
 import Theorems.FLT.Thm_ModularCurve_discriminant_div_discriminant_heckeDiagMatrix_smul
 import Theorems.FLT.Thm_ModularCurve_isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Inverse of Ogg's modular unit is integral over ℚ[j]

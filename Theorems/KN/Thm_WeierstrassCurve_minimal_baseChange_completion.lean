@@ -4,9 +4,6 @@ public import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
 public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 public import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
 
-import Mathlib.RingTheory.DedekindDomain.Dvr
-import Mathlib.Tactic.FunProp
-import Mathlib.Tactic.FinCases
 
 /-!
 # Rational minimal models and completion

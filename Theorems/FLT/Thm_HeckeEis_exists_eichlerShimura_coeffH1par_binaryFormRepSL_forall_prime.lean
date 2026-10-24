@@ -22,7 +22,6 @@ import Theorems.FLT.Thm_HeckeEis_eichlerShimuraMap_injective
 import Theorems.FLT.Thm_HeckeEis_existsEichlerShimuraMapLinear
 import Theorems.FLT.Thm_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd
 import Theorems.FLT.Thm_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Hecke-equivariant Eichler–Shimura decomposition of parabolic cohomology

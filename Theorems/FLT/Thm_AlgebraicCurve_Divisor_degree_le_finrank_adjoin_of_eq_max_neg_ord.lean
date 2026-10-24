@@ -18,7 +18,6 @@ import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_forall_ord_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Pole divisor degree at most [F:K(x)]

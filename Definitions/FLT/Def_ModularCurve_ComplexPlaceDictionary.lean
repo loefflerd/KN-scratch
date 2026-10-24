@@ -9,8 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-public import Mathlib.Analysis.Meromorphic.Order
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup

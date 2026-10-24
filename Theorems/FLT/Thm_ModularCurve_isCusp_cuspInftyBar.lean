@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 
 import Theorems.FLT.Thm_ModularCurve_isCusp_iff_ord_neg
 import Theorems.FLT.Thm_ModularCurve_ord_cuspInftyBar_coeffEmb_jq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # The place at infinity is a cusp for j

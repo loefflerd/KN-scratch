@@ -17,9 +17,6 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 
 /-!
 # Places of a Weierstrass function field over ̄ F have degree one

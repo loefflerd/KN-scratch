@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_exists_divisor_forall_eq_weightFloor
 import Theorems.FLT.Thm_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1
 import Theorems.FLT.Thm_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Divisor of a weight-one form on X₁(M), M≥ 5

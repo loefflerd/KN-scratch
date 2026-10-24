@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_X0
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
 import Theorems.FLT.Thm_ModularCurve_PhiGen_exists_phiGenDescends
@@ -21,7 +20,6 @@ import Theorems.FLT.Thm_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_e
 import Theorems.FLT.Thm_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_of_coeff_evalAtJ_eq
 import Theorems.FLT.Thm_ModularCurve_PhiGen_phiIrreducible_of_splits
-import Mathlib.NumberTheory.Cyclotomic.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

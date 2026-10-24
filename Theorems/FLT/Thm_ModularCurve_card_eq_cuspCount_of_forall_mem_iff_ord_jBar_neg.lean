@@ -15,15 +15,12 @@ public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.Data.Nat.Totient
-import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
 import Theorems.FLT.Thm_ModularCurve_exists_slot_of_isCusp
 import Theorems.FLT.Thm_ModularCurve_slot_place_eq_iff_modEq
 import Theorems.FLT.Thm_ModularCurve_slot_ord_of_algHom_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_exists_algHom_laurentBaseChange_slot
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries
 import Theorems.FLT.Thm_ModularCurve_isCusp_iff_ord_neg
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Number of cusps of X₀(N) over ℚ̄

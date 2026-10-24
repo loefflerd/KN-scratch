@@ -18,7 +18,6 @@ import Mathlib.Algebra.MvPolynomial.Monad
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.RingTheory.RootsOfUnity.Complex
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Lower bounds for S- and ST-fixed binary forms

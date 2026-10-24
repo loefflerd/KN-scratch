@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
 import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Base change of a Laurent-series subfield commutes with adjunction

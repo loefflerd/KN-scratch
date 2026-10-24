@@ -14,8 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.RingTheory.IntegralClosure.IntegrallyClosed
-import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

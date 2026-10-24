@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Generation property equals collapse of the full modular function field

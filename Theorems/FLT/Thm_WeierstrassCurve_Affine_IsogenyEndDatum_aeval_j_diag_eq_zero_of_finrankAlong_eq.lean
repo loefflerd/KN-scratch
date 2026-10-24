@@ -15,7 +15,6 @@ module
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Mathlib.RingTheory.Algebraic.Cardinality
 import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong

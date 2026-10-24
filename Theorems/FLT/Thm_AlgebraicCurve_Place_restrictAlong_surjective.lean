@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Surjectivity of restriction of places along a finite separable map

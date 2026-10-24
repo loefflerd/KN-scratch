@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 
 import Theorems.FLT.Thm_ModularCurve_ord_cuspZeroBar_coeffEmb_qExpand
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order of j at the cusp 0 equals -N

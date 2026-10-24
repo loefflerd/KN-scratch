@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Order at a transported place of an element from the subfield

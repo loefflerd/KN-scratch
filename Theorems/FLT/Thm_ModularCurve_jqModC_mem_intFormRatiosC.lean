@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # j-series lies in the integral form ratios over any K, Γ

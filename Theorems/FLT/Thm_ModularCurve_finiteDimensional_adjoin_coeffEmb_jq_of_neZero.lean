@@ -16,10 +16,7 @@ public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Finiteness of the level-M modular function field over ℚ̄(j)

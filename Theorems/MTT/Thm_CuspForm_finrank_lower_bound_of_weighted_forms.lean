@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
-public import Mathlib.LinearAlgebra.Dimension.Finite
 public import Mathlib.RingTheory.PowerSeries.Order
 
 import Mathlib.RingTheory.PowerSeries.NoZeroDivisors

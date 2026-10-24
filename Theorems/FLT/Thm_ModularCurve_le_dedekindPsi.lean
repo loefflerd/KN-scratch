@@ -13,9 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Mathlib.NumberTheory.Divisors
-import Mathlib.Data.Nat.Squarefree
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Dedekind ψ dominates its argument

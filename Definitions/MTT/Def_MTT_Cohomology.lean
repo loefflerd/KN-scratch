@@ -10,8 +10,6 @@ module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
-public import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
-public import Mathlib.LinearAlgebra.TensorProduct.Basic
 
 /-!
 # Compactly supported group cohomology and integral modular-symbol evaluations

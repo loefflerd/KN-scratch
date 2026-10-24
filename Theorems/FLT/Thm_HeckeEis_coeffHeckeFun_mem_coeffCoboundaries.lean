@@ -11,7 +11,6 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_Gamma0HeckeOperatorHom
 public import Definitions.FLT.Def_Gamma0CoeffCohomology
 
 import Definitions.FLT.Def_P2M_Util

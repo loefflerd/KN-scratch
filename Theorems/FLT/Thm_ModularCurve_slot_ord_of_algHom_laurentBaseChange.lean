@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_ModularCurve_PhiGen
-public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
@@ -21,7 +20,6 @@ import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cusp width and orders of j(q), j(q^N) at a place

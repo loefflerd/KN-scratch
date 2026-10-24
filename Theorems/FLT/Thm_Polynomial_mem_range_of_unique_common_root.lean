@@ -13,7 +13,6 @@ module
 
 public import Mathlib.Algebra.Polynomial.Splits
 
-import Mathlib.Algebra.Polynomial.FieldDivision
 import Definitions.FLT.Def_P2M_Util
 
 /-!

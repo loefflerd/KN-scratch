@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_hasPrincipalDivisors
 import Theorems.FLT.Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Degree-zero principal divisors for separable extensions of K(t)

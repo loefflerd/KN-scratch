@@ -13,8 +13,8 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_isEquiv_adicValuation_of_valuationSubring_eq
 import Definitions.FLT.Def_P2M_Util
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 /-!
 # Order at a place computed by any valuation with the same ring

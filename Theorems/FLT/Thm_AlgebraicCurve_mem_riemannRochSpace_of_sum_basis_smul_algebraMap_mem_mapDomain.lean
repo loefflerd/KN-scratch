@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Coefficients of a constant-field-extension Riemann–Roch element descend

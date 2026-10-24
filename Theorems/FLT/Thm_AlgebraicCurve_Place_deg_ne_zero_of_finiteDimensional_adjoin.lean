@@ -13,12 +13,8 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos_of_finiteDimensional
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_ne_zero
-import Mathlib.RingTheory.Algebraic.Basic
-import Mathlib.FieldTheory.RatFunc.Basic
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Places of a function field in one variable have nonzero degree

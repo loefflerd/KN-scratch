@@ -3,9 +3,7 @@ module
 public import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 
-import Definitions.FLT.Def_EllipticCurve_TateModule
 import Theorems.KN.Thm_HorizontalPadicL_tateModuleRep_good_primes
-import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 
 /-!
 # Continuous local-field representations for the eigenform attached to an elliptic curve

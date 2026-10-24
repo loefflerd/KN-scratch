@@ -13,7 +13,7 @@ module
 
 public import Definitions.KN.Def_KN_PrimePowerPropagationV2
 
-import Mathlib.NumberTheory.DirichletCharacter.Orthogonality
+import Mathlib.NumberTheory.MulChar.Duality
 
 /-!
 # Finiteness of primitive characters of bounded conductor

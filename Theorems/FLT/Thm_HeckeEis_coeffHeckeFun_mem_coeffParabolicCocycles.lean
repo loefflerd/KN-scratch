@@ -11,11 +11,8 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_Gamma0HeckeOperatorHom
 public import Definitions.FLT.Def_Gamma0CoeffCohomology
 
-import Mathlib.LinearAlgebra.Matrix.Adjugate
-import Mathlib.LinearAlgebra.Matrix.Trace
 import Theorems.FLT.Thm_Function_exists_eq_apply_sub_of_sum_range_minimalPeriod_eq_zero
 import Theorems.FLT.Thm_HeckeEis_coeffHeckeFun_mem_coeffCocycles
 import Definitions.FLT.Def_P2M_Util

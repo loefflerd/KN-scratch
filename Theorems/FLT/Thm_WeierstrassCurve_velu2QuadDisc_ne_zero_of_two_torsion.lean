@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
 
 import Theorems.FLT.Thm_WeierstrassCurve_Delta_eq_veluGx_sq_mul_velu2QuadDisc
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Nonvanishing of `velu2QuadDisc` at a 2-torsion point

@@ -16,7 +16,6 @@ public import Mathlib.NumberTheory.ModularForms.Basic
 
 import Theorems.FLT.Thm_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_even
 import Theorems.FLT.Thm_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_odd
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Lower bound for dim M_k(Γ₁(M)), k≥ 3, M≥ 5

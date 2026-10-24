@@ -21,7 +21,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegra
 import Theorems.FLT.Thm_AlgebraicCurve_ell_le_degree_add_ellZero
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_lSpace
 import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_pow_mul
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Lower bound [F:K(x)] ≤ deg of the pole divisor

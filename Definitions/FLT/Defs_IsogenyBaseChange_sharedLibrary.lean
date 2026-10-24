@@ -15,26 +15,10 @@ Extracted from Prove2Me proofs by Claude (2026-09-05):
 module
 
 import Mathlib.Algebra.Algebra.Field
-import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
-import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.Order.CompletePartialOrder
 
 public import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
-import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 
-import Theorems.FLT.Thm_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq
-import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
-import Theorems.FLT.Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 /-!
 # Base change of finite elliptic-curve function-field maps

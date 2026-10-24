@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Δ = gₓ(Q)² d(x₀) at a 2-torsion point

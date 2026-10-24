@@ -13,14 +13,9 @@ module
 
 public import Mathlib.RingTheory.Kaehler.Basic
 public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-public import Mathlib.FieldTheory.Separable
-public import Mathlib.RingTheory.Algebraic.Defs
 
-import Mathlib.RingTheory.Etale.Kaehler
 import Mathlib.RingTheory.Etale.Field
-import Mathlib.RingTheory.Kaehler.Polynomial
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
-import Mathlib.LinearAlgebra.TensorProduct.Basis
 import Definitions.FLT.Def_P2M_Util
 
 /-!

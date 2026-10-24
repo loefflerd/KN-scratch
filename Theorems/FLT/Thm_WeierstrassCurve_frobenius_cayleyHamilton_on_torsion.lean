@@ -13,16 +13,9 @@ module
 
 public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
 
-import Definitions.FLT.Def_FLTPrelim_GaloisRep
-import Definitions.FLT.Def_FLTPrelim_Ramification
-import Definitions.FLT.Def_EllipticCurve_ZeroComponentAt
-import Definitions.FLT.Def_EllipticCurve_FrobeniusEndo
-import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
-import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
 import Definitions.FLT.Def_WeierstrassCurve_ReduceHom
 import Definitions.FLT.Def_ValuationSubring_ReduceAt
 import Theorems.FLT.Thm_FrobeniusEndo_frobCharEqOnPoints_of_frobenius
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Frobenius satisfies its characteristic equation on prime-to-ℓ torsion

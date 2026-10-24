@@ -8,11 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
-public import Mathlib.RingTheory.AdicCompletion.Completeness
 public import Mathlib.RingTheory.AdicCompletion.LocalRing
-public import Mathlib.RingTheory.LocalRing.MaximalIdeal.Basic
-public import Mathlib.RingTheory.Ideal.Quotient.Operations
-public import Mathlib.RingTheory.Noetherian.Defs
 
 /-!
 # Adic completion of a Noetherian local ring

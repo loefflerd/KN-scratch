@@ -13,12 +13,10 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant
 import Theorems.FLT.Thm_ModularForm_exists_degeneracy_Gamma0
 import Theorems.FLT.Thm_ModularCurve_laurent_qParam_coeff_unique
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # j(q^ℓ) as a ratio of weight-12 forms on Γ₀(ℓ)

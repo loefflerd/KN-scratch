@@ -23,7 +23,6 @@ import Theorems.FLT.Thm_ModularCurve_Period_existsUnique_isParabolicHom_sup_zpow
 import Theorems.FLT.Thm_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp
 import Theorems.FLT.Thm_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
 import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Parabolic cohomology rank of Γ(N), denominator-free form

@@ -12,14 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
-import Mathlib.RepresentationTheory.Homological.GroupCohomology.LowDegree
-import Mathlib.GroupTheory.Finiteness
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
-import Mathlib.LinearAlgebra.Dimension.Constructions
 
 /-!
 # Finite-dimensional parabolic cohomology for Gamma1(N)

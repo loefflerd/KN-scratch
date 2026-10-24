@@ -24,7 +24,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_lSpace
 import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1
 import Theorems.FLT.Thm_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Genus does not increase under algebraically closed constant field extension

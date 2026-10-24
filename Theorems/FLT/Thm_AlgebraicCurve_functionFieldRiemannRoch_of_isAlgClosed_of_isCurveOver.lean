@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Riemann–Roch over an algebraically closed constant field

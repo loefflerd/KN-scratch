@@ -2,8 +2,6 @@ module
 
 public import Theorems.KN.Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional
 
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
-import Mathlib.Data.Set.Card
 
 /-!+# Infinitely many nonvanishing twists of a modular elliptic curve
 

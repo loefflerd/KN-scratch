@@ -13,13 +13,8 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
 import Theorems.FLT.Thm_Polynomial_mem_range_of_unique_common_root
 import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm

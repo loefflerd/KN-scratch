@@ -17,7 +17,6 @@ public import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 import Theorems.FLT.Thm_ModularForm_exists_qExpansion_eq_aeval_mul_pow_levelOne
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
 import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant
-import Mathlib.Algebra.Polynomial.Lifts
 import Definitions.FLT.Def_P2M_Util
 
 /-!

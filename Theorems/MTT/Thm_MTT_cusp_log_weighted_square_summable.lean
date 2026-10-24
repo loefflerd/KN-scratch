@@ -15,9 +15,6 @@ public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 public import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 import Mathlib.NumberTheory.ModularForms.Bounds
-import Mathlib.Analysis.Fourier.AddCircle
-import Mathlib.Analysis.SpecificLimits.Normed
-import Mathlib.Analysis.PSeries
 
 /-!
 # Logarithmically weighted square summability of cusp-form coefficients

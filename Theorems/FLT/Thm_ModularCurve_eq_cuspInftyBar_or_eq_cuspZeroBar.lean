@@ -13,9 +13,7 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_CuspidalClass
 
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_le_finrank
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum

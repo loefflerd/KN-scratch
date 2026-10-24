@@ -19,7 +19,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_iff_deg_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_tower
 import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_exists_isRational
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Over an algebraically closed base, the constants are K

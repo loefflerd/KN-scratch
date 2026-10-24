@@ -17,7 +17,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_exists_poleDivisor_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_isAlgClosed_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Sum of pole orders of x equals [F:k(x)]

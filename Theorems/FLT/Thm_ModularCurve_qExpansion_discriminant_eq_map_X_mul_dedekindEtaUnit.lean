@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_X_mul_tprod
-import Mathlib.RingTheory.PowerSeries.PiTopology
 import Definitions.FLT.Def_P2M_Util
 
 /-!

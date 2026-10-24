@@ -13,8 +13,6 @@ module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
 
-import Mathlib.GroupTheory.Complement
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 /-!
 # Finite right-coset representatives for $\Gamma_1(N)$

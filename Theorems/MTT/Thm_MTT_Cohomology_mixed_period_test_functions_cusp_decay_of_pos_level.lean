@@ -14,16 +14,7 @@ module
 public import Definitions.MTT.Def_MTT_PeriodPairing
 public import Mathlib.NumberTheory.ModularForms.Bounds
 
-import Definitions.MTT.Def_MTT_Cohomology
-import Mathlib.Algebra.MonoidAlgebra.Module
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.LinearAlgebra.Finsupp.VectorSpace
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Ring
 import Definitions.MTT.Def_MTT_ParabolicCohomology
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
-import Mathlib.Algebra.Field.Periodic
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_local_equivariant
 
 /-!

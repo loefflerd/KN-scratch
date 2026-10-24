@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Non-vanishing of f(D) when f avoids the support of D

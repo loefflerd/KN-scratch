@@ -14,13 +14,8 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.FieldTheory.Relrank
 
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.NumberTheory.Cyclotomic.Basic
 import Theorems.FLT.Thm_ModularCurve_full_eq_adjoin_primes
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem
 import Theorems.FLT.Thm_ModularCurve_jqN_prime_not_mem_adjoin

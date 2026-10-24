@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.MTT.Def_MTT_FullParabolicCohomology
-public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Theorems.FLT.Thm_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_mul

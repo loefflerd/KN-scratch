@@ -14,8 +14,6 @@ module
 public import Definitions.KN.Def_KN_SeedCyclotomicGaloisCharactersV3B
 
 import Mathlib.NumberTheory.NumberField.Cyclotomic.Galois
-import Mathlib.NumberTheory.MulChar.Lemmas
-import Mathlib.RingTheory.IntegralDomain
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
 /-!

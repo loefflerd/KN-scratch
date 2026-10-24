@@ -13,17 +13,14 @@ module
 
 public import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 
-import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 import Mathlib.NumberTheory.Padics.RingHoms
-import Definitions.KN.Def_KN_HorizontalPadicL
 import Definitions.FLT.Def_FreyPackage_ModMCarrier_Rescale
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Definitions.FLT.Def_FLTPrelim_Modularity
 import Theorems.FLT.Thm_CongruenceSubgroup_Gamma0_le_closure_T_union_setOf_dvd
 import Theorems.FLT.Thm_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul
 import Theorems.FLT.Thm_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero
 import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 import Theorems.MTT.Thm_MTT_exists_cuspForm_heckePrime_pos
+public import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 /-!
 # Ramified primes: $p\mid N_E \iff \deg$ local Euler factor $<2$

@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_mul_of_coprime
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Mathlib.Data.Nat.Factorization.Induction
 import Definitions.FLT.Def_P2M_Util
 
 /-!

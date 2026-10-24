@@ -13,12 +13,8 @@ module
 
 public import Mathlib.LinearAlgebra.Charpoly.Basic
 public import Mathlib.LinearAlgebra.Trace
-public import Mathlib.LinearAlgebra.Determinant
 
 import Theorems.FLT.Thm_LinearMap_charpoly_of_finrank_eq_two
-import Mathlib.Tactic.Module
-import Mathlib.Tactic.LinearCombination
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Trace from a quadratic relation and the determinant in rank two

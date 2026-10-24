@@ -15,13 +15,6 @@ public import Definitions.MTT.Def_MTT_Cohomology_Integration
 public import Mathlib.RingTheory.Flat.Basic
 
 import Mathlib.Analysis.Complex.HasPrimitives
-import Mathlib.Analysis.Complex.CauchyIntegral
-import Mathlib.Analysis.Complex.Convex
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Complex.RealDeriv
-import Mathlib.MeasureTheory.Integral.IntegralEqImproper
-import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
-import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.NumberTheory.ModularForms.LFunction
 
 /-!

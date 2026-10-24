@@ -18,7 +18,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Uniqueness of the centred genus-one place gate

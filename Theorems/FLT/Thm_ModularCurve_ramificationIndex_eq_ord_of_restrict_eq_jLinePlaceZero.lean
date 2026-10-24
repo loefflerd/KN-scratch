@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 public import Definitions.FLT.Def_ModularCurve_JLinePlaces
 
 import Theorems.FLT.Thm_ModularCurve_ord_jLinePlaceZero_jGen
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Ramification index over j=0 equals ord_w(j)

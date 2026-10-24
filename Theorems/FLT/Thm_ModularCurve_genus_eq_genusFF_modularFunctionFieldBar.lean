@@ -29,7 +29,6 @@ import Theorems.FLT.Thm_AlgebraicCurve_weilDualityAdelic_of_isAlgClosed
 import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_of_neZero
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Canonical-divisor genus equals adelic genus for X₀(N) over ℚ̄

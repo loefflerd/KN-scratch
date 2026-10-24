@@ -16,10 +16,6 @@ public import Definitions.FLT.Def_GaloisRep_LocalConditions
 
 import Theorems.FLT.Thm_WeierstrassCurve_exists_pairing_torsionBy
 import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.LinearAlgebra.Matrix.ToLin
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Algebra.Group.TypeTags.Basic
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Determinant of the Tate module representation is cyclotomic

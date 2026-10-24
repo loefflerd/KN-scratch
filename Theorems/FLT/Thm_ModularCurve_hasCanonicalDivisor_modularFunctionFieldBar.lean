@@ -17,7 +17,6 @@ public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 import Theorems.FLT.Thm_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver
 import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Canonical divisors exist for X₀(N) over ℚ̄

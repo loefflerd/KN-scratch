@@ -13,7 +13,7 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_maximalIdeal_iff_adicValuation_lt_one
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 /-!
 # Values at a place agree for functions congruent modulo mathfrak mᵥ

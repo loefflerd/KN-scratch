@@ -12,11 +12,9 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformCoefficientField
-public import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 
 import Mathlib.Algebra.Algebra.Hom.Rat
 import Mathlib.NumberTheory.MulChar.Lemmas
-import Mathlib.RingTheory.RootsOfUnity.Minpoly
 
 /-!
 # Nebentype values lie in the ring of integers of the coefficient field

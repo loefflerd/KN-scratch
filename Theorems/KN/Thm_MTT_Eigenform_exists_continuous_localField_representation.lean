@@ -9,10 +9,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
-public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
-public import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
-public import Definitions.FLT.Def_GaloisRep_Residual
-public import Mathlib.FieldTheory.KrullTopology
 
 /-!
 # Deligne's continuous representation over the canonical local coefficient field

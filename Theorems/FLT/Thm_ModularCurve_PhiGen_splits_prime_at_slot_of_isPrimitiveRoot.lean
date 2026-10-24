@@ -15,18 +15,9 @@ public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-import Theorems.FLT.Thm_ModularCurve_order_jqModC
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_mul_eq_zero
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_of_mul_eq_zero
 import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_of_prime
-import Mathlib.NumberTheory.Cyclotomic.Basic
-import Mathlib.RingTheory.AdjoinRoot
-import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

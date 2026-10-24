@@ -13,9 +13,10 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
-import Mathlib.NumberTheory.RamificationInertia.Inertia
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Positivity of the inertia degree f(w∣ v)

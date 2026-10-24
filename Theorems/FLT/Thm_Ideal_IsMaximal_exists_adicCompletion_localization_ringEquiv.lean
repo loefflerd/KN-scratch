@@ -14,7 +14,6 @@ module
 public import Mathlib.RingTheory.AdicCompletion.Algebra
 public import Mathlib.RingTheory.Localization.AtPrime.Basic
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Completion at a maximal ideal agrees with completion of the localisation

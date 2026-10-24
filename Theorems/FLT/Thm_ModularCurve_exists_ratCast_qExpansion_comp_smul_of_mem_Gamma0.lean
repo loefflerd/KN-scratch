@@ -26,7 +26,6 @@ import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Theorems.FLT.Thm_WLight_linearIndependent_complex_of_qExpansion_rational
 import Theorems.FLT.Thm_WLight_qExpansion_sigmaTransport_package
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Rationality of q-expansions preserved under Γ₀(N)

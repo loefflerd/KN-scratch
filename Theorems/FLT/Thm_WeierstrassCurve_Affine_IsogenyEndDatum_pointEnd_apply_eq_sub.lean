@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Point endomorphism of an isogeny datum equals h(P)-h(O)

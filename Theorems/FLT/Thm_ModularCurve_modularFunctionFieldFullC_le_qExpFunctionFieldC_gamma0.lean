@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_qExpand_image_intFormRatiosC_subset
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Divisor expansions j(qᵈ) lie in the Γ₀(M) q-expansion field

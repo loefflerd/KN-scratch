@@ -18,7 +18,6 @@ import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_sub_one_le_ordDiff_D_of_perfectField
 import Theorems.FLT.Thm_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable
 import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Hurwitz ramification bound for a separable function field over the line

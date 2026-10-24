@@ -15,23 +15,9 @@ public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
-import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.LocalProperties.Reduced
-import Mathlib.Tactic.NormNum.Prime
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
-import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
-import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 import Definitions.FLT.Def_P2M_Util
 
 /-!
