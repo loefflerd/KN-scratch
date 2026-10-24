@@ -16,18 +16,10 @@ require TauCeti from git
   "ead24a3b604c3df52bdc2b656f23d15d370ee0e8"
 
 @[default_target]
-lean_lib «Definitions» where
-  globs := #[.submodules `Definitions]
+lean_lib KNIndependent where
+  globs := #[.one `KNIndependent,
+    .submodules `Definitions, .submodules `Theorems]
 
-@[default_target]
-lean_lib «Theorems» where
-  globs := #[.submodules `Theorems]
-
-@[default_target]
-lean_lib «Solutions» where
-  globs := #[.submodules `Solutions]
-
-@[default_target]
 lean_lib «Challenge» where
   roots := #[`Challenge]
 

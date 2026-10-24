@@ -940,6 +940,248 @@ private theorem periodic_rat_congr_nat
   rw [hcQ]
   exact (hF.int_mul c (a : ℚ)).symm
 
+private theorem sum_fiber_mul
+    {U G R : Type*} [CommGroup U] [Group G] [DecidableEq G] [Fintype U] [AddCommMonoid R]
+    (π : U →* G) (u : U) (g : G) (W : U → R) :
+    (∑ a, if π a = g then W (u * a) else 0) =
+      ∑ a, if π a = π u * g then W a else 0 := by
+  classical
+  calc
+    _ = ∑ a, if π (u⁻¹ * a) = g then W (u * (u⁻¹ * a)) else 0 :=
+      (Equiv.sum_comp (Equiv.mulLeft u⁻¹)
+        (fun a => if π a = g then W (u * a) else 0)).symm
+    _ = _ := by
+      apply Finset.sum_congr rfl
+      intro a _
+      simp only [mul_inv_cancel_left, map_mul, map_inv]
+      apply if_congr
+      · exact inv_mul_eq_iff_eq_mul
+      · rfl
+      · rfl
+
+private theorem admissible_lift_distribution
+    {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
+    (hN : 0 < N) (hk : 2 ≤ k) (heven : Even k)
+    (f : MTT.Eigenform N k ι) (P : MTT.Periods k ι f.form)
+    (η : DirichletCharacterWithLevel) [NeZero η.1.1] (hηprim : η.2.IsPrimitive)
+    (ιp : MTT.Qbar →+* ℂ_[p]) (L : SeededHorizontalPrimeDataV3 p ιp f η B)
+    (scale : IntegralPeriodScale f ιp P) (s : Bool) (A : Finset ℕ) (n : ℕ)
+    [NeZero (L.primeAt n)] [NeZero (η.2.conductor * L.supportModulus A)]
+    (hcopq : Nat.Coprime (L.primeAt n) (η.2.conductor * L.supportModulus A))
+    (hM'eq : L.supportModulus (insert n A) = L.primeAt n * L.supportModulus A)
+    (C : (ZMod (η.2.conductor * L.supportModulus A))ˣ → Prop) [DecidablePred C] :
+  let j := k / 2 - 1
+  let ℓ := L.primeAt n
+  let M := L.supportModulus A
+  let q := η.2.conductor * M
+  let Φ : (ZMod q)ˣ → Fin ℓ → ℂ_[p] := fun a b =>
+    ιp (scale.scale * η.2 (a.val.val + b.1 * q) *
+      MTT.algebraicSymbol P s (k / 2 - 1) (a.val.val + b.1 * q)
+        (η.2.conductor * L.supportModulus (insert n A)) /
+      (L.supportModulus (insert n A) : MTT.Qbar) ^ (k / 2 - 1))
+  let V : ℕ → ℂ_[p] := fun a =>
+    ιp (scale.scale * η.2 a *
+      MTT.algebraicSymbol P s j a q / (M : MTT.Qbar) ^ j)
+  let W : (ZMod q)ˣ → ℂ_[p] := fun a => V a.val.val
+  let uℓ : (ZMod q)ˣ := ZMod.unitOfCoprime ℓ hcopq
+  ∀ a : (ZMod q)ˣ,
+      (∑ b : {b : Fin ℓ // Nat.Coprime (a.val.val + b.1 * q) ℓ},
+        if C a then Φ a b.1 else 0) =
+        ιp (f.coeff ℓ) / (ℓ : ℂ_[p]) ^ j *
+            (if C a then W a else 0) -
+          ιp (η.2 ℓ) * (if C a then W (uℓ⁻¹ * a) else 0) -
+          ιp (f.epsilon ℓ) * (ιp (η.2 ℓ))⁻¹ *
+            (if C a then W (uℓ * a) else 0) := by
+  classical
+  let j := k / 2 - 1
+  let ℓ := L.primeAt n
+  let M := L.supportModulus A
+  let q := η.2.conductor * M
+  let Φ : (ZMod q)ˣ → Fin ℓ → ℂ_[p] := fun a b =>
+    ιp (scale.scale * η.2 (a.val.val + b.1 * q) *
+      MTT.algebraicSymbol P s (k / 2 - 1) (a.val.val + b.1 * q)
+        (η.2.conductor * L.supportModulus (insert n A)) /
+      (L.supportModulus (insert n A) : MTT.Qbar) ^ (k / 2 - 1))
+  let V : ℕ → ℂ_[p] := fun a =>
+    ιp (scale.scale * η.2 a *
+      MTT.algebraicSymbol P s j a q / (M : MTT.Qbar) ^ j)
+  let W : (ZMod q)ˣ → ℂ_[p] := fun a => V a.val.val
+  let uℓ : (ZMod q)ˣ := ZMod.unitOfCoprime ℓ hcopq
+  have hM'eq : L.supportModulus (insert n A) = ℓ * M := hM'eq
+  change ∀ a : (ZMod q)ˣ,
+      (∑ b : {b : Fin ℓ // Nat.Coprime (a.val.val + b.1 * q) ℓ},
+        if C a then Φ a b.1 else 0) =
+        ιp (f.coeff ℓ) / (ℓ : ℂ_[p]) ^ j *
+            (if C a then W a else 0) -
+          ιp (η.2 ℓ) * (if C a then W (uℓ⁻¹ * a) else 0) -
+          ιp (f.epsilon ℓ) * (ιp (η.2 ℓ))⁻¹ *
+            (if C a then W (uℓ * a) else 0)
+  have hj : j ≤ k - 2 := by omega
+  have hcentral : 2 * j = k - 2 := by
+    obtain ⟨r, rfl⟩ := heven
+    omega
+  have hℓ : ℓ.Prime := L.primeAt_prime n
+  have hM : 0 < M := L.supportModulus_pos A
+  have hq : 0 < q := mul_pos (Nat.pos_of_ne_zero η.2.conductor_ne_zero) hM
+  have hcopD : Nat.Coprime ℓ η.2.conductor :=
+    (L.primeAt_orderly n).2.2.1.of_dvd_right (Nat.dvd_mul_left _ _)
+  have hVcongr {a b : ℕ} (hab : (a : ZMod q) = (b : ZMod q)) :
+      V a = V b := by
+    have hD : (a : ZMod η.2.conductor) = (b : ZMod η.2.conductor) := by
+      rw [ZMod.natCast_eq_natCast_iff] at hab ⊢
+      exact hab.of_dvd (Nat.dvd_mul_right η.2.conductor M)
+    have hlevel : (a : ZMod η.1.1) = (b : ZMod η.1.1) := by
+      rw [← hηprim]
+      exact hD
+    have hη : η.2 a = η.2 b := congrArg η.2 hlevel
+    have hper := algebraicSymbol_periodic hN hk f P s j hj (q : ℚ)
+      (by exact_mod_cast hq.ne')
+    have hsym := periodic_rat_congr_nat
+      (fun x : ℚ => MTT.algebraicSymbol P s j x q) hper hab
+    simp only [V, hη, hsym]
+  intro a
+  by_cases hCa : C a
+  · obtain ⟨b₀, c, hb₀, hlift, hadm⟩ :=
+      exists_unique_nonunit_lift a.val.val ℓ q hℓ hcopq
+    simp only [hCa, ite_true]
+    rw [sum_admissible_lifts_eq_erase a.val.val ℓ q b₀ hadm]
+    have hc_lt : c < q := by
+      apply (Nat.mul_lt_mul_left hℓ.pos).mp
+      rw [← hlift]
+      calc
+        a.val.val + b₀ * q < q + b₀ * q :=
+          Nat.add_lt_add_right (ZMod.val_lt a.val) _
+        _ = (b₀ + 1) * q := by simp [Nat.add_mul, Nat.add_comm]
+        _ ≤ ℓ * q := Nat.mul_le_mul_right q hb₀
+    have hcCop : c.Coprime q := by
+      have hp : (ℓ * c).Coprime q := by
+        rw [← hlift, Nat.coprime_add_mul_right_left]
+        exact ZMod.val_coe_unit_coprime a
+      exact (Nat.coprime_mul_iff_left.mp hp).2
+    have hu : uℓ⁻¹ * a = ZMod.unitOfCoprime c hcCop := by
+      apply (mul_left_cancel (a := uℓ))
+      simp only [mul_inv_cancel_left]
+      apply Units.ext
+      simp only [Units.val_mul]
+      change (a : ZMod q) = (uℓ : ZMod q) * (c : ZMod q)
+      simp only [uℓ, ZMod.coe_unitOfCoprime]
+      rw [← ZMod.natCast_zmod_val (a : ZMod q)]
+      rw [← Nat.cast_mul, ← hlift]
+      simp [Nat.cast_add, Nat.cast_mul]
+    have hcval : (uℓ⁻¹ * a).val.val = c := by
+      rw [hu]
+      simp [ZMod.val_natCast, Nat.mod_eq_of_lt hc_lt]
+    have hmulmod :
+        (((uℓ * a).val.val : ℕ) : ZMod q) =
+          ((ℓ * a.val.val : ℕ) : ZMod q) := by
+      calc
+        (((uℓ * a).val.val : ℕ) : ZMod q) =
+            (uℓ * a : ZMod q) := ZMod.natCast_zmod_val _
+        _ = ((ℓ * a.val.val : ℕ) : ZMod q) := by
+          rw [← ZMod.natCast_zmod_val (a : ZMod q)]
+          simp [uℓ, Nat.cast_mul]
+    have hWinv : W (uℓ⁻¹ * a) = V c := by
+      change V (uℓ⁻¹ * a).val.val = V c
+      exact congrArg V hcval
+    have hWmul : W (uℓ * a) = V (ℓ * a.val.val) := by
+      exact hVcongr hmulmod
+    have hηlift (b : ℕ) :
+        η.2 (a.val.val + b * q) = η.2 a.val.val := by
+      apply congrArg η.2
+      rw [← hηprim]
+      simp [q, Nat.cast_mul]
+    have hηac : η.2 a.val.val = η.2 ℓ * η.2 c := by
+      rw [← hηlift b₀]
+      have hlift' :
+          ((a.val.val + b₀ * q : ℕ) : ZMod η.1.1) =
+            ((ℓ * c : ℕ) : ZMod η.1.1) := by
+        exact congrArg (fun z : ℕ => (z : ZMod η.1.1)) hlift
+      push_cast at hlift'
+      have h := congrArg η.2 hlift'
+      simpa only [map_mul] using h
+    have hηmul : η.2 (ℓ * a.val.val) = η.2 ℓ * η.2 a.val.val := by
+      simp only [map_mul]
+    have hηℓ_ne : η.2 ℓ ≠ 0 := by
+      have hcop' : IsCoprime (ℓ : ℤ) (η.1.1 : ℤ) := by
+        rw [← hηprim]
+        exact_mod_cast hcopD
+      simpa using
+        (DirichletCharacter.apply_ne_zero_iff η.2 (ℓ : ℤ)).2 hcop'
+    have hdist := MTT.algebraicSymbol_horizontal_unitFiber_distribution
+      hN hk ι f P s j hj hcentral ℓ q hℓ hq
+      a.val.val c b₀ hb₀ hlift
+    have hscaled := congrArg
+      (fun z : MTT.Qbar =>
+        scale.scale * η.2 a.val.val *
+          (η.2.conductor : MTT.Qbar) ^ j * z) hdist
+    have hD0 : (η.2.conductor : MTT.Qbar) ≠ 0 := by
+      exact_mod_cast η.2.conductor_ne_zero
+    have hM0 : (M : MTT.Qbar) ≠ 0 := by exact_mod_cast hM.ne'
+    have hℓ0 : (ℓ : MTT.Qbar) ≠ 0 := by exact_mod_cast hℓ.ne_zero
+    have hraw :
+        (∑ b ∈ (Finset.range ℓ).erase b₀,
+          scale.scale * η.2 (a.val.val + b * q) *
+            MTT.algebraicSymbol P s j
+              ((a.val.val : ℚ) + (b : ℚ) * (q : ℚ))
+              ((η.2.conductor : ℚ) *
+                (L.supportModulus (insert n A) : ℚ)) /
+            (L.supportModulus (insert n A) : MTT.Qbar) ^ j) =
+          f.coeff ℓ / (ℓ : MTT.Qbar) ^ j *
+              (scale.scale * η.2 a.val.val *
+                MTT.algebraicSymbol P s j a.val.val q /
+                (M : MTT.Qbar) ^ j) -
+            η.2 ℓ *
+              (scale.scale * η.2 c *
+                MTT.algebraicSymbol P s j c q /
+                (M : MTT.Qbar) ^ j) -
+            f.epsilon ℓ * (η.2 ℓ)⁻¹ *
+              (scale.scale * η.2 (ℓ * a.val.val) *
+                MTT.algebraicSymbol P s j (ℓ * a.val.val) q /
+                (M : MTT.Qbar) ^ j) := by
+      convert hscaled using 1
+      · rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro b hb
+        rw [hηlift b, hM'eq]
+        simp only [Nat.cast_mul]
+        have hmod :
+            ((η.2.conductor : ℚ) * ((ℓ : ℚ) * (M : ℚ))) =
+              (ℓ : ℚ) * (q : ℚ) := by
+          simp only [q]
+          push_cast
+          ring
+        rw [hmod]
+        simp only [q]
+        push_cast
+        field_simp [hD0, hM0, hℓ0]
+        ring
+      · rw [hηmul, hηac]
+        simp only [q]
+        push_cast
+        field_simp [hD0, hM0, hℓ0, hηℓ_ne]
+        ring
+    have hmapped := congrArg ιp hraw
+    simp only [map_sum, map_mul, map_sub, map_inv₀] at hmapped
+    have hcoeff :
+        ιp (f.coeff ℓ / (ℓ : MTT.Qbar) ^ j) =
+          ιp (f.coeff ℓ) / (ℓ : ℂ_[p]) ^ j := by
+      simp only [div_eq_mul_inv, map_mul, map_inv₀, map_pow, map_natCast]
+    rw [hcoeff, ← hηmul] at hmapped
+    have hmodval : ∀ b ∈ (Finset.range ℓ).erase b₀, b % ℓ = b := by
+      intro b hb
+      exact Nat.mod_eq_of_lt
+        (Finset.mem_range.mp (Finset.mem_of_mem_erase hb))
+    rw [hWinv, hWmul]
+    simp only [Φ, V, W, Fin.val_ofNat, j]
+    convert hmapped using 1
+    · apply Finset.sum_congr rfl
+      intro b hb
+      rw [hmodval b hb]
+    · simp only [j]
+      push_cast
+      rfl
+  · simp [hCa]
+
 theorem projection_relation
     {N k p B : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k) (heven : Even k)
@@ -962,10 +1204,6 @@ theorem projection_relation
           (Θ.theta A) := by
   classical
   let j := k / 2 - 1
-  have hj : j ≤ k - 2 := by omega
-  have hcentral : 2 * j = k - 2 := by
-    obtain ⟨r, rfl⟩ := heven
-    omega
   have : NeZero η.1.1 := ⟨Nat.ne_of_gt η.1.2⟩
   rcases hΘ with ⟨htheta, heuler⟩
   let ℓ := L.primeAt n
@@ -1116,236 +1354,33 @@ theorem projection_relation
             ιp (scale.scale * η.2 a *
               MTT.algebraicSymbol P s j a q / (M : MTT.Qbar) ^ j)
           let W : (ZMod q)ˣ → ℂ_[p] := fun a => V a.val.val
-          have hVcongr {a b : ℕ} (hab : (a : ZMod q) = (b : ZMod q)) :
-              V a = V b := by
-            have hD : (a : ZMod η.2.conductor) = (b : ZMod η.2.conductor) := by
-              rw [ZMod.natCast_eq_natCast_iff] at hab ⊢
-              exact hab.of_dvd (Nat.dvd_mul_right η.2.conductor M)
-            have hlevel : (a : ZMod η.1.1) = (b : ZMod η.1.1) := by
-              rw [← hηprim]
-              exact hD
-            have hη : η.2 a = η.2 b := congrArg η.2 hlevel
-            have hper := algebraicSymbol_periodic hN hk f P s j hj (q : ℚ)
-              (by exact_mod_cast hq.ne')
-            have hsym := periodic_rat_congr_nat
-              (fun x : ℚ => MTT.algebraicSymbol P s j x q) hper hab
-            simp only [V, hη, hsym]
-          have hinner (a : (ZMod q)ˣ) :
-              (∑ b : {b : Fin ℓ // Nat.Coprime (a.val.val + b.1 * q) ℓ},
-                if C a then Φ a b.1 else 0) =
-                ιp (f.coeff ℓ) / (ℓ : ℂ_[p]) ^ j *
-                    (if C a then W a else 0) -
-                  ιp (η.2 ℓ) * (if C a then W (uℓ⁻¹ * a) else 0) -
-                  ιp (f.epsilon ℓ) * (ιp (η.2 ℓ))⁻¹ *
-                    (if C a then W (uℓ * a) else 0) := by
-            by_cases hCa : C a
-            · obtain ⟨b₀, c, hb₀, hlift, hadm⟩ :=
-                exists_unique_nonunit_lift a.val.val ℓ q hℓ hcopq
-              simp only [hCa, ite_true]
-              rw [sum_admissible_lifts_eq_erase a.val.val ℓ q b₀ hadm]
-              have hc_lt : c < q := by
-                apply (Nat.mul_lt_mul_left hℓ.pos).mp
-                rw [← hlift]
-                calc
-                  a.val.val + b₀ * q < q + b₀ * q :=
-                    Nat.add_lt_add_right (ZMod.val_lt a.val) _
-                  _ = (b₀ + 1) * q := by simp [Nat.add_mul, Nat.add_comm]
-                  _ ≤ ℓ * q := Nat.mul_le_mul_right q hb₀
-              have hcCop : c.Coprime q := by
-                have hp : (ℓ * c).Coprime q := by
-                  rw [← hlift, Nat.coprime_add_mul_right_left]
-                  exact ZMod.val_coe_unit_coprime a
-                exact (Nat.coprime_mul_iff_left.mp hp).2
-              have hu : uℓ⁻¹ * a = ZMod.unitOfCoprime c hcCop := by
-                apply (mul_left_cancel (a := uℓ))
-                simp only [mul_inv_cancel_left]
-                apply Units.ext
-                simp only [Units.val_mul]
-                change (a : ZMod q) = (uℓ : ZMod q) * (c : ZMod q)
-                simp only [uℓ, ZMod.coe_unitOfCoprime]
-                rw [← ZMod.natCast_zmod_val (a : ZMod q)]
-                rw [← Nat.cast_mul, ← hlift]
-                simp [Nat.cast_add, Nat.cast_mul]
-              have hcval : (uℓ⁻¹ * a).val.val = c := by
-                rw [hu]
-                simp [ZMod.val_natCast, Nat.mod_eq_of_lt hc_lt]
-              have hmulmod :
-                  (((uℓ * a).val.val : ℕ) : ZMod q) =
-                    ((ℓ * a.val.val : ℕ) : ZMod q) := by
-                calc
-                  (((uℓ * a).val.val : ℕ) : ZMod q) =
-                      (uℓ * a : ZMod q) := ZMod.natCast_zmod_val _
-                  _ = ((ℓ * a.val.val : ℕ) : ZMod q) := by
-                    rw [← ZMod.natCast_zmod_val (a : ZMod q)]
-                    simp [uℓ, Nat.cast_mul]
-              have hWinv : W (uℓ⁻¹ * a) = V c := by
-                change V (uℓ⁻¹ * a).val.val = V c
-                exact congrArg V hcval
-              have hWmul : W (uℓ * a) = V (ℓ * a.val.val) := by
-                exact hVcongr hmulmod
-              have hηlift (b : ℕ) :
-                  η.2 (a.val.val + b * q) = η.2 a.val.val := by
-                apply congrArg η.2
-                rw [← hηprim]
-                simp [q, Nat.cast_mul]
-              have hηac : η.2 a.val.val = η.2 ℓ * η.2 c := by
-                rw [← hηlift b₀]
-                have hlift' :
-                    ((a.val.val + b₀ * q : ℕ) : ZMod η.1.1) =
-                      ((ℓ * c : ℕ) : ZMod η.1.1) := by
-                  exact congrArg (fun z : ℕ => (z : ZMod η.1.1)) hlift
-                push_cast at hlift'
-                have h := congrArg η.2 hlift'
-                simpa only [map_mul] using h
-              have hηmul : η.2 (ℓ * a.val.val) = η.2 ℓ * η.2 a.val.val := by
-                simp only [map_mul]
-              have hηℓ_ne : η.2 ℓ ≠ 0 := by
-                have hcop' : IsCoprime (ℓ : ℤ) (η.1.1 : ℤ) := by
-                  rw [← hηprim]
-                  exact_mod_cast hcopD
-                simpa using
-                  (DirichletCharacter.apply_ne_zero_iff η.2 (ℓ : ℤ)).2 hcop'
-              have hdist := MTT.algebraicSymbol_horizontal_unitFiber_distribution
-                hN hk ι f P s j hj hcentral ℓ q hℓ hq
-                a.val.val c b₀ hb₀ hlift
-              have hscaled := congrArg
-                (fun z : MTT.Qbar =>
-                  scale.scale * η.2 a.val.val *
-                    (η.2.conductor : MTT.Qbar) ^ j * z) hdist
-              have hD0 : (η.2.conductor : MTT.Qbar) ≠ 0 := by
-                exact_mod_cast η.2.conductor_ne_zero
-              have hM0 : (M : MTT.Qbar) ≠ 0 := by exact_mod_cast hM.ne'
-              have hℓ0 : (ℓ : MTT.Qbar) ≠ 0 := by exact_mod_cast hℓ.ne_zero
-              have hraw :
-                  (∑ b ∈ (Finset.range ℓ).erase b₀,
-                    scale.scale * η.2 (a.val.val + b * q) *
-                      MTT.algebraicSymbol P s j
-                        ((a.val.val : ℚ) + (b : ℚ) * (q : ℚ))
-                        ((η.2.conductor : ℚ) *
-                          (L.supportModulus (insert n A) : ℚ)) /
-                      (L.supportModulus (insert n A) : MTT.Qbar) ^ j) =
-                    f.coeff ℓ / (ℓ : MTT.Qbar) ^ j *
-                        (scale.scale * η.2 a.val.val *
-                          MTT.algebraicSymbol P s j a.val.val q /
-                          (M : MTT.Qbar) ^ j) -
-                      η.2 ℓ *
-                        (scale.scale * η.2 c *
-                          MTT.algebraicSymbol P s j c q /
-                          (M : MTT.Qbar) ^ j) -
-                      f.epsilon ℓ * (η.2 ℓ)⁻¹ *
-                        (scale.scale * η.2 (ℓ * a.val.val) *
-                          MTT.algebraicSymbol P s j (ℓ * a.val.val) q /
-                          (M : MTT.Qbar) ^ j) := by
-                convert hscaled using 1
-                · rw [Finset.mul_sum]
-                  apply Finset.sum_congr rfl
-                  intro b hb
-                  rw [hηlift b, hM'eq]
-                  simp only [Nat.cast_mul]
-                  have hmod :
-                      ((η.2.conductor : ℚ) * ((ℓ : ℚ) * (M : ℚ))) =
-                        (ℓ : ℚ) * (q : ℚ) := by
-                    simp only [q]
-                    push_cast
-                    ring
-                  rw [hmod]
-                  simp only [q]
-                  push_cast
-                  field_simp [hD0, hM0, hℓ0]
-                  ring
-                · rw [hηmul, hηac]
-                  simp only [q]
-                  push_cast
-                  field_simp [hD0, hM0, hℓ0, hηℓ_ne]
-                  ring
-              have hmapped := congrArg ιp hraw
-              simp only [map_sum, map_mul, map_sub, map_inv₀] at hmapped
-              have hcoeff :
-                  ιp (f.coeff ℓ / (ℓ : MTT.Qbar) ^ j) =
-                    ιp (f.coeff ℓ) / (ℓ : ℂ_[p]) ^ j := by
-                simp only [div_eq_mul_inv, map_mul, map_inv₀, map_pow, map_natCast]
-              rw [hcoeff, ← hηmul] at hmapped
-              have hmodval : ∀ b ∈ (Finset.range ℓ).erase b₀, b % ℓ = b := by
-                intro b hb
-                exact Nat.mod_eq_of_lt
-                  (Finset.mem_range.mp (Finset.mem_of_mem_erase hb))
-              rw [hWinv, hWmul]
-              simp only [Φ, V, W, Fin.val_ofNat, j]
-              convert hmapped using 1
-              · apply Finset.sum_congr rfl
-                intro b hb
-                rw [hmodval b hb]
-              · simp only [j]
-                push_cast
-                rfl
-            · simp [hCa]
+          have hinner := admissible_lift_distribution hN hk heven f P η hηprim
+            ιp L scale s A n hcopq hM'eq C
           rw [Finset.sum_congr rfl (fun a _ => hinner a),
             Finset.sum_sub_distrib, Finset.sum_sub_distrib,
             ← Finset.mul_sum, ← Finset.mul_sum, ← Finset.mul_sum]
-          have hsecond :
-              (∑ a : (ZMod q)ˣ, if C a then W (uℓ⁻¹ * a) else 0) =
-                ∑ u : (ZMod q)ˣ,
-                  if Θ.characters.projections.supportProjection A
-                      (ZMod.unitsMap (Nat.dvd_mul_left M η.2.conductor) u) =
-                      (Θ.characters.horizontalPrimeElement A n hn)⁻¹ *
-                        horizontalRestrictionHom (Finset.subset_insert n A) G then
-                    W u else 0 := by
-            have huℓ :
-                Θ.characters.projections.supportProjection A
-                    (ZMod.unitsMap (Nat.dvd_mul_left M η.2.conductor) uℓ) =
-                  Θ.characters.horizontalPrimeElement A n hn := by
-              apply congrArg (Θ.characters.projections.supportProjection A)
-              apply Units.ext
-              simp [uℓ, q, ℓ, ZMod.unitsMap_val]
-            calc
-              _ = ∑ u : (ZMod q)ˣ,
-                    if C (uℓ * u) then W (uℓ⁻¹ * (uℓ * u)) else 0 :=
-                (Equiv.sum_comp (Equiv.mulLeft uℓ)
-                  (fun a : (ZMod q)ˣ => if C a then W (uℓ⁻¹ * a) else 0)).symm
-              _ = _ := by
-                apply Finset.sum_congr rfl
-                intro u _
-                simp only [inv_mul_cancel_left]
-                simp only [C, map_mul, huℓ]
-                apply if_congr
-                · exact eq_inv_mul_iff_mul_eq.symm
-                · rfl
-                · rfl
-          have hthird :
-              (∑ a : (ZMod q)ˣ, if C a then W (uℓ * a) else 0) =
-                ∑ u : (ZMod q)ˣ,
-                  if Θ.characters.projections.supportProjection A
-                      (ZMod.unitsMap (Nat.dvd_mul_left M η.2.conductor) u) =
-                      Θ.characters.horizontalPrimeElement A n hn *
-                        horizontalRestrictionHom (Finset.subset_insert n A) G then
-                    W u else 0 := by
-            have huℓ :
-                Θ.characters.projections.supportProjection A
-                    (ZMod.unitsMap (Nat.dvd_mul_left M η.2.conductor) uℓ) =
-                  Θ.characters.horizontalPrimeElement A n hn := by
-              apply congrArg (Θ.characters.projections.supportProjection A)
-              apply Units.ext
-              simp [uℓ, q, ℓ, ZMod.unitsMap_val]
-            have huℓinv :
-                Θ.characters.projections.supportProjection A
-                    (ZMod.unitsMap (Nat.dvd_mul_left M η.2.conductor) uℓ⁻¹) =
-                  (Θ.characters.horizontalPrimeElement A n hn)⁻¹ := by
-              rw [map_inv, map_inv, huℓ]
-            calc
-              _ = ∑ u : (ZMod q)ˣ,
-                    if C (uℓ⁻¹ * u) then W (uℓ * (uℓ⁻¹ * u)) else 0 :=
-                (Equiv.sum_comp (Equiv.mulLeft uℓ⁻¹)
-                  (fun a : (ZMod q)ˣ => if C a then W (uℓ * a) else 0)).symm
-              _ = _ := by
-                apply Finset.sum_congr rfl
-                intro u _
-                simp only [mul_inv_cancel_left]
-                simp only [C, map_mul, huℓinv]
-                apply if_congr
-                · exact inv_mul_eq_iff_eq_mul
-                · rfl
-                · rfl
+          let π : (ZMod q)ˣ →* HorizontalFiniteGroup p L.exponent A :=
+            (Θ.characters.projections.supportProjection A).comp
+              (ZMod.unitsMap (Nat.dvd_mul_left M η.2.conductor))
+          have huℓ : π uℓ = Θ.characters.horizontalPrimeElement A n hn := by
+            apply congrArg (Θ.characters.projections.supportProjection A)
+            apply Units.ext
+            simp only [uℓ, ZMod.unitsMap_val, ZMod.coe_unitOfCoprime]
+            exact ZMod.cast_natCast (Nat.dvd_mul_left M η.2.conductor) _
+          have hsecond := sum_fiber_mul π uℓ⁻¹
+            (horizontalRestrictionHom (Finset.subset_insert n A) G) W
+          have hthird := sum_fiber_mul π uℓ
+            (horizontalRestrictionHom (Finset.subset_insert n A) G) W
+          simp only [map_inv, huℓ] at hsecond hthird
+          change
+            _ * (∑ a, if π a = horizontalRestrictionHom
+              (Finset.subset_insert n A) G then W a else 0) -
+            _ * (∑ a, if π a = horizontalRestrictionHom
+              (Finset.subset_insert n A) G then W (uℓ⁻¹ * a) else 0) -
+            _ * (∑ a, if π a = horizontalRestrictionHom
+              (Finset.subset_insert n A) G then W (uℓ * a) else 0) = _
           rw [hsecond, hthird]
+          rfl
 
 end HorizontalPadicL.AnyParityProjection
 

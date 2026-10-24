@@ -420,6 +420,243 @@ private theorem restrictNormal_eq_one_of_range_le
   have hyL := congrArg (algebraMap A L) hy
   simpa [AlgEquiv.restrictNormal_commutes] using hyL
 
+private theorem discriminant_support_sup
+    (K₁ K₂ : IntermediateField ℚ MTT.Qbar) [NumberField K₁] [NumberField K₂]
+    (d : ℕ)
+    (hsup : ∀ {l : ℤ}, Prime l → ¬ l ∣ NumberField.discr K₁ →
+      ¬ l ∣ NumberField.discr K₂ →
+      letI : NumberField ↥(K₁ ⊔ K₂) :=
+        { to_charZero := inferInstance
+          to_finiteDimensional := IntermediateField.finiteDimensional_sup K₁ K₂ }
+      ¬ l ∣ NumberField.discr ↥(K₁ ⊔ K₂))
+    (h₁ : ∀ {l : ℕ}, l.Prime → (l : ℤ) ∣ NumberField.discr K₁ → l ∣ d)
+    (h₂ : ∀ {l : ℕ}, l.Prime → (l : ℤ) ∣ NumberField.discr K₂ → l ∣ d) :
+    letI : NumberField ↥(K₁ ⊔ K₂) :=
+      { to_charZero := inferInstance
+        to_finiteDimensional := IntermediateField.finiteDimensional_sup K₁ K₂ }
+    ∀ {l : ℕ}, l.Prime → (l : ℤ) ∣ NumberField.discr ↥(K₁ ⊔ K₂) → l ∣ d := by
+  intro l hl hld
+  by_contra hln
+  exact hsup (Nat.prime_iff_prime_int.mp hl)
+    (fun h => hln (h₁ hl h)) (fun h => hln (h₂ hl h)) hld
+
+private theorem class_of_compatible_automorphism
+    {N k p : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
+    (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    (η : DirichletCharacterWithLevel) [NeZero η.2.conductor] (m B : ℕ) (hB : 0 < B)
+    (V : SeededEigenformPadicPlaceData (p := p) f η)
+    (D : EigenformResidualGaloisRepresentationData hN hk f V.embedding)
+    (a : (ZMod η.1.1)ˣ) (ha : orderOf (η.2 (a : ZMod η.1.1)) = orderOf η.2) :
+    letI : Field D.kernelField := D.kernelField_field
+    letI : NumberField D.kernelField := D.kernelField_numberField
+    letI : IsGalois ℚ D.kernelField := D.kernelField_galois
+    ∀ (E : IntermediateField ℚ MTT.Qbar),
+      letI : Algebra ℚ E := E.algebra'
+      ∀ [NumberField E] [IsGalois ℚ E]
+        [Algebra D.kernelField E] [IsScalarTower ℚ D.kernelField E]
+        (KpmE K₁E : IntermediateField ℚ E)
+        [NumberField KpmE] [NumberField K₁E]
+        [IsGalois ℚ KpmE] [IsGalois ℚ K₁E]
+        [IsCyclotomicExtension {p ^ m * N} ℚ KpmE]
+        [IsCyclotomicExtension {η.2.conductor} ℚ K₁E]
+        (σ : E ≃ₐ[ℚ] E) (ac : (ZMod η.2.conductor)ˣ),
+        η.2.primitiveCharacter ac = η.2 a →
+        (∀ φ : E ≃ₐ[ℚ] E, IsConj σ φ → φ.restrictNormal D.kernelField = 1) →
+        (∀ φ : E ≃ₐ[ℚ] E, IsConj σ φ → φ.restrictNormal KpmE = 1) →
+        (∀ φ : E ≃ₐ[ℚ] E, IsConj σ φ →
+          IsCyclotomicExtension.Rat.galEquivZMod η.2.conductor K₁E
+            (φ.restrictNormal K₁E) = ac) →
+        Nonempty (SeededOrderlyFrobeniusClassData f η m B V) := by
+  let : Field D.kernelField := D.kernelField_field
+  let : NumberField D.kernelField := D.kernelField_numberField
+  let : IsGalois ℚ D.kernelField := D.kernelField_galois
+  intro E
+  let : Algebra ℚ E := E.algebra'
+  intro numberE galoisE algDE towerDE
+    KpmE K₁E numberPm numberSeed galoisPm galoisSeed cycloPm cycloSeed
+    σ ac hac hrestrictD hrestrictPm hrestrictSeed
+  let n₀ := p ^ m * N
+  have : NeZero n₀ := ⟨Nat.mul_ne_zero
+    (pow_ne_zero _ (Fact.out : p.Prime).ne_zero) (Nat.ne_of_gt hN)⟩
+  have : NeZero η.1.1 := ⟨Nat.ne_of_gt η.1.2⟩
+  have : NeZero η.2.conductor := ⟨η.2.conductor_ne_zero⟩
+  -- Delete primes dividing the declared level of the seed character as well
+  -- as its conductor. This is needed to compare the imprimitive character
+  -- with its primitive character at every prime in the class.
+  let bad : ℕ := B * (N * p * η.1.1)
+  have hbad : bad ≠ 0 := by
+    exact Nat.mul_ne_zero (Nat.ne_of_gt hB)
+      (Nat.mul_ne_zero
+        (Nat.mul_ne_zero (Nat.ne_of_gt hN) (Fact.out : p.Prime).ne_zero)
+        (Nat.ne_of_gt η.1.2))
+  let S : Finset ℕ := bad.primeFactors
+  let hgE : IsGalois ℚ E := inferInstance
+  have : IsGalois ℚ E := hgE
+  have : Algebra.IsInvariant ℤ (𝓞 E) (E ≃ₐ[ℚ] E) :=
+    ringOfIntegers_isInvariant_galois (h := hgE) E
+  have : Algebra.IsInvariant ℤ (𝓞 D.kernelField)
+      (D.kernelField ≃ₐ[ℚ] D.kernelField) :=
+    ringOfIntegers_isInvariant_galois D.kernelField
+  let A : Set ℕ := {l : ℕ |
+    l ∉ S ∧ @LanglandsTunnell.classIndicator E _ _ hgE σ l = 1}
+  have hcheb : IsChebotarevPrimeClass A :=
+    @IsChebotarevPrimeClass.ofFiniteGalois A E _ _ hgE σ S rfl
+  have hprime : ∀ ⦃l : ℕ⦄, l ∈ A → l.Prime := by
+    intro l hl
+    exact (classIndicator_witness σ hl.2).choose
+  have hnotdvdBad : ∀ ⦃l : ℕ⦄, l ∈ A → ¬ l ∣ bad := by
+    intro l hl hldvd
+    exact hl.1 (Nat.mem_primeFactors.mpr ⟨hprime hl, hldvd, hbad⟩)
+  have havoids : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.Coprime l B := by
+    intro l hl
+    apply (hprime hl).coprime_iff_not_dvd.mpr
+    exact fun hldvd ↦ hnotdvdBad hl (dvd_mul_of_dvd_left hldvd _)
+  have hcopLevelSeed : ∀ ⦃l : ℕ⦄, l ∈ A →
+      Nat.Coprime l (N * η.2.conductor) := by
+    intro l hl
+    apply (hprime hl).coprime_iff_not_dvd.mpr
+    intro hldvd
+    apply hnotdvdBad hl
+    have hcondLevel : N * η.2.conductor ∣ N * η.1.1 :=
+      Nat.mul_dvd_mul_left N η.2.conductor_dvd_level
+    simpa [bad, mul_assoc, mul_comm, mul_left_comm] using
+      dvd_mul_of_dvd_right
+        (dvd_mul_of_dvd_left (hldvd.trans hcondLevel) p) B
+  have hcopDeclared : ∀ ⦃l : ℕ⦄, l ∈ A →
+      Nat.Coprime l η.1.1 := by
+    intro l hl
+    apply (hprime hl).coprime_iff_not_dvd.mpr
+    intro hldvd
+    apply hnotdvdBad hl
+    simpa [bad, mul_assoc, mul_comm, mul_left_comm] using
+      dvd_mul_of_dvd_right (dvd_mul_of_dvd_right hldvd (N * p)) B
+  have hcopNp : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.Coprime l (N * p) := by
+    intro l hl
+    apply (hprime hl).coprime_iff_not_dvd.mpr
+    intro hldvd
+    apply hnotdvdBad hl
+    simpa [bad, mul_assoc, mul_comm, mul_left_comm] using
+      dvd_mul_of_dvd_right (dvd_mul_of_dvd_right hldvd η.1.1) B
+  have hmodN₀ : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.ModEq n₀ l 1 := by
+    intro l hl
+    have hcopn₀ : Nat.Coprime l n₀ := by
+      apply (hprime hl).coprime_iff_not_dvd.mpr
+      intro hldvd
+      rcases (hprime hl).dvd_mul.mp hldvd with hlpow | hlN
+      · have hlpdiv : l ∣ p := (hprime hl).dvd_of_dvd_pow hlpow
+        exact ((hprime hl).coprime_iff_not_dvd.mp
+          ((hcopNp hl).coprime_dvd_right (dvd_mul_left p N))) hlpdiv
+      · exact ((hprime hl).coprime_iff_not_dvd.mp
+          ((hcopNp hl).coprime_dvd_right (dvd_mul_right N p))) hlN
+    have hgal := cyclotomic_frobenius_value n₀ KpmE E σ 1 (fun φ hconj => by
+      rw [hrestrictPm φ hconj, map_one]) hcopn₀ hl.2
+    have hzmod : (l : ZMod n₀) = 1 := by
+      simpa [ZMod.coe_unitOfCoprime] using congrArg Units.val hgal.symm
+    exact (ZMod.natCast_eq_natCast_iff l 1 n₀).mp (by
+      simpa only [Nat.cast_one] using hzmod)
+  have hseedValue : ∀ ⦃l : ℕ⦄, l ∈ A → η.2 l = η.2 a := by
+    intro l hl
+    have hcopCond : Nat.Coprime l η.2.conductor :=
+      (hcopLevelSeed hl).coprime_dvd_right
+        (dvd_mul_of_dvd_right (dvd_refl η.2.conductor) N)
+    have hgal := cyclotomic_frobenius_value η.2.conductor K₁E E σ ac
+      (fun φ hconj => by
+        exact hrestrictSeed φ hconj) hcopCond hl.2
+    have hηl : η.2.primitiveCharacter (ZMod.unitOfCoprime l hcopCond) = η.2 l := by
+      rw [ZMod.coe_unitOfCoprime]
+      convert DirichletCharacter.primitiveCharacter_apply_of_isCoprime
+        (χ := η.2) (a := (l : ℤ))
+        (Nat.isCoprime_iff_coprime.mpr (hcopDeclared hl)) using 1 <;> norm_cast
+    calc
+      η.2 l = η.2.primitiveCharacter (ZMod.unitOfCoprime l hcopCond) := hηl.symm
+      _ = η.2.primitiveCharacter ac := congrArg _ (congrArg Units.val hgal.symm)
+      _ = η.2 a := hac
+  have hcoeffNear : ∀ ⦃l : ℕ⦄, l ∈ A →
+      ‖V.embedding (f.coeff l - 2)‖ < 1 := by
+    intro l hl
+    have hlp := hprime hl
+    obtain ⟨_hlp, Q, hQp, hQover, _hQunr, hconj⟩ := classIndicator_witness σ hl.2
+    have : Q.IsPrime := hQp
+    have : Finite ((𝓞 E) ⧸ Q) :=
+      finite_quotient_of_ne_bot (ne_bot_of_liesOver_ratPrimeIdeal hlp)
+    let φ := arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q
+    have hφconj : IsConj σ φ := by
+      change IsConj σ (arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q)
+      exact hconj
+    have hφD : φ.restrictNormal D.kernelField = 1 := hrestrictD φ hφconj
+    let qD : Ideal (𝓞 D.kernelField) :=
+      Q.comap (algebraMap (𝓞 D.kernelField) (𝓞 E))
+    have hqover : qD.LiesOver (ratPrimeIdeal l) := by
+      rw [Ideal.liesOver_iff]
+      calc
+        ratPrimeIdeal l = Q.under ℤ := hQover.over
+        _ = (Q.under (𝓞 D.kernelField)).under ℤ :=
+          (Ideal.under_under (A := ℤ) (B := 𝓞 D.kernelField)
+            (C := 𝓞 E) Q).symm
+        _ = qD.under ℤ := by rfl
+    have hqprime : qD.IsPrime := by
+      exact Ideal.comap_isPrime
+        (algebraMap (𝓞 D.kernelField) (𝓞 E)) Q
+    have : qD.IsPrime := hqprime
+    have : Finite ((𝓞 D.kernelField) ⧸ qD) :=
+      finite_quotient_of_ne_bot (ne_bot_of_liesOver_ratPrimeIdeal hlp)
+    have hunr := D.unramified_outside hlp (hcopNp hl)
+      qD hqprime hqover
+    have hFrobD : arithFrobAt ℤ
+        (D.kernelField ≃ₐ[ℚ] D.kernelField) qD = 1 :=
+      (restrictNormal_arithFrobAt_eq D.kernelField E Q hunr).symm.trans hφD
+    have htr := D.trace_frobenius hlp (hcopNp hl)
+      qD hqprime hqover
+    rw [hFrobD, map_one] at htr
+    have hmk : Ideal.Quotient.mk (f.coefficientPrime V.embedding)
+        (f.integralCoeff hN hk l - 2) = 0 := by
+      rw [map_sub, map_ofNat, ← htr]
+      simp
+    have hmem : f.integralCoeff hN hk l - 2 ∈
+        f.coefficientPrime V.embedding :=
+      Ideal.Quotient.eq_zero_iff_mem.mp hmk
+    have hnorm := (f.mem_coefficientPrime_iff V.embedding
+      (f.integralCoeff hN hk l - 2)).mp hmem
+    have hcoe :
+        (((f.integralCoeff hN hk l - 2 : 𝓞 f.coefficientField) :
+            f.coefficientField) : MTT.Qbar) = f.coeff l - 2 := by
+      rfl
+    rw [hcoe] at hnorm
+    simpa [map_sub, map_ofNat] using hnorm
+  have hcongPm : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.ModEq (p ^ m) l 1 := by
+    intro l hl
+    apply Nat.ModEq.of_dvd (dvd_mul_right (p ^ m) N)
+    exact hmodN₀ hl
+  have hnebentypeNear : ∀ ⦃l : ℕ⦄, l ∈ A →
+      ‖V.embedding (f.epsilon l - 1)‖ < 1 := by
+    intro l hl
+    have hmodN : Nat.ModEq N l 1 := by
+      apply Nat.ModEq.of_dvd (dvd_mul_left N (p ^ m))
+      exact hmodN₀ hl
+    have hzmod : (l : ZMod N) = 1 :=
+      by simpa only [Nat.cast_one] using
+        (ZMod.natCast_eq_natCast_iff l 1 N).mpr hmodN
+    have heps : f.epsilon l = 1 := by
+      rw [hzmod, map_one]
+    rw [heps, sub_self, map_zero, norm_zero]
+    exact zero_lt_one
+  have hseedOrder : ∀ ⦃l : ℕ⦄, l ∈ A →
+      orderOf (η.2 l) = orderOf η.2 := by
+    intro l hl
+    rw [hseedValue hl]
+    exact ha
+  exact ⟨{
+    primes := A
+    chebotarevClass := hcheb
+    prime_of_mem := hprime
+    avoids := havoids
+    congruent_one_mod_pm := hcongPm
+    coprime_level_seed := hcopLevelSeed
+    coeff_near_two := hcoeffNear
+    nebentype_near_one := hnebentypeNear
+    seed_value_has_full_order := hseedOrder }⟩
+
+
 /-- The residual, cyclotomic-congruence, and seed-character Frobenius
 conditions can be imposed in one Chebotarev class because the two relevant
 number fields have coprime ramification. -/
@@ -497,15 +734,8 @@ theorem _root_.solution
     · exact dvd_mul_of_dvd_right (hl.dvd_of_dvd_pow hlpow) N
     · exact dvd_mul_of_dvd_left hlN p
   have hK₀support : ∀ {l : ℕ}, l.Prime →
-      (l : ℤ) ∣ NumberField.discr K₀ → l ∣ N * p := by
-    intro l hl hld
-    by_contra hln
-    have hKDnot : ¬ (l : ℤ) ∣ NumberField.discr KD :=
-      fun h ↦ hln (hKDsupport hl h)
-    have hKpmnot : ¬ (l : ℤ) ∣ NumberField.discr Kpm :=
-      fun h ↦ hln (hKpmsupport hl h)
-    exact (hsup KD Kpm (Nat.prime_iff_prime_int.mp hl)
-      hKDnot hKpmnot) hld
+      (l : ℤ) ∣ NumberField.discr K₀ → l ∣ N * p :=
+    discriminant_support_sup KD Kpm (N * p) (hsup KD Kpm) hKDsupport hKpmsupport
   have : NeZero η.1.1 := ⟨Nat.ne_of_gt η.1.2⟩
   have : NeZero η.2.conductor := ⟨η.2.conductor_ne_zero⟩
   let K₁ := cyclotomicFieldQbar η.2.conductor
@@ -603,63 +833,6 @@ theorem _root_.solution
   let τ₁E : K₁E ≃ₐ[ℚ] K₁E := e₁.symm.trans (τ₁.trans e₁)
   obtain ⟨σ, hσK₀, hσK₁⟩ :=
     exists_product_automorphism E K₀E K₁E hdiscCoprimeE hsupTop τ₁E
-  -- Delete primes dividing the declared level of the seed character as well
-  -- as its conductor. This is needed to compare the imprimitive character
-  -- with its primitive character at every prime in the class.
-  let bad : ℕ := B * (N * p * η.1.1)
-  have hbad : bad ≠ 0 := by
-    exact Nat.mul_ne_zero (Nat.ne_of_gt hB)
-      (Nat.mul_ne_zero
-        (Nat.mul_ne_zero (Nat.ne_of_gt hN) (Fact.out : p.Prime).ne_zero)
-        (Nat.ne_of_gt η.1.2))
-  let S : Finset ℕ := bad.primeFactors
-  let hgE : IsGalois ℚ E := inferInstance
-  have : IsGalois ℚ E := hgE
-  have : Algebra.IsInvariant ℤ (𝓞 E) (E ≃ₐ[ℚ] E) :=
-    ringOfIntegers_isInvariant_galois (h := hgE) E
-  have : Algebra.IsInvariant ℤ (𝓞 D.kernelField)
-      (D.kernelField ≃ₐ[ℚ] D.kernelField) :=
-    ringOfIntegers_isInvariant_galois D.kernelField
-  let A : Set ℕ := {l : ℕ |
-    l ∉ S ∧ @LanglandsTunnell.classIndicator E _ _ hgE σ l = 1}
-  have hcheb : IsChebotarevPrimeClass A :=
-    @IsChebotarevPrimeClass.ofFiniteGalois A E _ _ hgE σ S rfl
-  have hprime : ∀ ⦃l : ℕ⦄, l ∈ A → l.Prime := by
-    intro l hl
-    exact (classIndicator_witness σ hl.2).choose
-  have hnotdvdBad : ∀ ⦃l : ℕ⦄, l ∈ A → ¬ l ∣ bad := by
-    intro l hl hldvd
-    exact hl.1 (Nat.mem_primeFactors.mpr ⟨hprime hl, hldvd, hbad⟩)
-  have havoids : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.Coprime l B := by
-    intro l hl
-    apply (hprime hl).coprime_iff_not_dvd.mpr
-    exact fun hldvd ↦ hnotdvdBad hl (dvd_mul_of_dvd_left hldvd _)
-  have hcopLevelSeed : ∀ ⦃l : ℕ⦄, l ∈ A →
-      Nat.Coprime l (N * η.2.conductor) := by
-    intro l hl
-    apply (hprime hl).coprime_iff_not_dvd.mpr
-    intro hldvd
-    apply hnotdvdBad hl
-    have hcondLevel : N * η.2.conductor ∣ N * η.1.1 :=
-      Nat.mul_dvd_mul_left N η.2.conductor_dvd_level
-    simpa [bad, mul_assoc, mul_comm, mul_left_comm] using
-      dvd_mul_of_dvd_right
-        (dvd_mul_of_dvd_left (hldvd.trans hcondLevel) p) B
-  have hcopDeclared : ∀ ⦃l : ℕ⦄, l ∈ A →
-      Nat.Coprime l η.1.1 := by
-    intro l hl
-    apply (hprime hl).coprime_iff_not_dvd.mpr
-    intro hldvd
-    apply hnotdvdBad hl
-    simpa [bad, mul_assoc, mul_comm, mul_left_comm] using
-      dvd_mul_of_dvd_right (dvd_mul_of_dvd_right hldvd (N * p)) B
-  have hcopNp : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.Coprime l (N * p) := by
-    intro l hl
-    apply (hprime hl).coprime_iff_not_dvd.mpr
-    intro hldvd
-    apply hnotdvdBad hl
-    simpa [bad, mul_assoc, mul_comm, mul_left_comm] using
-      dvd_mul_of_dvd_right (dvd_mul_of_dvd_right hldvd η.1.1) B
   have hrestrict_of_conj
       (φ : E ≃ₐ[ℚ] E) (hconj : IsConj σ φ) :
       φ.restrictNormal K₀E = 1 ∧ φ.restrictNormal K₁E = τ₁E := by
@@ -697,132 +870,16 @@ theorem _root_.solution
       (φ : E ≃ₐ[ℚ] E) (hφ₀ : φ.restrictNormal K₀E = 1) :
       φ.restrictNormal D.kernelField = 1 := by
     exact restrictNormal_eq_one_of_range_le K₀E φ hφ₀ hiDEK₀
-  have hmodN₀ : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.ModEq n₀ l 1 := by
-    intro l hl
-    have hcopn₀ : Nat.Coprime l n₀ := by
-      apply (hprime hl).coprime_iff_not_dvd.mpr
-      intro hldvd
-      rcases (hprime hl).dvd_mul.mp hldvd with hlpow | hlN
-      · have hlpdiv : l ∣ p := (hprime hl).dvd_of_dvd_pow hlpow
-        exact ((hprime hl).coprime_iff_not_dvd.mp
-          ((hcopNp hl).coprime_dvd_right (dvd_mul_left p N))) hlpdiv
-      · exact ((hprime hl).coprime_iff_not_dvd.mp
-          ((hcopNp hl).coprime_dvd_right (dvd_mul_right N p))) hlN
-    have hgal := cyclotomic_frobenius_value n₀ KpmE E σ 1 (fun φ hconj => by
-      have hφ₀ := (hrestrict_of_conj φ hconj).1
-      have hφpm : φ.restrictNormal KpmE = 1 :=
-        restrictNormal_eq_one_of_range_le K₀E φ hφ₀ (fun x => hKpmK₀ x.property)
-      rw [hφpm, map_one]) hcopn₀ hl.2
-    have hzmod : (l : ZMod n₀) = 1 := by
-      simpa [ZMod.coe_unitOfCoprime] using congrArg Units.val hgal.symm
-    exact (ZMod.natCast_eq_natCast_iff l 1 n₀).mp (by
-      simpa only [Nat.cast_one] using hzmod)
-  have hseedValue : ∀ ⦃l : ℕ⦄, l ∈ A → η.2 l = η.2 a := by
-    intro l hl
-    have hcopCond : Nat.Coprime l η.2.conductor :=
-      (hcopLevelSeed hl).coprime_dvd_right
-        (dvd_mul_of_dvd_right (dvd_refl η.2.conductor) N)
-    have hgal := cyclotomic_frobenius_value η.2.conductor K₁E E σ ac
-      (fun φ hconj => by
-        rw [(hrestrict_of_conj φ hconj).2,
-          galEquivZMod_conj_algEquiv η.2.conductor K₁ K₁E e₁ τ₁]
-        exact (IsCyclotomicExtension.Rat.galEquivZMod
-          η.2.conductor K₁).apply_symm_apply ac) hcopCond hl.2
-    have hηl : η.2.primitiveCharacter (ZMod.unitOfCoprime l hcopCond) = η.2 l := by
-      rw [ZMod.coe_unitOfCoprime]
-      convert DirichletCharacter.primitiveCharacter_apply_of_isCoprime
-        (χ := η.2) (a := (l : ℤ))
-        (Nat.isCoprime_iff_coprime.mpr (hcopDeclared hl)) using 1 <;> norm_cast
-    calc
-      η.2 l = η.2.primitiveCharacter (ZMod.unitOfCoprime l hcopCond) := hηl.symm
-      _ = η.2.primitiveCharacter ac := congrArg _ (congrArg Units.val hgal.symm)
-      _ = η.2 a := hac
-  have hcoeffNear : ∀ ⦃l : ℕ⦄, l ∈ A →
-      ‖V.embedding (f.coeff l - 2)‖ < 1 := by
-    intro l hl
-    have hlp := hprime hl
-    obtain ⟨_hlp, Q, hQp, hQover, _hQunr, hconj⟩ := classIndicator_witness σ hl.2
-    have : Q.IsPrime := hQp
-    have : Finite ((𝓞 E) ⧸ Q) :=
-      finite_quotient_of_ne_bot (ne_bot_of_liesOver_ratPrimeIdeal hlp)
-    let φ := arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q
-    have hφconj : IsConj σ φ := by
-      change IsConj σ (arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q)
-      exact hconj
-    have hφ₀ := (hrestrict_of_conj φ hφconj).1
-    have hφD : φ.restrictNormal D.kernelField = 1 :=
-      hrestrictD_of_restrictK₀ φ hφ₀
-    let qD : Ideal (𝓞 D.kernelField) :=
-      Q.comap (algebraMap (𝓞 D.kernelField) (𝓞 E))
-    have hqover : qD.LiesOver (ratPrimeIdeal l) := by
-      rw [Ideal.liesOver_iff]
-      calc
-        ratPrimeIdeal l = Q.under ℤ := hQover.over
-        _ = (Q.under (𝓞 D.kernelField)).under ℤ :=
-          (Ideal.under_under (A := ℤ) (B := 𝓞 D.kernelField)
-            (C := 𝓞 E) Q).symm
-        _ = qD.under ℤ := by rfl
-    have hqprime : qD.IsPrime := by
-      exact Ideal.comap_isPrime
-        (algebraMap (𝓞 D.kernelField) (𝓞 E)) Q
-    have : qD.IsPrime := hqprime
-    have : Finite ((𝓞 D.kernelField) ⧸ qD) :=
-      finite_quotient_of_ne_bot (ne_bot_of_liesOver_ratPrimeIdeal hlp)
-    have hunr := D.unramified_outside hlp (hcopNp hl)
-      qD hqprime hqover
-    have hFrobD : arithFrobAt ℤ
-        (D.kernelField ≃ₐ[ℚ] D.kernelField) qD = 1 :=
-      (restrictNormal_arithFrobAt_eq D.kernelField E Q hunr).symm.trans hφD
-    have htr := D.trace_frobenius hlp (hcopNp hl)
-      qD hqprime hqover
-    rw [hFrobD, map_one] at htr
-    have hmk : Ideal.Quotient.mk (f.coefficientPrime V.embedding)
-        (f.integralCoeff hN hk l - 2) = 0 := by
-      rw [map_sub, map_ofNat, ← htr]
-      simp
-    have hmem : f.integralCoeff hN hk l - 2 ∈
-        f.coefficientPrime V.embedding :=
-      Ideal.Quotient.eq_zero_iff_mem.mp hmk
-    have hnorm := (f.mem_coefficientPrime_iff V.embedding
-      (f.integralCoeff hN hk l - 2)).mp hmem
-    have hcoe :
-        (((f.integralCoeff hN hk l - 2 : 𝓞 f.coefficientField) :
-            f.coefficientField) : MTT.Qbar) = f.coeff l - 2 := by
-      rfl
-    rw [hcoe] at hnorm
-    simpa [map_sub, map_ofNat] using hnorm
-  have hcongPm : ∀ ⦃l : ℕ⦄, l ∈ A → Nat.ModEq (p ^ m) l 1 := by
-    intro l hl
-    apply Nat.ModEq.of_dvd (dvd_mul_right (p ^ m) N)
-    exact hmodN₀ hl
-  have hnebentypeNear : ∀ ⦃l : ℕ⦄, l ∈ A →
-      ‖V.embedding (f.epsilon l - 1)‖ < 1 := by
-    intro l hl
-    have hmodN : Nat.ModEq N l 1 := by
-      apply Nat.ModEq.of_dvd (dvd_mul_left N (p ^ m))
-      exact hmodN₀ hl
-    have hzmod : (l : ZMod N) = 1 :=
-      by simpa only [Nat.cast_one] using
-        (ZMod.natCast_eq_natCast_iff l 1 N).mpr hmodN
-    have heps : f.epsilon l = 1 := by
-      rw [hzmod, map_one]
-    rw [heps, sub_self, map_zero, norm_zero]
-    exact zero_lt_one
-  have hseedOrder : ∀ ⦃l : ℕ⦄, l ∈ A →
-      orderOf (η.2 l) = orderOf η.2 := by
-    intro l hl
-    rw [hseedValue hl]
-    exact ha
-  exact ⟨{
-    primes := A
-    chebotarevClass := hcheb
-    prime_of_mem := hprime
-    avoids := havoids
-    congruent_one_mod_pm := hcongPm
-    coprime_level_seed := hcopLevelSeed
-    coeff_near_two := hcoeffNear
-    nebentype_near_one := hnebentypeNear
-    seed_value_has_full_order := hseedOrder }⟩
+  exact class_of_compatible_automorphism hN hk ι f η m B hB V D a ha
+    E KpmE K₁E σ ac hac
+    (fun φ hc => hrestrictD_of_restrictK₀ φ (hrestrict_of_conj φ hc).1)
+    (fun φ hc => restrictNormal_eq_one_of_range_le K₀E φ
+      (hrestrict_of_conj φ hc).1 (fun x => hKpmK₀ x.property))
+    (fun φ hc => by
+      rw [(hrestrict_of_conj φ hc).2,
+        galEquivZMod_conj_algEquiv η.2.conductor K₁ K₁E e₁ τ₁]
+      exact (IsCyclotomicExtension.Rat.galEquivZMod
+        η.2.conductor K₁).apply_symm_apply ac)
 
 end HorizontalPadicL
 end

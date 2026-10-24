@@ -151,6 +151,73 @@ p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekind
   qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit \
   jqModC_eq_qExpansion_E4_cube_div_discriminant"
 end ModularCurve
+
+p2m_open_scoped "ModularCurve" in
+private theorem ModularCurve.StarBank.coeff_integral_of_triangular_relation
+    (N : ℕ) (P : Polynomial ℂ) (T : PowerSeries ℤ)
+    (hkey : ∀ i : ℕ, i ≤ N →
+      ((PowerSeries.coeff (N - i) T : ℤ) : ℂ)
+        = ∑ a ∈ Finset.range (N + 1), P.coeff a *
+            (if i ≤ a
+              then ((PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N) : ℤ) : ℂ)
+              else 0))
+    (hdiag : ∀ i : ℕ, PowerSeries.coeff 0 (jNum ^ i * dedekindEtaUnit ^ N) = 1) :
+    ∀ i : ℕ, i ≤ N → P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
+  classical
+  have hstep : ∀ i : ℕ, i ≤ N →
+      (∀ a : ℕ, a ≤ N → i < a → P.coeff a ∈ Set.range ⇑(Int.castRingHom ℂ)) →
+      P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
+    intro i hi hIH
+    have hk := hkey i hi
+    have hmem : i ∈ Finset.range (N + 1) := Finset.mem_range.mpr (by omega)
+    have hdiagterm : (if i ≤ i
+        then ((PowerSeries.coeff (i - i) (jNum ^ i * dedekindEtaUnit ^ N) : ℤ) : ℂ)
+        else 0) = 1 := by
+      rw [ite_eq_left le_rfl, Nat.sub_self, hdiag i, Int.cast_one]
+    rw [← Finset.add_sum_erase _ _ hmem, hdiagterm, mul_one] at hk
+    have hPi : P.coeff i
+        = ((PowerSeries.coeff (N - i) T : ℤ) : ℂ)
+          - ∑ a ∈ (Finset.range (N + 1)).erase i, P.coeff a *
+              (if i ≤ a
+                then ((PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N) : ℤ) : ℂ)
+                else 0) := by
+      rw [hk]
+      ring
+    rw [hPi]
+    have hSmem : (∑ a ∈ (Finset.range (N + 1)).erase i, P.coeff a *
+        (if i ≤ a
+          then ((PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N) : ℤ) : ℂ)
+          else 0)) ∈ (Int.castRingHom ℂ).range := by
+      refine Subring.sum_mem _ fun a ha => ?_
+      by_cases hia : i ≤ a
+      · have haN : a ≤ N := by
+          have := Finset.mem_range.mp (Finset.mem_of_mem_erase ha)
+          omega
+        have hlt : i < a := lt_of_le_of_ne hia (Ne.symm (Finset.ne_of_mem_erase ha))
+        obtain ⟨z, hz⟩ := hIH a haN hlt
+        rw [ite_eq_left hia, ← hz]
+        refine Subring.mul_mem _ (RingHom.mem_range.mpr ⟨z, rfl⟩)
+          (RingHom.mem_range.mpr
+            ⟨PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N),
+              by rw [Int.coe_castRingHom]⟩)
+      · rw [ite_eq_right hia, mul_zero]
+        exact Subring.zero_mem _
+    obtain ⟨zS, hzS⟩ := RingHom.mem_range.mp hSmem
+    exact ⟨PowerSeries.coeff (N - i) T - zS, by rw [map_sub, hzS, Int.coe_castRingHom]⟩
+  have hmemP : ∀ i : ℕ, i ≤ N → P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
+    have H : ∀ j : ℕ, ∀ i : ℕ, i ≤ N → N - i ≤ j →
+        P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
+      intro j
+      induction j with
+      | zero =>
+        intro i hi hj
+        exact hstep i hi fun a ha hia => absurd hia (by omega)
+      | succ j IH =>
+        intro i hi hj
+        exact hstep i hi fun a ha hia => IH a ha (by omega)
+    exact fun i hi => H N i hi (by omega)
+  exact hmemP
+
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
     (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) {T : PowerSeries ℤ}
@@ -244,58 +311,7 @@ private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
     rw [← hk]
     congr 1
     exact congrFun PowerSeries.coeff_zero_eq_constantCoeff T
-  have hstep : ∀ i : ℕ, i ≤ N →
-      (∀ a : ℕ, a ≤ N → i < a → P.coeff a ∈ Set.range ⇑(Int.castRingHom ℂ)) →
-      P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
-    intro i hi hIH
-    have hk := hkey i hi
-    have hmem : i ∈ Finset.range (N + 1) := Finset.mem_range.mpr (by omega)
-    have hdiagterm : (if i ≤ i
-        then ((PowerSeries.coeff (i - i) (jNum ^ i * dedekindEtaUnit ^ N) : ℤ) : ℂ)
-        else 0) = 1 := by
-      rw [ite_eq_left le_rfl, Nat.sub_self, hdiag i, Int.cast_one]
-    rw [← Finset.add_sum_erase _ _ hmem, hdiagterm, mul_one] at hk
-    have hPi : P.coeff i
-        = ((PowerSeries.coeff (N - i) T : ℤ) : ℂ)
-          - ∑ a ∈ (Finset.range (N + 1)).erase i, P.coeff a *
-              (if i ≤ a
-                then ((PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N) : ℤ) : ℂ)
-                else 0) := by
-      rw [hk]
-      ring
-    rw [hPi]
-    have hSmem : (∑ a ∈ (Finset.range (N + 1)).erase i, P.coeff a *
-        (if i ≤ a
-          then ((PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N) : ℤ) : ℂ)
-          else 0)) ∈ (Int.castRingHom ℂ).range := by
-      refine Subring.sum_mem _ fun a ha => ?_
-      by_cases hia : i ≤ a
-      · have haN : a ≤ N := by
-          have := Finset.mem_range.mp (Finset.mem_of_mem_erase ha)
-          omega
-        have hlt : i < a := lt_of_le_of_ne hia (Ne.symm (Finset.ne_of_mem_erase ha))
-        obtain ⟨z, hz⟩ := hIH a haN hlt
-        rw [ite_eq_left hia, ← hz]
-        refine Subring.mul_mem _ (RingHom.mem_range.mpr ⟨z, rfl⟩)
-          (RingHom.mem_range.mpr
-            ⟨PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N),
-              by rw [Int.coe_castRingHom]⟩)
-      · rw [ite_eq_right hia, mul_zero]
-        exact Subring.zero_mem _
-    obtain ⟨zS, hzS⟩ := RingHom.mem_range.mp hSmem
-    exact ⟨PowerSeries.coeff (N - i) T - zS, by rw [map_sub, hzS, Int.coe_castRingHom]⟩
-  have hmemP : ∀ i : ℕ, i ≤ N → P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
-    have H : ∀ j : ℕ, ∀ i : ℕ, i ≤ N → N - i ≤ j →
-        P.coeff i ∈ Set.range ⇑(Int.castRingHom ℂ) := by
-      intro j
-      induction j with
-      | zero =>
-        intro i hi hj
-        exact hstep i hi fun a ha hia => absurd hia (by omega)
-      | succ j IH =>
-        intro i hi hj
-        exact hstep i hi fun a ha hia => IH a ha (by omega)
-    exact fun i hi => H N i hi (by omega)
+  have hmemP := ModularCurve.StarBank.coeff_integral_of_triangular_relation N P T hkey hdiag
   have hlifts : P ∈ Polynomial.lifts (Int.castRingHom ℂ) := by
     rw [Polynomial.lifts_iff_coeff_lifts]
     intro n
@@ -377,77 +393,6 @@ private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
         exact (map_sum (Int.castRingHom ℂ) _ _).symm
   exact_mod_cast hfinal
 
-example : (PowerSeries.X * ModularCurve.dedekindEtaUnit).map (Int.castRingHom ℂ)
-    = UpperHalfPlane.qExpansion 1 ModularForm.discriminant :=
-  ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit.symm
-
-example : PowerSeries.constantCoeff (PowerSeries.X * ModularCurve.dedekindEtaUnit) = (0 : ℤ) := by
-  simp
-
-example : ¬ ∃ G : Polynomial ℤ, G.natDegree = 1 ∧
-    HahnSeries.ofPowerSeries ℤ ℤ (PowerSeries.X * ModularCurve.dedekindEtaUnit)
-      = Polynomial.aeval (ModularCurve.jqModC ℤ) G
-        * (HahnSeries.single (1 : ℤ) 1
-            * HahnSeries.ofPowerSeries ℤ ℤ ModularCurve.etaProd ^ 24) ^ 1 := by
-  rintro ⟨G, hdeg, hid⟩
-  have hblock : HahnSeries.single (1 : ℤ) (1 : ℤ)
-      * HahnSeries.ofPowerSeries ℤ ℤ ModularCurve.etaProd ^ 24
-      = HahnSeries.single (1 : ℤ) 1
-        * HahnSeries.ofPowerSeries ℤ ℤ (dedekindEtaUnit.map (Int.castRingHom ℤ)) := by
-    rw [← map_pow, ← dedekindEtaUnit, ModularCurve.W1.powerSeries_map_intCast_self]
-  have hsum1 : Polynomial.aeval (ModularCurve.jqModC ℤ) G
-      * (HahnSeries.single (1 : ℤ) 1
-          * HahnSeries.ofPowerSeries ℤ ℤ ModularCurve.etaProd ^ 24) ^ 1
-      = ∑ a ∈ Finset.range (1 + 1),
-          HahnSeries.single (0 : ℤ) (G.coeff a)
-            * (jqModC ℤ ^ a
-                * (HahnSeries.single (1 : ℤ) 1
-                    * HahnSeries.ofPowerSeries ℤ ℤ
-                        (dedekindEtaUnit.map (Int.castRingHom ℤ))) ^ 1) := by
-    rw [hblock, Polynomial.aeval_def, Polynomial.eval₂_eq_sum,
-      Polynomial.sum_over_range' G (fun n => by rw [map_zero, zero_mul]) (1 + 1)
-        (show G.natDegree < 1 + 1 by omega), Finset.sum_mul]
-    refine Finset.sum_congr rfl fun a _ => ?_
-    rw [mul_assoc, ModularCurve.W1.algebraMap_laurent_eq_single]
-  rw [hsum1] at hid
-  have hterm0 : (jqModC ℤ ^ 0
-      * (HahnSeries.single (1 : ℤ) 1
-          * HahnSeries.ofPowerSeries ℤ ℤ
-              (dedekindEtaUnit.map (Int.castRingHom ℤ))) ^ 1).coeff (0 : ℤ) = 0 := by
-    rw [ModularCurve.W1.jqModC_pow_mul_etaBlock ℤ 0 1]
-    exact ModularCurve.W1.coeff_single_mul_ofPowerSeries_neg _ _ (by omega)
-  have hterm1 : (jqModC ℤ ^ 1
-      * (HahnSeries.single (1 : ℤ) 1
-          * HahnSeries.ofPowerSeries ℤ ℤ
-              (dedekindEtaUnit.map (Int.castRingHom ℤ))) ^ 1).coeff (0 : ℤ) = 1 := by
-    rw [ModularCurve.W1.jqModC_pow_mul_etaBlock ℤ 1 1,
-      show ((0 : ℤ)) = (((1 : ℕ) : ℤ) - ((1 : ℕ) : ℤ)) + ((0 : ℕ) : ℤ) from by omega,
-      ModularCurve.W1.coeff_single_mul_ofPowerSeries_nonneg,
-      ModularCurve.W1.powerSeries_map_intCast_self,
-      ModularCurve.W1.powerSeries_map_intCast_self, pow_one, pow_one]
-    have h1 : PowerSeries.constantCoeff (jNum * dedekindEtaUnit) = 1 := by
-      rw [map_mul, ModularCurve.constantCoeff_jNum,
-        ModularCurve.constantCoeff_dedekindEtaUnit, one_mul]
-    rw [← h1]
-    exact congrFun PowerSeries.coeff_zero_eq_constantCoeff _
-  have hL0 : (HahnSeries.ofPowerSeries ℤ ℤ
-      (PowerSeries.X * ModularCurve.dedekindEtaUnit)).coeff (0 : ℤ) = 0 := by
-    rw [show ((0 : ℤ)) = (((0 : ℕ) : ℤ)) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
-      congrFun PowerSeries.coeff_zero_eq_constantCoeff
-        (PowerSeries.X * ModularCurve.dedekindEtaUnit)]
-    simp
-  have hid0 := congrArg (fun x : LaurentSeries ℤ => x.coeff (0 : ℤ)) hid
-  rw [hL0, HahnSeries.coeff_sum, Finset.sum_range_succ, Finset.sum_range_one,
-    ModularCurve.W1.coeff_single_zero_mul, ModularCurve.W1.coeff_single_zero_mul,
-    hterm0, hterm1, mul_zero, mul_one, zero_add] at hid0
-  have hGne : G ≠ 0 := fun h => by
-    rw [h, Polynomial.natDegree_zero] at hdeg
-    exact absurd hdeg (by norm_num)
-  have hlead : G.leadingCoeff = 0 := by
-    rw [Polynomial.leadingCoeff, hdeg]
-    exact hid0.symm
-  exact hGne (Polynomial.leadingCoeff_eq_zero.mp hlead)
-
 p2m_open "Polynomial HahnSeries ModularCurve \
   P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
 open scoped MatrixGroups in
@@ -469,7 +414,6 @@ export P2MW.S_ModularCurve_StarBank_hassePolyDescent (solution)
 end privateSection
 
 public section publicSection
-
 
 open Polynomial HahnSeries ModularCurve UpperHalfPlane
 open scoped MatrixGroups
