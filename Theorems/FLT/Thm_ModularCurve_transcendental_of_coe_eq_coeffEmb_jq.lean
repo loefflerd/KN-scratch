@@ -103,7 +103,7 @@ end LaurentSeries
 theorem solution
     (L : Type) [Field L] [CharZero L]
     (K : IntermediateField L (LaurentSeries L))
-    (A : Type) [CommRing A] [IsDomain A] [Algebra A L] [IsFractionRing A L]
+    (A : Type) [CommRing A] [Algebra A L] [IsFractionRing A L]
     [Algebra A ↥K] [IsScalarTower A L ↥K]
     (j : ↥K) (hj : ((j : LaurentSeries L)) = ModularCurve.coeffEmb L ModularCurve.jq) :
     Transcendental A j := by
@@ -126,7 +126,7 @@ public section publicSection
 theorem ModularCurve.transcendental_of_coe_eq_coeffEmb_jq
     (L : Type) [Field L] [CharZero L]
     (K : IntermediateField L (LaurentSeries L))
-    (A : Type) [CommRing A] [IsDomain A] [Algebra A L] [IsFractionRing A L]
+    (A : Type) [CommRing A] [Algebra A L] [IsFractionRing A L]
     [Algebra A ↥K] [IsScalarTower A L ↥K]
     (j : ↥K) (hj : ((j : LaurentSeries L)) = ModularCurve.coeffEmb L ModularCurve.jq) :
     Transcendental A j :=

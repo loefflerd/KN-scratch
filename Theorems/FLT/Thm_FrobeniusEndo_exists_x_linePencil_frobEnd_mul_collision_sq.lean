@@ -677,6 +677,7 @@ section EZvanish
 
 variable {K : Type*} [Field K] [DecidableEq K] (W : WeierstrassCurve K) [W.IsElliptic]
 
+omit [W.IsElliptic] in
 lemma evalEval_EZpoly_eq_zero (m : ℤ) {x y : K} (h : W.toAffine.Nonsingular x y) {x₁ y₁ : K}
     (h₁ : W.toAffine.Nonsingular x₁ y₁) (hmP : m • Point.some x y h = Point.some x₁ y₁ h₁) :
     (EZpoly W m).evalEval x y = 0 := by
@@ -737,7 +738,7 @@ section Main
 variable {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]
   [DecidableEq k] [Algebra R F] [Algebra R k] [Algebra F k] [IsScalarTower R F k]
 
-lemma key_step (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k)
+lemma key_step (W : WeierstrassCurve R) (σ : k ≃ₐ[F] k)
     (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (m : ℤ)
     {x y : k} (h : (W⁄k).Nonsingular x y) {x₁ y₁ : k} (h₁ : (W⁄k).Nonsingular x₁ y₁)
     (hmP : m • Point.some x y h = Point.some x₁ y₁ h₁)

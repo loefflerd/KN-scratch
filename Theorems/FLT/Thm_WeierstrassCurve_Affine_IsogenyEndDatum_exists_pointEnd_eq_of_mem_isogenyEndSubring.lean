@@ -350,9 +350,9 @@ section NonzeroEndLift
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 
-abbrev KwIsogenyEndDatumOfNonzeroEnd (W : Affine F) [W.IsElliptic]
+abbrev KwIsogenyEndDatumOfNonzeroEnd (W : Affine F)
     [WeierstrassCurve.Affine.GenusOnePlaceGate W]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+    [WeierstrassCurve.Affine.AbelTheorem W]
     :
     Prop :=
   ∀ ψ ∈ isogenyEndSubring W (fun D => D.normFormulaAlong_auto), ψ ≠ 0 → ∃ D' : IsogenyEndDatum W,
@@ -1727,8 +1727,7 @@ universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 
-def es1a4_negDatum (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+def es1a4_negDatum (W : Affine F)
     :
     IsogenyEndDatum W where
   ι := es1a4_negPullbackHom W
@@ -1805,6 +1804,7 @@ theorem es1a4_negDatum_seam_zero :
   omega
 
 omit [CharZero F] in
+omit [DecidableEq F] [W.AbelTheorem] in
 theorem es1a4_negDatum_seam (P : W.Point) :
     (placeOfPoint P).restrictAlong (es1a4_negDatum W).ι (es1a4_negDatum W).hι
       = placeOfPoint (-P) := by

@@ -1507,10 +1507,10 @@ open _root_.WeierstrassCurve
 theorem solution
     (E E' D D' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsElliptic] [D.IsElliptic]
     [D'.IsElliptic]
-    [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
-    [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    [GenusOnePlaceGate D] [GenusOnePlaceGate.IsCentred D] [AbelTheorem D]
-    [GenusOnePlaceGate D'] [GenusOnePlaceGate.IsCentred D'] [AbelTheorem D']
+    [GenusOnePlaceGate E] [AbelTheorem E]
+    [GenusOnePlaceGate E'] [AbelTheorem E']
+    [GenusOnePlaceGate D] [AbelTheorem D]
+    [GenusOnePlaceGate D'] [AbelTheorem D']
     (ι : E'.FunctionField →ₐ[ℂ] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
     (hfin : FiniteAlong ℂ ι)
     (hN : NormFormulaAlong ℂ ι hfin)
@@ -1554,10 +1554,10 @@ open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 theorem WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
     (E E' D D' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsElliptic] [D.IsElliptic]
     [D'.IsElliptic]
-    [GenusOnePlaceGate E] [GenusOnePlaceGate.IsCentred E] [AbelTheorem E]
-    [GenusOnePlaceGate E'] [GenusOnePlaceGate.IsCentred E'] [AbelTheorem E']
-    [GenusOnePlaceGate D] [GenusOnePlaceGate.IsCentred D] [AbelTheorem D]
-    [GenusOnePlaceGate D'] [GenusOnePlaceGate.IsCentred D'] [AbelTheorem D']
+    [GenusOnePlaceGate E] [AbelTheorem E]
+    [GenusOnePlaceGate E'] [AbelTheorem E']
+    [GenusOnePlaceGate D] [AbelTheorem D]
+    [GenusOnePlaceGate D'] [AbelTheorem D']
     (ι : E'.FunctionField →ₐ[ℂ] E.FunctionField) (hι : ι.toRingHom.IsIntegral)
     (hfin : FiniteAlong ℂ ι)
     (hN : NormFormulaAlong ℂ ι hfin)

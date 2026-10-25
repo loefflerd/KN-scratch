@@ -411,15 +411,15 @@ end
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve Place in
 universe u in
 theorem solution
-    {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+    {K : Type u} [Field K] [IsAlgClosed K] [CharZero K]
     {V : WeierstrassCurve.Affine K} [V.IsElliptic]
-    [GenusOnePlaceGate V] [GenusOnePlaceGate.IsCentred V] [AbelTheorem V]
+    [GenusOnePlaceGate V]
     {F' : Type*} [Field F'] [Algebra K F'] (hrat : ∀ w : AlgebraicCurve.Place K F', w.IsRational)
     (φ₁ φ₂ : F' →ₐ[K] V.FunctionField)
     (hφ₁ : φ₁.toRingHom.IsIntegral) (hφ₂ : φ₂.toRingHom.IsIntegral)
     (hres : ∀ P : V.Point,
       (placeOfPoint P).restrictAlong φ₁ hφ₁ = (placeOfPoint P).restrictAlong φ₂ hφ₂) :
-    φ₁ = φ₂ :=
+    φ₁ = φ₂ := open scoped Classical in
   KwNo3aHbadRiqsucrA1a.no3ahbad_riqsucr_a1a_algHom_ext_of_restrictAlong_placeOfPoint_eq
     (WeierstrassCurve.point_infinite (W := V)) hrat φ₁ φ₂ hφ₁ hφ₂ hres
 
@@ -433,15 +433,15 @@ open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u
 theorem WeierstrassCurve.Affine.algHom_ext_of_forall_restrictAlong_placeOfPoint_eq
-    {K : Type u} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+    {K : Type u} [Field K] [IsAlgClosed K] [CharZero K]
     {V : WeierstrassCurve.Affine K} [V.IsElliptic]
-    [GenusOnePlaceGate V] [GenusOnePlaceGate.IsCentred V] [AbelTheorem V]
+    [GenusOnePlaceGate V]
     {F' : Type*} [Field F'] [Algebra K F'] (hrat : ∀ w : AlgebraicCurve.Place K F', w.IsRational)
     (φ₁ φ₂ : F' →ₐ[K] V.FunctionField)
     (hφ₁ : φ₁.toRingHom.IsIntegral) (hφ₂ : φ₂.toRingHom.IsIntegral)
     (hres : ∀ P : V.Point,
       (placeOfPoint P).restrictAlong φ₁ hφ₁ = (placeOfPoint P).restrictAlong φ₂ hφ₂) :
-    φ₁ = φ₂ :=
+    φ₁ = φ₂ := open scoped Classical in
   solution hrat φ₁ φ₂ hφ₁ hφ₂ hres
 
 end publicSection

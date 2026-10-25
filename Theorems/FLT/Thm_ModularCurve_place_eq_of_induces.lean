@@ -71,6 +71,7 @@ theorem mem_iff_ord_nonneg (w : Place (AlgebraicClosure ℚ) ↥(modularFunction
   rw [Place.mem_iff_adicValuation_le_one, Place.ord, neg_nonneg,
     WithZero.log_le_iff_le_exp (w.adicValuation_ne_zero hx), WithZero.exp_zero]
 
+omit [NeZero N] in
 theorem induces_unique
     {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
     {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
@@ -96,7 +97,7 @@ theorem induces_unique
 
 end S12Q
 
-theorem solution {N : ℕ} [NeZero N]
+theorem solution {N : ℕ}
     {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
     {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
     (h : Induces ψ w) (h' : Induces ψ w') : w = w' := by
@@ -112,7 +113,7 @@ public section publicSection
 
 
 open AlgebraicCurve ModularCurve IsDedekindDomain WithZero
-theorem ModularCurve.place_eq_of_induces {N : ℕ} [NeZero N]
+theorem ModularCurve.place_eq_of_induces {N : ℕ}
     {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
     {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
     (h : Induces ψ w) (h' : Induces ψ w')

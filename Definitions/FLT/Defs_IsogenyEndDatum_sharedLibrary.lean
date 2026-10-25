@@ -2102,8 +2102,7 @@ universe u
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 
-def es1a4_negDatum (W : Affine F) [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+def es1a4_negDatum (W : Affine F)
     :
     IsogenyEndDatum W where
   ι := es1a4_negPullbackHom W
@@ -2180,6 +2179,7 @@ theorem es1a4_negDatum_seam_zero :
   omega
 
 omit [CharZero F] in
+omit [DecidableEq F] [W.AbelTheorem] in
 theorem es1a4_negDatum_seam (P : W.Point) :
     (placeOfPoint P).restrictAlong (es1a4_negDatum W).ι (es1a4_negDatum W).hι
       = placeOfPoint (-P) := by
@@ -2808,6 +2808,7 @@ variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
     [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
 omit [CharZero F] in
+omit [DecidableEq F] [W.AbelTheorem] in
 theorem es1a8_addCollapse_geomMorph_eq_neg_cmp (D₁ D₂ : IsogenyEndDatum W)
     (hcol : es1a8_addCollapse_cmp W D₁.ι D₂.ι) (P : W.Point) :
     D₁.geomMorph P = -(D₂.geomMorph P) := by
@@ -3232,7 +3233,7 @@ theorem kw_hk5f_addIntegralFiniteDataAt_proved : kw_hk5f_addIntegralFiniteDataAt
     es1a8_addInt_selfHom_finiteAlong_cmp _ htrans⟩
 
 theorem kw_hk5f_addSumCoordSeamDataNCAt_proved
-    {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+    {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
     (W : WeierstrassCurve.Affine F) [W.IsElliptic] :
     ∀ φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField,
       ¬ es1a6_addCollapse W φ₁ φ₂ →

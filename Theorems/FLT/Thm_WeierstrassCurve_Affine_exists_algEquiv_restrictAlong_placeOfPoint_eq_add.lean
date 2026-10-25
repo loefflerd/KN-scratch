@@ -3752,9 +3752,9 @@ open P2MW.S_OVERLONG_e431601d.WeierstrassCurve P2MW.S_OVERLONG_e431601d.Weierstr
   P2MW.S_OVERLONG_e431601d.AlgebraicCurve in
 universe u in
 theorem solution
-    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
     {W : WeierstrassCurve.Affine F} [W.IsElliptic]
-    [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [AbelTheorem W]
+    [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
     (R : W.Point) :
     ∃ (τ : W.FunctionField ≃ₐ[F] W.FunctionField) (hτ : τ.toAlgHom.toRingHom.IsIntegral),
       ∀ Q : W.Point, (placeOfPoint Q).restrictAlong τ.toAlgHom hτ = placeOfPoint (Q + R) := by
@@ -3781,9 +3781,9 @@ open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u
 theorem WeierstrassCurve.Affine.exists_algEquiv_restrictAlong_placeOfPoint_eq_add
-    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
     {W : WeierstrassCurve.Affine F} [W.IsElliptic]
-    [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [AbelTheorem W]
+    [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
     (R : W.Point) :
     ∃ (τ : W.FunctionField ≃ₐ[F] W.FunctionField) (hτ : τ.toAlgHom.toRingHom.IsIntegral),
       ∀ Q : W.Point, (placeOfPoint Q).restrictAlong τ.toAlgHom hτ = placeOfPoint (Q + R) :=

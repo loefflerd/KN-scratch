@@ -89,7 +89,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {D : Divisor K F}
 
 open scoped AlgebraicCurve.Divisor in
-theorem Divisor.degree_nonneg_of_nonneg [IsCurveOver K F]
+theorem Divisor.degree_nonneg_of_nonneg
     {D : Divisor K F} (hD : ∀ v, 0 ≤ D v) : 0 ≤ Divisor.degree D := by
   rw [Divisor.degree_eq_sum_support]
   exact Finset.sum_nonneg fun v _ => mul_nonneg (hD v) (Int.natCast_nonneg _)
@@ -657,7 +657,6 @@ end PoleDivisorPackage
 namespace PoleDivisorPackage
 open scoped AlgebraicCurve.PoleDivisorPackage in
 private theorem _root_.AlgebraicCurve.PoleDivisorPackage.degree_sub_ell_le [IsCurveOver K F]
-    [Nonempty (Place K F)]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     (P : PoleDivisorPackage K F) (D : Divisor K F) :
     Divisor.degree D - ell D ≤ (P.n : ℤ) * (P.c - 1) := by
@@ -703,7 +702,7 @@ private theorem _root_.AlgebraicCurve.PoleDivisorPackage.degree_sub_ell_le [IsCu
   linarith
 
 end PoleDivisorPackage
-theorem riemannGenusBounded_of_poleDivisorPackage [IsCurveOver K F] [Nonempty (Place K F)]
+theorem riemannGenusBounded_of_poleDivisorPackage [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     (P : PoleDivisorPackage K F) :
     RiemannGenusBounded K F :=

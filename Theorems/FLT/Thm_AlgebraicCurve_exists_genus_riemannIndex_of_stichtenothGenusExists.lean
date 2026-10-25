@@ -125,7 +125,7 @@ p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smu
 end Divisor
 variable {D : Divisor K F}
 p2m_open_scoped "AlgebraicCurve.Divisor" in
-theorem Divisor.degree_nonneg_of_nonneg [IsCurveOver K F]
+theorem Divisor.degree_nonneg_of_nonneg
     {D : Divisor K F} (hD : ∀ v, 0 ≤ D v) : 0 ≤ Divisor.degree D := by
   rw [Divisor.degree_eq_sum_support]
   exact Finset.sum_nonneg fun v _ => mul_nonneg (hD v) (Int.natCast_nonneg _)
@@ -910,7 +910,7 @@ theorem range_lSpaceQuotientToAdeleBddQuotient {D₁ D₂ : Divisor K F} (hD : D
     rw [hβsub]; exact (adeleBdd D₁).neg_mem hγ
 
 
-theorem finrank_adeleBddSup_quotient [IsCurveOver K F] [Nonempty (Place K F)]
+theorem finrank_adeleBddSup_quotient [IsCurveOver K F]
     {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂) [hL : FiniteDimensional K (LSpace D₂)] :
     Module.Finite K (↥(adeleBdd D₂ ⊔ globalSub K F)
         ⧸ (adeleBdd D₁ ⊔ globalSub K F).comap (adeleBdd D₂ ⊔ globalSub K F).subtype) ∧
@@ -981,6 +981,7 @@ section Index
 
 variable [IsCurveOver K F] [Nonempty (Place K F)]
 
+omit [Nonempty (Place K F)] in
 theorem adeleBddSup_eq_of_degree_sub_ell_eq {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂)
     [FiniteDimensional K (LSpace D₂)]
     (heq : Divisor.degree D₂ - ell D₂ = Divisor.degree D₁ - ell D₁) :
@@ -1010,7 +1011,6 @@ end RiemannGenusReachedAt
 namespace RiemannGenusReachedAt
 p2m_open_scoped "AlgebraicCurve.RiemannGenusReachedAt" in
 private theorem _root_.AlgebraicCurve.RiemannGenusReachedAt.eq_of_ge [IsCurveOver K F]
-    [Nonempty (Place K F)]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     {D : Divisor K F} (hD : D₀ ≤ D) :
@@ -1024,7 +1024,7 @@ private theorem _root_.AlgebraicCurve.RiemannGenusReachedAt.eq_of_ge [IsCurveOve
 end RiemannGenusReachedAt
 p2m_export "AlgebraicCurve" "RiemannGenusReachedAt.eq_of_ge"
 
-theorem adeleSpace_eq_of_genusReached [IsCurveOver K F] [Nonempty (Place K F)]
+theorem adeleSpace_eq_of_genusReached [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) :
     adeleSpace K F = adeleBdd D₀ ⊔ globalSub K F := by
@@ -1040,7 +1040,7 @@ theorem adeleSpace_eq_of_genusReached [IsCurveOver K F] [Nonempty (Place K F)]
   rw [← hsup]
   exact le_sup_left
 
-theorem indexOfSpecialty_eq_zero_of_genusReached [IsCurveOver K F] [Nonempty (Place K F)]
+theorem indexOfSpecialty_eq_zero_of_genusReached [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) :
     indexOfSpecialty D₀ = 0 := by
@@ -1052,7 +1052,7 @@ theorem indexOfSpecialty_eq_zero_of_genusReached [IsCurveOver K F] [Nonempty (Pl
 
 
 
-theorem gate_indexOfSpecialty_at_witness [IsCurveOver K F] [Nonempty (Place K F)]
+theorem gate_indexOfSpecialty_at_witness [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) :
     (indexOfSpecialty D₀ : ℤ) = 0 := by
@@ -1061,7 +1061,7 @@ theorem gate_indexOfSpecialty_at_witness [IsCurveOver K F] [Nonempty (Place K F)
   have h3 := indexOfSpecialty_eq_zero_of_genusReached h
   exact_mod_cast h3
 
-theorem gate_riemannInequality_of_genusReached [IsCurveOver K F] [Nonempty (Place K F)]
+theorem gate_riemannInequality_of_genusReached [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
     Divisor.degree D + 1 - γ ≤ (ell D : ℤ) := by
@@ -1232,6 +1232,7 @@ section Finiteness
 variable [IsCurveOver K F] [Nonempty (Place K F)]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]
 
+omit [Nonempty (Place K F)] in
 theorem omegaSpace_finite_of_genusReached
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
     Module.Finite K (omegaSpace (K := K) (F := F) D) := by
@@ -1512,7 +1513,7 @@ theorem PoleDivisorPackage.ell_nsmul_sub_pos [IsCurveOver K F]
   exact_mod_cast this
 
 
-theorem PoleDivisorPackage.degree_sub_ell_le [IsCurveOver K F] [Nonempty (Place K F)]
+theorem PoleDivisorPackage.degree_sub_ell_le [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     (P : PoleDivisorPackage K F) (D : Divisor K F) :
     Divisor.degree D - ell D ≤ (P.n : ℤ) * (P.c - 1) := by
@@ -1557,7 +1558,7 @@ theorem PoleDivisorPackage.degree_sub_ell_le [IsCurveOver K F] [Nonempty (Place 
   have h412 := P.degree_nsmul_sub_ell_le hcm
   linarith
 
-theorem riemannGenusBounded_of_poleDivisorPackage [IsCurveOver K F] [Nonempty (Place K F)]
+theorem riemannGenusBounded_of_poleDivisorPackage [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     (P : PoleDivisorPackage K F) :
     RiemannGenusBounded K F :=

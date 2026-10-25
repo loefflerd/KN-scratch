@@ -48,7 +48,7 @@ range of the restriction of the commutator built from the projector `tateProj` $
 the $K$-submodule of adic integers along a chosen complement) and the multiplication operators by
 $f$ and by $g$ is finite-dimensional over $K$, so that the residue symbol `tateRes` $u$ $f$ $g$, the
 trace of that restricted commutator, is defined. The conclusion is the proposition
-`KwF4gRRTateTraceCompat K F E h_F h_E`: for all instances making principal divisors available for $K
+`KwF4gRRTateTraceCompat K F E`: for all instances making principal divisors available for $K
 \subseteq E$ and $K \subseteq F$ and making $F$ finite-dimensional over $E$, for every place $v$ of
 $E$, every place $w$ of $F$ in the fibre of $v$, and every $g \in F$, the residue symbol at $w$ of
 the image of $g$ in $\widehat F_w$ against the image of the uniformiser $\pi_v$ of $v$ equals the
@@ -790,7 +790,7 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 variable (F)
 variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
 
-theorem kw_ffgc_completionTraceF'_apply [FiniteDimensional F F'] (g : F') :
+theorem kw_ffgc_completionTraceF'_apply (g : F') :
     kw_ffgc_completionTraceF' F W g
       = Algebra.trace (W.restrict F).adicCompletion W.adicCompletion
           (algebraMap F' W.adicCompletion g) := rfl
@@ -2169,8 +2169,6 @@ section Additivity
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 theorem finrankTrace_congr {φ ψ : V →ₗ[K] V}
-    [hφ : FiniteDimensional K (LinearMap.range φ)]
-    [hψ : FiniteDimensional K (LinearMap.range ψ)]
     (h : φ = ψ) : finrankTrace φ = finrankTrace ψ := by
   subst h; rfl
 
@@ -2727,18 +2725,13 @@ variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
 
-def KwF4gRRTateTraceCompatBlockSum (hfinF : KwF4gRRTateCommFinite K F)
-    (hfinE : KwF4gRRTateCommFinite K E) : Prop :=
+def KwF4gRRTateTraceCompatBlockSum : Prop :=
   ∀ [HasPrincipalDivisors K E] [HasPrincipalDivisors K F] [FiniteDimensional E F]
     (v : Place K E) (w : Place K F) (_ : w ∈ v.fiber F) (g : F),
-    haveI := hfinF w (algebraMap F w.adicCompletion g)
-      (algebraMap F w.adicCompletion (algebraMap E F v.uniformizer))
     let b := Module.finBasis (w.restrict E).adicCompletion w.adicCompletion
     let M := LinearMap.toMatrix b b
       (Algebra.lmul (w.restrict E).adicCompletion w.adicCompletion
         (algebraMap F w.adicCompletion g))
-    haveI := fun i => hfinE (w.restrict E) (M i i)
-      (algebraMap E (w.restrict E).adicCompletion (w.restrict E).uniformizer)
     tateRes w (algebraMap F w.adicCompletion g)
         (algebraMap F w.adicCompletion (algebraMap E F v.uniformizer))
       = ∑ i, tateRes (w.restrict E) (M i i)
@@ -2754,8 +2747,8 @@ variable [Algebra.IsIntegral E F]
 
 theorem kwF4gRRTate_traceCompat_of_blockSum
     (hfinF : KwF4gRRTateCommFinite K F) (hfinE : KwF4gRRTateCommFinite K E)
-    (hBS : KwF4gRRTateTraceCompatBlockSum K F E hfinF hfinE) :
-    KwF4gRRTateTraceCompat K F E hfinF hfinE := by
+    (hBS : KwF4gRRTateTraceCompatBlockSum K F E) :
+    KwF4gRRTateTraceCompat K F E := by
   intro _ _ _ v w hw g
   have hv : w.restrict E = v := Place.mem_fiber.mp hw
   subst hv
@@ -3162,7 +3155,7 @@ theorem kwF4gRRTate_blockSum_of_integralBasisCompat
     [∀ w : Place K F, w.FiniteResidue] [∀ v : Place K E, v.FiniteResidue]
     (hfinF : KwF4gRRTateCommFinite K F) (hfinE : KwF4gRRTateCommFinite K E)
     (hIBC : KwF4gRRTateIntegralBasisCompat K F E) :
-    KwF4gRRTateTraceCompatBlockSum K F E hfinF hfinE := by
+    KwF4gRRTateTraceCompatBlockSum K F E := by
   intro _ _ _ v w hw g
   have hv : w.restrict E = v := Place.mem_fiber.mp hw
   subst hv
@@ -3292,11 +3285,10 @@ theorem kwF4gRRTate_blockSum_of_integralBasisCompat
     show (∑ i ∈ Finset.univ, M i i) = ∑ i, M i i from rfl, htr]
 
 theorem kwF4gRRTate_traceCompat_of_integralBasisCompat
-    [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
     [∀ w : Place K F, w.FiniteResidue] [∀ v : Place K E, v.FiniteResidue]
     (hfinF : KwF4gRRTateCommFinite K F) (hfinE : KwF4gRRTateCommFinite K E)
     (hIBC : KwF4gRRTateIntegralBasisCompat K F E) :
-    KwF4gRRTateTraceCompat K F E hfinF hfinE :=
+    KwF4gRRTateTraceCompat K F E :=
   kwF4gRRTate_traceCompat_of_blockSum hfinF hfinE
     (kwF4gRRTate_blockSum_of_integralBasisCompat hfinF hfinE hIBC)
 
@@ -3510,7 +3502,7 @@ variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
 
 scoped instance kwF4R1V384a_instModuleFiberCompletion
-    [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
+    [HasPrincipalDivisors K F]
     (v : Place K E) (w' : v.fiber F) :
     Module v.adicCompletion w'.1.adicCompletion :=
   Algebra.toModule
@@ -3550,8 +3542,8 @@ variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
 
 theorem kwF4R1V386a_isSeparable_algebraMap_fiberCompletion
-    [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
-    [FiniteDimensional E F] [Algebra.IsSeparable E F]
+    [HasPrincipalDivisors K F]
+    [Algebra.IsSeparable E F]
     (v : Place K E) (w' : v.fiber F) (g : F) :
     IsSeparable v.adicCompletion (algebraMap F w'.1.adicCompletion g) := by
   have hroot : Polynomial.aeval (R := v.adicCompletion)
@@ -3566,7 +3558,7 @@ theorem kwF4R1V386a_isSeparable_algebraMap_fiberCompletion
   exact hmapsep.of_dvd (minpoly.dvd v.adicCompletion _ hroot)
 
 theorem kwF4R1V386a_isSeparable_fiberCompletion
-    [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
+    [HasPrincipalDivisors K F]
     [FiniteDimensional E F] [Algebra.IsSeparable E F]
     (v : Place K E) (w' : v.fiber F) :
     Algebra.IsSeparable v.adicCompletion w'.1.adicCompletion := by
@@ -3632,7 +3624,7 @@ variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
 
 theorem kwTateRR3_isSeparable_completion_of_global
-    [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
+    [HasPrincipalDivisors K F]
     [FiniteDimensional E F] [Algebra.IsSeparable E F]
     (w : Place K F) :
     Algebra.IsSeparable (w.restrict E).adicCompletion w.adicCompletion :=
@@ -3668,10 +3660,9 @@ theorem kwTateRR3_integralBasisCompat_of_isSeparable_global [Algebra.IsSeparable
   exact ⟨integralBasisDataOf w⟩
 
 theorem kwTateRR3_traceCompat_of_isSeparable_global [Algebra.IsSeparable E F]
-    [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
     [∀ w : Place K F, w.FiniteResidue] [∀ v : Place K E, v.FiniteResidue]
     (hfinF : KwF4gRRTateCommFinite K F) (hfinE : KwF4gRRTateCommFinite K E) :
-    KwF4gRRTateTraceCompat K F E hfinF hfinE :=
+    KwF4gRRTateTraceCompat K F E :=
   kwF4gRRTate_traceCompat_of_integralBasisCompat hfinF hfinE
     kwTateRR3_integralBasisCompat_of_isSeparable_global
 
@@ -3682,13 +3673,11 @@ end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {E : Type*} [Field E] [Algebra K E]
     [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F] [Algebra.IsSeparable E F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K E]
     [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue]
     [∀ v : AlgebraicCurve.Place K E, v.FiniteResidue]
     (hfinF : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K F)
     (hfinE : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K E) :
-    ModularCurve.KwF4gRRTate.KwF4gRRTateTraceCompat K F E hfinF hfinE :=
+    ModularCurve.KwF4gRRTate.KwF4gRRTateTraceCompat K F E :=
   ModularCurve.KwF4gRRTate.kwTateRR3_traceCompat_of_isSeparable_global hfinF hfinE
 
 end S_AlgebraicCurve_tateTraceCompat_of_isSeparable
@@ -3703,13 +3692,11 @@ theorem AlgebraicCurve.tateTraceCompat_of_isSeparable
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
     [Algebra.IsIntegral E F] [Algebra.IsSeparable E F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K E]
     [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue]
     [∀ v : AlgebraicCurve.Place K E, v.FiniteResidue]
     (hfinF : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K F)
     (hfinE : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K E) :
-    ModularCurve.KwF4gRRTate.KwF4gRRTateTraceCompat K F E hfinF hfinE :=
+    ModularCurve.KwF4gRRTate.KwF4gRRTateTraceCompat K F E :=
   solution hfinF hfinE
 
 end publicSection

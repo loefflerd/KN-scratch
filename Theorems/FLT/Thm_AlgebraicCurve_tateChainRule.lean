@@ -39,7 +39,7 @@ namely that for every place $u$ of $F$ and all $f,g$ in the adic completion $\wi
 of the restricted Tate commutator of the projection `tateProj u` onto the $K$-subspace of adic
 integers (along a chosen complement) with the multiplication operators by $f$ and $g$ is
 finite-dimensional over $K$, so that the trace `tateRes` is defined. The conclusion is the
-proposition `KwF4gRRTateChainRule K F E hfinF`: under the further assumptions, quantified inside
+proposition `KwF4gRRTateChainRule K F E`: under the further assumptions, quantified inside
 that proposition, that $K$-principal divisors exist for $E$ and for $F$, that $F/E$ is
 finite-dimensional, that $\Omega_{E/K}$ and $\Omega_{F/K}$ are nontrivial, for every place $v$ of
 $E$ and every place $w$ of $F$ in the fibre of $v$, both satisfying `DCoordGenerates`, and every $f
@@ -1391,8 +1391,6 @@ section Additivity
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
 theorem finrankTrace_congr {φ ψ : V →ₗ[K] V}
-    [hφ : FiniteDimensional K (LinearMap.range φ)]
-    [hψ : FiniteDimensional K (LinearMap.range ψ)]
     (h : φ = ψ) : finrankTrace φ = finrankTrace ψ := by
   subst h; rfl
 
@@ -1910,11 +1908,7 @@ section TateResCongr
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
 
-theorem tateRes_congr_fst {fh₁ fh₂ gh : u.adicCompletion} (heq : fh₁ = fh₂)
-    [h₁ : FiniteDimensional K (LinearMap.range
-      (tateCommRestrict (tateProj u) (lmulK u fh₁) (lmulK u gh)))]
-    [h₂ : FiniteDimensional K (LinearMap.range
-      (tateCommRestrict (tateProj u) (lmulK u fh₂) (lmulK u gh)))] :
+theorem tateRes_congr_fst {fh₁ fh₂ gh : u.adicCompletion} (heq : fh₁ = fh₂) :
     tateRes u fh₁ gh = tateRes u fh₂ gh := by
   subst heq; rfl
 
@@ -1924,13 +1918,8 @@ section DerivationFactor
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
-def KwF4gRRTateDerivationFactorSnd [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]]
-    (hfinF : KwF4gRRTateCommFinite K F) : Prop :=
+def KwF4gRRTateDerivationFactorSnd : Prop :=
   ∀ (w : Place K F) [w.DCoordGenerates] (f : w.adicCompletion) (g : F),
-    haveI := hfinF w f (algebraMap F w.adicCompletion g)
-    haveI := hfinF w (f * algebraMap F w.adicCompletion
-      (w.differentialCoeff (KaehlerDifferential.D K F g)))
-      (algebraMap F w.adicCompletion w.uniformizer)
     tateRes w f (algebraMap F w.adicCompletion g)
       = tateRes w (f * algebraMap F w.adicCompletion
           (w.differentialCoeff (KaehlerDifferential.D K F g)))
@@ -1947,8 +1936,8 @@ variable [Algebra.IsIntegral E F]
 theorem kwF4gRRTate_chainRule_of_derivationFactor
     (hfinF : KwF4gRRTateCommFinite K F)
     (hDF : ∀ [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]],
-      KwF4gRRTateDerivationFactorSnd K F hfinF) :
-    KwF4gRRTateChainRule K F E hfinF := by
+      KwF4gRRTateDerivationFactorSnd K F) :
+    KwF4gRRTateChainRule K F E := by
   intro _ _ _ _ _ v _ w _ _ fh
   have hDFw := hDF w fh (algebraMap E F v.uniformizer)
   have hker : KaehlerDifferential.D K F (algebraMap E F v.uniformizer)
@@ -2116,11 +2105,7 @@ theorem tateCommRestrict_smul_fst {V : Type*} [AddCommGroup V] [Module K V]
   unfold tateComm
   simp only [LinearMap.smul_apply, LinearMap.sub_apply, LinearMap.comp_apply, map_smul, smul_sub]
 
-theorem tateRes_congr_snd (u : Place K F) {fh gh₁ gh₂ : u.adicCompletion} (heq : gh₁ = gh₂)
-    [h₁ : FiniteDimensional K (LinearMap.range
-      (tateCommRestrict (tateProj u) (lmulK u fh) (lmulK u gh₁)))]
-    [h₂ : FiniteDimensional K (LinearMap.range
-      (tateCommRestrict (tateProj u) (lmulK u fh) (lmulK u gh₂)))] :
+theorem tateRes_congr_snd (u : Place K F) {fh gh₁ gh₂ : u.adicCompletion} (heq : gh₁ = gh₂) :
     tateRes u fh gh₁ = tateRes u fh gh₂ := by
   subst heq; rfl
 
@@ -2162,7 +2147,7 @@ def tateResFstLM (w : Place K F) (hfin : KwF4gRRTateCommFinite K F)
 
 variable [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]]
 
-def tateResSndDer (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
+def tateResSndDer (w : Place K F) [w.FiniteResidue]
     (hfin : KwF4gRRTateCommFinite K F) : Derivation K F (DualDom w) :=
   Derivation.mk'
     { toFun := fun g => tateResFstLM w hfin (algebraMap F w.adicCompletion g)
@@ -2205,7 +2190,7 @@ def tateResSndDer (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
         tateRes_congr_fst w (mul_comm f (algebraMap F _ h))])
 
 omit [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]] in
-@[scoped simp] theorem tateResSndDer_apply (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
+@[scoped simp] theorem tateResSndDer_apply (w : Place K F) [w.FiniteResidue]
     (hfin : KwF4gRRTateCommFinite K F) (g : F) (f : w.adicCompletion) :
     ((tateResSndDer w hfin) g).toLM f
       = haveI := hfin w f (algebraMap F _ g); tateRes w f (algebraMap F _ g) := rfl
@@ -2217,9 +2202,10 @@ section Headline
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]]
 
+omit [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]] in
 theorem kwTateRR2_derivationFactorSnd [∀ w : Place K F, w.FiniteResidue]
     (hfinF : KwF4gRRTateCommFinite K F) :
-    KwF4gRRTateDerivationFactorSnd K F hfinF := by
+    KwF4gRRTateDerivationFactorSnd K F := by
   intro w _ f g
   have := hfinF w f (algebraMap F _ g)
   have := hfinF w (f * algebraMap F _ (w.differentialCoeff (KaehlerDifferential.D K F g)))
@@ -2247,11 +2233,9 @@ end
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {E : Type*} [Field E] [Algebra K E]
     [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K E]
     [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue]
     (hfinF : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K F) :
-    ModularCurve.KwF4gRRTate.KwF4gRRTateChainRule K F E hfinF :=
+    ModularCurve.KwF4gRRTate.KwF4gRRTateChainRule K F E :=
   ModularCurve.KwF4gRRTate.kwF4gRRTate_chainRule_of_derivationFactor hfinF
     (fun {_ _} => ModularCurve.KwF4gRRTate.kwTateRR2_derivationFactorSnd hfinF)
 
@@ -2267,11 +2251,9 @@ theorem AlgebraicCurve.tateChainRule
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
     [Algebra.IsIntegral E F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasCanonicalLocalResidueKStar K E]
     [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue]
     (hfinF : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K F) :
-    ModularCurve.KwF4gRRTate.KwF4gRRTateChainRule K F E hfinF :=
+    ModularCurve.KwF4gRRTate.KwF4gRRTateChainRule K F E :=
   solution hfinF
 
 end publicSection

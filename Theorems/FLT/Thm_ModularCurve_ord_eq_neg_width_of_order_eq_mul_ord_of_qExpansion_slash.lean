@@ -997,6 +997,7 @@ theorem mem_toValuationSubring_iff_ord {F : Type*} [Field F] [Algebra ℂ F]
 variable (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
 
 include hT in
+omit [Γ.FiniteIndex] in
 theorem place_eq_of_readouts (σ : SL(2, ℤ))
     (hB : ∀ (k : ℤ) (hf : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k), hf ≠ 0 →
       ((qExpansion (Γ.normalCore.index : ℝ) ((hf : ℍ → ℂ) ∣[k] σ) : PowerSeries ℂ) :

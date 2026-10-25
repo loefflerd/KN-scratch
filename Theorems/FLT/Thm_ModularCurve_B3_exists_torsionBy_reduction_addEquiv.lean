@@ -98,8 +98,8 @@ end Sol3a
 
 open scoped Classical in
 theorem solution (W : WeierstrassCurve H)
-    [W.IsElliptic] (hW : IntegralCoeffs W) (hΔ : W.Δ.orderTop = 0)
-    [(specialFibre W).IsElliptic] (p : ℕ) [Fact p.Prime] :
+    (hW : IntegralCoeffs W) (hΔ : W.Δ.orderTop = 0)
+    (p : ℕ) [Fact p.Prime] :
     ∃ e : Submodule.torsionBy ℤ W.toAffine.Point (p : ℤ) ≃+
         Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ),
       ∀ (P : Submodule.torsionBy ℤ W.toAffine.Point (p : ℤ)) (x y : H)
@@ -139,8 +139,8 @@ open ModularCurve.TatePoint
 
 open scoped Classical in
 theorem ModularCurve.B3.exists_torsionBy_reduction_addEquiv (W : WeierstrassCurve H)
-    [W.IsElliptic] (hW : IntegralCoeffs W) (hΔ : W.Δ.orderTop = 0)
-    [(specialFibre W).IsElliptic] (p : ℕ) [Fact p.Prime] :
+    (hW : IntegralCoeffs W) (hΔ : W.Δ.orderTop = 0)
+    (p : ℕ) [Fact p.Prime] :
     ∃ e : Submodule.torsionBy ℤ W.toAffine.Point (p : ℤ) ≃+
         Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ),
       ∀ (P : Submodule.torsionBy ℤ W.toAffine.Point (p : ℤ)) (x y : H)
