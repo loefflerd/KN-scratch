@@ -19,8 +19,9 @@ import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.LocalProperties.Reduced
 import Mathlib.RingTheory.Henselian
 
-import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
+import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
@@ -371,10 +372,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     have h2 : v.ord (f + g) = v.ord g := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
     omega
-
-private theorem _root_.AlgebraicCurve.Place.ord_pow (f : F) (n : ℕ) :
-    v.ord (f ^ n) = n * v.ord f := by
-  rw [← zpow_natCast, v.ord_zpow]
 
 private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K[X] →+* F}
     (hφinj : Function.Injective φ)
@@ -879,37 +876,6 @@ theorem ord_placeOfEquation_XClass_self {x₀ y₀ : F} (heq : W.Equation x₀ y
 end Affine
 end WeierstrassCurve
 
-end
-
-section
-
-open Polynomial IsDedekindDomain
-
-open scoped Polynomial.Bivariate
-
-namespace WeierstrassCurve
-
-namespace Affine
-
-open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
-
-universe u
-
-variable {F : Type u} [Field F]
-
-section GenericPoint
-
-variable {W : Affine F}
-
-theorem polyToFunctionField_X_ne_algebraMap (c : F) :
-    polyToFunctionField W X ≠ algebraMap F W.FunctionField c := by
-  intro hcon
-  refine polyToFunctionField_ne_zero (W := W) (X_sub_C_ne_zero c) ?_
-  rw [map_sub, polyToFunctionField_C, hcon, sub_self]
-
-end GenericPoint
-end Affine
-end WeierstrassCurve
 end
 
 section
