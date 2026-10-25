@@ -1507,9 +1507,8 @@ theorem finrank_adeleBddSup_quotient [IsCurveOver K F]
 
 section Index
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
 
-omit [Nonempty (Place K F)] in
 theorem adeleBddSup_eq_of_degree_sub_ell_eq {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂)
     [FiniteDimensional K (LSpace D₂)]
     (heq : Divisor.degree D₂ - ell D₂ = Divisor.degree D₁ - ell D₁) :
@@ -1797,10 +1796,9 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 section Finiteness
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]
 
-omit [Nonempty (Place K F)] in
 theorem omegaSpace_finite_of_genusReached
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
     Module.Finite K (omegaSpace (K := K) (F := F) D) := by
@@ -1895,13 +1893,12 @@ theorem residuePairing_surjective_of_rankOne_max [HasPrincipalDivisors K F]
 
 section Identification
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]
   [HasCanonicalDivisor (K := K) (F := F)]
 
 omit [HasCanonicalDivisor (K := K) (F := F)]
   in
-omit [Nonempty (Place K F)] in
 theorem stichtenothGenus_nonneg
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     (hC : ConstantsAreBase K F) : 0 ≤ γ := by
@@ -1910,7 +1907,7 @@ theorem stichtenothGenus_nonneg
   have h0 : (0 : ℤ) ≤ (indexOfSpecialty (0 : Divisor K F) : ℤ) := Int.natCast_nonneg _
   push_cast at hi0; linarith
 
-omit [Nonempty (Place K F)] [FiniteDimensional K (LSpace (0 : Divisor K F))]
+omit [FiniteDimensional K (LSpace (0 : Divisor K F))]
   in
 theorem genus_eq_degree_div :
     ∃ (ω₀ : Ω[F⁄K]) (hω₀ : ω₀ ≠ 0),

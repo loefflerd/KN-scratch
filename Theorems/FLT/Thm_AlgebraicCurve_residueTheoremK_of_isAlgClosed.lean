@@ -1413,13 +1413,10 @@ theorem fiberKaehlerCotraceResidueIdentityK_of_rowAK_rowB
 end Engine
 section RowBDischarged
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
-variable {E : Type*} [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E]
+variable {K F : Type*} [Field K] [Field F] [Algebra K F]
+variable {E : Type*} [Field E] [Algebra K E]
 variable [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-variable [HasLocalResidue K E] [HasLocalResidue K F]
 
-omit [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
-  [HasLocalResidue K E] [HasLocalResidue K F] in
 theorem fiberKaehlerCotraceResidueIdentityK_of_rowAK
     (hA : CotraceResidueIdentityOnFiberLocalizedK K F E) :
     FiberKaehlerCotraceResidueIdentityK K F E :=
@@ -1430,12 +1427,11 @@ end RowBDischarged
 section CompositeRatFunc
 
 variable {K F : Type*} [Field K] [IsAlgClosed K]
-variable [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
+variable [Field F] [Algebra K F]
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ w : Place K F, w.DCoordGenerates]
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
-variable [Algebra.IsIntegral (RatFunc K) F] [HasLocalResidue K F]
+variable [Algebra.IsIntegral (RatFunc K) F]
 
-omit [HasCanonicalLocalResidueKStar K F] [HasLocalResidue K F] in
 theorem residueTheoremK_of_rowAK_ratFunc_isAlgClosed
     (hgen : kaehlerPullback K F (RatFunc K) (dX K) ≠ 0)
     (hA : CotraceResidueIdentityOnFiberLocalizedK K F (RatFunc K)) :
@@ -1565,10 +1561,8 @@ variable [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ w : Place K F, w.DCoordGenerates]
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [Algebra.IsIntegral (RatFunc K) F]
-variable [HasLocalResidue K F]
 variable [∀ w : Place K F, w.FiniteResidue]
 
-omit [HasLocalResidue K F] in
 theorem residueTheoremK_of_fiberKaehlerCotraceResidueIdentity_ratFunc_isAlgClosed
     (hgen : kaehlerPullback K F (RatFunc K) (dX K) ≠ 0)
     (hFKCRI : FiberKaehlerCotraceResidueIdentity K F (RatFunc K)) :
@@ -1713,10 +1707,8 @@ section CompletionTraceAtLinear
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F] [HasPrincipalDivisors K F]
-variable [FiniteDimensional E F]
 
 omit [HasPrincipalDivisors K F] in
-omit [FiniteDimensional E F] in
 theorem kwF4R1V391a_completionTraceF'_mul_algebraMap (w : Place K F) (g : F) (c : E) :
     kw_ffgc_completionTraceF' E w (g * algebraMap E F c)
       = kw_ffgc_completionTraceF' E w g
@@ -1726,7 +1718,6 @@ theorem kwF4R1V391a_completionTraceF'_mul_algebraMap (w : Place K F) (g : F) (c 
     mul_comm (algebraMap F w.adicCompletion g) _, ← Algebra.smul_def,
     LinearMap.map_smul, smul_eq_mul, mul_comm]
 
-omit [FiniteDimensional E F] in
 theorem kwF4R1V391a_completionTraceAt_mul_algebraMap
     (v : Place K E) (w : Place K F) (hw : w ∈ v.fiber F) (g : F) (c : E) :
     kwHgfV352_completionTraceAt v w hw (g * algebraMap E F c)
@@ -2538,11 +2529,9 @@ variable [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ w : Place K F, w.DCoordGenerates]
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [Algebra.IsIntegral (RatFunc K) F] [Module.Finite (RatFunc K) F]
-variable [HasLocalResidue K F]
 variable [∀ w : Place K F, w.FiniteResidue]
 variable [Nontrivial Ω[F⁄K]]
 
-omit [HasLocalResidue K F] in
 theorem kw_es_residueTheoremK_of_RTCC_isAlgClosed
     [HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates]
@@ -2555,7 +2544,6 @@ theorem kw_es_residueTheoremK_of_RTCC_isAlgClosed
   exact residueTheoremK_of_fiberKaehlerCotraceResidueIdentity_ratFunc_isAlgClosed hgen
     (kw_es_fiberKaehlerCotraceResidueIdentity_of_RTCC_CTS hRTCC hCTS)
 
-omit [HasLocalResidue K F] in
 theorem kw_es_residueTheoremK_of_RTCC_isAlgClosed'
     [HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates]
@@ -2601,13 +2589,11 @@ variable [Field F] [Algebra K F]
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ w : Place K F, w.DCoordGenerates]
 variable [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
 variable [Algebra.IsIntegral (RatFunc K) F] [Module.Finite (RatFunc K) F]
-variable [HasLocalResidue K F]
 variable [∀ w : Place K F, w.FiniteResidue]
 variable [Nontrivial Ω[F⁄K]]
 variable [IsCurveOver K F]
 variable [∀ u : Place K (RatFunc K), u.FiniteResidue]
 
-omit [HasLocalResidue K F] in
 theorem kwTateRR3_residueTheoremK_of_isAlgClosed
     [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates] :

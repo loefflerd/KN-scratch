@@ -2200,9 +2200,7 @@ end TateResDerivation
 section Headline
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]]
 
-omit [HasPrincipalDivisors K F] [Nontrivial Ω[F⁄K]] in
 theorem kwTateRR2_derivationFactorSnd [∀ w : Place K F, w.FiniteResidue]
     (hfinF : KwF4gRRTateCommFinite K F) :
     KwF4gRRTateDerivationFactorSnd K F := by

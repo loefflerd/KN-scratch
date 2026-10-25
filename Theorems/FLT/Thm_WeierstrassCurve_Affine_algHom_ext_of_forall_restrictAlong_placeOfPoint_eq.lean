@@ -135,10 +135,9 @@ namespace IsogenyEndDatum
 
 open WeierstrassCurve.Affine.IsogenyEndDatum
 
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
+variable {F : Type*} [Field F] [DecidableEq F] [CharZero F]
+variable {W : Affine F} [GenusOnePlaceGate W] [AbelTheorem W]
 
-omit [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd_eq_pointEnd' (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
     D.pointEnd hN = D.pointEnd' := rfl
 

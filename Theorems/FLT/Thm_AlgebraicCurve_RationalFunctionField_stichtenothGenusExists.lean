@@ -1163,7 +1163,7 @@ namespace AlgebraicCurve
 
 namespace RationalFunctionField
 
-variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
+variable (K : Type*) [Field K]
 variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
   [IsScalarTower K (RatFunc K) F]
 
@@ -1171,14 +1171,11 @@ section LyingOver
 
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 
-omit [DecidableEq (RatFunc K)] in
-omit [DecidableEq (RatFunc K)] in
 private theorem _root_.AlgebraicCurve.RationalFunctionField.exists_restrict_eq (v : Place K (RatFunc
   K)) :
     ∃ w : Place K F, w.restrict (RatFunc K) = v :=
   Place.exists_restrict_eq v
 
-omit [DecidableEq (RatFunc K)] in
 theorem nonempty_place_of_ratFunc_tower : Nonempty (Place K F) := by
   classical
   exact
@@ -1186,7 +1183,7 @@ theorem nonempty_place_of_ratFunc_tower : Nonempty (Place K F) := by
 
 end LyingOver
 
-omit [DecidableEq (RatFunc K)] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] in
+omit [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] in
 theorem finiteDimensional_lSpace_zero_of_constantsAreBase (hC : ConstantsAreBase K F) :
     FiniteDimensional K (LSpace (0 : Divisor K F)) := by
   rw [show LSpace (0 : Divisor K F) = LinearMap.range (Algebra.linearMap K F) from hC]
@@ -1195,7 +1192,6 @@ theorem finiteDimensional_lSpace_zero_of_constantsAreBase (hC : ConstantsAreBase
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
 variable [IsCurveOver K F]
 
-omit [DecidableEq (RatFunc K)] in
 theorem stichtenothGenusExists_port (hC : ConstantsAreBase K F) :
     StichtenothGenusExists K F := by
   classical

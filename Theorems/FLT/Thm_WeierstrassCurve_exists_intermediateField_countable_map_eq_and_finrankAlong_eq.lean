@@ -1675,17 +1675,16 @@ p2m_open "WeierstrassCurve \
 
 section Cast
 
-variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K]
 
 omit [DecidableEq K] in
-omit [Algebra ℚ K] [IsAlgClosed K] [CharZero K] in
+omit [Algebra ℚ K] in
 theorem kw_iCaW_degree_mpr {W W' : WeierstrassCurve K}
     (heq : W = W') (D : TreeIsogenyEndDatum W'.toAffine) :
     (Eq.mpr (congrArg (fun V => TreeIsogenyEndDatum V.toAffine) heq) D).degree = D.degree := by
   classical
   subst heq; rfl
 
-omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iCaW_coeffsHyp_of_subset_cast {K₀ : IntermediateField ℚ K}
     (E₀ : WeierstrassCurve K₀)
     {W' : WeierstrassCurve K} (heq : E₀.map (algebraMap K₀ K) = W')
@@ -1703,7 +1702,7 @@ theorem kw_iCaW_coeffsHyp_of_subset_cast {K₀ : IntermediateField ℚ K}
   · exact (kw_iCa_crCoeffsIn_of_ffCoeffSet_subset _ _ hY i j).1
   · exact (kw_iCa_crCoeffsIn_of_ffCoeffSet_subset _ _ hY i j).2
 
-omit [DecidableEq K] [IsAlgClosed K] [CharZero K] in
+omit [DecidableEq K] in
 theorem kw_iCaW_descend_of_pinned_cast {K₀ : IntermediateField ℚ K}
     (E₀ : WeierstrassCurve K₀) [E₀.IsElliptic]
     {W' : WeierstrassCurve K}
@@ -1723,17 +1722,15 @@ end Cast
 
 section Wire
 
-variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K]
 variable (E : WeierstrassCurve K) [E.IsElliptic] (D : TreeIsogenyEndDatum E.toAffine)
 
-omit [IsAlgClosed K] [CharZero K] in
 omit [E.IsElliptic] in
 theorem kw_iCaW_hcoeffs_canonical :
     kw_iA_CoeffsHyp (kw_iCa_E₀ E D) (kw_iCa_D' E D) :=
   kw_iCaW_coeffsHyp_of_subset_cast (kw_iCa_E₀ E D) (kw_iCa_E₀_map E D) D
     (kw_iCa_ffCoeffSet_subset_X E D) (kw_iCa_ffCoeffSet_subset_Y E D)
 
-omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iotaDescendToFG_of_canonicalFinrank
     (hCan : KwIotaCanonicalFinrank E D) :
     KwIsogenyEndDatumIotaDescendToFG'' K E D :=
@@ -2125,38 +2122,30 @@ p2m_open "WeierstrassCurve \
 
 section E2EChain
 
-variable {K : Type uK} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
+variable {K : Type uK} [Field K] [Algebra ℚ K]
 
-omit [DecidableEq K] [IsAlgClosed K] [CharZero K] in
 theorem kw_iE2E_iotaDescendToFG_of_iotaDescendToFG''
     (E : WeierstrassCurve K) (D : TreeIsogenyEndDatum E.toAffine)
     (h : KwIsogenyEndDatumIotaDescendToFG'' K E D) :
     KwIsogenyEndDatumIotaDescendToFG K E D := open scoped Classical in h
 
-omit [DecidableEq K] in
-omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iE2E_iotaDescendToFG_uncond (E : WeierstrassCurve K) [E.IsElliptic]
     (D : TreeIsogenyEndDatum E.toAffine) :
     KwIsogenyEndDatumIotaDescendToFG K E D := open scoped Classical in
   kw_iE2E_iotaDescendToFG_of_iotaDescendToFG'' E D
     (kw_iPFE_iotaDescendToFG_uncond E D)
 
-omit [DecidableEq K] [IsAlgClosed K] [CharZero K] in
 theorem kw_iE2E_subfieldDescent_of_subfieldDescent''
     (E : WeierstrassCurve K) (N : ℕ)
     (h : KwIsogenyEndDatumSubfieldDescent'' K E N) :
     KwIsogenyEndDatumSubfieldDescent K E N := open scoped Classical in h
 
-omit [DecidableEq K] in
-omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iE2E_subfieldDescent_uncond (E : WeierstrassCurve K) [E.IsElliptic] (N : ℕ) :
     KwIsogenyEndDatumSubfieldDescent K E N := open scoped Classical in
   kw_iE2E_subfieldDescent_of_subfieldDescent'' E N
     (kw_subfieldDescent_of_iotaDescend K E N
       (fun D => kw_iE2E_iotaDescendToFG_uncond E D))
 
-omit [DecidableEq K] in
-omit [IsAlgClosed K] [CharZero K] in
 theorem kw_iE2E_fgFieldDescent_uncond (E : WeierstrassCurve K) [E.IsElliptic] (N : ℕ) :
     KwIsogenyEndDatumFGFieldDescent K E N := open scoped Classical in
   kw_fgFieldDescent_of_subfieldDescent_of_baseChangeToAC K E N

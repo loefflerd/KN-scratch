@@ -134,43 +134,42 @@ end TowerMaps
 
 section Composites
 
-variable (L : Type*) [Field L] [Algebra ℚ L] {N M : ℕ} [NeZero N] [NeZero M] (ℓ ℓ' : ℕ)
+variable (L : Type*) [Field L] [Algebra ℚ L] {N M : ℕ} [NeZero M] (ℓ ℓ' : ℕ)
   [NeZero ℓ] [NeZero ℓ']
 
-omit [NeZero N] [NeZero ℓ] in
+omit [NeZero ℓ] in
 theorem heckeAlphaBar_eq_towerInclBar : heckeAlphaBar L N ℓ = towerInclBar L (dvd_mul_right N ℓ) :=
   rfl
 
-omit [NeZero N] in
 theorem heckeBetaBar_eq_towerSubstBar : heckeBetaBar L N ℓ = towerSubstBar L N ℓ dvd_rfl := by
   refine AlgHom.ext fun x => Subtype.ext ?_
   rw [coe_towerSubstBar, coe_heckeBetaBar]
 
-omit [NeZero N] [NeZero M] [NeZero ℓ] in
+omit [NeZero M] [NeZero ℓ] in
 theorem towerInclBar_comp_heckeAlphaBar (h : N * ℓ ∣ M) (h' : N ∣ M) :
     (towerInclBar L h).comp (heckeAlphaBar L N ℓ) = towerInclBar L h' := by
   refine AlgHom.ext fun x => Subtype.ext ?_
   rw [AlgHom.comp_apply, coe_towerInclBar, coe_heckeAlphaBar, coe_towerInclBar]
 
-omit [NeZero N] [NeZero M] in
+omit [NeZero M] in
 theorem towerInclBar_comp_heckeBetaBar (h : N * ℓ ∣ M) :
     (towerInclBar L h).comp (heckeBetaBar L N ℓ) = towerSubstBar L N ℓ h :=
   rfl
 
-omit [NeZero N] [NeZero M] [NeZero ℓ'] in
+omit [NeZero M] [NeZero ℓ'] in
 theorem towerSubstBar_comp_heckeAlphaBar (h : N * ℓ' * ℓ ∣ M) (h' : N * ℓ ∣ M) :
     (towerSubstBar L (N * ℓ') ℓ h).comp (heckeAlphaBar L N ℓ') = towerSubstBar L N ℓ h' := by
   refine AlgHom.ext fun x => Subtype.ext ?_
   rw [AlgHom.comp_apply, coe_towerSubstBar, coe_heckeAlphaBar, coe_towerSubstBar]
 
-omit [NeZero N] [NeZero M] in
+omit [NeZero M] in
 theorem towerSubstBar_comp_heckeBetaBar (h : N * ℓ' * ℓ ∣ M) (h' : N * (ℓ * ℓ') ∣ M) :
     (towerSubstBar L (N * ℓ') ℓ h).comp (heckeBetaBar L N ℓ') = towerSubstBar L N (ℓ * ℓ') h' := by
   refine AlgHom.ext fun x => Subtype.ext ?_
   rw [AlgHom.comp_apply, coe_towerSubstBar, coe_heckeBetaBar, coe_towerSubstBar]
   exact qExpand_qExpand ℓ' ℓ _
 
-omit [NeZero N] [NeZero M] [NeZero ℓ'] in
+omit [NeZero M] [NeZero ℓ'] in
 theorem heckeSquareBar_commutes (h₁ : N * ℓ ∣ M) (h₂ : N * ℓ' * ℓ ∣ M) :
     (towerInclBar L h₁).comp (heckeBetaBar L N ℓ) =
       (towerSubstBar L (N * ℓ') ℓ h₂).comp (heckeAlphaBar L N ℓ') := by

@@ -675,9 +675,8 @@ end Transfer
 
 section EZvanish
 
-variable {K : Type*} [Field K] [DecidableEq K] (W : WeierstrassCurve K) [W.IsElliptic]
+variable {K : Type*} [Field K] [DecidableEq K] (W : WeierstrassCurve K)
 
-omit [W.IsElliptic] in
 lemma evalEval_EZpoly_eq_zero (m : ℤ) {x y : K} (h : W.toAffine.Nonsingular x y) {x₁ y₁ : K}
     (h₁ : W.toAffine.Nonsingular x₁ y₁) (hmP : m • Point.some x y h = Point.some x₁ y₁ h₁) :
     (EZpoly W m).evalEval x y = 0 := by

@@ -966,7 +966,7 @@ universe u
 
 public section
 
-variable {R₀ : Type u} [Field R₀] (E₀ E₀' : WeierstrassCurve R₀) [E₀.IsElliptic]
+variable {R₀ : Type u} [Field R₀] (E₀ E₀' : WeierstrassCurve R₀)
 variable (F : Type u) [Field F] [Algebra R₀ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable (F' : Type u) [Field F'] [Algebra R₀ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
 variable [Algebra F F'] [IsScalarTower R₀ F F']
@@ -980,7 +980,6 @@ variable [(E₀⁄F).IsElliptic] [(E₀⁄F).toAffine.GenusOnePlaceGate]
     [GenusOnePlaceGate.IsCentred (E₀'⁄F').toAffine] [(E₀'⁄F').toAffine.AbelTheorem]
 variable (ι₀ : (E₀'⁄F).toAffine.FunctionField →ₐ[F] (E₀⁄F).toAffine.FunctionField)
 
-omit [E₀.IsElliptic] in
 /-- A finite function-field map base changes with the same degree, compatibly with scalar
 extension on function fields and with the induced homomorphisms on elliptic-curve points. -/
 theorem exists_functionFieldHom_baseChange_compatible

@@ -948,9 +948,8 @@ theorem finrank_adeleBddSup_quotient [IsCurveOver K F]
 
 section Index
 
-variable [IsCurveOver K F] [Nonempty (Place K F)]
+variable [IsCurveOver K F]
 
-omit [Nonempty (Place K F)] in
 theorem adeleBddSup_eq_of_degree_sub_ell_eq {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂)
     [FiniteDimensional K (LSpace D₂)]
     (heq : Divisor.degree D₂ - ell D₂ = Divisor.degree D₁ - ell D₁) :

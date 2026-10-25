@@ -4120,9 +4120,8 @@ end Psi2Sq
 
 section Parity
 
-variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
+variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 
-omit [DecidableEq F] in
 theorem veluDeficitCrossQuadBetaOnly_negY_of_equation {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) :
     W.veluDeficitCrossQuadBetaOnly S r (W.toAffine.negY r s)

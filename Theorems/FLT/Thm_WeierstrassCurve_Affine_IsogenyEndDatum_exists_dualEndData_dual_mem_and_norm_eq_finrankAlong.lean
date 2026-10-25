@@ -453,9 +453,8 @@ namespace WeierstrassCurve
 namespace Affine
 universe u
 
-variable {F : Type u} [Field F] (W : Affine F) [W.IsElliptic] [W.GenusOnePlaceGate]
+variable {F : Type u} [Field F] (W : Affine F) [W.GenusOnePlaceGate]
 
-omit [W.IsElliptic] in
 @[scoped simp] theorem placeOfPointEquiv_symm_placeOfPoint (P : W.Point) :
     (placeOfPointEquiv W).symm (placeOfPoint P) = P :=
   (placeOfPointEquiv W).symm_apply_apply P
@@ -1925,10 +1924,10 @@ universe u
 section GeneralW
 
 variable {F : Type u} [Field F] [DecidableEq F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W]
-    [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
+variable {W : Affine F} [WeierstrassCurve.Affine.GenusOnePlaceGate W]
+    [WeierstrassCurve.Affine.AbelTheorem W]
 
-omit [DecidableEq F] [W.IsElliptic] [GenusOnePlaceGate.IsCentred W] [W.AbelTheorem] in
+omit [DecidableEq F] [W.AbelTheorem] in
 theorem kw_geomMorph_surjective (D : IsogenyEndDatum W) :
     Surjective D.geomMorph := fun Q => by
   have : CharZero W.FunctionField :=
@@ -1938,7 +1937,6 @@ theorem kw_geomMorph_surjective (D : IsogenyEndDatum W) :
   exact ⟨(placeOfPointEquiv W).symm w, placeOfPoint_injective (by
     rw [← D.placeOfPoint_geomMorph, placeOfPoint_placeOfPointEquiv_symm, hw])⟩
 
-omit [W.IsElliptic] [GenusOnePlaceGate.IsCentred W] in
 theorem kw_pointEnd_surjective (D : IsogenyEndDatum W) :
     Surjective (D.pointEnd' : W.Point → W.Point) := fun R => by
   obtain ⟨P, hP⟩ := kw_geomMorph_surjective D (R + D.geomMorph 0)
