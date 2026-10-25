@@ -98,7 +98,6 @@ theorem qExpand_single (k : ℤ) (r : R) :
     qExpand R N (HahnSeries.single k r) = HahnSeries.single ((N : ℤ) * k) r :=
   HahnSeries.embDomain_single
 
-@[simp]
 theorem qExpand_C (r : R) : qExpand R N (HahnSeries.C r) = HahnSeries.C r :=
   HahnSeries.embDomainRingHom_C
 

@@ -412,7 +412,6 @@ def restrictInclusion : (w.restrict F).toValuationSubring →+* w.toValuationSub
   map_zero' := Subtype.ext (map_zero (algebraMap F F'))
   map_add' a b := Subtype.ext (map_add (algebraMap F F') (a : F) (b : F))
 
-@[simp]
 theorem coe_restrictInclusion (a : (w.restrict F).toValuationSubring) :
     ((restrictInclusion F w a : w.toValuationSubring) : F') = algebraMap F F' (a : F) := rfl
 
@@ -433,7 +432,6 @@ variable (F) in
 def restrictResidueMap : (w.restrict F).ResidueField →+* w.ResidueField :=
   IsLocalRing.ResidueField.map (restrictInclusion F w)
 
-@[simp]
 theorem restrictResidueMap_residue (a : (w.restrict F).toValuationSubring) :
     restrictResidueMap F w (IsLocalRing.residue _ a) =
       IsLocalRing.residue _ (restrictInclusion F w a) :=
