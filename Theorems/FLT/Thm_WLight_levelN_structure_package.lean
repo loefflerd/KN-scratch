@@ -14,8 +14,6 @@ module
 public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.Adjoin.Polynomial.Transcendental
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Theorems.FLT.Thm_WLight_levelOne_hauptmodul_package
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package

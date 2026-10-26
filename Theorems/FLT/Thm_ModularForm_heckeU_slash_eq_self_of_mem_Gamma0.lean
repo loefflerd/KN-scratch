@@ -15,8 +15,6 @@ public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -63,7 +61,7 @@ namespace P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
 noncomputable section
 
 open Matrix.SpecialLinearGroup UpperHalfPlane
-p2m_open_scoped "MatrixGroups ModularForm OnePoint"
+p2m_open_scoped "MatrixGroups ModularForm"
 
 namespace ModularForm
 p2m_export "ModularForm" "rec ext heckeMatrix heckeDiagMatrix heckeU heckeT heckeU_def \

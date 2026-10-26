@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_injective
 import Definitions.FLT.Def_P2M_Util
 

@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_FLTPrelim_Modularity
 
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Definitions.FLT.Def_ModularForm_HeckeOperator
 import Definitions.FLT.Def_P2M_Util
 
 /-!

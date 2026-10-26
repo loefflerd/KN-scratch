@@ -13,8 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_TatePoint
 
-import Mathlib.RingTheory.SimpleRing.Principal
-import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
 
 /-!
 # The near-curve is the explicit model at j₀+s
@@ -57,7 +55,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-open ModularCurve.TatePoint ModularCurve.B3 WeierstrassCurve
+open ModularCurve.TatePoint WeierstrassCurve
 
 noncomputable section
 
@@ -91,7 +89,7 @@ end S12B3
 
 end
 
-open ModularCurve.B3 ModularCurve.TatePoint WeierstrassCurve
+open ModularCurve.TatePoint WeierstrassCurve
 
 theorem solution (j₀ : Qbar) :
     nearCurve j₀ = WeierstrassCurve.ofJNe0Or1728 (jNear j₀) := by

@@ -13,15 +13,11 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.DedekindEta
 
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.GroupTheory.Schreier
-import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.NumberTheory.ModularForms.Discriminant
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.Prime
 import Theorems.FLT.Thm_CuspForm_exists_degeneracy_Gamma0
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # η(Nτ)²⁴ is a weight-12 cusp form on Γ₀(N)

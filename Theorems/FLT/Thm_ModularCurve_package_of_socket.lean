@@ -14,10 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
-import Theorems.FLT.Thm_Polynomial_mem_range_of_unique_common_root
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime_pow
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_mul_of_coprime
 import Theorems.FLT.Thm_ModularCurve_relfinrank_fullC_mul_prime_pow

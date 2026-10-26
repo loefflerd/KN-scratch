@@ -13,9 +13,7 @@ module
 
 public import Definitions.FLT.Def_HahnSeries_RamificationBound
 
-import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff
 import Definitions.FLT.Def_P2M_Util
-import Mathlib.Algebra.EuclideanDomain.Field
 import Mathlib.CategoryTheory.Category.Init
 import Mathlib.Data.Nat.Totient
 import Mathlib.Data.Rat.Floor

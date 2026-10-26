@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_of_squarefree
 import Theorems.FLT.Thm_ModularCurve_relfinrank_full_of_squarefree
 import Theorems.FLT.Thm_ModularCurve_relfinrank_modularFunctionField
@@ -63,7 +62,7 @@ namespace P2MW.S_ModularCurve_functionFieldGeneration_of_squarefree
 
 noncomputable section
 
-p2m_open "ModularCurve ModularCurve.PhiGen"
+p2m_open "ModularCurve"
 open scoped IntermediateField
 
 namespace ModularCurve

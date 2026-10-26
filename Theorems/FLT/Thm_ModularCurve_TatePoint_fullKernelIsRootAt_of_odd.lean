@@ -13,9 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
 
-import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeOdd
-import Theorems.FLT.Thm_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_transcendental
-import Theorems.FLT.Thm_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_isRoot_map_j_veluQuotient_j_of_addOrderOf_eq
 
 /-!

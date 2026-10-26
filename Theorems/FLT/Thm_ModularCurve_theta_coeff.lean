@@ -13,7 +13,6 @@ module
 
 public import Mathlib.RingTheory.LaurentSeries
 
-import Theorems.FLT.Thm_ModularCurve_PhiGen_sum_qTwist_coeff
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -56,13 +55,11 @@ section privateSection
 
 namespace P2MW.S_ModularCurve_theta_coeff
 
-p2m_open "ModularCurve ModularCurve.PhiGen"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_coeff_mul \
   qExpand_coeff_of_not_dvd qExpand_one_apply"
 end ModularCurve
-p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_coeff {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) :
     ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k =
       k • f.coeff k := by
@@ -114,8 +111,8 @@ example :
   simp only [F, θF, w0, w2, ModularCurve.theta_coeff, HahnSeries.coeff_add, HahnSeries.coeff_single]
   norm_num
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve
-  _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve.PhiGen in
+open _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve
+   _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve.PhiGen in
 theorem solution {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) :
     ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k =
       k • f.coeff k :=
@@ -129,7 +126,6 @@ end privateSection
 
 public section publicSection
 
-open ModularCurve ModularCurve.PhiGen
 theorem ModularCurve.theta_coeff {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) :
     ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k =
       k • f.coeff k :=

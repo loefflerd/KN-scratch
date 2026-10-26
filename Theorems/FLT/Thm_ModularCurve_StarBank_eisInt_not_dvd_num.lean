@@ -14,7 +14,12 @@ module
 public import Mathlib.NumberTheory.Bernoulli
 
 import Mathlib.Algebra.GCDMonoid.FinsetLemmas
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Combinatorics.Matroid.Init
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.Tactic.NormNum.Parity
 
 /-!
 # A prime ℓ ≥ 5 does not divide num(B_{ℓ-1})

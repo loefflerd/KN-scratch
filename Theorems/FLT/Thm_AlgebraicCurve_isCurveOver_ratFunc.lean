@@ -16,7 +16,6 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Mathlib.RingTheory.DedekindDomain.Factorization
-import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Definitions.FLT.Def_P2M_Util

@@ -13,12 +13,10 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Theorems.FLT.Thm_ModularCurve_transcendental_jq
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Mathlib.NumberTheory.Cyclotomic.Basic
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Transpose of Φ monic of degree ψ(N) over ℚ(j)

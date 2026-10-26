@@ -13,13 +13,10 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
-import Theorems.FLT.Thm_Polynomial_mem_range_of_unique_common_root
-import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
-import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Descent closure: F_N = F_N^{full} from one-prime steps
@@ -61,15 +58,13 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-open _root_.ModularCurve.ModularPolynomialHelpers
 
-open _root_.ModularCurve.W1
 
 namespace P2MW.S_ModularCurve_modularFunctionField_eq_full_of
 
 noncomputable section
 
-p2m_open "ModularCurve ModularCurve.PhiGen"
+p2m_open "ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \
@@ -125,7 +120,6 @@ p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qE
   coeffMap_injective exists_phiIrreducible_evalSymm"
 end ModularCurve
 
-open ModularCurve.W1
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective \

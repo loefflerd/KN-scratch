@@ -18,10 +18,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_Place_diffCoeff_smul_D_of_ord_ne_zero
 import Theorems.FLT.Thm_AlgebraicCurve_Place_diffCoeff_smul_D_eq
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_eq_one
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg
-import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_add_eq_of_lt
-import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_natCast
 import Definitions.FLT.Def_P2M_Util
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Mathlib.RingTheory.Flat.TorsionFree
 
 /-!

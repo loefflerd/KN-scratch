@@ -15,9 +15,9 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.Topology
 
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Definitions.FLT.Def_FLTPrelim_Modularity
-import Mathlib.RingTheory.RootsOfUnity.Complex
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Combinatorics.Matroid.Init
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 /-!
 # Uₚ preserves 1-periodicity
@@ -65,11 +65,11 @@ noncomputable section
 
 open Complex Function Filter
 p2m_open "UpperHalfPlane~I"
-open scoped Real MatrixGroups ModularForm Manifold Topology
+open scoped Real MatrixGroups ModularForm Topology
 
 namespace M4cP1W2
 
-open ModularForm ModularFormClass
+open ModularForm
 
 section Regularity
 

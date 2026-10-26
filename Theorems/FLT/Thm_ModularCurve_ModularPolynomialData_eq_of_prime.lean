@@ -16,7 +16,6 @@ public import Definitions.FLT.Def_ModularCurve_X0
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_of_prime
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
 import Theorems.FLT.Thm_ModularCurve_PhiGen_evalAtJ_injective
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
 import Definitions.FLT.Def_P2M_Util
 
 /-!

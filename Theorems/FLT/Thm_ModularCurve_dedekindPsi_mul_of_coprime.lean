@@ -13,9 +13,7 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
 import Mathlib.NumberTheory.ArithmeticFunction.Misc
-import Mathlib.RingTheory.Polynomial.Resultant.Basic
 import Definitions.FLT.Def_P2M_Util
 
 /-!

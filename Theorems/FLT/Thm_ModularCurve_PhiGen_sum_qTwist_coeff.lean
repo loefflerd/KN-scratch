@@ -14,16 +14,11 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_of_prime
-import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_eq_toAdjoin
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible
-import Theorems.FLT.Thm_ModularCurve_aeval_jqN_toAdjoin
-import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
-import Definitions.FLT.Def_ModularCurve_HeckeOperator
 import Mathlib.Algebra.Order.Algebra
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Summing q-twists over the ℓ-th roots of unity
@@ -64,9 +59,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-open _root_.ModularCurve.ModularPolynomialHelpers
 
-open _root_.ModularCurve.W1
 
 namespace P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff
 

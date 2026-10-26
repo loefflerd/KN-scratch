@@ -14,20 +14,15 @@ module
 
 public import Mathlib.Basic.Complex.Basic
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Mathlib.RingTheory.PicardGroup
-import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_inv
-import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
-import Theorems.FLT.Thm_PeriodPair_isUniformization_toPoint
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong
-import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Definitions.FLT.Def_P2M_Util
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.RingTheory.Henselian
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 
 /-!
 # Cyclic kernel and its order transport along function-field isomorphisms
@@ -250,7 +245,6 @@ end WeierstrassCurve
 section
 open Complex Filter Set
 
-p2m_open_scoped "PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstrassP_add_coe \
@@ -258,9 +252,7 @@ p2m_export "PeriodPair" "derivWeierstrassP_neg weierstrassP_neg lattice weierstr
   weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₃ DiscriminantNeZero toPoint \
   toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice scale_indep scale \
   discriminant_ne_zero isUniformization_toPoint"
-p2m_open "PeriodPair"
 
-variable (L : PeriodPair)
 
 p2m_export "PeriodPair" "kw_discriminantNeZero"
 
@@ -306,7 +298,7 @@ p2m_open "WeierstrassCurve \
   Curve.Affine \
   AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
   P2MW.S_OVERLONG_b277e395.AlgebraicCu\
-  rve PeriodPair \
+  rve \
   P2MW.S_OVERLONG_b277e395.PeriodPair"
 
 end ModularCurve
@@ -685,10 +677,9 @@ section
 
 section
 
-p2m_open_scoped "PeriodPair \
-  P2MW.S_OVERLONG_b277e395.PeriodPair \
+p2m_open_scoped "P2MW.S_OVERLONG_b277e395.PeriodPair \
   UpperHalfPlane MatrixGroups"
-p2m_open "PeriodPair P2MW.S_OVERLONG_b277e395.PeriodPair Polynomial \
+p2m_open "P2MW.S_OVERLONG_b277e395.PeriodPair Polynomial \
   P2MW.S_OVERLONG_b277e395.ModularCurve"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
   P2MW.S_OVERLONG_b277e395.AlgebraicCu\
@@ -733,10 +724,9 @@ end
 
 section
 
-p2m_open_scoped "PeriodPair \
-  P2MW.S_OVERLONG_b277e395.PeriodPair \
+p2m_open_scoped "P2MW.S_OVERLONG_b277e395.PeriodPair \
   UpperHalfPlane MatrixGroups"
-p2m_open "PeriodPair P2MW.S_OVERLONG_b277e395.PeriodPair Polynomial \
+p2m_open "P2MW.S_OVERLONG_b277e395.PeriodPair Polynomial \
   P2MW.S_OVERLONG_b277e395.ModularCurve"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg \
   P2MW.S_OVERLONG_b277e395.AlgebraicCu\

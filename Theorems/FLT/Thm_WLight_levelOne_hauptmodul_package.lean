@@ -15,7 +15,7 @@ public import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.CategoryTheory.Category.Basic
+import Mathlib.CategoryTheory.Category.Init
 
 /-!
 # Level-one hauptmodul package: polynomials in j, surjectivity, q-expansion principle

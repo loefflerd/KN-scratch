@@ -16,7 +16,6 @@ public import Mathlib.Algebra.CharP.Algebra
 public import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
 
 import Mathlib.FieldTheory.Relrank
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 
 /-!
 # [M:Mᵖ]=p for a one-variable function field over a perfect field

@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_Gamma0CoeffCohomology
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
-import Mathlib.Algebra.MvPolynomial.Monad
 import Mathlib.Analysis.Normed.Ring.Lemmas
 import Theorems.FLT.Thm_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero
 import Definitions.FLT.Def_P2M_Util

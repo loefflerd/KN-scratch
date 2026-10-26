@@ -102,7 +102,6 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_KroneckerTransport
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
-public import Definitions.FLT.Def_ModularCurve_MazurStepThree
 public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 public import Definitions.FLT.Def_ModularCurve_ModularUnit
 public import Definitions.FLT.Def_ModularCurve_ModuliPoint

@@ -14,10 +14,7 @@ module
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import Definitions.FLT.Def_P2M_Util
-import Definitions.FLT.Def_ModularCurve_PhiGen
 
 /-!
 # Joint descent for q-expansions with rational coefficients
@@ -69,7 +66,6 @@ p2m_open "ModularCurve"
 
 namespace PhiGen
 p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd PhiGenDescends"
-p2m_open "ModularCurve.PhiGen"
 
 section Contract
 
@@ -129,7 +125,6 @@ end
 
 open _root_.ModularCurve
   _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve
-  _root_.ModularCurve.PhiGen
   _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve.PhiGen in
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)]
     {f : LaurentSeries K} (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ))
@@ -145,7 +140,7 @@ end privateSection
 
 public section publicSection
 
-open ModularCurve ModularCurve.PhiGen
+open ModularCurve
 theorem ModularCurve.PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter {K : Type*} [Field K]
     [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {f : LaurentSeries K}
     (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ)) (h2 : f ∈ Set.range (coeffEmb K)) :

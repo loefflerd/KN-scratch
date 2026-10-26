@@ -11,11 +11,9 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_PhiGen
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_injective
 import Definitions.FLT.Def_P2M_Util
+public import Definitions.FLT.Def_ModularCurve_X0
 
 /-!
 # Injectivity of evaluation at j(q)
@@ -73,7 +71,6 @@ p2m_open "ModularCurve"
 namespace PhiGen
 p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd phiProd_monic phiProd_natDegree \
   phiProd_eval_conj TPoleOrderLE tPoleOrderLE_iff_poleOrderLE JSimplePole PhiGenDescends"
-p2m_open "ModularCurve.PhiGen"
 
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.mono"
 p2m_export "ModularCurve.PhiGen" "TPoleOrderLE.neg"
@@ -122,7 +119,7 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve
-  _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve.PhiGen
+   _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve.PhiGen
   in
 theorem solution : Function.Injective evalAtJ :=
   ModularCurve.PhiGen.evalAtJ_injective
@@ -135,7 +132,7 @@ end privateSection
 
 public section publicSection
 
-open ModularCurve ModularCurve.PhiGen
+open ModularCurve
 theorem ModularCurve.PhiGen.evalAtJ_injective :
     Function.Injective evalAtJ :=
   solution

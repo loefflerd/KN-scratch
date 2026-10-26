@@ -11,12 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
-public import Definitions.FLT.Def_ModularCurve_ModularUnit
 
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_modularFunctionField
 import Theorems.FLT.Thm_ModularCurve_full_eq_of_prime
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 /-!
 # Geometric function field of X₀(ℓ) as ℚ̄(j)(j_ℓ)

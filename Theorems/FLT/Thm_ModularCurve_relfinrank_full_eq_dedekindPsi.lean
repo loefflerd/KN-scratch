@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.FieldTheory.Relrank
 
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
 import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_map_eq_prod_slots
 import Theorems.FLT.Thm_ModularCurve_jqN_prime_not_mem_full
 import Theorems.FLT.Thm_ModularCurve_jqN_pow_not_mem_adjoin_full
@@ -24,9 +23,6 @@ import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_mul
 import Theorems.FLT.Thm_ModularCurve_jqN_div_mem_modularFunctionField
 import Theorems.FLT.Thm_ModularCurve_modularFunctionField_eq_full_of
 import Theorems.FLT.Thm_ModularCurve_relfinrank_modularFunctionField
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime_pow
-import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_of_finrank_eq
-import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration_iff_full_eq
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

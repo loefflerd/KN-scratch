@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
-import Mathlib.RingTheory.DedekindDomain.Factorization
 import Mathlib.RingTheory.RamificationInertia.Basic
 import Definitions.FLT.Def_P2M_Util
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces

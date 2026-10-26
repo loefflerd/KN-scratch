@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Definitions.FLT.Def_ModularCurve_PhiGen
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -81,7 +80,7 @@ end ModularCurve
 end
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_aeval_jqN_toAdjoin.ModularCurve
-  ModularCurve.PhiGen in
+  in
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) :
     Polynomial.aeval (jqN N) data.toAdjoin = 0 :=
   ModularCurve.aeval_jqN_toAdjoin data

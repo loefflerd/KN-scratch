@@ -13,13 +13,8 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_self
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
-import Theorems.FLT.Thm_ModularCurve_one_le_coeff_jq
-import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 

@@ -13,13 +13,13 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
 import Mathlib.Algebra.Polynomial.Bivariate
-import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Definitions.FLT.Def_P2M_Util
 import Definitions.FLT.Def_ModularCurve_PhiGen
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Integrality of ̄ j(q^N) over K(̄ j(q))

@@ -16,9 +16,8 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
 
 public import Definitions.FLT.Def_ModularForm_HeckeOperator
 
-import Definitions.FLT.Def_FLTPrelim_Modularity
-import Mathlib.RingTheory.RootsOfUnity.Complex
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.NumberTheory.ModularForms.Basic
 
 /-!
 # Holomorphy of Uₚ f on the upper half-plane

@@ -13,9 +13,17 @@ module
 
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Definitions.FLT.Def_P2M_Util
-import Definitions.FLT.Def_ModularCurve_PhiGen
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+import Mathlib.Basic.NNReal.Defs
+import Mathlib.CategoryTheory.Category.Init
+import Mathlib.Combinatorics.Matroid.Init
+import Mathlib.Data.Sym.Sym2.Init
+import Mathlib.RingTheory.LocalRing.Basic
+import Mathlib.Tactic.Continuity.Init
+import Mathlib.Tactic.ContinuousFunctionalCalculus
+import Mathlib.Tactic.NormNum.GCD
+import Mathlib.Tactic.Positivity.Finset
 
 /-!
 # A field endomorphism permutes the ℓ-th roots of unity
@@ -61,17 +69,14 @@ namespace P2MW.S_ModularCurve_PhiGen_exists_galoisPerm
 
 noncomputable section
 
-open PowerSeries HahnSeries Polynomial
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq qTwist \
   qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap coeffMap_coeff coeffEmb \
   coeffEmb_coeff coeffMap_coeffEmb coeffMap_qExpand"
-p2m_open "ModularCurve"
 
 namespace PhiGen
 p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd PhiGenDescends"
-p2m_open "ModularCurve.PhiGen"
 
 section GaloisPerm
 
@@ -102,8 +107,8 @@ end PhiGen
 end ModularCurve
 end
 
-open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve
-  _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve.PhiGen
+open _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve
+   _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve.PhiGen
   in
 theorem solution {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
     (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) :
@@ -118,7 +123,6 @@ end privateSection
 
 public section publicSection
 
-open ModularCurve ModularCurve.PhiGen
 theorem ModularCurve.PhiGen.exists_galoisPerm {K : Type*} [Field K] {ℓ : ℕ}
     [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) :
     ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) :=

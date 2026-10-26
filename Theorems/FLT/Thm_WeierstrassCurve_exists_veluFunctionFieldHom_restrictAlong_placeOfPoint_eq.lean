@@ -27,7 +27,6 @@ import Mathlib.Analysis.Normed.Group.Basic
 import Mathlib.Topology.MetricSpace.Bounded
 import Mathlib.Data.EReal.Operations
 import Mathlib.Topology.Algebra.InfiniteSum.Order
-import Mathlib.RingTheory.Etale.Basic
 import Mathlib.RingTheory.Henselian
 import Mathlib.Algebra.Order.Ring.Star
 

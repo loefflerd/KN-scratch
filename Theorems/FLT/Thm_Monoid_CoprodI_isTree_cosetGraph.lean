@@ -14,7 +14,6 @@ module
 public import Mathlib.Combinatorics.SimpleGraph.Acyclic
 public import Mathlib.GroupTheory.CoprodI
 
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Group
 import Definitions.FLT.Def_P2M_Util
 

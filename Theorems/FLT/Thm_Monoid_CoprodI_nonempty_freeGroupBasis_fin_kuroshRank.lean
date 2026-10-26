@@ -17,9 +17,7 @@ public import Mathlib.GroupTheory.Index
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Algebra.Group.Action.Sigma
 import Mathlib.Algebra.Torsor.Defs
-import Mathlib.Data.Nat.Cast.Field
 import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Group
 import Theorems.FLT.Thm_Monoid_CoprodI_isTree_cosetGraph
 import Theorems.FLT.Thm_SimpleGraph_exists_walkConnected_transversal_of_preconnected

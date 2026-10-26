@@ -15,7 +15,6 @@ public import Definitions.FLT.Def_Gamma0CoeffCohomology
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
 import Mathlib.Algebra.CharP.Invertible
-import Mathlib.Algebra.MvPolynomial.Monad
 import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.RingTheory.Flat.TorsionFree

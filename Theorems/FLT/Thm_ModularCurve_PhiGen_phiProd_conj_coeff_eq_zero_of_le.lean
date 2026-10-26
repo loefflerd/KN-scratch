@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import Definitions.FLT.Def_P2M_Util
 
 /-!

@@ -20,11 +20,9 @@ import Mathlib.RingTheory.LocalProperties.Reduced
 import Mathlib.RingTheory.Henselian
 
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 
 /-!
 # Translation by R as a function-field automorphism on places

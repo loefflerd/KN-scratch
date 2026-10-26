@@ -14,7 +14,6 @@ module
 public import Definitions.FLT.Def_ModularCurve_PhiGen
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eq_of_prime
 import Theorems.FLT.Thm_ModularCurve_PhiGen_exists_phiGenDescends

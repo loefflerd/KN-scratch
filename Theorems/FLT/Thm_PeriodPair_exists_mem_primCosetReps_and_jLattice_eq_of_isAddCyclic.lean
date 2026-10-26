@@ -17,9 +17,7 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Order.Star.Int
 import Definitions.FLT.Def_P2M_Util
-import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
 
 /-!
 # Cyclic index-N sublattices come from primitive coset representatives

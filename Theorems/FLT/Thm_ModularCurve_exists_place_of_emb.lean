@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_EMD
 
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
 import Theorems.FLT.Thm_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot
 import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff

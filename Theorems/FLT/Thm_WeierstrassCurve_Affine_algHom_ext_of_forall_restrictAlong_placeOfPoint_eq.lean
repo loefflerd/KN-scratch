@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
-public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
@@ -24,7 +23,7 @@ import Mathlib.Data.EReal.Operations
 import Mathlib.Topology.Algebra.InfiniteSum.Order
 import Mathlib.RingTheory.Henselian
 import Mathlib.Order.CompletePartialOrder
-import Mathlib.Algebra.Order.Ring.Star
+public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
 
 /-!
 # Integral maps into K(E) determined by action on places

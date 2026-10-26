@@ -20,7 +20,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClo
 import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 import Theorems.FLT.Thm_AlgebraicCurve_separableAlong_of_charZero
 import Theorems.FLT.Thm_ModularCurve_TatePoint_fullKernelIsRootAt_of_odd
-import Theorems.FLT.Thm_ModularCurve_TatePoint_fullKernelDiscAt_of_odd
 
 /-!
 # Root property of the full-kernel quotient at every level

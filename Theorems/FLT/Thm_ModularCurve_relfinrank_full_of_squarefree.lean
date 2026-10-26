@@ -14,14 +14,14 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0
 public import Mathlib.FieldTheory.Relrank
 
-import Theorems.FLT.Thm_ModularCurve_coeffEmb_qExpand
-import Theorems.FLT.Thm_ModularCurve_PhiGen_splits_prime_at_slot
 import Theorems.FLT.Thm_ModularCurve_full_eq_adjoin_primes
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem
 import Theorems.FLT.Thm_ModularCurve_jqN_prime_not_mem_adjoin
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_of_squarefree
-import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
 
 /-!
 # Relative degree ψ(N) at squarefree level
@@ -66,15 +66,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-open _root_.ModularCurve.ModularPolynomialHelpers
-
-open _root_.ModularCurve.W1
-
 namespace P2MW.S_ModularCurve_relfinrank_full_of_squarefree
 
 noncomputable section
 
-p2m_open "ModularCurve ModularCurve.PhiGen"
+p2m_open "ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply \

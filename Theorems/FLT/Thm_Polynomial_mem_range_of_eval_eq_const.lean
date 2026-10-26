@@ -14,7 +14,9 @@ module
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 
 import Definitions.FLT.Def_P2M_Util
-import Mathlib.Algebra.Polynomial.Splits
+import Mathlib.Algebra.Order.Field.Basic
+import Mathlib.Algebra.Polynomial.FieldDivision
+import Mathlib.Tactic.Positivity.Finset
 
 /-!
 # A value attained too often lies in the base field

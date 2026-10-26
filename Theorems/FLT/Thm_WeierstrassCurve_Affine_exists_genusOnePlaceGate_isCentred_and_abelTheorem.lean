@@ -24,7 +24,6 @@ import Mathlib.Tactic.NormNum.Prime
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.Henselian
 import Mathlib.Algebra.Order.Ring.Star
 

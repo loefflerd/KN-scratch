@@ -10,7 +10,6 @@ module
 
 public import Definitions.FLT.Def_ModularCurve_AtkinLehner
 public import Mathlib.NumberTheory.Height.NumberField
-public import Mathlib.Algebra.Ring.Action.Submonoid
 
 /-!
 # Naive height on the modular Jacobian via j-coordinates

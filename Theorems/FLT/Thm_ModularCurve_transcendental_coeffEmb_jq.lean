@@ -11,11 +11,11 @@ Licensed under Apache License 2.0
 
 module
 
-public import Definitions.FLT.Def_ModularCurve_AtkinLehner
-public import Definitions.FLT.Def_ModularCurve_ModularUnit
 
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
 
 /-!
 # Transcendence of j in the base-changed modular function field

@@ -12,7 +12,6 @@ Licensed under Apache License 2.0
 module
 
 public import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs

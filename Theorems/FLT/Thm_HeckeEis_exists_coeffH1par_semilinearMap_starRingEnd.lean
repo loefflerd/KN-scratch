@@ -15,7 +15,6 @@ public import Mathlib.Basic.Complex.Basic
 public import Definitions.FLT.Def_Gamma0CoeffCohomology
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
-import Mathlib.Algebra.MvPolynomial.Monad
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Definitions.FLT.Def_P2M_Util
 
