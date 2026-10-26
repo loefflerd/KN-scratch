@@ -72,6 +72,7 @@ section AlongHom
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
+/-- The algebra structure induced by the specified constant-field algebra homomorphism. -/
 abbrev algebraAlong (φ : F →ₐ[K] F') : Algebra F F' := φ.toRingHom.toAlgebra
 
 theorem isScalarTower_along (φ : F →ₐ[K] F') :
@@ -85,6 +86,8 @@ theorem isIntegral_along (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) :
   ⟨hφ⟩
 
 variable (K) in
+/-- The sum of ramification indices times residue degrees above each place equals the field
+degree. -/
 def FundamentalIdentityAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     [HasPrincipalDivisors K F'] : Prop :=
   letI := algebraAlong φ
@@ -93,11 +96,14 @@ def FundamentalIdentityAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegra
   FundamentalIdentity K F F'
 
 variable (K) in
+/-- The target function field is finite-dimensional over the source via the given homomorphism. -/
 def FiniteAlong (φ : F →ₐ[K] F') : Prop :=
   letI := algebraAlong φ
   Module.Finite F F'
 
 variable (K) in
+/-- The valuation of a field norm is the sum of the upstairs valuations weighted by residue
+degrees. -/
 def NormFormulaAlong (φ : F →ₐ[K] F') (hfin : FiniteAlong K φ) : Prop :=
   letI := algebraAlong φ
   haveI := isScalarTower_along φ
@@ -105,6 +111,7 @@ def NormFormulaAlong (φ : F →ₐ[K] F') (hfin : FiniteAlong K φ) : Prop :=
   Divisor.PushforwardNormFormula K F F'
 
 variable (K) in
+/-- The field degree computed using the algebra structure induced by the given homomorphism. -/
 def finrankAlong (φ : F →ₐ[K] F') : ℕ :=
   letI := algebraAlong φ
   Module.finrank F F'
@@ -121,6 +128,7 @@ section Pullback
 
 variable [HasPrincipalDivisors K F'] (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
 
+/-- Pull a divisor upstairs, weighting each place by its ramification index. -/
 def pullbackAlong : Divisor K F →+ Divisor K F' :=
   letI := algebraAlong φ
   haveI := isScalarTower_along φ
@@ -153,6 +161,7 @@ section Pushforward
 
 variable (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
 
+/-- Push a divisor downstairs, weighting its places by their residue degrees. -/
 def pushforwardAlong : Divisor K F' →+ Divisor K F :=
   letI := algebraAlong φ
   haveI := isScalarTower_along φ
@@ -191,6 +200,8 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 variable [HasPrincipalDivisors K F']
 variable (φ ψ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (hψ : ψ.toRingHom.IsIntegral)
 
+/-- The divisor correspondence obtained by pulling back along the first map and pushing forward
+along the second. -/
 def correspondence : Divisor K F →+ Divisor K F :=
   (pushforwardAlong ψ hψ).comp (pullbackAlong φ hφ)
 
@@ -225,6 +236,7 @@ variable (φ ψ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (hψ : ψ.toRi
 variable (hFI : FundamentalIdentityAlong K φ hφ)
 variable (hfin : FiniteAlong K ψ) (hN : NormFormulaAlong K ψ hfin)
 
+/-- The induced correspondence on degree-zero divisors. -/
 def degZeroCorrespondence :
     Divisor.degZero (K := K) (F := F) →+ Divisor.degZero (K := K) (F := F) :=
   ((Divisor.correspondence φ ψ hφ hψ).domRestrict
@@ -237,6 +249,7 @@ theorem coe_degZeroCorrespondence (D : Divisor.degZero (K := K) (F := F)) :
       Divisor.correspondence φ ψ hφ hψ (D : Divisor K F) :=
   rfl
 
+/-- The correspondence on degree-zero divisor classes induced by the two function-field maps. -/
 def correspondence : Pic0 K F →+ Pic0 K F :=
   QuotientAddGroup.map _ _ (degZeroCorrespondence φ ψ hφ hψ hFI) (by
     rintro ⟨D, hD0⟩ hD
@@ -258,6 +271,7 @@ section AlongPlaces
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
+/-- Restrict a place along the given function-field homomorphism. -/
 def Place.restrictAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (w : Place K F') :
     Place K F :=
   letI := algebraAlong φ
@@ -265,10 +279,12 @@ def Place.restrictAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (w
   haveI := isIntegral_along φ hφ
   w.restrict F
 
+/-- The ramification index computed after installing the algebra structure of the homomorphism. -/
 def Place.ramificationIndexAlong (φ : F →ₐ[K] F') (w : Place K F') : ℕ :=
   letI := algebraAlong φ
   w.ramificationIndex F
 
+/-- The residue-field degree computed along the specified homomorphism. -/
 def Place.inertiaDegAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (w : Place K F') :
     ℕ :=
   letI := algebraAlong φ
@@ -323,6 +339,7 @@ section Fiber
 
 variable [HasPrincipalDivisors K Z]
 
+/-- The places lying above a given place under restriction along the homomorphism. -/
 def fiberAlong (u : F₁ →ₐ[K] Z) (hu : u.toRingHom.IsIntegral) (w₁ : Place K F₁) :
     Finset (Place K Z) :=
   letI := algebraAlong u
@@ -361,6 +378,7 @@ section AlongTransport
 variable {K F F₁ : Type*} [Field K] [Field F] [Field F₁] [Algebra K F] [Algebra K F₁]
 
 variable (K) in
+/-- The target field is separable over the source via the given homomorphism. -/
 def SeparableAlong (φ : F →ₐ[K] F₁) : Prop :=
   letI := algebraAlong φ
   Algebra.IsSeparable F F₁
@@ -377,6 +395,7 @@ section Intertwines
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
+/-- The two semilinear automorphisms commute with the specified function-field homomorphism. -/
 def IntertwinesAlong (ι : F →+* F') (g : SemilinearAut K F) (g' : SemilinearAut K F') : Prop :=
   ∀ x : F, g' • (ι x) = ι (g • x)
 

@@ -31,7 +31,6 @@ public import Definitions.FLT.Def_AutomorphicForm_Gamma0FundamentalSet
 public import Definitions.FLT.Def_AutomorphicForm_HyperbolicMeasure
 public import Definitions.FLT.Def_AutomorphicForm_SiegelSetCover
 public import Definitions.FLT.Def_CohCarrier_Level
-public import Definitions.FLT.Def_Compat_Mathlib430
 public import Definitions.FLT.Def_CuspForm_HeckeAlgebra
 public import Definitions.FLT.Def_CuspForm_IntegralStructure
 public import Definitions.FLT.Def_CuspForm_Petersson

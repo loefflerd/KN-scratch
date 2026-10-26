@@ -74,10 +74,12 @@ section Fricke
 
 variable (N : ℕ) [NeZero N]
 
+/-- The function-field automorphism interchanges the two distinguished functions `j` and `j(Nz)`. -/
 def IsFrickeAut (σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N) : Prop :=
   σ ⟨jq, jq_mem N⟩ = ⟨jqN N, jqN_mem N⟩ ∧ σ ⟨jqN N, jqN_mem N⟩ = ⟨jq, jq_mem N⟩
 
 open Classical in
+/-- Choose an automorphism interchanging the two `j`-functions, or the identity if none exists. -/
 def frickeInvolution : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N :=
   if h : ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ
   then h.choose else AlgEquiv.refl
@@ -93,6 +95,7 @@ theorem frickeInvolution_eq_refl
     frickeInvolution N = AlgEquiv.refl := by
   rw [frickeInvolution, dite_eq_right h]
 
+/-- The image of the cusp at infinity under the chosen Fricke automorphism. -/
 def cuspZero : Place ℚ (modularFunctionField N) := frickeInvolution N • cuspInfty N
 
 theorem cuspZero_def : cuspZero N = frickeInvolution N • cuspInfty N := rfl
@@ -101,6 +104,8 @@ end Fricke
 
 section Full
 
+/-- The automorphism interchanges the divisor-indexed `j`-functions with complementary indices
+whose product is the level. -/
 def IsFrickeAutFull (N : ℕ)
     (σ : modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N) : Prop :=
   ∀ (a b : ℕ) (hab : a * b = N) (_ : NeZero a) (_ : NeZero b),
@@ -108,6 +113,8 @@ def IsFrickeAutFull (N : ℕ)
       = ⟨qExpand ℚ b jq, jqd_mem_full N (Dvd.intro_left a hab)⟩
 
 open Classical in
+/-- Choose a Fricke automorphism of the full modular function field, or the identity if none
+exists. -/
 def frickeInvolutionFull (N : ℕ) :
     modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N :=
   if h : ∃ σ : modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N, IsFrickeAutFull N σ
@@ -128,6 +135,7 @@ theorem frickeInvolutionFull_eq_refl (N : ℕ)
 
 variable (N : ℕ) [NeZero N]
 
+/-- The image of the full-field cusp at infinity under the chosen Fricke automorphism. -/
 def cuspZeroFull : Place ℚ (modularFunctionFieldFull N) :=
   frickeInvolutionFull N • cuspInftyFull N
 
@@ -149,6 +157,8 @@ theorem order_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ L] : (coeffEmb L jq
 
 variable (N : ℕ) [NeZero N]
 
+/-- The place at infinity on the base-changed modular function field defined by the
+Laurent-series valuation. -/
 def cuspInftyBar : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
   qInftyPlaceBar (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
     ⟨⟨coeffEmb (AlgebraicClosure ℚ) jq,

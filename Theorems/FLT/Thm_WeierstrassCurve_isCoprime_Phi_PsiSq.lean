@@ -13,6 +13,7 @@ module
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
 
+import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 import Definitions.FLT.Def_WeierstrassCurve_EDSEngine
 import Definitions.FLT.Def_P2M_Util
 

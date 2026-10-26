@@ -74,16 +74,16 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 end AlgebraicCurve
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
@@ -176,8 +176,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 p2m_open "AlgebraicCurve"
 
@@ -225,8 +225,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 p2m_open "AlgebraicCurve"
 
@@ -284,8 +284,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 p2m_open "AlgebraicCurve"
 
@@ -322,8 +322,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
@@ -350,8 +350,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
@@ -382,8 +382,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv \
@@ -408,8 +408,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 p2m_open "AlgebraicCurve"
 
@@ -435,8 +435,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 end AlgebraicCurve
 
@@ -458,8 +458,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 end AlgebraicCurve
 
@@ -480,8 +480,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 end AlgebraicCurve
 
@@ -508,8 +508,8 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply \
   HasCanonicalLocalResidueKStar kaehlerResidueTerm \
   kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff \
-  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion \
-  kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
+  kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352LocalResidueCompletion \
+  kwHgfV352CompletionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement \
   tateChainRule"
 p2m_open "AlgebraicCurve"
 
@@ -521,8 +521,8 @@ variable [HasCanonicalLocalResidueKStar K E]
 
 theorem kwHgfV352_localResidueCompletion_spec (v : Place K E) (xh : v.adicCompletion)
     {x : E} (hx : algebraMap E v.adicCompletion x - xh ∈ v.adicCompletionIntegers) :
-    kwHgfV352_localResidueCompletion v xh = v.localResidue x := by
-  unfold kwHgfV352_localResidueCompletion
+    kwHgfV352LocalResidueCompletion v xh = v.localResidue x := by
+  unfold kwHgfV352LocalResidueCompletion
   set x₀ := (kwHgfV352_exists_sub_mem_adicCompletionIntegers v xh).choose
   have hx₀ := (kwHgfV352_exists_sub_mem_adicCompletionIntegers v xh).choose_spec
   have heq : algebraMap E v.adicCompletion (x₀ - x)
@@ -538,7 +538,7 @@ theorem kwHgfV352_localResidueCompletion_spec (v : Place K E) (xh : v.adicComple
   exact hzero
 
 theorem kwHgfV352_localResidueCompletion_algebraMap (v : Place K E) (x : E) :
-    kwHgfV352_localResidueCompletion v (algebraMap E v.adicCompletion x)
+    kwHgfV352LocalResidueCompletion v (algebraMap E v.adicCompletion x)
       = v.localResidue x :=
   kwHgfV352_localResidueCompletion_spec v _
     (by rw [sub_self]; exact zero_mem _)
@@ -626,10 +626,10 @@ theorem kwF4gRRTate_RTCC_of_tate
   have := hfinF w (algebraMap F w.adicCompletion g)
     (algebraMap F w.adicCompletion (algebraMap E F v.uniformizer))
   rw [← hC v w hw (algebraMap F w.adicCompletion g)]
-  have := hfinE v (kwHgfV352_completionTraceAt v w hw g)
+  have := hfinE v (kwHgfV352CompletionTraceAt v w hw g)
     (algebraMap E v.adicCompletion v.uniformizer)
   rw [hT v w hw g]
-  rw [hAE v (kwHgfV352_completionTraceAt v w hw g)]
+  rw [hAE v (kwHgfV352CompletionTraceAt v w hw g)]
 
 end Wire
 

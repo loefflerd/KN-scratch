@@ -64,6 +64,7 @@ namespace Differential
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
+/-- Pull back a Kähler differential along the function-field homomorphism. -/
 def pullbackAlong (φ : F →ₐ[K] F') : Ω[F⁄K] →ₗ[K] Ω[F'⁄K] :=
   letI := algebraAlong φ
   haveI := isScalarTower_along φ
@@ -84,6 +85,8 @@ theorem pullbackAlong_smul (φ : F →ₐ[K] F') (f : F) (ω : Ω[F⁄K]) :
   rfl
 
 open Classical in
+/-- Trace a differential along a finite separable field map, with zero as the inseparable
+fallback. -/
 def traceAlong (φ : F →ₐ[K] F') : Ω[F'⁄K] →ₗ[K] Ω[F⁄K] :=
   if h : SeparableAlong K φ then
     letI := algebraAlong φ
@@ -117,6 +120,8 @@ theorem traceAlong_smul_pullbackAlong (φ : F →ₐ[K] F') (h : SeparableAlong 
 theorem traceAlong_of_not (φ : F →ₐ[K] F') (h : ¬ SeparableAlong K φ) : traceAlong φ = 0 := by
   rw [traceAlong, dite_eq_right h]
 
+/-- The differential correspondence obtained by pulling back along the second map and tracing
+along the first. -/
 def correspondence (φ ψ : F →ₐ[K] F') : Ω[F⁄K] →ₗ[K] Ω[F⁄K] :=
   traceAlong φ ∘ₗ pullbackAlong ψ
 

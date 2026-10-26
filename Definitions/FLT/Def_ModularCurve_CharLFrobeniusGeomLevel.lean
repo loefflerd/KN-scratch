@@ -92,6 +92,8 @@ end ConstantEmbedding
 section QExpandAlg
 variable (K : Type*) [Field K] (N : ℕ) [NeZero N]
 
+/-- The constant-field algebra homomorphism of Laurent series given by substituting `q^N` for
+`q`. -/
 def qExpandAlgC : LaurentSeries K →ₐ[K] LaurentSeries K where
   __ := qExpand K N
   commutes' r := by
@@ -151,9 +153,11 @@ theorem frobeniusGeomLevel_map_le :
     rw [qExpandAlgC_apply, qExpand_jqNModC_eq_pow K N data hKr]
     exact pow_mem (jqNModC_mem K N) ℓ
 
+/-- The image of the two-`j` function field under substitution of `q^ℓ` for `q`. -/
 def frobeniusGeomLevelImage : IntermediateField K (LaurentSeries K) :=
   (modularFunctionFieldC K N).map (qExpandAlgC K ℓ)
 
+/-- The algebra equivalence from the two-`j` function field to its substitution image. -/
 def frobeniusGeomLevelEquiv :
     (modularFunctionFieldC K N) ≃ₐ[K] (frobeniusGeomLevelImage K N (ℓ := ℓ)) :=
   (modularFunctionFieldC K N).equivMap (qExpandAlgC K ℓ)
@@ -166,6 +170,8 @@ theorem coe_frobeniusGeomLevelEquiv_apply (x : modularFunctionFieldC K N) :
   IntermediateField.coe_equivMap_apply _ _ x
 
 include data hKr in
+/-- The characteristic-`ℓ` function-field endomorphism obtained from substitution of `q^ℓ` for
+`q` and the supplied modular-polynomial data. -/
 def frobeniusGeomLevel : modularFunctionFieldC K N →ₐ[K] modularFunctionFieldC K N :=
   (IntermediateField.inclusion (frobeniusGeomLevel_map_le K N data hKr)).comp
     (frobeniusGeomLevelEquiv K N (ℓ := ℓ)).toAlgHom
@@ -284,6 +290,7 @@ variable {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
 variable (data : ModularPolynomialData ℓ) (hKr : KroneckerCongruence ℓ data)
 
 include data hKr in
+/-- The original two-`j` field as an algebra over its Frobenius image subfield. -/
 @[reducible] def frobImageAlgebra :
     Algebra (frobeniusGeomLevelImage K N (ℓ := ℓ)) (modularFunctionFieldC K N) :=
   (IntermediateField.inclusion (frobeniusGeomLevel_map_le K N data hKr)).toRingHom.toAlgebra
@@ -307,6 +314,8 @@ theorem frobImageIsIntegral :
   exact Subtype.ext rfl
 
 include data hKr in
+/-- The map on places obtained by restricting to the Frobenius image and identifying that image
+with the original field. -/
 def frobOnPlacesGeomLevel (w : Place K (modularFunctionFieldC K N)) :
     Place K (modularFunctionFieldC K N) :=
   letI := frobImageAlgebra K N data hKr
@@ -344,6 +353,8 @@ theorem frobOnPlacesGeomLevel_injective :
 
 include data hKr in
 open Classical in
+/-- Choose a place mapping to the given place under Frobenius, or return that place if no
+preimage exists. -/
 def verOnPlacesGeomLevel (u : Place K (modularFunctionFieldC K N)) :
     Place K (modularFunctionFieldC K N) :=
   if h : ∃ w, frobOnPlacesGeomLevel K N data hKr w = u then h.choose else u
@@ -365,11 +376,13 @@ variable {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
 variable (data : ModularPolynomialData ℓ) (hKr : KroneckerCongruence ℓ data)
 
 include data hKr in
+/-- Map divisors along the Frobenius map on places, leaving their coefficients unchanged. -/
 def frobeniusPushforwardGeomLevel :
     Divisor K (modularFunctionFieldC K N) →+ Divisor K (modularFunctionFieldC K N) :=
   Finsupp.mapDomain.addMonoidHom (frobOnPlacesGeomLevel K N data hKr)
 
 include data hKr in
+/-- Pull back each place to its chosen inverse Frobenius image with multiplicity `ℓ`. -/
 def frobeniusPullbackGeomLevel :
     Divisor K (modularFunctionFieldC K N) →+ Divisor K (modularFunctionFieldC K N) :=
   Finsupp.liftAddHom fun v =>
@@ -377,6 +390,8 @@ def frobeniusPullbackGeomLevel :
       (AddMonoidHom.mulRight (ℓ : ℤ))
 
 include data hKr in
+/-- The sum of the Frobenius pushforward and pullback operators on divisors in characteristic
+`ℓ`. -/
 def heckeFibreGeomLevel :
     Divisor K (modularFunctionFieldC K N) →+ Divisor K (modularFunctionFieldC K N) :=
   frobeniusPushforwardGeomLevel K N data hKr + frobeniusPullbackGeomLevel K N data hKr
@@ -710,6 +725,7 @@ theorem frobNorm_add (h : IsFrobeniusEndo ℓ φ) (a b : F) :
   h.frobNorm_eq_of_map_eq_pow
     (by rw [map_add, h.map_frobNorm, h.map_frobNorm, add_pow_char])
 
+/-- The Frobenius norm of the endomorphism bundled as a ring homomorphism. -/
 def frobNormRingHom (h : IsFrobeniusEndo ℓ φ) : F →+* F where
   toFun := h.frobNorm
   map_one' := h.frobNorm_one
@@ -741,6 +757,7 @@ namespace IsFrobeniusEndo
 
 variable (h : IsFrobeniusEndo ℓ φ)
 
+/-- Extend the place by pulling its valuation ring back along the Frobenius norm homomorphism. -/
 def extendPlace (v : Place K F) : Place K F where
   toValuationSubring := v.toValuationSubring.comap h.frobNormRingHom
   algebraMap_mem' a := by
@@ -801,6 +818,8 @@ theorem charP_modularFunctionFieldC : CharP (modularFunctionFieldC K N) ℓ :=
     (algebraMap K (modularFunctionFieldC K N)).injective ℓ
 
 include data hKr in
+/-- Extend a place along the Frobenius endomorphism using the supplied perfection of the constant
+field. -/
 def extendPlaceGeomLevel (hperf : ∀ c : K, ∃ d : K, d ^ ℓ = c)
     (v : Place K (modularFunctionFieldC K N)) : Place K (modularFunctionFieldC K N) :=
   haveI : CharP (modularFunctionFieldC K N) ℓ := charP_modularFunctionFieldC K N
@@ -1055,6 +1074,8 @@ theorem heckeFibreGeomLevel_mem_degZero {D : Divisor K (modularFunctionFieldC K 
   rw [degree_heckeFibreGeomLevel K N data hKr hdeg1 D, hD, mul_zero]
 
 include data hKr hdeg1 in
+/-- Frobenius pushforward restricted to degree-zero divisors under the supplied place-degree
+hypothesis. -/
 def frobeniusPushforwardGeomLevelDegZero :
     Divisor.degZero (K := K) (F := modularFunctionFieldC K N)
       →+ Divisor.degZero (K := K) (F := modularFunctionFieldC K N) :=
@@ -1071,6 +1092,8 @@ theorem coe_frobeniusPushforwardGeomLevelDegZero
   rfl
 
 include data hKr hdeg1 in
+/-- Frobenius pullback restricted to degree-zero divisors under the supplied place-degree
+hypothesis. -/
 def frobeniusPullbackGeomLevelDegZero :
     Divisor.degZero (K := K) (F := modularFunctionFieldC K N)
       →+ Divisor.degZero (K := K) (F := modularFunctionFieldC K N) :=
@@ -1087,6 +1110,7 @@ theorem coe_frobeniusPullbackGeomLevelDegZero
   rfl
 
 include data hKr hdeg1 in
+/-- The characteristic-`ℓ` Hecke-fiber operator restricted to degree-zero divisors. -/
 def heckeFibreGeomLevelDegZero :
     Divisor.degZero (K := K) (F := modularFunctionFieldC K N)
       →+ Divisor.degZero (K := K) (F := modularFunctionFieldC K N) :=
@@ -1121,6 +1145,7 @@ variable (hperf : ∀ c : K, ∃ d : K, d ^ ℓ = c)
 variable (hdeg1 : ∀ w : Place K (modularFunctionFieldC K N), w.deg = 1)
 
 include data hKr hperf hdeg1 in
+/-- The map on degree-zero divisor classes induced by Frobenius pushforward. -/
 def frobeniusPushforwardGeomLevelPic0 :
     Pic0 K (modularFunctionFieldC K N) →+ Pic0 K (modularFunctionFieldC K N) :=
   QuotientAddGroup.map _ _ (frobeniusPushforwardGeomLevelDegZero K N data hKr hdeg1) (by
@@ -1136,6 +1161,7 @@ theorem frobeniusPushforwardGeomLevelPic0_mk
   rfl
 
 include data hKr hperf hdeg1 in
+/-- The map on degree-zero divisor classes induced by Frobenius pullback. -/
 def frobeniusPullbackGeomLevelPic0 :
     Pic0 K (modularFunctionFieldC K N) →+ Pic0 K (modularFunctionFieldC K N) :=
   QuotientAddGroup.map _ _ (frobeniusPullbackGeomLevelDegZero K N data hKr hdeg1) (by
@@ -1152,6 +1178,8 @@ theorem frobeniusPullbackGeomLevelPic0_mk
   rfl
 
 include data hKr hperf hdeg1 in
+/-- The map on degree-zero divisor classes induced by the sum of Frobenius pushforward and
+pullback. -/
 def heckeFibreGeomLevelPic0 :
     Pic0 K (modularFunctionFieldC K N) →+ Pic0 K (modularFunctionFieldC K N) :=
   QuotientAddGroup.map _ _ (heckeFibreGeomLevelDegZero K N data hKr hdeg1) (by
@@ -1239,16 +1267,21 @@ variable [IsAlgClosed K] [IsCurveOver K (modularFunctionFieldC K N)]
 variable {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ]
 variable (data : ModularPolynomialData ℓ) (hKr : KroneckerCongruence ℓ data)
 
+/-- Frobenius pushforward on divisor classes, supplying the perfection and place-degree
+hypotheses from the curve assumptions. -/
 def frobeniusPushforwardGeomLevelPic0OfIsCurveOver :
     Pic0 K (modularFunctionFieldC K N) →+ Pic0 K (modularFunctionFieldC K N) :=
   frobeniusPushforwardGeomLevelPic0 K N data hKr (perfect_of_isAlgClosed K)
     (deg_eq_one_modularFunctionFieldC K N)
 
+/-- Frobenius pullback on divisor classes, supplying the perfection and place-degree hypotheses
+from the curve assumptions. -/
 def frobeniusPullbackGeomLevelPic0OfIsCurveOver :
     Pic0 K (modularFunctionFieldC K N) →+ Pic0 K (modularFunctionFieldC K N) :=
   frobeniusPullbackGeomLevelPic0 K N data hKr (perfect_of_isAlgClosed K)
     (deg_eq_one_modularFunctionFieldC K N)
 
+/-- The characteristic-`ℓ` Hecke-fiber operator on divisor classes using the curve assumptions. -/
 def heckeFibreGeomLevelPic0OfIsCurveOver :
     Pic0 K (modularFunctionFieldC K N) →+ Pic0 K (modularFunctionFieldC K N) :=
   heckeFibreGeomLevelPic0 K N data hKr (perfect_of_isAlgClosed K)
@@ -1322,6 +1355,8 @@ section FamilyProps
 
 variable (K : Type*) [Field K]
 
+/-- The two-`j` field at every nonzero level is a curve function field over the specified
+constants. -/
 def IsCurveOverModularFunctionFieldCFamily : Prop :=
   ∀ (N : ℕ), [NeZero N] → IsCurveOver K (modularFunctionFieldC K N)
 
@@ -1340,6 +1375,8 @@ variable [IsAlgClosed K] [IsCurveOver K (modularFunctionFieldC K N)]
 variable {ℓ : ℕ} [hℓ : Fact ℓ.Prime] [CharP K ℓ]
 variable (data : ModularPolynomialData ℓ) (hKr : KroneckerCongruence ℓ data)
 
+/-- The supplied abstract Hecke action at `ℓ` agrees with the geometric special-fiber operator on
+divisor classes. -/
 def SpecialFibreHeckeModuleMatch
     (inst : Module HeckeAlg (Pic0 K (modularFunctionFieldC K N))) : Prop :=
   ∀ x : Pic0 K (modularFunctionFieldC K N),

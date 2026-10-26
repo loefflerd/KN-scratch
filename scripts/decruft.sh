@@ -27,6 +27,9 @@ perl -0pi -e 's/^([ \t]*)·[ \t]*\n(?:[ \t]*\n)*\1  /$1· /mg' -- "${files[@]}" 
 # Collapse blank lines between indented lines; indentation excludes newlines.
 perl -0pi -e 's/^([ \t]+.*)\n+([ \t]+)/$1\n$2/mg' -- "${files[@]}" || exit
 
+# Collapse runs of more than 2 consecutive newlines
+perl -0pi -e 's/\n\n\n+/\n\n/mg' -- "${files[@]}" || exit
+
 # Remove scope-limited commands when they are at the end of their scope.
 perl -0pi -e 's/^variable .*\n( .*\n)*\n*end/end/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^include .*\n( .*\n)*\n*end/end/mg' -- "${files[@]}" || exit

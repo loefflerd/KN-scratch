@@ -21,9 +21,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 
-import Definitions.Util.RedundantOpenLinter
-import Batteries.Tactic.ShowUnused
-
 /-!
 # Uniformisation: z ↦ (wp(z), wp'(z)/2) parametrises E_Λ(ℂ)
 

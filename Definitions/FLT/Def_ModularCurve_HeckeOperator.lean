@@ -116,6 +116,7 @@ variable (N ℓ : ℕ) [NeZero N] [NeZero ℓ]
 section DegeneracyMapsBar
 
 variable (L) in
+/-- The first degeneracy inclusion between the base-changed full modular function fields. -/
 def heckeAlphaBar :
     laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L]
       laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) :=
@@ -129,6 +130,8 @@ theorem coe_heckeAlphaBar (x : laurentBaseChange L (modularFunctionFieldFull N))
   IntermediateField.coe_inclusion _ x
 
 variable (L) in
+/-- The second degeneracy map as a ring homomorphism, induced by substituting the prime power of
+`q`. -/
 def heckeBetaBarRingHom :
     laurentBaseChange L (modularFunctionFieldFull N) →+*
       laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) where
@@ -147,6 +150,7 @@ theorem coe_heckeBetaBarRingHom (x : laurentBaseChange L (modularFunctionFieldFu
   rfl
 
 variable (L) in
+/-- The second degeneracy map as a constant-field algebra homomorphism. -/
 def heckeBetaBar :
     laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L]
       laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) :=
@@ -173,10 +177,12 @@ end DegeneracyMapsBar
 section HeckePic0Bar
 
 variable (L) in
+/-- The first degeneracy inclusion is integral. -/
 def HeckeAlphaBarIntegral : Prop :=
   (heckeAlphaBar L N ℓ).toRingHom.IsIntegral
 
 variable (L) in
+/-- The second degeneracy inclusion is integral. -/
 def HeckeBetaBarIntegral : Prop :=
   (heckeBetaBar L N ℓ).toRingHom.IsIntegral
 
@@ -184,11 +190,14 @@ variable {N ℓ}
 variable (hα : HeckeAlphaBarIntegral L N ℓ) (hβ : HeckeBetaBarIntegral L N ℓ)
 variable [HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull (N * ℓ)))]
 
+/-- The Hecke correspondence on divisors obtained by pulling back along beta and pushing forward
+along alpha. -/
 def heckeDivBar :
     Divisor L (laurentBaseChange L (modularFunctionFieldFull N)) →+
       Divisor L (laurentBaseChange L (modularFunctionFieldFull N)) :=
   Divisor.correspondence (heckeBetaBar L N ℓ) (heckeAlphaBar L N ℓ) hβ hα
 
+/-- The induced Hecke correspondence on degree-zero divisor classes. -/
 def heckePic0Bar
     (hFI : FundamentalIdentityAlong L (heckeBetaBar L N ℓ) hβ)
     (hfin : FiniteAlong L (heckeAlphaBar L N ℓ))
@@ -205,11 +214,14 @@ variable {N ℓ}
 variable (hα : HeckeAlphaBarIntegral L N ℓ) (hβ : HeckeBetaBarIntegral L N ℓ)
 variable [HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull (N * ℓ)))]
 
+/-- The transposed correspondence on divisors, pulling back along alpha and pushing forward along
+beta. -/
 def heckeDivBarTranspose :
     Divisor L (laurentBaseChange L (modularFunctionFieldFull N)) →+
       Divisor L (laurentBaseChange L (modularFunctionFieldFull N)) :=
   Divisor.correspondence (heckeAlphaBar L N ℓ) (heckeBetaBar L N ℓ) hα hβ
 
+/-- The transposed Hecke correspondence on degree-zero divisor classes. -/
 def heckePic0BarTranspose
     (hFI : FundamentalIdentityAlong L (heckeAlphaBar L N ℓ) hα)
     (hfin : FiniteAlong L (heckeBetaBar L N ℓ))
