@@ -56,7 +56,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_WeierstrassCurve_Affine_weilPairing0_self
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
@@ -73,11 +72,6 @@ omit [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem transEquiv_transEquiv (S T : (W⁄K).Point) (h : (W⁄K).FunctionField) :
     transEquiv W K S (transEquiv W K T h) = transEquiv W K (S + T) h := by
   rw [transEquiv_add, AlgEquiv.trans_apply]
-
-omit [IsDedekindDomain (W⁄K).CoordinateRing] in
-theorem transEquiv_comm (S T : (W⁄K).Point) (h : (W⁄K).FunctionField) :
-    transEquiv W K S (transEquiv W K T h) = transEquiv W K T (transEquiv W K S h) := by
-  rw [transEquiv_transEquiv, transEquiv_transEquiv, add_comm]
 
 omit [DecidableEq K] [IsAlgClosed K] [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] in
 theorem const_unique {g : (W⁄K).FunctionField} (hg : g ≠ 0) {c c' : K}
@@ -197,7 +191,6 @@ export P2MW.S_WeierstrassCurve_Affine_weilPairing0_self (solution)
 end privateSection
 
 public section publicSection
-
 
 open WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
 

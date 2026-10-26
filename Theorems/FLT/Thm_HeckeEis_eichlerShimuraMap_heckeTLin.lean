@@ -68,7 +68,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin
 
 open scoped Manifold MatrixGroups
@@ -254,14 +253,6 @@ def repGL (ℓ : ℕ) [NeZero ℓ] (i : Option (Fin ℓ)) : GL (Fin 2) ℝ :=
 @[scoped simp] lemma repGL_coe (ℓ : ℕ) [NeZero ℓ] (i : Option (Fin ℓ)) :
     (repGL ℓ i : Matrix (Fin 2) (Fin 2) ℝ) = (repMat ℓ i).map (algebraMap ℤ ℝ) := rfl
 
-private lemma mapGL_coe' (s : SL(2, ℤ)) :
-    ((Matrix.SpecialLinearGroup.mapGL ℝ s : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ)
-      = (s : Matrix (Fin 2) (Fin 2) ℤ).map (algebraMap ℤ ℝ) := rfl
-
-private lemma map_int_mul (M P : Matrix (Fin 2) (Fin 2) ℤ) :
-    (M * P).map (algebraMap ℤ ℝ) = M.map (algebraMap ℤ ℝ) * P.map (algebraMap ℤ ℝ) := by
-  rw [← RingHom.mapMatrix_apply, ← RingHom.mapMatrix_apply, ← RingHom.mapMatrix_apply, map_mul]
-
 def heckeSlashSum (k : ℤ) (ℓ : ℕ) [NeZero ℓ] (f : ℍ → ℂ) : ℍ → ℂ :=
   ∑ i : Option (Fin ℓ), f ∣[k] repGL ℓ i
 
@@ -321,11 +312,6 @@ theorem alphaGL_coe :
     (alphaGL ℓ : Matrix (Fin 2) (Fin 2) ℝ) = (alphaMat ℓ).map (algebraMap ℤ ℝ) :=
   rfl
 
-theorem alphaGL_val_det : (alphaGL ℓ).val.det = (ℓ : ℝ) := by
-  change ((alphaMat ℓ).map (algebraMap ℤ ℝ)).det = (ℓ : ℝ)
-  rw [← RingHom.mapMatrix_apply, ← RingHom.map_det, det_alphaMat]
-  simp
-
 noncomputable def gammaToGL : Gamma0 N →* GL (Fin 2) ℝ :=
   (Matrix.SpecialLinearGroup.mapGL ℝ).comp (Gamma0 N).subtype
 
@@ -334,29 +320,12 @@ theorem gammaToGL_apply (x : Gamma0 N) :
     gammaToGL N x = Matrix.SpecialLinearGroup.mapGL ℝ (x : SL(2, ℤ)) :=
   rfl
 
-theorem gammaToGL_val_det (x : Gamma0 N) : (gammaToGL N x).val.det = 1 := by
-  rw [gammaToGL_apply, ← Matrix.GeneralLinearGroup.val_det_apply,
-    Matrix.SpecialLinearGroup.det_mapGL, Units.val_one]
-
-theorem gammaToGL_smul (x : Gamma0 N) (z : ℍ) : gammaToGL N x • z = (x : SL(2, ℤ)) • z :=
-  rfl
-
 noncomputable def heckeCosetRep (q : Gamma0 N ⧸ heckeUpper N ℓ) : GL (Fin 2) ℝ :=
   alphaGL ℓ * gammaToGL N (Quotient.out q)⁻¹
 
 theorem heckeCosetRep_def (q : Gamma0 N ⧸ heckeUpper N ℓ) :
     heckeCosetRep N ℓ q = alphaGL ℓ * gammaToGL N (Quotient.out q)⁻¹ :=
   rfl
-
-theorem heckeCosetRep_val_det (q : Gamma0 N ⧸ heckeUpper N ℓ) :
-    (heckeCosetRep N ℓ q).val.det = (ℓ : ℝ) := by
-  rw [heckeCosetRep_def, Units.val_mul, Matrix.det_mul, alphaGL_val_det, gammaToGL_val_det,
-    mul_one]
-
-theorem heckeCosetRep_val_det_pos (q : Gamma0 N ⧸ heckeUpper N ℓ) :
-    0 < (heckeCosetRep N ℓ q).val.det := by
-  rw [heckeCosetRep_val_det]
-  exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne ℓ)
 
 theorem gammaToGL_heckeConj_mul_alphaGL (h : heckeUpper N ℓ) :
     gammaToGL N (heckeConj N ℓ h) * alphaGL ℓ = alphaGL ℓ * gammaToGL N (h : Gamma0 N) := by
@@ -655,11 +624,6 @@ noncomputable def heckeCosetEquiv (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) :
   Equiv.ofBijective (cosetOfRep hℓ hℓN)
     ⟨cosetOfRep_injective hℓ hℓN, cosetOfRep_surjective hℓ hℓN⟩
 
-@[scoped simp]
-theorem heckeCosetEquiv_apply (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (i : Option (Fin ℓ)) :
-    heckeCosetEquiv hℓ hℓN i = (cosetRep hℓ hℓN i : Gamma0 N ⧸ heckeUpper N ℓ) :=
-  rfl
-
 end Bijection
 
 section CosetMatch
@@ -715,7 +679,8 @@ theorem heckeCosetMatch (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : HeckeCosetMa
   exact repGL_eq_rawDelta_mul hℓ hℓN i
 
 end CosetMatch
-end HeckeEis.HeckeESSol
+end HeckeESSol
+end HeckeEis
 end
 
 noncomputable section
@@ -935,7 +900,8 @@ theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(Binary
   exact h
 
 end EichlerSum
-end HeckeEis.HeckeESSol
+end HeckeESSol
+end HeckeEis
 end
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis HeckeEis.HeckeESSol
@@ -985,7 +951,6 @@ export P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin (solution)
 end privateSection
 
 public section publicSection
-
 
 open scoped Manifold MatrixGroups
 theorem HeckeEis.eichlerShimuraMap_heckeTLin (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime)

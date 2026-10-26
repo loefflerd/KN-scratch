@@ -64,7 +64,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_ModularCurve_exists_smul_eq_of_E4_cube_div_discriminant_eq
 
 noncomputable section
@@ -248,12 +247,6 @@ theorem mem_scale_lattice (L : PeriodPair) (α : ℂˣ) (x : ℂ) :
   · rintro ⟨m, n, rfl⟩; exact ⟨m, n, by ring⟩
   · rintro ⟨m, n, rfl⟩; exact ⟨m, n, by ring⟩
 
-theorem C₄_ne_zero : (120 * riemannZeta 4 : ℂ) ≠ 0 :=
-  mul_ne_zero (by norm_num) (riemannZeta_ne_zero_of_one_le_re (by norm_num))
-
-theorem C₆_ne_zero : (280 * riemannZeta 6 : ℂ) ≠ 0 :=
-  mul_ne_zero (by norm_num) (riemannZeta_ne_zero_of_one_le_re (by norm_num))
-
 end Bridge
 
 theorem E₄_cube_sub_E₆_sq_ne_zero (z : ℍ) : E₄ z ^ 3 - E₆ z ^ 2 ≠ 0 := fun h0 => by
@@ -261,7 +254,8 @@ theorem E₄_cube_sub_E₆_sq_ne_zero (z : ℍ) : E₄ z ^ 3 - E₆ z ^ 2 ≠ 0 
   rw [h0, zero_div] at h
   exact ModularForm.discriminant_ne_zero z h
 
-end ModularCurve.JSeparatesOrbits
+end JSeparatesOrbits
+end ModularCurve
 
 open ModularCurve.JSeparatesOrbits in
 theorem solution (τ τ' : ℍ)
@@ -314,7 +308,6 @@ export P2MW.S_ModularCurve_exists_smul_eq_of_E4_cube_div_discriminant_eq (soluti
 end privateSection
 
 public section publicSection
-
 
 open UpperHalfPlane
 open scoped MatrixGroups

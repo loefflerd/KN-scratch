@@ -61,7 +61,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount
 
 open OnePoint
@@ -113,9 +112,6 @@ noncomputable def toCuspSpace :
   Quotient.lift (fromCoset N) fun x y hxy => by
     obtain ⟨⟨_, n, rfl⟩, rfl⟩ := hxy
     exact fromCoset_T_zpow_smul N n y
-
-theorem toCuspSpace_mk (x : SL(2, ℤ) ⧸ Gamma0 N) :
-    toCuspSpace N (Quotient.mk _ x) = fromCoset N x := rfl
 
 theorem toCuspSpace_surjective : Function.Surjective (toCuspSpace N) := by
   intro c
@@ -173,7 +169,6 @@ export P2MW.S_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCoun
 end privateSection
 
 public section publicSection
-
 
 theorem ModularCurve.natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount (N : ℕ) [NeZero N] :
     Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T)

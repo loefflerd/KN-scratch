@@ -14,7 +14,6 @@ module
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
-
 /-!
 # Cosets of Γ₀(N) fixed by S number ν₂(N)
 
@@ -50,7 +49,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_ModularCurve_natCard_fixedPoints_S_cosets_Gamma0_eq_nuTwo
 
 namespace W7SF
@@ -63,6 +61,7 @@ def V (s : ℤ) : SL(2, ℤ) := ⟨!![0, -1; 1, s], by norm_num [Matrix.det_fin_
 def gl (l : ℤ) : SL(2, ℤ) := ⟨!![l, -1; 1, 0], by norm_num [Matrix.det_fin_two_of]⟩
 
 theorem V_zero : V 0 = S := by decide
+
 theorem V_one : V 1 = S * T := by decide
 
 @[scoped simp] theorem V_00 (s : ℤ) : (V s) 0 0 = 0 := rfl
@@ -166,16 +165,6 @@ theorem card_fixed_S :
   unfold ModularCurve.nuTwo
   exact Nat.card_congr (Equiv.subtypeEquivRight fun x => by simp)
 
-theorem card_fixed_ST :
-    Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N //
-        (ModularGroup.S * ModularGroup.T) • x = x} =
-      ModularCurve.nuThree N := by
-  have h : Nat.card {y : X N // (S * T) • y = y} = Nat.card (Roots N 1) := by
-    rw [← V_one]; exact card_fixed_eq N 1
-  refine h.trans ?_
-  unfold ModularCurve.nuThree
-  exact Nat.card_congr (Equiv.subtypeEquivRight fun x => by simp)
-
 end W7SF
 
 open scoped MatrixGroups in
@@ -191,7 +180,6 @@ export P2MW.S_ModularCurve_natCard_fixedPoints_S_cosets_Gamma0_eq_nuTwo (solutio
 end privateSection
 
 public section publicSection
-
 
 open scoped MatrixGroups
 theorem ModularCurve.natCard_fixedPoints_S_cosets_Gamma0_eq_nuTwo (N : ℕ) [NeZero N] :

@@ -135,31 +135,6 @@ namespace ModularCurve
 
 namespace TatePoint
 
-private theorem cycSubRootN_eq_cycSubRootOdd_aux (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ}
-    [NeZero N] (hN : Odd N)
-    (hW1 : FullKernelIsRootAt N) (hW3 : FullKernelDiscAt N) (data : ModularPolynomialData N)
-    (G : CycSubH E N) : cycSubRootN E hW1 hW3 data G = cycSubRootOdd E hN data G := by
-  classical
-  exact Subtype.ext (WeierstrassCurve.j_congr
-    (E.fullKernelQuotient_eq_veluQuotient_of_odd_aux (cycSubGen E G) hN (addOrderOf_cycSubGen E G))
-      _ _)
-
-private theorem rootsEquivCycSubHN_eq_rootsEquivCycSubHOdd_aux (E : WeierstrassCurve H)
-    [E.IsElliptic] {N : ℕ} [NeZero N]
-    (hN : Odd N) (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N)
-    (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) :
-    rootsEquivCycSubHN E hW1 hW2 hW3 data hj = rootsEquivCycSubHOdd E hN data hj := by
-  ext r : 1
-  rw [rootsEquivCycSubHN_apply_eq_iff, cycSubRootN_eq_cycSubRootOdd_aux E hN,
-    ← rootsEquivCycSubHOdd_apply_eq_iff E hN data hj r (rootsEquivCycSubHOdd E hN data hj r)]
-
-private theorem dictN_eq_dictOdd_aux (N : ℕ) [NeZero N] (hN : Odd N)
-    (data : ModularPolynomialData N) (j₀ : Qbar)
-    (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N) :
-    dictN N data j₀ hW1 hW2 hW3 = dictOdd N hN data j₀ :=
-  rootsEquivCycSubHN_eq_rootsEquivCycSubHOdd_aux (nearCurve j₀) hN hW1 hW2 hW3 data
-    (nearCurve_j_transcendental j₀)
-
 private theorem fullKernelIsRootAt_of_odd_aux (N : ℕ) [NeZero N] (hN : Odd N) :
     FullKernelIsRootAt N :=
   fun W _ Q hQ hΔ data =>
@@ -178,12 +153,8 @@ def dictNOdd (N : ℕ) [NeZero N] (hN : Odd N) (data : ModularPolynomialData N) 
   dictN N data j₀ (fullKernelIsRootAt_of_odd_aux N hN) (fullKernelInjAt_of_odd_aux N hN)
     (fullKernelDiscAt_of_odd_aux N hN)
 
-theorem dictNOdd_eq_dictOdd (N : ℕ) [NeZero N] (hN : Odd N) (data : ModularPolynomialData N)
-    (j₀ : Qbar) :
-    dictNOdd N hN data j₀ = dictOdd N hN data j₀ :=
-  dictN_eq_dictOdd_aux N hN data j₀ _ _ _
-
-end ModularCurve.TatePoint
+end TatePoint
+end ModularCurve
 
 end
 

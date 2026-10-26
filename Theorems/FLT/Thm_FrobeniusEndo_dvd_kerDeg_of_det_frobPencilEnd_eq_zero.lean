@@ -59,7 +59,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero
 
 p2m_open "WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo"
@@ -75,10 +74,6 @@ variable {R : Type*} {S : Type*} {K : Type*} [CommRing R] [CommRing S] [Field K]
   [Algebra R S] [Algebra R K] [Algebra S K] [IsScalarTower R S K]
   (W : WeierstrassCurve R) (σ : K ≃ₐ[S] K) (p : ℕ)
 
-lemma coe_galois_smul_torsionBy (x : Submodule.torsionBy ℤ (W⁄K).Point p) :
-    ((σ • x : Submodule.torsionBy ℤ (W⁄K).Point p) : (W⁄K).Point) = σ • (x : (W⁄K).Point) :=
-  rfl
-
 lemma coe_frobPencilEnd_apply (m n : ℤ) (x : Submodule.torsionBy ℤ (W⁄K).Point p) :
     ((frobPencilEnd W σ p m n x : Submodule.torsionBy ℤ (W⁄K).Point p) : (W⁄K).Point)
       = linePencil (frobEnd W σ) m n x := by
@@ -89,12 +84,6 @@ lemma coe_frobPencilEnd_apply (m n : ℤ) (x : Submodule.torsionBy ℤ (W⁄K).P
 lemma frobPencilEnd_eq_zero_iff (m n : ℤ) (x : Submodule.torsionBy ℤ (W⁄K).Point p) :
     frobPencilEnd W σ p m n x = 0 ↔ (x : (W⁄K).Point) ∈ (linePencil (frobEnd W σ) m n).ker := by
   rw [AddMonoidHom.mem_ker, ← coe_frobPencilEnd_apply, ZeroMemClass.coe_eq_zero]
-
-lemma frobPencilEnd_natCast_one (m : ℕ) :
-    frobPencilEnd W σ p (m : ℤ) 1
-      = (m : ZMod p) • (1 : Module.End (ZMod p) (Submodule.torsionBy ℤ (W⁄K).Point p))
-          - galoisRepModuleEnd S W p σ := by
-  simp only [frobPencilEnd, Int.cast_natCast, Int.cast_one, one_smul]
 
 end Pencil
 
@@ -144,7 +133,6 @@ export P2MW.S_FrobeniusEndo_dvd_kerDeg_of_det_frobPencilEnd_eq_zero (solution)
 end privateSection
 
 public section publicSection
-
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point FrobeniusEndo
 

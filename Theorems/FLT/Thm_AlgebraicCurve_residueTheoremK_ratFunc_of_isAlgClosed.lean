@@ -80,7 +80,6 @@ open AlgebraicCurve Place RationalFunctionField IntermediateField
 
 section privateSection
 
-
 noncomputable section
 
 namespace FLT
@@ -332,8 +331,6 @@ private theorem
     exact R.res_higherPoleMonomial _ hn1
 
 end MilneAvAg9bRd14CubeRowCartierSliceStart
-
-open MilneAvAg9bRd14CubeRowCartierSliceStart
 
 end ModularCurve
 end
@@ -675,7 +672,6 @@ namespace AlgebraicCurve
 variable (K : Type*) [Field K]
 
 section OrdIntegrand
-
 
 theorem p1PrincipalPartAtom_ne_zero {p : K[X]} (hp : p ≠ 0) {c : K[X]} (hc : c ≠ 0)
     (m : ℕ) : p1PrincipalPartAtom K p c m ≠ 0 := by
@@ -1324,7 +1320,6 @@ variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
 
 section PCoordinateIdentity
 
-
 omit [DecidableEq (RatFunc K)]
   in
 theorem derivative_monic_natDegree_one_eq_one {p : K[X]} (hpmon : p.Monic)
@@ -1377,7 +1372,6 @@ def P1FinitePlaceCanonicalResidueAtomMGeTwoHigherDeg : Prop :=
 
 end NamedHigherDeg
 section DegOneDischarge
-
 
 omit [DecidableEq (RatFunc K)]
   in
@@ -1701,7 +1695,6 @@ def P1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg : Prop :=
 end TraceRow
 section Monotonicity
 
-
 omit [DecidableEq (RatFunc K)]
   in
 theorem p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_higherDeg
@@ -1712,7 +1705,6 @@ theorem p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_higherDeg
 
 end Monotonicity
 section DegOneDischarge
-
 
 omit [DecidableEq (RatFunc K)]
   in
@@ -5750,9 +5742,7 @@ theorem AlgebraicCurve.residueTheoremK_ratFunc_of_isAlgClosed
     (K : Type*) [Field K] [IsAlgClosed K]
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := RatFunc K)]
     [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
-    AlgebraicCurve.ResidueTheoremK K (RatFunc K) := by
-  classical
-  exact
-    _root_.solution K
+    AlgebraicCurve.ResidueTheoremK K (RatFunc K) :=
+  solution K
 
 end publicSection

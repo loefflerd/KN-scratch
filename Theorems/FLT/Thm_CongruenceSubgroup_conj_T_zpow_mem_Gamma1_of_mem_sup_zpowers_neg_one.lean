@@ -13,7 +13,6 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
-
 /-!
 # Regularity of the cusps of Γ₁(M) for M ∤ 4
 
@@ -52,7 +51,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_CongruenceSubgroup_conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one
 
 open scoped MatrixGroups
@@ -74,9 +72,6 @@ def pmGamma1 (M : ℕ) : Subgroup SL(2, ℤ) where
     · refine Or.inr ?_
       have h : (-a)⁻¹ = -a⁻¹ := inv_eq_of_mul_eq_one_right (by rw [neg_mul_neg, mul_inv_cancel])
       rw [← h]; exact inv_mem ha
-
-theorem mem_pmGamma1_iff (M : ℕ) (g : SL(2, ℤ)) :
-    g ∈ pmGamma1 M ↔ g ∈ CongruenceSubgroup.Gamma1 M ∨ -g ∈ CongruenceSubgroup.Gamma1 M := Iff.rfl
 
 theorem sup_le_pmGamma1 (M : ℕ) :
     CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ≤ pmGamma1 M :=
@@ -133,7 +128,6 @@ export P2MW.S_CongruenceSubgroup_conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_o
 end privateSection
 
 public section publicSection
-
 
 open scoped MatrixGroups
 theorem CongruenceSubgroup.conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one (M : ℕ) (hM : ¬ M ∣ 4)

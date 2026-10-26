@@ -13,7 +13,6 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
-
 /-!
 # Invariance of inertia degree under intertwined semilinear automorphisms
 
@@ -59,7 +58,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_AlgebraicCurve_SemilinearAut_inertiaDeg_smul
 
 open AlgebraicCurve AlgebraicCurve.SemilinearAut
@@ -89,16 +87,6 @@ private def restrictSmulValuationSubringEquiv {K F F' : Type*} [Field K] [Field 
   map_mul' x y := by ext; exact smul_mul' g (x : F) (y : F)
   map_add' x y := by ext; exact smul_add g (x : F) (y : F)
 
-@[scoped simp]
-private theorem coe_restrictSmulValuationSubringEquiv_apply {K F F' : Type*} [Field K] [Field F]
-    [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-    [Algebra.IsIntegral F F'] {g : SemilinearAut K F} {g' : SemilinearAut K F'}
-    (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F')
-    (x : (w.restrict F).toValuationSubring) :
-    ((restrictSmulValuationSubringEquiv hgg' w x :
-      ((g' • w).restrict F).toValuationSubring) : F) = g • (x : F) :=
-  rfl
-
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] {g : SemilinearAut K F}
     {g' : SemilinearAut K F'} (hgg' : IntertwinesAlong (algebraMap F F') g g') (w : Place K F') :
@@ -127,7 +115,6 @@ export P2MW.S_AlgebraicCurve_SemilinearAut_inertiaDeg_smul (solution)
 end privateSection
 
 public section publicSection
-
 
 open AlgebraicCurve AlgebraicCurve.SemilinearAut
 theorem AlgebraicCurve.SemilinearAut.inertiaDeg_smul {K F F' : Type*} [Field K] [Field F] [Field F']

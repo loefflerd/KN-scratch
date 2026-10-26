@@ -56,9 +56,7 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-
 namespace P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow
-
 
 noncomputable section
 
@@ -85,9 +83,6 @@ theorem ex_inj {i j : ℕ} (h : ex n i = ex n j) : i = j := by
 theorem degree_ex {i : ℕ} (hi : i ≤ n) : (ex n i).degree = n := by
   rw [ex, (map_add Finsupp.degree), Finsupp.degree_single, Finsupp.degree_single]
   omega
-
-theorem ex_sub_sub {i : ℕ} (hi : i ≤ n) : ex n (n - (n - i)) = ex n i := by
-  rw [Nat.sub_sub_self hi]
 
 theorem eq_ex_of_degree {d : Fin 2 →₀ ℕ} (hd : d.degree = n) : d = ex n (d 0) ∧ d 0 ≤ n := by
   have hsum : d 0 + d 1 = n := by
@@ -125,10 +120,6 @@ def rawPairing : MvPolynomial (Fin 2) ℂ →ₗ[ℂ] MvPolynomial (Fin 2) ℂ �
     (fun c P Q => by
       rw [smul_eq_mul, mul_sum]
       exact sum_congr rfl fun i _ => by rw [coeff_smul, smul_eq_mul]; ring)
-
-@[scoped simp] theorem rawPairing_apply (P Q : MvPolynomial (Fin 2) ℂ) :
-    rawPairing n P Q = ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) *
-      AddMonoidAlgebra.coeff Q (ex n (n - i)) := rfl
 
 def pairing : ↥(BinaryForm ℂ n) →ₗ[ℂ] ↥(BinaryForm ℂ n) →ₗ[ℂ] ℂ :=
   (rawPairing n).compl₁₂ (BinaryForm ℂ n).subtype (BinaryForm ℂ n).subtype
@@ -216,7 +207,8 @@ theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairi
   rw [hd'] at hd
   exact hd (hc _ hle)
 
-end HeckeEis.PairingSol
+end PairingSol
+end HeckeEis
 end
 
 noncomputable section
@@ -368,7 +360,8 @@ theorem lineSpan_eq_top : lineSpan n = ⊤ := by
   have : P = Q := Subtype.ext hQP.symm
   rw [this]; exact hQ
 
-end HeckeEis.PairingSol
+end PairingSol
+end HeckeEis
 end
 
 noncomputable section
@@ -401,7 +394,8 @@ theorem pairing_rep (g : SL(2, ℤ)) (P Q : ↥(BinaryForm ℂ n)) :
   have := congrFun (congrArg DFunLike.coe (LinearMap.congr_fun h2 P)) Q
   exact this
 
-end HeckeEis.PairingSol
+end PairingSol
+end HeckeEis
 end
 
 open scoped MatrixGroups in
@@ -423,7 +417,6 @@ export P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow (solution)
 end privateSection
 
 public section publicSection
-
 
 open scoped MatrixGroups
 theorem HeckeEis.exists_pairing_binaryForm_linePow (n : ℕ) :
